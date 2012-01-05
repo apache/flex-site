@@ -1,0 +1,50 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<link href="/flex/css/flex.css" rel="stylesheet" type="text/css">
+{% if header %}
+{% autoescape off %}{{ header }}{% endautoescape %}{% else %}
+<title>{% block title %}{{ headers.title }}{% endblock %}</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+{% endif %}
+</head>
+
+<body>
+  <div id="bannera">
+    <div id="bannerleft"><img id="flex-logo" alt="Apache Flex (Incubating)" src="/flex/images/flex.png"/></div>
+    <div id="bannerright">
+      <a title="Apache Incubator" href="http://incubator.apache.org"><img id="asf-logo" alt="Apache Incubator" src="/flex/images/apache-incubator-logo.png"/></a>
+    </div>
+    <div id="bannercenter">our new podling</div>
+  </div>
+  <div id="topbara">
+    {% if topnav.content %}<div id="topnava">{% block topnav %}{{ topnav.content|markdown }}{% endblock %}</div>{% endif %}
+    <div id="breadcrumbsa">{% block breaddcrumbs %}{% autoescape off %}{{ breadcrumbs }}{% endautoescape %}{% endblock %}</div>
+  </div>
+  <div id="clear"></div>
+  {% if leftnav.content %}<div id="leftnav">{% block leftnav %}{{ leftnav.content|markdown }}{% endblock %}</div>{% endif %}
+  {% if rightnav.content %}<div id="rightnav">{% block rightnav %}{{ rightnav.content|markdown }}{% endblock %}</div>{% endif %}
+  <div id="content">
+    {% block title %}{% if headers.title %}<h1 class="title">{{ headers.title }}</h1>{% endif %}{% endblock %}
+    {% block content %}{{ content|markdown }}{% endblock %}
+  </div>
+
+  <div id="footera">
+    <div id="poweredbya"><p><img src="/flex/images/feather-small.gif"/></p></div>
+    <div id="copyrighta">
+      <p>
+	Apache Flex is an effort undergoing incubation at The Apache Software Foundation (ASF), sponsored by the Apache Incubator.
+	Incubation is required of all newly accepted projects until a further review indicates that the infrastructure, communications, and
+	decision making process	have stabilized in a manner consistent with other successful ASF projects. While incubation status is
+	not necessarily a reflection of the completeness or stability of the code, it does indicate that the project has
+	yet to be fully endorsed by the ASF.</p>
+      <p>
+	<a href="/flex/license.html">Copyright &amp; License</a>
+	<br />Apache and the Apache feather logos are trademarks of The Apache Software Foundation.
+	Other names appearing on the site may be trademarks of their respective owners.
+      </p>
+    </div>
+  </div>
+
+</body>
+</html>
