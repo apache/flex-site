@@ -5,7 +5,6 @@ package view;
 # careful use of svn externals and dependency management in path.pm can
 # resolve most issues with this constraint.
 
-
 use strict;
 use warnings;
 use Dotiac::DTL qw/Template *TEMPLATE_DIRS/;
