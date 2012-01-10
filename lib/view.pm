@@ -13,7 +13,7 @@ use ASF::Util qw/read_text_file sort_tables/;
 
 push our @TEMPLATE_DIRS, "templates";
 
-# This is most widely used view.  It takes a
+# This is most widely used view.  It takes a 
 # 'template' argument and a 'path' argument.
 # Assuming the path ends in foo.mdtext, any files
 # like foo.page/bar.mdtext will be parsed and
