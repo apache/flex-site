@@ -6,6 +6,7 @@ our @patterns = (
 	[qr!\.mdtext$!, single_narrative => { template => "single_narrative.html" }],
 	[qr!\.html$!, html_page => { template => "html_page.html" }],
 	[qr!\.htm$!, html_page => { template => "html_page.html" }],
+    [qr!\.chtml$!, html_page => { template => "no_template.html" }],
 ) ;
 
 # for specifying interdependencies between files
