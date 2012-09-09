@@ -1,10 +1,3 @@
-<style type="text/css"> 
-    body { margin: 0; padding: 0; }   
-    object:focus { outline: none; }
-    #flashContent { display: none; }
-    #${application} { border: 1px solid #172647; }
-</style>
-
 <div id="flashContent">
     <script type="text/javascript"> 
         var pageHost = ((document.location.protocol == "https:") ? "https://" : "http://"); 
@@ -22,7 +15,7 @@
 <script type="text/javascript">
     /* use strict */
     
-    var swfVersionStr, params, attributes;
+    var _widget;
     
     function displayType() {
         if ((window.top != window.self) && window.parent)
@@ -32,7 +25,7 @@
     }
     
     function init() {
-        var prefix, theElement, theHeight, theWidth, widget;
+        var prefix, theElement, theHeight, theWidth;
         
 		if (displayType() != "") {
     		if (typeof window.innerWidth === 'number') {
@@ -45,27 +38,39 @@
     			theWidth = theElement.clientWidth;
     		}
 
-            widget = document.getElementById("InstallApacheFlexBadge");
+           console.log("HERE '" + _widget + "'");
 
-            console.log("HERE '" + widget + "'");
-
-            widget.style.height = (theHeight - 2) + "px";
-            widget.style.width = (theWidth - 2) + "px";
+            _widget.style.height = (theHeight - 2) + "px";
+            _widget.style.width = (theWidth - 2) + "px";
             
             document.getElementById("InstallApacheFlexBadge").style.border = "1px solid #172647";
         }
     }
     
-    swfVersionStr = "11.1.0";
-    flashVars = { serviceURL: "http://incubator.apache.org/flex/" };
-    params = { quality: "high", bgcolor: "#ffffff", allowscriptaccess: "sameDomain",
-        allowfullscreen: "true" };
-    attributes = { id: "InstallApacheFlexBadge", name: "InstallApacheFlexBadge" };
+    function start() {
+        var swfVersionStr, params, attributes;
+        
+        swfVersionStr = "11.1.0";
+        flashVars = { serviceURL: "http://incubator.apache.org/flex/" };
+        params = { quality: "high", bgcolor: "#ffffff", allowscriptaccess: "sameDomain",
+            allowfullscreen: "true" };
+        attributes = { id: "InstallApacheFlexBadge", name: "InstallApacheFlexBadge" };
     
-    swfobject.embedSWF("InstallApacheFlexBadge.swf", "flashContent", "10", "10", 
-        swfVersionStr, "", flashVars, params, attributes);
+        swfobject.embedSWF("InstallApacheFlexBadge.swf", "flashContent", "10", "10", 
+            swfVersionStr, "", flashVars, params, attributes);
     
-    swfobject.createCSS("#flashContent", "display: block;");
+        swfobject.createCSS("#flashContent", "display: block;");
     
-    setTimeout(function () { init(); }, 1000);
+        waitForWidget();
+    }
+    
+    function waitForWidget() {
+        _widget = document.getElementById("InstallApacheFlexBadge");
+        
+        if (!_widget)
+            setTimeout(function () { waitForWidget(); }, 1000);
+    }
+    
+    start();
+    
 </script>
