@@ -1,3 +1,10 @@
+<style type="text/css"> 
+    body { margin: 0; padding: 0; }   
+    object:focus { outline: none; }
+    #flashContent { display: none; }
+    #${application} { border: 1px solid #172647; }
+</style>
+
 <div id="flashContent">
     <script type="text/javascript"> 
         var pageHost = ((document.location.protocol == "https:") ? "https://" : "http://"); 
@@ -47,12 +54,13 @@
     }
     
     swfVersionStr = "11.1.0";
+    flashVars = { serviceURL: "http://incubator.apache.org/flex/" };
     params = { quality: "high", bgcolor: "#ffffff", allowscriptaccess: "sameDomain",
         allowfullscreen: "true" };
     attributes = { id: "InstallApacheFlexBadge", name: "InstallApacheFlexBadge" };
     
-    swfobject.embedSWF("InstallApacheFlexBadge.swf", "flashContent", "300", "300", 
-        swfVersionStr, "", {}, params, attributes);
+    swfobject.embedSWF("InstallApacheFlexBadge.swf", "flashContent", "10", "10", 
+        swfVersionStr, "", flashVars, params, attributes);
     
     swfobject.createCSS("#flashContent", "display: block;");
     
