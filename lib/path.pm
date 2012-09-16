@@ -7,6 +7,7 @@ our @patterns = (
 	[qr!\.html$!, html_page => { template => "html_page.html" }],
 	[qr!\.htm$!, html_page => { template => "html_page.html" }],
     [qr!\.chtml$!, html_page => { template => "no_template.html" }],
+    [qr!\.fhtml$!, flex_page => { template => "flex_page.html" }],
 ) ;
 
 # for specifying interdependencies between files
