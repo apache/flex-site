@@ -7,7 +7,7 @@
          {% block notice %}{{ headers.notice }}{% endblock %}
 
          <!-- conditional based on headers 'property' value -->
-         {% if headers.usenav == "about" %}Whoa!{% endif %}
+         {% block conditional %}{% if headers.notice == "notice" %}Whoa!{% endif %}{% endblock %}
          
          <!-- The various 'flex_xxx' variables are automatically parsed by the
               CMS from files in the 'templates' directory (i.e. flex_insert.mdtext
