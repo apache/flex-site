@@ -1,17 +1,26 @@
 {% include header %}
 
-    <div id="flex-content">
-         {% block notice %}{{ headers.notice }}{% endblock %}
+<div id="flex-content">
+    {% block pagetypes %}
 
-         {% block conditional %}
-            <!-- About -->
-            {% if headers.isabout %}
-                {% if flex_about %}
-                   {% autoescape off %}{{ flex_about }}{% endautoescape %}
-                {% endif %}
-                {% block content %}{{ content|markdown }}{% endblock %}
-            {% endif %}
-        {% endblock %}
-    </div>
+        <!-- About -->
+        {% if headers.isabout %}
+            {% autoescape off %}{{ flex_about }}{% endautoescape %}
+        {% endif %}
+
+        <!-- Get Started -->
+        {% if headers.isgetstarted %}
+            {% autoescape off %}{{ flex_get_started }}{% endautoescape %}
+        {% endif %}
+        
+        <!-- Community -->
+        {% if headers.iscommunity %}
+            {% autoescape off %}{{ flex_community }}{% endautoescape %}
+        {% endif %}
+        
+        {% block content %}{{ content|markdown }}{% endblock %}
+
+    {% endblock %}
+</div>
 
 {% include footer %}
