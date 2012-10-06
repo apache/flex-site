@@ -1,6 +1,4 @@
-{% if flex_header %}
-{{ flex_header }}
-{% endif %}
+{% include header %}
 <!-- start content -->
 
     <div id="flex-content">
@@ -8,6 +6,9 @@
              the variable 'content' after it has been filtered through the 
              'markdown' filter -->
          {% block notice %}{{ headers.notice }}{% endblock %}
+         {% if flex_insert %}
+            {% autoescape off %}{{ flex_insert|markdown }}{% endautoescape %}
+         {% endif %}
          {% block content %}{{ content|markdown }}{% endblock %}
     </div>
 
