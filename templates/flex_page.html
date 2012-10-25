@@ -1,26 +1,24 @@
 {% include header %}
 
-<div id="flex-content">
-    {% block pagetypes %}
+{% block pagetypes %}
 
-        <!-- About -->
-        {% if headers.isabout %}
-            {% autoescape off %}{{ flex_about }}{% endautoescape %}
-        {% endif %}
+    <!-- About -->
+    {% if headers.isabout %}
+        {% autoescape off %}{{ flex_about }}{% endautoescape %}
+    {% endif %}
 
-        <!-- Get Started -->
-        {% if headers.isgetstarted %}
-            {% autoescape off %}{{ flex_get_started }}{% endautoescape %}
-        {% endif %}
-        
-        <!-- Community -->
-        {% if headers.iscommunity %}
-            {% autoescape off %}{{ flex_community }}{% endautoescape %}
-        {% endif %}
-        
-        {% block content %}{{ content|markdown }}{% endblock %}
+    <!-- Get Started -->
+    {% if headers.isgetstarted %}
+        {% autoescape off %}{{ flex_get_started }}{% endautoescape %}
+    {% endif %}
+    
+    <!-- Community -->
+    {% if headers.iscommunity %}
+        {% autoescape off %}{{ flex_community }}{% endautoescape %}
+    {% endif %}
+    
+    {% block content %}{{ content|markdown }}{% endblock %}
 
-    {% endblock %}
-</div>
+{% endblock %}
 
 {% include footer %}
