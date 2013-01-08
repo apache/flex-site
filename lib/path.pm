@@ -6,11 +6,15 @@ our @patterns = (
 	[qr!\.mdtext$!, single_narrative => { template => "single_narrative.html" }],
 	[qr!\.html$!, html_page => { template => "html_page.html" }],
 	[qr!\.htm$!, html_page => { template => "html_page.html" }],
-    [qr!\.chtml$!, html_page => { template => "no_template.html" }],
     [qr!\.fhtml$!, single_narrative => {
         header => "flex_header.html",
         template => "flex_page.html",
         footer => "flex_footer.html"
+    }],
+    [qr!\.cmsPage$!, single_narrative => {
+        header => "flex-v2-header.html",
+        template => "flex-v2-renderer.html",
+        footer => "flex-v2-footer.html"
     }],
 ) ;
 
