@@ -11,7 +11,7 @@ our @patterns = (
         template => "flex_page.html",
         footer => "flex_footer.html"
     }],
-    [qr!\.cmsPage$!, single_narrative => {
+    [qr!\.cmsPage$!, html_page => {
         header => "flex-v2-header.html",
         template => "flex-v2-renderer.html",
         footer => "flex-v2-footer.html"
