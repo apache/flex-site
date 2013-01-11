@@ -27,8 +27,19 @@ that you give us as much information on the bug as possible.  Even better, if yo
 a code sample that can help us reproduce it.  Feel free to contribute to the comments as the bug gets worked on.
 
 <div><h4>Squashing Bugs</h4></div>
+Bugs happen, and you might know how to fix one!  Because we don't allow everybody write access to the official code repository
+(everybody has access to read, though!), there is an additional process that has to occur to get fixes in.  To help us
+squash bugs, do the following :
 
-
+1. Find a bug you want to work on, or submit one into [JIRA][3].  We have some marked as "easy" if you play with the JIRA filters if you want to start with an easy one.  Make a comment on the ticket that you plan on working on it so others don't duplicate your work.
+2. Check out the source code from SVN.  You may want to use an IDE like Eclipse or IntelliJ with the proper plugins to do this
+for you.  More information is available on the [Source][4] page.
+3. Setup your build enviroment.  Check out the README included in the source code on how to do this.  You will want to make sure that you can perform a compile before you go much further.
+4. Fix the bug.  If you need help, ask the dev@flex.apache.org mailing list.  I'm sure we have pointers to help you out.
+5. (optional) Run the functional test suite called [Mustella][5] on your code.  The [Mustella tests][5] are available from the ANT script, but make sure you set it up first.
+6. Create a .patch file.  If you are using an IDE, check your SVN, VCS or Source Control menus for this option.  If you are using svn from the command line, use 'svn diff > myPatch.patch'.
+7. Attach the .patch file to the JIRA ticket you noted earlier.  A committer will review the patch and make sure it dosen't break anything else.
+8. Sit back and bask in the glory that you helped make Flex better!
 
 <div><h4>Contributing Code</h4></div>
 Due to leagal reasons, only a select group of people have access to update or contibute code directly to the project.
@@ -36,7 +47,7 @@ We at Apache take the legality of code seriously, and nothing would be worse tha
 they don't own and a 3rd party having a legal claim to our framework.
 
 That being said, if you are interested in contributing code, you can submit patches to the project via [JIRA][3].
-To do this, create a new issue that describes what the code you are contibuting, and submit a .path file with your
+To do this, create a new issue that describes what the code you are contibuting, and submit a .patch file with your
 code changes, just like from the bug squashing directions above.  If you submit a few patches that meet the Apache
 standards, you will probably be contacted by the PMC to get you direct access to the SVN and for you to be reconized
 for your work as a committer.
@@ -44,3 +55,4 @@ for your work as a committer.
  [1]: community-mailinglists.html
  [2]: https://cwiki.apache.org/confluence/display/FLEX/Apache+Flex+Wiki
  [3]: https://issues.apache.org/jira/browse/FLEX
+ [4]: dev-sourcecode.html
