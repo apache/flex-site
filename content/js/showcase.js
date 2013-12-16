@@ -3,10 +3,10 @@
 *  title: app title
 *  author: string
 *  description: app description
-*  website: url
-*  videos: url
+*  [ website: url  ]
+*  [ videos: url   ]
 *  imgDir: subdirectory for images
-*  images:  Array
+*  images:  Array of file names
 * */
  /*
   <div class='headline'><h4>%TITLE%</h4></div>
@@ -30,7 +30,7 @@
      // TITLE
     var entry = '<div class="headline"><h4>'+props.title+'</h4></div>' +
       ' <ul class="arrow_list">' +
-        '<li> Summary:  '+props.summary+'  </li>'  +
+        '<li> Summary:  '+props.description+'  </li>'  +
         '<li>Author:   '+props.author+' </li>' ;
      if (props.website) {
          entry += '<li> Web site:   <A href="'+ props.website+'" target="_blank">' + props.website + '</A></li>';
@@ -77,4 +77,58 @@ $(document).ready(function () {
         imgDir: "bCommunities"  ,
         images: [ "Communications Inbox.jpg" , "Directory - Company Level.jpg" ]
     });
+
+    addShowcaseEntry({
+        title: "Goal Manager",
+        description: "",
+        author: "",
+        website: "",
+        video: "",
+        imgDir: "",
+        images: [  ]
+    });
+
+    addShowcaseEntry({
+        title: "My Dojo for Dota 2",
+        description: "",
+        author: "",
+        website: "",
+        video: "",
+        imgDir: "",
+        images: [  ]
+    });
+
+    addShowcaseEntry({
+        title: "Online Designer Tool",
+        description: "",
+        author: "",
+        website: "",
+        video: "",
+        imgDir: "",
+        images: [  ]
+    });
+
+    addShowcaseEntry({
+        title: 'TrafficLIVE AIR Application',
+        description: "TrafficLIVE is a comprehensive creative business management system that provides visibility into resources, work and finances all in one place. " +
+            "Creative businesses all over the globe are using TrafficLIVE to improve efficiency and increase profit. " ,
+        author: "Marcus Wilkinson",
+        website: 'http://trafficlive.com',
+        imgDir: "TrafficLive",
+        images: [ "TrafficLIVE-data-visualisation.png" ]
+    });
+
+    /*  Template for new entry
+     addShowcaseEntry({
+     title: "",
+     description: "" ,
+     author: "",
+     website: "",
+     video: "",
+     imgDir: "",
+     images: [ "" ]
+     });
+    */
+
+
 });
