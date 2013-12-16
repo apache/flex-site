@@ -61,6 +61,9 @@ alert("showcase2.js");
 
 /* init entries **/
 $(document).ready(function () {
+
+    $("a.gallery").fancybox({ cyclic: false});
+
     addShowcaseEntry({
         title: 'bCommunities',
         description: 'Test descriptui',
