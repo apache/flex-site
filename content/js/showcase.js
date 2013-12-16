@@ -5,6 +5,7 @@
 *  description: app description
 *  website: url
 *  videos: url
+*  imgDir: subdirectory for images
 *  images:  Array
 * */
  /*
@@ -24,20 +25,18 @@
 
   */
 
-alert("showcase2.js");
-
  function addShowcaseEntry( props) {
 
      // TITLE
     var entry = '<div class="headline"><h4>'+props.title+'</h4></div>' +
       ' <ul class="arrow_list">' +
-        '<li> Summary:  %SUMMARY%  </li>'  +
-        '<li>Author:   %AUTHOR% </li>' ;
+        '<li> Summary:  '+props.summary+'  </li>'  +
+        '<li>Author:   '+props.author+' </li>' ;
      if (props.website) {
-         entry += '<li> Web site:   <A href="%WEBSITE%" target="_blank">%WEBSITE%</A></li>';
+         entry += '<li> Web site:   <A href="'+ props.website+'" target="_blank">' + props.website + '</A></li>';
      }
      if (props.video) {
-         entry += '<li> Video:   <A href="%VIDEO%" target="_blank">%VIDEO%</A></li>';
+         entry += '<li> Video:   <A href="' + props.video + '" target="_blank">' + props.video + '</A></li>';
      }
      entry += '</ul>'    ;
 
@@ -45,14 +44,17 @@ alert("showcase2.js");
     var imgs = props.images;
     var i;
     var img;
-    for (  i = 0 ; i < imgs.length; i++){
-         img = imgs[i];
-        entry += '<a class="gallery" rel="grp1" href="images/showcase/full/bCommunities/'+img + '.jpg" title="'+img+'">'
-          +  '<img src="images/showcase/prev/bCommunities/'+img+'.jpg"/>' ;
+    var imgPath;
+    if (imgs){
+        for (i = 0; i < imgs.length; i++) {
+            img = imgs[i];
+            imgPath = props.imgDir + '/' + img ;
+            entry += '<a class="gallery" rel="grp1" href="images/showcase/full/'+ imgPath + '" title="' + img + '">'
+                + '<img src="images/showcase/prev/' + imgPath + '"/>';
+        }
     }
 
     var entryDiv = document.createElement("div");
-     alert("Entry="+entry);
      entryDiv.innerHTML = entry ;
     var showcaseContainer = document.getElementById("showcaseContainer");
     showcaseContainer.appendChild(entryDiv);
@@ -64,12 +66,15 @@ $(document).ready(function () {
 
     $("a.gallery").fancybox({ cyclic: false});
 
+    /* add showcase entries when document is loaded */
     addShowcaseEntry({
-        title: 'bCommunities',
-        description: 'Test descriptui',
-        author: "john@doe",
-        website: 'http://www.flex.org',
-        video: "http://youtube.com",
-        images: [ "Communications Inbox" , "Directory - Company Level" ]
+        title: 'bCommunities -  Secure B2B Collaboration',
+        description: "We've created bCommunities, a disruptively efficient online platform that enables businesses to powerfully"+
+        "and securely interconnect their operations with their clients and suppliers in minutes. "+
+         "Features silo-bursting project management, communications, CRM and microblogging while fostering best practices and accountability.",
+        author: "Dan Samper",
+        website: 'http://bcommunities.com',
+        imgDir: "bCommunities"  ,
+        images: [ "Communications Inbox.jpg" , "Directory - Company Level.jpg" ]
     });
 });
