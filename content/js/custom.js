@@ -108,28 +108,3 @@ jQuery(document).ready(function() {
 /* ------------------ End Document ------------------ */
 });
 
-/*  showcase Javascript helper */
-
-/* helper function to create the showcase
- *  props:
- *  title: app title
- *  author: string
- *  description: app description
- *  website: url
- *  videos: url
- *  images:  Array
- */
-
-alert("showcase.js");
-
-function addShowcaseEntry(props) {
-
-    // TITLE
-    var entry = '<div class="headline"><h4>' + props.title + '</h4></div>' ;
-    var entryDiv = document.createElement("div");
-    alert("Entry=" + entry);
-    entryDiv.innerHTML = entry;
-    var showcaseContainer = document.getElementById("showcaseContainer");
-    showcaseContainer.appendChild(entryDiv);
-
-}
