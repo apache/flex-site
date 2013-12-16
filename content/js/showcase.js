@@ -59,8 +59,8 @@ alert("showcase2.js");
 
 }
 
-function addShowCaseEntries() {
-
+/* init entries **/
+$(document).ready(function () {
     addShowcaseEntry({
         title: 'bCommunities',
         description: 'Test descriptui',
@@ -69,6 +69,4 @@ function addShowCaseEntries() {
         video: "http://youtube.com",
         images: [ "Communications Inbox" , "Directory - Company Level" ]
     });
-
-
-}
+});
