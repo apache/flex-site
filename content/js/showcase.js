@@ -16,16 +16,16 @@
      // TITLE
     var entry = '<div class="headline"><h4>'+props.title+'</h4></div>' +
       ' <ul class="arrow_list">' +
-        '<li> Summary:  '+props.description+'  </li>'  +
-        '<li>Author:   '+props.author+' </li>' ;
+        '<li><span class="sc_header">Summary:</span>   '+props.description+'  </li>'  +
+        '<li><span class="sc_header">Author:</span>   '+props.author+' </li>' ;
 
      if (props.website) {
-         entry += '<li> Web site:   <A href="'+ props.website+'" target="_blank">' + props.website + '</A></li>';
+         entry += '<li><span class="sc_header"> Web site:</span>   <A href="'+ props.website+'" target="_blank">' + props.website + '</A></li>';
      }
      var links = props.links;
      if (links){
          for (i=0; i < links.length; i+= 2){
-             entry += '<li> '+links[i]+':  <A href="' + links[i+1] + '" target="_blank">' + links[i+1] + '</A></li>';
+             entry += '<li> <span class="sc_header">'+links[i]+':</span>  <A href="' + links[i+1] + '" target="_blank">' + links[i+1] + '</A></li>';
          }
      }
      entry += '</ul>'    ;
