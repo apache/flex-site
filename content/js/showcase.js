@@ -36,12 +36,14 @@
     var img;
     var imgPath;
     if (imgs){
+        entry+="<div class='gallery_strip'>";
         for (i = 0; i < imgs.length; i++) {
             img = imgs[i];
             imgPath = props.imgDir + '/' + img ;
             entry += '<a class="gallery" rel="'+ props.imgDir +'" href="images/showcase/full/'+ imgPath + '" title="' + img + '">'
                 + '<img class="showcase" src="images/showcase/prev/' + imgPath + '"/>';
         }
+        entry+="</div>";
     }
 
     var entryDiv = document.createElement("div");
