@@ -86,18 +86,20 @@ $(document).ready(function () {
 
     addShowcaseEntry({
         title: "Goal Manager",
-        description: "",
-        author: "",
-        website: "",
-        imgDir: "",
-        images: [  ]
+        description: "Football Manager App for iOs and Android ",
+        author: "Christian Kiefer",
+        website: "http://www.goal-games.de/",
+        links: ["iTunes","https://itunes.apple.com/de/app/goal-manager/id575222774?mt=8&affId=1881396&ign-mpt=uo%3D4",
+            "Google Play", "https://play.google.com/store/apps/details?id=air.de.goalgames.GoalManagerCH&hl=de"] ,
+        imgDir: "Goal",
+        images: [ "Finanzen.jpg" , "Liga.jpg", "Taktik.jpg"]
     });
 
     addShowcaseEntry({
         title: "My Dojo for Dota 2",
         description: "My Dojo for Dota 2 is a mobile application that tracks personal statistics from the online video game Dota 2. " +
             "It shows the results of matches in a easy to understand interface with extended information of each player. ",
-        author: "",
+        author: "Jorge Yabra",
         links: [ "iTunes", "https://itunes.apple.com/us/app/my-dojo-for-dota-2/id689886683?ls=1&mt=8"]   ,
         imgDir: "Dojo",
         images: [ "1.png", "2.png", "3.png"]
@@ -124,11 +126,11 @@ $(document).ready(function () {
 
     addShowcaseEntry({
         title: "VeraType",
-        description: "",
-        author: "",
-        website: "",
-        imgDir: "",
-        images: [  ]
+        description: "VeraType converts images into text and text into images. It is also called ASCII Art but in this case you can write your own message and form into an image. ",
+        author: "Judah Frangipane",
+        website: "http://www.velara3.com/wp/2013/03/21/veratype-for-win-and-mac/ ",
+        imgDir: "VeraType",
+        images: [ "feature-graphic.png","screenshot01.png" ]
     });
 
     /*  Template for new entry
