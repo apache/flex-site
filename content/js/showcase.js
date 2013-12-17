@@ -56,7 +56,7 @@
             img = imgs[i];
             imgPath = props.imgDir + '/' + img ;
             entry += '<a class="gallery" rel="'+ props.imgDir +'" href="images/showcase/full/'+ imgPath + '" title="' + img + '">'
-                + '<img src="images/showcase/prev/' + imgPath + '"/>';
+                + '<img class="showcase" src="images/showcase/prev/' + imgPath + '"/>';
         }
     }
 
