@@ -88,7 +88,7 @@ added when document is ready
     addShowcaseEntry({
         title: "Goal Manager",
         description: "Football Manager App for iOs and Android ",
-        author: "Christian Kiefer",
+        author: "GoalGames GmbH",
         website: "http://www.goal-games.de/",
         links: ["iTunes","https://itunes.apple.com/de/app/goal-manager/id575222774?mt=8&affId=1881396&ign-mpt=uo%3D4",
             "Google Play", "https://play.google.com/store/apps/details?id=air.de.goalgames.GoalManagerCH&hl=de"] ,
