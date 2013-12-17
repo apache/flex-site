@@ -114,7 +114,7 @@ $(document).ready(function () {
             "Creative businesses all over the globe are using TrafficLIVE to improve efficiency and increase profit. " ,
         author: "Marcus Wilkinson",
         website: 'http://trafficlive.com',
-        imgDir: "TrafficLive",
+        imgDir: "TL",
         images: [ "TrafficLIVE-data-visualisation.png" ]
     });
 
