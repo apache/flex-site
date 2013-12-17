@@ -4,6 +4,7 @@
 *  author: string
 *  description: app description
 *  [ website: url  ]
+*  links : [( "linkTyp", "url " ) + ]
 *  [ videos: url   ]
 *  imgDir: subdirectory for images
 *  images:  Array of file names
@@ -26,30 +27,35 @@
   */
 
  function addShowcaseEntry( props) {
+     var i;
 
      // TITLE
     var entry = '<div class="headline"><h4>'+props.title+'</h4></div>' +
       ' <ul class="arrow_list">' +
         '<li> Summary:  '+props.description+'  </li>'  +
         '<li>Author:   '+props.author+' </li>' ;
+
      if (props.website) {
          entry += '<li> Web site:   <A href="'+ props.website+'" target="_blank">' + props.website + '</A></li>';
      }
-     if (props.video) {
-         entry += '<li> Video:   <A href="' + props.video + '" target="_blank">' + props.video + '</A></li>';
+     var links = props.links;
+     if (links){
+         for (i=0; i < links.length; i+= 2){
+             entry += '<li> '+links[i]+':  <A href="' + links[i+1] + '" target="_blank">' + links[i+1] + '</A></li>';
+         }
      }
      entry += '</ul>'    ;
 
     // image gallery
     var imgs = props.images;
-    var i;
+
     var img;
     var imgPath;
     if (imgs){
         for (i = 0; i < imgs.length; i++) {
             img = imgs[i];
             imgPath = props.imgDir + '/' + img ;
-            entry += '<a class="gallery" rel="grp1" href="images/showcase/full/'+ imgPath + '" title="' + img + '">'
+            entry += '<a class="gallery" rel="'+ props.imgDir +'" href="images/showcase/full/'+ imgPath + '" title="' + img + '">'
                 + '<img src="images/showcase/prev/' + imgPath + '"/>';
         }
     }
@@ -83,19 +89,18 @@ $(document).ready(function () {
         description: "",
         author: "",
         website: "",
-        video: "",
         imgDir: "",
         images: [  ]
     });
 
     addShowcaseEntry({
         title: "My Dojo for Dota 2",
-        description: "",
+        description: "My Dojo for Dota 2 is a mobile application that tracks personal statistics from the online video game Dota 2. " +
+            "It shows the results of matches in a easy to understand interface with extended information of each player. ",
         author: "",
-        website: "",
-        video: "",
-        imgDir: "",
-        images: [  ]
+        links: [ "iTunes", "https://itunes.apple.com/us/app/my-dojo-for-dota-2/id689886683?ls=1&mt=8"]   ,
+        imgDir: "Dojo",
+        images: [ "1.png", "2.png", "3.png"]
     });
 
     addShowcaseEntry({
@@ -103,7 +108,6 @@ $(document).ready(function () {
         description: "",
         author: "",
         website: "",
-        video: "",
         imgDir: "",
         images: [  ]
     });
@@ -116,6 +120,15 @@ $(document).ready(function () {
         website: 'http://trafficlive.com',
         imgDir: "TL",
         images: [ "TrafficLIVE-data-visualisation.png" ]
+    });
+
+    addShowcaseEntry({
+        title: "VeraType",
+        description: "",
+        author: "",
+        website: "",
+        imgDir: "",
+        images: [  ]
     });
 
     /*  Template for new entry
