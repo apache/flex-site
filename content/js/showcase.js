@@ -9,22 +9,6 @@
 *  imgDir: subdirectory for images
 *  images:  Array of file names
 * */
- /*
-  <div class='headline'><h4>%TITLE%</h4></div>
-  <ul class="arrow_list">
-  <li> Summary:  %SUMMARY%  </li>
-  <li>Author:   %AUTHOR% </li>
-  <li> Web site:   <A href="%WEBSITE%" target="_blank">%WEBSITE%</A></li>
-  <li> Videos: <A href="%VIDEO%" target="_blank">%VIDEO%</A>  </li>
-  </ul>
-  <div><a class="gallery" rel="grp1" href="images/showcase/full/bCommunities/Communications Inbox.jpg" title="Communications Inbox">
-  <img src="images/showcase/prev/bCommunities/Communications Inbox.jpg"/>
-  </a>
-  <a class="gallery" rel="grp1" href="images/showcase/full/bCommunities/Directory - Company Level.jpg" title="Directory - Company Level"></a>
-  <a class="gallery" rel="grp1" href="images/showcase/full/bCommunities/Project Setup View.jpg" title="Project Setup View"></a>
-  </div>
-
-  */
 
  function addShowcaseEntry( props) {
      var i;
@@ -67,15 +51,30 @@
 
 }
 
-/* init entries **/
-$(document).ready(function () {
+/*  List of showcase entries, in alphabetical order
+added when document is ready
+ *  **/
+
+/*  Template for new entry:
+ addShowcaseEntry({
+ title: "",
+ description: "" ,
+ author: "",
+ website: "",
+ links: [ "", "" ],
+ imgDir: "",
+ images: [ "" ]
+ });
+ */
+
+  $(document).ready(function () {
 
     $("a.gallery").fancybox({ cyclic: false});
 
     /* add showcase entries when document is loaded */
     addShowcaseEntry({
         title: 'bCommunities -  Secure B2B Collaboration',
-        description: "We've created bCommunities, a disruptively efficient online platform that enables businesses to powerfully"+
+        description: "A disruptively efficient online platform that enables businesses to powerfully"+
         "and securely interconnect their operations with their clients and suppliers in minutes. "+
          "Features silo-bursting project management, communications, CRM and microblogging while fostering best practices and accountability.",
         author: "Dan Samper",
@@ -105,7 +104,7 @@ $(document).ready(function () {
         images: [ "1.png", "2.png", "3.png"]
     });
 
-    addShowcaseEntry({
+  /*  addShowcaseEntry({
         title: "Online Designer Tool",
         description: "",
         author: "",
@@ -113,7 +112,7 @@ $(document).ready(function () {
         imgDir: "",
         images: [  ]
     });
-
+*/
     addShowcaseEntry({
         title: 'TrafficLIVE AIR Application',
         description: "TrafficLIVE is a comprehensive creative business management system that provides visibility into resources, work and finances all in one place. " +
@@ -132,18 +131,6 @@ $(document).ready(function () {
         imgDir: "VeraType",
         images: [ "feature-graphic.png","screenshot01.png" ]
     });
-
-    /*  Template for new entry
-     addShowcaseEntry({
-     title: "",
-     description: "" ,
-     author: "",
-     website: "",
-     video: "",
-     imgDir: "",
-     images: [ "" ]
-     });
-    */
 
 
 });
