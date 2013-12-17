@@ -76,7 +76,7 @@ added when document is ready
     /* add showcase entries when document is loaded */
     addShowcaseEntry({
         title: 'bCommunities -  Secure B2B Collaboration',
-        description: "A disruptively efficient online platform that enables businesses to powerfully"+
+        description: "A disruptively efficient online platform that enables businesses to powerfully "+
         "and securely interconnect their operations with their clients and suppliers in minutes. "+
          "Features silo-bursting project management, communications, CRM and microblogging while fostering best practices and accountability.",
         author: "Dan Samper",
