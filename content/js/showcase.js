@@ -85,6 +85,17 @@ added when document is ready
         images: [ "Communications Inbox.jpg" , "Directory - Company Level.jpg" ]
     });
 
+      addShowcaseEntry({
+          title: "Documobile - Electronic Parts Catalog Interface",
+          description: "Documobile allows users to view parts catalogs, technical documents, find technical information visually with our icon driven platform or search by keywords, descriptions, part numbers or other identifying information. " +
+              "With a few swipes of a finger, Documobile helps users quickly and easily access the exact document or part they want. ",
+          author: "Digabit, Inc.",
+          website: "http://www.digabit.com/",
+          links: [ "iTunes", "https://itunes.apple.com/us/app/documobile/id731514836" ],
+          imgDir: "Documobile",
+          images: [ "documobile1.png", "documobile2.png", "documobile3.png"]
+      });
+
     addShowcaseEntry({
         title: "Goal Manager",
         description: "Football Manager App for iOs and Android ",
