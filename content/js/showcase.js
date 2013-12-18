@@ -66,6 +66,7 @@ added when document is ready
  description: "" ,
  author: "",
  website: "",
+ dev: "" ,
  links: [ "", "" ],
  imgDir: "",
  images: [ "" ]
@@ -126,7 +127,8 @@ added when document is ready
         images: [ "1.png", "2.png", "3.png"]
     });
 
-  /*  addShowcaseEntry({
+  /*   TODO Online Designer Tool
+    addShowcaseEntry({
         title: "Online Designer Tool",
         description: "",
         author: "",
@@ -145,6 +147,18 @@ added when document is ready
        imgDir: "Redilab",
        images: [ "Screen Shot 1.png", "Screen Shot 2.png", "Screen Shot 3.png"]
        });
+
+      addShowcaseEntry({
+          title: "6Play : digital platform for French TV channels (M6, W9 and 6ter)",
+          description: "Award winning Social TV platform for M6 and all the group's channels (M6, W9 and 6ter), including live TV ( from France only ), premium video features , Facebook and Twitter integration<br>"
+       +"M6, french broadcast group, has launched a unique digital entrance platform to all the group's channels, and recently won a national 'Best Social TV application' price. " +
+          "This application is a perfect demonstration of skinning, animation and data management capabilities given by Apache Flex SDK.",
+          author: "Erick Ghaumez",
+          dev: "ApacheFlex 4.10",
+          links: [ "Live app", "http://www.6play.fr" ],
+          imgDir: "6Play",
+          images: [ "6play.png", "6play-6ter.png", "6play-M6-programmes.png" ]
+      });
 
       addShowcaseEntry({
         title: 'TrafficLIVE AIR Application',
