@@ -17,18 +17,18 @@
      // TITLE
     var entry = '<div class="headline"><h4>'+props.title+'</h4></div>' +
       ' <ul class="arrow_list">' +
-        '<li><span class="sc_header">Summary:</span>   '+props.description+'  </li>'  +
-        '<li><span class="sc_header">Author:</span>   '+props.author+' </li>' ;
+        '<li><span class="sc_header">Summary:</span>&nbsp;&nbsp;'+props.description+'  </li>'  +
+        '<li><span class="sc_header">Author:</span>&nbsp;&nbsp;'+props.author+' </li>' ;
     if (props.dev){
-        entry += '<li><span class="sc_header"> Dev details:</span>' + props.dev + '</li>';
+        entry += '<li><span class="sc_header">Dev details:</span>&nbsp;&nbsp;' + props.dev + '</li>';
     }
      if (props.website) {
-         entry += '<li><span class="sc_header"> Web site:</span>   <A href="'+ props.website+'" target="_blank">' + props.website + '</A></li>';
+         entry += '<li><span class="sc_header">Web site:</span>&nbsp;&nbsp;<A href="'+ props.website+'" target="_blank">' + props.website + '</A></li>';
      }
      var links = props.links;
      if (links){
          for (i=0; i < links.length; i+= 2){
-             entry += '<li> <span class="sc_header">'+links[i]+':</span>  <A href="' + links[i+1] + '" target="_blank">' + links[i+1] + '</A></li>';
+             entry += '<li> <span class="sc_header">'+links[i]+':</span>&nbsp;&nbsp;<A href="' + links[i+1] + '" target="_blank">' + links[i+1] + '</A></li>';
          }
      }
      entry += '</ul>'    ;
