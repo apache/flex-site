@@ -148,6 +148,7 @@ added when document is ready
        images: [ "Screen Shot 1.png", "Screen Shot 2.png", "Screen Shot 3.png"]
        });
 
+      /*
       addShowcaseEntry({
           title: "6Play : digital platform for French TV channels (M6, W9 and 6ter)",
           description: "Award winning Social TV platform for M6 and all the group's channels (M6, W9 and 6ter), including live TV ( from France only ), premium video features , Facebook and Twitter integration.<br>"
@@ -159,6 +160,7 @@ added when document is ready
           imgDir: "6play",
           images: [ "6play.png", "6play-6ter.png", "6play-M6-programmes.png" ]
       });
+        */
 
       addShowcaseEntry({
         title: 'TrafficLIVE AIR Application',
