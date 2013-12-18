@@ -152,7 +152,7 @@ added when document is ready
             "Creative businesses all over the globe are using TrafficLIVE to improve efficiency and increase profit. " ,
         author: "Marcus Wilkinson",
         website: 'http://trafficlive.com',
-        imgDir: "TL",
+        imgDir: "Traffic",
         images: [ "TrafficLIVE-data-visualisation.png" ]
     });
 
