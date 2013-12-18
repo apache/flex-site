@@ -156,7 +156,7 @@ added when document is ready
           author: "Erick Ghaumez",
           dev: "Apache Flex 4.10",
           links: [ "Live app", "http://www.6play.fr" ],
-          imgDir: "6Play",
+          imgDir: "6play",
           images: [ "6play.png", "6play-6ter.png", "6play-M6-programmes.png" ]
       });
 
