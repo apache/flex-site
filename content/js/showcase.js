@@ -42,9 +42,9 @@
         entry+="<div class='gallery_strip'>";
         for (i = 0; i < imgs.length; i++) {
             img = imgs[i];
-            imgPath = props.imgDir + '/' + img ;
-            entry += '<a class="gallery" rel="'+ props.imgDir +'" href="images/showcase/full/'+ imgPath + '" title="' + img + '">'
-                + '<img class="showcase" src="images/showcase/prev/' + imgPath + '"/>';
+            imgPath = "images/showcase/"+ props.imgDir + "/"
+            entry += '<a class="gallery" rel="'+ props.imgDir +'" href="'+ imgPath + img + '" title="' + img + '">'
+                + '<img class="showcase" src="' + imgPath + 'prev/' + img +  '"/>';
         }
         entry+="</div>";
     }
