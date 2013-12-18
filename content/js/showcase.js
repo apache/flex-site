@@ -71,6 +71,9 @@ added when document is ready
 
   $(document).ready(function () {
 
+      if (!document.getElementById("showcaseContainer"))
+            return;
+
     $("a.gallery").fancybox({ cyclic: false});
 
     /* add showcase entries when document is loaded */
