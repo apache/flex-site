@@ -129,7 +129,18 @@ added when document is ready
         images: [  ]
     });
 */
-    addShowcaseEntry({
+
+       addShowcaseEntry({
+       title: "ReDiLab Reaction Diffusion Laboratory",
+       description: "ReDiLab is my reaction diffusion (http://en.wikipedia.org/wiki/Reaction%E2%80%93diffusion_system) explorer written in Apache Flex that uses AGAL and Stage3D to run cellular automata simulating a variety of RD models. " ,
+       author: "Simon Gladman",
+       website: "http://flexmonkey.blogspot.co.uk/search/label/ReDiLab",
+       links: [ "Demo", "http://www.flexmonkey.co.uk/redilab-bin-release-005/ReactionDiffusionLab.html" ],
+       imgDir: "Redilab",
+       images: [ "Screen Shot 1.png", "Screen Shot 2.png", "Screen Shot 3.png"]
+       });
+
+      addShowcaseEntry({
         title: 'TrafficLIVE AIR Application',
         description: "TrafficLIVE is a comprehensive creative business management system that provides visibility into resources, work and finances all in one place. " +
             "Creative businesses all over the globe are using TrafficLIVE to improve efficiency and increase profit. " ,
