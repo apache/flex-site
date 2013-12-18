@@ -85,7 +85,7 @@ added when document is ready
         author: "Dan Samper",
         website: 'http://bcommunities.com',
         imgDir: "bCommunities"  ,
-        images: [ "Communications Inbox.jpg" , "Directory - Company Level.jpg" ]
+        images: [ "Communications Inbox.jpg" , "Directory - Company Level.jpg" , "Project Setup View.jpg","User Settings.jpg"]
     });
 
       addShowcaseEntry({
