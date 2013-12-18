@@ -4,6 +4,7 @@
 *  author: string
 *  description: app description
 *  [ website: url  ]
+*  [dev : string ]
 *  links : [( "linkTyp", "url " ) + ]
 *  [ videos: url   ]
 *  imgDir: subdirectory for images
@@ -18,7 +19,9 @@
       ' <ul class="arrow_list">' +
         '<li><span class="sc_header">Summary:</span>   '+props.description+'  </li>'  +
         '<li><span class="sc_header">Author:</span>   '+props.author+' </li>' ;
-
+    if (props.dev){
+        entry += '<li><span class="sc_header"> Dev details:</span>' + props.dev + '</li>';
+    }
      if (props.website) {
          entry += '<li><span class="sc_header"> Web site:</span>   <A href="'+ props.website+'" target="_blank">' + props.website + '</A></li>';
      }
@@ -101,13 +104,16 @@ added when document is ready
 
     addShowcaseEntry({
         title: "Goal Manager",
-        description: "Football Manager App for iOs and Android ",
+        description: "GOAL 2014 - Football Manager is a free football management game for mobile phones and tablets, now available for iOS and Android. " +
+            "In this game a growing community of more than 3000 daily active managers from all over Europe face each other in a multi-level League system and a general Cup competition. " +
+            "To achieve victory, the managers have to decide tactics and formations, buy and sell players, plan individual trainings, study their opponents, build up a stadium and manage finances and sponsorships.",
         author: "GoalGames GmbH",
+        dev: "Apache Flex 4.10 - PureMVC - Native Extentions",
         website: "http://www.goal-games.de/",
         links: ["iTunes","https://itunes.apple.com/de/app/goal-manager/id575222774?mt=8&affId=1881396&ign-mpt=uo%3D4",
             "Google Play", "https://play.google.com/store/apps/details?id=air.de.goalgames.GoalManagerCH&hl=de"] ,
         imgDir: "Goal",
-        images: [ "Finanzen.jpg" , "Liga.jpg", "Taktik.jpg"]
+        images: [ "Login.jpg" , "Stadion.jpg", "Taktik.jpg"]
     });
 
     addShowcaseEntry({
