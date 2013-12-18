@@ -150,11 +150,11 @@ added when document is ready
 
       addShowcaseEntry({
           title: "6Play : digital platform for French TV channels (M6, W9 and 6ter)",
-          description: "Award winning Social TV platform for M6 and all the group's channels (M6, W9 and 6ter), including live TV ( from France only ), premium video features , Facebook and Twitter integration<br>"
+          description: "Award winning Social TV platform for M6 and all the group's channels (M6, W9 and 6ter), including live TV ( from France only ), premium video features , Facebook and Twitter integration.<br>"
        +"M6, french broadcast group, has launched a unique digital entrance platform to all the group's channels, and recently won a national 'Best Social TV application' price. " +
           "This application is a perfect demonstration of skinning, animation and data management capabilities given by Apache Flex SDK. ",
           author: "Erick Ghaumez",
-          dev: "ApacheFlex 4.10",
+          dev: "Apache Flex 4.10",
           links: [ "Live app", "http://www.6play.fr" ],
           imgDir: "6Play",
           images: [ "6play.png", "6play-6ter.png", "6play-M6-programmes.png" ]
