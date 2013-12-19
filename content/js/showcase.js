@@ -42,7 +42,7 @@ function addShowcaseEntry(props) {
         entry += "<div class='gallery_strip'>";
         for (i = 0; i < imgs.length; i++) {
             img = imgs[i];
-            imgPath = "showcase/images/showcase/" + props.imgDir + "/"
+            imgPath = "showcase/images/" + props.imgDir + "/"
             entry += '<a class="gallery" rel="' + props.imgDir + '" href="' + imgPath + img + '" title="' + img + '">'
                 + '<img class="showcase" src="' + imgPath + 'prev/' + img + '"/>';
         }
