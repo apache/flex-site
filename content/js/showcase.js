@@ -80,6 +80,19 @@ added when document is ready
 
     $("a.gallery").fancybox({ cyclic: false});
 
+     alert("showcase-ready");
+     // retrieve showcase XML file
+   //   $.get("data/showcase.xml", "false", processShowcaseXML,"xml")   ;
+
+      $.ajax({ url: "data/showcase.xml", type: "GET", dataType: "xml",
+          sucess: processShowcaseXML,
+          error: function (result, state, error) {
+              alert("data/showcase.xml file is not reachable:" + error)
+          }
+      });
+
+
+
     /* add showcase entries when document is loaded */
     addShowcaseEntry({
         title: 'bCommunities -  Secure B2B Collaboration',
@@ -183,3 +196,8 @@ added when document is ready
 
 
 });
+
+function processShowcaseXML( xmlData)  {
+       alert("XML="+xmlData);
+
+}
