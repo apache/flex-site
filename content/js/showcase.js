@@ -120,5 +120,6 @@ function processShowcaseXML(xmlDoc) {
             images: images
         });
     }
-
 }
+
+/* 1/12/2014 mamsellem : dummy change to force site update */
