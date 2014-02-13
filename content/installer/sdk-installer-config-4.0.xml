@@ -30,6 +30,17 @@ limitations under the License.
 	<version>
 		<latest>3.0.0</latest>
 	</version>
+    <languages>
+        <locale1 id="de_DE" name="Deutsch" path="http://flex.apache.org/installer/properties/de_DE.properties"/>
+        <locale2 id="en_US" name="English (US)" path="http://flex.apache.org/installer/properties/en_US.properties"/>
+        <locale3 id="en_AU" name="English (AU)" path="http://flex.apache.org/installer/properties/en_AU.properties"/>
+        <locale4 id="en_GB" name="English (GB)" path="http://flex.apache.org/installer/properties/en_GB.properties"/>
+        <locale5 id="es_ES" name="Español (ES)" path="http://flex.apache.org/installer/properties/es_ES.properties"/>
+        <locale6 id="fr_FR" name="Français" path="http://flex.apache.org/installer/properties/fr_FR.properties"/>
+        <locale7 id="el_GR" name="Greek" path="http://flex.apache.org/installer/properties/el_GR.properties"/>
+        <locale8 id="nl_NL" name="Nederlands" path="http://flex.apache.org/installer/properties/nl_NL.properties"/>
+        <locale9 id="pt_BR" name="Português" path="http://flex.apache.org/installer/properties/pt_BR.properties"/>
+    </languages>
     <!-- SDK Installer Application binary distribution
      Notes:
      - use full URL when binaries are NOT released yet, else use
@@ -44,28 +55,28 @@ limitations under the License.
          - path is relative to mirror URL; don't use starting slash
          - use http based url if you want to use an absolute url instead of mirror
          - remove the extension from the file name -->
-        <ApacheFlexSDK name="Apache Flex SDK" prefix="apache-flex-sdk-">
+        <ApacheFlexSDK name="Apache Flex SDK" prefix="apache-flex-sdk-" icon="http://flex.apache.org/installer/icons/apache_flex_logo_text.png">
             <versions>
                 <versionA id="4.9.1" version="4.9.1" path="http://archive.apache.org/dist/flex/4.9.1/binaries/" file="apache-flex-sdk-4.9.1-bin" />
                 <versionB id="4.10.0" version="4.10.0" path="http://archive.apache.org/dist/flex/4.10.0/binaries/" file="apache-flex-sdk-4.10.0-bin" />
                 <versionC id="4.11.0" version="4.11.0" path="flex/4.11.0/binaries/" file="apache-flex-sdk-4.11.0-bin" default="true"/>
-                <versionD id="4.12.0" version="4.12.0 RC1 (dev use only)" path="https://dist.apache.org/repos/dist/dev/flex/sdk/4.12.0/rc1/binaries/" file="apache-flex-sdk-4.12.0-bin"/>
-                <Nightly id="Nightly" version="Nightly (dev use only)" path="https://builds.apache.org/job/flex-sdk_release/lastSuccessfulBuild/artifact/out/" file="apache-flex-sdk-4.12.0-bin" />
+                <versionC id="4.12.0" version="4.12.0 RC2" path="https://dist.apache.org/repos/dist/dev/flex/sdk/4.12.0/rc2/binaries" file="apache-flex-sdk-4.12.0-bin" dev="true"/>
+                <Nightly id="Nightly" version="Nightly" path="https://builds.apache.org/job/flex-sdk_release/lastSuccessfulBuild/artifact/out/" file="apache-flex-sdk-4.12.0-bin" dev="true"/>
             </versions>
         </ApacheFlexSDK>
-        <ApacheFlexJS name="Apache FlexJS" prefix="apache-flex-flexjs-">
+        <ApacheFlexJS name="Apache FlexJS" prefix="apache-flex-flexjs-" icon="http://flex.apache.org/installer/icons/apache_flexjs_logo_text.png">
             <versions>
-                <Nightly id="FlexJSNightly" version="Nightly (dev use only)" path="https://builds.apache.org/job/flex-asjs/lastSuccessfulBuild/artifact/out/" file="apache-flex-flexjs-4.0.1-bin" />
+                <Nightly id="FlexJSNightly" version="Nightly" path="https://builds.apache.org/job/flex-asjs/lastSuccessfulBuild/artifact/out/" file="apache-flex-flexjs-4.0.1-bin" dev="true"/>
             </versions>
         </ApacheFlexJS>
-        <ApacheFlexFalcon name="Apache Flex Falcon" prefix="apache-flex-falcon-" overlay="true">
+        <ApacheFlexFalcon name="Apache Flex Falcon" prefix="apache-flex-falcon-" overlay="true" needsAIR="false" needsFlash="false" icon="http://flex.apache.org/installer/icons/apache_flexfalcon_logo_text.png">
             <versions>
-                <Nightly id="FlexFalconNightly" version="Nightly (dev use only)" path="https://builds.apache.org/job/flex-falcon/lastSuccessfulBuild/artifact/out/" file="apache-flex-falcon-0.0.1-bin" />
+                <Nightly id="FlexFalconNightly" version="Nightly" path="https://builds.apache.org/job/flex-falcon/lastSuccessfulBuild/artifact/out/" file="apache-flex-falcon-0.0.1-bin" dev="true"/>
             </versions>
         </ApacheFlexFalcon>
-        <ApacheFlexFalconJX name="Apache Flex FalconJX" prefix="apache-flex-falconjx-" overlay="true">
+        <ApacheFlexFalconJX name="Apache Flex FalconJX" prefix="apache-flex-falconjx-" overlay="true" needsAIR="false" needsFlash="false" icon="http://flex.apache.org/installer/icons/apache_flexfalcon_logo_text.png">
             <versions>
-                <Nightly id="FlexFalconJXNightly" version="Nightly (dev use only)" path="https://builds.apache.org/job/flex-falcon/lastSuccessfulBuild/artifact/out/" file="apache-flex-falconjx-0.0.1-bin" />
+                <Nightly id="FlexFalconJXNightly" version="Nightly" path="https://builds.apache.org/job/flex-falcon/lastSuccessfulBuild/artifact/out/" file="apache-flex-falconjx-0.0.1-bin" dev="true"/>
             </versions>
         </ApacheFlexFalconJX>
     </products>
@@ -132,10 +143,6 @@ limitations under the License.
                     <path id="air.sdk.path.windows.4.0">http://airdownload.adobe.com/air/win/download/4.0/</path>
                     <file id="air.sdk.file.windows.4.0">AdobeAIRSDK.zip</file>
                 </version4.0>
-                <version4.0beta>
-                    <path id="air.sdk.path.mac.4.0beta">http://labsdownload.adobe.com/pub/labs/flashruntimes/air/</path>
-                    <file id="air.sdk.file.mac.4.0beta">air4-0_sdk_sa_win.zip</file>
-                </version4.0beta>
             </versions>
         </windows>
         <mac>
@@ -192,10 +199,6 @@ limitations under the License.
                     <path id="air.sdk.path.mac.4.0">http://airdownload.adobe.com/air/mac/download/4.0/</path>
                     <file id="air.sdk.file.mac.4.0">AdobeAIRSDK.tbz2</file>
                 </version4.0>
-                <version4.0beta>
-                    <path id="air.sdk.path.mac.4.0beta">http://labsdownload.adobe.com/pub/labs/flashruntimes/air/</path>
-                    <file id="air.sdk.file.mac.4.0beta">air4-0_sdk_sa_mac.tbz2</file>
-                </version4.0beta>
             </versions>
         </mac>
     </airsdk>
@@ -264,13 +267,8 @@ limitations under the License.
             <version12.0>
                 <path id="flash.sdk.path.12.0">http://download.macromedia.com/get/flashplayer/updaters/12/</path>
                 <file id="flash.sdk.file.12.0">playerglobal12_0.swc</file>
-                <swfversion id="flash.sdk.swfversion.12.0">23</swfversion>
+                <swfversion id="flash.sdk.swfversion.11.9">23</swfversion>
             </version12.0>
-             <version13.0beta>
-                <path id="flash.sdk.path.13.0">http://labsdownload.adobe.com/pub/labs/flashruntimes/flashplayer/</path>
-                <file id="flash.sdk.file.13.0">flashplayer13_playerglobal.swc</file>
-                <swfversion id="flash.sdk.swfversion.13.0">23</swfversion>
-            </version13.0beta>           
         </versions>
     </flashsdk>
 
