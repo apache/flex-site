@@ -88,7 +88,7 @@ function processShowcaseXML(xmlDoc) {
     var item;
 	
 	var titleDiv = document.createElement("div");
-    titleDiv.innerHTML = "<h3>Application list</h3><p>"+items.length+" entries and counting.</p><br/><br/>";
+    titleDiv.innerHTML = "<h3>Apps List</h3><p>"+items.length+" entries and counting.</p>";
     var showcaseContainer = document.getElementById("showcaseContainer");
     showcaseContainer.appendChild(titleDiv);
 
