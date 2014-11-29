@@ -17,14 +17,15 @@
   -->
 
 <mx:Application xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns:mx="library://ns.adobe.com/flex/mx" xmlns:explorer="*"
-    width="100%" height="100%" pageTitle="{TITLE}"
-    initialize="init()" creationComplete="checkParameters()" layout="vertical">
+				pageTitle="{TITLE}" layout="vertical" width="100%" height="100%"
+				paddingBottom="2" paddingTop="2" paddingLeft="2" paddingRight="2"
+			    initialize="init()" creationComplete="checkParameters()">
 
-    <fx:Script>
+     <fx:Script>
         <![CDATA[
 		import mx.core.FlexGlobals;
 
-		static protected const VERSION:String = "1.1";	
+		static protected const VERSION:String = "1.2";	
 		static protected const TITLE:String = "Tour De Flex Component Explorer";
 		static protected const FULL_TITLE:String = "Apache Flex® Tour De Flex Component Explorer " + VERSION;
 
@@ -42,8 +43,25 @@
             compLibTree.dataProvider = explorerTree;
 			
 			noExamples = (explorerTree..node.(hasOwnProperty("@app") && @app.length() > 0)).length();
+			
+			var loader:URLLoader = new URLLoader();
+			var request:URLRequest = new URLRequest("3rdparty.xml");
+			loader.addEventListener(Event.COMPLETE, load3rdParty);
+			loader.load(request);
 		}
-		
+			
+		protected function load3rdParty(event:Event):void
+		{
+		  var loader:URLLoader = URLLoader(event.target);
+		  var newNode:XML = new XML(loader.data);
+		  
+		  if (newNode..node.length() > 0) {
+			  explorerTree.appendChild(newNode.node);
+              compLibTree.dataProvider = explorerTree;
+			  noExamples += (newNode..node.(hasOwnProperty("@app") && @app.length() > 0)).length();
+		  }
+		}
+					
 		protected function checkParameters():void
 		{		
 			var parameters:Object = FlexGlobals.topLevelApplication.parameters;
@@ -51,18 +69,24 @@
 			if (parameters.hasOwnProperty("app")) {
 				var application:String = parameters.app;
 				var source:String = explorerTree..node.(hasOwnProperty("@app") && @app == application).@src;
-				loadApp(application, source);
+				loadApp(application, source, false);
 				openNode(application);
-			}			
+			}
+			else {
+				loadApp("Welcome", null, false);
+			}
 		}
 
         private function treeChanged(event:Event):void
         {
             var nodeApp:String = compLibTree.selectedItem.@app;
+			var link:String = compLibTree.selectedItem.hasOwnProperty("@link") ? compLibTree.selectedItem.@link : "";
+			var thirdParty:Boolean = compLibTree.selectedItem.hasOwnProperty("@thirdParty")
+				&& compLibTree.selectedItem.@thirdParty == "true";
 			
             if (nodeApp != null && nodeApp != "")
             {
-				loadApp(nodeApp, compLibTree.selectedItem.@src);
+				loadApp(nodeApp, compLibTree.selectedItem.@src, thirdParty, link);
             }
             else
             {
@@ -70,17 +94,31 @@
             }
         }
 			
-		private function loadApp(application:String, source:String):void
+		private function loadApp(application:String, source:String, thirdParty:Boolean, link:String=""):void
 		{
-			swfLoader.loadApp(application + ".swf");
-            vs.loadSource(application, source);
+			if (application.indexOf(".swf") > 0) {
+				swfLoader.loadApp(application);
+			}
+			else if(application.indexOf(".jpg") > 0 || application.indexOf(".png") > 0)
+			{
+				swfLoader.loadApp(application,link);
+			}
+			else {
+				swfLoader.loadApp(application + ".swf");
+			}
+			if (thirdParty) {
+				vs.thirdPartyWarning();
+			}
+			else {
+            	vs.loadSource(application, source);
+			}
 		}
 			
 		private function gotoHome(event:Event):void
 		{
 			var urlRequest:URLRequest = new URLRequest("http://flex.apache.org/download-tourdeflex.html");
 			navigateToURL(urlRequest);
-		}	
+		}
 		
 		private function openNode(application:String):void
 		{
