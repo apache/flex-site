@@ -16,7 +16,7 @@ function addShowcaseEntry(props) {
     var i;
 
     // TITLE
-    var entry = '<a href="' + window.location + "/#" + props.index + '"><div class="headline"><h4>' + props.title + '</h4></div></a>' +
+    var entry = '<a href="' + window.location + "#" + props.index + '"><div class="headline"><h4>' + props.title + '</h4></div></a>' +
         ' <ul class="arrow_list">' +
         '<li><span class="sc_header">Summary:</span>&nbsp;&nbsp;' + props.description + '  </li>' +
         '<li><span class="sc_header">Author:</span>&nbsp;&nbsp;' + props.author + ' </li>';
