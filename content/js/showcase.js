@@ -1,5 +1,6 @@
 /* helper function to create the showcase
  *  props:
+ *  index: index to be used as an anchor tag
  *  title: app title
  *  author: string
  *  description: app description
@@ -15,7 +16,7 @@ function addShowcaseEntry(props) {
     var i;
 
     // TITLE
-    var entry = '<div class="headline"><h4>' + props.title + '</h4></div>' +
+    var entry = '<a href="' + props.index + '"><div class="headline"><h4>' + props.title + '</h4></div></a>' +
         ' <ul class="arrow_list">' +
         '<li><span class="sc_header">Summary:</span>&nbsp;&nbsp;' + props.description + '  </li>' +
         '<li><span class="sc_header">Author:</span>&nbsp;&nbsp;' + props.author + ' </li>';
@@ -115,6 +116,7 @@ function processShowcaseXML(xmlDoc) {
         }
 
         addShowcaseEntry({
+			index: i,
             title: item.getAttribute("title"),
             description: item.getElementsByTagName("description")[0].textContent,
             author: item.getAttribute("author"),
