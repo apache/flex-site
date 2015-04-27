@@ -84,7 +84,7 @@ quarter. The following code shows the format of this flat data:</p>
 
          <pre class="codeblock">  data:Object = { 
  	customer:"AAA",  
- 	product:"ColdFusion", 
+ 	product:"FlexJS", 
  	year:"2007", 
  	quarter:"Q1" 
  	revenue: "100.00"  
@@ -160,7 +160,7 @@ code shows an example format of flat data:</p>
 
                   <pre class="codeblock">  data:Object = { 
  	customer:"AAA",  
- 	product:"ColdFusion", 
+ 	product:"FlexJS", 
  	quarter:"Q1" 
  	revenue: "100.00"  
  }</pre>
@@ -218,7 +218,7 @@ to a field of the flat data set. For example, you have flat data
 that contains three fields:</p>
 
             <pre class="codeblock">  data:Object = { 
- 	product:"ColdFusion" 
+ 	product:"FlexJS" 
  	quarter :"Q1" 
  	revenue: "100.00",  
  }</pre>
@@ -227,8 +227,8 @@ that contains three fields:</p>
 
             <ul>
                <li>
-                  <p>The product field can have the values: ColdFusion, Flex,
-Dreamweaver, and Illustrator.</p>
+                  <p>The product field can have the values: FlexJS, Flex,
+Installer, and TourDeFlex.</p>
 
                </li>
 
@@ -248,13 +248,13 @@ product for the quarter.</p>
             <p>To aggregate your data, you create an OLAP cube with two dimensions:
 quarter and product. The value along each dimension of the cube
 is called a <em>member.</em> For example, the product dimension of
-the cube has the following members: ColdFusion, Flex, Dreamweaver,
-and Illustrator. For the quarter dimension, the members are Q1,
+the cube has the following members: FlexJS, Flex, Installer,
+and TourDeFlex. For the quarter dimension, the members are Q1,
 Q2, Q3, and Q4.</p>
 
             <p>The value at any point in the cube defined by the two dimensions
 is called a <em>measure</em> of the cube. For example, the measure
-at the point in the cube defined by (Q1, ColdFusion) is 100.00.
+at the point in the cube defined by (Q1, FlexJS) is 100.00.
 A schema can define one or more measures for a single point in the
 OLAP cube. </p>
 
@@ -263,8 +263,8 @@ The advantage of numeric values is that they can be easily aggregated
 for display in the OLAPDataGrid control. Some typical aggregation
 types include sum, average, minimum, and maximum. For example, you
 specify the aggregation method of the revenue measure as <samp class="codeph">SUM</samp>.
-You then extract sales information from the cube for ColdFusion.
-The aggregated sales data contains the sum of all ColdFusion sales for
+You then extract sales information from the cube for FlexJS.
+The aggregated sales data contains the sum of all FlexJS sales for
 each quarter. </p>
 
          </div>
@@ -286,7 +286,7 @@ records:</p>
 
             <pre class="codeblock">  data:Object = { 
  	customer:"AAA",  
- 	product:"ColdFusion", 
+ 	product:"FlexJS", 
  	quarter:"Q1" 
  	revenue: "100.00"  
  }</pre>
@@ -571,7 +571,7 @@ which contains sales records in the following format:</p>
 
             <pre class="codeblock">  data:Object = { 
  	customer:"AAA",  
- 	product:"ColdFusion", 
+ 	product:"FlexJS", 
  	quarter:"Q1" 
  	revenue: "100.00"  
  }</pre>
@@ -1845,7 +1845,7 @@ for the OLAPDataGrid control</h3>
             <p>When you define your query, you might create a situation
 where a cell of the OLAPDataGrid does not contain a value. For example,
 when aggregating data by customer and product, you might have a
-customer that has never purchased Illustrator. For that customer
+customer that has never purchased TourDeFlex. For that customer
 and product combination, the corresponding cell of the OLAPDataGrid
 displays the String "NaN".</p>
 
@@ -1874,7 +1874,7 @@ define a single level. For example, you have flat data that contains
 three fields:</p>
 
          <pre class="codeblock">  data:Object = { 
- 	product:"ColdFusion" 
+ 	product:"FlexJS" 
  	quarter :"Q1" 
  	revenue: "100.00",  
  }</pre>
@@ -1883,8 +1883,8 @@ three fields:</p>
 
          <ul>
             <li>
-               <p>The product field can have the values: ColdFusion, Flex,
-Dreamweaver, and Illustrator.</p>
+               <p>The product field can have the values: FlexJS, Flex,
+Installer, and TourDeFlex.</p>
 
             </li>
 
@@ -1928,23 +1928,23 @@ to initialize the cube, it has the following structure:</p>
          <pre class="codeblock">  ProductDim 							// Dimension 
  	Product 							// Hierarchy 
  		(All)							// Member 
- 		ColdFusion							// Member 
+ 		FlexJS							// Member 
  		Flex							// Member 
- 		Dreamweaver							// Member 
- 		Illustrator							// Member 
+ 		Installer							// Member 
+ 		TourDeFlex							// Member 
   
  	ProductHier 							// Hierarchy  
  		(All)							// Level 
- 			ColdFusion							// Member 
+ 			FlexJS							// Member 
  			Flex							// Member 
- 			Dreamweaver							// Member 
- 			Illustrator							// Member 
+ 			Installer							// Member 
+ 			TourDeFlex							// Member 
  			 
  		Product 							// Level 
- 			ColdFusion							// Member 
+ 			FlexJS							// Member 
  			Flex							// Member 
- 			Dreamweaver							// Member 
- 			Illustrator							// Member 
+ 			Installer							// Member 
+ 			TourDeFlex							// Member 
   
  QuarterDim 							// Dimension  
  	Quarter 							// Hierarchy 
@@ -2182,7 +2182,7 @@ of these methods and properties:</p>
                         </td>
 
                         <td class="cellrowborder" valign="top" width="NaN%" headers="d326693e2073 ">
-                           <p>ColdFusion, Flex, Dreamweaver, and Illustrator</p>
+                           <p>FlexJS, Flex, Installer, and TourDeFlex</p>
 
                         </td>
 
@@ -2198,8 +2198,8 @@ of these methods and properties:</p>
                         </td>
 
                         <td class="cellrowborder" valign="top" width="NaN%" headers="d326693e2073 ">
-                           <p>(All), ColdFusion, Flex, Dreamweaver, and
-Illustrator</p>
+                           <p>(All), FlexJS, Flex, Installer, and
+TourDeFlex</p>
 
                         </td>
 
@@ -2392,7 +2392,7 @@ combinations of these methods:</p>
                         </td>
 
                         <td class="cellrowborder" valign="top" width="NaN%" headers="d326693e2310 ">
-                           <p>ColdFusion, Flex, Dreamweaver, and Illustrator</p>
+                           <p>FlexJS, Flex, Installer, and TourDeFlex</p>
 
                         </td>
 
@@ -2408,8 +2408,8 @@ combinations of these methods:</p>
                         </td>
 
                         <td class="cellrowborder" valign="top" width="NaN%" headers="d326693e2310 ">
-                           <p>(All), ColdFusion, Flex, Dreamweaver, and
-Illustrator</p>
+                           <p>(All), FlexJS, Flex, Installer, and
+TourDeFlex</p>
 
                         </td>
 
@@ -2703,7 +2703,7 @@ contains multiple levels. For example, you have flat data that contains
 three fields:</p>
 
          <pre class="codeblock">  data:Object = { 
- 	product:"ColdFusion" 
+ 	product:"FlexJS" 
  	year :"2006" 
  	quarter :"Q1" 
  	revenue: "100.00",  
@@ -2713,8 +2713,8 @@ three fields:</p>
 
          <ul>
             <li>
-               <p>The product field can have the values: ColdFusion, Flex,
-Dreamweaver, and Illustrator.</p>
+               <p>The product field can have the values: FlexJS, Flex,
+Installer, and TourDeFlex.</p>
 
             </li>
 
@@ -2765,23 +2765,23 @@ following code shows:</p>
          <pre class="codeblock">  ProductDim 							// Dimension  
  	Product 							// Hierarchy 
  		(All)							// Member 
- 		ColdFusion 							// Member 
+ 		FlexJS 							// Member 
  		Flex 							// Member 
- 		Dreamweaver 							// Member 
- 		Illustrator 							// Member 
+ 		Installer 							// Member 
+ 		TourDeFlex 							// Member 
   
  	ProductHier 							// Hierarchy  
  		(All) 							// Level 
- 			ColdFusion 							// Member 
+ 			FlexJS 							// Member 
  			Flex 							// Member 
- 			Dreamweaver 							// Member 
- 			Illustrator 							// Member 
+ 			Installer 							// Member 
+ 			TourDeFlex 							// Member 
  			 
  		Product 							// Level 
- 			ColdFusion 							// Member 
+ 			FlexJS 							// Member 
  			Flex 							// Member 
- 			Dreamweaver 							// Member 
- 			Illustrator 							// Member 
+ 			Installer 							// Member 
+ 			TourDeFlex 							// Member 
   
  TimeDim 							// Dimension 
  	Year 							// Hierarchy 
@@ -3485,7 +3485,7 @@ one dimension each for product, region, and month. </p>
  	country:"US", 
  	state:"MA", 
  	region:"NewEngland", 
- 	product:"ColdFusion", 
+ 	product:"FlexJS", 
  	year:2005, 
  	quarter:"Q1" 
  	month:"January", 

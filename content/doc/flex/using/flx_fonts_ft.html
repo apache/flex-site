@@ -62,7 +62,7 @@ or inline. This property can take a list of fonts, as the following
 example shows:</p>
 
          <pre class="codeblock"> .myClass { 
- 	<strong>fontFamily: Arial, Helvetica;</strong> 
+ 	<strong>fontFamily: Open_Sans, PT_Serif;</strong> 
  	color: Red; 
  	fontSize: 22; 
  	fontWeight: bold; 
@@ -93,7 +93,7 @@ that style, as the following example shows:</p>
     @namespace s "library://ns.adobe.com/flex/spark"; 
   
      s|VGroup { 
-        fontFamily: Helvetica; 
+        fontFamily: PT_Serif; 
         fontSize: 13pt; 
      } 
      
@@ -105,11 +105,11 @@ that style, as the following example shows:</p>
  
   &lt;s:Panel title="Styles Inherited from VGroup Type Selector"&gt; 
      &lt;s:VGroup&gt;  
-        &lt;s:Button label="This Button uses Helvetica"/&gt; 
-        &lt;s:Label text="This Label control is in Helvetica."/&gt; 
+        &lt;s:Button label="This Button uses PT_Serif"/&gt; 
+        &lt;s:Label text="This Label control is in PT_Serif."/&gt; 
         &lt;s:RichText height="75" width="200"&gt; 
             &lt;s:text&gt; 
-            The text in this RichText control uses the Helvetica font 
+            The text in this RichText control uses the PT_Serif font 
             because it is inherited from the VGroup style. 
             &lt;/s:text&gt; 
         &lt;/s:RichText&gt; 
@@ -198,7 +198,7 @@ describes these fonts:</p>
 
                      <td class="cellrowborder" valign="top" width="NaN%" headers="d211623e143 ">
                         <p>The <samp class="codeph">_sans</samp> device font is
-a sans-serif typeface; for example, Helvetica or Arial.</p>
+a sans-serif typeface; for example, PT_Serif or Open_Sans.</p>
 
                      </td>
 
@@ -263,7 +263,7 @@ client machine:</p>
       @namespace s "library://ns.adobe.com/flex/spark"; 
  
      .myClass { 
-        fontFamily: Arial, Helvetica, "_sans"; 
+        fontFamily: Open_Sans, PT_Serif, "_sans"; 
         color: Red; 
         fontSize: 12; 
         fontWeight: bold; 
@@ -1277,7 +1277,7 @@ specify is embedded, as the following example shows:</p>
         tf1.font = "myPlainFont"; 
         
         var tf2:TextFormat = new TextFormat(); 
-        tf2.font = "Arial"; 
+        tf2.font = "Open_Sans"; 
         
         b1 = FlexGlobals.topLevelApplication.systemManager. 
            isFontFaceEmbedded(tf1); 
@@ -1290,14 +1290,14 @@ specify is embedded, as the following example shows:</p>
      &lt;s:FormItem label="isFontFaceEmbedded (myPlainFont):"&gt; 
         &lt;s:Label id="l1" text=" {b1}"/&gt; 
      &lt;/s:FormItem&gt;         
-     &lt;s:FormItem label="isFontFaceEmbedded (Arial):"&gt; 
+     &lt;s:FormItem label="isFontFaceEmbedded (Open_Sans):"&gt; 
         &lt;s:Label id="l2" text="{b2}"/&gt; 
      &lt;/s:FormItem&gt;         
   &lt;/s:Form&gt;    
 &lt;/s:Application&gt;</pre>
 
             <p>In this example, the font identified by the myPlainFont family
-name is embedded, but the Arial font is not.</p>
+name is embedded, but the Open_Sans font is not.</p>
 
             <p>You can use the <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/flash/text/Font.html" target="_blank">Font</a> class’s <samp class="codeph">enumerateFonts()</samp> method
 to output information about device or embedded fonts. The following
@@ -1388,8 +1388,8 @@ This list will vary depending on the client’s system.</p>
 FONT 1:: name: myFont; typeface: bold; type: embeddedCFF* 
 FONT 2:: name: myFont; typeface: italic; type: embeddedCFF* 
 FONT 3:: name: Marlett; typeface: regular; type: device 
-FONT 4:: name: Arial; typeface: regular; type: device 
-FONT 5:: name: Arial CE; typeface: regular; type: device</pre>
+FONT 4:: name: Open_Sans; typeface: regular; type: device 
+FONT 5:: name: Open_Sans CE; typeface: regular; type: device</pre>
 
             <p>The <samp class="codeph">enumerateFonts()</samp> method takes a single Boolean
 argument: <samp class="codeph">enumerateDeviceFonts</samp>. The default value
