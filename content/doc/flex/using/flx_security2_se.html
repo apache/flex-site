@@ -1,0 +1,2931 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Licensed to the Apache Software Foundation (ASF) under one or more
+  contributor license agreements.  See the NOTICE file distributed with
+  this work for additional information regarding copyright ownership.
+  The ASF licenses this file to You under the Apache License, Version 2.0
+  (the "License"); you may not use this file except in compliance with
+  the License.  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+-->
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en-us" xml:lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="topic"/>
+<meta name="DC.Title" content="Security"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="WS2db454920e96a9e51e63e3d11c0bf69084-7f9b_verapache"/>
+<link rel="stylesheet" type="text/css" href="commonltr.css"/>
+<title>Security</title>
+</head>
+<body id="WS2db454920e96a9e51e63e3d11c0bf69084-7f9b_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7f9b_verapache"><!-- --></a>
+
+
+   <h1 class="topictitle1">Security</h1>
+
+   
+   <div>
+      <p/>
+
+   </div>
+
+   <div class="nested1" id="WS2db454920e96a9e51e63e3d11c0bf6167e-7fff_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf6167e-7fff_verapache"><!-- --></a>
+      <h2 class="topictitle2">Introduction to security</h2>
+
+      
+      <div>
+         <p>
+            
+            
+            Adobe<sup>®</sup> Flash<sup>®</sup> Player
+runs applications built as SWF files. Content is delivered as a
+series of instructions in binary format to Flash Player over web
+protocols in the precisely described SWF (.swf) file format. The
+SWF files themselves are typically hosted on a server and then downloaded
+to, and displayed on, the client computer when requested. Most of
+the content consists of binary ActionScript instructions. ActionScript
+is the ECMA standards-based scripting language that Flash uses that
+features APIs designed to allow the creation and manipulation of client-side
+user interface elements and for working with data.</p>
+
+         <p>The Flex security model protects both client and the server.
+Consider the following two general aspects to security:</p>
+
+         <ul>
+            <li>
+               <p>Authorization and authentication of users accessing a
+server’s resources</p>
+
+            </li>
+
+            <li>
+               <p>Flash Player operating in a sandbox on the client</p>
+
+            </li>
+
+         </ul>
+
+         <p>Flex supports working with the web application security of any
+J2EE application server. In addition, precompiled applications can
+integrate with the authentication and authorization scheme of any
+underlying server technology to prevent users from accessing your
+applications. The Flex framework also includes several built-in
+security mechanisms that let you control access to web services,
+HTTP services, and server-based resources such as EJBs.</p>
+
+         <p>Flash Player runs inside a security sandbox that prevents the
+client from being hijacked by malicious application code. </p>
+
+         <div class="note"><span class="notetitle">Note:</span> SWF content running in the Adobe<sup>®</sup> AIR™ follows different security rules than content
+running in the browser. For details, see Adobe AIR Security.</div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf6167e-7ffe_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf6167e-7ffe_verapache"><!-- --></a>
+         <h3 class="topictitle3">Declarative compared to programmatic
+security</h3>
+
+         
+         <div>
+            <p>
+               
+               
+               The
+two common approaches to security are declarative and programmatic. Often,
+declarative security is server based. Using the server’s configuration,
+you provide protection to a resource or set of resources. You use
+the container’s authentication and authorization schemes to protect
+that resource from unauthorized access. </p>
+
+            <p>The declarative approach to security casts a wide net. Declarative
+security is implemented as a separate layer from the web components
+that it works with. You set up a security system, such as a set
+of file permissions or users, groups, and roles, and then you plug
+your application's authentication mechanism into that layer. </p>
+
+            <p>With declarative security, either a user gains access to the
+resource or they do not. Usually the content cannot be customized
+based on roles. In an HTML-based application, the result is that
+users are denied access to certain pages. However, in a Flex environment,
+the typical result of declarative security is that the user is denied
+access to the entire application, since the application is seen
+as a single resource to the container.</p>
+
+            <p>Declarative security lets programmers who write web applications
+ignore the environment in which they write. Declarative security
+is typically set up and maintained by the deployer and not the developer
+of the application. Also, updates to the web application do not
+generally require a refactoring of the security model. </p>
+
+            <p>Programmatic security gives the developer of the application
+more control over access to the application and its resources. Programmatic
+security can be much more detailed than declarative security. For
+example, a developer using programmatic security can allow or deny
+a user access to a particular component inside the application.</p>
+
+            <p>Although programmatic security is typically configured by the
+developer of the application, it usually interacts with the same
+systems as declarative security, so the relationship between developer
+and deployer of the application must be cooperative when implementing
+programmatic security.</p>
+
+            <p>Declarative security is recommended over programmatic security
+for most applications because the design promotes code reuse, making
+it more maintainable. Furthermore, declarative security puts the
+responsibility of security into the hands of the people who specialize
+in its implementation; application programmers can concentrate on
+writing applications and people who deploy the applications in a
+specific environment can concentrate on enforcing security policies
+and take advantage of that context. </p>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf6167e-7ffd_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf6167e-7ffd_verapache"><!-- --></a>
+         <h3 class="topictitle3">Client security overview</h3>
+
+         
+         <div>
+            <p>
+               When considering
+security issues, you cannot think of applications as traditional web
+applications. Applications built with Flex often consist of a single
+monolithic SWF file that is loaded by the client once, or a series
+of SWF files loaded as modules or RSLs. Web applications, on the
+other hand, usually consist of many individual pages that are loaded
+one at a time. </p>
+
+            <p>Most web applications access resources such as web services that
+are outside of the client. When an application accesses an external
+resource, two factors apply:</p>
+
+            <ul>
+               <li>
+                  <p>Is the user authorized to access this resource?</p>
+
+               </li>
+
+               <li>
+                  <p>Can the client load the resource, or is it prevented from
+loading the resource, because of its sandbox limitations?</p>
+
+               </li>
+
+            </ul>
+
+            <p>The following basic security rules always apply by default:</p>
+
+            <ul>
+               <li>
+                  <p>Resources in the same security sandbox can always access
+each other.</p>
+
+               </li>
+
+               <li>
+                  <p>SWF files in a remote sandbox can never access local files
+and data.</p>
+
+               </li>
+
+            </ul>
+
+            <p>You should consider the following security issues related to
+the client architecture that affect applications.</p>
+
+         </div>
+
+         <div class="nested3" id="WS2db454920e96a9e51e63e3d11c0bf6167e-7ffc_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf6167e-7ffc_verapache"><!-- --></a>
+            <h4 class="topictitle4">Flash Player security features</h4>
+
+            
+            <div>
+               <p>
+                  
+                  
+                  
+                  Much
+of Flash Player security is based on the domain of origin for loaded
+SWF files, media, and other assets. A SWF file from a specific Internet
+domain, such as www.example.com, can always access all data from
+that domain. These assets are put in the same security grouping,
+known as a security sandbox. For example, a SWF file can load SWF
+files, bitmaps, audio, text files, and any other asset from its own
+domain. Also, cross-scripting between two SWF files from the same
+domain is permitted, as long as both files are written using ActionScript
+3.0. Cross-scripting is the ability of one SWF file to use ActionScript
+to access the properties, methods, and objects in another SWF file.
+Cross-scripting is not supported between SWF files written using
+ActionScript 3.0 and files using previous versions of ActionScript;
+however, these files can communicate by using the LocalConnection
+class. </p>
+
+               <div class="section" id="WS2db454920e96a9e51e63e3d11c0bf6167e-7ffc_verapache__WS2db454920e96a9e51e63e3d11c0bf6167e-7ffb_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf6167e-7ffc_verapache__WS2db454920e96a9e51e63e3d11c0bf6167e-7ffb_verapache"><!-- --></a><h5 class="sectiontitle">Memory
+usage and disk storage protections</h5>
+                  
+                  <p>
+                     
+                     
+                     
+                     
+                     Flash
+Player includes security protections for disk data and memory usage
+on the client computer.</p>
+
+                  <p>
+                     The
+only type of persistent storage is through the <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/flash/net/SharedObject.html" target="_blank">SharedObject</a> class,
+which is embodied as a file in a directory whose name is related
+to that of the owning SWF file. An application cannot typically
+write, modify, or delete any files on the client computer other
+than SharedObject data files, and it can only access SharedObject
+data files under the established settings per domain. </p>
+
+                  <p>Flash
+Player helps limit potential denial-of-service attacks involving
+disk space (and system memory) through its monitoring of the usage
+of SharedObject classes. Disk space is conserved through limits
+automatically set by Flash Player (the default is 100K of disk space
+for each domain). The author can set the application to prompt the
+user for more disk space, or Flash Player automatically prompts
+the user if an attempt is made to store data that exceeds the limit.
+In either case, the disk space limit is enforced by Flash Player
+until the user gives explicit permission for an increased allotment
+for that domain.</p>
+
+                  <p>Flash Player contains memory and processor
+safeguards that help prevent applications from taking control of
+excess system resources for an indefinite period of time. For example,
+Flash Player can detect an application that is in an infinite loop and
+select it for termination by prompting the user. The resources that
+the application uses are immediately released when the application
+closes.</p>
+
+                  <p>
+                     
+                     Flash Player uses a garbage collector
+engine. The processing of new allocation requests always first ensures
+that memory is cleared so that the new usage always obtains only
+clean memory and cannot view any previous data.</p>
+
+               </div>
+
+               <div class="section" id="WS2db454920e96a9e51e63e3d11c0bf6167e-7ffc_verapache__WS2db454920e96a9e51e63e3d11c0bf6167e-7ffa_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf6167e-7ffc_verapache__WS2db454920e96a9e51e63e3d11c0bf6167e-7ffa_verapache"><!-- --></a><h5 class="sectiontitle">Privacy</h5>
+                  
+                  <p>
+                     
+                     Privacy is an important aspect of
+overall security and your application should provide very little
+information that would reveal anything about a user (or their computer).
+Flash Player does not provide personal information about users (such as
+names, e-mail addresses, and phone numbers), or provide access to
+other sensitive information (such as credit card numbers or account
+information).</p>
+
+                  <p>What Flash Player does provide is basically
+standardized hardware and software configuration information that
+authors might use to enhance the user experiences in the environment
+encountered. The same information is often available already from
+the operating system or web browser. </p>
+
+                  <p>Information about the
+client environment that is available to the application includes:</p>
+
+                  <ul>
+                     <li>
+                        <p>User agent string, which typically identifies the embedding
+browser type and operating system of the client</p>
+
+                     </li>
+
+                     <li>
+                        <p>System capabilities such as the language or the presence
+of an MP3 decoder (see the <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/flash/system/Capabilities.html" target="_blank">Capabilities</a> class)</p>
+
+                     </li>
+
+                     <li>
+                        <p>Presence of a camera and microphone</p>
+
+                     </li>
+
+                     <li>
+                        <p>Keyboard and mouse input </p>
+
+                     </li>
+
+                  </ul>
+
+                  <p>
+                     
+                     ActionScript
+also includes the ability to replace the contents of the client’s Clipboard
+by using the <samp class="codeph">setClipboard()</samp> method of the <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/flash/system/System.html" target="_blank">System</a> class.
+This method does not have a corresponding <samp class="codeph">getClipboard()</samp> method,
+so protected data that might be stored in the Clipboard already
+is not accessible to Flash Player. </p>
+
+               </div>
+
+            </div>
+
+         </div>
+
+         <div class="nested3" id="WS2db454920e96a9e51e63e3d11c0bf6167e-7ff9_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf6167e-7ff9_verapache"><!-- --></a>
+            <h4 class="topictitle4">About sandboxes</h4>
+
+            
+            <div>
+               <p>
+                  
+                  
+                  The
+sandbox type indicates the type of security zone in which the SWF
+file is operating. In Flash Player, all SWF files (and HTML files,
+for the purposes of SWF-to-HTML scripting) are placed into one of
+four types of sandbox:</p>
+
+               <dl>
+                  
+                     <dt class="dlterm">remote</dt>
+
+                     <dd>
+                        <p>
+                           
+                           All
+files from non-local URLs are placed in a remote sandbox. There
+are many such sandboxes, one for each Internet (or intranet) domain
+from which files are loaded. </p>
+
+                     </dd>
+
+                  
+                  
+                     <dt class="dlterm">local-with-filesystem</dt>
+
+                     <dd>
+                        <p>
+                           
+                           The default sandbox for local files. SWF
+files in this sandbox may not contact the Internet (or any servers)
+in any way—they may not access network endpoints with addresses
+such as HTTP URLs. </p>
+
+                     </dd>
+
+                  
+                  
+                     <dt class="dlterm">local-with-networking</dt>
+
+                     <dd>
+                        <p>
+                           
+                           SWF file in this sandbox may communicate
+over the network but may not read from local file systems. </p>
+
+                     </dd>
+
+                  
+                  
+                     <dt class="dlterm">local-trusted</dt>
+
+                     <dd>
+                        <p>
+                           
+                           
+                           This
+sandbox is not restricted. Any local file can be placed in this sandbox
+if given authorization by the end user. This authorization can come
+in two forms: interactively through the Settings Manager or noninteractively through
+an executable installer that creates Flash Player configuration
+files on the user’s computer. </p>
+
+                        <p>
+                           
+                           
+                           You can determine the current
+sandbox type by using the <samp class="codeph">sandboxType</samp> property
+of the <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/flash/system/Security.html" target="_blank">Security</a> class,
+as the following example shows:</p>
+
+                        <pre class="codeblock">&lt;?xml version="1.0" encoding="utf-8"?&gt; 
+&lt;!-- security/DetectCurrentSandbox.mxml --&gt; 
+&lt;s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009"    
+    xmlns:mx="library://ns.adobe.com/flex/mx"     
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    creationComplete="initApp()"&gt; 
+    
+    &lt;s:layout&gt; 
+        &lt;s:VerticalLayout/&gt; 
+    &lt;/s:layout&gt; 
+    
+    &lt;fx:Script&gt;&lt;![CDATA[ 
+        [Bindable] 
+        private var mySandboxType:String; 
+ 
+        private function initApp():void { 
+            mySandboxType = String(Security.sandboxType); 
+        } 
+    ]]&gt;&lt;/fx:Script&gt; 
+ 
+    &lt;s:HGroup&gt; 
+        &lt;s:Label text="Sandbox Type: "/&gt;                
+        &lt;s:Label id="tb1" text="{mySandboxType}"/&gt;              
+    &lt;/s:HGroup&gt; 
+&lt;/s:Application&gt;</pre>
+
+                        <p>
+                           
+                           When you compile an application,
+you have some control over which sandbox the application is in.
+This determination is a combination of the value of the <samp class="codeph">use-network</samp> compiler
+option (the default is <samp class="codeph">true</samp>) and whether the SWF
+file was loaded by the client over a network connection or as a
+local file.</p>
+
+                        <p>
+                           
+                           The following table shows how the sandbox
+type is determined:</p>
+
+                        
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" frame="border" border="1" rules="all">
+                              
+                              
+                              
+                              <thead align="left">
+                                 <tr>
+                                    <th class="cellrowborder" valign="top" width="NaN%" id="d846557e498">
+                                       <p>use-network</p>
+
+                                    </th>
+
+                                    <th class="cellrowborder" valign="top" width="NaN%" id="d846557e504">
+                                       <p>Loaded</p>
+
+                                    </th>
+
+                                    <th class="cellrowborder" valign="top" width="NaN%" id="d846557e510">
+                                       <p>Sandbox type</p>
+
+                                    </th>
+
+                                 </tr>
+
+                              </thead>
+
+                              <tbody>
+                                 <tr>
+                                    <td class="cellrowborder" valign="top" width="NaN%" headers="d846557e498 ">
+                                       <p>false</p>
+
+                                    </td>
+
+                                    <td class="cellrowborder" valign="top" width="NaN%" headers="d846557e504 ">
+                                       <p>locally</p>
+
+                                    </td>
+
+                                    <td class="cellrowborder" valign="top" width="NaN%" headers="d846557e510 ">
+                                       <p>local-with-filesystem</p>
+
+                                    </td>
+
+                                 </tr>
+
+                                 <tr>
+                                    <td class="cellrowborder" valign="top" width="NaN%" headers="d846557e498 ">
+                                       <p>true</p>
+
+                                    </td>
+
+                                    <td class="cellrowborder" valign="top" width="NaN%" headers="d846557e504 ">
+                                       <p>locally </p>
+
+                                    </td>
+
+                                    <td class="cellrowborder" valign="top" width="NaN%" headers="d846557e510 ">
+                                       <p>local-with-network</p>
+
+                                    </td>
+
+                                 </tr>
+
+                                 <tr>
+                                    <td class="cellrowborder" valign="top" width="NaN%" headers="d846557e498 ">
+                                       <p>true</p>
+
+                                    </td>
+
+                                    <td class="cellrowborder" valign="top" width="NaN%" headers="d846557e504 ">
+                                       <p>network</p>
+
+                                    </td>
+
+                                    <td class="cellrowborder" valign="top" width="NaN%" headers="d846557e510 ">
+                                       <p>remote</p>
+
+                                    </td>
+
+                                 </tr>
+
+                                 <tr>
+                                    <td class="cellrowborder" valign="top" width="NaN%" headers="d846557e498 ">
+                                       <p>false</p>
+
+                                    </td>
+
+                                    <td class="cellrowborder" valign="top" width="NaN%" headers="d846557e504 ">
+                                       <p>network</p>
+
+                                    </td>
+
+                                    <td class="cellrowborder" valign="top" width="NaN%" headers="d846557e510 ">
+                                       <p>n/a (causes an error)</p>
+
+                                    </td>
+
+                                 </tr>
+
+                              </tbody>
+
+                           </table>
+</div>
+
+                     </dd>
+
+                  
+               </dl>
+
+            </div>
+
+         </div>
+
+         <div class="nested3" id="WS2db454920e96a9e51e63e3d11c0bf6167e-7ff8_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf6167e-7ff8_verapache"><!-- --></a>
+            <h4 class="topictitle4">Browser security</h4>
+
+            
+            <div>
+               <p>Flash Player clients can be one of the following four types:</p>
+
+               <ul>
+                  <li>
+                     <p>Embedded Flash Player</p>
+
+                  </li>
+
+                  <li>
+                     <p>Debugger version of embedded Flash Player </p>
+
+                  </li>
+
+                  <li>
+                     <p>Stand-alone Flash Player</p>
+
+                  </li>
+
+                  <li>
+                     <p>Debugger version of stand-alone Flash Player</p>
+
+                  </li>
+
+               </ul>
+
+               <p>The stand-alone Flash Player runs on the desktop. It is typically
+used by people who are running applications that are installed and
+maintained by an IT department that has access to the desktop on
+which the application runs.</p>
+
+               <p>The embedded Flash Player is run within a browser. Anyone with
+Internet access can run applications from anywhere with this player.
+For Internet Explorer, the embedded player is loaded as an ActiveX
+control inside the browser. For Netscape-based browsers (including
+Firefox), it is loaded as a plug-in inside the browser. Using an
+embedded player lets the developer use browser-based technologies
+such as FORM and BASIC authentication as well as SSL.</p>
+
+            </div>
+
+            <div class="nested4" id="WS2db454920e96a9e51e63e3d11c0bf6167e-7ff7_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf6167e-7ff7_verapache"><!-- --></a>
+               <h5 class="topictitle5">Browser APIs</h5>
+
+               
+               <div>
+                  <p>
+                     
+                     Applications hosting the Flash Player ActiveX
+control or Flash Player plug-in can use the EnforceLocalSecurity
+and DisableLocalSecurity API calls to control security settings.
+If DisableLocalSecurity is opened, the application does not benefit
+from the local-with-networking and local-with-file-system sandboxes.
+All files loaded from the local file system are placed into the
+local-trusted sandbox. The default behavior for an ActiveX control
+hosted in a client application is DisableLocalSecurity. </p>
+
+                  <p>If EnforceLocalSecurity is opened, the application can use all
+three local sandboxes. The default behavior for the browser plug-in
+is EnforceLocalSecurity. </p>
+
+               </div>
+
+            </div>
+
+            <div class="nested4" id="WS2db454920e96a9e51e63e3d11c0bf69084-7f11_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7f11_verapache"><!-- --></a>
+               <h5 class="topictitle5">Cross-scripting</h5>
+
+               
+               <div>
+                  <p>
+                     
+                     
+                     Cross-scripting
+is when a SWF file communicates directly with another SWF file. This
+communication includes calling methods and setting properties of
+the other SWF file. </p>
+
+                  <p>SWF file loading and cross-scripting are always permitted between
+SWF files that reside in the same sandbox. For example, any local-with-filesystem
+SWF file can load and cross-script any other local-with-filesystem
+SWF file; any local-with-networking SWF file can load and cross-script
+any other local-with-networking SWF file; and so on. The restrictions
+appear when two SWF files from different sandboxes or two remote
+SWF files with different domains attempt to cooperate. </p>
+
+                  <p>For SWF files in the remote sandbox, if two SWF files were loaded
+from the same domain, they can cross-script without any restrictions.
+If both SWF files were loaded from a network, but from different
+domains, you must provide permissions to allow them to cross-script.</p>
+
+                  <p>
+                     
+                     To enable cross-scripting
+between SWF files, use the <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/flash/system/Security.html" target="_blank">Security</a> class’s <samp class="codeph">allowDomain()</samp> and <samp class="codeph">allowInsecureDomain()</samp> methods. </p>
+
+                  <p>You call these methods from the called SWF file and specify the
+calling SWF file’s domain. For example, if SWF1 in domainA.com calls
+a method in SWF2 in domainB, SWF2 must call the <samp class="codeph">allowDomain()</samp> method
+and specifically allow SWF files from domainA.com to cross-script
+the method, as the following example shows:</p>
+
+                  <pre class="codeblock"> import flash.system.Security; 
+ Security.allowDomain("domainA.com");</pre>
+
+                  <p>
+                     If
+the SWF files are in different sandboxes (for example, if one SWF
+file was loaded from the local file system and the other from a
+network) they must adhere to the following set of rules:</p>
+
+                  <ul>
+                     <li>
+                        <p>Remote SWF files (those served over HTTP and other non-local
+protocols) can never load local SWF files. </p>
+
+                     </li>
+
+                     <li>
+                        <p>Local-with-networking SWF files can never load local-with-filesystem
+SWF files, or vice versa. </p>
+
+                     </li>
+
+                     <li>
+                        <p>Local-with-filesystem SWF files can never load remote SWF
+files.</p>
+
+                     </li>
+
+                     <li>
+                        <p>Local-trusted SWF files can load SWF files from any sandbox.</p>
+
+                     </li>
+
+                  </ul>
+
+                  <p>To facilitate SWF-to-SWF communication, you can also use the <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/flash/net/LocalConnection.html" target="_blank">LocalConnection</a> class.
+For more information, see <a href="flx_security2_se.html#WS2db454920e96a9e51e63e3d11c0bf69084-7f19_verapache">Using
+the LocalConnection class</a>.</p>
+
+               </div>
+
+            </div>
+
+            <div class="nested4" id="WS2db454920e96a9e51e63e3d11c0bf6167e-7ff5_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf6167e-7ff5_verapache"><!-- --></a>
+               <h5 class="topictitle5">ExternalInterface</h5>
+
+               
+               <div>
+                  <p>
+                     
+                     You use the <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/flash/external/ExternalInterface.html" target="_blank">ExternalInterface</a> API
+to let your application call scripts in the wrapper and to allow
+the wrapper to call functions in your application. The ExternalInterface
+API consists primarily of the <samp class="codeph">call()</samp> and <samp class="codeph">addCallback()</samp> methods
+in the flash.net package. </p>
+
+                  <p>
+                     
+                     
+                     
+                     This communication relies on the domain-based
+security restrictions that the <samp class="codeph">allowScriptAccess</samp> and <samp class="codeph">allowNetworking</samp> properties
+define. You set the values of the <samp class="codeph">allowScriptAccess</samp> and <samp class="codeph">allowNetworking</samp> properties in
+the SWF file’s wrapper. For more information, see <a href="flx_wrapper_wr.html#WS2db454920e96a9e51e63e3d11c0bf69084-7f18_verapache">About
+the object and embed tags</a>.</p>
+
+                  <p>By default, the application and the HTML page it is calling must
+be in the same domain for the <samp class="codeph">call()</samp> method to
+succeed. For more information, see <a href="flx_passingarguments_pa.html#WS2db454920e96a9e51e63e3d11c0bf69084-7f17_verapache">Communicating
+with the wrapper</a>.</p>
+
+               </div>
+
+            </div>
+
+            <div class="nested4" id="WS2db454920e96a9e51e63e3d11c0bf6167e-7ff4_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf6167e-7ff4_verapache"><!-- --></a>
+               <h5 class="topictitle5">The navigateToURL() method</h5>
+
+               
+               <div>
+                  <p>
+                     
+                     
+                     
+                     The <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/flash/net/package.html#navigateToURL()" target="_blank">navigateToURL()</a> method
+opens or replaces a window in the Flash Player’s container application.
+You typically use it to launch a new browser window, although you
+can also embed script in the method’s call to perform other actions.</p>
+
+                  <p>
+                     This
+usage of the <samp class="codeph">navigateToURL()</samp> method relies on the
+domain-based security restrictions that the <samp class="codeph">allowScriptAccess</samp> and <samp class="codeph">allowNetworking</samp> parameters
+define. You set the values of the <samp class="codeph">allowScriptAccess</samp> and <samp class="codeph">allowNetworking</samp> parameters
+in the SWF file’s wrapper. For more information, see <a href="flx_wrapper_wr.html#WS2db454920e96a9e51e63e3d11c0bf69084-7f18_verapache">About
+the object and embed tags</a>.</p>
+
+               </div>
+
+            </div>
+
+            <div class="nested4" id="WS2db454920e96a9e51e63e3d11c0bf69084-7b04_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7b04_verapache"><!-- --></a>
+               <h5 class="topictitle5">Caching</h5>
+
+               
+               <div>
+                  <p>
+                     
+                     
+                     
+                     
+                     
+                     
+                     
+                     
+                     
+                     
+                     Applications
+reside entirely on the client. If the browser loads the application,
+the application SWF file, plus externally loaded images and other
+media files, are stored locally on the client in the browser’s cache.
+These files reside in the cache until cleared.</p>
+
+                  <p>Storing a SWF file in the browser’s cache can potentially expose
+the file to people who would not otherwise be able to see it. The
+following table shows some example locations of the browser’s cache
+files:</p>
+
+                  
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" frame="border" border="1" rules="all">
+                        
+                        
+                        <thead align="left">
+                           <tr>
+                              <th class="cellrowborder" valign="top" width="NaN%" id="d846557e992">
+                                 <p>Browser or operating system</p>
+
+                              </th>
+
+                              <th class="cellrowborder" valign="top" width="NaN%" id="d846557e998">
+                                 <p>Cache location</p>
+
+                              </th>
+
+                           </tr>
+
+                        </thead>
+
+                        <tbody>
+                           <tr>
+                              <td class="cellrowborder" valign="top" width="NaN%" headers="d846557e992 ">
+                                 <p>Internet Explorer on Windows XP</p>
+
+                              </td>
+
+                              <td class="cellrowborder" valign="top" width="NaN%" headers="d846557e998 ">
+                                 <p>C:\Documents and Settings\<em>username</em>\Local
+Settings\Temporary Internet Files</p>
+
+                              </td>
+
+                           </tr>
+
+                           <tr>
+                              <td class="cellrowborder" valign="top" width="NaN%" headers="d846557e992 ">
+                                 <p>Firefox on Windows XP</p>
+
+                              </td>
+
+                              <td class="cellrowborder" valign="top" width="NaN%" headers="d846557e998 ">
+                                 <p>C:\Documents and Settings\<em>username</em>\Application
+Data\Mozilla\Firefox\Profiles\username.default\Cache</p>
+
+                              </td>
+
+                           </tr>
+
+                           <tr>
+                              <td class="cellrowborder" valign="top" width="NaN%" headers="d846557e992 ">
+                                 <p>UNIX</p>
+
+                              </td>
+
+                              <td class="cellrowborder" valign="top" width="NaN%" headers="d846557e998 ">
+                                 <p>$HOME/.mozilla/firefox/<em>username</em>.default/Cache/</p>
+
+                              </td>
+
+                           </tr>
+
+                        </tbody>
+
+                     </table>
+</div>
+
+                  <p>These files can remain in the cache even after the browser is
+closed.</p>
+
+                  <p>
+                     
+                     
+                     
+                     
+                     
+                     
+                     
+                     To prevent client browsers from caching the
+SWF file, try setting the following HTTP headers in the SWF file’s
+wrapper:</p>
+
+                  <pre class="codeblock"> Cache-control: no-cache, no-store, must-revalidate, max-age=-1 
+ Pragma: no-cache, no-store 
+ Expires: -1</pre>
+
+                  <p>Note that in some cases, setting the <samp class="codeph">Pragma</samp> header
+to <samp class="codeph">“no-cache”</samp> can cause a runtime error with GET
+requests over SSL with the HTTPService class. In this case, setting
+just the <samp class="codeph">Cache-control</samp> header should work. </p>
+
+                  <p>Marc Speck has a <a href="http://faindu.wordpress.com/2008/04/18/ie7-ssl-xml-flex-error-2032-stream-error/" target="_blank">blog entry</a> that describes the issue
+and presents several solutions.</p>
+
+               </div>
+
+            </div>
+
+            <div class="nested4" id="WS2db454920e96a9e51e63e3d11c0bf6167e-7ff2_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf6167e-7ff2_verapache"><!-- --></a>
+               <h5 class="topictitle5">Trusted sites and directories</h5>
+
+               
+               <div>
+                  <p>
+                     
+                     
+                     The
+browser security model includes levels of trust applied to specific
+websites. Flash Player interacts with this model by assigning a
+sandbox based on whether the browser declared the site of the SWF
+file’s origin trusted. </p>
+
+                  <p>If Flash Player loads a SWF file from a trusted website, the
+SWF file is put in the local-trusted sandbox. The SWF file can read
+from local data sources and communicate with the Internet.</p>
+
+                  <p>You can also assign a SWF file to be in the local-trusted sandbox
+when you load it from the local file system. To do this, you configure
+a directory as trusted by Flash Player (which results in the SWF
+file being put in the local-trusted sandbox) by adding a FlashPlayerTrust
+configuration file that specifies the directory to trust. This requires
+administrator access privileges to the client system, so it is typically
+used in controlled environments. Users can also define a directory
+as trusted by using the Flash Player User Settings Manager. For
+more information, see the Flash Player documentation.</p>
+
+               </div>
+
+            </div>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf6167e-7ff1_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf6167e-7ff1_verapache"><!-- --></a>
+         <h3 class="topictitle3">Deploying secure applications</h3>
+
+         
+         <div>
+            <p>
+               When
+you deploy an application, you make the application accessible to
+your users. The process of deploying an application is dependent
+on your application, your application requirements, and your deployment
+environment. You can employ some of the following strategies to
+ensure that the application you deploy is secure. </p>
+
+            <div class="section" id="WS2db454920e96a9e51e63e3d11c0bf6167e-7ff1_verapache__WS2db454920e96a9e51e63e3d11c0bf6167e-7ff0_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf6167e-7ff1_verapache__WS2db454920e96a9e51e63e3d11c0bf6167e-7ff0_verapache"><!-- --></a><h4 class="sectiontitle">Deploying
+local SWF files versus network SWF files</h4>
+               
+               <p>
+                  Client computers can obtain individual
+SWF files from a number of sources, such as from an external website
+or a local file system. When SWF files are loaded into Flash Player,
+they are individually assigned to security sandboxes based on their origin. </p>
+
+               <p>Flash
+Player classifies SWF files downloaded from the network (such as
+from external websites) in separate sandboxes that correspond to
+their website origin domains. By default, these files are authorized
+to access additional network resources that come from the specific
+(exact domain name match) site. Network SWF files can be allowed
+to access additional data from other domains by explicit website
+and author permissions. </p>
+
+               <p>A local SWF file describes any file
+referenced by using the “file” protocol or a UNC path, which does
+not include an IP address or a qualifying domain. For example, “\\test\test.swf”
+and “file:\test.swf” are considered local files, while “\\test.com\test.swf”
+and “\192.168.0.1\test.swf” are not considered local files.</p>
+
+               <p>
+                  Local SWF files from local origins, such
+as local file systems or UNC network paths, are placed into one
+of three sandboxes: local-with-networking, local-with-filesystem,
+and local-trusted. </p>
+
+               <p>
+                  When you compile the application, if you
+set the <samp class="codeph">use-network</samp> compiler option to <samp class="codeph">false</samp>,
+local SWF files are placed in the local-with-filesystem sandbox. If
+you set the <samp class="codeph">use-network</samp> compiler option to <samp class="codeph">true</samp>,
+local SWF files are placed in the local-with-networking sandbox.</p>
+
+               <p>
+                  
+                  Local
+SWF files that are registered as trusted (by users or by installer
+programs) are placed in the local-trusted sandbox. Users can also
+reassign (move) a local SWF file to or from the local-trusted sandbox
+based on their security considerations. </p>
+
+            </div>
+
+            <div class="section" id="WS2db454920e96a9e51e63e3d11c0bf6167e-7ff1_verapache__WS2db454920e96a9e51e63e3d11c0bf6167e-7fef_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf6167e-7ff1_verapache__WS2db454920e96a9e51e63e3d11c0bf6167e-7fef_verapache"><!-- --></a><h4 class="sectiontitle">Deploy
+checklist</h4>
+               
+               <p>Before you deploy your application, ensure that
+your proxy servers, firewalls, and assets are configured properly.
+For more information, see <a href="flx_deployingoverview_dp.html#WS2db454920e96a9e51e63e3d11c0bf69084-7f1a_verapache">Deployment
+checklist</a>.</p>
+
+            </div>
+
+            <div class="section" id="WS2db454920e96a9e51e63e3d11c0bf6167e-7ff1_verapache__WS2db454920e96a9e51e63e3d11c0bf6167e-7fec_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf6167e-7ff1_verapache__WS2db454920e96a9e51e63e3d11c0bf6167e-7fec_verapache"><!-- --></a><h4 class="sectiontitle">Remove
+wildcards</h4>
+               
+               <p>
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  If
+your application relies on assets loaded from another domain, and
+that domain has a crossdomain.xml file on it, remove wildcards from
+that file if possible. For example, change the following:</p>
+
+               <pre class="codeblock"> &lt;cross-domain-policy&gt; 
+ 	&lt;site-control permitted-cross-domain-policies="all"/&gt; 
+ 	&lt;allow-access-from domain="*" to-ports="*"/&gt; 
+ &lt;/cross-domain-policy&gt;</pre>
+
+               <p>to this:</p>
+
+               <pre class="codeblock"> &lt;cross-domain-policy&gt; 
+ 	&lt;site-control permitted-cross-domain-policies="by-content-type"/&gt; 
+ 	&lt;allow-access-from domain="*.myserver.com" to-ports="80,443,8100,8080" /&gt; 
+ &lt;/cross-domain-policy&gt;</pre>
+
+               <p>Also, set the value
+of the <samp class="codeph">to-ports</samp> attribute of the <samp class="codeph">allow-access-from</samp> tag to
+ensure that you are only allowing necessary ports access to the
+resources.</p>
+
+               <p>Check your application for calls to the <samp class="codeph">allowDomain()</samp> and <samp class="codeph">allowInsecureDomain()</samp> methods.
+During development, you might pass these methods a wildcard character
+(*), but now restrict those methods to allowing requests only from
+the necessary domains.</p>
+
+            </div>
+
+            <div class="section" id="WS2db454920e96a9e51e63e3d11c0bf6167e-7ff1_verapache__WS2db454920e96a9e51e63e3d11c0bf6167e-7feb_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf6167e-7ff1_verapache__WS2db454920e96a9e51e63e3d11c0bf6167e-7feb_verapache"><!-- --></a><h4 class="sectiontitle">Deploy
+assets to WEB-INF</h4>
+               
+               <p>
+                  In
+some deployments, you want to make assets such as data files accessible
+to the application, but not accessible to anyone requesting the
+file. If you are using a J2EE-based server, you can deploy those
+files to a subdirectory within the WEB-INF directory. Based on J2EE
+security constraints, no J2EE server can return a resource from
+the WEB-INF directory to any client request. The only way to access files
+in this directory is with server-side code.</p>
+
+            </div>
+
+         </div>
+
+      </div>
+
+   </div>
+
+   <div class="nested1" id="WS2db454920e96a9e51e63e3d11c0bf6167e-7fe9_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf6167e-7fe9_verapache"><!-- --></a>
+      <h2 class="topictitle2">Loading assets</h2>
+
+      
+      <div>
+         <p>The most common task that developers perform that requires
+an understanding of security is loading external assets. </p>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf69084-7f13_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7f13_verapache"><!-- --></a>
+         <h3 class="topictitle3">Data compared to content</h3>
+
+         
+         <div>
+            <p>
+               
+               
+               
+               
+               The
+Flash Player security model makes a distinction between loading
+content and accessing or loading data. Content is defined as media:
+visual media that Flash Player can display, such as audio, video,
+or a SWF file that includes displayed media. Data is defined as
+something that you can manipulate only with ActionScript code. </p>
+
+            <p>
+               
+               You can load data in one
+of two ways: by extracting data from loaded media content, or by
+directly loading data from an external file (such as an XML file)
+or socket connection. You can extract data from loaded media by
+using the <samp class="codeph">BitmapData.draw()</samp> method, the <samp class="codeph">Sound.id3</samp> property,
+or the <samp class="codeph">SoundMixer.computeSpectrum()</samp> method. You
+can load data by using classes such as the <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/controls/SWFLoader.html" target="_blank">SWFLoader</a>, <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/flash/net/URLStream.html" target="_blank">URLStream</a>, <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/flash/net/URLLoader.html" target="_blank">URLLoader</a>, <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/flash/net/Socket.html" target="_blank">Socket</a>, and <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/flash/net/XMLSocket.html" target="_blank">XMLSocket</a> classes. </p>
+
+            <p>
+               
+               
+               The
+Flash Player security model defines different rules for loading
+content and accessing data. Loading content has fewer restrictions
+than accessing data. In general, content such as SWF files, bitmaps,
+MP3 files, and videos can be loaded from anywhere, but if the content
+is from a domain other than that of the loading SWF file, it will
+be partitioned in a separate security sandbox.</p>
+
+            <p>When you load sub applications into a main application with the
+SWFLoader control, the sandbox into which you load it determines
+the level of interoperability between the applications. For more
+information, see <a href="flx_loading_applications_la.html#WS2db454920e96a9e51e63e3d11c0bf619ab-7ff2_verapache">About
+security domains</a>.</p>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf6167e-7fe7_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf6167e-7fe7_verapache"><!-- --></a>
+         <h3 class="topictitle3">Loading remote assets</h3>
+
+         
+         <div>
+            <p>
+               
+               
+               Loading remote or network assets relies on
+three factors:</p>
+
+            <ul>
+               <li>
+                  <p>Type of asset. If the target asset is a content asset,
+such as an image file, you do not need any specific permissions
+from the target domain to load its assets into your application.
+If the target asset is a data asset, such as an XML file, you must
+have the target domain’s permission to access this asset. For more
+information on the types of assets, see <a href="flx_security2_se.html#WS2db454920e96a9e51e63e3d11c0bf69084-7f13_verapache">Data
+compared to content</a>.</p>
+
+               </li>
+
+               <li>
+                  <p>Target domain. If you are loading data assets from a different
+web domain, the target domain must provide a crossdomain.xml policy
+file. This file contains a list of URLs and URL patterns that it
+allows access from. The calling domain must match one of the URLs
+or URL patterns in that list. If the target asset is a SWF file,
+you can also provide permissions by calling the <samp class="codeph">loadPolicyFile()</samp> method
+and loading an alternative policy file inside that target SWF file.
+For more information, see <a href="flx_security2_se.html#WS2db454920e96a9e51e63e3d11c0bf69084-7f2b_verapache">Using
+cross-domain policy files</a>.</p>
+
+               </li>
+
+               <li>
+                  <p>Loading SWF file’s sandbox. To load an asset from a network
+address, you must ensure that your SWF file is in either the remote
+or local-with-networking sandbox. To ensure that a SWF file can
+load assets over the network, you must set the <samp class="codeph">use-network</samp> compiler
+option to <samp class="codeph">true</samp> when you compile the application.
+This is the default. If the application was loaded from the local
+file system with <samp class="codeph">use-network</samp> set to <samp class="codeph">false</samp>,
+the application is put in the local-with-filesystem sandbox and
+it cannot load remote SWF files.</p>
+
+               </li>
+
+            </ul>
+
+            <p>Loading assets from a remote location that you do not control
+can potentially expose your users to risks. For example, the remote
+website B contains a SWF file that is loaded by your website A.
+This SWF file normally displays an advertisement. However, if website
+B is compromised and its SWF file is replaced with one that asks
+for a username and password, some users might disclose their login information.
+To prevent data submission, the loader has a property called <samp class="codeph">allowNetworking</samp> with
+a default value of <samp class="codeph">never</samp>.</p>
+
+         </div>
+
+         <div class="nested3" id="WS2db454920e96a9e51e63e3d11c0bf69084-7f2b_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7f2b_verapache"><!-- --></a>
+            <h4 class="topictitle4">Using cross-domain policy files</h4>
+
+            
+            <div>
+               <p>
+                  
+                  
+                  
+                  To make data available to SWF files
+in different domains, use a <em>cross-domain policy file</em>. A cross-domain
+policy file is an XML file that provides a way for the server to
+indicate that its data and documents are available to SWF files
+served from other domains. Any SWF file that is served from a domain
+that the server’s policy file specifies is permitted to access data
+or assets from that server.</p>
+
+               <p>When a Flash document attempts to access data from another domain,
+Flash Player attempts to load a policy file from that domain. If
+the domain of the Flash document that is attempting to access the
+data is included in the policy file, the data is automatically accessible.</p>
+
+               <p>
+                  
+                  The default policy file is named crossdomain.xml
+and resides at the root directory of the server that is serving
+the data. The following example policy file permits access to Flash
+documents that originate from foo.com, friendOfFoo.com, *.foo.com,
+and 105.216.0.40:</p>
+
+               <pre class="codeblock"> &lt;?xml version="1.0"?&gt; 
+ &lt;!-- http://www.foo.com/crossdomain.xml --&gt; 
+ &lt;cross-domain-policy&gt; 
+ 	&lt;site-control permitted-cross-domain-policies="by-content-type"/&gt; 
+ 	&lt;allow-access-from domain="www.friendOfFoo.com"/&gt; 
+ 	&lt;allow-access-from domain="*.foo.com"/&gt; 
+ 	&lt;allow-access-from domain="105.216.0.40"/&gt; 
+ &lt;/cross-domain-policy&gt;</pre>
+
+               <p>You can also configure ports in the crossdomain.xml file. </p>
+
+               <p>
+                  You can
+use the <samp class="codeph">loadPolicyFile()</samp> method to access a nondefault
+policy file.</p>
+
+            </div>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf6167e-7fe5_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf6167e-7fe5_verapache"><!-- --></a>
+         <h3 class="topictitle3">Loading local assets</h3>
+
+         
+         <div>
+            <p>
+               
+               
+               
+               In some cases, your SWF file might
+load assets that reside on the client’s local file system. This
+typically happens when the application is embedded on the client device
+and loaded from a network. If the application is allowed to access
+local assets, it cannot access network assets.</p>
+
+            <p>To ensure that an application can access assets in the local
+sandbox, the application must be in the local-with-filesystem or
+local-trusted sandbox. To ensure this, you set the <samp class="codeph">use-network</samp> compiler
+option to <samp class="codeph">false</samp> when you compile the application.
+The default value of this option is <samp class="codeph">true</samp>.</p>
+
+            <p>
+               When
+you load another SWF file that is in the local file system into
+your application with a class such as SWFLoader, and you want to
+call methods or access properties of that SWF file, you do not need
+to explicitly enable cross-scripting. </p>
+
+            <p>If the SWF files are in different sandboxes (for example, you
+loaded the main SWF file into the local-with-network sandbox, but
+loaded the asset SWF file from the network), you cannot cross-script
+because they are in different sandboxes. Remote SWF files cannot
+load local SWF files, and vice versa.</p>
+
+         </div>
+
+      </div>
+
+   </div>
+
+   <div class="nested1" id="WS2db454920e96a9e51e63e3d11c0bf6167e-7fe4_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf6167e-7fe4_verapache"><!-- --></a>
+      <h2 class="topictitle2">Using J2EE authentication</h2>
+
+      
+      <div>
+         <p>
+            
+            Applications
+built with Flex integrates well with any server environment, including
+J2EE. To effectively implement secure web applications in a J2EE environment,
+you should understand the following concepts: </p>
+
+         <dl>
+            
+               <dt class="dlterm">Authentication</dt>
+
+               <dd>
+                  <p>
+                     
+                     The
+process of gathering user credentials (user name and password) and
+validating them in the system. This requires checking the credentials
+against a user repository such as a database, flat file, or LDAP
+implementation, and authenticating that the user is who they say
+they are. </p>
+
+               </dd>
+
+            
+            
+               <dt class="dlterm">Authorization</dt>
+
+               <dd>
+                  <p>
+                     
+                     The
+process of making sure that the authenticated user is allowed to
+view or access a given resource. If a user is not authorized to
+view a resource, the container does not allow access.</p>
+
+               </dd>
+
+            
+         </dl>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf6167e-7fe3_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf6167e-7fe3_verapache"><!-- --></a>
+         <h3 class="topictitle3">Using container-based authentication</h3>
+
+         
+         <div>
+            <p>
+               
+               
+               
+               J2EE uses
+the Java Authentication and Authorization Service (JAAS), Java security manager,
+and policy files to enforce access controls on users and ties this enforcement
+to web server roles. The authenticating mechanism is role based. That
+is, all users who access a web application are assigned to one or
+more roles. Example roles are manager, developer, and customer. </p>
+
+            <p>
+               Application
+developers can assign usage roles to a web application, or to individual
+resources that make up the application. Before a user is granted
+access to a web application resource, the container ensures that
+the user is identified (logged in) and that the user is assigned
+to a role that has access to the resource. Any unauthorized access
+of a web application results in an HTTP 401 (Unauthorized) status
+code. </p>
+
+            <p>
+               
+               Authentication requires a website to store
+information about users. This information includes the role or roles
+assigned to each user. In addition, websites that authenticate user
+access typically implement a login mechanism that forces verification
+of each user’s identity by using a password. After the website validates
+the user, the website can then determine the user’s roles. </p>
+
+            <p>This logic is typically implemented in one of the following forms:</p>
+
+            <ul>
+               <li>
+                  <p>JDBC Login Module </p>
+
+               </li>
+
+               <li>
+                  <p>LDAP Login Module </p>
+
+               </li>
+
+               <li>
+                  <p>Windows Login Module </p>
+
+               </li>
+
+               <li>
+                  <p>Custom JAAS Login Module </p>
+
+               </li>
+
+            </ul>
+
+            <p>Authentication occurs on a per-request basis. The container typically
+checks every request to a web application and authenticates it. </p>
+
+            <p>
+               
+               
+               Authentication
+requires that the roles that the application developer defines for a
+web application be enforced by the server that hosts the application. </p>
+
+            <p>As part of developing and deploying an application, you must
+configure the following application authentication settings: </p>
+
+            <ul>
+               <li>
+                  <p>Access roles to applications </p>
+
+               </li>
+
+               <li>
+                  <p>Resource protection </p>
+
+               </li>
+
+               <li>
+                  <p>Application server validation method </p>
+
+               </li>
+
+            </ul>
+
+            <p>The web application’s deployment descriptor, web.xml, contains
+the settings for controlling application authentication. This file
+is stored in the web application’s WEB-INF directory. </p>
+
+         </div>
+
+         <div class="nested3" id="WS2db454920e96a9e51e63e3d11c0bf6167e-7fe2_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf6167e-7fe2_verapache"><!-- --></a>
+            <h4 class="topictitle4">Using authentication to control
+access to applications</h4>
+
+            
+            <div>
+               <p>
+                  
+                  
+                  
+                  
+                  To
+use authentication to prevent unauthorized access to your application,
+you typically use the container to set up constraints on resources.
+You then challenge the user who then submits credentials. These
+credentials determine the success or failure of the user’s login
+attempt, as the container’s authentication logic determines. </p>
+
+               <p>For example, you can protect the page that the application is
+returned with, or protect the SWF file itself. You do this in the
+web.xml file by defining specific URL patterns, as the following
+example shows:</p>
+
+               <pre class="codeblock"> &lt;web-app&gt; 
+ 	&lt;security-constraint&gt;  
+ 		&lt;web-resource-collection&gt;  
+ 			&lt;web-resource-name&gt;Payroll Application&lt;/web-resource-name&gt;  
+ 				&lt;url-pattern&gt;/payroll/*&lt;/url-pattern&gt;  
+ 				&lt;http-method&gt;GET&lt;/http-method&gt;  
+ 				&lt;http-method&gt;POST&lt;/http-method&gt;  
+ 			&lt;/web-resource-collection&gt;  
+ 		&lt;auth-constraint&gt;  
+ 			&lt;role-name&gt;manager&lt;/role-name&gt;  
+ 		&lt;/auth-constraint&gt;  
+ 	&lt;/security-constraint&gt;  
+ &lt;/web-app&gt;</pre>
+
+               <p>
+                  
+                  
+                  
+                  
+                  
+                  
+                  When
+the browser tries to load a resource that is secured by constraints
+in the web.xml file, the browser either challenges the user (if
+you are using BASIC authentication) or forwards the user to a login
+page (with FORM authentication).</p>
+
+               <p>With BASIC authentication, the user enters a username and password
+in a popup box that the browser creates. To specify that an application
+uses BASIC authentication, you use the <samp class="codeph">login-config</samp> element
+and its <samp class="codeph">auth-method</samp> subelement in the web application’s
+web.xml file, as the following example shows:</p>
+
+               <pre class="codeblock"> &lt;web-app&gt; 
+ 	&lt;login-config&gt;  
+ 		<strong>&lt;auth-method&gt;BASIC&lt;/auth-method&gt; </strong> 
+ 		&lt;realm-name&gt;Managers&lt;/realm-name&gt;  
+ 	&lt;/login-config&gt;  
+ 	... 
+ &lt;/web-app&gt;</pre>
+
+               <p>With FORM authentication, you must code the page that accepts
+the username and password, and submit them as FORM variables named <samp class="codeph">j_username</samp> and <samp class="codeph">j_password</samp>.
+This form can be implemented in HTML or as an application or anything
+that can submit a form. </p>
+
+               <p>When you configure FORM authentication, you can specify both
+a login form and an error form in the web.xml file, as the following
+example shows: </p>
+
+               <pre class="codeblock"> &lt;web-app&gt; 
+ 	&lt;login-config&gt;  
+ 		<strong>&lt;auth-method&gt;FORM&lt;/auth-method&gt;</strong> 
+ 		&lt;form-login-config&gt;  
+ 			<strong>&lt;form-login-page&gt;/login.htm&lt;/form-login-page&gt;</strong> 
+ 			<strong>&lt;form-error-page&gt;/loginerror.htm&lt;/form-error-page&gt;</strong> 
+ 		&lt;/form-login-config&gt; 
+ 	&lt;/login-config&gt;  
+ &lt;/web-app&gt;</pre>
+
+               <p>You submit the results of the form validation to the <samp class="codeph">j_security_check</samp> action.
+The server executing the application recognizes this action and
+processes the form. </p>
+
+               <p>A simple HTML-based form might appears as follows:</p>
+
+               <pre class="codeblock"> &lt;form method="POST" action="j_security_check"&gt;  
+ 	&lt;table&gt;  
+ 		&lt;tr&gt;&lt;td&gt;User&lt;/td&gt;&lt;td&gt;&lt;input type=text name="j_username"&gt;&lt;/tr&gt;  
+ 		&lt;tr&gt;&lt;td&gt;Password&lt;/td&gt;&lt;td&gt;&lt;input type=password name="j_password"&gt;&lt;/tr&gt;  
+ 	&lt;/table&gt;  
+ 	&lt;input type=submit&gt;  
+ &lt;/form&gt; </pre>
+
+               <p>The results are submitted to the container’s JAAS system with
+base-64 encoding, which means they can be read by anyone that can
+view the TCP/IP traffic. Use encryption to prevent these so-called
+“man-in-the-middle” attacks. In both BASIC and FORM authentication,
+if the user accessed the resource through SSL, the username and
+password submission are encrypted, as is all traffic during that exchange.</p>
+
+               <p>After it is complete, the container populates the browser’s security
+context and provides or denies access to the resource. Flash Player
+inherits the security context of the underlying browser. As a result,
+when you make a data service call, the established credentials are
+used. </p>
+
+               <p>When a user fails an authentication attempt with invalid credentials,
+be sure not to return information about which item was incorrect.
+Instead, use a generic message such as “Your login information was
+invalid.” </p>
+
+            </div>
+
+         </div>
+
+      </div>
+
+   </div>
+
+   <div class="nested1" id="WS2db454920e96a9e51e63e3d11c0bf6167e-7fe1_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf6167e-7fe1_verapache"><!-- --></a>
+      <h2 class="topictitle2">Using RPC services</h2>
+
+      
+      <div>
+         <p>
+            
+            
+            
+            
+            
+            You can use the RPC services classes—<a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/rpc/remoting/mxml/RemoteObject.html" target="_blank">RemoteObject</a>, <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/rpc/http/mxml/HTTPService.html" target="_blank">HTTPService</a>,
+and <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/rpc/soap/mxml/WebService.html" target="_blank">WebService</a>—not
+only to control access to the data that goes into an application, but
+also to control the data and actions that flow out of it. You can
+also use service authentication to allow only certain users to perform
+certain actions. For example, if you have an application that allows
+employee data to be modified through a RemoteObject call, use RemoteObject
+authentication to make sure that only managers can change the employee
+data. </p>
+
+         <p>A service-based architecture makes it easy to implement several
+different security models for your application. You can use programmatic
+security to limit access to services, or you can apply declarative
+security constraints to entire services. </p>
+
+         <p>When accessing RPC services with Flex tags such as the <samp class="codeph">&lt;mx:WebService&gt;</samp> and <samp class="codeph">&lt;mx:HTTPService&gt;</samp> tags,
+your application’s SWF file must connect to the service directly,
+which means that it can encounter security-based limitations. When
+using RPC services, one of the following must be true:</p>
+
+         <ul>
+            <li>
+               <p>The RPC is in the same domain as the application that
+calls it.</p>
+
+            </li>
+
+            <li>
+               <p>The RPC’s host system has a crossdomain.xml file that explicitly
+allows access from the application’s domain.</p>
+
+            </li>
+
+         </ul>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf6167e-7fe0_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf6167e-7fe0_verapache"><!-- --></a>
+         <h3 class="topictitle3">Using secured services</h3>
+
+         
+         <div>
+            <p>Secured services are services that are protected by resource
+constraints. The service itself behaves as a resource that needs
+authentication and the container defines its URL pattern as requiring
+authorization.</p>
+
+            <p>You might have a protected application that calls a protected
+resource. In this case, with BASIC authentication and a proxied
+destination, the user’s credentials are passed through to the service.
+The user only has to log on once when they first start the application,
+and not when the application attempts to access the service.</p>
+
+            <p>Without a proxy, the user is challenged to enter their credentials
+a second time when the application attempts to access the service.</p>
+
+            <p>When you use secured services, keep the following in mind:</p>
+
+            <ul>
+               <li>
+                  <p>If possible, use HTTPS for your services when you use
+authentication. In BASIC and custom authentication, user names and
+passwords are sent in a base-64 encoding. Using base-64 encoding
+hides the data only from plain view; HTTPS actually encrypts the
+data. You can use HTTPS in these cases by making sure HTTPS is set
+up on your server and by adding a protocol attribute with the value <samp class="codeph">https</samp> on
+the service, and by adding a crossdomain.xml file. </p>
+
+               </li>
+
+               <li>
+                  <p>To ensure that the WebService and HTTPService endpoints are
+secure, use a browser window to access the URL you are trying to
+secure. This should always bring up a BASIC authentication prompt. </p>
+
+               </li>
+
+               <li>
+                  <p>If the BASIC or custom login box appears but you can’t log
+in, make sure that the users and roles were added correctly to your
+application server. This is often an error-prone task that is overlooked
+as the source of the problem. </p>
+
+               </li>
+
+            </ul>
+
+         </div>
+
+      </div>
+
+   </div>
+
+   <div class="nested1" id="WS2db454920e96a9e51e63e3d11c0bf6167e-7fdf_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf6167e-7fdf_verapache"><!-- --></a>
+      <h2 class="topictitle2">Making other connections</h2>
+
+      
+      <div>
+         <p>Flash Player can connect to servers, services, and load
+data from sources other than RPC services. Some of these sources
+have security issues that you should consider. </p>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf6167e-7fde_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf6167e-7fde_verapache"><!-- --></a>
+         <h3 class="topictitle3">Using RTMP</h3>
+
+         
+         <div>
+            <p>
+               
+               Flash
+Player uses the Real-Time Messaging Protocol (RTMP) for client-server communication.
+This is a TCP/IP protocol designed for high-performance transmission
+of audio, video, and data messages. RTMP sends unencrypted data, including
+authentication information (such as a name and a password).</p>
+
+            <p>Although RTMP in and of itself does not offer security features,
+Flash communications applications can perform secure transactions
+and secure authentication through an SSL-enabled web server.</p>
+
+            <p>RTMPT connections are HTTP connections for the client to the
+server over which RTMP data is tunneled. When a direct RTMP connection
+is unavailable, the standard and secure channels use RTMPT and tunneled
+RTMPS connections, respectively, on the RTMP endpoint. </p>
+
+            <p>Use the secure RTMP channel to connect to the RTMP endpoint over
+Transport Layer Security (TLS). This channel supports real-time
+messaging and server-pushed broadcasts. This channel falls back
+to tunneled RTMPS when a direct connection is unavailable.</p>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf6167e-7fdd_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf6167e-7fdd_verapache"><!-- --></a>
+         <h3 class="topictitle3">Using sockets</h3>
+
+         
+         <div>
+            <p>
+               
+               
+               Sockets
+let you read and write raw binary or XML data with a connected server. Sockets
+transmit over TCP. Because of this, Flash Player cannot take advantage
+of the built-in encryption capabilities of the browser. However,
+you can use encryption algorithms written in ActionScript to protect
+the data that is being communicated. </p>
+
+            <p>
+               Cross-domain access
+to socket and XML socket connections is disabled by default. Access
+to socket connections in the same domain of the SWF file on ports lower
+than 1024 is also disabled by default. You can permit access to
+these connections by serving a cross-domain policy file from any
+of the following locations:</p>
+
+            <ul>
+               <li>
+                  <p>The same port as the main socket connection</p>
+
+               </li>
+
+               <li>
+                  <p>A different port</p>
+
+               </li>
+
+               <li>
+                  <p>The HTTP server on port 80 in the same domain as the socket
+server</p>
+
+               </li>
+
+            </ul>
+
+            <p>For more information, see the Socket and XMLSocket classes in <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/index.html" target="_blank">ActionScript 3.0 Reference for the Adobe
+Flash Platform</a>.</p>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf69084-7f19_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7f19_verapache"><!-- --></a>
+         <h3 class="topictitle3">Using the LocalConnection class</h3>
+
+         
+         <div>
+            <p>
+               
+               
+               
+               The <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/flash/net/LocalConnection.html" target="_blank">LocalConnection</a> class
+lets you develop SWF files that can send instructions to each other.
+LocalConnection objects can communicate only among SWF files that
+are running on the same client computer, but they can be running
+in different applications—for example, a SWF file running in a browser
+and a SWF file running in a projector. (A projector is a SWF file
+saved in a format that can run as a stand-alone application—that
+is, the projector doesn’t require Flash Player to be installed since
+it is embedded inside the executable file.) </p>
+
+            <p>For every LocalConnection communication, there is a sender SWF
+file and a listener SWF file. The simplest way to use a LocalConnection
+object is to allow communication only between LocalConnection objects
+located in the same domain because you won’t have security issues.</p>
+
+            <p>Applications served from different domains that need to be able
+to make LocalConnection calls to each other must be granted cross-domain
+LocalConnection permissions. To do this, the listener must allow
+the sender permission by using the <samp class="codeph">LocalConnection.allowDomain()</samp> or <samp class="codeph">LocalConnection.allowInsecureDomain()</samp> methods.</p>
+
+            <p>It’s best not to use the <samp class="codeph">LocalConnection.allowInsecureDomain()</samp> method
+because allowing non-HTTPS documents to access HTTPS documents compromises
+the security offered by HTTPS. It is best that all Flash SWF files
+that make LocalConnection calls to HTTPS SWF files are served over
+HTTPS.</p>
+
+            <p>For more information about using the LocalConnection class, see <em>
+                  <a href="http://www.adobe.com/go/learn_flex_programmingAS3_en" target="_blank">ActionScript 3.0 Developer's Guide</a>
+               </em>.</p>
+
+            <p>To facilitate SWF-to-SWF communication, you can also use cross-scripting.
+For more information, see <a href="flx_security2_se.html#WS2db454920e96a9e51e63e3d11c0bf69084-7f11_verapache">Cross-scripting</a>.</p>
+
+         </div>
+
+      </div>
+
+   </div>
+
+   <div class="nested1" id="WS2db454920e96a9e51e63e3d11c0bf6167e-7fdb_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf6167e-7fdb_verapache"><!-- --></a>
+      <h2 class="topictitle2">Using SSL</h2>
+
+      
+      <div>
+         <p>
+            
+            
+            A
+SWF file playing in a browser has many of the same security concerns
+as an HTML page being displayed in a browser. This includes the
+security of the SWF file while it is being loaded into the browser,
+as well as the security of communication between Flash and the server
+after the SWF file has loaded and is playing in the browser. In
+particular, data communication between the browser and the server is
+susceptible to being intercepted by third parties. The solution
+to this issue in HTML is to encrypt the communication between the
+client and server to make any data captured by third parties undecipherable
+and thus unusable. This encryption is done by using an SSL‑enabled
+browser and server. </p>
+
+         <p>
+            Because a
+SWF file running within a browser uses the browser for almost all
+of its communication with the server, it can take advantage of the
+browser’s built-in SSL support. This lets communication between
+the SWF file and the server be encrypted. Furthermore, the actual
+bytes of the SWF file are encrypted while they are being loaded
+into the browser. Thus, by playing a SWF file within an SSL-enabled
+browser through an HTTPS connection with the server, you can ensure that
+the communication between Flash Player and the server is encrypted
+and secure.</p>
+
+         <p>
+            
+            The
+one exception to this security is the way Flash Player uses persistent
+sockets (through the ActionScript <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/flash/net/XMLSocket.html" target="_blank">XMLSocket</a> object),
+which does not use the browser to communicate with the server. Because
+of this, SWF files that use sockets cannot take advantage of the
+built-in encryption capabilities of the browser. However, you can
+use one-way encryption algorithms written in ActionScript to encrypt the
+data being communicated.</p>
+
+         <p>
+            
+            MD5
+is a one-way encryption algorithm described in RFC 1321. This algorithm has
+been ported to ActionScript, which enables developers to secure
+one-way data by using the MD5 algorithm before it is sent from the
+SWF file to the server. For more information about RFC 1321, see <a href="http://www.faqs.org/rfcs/rfc1321.html" target="_blank">www.faqs.org/rfcs/rfc1321.html</a>.</p>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf6167e-7fda_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf6167e-7fda_verapache"><!-- --></a>
+         <h3 class="topictitle3">Using secure endpoints</h3>
+
+         
+         <div>
+            <p>
+               To access HTTP
+services or web services through HTTPS, you can specify the protocols
+using “https” in the <samp class="codeph">wsdl</samp> or <samp class="codeph">url</samp> properties;
+for example: </p>
+
+            <pre class="codeblock"> &lt;mx:WebService url="https://myservice.com" .../&gt; 
+ &lt;mx:HTTPService wsdl="https://myservice.com" .../&gt;</pre>
+
+            <p>By default, a SWF file served over an unsecure protocol, such
+as HTTP, cannot access other documents served over the secure HTTPS
+protocol, even when those documents come from the same domain. As
+a result, if you loaded the SWF file over HTTP but want to connect
+to the service through HTTPS, you must add <samp class="codeph">secure="false"</samp> in
+the crossdomain.xml file on the services’s server, as the following
+example shows:</p>
+
+            <pre class="codeblock"> &lt;cross-domain-policy&gt; 
+ 	&lt;site-control permitted-cross-domain-policies="by-content-type"/&gt; 
+ 	&lt;allow-access-from domain="*.mydomain.com" secure="false"/&gt; 
+ &lt;/cross-domain-policy&gt;</pre>
+
+            <p>If you loaded the SWF file over HTTPS, you do not have to make
+any changes.</p>
+
+         </div>
+
+      </div>
+
+   </div>
+
+   <div class="nested1" id="WS2db454920e96a9e51e63e3d11c0bf6167e-7fd9_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf6167e-7fd9_verapache"><!-- --></a>
+      <h2 class="topictitle2">Writing secure applications</h2>
+
+      
+      <div>
+         <p>When you code an application, keep the following topics
+in mind to ensure that the application you write is as secure as
+possible.</p>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf6167e-7fd8_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf6167e-7fd8_verapache"><!-- --></a>
+         <h3 class="topictitle3">	MXML tags with security restrictions</h3>
+
+         
+         <div>
+            <p>
+               
+               Some MXML tags trigger
+operations that require security settings. Operations that trigger
+security checks include:</p>
+
+            <ul>
+               <li>
+                  <p>Referencing a URL that is outside the exact domain of
+the application that makes a request.</p>
+
+               </li>
+
+               <li>
+                  <p>Referencing an HTTPS URL when the application that makes
+the request is not served over HTTPS.</p>
+
+               </li>
+
+               <li>
+                  <p>Referencing a resource that is in a different sandbox.</p>
+
+               </li>
+
+            </ul>
+
+            <p>In these cases, access rights must be granted through one of
+the permission-granting mechanisms such as the <samp class="codeph">allowDomain()</samp> method
+or a crossdomain.xml file.</p>
+
+            <p>MXML tags that can trigger security checks include:</p>
+
+            <ul>
+               <li>
+                  <p>
+                     
+                     Any class that extends the <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/messaging/Channel.html" target="_blank">Channel</a> class.</p>
+
+               </li>
+
+               <li>
+                  <p>RPC-related tags that use channels such as <samp class="codeph">&lt;mx:WebService&gt;</samp>, <samp class="codeph">&lt;mx:RemoteObject&gt;</samp>,
+and <samp class="codeph">&lt;mx:HTTPService&gt;</samp>.</p>
+
+               </li>
+
+               <li>
+                  <p>
+                     
+                     
+                     Messaging
+tags such as <samp class="codeph">&lt;mx:Producer&gt;</samp> and <samp class="codeph">&lt;mx:Consumer&gt;</samp>.</p>
+
+               </li>
+
+               <li>
+                  <p>The <samp class="codeph">&lt;mx:DataService&gt;</samp> tag.</p>
+
+               </li>
+
+               <li>
+                  <p>Tags that load SWF files such as <samp class="codeph">&lt;mx:SWFLoader&gt;</samp> and <samp class="codeph">&lt;s:ModuleLoader&gt;</samp>.</p>
+
+               </li>
+
+            </ul>
+
+            <p>In addition to these tags and their underlying classes, many
+Flash classes trigger security checks including <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/flash/external/ExternalInterface.html" target="_blank">ExternalInterface</a>, <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/flash/display/Loader.html" target="_blank">Loader</a>, <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/flash/net/NetStream.html" target="_blank">NetStream</a>, <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/flash/media/SoundMixer.html" target="_blank">SoundMixer</a>, <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/flash/net/URLLoader.html" target="_blank">URLLoader</a>,
+and <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/flash/net/URLRequest.html" target="_blank">URLRequest</a>.</p>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf6167e-7fd6_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf6167e-7fd6_verapache"><!-- --></a>
+         <h3 class="topictitle3">Remove sensitive information from
+SWF files</h3>
+
+         
+         <div>
+            <p>
+               
+               Applications built with Flash share
+many of the same concerns and issues as web pages when it comes
+to protecting the security of data. Because the SWF file format
+is an open format, you can extract data and algorithms contained
+within a SWF file. This is similar to how HTML and JavaScript code
+can be easily viewed by users. However, SWF files make viewing the
+code more difficult. A SWF file is compiled and is not human-readable
+like HTML or JavaScript.</p>
+
+            <p>But security is not obtained through obscurity. A number of third-party
+tools can extract data from compiled SWF files. As a result, do
+not consider that any data, variables, or ActionScript code compiled
+into an application are secure. You can use a number of techniques
+to secure sensitive information and still make it available for
+use in your SWF files.</p>
+
+            <p>To help ensure a secure environment, use the following general
+guidelines:</p>
+
+            <ul>
+               <li>
+                  <p>Do not include sensitive information, such as user names,
+passwords, or SQL statements in SWF files.</p>
+
+               </li>
+
+               <li>
+                  <p>Do not use client-side username and password checks for authentication.</p>
+
+               </li>
+
+               <li>
+                  <p>Remove debug code, unused code, and comments from code before compiling
+to minimize the amount of information about your application that is
+available to someone with a decompiler or a debugger version of
+Flash Player.</p>
+
+               </li>
+
+               <li>
+                  <p>If your SWF file needs access to sensitive information, load
+the information into the SWF file from the server at run time. The
+data will not be part of the compiled SWF file and thus cannot be
+extracted by decompiling the SWF file. Use a secure transfer mechanism,
+such as SSL, when you load the data.</p>
+
+               </li>
+
+               <li>
+                  <p>Implement sensitive algorithms on the server instead of in
+ActionScript.</p>
+
+               </li>
+
+               <li>
+                  <p>Use SSL whenever possible.</p>
+
+               </li>
+
+               <li>
+                  <p>Only deploy your web applications from a trusted server.
+Otherwise, the server-side aspect of your application could be compromised.</p>
+
+               </li>
+
+            </ul>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf6167e-7fd5_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf6167e-7fd5_verapache"><!-- --></a>
+         <h3 class="topictitle3">Input validation</h3>
+
+         
+         <div>
+            <p>
+               
+               
+               
+               
+               
+               
+               Input validation means ensuring that
+input is what it says it is or is what it is supposed to be. If
+your application is expecting name and address information, but
+it gets SQL commands, have a validation mechanism in your application
+that checks for and filters out SQL-specific characters and strings
+before passing the data to the execute method.</p>
+
+            <p>In many cases, you want users to provide input in TextInput,
+TextArea, and other controls that accept user input. If you use
+the input from these controls in operations inside the application,
+make sure that the input is free of possible malicious characters
+or code.</p>
+
+            <p>One approach to enforcing input validation is to use the validator
+classes. Validators ensure that the input conforms to a predetermined
+pattern. For example, the <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/spark/validators/NumberValidator.html" target="_blank">NumberValidator</a> class
+ensures that a string represents a valid number. This validator
+can ensure that the input falls within a given range (specified
+by the <samp class="codeph">minValue</samp> and <samp class="codeph">maxValue</samp> properties),
+is an integer (specified by the <samp class="codeph">domain</samp> property),
+is non-negative (specified by the <samp class="codeph">allowNegative</samp> property),
+and does not exceed the specified precision. </p>
+
+            <p>
+               In typical client-server
+environments, data validation occurs on the server after data is
+submitted to it from the client. One advantage of using validators
+in Flex is that they execute on the client, which lets you validate
+input data before transmitting it to the server. By using validators,
+you eliminate the need to transmit data to and receive error messages
+back from the server, which improves the overall responsiveness
+of your application. </p>
+
+            <p>You can also write your own ActionScript filters that remove
+potentially harmful code from input. Common approaches include stripping
+out dollar sign ($), quotation mark ("), semi-colon (;) and apostrophe
+(') characters because they have special meaning in most programming
+languages. Because Flex also renders HTML in some controls, also
+filter out characters that can be used to inject script into HTML,
+such as the left and right angle brackets (“&lt;” and “&gt;”), by converting
+these characters to their HTML entities “&amp;lt;” and “&amp;gt;”.
+Also filter out the left and right parentheses (“(”and “)”) by translating
+them to “&amp;#40;” and “&amp;#41;”, and the pound sign (“#”) and
+ampersand (“&amp;”) by translating them to “&amp;#35” (#) and “&amp;#38”
+(&amp;). </p>
+
+            <p>
+               Another approach
+to enforcing input validation is to use strongly-typed, parameterized
+queries in your SQL code. This way, if someone tries to inject malicious SQL
+code into text that is used in a query, the SQL server will reject
+the query.</p>
+
+            <p>For more information on potentially harmful characters and conversion processes,
+see <a href="http://www.cert.org/tech_tips/malicious_code_mitigation.html" target="_blank">http://www.cert.org/tech_tips/malicious_code_mitigation.html</a>.</p>
+
+            <p>For more information about validators, see <a href="flx_validators_va.html#WS2db454920e96a9e51e63e3d11c0bf69084-7ff0_verapache">Validating
+Data</a>.</p>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf6167e-7fd4_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf6167e-7fd4_verapache"><!-- --></a>
+         <h3 class="topictitle3">ActionScript</h3>
+
+         
+         <div>
+            <p>Use some of the following techniques to try to make your
+use of ActionScript more secure.</p>
+
+         </div>
+
+         <div class="nested3" id="WS2db454920e96a9e51e63e3d11c0bf6167e-7fd3_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf6167e-7fd3_verapache"><!-- --></a>
+            <h4 class="topictitle4">Handling errors</h4>
+
+            
+            <div>
+               <p>
+                  
+                  
+                  
+                  
+                  The SecurityError exception is thrown when
+some type of security violation takes place. Security errors include:</p>
+
+               <ul>
+                  <li>
+                     <p>An unauthorized property access or method call was made
+across a security sandbox boundary. </p>
+
+                  </li>
+
+                  <li>
+                     <p>An attempt was made to access a URL not permitted by the
+security sandbox. </p>
+
+                  </li>
+
+                  <li>
+                     <p>A socket connection was attempted to an unauthorized port
+number, for example, a port below 1024, without a policy file present. </p>
+
+                  </li>
+
+                  <li>
+                     <p>An attempt was made to access the user’s camera or microphone,
+and the request to access the device was denied by the user. </p>
+
+                  </li>
+
+               </ul>
+
+               <p>Flash Player dispatches <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/flash/events/SecurityErrorEvent.html" target="_blank">SecurityErrorEvent</a> objects
+to report the occurrence of a security error. Security error events
+are the final events dispatched for any target object. This means
+that any other events, including generic error events, are not dispatched
+for a target object that experiences a security error.</p>
+
+               <p>Your event listener can access the SecurityErrorEvent object’s <samp class="codeph">text</samp> property
+to determine what operation was attempted and any URLs that were
+involved, as the following example shows:</p>
+
+               <pre class="codeblock">&lt;?xml version="1.0" encoding="utf-8"?&gt; 
+&lt;!-- security/SecurityErrorExample.mxml --&gt; 
+&lt;s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009"    
+    xmlns:mx="library://ns.adobe.com/flex/mx"     
+    xmlns:s="library://ns.adobe.com/flex/spark"&gt; 
+    &lt;s:layout&gt; 
+        &lt;s:VerticalLayout/&gt; 
+    &lt;/s:layout&gt; 
+ 
+    &lt;fx:Script&gt;&lt;![CDATA[ 
+        import flash.net.URLLoader; 
+        import flash.net.URLRequest; 
+        import flash.events.SecurityErrorEvent; 
+        import mx.controls.Alert; 
+ 
+        private var loader:URLLoader = new URLLoader(); 
+        
+        private function triggerSecurityError():void {   
+            var request:URLRequest = new URLRequest("c:/temp/feeds.txt"); 
+            
+            // Triggers a security exception if you run this SWF from a server without 
+            // explicitly allowing local file-access permissions. 
+           try { 
+                loader.load(request); 
+           } catch (error:SecurityError) { 
+                Alert.show(error.name + ": " + error.message);                         
+           } 
+        } 
+    ]]&gt;&lt;/fx:Script&gt; 
+ 
+    &lt;s:Button id="b1" label="Click Me To Trigger Security Error" click="triggerSecurityError()"/&gt; 
+ 
+&lt;/s:Application&gt; </pre>
+
+               <p>
+                  If
+no event listeners are present, the debugger version of Flash Player
+automatically displays an error message that contains the contents
+of the text property. </p>
+
+               <p>In general, try to wrap methods that might trigger a security
+error in a try/catch block. This prevents users from seeing information
+about destinations or other properties that you might not want to
+be visible.</p>
+
+            </div>
+
+         </div>
+
+         <div class="nested3" id="WS2db454920e96a9e51e63e3d11c0bf69084-7ebc_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7ebc_verapache"><!-- --></a>
+            <h4 class="topictitle4">Suppressing debug output</h4>
+
+            
+            <div>
+               <p>
+                  
+                  
+                  
+                  
+                  Flash Player writes debug output from a <samp class="codeph">trace()</samp> method
+or the Logging API to a log file on the client. Any client can be
+running the debugger version of Flash Player. As a result, remove
+calls to the <samp class="codeph">trace()</samp> method and Logging API calls that
+produce debugging output so that clients cannot view your logged
+information.</p>
+
+               <p>
+                  
+                  
+                  If you use the Logging API in your custom
+components and classes, set the value of the LogEventLevel to <samp class="codeph">NONE</samp> before
+compilation, as the following example shows:</p>
+
+               <pre class="codeblock"> myTraceTarget.level = LogEventLevel.NONE;</pre>
+
+               <p>For more information about the Logging API, see <a href="flx_logging_lg.html#WS2db454920e96a9e51e63e3d11c0bf69084-7f0f_verapache">Using
+the logging API</a>.</p>
+
+            </div>
+
+         </div>
+
+         <div class="nested3" id="WS2db454920e96a9e51e63e3d11c0bf6167e-7fd1_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf6167e-7fd1_verapache"><!-- --></a>
+            <h4 class="topictitle4">Using host-based authentication</h4>
+
+            
+            <div>
+               <p>
+                  
+                  
+                  
+                  
+                  
+                  IP
+addresses and HTTP headers are sometimes used to perform host-based authentication.
+For example, you might check the <samp class="codeph">Referer</samp> header
+or the client IP address to ensure that a request comes from a trusted
+source.</p>
+
+               <p>However, request headers such as <samp class="codeph">Referer</samp> can
+be spoofed easily. This means that clients can pretend to be something
+they are not by settings headers or faking IP addresses. The solution
+to the problem of client spoofing is to not use HTTP header data
+as an authentication mechanism.</p>
+
+            </div>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf6167e-7fd0_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf6167e-7fd0_verapache"><!-- --></a>
+         <h3 class="topictitle3">Using passwords</h3>
+
+         
+         <div>
+            <p>
+               
+               
+               Using
+passwords in your application is a common way to protect resources
+from unauthorized access. Test the validity of the password on the
+server rather than the client, because the client has access to
+all the logic in the local SWF file.</p>
+
+            <p>Never store passwords locally. For example, do not store username
+and password combinations in local <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/flash/net/SharedObject.html" target="_blank">SharedObject</a>s.
+These are stored in plain-text and unencrypted, just as cookie files
+are. Anyone with access to the user’s computer can access the information
+inside a SharedObject.</p>
+
+            <p>To ensure that passwords are transmitted from the client to the
+server safely, enforce the use of SSL or some other secure transport-level
+protocol.</p>
+
+            <p>
+               When
+you ask for a password in a <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/spark/components/TextArea.html" target="_blank">TextArea</a> or <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/spark/components/TextInput.html" target="_blank">TextInput</a> control,
+set the <samp class="codeph">displayAsPassword</samp> property to <samp class="codeph">true</samp>.
+This displays the password as asterisks as it is typed. This also
+prevents copy/paste operations from accessing the underlying characters
+in the text field.</p>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf6167e-7fcf_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf6167e-7fcf_verapache"><!-- --></a>
+         <h3 class="topictitle3">Storing persistent data with the
+SharedObject class</h3>
+
+         
+         <div>
+            <p>
+               
+               
+               
+               
+               
+               
+               
+               Flash Player supports persistent shared objects
+through the <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/flash/net/SharedObject.html" target="_blank">SharedObject</a> class. The
+SharedObject class stores data on users’ computers. This data is
+usually local, meaning that it was obtained with the <samp class="codeph">SharedObject.getLocal()</samp> method. </p>
+
+            <p>
+               Each
+remote sandbox has an associated store of persistent SharedObject directory
+on the client. For example, when any SWF from domain1.com reads
+or writes data with the SharedObject class, Flash Player reads or
+writes that object in the domain1.com object store. Likewise for
+a SWF from domain2.com, Flash Player uses the domain2.com store.
+To avoid name collisions, the directory path defaults to the full
+path in the URL of the creating SWF file. This process can be shortened
+by using the <samp class="codeph">localPath</samp> parameter of the <samp class="codeph">SharedObject.getLocal()</samp> method,
+which allows other SWF files from the same domain to access a shared
+object after it is created. </p>
+
+            <p>Every domain has a maximum amount of data that a SharedObject
+class can save in the object store. This is an allocation of the
+user’s disk space in which applications from that domain can store
+persistent data. Users can change the quota for a domain at any
+time by choosing Settings from the Flash Player context menu. When
+an application tries to store data with a SharedObject class that
+causes Flash Player to exceed its domain’s quota, a dialog box appears,
+asking the user whether to increase the domain quota.</p>
+
+         </div>
+
+      </div>
+
+   </div>
+
+   <div class="nested1" id="WS2db454920e96a9e51e63e3d11c0bf6167e-7fce_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf6167e-7fce_verapache"><!-- --></a>
+      <h2 class="topictitle2">Configuring client security settings</h2>
+
+      
+      <div>
+         <p>
+            
+            Some
+security control features in Flash Player target user choices, and
+some target the modern corporate and enterprise environments, such
+as when the IT department would like to install Flash Player across
+the enterprise but has concerns about IT security and privacy. To
+help address these types of requirements, Flash Player provides
+various installation-time configuration choices. For example, some
+corporations do not want Flash Player to have access to the computer’s
+audio and video hardware; other environments do not want Flash Player
+to have any read or write access to the local file system.</p>
+
+         <p>Three groups can make security choices: the application author
+(using developer controls), the administrative user (using administrator
+controls), and the local user (with user controls).</p>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf6167e-7fcd_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf6167e-7fcd_verapache"><!-- --></a>
+         <h3 class="topictitle3">About the mm.cfg file</h3>
+
+         
+         <div>
+            <p>You configure the debugger version of Flash Player by using
+the settings in the mm.cfg text file. You must create this file
+when you first configure the debugger version of Flash Player. </p>
+
+            <p>
+               
+               
+               
+               
+               
+               The settings in this file let you enable or
+disable <samp class="codeph">trace()</samp> logging, set the location of the <samp class="codeph">trace()</samp> file’s
+output, and configure client-side error and warning logging.</p>
+
+            <p>For more information, see <a href="flx_logging_lg.html#WS2db454920e96a9e51e63e3d11c0bf69084-7fc9_verapache">Editing
+the mm.cfg file</a>.</p>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf6167e-7fcc_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf6167e-7fcc_verapache"><!-- --></a>
+         <h3 class="topictitle3">About the mms.cfg file</h3>
+
+         
+         <div>
+            <p>
+               
+               
+               
+               The primary purpose for the security configuration
+file (mms.cfg) is to support the corporate and enterprise environments
+where the IT department wants to install Flash Player across the
+enterprise, while enforcing some common global security and privacy
+settings (supported with installation-time configuration choices).</p>
+
+            <p>On operating systems that support the concept of user security
+levels, the file is flagged as requiring system administrator (or
+root) permissions to modify or delete it. The following table shows
+the location of the mms.cfg file, depending on the operating system:</p>
+
+            
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" frame="border" border="1" rules="all">
+                  
+                  
+                  <thead align="left">
+                     <tr>
+                        <th class="cellrowborder" valign="top" width="NaN%" id="d846557e3121">
+                           <p>Operating System</p>
+
+                        </th>
+
+                        <th class="cellrowborder" valign="top" width="NaN%" id="d846557e3127">
+                           <p>Location of mms.cfg file</p>
+
+                        </th>
+
+                     </tr>
+
+                  </thead>
+
+                  <tbody>
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d846557e3121 ">
+                           <p>Macintosh OS X</p>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d846557e3127 ">
+                           <p>/Library/Application Support/Macromedia</p>
+
+                        </td>
+
+                     </tr>
+
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d846557e3121 ">
+                           <p>Windows XP/Vista</p>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d846557e3127 ">
+                           <p>C:\WINDOWS\system32\Macromed\Flash</p>
+
+                        </td>
+
+                     </tr>
+
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d846557e3121 ">
+                           <p>Windows 2000</p>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d846557e3127 ">
+                           <p>C:\WINNT\System32\Macromed\Flash</p>
+
+                        </td>
+
+                     </tr>
+
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d846557e3121 ">
+                           <p>Windows 95/98/ME</p>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d846557e3127 ">
+                           <p>C:\WINDOWS\System\Macromed\Flash</p>
+
+                        </td>
+
+                     </tr>
+
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d846557e3121 ">
+                           <p>Linux</p>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d846557e3127 ">
+                           <p>/etc/adobe</p>
+
+                        </td>
+
+                     </tr>
+
+                  </tbody>
+
+               </table>
+</div>
+
+            <p>
+               
+               
+               
+               You can use this file to configure security
+settings that deal with data loading, privacy, and local file access.
+The settings include:</p>
+
+            <ul>
+               <li>
+                  <p>
+                     <samp class="codeph">FileDownloadDisable</samp> 
+                  </p>
+
+               </li>
+
+               <li>
+                  <p>
+                     <samp class="codeph">FileUploadDisable</samp> 
+                  </p>
+
+               </li>
+
+               <li>
+                  <p>
+                     <samp class="codeph">LocalStorageLimit</samp> 
+                  </p>
+
+               </li>
+
+               <li>
+                  <p>
+                     <samp class="codeph">AVHardwareDisable </samp>
+                  </p>
+
+               </li>
+
+            </ul>
+
+            <p>For a complete list of options and their descriptions, see <a href="http://www.adobe.com/go/fp9_admin" target="_blank">http://www.adobe.com/go/fp9_admin</a>.</p>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf6167e-7fcb_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf6167e-7fcb_verapache"><!-- --></a>
+         <h3 class="topictitle3">About FlashPlayerTrust files</h3>
+
+         
+         <div>
+            <p>
+               
+               
+               
+               
+               Flash
+Player provides a way for administrative users to register certain
+local files so that they are always loaded into the local-trusted
+sandbox. Often an installer for a native application or an application
+that includes many SWF files will do this. Depending on whether
+Flash Player will be embedded in a nonbrowser application, one of
+two strategies can be appropriate: register SWF files and HTML files to
+be trusted, or register applications to be trusted. Only applications
+that embed the browser plug-ins can be trusted—the stand-alone players
+and standard browsers do not check to see if they were trusted.</p>
+
+            <p>
+               The
+installer creates files in a directory called FlashPlayerTrust.
+These files list paths of trusted files. This directory, known as
+the Global Flash Player Trust directory, is alongside the mms.cfg
+file, in the following location, which requires administrator access:</p>
+
+            <ul>
+               <li>
+                  <p>Windows: system\Macromed\Flash\FlashPlayerTrust (for
+example, C:\winnt\system32\Macromed\Flash\FlashPlayerTrust)</p>
+
+               </li>
+
+               <li>
+                  <p>OS X: app support/Macromedia/FlashPlayerTrust (for example,
+/Library/Application Support/Macromedia/FlashPlayerTrust)</p>
+
+               </li>
+
+            </ul>
+
+            <p>These settings affect all users of the computer. If an installer
+is installing an application for all users, the installer can register
+its SWF files as trusted for all users.</p>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf6167e-7fca_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf6167e-7fca_verapache"><!-- --></a>
+         <h3 class="topictitle3">About the Settings Manager</h3>
+
+         
+         <div>
+            <p>
+               
+               
+               The
+Settings Manager allows the individual user to specify various security, privacy,
+and resource usage settings for applications executing on their
+client computer. For example, the user can control application access
+to select facilities (such as their camera and microphone), or control
+the amount of disk space allotted to a SWF file’s domain. The settings
+it manages are persistent and controlled by the user.</p>
+
+            <p>The user can indicate their personal choices for their Flash
+Player settings in a number of areas, either globally (for Flash
+Player itself and all applications built with Flash) or specifically
+(applying to specific domains only). To designate choices, the user
+can select from the six tab categories along the top of the Settings
+Manager dialog box:</p>
+
+            <ul>
+               <li>
+                  <p>Global Privacy Settings</p>
+
+               </li>
+
+               <li>
+                  <p>Global Storage Settings</p>
+
+               </li>
+
+               <li>
+                  <p>Global Security Settings</p>
+
+               </li>
+
+               <li>
+                  <p>Flash Player Update Settings</p>
+
+               </li>
+
+               <li>
+                  <p>Privacy Settings for Individual Websites</p>
+
+               </li>
+
+               <li>
+                  <p>Storage Settings for Individual Websites</p>
+
+               </li>
+
+            </ul>
+
+         </div>
+
+         <div class="nested3" id="WS2db454920e96a9e51e63e3d11c0bf6167e-7fc9_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf6167e-7fc9_verapache"><!-- --></a>
+            <h4 class="topictitle4">Access the Settings Manager for
+your Flash Player</h4>
+
+            
+            <div>
+               <ol>
+                  <li>
+                     <p>Open an application in Flash Player. </p>
+
+                  </li>
+
+                  <li>
+                     <p>Right-click and select Settings. </p>
+
+                     <p>The Adobe Flash Player
+Settings dialog box appears.</p>
+
+                  </li>
+
+                  <li>
+                     <p>Select the Privacy tab (on the far left).</p>
+
+                  </li>
+
+                  <li>
+                     <p>Click the Advanced button. </p>
+
+                     <p>Flash Player launches a
+new browser window and loads the Settings Manager help page.</p>
+
+                  </li>
+
+               </ol>
+
+            </div>
+
+         </div>
+
+      </div>
+
+   </div>
+
+   <div class="nested1" id="WS2db454920e96a9e51e63e3d11c0bf6167e-7fc8_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf6167e-7fc8_verapache"><!-- --></a>
+      <h2 class="topictitle2">Other resources</h2>
+
+      
+      <div>
+         <p>
+            The
+following table lists resources that are useful in understanding
+the Flash Player security model and implementing security in your
+applications:</p>
+
+         
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" frame="border" border="1" rules="all">
+               
+               
+               <thead align="left">
+                  <tr>
+                     <th class="cellrowborder" valign="top" width="NaN%" id="d846557e3484">
+                        <p>Resource name</p>
+
+                     </th>
+
+                     <th class="cellrowborder" valign="top" width="NaN%" id="d846557e3490">
+                        <p>Location</p>
+
+                     </th>
+
+                  </tr>
+
+               </thead>
+
+               <tbody>
+                  <tr>
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d846557e3484 ">
+                        <p>
+                           Security
+Topic Center</p>
+
+                     </td>
+
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d846557e3490 ">
+                        <p>
+                           <a href="http://www.adobe.com/devnet/security" target="_blank">http://www.adobe.com/devnet/security</a>
+                        </p>
+
+                     </td>
+
+                  </tr>
+
+                  <tr>
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d846557e3484 ">
+                        <p>
+                           
+                           
+                           Security
+Bulletins and Advisories</p>
+
+                     </td>
+
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d846557e3490 ">
+                        <p>
+                           <a href="http://www.adobe.com/support/security" target="_blank">http://www.adobe.com/support/security</a>
+                        </p>
+
+                     </td>
+
+                  </tr>
+
+                  <tr>
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d846557e3484 ">
+                        <p>Flash Player Security &amp; Privacy</p>
+
+                     </td>
+
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d846557e3490 ">
+                        <p>
+                           <a href="http://www.adobe.com/products/flashplayer/security" target="_blank">http://www.adobe.com/products/flashplayer/security</a>
+                        </p>
+
+                     </td>
+
+                  </tr>
+
+                  <tr>
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d846557e3484 ">
+                        <p>
+                           Security
+Resource Center</p>
+
+                     </td>
+
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d846557e3490 ">
+                        <p>
+                           <a href="http://www.adobe.com/resources/security" target="_blank">http://www.adobe.com/resources/security</a>
+                        </p>
+
+                     </td>
+
+                  </tr>
+
+                  <tr>
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d846557e3484 ">
+                        <p>Flash Player 10 Security white paper</p>
+
+                     </td>
+
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d846557e3490 ">
+                        <p>
+                           <a href="http://www.adobe.com/devnet/flashplayer/articles/flash_player10_security_wp.html" target="_blank">http://www.adobe.com/devnet/flashplayer/articles/flash_player10_security_wp.html</a>
+                        </p>
+
+                     </td>
+
+                  </tr>
+
+                  <tr>
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d846557e3484 ">
+                        <p>Flash Player 10 Security changes</p>
+
+                     </td>
+
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d846557e3490 ">
+                        <p>
+                           <a href="http://www.adobe.com/go/fp10_security" target="_blank">http://www.adobe.com/go/fp10_security</a>
+                        </p>
+
+                     </td>
+
+                  </tr>
+
+                  <tr>
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d846557e3484 ">
+                        <p>“Flash Player Security” </p>
+
+                     </td>
+
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d846557e3490 ">
+                        <p>
+                           <a href="http://www.adobe.com/go/AS3_security" target="_blank">http://www.adobe.com/go/progAS3_security</a>
+                        </p>
+
+                     </td>
+
+                  </tr>
+
+                  <tr>
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d846557e3484 ">
+                        <p>“Networking and Communications” </p>
+
+                     </td>
+
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d846557e3490 ">
+                        <p>
+                           <a href="http://www.adobe.com/go/AS3_networking_and_communications " target="_blank">http://www.adobe.com/go/AS3_networking_and_communications</a>
+                        </p>
+
+                     </td>
+
+                  </tr>
+
+                  <tr>
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d846557e3484 ">
+                        <p>Settings Manager</p>
+
+                     </td>
+
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d846557e3490 ">
+                        <p>
+                           <a href="http://www.adobe.com/support/flashplayer/help/settings/" target="_blank">http://www.adobe.com/support/flashplayer/help/settings/</a>
+                        </p>
+
+                     </td>
+
+                  </tr>
+
+               </tbody>
+
+            </table>
+</div>
+
+      </div>
+
+         <p>Adobe, Adobe AIR and Adobe Flash are either registered trademarks or trademarks of Adobe Systems Incorporated in the United States and/or other countries and are used by permission from Adobe.  No other license to the Adobe trademarks are granted.</p>
+   </div>
+
+
+</body>
+</html>

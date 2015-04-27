@@ -1,0 +1,2310 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Licensed to the Apache Software Foundation (ASF) under one or more
+  contributor license agreements.  See the NOTICE file distributed with
+  this work for additional information regarding copyright ownership.
+  The ASF licenses this file to You under the Apache License, Version 2.0
+  (the "License"); you may not use this file except in compliance with
+  the License.  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+-->
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en-us" xml:lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="topic"/>
+<meta name="DC.Title" content="Data binding"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="WS2db454920e96a9e51e63e3d11c0bf69084-7fe7_verapache"/>
+<link rel="stylesheet" type="text/css" href="commonltr.css"/>
+<title>Data binding</title>
+</head>
+<body id="WS2db454920e96a9e51e63e3d11c0bf69084-7fe7_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7fe7_verapache"><!-- --></a>
+
+
+   <h1 class="topictitle1">Data binding</h1>
+
+   <div>
+      <p>Data binding lets you pass data between client-side objects
+in a Flex application. Binding automatically
+copies the value of a property of a source object to a property
+of a destination object when the source property changes. </p>
+
+   </div>
+
+   <div class="nested1" id="WS2db454920e96a9e51e63e3d11c0bf64c3d-7fff_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf64c3d-7fff_verapache"><!-- --></a>
+      <h2 class="topictitle2">About data binding</h2>
+
+      
+      <div>
+         <p>
+            
+            <em>Data binding</em> is
+the process of tying the data in one object to another object. It provides
+a convenient way to pass data between the different layers of the
+application. Data binding requires a source property, a destination
+property, and a triggering event that indicates when to copy the
+data from the source to the destination. An object dispatches the
+triggering event when the source property changes. </p>
+
+         <p>
+            Flex provides three
+ways to specify data binding: the curly braces (<samp class="codeph">{}</samp>)
+syntax in MXML, the <a href="mxml/binding.html" target="_blank">&lt;fx:Binding&gt;</a> tag
+in MXML, and the <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/binding/utils/BindingUtils.html" target="_blank">BindingUtils</a> methods
+in ActionScript. The following example uses the curly braces (<samp class="codeph">{}</samp>)
+syntax to show a Label control that gets its data from a TextInput
+control’s <samp class="codeph">text</samp> property: </p>
+
+         <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- binding/BasicBinding.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx"&gt; 
+    &lt;s:layout&gt; 
+        &lt;s:VerticalLayout/&gt; 
+    &lt;/s:layout&gt; 
+ 
+    &lt;s:TextInput id="myTI" text="Enter text here"/&gt; 
+    &lt;s:Label id="myText" text="{myTI.text}"/&gt; 
+&lt;/s:Application&gt;</pre>
+
+         <p>The property name inside the curly braces is the source property
+of the binding expression. When the value of the source property
+changes, Flex copies the current value of the source property, <samp class="codeph">myTI.text</samp>,
+to the destination property, the Label control’s <samp class="codeph">text</samp> property. </p>
+
+         <p>You can include ActionScript code and E4X expressions as part
+of the data binding expressions, as the following example shows: </p>
+
+         <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- binding/BasicBindingWithAS.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx"&gt; 
+    &lt;s:layout&gt; 
+        &lt;s:VerticalLayout/&gt; 
+    &lt;/s:layout&gt; 
+ 
+    &lt;s:TextInput id="myTI"/&gt; 
+    &lt;s:Label id="myText" text="{myTI.text.toUpperCase()}"/&gt; 
+&lt;/s:Application&gt;</pre>
+
+         <p>In this example, you use the ActionScript method <samp class="codeph">String.toUpperCase()</samp> to
+convert the text in the source property to upper case when Flex
+copies it to the destination property. For more information, see <a href="flx_databinding_db.html#WS2db454920e96a9e51e63e3d11c0bf69084-7ccc_verapache">Using
+ActionScript in data binding expressions</a> and <a href="flx_databinding_db.html#WS2db454920e96a9e51e63e3d11c0bf69084-7ccb_verapache">Using
+an E4X expression in a data binding expression</a>. </p>
+
+         <p>
+            You can use
+the <a href="mxml/binding.html" target="_blank">&lt;fx:Binding&gt;</a> tag
+as an alternative to the curly braces syntax. When you use the <samp class="codeph">&lt;fx:Binding&gt;</samp> tag,
+you provide a source property in the <samp class="codeph">&lt;fx:Binding&gt;</samp> tag’s <samp class="codeph">source</samp> property
+and a destination property in its <samp class="codeph">destination</samp> property.
+The following example uses the <samp class="codeph">&lt;fx:Binding&gt;</samp> tag to
+define a data binding from a TextInput control to a Label control:</p>
+
+         <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- binding/BasicBindingMXML.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx"&gt; 
+    &lt;s:layout&gt; 
+        &lt;s:VerticalLayout/&gt; 
+    &lt;/s:layout&gt; 
+    
+    &lt;fx:Binding source="myTI.text" destination="myText.text"/&gt; 
+ 
+    &lt;s:TextInput id="myTI"/&gt; 
+    &lt;s:Label id="myText"/&gt;   
+&lt;/s:Application&gt;</pre>
+
+         <p>In contrast to the curly braces syntax, you can use the <samp class="codeph">&lt;fx:Binding&gt;</samp> tag
+to completely separate the view (user interface) from the model.
+The <samp class="codeph">&lt;fx:Binding&gt;</samp> tag also lets you bind multiple
+source properties to the same destination property because you can
+specify multiple <samp class="codeph">&lt;fx:Binding&gt;</samp> tags with the
+same destination. For an example, see <a href="flx_databinding_db.html#WS2db454920e96a9e51e63e3d11c0bf69084-7cca_verapache">Binding
+more than one source property to a destination property</a>. </p>
+
+         <p>The curly braces syntax and the <samp class="codeph">&lt;fx:Binding&gt;</samp> tag
+both define a data binding at compile time. You can also use ActionScript
+code to define a data binding at run time, as the following example
+shows:</p>
+
+         <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- binding/BasicBindingAS.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx"&gt; 
+    &lt;s:layout&gt; 
+        &lt;s:VerticalLayout/&gt; 
+    &lt;/s:layout&gt; 
+ 
+    &lt;fx:Script&gt; 
+      &lt;![CDATA[ 
+        import mx.binding.utils.*; 
+ 
+        // Define data binding. 
+        public function initBindingHandler():void { 
+            BindingUtils.bindProperty(myText, "text", myTI, "text"); 
+        } 
+      ]]&gt;    
+    &lt;/fx:Script&gt; 
+ 
+    &lt;s:TextInput id="myTI"/&gt; 
+    &lt;s:Label id="myText" preinitialize="initBindingHandler();"/&gt; 
+&lt;/s:Application&gt;</pre>
+
+         <p>In this example, you use the static <samp class="codeph">BindingUtils.bindProperty()</samp> method
+to define the binding. You can also use the <samp class="codeph">BindingUtils.bindSetter()</samp> method
+to define a binding to a function. For more information, see <a href="flx_databinding_db.html#WS2db454920e96a9e51e63e3d11c0bf69084-7cc9_verapache">Defining
+data bindings in ActionScript</a>.</p>
+
+         <p>Notice in this example that you use the <samp class="codeph">preinitialize</samp> event
+to define the data binding. This is necessary because Flex triggers
+all data bindings at application startup when the source object
+dispatches the <samp class="codeph">initialize</samp> event. For more information,
+see <a href="flx_databinding_db.html#WS2db454920e96a9e51e63e3d11c0bf69084-7cc8_verapache">When
+data binding occurs</a>. </p>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf69084-7cc8_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7cc8_verapache"><!-- --></a>
+         <h3 class="topictitle3">When data binding occurs</h3>
+
+         
+         <div>
+            <p>Binding occurs under the following circumstances:</p>
+
+            <ol>
+               <li>
+                  <p>The binding source dispatches an event because the source
+has been modified.</p>
+
+                  <p>This event can occur at any time during
+application execution. The event triggers Flex to copy the value
+of the source property to the destination property.</p>
+
+               </li>
+
+               <li>
+                  <p>At application startup when the source object dispatches
+the <samp class="codeph">initialize</samp> event. </p>
+
+                  <p>All data bindings
+are triggered once at application startup to initialize the destination
+property. </p>
+
+               </li>
+
+            </ol>
+
+            <p>To monitor data binding, you can define a binding watcher that
+triggers an event handler when a data binding occurs. For more information,
+see <a href="flx_databinding_db.html#WS2db454920e96a9e51e63e3d11c0bf69084-7cc7_verapache">Defining
+binding watchers </a>.</p>
+
+            <p>The <samp class="codeph">executeBindings()</samp> method of the UIComponent
+class executes all the bindings for which a UIComponent object is
+the destination. All containers and controls, as well as the Repeater
+component, extend the UIComponent class. The <samp class="codeph">executeChildBindings()</samp> method
+of the Container and Repeater classes executes all of the bindings
+for which the child UIComponent components of a Container or Repeater
+class are destinations. All containers extend the Container class.</p>
+
+            <p>These methods give you a way to execute bindings that do not
+occur as expected. By adding one line of code, such as a call to
+the <samp class="codeph">executeChildBindings()</samp> method, you can update
+the user interface after making a change that does not cause bindings
+to execute. However, you should only use the <samp class="codeph">executeBindings()</samp> method
+when you are sure that bindings do not execute automatically. </p>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf64c3d-7ffd_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf64c3d-7ffd_verapache"><!-- --></a>
+         <h3 class="topictitle3">Properties that support data binding</h3>
+
+         
+         <div>
+            <p>You can use all properties of an object as the destination
+of a data binding expression. However, to use a property as the
+source of a data binding expression, the source object must be implemented
+to support data binding, which means that the object dispatches
+an event when the value of the property changes to trigger the binding.
+In this topic, a property that can be used as the source of a data-binding
+expression is referred to as a <em>bindable</em> property.</p>
+
+            <p>In the <em>
+                  <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/" target="_blank">ActionScript 3.0 Reference for the Adobe<sup>®</sup>
+Flash<sup>®</sup> Platform</a>
+               </em>, a property that can be used as the source
+of a data binding expression includes the following statement in
+its description:</p>
+
+            <p>“This property can be used as the source for data binding.” </p>
+
+            <div class="section" id="WS2db454920e96a9e51e63e3d11c0bf64c3d-7ffd_verapache__WS2db454920e96a9e51e63e3d11c0bf64c3d-7ffc_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf64c3d-7ffd_verapache__WS2db454920e96a9e51e63e3d11c0bf64c3d-7ffc_verapache"><!-- --></a><h4 class="sectiontitle">Using
+read-only properties as the source for data binding</h4>
+               
+               <p>You
+can use a read-only property defined by a getter method, which means
+no setter method, as the source for a data-binding expression. Flex
+performs the data binding once when the application starts. </p>
+
+            </div>
+
+            <div class="section" id="WS2db454920e96a9e51e63e3d11c0bf64c3d-7ffd_verapache__WS2db454920e96a9e51e63e3d11c0bf64c3d-7ffb_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf64c3d-7ffd_verapache__WS2db454920e96a9e51e63e3d11c0bf64c3d-7ffb_verapache"><!-- --></a><h4 class="sectiontitle">Using
+static properties as the source for data binding</h4>
+               
+               <p>You can
+automatically use a static constant as the source for a data-binding expression.
+Flex performs the data binding once when the application starts. </p>
+
+               <p>You
+can use a static variable as the source for a data-binding expression.
+Flex performs the data binding once when the application starts.</p>
+
+            </div>
+
+            <div class="section" id="WS2db454920e96a9e51e63e3d11c0bf64c3d-7ffd_verapache__WS2db454920e96a9e51e63e3d11c0bf69084-7cc6_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf64c3d-7ffd_verapache__WS2db454920e96a9e51e63e3d11c0bf69084-7cc6_verapache"><!-- --></a><h4 class="sectiontitle">Creating
+properties to use as the source for data binding</h4>
+               
+               <p>When
+you create a property that you want to use as the source of a data
+binding expression, Flex can automatically copy the value of the
+source property to any destination property when the source property
+changes. To signal to Flex to perform the copy, you must use the <samp class="codeph">[Bindable]</samp> data
+tag to register the property with Flex. </p>
+
+               <p>The <samp class="codeph">[Bindable]</samp> metadata
+tag has the following syntax:</p>
+
+               <pre class="codeblock"> [Bindable] 
+ [Bindable(event="eventname")]</pre>
+
+               <p>You can optionally
+omit the <samp class="codeph">event</samp> keyword, and specify the tag as
+shown below:</p>
+
+               <pre class="codeblock">[Bindable("eventname")]</pre>
+
+               <p>If
+you omit the event name, Flex automatically creates an event named <samp class="codeph">propertyChange</samp>,
+and Flex dispatches that event when the property changes to trigger
+any data bindings that use the property as a data-binding source.
+If you specify the event name, it is your responsibility to dispatch
+the event when the source property changes. For more information
+and examples of using the <samp class="codeph">[Bindable]</samp> metadata tag,
+see <a href="flx_databinding_db.html#WS2db454920e96a9e51e63e3d11c0bf69084-7cc5_verapache">Using
+the Bindable metadata tag</a>.</p>
+
+               <p>The following example makes
+the <samp class="codeph">maxFontSize</samp> and <samp class="codeph">minFontSize</samp> properties
+that you defined as variables usable as the sources for data bindings expressions:</p>
+
+               <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- binding/FontPropertyBinding.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx"&gt; 
+    &lt;s:layout&gt; 
+        &lt;s:VerticalLayout/&gt; 
+    &lt;/s:layout&gt; 
+    
+    &lt;fx:Script&gt; 
+        &lt;![CDATA[ 
+            // Define public vars for tracking font size. 
+            [Bindable] 
+            public var maxFontSize:Number = 15; 
+ 
+            [Bindable] 
+            public var minFontSize:Number = 5; 
+        ]]&gt;    
+    &lt;/fx:Script&gt; 
+    
+    &lt;s:Label text="{maxFontSize}"/&gt; 
+    &lt;s:Label text="{minFontSize}"/&gt; 
+ 
+    &lt;s:Button click="maxFontSize=20; minFontSize=10;"/&gt; 
+&lt;/s:Application&gt;</pre>
+
+               <p>When you click the Button control,
+you update the values of the <samp class="codeph">maxFontSize</samp> and <samp class="codeph">minFontSize</samp> properties,
+and trigger a data binding update to the Label controls. </p>
+
+               <div class="note"><span class="notetitle">Note:</span> If you omit the <samp class="codeph">[Bindable]</samp> metadata
+tag, the compiler issues a warning stating that the data binding
+mechanism cannot detect changes to the property. For more information,
+see <a href="flx_databinding_db.html#WS2db454920e96a9e51e63e3d11c0bf69084-7cc5_verapache">Using
+the Bindable metadata tag</a>.</div>
+
+            </div>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf64c3d-7ff9_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf64c3d-7ff9_verapache"><!-- --></a>
+         <h3 class="topictitle3">Data binding uses</h3>
+
+         
+         <div>
+            <p>Common uses of data binding include the following:</p>
+
+            <ul>
+               <li>
+                  <p>To bind properties of user interface controls to other
+user interface controls.</p>
+
+               </li>
+
+               <li>
+                  <p>To bind properties of user interface controls to a middle-tier
+data model, and to bind that data model’s fields bound to a data
+service request (a three-tier system).</p>
+
+               </li>
+
+               <li>
+                  <p>To bind properties of user interface controls to data service
+requests.</p>
+
+               </li>
+
+               <li>
+                  <p>To bind data service results to properties of user interface
+controls.</p>
+
+               </li>
+
+               <li>
+                  <p>To bind data service results to a middle-tier data model,
+and to bind that data model’s fields to user interface controls.
+For more information about data models, see <a href="flx_datamodels_dm.html#WS2db454920e96a9e51e63e3d11c0bf69084-7ff3_verapache">Storing
+data</a>.</p>
+
+               </li>
+
+               <li>
+                  <p>To bind an ArrayCollection or XMLListCollection object to
+the <samp class="codeph">dataProvider</samp> property of a List-based control.</p>
+
+               </li>
+
+               <li>
+                  <p>To bind individual parts of complex properties to properties
+of user interface controls. An example would be a master-detail
+scenario in which clicking an item in a List control displays data
+in several other controls.</p>
+
+               </li>
+
+               <li>
+                  <p>To bind XML data to user interface controls by using ECMAScript
+for XML (E4X) expressions in binding expressions.</p>
+
+               </li>
+
+            </ul>
+
+            <p>Although binding is a powerful mechanism, it is not appropriate
+for all situations. For example, for a complex user interface in
+which individual pieces must be updated based on strict timing,
+it would be preferable to use a method that assigns properties in
+order. Also, binding executes every time a property changes, so
+it is not the best solution when you want changes to be noticed
+only some of the time.</p>
+
+         </div>
+
+      </div>
+
+   </div>
+
+   <div class="nested1" id="WS2db454920e96a9e51e63e3d11c0bf69084-7cc0_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7cc0_verapache"><!-- --></a>
+      <h2 class="topictitle2">Data binding examples</h2>
+
+      
+      <div>
+         <p/>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf64c3d-7ff7_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf64c3d-7ff7_verapache"><!-- --></a>
+         <h3 class="topictitle3">Using data binding with data models</h3>
+
+         
+         <div>
+            <p>In the following example, a set of UI control properties
+act as the binding source for a data model. For more information
+about data models, see <a href="flx_datamodels_dm.html#WS2db454920e96a9e51e63e3d11c0bf69084-7ff3_verapache">Storing
+data</a>.</p>
+
+            <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- binding/BindingBraces.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx"&gt; 
+    &lt;s:layout&gt; 
+        &lt;s:VerticalLayout/&gt; 
+    &lt;/s:layout&gt; 
+ 
+    &lt;fx:Declarations&gt; 
+        &lt;!-- Data model stores registration data that user enters. --&gt; 
+        &lt;fx:Model id="reg"&gt; 
+            &lt;registration&gt; 
+                &lt;name&gt;{fullname.text}&lt;/name&gt; 
+                &lt;email&gt;{email.text}&lt;/email&gt; 
+                &lt;phone&gt;{phone.text}&lt;/phone&gt; 
+                &lt;zip&gt;{zip.text}&lt;/zip&gt; 
+                &lt;ssn&gt;{ssn.text}&lt;/ssn&gt; 
+            &lt;/registration&gt; 
+        &lt;/fx:Model&gt; 
+    &lt;/fx:Declarations&gt; 
+ 
+    &lt;!-- Form contains user input controls. --&gt; 
+    &lt;s:Form&gt; 
+        &lt;s:FormItem label="Name" required="true"&gt; 
+            &lt;s:TextInput id="fullname" width="200"/&gt; 
+        &lt;/s:FormItem&gt; 
+ 
+        &lt;s:FormItem label="Email" required="true"&gt; 
+            &lt;s:TextInput id="email" width="200"/&gt; 
+        &lt;/s:FormItem&gt; 
+ 
+        &lt;s:FormItem label="Phone" required="true"&gt; 
+            &lt;s:TextInput id="phone" width="200"/&gt; 
+        &lt;/s:FormItem&gt; 
+ 
+        &lt;s:FormItem label="Zip" required="true"&gt; 
+            &lt;s:TextInput id="zip" width="60"/&gt; 
+        &lt;/s:FormItem&gt; 
+ 
+        &lt;s:FormItem label="Social Security" required="true"&gt;       
+            &lt;s:TextInput id="ssn" width="200"/&gt; 
+        &lt;/s:FormItem&gt; 
+    &lt;/s:Form&gt; 
+&lt;/s:Application&gt;</pre>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf64c3d-7ff6_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf64c3d-7ff6_verapache"><!-- --></a>
+         <h3 class="topictitle3">Binding a source property to more
+than one destination property</h3>
+
+         
+         <div>
+            <p>
+               You can bind
+a single source property to more than one destination property by using
+the curly braces (<samp class="codeph">{}</samp>) syntax, the <a href="mxml/binding.html" target="_blank">&lt;fx:Binding&gt;</a> tag,
+or the <samp class="codeph">BindingUtils</samp>methods in ActionScript. In
+the following example, a TextInput control’s <samp class="codeph">text</samp> property
+is bound to properties of two data models, and the data model properties
+are bound to the <samp class="codeph">text</samp> properties of two Label controls.</p>
+
+            <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- binding/BindMultDestinations.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx"&gt; 
+    &lt;s:layout&gt; 
+        &lt;s:VerticalLayout/&gt; 
+    &lt;/s:layout&gt; 
+ 
+    &lt;fx:Declarations&gt; 
+        &lt;fx:Model id="mod1"&gt; 
+            &lt;data&gt; 
+                &lt;part&gt;{input1.text}&lt;/part&gt; 
+            &lt;/data&gt; 
+        &lt;/fx:Model&gt; 
+ 
+        &lt;fx:Model id="mod2"&gt; 
+            &lt;data&gt; 
+                &lt;part&gt;{input1.text}&lt;/part&gt; 
+            &lt;/data&gt; 
+        &lt;/fx:Model&gt; 
+    &lt;/fx:Declarations&gt; 
+ 
+    &lt;s:TextInput id="input1" text="Hello" /&gt; 
+ 
+    &lt;s:Label text="{mod1.part}"/&gt; 
+    &lt;s:Label text="{mod2.part}"/&gt; 
+&lt;/s:Application&gt;</pre>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf69084-7cca_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7cca_verapache"><!-- --></a>
+         <h3 class="topictitle3">Binding more than one source property
+to a destination property</h3>
+
+         
+         <div>
+            <p>You can bind more than one source property to the same
+destination property. You can set up one of these bindings by using
+curly braces, but you must set up the others by using the <samp class="codeph">&lt;fx:Binding&gt;</samp> tag,
+or by using calls to the <samp class="codeph">BindingUtils.bindProperty()</samp> method
+or to the <samp class="codeph">BindingUtils.bindSetter()</samp> method. </p>
+
+            <p>In the following example, the TextArea control is the binding
+destination, and both <samp class="codeph">input1.text</samp> and <samp class="codeph">input2.text</samp> are
+its binding sources:</p>
+
+            <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- binding/BindMultSources.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx"&gt; 
+    &lt;s:layout&gt; 
+        &lt;s:VerticalLayout/&gt; 
+    &lt;/s:layout&gt; 
+ 
+    &lt;fx:Binding source="input2.text" destination="myTA.text"/&gt; 
+ 
+    &lt;s:TextInput id="input1"/&gt; 
+    &lt;s:TextInput id="input2"/&gt; 
+    
+    &lt;s:TextArea id="myTA" text="{input1.text}"/&gt; 
+&lt;/s:Application&gt;</pre>
+
+            <p>If <samp class="codeph">input1.text</samp> or <samp class="codeph">input2.text</samp> is
+updated, the TextArea control contains the updated value. </p>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf64c3d-7ff4_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf64c3d-7ff4_verapache"><!-- --></a>
+         <h3 class="topictitle3">Defining bidirectional bindings</h3>
+
+         
+         <div>
+            <p>Bidirectional, or two-way, data binding occurs when two
+objects act as the source and the destination for each other. When
+you modify the source property of either object, the destination
+property of the other object is updated.</p>
+
+            <p>Define a bidirectional data binding using one of the following
+methods:</p>
+
+            <div class="p">
+               <ol>
+                  <li>
+                     <p>Define two objects that specify as the source a property
+of the other object. In the following example, input1 specifies
+input2.text as the source property, and input2 specifies input1.text
+as the source property. Any change to input1.text updates input2.text,
+and any change to input2.text updates input1.text: </p>
+
+                     <div class="p">
+                        <pre class="codeblock">&lt;!-- Specify data binding for both controls. --&gt; 
+&lt;s:TextInput id="input1" text="{input2.text}"/&gt; 
+&lt;s:TextInput id="input2" text="{input1.text}"/&gt; </pre>
+
+                     </div>
+
+                  </li>
+
+                  <li>
+                     <p>Use the <samp class="codeph">@{bindable_property}</samp> syntax for
+one source property, as the following example shows:</p>
+
+                     <div class="p">
+                        <pre class="codeblock">&lt;!-- Specify data binding for both controls. --&gt; 
+&lt;s:TextInput id="input1" text="@{input2.text}"/&gt; 
+&lt;s:TextInput id="input2"/&gt;</pre>
+
+                     </div>
+
+                     <div class="note"><span class="notetitle">Note:</span> The property
+definition that includes the <samp class="codeph">@{bindable_property}</samp> syntax
+is called the <em>primary</em> property. If the primary property has
+not had a value assigned to it, the binding to it occurs first,
+before a binding to the other property. </div>
+
+                  </li>
+
+                  <li>
+                     <p>Use the <samp class="codeph">twoWay</samp> property of the <samp class="codeph">&lt;fx:Binding&gt;</samp> tag,
+as the following example shows:</p>
+
+                     <pre class="codeblock">&lt;fx:Binding source="input1.text" destination="input2.text" twoWay="true"/&gt;</pre>
+
+                     <p>Because
+both the source and the destination properties must resolve to a bindable
+property or property chain at compile time, neither property value can
+include a binding expression.</p>
+
+                  </li>
+
+               </ol>
+
+            </div>
+
+            <p>The following example shows these three techniques:</p>
+
+            <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- binding/BindBiDirection.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx"&gt; 
+    &lt;s:layout&gt; 
+        &lt;s:VerticalLayout paddingTop="10"/&gt; 
+    &lt;/s:layout&gt; 
+ 
+    &lt;s:Label text="Specify data binding for both controls."/&gt; 
+    &lt;s:TextInput id="input1" text="{input2.text}"/&gt; 
+    &lt;s:TextInput id="input2" text="{input1.text}"/&gt;    
+    &lt;s:Label text="Use the bidirectional data binding syntax."/&gt; 
+    &lt;s:TextInput id="input3" text="@{input4.text}"/&gt; 
+    &lt;s:TextInput id="input4"/&gt; 
+    
+    &lt;s:Label text="Use the Binding tag."/&gt; 
+    &lt;s:TextInput id="input5"/&gt; 
+    &lt;s:TextInput id="input6"/&gt;  
+    &lt;fx:Binding source="input5.text" destination="input6.text" twoWay="true"/&gt; 
+&lt;/s:Application&gt;</pre>
+
+            <p>In this example, the TextInput controls are the source of a data
+binding expression, and both are a destination. For example, when
+you modify input1, its value is copied to input2, and when you modify
+input2, its value is copied to input1. </p>
+
+            <p>Flex ensures that bidirectional data bindings do not result in
+an infinite loop; that is, Flex ensures that a bidirectional data
+binding is triggered only once when either source property is modified.</p>
+
+         </div>
+
+         <div class="nested3" id="WS300C7817-C65B-42cd-A485-8C5CF13E8002_verapache"><a name="WS300C7817-C65B-42cd-A485-8C5CF13E8002_verapache"><!-- --></a>
+            <h4 class="topictitle4">Restrictions on where you can use
+bidirectional data binding</h4>
+
+            
+            <div>
+               <div class="p">Bidirectional data bindable is supported in most places
+in an application. However, the following table shows where bidirectional
+data binding is not supported:
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" frame="border" border="1" rules="all">
+                        
+                        
+                        <thead align="left">
+                           <tr>
+                              <th class="cellrowborder" valign="top" width="NaN%" id="d168453e698">
+                                 <p>Expression</p>
+
+                              </th>
+
+                              <th class="cellrowborder" valign="top" width="NaN%" id="d168453e704">
+                                 <p>Bidirectional Binding Supported</p>
+
+                              </th>
+
+                           </tr>
+
+                        </thead>
+
+                        <tbody>
+                           <tr>
+                              <td class="cellrowborder" valign="top" width="NaN%" headers="d168453e698 ">
+                                 <p>Style properties</p>
+
+                              </td>
+
+                              <td class="cellrowborder" valign="top" width="NaN%" headers="d168453e704 ">
+                                 <p>No</p>
+
+                              </td>
+
+                           </tr>
+
+                           <tr>
+                              <td class="cellrowborder" valign="top" width="NaN%" headers="d168453e698 ">
+                                 <p>Effect properties</p>
+
+                              </td>
+
+                              <td class="cellrowborder" valign="top" width="NaN%" headers="d168453e704 ">
+                                 <p>No</p>
+
+                              </td>
+
+                           </tr>
+
+                           <tr>
+                              <td class="cellrowborder" valign="top" width="NaN%" headers="d168453e698 ">
+                                 <p>The <samp class="codeph">request</samp> property of
+the HttpService, RemoteObject, and WebService classes.</p>
+
+                              </td>
+
+                              <td class="cellrowborder" valign="top" width="NaN%" headers="d168453e704 ">
+                                 <p>No</p>
+
+                              </td>
+
+                           </tr>
+
+                           <tr>
+                              <td class="cellrowborder" valign="top" width="NaN%" headers="d168453e698 ">
+                                 <p>The <samp class="codeph">arguments</samp> property
+of the RemoteObject class.</p>
+
+                              </td>
+
+                              <td class="cellrowborder" valign="top" width="NaN%" headers="d168453e704 ">
+                                 <p>No</p>
+
+                              </td>
+
+                           </tr>
+
+                        </tbody>
+
+                     </table>
+</div>
+
+               </div>
+
+            </div>
+
+         </div>
+
+         <div class="nested3" id="WS15383DD9-57E7-420c-9E78-FB715D091976_verapache"><a name="WS15383DD9-57E7-420c-9E78-FB715D091976_verapache"><!-- --></a>
+            <h4 class="topictitle4">Binding compatibility with Flex
+3</h4>
+
+            
+            <div>
+               <div class="p">In Flex 3, the following binding expression was interpreted
+as a one-way binding:<pre class="codeblock">&lt;mx:String id="str"&gt;test&lt;/mx:String&gt; 
+&lt;mx:Text text="@{str}"/&gt;</pre>
+
+               </div>
+
+               <p>Flex 3 set the Text component’s <samp class="codeph">text</samp> property
+to “test”, but the value of the String component did not change
+if the Text component’s <samp class="codeph">text</samp> property changed.</p>
+
+               <p>In Flex 4 and later, this code is interpreted as a bidirectional
+data binding expression. A change in the String component updates
+the <samp class="codeph">text</samp> property of the Text component, and a
+change in the <samp class="codeph">text</samp> property of the Text component updates
+the String component. You can prevent the compiler from enforcing
+the bidirectional binding by setting the value of the <samp class="codeph">compatibility-version</samp> compiler
+option to <samp class="codeph">3.0.0</samp>, as the following example shows:</p>
+
+               <pre class="codeblock">mxmlc ... -compatibility-version=3.0.0 ...</pre>
+
+               <p>For more information, see <a href="flx_versioning_ve.html#WS2db454920e96a9e51e63e3d11c0bf69084-7ede_verapache">Backward
+compatibility</a>.</p>
+
+            </div>
+
+         </div>
+
+      </div>
+
+   </div>
+
+   <div class="nested1" id="WS2db454920e96a9e51e63e3d11c0bf64c3d-7ff3_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf64c3d-7ff3_verapache"><!-- --></a>
+      <h2 class="topictitle2">Binding to functions, Objects,
+and Arrays </h2>
+
+      
+      <div>
+         <p/>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf64c3d-7ff2_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf64c3d-7ff2_verapache"><!-- --></a>
+         <h3 class="topictitle3">Using functions as the source for
+a data binding</h3>
+
+         
+         <div>
+            <p>You can use a function as part of the source of a data
+binding expression. Two common techniques with functions are to
+use bindable properties as arguments to the function to trigger
+the function, or to trigger the function in response to a binding
+event. </p>
+
+            <div class="section" id="WS2db454920e96a9e51e63e3d11c0bf64c3d-7ff2_verapache__WS2db454920e96a9e51e63e3d11c0bf64c3d-7ff1_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf64c3d-7ff2_verapache__WS2db454920e96a9e51e63e3d11c0bf64c3d-7ff1_verapache"><!-- --></a><h4 class="sectiontitle">Using
+functions that take bindable properties as arguments</h4>
+               
+               <p>You
+can use ActionScript functions as the source of data binding expressions when
+using a bindable property as an argument of the function. When the bindable
+property changes, the function executes, and the result is written
+to the destination property, as the following example shows:</p>
+
+               <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- binding/ASInBraces.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx"&gt; 
+    &lt;s:layout&gt; 
+        &lt;s:VerticalLayout/&gt; 
+    &lt;/s:layout&gt; 
+ 
+    &lt;fx:Declarations&gt; 
+        &lt;s:CurrencyFormatter id="usdFormatter" useCurrencySymbol="true"/&gt; 
+    &lt;/fx:Declarations&gt; 
+ 
+    &lt;s:TextInput id="myTI" text="Enter number here"/&gt; 
+    &lt;s:TextArea text="{usdFormatter.format(myTI.text)}"/&gt;      
+&lt;/s:Application&gt;</pre>
+
+               <p>In this example, Flex calls
+the <samp class="codeph">CurrencyFormatter.format()</samp> method to update
+the TextArea control every time the <samp class="codeph">text</samp> property
+of the TextInput control is modified. </p>
+
+               <p>If the function is
+not passed an argument that can be used as the source of a data binding
+expression, the function only gets called once when the applications starts. </p>
+
+            </div>
+
+            <div class="section" id="WS2db454920e96a9e51e63e3d11c0bf64c3d-7ff2_verapache__WS2db454920e96a9e51e63e3d11c0bf64c3d-7ff0_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf64c3d-7ff2_verapache__WS2db454920e96a9e51e63e3d11c0bf64c3d-7ff0_verapache"><!-- --></a><h4 class="sectiontitle">Binding
+to functions in response to a data-binding event</h4>
+               
+               <p>You can
+specify a function that takes no bindable arguments as the source
+of a data binding expression. However, you then need a way to invoke
+the function to update the destination of the data binding. </p>
+
+               <p>In
+the following example, you use the <samp class="codeph">[Bindable]</samp> metadata
+tag to specify to Flex to invoke the <samp class="codeph">isEnabled()</samp>function
+in response to the event <samp class="codeph">myFlagChanged</samp>. When the
+myFlag setter gets called, it dispatches the <samp class="codeph">myFlagChanged</samp> event
+to trigger any data bindings that use the <samp class="codeph">isEnabled()</samp>function
+as the source: </p>
+
+               <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- binding/ASFunction.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx"&gt; 
+    &lt;s:layout&gt; 
+        &lt;s:VerticalLayout/&gt; 
+    &lt;/s:layout&gt; 
+ 
+    &lt;fx:Script&gt; 
+        &lt;![CDATA[ 
+            import flash.events.Event; 
+            
+            // Define a function that gets invoked 
+            // in response to the myFlagChanged event. 
+            [Bindable(event="myFlagChanged")] 
+            private function isEnabled():String { 
+                if (myFlag) 
+                    return 'true'; 
+                else 
+                    return 'false'; 
+            } 
+ 
+            private var _myFlag:Boolean = false; 
+ 
+            // Define a setter method that dispatches the 
+            // myFlagChanged event to trigger the data binding. 
+            public function set myFlag(value:Boolean):void { 
+                _myFlag = value; 
+                dispatchEvent(new Event("myFlagChanged")); 
+            } 
+ 
+            public function get myFlag():Boolean { 
+                return _myFlag; 
+            } 
+        ]]&gt;    
+    &lt;/fx:Script&gt; 
+ 
+    &lt;!-- Use the function as the source of a data binding expression. --&gt; 
+    &lt;s:TextArea id="myTA" text="{isEnabled()}"/&gt; 
+ 
+    &lt;!-- Modify the property, causing the setter method to 
+        dispatch the myFlagChanged event to trigger data binding. --&gt; 
+    &lt;s:Button label="Clear MyFlag" click="myFlag=false;"/&gt; 
+    &lt;s:Button label="Set MyFlag" click="myFlag=true;"/&gt; 
+&lt;/s:Application&gt;</pre>
+
+               <p>For more information on the <samp class="codeph">[Bindable]</samp> metadata
+tag, see <a href="flx_databinding_db.html#WS2db454920e96a9e51e63e3d11c0bf69084-7cc5_verapache">Using
+the Bindable metadata tag</a>.</p>
+
+            </div>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf64c3d-7fef_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf64c3d-7fef_verapache"><!-- --></a>
+         <h3 class="topictitle3">Using data binding with Objects</h3>
+
+         
+         <div>
+            <p>When working with Objects, you have to consider when you
+define a binding to the Object, or when you define a binding to
+a property of the Object. </p>
+
+            <div class="section" id="WS2db454920e96a9e51e63e3d11c0bf64c3d-7fef_verapache__WS2db454920e96a9e51e63e3d11c0bf64c3d-7fee_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf64c3d-7fef_verapache__WS2db454920e96a9e51e63e3d11c0bf64c3d-7fee_verapache"><!-- --></a><h4 class="sectiontitle">Binding
+to Objects</h4>
+               
+               <p>When you make an Object the source of a data
+binding expression, the data binding occurs when the Object is updated,
+or when a reference to the Object is updated, but not when an individual
+field of the Object is updated.</p>
+
+               <p>In the following example,
+you create subclass of Object that defines two properties, <samp class="codeph">stringProp</samp> and <samp class="codeph">intProp</samp>,
+but does not make the properties bindable:</p>
+
+               <pre class="codeblock">package myComponents 
+{ 
+    // binding/myComponents/NonBindableObject.as 
+ 
+    // Make no class properties bindable. 
+    public class NonBindableObject extends Object { 
+    
+        public function NonBindableObject() { 
+            super();            
+        } 
+        
+        public var stringProp:String = "String property"; 
+ 
+        public var intProp:int = 52; 
+    } 
+}</pre>
+
+               <p>Since the properties of the class are not bindable,
+Flex will not dispatch an event when they are updated to trigger
+data binding. You then use this class in a Flex application, as
+the following example shows:</p>
+
+               <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- binding/WholeObjectBinding.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    creationComplete="initObj();"&gt; 
+    &lt;s:layout&gt; 
+        &lt;s:VerticalLayout/&gt; 
+    &lt;/s:layout&gt; 
+    
+    &lt;fx:Script&gt; 
+        &lt;![CDATA[ 
+            import myComponents.NonBindableObject; 
+ 
+            [Bindable] 
+            public var myObj:NonBindableObject = new NonBindableObject(); 
+ 
+            [Bindable]            
+            public var anotherObj:NonBindableObject = 
+                new NonBindableObject(); 
+ 
+            public function initObj():void { 
+                anotherObj.stringProp = 'anotherObject'; 
+                anotherObj.intProp = 8; 
+            }                
+        ]]&gt;    
+    &lt;/fx:Script&gt; 
+ 
+    &lt;!-- Data binding updated at application startup. --&gt; 
+    &lt;s:Label id="text1" text="{myObj.stringProp}"/&gt; 
+ 
+    &lt;!-- Data binding updated at application startup. --&gt; 
+    &lt;s:Label id="text2" text="{myObj.intProp}"/&gt; 
+ 
+    &lt;!-- Data bindings to stringProp not updated. --&gt; 
+    &lt;s:Button label="Change myObj.stringProp" 
+        click="myObj.stringProp = 'new string';"/&gt; 
+        
+    &lt;!-- Data bindings to intProp not updated. --&gt; 
+    &lt;s:Button label="Change myObj.intProp" 
+        click="myObj.intProp = 10;"/&gt; 
+        
+    &lt;!-- Data bindings to myObj and to myObj properties updated. --&gt; 
+    &lt;s:Button label="Change myObj" 
+        click="myObj = anotherObj;"/&gt; 
+&lt;/s:Application&gt;</pre>
+
+               <p>Because you did not make the
+individual fields of the NonBindableObject class bindable, the data
+bindings for the two Text controls are updated at application start
+up, and when myObj is updated, but not when the individual properties
+of myObj are updated. </p>
+
+               <p>When you compile the application, the
+compiler outputs warning messages stating that the data binding
+mechanism will not be able to detect changes to stringProp and intProp.</p>
+
+            </div>
+
+            <div class="section" id="WS2db454920e96a9e51e63e3d11c0bf64c3d-7fef_verapache__WS2db454920e96a9e51e63e3d11c0bf64c3d-7fed_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf64c3d-7fef_verapache__WS2db454920e96a9e51e63e3d11c0bf64c3d-7fed_verapache"><!-- --></a><h4 class="sectiontitle">Binding
+to properties of Objects</h4>
+               
+               <p>To make properties of an Object
+bindable, you create a new class definition for the Object, as the
+following example shows:</p>
+
+               <pre class="codeblock">package myComponents 
+{ 
+    // binding/myComponents/BindableObject.as 
+ 
+    // Make all class properties bindable. 
+    [Bindable] 
+    public class BindableObject extends Object { 
+    
+        public function BindableObject() { 
+            super(); 
+        } 
+        
+        public var stringProp:String = "String property"; 
+ 
+        public var intProp:int = 52; 
+    } 
+}</pre>
+
+               <p>By placing the <samp class="codeph">[Bindable]</samp> metadata
+tag before the class definition, you make bindable all public properties
+defined as variables, and all public properties defined by using
+both a setter and a getter method. You can then use the stringProp
+and intProp properties as the source for a data binding, as the following
+example shows:</p>
+
+               <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- binding/SimpleObjectBinding.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    creationComplete="initObj();"&gt; 
+    &lt;s:layout&gt; 
+        &lt;s:VerticalLayout/&gt; 
+    &lt;/s:layout&gt; 
+    
+    &lt;fx:Script&gt; 
+        &lt;![CDATA[ 
+            import myComponents.BindableObject; 
+ 
+            [Bindable] 
+            public var myObj:BindableObject = new BindableObject(); 
+ 
+            [Bindable]            
+            public var anotherObj:BindableObject = 
+                new BindableObject(); 
+ 
+            public function initObj():void { 
+                anotherObj.stringProp = 'anotherObject'; 
+                anotherObj.intProp = 8; 
+            }                
+        ]]&gt;    
+    &lt;/fx:Script&gt; 
+ 
+    &lt;!-- Data binding updated at application startup. --&gt; 
+    &lt;s:Label id="text1" text="{myObj.stringProp}"/&gt; 
+ 
+    &lt;!-- Data binding updated at application startup. --&gt; 
+    &lt;s:Label id="text2" text="{myObj.intProp}"/&gt; 
+ 
+    &lt;!-- Data bindings to stringProp updated. --&gt; 
+    &lt;s:Button label="Change myObj.stringProp" 
+        click="myObj.stringProp = 'new string';"/&gt; 
+        
+    &lt;!-- Data bindings to intProp updated. --&gt; 
+    &lt;s:Button label="Change myObj.intProp" 
+        click="myObj.intProp = 10;"/&gt; 
+        
+    &lt;!-- Data bindings to myObj and to myObj properties updated. --&gt; 
+    &lt;s:Button label="Change myObj" 
+        click="myObj = anotherObj;"/&gt; 
+&lt;/s:Application&gt;</pre>
+
+            </div>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf64c3d-7fec_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf64c3d-7fec_verapache"><!-- --></a>
+         <h3 class="topictitle3">Binding with arrays</h3>
+
+         
+         <div>
+            <p>When working with arrays, such as Array or ArrayCollection
+objects, you can define the array as the source or destination of
+a data binding expression. </p>
+
+            <div class="note"><span class="notetitle">Note:</span> When defining a data binding expression that
+uses an array as the source of a data binding expression, the array
+should be of type ArrayCollection because the ArrayCollection class
+dispatches an event when the array or the array elements change
+to trigger data binding. For example, a call to <samp class="codeph">ArrayCollection.addItem()</samp>, <samp class="codeph">ArrayCollection.addItemAt()</samp>, <samp class="codeph">ArrayCollection.removeItem()</samp>,
+and <samp class="codeph">ArrayCollection.removeItemAt()</samp> all trigger
+data binding.</div>
+
+            <div class="section" id="WS2db454920e96a9e51e63e3d11c0bf64c3d-7fec_verapache__WS2db454920e96a9e51e63e3d11c0bf64c3d-7feb_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf64c3d-7fec_verapache__WS2db454920e96a9e51e63e3d11c0bf64c3d-7feb_verapache"><!-- --></a><h4 class="sectiontitle">Binding
+to arrays</h4>
+               
+               <p>You often bind arrays to the <samp class="codeph">dataProvider</samp> property
+of Flex controls, as the following example shows for the List control:</p>
+
+               <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- binding/ArrayBindingDP.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx"&gt; 
+    &lt;s:layout&gt; 
+        &lt;s:VerticalLayout/&gt; 
+    &lt;/s:layout&gt; 
+    
+    &lt;fx:Script&gt; 
+        &lt;![CDATA[ 
+            import mx.collections.ArrayCollection; 
+ 
+            [Bindable] 
+            public var myAC:ArrayCollection = new ArrayCollection([ 
+                "One", "Two", "Three", "Four"]); 
+                
+            [Bindable] 
+            public var myAC2:ArrayCollection = new ArrayCollection([ 
+                "Uno", "Dos", "Tres", "Quatro"]); 
+        ]]&gt;    
+    &lt;/fx:Script&gt; 
+    
+    &lt;!-- Data binding updated at application startup, 
+        when myAC is modified, and when an element of 
+        myAC is modifed. --&gt; 
+    &lt;s:List width="150" 
+        dataProvider="{myAC}"/&gt; 
+ 
+    &lt;!-- Data bindings to myAC updated. --&gt; 
+    &lt;s:Button 
+        label="Change Element" 
+        click="myAC[0]='mod One'"/&gt; 
+        
+    &lt;!-- Data bindings to myAC updated. --&gt; 
+    &lt;s:Button 
+        label="Add Element" 
+        click="myAC.addItem('new element');"/&gt; 
+        
+    &lt;!-- Data bindings to myAC updated. --&gt; 
+    &lt;s:Button 
+        label="Remove Element 0" 
+        click="myAC.removeItemAt(0);"/&gt; 
+        
+    &lt;!-- Data bindings to myAC updated. --&gt; 
+    &lt;s:Button 
+        label="Change ArrayCollection" 
+        click="myAC=myAC2"/&gt; 
+&lt;/s:Application&gt;</pre>
+
+               <p>This example defines an ArrayCollection
+object, and then uses data binding to set the data provider of the
+List control to the ArrayCollection. When you modify an element
+of the ArrayCollection object, or when you modify a reference to
+the ArrayCollection object, you trigger a data binding. </p>
+
+            </div>
+
+            <div class="section" id="WS2db454920e96a9e51e63e3d11c0bf64c3d-7fec_verapache__WS2db454920e96a9e51e63e3d11c0bf64c3d-7fea_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf64c3d-7fec_verapache__WS2db454920e96a9e51e63e3d11c0bf64c3d-7fea_verapache"><!-- --></a><h4 class="sectiontitle">Binding
+to array elements</h4>
+               
+               <p>You can use individual ArrayCollection
+elements as the source or a binding expression, as the following
+example shows:</p>
+
+               <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- binding/ArrayBinding.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx"&gt; 
+    &lt;s:layout&gt; 
+        &lt;s:VerticalLayout/&gt; 
+    &lt;/s:layout&gt; 
+    
+    &lt;fx:Script&gt; 
+        &lt;![CDATA[ 
+            import mx.collections.ArrayCollection; 
+ 
+            [Bindable] 
+            public var myAC:ArrayCollection = new ArrayCollection([ 
+                "One", "Two", "Three", "Four"]); 
+                
+            [Bindable] 
+            public var myAC2:ArrayCollection = new ArrayCollection([ 
+                "Uno", "Dos", "Tres", "Quatro"]);      
+        ]]&gt;    
+    &lt;/fx:Script&gt; 
+ 
+    &lt;!-- Data binding updated at application startup 
+        and when myAC modified. --&gt; 
+    &lt;s:Label id="text1" text="{myAC[0]}"/&gt; 
+ 
+    &lt;!-- Data binding updated at application startup, 
+        when myAC modified, and when myAC[0] modified. --&gt; 
+    &lt;s:Label id="text2" text="{myAC.getItemAt(0)}"/&gt; 
+    
+    &lt;s:Button id="button1" 
+        label="Change Element" 
+        click="myAC[0]='new One'"/&gt; 
+ 
+    &lt;s:Button id="button2" 
+        label="Change ArrayCollection" 
+        click="myAC=myAC2"/&gt; 
+&lt;/s:Application&gt;</pre>
+
+               <p>If you specify an array element
+as the source of a data binding expression by using the square bracket
+syntax, [], data binding is only triggered when the application
+starts and when the array or a reference to the array is updated;
+data binding is not triggered when the individual array element
+is updated. The compiler issues a warning in this situation.</p>
+
+               <p>However,
+the data binding expression <samp class="codeph">myAC.getItemAt(0)</samp> is
+triggered when an array element changes. Therefore, the text2 Text
+control is updated when you click button1, while text1 is not. When
+using an array element as the source of a data binding expression,
+you should use the <samp class="codeph">ArrayCollection.getItemAt()</samp> method
+in the binding expression. </p>
+
+               <p>Clicking button2 copies myAC2
+to myAC, and triggers all data bindings to array elements regardless
+of how you implemented them. </p>
+
+            </div>
+
+         </div>
+
+      </div>
+
+   </div>
+
+   <div class="nested1" id="WS2db454920e96a9e51e63e3d11c0bf69084-7ccc_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7ccc_verapache"><!-- --></a>
+      <h2 class="topictitle2">Using ActionScript in data binding expressions</h2>
+
+      
+      <div>
+         <p>You can use ActionScript in data binding expressions defined
+by curly braces and by the <samp class="codeph">&lt;fx:Binding&gt;</samp> tag;
+however, you cannot use ActionScript when defining a data binding
+by using the <samp class="codeph">BindingUtils.bindProperty()</samp> or the <samp class="codeph">BindingUtils.bindSetter()</samp> method.</p>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf64c3d-7fe8_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf64c3d-7fe8_verapache"><!-- --></a>
+         <h3 class="topictitle3">Using ActionScript expressions
+in curly braces</h3>
+
+         
+         <div>
+            <p>Binding expressions in curly braces can contain an ActionScript
+expression that returns a value. For example, you can use the curly
+braces syntax for the following types of binding.</p>
+
+            <ul>
+               <li>
+                  <p>A single bindable property inside curly braces</p>
+
+               </li>
+
+               <li>
+                  <p>To cast the data type of the source property to a type that
+matches the destination property</p>
+
+               </li>
+
+               <li>
+                  <p>String concatenation that includes a bindable property inside
+curly braces</p>
+
+               </li>
+
+               <li>
+                  <p>Calculations on a bindable property inside curly braces</p>
+
+               </li>
+
+               <li>
+                  <p>Conditional operations that evaluate a bindable property
+value</p>
+
+               </li>
+
+            </ul>
+
+            <p>The following example shows a data model that uses each type
+of binding expression:</p>
+
+            <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- binding/AsInBinding.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx"&gt; 
+    &lt;s:layout&gt; 
+        &lt;s:VerticalLayout/&gt; 
+    &lt;/s:layout&gt; 
+ 
+    &lt;fx:Declarations&gt; 
+        &lt;fx:Model id="myModel"&gt; 
+            &lt;myModel&gt; 
+              &lt;!-- Perform simple property binding. --&gt; 
+              &lt;a&gt;{nameInput.text}&lt;/a&gt; 
+              &lt;!-- Perform string concatenation. --&gt; 
+              &lt;b&gt;This is {nameInput.text}&lt;/b&gt; 
+              &lt;!-- Perform a calculation. --&gt; 
+              &lt;c&gt;{(Number(numberInput.text)) * 6 / 7}&lt;/c&gt; 
+              &lt;!-- Perform a conditional operation using a ternary operator. --&gt; 
+              &lt;d&gt;{(isMale.selected) ? "Mr." : "Ms."} {nameInput.text}&lt;/d&gt; 
+            &lt;/myModel&gt; 
+        &lt;/fx:Model&gt; 
+    &lt;/fx:Declarations&gt; 
+ 
+    &lt;s:Form&gt; 
+        &lt;s:FormItem label="Last Name:"&gt; 
+            &lt;s:TextInput id="nameInput"/&gt; 
+        &lt;/s:FormItem&gt;            
+        &lt;s:FormItem label="Select sex:"&gt; 
+            &lt;s:RadioButton id="isMale" 
+                label="Male" 
+                groupName="gender" 
+                selected="true"/&gt; 
+            &lt;s:RadioButton id="isFemale" 
+                label="Female" 
+                groupName="gender"/&gt; 
+        &lt;/s:FormItem&gt; 
+        &lt;s:FormItem label="Enter a number:"&gt; 
+            &lt;s:TextInput id="numberInput" text="0"/&gt; 
+        &lt;/s:FormItem&gt;            
+    &lt;/s:Form&gt; 
+        
+    &lt;s:Label 
+        text="{'Calculation: '+numberInput.text+' * 6 / 7 = '+myModel.c}"/&gt;        
+    &lt;s:Label text="{'Conditional: '+myModel.d}"/&gt; 
+&lt;/s:Application&gt;</pre>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf64c3d-7fe7_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf64c3d-7fe7_verapache"><!-- --></a>
+         <h3 class="topictitle3">Using ActionScript expressions
+in Binding tags</h3>
+
+         
+         <div>
+            <p>The <samp class="codeph">source</samp> property of an <samp class="codeph">&lt;fx:Binding&gt;</samp> tag
+can contain curly braces. When there are no curly braces in the <samp class="codeph">source</samp> property,
+the value is treated as a single ActionScript expression. When there
+are curly braces in the <samp class="codeph">source</samp> property, the value
+is treated as a concatenated ActionScript expression. The <samp class="codeph">&lt;fx:Binding&gt;</samp> tags
+in the following example are valid and equivalent to each other:</p>
+
+            <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- binding/ASInBindingTags.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx"&gt; 
+    &lt;s:layout&gt; 
+        &lt;s:VerticalLayout/&gt; 
+    &lt;/s:layout&gt; 
+ 
+    &lt;fx:Script&gt; 
+        &lt;![CDATA[ 
+            public function whatDogAte():String { 
+                return "homework"; 
+            } 
+        ]]&gt; 
+    &lt;/fx:Script&gt; 
+ 
+    &lt;fx:Binding 
+        source="'The dog ate my '+ whatDogAte()" 
+        destination="field1.text"/&gt; 
+    &lt;fx:Binding 
+        source="{'The dog ate my '+ whatDogAte()}" 
+        destination="field2.text"/&gt; 
+    &lt;fx:Binding 
+        source="The dog ate my {whatDogAte()}" 
+        destination="field3.text"/&gt; 
+ 
+    &lt;s:TextArea id="field1"/&gt; 
+    &lt;s:TextArea id="field2"/&gt; 
+    &lt;s:TextArea id="field3"/&gt; 
+&lt;/s:Application&gt;</pre>
+
+            <p>The <samp class="codeph">source</samp> property in the following example
+is not valid because it is not an ActionScript expression:</p>
+
+            <pre class="codeblock"> &lt;fx:Binding source="The dog ate my homework" destination="field1.text"/&gt;</pre>
+
+         </div>
+
+         <div class="nested3" id="WS2db454920e96a9e51e63e3d11c0bf64c3d-7fe6_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf64c3d-7fe6_verapache"><!-- --></a>
+            <h4 class="topictitle4">Using an ampersand character in
+a data binding expression</h4>
+
+            
+            <div>
+               <p>Because of the parsing rules of XML, if you want to use
+an ampersand character, <samp class="codeph">&amp;</samp>, in a data binding
+expression in an MXML file, you must replace it with the hexadecimal
+equivalent character, <samp class="codeph">&amp;amp;</samp>. For example, if
+you want to use a logical AND expression, written in ActionScript
+as <samp class="codeph">&amp;&amp;</samp>, then you have to write is as <samp class="codeph">&amp;amp;&amp;amp;</samp>,
+as the following example shows:</p>
+
+               <pre class="codeblock"> &lt;s:Button label="Test" enabled="{authorized <strong>&amp;amp;&amp;amp;</strong> cc}" /&gt; </pre>
+
+            </div>
+
+         </div>
+
+      </div>
+
+   </div>
+
+   <div class="nested1" id="WS2db454920e96a9e51e63e3d11c0bf69084-7ccb_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7ccb_verapache"><!-- --></a>
+      <h2 class="topictitle2">Using an E4X expression in a data
+binding expression</h2>
+
+      
+      <div>
+         <p>
+            
+            A binding expression in curly braces
+or an <samp class="codeph">&lt;fx:Binding&gt;</samp> tag can contain an ECMAScript
+for XML (E4X) expression when the source of a binding is a bindable property
+of type XML. You cannot use E4X when defining a data binding by
+using the <samp class="codeph">BindingUtils.bindProperty()</samp> or the <samp class="codeph">BindingUtils.bindSetter()</samp> method. </p>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf64c3d-7fe4_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf64c3d-7fe4_verapache"><!-- --></a>
+         <h3 class="topictitle3">Using an E4X expression in curly
+braces</h3>
+
+         
+         <div>
+            <p>
+               A binding
+expression in curly braces automatically calls the <samp class="codeph">toString()</samp> method
+when the binding destination is a String property. A binding expression in
+curly braces or an <samp class="codeph">&lt;fx:Binding&gt;</samp> tag can contain
+an ECMAScript for XML (E4X) expression when the source of a binding
+is a bindable property of type XML; for more information, see <a href="flx_databinding_db.html#WS2db454920e96a9e51e63e3d11c0bf69084-7cc1_verapache">Using
+an E4X expression in an &lt;fx:Binding&gt; tag</a>.</p>
+
+            <p>In the code in the following example, there are three binding
+expressions in curly braces that bind data from an XML object. The
+first uses . (dot) notation, the second uses .. (dot dot) notation,
+and the third uses || (or) notation.</p>
+
+            <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- binding/E4XInBraces.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    width="750"&gt; 
+    &lt;s:layout&gt; 
+        &lt;s:HorizontalLayout/&gt; 
+    &lt;/s:layout&gt; 
+ 
+    &lt;fx:Script&gt; 
+        &lt;![CDATA[ 
+        
+            [Bindable] 
+            public var xdata:XML = &lt;order&gt; 
+                &lt;item id = "3456"&gt; 
+                    &lt;description&gt;Big Screen Television&lt;/description&gt; 
+                    &lt;price&gt;1299.99&lt;/price&gt;&lt;quantity&gt;1&lt;/quantity&gt; 
+                &lt;/item&gt; 
+                &lt;item id = "56789"&gt; 
+                    &lt;description&gt;DVD Player&lt;/description&gt; 
+                    &lt;price&gt;399.99&lt;/price&gt; 
+                    &lt;quantity&gt;1&lt;/quantity&gt; 
+                &lt;/item&gt; 
+            &lt;/order&gt;; 
+        ]]&gt; 
+    &lt;/fx:Script&gt; 
+ 
+    &lt;mx:Label text="Using .. notation."/&gt; 
+    &lt;!-- Inline databinding will automatically call the 
+        toString() method when the binding destination is a string. --&gt; 
+    &lt;mx:List width="25%" 
+        dataProvider="{xdata..description}"/&gt; 
+    
+    &lt;mx:Label text="Using . notation."/&gt; 
+    &lt;mx:List width="25%" 
+        dataProvider="{xdata.item.description}"/&gt; 
+ 
+    &lt;mx:Label text="Using || (or) notation."/&gt; 
+    &lt;mx:List width="25%" 
+        dataProvider="{xdata.item.(@id=='3456'||@id=='56789').description}"/&gt; 
+&lt;/s:Application&gt;</pre>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf69084-7cc1_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7cc1_verapache"><!-- --></a>
+         <h3 class="topictitle3">Using an E4X expression in an &lt;fx:Binding&gt;
+tag</h3>
+
+         
+         <div>
+            <p>Unlike an E4X expression in curly braces, when you use
+an E4X expression in an <samp class="codeph">&lt;fx:Binding&gt;</samp> tag,
+you must explicitly call the <samp class="codeph">toString()</samp> method
+when the binding destination is a String property.</p>
+
+            <p>In the code in the following example, there are three binding
+expressions in curly braces that bind data from an XML object. The
+first uses . (dot) notation, the second uses .. (dot dot) notation,
+and the third uses || (or) notation.</p>
+
+            <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- binding/E4XInBindingTag.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    width="600" height="900"&gt; 
+    &lt;s:layout&gt; 
+        &lt;s:VerticalLayout/&gt; 
+    &lt;/s:layout&gt; 
+ 
+    &lt;fx:Script&gt; 
+        &lt;![CDATA[ 
+            [Bindable] 
+            public var xdata:XML = 
+                &lt;order&gt; 
+                    &lt;item id = "3456"&gt; 
+                        &lt;description&gt;Big Screen Television&lt;/description&gt; 
+                        &lt;price&gt;1299.99&lt;/price&gt;&lt;quantity&gt;1&lt;/quantity&gt; 
+                    &lt;/item&gt; 
+                    &lt;item id = "56789"&gt; 
+                        &lt;description&gt;DVD Player&lt;/description&gt; 
+                        &lt;price&gt;399.99&lt;/price&gt; 
+                        &lt;quantity&gt;1&lt;/quantity&gt; 
+                    &lt;/item&gt; 
+                &lt;/order&gt;;        
+        ]]&gt; 
+    &lt;/fx:Script&gt; 
+ 
+    &lt;mx:Label text="Using .. notation."/&gt; 
+ 
+    &lt;!-- This will update because what is 
+        binded is actually the String and XMLList. --&gt; 
+    &lt;mx:List width="75%" id="txts"/&gt; 
+ 
+    &lt;mx:Label text="Using . notation."/&gt; 
+    &lt;mx:List width="75%" id="txt2s"/&gt; 
+ 
+    &lt;mx:Label text="Using || (or) notation."/&gt; 
+    &lt;mx:List width="75%" id="txt3s"/&gt; 
+ 
+    &lt;fx:Binding 
+        source="xdata..description" 
+        destination="txts.dataProvider"/&gt; 
+    &lt;fx:Binding 
+        source="xdata.item.description" 
+        destination="txt2s.dataProvider"/&gt; 
+    &lt;fx:Binding 
+        source="xdata.item.(@id=='3456'||@id=='56789').description" 
+        destination="txt3s.dataProvider"/&gt; 
+&lt;/s:Application&gt;</pre>
+
+         </div>
+
+      </div>
+
+   </div>
+
+   <div class="nested1" id="WS2db454920e96a9e51e63e3d11c0bf69084-7cc9_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7cc9_verapache"><!-- --></a>
+      <h2 class="topictitle2">Defining data bindings in ActionScript</h2>
+
+      
+      <div>
+         <p>
+            You
+can define a data binding in ActionScript by using the <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/binding/utils/BindingUtils.html" target="_blank">mx.binding.utils.BindingUtils</a> class.
+This class defines static methods that let you create a data binding
+to a property implemented as a variable, by using the <samp class="codeph">bindProperty()</samp> method,
+or to a method, by using the <samp class="codeph">bindSetter()</samp> method.
+For an example using the <samp class="codeph">bindProperty()</samp> method,
+see <a href="flx_databinding_db.html#WS2db454920e96a9e51e63e3d11c0bf64c3d-7fff_verapache">About
+data binding</a>.</p>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf64c3d-7fe1_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf64c3d-7fe1_verapache"><!-- --></a>
+         <h3 class="topictitle3">Differences between defining bindings
+in MXML and ActionScript</h3>
+
+         
+         <div>
+            <p>There are a few differences between defining data bindings
+in MXML at compile time and in defining them at runtime in ActionScript:</p>
+
+            <ul>
+               <li>
+                  <p>You cannot include ActionScript code in a data binding
+expression defined by the <samp class="codeph">bindProperty()</samp> or <samp class="codeph">bindSetter()</samp> method.
+Instead, use the <samp class="codeph">bindSetter()</samp> method to specify
+a method to call when the binding occurs.</p>
+
+               </li>
+
+               <li>
+                  <p>You cannot include an E4X expression in a data binding expression
+defined in ActionScript. </p>
+
+               </li>
+
+               <li>
+                  <p>You cannot include functions or array elements in property
+chains in a data binding expression defined by the <samp class="codeph">bindProperty()</samp> or <samp class="codeph">bindSetter()</samp> method. </p>
+
+               </li>
+
+               <li>
+                  <p>The MXML compiler has better warning and error detection
+support than runtime data bindings defined by the <samp class="codeph">bindProperty()</samp> or <samp class="codeph">bindSetter()</samp> method.</p>
+
+               </li>
+
+            </ul>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf64c3d-7fe0_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf64c3d-7fe0_verapache"><!-- --></a>
+         <h3 class="topictitle3">Example: Defining a data binding
+in ActionScript</h3>
+
+         
+         <div>
+            <p>The following example uses the <samp class="codeph">bindSetter()</samp> method
+to set up a data binding. The arguments to the <samp class="codeph">bindSetter()</samp> method
+specify the following:</p>
+
+            <ul>
+               <li>
+                  <p>The source object</p>
+
+               </li>
+
+               <li>
+                  <p>The name of the source property</p>
+
+               </li>
+
+               <li>
+                  <p>A method that is called when the source property changes</p>
+
+               </li>
+
+            </ul>
+
+            <p>In the following example, as you enter text in the TextInput
+control, the text is converted to upper case as it is copied to
+the TextArea control:</p>
+
+            <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- binding/BindSetterAS.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx"&gt; 
+    &lt;s:layout&gt; 
+        &lt;s:VerticalLayout/&gt; 
+    &lt;/s:layout&gt; 
+ 
+    &lt;fx:Script&gt; 
+        &lt;![CDATA[ 
+ 
+            import mx.binding.utils.*; 
+            import mx.events.FlexEvent; 
+ 
+            // Method called when myTI.text changes. 
+            public function updateMyString(val:String):void { 
+                myTA.text = val.toUpperCase(); 
+            } 
+ 
+            &lt;!-- Event listener to configure binding. --&gt; 
+            public function mySetterBinding(event:FlexEvent):void { 
+                var watcherSetter:ChangeWatcher = 
+                    BindingUtils.bindSetter(updateMyString, myTI, "text"); 
+            } 
+        ]]&gt; 
+    &lt;/fx:Script&gt; 
+ 
+    &lt;s:Label text="Bind Setter using setter method"/&gt; 
+    &lt;s:TextInput id="myTI" 
+        text="Hello Setter" /&gt; 
+    &lt;s:TextArea id="myTA" 
+        initialize="mySetterBinding(event);"/&gt; 
+&lt;/s:Application&gt;</pre>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf69084-7cc7_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7cc7_verapache"><!-- --></a>
+         <h3 class="topictitle3">Defining binding watchers </h3>
+
+         
+         <div>
+            <p>Flex includes the <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/binding/utils/ChangeWatcher.html" target="_blank">mx.binding.utils.ChangeWatcher</a> class
+that you can use to define a data‑binding watcher. Typically, a
+data-binding watcher invokes an event listener when a binding occurs.
+To set up a data-binding watcher, you use the static <samp class="codeph">watch()</samp> method
+of the ChangeWatcher class, as the following example shows: </p>
+
+            <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- binding/DetectWatcher.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    initialize="initWatcher();"&gt; 
+    &lt;s:layout&gt; 
+        &lt;s:VerticalLayout/&gt; 
+    &lt;/s:layout&gt; 
+ 
+    &lt;fx:Script&gt; 
+        &lt;![CDATA[ 
+          import mx.binding.utils.*; 
+          import mx.events.FlexEvent; 
+          import mx.events.PropertyChangeEvent; 
+ 
+          public var myWatcher:ChangeWatcher; 
+ 
+          // Define binding watcher. 
+          public function initWatcher():void { 
+            // Define a watcher for the text binding. 
+              myWatcher = ChangeWatcher.watch(textarea, "text", watcherListener); 
+          } 
+ 
+          // Event listener when binding occurs. 
+          public function watcherListener(event:Event):void { 
+            myTA1.text="binding occurred"; 
+                
+            // Use myWatcher.unwatch() to remove the watcher. 
+          } 
+        ]]&gt; 
+    &lt;/fx:Script&gt; 
+ 
+    &lt;!-- Define a binding expression to watch. --&gt; 
+    &lt;s:TextInput id="textinput" text="Hello"/&gt; 
+    &lt;s:TextArea id="textarea" text="{textinput.text}"/&gt; 
+ 
+    &lt;!-- Trigger a binding. --&gt; 
+    &lt;s:Button label="Submit" click="textinput.text='Goodbye';"/&gt; 
+    &lt;s:TextArea id="myTA1"/&gt; 
+&lt;/s:Application&gt;</pre>
+
+            <p>You define an event listener for the data-binding watcher, where
+the event listener takes a single argument that contains the event
+object. The data type of the event object is determined by the property
+being watched. Each bindable property can dispatch a different event
+type and the associated event object. For more information on determining
+the event type, see <a href="flx_databinding_db.html#WS2db454920e96a9e51e63e3d11c0bf69084-7cc5_verapache">Using
+the Bindable metadata tag</a>. </p>
+
+            <p>Many event listeners take an event object of type PropertyChangeEvent
+because that is the default data type of the event dispatched by
+bindable properties. You can always specify an event type of flash.events.Event,
+the base class for all Flex events. </p>
+
+         </div>
+
+      </div>
+
+   </div>
+
+   <div class="nested1" id="WS2db454920e96a9e51e63e3d11c0bf69084-7cc5_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7cc5_verapache"><!-- --></a>
+      <h2 class="topictitle2">Using the Bindable metadata tag</h2>
+
+      
+      <div>
+         <p>When a property is the source of a data binding expression,
+Flex automatically copies the value of the source property to any
+destination property when the source property changes. To signal
+to Flex to perform the copy, you must use the <samp class="codeph">[Bindable]</samp> metadata
+tag to register the property with Flex, and the source property
+must dispatch an event. </p>
+
+         <p>The <samp class="codeph">[Bindable]</samp> metadata tag has the following
+syntax:</p>
+
+         <pre class="codeblock"> [Bindable] 
+ [Bindable(event="eventname")]</pre>
+
+         <p>If you omit the event name, Flex automatically creates an event
+named <samp class="codeph">propertyChange</samp> of type PropertyChangeEvent.</p>
+
+         <p>You can use the <samp class="codeph">[Bindable]</samp> metadata tag in three
+places:</p>
+
+         <ol>
+            <li>
+               <p>Before a public class definition. </p>
+
+               <p>The <samp class="codeph">[Bindable]</samp> metadata
+tag makes usable as the source of a binding expression all public
+properties that you defined as variables, and all public properties
+that are defined by using both a setter and a getter method. In
+this case, <samp class="codeph">[Bindable]</samp> takes no parameters, as the
+following example shows:</p>
+
+               <pre class="codeblock"> [Bindable] 
+ public class TextAreaFontControl extends TextArea {}</pre>
+
+               <p>The
+compiler automatically generates an event named <samp class="codeph">propertyChange</samp>, of
+type PropertyChangeEvent, for all public properties so that the
+properties can be used as the source of a data binding expression. </p>
+
+               <p>If
+the property value remains the same on a write, Flex does not dispatch
+the event or update the property, where <em>not the same</em> translates
+to the following test:</p>
+
+               <pre class="codeblock"> (oldValue !== value)</pre>
+
+               <p>That
+means if a property contains a reference to an object, and that
+reference is modified to reference a different but equivalent object,
+the binding is triggered. If the property is not modified, but the
+object that it points to changes internally, the binding is not
+triggered.</p>
+
+               <div class="note"><span class="notetitle">Note:</span> When you use the <samp class="codeph">[Bindable]</samp> metadata
+tag before a public class definition, it only applies to public
+properties; it does not apply to private or protected properties,
+or to properties defined in any other namespace. You must insert
+the <samp class="codeph">[Bindable]</samp>
+                  <em> metadata tag before a nonpublic property to make it usable as the source for a data binding expression.</em>
+               </div>
+
+            </li>
+
+            <li>
+               <p>Before a public, protected, or private property defined as
+a variable to make that specific property support binding. </p>
+
+               <p>The
+tag can have the following forms:</p>
+
+               <pre class="codeblock"> [Bindable] 
+ public var foo:String;</pre>
+
+               <p>The Flex compiler automatically
+generates an event named <samp class="codeph">propertyChange</samp>, of type
+PropertyChangeEvent, for the property. If the property value remains
+the same on a write, Flex does not dispatch the event or update
+the property. </p>
+
+               <p>You can also specify the event name, as the
+following example shows:</p>
+
+               <pre class="codeblock"> [Bindable(event="fooChanged")] 
+ public var foo:String;</pre>
+
+               <p>In this case, you are responsible
+for generating and dispatching the event, typically as part of some
+other method of your class. You can specify a <samp class="codeph">[Bindable]</samp> tag
+that includes the <samp class="codeph">event</samp> specification if you want
+to name the event, even when you already specified the <samp class="codeph">[Bindable]</samp> tag
+at the class level. </p>
+
+            </li>
+
+            <li>
+               <p>Before a public, protected, or private property defined by
+a getter or setter method.</p>
+
+               <p>You must define both a setter and
+a getter method to use the <samp class="codeph">[Bindable]</samp> tag with
+the property. If you define just a setter method, you create a write-only
+property that you cannot use as the source of a data-binding expression. If
+you define just a getter method, you create a read-only property
+that you can use as the source of a data-binding expression without
+inserting the <samp class="codeph">[Bindable] </samp>metadata tag. This is
+similar to the way that you can use a variable, defined by using
+the <samp class="codeph">const</samp> keyword, as the source for a data binding
+expression. </p>
+
+               <p>The tag can have the following forms:</p>
+
+               <pre class="codeblock"> [Bindable] 
+ public function set shortNames(val:Boolean):void { 
+ 	...				 
+ } 
+  
+ public function get shortNames():Boolean { 
+ 	... 
+ }	</pre>
+
+               <p>The Flex compiler automatically generates an event
+named <samp class="codeph">propertyChange</samp>, of type PropertyChangeEvent,
+for the property. If the property value remains the same on a write,
+Flex does not dispatch the event or update the property. To determine
+if the property value changes, Flex calls the getter method to obtain
+the current value of the property. </p>
+
+               <p>You can specify the event
+name, as the following example shows:</p>
+
+               <pre class="codeblock"> [Bindable(event="changeShortNames")] 
+ public function set shortNames(val:Boolean):void { 
+ 	... 
+ 	<strong>// Create and dispatch event. </strong> 
+ 	<strong>dispatchEvent(new Event("changeShortNames"));</strong> 
+ } 
+  
+ <strong>// Get method. </strong> 
+ public function get shortNames():Boolean { 
+ 	... 
+ }				</pre>
+
+               <p>In this case, you are responsible for generating
+and dispatching the event, typically in the setter method, and Flex
+does not check to see if the old value and the new value are different.
+You can specify a <samp class="codeph">[Bindable]</samp> tag that includes
+the <samp class="codeph">event</samp> specification to name the event, even
+when you already specified the <samp class="codeph">[Bindable]</samp> tag at
+the class level. </p>
+
+            </li>
+
+         </ol>
+
+         <p>The following example makes the <samp class="codeph">maxFontSize</samp> and <samp class="codeph">minFontSize</samp> properties
+that you defined as variables that can be used as the sources for
+data bindings:</p>
+
+         <pre class="codeblock"> 	// Define public vars for tracking font size. 
+ 	[Bindable] 
+ 	public var maxFontSize:Number = 15; 
+ 	[Bindable] 
+ 	public var minFontSize:Number = 5;</pre>
+
+         <p>In the following example, you make a public property that you
+defined by using a setter and a getter method that is usable as
+the source for data binding The <samp class="codeph">[Bindable]</samp> metadata
+tag includes the name of the event broadcast by the setter method
+when the property changes:</p>
+
+         <pre class="codeblock"> 	// Define private variable. 
+ 	private var _maxFontSize:Number = 15; 
+  
+ 	<strong>[Bindable(event="maxFontSizeChanged")]</strong> 
+ 	// Define public getter method. 
+ 	<strong>public function get maxFontSize():Number {</strong> 
+ 		return _maxFontSize; 
+ 	} 
+  
+ 	<strong>// Define public setter method.</strong> 
+ 	<strong>public function set maxFontSize(value:Number):void {</strong> 
+ 		if (value &lt;= 30) { 
+ 			_maxFontSize = value; 
+ 		} else _maxFontSize = 30; 
+  
+ 		// Create event object.  
+ 		<strong>var eventObj:Event = new Event("maxFontSizeChanged");</strong> 
+ 		<strong>dispatchEvent(eventObj);</strong> 
+  
+ 	}</pre>
+
+         <p>In this example, the setter updates the value of the property,
+and then creates and dispatches an event to invoke an update of
+the destination of the data binding. </p>
+
+         <p>In an MXML file, you can make all public properties that you
+defined as variables usable as the source for data binding by including
+the <samp class="codeph">[Bindable]</samp> metadata tag in an <samp class="codeph">&lt;fx:Metadata&gt;</samp> block,
+as the following example shows: </p>
+
+         <pre class="codeblock"> &lt;fx:Metadata&gt; 
+ 	[Bindable] 
+ &lt;/fx:Metadata&gt;</pre>
+
+         <p>You can also use the <samp class="codeph">[Bindable]</samp> metadata tag
+in an <samp class="codeph">&lt;fx:Script&gt;</samp> block in an MXML file to
+make individual properties that you defined as variables usable as
+the source for a data binding expression. Alternatively, you can
+use the <samp class="codeph">[Bindable]</samp> metadata tag with properties
+that you defined by using setter and getter methods. </p>
+
+         <div class="section" id="WS2db454920e96a9e51e63e3d11c0bf69084-7cc5_verapache__WS2db454920e96a9e51e63e3d11c0bf64c3d-7fdd_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7cc5_verapache__WS2db454920e96a9e51e63e3d11c0bf64c3d-7fdd_verapache"><!-- --></a><h3 class="sectiontitle">Using
+read-only properties as the source for data binding</h3>
+            
+            <p>You
+can automatically use a read-only property defined by a getter method, which
+means no setter method, as the source for a data-binding expression.
+Flex performs the data binding once when the application starts. </p>
+
+            <p>Because
+the data binding from a read-only property occurs only once at application
+start up, you omit the <samp class="codeph">[Bindable]</samp> metadata tag
+for the read-only property.</p>
+
+         </div>
+
+         <div class="section" id="WS2db454920e96a9e51e63e3d11c0bf69084-7cc5_verapache__WS2db454920e96a9e51e63e3d11c0bf64c3d-7fdc_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7cc5_verapache__WS2db454920e96a9e51e63e3d11c0bf64c3d-7fdc_verapache"><!-- --></a><h3 class="sectiontitle">Using
+static properties as the source for data binding</h3>
+            
+            <p>You can
+use a static variable as the source for a data-binding expression.
+Flex performs the data binding once when the application starts,
+and again when the property changes. </p>
+
+            <p>You can automatically
+use a static constant as the source for a data-binding expression.
+Flex performs the data binding once when the application starts. Because
+the data binding occurs only once at application start up, you omit
+the <samp class="codeph">[Bindable]</samp> metadata tag for the static constant.
+The following example uses a static constant as the source for a
+data-binding expression:</p>
+
+            <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- binding/StaticBinding.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx"&gt; 
+ 
+    &lt;fx:Script&gt; 
+      &lt;![CDATA[ 
+ 
+        // This syntax casues a compiler error. 
+        // [Bindable] 
+        // public static var varString:String="A static var."; 
+ 
+        public static const constString:String="A static const."; 
+      ]]&gt; 
+    &lt;/fx:Script&gt; 
+ 
+    &lt;!-- This binding occurs once at application startup. --&gt; 
+    &lt;s:Button label="{constString}"/&gt;    
+&lt;/s:Application&gt;</pre>
+
+         </div>
+
+         <div class="section" id="WS2db454920e96a9e51e63e3d11c0bf69084-7cc5_verapache__WS2db454920e96a9e51e63e3d11c0bf69084-7cbf_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7cc5_verapache__WS2db454920e96a9e51e63e3d11c0bf69084-7cbf_verapache"><!-- --></a><h3 class="sectiontitle">Working
+with bindable property chains</h3>
+            
+            <p>When you specify a property
+as the source of a data binding expression, Flex monitors not only
+that property for changes, but also the chain of properties leading
+up to it. The entire chain of properties, including the source property,
+is called a <em>bindable property chain</em>. In the following example, <samp class="codeph">firstName.text</samp> is a
+bindable property chain that includes both a <samp class="codeph">firstName</samp> object
+and its <samp class="codeph">text</samp> property:</p>
+
+            <pre class="codeblock"> &lt;s:Label id="myText" text="{firstName.text}"/&gt;</pre>
+
+            <p>You
+can have a fairly long bindable property chain, as the following
+example shows:</p>
+
+            <pre class="codeblock"> &lt;s:Label id="myText" text="{user.name.firstName.text}"/&gt;</pre>
+
+            <p>For
+the data binding mechanism to detect changes to the <samp class="codeph">text</samp> property,
+only the <samp class="codeph">text</samp> property has to be bindable. However,
+if you want to assign a new value to any part of the chain at runtime,
+every element in the chain must be bindable. Otherwise, modifying
+the <samp class="codeph">user</samp>, <samp class="codeph">name</samp>, or <samp class="codeph">firstName</samp> property
+at runtime results in the data binding mechanism no longer being
+able to detect changes to the <samp class="codeph">text</samp> property. </p>
+
+            <p>When
+using the <samp class="codeph">BindingUtils.bindProperty()</samp> or <samp class="codeph">BindingUtils.bindSetter()</samp> method,
+you specify the bindable property chain as an argument to the method.
+For example, the <samp class="codeph">bindProperty()</samp> method has the
+following signature:</p>
+
+            <pre class="codeblock"> public static function bindProperty(<em>site</em>:Object, <em>prop</em>:String, <em>host</em>:Object, <em>chain</em>:Object, 
+	<em>commitOnly</em>:Boolean = false):ChangeWatcher</pre>
+
+            <p>The <samp class="codeph">
+                  <em>host</em>
+               </samp> and <samp class="codeph">
+                  <em>chain</em>
+               </samp> arguments
+specify the source of the data binding expression. You can define
+a data binding expression by using the <samp class="codeph">bindProperty()</samp> method,
+as the following example shows:</p>
+
+            <pre class="codeblock"> bindProperty(myText, ’text’, user, ["name","firstName","text"]);</pre>
+
+            <p>In
+this example, <samp class="codeph">["name","firstName","text"]</samp> defines
+the bindable property chain relative to the user object. Notice
+that <samp class="codeph">user</samp> is not part of the bindable property
+change in this example. </p>
+
+            <p>In an MXML data-binding expression,
+the bindable property chain is always relative to <samp class="codeph">this</samp>.
+Therefore, to define a data binding equivalent to the MXML data
+binding expression shown above, you write the <samp class="codeph">bindProperty()</samp> method
+as the following example shows:</p>
+
+            <pre class="codeblock"> bindProperty(myText, ’text’, this, ["user", "name","firstName","text"]);</pre>
+
+         </div>
+
+      </div>
+
+   </div>
+
+   <div class="nested1" id="WS2db454920e96a9e51e63e3d11c0bf64c3d-7fda_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf64c3d-7fda_verapache"><!-- --></a>
+      <h2 class="topictitle2">Considerations for using the binding feature</h2>
+
+      
+      <div>
+         <p>Consider the following when using the binding feature:</p>
+
+         <ul>
+            <li>
+               <div class="p">You cannot bind to style properties, but you can bind
+to the <samp class="codeph">getStyle()</samp> method, as the following example
+shows:<pre class="codeblock">&lt;s:Button label="Button 1" id="b1" color="green"/&gt; 
+&lt;s:Button label="Button 2" color="{b1.getStyle('color')}"/&gt; 
+&lt;s:Button label="Button 3" click="b1.setStyle('color', 'red');"/&gt;</pre>
+
+               </div>
+
+               <p>In
+this example, Button 2 uses data binding to set its <samp class="codeph">color</samp> style
+property to the same value as the <samp class="codeph">color</samp> style of
+Button 1.</p>
+
+            </li>
+
+            <li>
+               <p>If you bind a model into the <samp class="codeph">dataProvider</samp> property
+of a component, you should not change items in the model directly.
+Instead, change the items through the Collections API. Otherwise,
+the component to which the model is bound is not redrawn to show
+the changes to the model. For example, instead of using the following:</p>
+
+               <pre class="codeblock"> myGrid.getItemAt(itemIndex).myField = 1; </pre>
+
+               <p>You
+would use the following:</p>
+
+               <pre class="codeblock"> myGrid.dataProvider.editField(itemIndex, "myField", 1);</pre>
+
+            </li>
+
+            <li>
+               <p>Array elements cannot function as binding sources at run
+time. Arrays that are bound do not stay updated if individual fields
+of a source Array change. Binding copies values during instantiation
+after variables are declared in an <samp class="codeph">&lt;fx:Script&gt;</samp> tag,
+but before event listeners execute. </p>
+
+            </li>
+
+         </ul>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf64c3d-7fd9_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf64c3d-7fd9_verapache"><!-- --></a>
+         <h3 class="topictitle3">Debugging data binding</h3>
+
+         
+         <div>
+            <p>
+               In
+some situations, data binding may not appear to function correctly,
+and you may need to debug them. The following list contains suggestions
+for resolving data binding issues:</p>
+
+            <ol>
+               <li>
+                  <p>Pay attention to warnings. </p>
+
+                  <p>It is easy to see a
+warning and think that it doesn’t matter, especially if binding appears
+to work at startup, but warnings are important.</p>
+
+                  <p>If a warning
+is about a missing <samp class="codeph">[Bindable]</samp> on a getter/setter
+property, even if the binding works at startup, subsequent changes
+to the property are not noticed.</p>
+
+                  <p>If a warning is about a static
+variable or a built-in property, changes aren’t noticed.</p>
+
+               </li>
+
+               <li>
+                  <p>Ensure that the source of the binding actually changed.</p>
+
+                  <p>When
+your source is part of a larger procedure, it is easy to miss the
+fact that you never assigned the source. </p>
+
+               </li>
+
+               <li>
+                  <p>Ensure that the bindable event is being dispatched.</p>
+
+                  <p>You
+can use the Flex command-line debugger (fdb) to make sure that the <samp class="codeph">dispatchEvent()</samp> method
+is called. Also, you can add a normal event listener to that class
+to make sure it gets called. If you want to add the event listener
+as a tag attribute, you must place the <samp class="codeph">[Event('</samp>
+                     <em>myEvent</em>
+                     <samp class="codeph">')]</samp> metadata
+at the top of your class definition or in an <samp class="codeph">&lt;fx:Metadata&gt;</samp> tag
+in your MXML. </p>
+
+               </li>
+
+               <li>
+                  <p>Create a setter function and use a <samp class="codeph">&lt;fx:Binding&gt;</samp> tag
+to assign into it.</p>
+
+                  <p>You can then put a trace or an alert or
+some other debugging code in the setter with the value that is being
+assigned. This technique ensures that the binding itself is working.
+If the setter is called with the right information, you will know that
+it’s your destination that is failing, and you can start debugging
+there. </p>
+
+               </li>
+
+            </ol>
+
+            <p/>
+
+         </div>
+
+      </div>
+
+         <p>Adobe and Adobe Flash are either registered trademarks or trademarks of Adobe Systems Incorporated in the United States and/or other countries and are used by permission from Adobe.  No other license to the Adobe trademarks are granted.</p>
+   </div>
+
+
+</body>
+</html>

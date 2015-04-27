@@ -1,0 +1,2210 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Licensed to the Apache Software Foundation (ASF) under one or more
+  contributor license agreements.  See the NOTICE file distributed with
+  this work for additional information regarding copyright ownership.
+  The ASF licenses this file to You under the Apache License, Version 2.0
+  (the "License"); you may not use this file except in compliance with
+  the License.  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+-->
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en-us" xml:lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="topic"/>
+<meta name="DC.Title" content="Menu-based controls"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="WS2db454920e96a9e51e63e3d11c0bf69084-7d7b_verapache"/>
+<link rel="stylesheet" type="text/css" href="commonltr.css"/>
+<title>Menu-based controls</title>
+</head>
+<body id="WS2db454920e96a9e51e63e3d11c0bf69084-7d7b_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7d7b_verapache"><!-- --></a>
+
+
+   <h1 class="topictitle1">Menu-based controls</h1>
+
+   <div>
+      <p>There are three  Flex Framework
+controls that you can use to create or interact with menus. </p>
+
+   </div>
+
+   <div class="nested1" id="WS2db454920e96a9e51e63e3d11c0bf66f5a-7fff_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf66f5a-7fff_verapache"><!-- --></a>
+      <h2 class="topictitle2">About menu-based controls</h2>
+
+      
+      <div>
+         <p>Flex framework includes three controls that present hierarchical
+data in a cascading menu format. All menu controls can have icons
+and labels for each menu item, and dispatch events of the mx.events.MenuEvent
+class in response to user actions. You can use the following menu-based
+controls:</p>
+
+         <dl>
+            
+               <dt class="dlterm">Menu control</dt>
+
+               <dd>
+                  <p>A visual menu that can have cascading submenus. You typically display
+a menu control in response to some user action, such as clicking
+a button. You cannot define a Menu control by using an MXML tag;
+you must define it, display it, and hide it by using ActionScript.</p>
+
+               </dd>
+
+            
+            
+               <dt class="dlterm">MenuBar control</dt>
+
+               <dd>
+                  <p>A horizontal bar of menu items. Each item in the menu bar can
+have a submenu that displays when you click the MenuBar item. The MenuBar
+control is effectively a static (non-pop-up) menu that displays
+the top level of the menu as the bar items.</p>
+
+               </dd>
+
+            
+            
+               <dt class="dlterm">PopUpMenuButton control</dt>
+
+               <dd>
+                  <p>A subclass of the <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/controls/PopUpButton.html" target="_blank">PopUpButton</a> control
+that displays a Menu control when you click the secondary button.
+The primary button label changes when you select an item from the
+pop-up menu.</p>
+
+               </dd>
+
+            
+         </dl>
+
+      </div>
+
+   </div>
+
+   <div class="nested1" id="WS2db454920e96a9e51e63e3d11c0bf69084-7b1e_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7b1e_verapache"><!-- --></a>
+      <h2 class="topictitle2">Defining menu structure and data</h2>
+
+      
+      <div>
+         <p>All menu-based controls use data providers with the following
+characteristics to specify the structure and contents of the menus:</p>
+
+         <ul>
+            <li>
+               <p>The data providers are often hierarchical, but you can
+also have a single-level menu.</p>
+
+            </li>
+
+            <li>
+               <p>Individual menu items include fields that determine the menu
+item appearance and behavior. Menu-based controls support fields
+that define the label text, an icon, the menu item type, and item
+status. For information on meaningful fields, see <a href="flx_menucontrols_mc.html#WS2db454920e96a9e51e63e3d11c0bf69084-7b23_verapache">Specifying
+and using menu entry information</a>.</p>
+
+            </li>
+
+         </ul>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf66f5a-7ffd_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf66f5a-7ffd_verapache"><!-- --></a>
+         <h3 class="topictitle3">About menu data providers</h3>
+
+         
+         <div>
+            <p>The <samp class="codeph">dataProvider</samp> property of a menu-based
+control specifies an object that defines the structure and contents
+of the menu. If a menu’s contents are dynamic, you change the menu
+by modifying its data provider.</p>
+
+            <p>Menu-based controls typically get their data from hierarchical
+data providers, such as nested arrays of objects or XML. If the
+menu represents dynamically changing data, you use an object that
+implements the ICollectionView interface, such as ArrayCollection
+or XMLListCollection. </p>
+
+            <p>Menu-based controls use a data descriptor to parse and manipulate
+the data provider contents. By default, menu-based controls use
+a DefaultDataDescriptor class descriptor, but you can create your
+own class and specify it in the Menu control’s <samp class="codeph">dataDescriptor</samp> property. </p>
+
+            <p>The DefaultDataDescriptor class supports the following types
+of data:</p>
+
+            <dl>
+               
+                  <dt class="dlterm">XML</dt>
+
+                  <dd>
+                     <p>A string that contains valid XML text, or any of the following
+objects containing valid E4X format XML data: an <samp class="codeph">&lt;fx:XML&gt;</samp> or <samp class="codeph">&lt;fx:XMLList&gt;</samp> compile-time
+tag, or an XML or XMLList object.</p>
+
+                  </dd>
+
+               
+               
+                  <dt class="dlterm">Other objects</dt>
+
+                  <dd>
+                     <p>An array of items, or an object that contains an array of
+items, where a node’s children are contained in an item named <samp class="codeph">children</samp>.
+You can also use the <samp class="codeph">&lt;fx:Model&gt;</samp> compile-time
+tag to create nested objects that support data binding, but you
+must follow the structure defined in <a href="flx_about_dataproviders_ab.html#WS2db454920e96a9e51e63e3d11c0bf69084-7b5e_verapache">Using
+the &lt;fx:Model&gt; tag with Tree and menu-based controls</a>.</p>
+
+                  </dd>
+
+               
+               
+                  <dt class="dlterm">Collections</dt>
+
+                  <dd>
+                     <p>An object that implements the ICollectionView interface (such
+as the ArrayCollection or XMLListCollection classes) and whose data
+source conforms to the structure specified in either of the previous
+bullets. The DefaultDataDescriptor class includes code to handle
+collections efficiently. Always use a collection as the data provider
+if the data in the menu changes dynamically; otherwise, the Menu
+displays obsolete data.</p>
+
+                     <p>For more information on hierarchical
+objects and data descriptors, including a detailed description of
+the formats supported by the DefaultDataDescriptor, see <a href="flx_about_dataproviders_ab.html#WS2db454920e96a9e51e63e3d11c0bf69084-7b5d_verapache">Data
+descriptors and hierarchical data structure</a>. </p>
+
+                     <p>As with
+all data-driven controls, if the data provider contents can change
+dynamically, and you want the Menu to update with the changes, ensure
+that the data source is a collection, such as an ArrayCollection
+or XMLListCollection object. To modify the menu, change the underlying
+collection, and the menu will update its appearance accordingly.</p>
+
+                     <p>
+                        Node (menu item) tags in the
+XML data can have any name. Many examples in this topic use tags
+such as <samp class="codeph">&lt;node&gt;</samp> for all menu items, or <samp class="codeph">&lt;menuItem&gt;</samp> for
+top-level items and <samp class="codeph">&lt;subMenuItem&gt;</samp> for submenu
+items, but it might be more realistic to use tag names that identify
+the data, such as <samp class="codeph">&lt;person&gt;,</samp> 
+                        <samp class="codeph">&lt;address&gt;</samp>,
+and so on. The menu-handling code reads through the XML and builds
+the display hierarchy based on the nested relationship of the nodes.
+For more information, see <a href="flx_menucontrols_mc.html#WS2db454920e96a9e51e63e3d11c0bf69084-7b23_verapache">Specifying
+and using menu entry information</a>.</p>
+
+                     <p>Most menus have multiple
+items at the top level, not a single root item. XML objects, such
+as the XML object created by the <samp class="codeph">&lt;fx:XML&gt;</samp> tag,
+must have a single root node. To display a menu that uses a data
+provider that has a root that you do not want to display, set the
+Menu, PopUpMenuButton, or MenuBar <samp class="codeph">showRoot</samp> property
+to <samp class="codeph">false</samp>.</p>
+
+                  </dd>
+
+               
+            </dl>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf69084-7b23_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7b23_verapache"><!-- --></a>
+         <h3 class="topictitle3">Specifying and using menu entry
+information</h3>
+
+         
+         <div>
+            <p>Information in menu-based control data providers determines
+how each menu entry appears and is used. To access or change the
+menu contents, you modify the contents of the data provider.</p>
+
+            <p>The menu-based classes use the methods of the <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/controls/menuClasses/IMenuDataDescriptor.html" target="_blank">IMenuDataDescriptor</a> interface to
+access and manipulate information in the data provider that defines
+the menu behavior and contents. Flex provides a <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/controls/treeClasses/DefaultDataDescriptor.html" target="_blank">DefaultDataDescriptor</a> class
+that implements this interface. The menu-based controls use the
+DefaultDataDescriptor class if you do not set the <samp class="codeph">dataDescriptor</samp> property. </p>
+
+            <div class="section" id="WS2db454920e96a9e51e63e3d11c0bf69084-7b23_verapache__WS2db454920e96a9e51e63e3d11c0bf66f5a-7feb_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7b23_verapache__WS2db454920e96a9e51e63e3d11c0bf66f5a-7feb_verapache"><!-- --></a><h4 class="sectiontitle">Menu
+entry types</h4>
+               
+               <p>
+                  Each
+data provider entry can specify an item type and type-specific information about
+the menu item. Menu-based classes support the following item types (<samp class="codeph">type</samp> field
+values):</p>
+
+               <dl>
+                  
+                     <dt class="dlterm">normal</dt>
+
+                     <dd>
+                        <p>(the default) Selecting an item with the <samp class="codeph">normal</samp> type
+triggers a <samp class="codeph">change</samp> event, or, if the item has children,
+opens a submenu.</p>
+
+                     </dd>
+
+                  
+                  
+                     <dt class="dlterm">check</dt>
+
+                     <dd>
+                        <p>Selecting an item with the <samp class="codeph">check</samp> type toggles
+the menu item’s <samp class="codeph">toggled</samp> property between <samp class="codeph">true</samp> and <samp class="codeph">false</samp> values.
+When the menu item is in the <samp class="codeph">true</samp> state, it displays
+a check mark in the menu next to the item’s label. </p>
+
+                     </dd>
+
+                  
+                  
+                     <dt class="dlterm">radio</dt>
+
+                     <dd>
+                        <p>Items with the <samp class="codeph">radio</samp> type operate in groups,
+much like RadioButton controls; you can select only one radio menu
+item in each group at a time. The example in this section defines
+three submenu items as radio buttons within the group “one”. </p>
+
+                        <p>When
+a radio button is selected, the radio item’s <samp class="codeph">toggled</samp> property
+is set to <samp class="codeph">true</samp>, and the <samp class="codeph">toggled</samp> properties
+of all other radio items in the group are set to <samp class="codeph">false</samp>.
+The Menu control displays a solid circle next to the radio button
+that is currently selected. The <samp class="codeph">selection</samp> property
+of the radio group is set to the label of the selected menu item.</p>
+
+                     </dd>
+
+                  
+                  
+                     <dt class="dlterm">separator</dt>
+
+                     <dd>
+                        <p>
+                           Items
+with the <samp class="codeph">separator</samp> type provide a simple horizontal
+line that divides the items in a menu into different visual groups.</p>
+
+                     </dd>
+
+                  
+               </dl>
+
+            </div>
+
+            <div class="section" id="WS2db454920e96a9e51e63e3d11c0bf69084-7b23_verapache__WS2db454920e96a9e51e63e3d11c0bf66f5a-7ffb_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7b23_verapache__WS2db454920e96a9e51e63e3d11c0bf66f5a-7ffb_verapache"><!-- --></a><h4 class="sectiontitle">Menu
+attributes</h4>
+               
+               <p>Menu items can specify several attributes that
+determine how the item is displayed and behaves. The following table
+lists the attributes you can specify, their data types, their purposes,
+and how the data provider must represent them if the menu uses the <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/controls/treeClasses/DefaultDataDescriptor.html" target="_blank">DefaultDataDescriptor</a> class
+to parse the data provider:</p>
+
+               
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" frame="border" border="1" rules="all">
+                     
+                     
+                     
+                     <thead align="left">
+                        <tr>
+                           <th class="cellrowborder" valign="top" width="NaN%" id="d292378e415">
+                              <p>Attribute</p>
+
+                           </th>
+
+                           <th class="cellrowborder" valign="top" width="NaN%" id="d292378e421">
+                              <p>Type</p>
+
+                           </th>
+
+                           <th class="cellrowborder" valign="top" width="NaN%" id="d292378e427">
+                              <p>Description</p>
+
+                           </th>
+
+                        </tr>
+
+                     </thead>
+
+                     <tbody>
+                        <tr>
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d292378e415 ">
+                              <div class="p">
+                                 <pre class="codeblock">enabled</pre>
+
+                              </div>
+
+                           </td>
+
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d292378e421 ">
+                              <p>Boolean</p>
+
+                           </td>
+
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d292378e427 ">
+                              <p>Specifies whether the user can select the
+menu item (<samp class="codeph">true</samp>), or not (<samp class="codeph">false</samp>).
+If not specified, Flex treats the item as if the value were <samp class="codeph">true</samp>.</p>
+
+                              <p>If
+you use the default data descriptor, data providers must use an <samp class="codeph">enabled</samp> XML
+attribute or object field to specify this characteristic.</p>
+
+                           </td>
+
+                        </tr>
+
+                        <tr>
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d292378e415 ">
+                              <div class="p">
+                                 <pre class="codeblock">groupName</pre>
+
+                              </div>
+
+                           </td>
+
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d292378e421 ">
+                              <p>String</p>
+
+                           </td>
+
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d292378e427 ">
+                              <p>(Required, and meaningful, for <samp class="codeph">radio</samp> type
+only) The identifier that associates radio button items in a radio
+group. If you use the default data descriptor, data providers must
+use a <samp class="codeph">groupName</samp> XML attribute or object field to
+specify this characteristic.</p>
+
+                           </td>
+
+                        </tr>
+
+                        <tr>
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d292378e415 ">
+                              <div class="p">
+                                 <pre class="codeblock">icon</pre>
+
+                              </div>
+
+                           </td>
+
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d292378e421 ">
+                              <p>Class</p>
+
+                           </td>
+
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d292378e427 ">
+                              <p>Specifies the class identifier of an image
+asset. This item is not used for the <samp class="codeph">check</samp>, <samp class="codeph">radio</samp>,
+or <samp class="codeph">separator</samp> types. You can use the <samp class="codeph">checkIcon</samp> and <samp class="codeph">radioIcon</samp> styles
+to specify the icons used for radio and check box items that are
+selected.</p>
+
+                              <p>The menu’s <samp class="codeph">iconField</samp> or <samp class="codeph">iconFunction</samp> property
+determines the name of the field in the data that specifies the
+icon, or a function for determining the icons.</p>
+
+                           </td>
+
+                        </tr>
+
+                        <tr>
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d292378e415 ">
+                              <div class="p">
+                                 <pre class="codeblock">label</pre>
+
+                              </div>
+
+                           </td>
+
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d292378e421 ">
+                              <p>String</p>
+
+                           </td>
+
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d292378e427 ">
+                              <p>Specifies the text that appears in the control.
+This item is used for all menu item types except <samp class="codeph">separator</samp>
+                                 <samp class="codeph">.</samp>
+                              </p>
+
+                              <p>The
+menu’s <samp class="codeph">labelField</samp> or <samp class="codeph">labelFunction</samp> property
+determines the name of the field in the data that specifies the
+label, or a function for determining the labels. (If the data provider
+is in E4X XML format, you must specify one of these properties to
+display a label.) If the data provider is an array of strings, Flex
+uses the string value as the label.</p>
+
+                           </td>
+
+                        </tr>
+
+                        <tr>
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d292378e415 ">
+                              <div class="p">
+                                 <pre class="codeblock">toggled</pre>
+
+                              </div>
+
+                           </td>
+
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d292378e421 ">
+                              <p>Boolean</p>
+
+                           </td>
+
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d292378e427 ">
+                              <p>Specifies whether a <samp class="codeph">check</samp> or <samp class="codeph">radio</samp> item
+is selected. If not specified, Flex treats the item as if the value
+were <samp class="codeph">false</samp> and the item is not selected.</p>
+
+                              <p>If
+you use the default data descriptor, data providers must use a <samp class="codeph">toggled</samp> XML
+attribute or object field to specify this characteristic.</p>
+
+                           </td>
+
+                        </tr>
+
+                        <tr>
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d292378e415 ">
+                              <div class="p">
+                                 <pre class="codeblock">type</pre>
+
+                              </div>
+
+                           </td>
+
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d292378e421 ">
+                              <p>String</p>
+
+                           </td>
+
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d292378e427 ">
+                              <p>Specifies the type of menu item. Meaningful
+values are <samp class="codeph">separator</samp>, <samp class="codeph">check</samp>, or <samp class="codeph">radio</samp>.
+Flex treats all other values, or nodes with no type entry, as normal
+menu entries.</p>
+
+                              <p>If you use the default data descriptor, data
+providers must use a <samp class="codeph">type</samp> XML attribute or object
+field to specify this characteristic.</p>
+
+                           </td>
+
+                        </tr>
+
+                     </tbody>
+
+                  </table>
+</div>
+
+               <p>Menu-based controls ignore all other object
+fields or XML attributes, so you can use them for application-specific
+data.</p>
+
+            </div>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf66f5a-7ffa_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf66f5a-7ffa_verapache"><!-- --></a>
+         <h3 class="topictitle3">Example: An Array menu data provider</h3>
+
+         
+         <div>
+            <p>The following example displays a Menu that uses an Array
+data provider and shows how you define the menu characteristics
+in the data provider. For an application that specifies an identical
+menu structure in XML, see <a href="flx_menucontrols_mc.html#WS03d33b8076db57b9-71841387121ca881e12-7fff_verapache">Example:
+Creating a simple Menu control</a>.</p>
+
+            <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- menus/ArrayDataProvider.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx"&gt; 
+    &lt;s:layout&gt; 
+        &lt;s:VerticalLayout/&gt; 
+    &lt;/s:layout&gt; 
+ 
+    &lt;fx:Script&gt; 
+        &lt;![CDATA[ 
+            import mx.controls.Menu; 
+ 
+            // Method to create an Array-based menu. 
+            private function createAndShow():void { 
+                // The third parameter sets the showRoot property to false. 
+                // You must set this property in the createMenu method, 
+                // not later. 
+                var myMenu:Menu = Menu.createMenu(null, menuData, true); 
+                myMenu.show(10, 10); 
+            } 
+ 
+            // The Array data provider 
+            [Bindable] 
+            public var menuData:Array = [ 
+                {label: "MenuItem A", children: [ 
+                    {label: "SubMenuItem A-1", enabled: false}, 
+                    {label: "SubMenuItem A-2", type: "normal"} 
+                    ]}, 
+                {label: "MenuItem B", type: "check", toggled: true}, 
+                {label: "MenuItem C", type: "check", toggled: false}, 
+                {type: "separator"}, 
+                {label: "MenuItem D", children: [ 
+                    {label: "SubMenuItem D-1", type: "radio", 
+                        groupName: "g1"}, 
+                    {label: "SubMenuItem D-2", type: "radio", 
+                        groupName: "g1", toggled: true}, 
+                    {label: "SubMenuItem D-3", type: "radio", 
+                        groupName: "g1"} 
+                    ]} 
+                ]; 
+        ]]&gt; 
+    &lt;/fx:Script&gt; 
+ 
+    &lt;!-- Button control to create and open the menu. --&gt; 
+    &lt;mx:Button x="300" y="10" 
+        label="Open Menu" 
+        click="createAndShow();"/&gt; 
+&lt;/s:Application&gt;</pre>
+
+            <p>The following image shows the resulting control, with MenuItem
+D open; notice that check item B and radio item D-2 are selected:</p>
+
+            <div class="figborder">
+               <img src="images/mc_menuOpen.png" alt="Menu control, with MenuItem D"/>
+            </div>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf66f5a-7fe4_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf66f5a-7fe4_verapache"><!-- --></a>
+         <h3 class="topictitle3">Example: An XML menu data provider
+with icons</h3>
+
+         
+         <div>
+            <p>The following example displays a menu control that uses
+XML as the data provider, and specifies custom icons for the items
+in the control:</p>
+
+            <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- SimpleMenuControlIcon.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx"&gt; 
+ 
+    &lt;fx:Script&gt; 
+        &lt;![CDATA[ 
+            // Import the Menu control. 
+            import mx.controls.Menu; 
+    
+            [Bindable] 
+            [Embed(source="assets/topIcon.jpg")] 
+            public var myTopIcon:Class; 
+    
+            [Bindable] 
+            [Embed(source="assets/radioIcon.jpg")] 
+            public var myRadioIcon:Class; 
+    
+            [Bindable] 
+            [Embed(source="assets/checkIcon.gif")] 
+            public var myCheckIcon:Class; 
+ 
+            // Create and display the Menu control. 
+            private function createAndShow():void { 
+                var myMenu:Menu = Menu.createMenu(null, myMenuData, false); 
+                myMenu.labelField="@label"; 
+ 
+                // Specify the check icon. 
+                myMenu.setStyle('checkIcon', myCheckIcon); 
+ 
+                // Specify the radio button icon. 
+                myMenu.setStyle('radioIcon', myRadioIcon); 
+ 
+                // Specify the icon for the topmenu items. 
+                myMenu.iconField="@icon"; 
+                myMenu.show(10, 10); 
+            } 
+        ]]&gt; 
+    &lt;/fx:Script&gt; 
+ 
+    &lt;fx:Declarations&gt; 
+        &lt;!-- Define the menu data. --&gt; 
+        &lt;fx:XML format="e4x" id="myMenuData"&gt; 
+            &lt;root&gt; 
+                &lt;menuitem label="MenuItem A" icon="myTopIcon"&gt; 
+                    &lt;menuitem label="SubMenuItem A-1" enabled="false"/&gt; 
+                    &lt;menuitem label="SubMenuItem A-2"/&gt; 
+                &lt;/menuitem&gt; 
+                &lt;menuitem label="MenuItem B" type="check" toggled="true"/&gt; 
+                &lt;menuitem label="MenuItem C" type="check" toggled="false" 
+                    icon="myTopIcon"/&gt; 
+                &lt;menuitem type="separator"/&gt;     
+                &lt;menuitem label="MenuItem D" icon="myTopIcon"&gt; 
+                    &lt;menuitem label="SubMenuItem D-1" type="radio" 
+                        groupName="one"/&gt; 
+                    &lt;menuitem label="SubMenuItem D-2" type="radio" 
+                        groupName="one" toggled="true"/&gt; 
+                    &lt;menuitem label="SubMenuItem D-3" type="radio" 
+                        groupName="one"/&gt; 
+                &lt;/menuitem&gt; 
+            &lt;/root&gt; 
+        &lt;/fx:XML&gt; 
+    &lt;/fx:Declarations&gt; 
+ 
+    &lt;mx:VBox&gt; 
+        &lt;!-- Define a Button control to open the menu --&gt; 
+        &lt;mx:Button id="myButton" 
+            label="Open Menu" 
+            click="createAndShow();"/&gt; 
+    &lt;/mx:VBox&gt; 
+&lt;/s:Application&gt;</pre>
+
+         </div>
+
+      </div>
+
+   </div>
+
+   <div class="nested1" id="WS2db454920e96a9e51e63e3d11c0bf66f5a-7ff5_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf66f5a-7ff5_verapache"><!-- --></a>
+      <h2 class="topictitle2">Menu-based control events</h2>
+
+      
+      <div>
+         <p>User interaction with a <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/controls/Menu.html" target="_blank">Menu</a> or menu-based
+control is event-driven; that is, applications typically handle
+events generated when the user opens, closes, or selects within
+a menu, or submenu or rolls over or out of menu items. For detailed information
+on events and how to use them, see <a href="flx_events_ev.html#WS2db454920e96a9e51e63e3d11c0bf69084-7ee9_verapache">Events</a>.</p>
+
+         <p>The Menu and <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/controls/MenuBar.html" target="_blank">MenuBar</a> controls
+dispatch an identical set of menu-specific events. Event handling
+with PopUpMenuButton controls differs from the other two controls,
+but shares many elements in common with the others.</p>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf69084-7d8f_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7d8f_verapache"><!-- --></a>
+         <h3 class="topictitle3">Menu control events</h3>
+
+         
+         <div>
+            <p>
+               The <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/controls/Menu.html" target="_blank">Menu</a> control
+defines the following menu-specific event types, of the <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/events/MenuEvent.html" target="_blank">MenuEvent</a> class:</p>
+
+            <dl>
+               
+                  <dt class="dlterm">change</dt>
+
+                  <dd>
+                     <p>(<samp class="codeph">MenuEvent.CHANGE</samp>) Dispatched when a user
+changes current menu selection by using the keyboard or mouse. </p>
+
+                  </dd>
+
+               
+               
+                  <dt class="dlterm">itemClick</dt>
+
+                  <dd>
+                     <p>(<samp class="codeph">MenuEvent.ITEM_CLICK</samp>) Dispatched when a
+user selects an enabled menu item of type <samp class="codeph">normal</samp>, <samp class="codeph">check</samp>,
+or <samp class="codeph">radio</samp>. This event is not dispatched when a user
+selects a menu item of type <samp class="codeph">separator</samp>, a menu item that
+opens a submenu, or a disabled menu item.</p>
+
+                  </dd>
+
+               
+               
+                  <dt class="dlterm">itemRollOut</dt>
+
+                  <dd>
+                     <p>(<samp class="codeph">MenuEvent.ITEM_ROLL_OUT</samp>) Dispatched when
+the mouse pointer rolls off of a Menu item. </p>
+
+                  </dd>
+
+               
+               
+                  <dt class="dlterm">itemRollOver</dt>
+
+                  <dd>
+                     <p>(<samp class="codeph">MenuEvent.ITEM_ROLL_OVER</samp>) Dispatched when
+the mouse pointer rolls onto a Menu item. </p>
+
+                  </dd>
+
+               
+               
+                  <dt class="dlterm">menuHide</dt>
+
+                  <dd>
+                     <p>(<samp class="codeph">MenuEvent.MENU_HIDE</samp>) Dispatched when the
+entire menu or a submenu closes.</p>
+
+                  </dd>
+
+               
+               
+                  <dt class="dlterm">menuShow</dt>
+
+                  <dd>
+                     <p>(<samp class="codeph">MenuEvent.MENU_SHOW</samp>) Dispatched when the
+entire menu or a submenu opens.</p>
+
+                     <p>The event object passed to
+the event listener is of type <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/events/MenuEvent.html" target="_blank">MenuEvent</a> and
+contains one or more of the following menu-specific properties:</p>
+
+                     
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" frame="border" border="1" rules="all">
+                           
+                           
+                           <thead align="left">
+                              <tr>
+                                 <th class="cellrowborder" valign="top" width="NaN%" id="d292378e914">
+                                    <p>Property</p>
+
+                                 </th>
+
+                                 <th class="cellrowborder" valign="top" width="NaN%" id="d292378e920">
+                                    <p>Description</p>
+
+                                 </th>
+
+                              </tr>
+
+                           </thead>
+
+                           <tbody>
+                              <tr>
+                                 <td class="cellrowborder" valign="top" width="NaN%" headers="d292378e914 ">
+                                    <div class="p">
+                                       <pre class="codeblock">item</pre>
+
+                                    </div>
+
+                                 </td>
+
+                                 <td class="cellrowborder" valign="top" width="NaN%" headers="d292378e920 ">
+                                    <p>The item in the data provider for the menu
+item associated with the event.</p>
+
+                                 </td>
+
+                              </tr>
+
+                              <tr>
+                                 <td class="cellrowborder" valign="top" width="NaN%" headers="d292378e914 ">
+                                    <div class="p">
+                                       <pre class="codeblock">index</pre>
+
+                                    </div>
+
+                                 </td>
+
+                                 <td class="cellrowborder" valign="top" width="NaN%" headers="d292378e920 ">
+                                    <p>The index of the item in the menu or submenu
+that contains it.</p>
+
+                                 </td>
+
+                              </tr>
+
+                              <tr>
+                                 <td class="cellrowborder" valign="top" width="NaN%" headers="d292378e914 ">
+                                    <div class="p">
+                                       <pre class="codeblock">label</pre>
+
+                                    </div>
+
+                                 </td>
+
+                                 <td class="cellrowborder" valign="top" width="NaN%" headers="d292378e920 ">
+                                    <p>The label of the item.</p>
+
+                                 </td>
+
+                              </tr>
+
+                              <tr>
+                                 <td class="cellrowborder" valign="top" width="NaN%" headers="d292378e914 ">
+                                    <div class="p">
+                                       <pre class="codeblock">menu</pre>
+
+                                    </div>
+
+                                 </td>
+
+                                 <td class="cellrowborder" valign="top" width="NaN%" headers="d292378e920 ">
+                                    <p>A reference to the Menu control where the
+event occurred.</p>
+
+                                 </td>
+
+                              </tr>
+
+                              <tr>
+                                 <td class="cellrowborder" valign="top" width="NaN%" headers="d292378e914 ">
+                                    <div class="p">
+                                       <pre class="codeblock">menuBar</pre>
+
+                                    </div>
+
+                                 </td>
+
+                                 <td class="cellrowborder" valign="top" width="NaN%" headers="d292378e920 ">
+                                    <p>The MenuBar control instance that is the
+parent of the menu, or <samp class="codeph">undefined</samp> when the menu
+does not belong to a MenuBar. For more information, see <a href="flx_menucontrols_mc.html#WS2db454920e96a9e51e63e3d11c0bf69084-7d8e_verapache">MenuBar
+control </a>.</p>
+
+                                 </td>
+
+                              </tr>
+
+                           </tbody>
+
+                        </table>
+</div>
+
+                     <p>To access properties and fields of an object-based
+menu item, you specify the menu item field name, as follows:</p>
+
+                     <pre class="codeblock"> ta1.text = event.item.label</pre>
+
+                     <p>To
+access attributes of an E4X XML-based menu item, you specify the
+menu item attribute name in E4X syntax, as follows:</p>
+
+                     <pre class="codeblock"> ta1.text = event.item.@label</pre>
+
+                     <div class="note"><span class="notetitle">Note:</span> If you set an event listener on a submenu of a
+menu-based control, and the menu data provider’s structure changes
+(for example, an element is removed), the event listener might no
+longer exist. To ensure that the event listener is available when
+the data provider structure changes, either listen on events of
+the menu-based control, not a submenu, or add the event listener
+each time an event occurs that changes the data provider’s structure.</div>
+
+                     <p>The
+following example shows a menu with a simple event listener. For
+a more complex example, see <a href="flx_menucontrols_mc.html#WS2db454920e96a9e51e63e3d11c0bf69084-7b0d_verapache">Example:
+Using Menu control events</a>.</p>
+
+                     <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- menus/EventListener.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx"&gt; 
+    &lt;s:layout&gt; 
+        &lt;s:VerticalLayout/&gt; 
+    &lt;/s:layout&gt; 
+ 
+    &lt;fx:Script&gt; 
+        &lt;![CDATA[ 
+            import mx.controls.Menu; 
+            import mx.events.MenuEvent; 
+    
+            // Function to create and show a menu. 
+            private function createAndShow():void { 
+                var myMenu:Menu = Menu.createMenu(null, myMenuData, false); 
+                myMenu.labelField="@label" 
+                // Add an event listener for the itemClick event. 
+                myMenu.addEventListener(MenuEvent.ITEM_CLICK, 
+                    itemClickInfo); 
+                // Show the menu. 
+                myMenu.show(25, 10); 
+            } 
+    
+            // The event listener for the itemClick event. 
+            private function itemClickInfo(event:MenuEvent):void { 
+                ta1.text="event.type: " + event.type; 
+                ta1.text+="\nevent.index: " + event.index; 
+                ta1.text+="\nItem label: " + event.item.@label 
+                ta1.text+="\nItem selected: " + event.item.@toggled; 
+                ta1.text+= "\nItem type: " + event.item.@type; 
+            } 
+        ]]&gt; 
+    &lt;/fx:Script&gt; 
+ 
+    &lt;fx:Declarations&gt; 
+        &lt;!-- The XML-based menu data provider. --&gt; 
+        &lt;fx:XML id="myMenuData"&gt; 
+            &lt;xmlRoot&gt; 
+                &lt;menuitem label="MenuItem A" &gt; 
+                    &lt;menuitem label="SubMenuItem A-1" enabled="false"/&gt; 
+                    &lt;menuitem label="SubMenuItem A-2"/&gt; 
+                &lt;/menuitem&gt; 
+                &lt;menuitem label="MenuItem B" type="check" toggled="true"/&gt; 
+                &lt;menuitem label="MenuItem C" type="check" toggled="false"/&gt; 
+                &lt;menuitem type="separator"/&gt;     
+                &lt;menuitem label="MenuItem D" &gt; 
+                    &lt;menuitem label="SubMenuItem D-1" type="radio" 
+                        groupName="one"/&gt; 
+                    &lt;menuitem label="SubMenuItem D-2" type="radio" 
+                        groupName="one" toggled="true"/&gt; 
+                    &lt;menuitem label="SubMenuItem D-3" type="radio" 
+                        groupName="one"/&gt; 
+                &lt;/menuitem&gt; 
+            &lt;/xmlRoot&gt; 
+        &lt;/fx:XML&gt; 
+    &lt;/fx:Declarations&gt; 
+ 
+    &lt;!-- Button controls to open the menus. --&gt; 
+    &lt;mx:Button 
+        label="Open Menu" 
+        click="createAndShow();"/&gt; 
+    &lt;!-- Text area to display the event information --&gt; 
+    &lt;mx:TextArea 
+        width="200" height="100" 
+        id="ta1"/&gt; 
+&lt;/s:Application&gt;</pre>
+
+                  </dd>
+
+               
+            </dl>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf66f5a-7fe9_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf66f5a-7fe9_verapache"><!-- --></a>
+         <h3 class="topictitle3">MenuBar events</h3>
+
+         
+         <div>
+            <p>The following figure shows a <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/controls/MenuBar.html" target="_blank">MenuBar</a> control:</p>
+
+            <div class="figborder">
+               <img src="images/mc_menubarevent.png" alt="MenuBar control"/>
+            </div>
+
+            <p>For the menu bar, the following events occur:</p>
+
+            <dl>
+               
+                  <dt class="dlterm">change</dt>
+
+                  <dd>
+                     <p>(<samp class="codeph">MenuEvent.CHANGE</samp>) Dispatched when a user
+changes current menu bar selection by using the keyboard or mouse.
+This event is also dispatched when the user changes the current
+menu selection in a pop-up submenu. When the event occurs on the
+menu bar, the <samp class="codeph">menu</samp> property of the MenuEvent object
+is <samp class="codeph">null</samp>. </p>
+
+                  </dd>
+
+               
+               
+                  <dt class="dlterm">itemRollOut</dt>
+
+                  <dd>
+                     <p>(<samp class="codeph">MenuEvent.ITEM_ROLL_OUT</samp>) Dispatched when
+the mouse pointer rolls off of a menu bar item. </p>
+
+                  </dd>
+
+               
+               
+                  <dt class="dlterm">itemRollOver</dt>
+
+                  <dd>
+                     <p>(<samp class="codeph">MenuEvent.ITEM_ROLL_OVER</samp>) Dispatched when
+the mouse pointer rolls onto a menu bar item. </p>
+
+                  </dd>
+
+               
+               
+                  <dt class="dlterm">menuHide</dt>
+
+                  <dd>
+                     <p>(<samp class="codeph">MenuEvent.MENU_HIDE</samp>) Dispatched when a
+pop-up submenu closes.</p>
+
+                  </dd>
+
+               
+               
+                  <dt class="dlterm">menuShow</dt>
+
+                  <dd>
+                     <p>(<samp class="codeph">MenuEvent.MENU_SHOW</samp>) Dispatched when a
+pop-up submenu opens, or the user selects a menu bar item with no
+drop-down menu.</p>
+
+                     <div class="note"><span class="notetitle">Note:</span> The MenuBar control does
+not dispatch the <samp class="codeph">itemClick</samp> event when you select
+an item on the menu bar; it only dispatches the <samp class="codeph">itemClick</samp> event
+when you select an item on a pop-up submenu.</div>
+
+                     <p>For each pop-up
+submenu, the MenuBar dispatches the <samp class="codeph">change</samp>, <samp class="codeph">itemClick</samp>, <samp class="codeph">itemRollOut</samp>, <samp class="codeph">itemRollOver</samp>, <samp class="codeph">menuShow</samp>,
+and <samp class="codeph">menuHide</samp> events in the same way it does for
+the Menu control. Handle events triggered by the pop-up menus as
+you would handle events from Menu controls. For more information, see <a href="flx_menucontrols_mc.html#WS2db454920e96a9e51e63e3d11c0bf69084-7d8f_verapache">Menu
+control events</a>. </p>
+
+                     <p>The following example handles events
+for the menu bar and for the pop-up submenus.</p>
+
+                     <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- menus/MenuBarEventInfo.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    creationComplete="initCollections();"&gt; 
+    
+    &lt;fx:Script&gt; 
+        &lt;![CDATA[ 
+            import mx.events.MenuEvent; 
+            import mx.controls.Alert; 
+            import mx.collections.*; 
+ 
+            [Bindable] 
+            public var menuBarCollection:XMLListCollection; 
+    
+            private var menubarXML:XMLList =&lt;&gt; 
+                &lt;menuitem label="Menu1"&gt; 
+                    &lt;menuitem label="MenuItem 1-A" data="1A"/&gt; 
+                    &lt;menuitem label="MenuItem 1-B" data="1B"/&gt; 
+                &lt;/menuitem&gt; 
+                &lt;menuitem label="Menu2"&gt; 
+                    &lt;menuitem label="MenuItem 2-A" data="2A"/&gt; 
+                    &lt;menuitem label="MenuItem 2-B" data="2B"/&gt; 
+                &lt;/menuitem&gt; 
+                &lt;menuitem label="Menu3" data="M3"/&gt; 
+                &lt;/&gt; 
+                
+            // Event handler to initialize the MenuBar control. 
+            private function initCollections():void { 
+                menuBarCollection = new XMLListCollection(menubarXML); 
+            } 
+            
+            // Event handler for the MenuBar control's change event. 
+            private function changeHandler(event:MenuEvent):void  { 
+                // Only open the Alert for a selection in a pop-up submenu. 
+                // The MenuEvent.menu property is null for a change event 
+                // dispatched by the menu bar. 
+                if (event.menu != null) { 
+                    Alert.show("Label: " + event.item.@label + "\n" + 
+                        "Data: " + event.item.@data, "Clicked menu item"); 
+                }                    
+            } 
+ 
+            // Event handler for the MenuBar control's itemRollOver event. 
+            private function rollOverHandler(event:MenuEvent):void { 
+                rollOverTextArea.text = "type: " + event.type + "\n"; 
+                rollOverTextArea.text += "target menuBarIndex: " + 
+                    event.index + "\n"; 
+            }           
+            // Event handler for the MenuBar control's itemClick event. 
+            private function itemClickHandler(event:MenuEvent):void { 
+                itemClickTextArea.text = "type: " + event.type + "\n"; 
+                itemClickTextArea.text += "target menuBarIndex: " + 
+                    event.index + "\n"; 
+            }           
+        ]]&gt; 
+    &lt;/fx:Script&gt; 
+ 
+    &lt;mx:Panel title="MenuBar Control Example" 
+        height="75%" width="75%" 
+        paddingTop="10" paddingLeft="10"&gt; 
+ 
+        &lt;mx:Label 
+            width="100%" 
+            color="blue" 
+            text="Select a menu item."/&gt; 
+        &lt;mx:MenuBar labelField="@label"  
+            dataProvider="{menuBarCollection}" 
+            change="changeHandler(event);" 
+            itemClick="itemClickHandler(event);" 
+            itemRollOver="rollOverHandler(event);"/&gt;        
+        &lt;mx:TextArea id="rollOverTextArea" 
+            width="200" height="100"/&gt; 
+        &lt;mx:TextArea id="itemClickTextArea" 
+            width="200" height="100"/&gt;         
+    &lt;/mx:Panel&gt; 
+&lt;/s:Application&gt;</pre>
+
+                  </dd>
+
+               
+            </dl>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf69084-7b0d_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7b0d_verapache"><!-- --></a>
+         <h3 class="topictitle3">Example: Using Menu control events</h3>
+
+         
+         <div>
+            <p>The following example lets you experiment with <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/controls/Menu.html" target="_blank">Menu</a> control
+events. It lets you display two menus, one with an XML data provider
+and one with an Array data provider. A TextArea control displays
+information about each event as a user opens the menus, moves the
+mouse, and selects menu items. It shows some of the differences
+in how you handle XML and object-based menus, and indicates some
+of the types of information that are available about each Menu event.</p>
+
+            <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- menus/ExtendedMenuExample.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx"&gt; 
+ 
+    &lt;fx:Script&gt; 
+        &lt;![CDATA[    
+        /* Import the Menu control and MenuEvent class. */ 
+        import mx.controls.Menu; 
+        import mx.events.MenuEvent; 
+        
+        /* Define a variable for the Menu control. */ 
+        private var myMenu:Menu; 
+ 
+        /* The event listener that creates menu with an XML data 
+           provider and adds event listeners for the menu. */ 
+        private function createAndShow():void { 
+            /* Clear the event output display. */ 
+            ta1.text=""; 
+            /* Don't show the (single) XML root node in the menu. */ 
+            myMenu = Menu.createMenu(null, myMenuData, false); 
+            /* Set the labelField explicitly for XML data providers. */ 
+            myMenu.labelField="@label" 
+            myMenu.addEventListener(MenuEvent.ITEM_CLICK, menuShowInfo); 
+            myMenu.addEventListener(MenuEvent.MENU_SHOW, menuShowInfo); 
+            myMenu.addEventListener(MenuEvent.MENU_HIDE, menuShowInfo); 
+            myMenu.addEventListener(MenuEvent.ITEM_ROLL_OUT, menuShowInfo); 
+            myMenu.addEventListener(MenuEvent.ITEM_ROLL_OVER, menuShowInfo); 
+            myMenu.show(275, 10); 
+        } 
+ 
+        /* The event listener for the menu events. 
+           Retain information on all events for a menu instance. */ 
+        private function menuShowInfo(event:MenuEvent):void { 
+            ta1.text="event.type: " + event.type; 
+            ta1.text+="\nevent.label: " + event.label; 
+            /* The index value is -1 for menuShow and menuHide events. */ 
+            ta1.text+="\nevent.index: " + event.index; 
+            /* The item field is null for show and hide events. */ 
+            if (event.item) { 
+                ta1.text+="\nItem label: " + event.item.@label 
+                ta1.text+="\nItem selected: " + event.item.@toggled; 
+                ta1.text+= "\nItem type: " + event.item.@type; 
+            } 
+        } 
+ 
+        /* The event listener that creates an object-based menu 
+           and adds event listeners for the menu. */ 
+        private function createAndShow2():void { 
+            /* Show the top (root) level objects in the menu. */ 
+            myMenu = Menu.createMenu(null, menuData, true); 
+            myMenu.addEventListener(MenuEvent.ITEM_CLICK, menuShowInfo2); 
+            myMenu.addEventListener(MenuEvent.MENU_SHOW, menuShowInfo2); 
+            /* The following line is commented out so that you can see the 
+               results of an ITEM_CLICK event. 
+               (The menu hides immediately after the click.) 
+               myMenu.addEventListener(MenuEvent.MENU_HIDE, menuShowInfo2); */ 
+            myMenu.addEventListener(MenuEvent.ITEM_ROLL_OVER, menuShowInfo2); 
+            myMenu.addEventListener(MenuEvent.ITEM_ROLL_OUT, menuShowInfo2); 
+            myMenu.show(275, 10); 
+        } 
+ 
+        /* The event listener for the object-based Menu events. */ 
+        private function menuShowInfo2(event:MenuEvent):void { 
+            ta1.text="event.type: " + event.type; 
+            ta1.text+="\nevent.label: " + event.label; 
+            /* The index value is -1 for menuShow and menuHide events. */ 
+            ta1.text+="\nevent.index: " + event.index; 
+            /* The item field is null for show and hide events. */ 
+            if (event.item) { 
+                ta1.text+="\nItem label: " + event.item.label 
+                ta1.text+="\nItem selected: " + event.item.toggled; 
+                ta1.text+= "\ntype: " + event.item.type; 
+            } 
+        } 
+ 
+        /* The object-based data provider, an Array of objects. 
+           Its contents is identical to that of the XML data provider. */ 
+        [Bindable] 
+        public var menuData:Array = [ 
+            {label: "MenuItem A", children: [ 
+                {label: "SubMenuItem A-1", enabled: false}, 
+                {label: "SubMenuItem A-2", type: "normal"} 
+            ]}, 
+            {label: "MenuItem B", type: "check", toggled: true}, 
+            {label: "MenuItem C", type: "check", toggled: false}, 
+            {type: "separator"}, 
+            {label: "MenuItem D", children: [ 
+                {label: "SubMenuItem D-1", type: "radio", groupName: "g1"}, 
+                {label: "SubMenuItem D-2", type: "radio", groupName: "g1", toggled: true}, 
+                {label: "SubMenuItem D-3", type: "radio", groupName: "g1"} 
+            ]} 
+        ]; 
+    ]]&gt; 
+    &lt;/fx:Script&gt; 
+ 
+    &lt;fx:Declarations&gt; 
+        &lt;!-- The XML-based menu data provider. The XML tag requires a single root. --&gt; 
+        &lt;fx:XML id="myMenuData"&gt; 
+            &lt;xmlRoot&gt; 
+                &lt;menuitem label="MenuItem A" &gt; 
+                    &lt;menuitem label="SubMenuItem A-1" enabled="false"/&gt; 
+                    &lt;menuitem label="SubMenuItem A-2"/&gt; 
+                &lt;/menuitem&gt; 
+                &lt;menuitem label="MenuItem B" type="check" toggled="true"/&gt; 
+                &lt;menuitem label="MenuItem C" type="check" toggled="false"/&gt; 
+                &lt;menuitem type="separator"/&gt;     
+                &lt;menuitem label="MenuItem D" &gt; 
+                    &lt;menuitem label="SubMenuItem D-1" type="radio" groupName="one"/&gt; 
+                    &lt;menuitem label="SubMenuItem D-2" type="radio" groupName="one" toggled="true"/&gt; 
+                    &lt;menuitem label="SubMenuItem D-3" type="radio" groupName="one"/&gt; 
+                &lt;/menuitem&gt; 
+            &lt;/xmlRoot&gt; 
+        &lt;/fx:XML&gt; 
+    &lt;/fx:Declarations&gt; 
+        
+    &lt;!-- Text area to display the event information. --&gt; 
+    &lt;mx:TextArea id="ta1" width="264" height="168" x="11" y="38"/&gt; 
+    
+    &lt;!-- Button controls to open the menus. --&gt; 
+    &lt;mx:Button id="b1" 
+        label="Open XML Popup" 
+        click="createAndShow();" x="10" y="10"/&gt; 
+    &lt;mx:Button id="b2" 
+        label="Open Object Popup" 
+        click="createAndShow2();" x="139" y="10"/&gt; 
+&lt;/s:Application&gt;</pre>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf69084-7b1b_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7b1b_verapache"><!-- --></a>
+         <h3 class="topictitle3">PopUpMenuButton control events</h3>
+
+         
+         <div>
+            <p>Because the <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/controls/PopUpMenuButton.html" target="_blank">PopUpMenuButton</a> is
+a subclass of the <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/controls/PopUpButton.html" target="_blank">PopUpButton</a> control,
+it supports all of that control’s events. When the user clicks the
+main button, the PopUpMenuButton control dispatches a <samp class="codeph">click</samp> (<samp class="codeph">MouseEvent.CLICK)</samp> event.</p>
+
+            <p>When the user clicks the PopUpMenuButton main button, the control
+dispatches an <samp class="codeph">itemClick</samp> (<a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/events/MenuEvent.html" target="_blank">MenuEvent</a>.<samp class="codeph">ITEM_CLICK)</samp> event
+that contains information about the selected menu item. Therefore,
+the same <samp class="codeph">itemClick</samp> event is dispatched when the
+user clicks the main button or selects the current item from the
+pop-up menu. Because the same event is dispatched in both cases,
+clicking on the main button produces the same behavior as clicking
+on the last selected menuItem, so the main button plays the role
+of a frequently used menu item.</p>
+
+            <p>The following example shows how the PopUpMenuButton generates
+events and how an application can handle them:</p>
+
+            <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- menus/PopUpMenuButtonEvents.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    height="600" width="600" 
+    creationComplete="initData();"&gt; 
+ 
+    &lt;fx:Script&gt; 
+        &lt;![CDATA[ 
+        import mx.events.*; 
+        import mx.controls.*; 
+            
+        // Set the Inbox (fourth) item in the menu as the button item. 
+        private function initData():void { 
+            Menu(p1.popUp).selectedIndex=3; 
+        } 
+            
+        // itemClick event handler, invoked when you select from the menu. 
+        // Shows the event's label, index properties, and the values of the 
+        // label and data fields of the data provider entry specified by 
+        // the event's item property. 
+        public function itemClickHandler(event:MenuEvent):void { 
+            Alert.show("itemClick event label: " + event.label 
+                + "  \nindex: " + event.index 
+                + "  \nitem.label: " + event.item.label 
+                + "  \nitem.data: " + event.item.data); 
+        } 
+        
+        //Click event handler for the main button. 
+        public function clickHandler(event:MouseEvent):void { 
+            Alert.show(" Click Event currentTarget.label: " 
+                + event.currentTarget.label); 
+        } 
+            
+        //The menu data provider 
+        [Bindable] 
+        public var menuDP:Array = [ 
+            {label: "Inbox", data: "inbox"}, 
+            {label: "Calendar", data: "calendar"}, 
+            {label: "Sent", data: "sent"}, 
+            {label: "Deleted Items", data: "deleted"}, 
+            {label: "Spam", data: "spam"} 
+        ]; 
+    ]]&gt;&lt;/fx:Script&gt; 
+ 
+    &lt;mx:PopUpMenuButton  id="p1" 
+        showRoot="true" 
+        dataProvider="{menuDP}" 
+        click="clickHandler(event);" 
+        itemClick="itemClickHandler(event);"/&gt; 
+&lt;/s:Application&gt;</pre>
+
+            <p>When the user selects an item from the pop-up menu, the following
+things occur:</p>
+
+            <ul>
+               <li>
+                  <p>The PopUpMenuButton dispatches an <samp class="codeph">itemClick</samp> event.</p>
+
+               </li>
+
+               <li>
+                  <p>The application’s <samp class="codeph">itemClickHandler()</samp> event
+listener function handles the <samp class="codeph">itemClick</samp> event and
+displays the information about the event in an Alert control.</p>
+
+               </li>
+
+            </ul>
+
+            <p>When the user clicks the main button, the following things occur:</p>
+
+            <ul>
+               <li>
+                  <p>The PopUpMenuButton control dispatches a <samp class="codeph">click</samp> event. </p>
+
+               </li>
+
+               <li>
+                  <p>The PopUpMenuButton control dispatches an <samp class="codeph">itemClick</samp> event.</p>
+
+               </li>
+
+               <li>
+                  <p>The application’s <samp class="codeph">itemClickHandler()</samp> event
+listener function handles the <samp class="codeph">itemClick</samp> event and
+displays information about the selected Menu item in an Alert control. </p>
+
+               </li>
+
+               <li>
+                  <p>The application’s <samp class="codeph">clickHandler()</samp> event listener
+function also handles the <samp class="codeph">MouseEvent.CLICK</samp> event,
+and displays the Button label in an Alert control.</p>
+
+               </li>
+
+            </ul>
+
+         </div>
+
+      </div>
+
+   </div>
+
+   <div class="nested1" id="WS2db454920e96a9e51e63e3d11c0bf66f5a-7fea_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf66f5a-7fea_verapache"><!-- --></a>
+      <h2 class="topictitle2">Menu control</h2>
+
+      
+      <div>
+         <p>
+            The <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/controls/Menu.html" target="_blank">Menu</a> control
+is a pop-up control that contains a menu of individually selectable
+choices. You use ActionScript to create a Menu control that pops
+up in response to a user action, typically as part of an event listener.
+Because you create a Menu control in response to an event, it does
+not have an MXML tag; you can create Menu controls in ActionScript
+only.</p>
+
+         <p>For complete reference information, see the <em>
+               <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/" target="_blank">ActionScript 3.0 Reference for the Adobe<sup>®</sup>
+Flash<sup>®</sup> Platform</a>
+            </em>.</p>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf66f5a-7ff9_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf66f5a-7ff9_verapache"><!-- --></a>
+         <h3 class="topictitle3">About the Menu Control</h3>
+
+         
+         <div>
+            <p>The following example shows a Menu control:</p>
+
+            <div class="figborder">
+               <img src="images/mc_menu.png" alt="Menu control"/>
+            </div>
+
+            <p>In this example, the MenuItem A and MenuItem D items open submenus. Submenus
+open when the user moves the mouse pointer over the parent item
+or accesses the parent item by using keyboard keys.</p>
+
+            <p>The default location of the Menu control is the upper-left corner
+of your application, at <em>x</em>, <em>y</em> coordinates 0,0. You
+can pass <samp class="codeph">x</samp> and <samp class="codeph">y</samp> arguments to
+the <samp class="codeph">show()</samp> method to control the position relative
+to the application. </p>
+
+            <p>After a Menu opens, it remains visible until the user selects
+an enabled menu item, the user selects another component in the
+application, or a script closes the menu.</p>
+
+            <p>To create a <em>static</em> menu that stays visible all the time,
+use the MenuBar control or PopUpMenuButton control. For more information
+on the MenuBar control, see <a href="flx_menucontrols_mc.html#WS2db454920e96a9e51e63e3d11c0bf69084-7d8e_verapache">MenuBar
+control </a>. For more information on the PopUpMenuButton control,
+see <a href="flx_menucontrols_mc.html#WS2db454920e96a9e51e63e3d11c0bf69084-7b20_verapache">PopUpMenuButton
+control</a>.</p>
+
+         </div>
+
+         <div class="nested3" id="WS03d33b8076db57b9-71841387121ca881e12-8000_verapache"><a name="WS03d33b8076db57b9-71841387121ca881e12-8000_verapache"><!-- --></a>
+            <h4 class="topictitle4">Create a Menu control</h4>
+
+            
+            <div>
+               <p>You cannot create a Menu control by using an MXML tag;
+you must create it in ActionScript.</p>
+
+               <ol>
+                  <li>
+                     <p>Create an instance of the Menu control by calling the
+static ActionScript <samp class="codeph">Menu.createMenu()</samp> method and
+passing the method an instance of the data provider that contains
+the information that populates the control as the second parameter;
+for example:</p>
+
+                     <pre class="codeblock"> var myMenu:Menu = Menu.createMenu(null, myMenuData);</pre>
+
+                     <p>(The
+first parameter can optionally specify the parent container of the
+menu.)</p>
+
+                     <p>If you do not display the root node of the data provider,
+for example, if the data provider is an XML document in E4X format,
+use a third parameter with the value <samp class="codeph">false</samp>. This
+parameter sets the menu’s <samp class="codeph">showRoot</samp> property. The following
+example creates a menu that does not show the data provider root:</p>
+
+                     <pre class="codeblock"> var myMenu:Menu = Menu.createMenu(null, myMenuData, false);</pre>
+
+                     <div class="note"><span class="notetitle">Note:</span> To hide the root node, you must set the <samp class="codeph">showRoot</samp> property
+in the <samp class="codeph">createMenu</samp>
+                        <em> method. Setting the property after you create the menu has no effect.</em>
+                     </div>
+
+                  </li>
+
+                  <li>
+                     <p>
+                        Display
+the Menu instance by calling the ActionScript <samp class="codeph">Menu.show()</samp> method;
+for example:</p>
+
+                     <pre class="codeblock"> myMenu.show(10, 10);</pre>
+
+                  </li>
+
+               </ol>
+
+               <div class="note"><span class="notetitle">Note:</span> Menus displayed by using the <samp class="codeph">Menu.popUpMenu()</samp> method
+are not removed automatically; you must call the <samp class="codeph">PopUpManager.removePopUp()</samp> method
+on the Menu object. The <samp class="codeph">show()</samp> method automatically
+adds the Menu object to the display list, and the <samp class="codeph">hide()</samp> method
+automatically removes it from the display list. Clicking outside
+the menu (or pressing Escape) also hides the Menu object and removes
+it from the display list.</div>
+
+            </div>
+
+         </div>
+
+         <div class="nested3" id="WS03d33b8076db57b9-71841387121ca881e12-7fff_verapache"><a name="WS03d33b8076db57b9-71841387121ca881e12-7fff_verapache"><!-- --></a>
+            <h4 class="topictitle4">Example: Creating a simple Menu
+control</h4>
+
+            
+            <div>
+               <p>
+                  The
+following example uses the <samp class="codeph">&lt;fx:XML&gt;</samp> tag to
+define the data for the Menu control and a Button control to trigger
+the event that opens the Menu control:</p>
+
+               <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- menus/SimpleMenuControl.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" &gt; 
+ 
+    &lt;fx:Script&gt; 
+        &lt;![CDATA[ 
+            // Import the Menu control. 
+            import mx.controls.Menu; 
+ 
+            // Create and display the Menu control. 
+            private function createAndShow():void { 
+                var myMenu:Menu = Menu.createMenu(null, myMenuData, false); 
+                myMenu.labelField="@label"; 
+                myMenu.show(10, 10); 
+            } 
+        ]]&gt; 
+    &lt;/fx:Script&gt; 
+ 
+    &lt;fx:Declarations&gt; 
+        &lt;!-- Define the menu data. --&gt; 
+        &lt;fx:XML format="e4x" id="myMenuData"&gt; 
+            &lt;root&gt; 
+                &lt;menuitem label="MenuItem A" &gt; 
+                    &lt;menuitem label="SubMenuItem A-1" enabled="false"/&gt; 
+                    &lt;menuitem label="SubMenuItem A-2"/&gt; 
+                &lt;/menuitem&gt; 
+                &lt;menuitem label="MenuItem B" type="check" toggled="true"/&gt; 
+                &lt;menuitem label="MenuItem C" type="check" toggled="false"/&gt; 
+                &lt;menuitem type="separator"/&gt;     
+                &lt;menuitem label="MenuItem D" &gt; 
+                    &lt;menuitem label="SubMenuItem D-1" type="radio" 
+                        groupName="one"/&gt; 
+                    &lt;menuitem label="SubMenuItem D-2" type="radio" 
+                        groupName="one" toggled="true"/&gt; 
+                    &lt;menuitem label="SubMenuItem D-3" type="radio" 
+                        groupName="one"/&gt; 
+                &lt;/menuitem&gt; 
+            &lt;/root&gt; 
+        &lt;/fx:XML&gt; 
+    &lt;/fx:Declarations&gt; 
+ 
+    &lt;mx:VBox&gt; 
+        &lt;!-- Define a Button control to open the menu --&gt; 
+        &lt;mx:Button id="myButton" 
+            label="Open Menu" 
+            click="createAndShow();"/&gt; 
+    &lt;/mx:VBox&gt; 
+&lt;/s:Application&gt;</pre>
+
+               <p>You can assign any name to node tags in the XML data. In the
+previous sample, each node is named with the generic <samp class="codeph">&lt;menuitem&gt;</samp> tag,
+but you can have used <samp class="codeph">&lt;node&gt;</samp>, <samp class="codeph">&lt;subNode&gt;</samp>, <samp class="codeph">&lt;person&gt;</samp>, <samp class="codeph">&lt;address&gt;</samp> and
+so on. </p>
+
+               <p>Because this example uses an E4X XML data source, you must specify
+the label field by using the E4X @ attribute specifier syntax, and
+you tell the control not to show the data provider root node.</p>
+
+               <p>Several attributes or fields, such as the <samp class="codeph">type</samp> attribute,
+have meaning to the Menu control. For information on how Flex interprets
+and uses the data provider data, see <a href="flx_menucontrols_mc.html#WS2db454920e96a9e51e63e3d11c0bf69084-7b23_verapache">Specifying
+and using menu entry information</a>.</p>
+
+            </div>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf69084-7dac_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7dac_verapache"><!-- --></a>
+         <h3 class="topictitle3">Menu control user interaction</h3>
+
+         
+         <div>
+            <p>
+               You
+can use the mouse or the keyboard to interact with a Menu control.
+Clicking selects a menu item and closes the menu, except with the
+following types of menu items:</p>
+
+            <dl>
+               
+                  <dt class="dlterm">Disabled items or separators</dt>
+
+                  <dd>
+                     <p>Rolling over or clicking menu items has no effect and the
+menu remains visible.</p>
+
+                  </dd>
+
+               
+               
+                  <dt class="dlterm">Submenu anchors</dt>
+
+                  <dd>
+                     <p>Rolling over the items activates the submenu; clicking them has
+no effect; rolling onto any menu item other than one of the submenu
+items closes the submenu.</p>
+
+                     <p>When a Menu control has focus, you
+can use the following keys to control it:</p>
+
+                     
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" frame="border" border="1" rules="all">
+                           
+                           
+                           <thead align="left">
+                              <tr>
+                                 <th class="cellrowborder" valign="top" width="NaN%" id="d292378e1669">
+                                    <p>Key</p>
+
+                                 </th>
+
+                                 <th class="cellrowborder" valign="top" width="NaN%" id="d292378e1675">
+                                    <p>Description</p>
+
+                                 </th>
+
+                              </tr>
+
+                           </thead>
+
+                           <tbody>
+                              <tr>
+                                 <td class="cellrowborder" valign="top" width="NaN%" headers="d292378e1669 ">
+                                    <p>Down Arrow</p>
+
+                                    <p>Up Arrow</p>
+
+                                 </td>
+
+                                 <td class="cellrowborder" valign="top" width="NaN%" headers="d292378e1675 ">
+                                    <p>Moves the selection down and up the rows
+of the menu. The selection loops at the top or bottom row.</p>
+
+                                 </td>
+
+                              </tr>
+
+                              <tr>
+                                 <td class="cellrowborder" valign="top" width="NaN%" headers="d292378e1669 ">
+                                    <p>Right Arrow</p>
+
+                                 </td>
+
+                                 <td class="cellrowborder" valign="top" width="NaN%" headers="d292378e1675 ">
+                                    <p>Opens a submenu, or moves the selection
+to the next menu in a menu bar.</p>
+
+                                 </td>
+
+                              </tr>
+
+                              <tr>
+                                 <td class="cellrowborder" valign="top" width="NaN%" headers="d292378e1669 ">
+                                    <p>Left Arrow </p>
+
+                                 </td>
+
+                                 <td class="cellrowborder" valign="top" width="NaN%" headers="d292378e1675 ">
+                                    <p>Closes a submenu and returns focus to the
+parent menu (if a parent menu exists), or moves the selection to
+the previous menu in a menu bar (if the menu bar exists).</p>
+
+                                 </td>
+
+                              </tr>
+
+                              <tr>
+                                 <td class="cellrowborder" valign="top" width="NaN%" headers="d292378e1669 ">
+                                    <p>Enter</p>
+
+                                 </td>
+
+                                 <td class="cellrowborder" valign="top" width="NaN%" headers="d292378e1675 ">
+                                    <p>Opens a submenu, has the effect of clicking
+and releasing the mouse on a row if a submenu does not exist.</p>
+
+                                 </td>
+
+                              </tr>
+
+                              <tr>
+                                 <td class="cellrowborder" valign="top" width="NaN%" headers="d292378e1669 ">
+                                    <p>Escape</p>
+
+                                 </td>
+
+                                 <td class="cellrowborder" valign="top" width="NaN%" headers="d292378e1675 ">
+                                    <p>Closes a menu level. </p>
+
+                                 </td>
+
+                              </tr>
+
+                           </tbody>
+
+                        </table>
+</div>
+
+                  </dd>
+
+               
+            </dl>
+
+         </div>
+
+      </div>
+
+   </div>
+
+   <div class="nested1" id="WS2db454920e96a9e51e63e3d11c0bf69084-7d8e_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7d8e_verapache"><!-- --></a>
+      <h2 class="topictitle2">MenuBar control </h2>
+
+      
+      <div>
+         <p>
+            A <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/controls/MenuBar.html" target="_blank">MenuBar</a> control
+displays the top level of a menu as a horizontal bar of menu items,
+where each item on the bar can pop up a submenu. The MenuBar control interprets
+the data provider in the same way as the Menu control, and supports the
+same events as the Menu control. Unlike the Menu control, a MenuBar
+control is static; that is, it does not function as a pop-up menu,
+but is always visible in your application. Because the MenuBar is
+static, you can define it directly in MXML.</p>
+
+         <p>For complete reference information, see the <em>
+               <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/" target="_blank">ActionScript 3.0 Reference for the Adobe
+Flash Platform</a>
+            </em>. For more information on the Menu control,
+see <a href="flx_menucontrols_mc.html#WS2db454920e96a9e51e63e3d11c0bf69084-7d8f_verapache">Menu control
+events</a>.</p>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf66f5a-7ff2_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf66f5a-7ff2_verapache"><!-- --></a>
+         <h3 class="topictitle3">About the MenuBar control</h3>
+
+         
+         <div>
+            <p>The following example shows a MenuBar control:</p>
+
+            <div class="figborder">
+               <img src="images/mc_menubar.png" alt="MenuBar control"/>
+            </div>
+
+            <p>The control shows the labels of the top level of the data provider
+menu. When a user selects a top-level menu item, the MenuBar control
+opens a submenu. The submenu stays open until the user selects another
+top-level menu item, selects a submenu item, or clicks outside the
+MenuBar area.</p>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf66f5a-7ff1_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf66f5a-7ff1_verapache"><!-- --></a>
+         <h3 class="topictitle3">Creating a MenuBar control </h3>
+
+         
+         <div>
+            <p>You define a MenuBar control in MXML by using the <samp class="codeph">&lt;mx:MenuBar&gt;</samp> tag. Specify
+an <samp class="codeph">id</samp> value if you intend to refer to a component
+elsewhere in your MXML application, either in another tag or in
+an ActionScript block.</p>
+
+            <p>
+               You
+specify the data for the MenuBar control by using the <samp class="codeph">dataProvider</samp> property.
+The MenuBar control uses the same types of data providers as does
+the Menu control. For more information on data providers for Menu
+and MenuBar controls, see <a href="flx_menucontrols_mc.html#WS2db454920e96a9e51e63e3d11c0bf69084-7b1e_verapache">Defining
+menu structure and data</a>. For more information on hierarchical
+data providers, see <a href="flx_about_dataproviders_ab.html#WS2db454920e96a9e51e63e3d11c0bf69084-7b69_verapache">Hierarchical
+data objects</a>.</p>
+
+            <p>In a simple case for creating a MenuBar control, you might use
+an <samp class="codeph">&lt;fx:XML&gt;</samp> or <samp class="codeph">&lt;fx:XMLList&gt;</samp> tag
+and standard XML node syntax to define the menu data provider. When
+you used an XML-based data provider, you must keep the following
+rules in mind:</p>
+
+            <ul>
+               <li>
+                  <p>With the <samp class="codeph">&lt;fx:XML&gt;</samp> tag you must
+have a single root node, and you set the <samp class="codeph">showRoot</samp> property
+of the MenuBar control to <samp class="codeph">false</samp>. (otherwise, your MenuBar
+would have only the root as a button). With the <samp class="codeph">&lt;fx:XMLList&gt;</samp> tag you
+define a list of XML nodes, and the top level nodes define the bar
+buttons. </p>
+
+               </li>
+
+               <li>
+                  <p>If your data provider has a label attribute (even if it is
+called “label”), you must set the MenuBar control’s <samp class="codeph">labelField</samp> property
+and use the E4X @ notation for the label; for example:</p>
+
+                  <pre class="codeblock"> labelField=”@label”</pre>
+
+               </li>
+
+            </ul>
+
+            <p>The <samp class="codeph">dataProvider</samp> property is the default property
+of the <samp class="codeph">MenuBar</samp> control, so you can define the XML
+or XMLList object as a direct child of the <samp class="codeph">&lt;mx:MenuBar&gt; tag</samp>,
+as the following example shows:</p>
+
+            <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- menus/MenuBarControl.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" &gt; 
+ 
+    &lt;!-- Define the menu; dataProvider is the default MenuBar property. 
+      Because this uses an XML data provider, specify the labelField and 
+      showRoot properties. --&gt; 
+    &lt;mx:MenuBar id="myMenuBar" labelField="@label"&gt; 
+        &lt;fx:XMLList&gt; 
+            &lt;menuitem label="MenuItem A"&gt; 
+                &lt;menuitem label="SubMenuItem A-1" enabled="false"/&gt; 
+                &lt;menuitem label="SubMenuItem A-2"/&gt; 
+            &lt;/menuitem&gt; 
+            &lt;menuitem label="MenuItem B"/&gt; 
+            &lt;menuitem label="MenuItem C"/&gt; 
+            &lt;menuitem label="MenuItem D"&gt; 
+                &lt;menuitem label="SubMenuItem D-1" 
+                    type="radio" groupName="one"/&gt; 
+                &lt;menuitem label="SubMenuItem D-2" 
+                    type="radio" groupName="one" 
+                    selected="true"/&gt; 
+                &lt;menuitem label="SubMenuItem D-3" 
+                    type="radio" groupName="one"/&gt; 
+            &lt;/menuitem&gt; 
+        &lt;/fx:XMLList&gt; 
+    &lt;/mx:MenuBar&gt; 
+&lt;/s:Application&gt;</pre>
+
+            <p>The top-level nodes in the MenuBar control correspond to the
+buttons on the bar. Therefore, in this example, the MenuBar control
+displays the four labels shown in the preceding image. </p>
+
+            <p>You can assign any name to node tags in the XML data. In the
+previous example, each node is named with the generic <samp class="codeph">&lt;menuitem&gt;</samp> tag,
+but you can use <samp class="codeph">&lt;node&gt;</samp>, <samp class="codeph">&lt;subNode&gt;</samp>, <samp class="codeph">&lt;person&gt;</samp>, <samp class="codeph">&lt;address&gt;</samp>,
+and so on. Several attributes or fields, such as the <samp class="codeph">type</samp> attribute,
+have meaning to the MenuBar control. For information on how Flex
+interprets and uses the data provider data, see <a href="flx_menucontrols_mc.html#WS2db454920e96a9e51e63e3d11c0bf69084-7b23_verapache">Specifying
+and using menu entry information</a>.</p>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf66f5a-7fef_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf66f5a-7fef_verapache"><!-- --></a>
+         <h3 class="topictitle3">MenuBar control user interaction</h3>
+
+         
+         <div>
+            <p>The user interaction of the MenuBar is the same as for
+the Menu control, with the following difference: when the MenuBar
+control has the focus, the left arrow opens the previous menu. If
+the current menu bar item has a closed pop-up menu, the right arrow
+opens the current menu; if the pop-up menu is open, the right arrow
+opens the next menu. (The behavior wraps around the ends of the MenuBar
+control.)</p>
+
+            <p>For more information, see <a href="flx_menucontrols_mc.html#WS2db454920e96a9e51e63e3d11c0bf69084-7dac_verapache">Menu
+control user interaction</a>.</p>
+
+         </div>
+
+      </div>
+
+   </div>
+
+   <div class="nested1" id="WS2db454920e96a9e51e63e3d11c0bf69084-7b20_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7b20_verapache"><!-- --></a>
+      <h2 class="topictitle2">PopUpMenuButton control</h2>
+
+      
+      <div>
+         <p>
+            
+            
+            The <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/controls/PopUpMenuButton.html" target="_blank">PopUpMenuButton</a> is
+a PopUpButton control whose secondary button pops up a Menu control.
+When the user selects an item from the pop-up menu, the main button
+of the PopUpButton changes to show the icon and label of the selected
+menu item. Unlike the Menu and MenuBar controls, the PopUpMenuButton
+supports only a single-level menu.</p>
+
+         <p>For complete reference information, see the <em>
+               <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/" target="_blank">ActionScript 3.0 Reference for the Adobe
+Flash Platform</a>
+            </em>. For more information on the Menu control,
+see <a href="flx_menucontrols_mc.html#WS2db454920e96a9e51e63e3d11c0bf69084-7d8f_verapache">Menu control
+events</a>. For more information on PopUpButton controls, see <a href="flx_controls_ctr.html#WS2db454920e96a9e51e63e3d11c0bf69084-7b18_verapache">PopUpButton
+control</a>.</p>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf66f5a-7fed_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf66f5a-7fed_verapache"><!-- --></a>
+         <h3 class="topictitle3">About the PopUpMenuButton control</h3>
+
+         
+         <div>
+            <p>The following example shows a PopUpMenuButton control before
+and after clicking the secondary pop-up button:</p>
+
+            <div class="figborder">
+               <img src="images/mc_PopUpMenuButton.png" alt="PopUpMenuButton control before and after clicking the secondary pop-up button"/>
+            </div>
+
+            <p>The PopUpMenuButton works as follows.</p>
+
+            <ul>
+               <li>
+                  <p>When you click the smaller button, which by default displays
+a <strong>v</strong> icon, the control displays a pop-up menu below the button.</p>
+
+               </li>
+
+               <li>
+                  <p>When you select an item from the pop-up menu, the main PopUpMenuButton button
+label changes to show the selected item’s label and the PopUpMenuButton
+control dispatches a <samp class="codeph">MenuEvent.CHANGE</samp> event. </p>
+
+               </li>
+
+               <li>
+                  <p>When you click the main button, the PopUpMenuButton control
+dispatches a <samp class="codeph">MenuEvent.CHANGE</samp> event and a<samp class="codeph"> MouseEvent.ITEM_CLICK</samp> event.</p>
+
+               </li>
+
+            </ul>
+
+            <p>For information on handling PopUpMenuButton events, see <a href="flx_menucontrols_mc.html#WS2db454920e96a9e51e63e3d11c0bf69084-7b1b_verapache">PopUpMenuButton control
+events</a>.</p>
+
+            <p>The PopUpMenuButton control lets users change the function of
+the main button by selecting items from the pop-up menu. The most
+recently selected item becomes the main button item. </p>
+
+            <p>This behavior is useful for buttons when there are a number of
+user actions, users tend to select the same option frequently, and
+the application developer cannot assume which option should be the
+default. Text editors often use such controls in their control bar
+for options, such as spacing, for which a user is likely to have a
+preferred setting, but the developer cannot determine it in advance.
+Microsoft Word, for example, uses such controls for specifying line
+spacing, borders, and text and highlight color.</p>
+
+            <p>You can use the PopUpButton control to create pop-up menu buttons
+with behaviors that differ from those of the PopUpMenuButton; for
+example, buttons that do not change the default action of the main
+button when the user selects a menu item. For more information,
+see <a href="flx_controls_ctr.html#WS2db454920e96a9e51e63e3d11c0bf69084-7b18_verapache">PopUpButton
+control</a>.</p>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf66f5a-7fec_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf66f5a-7fec_verapache"><!-- --></a>
+         <h3 class="topictitle3">Creating a PopUpMenuButton control</h3>
+
+         
+         <div>
+            <p>You define a <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/controls/PopUpMenuButton.html" target="_blank">PopUpMenuButton</a> control
+in MXML by using the <samp class="codeph">&lt;mx:PopUpMenuButton&gt;</samp> tag.
+Specify an <samp class="codeph">id</samp> value if you intend to refer to a component
+elsewhere in your MXML application, either in another tag or in
+an ActionScript block.</p>
+
+            <p>You specify the data for the PopUpMenuButton control by using
+the <samp class="codeph">dataProvider</samp> property. For information on valid
+data providers, including their structure and contents, see <a href="flx_menucontrols_mc.html#WS2db454920e96a9e51e63e3d11c0bf69084-7b1e_verapache">Defining
+menu structure and data</a>. </p>
+
+            <p>By default, the initially selected item is the first item in
+the pop-up menu dataProvider, and the default main button label
+is the item’s label, as determined by the <samp class="codeph">labelField</samp> or <samp class="codeph">labelFunction</samp> property.
+To set the initial main button label to a specific item’s label
+and functionality, write a listener for the PopUpMenuButton control’s <samp class="codeph">creationComplete</samp> event
+that sets the <samp class="codeph">selectedIndex</samp> property of the Menu
+subcontrol, as follows:</p>
+
+            <pre class="codeblock"> Menu(MyPopUpControl.popUp).selectedIndex=2;</pre>
+
+            <p>You must cast the PopUpMenuButton control’s <samp class="codeph">popUp</samp> property
+to a Menu because the property type is IUIComponent, not Menu.</p>
+
+            <p>You can also use the <samp class="codeph">label</samp> property of the PopUpMenuButton
+control to set the main button label.</p>
+
+            <p>When a popped up menu closes, it loses its selection and related
+properties.</p>
+
+            <div class="note"><span class="notetitle">Note:</span> You must use the PopUpMenuButton’s <samp class="codeph">creationComplete</samp> event,
+not the <samp class="codeph">initialize</samp> event, to set the main button
+label from the data provider.</div>
+
+            <div class="section" id="WS2db454920e96a9e51e63e3d11c0bf66f5a-7fec_verapache__WS2db454920e96a9e51e63e3d11c0bf66f5a-7fe7_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf66f5a-7fec_verapache__WS2db454920e96a9e51e63e3d11c0bf66f5a-7fe7_verapache"><!-- --></a><h4 class="sectiontitle">Example:
+Creating a PopUpMenuButton control</h4>
+               
+               <p>The following example
+creates a PopUpMenuButton control by using an E4X XML data provider.</p>
+
+               <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- menus/PopUpMenuButtonControl.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx"&gt; 
+ 
+    &lt;fx:Script&gt; 
+        &lt;![CDATA[ 
+            import mx.controls.Menu 
+            
+            // The initData function sets the initial value of the button 
+            // label by setting the Menu subcontrol's selectedIndex property. 
+            // You must cast the popUp property to a Menu. 
+            private function initData():void { 
+                Menu(pb2.popUp).selectedIndex=2; 
+            } 
+        ]]&gt; 
+    &lt;/fx:Script&gt; 
+ 
+    &lt;fx:Declarations&gt; 
+        &lt;fx:XML format="e4x" id="dp2"&gt; 
+            &lt;root&gt; 
+                &lt;editItem label="Cut"/&gt; 
+                &lt;editItem label="Copy"/&gt; 
+                &lt;editItem label="Paste"/&gt; 
+                &lt;separator type="separator"/&gt; 
+                &lt;editItem label="Delete"/&gt; 
+            &lt;/root&gt; 
+        &lt;/fx:XML&gt; 
+    &lt;/fx:Declarations&gt; 
+ 
+    &lt;mx:PopUpMenuButton id="pb2" 
+        dataProvider="{dp2}" 
+        labelField="@label" 
+        showRoot="false" 
+        creationComplete="initData();"/&gt; 
+&lt;/s:Application&gt;</pre>
+
+               <p>Because this example uses an
+E4X XML data source, you must specify the label field by using the
+E4X @ attribute specifier syntax, and you must tell the control not
+to show the data provider root node.</p>
+
+            </div>
+
+            <div class="section" id="WS2db454920e96a9e51e63e3d11c0bf66f5a-7fec_verapache__WS2db454920e96a9e51e63e3d11c0bf69084-7b10_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf66f5a-7fec_verapache__WS2db454920e96a9e51e63e3d11c0bf69084-7b10_verapache"><!-- --></a><h4 class="sectiontitle">Using
+the label property</h4>
+               
+               <p>The <samp class="codeph">label</samp> property
+of the PopUpMenuButton control specifies the contents of the label
+on the main button, and overrides any label from the pop-up menu
+that is determined by the <samp class="codeph">labelField</samp> or <samp class="codeph">labelFunction</samp> property.
+The <samp class="codeph">label</samp> property is useful for creating a main
+button label with fixed and a variable parts; for example, a mail
+“Send to:” button where only the destination text is controlled by
+the pop-up menu, so the main button could say “Send to: Inbox” or
+“Send to: Trash” based on the selection from a menu that lists “Menu”
+and “Trash.” </p>
+
+               <p>To use a dynamic <samp class="codeph">label</samp> property,
+use a PopUpMenuButton control <samp class="codeph">change</samp> event listener
+to set the label based on the event’s <samp class="codeph">label</samp> property,
+as in the following example:</p>
+
+               <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- menus/PopUpMenuButtonLabel.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx"&gt; 
+ 
+    &lt;fx:Script&gt; 
+        &lt;![CDATA[ 
+            import mx.events.MenuEvent; 
+            
+            public function itemClickHandler(event:MenuEvent):void { 
+                event.currentTarget.label= "Send to: " + event.label; 
+            } 
+ 
+            [Bindable] 
+            public var menuData:Array = [ 
+                {label: "Inbox", data: "inbox"}, 
+                {label: "Calendar", data: "calendar"}, 
+                {label: "Sent", data: "sent"}, 
+                {label: "Deleted Items", data: "deleted"}, 
+                {label: "Spam", data: "spam"} 
+            ]; 
+        ]]&gt; 
+    &lt;/fx:Script&gt; 
+ 
+    &lt;mx:PopUpMenuButton id="p1" 
+        showRoot="true" 
+        dataProvider="{menuData}" 
+        label="Send to: Inbox" 
+        itemClick="itemClickHandler(event);"/&gt; 
+&lt;/s:Application&gt;</pre>
+
+            </div>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf66f5a-7fe5_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf66f5a-7fe5_verapache"><!-- --></a>
+         <h3 class="topictitle3">PopUpMenuButton user interaction</h3>
+
+         
+         <div>
+            <p>
+               The
+user interaction of the PopUpMenuButton control main button and secondary
+button is the same as for the PopUpButton control. The user interaction
+with the pop-up menu is the same as for the Menu control. For more
+information on the PopUpButton user interaction, see <a href="flx_controls_ctr.html#WS2db454920e96a9e51e63e3d11c0bf69084-7b15_verapache">User
+interaction</a>. For more information on Menu control user interaction,
+see <a href="flx_menucontrols_mc.html#WS2db454920e96a9e51e63e3d11c0bf69084-7dac_verapache">Menu
+control user interaction</a>. </p>
+
+            <p/>
+
+         </div>
+
+      </div>
+
+         <p>Adobe and Adobe Flash are either registered trademarks or trademarks of Adobe Systems Incorporated in the United States and/or other countries and are used by permission from Adobe.  No other license to the Adobe trademarks are granted.</p>
+   </div>
+
+
+</body>
+</html>

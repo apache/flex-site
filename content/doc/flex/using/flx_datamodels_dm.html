@@ -1,0 +1,639 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Licensed to the Apache Software Foundation (ASF) under one or more
+  contributor license agreements.  See the NOTICE file distributed with
+  this work for additional information regarding copyright ownership.
+  The ASF licenses this file to You under the Apache License, Version 2.0
+  (the "License"); you may not use this file except in compliance with
+  the License.  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+-->
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en-us" xml:lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="topic"/>
+<meta name="DC.Title" content="Storing data"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="WS2db454920e96a9e51e63e3d11c0bf69084-7ff3_verapache"/>
+<link rel="stylesheet" type="text/css" href="commonltr.css"/>
+<title>Storing data</title>
+</head>
+<body id="WS2db454920e96a9e51e63e3d11c0bf69084-7ff3_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7ff3_verapache"><!-- --></a>
+
+
+   <h1 class="topictitle1">Storing data</h1>
+
+   
+   <div>
+      <p>You use the data model feature to store data in an application
+before it is sent to the server, or to store data sent from the
+server before using it in the application.</p>
+
+   </div>
+
+   <div class="nested1" id="WS2db454920e96a9e51e63e3d11c0bf66ba1-7ffe_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf66ba1-7ffe_verapache"><!-- --></a>
+      <h2 class="topictitle2">About data models</h2>
+
+      
+      <div>
+         <p>A <em>data model</em> is an ActionScript object that contains
+properties that you use to store application-specific data. Communication
+between a Flex application and the server
+is required only to retrieve data not yet available to the Flex
+application and to update a server-side data source with new data
+from the Flex application. </p>
+
+         <p>
+            You can use a data
+model for data validation, and it can contain client-side business
+logic. You can define a data model in MXML or ActionScript. In the model-view-controller
+(MVC) design pattern, the data model represents the model tier.</p>
+
+         <p>When you plan an application, you determine the kinds of data
+that the application must store and how that data must be manipulated.
+This helps you decide what types of data models you need. For example,
+suppose you decide that your application must store data about employees.
+A simple employee model might contain name, department, and e-mail
+address properties. </p>
+
+      </div>
+
+   </div>
+
+   <div class="nested1" id="WS2db454920e96a9e51e63e3d11c0bf69084-7b51_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7b51_verapache"><!-- --></a>
+      <h2 class="topictitle2">Defining a data model</h2>
+
+      
+      <div>
+         <p>You can define a data model in an MXML tag, an ActionScript
+function, or an ActionScript class. In general, you should use MXML-based
+models for simple data structures, and use ActionScript for more
+complex structures and client-side business logic. </p>
+
+         <div class="note"><span class="notetitle">Note:</span> The <samp class="codeph">&lt;fx:Model&gt; </samp>and <samp class="codeph">&lt;fx:XML&gt;</samp> tags
+are Flex compiler tags and do not correspond directly to ActionScript
+classes. The <em>
+               <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/" target="_blank">ActionScript 3.0 Reference for the Adobe<sup>®</sup>
+Flash<sup>®</sup> Platform</a>
+            </em> contains information about these tags
+and other compiler tags. </div>
+
+         <p>You can place an <samp class="codeph">&lt;fx:Model&gt;</samp> tag or an <samp class="codeph">&lt;fx:XML&gt;</samp> tag
+in a Flex application file or in an MXML component file. The tag
+should have an <samp class="codeph">id</samp> value, and it cannot be the root
+tag of an MXML component.</p>
+
+         <p>Declare an <samp class="codeph">&lt;fx:Model&gt;</samp> tag or an <samp class="codeph">&lt;fx:XML&gt;</samp> tag
+in an <samp class="codeph">&lt;fx:Declarations&gt;</samp> tag. You define these
+tags in an <samp class="codeph">&lt;fx:Declarations&gt;</samp> tag because
+they are not visual components.</p>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf66ba1-7ffc_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf66ba1-7ffc_verapache"><!-- --></a>
+         <h3 class="topictitle3">The &lt;fx:Model&gt; tag</h3>
+
+         
+         <div>
+            <p>The most common type of MXML-based model is the <a href="mxml/model.html" target="_blank">&lt;fx:Model&gt;</a> tag,
+which is compiled into an ActionScript object of type mx.utils.ObjectProxy,
+which contains a tree of objects when your data is in a hierarchy,
+with no type information. The leaves of the Object tree are scalar
+values. Because models that are defined in <samp class="codeph">&lt;fx:Model&gt;</samp> tags
+contain no type information or business logic, you should use them
+only for the simplest cases. Define models in ActionScript classes
+when you need the typed properties or you want to add business logic. </p>
+
+            <p>The following example shows an employee model declared in an <samp class="codeph">&lt;fx:Model&gt;</samp> tag:</p>
+
+            <pre class="noswf">&lt;?xml version="1.0"?&gt; 
+&lt;!-- Models\ModelsModelTag.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark"&gt; 
+    
+    &lt;fx:Declarations&gt; 
+        &lt;fx:Model id="employeemodel"&gt; 
+            &lt;employee&gt; 
+                &lt;name&gt; 
+                    &lt;first/&gt; 
+                    &lt;last/&gt; 
+                &lt;/name&gt; 
+                &lt;department/&gt; 
+                &lt;email/&gt; 
+            &lt;/employee&gt; 
+        &lt;/fx:Model&gt;    
+    &lt;/fx:Declarations&gt; 
+&lt;/s:Application&gt;</pre>
+
+            <p>An <samp class="codeph">&lt;fx:Model&gt;</samp> child tag with no value
+is considered null. If you want an empty string instead, you can
+use a binding expression as the value of the tag, as the following
+example shows:</p>
+
+            <pre class="noswf">&lt;?xml version="1.0"?&gt; 
+&lt;!-- Models\ModelTagEmptyString.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark"&gt; 
+    
+    &lt;fx:Declarations&gt; 
+        &lt;fx:Model id="employeemodel"&gt; 
+            &lt;employee&gt; 
+                &lt;name&gt; 
+                    &lt;!--Fill the first property with empty string.--&gt; 
+                    &lt;first&gt;{""}&lt;/first&gt; 
+                    &lt;!--Fill the last property with empty string.--&gt; 
+                    &lt;last&gt;{""}&lt;/last&gt; 
+                &lt;/name&gt; 
+                &lt;!--department is null--&gt; 
+                &lt;department/&gt; 
+                &lt;!--email is null--&gt; 
+                &lt;email/&gt; 
+            &lt;/employee&gt; 
+        &lt;/fx:Model&gt;    
+    &lt;/fx:Declarations&gt; 
+&lt;/s:Application&gt;</pre>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf66ba1-7ffb_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf66ba1-7ffb_verapache"><!-- --></a>
+         <h3 class="topictitle3">The &lt;fx:XML&gt; tag</h3>
+
+         
+         <div>
+            <p>An <a href="mxml/xml.html" target="_blank">&lt;fx:XML&gt;</a> tag
+represents literal XML data. Setting the <samp class="codeph">format</samp> property
+to <samp class="codeph">e4x</samp> creates an XML object, which implements
+the powerful XML-handling standards defined in the ECMAScript for
+XML specification (ECMA-357 edition 2) (known as E4X). For backward
+compatibility, when the <samp class="codeph">format</samp> property is not explicitly
+set to <samp class="codeph">e4x</samp>, the type of the object created is flash.xml.XMLNode.</p>
+
+            <div class="note"><span class="notetitle">Note:</span> You currently cannot use a node within an <samp class="codeph">&lt;fx:XML&gt;</samp> data
+model as a binding source. </div>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf66ba1-7ffa_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf66ba1-7ffa_verapache"><!-- --></a>
+         <h3 class="topictitle3">Script-based models</h3>
+
+         
+         <div>
+            <p>As an alternative to using an MXML-based model, you can
+define a model as a variable in an <a href="mxml/script.html" target="_blank">&lt;fx:Script&gt;</a> tag.
+The following example shows a very simple model defined in an ActionScript
+script block. It would be easier to declare this model in an <samp class="codeph">&lt;fx:Model&gt;</samp> tag.</p>
+
+            <pre class="noswf">&lt;?xml version="1.0"?&gt; 
+&lt;!-- Models\ScriptModel.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark"&gt; 
+    
+    &lt;fx:Script&gt; 
+        &lt;![CDATA[ 
+            [Bindable] 
+            public var myEmployee:Object={ 
+                name:{ 
+                    first:null, 
+                    last:null 
+                    }, 
+                department:null, 
+                email:null 
+            }; 
+        ]]&gt; 
+    &lt;/fx:Script&gt;   
+&lt;/s:Application&gt;</pre>
+
+            <p>There is no advantage to using a script-based model instead of
+an MXML-based model. As with MXML-based models, you cannot type
+the properties of a script-based model. To type properties, you
+must use a class-based model.</p>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf66ba1-7ff9_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf66ba1-7ff9_verapache"><!-- --></a>
+         <h3 class="topictitle3">Class-based models</h3>
+
+         
+         <div>
+            <p>Using an ActionScript class as a model is a good option
+when you want to store complex data structures with typed properties,
+or when you want to execute client-side business logic by using
+application data. Also, the type information in a class-based model
+is retained on the server when the model is passed to a server-side
+data service. </p>
+
+            <p>The following example shows a model defined in an ActionScript
+class. This model is used to store shopping cart items in an e-commerce
+application. It also provides business logic in the form of methods
+for adding and removing items, getting an item count, and getting
+the total price. </p>
+
+            <pre class="codeblock"> package 
+ { 
+  
+ [Bindable] 
+ public class ShoppingCart { 
+ 	public var items:Array = []; 
+  
+ 	public var total:Number = 0; 
+  
+ 	public var shippingCost:Number = 0; 
+  
+ 	public function ShoppingCart() { 
+ 	} 
+  
+ 	public function addItem(item:Object, qty:int = 1, 
+ 		index:int = 0):void { 
+ 		items.splice(index, 0, { id: item.id, 
+ 		name: item.name, 
+ 		description: item.description, 
+ 		image: item.image, 
+ 		price: item.price, 
+ 		qty: qty }); 
+ 		total += parseFloat(item.price) * qty; 
+ } 
+  
+ 	public function removeItemAt(index:Number):void { 
+ 		total -= parseFloat(items[index].price) * items[index].qty; 
+ 		items.splice(index, 1); 
+ 		if (getItemCount() == 0) 
+ 		shippingCost = 0; 
+ } 
+  
+ 	public function getItemCount():int { 
+ 		return items.length; 
+ 	} 
+  
+ 	public function getTotal():Number { 
+ 		return total; 
+ 	} 
+ } 
+ }</pre>
+
+            <div class="note"><span class="notetitle">Note:</span> You can use properties of any recognized type
+in a class-based model. For example, you could create an Employee
+class, and then define properties of type Employee in another class
+that imports Employee.</div>
+
+            <p>You declare a class-based model as an ActionScript component
+tag in an MXML file, as the following example shows:</p>
+
+            <pre class="codeblock"> &lt;local:ShoppingCart id="cart" xmlns:local="*"/&gt;</pre>
+
+            <p>This component is in the same directory as the MXML file, as
+indicated by the XML namespace value <samp class="codeph">*</samp>. For more
+information about specifying the location of components, see <a href="flx_mxml_mx.html#WS2db454920e96a9e51e63e3d11c0bf5f39f-7ff3_verapache">Using
+XML namespaces</a>.</p>
+
+         </div>
+
+      </div>
+
+   </div>
+
+   <div class="nested1" id="WS2db454920e96a9e51e63e3d11c0bf66ba1-7fff_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf66ba1-7fff_verapache"><!-- --></a>
+      <h2 class="topictitle2">Specifying an external source for
+an &lt;fx:Model&gt; tag or &lt;fx:XML&gt; tag</h2>
+
+      
+      <div>
+         <p>You can specify an external source for an <a href="mxml/model.html" target="_blank">&lt;fx:Model&gt;</a> or <a href="mxml/xml.html" target="_blank">&lt;fx:XML&gt; </a>tag
+in a <samp class="codeph">source</samp> property. Separating the content of
+a model from the MXML that defines the user interface improves the
+maintainability and reusability of an application.</p>
+
+         <p>The external source file can contain static data and data binding
+expressions, just like a model defined in the body of the <samp class="codeph">&lt;fx:Model&gt;</samp> or <samp class="codeph">&lt;fx:XML&gt;</samp> tag.
+The file referenced in a <samp class="codeph">source</samp> property resides
+on the server and not on the client machine. The compiler reads
+the <samp class="codeph">source</samp> value and compiles the source into the application;
+the <samp class="codeph">source</samp> value is not read at run time. To retrieve
+XML data at run time, you can use the <samp class="codeph">&lt;mx:HTTPService&gt;</samp> tag.</p>
+
+         <p>Using <samp class="codeph">&lt;fx:Model&gt;</samp> and <samp class="codeph">&lt;fx:XML&gt;</samp> tags
+with external sources is an easy way to reuse data model structures
+and data binding expressions. You can also use them to prepopulate
+user interface controls with static data by binding data from the model
+elements into the user interface controls. </p>
+
+         <p>The <samp class="codeph">source</samp> property accepts the names of files
+relative to the current web application directory, as well as URLs
+with HTTP:// prefixes. In the following example, the content of
+the myEmployee1 data model is an XML file named content.xml in the
+local web application directory. The content of the myEmployee2
+data model is a fictional HTTP URL that returns XML.</p>
+
+         <pre class="codeblock"> &lt;fx:Model source="employees.xml" id="employee1"/&gt; 
+  
+ &lt;fx:Model source="http://www.somesitel.com/employees.xml" id="employee2"/&gt;</pre>
+
+         <p>The source file must be a valid XML document with a single root
+node. The following example shows an XML file that could be used
+as the source of the <samp class="codeph">&lt;fx:Model source="employees.xml" id="Model1"/&gt;</samp> tag. </p>
+
+         <pre class="codeblock"> &lt;?xml version="1.0"?&gt; 
+ &lt;employees&gt; 
+ 	&lt;employee&gt; 
+ 		&lt;name&gt;John Doe&lt;/name&gt; 
+ 		&lt;phone&gt;555-777-66555&lt;/phone&gt; 
+ 		&lt;email&gt;jdoe@fictitious.com&lt;/email&gt; 
+ 		&lt;active&gt;true&lt;/active&gt; 
+ 	&lt;/employee&gt; 
+ 	&lt;employee&gt; 
+ 		&lt;name&gt;Jane Doe&lt;/name&gt; 
+ 		&lt;phone&gt;555-777-66555&lt;/phone&gt; 
+ 		&lt;email&gt;jndoe@fictitious.com&lt;/email&gt; 
+ 		&lt;active&gt;true&lt;/active&gt; 
+ 	&lt;/employee&gt; 
+ &lt;/employees&gt;</pre>
+
+      </div>
+
+   </div>
+
+   <div class="nested1" id="WS2db454920e96a9e51e63e3d11c0bf66ba1-7ff8_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf66ba1-7ff8_verapache"><!-- --></a>
+      <h2 class="topictitle2">Using validators with a data model</h2>
+
+      
+      <div>
+         <p>To validate the data stored in a data model, you use validators.
+In the following example, the <samp class="codeph">&lt;mx:EmailValidator&gt;</samp>, <samp class="codeph">&lt;mx:PhoneNumberValidator&gt;</samp>, <samp class="codeph">&lt;mx:ZipCodeValidator&gt;</samp>,
+and <samp class="codeph">&lt;mx:SocialSecurityValidator&gt;</samp> tags declare
+validators that validate the e-mail, phone, zip, and ssn fields
+of the registration data model. The validators generate error messages
+when a user enters incorrect data in TextInput controls that are
+bound to the data model fields. </p>
+
+         <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- Models\ModelWithValidator.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark"&gt; 
+    
+    &lt;fx:Declarations&gt; 
+        &lt;fx:Model id="reg"&gt; 
+            &lt;registration&gt; 
+                &lt;name&gt;{username.text}&lt;/name&gt; 
+                &lt;email&gt;{email.text}&lt;/email&gt; 
+                &lt;phone&gt;{phone.text}&lt;/phone&gt; 
+                &lt;zip&gt;{zip.text}&lt;/zip&gt; 
+                &lt;ssn&gt;{ssn.text}&lt;/ssn&gt; 
+            &lt;/registration&gt; 
+        &lt;/fx:Model&gt; 
+    
+        &lt;mx:Validator required="true" 
+            source="{reg}" property="name" 
+            trigger="{submit}" 
+            triggerEvent="click" 
+            listener="{username}"/&gt; 
+        &lt;mx:EmailValidator source="{reg}" property="email" 
+            trigger="{submit}" 
+            triggerEvent="click" 
+            listener="{email}"/&gt; 
+        &lt;mx:PhoneNumberValidator source="{reg}" property="phone" 
+            trigger="{submit}" 
+            triggerEvent="click" 
+            listener="{phone}"/&gt; 
+        &lt;mx:ZipCodeValidator source="{reg}" property="zip" 
+            trigger="{submit}" 
+            triggerEvent="click" 
+            listener="{zip}"/&gt; 
+        &lt;mx:SocialSecurityValidator source="{reg}" property="ssn" 
+            trigger="{submit}" 
+            triggerEvent="click" 
+            listener="{ssn}"/&gt; 
+    &lt;/fx:Declarations&gt; 
+    
+    &lt;!-- Form contains user input controls. --&gt; 
+    &lt;s:Form&gt; 
+        &lt;s:FormItem label="Name" required="true"&gt; 
+            &lt;s:TextInput id="username" width="200"/&gt; 
+        &lt;/s:FormItem&gt; 
+        &lt;s:FormItem label="Email" required="true"&gt; 
+            &lt;s:TextInput id="email" width="200"/&gt; 
+        &lt;/s:FormItem&gt; 
+        &lt;s:FormItem label="Phone" required="true"&gt; 
+            &lt;s:TextInput id="phone" width="200"/&gt; 
+        &lt;/s:FormItem&gt; 
+        &lt;s:FormItem label="Zip" required="true"&gt; 
+            &lt;s:TextInput id="zip" width="60"/&gt; 
+        &lt;/s:FormItem&gt; 
+        &lt;s:FormItem label="Social Security" required="true"&gt; 
+            &lt;s:TextInput id="ssn" width="200"/&gt; 
+        &lt;/s:FormItem&gt; 
+        &lt;s:FormItem&gt; 
+        &lt;!-- User clicks Button to trigger validation. --&gt; 
+            &lt;s:Button id="submit" label="Validate"/&gt; 
+        &lt;/s:FormItem&gt; 
+    &lt;/s:Form&gt;   
+&lt;/s:Application&gt;</pre>
+
+         <p>This example cleanly separates the user interface and application-specific
+data. You could easily extend it to create a three-tier architecture
+by binding data from the registration data model into an RPC service
+request. You could also bind user input data directly into an RPC
+service request, which itself is a data model.</p>
+
+         <p>
+            
+            
+            For
+more information about validators, see <a href="flx_validators_va.html#WS2db454920e96a9e51e63e3d11c0bf69084-7ff0_verapache">Validating
+Data</a>.</p>
+
+      </div>
+
+   </div>
+
+   <div class="nested1" id="WS2db454920e96a9e51e63e3d11c0bf66ba1-7ff7_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf66ba1-7ff7_verapache"><!-- --></a>
+      <h2 class="topictitle2">Using a data model as a value object</h2>
+
+      
+      <div>
+         <p>You can use a data model as a value object, which acts
+as a central repository for a set of data returned from method calls
+on one or more objects. This makes it easier to manage and work
+with data in an application. </p>
+
+         <p>
+            In
+the following example, the tentModel data model stores the results
+of a web service operation. The TentDetail component is a custom
+MXML component that gets its data from the tentModel data model
+and displays details for the currently selected tent. </p>
+
+         <pre class="codeblock"> ... 
+ &lt;!-- Data model stores data from selected tent. --&gt; 
+ <strong>&lt;fx:Model id="tentModel"&gt;</strong> 
+ 	&lt;tent&gt; 
+ 		<strong>&lt;name&gt;{selectedTent.name}&lt;/name&gt;</strong> 
+ 		<strong>&lt;sku&gt;{selectedTent.sku}&lt;/sku&gt;</strong> 
+ 		<strong>&lt;capacity&gt;{selectedTent.capacity}&lt;/capacity&gt;</strong> 
+ 		<strong>&lt;season&gt;{selectedTent.seasonStr}&lt;/season&gt;</strong> 
+ 		<strong>&lt;type&gt;{selectedTent.typeStr}&lt;/type&gt;</strong> 
+ 		<strong>&lt;floorarea&gt;{selectedTent.floorArea}&lt;/floorarea&gt;</strong> 
+ 		<strong>&lt;waterproof&gt;{getWaterProof(selectedTent.waterProof)}&lt;/waterproof&gt;</strong> 
+ 		<strong>&lt;weight&gt;{getWeight(selectedTent)}&lt;/weight&gt;</strong> 
+ 		<strong>&lt;price&gt;{selectedTent.price}&lt;/price&gt;</strong> 
+ 	&lt;/tent&gt; 
+ <strong>&lt;/fx:Model&gt;</strong> 
+ ... 
+ 	&lt;TentDetail id="detail" tent="{tentModel}"/&gt; 
+ ...</pre>
+
+         <p>The following example shows the MXML source code for the TentDetail component.
+References to the <samp class="codeph">tent</samp> property, which contains
+the tentModel data model, and the corresponding <samp class="codeph">tentModel </samp>properties
+are highlighted in boldface.</p>
+
+         <div class="p">
+            <pre class="noswf">&lt;?xml version="1.0" encoding="utf-8"?&gt; 
+&lt;!-- Models\myComponents\TentDetail.mxml--&gt; 
+&lt;s:Panel xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    title="Tent Details"&gt; 
+  
+    &lt;fx:Script&gt; 
+        &lt;![CDATA[ 
+            [Bindable] 
+            public var tent:Object; 
+        ]]&gt; 
+    &lt;/fx:Script&gt; 
+  
+    &lt;fx:Style&gt; 
+        .title{fontFamily:Arial;fontWeight:bold;color:#3D3D3D;fontSize:16pt;} 
+        .flabelColor 
+            {fontFamily:Arial;fontWeight:bold;color:#3D3D3D;fontSize:11pt} 
+        .productSpec{fontFamily:Arial;color:#5B5B5B;fontSize:10pt} 
+    &lt;/fx:Style&gt; 
+  
+    &lt;s:VGroup paddingLeft="10" paddingTop="10" paddingRight="10"&gt; 
+        &lt;s:Form verticalGap="0" paddingLeft="10" paddingTop="10" 
+            paddingRight="10" paddingBottom="0"&gt; 
+  
+            &lt;s:VGroup width="209" height="213"&gt; 
+                &lt;s:Image width="207" height="211" 
+                    source="./images/{tent.sku}_detail.jpg"/&gt; 
+            &lt;/s:VGroup&gt; 
+  
+            &lt;s:FormHeading label="{tent.name}" paddingTop="1" 
+                styleName="title"/&gt; 
+  
+            &lt;mx:HRule width="209"/&gt; 
+  
+            &lt;s:FormItem label="Capacity" styleName="flabelColor"&gt; 
+                &lt;s:Label text="{tent.capacity} person" 
+                    styleName="productSpec"/&gt; 
+            &lt;/s:FormItem&gt; 
+            &lt;s:FormItem label="Season" 
+                styleName="flabelColor"&gt; 
+                &lt;s:Label text="{tent.season}" 
+                    styleName="productSpec"/&gt; 
+            &lt;/s:FormItem&gt; 
+            &lt;s:FormItem label="Type" styleName="flabelColor"&gt; 
+                &lt;s:Label text="{tent.type}" 
+                    styleName="productSpec"/&gt; 
+            &lt;/s:FormItem&gt; 
+            &lt;s:FormItem label="Floor Area" styleName="flabelColor"&gt; 
+                &lt;s:Label text="{tent.floorarea} 
+                    square feet" styleName="productSpec"/&gt; 
+            &lt;/s:FormItem&gt; 
+            &lt;s:FormItem label="Weather" styleName="flabelColor"&gt; 
+                &lt;s:Label text="{tent.waterproof}" 
+                    styleName="productSpec"/&gt; 
+            &lt;/s:FormItem&gt; 
+            &lt;s:FormItem label="Weight" styleName="flabelColor"&gt; 
+                &lt;s:Label text="{tent.weight}" 
+                    styleName="productSpec"/&gt; 
+            &lt;/s:FormItem&gt; 
+        &lt;/s:Form&gt; 
+    &lt;/s:VGroup&gt; 
+&lt;/s:Panel&gt;</pre>
+
+         </div>
+
+      </div>
+
+   </div>
+
+   <div class="nested1" id="WS2db454920e96a9e51e63e3d11c0bf66ba1-7ff6_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf66ba1-7ff6_verapache"><!-- --></a>
+      <h2 class="topictitle2">Binding data into an XML data model</h2>
+
+      
+      <div>
+         <p>Flex compiles the <samp class="codeph">&lt;fx:XML&gt;</samp> tag into
+literal XML data in an ActionScript xml.XMLNode or XML object. This
+is different from the <samp class="codeph">&lt;fx:Model&gt;</samp> tag, which Flex
+compiles into an Action object that contains a tree of ActionScript
+objects. To bind data into an <samp class="codeph">&lt;fx:XML&gt;</samp> data
+model, you can use the curly braces syntax the same way you do with
+other data models. However, you cannot use a node within the data
+model as a binding source. </p>
+
+         <p>It’s not a best practice to use the <samp class="codeph">&lt;mx:Binding&gt;</samp> tag
+for this type of binding because doing so requires you to write
+an appropriate ActionScript XML command as the <samp class="codeph">destination</samp> property
+of the <samp class="codeph">&lt;mx:Binding&gt;</samp> tag. For more information
+about the <samp class="codeph">&lt;fx:XML&gt;</samp> tag, see <a href="flx_datamodels_dm.html#WS2db454920e96a9e51e63e3d11c0bf69084-7b51_verapache">Defining
+a data model</a>.</p>
+
+         <p>The following example shows an <samp class="codeph">&lt;fx:XML&gt;</samp> data
+model with binding destinations in curly braces:</p>
+
+         <pre class="noswf">&lt;?xml version="1.0"?&gt; 
+&lt;!-- Models\XMLBinding.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark"&gt; 
+    &lt;s:layout&gt; 
+        &lt;s:VerticalLayout/&gt; 
+    &lt;/s:layout&gt; 
+    
+    &lt;fx:Declarations&gt; 
+        &lt;fx:XML id="myEmployee" format="e4x"&gt; 
+            &lt;employee&gt; 
+                &lt;name&gt; 
+                    &lt;first&gt;{firstName.text}&lt;/first&gt; 
+                    &lt;last&gt;{lastName.text}&lt;/last&gt; 
+                    &lt;/name&gt; 
+                &lt;department&gt;{department.text}&lt;/department&gt; 
+                &lt;email&gt;{email.text}&lt;/email&gt; 
+            &lt;/employee&gt; 
+        &lt;/fx:XML&gt; 
+    &lt;/fx:Declarations&gt; 
+ 
+    &lt;s:TextInput id="firstName"/&gt; 
+    &lt;s:TextInput id="lastName"/&gt; 
+    &lt;s:TextInput id="department"/&gt; 
+    &lt;s:TextInput id="email"/&gt; 
+&lt;/s:Application&gt;</pre>
+
+         <p/>
+
+      </div>
+
+         <p>Adobe and Adobe Flash are either registered trademarks or trademarks of Adobe Systems Incorporated in the United States and/or other countries and are used by permission from Adobe.  No other license to the Adobe trademarks are granted.</p>
+   </div>
+
+
+</body>
+</html>

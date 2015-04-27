@@ -1,0 +1,1242 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Licensed to the Apache Software Foundation (ASF) under one or more
+  contributor license agreements.  See the NOTICE file distributed with
+  this work for additional information regarding copyright ownership.
+  The ASF licenses this file to You under the Apache License, Version 2.0
+  (the "License"); you may not use this file except in compliance with
+  the License.  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+-->
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en-us" xml:lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="topic"/>
+<meta name="DC.Title" content="Deploying applications"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="WS2db454920e96a9e51e63e3d11c0bf69084-7ec8_verapache"/>
+<link rel="stylesheet" type="text/css" href="commonltr.css"/>
+<title>Deploying applications</title>
+</head>
+<body id="WS2db454920e96a9e51e63e3d11c0bf69084-7ec8_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7ec8_verapache"><!-- --></a>
+
+
+   <h1 class="topictitle1">Deploying applications</h1>
+
+   <div>
+      <p>When you deploy an application written in  Flex, you make the application accessible to
+your users. The process of deploying an application is dependent
+on your application, your application requirements, and your deployment
+environment. For example, the process of deploying an application
+on an internal website that is only accessible by company employees
+might be different from the process for deploying the same application
+on a public website accessible by anyone.</p>
+
+      <p>Use the overview of the deployment process and the general checklist
+as a guide when you deploy your application. This topic does not
+attempt to define the exact set of steps that you use for deploying
+all applications. Instead, it contains an overview of the deployment
+process, and a general checklist that you might use when you deploy
+your application. </p>
+
+   </div>
+
+   <div class="nested1" id="WS2db454920e96a9e51e63e3d11c0bf662b6-7ffe_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf662b6-7ffe_verapache"><!-- --></a>
+      <h2 class="topictitle2">About deploying an application</h2>
+
+      
+      <div>
+         <p>
+            
+            When you deploy an application,
+you move the application from your development environment to your
+deployment environment. After you deploy it, customers have full
+access to the application.</p>
+
+         <p>The deployment process that your organization uses might only
+require you to copy a application’s SWF file from your development
+server to your deployment server. In many organizations however,
+the deployment process is more complicated, and involves people
+from groups outside the development organization. For example, you
+might have an IT department that maintains your corporate website.
+The IT department might be responsible for staging, testing, and
+then deploying your application.</p>
+
+         <p>Your application architecture might also require you to deploy
+more than just a single SWF file. For example, your application
+might access Runtime Shared Libraries (RSLs) or other assets at
+run time. You must make sure to copy all required files to your
+deployment environment. </p>
+
+         <p>Deployment might also require you to perform operations other
+than just copying application files to a deployment server. Your
+application might access data services on your server, or on another
+server. You must ensure that your data services are accessible by
+a deployed Flex application that executes on a client’s computer. </p>
+
+      </div>
+
+   </div>
+
+   <div class="nested1" id="WS2db454920e96a9e51e63e3d11c0bf662b6-7ffd_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf662b6-7ffd_verapache"><!-- --></a>
+      <h2 class="topictitle2">Deployment options</h2>
+
+      
+      <div>
+         <p>
+            The
+following example shows a typical deployment environment for an
+application: </p>
+
+         <div class="figborder">
+            <img src="images/inb_devenvironment_Fx_sdk2.png" alt="Typical deployment environment."/>
+         </div>
+
+         <p>Deploying an application for Flex SDK might require you to perform
+some or all of the following actions:</p>
+
+         <ul>
+            <li>
+               <p>Copy the application SWF file to your deployment server.
+As the previous example shows, you copy the application to webserver.example.com.</p>
+
+            </li>
+
+            <li>
+               <p>Copy any asset files, such as icons, media files, or other
+assets, to your deployment server. </p>
+
+            </li>
+
+            <li>
+               <p>Copy any custom RSLs to your web server or application server.
+For more information, see <a href="flx_deployingoverview_dp.html#WS2db454920e96a9e51e63e3d11c0bf69084-7bc1_verapache">Deploying
+RSLs with Flex SDK</a>.</p>
+
+            </li>
+
+            <li>
+               <p>Copy the framework RSLs to your deployment server. For more
+information, see <a href="flx_rsl_rsl.html#WS2db454920e96a9e51e63e3d11c0bf69084-7add_verapache">Using
+the framework RSLs</a>.</p>
+
+            </li>
+
+            <li>
+               <p>Copy any SWF files for your module to your deployment server
+in the same directory structure as you used for your development
+environment. <a href="flx_deployingoverview_dp.html#WS2db454920e96a9e51e63e3d11c0bf69084-7bbc_verapache">Deploying modules
+with Flex SDK</a>.</p>
+
+            </li>
+
+            <li>
+               <p>Copy any SWF files required to support Flex features, such
+as deep linking or runtime CSS. For more information, see <a href="flx_deployingoverview_dp.html#WS2db454920e96a9e51e63e3d11c0bf69084-7bc0_verapache">Deploying
+additional Flex files</a>.</p>
+
+            </li>
+
+            <li>
+               <p>Write a wrapper for the SWF file if you access it from an
+HTML, JSP, ASP, or another type of page. </p>
+
+               <p>A deployed SWF file
+can encompass your entire web application, however it is often used
+as a part of the application. Therefore, users do not typically request
+the SWF file directly, but request a web page that references the
+SWF file. For more information, see <a href="flx_wrapper_wr.html#WS2db454920e96a9e51e63e3d11c0bf69084-7ecf_verapache">Creating
+a wrapper</a>.</p>
+
+            </li>
+
+            <li>
+               <p>Create a crossdomain.xml file on the server for data service,
+if you directly access any data services outside of the domain that
+serves the SWF file. For more information, see <a href="flx_deployingoverview_dp.html#WS2db454920e96a9e51e63e3d11c0bf69084-7bbe_verapache">Accessing
+data services from a deployed application</a>
+               </p>
+
+            </li>
+
+         </ul>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf69084-7bc1_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7bc1_verapache"><!-- --></a>
+         <h3 class="topictitle3">Deploying RSLs with Flex SDK</h3>
+
+         
+         <div>
+            <p>
+               
+               When
+your application uses custom RSLs, you must make sure to deploy
+the RSL on your deployment server, in the same domain, unless you
+are using cross-domain RSLs. You use the <samp class="codeph">runtime-shared-libraries</samp> option
+of the Flex compiler to specify the directory location of the RSL
+at compile time. Ensure that you copy the RSL to the same directory
+that you specified with <samp class="codeph">runtime-shared-libraries</samp>. </p>
+
+            <p>By default, the Flex compilers dynamically link your application
+against the framework RSLs. This means that classes in the SDK are
+externally loaded at run time from the framework RSLs. The default
+location of these RSLs is on the Adobe<sup>®</sup> web site. If you clients
+do not have network connectivity, you must deploy the framework
+RSLs to a local location, or disable framework RSLs. To customize
+the location of framework RSLs, edit the flex-config.xml file. To
+disable framework RSLs, set the <samp class="codeph">static-link-runtime-shared-libraries</samp> compiler option
+to <samp class="codeph">true</samp>. </p>
+
+            <p>Flex also provides framework RSLs. These libraries are comprised
+of the Flex class libraries and can be used with any application
+built with Flex. The framework RSLs are precompiled libraries of
+framework classes and components. If your client does not have internet
+connectivity, be sure to deploy both the signed (*.SWZ) and unsigned
+(*.SWF) RSLs. Flash<sup>®</sup> Player will first try to load the signed RSLs
+from the Adobe web site, so you should not have to deploy them in
+most cases.</p>
+
+            <p>For more information, see <a href="flx_rsl_rsl.html#WS2db454920e96a9e51e63e3d11c0bf69084-7fd1_verapache">Runtime
+Shared Libraries</a>.</p>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf69084-7bbc_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7bbc_verapache"><!-- --></a>
+         <h3 class="topictitle3">Deploying modules with Flex SDK</h3>
+
+         
+         <div>
+            <p>Modules are SWF files that can be loaded and unloaded by
+an application. They cannot be run independently of an application,
+but any number of applications can share the modules. When your
+application uses a module, you must make sure to deploy the module’s
+SWF file on your deployment server in the same directory structure
+as you used for your development environment. For more information,
+see <a href="flx_modular_md.html#WS2db454920e96a9e51e63e3d11c0bf69084-7f22_verapache">Modular
+applications</a>.</p>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf69084-7bc0_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7bc0_verapache"><!-- --></a>
+         <h3 class="topictitle3">Deploying additional Flex files</h3>
+
+         
+         <div>
+            <p>The implementation of some Flex features requires that
+you deploy additional files along with your application’s SWF file.
+For example, if you use deep linking functionality in your application,
+you must deploy the historyFrame.html, history.css, and history.js
+files. If you use the Express Install version detection feature,
+you also must deploy the playerProductInstall.swf file with your
+SWF file. You typically deploy these files in the same location
+that the default HTML wrapper looks for them. For example, the deep
+linking files are typically in a sub directory called /history. </p>
+
+            <p>For a complete list of additional Flex files that you might deploy
+with your application, see <a href="flx_deployingoverview_dp.html#WS2db454920e96a9e51e63e3d11c0bf69084-7f1a_verapache">Deployment
+checklist</a>.</p>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf69084-7bbe_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7bbe_verapache"><!-- --></a>
+         <h3 class="topictitle3">Accessing data services from a
+deployed application</h3>
+
+         
+         <div>
+            <p>
+               In
+a typical Flex development environment, you build and test your
+application behind a corporate firewall, where security restrictions
+are much less strict than when a customer runs the application on
+their own computer. However, when you deploy the application, it
+runs on a customers computer outside your firewall. That simple
+change of location might cause the application to fail if you do
+not correctly configure your data services to allow external access.</p>
+
+            <p>Most run-time accesses to application resources fall into one
+of the following categories:</p>
+
+            <ul>
+               <li>
+                  <p>Direct access to asset files on a web server, such as
+image files. </p>
+
+               </li>
+
+               <li>
+                  <p>Direct access to resources on your J2EE application server. </p>
+
+               </li>
+
+               <li>
+                  <p>Data services requests through a proxy. A proxy redirects
+that request to the server that handles the data service request. </p>
+
+               </li>
+
+               <li>
+                  <p>Direct access to a data service. </p>
+
+               </li>
+
+            </ul>
+
+            <p>As part of deploying your application, ensure that all run-time
+data access requests work correctly from the application that is
+executing outside of your firewall.</p>
+
+         </div>
+
+      </div>
+
+   </div>
+
+   <div class="nested1" id="WS2db454920e96a9e51e63e3d11c0bf662b6-7ff7_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf662b6-7ff7_verapache"><!-- --></a>
+      <h2 class="topictitle2">Compiling for deployment</h2>
+
+      
+      <div>
+         <p>When you create a deployable SWF file, ensure that you
+compile the application correctly. Typically, you disable certain
+compiler features, such as the generation of debug output, and enable
+other options, such as the generation of accessible content.</p>
+
+         <p>This section contains an overview of some common compiler options
+that you might use when you create a deployable SWF file. For a
+complete list of compiler options, see <a href="flx_compilers_cpl.html#WS2db454920e96a9e51e63e3d11c0bf69084-7ffd_verapache">Flex
+compilers</a>.</p>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf662b6-7ffc_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf662b6-7ffc_verapache"><!-- --></a>
+         <h3 class="topictitle3">Creating a release build of your
+application</h3>
+
+         
+         <div>
+            <p>To compile a release build on the command line, set the <samp class="codeph">debug</samp> compiler
+option to <samp class="codeph">false</samp>. This prevents debug information
+from being included in the final SWF file.</p>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf662b6-7ff6_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf662b6-7ff6_verapache"><!-- --></a>
+         <h3 class="topictitle3">Enabling accessibility</h3>
+
+         
+         <div>
+            <p>
+               
+               The
+Flex accessibility option lets you create applications that are
+accessible to users with disabilities. By default, accessibility
+is disabled. You enable the accessibility features of Flex components
+at compile time by setting the <samp class="codeph">accessible</samp> option
+to <samp class="codeph">true</samp> for the command-line compiler, or setting
+the <samp class="codeph">&lt;accessible&gt;</samp> tag in the flex-config.xml
+file to <samp class="codeph">true</samp>. </p>
+
+            <p>For more information on creating accessible applications, see <a href="flx_accessible_ac.html#WS2db454920e96a9e51e63e3d11c0bf69084-7f60_verapache">Accessible
+applications </a>.</p>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf662b6-7ff4_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf662b6-7ff4_verapache"><!-- --></a>
+         <h3 class="topictitle3">Disabling incremental compilation</h3>
+
+         
+         <div>
+            <p>
+               You
+can use incremental compilation to decrease the time it takes to
+compile an application or component library with the Flex application
+compilers. When incremental compilation is enabled, the compiler
+inspects changes to the bytecode between revisions and only recompiles
+the section of bytecode that has changed. </p>
+
+            <p>For more information, see <a href="flx_compilers_cpl.html#WS2db454920e96a9e51e63e3d11c0bf69084-7ffd_verapache">Flex
+compilers</a>. </p>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf662b6-7fff_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf662b6-7fff_verapache"><!-- --></a>
+         <h3 class="topictitle3">Using a headless server</h3>
+
+         
+         <div>
+            <p>
+               
+               A <em>headless server</em> is
+one that is running UNIX or Linux and often does not have a monitor,
+keyboard, mouse, or even a graphics card. Headless servers are most commonly
+encountered in ISPs and ISVs, where available space is at a premium and
+servers are often mounted in racks. Enabling the headless mode reduces
+the graphics requirements of the underlying system and can allow
+for a more efficient use of memory.</p>
+
+            <p>If you deploy a Flex application on a headless server, you must
+set the <samp class="codeph">headless-server</samp> option of the compiler
+to <samp class="codeph">true</samp>. Setting this option to <samp class="codeph">true</samp> is
+required to support fonts and SVG images in a nongraphical environment. </p>
+
+         </div>
+
+      </div>
+
+   </div>
+
+   <div class="nested1" id="WS2db454920e96a9e51e63e3d11c0bf69084-7f1a_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7f1a_verapache"><!-- --></a>
+      <h2 class="topictitle2">Deployment checklist</h2>
+
+      
+      <div>
+         <p>
+            
+            
+            The
+deployment checklist contains some common system configuration issues that
+customers have found when deploying Flex applications for production.
+It also contains troubleshooting tips to diagnose common deployment
+problems. </p>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf662b6-7ff2_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf662b6-7ff2_verapache"><!-- --></a>
+         <h3 class="topictitle3">Application assets</h3>
+
+         
+         <div>
+            <p>When deploying a Flex application, you must make sure you
+also deploy all the assets that the application uses at run time.
+These include files that are used by the wrapper to support features
+such as deep linking and Express Install, as well as files that
+are loaded by the application such as resource bundles or RSLs.</p>
+
+            <p>In the case of wrapper code, you will probably be cutting and
+pasting it from the HTML template included with the SDK into your
+JSP or ASP or PHP pages.</p>
+
+            <p>Check that the following assets are deployed with your application
+if you use those assets in your Flex applications:</p>
+
+            
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" frame="border" border="1" rules="all">
+                  
+                  
+                  <thead align="left">
+                     <tr>
+                        <th class="cellrowborder" valign="top" width="NaN%" id="d180706e520">
+                           <p>Feature</p>
+
+                        </th>
+
+                        <th class="cellrowborder" valign="top" width="NaN%" id="d180706e526">
+                           <p>Assets to Deploy</p>
+
+                        </th>
+
+                     </tr>
+
+                  </thead>
+
+                  <tbody>
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d180706e520 ">
+                           <p>Wrapper files</p>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d180706e526 ">
+                           <p>If you use a wrapper, be sure to include
+it in the deployment process. The wrapper can be any file that returns
+HTML, such as PHP, ASP, JSP, or ColdFusion. Typically, this file
+uses the SWFObject 2 logic, or includes an <samp class="codeph">&lt;object&gt;</samp> or <samp class="codeph">&lt;embed&gt;</samp> tag
+to embed the Flex application.</p>
+
+                           <p>In addition, if you use dynamic
+pages to query databases or perform other server-side actions for
+your Flex application, be sure to deploy those as well. </p>
+
+                           <p>For
+more information, see <a href="flx_wrapper_wr.html#WS2db454920e96a9e51e63e3d11c0bf69084-7ecf_verapache">Creating
+a wrapper</a>. </p>
+
+                        </td>
+
+                     </tr>
+
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d180706e520 ">
+                           <p>Version detection</p>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d180706e526 ">
+                           <p>To support version detection or Express
+Install in your HTML wrapper, you must add the code based on the
+Flex wrapper template to your wrapper, as well as deploy the swfobject.js
+file. You must also deploy the playerProductInstall.swf file.</p>
+
+                           <p>For
+more information, see <a href="flx_wrapper_wr.html#WS2db454920e96a9e51e63e3d11c0bf69084-7ecf_verapache">Creating
+a wrapper</a>.</p>
+
+                        </td>
+
+                     </tr>
+
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d180706e520 ">
+                           <p>Deep linking</p>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d180706e526 ">
+                           <p>To support deep linking, you must include
+the following files in your deployment:</p>
+
+                           <div class="p">
+                              <ul>
+                                 <li>
+                                    <p>history.js</p>
+
+                                 </li>
+
+                                 <li>
+                                    <p>history.css</p>
+
+                                 </li>
+
+                                 <li>
+                                    <p>historyFrame.html</p>
+
+                                 </li>
+
+                              </ul>
+
+                           </div>
+
+                           <p>You must import the
+first two files into your HTML wrapper, and store all of these files
+in a /history subdirectory.</p>
+
+                           <p>For more information, see <a href="flx_deep_linking_dl.html#WS2db454920e96a9e51e63e3d11c0bf69084-7bb5_verapache">Deep
+linking</a>.</p>
+
+                        </td>
+
+                     </tr>
+
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d180706e520 ">
+                           <p>Runtime shared libraries (RSLs)</p>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d180706e526 ">
+                           <p>For standard RSLs, deploy the RSL SWF files
+with your Flex application. You must be sure to deploy the SWF files
+to the same relative location that the compiler used. If you are
+deploying an a custom RSL, be sure to optimize the RSL’s SWF file
+prior to deployment.</p>
+
+                           <p>For framework RSLs, if your client does
+not have internet connectivity, be sure to deploy both the signed
+(*.SWZ) and unsigned (*.SWF) RSLs. Flash Player will first try to
+load the signed RSLs from the Adobe web site, so you should not
+have to deploy them in most cases.</p>
+
+                           <p>For framework and cross-domain
+RSLs, be sure to deploy failover RSLs to the locations you specified
+when you compiled the application. </p>
+
+                           <p>For more information,
+see <a href="flx_rsl_rsl.html#WS2db454920e96a9e51e63e3d11c0bf69084-7fd1_verapache">Runtime
+Shared Libraries</a>.</p>
+
+                        </td>
+
+                     </tr>
+
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d180706e520 ">
+                           <p>Runtime stylesheets</p>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d180706e526 ">
+                           <p>If you use runtime stylesheets in your application,
+you must deploy the SWF files so that they can be loaded. You can
+load run-time stylesheet SWF files either locally or remotely. However, if
+you load them locally, the stylesheets must be in the same relative
+location that you specified in the application.</p>
+
+                           <p>For more information,
+see <a href="flx_styles_st.html#WS2db454920e96a9e51e63e3d11c0bf69084-7f8c_verapache">Loading
+style sheets at run time</a>.</p>
+
+                        </td>
+
+                     </tr>
+
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d180706e520 ">
+                           <p>Modules</p>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d180706e526 ">
+                           <p>If your application uses modules, you must
+deploy the module SWF files so that they can be loaded.</p>
+
+                           <p>Modules
+are SWF files that can be loaded and used by any number of applications.
+If multiple applications use your modules, then you should deploy
+them to a location that all applications can load them from rather
+than deploy them multiple times across different domains.</p>
+
+                           <p>For
+more information, see <a href="flx_modular_md.html#WS2db454920e96a9e51e63e3d11c0bf69084-7f22_verapache">Modular
+applications</a>.</p>
+
+                        </td>
+
+                     </tr>
+
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d180706e520 ">
+                           <p>Runtime localization</p>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d180706e526 ">
+                           <p>If your application uses run-time localization
+(if it, for example, lets the user switch from English to Japanese
+language at run time), then you might need to deploy resource module
+SWF files. These modules can contain one or more resources bundles
+for one or more locales.</p>
+
+                           <p>For more information, see <a href="flx_l10n_ln.html#WS19f279b149e7481c-1c03f02c12bd00c4763-8000_verapache">Localization</a>.</p>
+
+                        </td>
+
+                     </tr>
+
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d180706e520 ">
+                           <p>Security files</p>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d180706e526 ">
+                           <p>If you use container-based security, then
+be sure to update your security constraints to include your Flex
+application. </p>
+
+                           <p>In addition, if you load assets from multiple
+domains, be sure to deploy any crossdomain.xml files that are required
+by your applications.</p>
+
+                        </td>
+
+                     </tr>
+
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d180706e520 ">
+                           <p>Miscellaneous runtime assets</p>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d180706e526 ">
+                           <p>Not all assets are embedded at compile time.
+For example, FLV and image files are usually loaded at run time
+to keep the SWF file as small as possible. Be sure to check that
+you deploy the following types of assets that are typically loaded
+at run time with your Flex application:</p>
+
+                           <div class="p">
+                              <ul>
+                                 <li>
+                                    <p>FLV files</p>
+
+                                 </li>
+
+                                 <li>
+                                    <p>SWF files</p>
+
+                                 </li>
+
+                                 <li>
+                                    <p>Sound files (such as MP3 files)</p>
+
+                                 </li>
+
+                                 <li>
+                                    <p>Images (such as GIF, JPG, and PNG files)</p>
+
+                                 </li>
+
+                              </ul>
+
+                           </div>
+
+                        </td>
+
+                     </tr>
+
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d180706e520 ">
+                           <p>Data files</p>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d180706e526 ">
+                           <p>It is not uncommon for flat data files to
+be used as a data provider in Flex applications. Be sure to deploy
+any text files, which might appear in various formats such as XML,
+that are loaded at run time.</p>
+
+                        </td>
+
+                     </tr>
+
+                  </tbody>
+
+               </table>
+</div>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf662b6-7ff1_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf662b6-7ff1_verapache"><!-- --></a>
+         <h3 class="topictitle3">Types of network access</h3>
+
+         
+         <div>
+            <p>Deployed applications typically make several types of requests
+to services within your firewall, as the following example shows:</p>
+
+            <div class="figborder">
+               <img src="images/dp_devenv_Fx_dtsv3_steps.png" alt="Requests to services within a firewall."/>
+            </div>
+
+            <p>Most of the deployment issues that customers report are related
+to network security and routing, and fall into one of the following
+scenarios:</p>
+
+            <ol>
+               <li>
+                  <p>Direct access to resources on a web server, such as image
+files. In the preceding example, the client directly accesses resources
+on webserver.example.com.</p>
+
+               </li>
+
+               <li>
+                  <p>Direct access to resources on your application server. In
+the preceding example, the client directly accesses resources on
+appserver.example.com. Ensure that deployed applications can access
+the appropriate servers. </p>
+
+               </li>
+
+               <li>
+                  <p>Web services requests through a proxy. A proxy redirects
+a request to the server that handles the web service. In the preceding
+example, the client accesses a resource on appserver.example.com,
+but that request is redirected to finance.example.com. Ensure that
+you configure the proxy server correctly so that deployed Flex applications
+can access your web services, or other data services, through the
+proxy. </p>
+
+               </li>
+
+               <li>
+                  <p>Direct access of a web service. In the preceding example,
+the client directly accesses a service on finance.example.com. If
+a deployed Flex application directly accesses web services, or other
+data services, ensure that access is allowed. </p>
+
+               </li>
+
+            </ol>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf662b6-7ff0_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf662b6-7ff0_verapache"><!-- --></a>
+         <h3 class="topictitle3">Step 1. Create a list of server-side
+resources</h3>
+
+         
+         <div>
+            <p>Before you start testing your network configuration, make
+a list of the IP addresses and DNS names of all the servers that
+a Flex application might access. A Flex application might directly
+access these servers, for example by using a web service, or another
+server might access them as part of handling a redirected request.</p>
+
+            <p>Enter the information about your servers in the following table:</p>
+
+            
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" frame="border" border="1" rules="all">
+                  
+                  
+                  
+                  <thead align="left">
+                     <tr>
+                        <th class="cellrowborder" valign="top" width="NaN%" id="d180706e904">
+                           <p>Name</p>
+
+                        </th>
+
+                        <th class="cellrowborder" valign="top" width="NaN%" id="d180706e910">
+                           <p>DNS name</p>
+
+                        </th>
+
+                        <th class="cellrowborder" valign="top" width="NaN%" id="d180706e916">
+                           <p>IP address</p>
+
+                        </th>
+
+                     </tr>
+
+                  </thead>
+
+                  <tbody>
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d180706e904 ">
+                           <p> </p>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d180706e910 ">
+                           <p> </p>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d180706e916 ">
+                           <p> </p>
+
+                        </td>
+
+                     </tr>
+
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d180706e904 ">
+                           <p> </p>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d180706e910 ">
+                           <p> </p>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d180706e916 ">
+                           <p> </p>
+
+                        </td>
+
+                     </tr>
+
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d180706e904 ">
+                           <p> </p>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d180706e910 ">
+                           <p> </p>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d180706e916 ">
+                           <p> </p>
+
+                        </td>
+
+                     </tr>
+
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d180706e904 ">
+                           <p> </p>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d180706e910 ">
+                           <p> </p>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d180706e916 ">
+                           <p> </p>
+
+                        </td>
+
+                     </tr>
+
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d180706e904 ">
+                           <p> </p>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d180706e910 ">
+                           <p> </p>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d180706e916 ">
+                           <p> </p>
+
+                        </td>
+
+                     </tr>
+
+                  </tbody>
+
+               </table>
+</div>
+
+            <p>Enter information about the server hosting the web service proxy:</p>
+
+            
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" frame="border" border="1" rules="all">
+                  
+                  
+                  
+                  <thead align="left">
+                     <tr>
+                        <th class="cellrowborder" valign="top" width="NaN%" id="d180706e1051">
+                           <p>Name</p>
+
+                        </th>
+
+                        <th class="cellrowborder" valign="top" width="NaN%" id="d180706e1057">
+                           <p>DNS Name</p>
+
+                        </th>
+
+                        <th class="cellrowborder" valign="top" width="NaN%" id="d180706e1063">
+                           <p>IP Address</p>
+
+                        </th>
+
+                     </tr>
+
+                  </thead>
+
+                  <tbody>
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d180706e1051 ">
+                           <p> </p>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d180706e1057 ">
+                           <p> </p>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d180706e1063 ">
+                           <p> </p>
+
+                        </td>
+
+                     </tr>
+
+                  </tbody>
+
+               </table>
+</div>
+
+            <p>Enter information about your web services or any other services
+accessible from a deployed Flex application:</p>
+
+            
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" frame="border" border="1" rules="all">
+                  
+                  
+                  <thead align="left">
+                     <tr>
+                        <th class="cellrowborder" valign="top" width="NaN%" id="d180706e1113">
+                           <p>Name</p>
+
+                        </th>
+
+                        <th class="cellrowborder" valign="top" width="NaN%" id="d180706e1119">
+                           <p>Location (URL)</p>
+
+                        </th>
+
+                     </tr>
+
+                  </thead>
+
+                  <tbody>
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d180706e1113 ">
+                           <p> </p>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d180706e1119 ">
+                           <p> </p>
+
+                        </td>
+
+                     </tr>
+
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d180706e1113 ">
+                           <p> </p>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d180706e1119 ">
+                           <p> </p>
+
+                        </td>
+
+                     </tr>
+
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d180706e1113 ">
+                           <p> </p>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d180706e1119 ">
+                           <p> </p>
+
+                        </td>
+
+                     </tr>
+
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d180706e1113 ">
+                           <p> </p>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d180706e1119 ">
+                           <p> </p>
+
+                        </td>
+
+                     </tr>
+
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d180706e1113 ">
+                           <p> </p>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d180706e1119 ">
+                           <p> </p>
+
+                        </td>
+
+                     </tr>
+
+                  </tbody>
+
+               </table>
+</div>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf662b6-7fef_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf662b6-7fef_verapache"><!-- --></a>
+         <h3 class="topictitle3">Step 2. Verify access from server
+to server within your firewall</h3>
+
+         
+         <div>
+            <p>
+               In
+some cases, an external request to one server can be redirected
+to another server behind your firewall. A redirected request can
+occur for a request to a web service or to any file, depending on
+the system configuration. Where it is necessary, ensure that your
+servers can communicate with each other so that a redirected request
+can be properly handled. </p>
+
+            <p>To determine if one server, called Server A in this example,
+can communicate with another server, called Server B, create a temporary
+file called temp.htm on Server A in its web root directory. Then,
+log in to Server B and ensure that it can access temp.htm on Server
+A. Try to access the file by using Server A’s DNS name and also
+its IP address. </p>
+
+            <p>Servers can have multiple NIC cards or multiple IP addresses.
+Ensure that each server can communicate with all of the IP addresses
+on your other servers.</p>
+
+            <p>Also, log in to the server that hosts your web service proxy
+to make sure that it can access all web services on all other servers.
+You can test the web service proxy by making an HTTP request to
+the WSDL file for each web service. In the previous example, log
+in to appserver.example.com and ensure that it can access the WSDL
+files on finance.example.com. </p>
+
+            <p>If any server cannot access the other servers in your system,
+an external request from a Flex application might also fail. For
+more information, contact your system administrator. </p>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf69084-7bb0_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7bb0_verapache"><!-- --></a>
+         <h3 class="topictitle3">Step 3. Verify access to your servers
+from outside the firewall</h3>
+
+         
+         <div>
+            <p>Some servers might have to be accessed from outside the
+firewall to handle HTTP, SOAP, or AMF requests from clients. You
+can use the following methods to determine if a deployed Flex application
+can access your servers from outside the firewall:</p>
+
+            <ol>
+               <li>
+                  <p>On each server that can be accessed from outside the
+firewall, create a temporary file, such as temp.htm, on the server
+in its web root directory. From a computer outside the firewall,
+use a browser to make an HTTP request to the temporary file to ensure
+that an external computer can access it. </p>
+
+                  <p>For example, for
+a file named temp.htm, try accessing it by using the following URL:</p>
+
+                  <p>
+                     <samp class="codeph">http://webserver.example.com/server1/temp.htm</samp>
+                  </p>
+
+               </li>
+
+               <li>
+                  <p>From a computer outside the firewall, use a browser to make
+an HTTP request to the WSDL file for each web service that can be
+accessed from outside the firewall to ensure that the WSDL file
+can be accessed.</p>
+
+                  <p>For example, try accessing the WSDL file
+for a web service by using the following URL: </p>
+
+                  <p>
+                     <samp class="codeph">http://finance.example.com/server1/myWS.wsdl</samp>
+                  </p>
+
+               </li>
+
+            </ol>
+
+            <p>You should be able to access the temp.htm file or the WSDL file
+on all of your servers from outside the firewall. If these requests
+fail, contact your IT department to determine why the files cannot
+be accessed. </p>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf662b6-7fed_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf662b6-7fed_verapache"><!-- --></a>
+         <h3 class="topictitle3">Step 4. Configure the proxy server</h3>
+
+         
+         <div>
+            <p>In <a href="flx_deployingoverview_dp.html#WS2db454920e96a9e51e63e3d11c0bf69084-7bb0_verapache">Step
+3. Verify access to your servers from outside the firewall</a>,
+you ensure that you can directly access your servers and server
+resources from outside the firewall. </p>
+
+            <p>After you configure your proxy server, ensure that the deployed
+Flex application can access web services and other server-side resources
+as necessary. </p>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf662b6-7fec_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf662b6-7fec_verapache"><!-- --></a>
+         <h3 class="topictitle3">Step 5. Create a crossdomain policy
+file </h3>
+
+         
+         <div>
+            <p>Your system might be configured to allow a Flex application
+to directly access server-side resources on different domains or
+different computers without going through a proxy. These operations
+fail under the following conditions:</p>
+
+            <ul>
+               <li>
+                  <p>When the Flex application’s SWF file references a URL,
+and that URL is outside the exact domain of the SWF file that makes
+the request</p>
+
+               </li>
+
+               <li>
+                  <p>When the Flex application’s SWF file references an HTTPS
+URL, and the SWF file that makes the request is not served over
+HTTPS</p>
+
+               </li>
+
+            </ul>
+
+            <p>To make a data service or asset available to SWF files in different
+domains or on different computers, use a crossdomain policy file
+on the server that hosts the data service or asset. A <em>crossdomain policy file</em> is
+an XML file that provides a way for the server to indicate that
+its data services and assets are available to SWF files served from
+certain domains, or from all domains. Any SWF file that is served from
+a domain specified by the server’s policy file is permitted to access
+a data service or asset from that server. By default, place the
+crossdomain.xml at the root directory of the server that is serving
+the data.</p>
+
+            <p>For more information on using a cross-domain policy file, see <a href="flx_security2_se.html#WS2db454920e96a9e51e63e3d11c0bf69084-7f2b_verapache">Using
+cross-domain policy files</a>.</p>
+
+         </div>
+
+      </div>
+
+         <p>Adobe and Adobe Flash are either registered trademarks or trademarks of Adobe Systems Incorporated in the United States and/or other countries and are used by permission from Adobe.  No other license to the Adobe trademarks are granted.</p>
+   </div>
+
+
+</body>
+</html>

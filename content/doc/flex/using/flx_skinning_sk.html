@@ -1,0 +1,3731 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Licensed to the Apache Software Foundation (ASF) under one or more
+  contributor license agreements.  See the NOTICE file distributed with
+  this work for additional information regarding copyright ownership.
+  The ASF licenses this file to You under the Apache License, Version 2.0
+  (the "License"); you may not use this file except in compliance with
+  the License.  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+-->
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en-us" xml:lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="topic"/>
+<meta name="DC.Title" content="Skinning MX components"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="WS2db454920e96a9e51e63e3d11c0bf69084-7fed_verapache"/>
+<link rel="stylesheet" type="text/css" href="commonltr.css"/>
+<title>Skinning MX components</title>
+</head>
+<body id="WS2db454920e96a9e51e63e3d11c0bf69084-7fed_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7fed_verapache"><!-- --></a>
+
+
+   <h1 class="topictitle1">Skinning MX components</h1>
+
+   <div>
+      <p>
+         You add
+skins to  Flex components by using ActionScript
+classes, MXML components, and image files. Image files can contain
+JPEG, GIF, and PNG images or SWF files.</p>
+
+      <p>This topic describes the process for skinning MX components.
+These are typically components that use the Halo theme. For information
+about skinning Spark components, see <a href="flx_gumboskinning_gs.html#WS53116913-F952-4b21-831F-9DE85B647C8A_verapache">Spark
+Skinning</a>.</p>
+
+      <p>By default, MX components in a Flex 4 application use the Spark
+skin classes in the mx.skins.spark.* package. To use Halo skins,
+you can either apply the Halo theme to your application or set the <samp class="codeph">compatibility-version</samp> compiler option
+to 3.0.0.</p>
+
+   </div>
+
+   <div class="nested1" id="WS2db454920e96a9e51e63e3d11c0bf60ad4-7fff_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf60ad4-7fff_verapache"><!-- --></a>
+      <h2 class="topictitle2">About MX component skinning</h2>
+
+      
+      <div>
+         <p>
+            <em>Skinning</em> is the process of changing the appearance
+of a component by modifying or replacing its visual elements. These
+elements can be made up of bitmap images, SWF files, or class files
+that contain drawing methods that define vector images.</p>
+
+         <p>Skins can define the entire appearance, or only a part of the
+appearance, of a component in various states. For example, an MX
+Button control that uses the Halo theme has eight possible states,
+and eight associated skin properties, as the following example shows:</p>
+
+         
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" frame="border" border="1" rules="all">
+               
+               
+               
+               <thead align="left">
+                  <tr>
+                     <th class="cellrowborder" valign="top" width="NaN%" id="d861450e67">
+                        <p>State</p>
+
+                     </th>
+
+                     <th class="cellrowborder" valign="top" width="NaN%" id="d861450e73">
+                        <p>Skin property</p>
+
+                     </th>
+
+                     <th class="cellrowborder" valign="top" width="NaN%" id="d861450e79">
+                        <p>Default skin class</p>
+
+                     </th>
+
+                  </tr>
+
+               </thead>
+
+               <tbody>
+                  <tr>
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d861450e67 ">
+                        <p>down</p>
+
+                     </td>
+
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d861450e73 ">
+                        <div class="p">
+                           <pre class="codeblock">downSkin</pre>
+
+                        </div>
+
+                     </td>
+
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d861450e79 ">
+                        <p>mx.skins.halo.ButtonSkin</p>
+
+                     </td>
+
+                  </tr>
+
+                  <tr>
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d861450e67 ">
+                        <p>over</p>
+
+                     </td>
+
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d861450e73 ">
+                        <div class="p">
+                           <pre class="codeblock">overSkin</pre>
+
+                        </div>
+
+                     </td>
+
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d861450e79 ">
+                        <p>mx.skins.halo.ButtonSkin</p>
+
+                     </td>
+
+                  </tr>
+
+                  <tr>
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d861450e67 ">
+                        <p>up</p>
+
+                     </td>
+
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d861450e73 ">
+                        <div class="p">
+                           <pre class="codeblock">upSkin</pre>
+
+                        </div>
+
+                     </td>
+
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d861450e79 ">
+                        <p>mx.skins.halo.ButtonSkin</p>
+
+                     </td>
+
+                  </tr>
+
+                  <tr>
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d861450e67 ">
+                        <p>disabled</p>
+
+                     </td>
+
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d861450e73 ">
+                        <div class="p">
+                           <pre class="codeblock">disabledSkin</pre>
+
+                        </div>
+
+                     </td>
+
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d861450e79 ">
+                        <p>mx.skins.halo.ButtonSkin</p>
+
+                     </td>
+
+                  </tr>
+
+                  <tr>
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d861450e67 ">
+                        <p>selectedDisabled</p>
+
+                     </td>
+
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d861450e73 ">
+                        <div class="p">
+                           <pre class="codeblock">selectedDisabledSkin</pre>
+
+                        </div>
+
+                     </td>
+
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d861450e79 ">
+                        <p>mx.skins.halo.ButtonSkin</p>
+
+                     </td>
+
+                  </tr>
+
+                  <tr>
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d861450e67 ">
+                        <p>selectedDown</p>
+
+                     </td>
+
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d861450e73 ">
+                        <div class="p">
+                           <pre class="codeblock">selectedDownSkin</pre>
+
+                        </div>
+
+                     </td>
+
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d861450e79 ">
+                        <p>mx.skins.halo.ButtonSkin</p>
+
+                     </td>
+
+                  </tr>
+
+                  <tr>
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d861450e67 ">
+                        <p>selectedOver</p>
+
+                     </td>
+
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d861450e73 ">
+                        <div class="p">
+                           <pre class="codeblock">selectedOverSkin</pre>
+
+                        </div>
+
+                     </td>
+
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d861450e79 ">
+                        <p>mx.skins.halo.ButtonSkin</p>
+
+                     </td>
+
+                  </tr>
+
+                  <tr>
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d861450e67 ">
+                        <p>selectedUp</p>
+
+                     </td>
+
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d861450e73 ">
+                        <div class="p">
+                           <pre class="codeblock">selectedUpSkin</pre>
+
+                        </div>
+
+                     </td>
+
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d861450e79 ">
+                        <p>mx.skins.halo.ButtonSkin</p>
+
+                     </td>
+
+                  </tr>
+
+               </tbody>
+
+            </table>
+</div>
+
+         <p>The default skins for the up, over, and down states appear as
+follows:</p>
+
+         <div class="figborder">
+            <img src="images/sk_button_default_skins.png" alt="Default skins for up, over, and down states of a Button control."/>
+            <dl>
+               
+                  <dt class="dlterm">
+                     <strong>A.</strong>
+                  </dt>
+
+                  <dd>up</dd>
+
+               
+               
+                  <dt class="dlterm">
+                     <strong>B.</strong>
+                  </dt>
+
+                  <dd>over</dd>
+
+               
+               
+                  <dt class="dlterm">
+                     <strong>C.</strong>
+                  </dt>
+
+                  <dd>down</dd>
+
+               
+            </dl>
+
+         </div>
+
+         <p>Other controls have similar states with associated skins. For
+example, RadioButton controls, which are subclasses of Button, also
+have up, down, and over skins. The ComboBox control has skins the
+define the appearance of the control when it is in the disabled,
+down, and over states. </p>
+
+         <p>You create a skin by using a bitmap image, a SWF file, or a class
+defined in ActionScript or in MXML. All components have a default
+skin class that can represent more than one state of the component.
+As you can see in the previous table, the eight states of the Button
+control use the same default skin class, mx.skins.halo.ButtonSkin,
+to draw the skin. Logic within the class determines the appearance
+of the Button control based on its current state. </p>
+
+         <p>You assign a skin to a component by using style properties. You
+can set a style property by using MXML tag properties, the StyleManager
+class, <samp class="codeph">&lt;fx:Style&gt;</samp> blocks, or style sheets.
+Most application use style sheets to organize and apply skins. Style
+sheets can be loaded at compile time or at run time. For information on
+loading style sheets at run time, see <a href="flx_styles_st.html#WS2db454920e96a9e51e63e3d11c0bf69084-7f8c_verapache">Loading
+style sheets at run time</a>.</p>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf60ad4-7ffe_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf60ad4-7ffe_verapache"><!-- --></a>
+         <h3 class="topictitle3">Types of MX component skins</h3>
+
+         
+         <div>
+            <p>You typically define a skin for the Halo theme as a bitmap
+graphic or as a vector graphic. Bitmap graphics, called <em>graphical skins</em> in
+Flex, are made up of individual pixels that together form an image.
+The downside of a bitmap graphic is that it is typically defined
+for a specific resolution and, if you scale or transform the image, you
+might notice a degradation in image quality. </p>
+
+            <p>A vector graphic, called a <em>programmatic skin</em> in Flex,
+consists of a set of line definitions that specify a line’s starting
+and end point, thickness, color, and other information required
+by Adobe<sup>®</sup> Flash<sup>®</sup> Player
+to draw the line. When a vector graphic is scaled, rotated, or modified
+in some other way, it is relatively simple for Flash Player to calculate
+the new layout of the vector graphic by transforming the line definitions.
+Therefore, you can perform many types of modifications to vector graphics
+without noticing any degradation in quality. </p>
+
+            <p>One advantage of programmatic skins is you can create vector
+graphics that allow you a great deal of programmatic control over
+the skin. For example, you can control the radius of a <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/controls/Button.html" target="_blank">Button</a> control’s
+corners by using programmatic skins, something you cannot do with
+graphical skins. You can develop programmatic skins directly in
+your Flex authoring environment or any text editor, without using
+a graphics tool such as Adobe Flash. Programmatic skins also tend
+to use less memory because they contain no external image files.</p>
+
+            <p>The following table describes the different types of skins:</p>
+
+            
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" frame="border" border="1" rules="all">
+                  
+                  
+                  <thead align="left">
+                     <tr>
+                        <th class="cellrowborder" valign="top" width="NaN%" id="d861450e402">
+                           <p>Skin type</p>
+
+                        </th>
+
+                        <th class="cellrowborder" valign="top" width="NaN%" id="d861450e408">
+                           <p>Description</p>
+
+                        </th>
+
+                     </tr>
+
+                  </thead>
+
+                  <tbody>
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d861450e402 ">
+                           <p>Graphical skins</p>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d861450e408 ">
+                           <p>Images that define the appearance of the
+skin. These images can JPEG, GIF, or PNG files, or they can be symbols
+embedded in SWF files. Typically you use drawing software such as
+Adobe<sup>®</sup> PhotoShop<sup>®</sup> 
+or Adobe<sup>®</sup> Illustrator<sup>®</sup> 
+to create graphical skins. </p>
+
+                           <p>For more information, see <a href="flx_skinning_sk.html#WS2db454920e96a9e51e63e3d11c0bf69084-7f8f_verapache">Creating
+graphical skins for MX components</a>.</p>
+
+                        </td>
+
+                     </tr>
+
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d861450e402 ">
+                           <p>Programmatic skins</p>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d861450e408 ">
+                           <p>ActionScript or MXML classes that define
+a skin. To change the appearance of controls that use programmatic skins,
+you edit an ActionScript or MXML file. You can use a single class
+to define multiple skins.</p>
+
+                           <p>For more information, see <a href="flx_skinning_sk.html#WS2db454920e96a9e51e63e3d11c0bf69084-7f8e_verapache">Creating
+programmatic skins for MX components</a>.</p>
+
+                        </td>
+
+                     </tr>
+
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d861450e402 ">
+                           <p>Stateful skins</p>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d861450e408 ">
+                           <p>A type of programmatic skin that uses view
+states, where each view state corresponds to a state of the component.
+The definition of the view state controls the look of the skin.
+Since you can have multiple view states in a component, you can
+use a single component to define multiple skins. </p>
+
+                           <p>For more
+information, see <a href="flx_skinning_sk.html#WS2db454920e96a9e51e63e3d11c0bf69084-7f8d_verapache">Creating
+stateful skins for MX components</a>.</p>
+
+                        </td>
+
+                     </tr>
+
+                  </tbody>
+
+               </table>
+</div>
+
+         </div>
+
+         <div class="nested3" id="WS2db454920e96a9e51e63e3d11c0bf60ad4-7ffd_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf60ad4-7ffd_verapache"><!-- --></a>
+            <h4 class="topictitle4">Creating graphical skins for MX
+components</h4>
+
+            
+            <div>
+               <p>When using graphical skins in the Halo theme, you must
+embed the image file for the skin in your application. To specify
+your skin, you can use the <samp class="codeph">setStyle()</samp> method, set
+it inline, or use Cascading Style Sheets (CSS), as the following example
+shows:</p>
+
+               <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- skins/SimpleButtonGraphicSkin.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark"&gt; 
+ 
+    &lt;fx:Style&gt; 
+        @namespace mx "library://ns.adobe.com/flex/mx"; 
+ 
+        mx|Button { 
+            upSkin: Embed("../assets/orb_up_skin.gif"); 
+        } 
+    &lt;/fx:Style&gt; 
+ 
+    &lt;mx:Button id="b1" label="Click Me"/&gt; 
+&lt;/s:Application&gt;</pre>
+
+               <p>For information on setting skins by using the <samp class="codeph">setStyle()</samp> method
+or by setting them inline, see <a href="flx_skinning_sk.html#WS2db454920e96a9e51e63e3d11c0bf69084-7f8b_verapache">Applying
+MX component skins</a>.</p>
+
+               <p>You can assign the same graphic or programmatic skin to two or
+more skins so that the skins display the same image, as the following
+example shows:</p>
+
+               <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- skins/SimpleButtonGraphicSkinTwoSkins.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark"&gt; 
+ 
+    &lt;fx:Style&gt; 
+        @namespace mx "library://ns.adobe.com/flex/mx"; 
+ 
+        mx|Button { 
+            upSkin: Embed("../assets/orb_up_skin.gif"); 
+            overSkin: Embed("../assets/orb_up_skin.gif"); 
+        } 
+    &lt;/fx:Style&gt; 
+ 
+    &lt;mx:Button id="b1" label="Click Me"/&gt; 
+ 
+&lt;/s:Application&gt;</pre>
+
+               <p>For more information, see <a href="flx_skinning_sk.html#WS2db454920e96a9e51e63e3d11c0bf69084-7f8f_verapache">Creating
+graphical skins for MX components</a>.</p>
+
+            </div>
+
+         </div>
+
+         <div class="nested3" id="WS2db454920e96a9e51e63e3d11c0bf60ad4-7ffc_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf60ad4-7ffc_verapache"><!-- --></a>
+            <h4 class="topictitle4">Creating programmatic skins for
+MX components</h4>
+
+            
+            <div>
+               <p>You can define programmatic skins for the Halo theme in
+either MXML or ActionScript. When using programmatic skins, you
+can define a class for each state of the component, or define a
+single class for multiple skins. In the following example you create
+a custom ActionScript skin to define the skin for the up state of
+the Button control:</p>
+
+               <pre class="noswf">package { 
+  // skins\ButtonUpSkinAS.as 
+ 
+  import mx.skins.ProgrammaticSkin; 
+ 
+  public class ButtonUpSkinAS extends ProgrammaticSkin { 
+ 
+    // Constructor. 
+    public function ButtonUpSkinAS() { 
+      super(); 
+    } 
+ 
+    override protected function updateDisplayList(unscaledWidth:Number, 
+      unscaledHeight:Number):void 
+    { 
+      graphics.lineStyle(1, 0x0066FF); 
+      graphics.beginFill(0x00FF00, 0.50); 
+      graphics.drawRoundRect(0, 0, unscaledWidth, unscaledHeight, 10, 10); 
+    } 
+  } 
+}</pre>
+
+               <p>In ActionScript, you typically use the ProgrammaticSkin class
+as the base class for your skin. In the skin class, you must override
+the <samp class="codeph">updateDisplayList()</samp> method to draw the skin.
+You then assign the skin component to the appropriate skin property
+of the Button control using a style sheet, as the following example shows: </p>
+
+               <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- skins/ApplySimpleButtonSkinAS.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark"&gt; 
+ 
+    &lt;fx:Style&gt; 
+        @namespace mx "library://ns.adobe.com/flex/mx"; 
+ 
+        mx|Button { 
+            upSkin: ClassReference("ButtonUpSkinAS"); 
+        } 
+    &lt;/fx:Style&gt; 
+ 
+    &lt;mx:Button id="b1" label="Click Me"/&gt; 
+&lt;/s:Application&gt;</pre>
+
+               <p>For information on applying skins, see <a href="flx_skinning_sk.html#WS2db454920e96a9e51e63e3d11c0bf69084-7f8b_verapache">Applying
+MX component skins</a>.</p>
+
+               <p>In the following example you create a custom MXML component to
+define the skin for the up state of the Button control. In MXML,
+you use ProgrammaticSkin as the base class of your skin. This is
+the same skin defined above in ActionScript:</p>
+
+               <pre class="noswf">&lt;?xml version="1.0"?&gt; 
+&lt;!-- skins\ButtonUpMXMLSkin.mxml --&gt; 
+&lt;skins:ProgrammaticSkin 
+    xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:skins="mx.skins.*"&gt; 
+ 
+  &lt;fx:Script&gt; 
+    &lt;![CDATA[       
+      override protected function updateDisplayList(unscaledWidth:Number, 
+        unscaledHeight:Number):void 
+      { 
+        graphics.lineStyle(1, 0x0066FF); 
+        graphics.beginFill(0x00FF00, 0.50); 
+        graphics.drawRoundRect(0, 0, unscaledWidth, unscaledHeight, 10, 10); 
+      } 
+    ]]&gt; 
+  &lt;/fx:Script&gt; 
+ 
+&lt;/skins:ProgrammaticSkin&gt;</pre>
+
+               <p>Notice that you include the <samp class="codeph">xmlns:skins="mx.skins.*"</samp> namespace declaration
+in MXML. This is necessary because by default you cannot use the ProgrammaticSkin
+class as the base class of an MXML component. </p>
+
+               <p>In the following example, you create a component that defines
+skins for multiple Button states. In this example, you use a <samp class="codeph">case</samp> statement
+to determine the current state of the Button control based on the <samp class="codeph">name</samp> property
+of the skin, where the <samp class="codeph">name</samp> property contains the
+current name of the skin. For example, if you define a programmatic
+skin for a Button control, the <samp class="codeph">name</samp> property could
+be any of the skin states: <samp class="codeph">downSkin</samp>, <samp class="codeph">upSkin</samp>, <samp class="codeph">overSkin</samp>, <samp class="codeph">disabledSkin</samp>, <samp class="codeph">selectedDisabledSkin</samp>, <samp class="codeph">selectedDownSkin</samp>, <samp class="codeph">selectedOverSkin</samp>, or <samp class="codeph">selectedUpSkin</samp>.</p>
+
+               <pre class="noswf">package { 
+  // skins\ButtonUpAndOverSkinAS.as 
+ 
+  import mx.skins.ProgrammaticSkin; 
+ 
+  public class ButtonUpAndOverSkinAS extends ProgrammaticSkin { 
+ 
+    // Constructor. 
+    public function ButtonUpAndOverSkinAS() { 
+      super(); 
+    } 
+ 
+    override protected function updateDisplayList(unscaledWidth:Number, 
+      unscaledHeight:Number):void 
+    {      
+      switch (name) 
+      {            
+       case "upSkin": { 
+        graphics.lineStyle(1, 0x0066FF); 
+        graphics.beginFill(0x00FF00, 0.50); 
+        graphics.drawRoundRect(0, 0, unscaledWidth, unscaledHeight, 10, 10); 
+       } 
+ 
+       case "overSkin": { 
+        graphics.lineStyle(1, 0x0066FF); 
+        graphics.beginFill(0x00CCFF, 0.50); 
+        graphics.drawRoundRect(0, 0, unscaledWidth, unscaledHeight, 10, 10); 
+       }       
+      } 
+    } 
+  } 
+}</pre>
+
+               <p>You then assign the ActionScript class to the appropriate skin
+properties: </p>
+
+               <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- skins/ApplyButtonUpOverSkinAS.mxml --&gt; 
+&lt;s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark"&gt; 
+ 
+    &lt;fx:Style&gt; 
+        @namespace mx "library://ns.adobe.com/flex/mx"; 
+ 
+        mx|Button { 
+            upSkin: ClassReference("ButtonUpAndOverSkinAS"); 
+            overSkin: ClassReference("ButtonUpAndOverSkinAS"); 
+        } 
+  &lt;/fx:Style&gt; 
+ 
+    &lt;mx:Button id="b1" label="Click Me"/&gt; 
+&lt;/s:Application&gt;</pre>
+
+               <p>For more information on creating programmatic skins, see <a href="flx_skinning_sk.html#WS2db454920e96a9e51e63e3d11c0bf69084-7f8e_verapache">Creating
+programmatic skins for MX components</a>.</p>
+
+            </div>
+
+         </div>
+
+         <div class="nested3" id="WS2db454920e96a9e51e63e3d11c0bf60ad4-7ffb_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf60ad4-7ffb_verapache"><!-- --></a>
+            <h4 class="topictitle4">Creating stateful skins for MX
+components</h4>
+
+            
+            <div>
+               <p>When using a stateful skin with the Halo theme, you define
+a skin that defines a view state for each state of a component. </p>
+
+               <p>You typically define a stateful skin as a subclass of UIComponent,
+in ActionScript or in MXML, because the view state mechanism is
+built into the UIComponent class. For more information, see <a href="flx_skinning_sk.html#WS2db454920e96a9e51e63e3d11c0bf69084-7f8d_verapache">Creating
+stateful skins for MX components</a>.</p>
+
+               <p>When using stateful skins, you must explicitly specify the default
+skin for all states not defined by the stateful skin component.</p>
+
+            </div>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf60ad4-7ffa_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf60ad4-7ffa_verapache"><!-- --></a>
+         <h3 class="topictitle3">Sizing MX component skins</h3>
+
+         
+         <div>
+            <p>Before a component applies a skin, it first determines
+its size without the skin. The component then examines the skin
+to determine whether the skin defines a specific size. If not, the
+component scales the skin to fit. If the skin defines a size, the
+component sizes itself to the skin. </p>
+
+            <p>Most skins do not define any size constraints, which allows the
+component to scale the skin as necessary. For more information on
+writing skins that contain size information, see <a href="flx_skinning_sk.html#WS2db454920e96a9e51e63e3d11c0bf69084-7f86_verapache">Implementing
+the measuredWidth and measuredHeight getters</a>. </p>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf60ad4-7ff9_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf60ad4-7ff9_verapache"><!-- --></a>
+         <h3 class="topictitle3">Skinning MX subcomponents</h3>
+
+         
+         <div>
+            <p>In some cases, you want to reskin subcomponents. The following
+example reskins the vertical MX <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/controls/scrollClasses/ScrollBar.html" target="_blank">ScrollBar</a> control
+that appears in <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/controls/List.html" target="_blank">List</a> controls:</p>
+
+            <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- skins/SubComponentSkins.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark"&gt; 
+  &lt;fx:Script&gt;&lt;![CDATA[ 
+     [Bindable] 
+     private var theText:String = "Lorem ipsum dolor sit amet, consectetur " + 
+        "adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore " + 
+        "magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco " + 
+        "laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor " + 
+        "in reprehenderit in voluptate velit esse cillum dolore eu fugiat " + 
+        "nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt " + 
+        "in culpa qui officia deserunt mollit anim id est laborum.";     
+  ]]&gt;&lt;/fx:Script&gt; 
+ 
+  &lt;fx:Style&gt; 
+     .myScrollStyle { 
+        upArrowUpSkin: Embed("../assets/uparrow_up_skin.gif");                  
+        downArrowUpSkin: Embed("../assets/downarrow_up_skin.gif");                  
+     } 
+  &lt;/fx:Style&gt; 
+ 
+  &lt;mx:TextArea id="ta1" 
+     width="400" 
+     height="50" 
+     verticalScrollPolicy="on" 
+     verticalScrollBarStyleName="myScrollStyle" 
+     text="{theText}" 
+  /&gt; 
+ 
+&lt;/s:Application&gt;</pre>
+
+            <p>By setting the value of the <samp class="codeph">verticalScrollBarStyleName</samp> property
+in the List type selector, all vertical ScrollBar controls in List
+components have a custom skin. The ScrollBar controls in other parts
+of the application do not have the custom skin.</p>
+
+            <p>As with all style sheets, you can define the skins in a separate
+CSS file and use the <samp class="codeph">source</samp> property of the <samp class="codeph">&lt;fx:Style&gt;</samp> tag
+to point to that file; for example:</p>
+
+            <pre class="codeblock">  &lt;fx:Style source="../stylesheets/MySkins.css"/&gt;</pre>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf69084-7e64_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7e64_verapache"><!-- --></a>
+         <h3 class="topictitle3">Creating a Halo theme</h3>
+
+         
+         <div>
+            <p>A <em>theme</em> is a collection of style definitions and
+skins that define the look and feel of an application built with
+Flex. Theme files can include both graphical and programmatic skins,
+as well as style sheets.</p>
+
+            <p>A theme takes the form of a SWC file that can be applied to an
+application. You compile a SWC file using the compc command-line
+compiler utility.</p>
+
+            <p>By compiling a SWC file and then using that SWC file as a theme
+in your application, you remove the burden of compiling all the
+skin files when you compile your main application. This can make
+compilation faster and make problems with the application code easier
+to debug. In addition, a SWC file is easier to transplant onto another
+application than are a set of classes and image files.</p>
+
+            <p>Halo, the default theme set that shipped with Flex 3, is almost
+entirely made up of programmatic skins, although there are some
+static graphic elements. Flex includes programmatic and graphical
+skins that use the Halo look and feel. You can edit the skins by
+using either the programmatic or graphical technique to reskin MX
+components for the Halo theme.</p>
+
+            <p>To use the Halo theme in a Flex 4 application, you can use the <samp class="codeph">theme</samp> compiler option,
+or you can set the <samp class="codeph">compatibility-version</samp> option
+to 3.0.0. If you use the Halo theme, then the Halo theme is applied
+to all MX components in your application. The Spark components continue
+to use the Spark theme unless you specifically override them.</p>
+
+            <p>For more information on creating and applying themes, see <a href="flx_styles_st.html#WS2db454920e96a9e51e63e3d11c0bf69084-7f85_verapache">About
+themes</a>.</p>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf69084-7f63_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7f63_verapache"><!-- --></a>
+         <h3 class="topictitle3">MX component skin resources</h3>
+
+         
+         <div>
+            <p>
+               Flex
+includes the following graphical and programmatic source files for
+MX component skins:</p>
+
+            <dl>
+               
+                  <dt class="dlterm">Base skin classes in the mx.skins.* package</dt>
+
+                  <dd>
+                     <p>These abstract skin classes define the basic functionality
+of Halo skin classes for MX components in Flex. For more information,
+see <a href="flx_skinning_sk.html#WS2db454920e96a9e51e63e3d11c0bf69084-7f8e_verapache">Creating
+programmatic skins for MX components</a>.</p>
+
+                  </dd>
+
+               
+               
+                  <dt class="dlterm">Programmatic skins in the mx.skins.halo.* package</dt>
+
+                  <dd>
+                     <p>These concrete skin classes extend the base skin classes
+in the mx.skins.* package. They define the appearance of skins for
+MX components in the Halo theme. You can extend or edit these skins
+to create new programmatic skins based on the default Flex look and
+feel. For more information, see <a href="flx_skinning_sk.html#WS2db454920e96a9e51e63e3d11c0bf69084-7f8e_verapache">Creating
+programmatic skins for MX components</a>.</p>
+
+                  </dd>
+
+               
+               
+                  <dt class="dlterm">Spark skins in the mx.skins.spark.* package</dt>
+
+                  <dd>
+                     <p>These skin classes define the default appearance of MX components
+in a Flex 4 application. For more information, see <a href="flx_gumboskinning_gs.html#WS53116913-F952-4b21-831F-9DE85B647C8A_verapache">Spark
+Skinning</a>.</p>
+
+                  </dd>
+
+               
+               
+                  <dt class="dlterm">Graphical Aeon theme</dt>
+
+                  <dd>
+                     <p>The Aeon theme for MX components includes the AeonGraphical.css
+file and the AeonGraphical.swf file that defines the skin symbols.
+These are in the framework/themes directory. In addition, Flex includes the
+FLA source file for the AeonGraphical.swf file. For more information,
+see <a href="flx_styles_st.html#WS2db454920e96a9e51e63e3d11c0bf69084-7f85_verapache">About
+themes</a>.</p>
+
+                     <p>You use these files to create skins for MX
+components based on the Flex look and feel, or create your own.</p>
+
+                  </dd>
+
+               
+            </dl>
+
+         </div>
+
+      </div>
+
+   </div>
+
+   <div class="nested1" id="WS2db454920e96a9e51e63e3d11c0bf69084-7f8b_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7f8b_verapache"><!-- --></a>
+      <h2 class="topictitle2">Applying MX component skins</h2>
+
+      
+      <div>
+         <p>You apply skins by using CSS, by specifying them inline
+in MXML, by calling the <samp class="codeph">setStyle()</samp> method, or by
+using the StyleManager class.</p>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf60ad4-7ff1_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf60ad4-7ff1_verapache"><!-- --></a>
+         <h3 class="topictitle3">Applying graphical skins inline</h3>
+
+         
+         <div>
+            <p>When you apply a skin inline, you specify it as the value
+of a skin style in MXML. </p>
+
+            <p>
+               To apply a graphical
+skin inline, you embed the skin by using the appropriate skin property
+of the control, as the following example shows:</p>
+
+            <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- skins/EmbedImagesInline.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark"&gt; 
+ 
+    &lt;mx:Button id="b1" 
+        label="Click Me" 
+        overSkin="@Embed(source='../assets/orb_over_skin.gif')" 
+        upSkin="@Embed(source='../assets/orb_up_skin.gif')" 
+        downSkin="@Embed(source='../assets/orb_down_skin.gif')"/&gt; 
+        
+&lt;/s:Application&gt;</pre>
+
+            <p>The location of the skin asset is relative to the location of
+the MXML file that embeds it. </p>
+
+            <p>When embedding inline, you use <samp class="codeph">@Embed</samp> (with
+an at [@] sign prefix) rather than <samp class="codeph">Embed</samp>, which
+you use in CSS files.</p>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf60ad4-7ff0_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf60ad4-7ff0_verapache"><!-- --></a>
+         <h3 class="topictitle3">Applying programmatic skins inline</h3>
+
+         
+         <div>
+            <p>For programmatic skins, you specify the class name for
+each state that you reskin and enclose the class name with curly
+braces { }. The skin’s class definition must be in your source path
+when you compile the application. If the class file is in the same
+directory as the application, then you do not need to add it to
+your source path.</p>
+
+            <p>The following example applies the SampleButtonSkin.mxml programmatic
+skin to the Button control’s <samp class="codeph">upSkin</samp>, <samp class="codeph">overSkin</samp>, <samp class="codeph">downSkin</samp>,
+and <samp class="codeph">disabledSkin</samp> states:</p>
+
+            <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- skins/ApplyProgrammaticSkinsInline.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark"&gt; 
+ 
+    &lt;mx:Button id="b1" 
+        label="Click Me" 
+        overSkin="{ButtonStatesSkin}" 
+        upSkin="{ButtonStatesSkin}" 
+        downSkin="{ButtonStatesSkin}" 
+        disabledSkin="{ButtonStatesSkin}"/&gt; 
+&lt;/s:Application&gt;</pre>
+
+            <p>In this example, the SampleButtonSkin.mxml file is in the same
+directory as the application. If the skin class is in another directory,
+you must import the class into the application so that the compiler
+can resolve the class name, as the following example shows:</p>
+
+            <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- skins/ApplyProgrammaticSkinsInlinePackage.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark"&gt; 
+ 
+    &lt;fx:Script&gt; 
+        import myComponents.*; 
+    &lt;/fx:Script&gt; 
+ 
+    &lt;mx:Button id="b1" 
+        label="Click Me" 
+        overSkin="{myComponents.ButtonStatesSkin}" 
+        upSkin="{myComponents.ButtonStatesSkin}" 
+        downSkin="{myComponents.ButtonStatesSkin}" 
+        disabledSkin="{myComponents.ButtonStatesSkin}"/&gt; 
+&lt;/s:Application&gt;</pre>
+
+            <p>When you define stateful skin, you set the <samp class="codeph">skin</samp> style
+property of the control to the class name of your skin component,
+as the following example shows: </p>
+
+            <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- skins/ApplyButtonStatefulSkinInlineAll.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark"&gt; 
+ 
+    &lt;fx:Script&gt; 
+        import myComponents.*; 
+    &lt;/fx:Script&gt; 
+ 
+    &lt;mx:Button id="b" 
+        label="Hello" 
+        skin="{myComponents.MyButtonStatefulSkinAll}"/&gt; 
+        
+&lt;/s:Application&gt; </pre>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf60ad4-7fef_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf60ad4-7fef_verapache"><!-- --></a>
+         <h3 class="topictitle3">Applying MX component skins by
+using CSS</h3>
+
+         
+         <div>
+            <p>When applying skins with CSS, you can use type or class
+selectors so that you can apply skins to one component or to all
+components of the same type. You can define the style sheet in the
+body of the <samp class="codeph">&lt;fx:Style&gt;</samp> tag or reference an external
+style sheet, as the following example shows:</p>
+
+            <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- skins/UseHaloSkinsStyleSheet.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark"&gt; 
+ 
+    &lt;s:layout&gt; 
+        &lt;s:VerticalLayout/&gt; 
+    &lt;/s:layout&gt;  
+    
+    &lt;fx:Style source="../assets/UseHaloSkins.css"/&gt; 
+ 
+    &lt;mx:CheckBox id="cb1" label="Click Me"/&gt; 
+    
+    &lt;mx:RadioButton id="rb1" label="Click Me"/&gt; 
+ 
+&lt;/s:Application&gt;</pre>
+
+            <p>You can apply skins to a single instance of a component by defining
+a class selector. The following example applies the custom style
+to the second button only:</p>
+
+            <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- skins/EmbedImagesClassSelector.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark"&gt; 
+ 
+    &lt;s:layout&gt; 
+        &lt;s:VerticalLayout/&gt; 
+    &lt;/s:layout&gt;  
+    
+    &lt;fx:Style&gt; 
+        .myButtonStyle { 
+            overSkin: Embed("../assets/orb_over_skin.gif"); 
+            upSkin: Embed("../assets/orb_up_skin.gif"); 
+            downSkin: Embed("../assets/orb_down_skin.gif"); 
+        } 
+    &lt;/fx:Style&gt; 
+ 
+    &lt;mx:Button id="b1" label="Click Me"/&gt; 
+    &lt;mx:Button id="b2" label="Click Me" styleName="myButtonStyle"/&gt; 
+&lt;/s:Application&gt;</pre>
+
+            <p>You can load style sheets at run time by compiling them into
+a SWF file. You then use the top-level StyleManager class’s <samp class="codeph">loadStyleDeclarations()</samp> method to
+load the CSS-based SWF file at run time, as the following example
+shows:</p>
+
+            <pre class="codeblock">Ôªø&lt;?xml version="1.0"?&gt; 
+&lt;!-- styles/BasicApp.mxml --&gt; 
+&lt;s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark"&gt; 
+ 
+    &lt;fx:Script&gt; 
+        &lt;![CDATA[ 
+        public function applyRuntimeStyleSheet():void { 
+            styleManager.loadStyleDeclarations("assets/BasicStyles.swf") 
+        } 
+        ]]&gt; 
+    &lt;/fx:Script&gt;    
+    &lt;s:VGroup&gt; 
+        &lt;s:Label text="Click the button to load a new CSS-based SWF file."/&gt; 
+        &lt;s:Button id="b1" label="Click Me" click="applyRuntimeStyleSheet()"/&gt; 
+    &lt;/s:VGroup&gt; 
+    
+&lt;/s:Application&gt;</pre>
+
+            <p>For more information, see <a href="flx_styles_st.html#WS2db454920e96a9e51e63e3d11c0bf69084-7f8c_verapache">Loading
+style sheets at run time</a>.</p>
+
+            <div class="section" id="WS2db454920e96a9e51e63e3d11c0bf60ad4-7fef_verapache__WS2db454920e96a9e51e63e3d11c0bf60ad4-7fee_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf60ad4-7fef_verapache__WS2db454920e96a9e51e63e3d11c0bf60ad4-7fee_verapache"><!-- --></a><h4 class="sectiontitle">Using
+CSS to apply graphical skins to MX components</h4>
+               
+               <p>You typically
+embed graphical skins as properties of a CSS file in the <samp class="codeph">&lt;fx:Style&gt;</samp> tag
+or in an external style sheet, just as you would apply any style property,
+such as <samp class="codeph">color</samp> or <samp class="codeph">fontSize</samp>. The
+following example defines skins on the <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/controls/Button.html" target="_blank">Button</a> type
+selector. In this example, all Buttons controls get the new skin definitions.</p>
+
+               <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- skins/EmbedImagesTypeSelector.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark"&gt; 
+ 
+    &lt;fx:Style&gt; 
+        @namespace mx "library://ns.adobe.com/flex/mx"; 
+        
+        mx|Button { 
+            overSkin: Embed("../assets/orb_over_skin.gif"); 
+            upSkin: Embed("../assets/orb_up_skin.gif"); 
+            downSkin: Embed("../assets/orb_down_skin.gif"); 
+        } 
+    &lt;/fx:Style&gt; 
+ 
+    &lt;mx:Button id="b1" label="Click Me"/&gt; 
+ 
+&lt;/s:Application&gt;</pre>
+
+               <p>When you embed the graphical
+skin, you embed it into your application’s SWF file. For more information
+on embedding assets, see <a href="flx_embed_em.html#WS2db454920e96a9e51e63e3d11c0bf69084-7fce_verapache">Embedding
+assets</a>. </p>
+
+            </div>
+
+            <div class="section" id="WS2db454920e96a9e51e63e3d11c0bf60ad4-7fef_verapache__WS2db454920e96a9e51e63e3d11c0bf60ad4-7fed_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf60ad4-7fef_verapache__WS2db454920e96a9e51e63e3d11c0bf60ad4-7fed_verapache"><!-- --></a><h4 class="sectiontitle">Using
+CSS to apply programmatic skins to MX components</h4>
+               
+               <p>You apply
+programmatic skins in a CSS file by using the <samp class="codeph">ClassReference</samp> directive.
+This directive takes a class name as the argument, where the class
+name corresponds to the ActionScript or MXML file containing your
+skin definition. The skin’s class must be in your source path when
+you compile the application. </p>
+
+               <p>When using programmatic skins,
+you assign the component name to the associated skin property. In
+the following example, the skin is in the file myComponents/MyButtonSkin.as
+where myComponents is a subdirectory of the directory containing
+your application:</p>
+
+               <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- skins/ApplyButtonSkin.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark"&gt; 
+ 
+    &lt;fx:Style&gt; 
+        @namespace mx "library://ns.adobe.com/flex/mx"; 
+ 
+        mx|Button { 
+            upSkin: ClassReference("myComponents.MyButtonSkin"); 
+        } 
+    &lt;/fx:Style&gt;  
+    &lt;mx:Button label="Hello World" id="b" /&gt; 
+&lt;/s:Application&gt; </pre>
+
+               <p>When you define stateful skin,
+you set the <samp class="codeph">skin</samp> style property of the control
+to the class name of your skin component, as the following example
+shows: </p>
+
+               <p>
+                  
+               </p>
+
+               <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- skins/ApplyButtonStatefulSkinAll.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark"&gt; 
+ 
+    &lt;fx:Style&gt; 
+        @namespace mx "library://ns.adobe.com/flex/mx"; 
+ 
+        mx|Button { 
+            skin: ClassReference("myComponents.MyButtonStatefulSkinAll"); 
+        } 
+    &lt;/fx:Style&gt;  
+    &lt;mx:Button label="Hello" id="b" /&gt; 
+&lt;/s:Application&gt; </pre>
+
+            </div>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf60ad4-7fec_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf60ad4-7fec_verapache"><!-- --></a>
+         <h3 class="topictitle3">Applying MX component skins with
+the setStyle() method</h3>
+
+         
+         <div>
+            <p>Skins are defined as style properties, therefore, you can
+access them with the <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/core/UIComponent.html#setStyle()" target="_blank">setStyle()</a> and <samp class="codeph">getStyle()</samp> methods.
+This lets you change skins during run time, or dynamically define
+them, as long as you embed the graphical asset at compile time. </p>
+
+            <p>For more information on using the <samp class="codeph">setStyle()</samp> method,
+see <a href="flx_styles_st.html#WS2db454920e96a9e51e63e3d11c0bf69084-7f7e_verapache">Using
+the setStyle() and getStyle() methods</a>. </p>
+
+            <div class="section" id="WS2db454920e96a9e51e63e3d11c0bf60ad4-7fec_verapache__WS2db454920e96a9e51e63e3d11c0bf60ad4-7feb_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf60ad4-7fec_verapache__WS2db454920e96a9e51e63e3d11c0bf60ad4-7feb_verapache"><!-- --></a><h4 class="sectiontitle">Using
+the setStyle() method to apply graphical skins to MX components</h4>
+               
+               <p>To
+embed an image so that you can use it with the <samp class="codeph">setStyle()</samp> method,
+you use the <samp class="codeph">[Embed]</samp> metadata tag and assign a reference
+to a variable. You can then use the <samp class="codeph">setStyle()</samp> method
+to apply that image as a skin to a component.</p>
+
+               <p>The following
+example embeds three images and applies those images as skins to
+an instance of a Button control:</p>
+
+               <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- skins/EmbedWithSetStyle.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    initialize="init();"&gt; 
+ 
+    &lt;fx:Script&gt; 
+        &lt;![CDATA[ 
+            [Embed("../assets/orb_over_skin.gif")] 
+            public var os:Class; 
+    
+            [Embed("../assets/orb_down_skin.gif")] 
+            public var ds:Class; 
+    
+            [Embed("../assets/orb_up_skin.gif")] 
+            public var us:Class; 
+    
+            private function init():void { 
+                b1.setStyle("upSkin", us); 
+                b1.setStyle("overSkin", os); 
+                b1.setStyle("downSkin", ds); 
+            } 
+        ]]&gt; 
+    &lt;/fx:Script&gt; 
+  
+    &lt;mx:Button label="Click Me" id="b1"/&gt; 
+&lt;/s:Application&gt;</pre>
+
+            </div>
+
+            <div class="section" id="WS2db454920e96a9e51e63e3d11c0bf60ad4-7fec_verapache__WS2db454920e96a9e51e63e3d11c0bf60ad4-7fea_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf60ad4-7fec_verapache__WS2db454920e96a9e51e63e3d11c0bf60ad4-7fea_verapache"><!-- --></a><h4 class="sectiontitle">Using
+the setStyle() method to apply programmatic skins to MX components</h4>
+               
+               <p>For
+programmatic skins, you apply a skin to a control by using the <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/core/UIComponent.html#setStyle()" target="_blank">setStyle()</a> method.
+The skin component must be in your source path when you compile
+the application. The following example applies the ButtonStatesSkin.as
+component to an MX Button by using the <samp class="codeph">setStyle()</samp> method:</p>
+
+               <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- skins/ApplyProgrammaticSkinsSetStyle.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark"&gt; 
+ 
+    &lt;s:layout&gt; 
+        &lt;s:VerticalLayout/&gt; 
+    &lt;/s:layout&gt;  
+    
+    &lt;fx:Script&gt; 
+        &lt;![CDATA[ 
+            public function changeSkins():void { 
+                if (cb1.selected) { 
+                    b1.setStyle("upSkin", ButtonStatesSkin); 
+                    b1.setStyle("downSkin", ButtonStatesSkin); 
+                    b1.setStyle("overSkin", ButtonStatesSkin); 
+                    b1.setStyle("disabledSkin", ButtonStatesSkin); 
+                } else { 
+                    b1.setStyle("upSkin", null); 
+                    b1.setStyle("downSkin", null); 
+                    b1.setStyle("overSkin", null); 
+                    b1.setStyle("disabledSkin", null); 
+                }               
+            } 
+            
+        ]]&gt; 
+    &lt;/fx:Script&gt; 
+ 
+    &lt;mx:Button id="b1" label="Click Me"/&gt; 
+ 
+    &lt;mx:CheckBox id="cb1" label="Apply custom skin class" click="changeSkins();"/&gt; 
+  
+&lt;/s:Application&gt;</pre>
+
+               <p>The reference to the ButtonStatesSkin
+class in the <samp class="codeph">setStyle()</samp> method causes the compiler
+to link in the entire ButtonStatesSkin class at compile time. The resulting
+SWF file will be larger than if there were no reference to this
+class, even if the <samp class="codeph">changeSkins()</samp> method is never
+called.</p>
+
+               <p>In the previous example, the SampleButtonSkin.mxml
+file is in the same directory as the application. If the skin class
+is in another directory, you must import the class into the application
+so that the compiler can resolve the class name, as the following
+example shows:</p>
+
+               <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- skins/ApplyProgrammaticSkinsSetStylePackage.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark"&gt; 
+ 
+    &lt;s:layout&gt; 
+        &lt;s:VerticalLayout/&gt; 
+    &lt;/s:layout&gt;  
+    
+    &lt;fx:Script&gt; 
+        &lt;![CDATA[        
+            import myComponents.*; 
+            
+            public function changeSkins():void { 
+                if (cb1.selected) { 
+                    b1.setStyle("upSkin", myComponents.ButtonStatesSkin); 
+                    b1.setStyle("downSkin", myComponents.ButtonStatesSkin); 
+                    b1.setStyle("overSkin", myComponents.ButtonStatesSkin); 
+                    b1.setStyle("disabledSkin", myComponents.ButtonStatesSkin); 
+                } else { 
+                    b1.setStyle("upSkin", null); 
+                    b1.setStyle("downSkin", null); 
+                    b1.setStyle("overSkin", null); 
+                    b1.setStyle("disabledSkin", null); 
+                }               
+            } 
+        ]]&gt; 
+    &lt;/fx:Script&gt; 
+ 
+    &lt;mx:Button id="b1" label="Click Me"/&gt; 
+ 
+    &lt;mx:CheckBox id="cb1" label="Apply custom skin class" click="changeSkins();"/&gt; 
+  
+&lt;/s:Application&gt;</pre>
+
+               <p>When you define stateful skin,
+you use the <samp class="codeph">setStyle()</samp> method to set the <samp class="codeph">skin</samp> style
+property of the control to the class name of your skin component.
+For more information on applying stateful skins, see <a href="flx_skinning_sk.html#WS2db454920e96a9e51e63e3d11c0bf69084-7f8d_verapache">Creating
+stateful skins for MX components</a>. </p>
+
+            </div>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf60ad4-7fe9_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf60ad4-7fe9_verapache"><!-- --></a>
+         <h3 class="topictitle3">Applying MX component skins with
+the StyleManager class</h3>
+
+         
+         <div>
+            <p>To apply skins to all instances of a control, you can use
+the StyleManager class, as the following example shows:</p>
+
+            <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- skins/EmbedWithStyleManager.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark" initialize="init()"&gt; 
+ 
+    &lt;fx:Script&gt; 
+        &lt;![CDATA[ 
+            [Embed("../assets/orb_over_skin.gif")] 
+            public var os:Class; 
+ 
+            [Embed("../assets/orb_down_skin.gif")] 
+            public var ds:Class; 
+ 
+            [Embed("../assets/orb_up_skin.gif")] 
+            public var us:Class; 
+ 
+            private function init():void { 
+                styleManager.getStyleDeclaration("mx.controls.Button").setStyle("upSkin", us); 
+                styleManager.getStyleDeclaration("mx.controls.Button").setStyle("overSkin", os); 
+                styleManager.getStyleDeclaration("mx.controls.Button").setStyle("downSkin", ds); 
+            } 
+        ]]&gt; 
+    &lt;/fx:Script&gt; 
+  
+    &lt;mx:Button label="Click Me" id="b1"/&gt; 
+  
+&lt;/s:Application&gt;</pre>
+
+            <p>For more information on using the StyleManager class, see <a href="flx_styles_st.html#WS2db454920e96a9e51e63e3d11c0bf69084-7f7c_verapache">Using
+the StyleManager class</a>.</p>
+
+         </div>
+
+      </div>
+
+   </div>
+
+   <div class="nested1" id="WS2db454920e96a9e51e63e3d11c0bf69084-7f8f_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7f8f_verapache"><!-- --></a>
+      <h2 class="topictitle2">Creating graphical skins for MX components</h2>
+
+      
+      <div>
+         <p>
+            To use
+graphical skins with MX components, you embed image files in your
+application. These images can be JPEG, GIF, or PNG files, or they
+can be symbols embedded in SWF files. </p>
+
+         <p>When using SWF files for skins, you can use static assets, which
+are SWF files that contain symbol definitions but no ActionScript
+3.0 code, or use dynamic assets. Dynamic assets correspond to components
+and contain ActionScript 3.0 code. These components are designed
+to work with Flex features such as view states and transitions.
+To use dynamic assets in an application, you export the symbols in
+the SWF file to a SWC file, and then link the SWC file to your application.</p>
+
+         <p>For more information on embedding assets into an application,
+see <a href="flx_embed_em.html#WS2db454920e96a9e51e63e3d11c0bf69084-7fce_verapache">Embedding assets</a>. </p>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf60ad4-7fe7_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf60ad4-7fe7_verapache"><!-- --></a>
+         <h3 class="topictitle3">Using JPEG, GIF, and PNG files
+as MX component skins</h3>
+
+         
+         <div>
+            <p>To use a JPEG, GIF, or PNG file as a skin, you must embed
+the file in your application. For example, to change the appearance
+of a <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/controls/Button.html" target="_blank">Button</a> control,
+you might create three image files called orb_up_skin.gif, orb_down_skin.gif,
+and orb_over_skin.gif:</p>
+
+            <div class="figborder">
+               <img src="images/sk_orb_skins.png" alt="Three images showing different states of a sphere to be used as skins for a Button control."/>
+               <dl>
+                  
+                     <dt class="dlterm">
+                        <strong>A.</strong>
+                     </dt>
+
+                     <dd>orb_down_skin.gif</dd>
+
+                  
+                  
+                     <dt class="dlterm">
+                        <strong>B.</strong>
+                     </dt>
+
+                     <dd>orb_over_skin.gif</dd>
+
+                  
+                  
+                     <dt class="dlterm">
+                        <strong>C.</strong>
+                     </dt>
+
+                     <dd>orb_up_skin.gif</dd>
+
+                  
+               </dl>
+
+            </div>
+
+            <p>The following example uses graphical skins for the up, over,
+and down states of the Button control:</p>
+
+            <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- skins/EmbedImagesTypeSelector.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark"&gt; 
+ 
+    &lt;fx:Style&gt; 
+        @namespace mx "library://ns.adobe.com/flex/mx"; 
+        
+        mx|Button { 
+            overSkin: Embed("../assets/orb_over_skin.gif"); 
+            upSkin: Embed("../assets/orb_up_skin.gif"); 
+            downSkin: Embed("../assets/orb_down_skin.gif"); 
+        } 
+    &lt;/fx:Style&gt; 
+ 
+    &lt;mx:Button id="b1" label="Click Me"/&gt; 
+ 
+&lt;/s:Application&gt;</pre>
+
+            <p>The reason that you must embed the file is that in order to determine
+a component’s minimum and preferred sizes, skin assets must be present
+as soon as the component is created. If you reference external assets
+at run time, Flex does not have the sizing information and, therefore,
+cannot render the skins properly.</p>
+
+            <p>Because skins are embedded, if you change the graphics files
+that comprise one or more skins, you must recompile your application
+for the changes to take effect. For more information on embedding
+assets, see <a href="flx_embed_em.html#WS2db454920e96a9e51e63e3d11c0bf69084-7fce_verapache">Embedding
+assets</a>. </p>
+
+            <p>
+               
+               One drawback to embedding images as skins
+is that they can become distorted if you resize the component that
+has a skin. You can use a technique called 9-slice scaling to create
+skins that do not become distorted when the component is resized.
+For information on the 9-slice scaling technique, see <a href="flx_embed_em.html#WS2db454920e96a9e51e63e3d11c0bf69084-7f95_verapache">Using
+9-slice scaling with embedded images</a>.</p>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf60ad4-7fe6_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf60ad4-7fe6_verapache"><!-- --></a>
+         <h3 class="topictitle3">Using static SWF assets as MX component
+skins</h3>
+
+         
+         <div>
+            <p>Static SWF files created in Flash 8 or Flash 9 contain
+artwork or skins, but do not contain any ActionScript 3.0 code.
+You can use the entire SWF file as a single skin, or you can use
+one or more symbols inside the SWF file as a skin. To embed an entire
+SWF file, you point to the location of the SWF file with the <samp class="codeph">source</samp> property
+in the <samp class="codeph">Embed</samp> statement, as follows:</p>
+
+            <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- skins/EmbedSWFSource.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark"&gt; 
+ 
+  &lt;fx:Style&gt; 
+     @namespace mx "library://ns.adobe.com/flex/mx"; 
+     
+     mx|Button { 
+        upSkin: Embed(source="../assets/SubmitButtonUpSkin.swf"); 
+     } 
+  &lt;/fx:Style&gt; 
+  
+  &lt;mx:Button id="b1"/&gt; 
+ 
+&lt;/s:Application&gt;</pre>
+
+            <p>
+               To import
+a symbol from a SWF file, you use the <samp class="codeph">symbol</samp> property
+to specify the symbol name that you want to use in addition to pointing
+to the location of the SWF file with the <samp class="codeph">source</samp> property.
+You must separate each property of the <samp class="codeph">Embed</samp> statement
+with a comma. The following example replaces the MX Button control’s
+up, over, and down skins with individual symbols from a SWF file:</p>
+
+            <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- skins/EmbedSymbolsCSS.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark"&gt; 
+  &lt;fx:Style&gt; 
+ 
+    @namespace mx "library://ns.adobe.com/flex/mx"; 
+ 
+    mx|Button { 
+        upSkin: Embed(source='../assets/SubmitButtonSkins.swf', 
+            symbol='MyUpSkin'); 
+        overSkin: Embed(source='../assets/SubmitButtonSkins.swf', 
+            symbol='MyOverSkin'); 
+        downSkin: Embed(source='../assets/SubmitButtonSkins.swf', 
+            symbol='MyDownSkin'); 
+    } 
+ &lt;/fx:Style&gt; 
+  
+  &lt;mx:Button id="b1"/&gt; 
+&lt;/s:Application&gt;</pre>
+
+            <p>You use the same syntax when embedding skin symbols inline, as
+follows:</p>
+
+            <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- skins/EmbedSymbolsInline.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark"&gt; 
+ 
+  &lt;mx:Button id="b1" 
+     overSkin="@Embed(source='../assets/SubmitButtonSkins.swf', 
+        symbol='MyOverSkin')" 
+     upSkin="@Embed(source='../assets/SubmitButtonSkins.swf', 
+        symbol='MyUpSkin')" 
+     downSkin="@Embed(source='../assets/SubmitButtonSkins.swf', 
+        symbol='MyDownSkin')"/&gt; 
+&lt;/s:Application&gt;</pre>
+
+            <p>In the source FLA file, all symbols that you use must meet the
+following conditions:</p>
+
+            <ul>
+               <li>
+                  <p>The symbol must be on the Stage. After you create an
+image file and convert it to a symbol, you must drag it from the
+library to the Stage. Flash does not export symbols that are not
+on the Stage. Alternatively, you can select the Export in First
+Frame option in the Linkage Properties dialog box.</p>
+
+               </li>
+
+               <li>
+                  <p>The symbol must have been exported for ActionScript with
+a linkage name. In Flash, you select the Export for ActionScript
+option in the symbol’s Linkage Properties dialog box, as the following
+example shows: </p>
+
+                  <div class="figborder">
+                     <img src="images/sk_linkageproperties.png" alt="Linkage Properties dialog box."/>
+                  </div>
+
+                  <p>The linkage
+name is the name used by Flex. Symbol names are ignored.</p>
+
+               </li>
+
+               <li>
+                  <p>The FLA files cannot contain any ActionScript.</p>
+
+               </li>
+
+               <li>
+                  <p>The symbol must have an upper-left registration point that
+you select in the Convert to Symbol dialog box. The following example
+shows an upper-left registration point:</p>
+
+                  <div class="figborder">
+                     <img src="images/sk_registration.png" alt="Graphic indicating an upper-left registration point."/>
+                  </div>
+
+               </li>
+
+            </ul>
+
+            <p>You can use 9-slice scaling with image files (a grid with nine
+regions) so that the skin scales well when the component’s size
+changes. You define the properties for 9-slice scaling of images
+when you apply the skin in CSS, as the following example shows:</p>
+
+            <pre class="codeblock">@namespace mx "library://ns.adobe.com/flex/mx"; 
+ mx|Button { 
+ 	overSkin: Embed( 
+ 		"../assets/orb_over_skin.gif",  
+ 		scaleGridTop=6,  
+ 		scaleGridLeft=12,  
+ 		scaleGridBottom=44,  
+ 		scaleGridRight=49 
+ 	); 
+ }</pre>
+
+            <p>For information on embedding assets that use the 9-slice scaling
+technique, see <a href="flx_embed_em.html#WS2db454920e96a9e51e63e3d11c0bf69084-7f95_verapache">Using
+9-slice scaling with embedded images</a>.</p>
+
+         </div>
+
+      </div>
+
+   </div>
+
+   <div class="nested1" id="WS2db454920e96a9e51e63e3d11c0bf69084-7f8e_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7f8e_verapache"><!-- --></a>
+      <h2 class="topictitle2">Creating programmatic skins for
+MX components</h2>
+
+      
+      <div>
+         <p>You create programmatic skins as ActionScript classes or
+as MXML components for MX components. You use the basic drawing
+methods of the Flash Graphics (flash.display.<a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/flash/display/Graphics.html" target="_blank">Graphics</a>)
+package, and apply those skins to your Flex controls. </p>
+
+         <p>You can modify programmatic skins that come with Flex or create
+your own. The programmatic skins used by components are in the mx.skins.halo.*
+package. All of the skins extend one of the following classes: <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/core/UIComponent.html" target="_blank">UIComponent</a>, <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/skins/ProgrammaticSkin.html" target="_blank">ProgrammaticSkin</a>, <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/skins/Border.html" target="_blank">Border</a>, or <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/skins/RectangularBorder.html" target="_blank">RectangularBorder</a>.</p>
+
+         <p>For information on creating your own skins, see <a href="flx_skinning_sk.html#WS2db454920e96a9e51e63e3d11c0bf69084-7f77_verapache">Programmatic
+skins recipe for MX components</a>. </p>
+
+         <p>One type of programmatic skin, called a stateful skin, uses view
+states. For information on creating stateful skins, see <a href="flx_skinning_sk.html#WS2db454920e96a9e51e63e3d11c0bf69084-7f8d_verapache">Creating
+stateful skins for MX components</a>. </p>
+
+         <p>
+            Flex handles
+much of the overhead of class definition when you use an MXML component,
+so in some cases you might find it easier to define your skins as MXML
+components. The only restriction on MXML components is that you cannot
+define a constructor. Instead, you use an event handler for the <samp class="codeph">preinitialize</samp> event
+to perform the work that you do in an ActionScript constructor.</p>
+
+         <p>For general information on creating ActionScript classes and
+MXML components, see <a href="flx_createcomps_intro_cci.html#WS2db454920e96a9e51e63e3d11c0bf68268-8000_verapache">Custom
+Flex components</a>. </p>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf69084-7f77_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7f77_verapache"><!-- --></a>
+         <h3 class="topictitle3">Programmatic skins recipe for MX
+components</h3>
+
+         
+         <div>
+            <p>At a minimum, a programmatic skin consists of a constructor
+(for an ActionScript class), an <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/skins/ProgrammaticSkin.html#updateDisplayList()" target="_blank">updateDisplayList()</a> method,
+and a set of getters and setters for the skin’s properties. Programmatic
+skins generally extend one of the classes in the mx.skins package
+or the UIComponent class.</p>
+
+            <p>To see examples of skins that follow the programmatic skin recipe,
+look at the concrete classes in the mx.skins.halo package. These
+are the skins that the components use. Those skins follow the same
+recipe presented here.</p>
+
+            <p>The following example is a typical outline of a programmatic
+skin:</p>
+
+            <pre class="noswf">package { // Use unnamed package if this skin is not in its own package. 
+  // skins/MySkinOutline.as 
+  
+  // Import necessary classes here. 
+  import flash.display.Graphics; 
+  import mx.skins.Border; 
+  import mx.skins.ProgrammaticSkin; 
+  import mx.styles.StyleManager; 
+ 
+  // Extend ProgrammaticSkin. 
+  public class MySkinOutline extends ProgrammaticSkin { 
+ 
+     // Constructor. 
+     public function MySkinOutline() { 
+        // Set default values here. 
+     } 
+ 
+     // Override updateDisplayList(). 
+     override protected function updateDisplayList(w:Number, 
+        h:Number):void { 
+        // Add styleable properties here. 
+        // Add logic to detect componentís state and set properties here. 
+        // Add drawing methods here. 
+     } 
+  } 
+} // Close unnamed package.</pre>
+
+            <p>In your application, you can apply a programmatic skin using
+the <samp class="codeph">ClassReference</samp> statement in CSS:</p>
+
+            <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- skins/ApplyMySkinOutline.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark"&gt; 
+ 
+  &lt;fx:Style&gt; 
+     @namespace mx "library://ns.adobe.com/flex/mx"; 
+     
+     mx|Button { 
+        overSkin: ClassReference("MySkinOutline"); 
+        upSkin: ClassReference("MySkinOutline"); 
+        downSkin: ClassReference("MySkinOutline"); 
+     } 
+  &lt;/fx:Style&gt; 
+  &lt;mx:Button id="b1" label="Click Me"/&gt; 
+ 
+&lt;/s:Application&gt;</pre>
+
+         </div>
+
+         <div class="nested3" id="WS2db454920e96a9e51e63e3d11c0bf69084-7f75_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7f75_verapache"><!-- --></a>
+            <h4 class="topictitle4">Selecting an interface or base
+class for your skin</h4>
+
+            
+            <div>
+               <p>Skin classes must implement one or more interfaces. When
+you create a programmatic skin, you can either create a class that
+implements the required interfaces, or you can create a subclass
+of a class that already implements the required interfaces.</p>
+
+               <p>Your decision on which interface to implement, or which class
+to use as the base class of your skin, might depend on the type
+of skin that you want to create. For example, if you want to create
+a skin that defines a border, you might create a subclass of Border.
+If you want to create a stateful skin, you can create subclass of UIComponent
+or create a class that implement the IStateClient interface.</p>
+
+               <p>You can extend the abstract base classes in the mx.skins package
+or the concrete classes in the mx.skins.halo package. Extending
+the former gives you greater control over the look and feel of your
+skins. Extending the latter is a good approach if you use the default
+behaviors of the components but also want to add extra styling to
+them.</p>
+
+               <p>Some rules to consider:</p>
+
+               <ul>
+                  <li>
+                     <p>A stateful skin must implement either the IStateClient
+interface or the IProgrammaticSkin interface. The UIComponent class
+implements the IStateClient interface. The ProgrammaticSkin class
+implements the IProgrammaticSkin interface.</p>
+
+                  </li>
+
+                  <li>
+                     <p>A skin passed to any skin property other than a stateful
+skin property, such as <samp class="codeph">Button.upSkin</samp> or <samp class="codeph">NumericStepper.upArrowOverSkin</samp>,
+must implement the IFlexDisplayObject interface. The UIComponent
+class and the ProgrammaticSkin class implement the IFlexDisplayObject
+interface.</p>
+
+                  </li>
+
+               </ul>
+
+               <p>Most Halo skins for MX components extend the mx.skins.ProgrammaticSkin class,
+but you can select any one of the following as a superclass for
+your skin:</p>
+
+               <ul>
+                  <li>
+                     <p>The <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/skins/ProgrammaticSkin.html" target="_blank">ProgrammaticSkin </a>class
+implements the <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/core/IFlexDisplayObject.html" target="_blank">IFlexDisplayObject</a>, <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/managers/ILayoutManagerClient.html" target="_blank">ILayoutManagerClient</a>, <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/core/IInvalidating.html" target="_blank">IInvalidating</a>,
+and <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/styles/ISimpleStyleClient.html" target="_blank">ISimpleStyleClient</a> interfaces,
+so it is the easiest and most common superclass to use. </p>
+
+                  </li>
+
+                  <li>
+                     <p>The <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/skins/Border.html" target="_blank">Border</a> class
+extends the ProgrammaticSkin class and adds support for the <samp class="codeph">borderMetrics</samp> property.
+Use this class or the RectangularBorder class if your skin defines
+the component’s border.</p>
+
+                  </li>
+
+                  <li>
+                     <p>The <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/skins/RectangularBorder.html" target="_blank">RectangularBorder</a> class
+extends the Border class and adds support for the <samp class="codeph">backgroundImage</samp> style.</p>
+
+                  </li>
+
+                  <li>
+                     <p>The <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/core/UIComponent.html" target="_blank">UIComponent</a> class
+implements the IStateClient interface, making it easy to use for
+stateful skins. It is also the component that you use when implementing
+skins in MXML.</p>
+
+                  </li>
+
+               </ul>
+
+               <p>Use the following list of steps to create programmatic skins
+for your Flex controls. Each step is explained in more detail in
+the following sections.</p>
+
+               <div class="section" id="WS2db454920e96a9e51e63e3d11c0bf69084-7f75_verapache__WS2db454920e96a9e51e63e3d11c0bf60ad4-7fe0_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7f75_verapache__WS2db454920e96a9e51e63e3d11c0bf60ad4-7fe0_verapache"><!-- --></a><h5 class="sectiontitle">Create
+programmatic skins for MX components</h5>
+                  
+                  <ol>
+                     <li>
+                        <p>Select one
+of the following base classes as a superclass for your programmatic skin:</p>
+
+                        <ul>
+                           <li>
+                              <p>
+                                 <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/skins/Border.html" target="_blank">Border</a> or a subclass
+of Border</p>
+
+                           </li>
+
+                           <li>
+                              <p>
+                                 <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/skins/ProgrammaticSkin.html" target="_blank">ProgrammaticSkin</a> or
+a subclass of ProgrammaticSkin</p>
+
+                           </li>
+
+                           <li>
+                              <p>
+                                 <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/skins/RectangularBorder.html" target="_blank">RectangularBorder</a> or
+a subclass of RectangularBorder</p>
+
+                           </li>
+
+                           <li>
+                              <p>
+                                 <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/core/UIComponent.html" target="_blank">UIComponent</a> or
+a subclass of UIComponent</p>
+
+                           </li>
+
+                        </ul>
+
+                        <p>You can also extend one
+of the concrete classes in the mx.skins.Halo package. </p>
+
+                     </li>
+
+                     <li>
+                        <p>Implement the <samp class="codeph">updateDisplayList()</samp> method.
+Put all the drawing and styling calls in this method. </p>
+
+                        <p>For
+more information, see <a href="flx_skinning_sk.html#WS2db454920e96a9e51e63e3d11c0bf69084-7f74_verapache">Implementing
+the updateDisplayList() method</a>.</p>
+
+                     </li>
+
+                     <li>
+                        <p>For an ActionScript class, implement the constructor.</p>
+
+                     </li>
+
+                     <li>
+                        <p>(Optional) Implement getters for the <samp class="codeph">measuredWidth</samp> and <samp class="codeph">measuredHeight</samp> properties.</p>
+
+                        <p>For
+more information, see <a href="flx_skinning_sk.html#WS2db454920e96a9e51e63e3d11c0bf69084-7f86_verapache">Implementing
+the measuredWidth and measuredHeight getters</a>.</p>
+
+                     </li>
+
+                     <li>
+                        <p>If the skin is a subclass of Border or RectangularBorder,
+implement a getter for the <samp class="codeph">borderMetrics</samp> property. </p>
+
+                        <p>For
+more information, see <a href="flx_skinning_sk.html#WS2db454920e96a9e51e63e3d11c0bf69084-7f72_verapache">Implementing
+a getter for the borderMetrics property</a>.</p>
+
+                     </li>
+
+                     <li>
+                        <p>(Optional) Make properties styleable. </p>
+
+                        <p>If you create
+a skin that has properties that you want users to be able to set with
+CSS or with calls to the <samp class="codeph">setStyle()</samp> method, you
+must add code to your skin class. For more information, see <a href="flx_skinning_sk.html#WS2db454920e96a9e51e63e3d11c0bf69084-7f71_verapache">Making
+properties styleable</a>.</p>
+
+                     </li>
+
+                  </ol>
+
+               </div>
+
+            </div>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf60ad4-7fdf_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf60ad4-7fdf_verapache"><!-- --></a>
+         <h3 class="topictitle3">Compiling programmatic skins for
+MX components</h3>
+
+         
+         <div>
+            <p>When you compile an application that uses programmatic
+skins, you treat programmatic skins as you would treat any ActionScript
+class or MXML component, which means that you must add the skins
+to the <samp class="codeph">source-path</samp> argument of the compiler. If
+the skins are in the same directory as the MXML file that you are
+compiling, you set the <samp class="codeph">source-path</samp> to a period.
+The following example shows this with the mxmlc command-line compiler:</p>
+
+            <pre class="codeblock">  $ ./mxmlc -source-path=. c:/flex/MyApp.mxml</pre>
+
+            <p>If the programmatic skins are not in a package, you must add
+them to the unnamed package to make them externally visible. Otherwise,
+mxmlc throws a compiler error. To do this, you surround the class
+with a package statement, as the following example shows:</p>
+
+            <pre class="codeblock">  package { // Open unnamed package. 
+ 	import flash.display.*; 
+ 	import mx.skins.ProgrammaticSkin; 
+ 	 
+ 	public class MySkin extends ProgrammaticSkin { 
+ 		... 
+ 	} 
+ } // Close unnamed package.</pre>
+
+         </div>
+
+         <div class="nested3" id="WS2db454920e96a9e51e63e3d11c0bf69084-7f74_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7f74_verapache"><!-- --></a>
+            <h4 class="topictitle4">Implementing the updateDisplayList()
+method</h4>
+
+            
+            <div>
+               <p>The <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/skins/ProgrammaticSkin.html#updateDisplayList()" target="_blank">updateDisplayList()</a> method
+defines the look of the skin. It is called after the skin’s construction
+to initially draw the skin, and then is subsequently called whenever
+the component is resized, restyled, moved, or is interacted with
+in some way.</p>
+
+               <p>You use the Flash Player drawing methods to draw the programmatic
+skin in the <samp class="codeph">updateDisplayList()</samp> method. For more
+information on the drawing methods, see <a href="flx_skinning_sk.html#WS2db454920e96a9e51e63e3d11c0bf69084-7f70_verapache">Drawing
+programmatically</a>. </p>
+
+               <p>When you implement the <samp class="codeph">updateDisplayList()</samp> method,
+you must do the following:</p>
+
+               <ul>
+                  <li>
+                     <p>Use the <samp class="codeph">override</samp> keyword to override
+the superclass’s implementation.</p>
+
+                  </li>
+
+                  <li>
+                     <p>Set the return type to <samp class="codeph">void</samp>.</p>
+
+                  </li>
+
+                  <li>
+                     <p>Declare the method as <samp class="codeph">protected</samp>.</p>
+
+                  </li>
+
+               </ul>
+
+               <p>The <samp class="codeph">updateDisplayList()</samp> method takes the height
+and width of the component as arguments. You use the values of these
+arguments as the boundaries for the region in which you can draw.
+The method returns <samp class="codeph">void.</samp>
+               </p>
+
+               <p>You use methods of the<a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/flash/display/Graphics.html" target="_blank">Graphics</a> class
+(such as the <samp class="codeph">lineTo()</samp> and <samp class="codeph">drawRect()</samp> methods)
+to render the skin. To ensure that the area is clear before adding
+the component’s shapes, you should call the <samp class="codeph">clear()</samp> method
+before drawing. This method erases the results of previous calls
+to the <samp class="codeph">updateDisplayList()</samp> method and removes all
+the images that were created by using previous draw methods. It
+also resets any line style that was specified with the <samp class="codeph">lineStyle()</samp> method. </p>
+
+               <p>To use the methods of the Graphics package, you must import the flash.display.Graphics
+class, and any other classes in the flash.display package that you
+use, such as GradientType or Font. The following example imports
+all classes in the flash.display package:</p>
+
+               <pre class="codeblock">  import flash.display.*;</pre>
+
+               <p>The following example draws a rectangle as a border around the
+component with the <samp class="codeph">drawRect()</samp> method:</p>
+
+               <pre class="codeblock">  g.drawRect(0, 0, width, height);</pre>
+
+               <p>The following example skin class draws an <em>X</em> with a border
+around it:</p>
+
+               <pre class="noswf">package { // Use unnamed package if this skin is not in its own package. 
+  // skins/CheckboxSkin.as 
+  
+  // Import necessary classes here. 
+  import flash.display.Graphics; 
+  import mx.skins.Border; 
+  import mx.skins.ProgrammaticSkin; 
+  import mx.styles.StyleManager; 
+ 
+  public class CheckboxSkin extends ProgrammaticSkin { 
+ 
+     // Constructor. 
+     public function CheckboxSkin() { 
+        // Set default values here. 
+     } 
+ 
+  override protected function updateDisplayList(w:Number, h:Number):void { 
+     var g:Graphics = graphics; 
+     g.clear(); 
+     g.beginFill(0xFFFFFF,1.0); 
+     g.lineStyle(2, 0xFF0000); 
+     g.drawRect(0, 0, w, h); 
+     g.endFill(); 
+     g.moveTo(0, 0); 
+     g.lineTo(w, h); 
+     g.moveTo(0, h); 
+     g.lineTo(w, 0); 
+  } 
+  } 
+} // Close unnamed package.</pre>
+
+               <p>For a description of common methods of the <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/flash/display/Graphics.html" target="_blank">Graphics</a> package,
+see <a href="flx_skinning_sk.html#WS2db454920e96a9e51e63e3d11c0bf69084-7f70_verapache">Drawing programmatically</a>.
+For details about these methods, see the <em>
+                     <a href="http://www.adobe.com/go/learn_flex4_apiref_en" target="_blank">ActionScript 3.0 Reference for the Adobe
+Flash Platform</a>
+                  </em>.</p>
+
+               <p>One common task performed in the <samp class="codeph">updateDisplayList()</samp> method
+is to change properties of the skin, depending on the current state
+of the control. For example, if you define a programmatic skin for
+a Button control, you can change the border thickness or color of
+the background when the user moves the mouse over or clicks the
+Button control.</p>
+
+               <p>You check the state by using the <samp class="codeph">name</samp> property
+of the skin. The <samp class="codeph">name</samp> is the current name of the
+skin. For example, if you define a programmatic skin for a Button
+control, the <samp class="codeph">name</samp> property could be any of the
+skin states: <samp class="codeph">downSkin</samp>, <samp class="codeph">upSkin</samp>, <samp class="codeph">overSkin</samp>, <samp class="codeph">disabledSkin</samp>, <samp class="codeph">selectedDisabledSkin</samp>, <samp class="codeph">selectedDownSkin</samp>, <samp class="codeph">selectedOverSkin</samp>,
+or <samp class="codeph">selectedUpSkin</samp>.</p>
+
+               <p>The following example checks which state the Button control is
+in and adjusts the line thickness and background fill color appropriately.
+The result is that when the user clicks the Button control, Flex
+redraws the skin to change the line thickness to 2 points. When
+the user releases the mouse button, the skin redraws again and the
+line thickness returns to its default value of 4. The background
+fill color also changes depending on the Button control’s state.</p>
+
+               <pre class="noswf">package { // Use unnamed package if this skin is not in its own package. 
+  // skins/ButtonStatesSkin.as 
+ 
+  // Import necessary classes here. 
+  import flash.display.Graphics; 
+  import mx.skins.Border; 
+  import mx.skins.ProgrammaticSkin; 
+  import mx.styles.StyleManager; 
+ 
+  public class ButtonStatesSkin extends ProgrammaticSkin { 
+ 
+     public var backgroundFillColor:Number; 
+     public var lineThickness:Number; 
+ 
+     // Constructor. 
+     public function ButtonStatesSkin() { 
+        // Set default values. 
+        backgroundFillColor = 0xFFFFFF; 
+        lineThickness = 4; 
+     } 
+ 
+     override protected function updateDisplayList(w:Number, h:Number):void { 
+        // Depending on the skin's current name, set values for this skin. 
+        switch (name) { 
+           case "upSkin": 
+            lineThickness = 4; 
+            backgroundFillColor = 0xFFFFFF; 
+            break; 
+           case "overSkin": 
+            lineThickness = 4; 
+            backgroundFillColor = 0xCCCCCC; 
+            break; 
+           case "downSkin": 
+            lineThickness = 2; 
+            backgroundFillColor = 0xFFFFFF; 
+            break; 
+           case "disabledSkin": 
+            lineThickness = 2; 
+            backgroundFillColor = 0xCCCCCC; 
+            break; 
+        } 
+ 
+        // Draw the box using the new values. 
+        var g:Graphics = graphics; 
+        g.clear(); 
+        g.beginFill(backgroundFillColor,1.0); 
+        g.lineStyle(lineThickness, 0xFF0000); 
+        g.drawRect(0, 0, w, h); 
+        g.endFill(); 
+        g.moveTo(0, 0); 
+        g.lineTo(w, h); 
+        g.moveTo(0, h); 
+        g.lineTo(w, 0); 
+     } 
+  } 
+} // Close unnamed package.</pre>
+
+               <p>If you use a single programmatic skin class to define multiple
+states of a control, you must apply the skin to all appropriate
+states of that control in your application; for example:</p>
+
+               <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- skins/ApplyButtonStatesSkin.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark"&gt; 
+    
+    &lt;fx:Style&gt; 
+        @namespace mx "library://ns.adobe.com/flex/mx"; 
+ 
+        mx|Button { 
+            overSkin: ClassReference("ButtonStatesSkin"); 
+            upSkin: ClassReference("ButtonStatesSkin"); 
+            downSkin: ClassReference("ButtonStatesSkin"); 
+        } 
+    &lt;/fx:Style&gt; 
+ 
+    &lt;mx:Button id="b1" label="Click Me"/&gt; 
+ 
+&lt;/s:Application&gt;</pre>
+
+               <p>If the skin is a subclass of <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/skins/RectangularBorder.html" target="_blank">RectangularBorder</a>,
+you must also call <samp class="codeph">super.updateDisplayList()</samp> from
+within the body of the <samp class="codeph">updateDisplayList()</samp> method.</p>
+
+            </div>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf69084-7f70_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7f70_verapache"><!-- --></a>
+         <h3 class="topictitle3">Drawing programmatically</h3>
+
+         
+         <div>
+            <p>
+               
+               You
+use the drawing methods of the <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/flash/display/Graphics.html" target="_blank">Graphics</a> class
+to draw the parts of a programmatic skin. These methods let you
+describe fills or gradient fills, define line sizes and shapes,
+and draw lines. By combining these very simple drawing methods,
+you can create complex shapes that make up your component skins.</p>
+
+            <p>The following table briefly describes the most commonly used
+drawing methods in the Graphics package: </p>
+
+            
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" frame="border" border="1" rules="all">
+                  
+                  
+                  <thead align="left">
+                     <tr>
+                        <th class="cellrowborder" valign="top" width="NaN%" id="d861450e2131">
+                           <p>Method</p>
+
+                        </th>
+
+                        <th class="cellrowborder" valign="top" width="NaN%" id="d861450e2137">
+                           <p>Summary</p>
+
+                        </th>
+
+                     </tr>
+
+                  </thead>
+
+                  <tbody>
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d861450e2131 ">
+                           <p>
+                              
+                              <samp class="codeph">beginFill()</samp>
+                           </p>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d861450e2137 ">
+                           <p>Begins drawing a fill; for example:</p>
+
+                           <div class="p">
+                              <pre class="codeblock">beginFill(0xCCCCFF,1);</pre>
+
+                           </div>
+
+                           <p>If
+an open path exists (that is, if the current drawing position does
+not equal the previous position that you specified in a <samp class="codeph">moveTo()</samp> method)
+and it has a fill associated with it, that path is closed with a
+line, and then filled.</p>
+
+                        </td>
+
+                     </tr>
+
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d861450e2131 ">
+                           <p>
+                              
+                              <samp class="codeph">beginGradientFill()</samp>
+                           </p>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d861450e2137 ">
+                           <p>Begins drawing a gradient fill. If an open
+path exists (that is, if the current drawing position does not equal the
+previous position that you specified in a <samp class="codeph">moveTo()</samp> method),
+and it has a fill associated with it, that path is closed with a
+line, and then filled.</p>
+
+                        </td>
+
+                     </tr>
+
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d861450e2131 ">
+                           <p>
+                              
+                              <samp class="codeph">clear()</samp>
+                           </p>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d861450e2137 ">
+                           <p>Removes all the drawing output associated
+with the current object. The <samp class="codeph">clear()</samp> method takes
+no arguments.</p>
+
+                        </td>
+
+                     </tr>
+
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d861450e2131 ">
+                           <p>
+                              
+                              <samp class="codeph">curveTo()</samp>
+                           </p>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d861450e2137 ">
+                           <p>Draws a curve using the current line style;
+for example:</p>
+
+                           <div class="p">
+                              <pre class="codeblock">moveTo(500, 500); 
+curveTo(600, 500, 600, 400); 
+curveTo(600, 300, 500, 300); 
+curveTo(400, 300, 400, 400); 
+curveTo(400, 500, 500, 500);</pre>
+
+                           </div>
+
+                        </td>
+
+                     </tr>
+
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d861450e2131 ">
+                           <p>
+                              
+                              <samp class="codeph">drawCircle()</samp>
+                           </p>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d861450e2137 ">
+                           <p>Draws a circle after you set the line style
+and fill. You pass the method the x and y positions of the circle,
+as well as the radius, as the following example shows:</p>
+
+                           <div class="p">
+                              <pre class="codeblock">drawCircle(10,10,50);</pre>
+
+                           </div>
+
+                        </td>
+
+                     </tr>
+
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d861450e2131 ">
+                           <p>
+                              
+                              <samp class="codeph">drawRect()</samp>
+                           </p>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d861450e2137 ">
+                           <p>Draws a rectangle once you set the line
+style and fill. You pass the method the x and y positions of the
+rectangle, as well as the length and width of the rectangle, as
+the following example shows:</p>
+
+                           <div class="p">
+                              <pre class="codeblock">drawRect(10,10,100,20);</pre>
+
+                           </div>
+
+                        </td>
+
+                     </tr>
+
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d861450e2131 ">
+                           <p>
+                              
+                              <samp class="codeph">drawRoundRect()</samp>
+                           </p>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d861450e2137 ">
+                           <p>Draws a rectangle with rounded corners,
+after you set the line and fill. You pass the method the x and y position
+of the rectangle, length and height of the rectangle, and the width
+and height of the ellipse that is used to draw the rounded corners,
+as the following example shows:</p>
+
+                           <div class="p">
+                              <pre class="codeblock">drawRoundRect(10,10,100,20,9,5)</pre>
+
+                           </div>
+
+                        </td>
+
+                     </tr>
+
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d861450e2131 ">
+                           <p>
+                              
+                              <samp class="codeph">endFill()</samp>
+                           </p>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d861450e2137 ">
+                           <p>Ends the fill specified by the <samp class="codeph">beginFill()</samp> or <samp class="codeph">beginGradientFill()</samp> methods.
+The <samp class="codeph">endFill()</samp> method takes no arguments. If the
+current drawing position does not equal the previous position that
+you specified in a <samp class="codeph">moveTo()</samp> method and a fill is
+defined, the path is closed with a line, and then filled.</p>
+
+                        </td>
+
+                     </tr>
+
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d861450e2131 ">
+                           <p>
+                              
+                              <samp class="codeph">lineStyle()</samp>
+                           </p>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d861450e2137 ">
+                           <p>Defines the stroke of lines created with
+subsequent calls to the <samp class="codeph">lineTo()</samp> and <samp class="codeph">curveTo()</samp> methods.
+The following example sets the line style to a 2-point gray line
+with 100% opacity:</p>
+
+                           <div class="p">
+                              <pre class="codeblock">lineStyle(2,0xCCCCCC,1)</pre>
+
+                           </div>
+
+                           <p>You
+can call the <samp class="codeph">lineStyle()</samp> method in the middle of
+drawing a path to specify different styles for different line segments
+within a path. Calls to the <samp class="codeph">clear()</samp> method reset
+line styles back to <samp class="codeph">undefined</samp>.</p>
+
+                        </td>
+
+                     </tr>
+
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d861450e2131 ">
+                           <p>
+                              
+                              <samp class="codeph">lineTo()</samp>
+                           </p>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d861450e2137 ">
+                           <p>Draws a line using the current line style.
+The following example draws a triangle:</p>
+
+                           <div class="p">
+                              <pre class="codeblock">moveTo (200, 200); 
+lineTo (300, 300); 
+lineTo (100, 300); 
+lineTo (200, 200);</pre>
+
+                           </div>
+
+                           <p>If you call the <samp class="codeph">lineTo()</samp> method
+before any calls to the <samp class="codeph">moveTo()</samp> method, the current
+drawing position returns to the default value of (0, 0). </p>
+
+                        </td>
+
+                     </tr>
+
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d861450e2131 ">
+                           <p>
+                              
+                              <samp class="codeph">moveTo()</samp>
+                           </p>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d861450e2137 ">
+                           <p>Moves the current drawing position to the
+specified coordinates; for example:</p>
+
+                           <div class="p">
+                              <pre class="codeblock">moveTo(100,10);</pre>
+
+                           </div>
+
+                        </td>
+
+                     </tr>
+
+                  </tbody>
+
+               </table>
+</div>
+
+            <p>The following example draws a triangle:</p>
+
+            <pre class="noswf">package { // Use unnamed package if this skin is not in its own package. 
+  // skins/CheckBoxAsArrowSkin.as 
+  
+  // Import necessary classes here. 
+  import flash.display.Graphics; 
+  import mx.skins.Border; 
+  import mx.skins.ProgrammaticSkin; 
+  import mx.styles.StyleManager; 
+ 
+  public class CheckBoxAsArrowSkin extends ProgrammaticSkin { 
+  
+     // Constructor. 
+     public function CheckBoxAsArrowSkin() { 
+        // Set default values. 
+     } 
+ 
+     override protected function updateDisplayList(w:Number, h:Number):void { 
+        var unscaledHeight:Number = 2; 
+        var unscaledWidth:Number = 2; 
+ 
+        var arrowColor:Number; 
+ 
+        var g:Graphics = graphics; 
+        g.clear(); 
+ 
+        switch (name) { 
+           case "upIcon": 
+           case "selectedUpIcon": { 
+            arrowColor = 0x666666; 
+            break; 
+           } 
+           case "overIcon": 
+           case "downIcon": 
+           case "selectedOverIcon": 
+           case "selectedDownIcon": { 
+            arrowColor = 0xCCCCCC; 
+            break; 
+           } 
+        } 
+ 
+        // Draw an arrow. 
+        graphics.lineStyle(1, 1, 1); 
+        graphics.beginFill(arrowColor); 
+        graphics.moveTo(unscaledWidth, unscaledHeight-20); 
+        graphics.lineTo(unscaledWidth-30, unscaledHeight+20); 
+        graphics.lineTo(unscaledWidth+30, unscaledHeight+20); 
+        graphics.lineTo(unscaledWidth, unscaledHeight-20); 
+        graphics.endFill(); 
+     } 
+  } 
+} // Close unnamed package.</pre>
+
+            <p>The <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/skins/ProgrammaticSkin.html" target="_blank">ProgrammaticSkin</a> class
+also defines drawing methods, the most common of which is the <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/skins/ProgrammaticSkin.html#drawRoundRect()" target="_blank">drawRoundRect()</a> method.
+This method programmatically draws a rectangle and lets you set
+the corner radius, gradients, and other properties. You can use
+this method to customize borders of containers so that they might appear
+as the following example shows:</p>
+
+            <div class="figborder">
+               <img src="images/sk_custom_vbox.png" alt="A customized container."/>
+            </div>
+
+            <p>The following code uses the <samp class="codeph">drawRoundRect()</samp> method
+to draw this custom VBox border:</p>
+
+            <pre class="noswf">package { // Use unnamed package if this skin is not in its own package. 
+  // skins/CustomContainerBorderSkin.as 
+  
+  // Import necessary classes here. 
+  import flash.display.Graphics; 
+  import mx.graphics.RectangularDropShadow; 
+  import mx.skins.RectangularBorder; 
+ 
+  public class CustomContainerBorderSkin extends RectangularBorder { 
+ 
+    private var dropShadow:RectangularDropShadow; 
+ 
+    // Constructor. 
+    public function CustomContainerBorderSkin() { 
+    } 
+ 
+    override protected function updateDisplayList(unscaledWidth:Number, 
+       unscaledHeight:Number):void 
+    { 
+ 
+       super.updateDisplayList(unscaledWidth, unscaledHeight); 
+ 
+       var cornerRadius:Number = getStyle("cornerRadius"); 
+       var backgroundColor:int = getStyle("backgroundColor"); 
+       var backgroundAlpha:Number = getStyle("backgroundAlpha"); 
+       graphics.clear(); 
+ 
+       // Background 
+       drawRoundRect(0, 0, unscaledWidth, unscaledHeight, 
+           {tl: 0, tr:cornerRadius, bl: cornerRadius, br: 0}, 
+           backgroundColor, backgroundAlpha); 
+ 
+       // Shadow 
+       if (!dropShadow) 
+          dropShadow = new RectangularDropShadow(); 
+ 
+       dropShadow.distance = 8; 
+       dropShadow.angle = 45; 
+       dropShadow.color = 0; 
+       dropShadow.alpha = 0.4; 
+       dropShadow.tlRadius = 0; 
+       dropShadow.trRadius = cornerRadius; 
+       dropShadow.blRadius = cornerRadius; 
+       dropShadow.brRadius = 0; 
+       dropShadow.drawShadow(graphics, 0, 0, unscaledWidth, unscaledHeight); 
+    } 
+  } 
+}</pre>
+
+            <p>In your application, you apply this skin as the following example
+shows:</p>
+
+            <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- skins/ApplyContainerBorderSkin.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark"&gt; 
+ 
+  &lt;mx:VBox id="vb1" 
+     borderSkin="CustomContainerBorderSkin" 
+     backgroundColor="0xCCCC99" 
+     backgroundAlpha="0.8" 
+     cornerRadius="14" 
+     paddingLeft="20" 
+     paddingTop="20" 
+     paddingRight="20" 
+     paddingBottom="20"&gt; 
+ 
+     &lt;mx:Label text="This is a VBox with a custom skin."/&gt; 
+ 
+  &lt;/mx:VBox&gt; 
+ 
+&lt;/s:Application&gt;</pre>
+
+            <p>The <samp class="codeph">unscaledWidth</samp> and <samp class="codeph">unscaledHeight</samp> properties
+in the previous examples refer to the measurements of the skin as
+the skin itself understands them. These measurements ignore the
+fact that external components might have changed the dimensions
+of the skin. When working inside the component, it is best to use
+the unscaled measurements.</p>
+
+         </div>
+
+         <div class="nested3" id="WS2db454920e96a9e51e63e3d11c0bf69084-7f86_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7f86_verapache"><!-- --></a>
+            <h4 class="topictitle4">Implementing the measuredWidth
+and measuredHeight getters</h4>
+
+            
+            <div>
+               <p>The <samp class="codeph">measuredWidth</samp> and <samp class="codeph">measuredHeight</samp> properties
+define the default width and height of a component. You can implement
+getter methods for the <samp class="codeph">measuredWidth</samp> and <samp class="codeph">measuredHeight</samp> properties
+of your skin, but it is not required by most skins. Some skins such
+as the skins that define the ScrollBar arrows do require that you
+implement these getters. If you do implement these getters, you
+must specify the <samp class="codeph">override</samp> keyword when implementing
+the superclass’s getter methods, and you must make the getters public.</p>
+
+               <p>The <samp class="codeph">measuredWidth</samp> and <samp class="codeph">measuredHeight</samp> getters
+typically return a constant number. The application usually honors
+the measured sizes, but not always. If these getters are omitted,
+the values of <samp class="codeph">measuredWidth</samp> and <samp class="codeph">measuredHeight</samp> are
+set to the default value of 0.</p>
+
+               <p>The following example sets the <samp class="codeph">measuredWidth</samp> and <samp class="codeph">measuredHeight</samp> properties
+to 10, and then overrides the getters:</p>
+
+               <pre class="noswf">package { // Use unnamed package if this skin is not in its own package. 
+  // skins/ButtonStatesWithMeasuredSizesSkin.as 
+ 
+  // Import necessary classes here. 
+  import flash.display.Graphics; 
+  import mx.skins.Border; 
+  import mx.skins.ProgrammaticSkin; 
+  import mx.styles.StyleManager; 
+ 
+  public class ButtonStatesWithMeasuredSizesSkin extends ProgrammaticSkin { 
+ 
+     public var backgroundFillColor:Number; 
+     public var lineThickness:Number; 
+ 
+     private var _measuredWidth:Number; 
+     private var _measuredHeight:Number; 
+ 
+     // Constructor. 
+     public function ButtonStatesWithMeasuredSizesSkin() { 
+        // Set default values. 
+        backgroundFillColor = 0xFFFFFF; 
+        lineThickness = 4; 
+ 
+        _measuredHeight = 100; 
+        _measuredWidth = 150; 
+     } 
+ 
+     override public function get measuredWidth():Number { 
+        return _measuredWidth; 
+     } 
+ 
+     override public function get measuredHeight():Number { 
+        return _measuredHeight; 
+     } 
+ 
+     override protected function updateDisplayList(w:Number, h:Number):void { 
+        // Depending on the skin's current name, set values for this skin. 
+        switch (name) { 
+           case "upSkin": 
+            lineThickness = 4; 
+            backgroundFillColor = 0xFFFFFF; 
+            break; 
+           case "overSkin": 
+            lineThickness = 4; 
+            backgroundFillColor = 0xCCCCCC; 
+            break; 
+           case "downSkin": 
+            lineThickness = 2; 
+            backgroundFillColor = 0xFFFFFF; 
+            break; 
+           case "disabledSkin": 
+            lineThickness = 2; 
+            backgroundFillColor = 0xCCCCCC; 
+            break; 
+        } 
+ 
+        // Draw the box using the new values. 
+        var g:Graphics = graphics; 
+        g.clear(); 
+        g.beginFill(backgroundFillColor,1.0); 
+        g.lineStyle(lineThickness, 0xFF0000); 
+        g.drawRect(0, 0, w, h); 
+        g.endFill(); 
+        g.moveTo(0, 0); 
+        g.lineTo(w, h); 
+        g.moveTo(0, h); 
+        g.lineTo(w, 0); 
+     } 
+  } 
+} // Close unnamed package.</pre>
+
+            </div>
+
+         </div>
+
+         <div class="nested3" id="WS2db454920e96a9e51e63e3d11c0bf69084-7f72_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7f72_verapache"><!-- --></a>
+            <h4 class="topictitle4">Implementing a getter for the borderMetrics
+property</h4>
+
+            
+            <div>
+               <p>The <samp class="codeph">borderMetrics</samp> property defines the
+thickness of the border on all four sides of a programmatic skin.
+If the programmatic skin is a subclass of <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/skins/Border.html" target="_blank">Border</a> or <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/skins/RectangularBorder.html" target="_blank">RectangularBorder</a>,
+you must implement a getter for the <samp class="codeph">borderMetrics</samp> property.
+Otherwise, this step is optional. This property is of type <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/core/EdgeMetrics.html" target="_blank">EdgeMetrics</a>,
+so your getter must set EdgeMetrics as the return type.</p>
+
+               <p>The following example gets the <samp class="codeph">borderThickness</samp> style
+and uses that value to define the width of the four sides of the
+border, as defined in the EdgeMetrics constructor:</p>
+
+               <pre class="noswf">package { // Use unnamed package if this skin is not in its own package. 
+  // skins/ButtonStatesWithBorderMetricsSkin.as 
+ 
+  // Import necessary classes here. 
+  import flash.display.Graphics; 
+  import mx.skins.Border; 
+  import mx.skins.ProgrammaticSkin; 
+  import mx.styles.StyleManager; 
+  import mx.core.EdgeMetrics; 
+ 
+  public class ButtonStatesWithBorderMetricsSkin extends ProgrammaticSkin { 
+ 
+     public var backgroundFillColor:Number; 
+     public var lineThickness:Number; 
+ 
+     private var _borderMetrics:EdgeMetrics; 
+ 
+     // Constructor. 
+     public function ButtonStatesWithBorderMetricsSkin() { 
+        // Set default values. 
+        backgroundFillColor = 0xFFFFFF; 
+        lineThickness = 4; 
+     } 
+ 
+     public function get borderMetrics():EdgeMetrics { 
+        if (_borderMetrics) { 
+           return _borderMetrics; 
+        } 
+        var borderThickness:Number = getStyle("borderThickness"); 
+        _borderMetrics = new EdgeMetrics(borderThickness, 
+            borderThickness, borderThickness, borderThickness); 
+        return _borderMetrics; 
+     } 
+ 
+     override protected function updateDisplayList(w:Number, h:Number):void 
+     { 
+        // Depending on the skin's current name, set values for this skin. 
+        switch (name) { 
+           case "upSkin": 
+            lineThickness = 4; 
+            backgroundFillColor = 0xFFFFFF; 
+            break; 
+           case "overSkin": 
+            lineThickness = 4; 
+            backgroundFillColor = 0xCCCCCC; 
+            break; 
+           case "downSkin": 
+            lineThickness = 2; 
+            backgroundFillColor = 0xFFFFFF; 
+            break; 
+           case "disabledSkin": 
+            lineThickness = 2; 
+            backgroundFillColor = 0xCCCCCC; 
+            break; 
+        } 
+ 
+        // Draw the box using the new values. 
+        var g:Graphics = graphics; 
+        g.clear(); 
+        g.beginFill(backgroundFillColor,1.0); 
+        g.lineStyle(lineThickness, 0xFF0000); 
+        g.drawRect(0, 0, w, h); 
+        g.endFill(); 
+        g.moveTo(0, 0); 
+        g.lineTo(w, h); 
+        g.moveTo(0, h); 
+        g.lineTo(w, 0); 
+     } 
+  } 
+} // Close unnamed package.</pre>
+
+            </div>
+
+         </div>
+
+      </div>
+
+   </div>
+
+   <div class="nested1" id="WS2db454920e96a9e51e63e3d11c0bf69084-7f8d_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7f8d_verapache"><!-- --></a>
+      <h2 class="topictitle2">Creating stateful skins for MX components</h2>
+
+      
+      <div>
+         <p>Many MX components that use the Halo theme, such as Button,
+Slider, and NumericStepper, support stateful skins. A stateful skin
+uses view states to specify the skins for the different states of
+the component. For more information on view states, see <a href="flx_using_states_us.html#WS2db454920e96a9e51e63e3d11c0bf69084-7fb4_verapache">View
+states</a>.</p>
+
+         <p>You can determine whether a skin property supports stateful skins
+from its description in the <em>
+               <em>
+                  <a href="http://www.adobe.com/go/learn_flex4_apiref_en" target="_blank">ActionScript 3.0 Reference for the Adobe
+Flash Platform</a>
+               </em>
+            </em>. For example, all stateful skin properties
+contain a sentence in the form shown below for the <samp class="codeph">TitleWindow.closeButtonSkin</samp> property: </p>
+
+         <p>“You can use the <samp class="codeph">closeButtonSkin</samp> style to assign
+the skin for the following skin states: disabled, down, over, up.”</p>
+
+         <p>To function as a stateful skin, the skin must implement the IStateClient
+interface. Because that interface is implemented by the UIComponent
+class, you can use any subclass of UIComponent to define a stateful
+skin. You then assign the stateful skin class to a stateful skin
+property of the component. </p>
+
+         <p>For example, an MX Button control has eight possible states,
+and eight associated skins. To create a single skin class that defines
+the skins for all eight states, you create a skin based on the UIComponent
+control. You then define eight view states within your skin where
+the name of each view state corresponds to a state of the Button
+control, as the following example shows:</p>
+
+         <pre class="noswf">  &lt;?xml version="1.0"?&gt; 
+ &lt;mx:UIComponent xmlns:mx="http://www.adobe.com/2006/mxml"&gt; 
+ 	&lt;mx:states&gt; 
+ 		&lt;mx:State name="down"&gt; 
+ 		&lt;/mx:State&gt; 
+ 	 
+ 		&lt;mx:State name="over"&gt; 
+ 		&lt;/mx:State&gt; 
+ 		 
+ 		... 
+  
+ 		&lt;mx:State name="selectedUp"&gt; 
+ 		&lt;/mx:State&gt; 
+ 	&lt;/mx:states&gt; 
+  
+ 	&lt;fx:Script&gt; 
+ 		&lt;![CDATA[  
+ 			&lt;!-- Define the skin by using the Flash drawing API. --&gt; 
+ 		]]&gt; 
+ 	&lt;/fx:Script&gt; 
+ &lt;/mx:UIComponent&gt;</pre>
+
+         <div class="note"><span class="notetitle">Note:</span> You can create a stateful skin in either ActionScript
+or MXML. The examples in this section use MXML because it requires
+fewer lines of code to define view states.</div>
+
+         <p>After defining your stateful skin, you assign it to the <samp class="codeph">skin</samp> style
+property of the control. You can assign the stateful control by
+using CSS, the <samp class="codeph">setStyle()</samp> method, by using inline
+styles, or by using the StyleManager class. The following example
+sets it by using CSS:</p>
+
+         <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- skins/ApplyButtonStatefulSkinAll.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark"&gt; 
+ 
+    &lt;fx:Style&gt; 
+        @namespace mx "library://ns.adobe.com/flex/mx"; 
+ 
+        mx|Button { 
+            skin: ClassReference("myComponents.MyButtonStatefulSkinAll"); 
+        } 
+    &lt;/fx:Style&gt;  
+    &lt;mx:Button label="Hello" id="b" /&gt; 
+&lt;/s:Application&gt; </pre>
+
+         <p>You do not have to define all eight skins; you only define the
+skins that you want to create. For all others, you use the default
+skins supplied with the theme. </p>
+
+         <p>For more information, see <a href="flx_skinning_sk.html#WS2db454920e96a9e51e63e3d11c0bf69084-7f8b_verapache">Applying
+MX component skins</a>.</p>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf60ad4-7fd9_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf60ad4-7fd9_verapache"><!-- --></a>
+         <h3 class="topictitle3">Example: Creating a stateful Halo
+skin</h3>
+
+         
+         <div>
+            <p>A stateful skin is a programmatic skin, so you have to
+define it using the rules defined in the section <a href="flx_skinning_sk.html#WS2db454920e96a9e51e63e3d11c0bf69084-7f77_verapache">Programmatic
+skins recipe for MX components</a>. That means you have to define
+an override of the <samp class="codeph">updateDisplayList()</samp> method, and
+for an ActionScript class, you also define a constructor. </p>
+
+            <p>To create a view state, you define a base view state, and then
+define a set of changes, or overrides, that modify the base view
+state to define each new view state. Each new view state can modify
+the base state by adding or removing child components, by setting
+style and property values, or by defining state-specific event handlers.</p>
+
+            <p>One of the most common ways to define stateful skins is to define
+the skin with several properties or styles that can be modified
+by each view state. For example, the following stateful skin defines
+a property to control the line weight, fill color, and drop shadow
+for a skin used by the Button control: </p>
+
+            <p>
+               
+            </p>
+
+            <pre class="noswf">&lt;?xml version="1.0"?&gt; 
+&lt;!-- skins/myComponents/MyButtonStatefulSkin.mxml --&gt; 
+&lt;mx:UIComponent xmlns:mx="http://www.adobe.com/2006/mxml"&gt; 
+ 
+  &lt;mx:Script&gt; 
+    &lt;![CDATA[      
+      import flash.filters.DropShadowFilter; 
+            
+      // Define a drop shadow for the over and down states. 
+      [Bindable] 
+      private var myFilter:DropShadowFilter = new DropShadowFilter(0); 
+                 
+      // Define a private var for line weight. 
+      private var _lineWeight:Number = 1; 
+            
+      // Define public setter and getter for line weight. 
+      public function get lineWeight():Number 
+      { 
+        return _lineWeight; 
+      } 
+            
+      public function set lineWeight(value:Number):void 
+      { 
+        _lineWeight = value; 
+        invalidateDisplayList(); 
+      } 
+            
+      // Define a private var for the fill color. 
+      private var _rectFill:uint = 0x00FF00; 
+            
+      // Define public setter and getter for fill color. 
+      public function get rectFill():uint 
+      { 
+        return _rectFill; 
+      } 
+            
+      public function set rectFill(value:uint):void 
+      { 
+        _rectFill = value; 
+        invalidateDisplayList(); 
+      } 
+ 
+      override protected function updateDisplayList(unscaledWidth:Number, 
+          unscaledHeight:Number):void 
+      { 
+        graphics.lineStyle(lineWeight, 0x0066FF); 
+        graphics.beginFill(rectFill, 0.50); 
+        graphics.drawRoundRect(0, 0, unscaledWidth, unscaledHeight, 10, 10); 
+        filters = [myFilter]; 
+      }                      
+    ]]&gt; 
+  &lt;/mx:Script&gt; 
+    
+    &lt;mx:states&gt; 
+        &lt;mx:State name="up"&gt; 
+        &lt;/mx:State&gt; 
+        &lt;mx:State name="over"&gt; 
+            &lt;mx:SetProperty target="{this}" 
+                name="rectFill" value="0x00CC33"/&gt; 
+            &lt;mx:SetProperty target="{myFilter}" 
+                name="distance" value="4"/&gt; 
+        &lt;/mx:State&gt; 
+        &lt;mx:State name="down"&gt; 
+            &lt;mx:SetProperty target="{this}" 
+                name="rectFill" value="0x00CC33"/&gt; 
+            &lt;mx:SetProperty target="{myFilter}" 
+                name="inner" value="true"/&gt; 
+            &lt;mx:SetProperty target="{myFilter}" 
+                name="distance" value="2"/&gt; 
+        &lt;/mx:State&gt; 
+    &lt;/mx:states&gt;    
+&lt;/mx:UIComponent&gt;</pre>
+
+            <p>This examples defines skins the for following states: </p>
+
+            <dl>
+               
+                  <dt class="dlterm">up</dt>
+
+                  <dd>
+                     <p>Does not define any changes; therefore, the base view state
+defines the skin for the up state. </p>
+
+                  </dd>
+
+               
+               
+                  <dt class="dlterm">over</dt>
+
+                  <dd>
+                     <p>Changes the fill color to 0x00CC33, sets the line width to
+2 pixels, and creates a 2-pixel wide drop shadow.</p>
+
+                  </dd>
+
+               
+               
+                  <dt class="dlterm">down</dt>
+
+                  <dd>
+                     <p>Changes the fill color to 0x00CC33, sets the drop shadow
+type to inner, and creates a 2-pixel wide drop shadow.</p>
+
+                     <p>The
+following application uses this skin:</p>
+
+                     <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- skins/ApplyButtonStatefulSkin.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark"&gt; 
+ 
+    &lt;fx:Style&gt; 
+        @namespace mx "library://ns.adobe.com/flex/mx"; 
+ 
+        mx|Button { 
+          skin: ClassReference("myComponents.MyButtonStatefulSkin"); 
+          disabledSkin: ClassReference("mx.skins.halo.ButtonSkin"); 
+          selectedUpSkin: ClassReference("mx.skins.halo.ButtonSkin"); 
+          selectedOverSkin: ClassReference("mx.skins.halo.ButtonSkin"); 
+          selectedDownSkin: ClassReference("mx.skins.halo.ButtonSkin"); 
+          selectedDisabledSkin: ClassReference("mx.skins.halo.ButtonSkin"); 
+        } 
+    &lt;/fx:Style&gt;  
+    &lt;mx:Button label="Hello" id="b" /&gt; 
+&lt;/s:Application&gt; </pre>
+
+                  </dd>
+
+               
+            </dl>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf60ad4-7fd8_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf60ad4-7fd8_verapache"><!-- --></a>
+         <h3 class="topictitle3">Creating a stateful Halo skin using
+images</h3>
+
+         
+         <div>
+            <p>You can use images in a stateful skin where a change of
+state causes the skin to display a different image. One issue when
+using images is that the base view state must contain the image
+so that when the skin is first created it has values for the <samp class="codeph">measuredWidth</samp> and <samp class="codeph">measuredHeight</samp> properties,
+otherwise Flex sets the height and width of the skin to 0.</p>
+
+            <p>In the following example, you embed images for the up, over,
+down, and disabled states of the Button control:</p>
+
+            <pre class="noswf">&lt;?xml version="1.0" encoding="utf-8"?&gt; 
+&lt;!-- skins/myComponents/MyButtonStatefulSkinImages.mxml --&gt; 
+&lt;mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml"&gt; 
+ 
+    &lt;mx:Script&gt; 
+        &lt;![CDATA[ 
+            // Embed the skin images. 
+            [Bindable] 
+            [Embed(source="../../assets/orb_up_skin.gif")] 
+            private var buttonUp:Class; 
+ 
+            [Bindable] 
+            [Embed(source="../../assets/orb_over_skin.gif")] 
+            private var buttonOver:Class; 
+ 
+            [Bindable] 
+            [Embed(source="../../assets/orb_down_skin.gif")] 
+            private var buttonDown:Class; 
+ 
+            [Bindable] 
+            [Embed(source="../../assets/orb_disabled_skin.gif")] 
+            private var buttonDisabled:Class; 
+        ]]&gt; 
+    &lt;/mx:Script&gt; 
+ 
+    &lt;mx:states&gt; 
+        &lt;mx:State name="up"/&gt; 
+        &lt;mx:State name="notBase"&gt; 
+            &lt;mx:RemoveChild target="{baseButton}"/&gt; 
+        &lt;/mx:State&gt; 
+        &lt;mx:State name="over" basedOn="notBase"&gt; 
+            &lt;mx:AddChild creationPolicy="all"&gt; 
+                &lt;mx:Image source="{buttonOver}" 
+                    maintainAspectRatio="false" 
+                    width="100%" height="100%"/&gt; 
+            &lt;/mx:AddChild&gt; 
+        &lt;/mx:State&gt; 
+        &lt;mx:State name="down" basedOn="notBase"&gt; 
+            &lt;mx:AddChild creationPolicy="all"&gt; 
+                &lt;mx:Image source="{buttonDown}" 
+                    maintainAspectRatio="false" 
+                    width="100%" height="100%"/&gt; 
+            &lt;/mx:AddChild&gt; 
+        &lt;/mx:State&gt; 
+        &lt;mx:State name="disabled" basedOn="notBase"&gt; 
+            &lt;mx:AddChild creationPolicy="all"&gt; 
+                &lt;mx:Image source="{buttonDisabled}" 
+                    maintainAspectRatio="false" 
+                    width="100%" height="100%"/&gt; 
+            &lt;/mx:AddChild&gt; 
+        &lt;/mx:State&gt; 
+    &lt;/mx:states&gt; 
+    
+    &lt;mx:Image id="baseButton" 
+        width="100%" height="100%" 
+        source="{buttonUp}" 
+        maintainAspectRatio="false"/&gt;    
+&lt;/mx:Canvas&gt;</pre>
+
+            <p>In this example the skin performs the following actions:</p>
+
+            <ul>
+               <li>
+                  <p>Defines no changes from the base view state to create
+the up view state. </p>
+
+               </li>
+
+               <li>
+                  <p>Defines the notBase view state to remove the image defined
+by the base view state. All other view states, except for the up
+view state, are based on the notBase view state.</p>
+
+               </li>
+
+               <li>
+                  <p>Sets the <samp class="codeph">creationPolicy</samp> property to <samp class="codeph">all</samp> for
+each AddChild tag. This property specifies to create the child instance
+at application startup, rather than on the first change to the view
+state. This prevents flickering when viewing a view state for the
+first time. For more information, see <a href="flx_using_states_us.html#WS2db454920e96a9e51e63e3d11c0bf69084-7fb4_verapache">View
+states</a>. </p>
+
+               </li>
+
+               <li>
+                  <p>Sets the <samp class="codeph">width</samp> and <samp class="codeph">height</samp> properties
+to 100% for the Image tags because the Canvas container is what
+is being resized by the skin parent, not the individual Image controls.
+This setting configures the Image control to size itself to its
+parent. </p>
+
+               </li>
+
+               <li>
+                  <p>Sets the <samp class="codeph">maintainAspectRatio</samp> property to <samp class="codeph">false</samp> on
+each Image tag so that the image stretches to fill the full size
+of the Canvas container. </p>
+
+               </li>
+
+            </ul>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf60ad4-7fd7_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf60ad4-7fd7_verapache"><!-- --></a>
+         <h3 class="topictitle3">Using transitions with a stateful
+Halo skin</h3>
+
+         
+         <div>
+            <p>View states let you change appearance of a component, typically
+in response to a user action. Transitions define how a change of
+view state looks as it occurs on the screen. You define a transition
+by using the effect classes, in combination with several effects
+designed explicitly for handling transitions. For more information
+on transitions, see <a href="flx_transitions_tr.html#WS2db454920e96a9e51e63e3d11c0bf69084-7f6a_verapache">Transitions</a>. </p>
+
+            <p>In the following example, you add a transition to the stateful
+skin definition from the previous section. In this example, the
+transition defines a 100 ms animation to occur when changing the
+fill color of the skin:</p>
+
+            <pre class="noswf">&lt;?xml version="1.0"?&gt; 
+&lt;!-- skins/myComponents/MyButtonStatefulSkinTrans.mxml --&gt; 
+&lt;mx:UIComponent xmlns:mx="http://www.adobe.com/2006/mxml"&gt; 
+ 
+  &lt;mx:Script&gt; 
+    &lt;![CDATA[      
+      import flash.filters.DropShadowFilter; 
+            
+      // Define a drop shadow for the over and down states. 
+      [Bindable] 
+      private var myFilter:DropShadowFilter = new DropShadowFilter(0); 
+                 
+      // Define a private var for line weight. 
+      private var _lineWeight:Number = 1; 
+            
+      // Define public setter and getter for line weight. 
+      public function get lineWeight():Number 
+      { 
+        return _lineWeight; 
+      } 
+            
+      public function set lineWeight(value:Number):void 
+      { 
+        _lineWeight = value; 
+        invalidateDisplayList(); 
+      } 
+            
+      // Define a private var for the fill color. 
+      private var _rectFill:uint = 0x00FF00; 
+            
+      // Define public setter and getter for fill color. 
+      public function get rectFill():uint 
+      { 
+        return _rectFill; 
+      } 
+            
+      public function set rectFill(value:uint):void 
+      { 
+        _rectFill = value; 
+        invalidateDisplayList(); 
+      } 
+ 
+      override protected function updateDisplayList(unscaledWidth:Number, 
+          unscaledHeight:Number):void 
+      { 
+        graphics.lineStyle(lineWeight, 0x0066FF); 
+        graphics.beginFill(rectFill, 0.50); 
+        graphics.drawRoundRect(0, 0, unscaledWidth, unscaledHeight, 10, 10); 
+        filters = [myFilter]; 
+      }                      
+    ]]&gt; 
+  &lt;/mx:Script&gt; 
+        
+    &lt;mx:states&gt; 
+        &lt;mx:State name="up"&gt; 
+        &lt;/mx:State&gt; 
+        &lt;mx:State name="over"&gt; 
+            &lt;mx:SetProperty target="{this}" 
+                name="rectFill" value="0x00CC33"/&gt; 
+            &lt;mx:SetProperty target="{myFilter}" 
+                name="distance" value="4"/&gt; 
+        &lt;/mx:State&gt; 
+        &lt;mx:State name="down"&gt; 
+            &lt;mx:SetProperty target="{this}" 
+                name="rectFill" value="0x00CC33"/&gt; 
+            &lt;mx:SetProperty target="{myFilter}" 
+                name="inner" value="true"/&gt; 
+            &lt;mx:SetProperty target="{myFilter}" 
+                name="distance" value="2"/&gt; 
+        &lt;/mx:State&gt; 
+    &lt;/mx:states&gt;    
+    &lt;mx:transitions&gt; 
+        &lt;mx:Transition&gt; 
+            &lt;mx:AnimateProperty target="{this}" 
+                property="rectFill" duration="100"/&gt; 
+        &lt;/mx:Transition&gt; 
+    &lt;/mx:transitions&gt;        
+&lt;/mx:UIComponent&gt;</pre>
+
+         </div>
+
+      </div>
+
+   </div>
+
+   <div class="nested1" id="WS2db454920e96a9e51e63e3d11c0bf60ad4-7fd6_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf60ad4-7fd6_verapache"><!-- --></a>
+      <h2 class="topictitle2">Creating advanced programmatic
+skins for MX components</h2>
+
+      
+      <div>
+         <p/>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf60ad4-7fd5_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf60ad4-7fd5_verapache"><!-- --></a>
+         <h3 class="topictitle3">Accessing the parent component</h3>
+
+         
+         <div>
+            <p>It is possible to get a reference to the parent of the
+programmatic skin from within the programmatic skin class. You can
+use this reference to access properties of the parent component
+or call methods on it. </p>
+
+            <p>You can access the parent from the <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/skins/ProgrammaticSkin.html#updateDisplayList()" target="_blank">updateDisplayList()</a> method
+by using the skin’s <samp class="codeph">parent</samp> property. You cannot
+access the parent in the skin’s constructor because the skin has
+not yet been added to the parent control. The value of the skin’s <samp class="codeph">parent</samp> property
+is set when the parent MX container calls the <samp class="codeph">addChild()</samp> method
+to add the skin as a child. </p>
+
+            <p>When instantiating components with programmatic skins, the order
+of events is as follows:</p>
+
+            <ol>
+               <li>
+                  <p>Create an instance of the parent component.</p>
+
+               </li>
+
+               <li>
+                  <p>Create an instance of the skin class.</p>
+
+               </li>
+
+               <li>
+                  <p>Call the <samp class="codeph">addChild()</samp> method on the parent
+MX container to add the skin class.</p>
+
+               </li>
+
+            </ol>
+
+            <p>To get a reference to the skin’s parent, you must cast the skin’s <samp class="codeph">parent</samp> property to
+a <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/core/UIComponent.html" target="_blank">UIComponent</a>.
+The skin inherits this read-only property from the <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/core/IFlexDisplayObject.html" target="_blank">IFlexDisplayObject</a> interface.
+You should also confirm that the parent is a UIComponent by using
+the <samp class="codeph">is</samp> operator, because Flex throws a run-time
+error if the cast cannot be made.</p>
+
+            <p>The following example gets the class name of the parent control
+and draws the border and fill, depending on the type of component
+the parent is:</p>
+
+            <pre class="noswf">package { 
+ 
+import flash.display.GradientType; 
+import flash.display.Graphics; 
+import mx.skins.Border; 
+import mx.styles.StyleManager; 
+import mx.utils.ColorUtil; 
+import mx.skins.halo.HaloColors; 
+import mx.core.UIComponent; 
+ 
+public class IconSkin extends Border { 
+ 
+  public function IconSkin() { 
+     //super(); 
+  } 
+    
+  override public function get measuredWidth():Number { 
+     return 14; 
+  } 
+ 
+  override public function get measuredHeight():Number { 
+     return 14; 
+  } 
+  
+  override protected function updateDisplayList(w:Number, h:Number):void { 
+     super.updateDisplayList(w, h); 
+ 
+     // User-defined styles 
+     var borderColor:uint = getStyle("borderColor"); 
+     var fillAlphas:Array = getStyle("fillAlphas"); 
+     var fillColors:Array = getStyle("fillColors"); 
+     styleManager.getColorNames(fillColors); 
+     var highlightAlphas:Array = getStyle("highlightAlphas");       
+     var themeColor:uint = getStyle("themeColor"); 
+     
+     var r:Number = width / 2; 
+     
+     var upFillColors:Array; 
+     var upFillAlphas:Array; 
+ 
+     var disFillColors:Array; 
+     var disFillAlphas:Array; 
+ 
+     var g:Graphics = graphics; 
+     g.clear(); 
+     
+     var myParent:String; 
+     
+     switch (name) {            
+        case "upIcon": { 
+           upFillColors = [ fillColors[0], fillColors[1] ]; 
+           upFillAlphas = [ fillAlphas[0], fillAlphas[1] ]; 
+ 
+           if (parent is UIComponent) { 
+            myParent = String(UIComponent(parent).className); 
+           } 
+           if (myParent=="RadioButton") { 
+            // RadioButton border 
+            g.beginGradientFill(GradientType.LINEAR, 
+                [ borderColor, 0x000000 ], 
+                [100,100], [0,0xFF], 
+                verticalGradientMatrix(0,0,w,h)); 
+            g.drawCircle(r,r,r); 
+            g.drawCircle(r,r,(r-1)); 
+            g.endFill(); 
+ 
+            // RadioButton fill 
+            g.beginGradientFill(GradientType.LINEAR, 
+                upFillColors, 
+                upFillAlphas, 
+                [0,0xFF], 
+                verticalGradientMatrix(1,1,w-2,h-2)); 
+            g.drawCircle(r,r,(r-1)); 
+            g.endFill(); 
+           } else if (myParent=="CheckBox") { 
+            // CheckBox border 
+            drawRoundRect(0,0,w,h,0, 
+                [borderColor, 0x000000], 1, 
+                verticalGradientMatrix(0,0,w,h), 
+                GradientType.LINEAR, 
+                null, {x: 1,y:1,w:w-2,h:h-2,r:0}); 
+ 
+            // CheckBox fill 
+            drawRoundRect(1, 1, w-2, h-2, 0, 
+                upFillColors, upFillAlphas, 
+                verticalGradientMatrix(1,1,w-2,h-2)); 
+           } 
+ 
+           // top highlight 
+           drawRoundRect(1, 1, w-2, 
+                (h-2)/2, {tl:r,tr:r,bl:0,br:0}, 
+                [0xFFFFFF, 0xFFFFFF], 
+                highlightAlphas, 
+                verticalGradientMatrix(0,0,w-2,(h-2)/2)); 
+        } 
+        
+        // Insert other cases such as downIcon and overIcon here. 
+        
+     } 
+  } 
+} 
+ 
+}</pre>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf69084-7f71_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7f71_verapache"><!-- --></a>
+         <h3 class="topictitle3">Making properties styleable</h3>
+
+         
+         <div>
+            <p>In many cases, you define a programmatic skin that defines
+style properties, such as the background color of the skin, the
+border thickness, or the roundness of the corners. You can make
+these properties styleable so that your users can change their values
+in a CSS file or with the <samp class="codeph">setStyle()</samp> method from
+inside their applications. You cannot set styles that are defined
+in programmatic skins by using inline syntax.</p>
+
+            <p>To make a custom property styleable, add a call to the <samp class="codeph">getStyle()</samp> method
+in the <samp class="codeph">updateDisplayList()</samp> method and specify that
+property as the method’s argument. When Flex renders the skin, it
+calls <samp class="codeph">getStyle()</samp> on that property to find a setting
+in CSS or on the display list. You can then use the value of the
+style property when drawing the skin. </p>
+
+            <p>You should wrap this call to the <samp class="codeph">getStyle()</samp> method
+in a check to see if the style exists. If the property was not set,
+the result of the <samp class="codeph">getStyle()</samp> method can be unpredictable. </p>
+
+            <p>The following example verifies if the property is defined before
+assigning it a value:</p>
+
+            <pre class="codeblock">  if (getStyle("lineThickness")) { 
+ 	_lineThickness = getStyle("lineThickness"); 
+ }</pre>
+
+            <p>You must define a default value for the skin’s styleable properties.
+You usually do this in the skin’s constructor function. If you do
+not define a default value, the style property is set to <samp class="codeph">NaN</samp> or <samp class="codeph">undefined</samp> if
+the application does not define that style. This can cause a run-time
+error. </p>
+
+            <p>The following example of the MyButtonSkin programmatic skin class
+defines default values for the <samp class="codeph">_lineThickness</samp> and <samp class="codeph">_backgroundFillColor</samp> styleable
+properties in the skin’s constructor. It then adds calls to the <samp class="codeph">getStyle()</samp> method
+in the <samp class="codeph">updateDisplayList()</samp> method to make these properties
+styleable:</p>
+
+            <pre class="noswf">package { // Use unnamed package if this skin is not in its own package. 
+  // skins/ButtonStylesSkin.as 
+ 
+  // Import necessary classes here. 
+  import flash.display.Graphics; 
+  import mx.skins.Border; 
+  import mx.skins.ProgrammaticSkin; 
+  import mx.styles.StyleManager; 
+ 
+  public class ButtonStylesSkin extends ProgrammaticSkin { 
+ 
+     public var _backgroundFillColor:Number; 
+     public var _lineThickness:Number; 
+ 
+     // Constructor. 
+     public function ButtonStylesSkin() { 
+        // Set default values. 
+        _backgroundFillColor = 0xFFFFFF; 
+        _lineThickness=2; 
+     } 
+ 
+     override protected function updateDisplayList(w:Number, h:Number):void { 
+        if (getStyle("lineThickness")) { 
+           // Get value of lineThickness style property. 
+           _lineThickness = getStyle("lineThickness"); 
+        } 
+        if (getStyle("backgroundFillColor")) { 
+           // Get value of backgroundFillColor style property. 
+           _backgroundFillColor = getStyle("backgroundFillColor"); 
+        } 
+ 
+        // Draw the box using the new values. 
+        var g:Graphics = graphics; 
+        g.clear(); 
+        g.beginFill(_backgroundFillColor,1.0); 
+        g.lineStyle(_lineThickness, 0xFF0000); 
+        g.drawRect(0, 0, w, h); 
+        g.endFill(); 
+        g.moveTo(0, 0); 
+        g.lineTo(w, h); 
+        g.moveTo(0, h); 
+        g.lineTo(w, 0); 
+     } 
+  } 
+} // Close unnamed package.</pre>
+
+            <p>In your application, you can set the values of styleable properties
+by using CSS or the <samp class="codeph">setStyle()</samp> method. </p>
+
+            <p>The following example sets the value of styleable properties
+on all Button controls with CSS:</p>
+
+            <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- skins/ApplyButtonStylesSkin.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    width="600" height="600"&gt; 
+ 
+    &lt;s:layout&gt; 
+        &lt;s:VerticalLayout/&gt; 
+    &lt;/s:layout&gt;  
+    
+  &lt;fx:Style&gt; 
+     @namespace mx "library://ns.adobe.com/flex/mx"; 
+ 
+     mx|Button { 
+        upSkin:ClassReference('ButtonStylesSkin'); 
+        downSkin:ClassReference('ButtonStylesSkin'); 
+        overSkin:ClassReference('ButtonStylesSkin'); 
+        disabledSkin:ClassReference('ButtonStylesSkin'); 
+        lineThickness:4; 
+        backgroundFillColor:#CCCCCC; 
+     } 
+  &lt;/fx:Style&gt; 
+ 
+  &lt;fx:Script&gt;&lt;![CDATA[ 
+     public function changeLineThickness(e:Event):void { 
+        var t:int = Number(b1.getStyle("lineThickness")); 
+        if (t == 4) { 
+           b1.setStyle("lineThickness",1); 
+        } else { 
+           b1.setStyle("lineThickness",4); 
+        } 
+     } 
+  ]]&gt;&lt;/fx:Script&gt; 
+ 
+  &lt;mx:Button id="b1" label="Change Line Thickness" click="changeLineThickness(event)"/&gt; 
+  
+&lt;/s:Application&gt;</pre>
+
+            <p>When using the <samp class="codeph">setStyle()</samp> method to set the
+value of a style property in your application, you can set the value
+of a styleable property on a single component instance (as in the
+previous example) or on all instances of a component. </p>
+
+            <p>The following example uses the <samp class="codeph">setStyle()</samp> method
+to set the value of a styleable property on all instances of the
+control (in this case, all MX Button controls):</p>
+
+            <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- skins/ApplyGlobalButtonStylesSkin.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    width="600" height="600"&gt; 
+ 
+  &lt;fx:Style&gt; 
+     @namespace mx "library://ns.adobe.com/flex/mx"; 
+     
+     mx|Button { 
+        upSkin:ClassReference('ButtonStylesSkin'); 
+        downSkin:ClassReference('ButtonStylesSkin'); 
+        overSkin:ClassReference('ButtonStylesSkin'); 
+        disabledSkin:ClassReference('ButtonStylesSkin'); 
+        lineThickness:4; 
+        backgroundFillColor:#CCCCCC; 
+     } 
+  &lt;/fx:Style&gt; 
+ 
+  &lt;fx:Script&gt;&lt;![CDATA[ 
+     public function changeLineThickness(e:Event):void { 
+        var t:int = Number(b1.getStyle("lineThickness")); 
+        if (t == 4) { 
+           styleManager.getStyleDeclaration("mx.controls.Button").setStyle("lineThickness", 1); 
+        } else { 
+           styleManager.getStyleDeclaration("mx.controls.Button").setStyle("lineThickness", 4); 
+        } 
+     } 
+  ]]&gt;&lt;/fx:Script&gt; 
+ 
+  &lt;mx:Button id="b1" label="Change Line Thickness" click="changeLineThickness(event)"/&gt; 
+  
+&lt;/s:Application&gt;</pre>
+
+            <p>If you do not set the values of these properties using either
+CSS or the <samp class="codeph">setStyle()</samp> method, Flex uses the default
+values of the properties that you set in the skin’s constructor.</p>
+
+            <p>To get the value of an existing style property, such as <samp class="codeph">color</samp> or <samp class="codeph">fontSize</samp>,
+you do not have to wrap the call to the <samp class="codeph">getStyle()</samp> method
+in a check for the property’s existence. This is because Flex creates
+a <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/styles/CSSStyleDeclaration.html" target="_blank">CSSStyleDeclaration</a> that defines
+the default values of all of a component’s styles. Preexisting style properties
+are never undefined. Style properties that you add to a custom skin are
+not added to this CSSStyleDeclaration because the component does
+not know that the property is a style property.</p>
+
+            <p>Custom skin properties that you define as styleable are noninheritable.
+So, subclasses or children of that component do not inherit the
+value of that property. </p>
+
+         </div>
+
+      </div>
+
+         <p>Adobe and Adobe Flash are either registered trademarks or trademarks of Adobe Systems Incorporated in the United States and/or other countries and are used by permission from Adobe.  No other license to the Adobe trademarks are granted.</p>
+   </div>
+
+
+</body>
+</html>

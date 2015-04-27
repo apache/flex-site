@@ -1,0 +1,1399 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Licensed to the Apache Software Foundation (ASF) under one or more
+  contributor license agreements.  See the NOTICE file distributed with
+  this work for additional information regarding copyright ownership.
+  The ASF licenses this file to You under the Apache License, Version 2.0
+  (the "License"); you may not use this file except in compliance with
+  the License.  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+-->
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en-us" xml:lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="topic"/>
+<meta name="DC.Title" content="Ant tasks"/>
+<meta name="DC.Relation" scheme="URI" content="http://ant.apache.org"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="WS2db454920e96a9e51e63e3d11c0bf678b2-8000_verapache"/>
+<link rel="stylesheet" type="text/css" href="commonltr.css"/>
+<title>Ant tasks</title>
+</head>
+<body id="WS2db454920e96a9e51e63e3d11c0bf678b2-8000_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf678b2-8000_verapache"><!-- --></a>
+
+
+   <h1 class="topictitle1">Ant tasks</h1>
+
+   <div>
+      <p>
+         
+         
+         
+         
+         The
+ Flex Ant tasks provide a convenient way
+to build your Flex projects using an industry-standard build management
+tool. If you are already using Ant projects to build Flex applications,
+you can use the Flex Ant tasks to replace your <samp class="codeph">exec</samp> or <samp class="codeph">java</samp> commands
+that invoke the mxmlc and compc compilers. If you are not yet using
+Ant to build your Flex applications, you can take advantage of these custom
+tasks to quickly and easily set up complex build processes for your
+Flex applications. </p>
+
+      <p>The Ant tasks for Flex include two compiler tasks, <samp class="codeph">mxmlc</samp> and <samp class="codeph">compc</samp>.
+You can use these to compile Flex applications, modules, and component
+libraries. In addition, the Ant tasks include the <samp class="codeph">html-wrapper</samp> task
+that lets you generate custom HTML wrappers and the supporting files
+for those wrappers, and an <samp class="codeph">asdoc</samp> Ant task to generate
+ASDoc documentation. </p>
+
+      <div class="tip"><span class="tiptitle">Tip:</span> The <samp class="codeph">
+            <em>mxmlc</em>
+         </samp> and <samp class="codeph">
+            <em>compc</em>
+         </samp> Ant
+tasks extend the <samp class="codeph">java</samp> Ant task. As a result, you
+can use all the available attributes of the <samp class="codeph">java</samp> Ant
+task in those Ant tasks. This includes <samp class="codeph">fork</samp>, <samp class="codeph">maxmemory</samp>,
+and <samp class="codeph">classpath</samp>
+         <em>.</em>
+      </div>
+
+   </div>
+
+   <div><div class="relinfo"><strong>Related information</strong><br/>
+<div><a href="http://ant.apache.org" target="_blank">The Apache Ant Project</a></div>
+</div>
+</div>
+   <div class="nested1" id="WS2db454920e96a9e51e63e3d11c0bf69084-7a62_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7a62_verapache"><!-- --></a>
+      <h2 class="topictitle2">Setting up Flex Ant tasks</h2>
+
+      
+      <div>
+         <p>Installing the Flex Ant tasks is a simple process. You
+copy the flexTasks.jar file from <em>sdk_install</em>/ant/lib. to
+Ant’s lib directory. </p>
+
+         <p>Copy the flexTasks.jar file to Ant's lib directory (<em>ant_root</em>/lib).
+If you do not copy this file to Ant’s lib directory, you must specify
+it by using Ant's <samp class="codeph">-lib</samp> option on the command line
+when you make a project. </p>
+
+      </div>
+
+   </div>
+
+   <div class="nested1" id="WS2db454920e96a9e51e63e3d11c0bf678b2-7ffc_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf678b2-7ffc_verapache"><!-- --></a>
+      <h2 class="topictitle2">Using Flex Ant tasks </h2>
+
+      
+      <div>
+         <p>You can use the Flex Ant tasks in your existing projects
+or create new Ant projects that use them. There are three tasks
+that you can use in your Ant projects: </p>
+
+         <ul>
+            <li>
+               <p>
+                  <samp class="codeph">mxmlc</samp> — Invokes the application compiler.
+You use this compiler to compile applications, modules, resource
+modules, and CSS SWF files. </p>
+
+            </li>
+
+            <li>
+               <p>
+                  <samp class="codeph">compc</samp> — Invokes the component compiler.
+You use this compiler to compile SWC files and Runtime Shared Libraries
+(RSLs). </p>
+
+            </li>
+
+            <li>
+               <p>
+                  <samp class="codeph">html-wrapper</samp> — Generates the HTML wrapper
+and supporting files for your application. By using this task, you
+can select the type of wrapper (with and without deep linking support,
+with and without Express Install, and with and without Player detection),
+as well as specify application settings such as the height, width,
+and background color. </p>
+
+            </li>
+
+            <li>
+               <p>
+                  <samp class="codeph">asdoc</samp> — Generates ASDoc output for the specified
+classes in your project.</p>
+
+            </li>
+
+         </ul>
+
+         <p>To use the custom Flex Ant tasks in your Ant projects, you must
+add the flexTasks.jar file to your project’s lib directory, and
+then point to that JAR file in the <samp class="codeph">taskdef</samp> task.
+A <samp class="codeph">taskdef</samp> task adds a new set of task definitions
+to your current project. You use it to add task definitions that
+are not part of the default Ant installation. In this case, you
+use the <samp class="codeph">taskdef</samp> task to add the <samp class="codeph">mxmlc</samp>, <samp class="codeph">compc</samp>, and <samp class="codeph">html-wrapper</samp> task
+definitions to your Ant installation. In addition, for most projects
+you set the value of the <samp class="codeph">FLEX_HOME</samp> variable so
+that Ant can find your flex-config.xml file and so that you can
+add the frameworks directory to your source path. </p>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf678b2-7ffa_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf678b2-7ffa_verapache"><!-- --></a>
+         <h3 class="topictitle3">Use the Flex tasks in Ant:</h3>
+
+         
+         <div>
+            <ol>
+               <li>
+                  <p>Add a new <samp class="codeph">taskdef</samp> task to your
+project. In this task, specify the flexTasks.tasks file as the resource,
+and point to the flexTasks.jar file for the classpath. For example: </p>
+
+                  <pre class="codeblock"> &lt;taskdef resource="flexTasks.tasks" classpath="${basedir}/flexTasks/lib/flexTasks.jar"/&gt;</pre>
+
+               </li>
+
+               <li>
+                  <p>Define the <samp class="codeph">FLEX_HOME</samp> and <samp class="codeph">APP_ROOT</samp> properties.
+Use these properties to point to your Flex SDK’s root directory
+and application's root directory. Although not required, creating
+properties for these directories is a common practice because you
+will probably use them several times in your Ant tasks. For example: </p>
+
+                  <pre class="codeblock"> &lt;property name="FLEX_HOME" value="C:/flex/sdk"/&gt; 
+ &lt;property name="APP_ROOT" value="myApps"/&gt;</pre>
+
+               </li>
+
+               <li>
+                  <p>Write a target that uses the Flex Ant tasks. The following
+example defines the <samp class="codeph">main</samp> target that uses the <samp class="codeph">mxmlc</samp> task
+to compile the Main.mxml file: </p>
+
+                  <pre class="codeblock"> &lt;target name="main"&gt; 
+ 	&lt;mxmlc file="${APP_ROOT}/Main.mxml" keep-generated-actionscript="true"&gt; 
+ 		&lt;load-config filename="${FLEX_HOME}/frameworks/flex-config.xml"/&gt; 
+ 		&lt;source-path path-element="${FLEX_HOME}/frameworks"/&gt; 
+ 	&lt;/mxmlc&gt; 
+ &lt;/target&gt;</pre>
+
+                  <p>The following shows the complete
+example: </p>
+
+                  <pre class="codeblock"> &lt;?xml version="1.0" encoding="utf-8"?&gt; 
+ &lt;!-- mySimpleBuild.xml --&gt; 
+ &lt;project name="My App Builder" basedir="."&gt; 
+ 	&lt;taskdef resource="flexTasks.tasks" 
+		classpath="${basedir}/flexTasks/lib/flexTasks.jar"/&gt; 
+ 	&lt;property name="FLEX_HOME" value="C:/flex/sdk"/&gt; 
+ 	&lt;property name="APP_ROOT" value="myApp"/&gt; 
+ 	&lt;target name="main"&gt; 
+ 		&lt;mxmlc file="${APP_ROOT}/Main.mxml" keep-generated-actionscript="true"&gt; 
+ 			&lt;load-config filename="${FLEX_HOME}/frameworks/flex-config.xml"/&gt; 
+ 			&lt;source-path path-element="${FLEX_HOME}/frameworks"/&gt; 
+ 		&lt;/mxmlc&gt; 
+ 	&lt;/target&gt; 
+ &lt;/project&gt;</pre>
+
+                  <p>This example shows how to use different
+types of options for the <samp class="codeph">mxmlc</samp> task. You can specify
+the value of the <samp class="codeph">keep-generated-actionscript</samp> option
+as an attribute of the <samp class="codeph">mxmlc</samp> task's tag because
+it does not take any child tags. To specify the values of the <samp class="codeph">load-config</samp> and <samp class="codeph">source-path</samp> options,
+you create child tags of the <samp class="codeph">mxmlc</samp> task's tag.
+For more information on using options, see <a href="flx_anttasks_an.html#WS2db454920e96a9e51e63e3d11c0bf69084-7a63_verapache">Working
+with compiler options </a>. </p>
+
+               </li>
+
+               <li>
+                  <p>Execute the Ant project, as shown in the following example: </p>
+
+                  <pre class="codeblock"> &gt; ant -buildfile mySimpleBuild.xml main</pre>
+
+                  <p>If
+you did not copy the flexTasks.jar file to Ant’s lib directory as
+described in <a href="flx_anttasks_an.html#WS2db454920e96a9e51e63e3d11c0bf69084-7a62_verapache">Installation </a>,
+you must include the JAR file by using Ant’s <samp class="codeph">-lib</samp> option.
+For example: </p>
+
+                  <pre class="codeblock"> &gt; ant -lib c:/ant/lib/flexTasks.jar -buildfile mySimpleBuild.xml main</pre>
+
+               </li>
+
+            </ol>
+
+            <p>The output of these commands should be similar to the following: </p>
+
+            <pre class="codeblock"> Buildfile: mySimpleBuild.xml 
+ main: 
+ 	[mxmlc] Loading configuration file C:\flex\sdk\frameworks\flex-config.xml 
+ 	[mxmlc] C:\myfiles\flex4\ant_tests\apps\Main.swf (150035 bytes) 
+ BUILD SUCCESSFUL 
+ Total time: 10 seconds 
+ &gt;</pre>
+
+            <p>To embed fonts in your Flex ant tasks, you must be sure to include
+the font manager in your build file. For more information, see <a href="http://philperon.com/2009/06/30/embedding-fonts-using-as3-and-flex-ant-tasks/" target="_blank">Embedding Fonts Using AS3 and Flex 4 Ant
+Tasks</a>.</p>
+
+         </div>
+
+      </div>
+
+   </div>
+
+   <div class="nested1" id="WS2db454920e96a9e51e63e3d11c0bf69084-7a63_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7a63_verapache"><!-- --></a>
+      <h2 class="topictitle2">Working with compiler options </h2>
+
+      
+      <div>
+         <p>The compc and mxmlc compilers share a very similar set
+of options. As a result, the behavior of the <samp class="codeph">mxmlc</samp> and <samp class="codeph">compc</samp> Ant
+tasks are similar as well. </p>
+
+         <p>You can specify options for the <samp class="codeph">mxmlc</samp> and <samp class="codeph">compc</samp> Flex
+tasks in a number of ways: </p>
+
+         <ul>
+            <li>
+               <p>Task attributes </p>
+
+            </li>
+
+            <li>
+               <p>Single argument options </p>
+
+            </li>
+
+            <li>
+               <p>Multiple argument options </p>
+
+            </li>
+
+            <li>
+               <p>Nested elements </p>
+
+            </li>
+
+            <li>
+               <p>Implicit FileSets</p>
+
+            </li>
+
+         </ul>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf678b2-7ff8_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf678b2-7ff8_verapache"><!-- --></a>
+         <h3 class="topictitle3">Task attributes </h3>
+
+         
+         <div>
+            <p>The simplest method of specifying options for the Flex
+Ant tasks is to specify the name and value of command-line options
+as a task attribute. In the following example, the <samp class="codeph">file</samp> and <samp class="codeph">keep-generated-actionscript</samp> options
+are specified as attributes of the <samp class="codeph">mxmlc</samp> task: </p>
+
+            <pre class="codeblock"> &lt;mxmlc file="${APP_ROOT}/Main.mxml" keep-generated-actionscript="true"&gt;</pre>
+
+            <p>Many mxmlc and compc options have aliases (alternative shorter
+names). The Flex Ant tasks support all documented aliases for these
+options. </p>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf678b2-7ffb_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf678b2-7ffb_verapache"><!-- --></a>
+         <h3 class="topictitle3">Single argument options </h3>
+
+         
+         <div>
+            <p>Many compiler options must specify the value of one or
+more parameters. For example, the <samp class="codeph">load-config</samp> option
+takes a parameter named <samp class="codeph">filename</samp>. </p>
+
+            <p>To specify the option in an Ant task, you add a child tag with
+that option as the tag name. You set the values of the arguments
+by including an attribute in the tag whose name is the option name
+and whose value is the value of the argument. </p>
+
+            <p>The following example sets the values of the <samp class="codeph">load-config</samp> and <samp class="codeph">source-path</samp> options,
+which have arguments named <samp class="codeph">filename</samp> and <samp class="codeph">path-element</samp> respectively: </p>
+
+            <pre class="codeblock"> &lt;mxmlc ... &gt; 
+ 	&lt;load-config filename="${FLEX_HOME}/frameworks/flex-config.xml"/&gt; 
+ 	&lt;source-path path-element="${FLEX_HOME}/frameworks"/&gt; 
+ &lt;/mxmlc&gt;</pre>
+
+            <p>The <samp class="codeph">source-path</samp> option can take more than one <samp class="codeph">path-element</samp> parameter. For
+more information, see <a href="flx_anttasks_an.html#WS2db454920e96a9e51e63e3d11c0bf69084-7a60_verapache">Repeatable
+options </a>.</p>
+
+            <p>You can see which options take parameters by looking at the mxmlc
+command-line syntax. In the Flex bin directory, enter the following
+command:</p>
+
+            <pre class="codeblock"> mxmlc -help list advanced</pre>
+
+            <p>The output includes all options for the mxmlc compiler. The syntax
+for the <samp class="codeph">load-config</samp> option appears like the following:</p>
+
+            <pre class="codeblock"> -load-config &lt;filename&gt;</pre>
+
+            <p>This indicates that the <samp class="codeph">load-config</samp> option takes
+a single argument called <samp class="codeph">filename</samp>.</p>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf678b2-7ff7_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf678b2-7ff7_verapache"><!-- --></a>
+         <h3 class="topictitle3">Multiple argument options </h3>
+
+         
+         <div>
+            <p>Some compiler options, such as the <samp class="codeph">default-size</samp> option,
+take more than one argument. The <samp class="codeph">default-size </samp>option
+takes a <samp class="codeph">height</samp> and a <samp class="codeph">width</samp> argument.
+You set the values of options that take multiple arguments by using
+a nested element of the same name, with the attributes of the element
+corresponding to the arguments of the option as shown in the command-line compiler’s
+online help. </p>
+
+            <p>For example, the online help for mxmlc shows the following syntax
+for the <samp class="codeph">default-size</samp> option: </p>
+
+            <pre class="codeblock"> -default-size &lt;width&gt; &lt;height&gt;</pre>
+
+            <p>To pass the option <samp class="codeph">-default-size 800 600</samp> to
+the <samp class="codeph">mxmlc</samp> task, use the following syntax: </p>
+
+            <pre class="codeblock"> &lt;mxmlc ...&gt; 
+ 	&lt;default-size width="800" height="600"/&gt; 
+ &lt;/mxmlc&gt;</pre>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf69084-7a60_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7a60_verapache"><!-- --></a>
+         <h3 class="topictitle3">Repeatable options </h3>
+
+         
+         <div>
+            <p>Some compiler options are repeatable. The online help shows
+their arguments in square brackets, followed by a bracketed ellipses,
+like this: </p>
+
+            <pre class="codeblock"> -compiler.source-path [path-element] [...]</pre>
+
+            <p>You set the value of repeatable options by using multiple nested
+elements of the same name as the option, along with attributes of
+the same name as they appear in the online help. </p>
+
+            <p>The following example sets two values for the <samp class="codeph">compiler.source-path</samp> option: </p>
+
+            <pre class="codeblock"> &lt;mxmlc ...&gt; 
+ 	&lt;compiler.source-path path-element="src"/&gt; 
+ 	&lt;compiler.source-path path-element="../bar/src"/&gt; 
+ &lt;/mxmlc&gt;</pre>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf678b2-7ff5_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf678b2-7ff5_verapache"><!-- --></a>
+         <h3 class="topictitle3">Nested elements </h3>
+
+         
+         <div>
+            <p>In some situations, options that are closely related are
+grouped together in a nested element of the main task element. For
+example, the command-line compiler options with the <samp class="codeph">compiler.fonts</samp> and <samp class="codeph">metadata</samp> prefixes
+can be grouped into nested elements. The <samp class="codeph">compiler.fonts</samp> options
+use the element name <samp class="codeph">fonts</samp> and the <samp class="codeph">metadata</samp> options
+use the element name <samp class="codeph">metadata</samp>. </p>
+
+            <p>The following example shows how to use the <samp class="codeph">metadata</samp> nested
+element: </p>
+
+            <pre class="codeblock"> &lt;mxmlc ...&gt; 
+ 	&lt;metadata description="foo app"&gt; 
+ 		&lt;contributor name="Joe" /&gt; 
+ 		&lt;contributor name="Nick" /&gt; 
+ 	&lt;/metadata&gt; 
+ &lt;/mxmlc&gt;</pre>
+
+            <p>In this example, you drop the <samp class="codeph">metadata</samp> prefix
+when setting the <samp class="codeph">description</samp> and <samp class="codeph">contributor</samp> options
+as a nested element. </p>
+
+            <p>This is a uniformly applied rule with one exception: the <samp class="codeph">compiler.fonts.languages.language-range</samp> option
+is set using a nested element with the name <samp class="codeph">language-range</samp>,
+rather than <samp class="codeph">languages.language-range</samp>. </p>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf678b2-7ff4_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf678b2-7ff4_verapache"><!-- --></a>
+         <h3 class="topictitle3">Implicit FileSets </h3>
+
+         
+         <div>
+            <p>There are many examples in the Apache Ant project where
+tasks behave as implicit FileSets. For example, the <samp class="codeph">delete</samp> task,
+while supporting additional attributes, supports all of the attributes
+(such as <samp class="codeph">dir</samp> and <samp class="codeph">includes</samp>) and nested
+elements (such as <samp class="codeph">include</samp> and <samp class="codeph">exclude</samp>)
+of a FileSet to specific the files to be deleted. </p>
+
+            <p>Some Flex Ant tasks allow nested attributes that are implicit
+FileSets. These nested attributes support all the attributes and
+nested elements of an Ant FileSet while adding additional functionality.
+These elements are usually used to specify repeatable arguments
+that take a filename as an argument. </p>
+
+            <p>The following example uses the implicit FileSet syntax with the <samp class="codeph">include-sources</samp> nested
+element: </p>
+
+            <pre class="codeblock"> &lt;include-sources dir="player/avmplus/core" 
+	includes="builtin.as, Date.as, Error.as, Math.as, RegExp.as, XML.as"/&gt;</pre>
+
+            <p>When a nested element in a Flex Ant task is an implicit FileSet,
+it supports one additional attribute: <samp class="codeph">append</samp>. The
+reason for this is that some repeatable options for the Flex compilers
+have default values. When setting these options in a command line,
+you can append new values to the default value of the option, or replace
+the default value with the specified values. Setting the <samp class="codeph">append</samp> value
+to <samp class="codeph">true</samp> adds the new option to the list of existing
+options. Setting the <samp class="codeph">append</samp> value to <samp class="codeph">false</samp> replaces
+the existing options with the new option. By default, the value
+of the <samp class="codeph">append</samp> attribute is <samp class="codeph">false</samp> in
+implicit FileSets. </p>
+
+            <p>The following example sets the value of the <samp class="codeph">append</samp> attribute
+to <samp class="codeph">true</samp> and uses the Ant <samp class="codeph">include</samp> element
+of an implicit FileSet to add multiple SWC files to the <samp class="codeph">include-libraries</samp> option: </p>
+
+            <pre class="codeblock"> &lt;compiler.include-libraries dir="${swf.output}" append="true"&gt; 
+ 	&lt;include name="MyComponents.swc" /&gt; 
+ 	&lt;include name="AcmeComponents.swc" /&gt; 
+ 	&lt;include name="DharmaComponents.swc" /&gt; 
+ &lt;/compiler.include-libraries&gt;</pre>
+
+            <p>The following options are implemented as implicit FileSets: </p>
+
+            <pre class="codeblock"> compiler.external-library-path  
+ compiler.include-libraries  
+ compiler.library-path  
+ compiler.theme  
+ compiler.include-sources (compc only)</pre>
+
+            <p>The Flex Ant task's implicit FileSets are also different from
+the Ant project's implicit FileSets in that they support being empty,
+as in the following example: </p>
+
+            <pre class="codeblock"> &lt;external-library-path/&gt;</pre>
+
+            <p>This is equivalent to using <samp class="codeph">external-library-path=</samp> on
+the command line. </p>
+
+         </div>
+
+      </div>
+
+   </div>
+
+   <div class="nested1" id="WS2db454920e96a9e51e63e3d11c0bf678b2-7ff3_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf678b2-7ff3_verapache"><!-- --></a>
+      <h2 class="topictitle2">Using the mxmlc task </h2>
+
+      
+      <div>
+         <p>
+            You use
+the <samp class="codeph">mxmlc</samp> Flex Ant task to compile applications,
+modules, resource modules, and Cascading Style Sheets (CSS) SWF
+files. This task supports most mxmlc command-line compiler options,
+including aliases. </p>
+
+         <p>For more information on using the mxmlc command-line compiler,
+see <a href="flx_compilers_cpl.html#WS2db454920e96a9e51e63e3d11c0bf69084-7fcc_verapache">Using mxmlc,
+the application compiler</a>. </p>
+
+         <div class="section" id="WS2db454920e96a9e51e63e3d11c0bf678b2-7ff3_verapache__WS2db454920e96a9e51e63e3d11c0bf678b2-7ff2_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf678b2-7ff3_verapache__WS2db454920e96a9e51e63e3d11c0bf678b2-7ff2_verapache"><!-- --></a><h3 class="sectiontitle">Required
+attributes </h3>
+            
+            <p>The <samp class="codeph">mxmlc</samp> task requires the <samp class="codeph">file</samp> attribute.
+The <samp class="codeph">file</samp> attribute specifies the MXML file to compile.
+This attribute does not have a command-line equivalent because it
+is the default option on the command line. </p>
+
+         </div>
+
+         <div class="section" id="WS2db454920e96a9e51e63e3d11c0bf678b2-7ff3_verapache__WS2db454920e96a9e51e63e3d11c0bf678b2-7ff1_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf678b2-7ff3_verapache__WS2db454920e96a9e51e63e3d11c0bf678b2-7ff1_verapache"><!-- --></a><h3 class="sectiontitle">Unsupported
+options </h3>
+            
+            <p>The following mxmlc command-line compiler options
+are not supported by the <samp class="codeph">mxmlc</samp> task: </p>
+
+            <ul>
+               <li>
+                  <p>
+                     <samp class="codeph">help</samp> 
+                  </p>
+
+               </li>
+
+               <li>
+                  <p>
+                     <samp class="codeph">version</samp> 
+                  </p>
+
+               </li>
+
+            </ul>
+
+         </div>
+
+         <div class="section" id="WS2db454920e96a9e51e63e3d11c0bf678b2-7ff3_verapache__WS2db454920e96a9e51e63e3d11c0bf678b2-7ff0_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf678b2-7ff3_verapache__WS2db454920e96a9e51e63e3d11c0bf678b2-7ff0_verapache"><!-- --></a><h3 class="sectiontitle">Example </h3>
+            
+            <p>The
+following example <samp class="codeph">mxmlc</samp> task explicitly defines
+the <samp class="codeph">source-path</samp> and <samp class="codeph">library-path</samp> options,
+in addition to other properties such as <samp class="codeph">incremental</samp> and <samp class="codeph">keep-generated-actionscript</samp>.
+This example also specifies an output location for the resulting
+SWF file. This example defines two targets: <samp class="codeph">main</samp> and <samp class="codeph">clean</samp>.
+The <samp class="codeph">main</samp> target compiles the Main.mxml file into
+a SWF file. The <samp class="codeph">clean</samp> target deletes the output
+of the <samp class="codeph">main</samp> target.</p>
+
+            <pre class="codeblock"> &lt;?xml version="1.0" encoding="utf-8"?&gt; 
+ &lt;!-- myMXMLCBuild.xml --&gt; 
+ &lt;project name="My App Builder" basedir="."&gt; 
+ 	&lt;taskdef resource="flexTasks.tasks" classpath="${basedir}/flexTasks/lib/flexTasks.jar" /&gt; 
+ 	&lt;property name="FLEX_HOME" value="C:/flex/sdk"/&gt; 
+ 	&lt;property name="APP_ROOT" value="apps"/&gt; 
+ 	&lt;property name="DEPLOY_DIR" value="c:/jrun4/servers/default/default-war"/&gt; 
+ 	&lt;target name="main"&gt; 
+ 		&lt;mxmlc  
+ 			file="${APP_ROOT}/Main.mxml"  
+ 			output="${DEPLOY_DIR}/Main.swf" 
+ 			actionscript-file-encoding="UTF-8" 
+ 			keep-generated-actionscript="true" 
+ 			incremental="true"&gt; 
+ 			&lt;!-- Get default compiler options. --&gt; 
+ 			&lt;load-config filename="${FLEX_HOME}/frameworks/flex-config.xml"/&gt; 
+  
+ 			&lt;!-- List of path elements that form the roots of ActionScript 
+			class hierarchies. --&gt; 
+ 			&lt;source-path path-element="${FLEX_HOME}/frameworks"/&gt; 
+  
+ 			&lt;!-- List of SWC files or directories that contain SWC files. --&gt; 
+ 			&lt;compiler.library-path dir="${FLEX_HOME}/frameworks" append="true"&gt; 
+ 				&lt;include name="libs" /&gt; 
+ 				&lt;include name="../bundles/{locale}" /&gt; 
+ 			&lt;/compiler.library-path&gt; 
+  
+ 			&lt;!-- Set size of output SWF file. --&gt; 
+ 			&lt;default-size width="500" height="600" /&gt; 
+ 		&lt;/mxmlc&gt; 
+ 	&lt;/target&gt; 
+ 	&lt;target name="clean"&gt; 
+ 		&lt;delete dir="${APP_ROOT}/generated"/&gt; 
+ 		&lt;delete&gt; 
+ 			&lt;fileset dir="${DEPLOY_DIR}" includes="Main.swf"/&gt; 
+ 		&lt;/delete&gt; 
+ 	&lt;/target&gt; 
+ &lt;/project&gt;</pre>
+
+         </div>
+
+      </div>
+
+   </div>
+
+   <div class="nested1" id="WS2db454920e96a9e51e63e3d11c0bf678b2-7fef_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf678b2-7fef_verapache"><!-- --></a>
+      <h2 class="topictitle2">Using the compc task </h2>
+
+      
+      <div>
+         <p>
+            You use
+the <samp class="codeph">compc</samp> Flex Ant task to compile component SWC
+files. This task supports most compc command-line compiler options,
+including aliases. For more information on using the compc command-line
+compiler, see <a href="flx_compilers_cpl.html#WS2db454920e96a9e51e63e3d11c0bf69084-7fd2_verapache">Using
+compc, the component compiler</a>. </p>
+
+         <div class="section" id="WS2db454920e96a9e51e63e3d11c0bf678b2-7fef_verapache__WS2db454920e96a9e51e63e3d11c0bf678b2-7fee_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf678b2-7fef_verapache__WS2db454920e96a9e51e63e3d11c0bf678b2-7fee_verapache"><!-- --></a><h3 class="sectiontitle">Required
+attributes </h3>
+            
+            <p>The only required attribute for the <samp class="codeph">compc</samp> task
+is the <samp class="codeph">output</samp> attribute, which specifies the name
+of the SWC file that the <samp class="codeph">compc</samp> task creates. </p>
+
+         </div>
+
+         <div class="section" id="WS2db454920e96a9e51e63e3d11c0bf678b2-7fef_verapache__WS2db454920e96a9e51e63e3d11c0bf678b2-7fed_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf678b2-7fef_verapache__WS2db454920e96a9e51e63e3d11c0bf678b2-7fed_verapache"><!-- --></a><h3 class="sectiontitle">Special
+attributes </h3>
+            
+            <p>The <samp class="codeph">include-classes</samp> attribute
+takes a space-delimited list of class names. For example: </p>
+
+            <pre class="codeblock"> &lt;compc include-classes="custom.MyPanel custom.MyButton" ... &gt; 
+ 	... 
+ &lt;/compc&gt;</pre>
+
+            <p>When using the <samp class="codeph">include-resource-bundles</samp> attribute,
+you should not specify them as a comma or space-delimited list in
+a single entry. Instead, add a separate child tag for each resource
+bundle that you want to include, as the following example shows: </p>
+
+            <pre class="codeblock"> &lt;compc output="${swf.output}/compc_rb.swc" locale="en_US"&gt; 
+ 	&lt;include-resource-bundles bundle="ErrorLog"/&gt; 
+ 	&lt;include-resource-bundles bundle="LabelResource"/&gt; 
+ 	&lt;sp path-element="locale/{locale}"/&gt;  
+ &lt;/compc&gt;</pre>
+
+         </div>
+
+         <div class="section" id="WS2db454920e96a9e51e63e3d11c0bf678b2-7fef_verapache__WS2db454920e96a9e51e63e3d11c0bf678b2-7fec_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf678b2-7fef_verapache__WS2db454920e96a9e51e63e3d11c0bf678b2-7fec_verapache"><!-- --></a><h3 class="sectiontitle">Unsupported
+options </h3>
+            
+            <p>The following compc command-line compiler options
+are not supported by the <samp class="codeph">compc</samp> task: </p>
+
+            <ul>
+               <li>
+                  <p>
+                     <samp class="codeph">help</samp> 
+                  </p>
+
+               </li>
+
+               <li>
+                  <p>
+                     <samp class="codeph">version</samp> 
+                  </p>
+
+               </li>
+
+            </ul>
+
+         </div>
+
+         <div class="section" id="WS2db454920e96a9e51e63e3d11c0bf678b2-7fef_verapache__WS2db454920e96a9e51e63e3d11c0bf678b2-7feb_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf678b2-7fef_verapache__WS2db454920e96a9e51e63e3d11c0bf678b2-7feb_verapache"><!-- --></a><h3 class="sectiontitle">Example </h3>
+            
+            <p>The
+following example <samp class="codeph">compc</samp> task builds a new SWC file
+that contains two custom components and other assets. The components
+are added to the SWC file by using the <samp class="codeph">include-classes</samp> attribute.
+The source files for the components are in a subdirectory called
+components. The other assets, including four images and a CSS file,
+are added to the SWC file by using the <samp class="codeph">include-file</samp> element. </p>
+
+            <p>This
+example defines two targets: <samp class="codeph">main</samp> and <samp class="codeph">clean</samp>.
+The main target compiles the MyComps.swc file. The <samp class="codeph">clean</samp> target
+deletes the output of the main target.</p>
+
+            <pre class="codeblock"> &lt;?xml version="1.0" encoding="utf-8"?&gt; 
+ &lt;project name="My Component Builder" basedir="."&gt; 
+ 	&lt;taskdef resource="flexTasks.tasks" classpath="${basedir}/flexTasks/lib/flexTasks.jar" /&gt; 
+ 	&lt;property name="FLEX_HOME" value="C:/flex/sdk"/&gt; 
+ 	&lt;property name="DEPLOY_DIR" value="c:/jrun4/servers/default/default-war"/&gt; 
+ 	&lt;property name="COMPONENT_ROOT" value="components"/&gt; 
+ 	&lt;target name="main"&gt; 
+ 		&lt;compc  
+ 			output="${DEPLOY_DIR}/MyComps.swc" 
+ 			include-classes="custom.MyButton custom.MyLabel"&gt; 
+ 			&lt;source-path path-element="${basedir}/components"/&gt; 
+ 			&lt;include-file name="f1-1.jpg" path="assets/images/f1-1.jpg"/&gt; 
+ 			&lt;include-file name="f1-2.jpg" path="assets/images/f1-2.jpg"/&gt; 
+ 			&lt;include-file name="f1-3.jpg" path="assets/images/f1-3.jpg"/&gt; 
+ 			&lt;include-file name="f1-4.jpg" path="assets/images/f1-4.jpg"/&gt; 
+ 			&lt;include-file name="main.css" path="assets/css/main.css"/&gt; 
+ 		&lt;/compc&gt; 
+ 	&lt;/target&gt; 
+ 	&lt;target name="clean"&gt; 
+ 		&lt;delete&gt; 
+ 			&lt;fileset dir="${DEPLOY_DIR}" includes="MyComps.swc"/&gt; 
+ 		&lt;/delete&gt; 
+ 	&lt;/target&gt; 
+ &lt;/project&gt;</pre>
+
+         </div>
+
+      </div>
+
+   </div>
+
+   <div class="nested1" id="WS2db454920e96a9e51e63e3d11c0bf69084-7ba4_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7ba4_verapache"><!-- --></a>
+      <h2 class="topictitle2">Using the html-wrapper task </h2>
+
+      
+      <div>
+         <p>The <samp class="codeph">html-wrapper</samp> Ant task generates files
+that you deploy with your applications. An HTML wrapper consists
+of a generated HTML page and a JavaScript file that defines embed
+logic. The output can also include files that support features such
+as deep linking and Express Install.</p>
+
+         <p>The <samp class="codeph">html-wrapper</samp> task outputs the index.html
+and swfobject.js files for your application. The swfobject.js file
+defines the SWFObject 2 logic that embeds SWF files in HTML. </p>
+
+         <p>If you enable deep linking support, the <samp class="codeph">html-wrapper</samp> task
+also outputs the deep linking files such as historyFrame.html, history.css,
+and history.js. If you enable express installation, the <samp class="codeph">html-wrapper</samp> task
+also outputs the playerProductInstall.swf file. </p>
+
+         <p>You typically deploy these files, along with your application's
+SWF file, to a web server. Users request the HTML wrapper, which
+embeds the SWF file. You can customize the output of the wrapper
+and its supporting files after it is generated by Ant. </p>
+
+         <p>For more information on the HTML wrapper, see <a href="flx_wrapper_wr.html#WS2db454920e96a9e51e63e3d11c0bf69084-7ecf_verapache">Creating
+a wrapper</a>. </p>
+
+         <div class="section" id="WS2db454920e96a9e51e63e3d11c0bf69084-7ba4_verapache__WS2db454920e96a9e51e63e3d11c0bf678b2-7fe8_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7ba4_verapache__WS2db454920e96a9e51e63e3d11c0bf678b2-7fe8_verapache"><!-- --></a><h3 class="sectiontitle">Supported
+attributes </h3>
+            
+            <p>The attributes of the <samp class="codeph">html-wrapper</samp> task
+correspond to some of the arguments in the <samp class="codeph">swfobject.embedSWF()</samp> method
+of the default HTML wrapper. </p>
+
+            <p>The following table describes
+the supported attributes of the <samp class="codeph">html-wrapper</samp> task: </p>
+
+            
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" frame="border" border="1" rules="all">
+                  
+                  
+                  <thead align="left">
+                     <tr>
+                        <th class="cellrowborder" valign="top" width="NaN%" id="d21978e1105">
+                           <p>Attribute</p>
+
+                        </th>
+
+                        <th class="cellrowborder" valign="top" width="NaN%" id="d21978e1111">
+                           <p>Description</p>
+
+                        </th>
+
+                     </tr>
+
+                  </thead>
+
+                  <tbody>
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d21978e1105 ">
+                           <div class="p">
+                              <pre class="codeblock">application </pre>
+
+                           </div>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d21978e1111 ">
+                           <p>The name of the SWF object in the HTML wrapper.
+You use this name to refer to the SWF object in JavaScript or when
+using the ExternalInterface API. This value should not contain any
+spaces or special characters. </p>
+
+                           <p>This attribute sets the value
+of the <samp class="codeph">&lt;embed&gt;</samp> tag's <samp class="codeph">name</samp> attribute
+and the <samp class="codeph">&lt;object&gt;</samp> tag's <samp class="codeph">id</samp> attribute. </p>
+
+                        </td>
+
+                     </tr>
+
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d21978e1105 ">
+                           <div class="p">
+                              <pre class="codeblock">bgcolor</pre>
+
+                           </div>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d21978e1111 ">
+                           <p>Specifies the background color of the application.
+Use this property to override the background color setting specified
+in the SWF file. This property does not affect the background color
+of the HTML page. </p>
+
+                           <p>This attribute sets the value of the <samp class="codeph">params.bgcolor</samp> argument
+in the <samp class="codeph">embedSWF()</samp> method. </p>
+
+                           <p>The default value
+is <samp class="codeph">white</samp>. </p>
+
+                        </td>
+
+                     </tr>
+
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d21978e1105 ">
+                           <p>
+                              <samp class="codeph">express-install</samp>
+                              <samp class="codeph">=false|true</samp>
+                           </p>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d21978e1111 ">
+                           <p>Determines whether to include Express Install
+logic in the HTML wrapper. When set to <samp class="codeph">true</samp>, the
+Ant task copies the playerProductInstall.swf file to the output
+directory and referenced in the wrapper file.</p>
+
+                           <p>If you set this
+option to <samp class="codeph">true</samp>, the <samp class="codeph">version-detection</samp> option
+is also assumed to be <samp class="codeph">true</samp>.</p>
+
+                           <p>For more information,
+see <a href="flx_wrapper_wr.html#WSDF4E56EF-2198-4843-ACF0-D78D52422046_verapache">Using
+Express Install in the wrapper</a>.</p>
+
+                           <p>The default value is <samp class="codeph">false</samp>.</p>
+
+                        </td>
+
+                     </tr>
+
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d21978e1105 ">
+                           <div class="p">
+                              <pre class="codeblock">file</pre>
+
+                           </div>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d21978e1111 ">
+                           <p>Sets the file name of the HTML output file.
+The default value is "index.html".</p>
+
+                        </td>
+
+                     </tr>
+
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d21978e1105 ">
+                           <div class="p">
+                              <pre class="codeblock">height</pre>
+
+                           </div>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d21978e1111 ">
+                           <p>Defines the height, in pixels, of the SWF
+file. Adobe<sup>®</sup> Flash<sup>®</sup> Player
+makes a best guess to determine the height of the application if
+none is provided.</p>
+
+                           <p>This attribute sets the value of the third
+argument in the <samp class="codeph">embedSWF()</samp> method. </p>
+
+                           <p>The default
+value is 400. </p>
+
+                        </td>
+
+                     </tr>
+
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d21978e1105 ">
+                           <div class="p">
+                              <pre class="codeblock">history</pre>
+
+                           </div>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d21978e1111 ">
+                           <p>Set to <samp class="codeph">true</samp> to include
+deep linking support (also referred to as <em>history management</em>)
+in the HTML wrapper. Set to <samp class="codeph">false</samp> to exclude deep
+linking from the wrapper. When you set this attribute to true, Ant
+creates a history directory and stores the historyFrame.html, history.css,
+and history.js files in it. </p>
+
+                           <p>The default value is <samp class="codeph">false</samp>. </p>
+
+                           <p>For
+more information on deep linking, see <a href="flx_deep_linking_dl.html#WS2db454920e96a9e51e63e3d11c0bf69084-7bb5_verapache">Deep
+linking</a>.</p>
+
+                        </td>
+
+                     </tr>
+
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d21978e1105 ">
+                           <div class="p">
+                              <pre class="codeblock">output</pre>
+
+                           </div>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d21978e1111 ">
+                           <p>Sets the directory that Ant writes the generated
+files to. If you do not set the value of this option, Ant creates the
+wrapper files in the same directory as the build file.</p>
+
+                        </td>
+
+                     </tr>
+
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d21978e1105 ">
+                           <div class="p">
+                              <pre class="codeblock">swf</pre>
+
+                           </div>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d21978e1111 ">
+                           <p>Sets the name of the SWF file that the HTML
+wrapper embeds (for example, Main). Do not include the *.swf extension;
+the extension is appended to the name for you. </p>
+
+                           <p>This attribute
+sets the value of the attributes.name and attributes.id arguments
+in the <samp class="codeph">embedSWF()</samp> method. It also sets the value
+of the first argument in that method call.</p>
+
+                           <p>This SWF file does
+not have to exist when you generate the HTML wrapper. It is used
+by SWFObject 2 to point to the location of the SWF file at deployment
+time. </p>
+
+                        </td>
+
+                     </tr>
+
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d21978e1105 ">
+                           <div class="p">
+                              <pre class="codeblock">title</pre>
+
+                           </div>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d21978e1111 ">
+                           <p>Sets the value of the <samp class="codeph">&lt;title&gt;</samp> tag
+in the head of the HTML page. </p>
+
+                           <p>The default value is <samp class="codeph">Flex Application</samp>. </p>
+
+                        </td>
+
+                     </tr>
+
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d21978e1105 ">
+                           <p>
+                              <samp class="codeph">version-detection</samp>
+                              <samp class="codeph">=true|false</samp>
+                           </p>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d21978e1111 ">
+                           <p>Determines whether to include version detection
+logic in the wrapper. Set this value to <samp class="codeph">false</samp> to
+disable all Player version logic in the HTML wrapper.</p>
+
+                           <p>The
+default value is <samp class="codeph">true</samp>.</p>
+
+                        </td>
+
+                     </tr>
+
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d21978e1105 ">
+                           <div class="p">
+                              <pre class="codeblock">version-major </pre>
+
+                           </div>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d21978e1111 ">
+                           <p>Sets the value of the <samp class="codeph">swfVersionStr</samp> variable
+in the HTML wrapper. </p>
+
+                           <p>The default value is 10. </p>
+
+                           <p>The
+value of this attribute only matters if you include version detection
+in your wrapper by setting the <samp class="codeph">template</samp> attribute
+to <samp class="codeph">express-installation</samp> or <samp class="codeph">client-side-detection</samp>. </p>
+
+                        </td>
+
+                     </tr>
+
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d21978e1105 ">
+                           <div class="p">
+                              <pre class="codeblock">version-minor</pre>
+
+                           </div>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d21978e1111 ">
+                           <p>Sets the value of the <samp class="codeph">swfVersionStr</samp> variable
+in the HTML wrapper. </p>
+
+                           <p>The default value is 0. </p>
+
+                           <p>The value
+of this attribute only matters if you include version detection
+in your wrapper by setting the <samp class="codeph">template</samp> attribute
+to <samp class="codeph">express-installation</samp> or <samp class="codeph">client-side-detection</samp>. </p>
+
+                        </td>
+
+                     </tr>
+
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d21978e1105 ">
+                           <div class="p">
+                              <pre class="codeblock">version-revision</pre>
+
+                           </div>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d21978e1111 ">
+                           <p>Sets the value of the <samp class="codeph">swfVersionStr</samp> variable
+in the HTML wrapper. </p>
+
+                           <p>The default value is 0. </p>
+
+                           <p>The value
+of this attribute only matters if you include version detection
+in your wrapper by setting the <samp class="codeph">template</samp> attribute
+to <samp class="codeph">express-installation</samp> or <samp class="codeph">client-side-detection</samp>. </p>
+
+                        </td>
+
+                     </tr>
+
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d21978e1105 ">
+                           <div class="p">
+                              <pre class="codeblock">width</pre>
+
+                           </div>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d21978e1111 ">
+                           <p>Defines the width, in pixels, of the SWF
+file. Flash Player makes a best guess to determine the width of
+the application if none is provided. </p>
+
+                           <p>This attribute sets
+the value of the fourth argument in the <samp class="codeph">embedSWF()</samp> method. </p>
+
+                           <p>The
+default value is 400. </p>
+
+                        </td>
+
+                     </tr>
+
+                  </tbody>
+
+               </table>
+</div>
+
+         </div>
+
+         <div class="section" id="WS2db454920e96a9e51e63e3d11c0bf69084-7ba4_verapache__WS2db454920e96a9e51e63e3d11c0bf678b2-7ffd_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7ba4_verapache__WS2db454920e96a9e51e63e3d11c0bf678b2-7ffd_verapache"><!-- --></a><h3 class="sectiontitle">Required
+attributes </h3>
+            
+            <p>The <samp class="codeph">html-wrapper</samp> task requires
+the <samp class="codeph">swf</samp> attribute. If you specify only the <samp class="codeph">swf</samp> attribute,
+the default wrapper will have the following settings: </p>
+
+            <pre class="codeblock"> title="Flex Application" 
+swfVersionStr = "10.0.0"; 
+params.quality = "high"; 
+params.bgcolor = "white"; 
+params.allowscriptaccess = "sameDomain"; 
+params.allowfullscreen = "true"; 
+attributes.align = "middle"; 
+ height="400" 
+ width="400" </pre>
+
+            <p>Be sure to use the filename only and
+not the filename plus extension when specifying the value of the <samp class="codeph">swf</samp> attribute.
+The <samp class="codeph">html-wrapper</samp> task appends <samp class="codeph">.swf </samp>to
+the end of its value before passing it to the <samp class="codeph">embedSWF()</samp> method. </p>
+
+            <p>For
+example, do this:</p>
+
+            <pre class="codeblock"> swf="Main"</pre>
+
+            <p>Do
+not do this:</p>
+
+            <pre class="codeblock"> swf="Main.swf"</pre>
+
+         </div>
+
+         <div class="section" id="WS2db454920e96a9e51e63e3d11c0bf69084-7ba4_verapache__WS2db454920e96a9e51e63e3d11c0bf678b2-7fe7_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7ba4_verapache__WS2db454920e96a9e51e63e3d11c0bf678b2-7fe7_verapache"><!-- --></a><h3 class="sectiontitle">Unsupported
+options </h3>
+            
+            <p>The <samp class="codeph">html-wrapper</samp> task does not
+support all properties used by SWFObject 2 to embed a SWF file in
+an HTML wrapper. Parameters you cannot set include <samp class="codeph">quality</samp>, <samp class="codeph">allowScriptAccess</samp>, <samp class="codeph">classid</samp>, <samp class="codeph">pluginspage</samp>,
+and <samp class="codeph">type</samp>. </p>
+
+         </div>
+
+         <div class="section" id="WS2db454920e96a9e51e63e3d11c0bf69084-7ba4_verapache__WS2db454920e96a9e51e63e3d11c0bf678b2-7fff_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7ba4_verapache__WS2db454920e96a9e51e63e3d11c0bf678b2-7fff_verapache"><!-- --></a><h3 class="sectiontitle">Example </h3>
+            
+            <p>The
+following example project includes a wrapper target that uses the <samp class="codeph">html-wrapper</samp> task
+to generate a wrapper with deep linking, Player detection, and Express
+Install logic. This target (<samp class="codeph">wrapper</samp>) also sets
+the height and width of the SWF file. The project also includes
+a <samp class="codeph">clean</samp> target that deletes all the files generated
+by the wrapper target. </p>
+
+            <pre class="codeblock"> &lt;?xml version="1.0" encoding="utf-8"?&gt; 
+&lt;!-- myWrapperBuild.xml --&gt; 
+&lt;project name="My Wrapper Builder" basedir="."&gt; 
+	&lt;taskdef resource="flexTasks.tasks" classpath="${basedir}/lib/flexTasks.jar"/&gt; 
+	&lt;property name="FLEX_HOME" value="C:/p4/flex/flex/sdk"/&gt; 
+	&lt;property name="APP_ROOT" value="c:/temp/ant/wrapper"/&gt; 
+	&lt;target name="wrapper"&gt; 
+		&lt;html-wrapper 
+			title="Welcome to My Flex App" 
+			file="index.html" 
+			height="300" 
+			width="400" 
+			application="app" 
+			swf="Main" 
+			history="true" 
+			express-install="true" 
+			version-detection="true" 
+			output="${APP_ROOT}"/&gt; 
+	&lt;/target&gt; 
+	&lt;target name="clean"&gt; 
+		&lt;delete&gt; 
+			&lt;!-- Deletes playerProductInstall.swf --&gt; 
+			&lt;fileset dir="${APP_ROOT}" 
+				includes="playerProductInstall.swf" 
+				defaultexcludes="false"/&gt; 
+			&lt;!-- Deletes the swfobject.js file --&gt; 
+			&lt;fileset dir="${APP_ROOT}" includes="*.js" defaultexcludes="false"/&gt; 
+			&lt;!-- Deletes the previously-generated HTML wrapper file --&gt; 
+			&lt;fileset dir="${APP_ROOT}" includes="*.html" defaultexcludes="false"/&gt; 
+			&lt;!-- Deletes the history files --&gt; 
+			&lt;fileset dir="${APP_ROOT}/history" includes="*.*" defaultexcludes="false"/&gt; 
+		&lt;/delete&gt; 
+	&lt;/target&gt; 
+&lt;/project&gt; </pre>
+
+         </div>
+
+      </div>
+
+   </div>
+
+   <div class="nested1" id="WSda78ed3a750d6b8f4ce729f5121efe6ca1b-8000_verapache"><a name="WSda78ed3a750d6b8f4ce729f5121efe6ca1b-8000_verapache"><!-- --></a>
+      <h2 class="topictitle2">Using the asdoc task</h2>
+
+      
+      <div>
+         <p>The Flex Ant tasks include a task to run the asdoc utility.
+This utility generates HTML documentation based on a defined set
+of tags that you can include in your ActionScript and MXML files. </p>
+
+         <p>For more information about using ASDoc, see <a href="flx_asdoc_asd.html#WSd0ded3821e0d52fe1e63e3d11c2f44bb7b-7fe7_verapache">ASDoc</a>.</p>
+
+         <div class="section"><h3 class="sectiontitle">Required attributes</h3>
+            
+            <p>The asdoc Ant task
+requires that you specify a target class or classes to generate ASDoc
+for. This must be either a list of one or more classes, a directory
+of classes, or a namespace. You specify these by using the <samp class="codeph">doc-classes</samp>, <samp class="codeph">doc-sources</samp>, or <samp class="codeph">doc-namespaces</samp> attributes. </p>
+
+            <p>If
+you use the <samp class="codeph">doc-classes</samp> or <samp class="codeph">doc-namespaces</samp> attributes,
+you must also specify a <samp class="codeph">source-path</samp> argument. If
+you use the doc-namespaces attribute, you must also specify a <samp class="codeph">namespace</samp> attribute.</p>
+
+            <p>It’s
+best to specify a value for the <samp class="codeph">output</samp> attribute.
+If you do not specify a value, Ant creates a directory called asdoc-output
+in the same directory that you launched the command from. Ant then
+stores the HTML output files in that new directory.</p>
+
+         </div>
+
+         <div class="section"><h3 class="sectiontitle">Unsupported options</h3>
+            
+            <p>All options of the
+asdoc utility are supported by the <samp class="codeph">asdoc</samp> Ant task.</p>
+
+         </div>
+
+         <div class="section"><h3 class="sectiontitle">Example</h3>
+            
+            <div class="p">The following example defines
+two targets, <samp class="codeph">doc</samp> and <samp class="codeph">clean</samp>. The <samp class="codeph">doc</samp> target generates
+ASDoc for the Spark and MX button classes. The <samp class="codeph">clean</samp> target
+deletes all the files generated by the <samp class="codeph">doc</samp> target.<pre class="codeblock">&lt;?xml version="1.0" encoding="utf-8"?&gt; 
+&lt;project name="ASDoc Builder" basedir="."&gt; 
+	&lt;property name="FLEX_HOME" value="C:/p4/flex/flex/sdk"/&gt; 
+	&lt;property name="OUTPUT_DIR" value="C:/temp/ant/asdoc"/&gt; 
+	&lt;taskdef resource="flexTasks.tasks" classpath="${FLEX_HOME}/ant/lib/flexTasks.jar" /&gt; 
+	&lt;target name="doc"&gt; 
+		&lt;asdoc output="${OUTPUT_DIR}" lenient="true" failonerror="true"&gt; 
+			&lt;doc-sources 
+				path-element="${FLEX_HOME}/frameworks/projects/spark/src/spark/components/Button.as"/&gt; 
+			&lt;doc-sources 
+				path-element="${FLEX_HOME}/frameworks/projects/framework/src/mx/controls/Button.as"/&gt; 
+		&lt;/asdoc&gt; 
+	&lt;/target&gt; 
+	&lt;target name="clean"&gt; 
+		&lt;delete includeEmptyDirs="true"&gt; 
+			&lt;fileset dir="${OUTPUT_DIR}" includes="**/*"/&gt; 
+		&lt;/delete&gt; 
+	&lt;/target&gt; 
+&lt;/project&gt;</pre>
+
+            </div>
+
+            <p>You will have to change the values
+of the Flex home and output directory to match the locations of
+the directories on your file system.</p>
+
+            <p>To run this example,
+you can use the following Ant command:</p>
+
+            <pre class="codeblock">ant clean doc</pre>
+
+            <p>This
+example generates simple ASDoc output for the Spark and MX Button controls
+by using the <samp class="codeph">doc-sources</samp> attribute. The output
+does not include all the parent classes that provide the inherited
+methods, properties, events, and other members of the Button controls. </p>
+
+            <p>To
+generate ASDoc that includes the parent classes of the Button controls,
+you can use an Ant task that uses the <samp class="codeph">doc-classes</samp> attribute.
+When you do this, you must be sure to also define the <samp class="codeph">source-path</samp> for
+the classes.</p>
+
+            <div class="p">The following example generates ASDoc for the
+MX Button control. It includes the parent classes that this control
+inherits its members from. <pre class="codeblock">&lt;?xml version="1.0" encoding="utf-8"?&gt; 
+&lt;project name="ASDoc Builder" basedir="."&gt; 
+	&lt;property name="FLEX_HOME" value="C:/p4/flex/flex/sdk"/&gt; 
+	&lt;property name="OUTPUT_DIR" value="C:/temp/ant/asdoc"/&gt; 
+	&lt;taskdef resource="flexTasks.tasks" classpath="${FLEX_HOME}/ant/lib/flexTasks.jar" /&gt; 
+	&lt;target name="doc"&gt; 
+		&lt;asdoc output="${OUTPUT_DIR}" lenient="true" failonerror="true"&gt; 
+			&lt;compiler.source-path 
+				path-element="${FLEX_HOME}/frameworks/projects/framework/src"/&gt; 
+			&lt;doc-classes class="mx.controls.Button"/&gt; 
+		&lt;/asdoc&gt; 
+	&lt;/target&gt; 
+	&lt;target name="clean"&gt; 
+		&lt;delete includeEmptyDirs="true"&gt; 
+			&lt;fileset dir="${OUTPUT_DIR}" includes="**/*"/&gt; 
+		&lt;/delete&gt; 
+	&lt;/target&gt; 
+&lt;/project&gt;</pre>
+
+            </div>
+
+            <p>You can also define an <samp class="codeph">asdoc</samp> Ant
+task that includes all components in a particular namespace by using
+the <samp class="codeph">doc-namespaces</samp> attribute. When you want to
+document all classes in a namespace, you must also point to the
+manifest file for that namespace by using the <samp class="codeph">namespace</samp> attribute. </p>
+
+            <div class="p">The
+following example generates ASDoc for all components in the Spark namespace:<pre class="codeblock">&lt;?xml version="1.0" encoding="utf-8"?&gt; 
+&lt;project name="ASDoc Builder" basedir="."&gt; 
+	&lt;property name="FLEX_HOME" value="C:/p4/flex/flex/sdk"/&gt; 
+	&lt;property name="OUTPUT_DIR" value="C:/temp/ant/asdoc"/&gt; 
+	&lt;taskdef resource="flexTasks.tasks" classpath="${FLEX_HOME}/ant/lib/flexTasks.jar" /&gt; 
+	&lt;target name="doc"&gt; 
+		&lt;asdoc output="${OUTPUT_DIR}" lenient="true" failonerror="true"&gt; 
+			&lt;compiler.source-path 
+				path-element="${FLEX_HOME}/frameworks/projects/spark/src"/&gt; 
+			&lt;doc-namespaces uri="library://ns.adobe.com/flex/spark"/&gt; 
+			&lt;namespace 
+				uri="library://ns.adobe.com/flex/spark" 
+				manifest="${FLEX_HOME}/frameworks/projects/spark/manifest.xml"/&gt; 
+		&lt;/asdoc&gt; 
+	&lt;/target&gt; 
+	&lt;target name="clean"&gt; 
+		&lt;delete includeEmptyDirs="true"&gt; 
+			&lt;fileset dir="${OUTPUT_DIR}" includes="**/*"/&gt; 
+		&lt;/delete&gt; 
+	&lt;/target&gt; 
+&lt;/project&gt;</pre>
+
+            </div>
+
+            <p>In this example, only the members
+that are inherited from other classes in the Spark namespace are
+added to the ASDoc output. </p>
+
+            <p>The flex-config.xml file contains
+a list of predefined namespace URIs and the locations of their manifest
+files. As a result, if you use the <samp class="codeph">asdoc</samp> Ant task
+to generate ASDoc for one of these namespaces, and not a custom
+namespace, then you are not required to define the location of the
+manifest file. This is because the <samp class="codeph">asdoc</samp> Ant task
+reads in their definitions. It is, however, best practice to define
+the manifest file location for all namespaces.</p>
+
+         </div>
+
+      </div>
+         <p>Adobe and Adobe Flash are either registered trademarks or trademarks of Adobe Systems Incorporated in the United States and/or other countries and are used by permission from Adobe.  No other license to the Adobe trademarks are granted.</p>
+
+   </div>
+
+
+</body>
+</html>

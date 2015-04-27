@@ -1,0 +1,2103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Licensed to the Apache Software Foundation (ASF) under one or more
+  contributor license agreements.  See the NOTICE file distributed with
+  this work for additional information regarding copyright ownership.
+  The ASF licenses this file to You under the Apache License, Version 2.0
+  (the "License"); you may not use this file except in compliance with
+  the License.  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+-->
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en-us" xml:lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="topic"/>
+<meta name="DC.Title" content="Introduction to effects"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="WS2db454920e96a9e51e63e3d11c0bf69084-7fec_verapache"/>
+<link rel="stylesheet" type="text/css" href="commonltr.css"/>
+<title>Introduction to effects</title>
+</head>
+<body id="WS2db454920e96a9e51e63e3d11c0bf69084-7fec_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7fec_verapache"><!-- --></a>
+
+
+   <h1 class="topictitle1">Introduction to effects</h1>
+
+   <div>
+      <p>Effects let you add animation to your application in response
+to user or programmatic action. For example, you can use effects
+to cause a dialog box to bounce slightly when it receives focus,
+or to slowly fade in when it becomes visible. You build effects
+into your applications by using MXML and ActionScript.</p>
+
+   </div>
+
+   <div class="nested1" id="WS2db454920e96a9e51e63e3d11c0bf5fdc3-7fff_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf5fdc3-7fff_verapache"><!-- --></a>
+      <h2 class="topictitle2">About effects</h2>
+
+      
+      <div>
+         <p>An <em>effect</em> is a visible or audible change to the
+target component that occurs over a time, measured in milliseconds.
+Examples of effects are fading, resizing, or moving a component. </p>
+
+         <p>Effects are initiated in response to an event, where the event
+is often is initiated by a user action, such as a button click.
+However, you can initiate effects programmatically or in response
+to events that are not triggered by the user. </p>
+
+         <p>You can define multiple effects to play in response to a single
+event. For example, when the user clicks a Button control, a window
+becomes visible. As the window becomes visible, it uses effects
+to move to the lower-left corner of the screen, and resize itself
+from 100 by 100 pixels to 300 by 300 pixels. </p>
+
+         <p>Flex ships with two types of effects: Spark effects and MX effects.
+Spark effects are designed to work with all Flex components, including
+MX components, Spark components, and the Flex graphics components.
+Because Spark effects can be applied to any component, it’s best
+to use the Spark effects in your application when possible.</p>
+
+         <p>The MX effects are designed to work with the MX components, and
+in some cases might work with the Spark components. However, for
+best results, you should use the Spark effects. </p>
+
+         <p>Blogger Brian Telintelo <a href="http://www.flexpasta.com/index.php/2011/05/11/flex-45-effects-on-a-mobile-device-a-test-run/" target="_blank">blogged about Flex: Effects on a Mobile Device</a>.</p>
+
+      </div>
+
+      <div class="nested2" id="WSB0F9122E-B0EF-4c6b-8B93-49CA5AD22511_verapache"><a name="WSB0F9122E-B0EF-4c6b-8B93-49CA5AD22511_verapache"><!-- --></a>
+         <h3 class="topictitle3">About applying Spark effects</h3>
+
+         
+         <div>
+            <p>Spark effects are defined in the spark.effects package.
+To apply a Spark effect, you first define it in the <samp class="codeph">&lt;fx:Declarations&gt;</samp>,
+and then invoke the effect by calling the <samp class="codeph">Effect.play()</samp> method.
+The following example uses the event listener of a Button control’s <samp class="codeph">click</samp> event
+to invoke a Resize effect on an Image control: </p>
+
+            <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- behaviors\SparkResizeEffect.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark"&gt; 
+    &lt;s:layout&gt; 
+        &lt;s:VerticalLayout/&gt; 
+    &lt;/s:layout&gt; 
+ 
+    &lt;fx:Declarations&gt; 
+        &lt;s:Resize id="myResizeEffect" 
+            target="{myImage}" 
+            widthBy="10" heightBy="10"/&gt; 
+    &lt;/fx:Declarations&gt; 
+ 
+    &lt;s:Image id="myImage" 
+        source="@Embed(source='assets/logo.jpg')"/&gt; 
+    &lt;s:Button label="Resize Me" 
+        click="myResizeEffect.end();myResizeEffect.play();"/&gt; 
+&lt;/s:Application&gt;</pre>
+
+            <p>Notice that this example first calls the <samp class="codeph">Effect.end()</samp> method
+before it calls the <samp class="codeph">play()</samp> method. Call the <samp class="codeph">end()</samp> method
+to ensure that any previous instance of the effect has ended before
+you start a new one. </p>
+
+            <p>In the next example, you create two Resize effects for a Button
+control. One Resize effect expands the size of the button by 10
+pixels when the user clicks down on the button, and the second resizes
+it back to its original size when the user releases the mouse button.
+The duration of each effect is 200 ms: </p>
+
+            <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- behaviorExamples\SparkResizeEffectReverse.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark"&gt; 
+    &lt;s:layout&gt; 
+        &lt;s:VerticalLayout/&gt; 
+    &lt;/s:layout&gt; 
+ 
+    &lt;fx:Declarations&gt; 
+        &lt;s:Resize id="myResizeEffectUp" 
+            target="{myImage}" 
+            widthBy="10" heightBy="10"/&gt; 
+        &lt;s:Resize id="myResizeEffectDown" 
+            target="{myImage}" 
+            widthBy="-10" heightBy="-10"/&gt; 
+    &lt;/fx:Declarations&gt; 
+ 
+    &lt;s:Image id="myImage" 
+        source="@Embed(source='assets/logo.jpg')"/&gt; 
+    &lt;s:Button label="Resize Me Up" 
+        click="myResizeEffectUp.end();myResizeEffectUp.play();"/&gt; 
+    &lt;s:Button label="Resize Me Down" 
+        click="myResizeEffectDown.end();myResizeEffectDown.play();"/&gt; 
+&lt;/s:Application&gt;</pre>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS10459589-B529-4244-84C9-BEDB69845B1B_verapache"><a name="WS10459589-B529-4244-84C9-BEDB69845B1B_verapache"><!-- --></a>
+         <h3 class="topictitle3">About applying MX effects</h3>
+
+         
+         <div>
+            <p>MX effects are defined in the mx.effects package. With
+MX effects, you typically use a trigger to initiate the effect.
+A <em>trigger </em>is an action, such as a mouse click on a component,
+a component getting focus, or a component becoming visible. To configure
+a component to use an effect, you associate an effect with a trigger. </p>
+
+            <p>The MX effects are designed to work with the MX components, and
+in some cases might work with the Spark components. </p>
+
+            <div class="note"><span class="notetitle">Note:</span> Triggers are not the same as events. For example,
+a Button control has both a <samp class="codeph">mouseDown</samp> event and
+a <samp class="codeph">mouseDownEffect</samp> trigger. The event initiates
+the corresponding effect trigger when a user clicks on a component.
+You use the <samp class="codeph">mouseDown</samp> event property to specify
+the event listener that executes when the user clicks on the component.
+You use the <samp class="codeph">mouseDownEffect</samp> trigger property to associate
+an effect with the trigger.</div>
+
+            <div class="p">You associate MX effects with triggers as part of defining the
+basic behavior for your application, as the following example shows: <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- behaviors\ButtonWL.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark"&gt; 
+    &lt;s:layout&gt; 
+        &lt;s:VerticalLayout/&gt; 
+    &lt;/s:layout&gt; 
+ 
+    &lt;fx:Declarations&gt; 
+        &lt;!-- Define effect. --&gt; 
+        &lt;mx:WipeLeft id="myWL" duration="1000"/&gt; 
+    &lt;/fx:Declarations&gt; 
+ 
+    &lt;!-- Assign effect to targets. --&gt; 
+    &lt;mx:Button id="myButton" label="Click Me" 
+        mouseDownEffect="{myWL}"/&gt; 
+    &lt;mx:Button id="myOtherButton" label="Click Me" 
+        mouseDownEffect="{myWL}"/&gt; 
+&lt;/s:Application&gt;</pre>
+
+            </div>
+
+            <p>In this example, the effect is a WipeLeft effect with a duration
+of 1000 milliseconds (ms). That means it takes 1000 ms for the effect
+to play from start to finish. </p>
+
+            <p>You use data binding to assign the effect to the <samp class="codeph">mouseDownEffect</samp> property of
+each Button control. The <samp class="codeph">mouseDownEffect</samp> property
+is the effect trigger that specifies to play the effect when the
+user clicks the control using the mouse. In the previous example,
+the effect makes the Button control appear as if it is being wiped
+onto the screen from right to left. </p>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf5fdc3-7ffc_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf5fdc3-7ffc_verapache"><!-- --></a>
+         <h3 class="topictitle3">About factory and instance classes</h3>
+
+         
+         <div>
+            <p>Flex implements effects using an architecture in which
+each effect is represented by two classes: a factory class and an
+instance class.</p>
+
+            <dl>
+               
+                  <dt class="dlterm">Factory class</dt>
+
+                  <dd>
+                     <p>You use factory classes in your application. The factory
+class creates an object of the instance class to perform the effect
+on the target. The factory classes are defined in the spark.effects
+and mx.effects packages. </p>
+
+                     <div class="p">You define a factory class in your
+application, and configure it with the necessary properties to control
+the effect, such as the zoom size or effect duration, as the following
+example shows:         <pre class="codeblock">&lt;fx:Declarations&gt; 
+	&lt;!-- Factory class. --&gt; 
+	&lt;s:Resize id="myResizeEffect" 
+		target="{myImage}" 
+		widthBy="50" heightBy="50"/&gt; 
+&lt;/fx:Declarations&gt; 
+&lt;!-- Effect target.--&gt; 
+ &lt;s:Image id="myImage"/&gt; 
+ &lt;s:Button label="Resize Image" 
+	click="myResizeEffect.end();myResizeEffect.play();"/&gt;</pre>
+
+                     </div>
+
+                     <p>By
+convention, the name of a factory class is the name of the effect,
+such as Resize, Move, or Fade. </p>
+
+                  </dd>
+
+               
+               
+                  <dt class="dlterm">Instance class</dt>
+
+                  <dd>
+                     <p>The instance class implements the effect logic. When an effect plays,
+the factory class creates an object of the instance class to perform
+the effect on the target. When the effect ends, Flex destroys the
+instance object. If the effect has multiple target components, the
+factory class creates multiple instance objects, one per target.</p>
+
+                     <p>The
+factory classes are defined in the spark.effects.supportClasses
+and mx.effects.effectClasses packages. By convention, the name of
+an instance class is the name of the factory class with the suffix <em>Instance</em>,
+such as ResizeInstance, MoveInstance, or FadeInstance.</p>
+
+                     <p>When
+you use effects, you perform the following steps.</p>
+
+                     <ol>
+                        <li>
+                           <p>Create a factory class object in your application.</p>
+
+                        </li>
+
+                        <li>
+                           <p>Configure the factory class object.</p>
+
+                        </li>
+
+                     </ol>
+
+                     <p>When
+Flex plays an effect, Flex performs the following actions:</p>
+
+                     <ol>
+                        <li>
+                           <p>Creates one object of the instance class for each target
+component of the effect.</p>
+
+                        </li>
+
+                        <li>
+                           <p>Copies configuration information from the factory object
+to the instance object.</p>
+
+                        </li>
+
+                        <li>
+                           <p>Plays the effect on the target using the instance object.</p>
+
+                        </li>
+
+                        <li>
+                           <p>Deletes the instance object when the effect completes.</p>
+
+                           <p>Any
+changes that you make to the factory object are not propagated to
+a currently playing instance object. However, the next time the
+effect plays, the instance object uses your new settings. </p>
+
+                        </li>
+
+                     </ol>
+
+                     <p>When
+you use effects in your application, you are concerned only with
+the factory class; the instance class is an implementation detail.
+However, if you want to create custom effects classes, you must
+implement a factory and an instance class. </p>
+
+                     <p>For more information,
+see <a href="flx_createeffects_cfx.html#WS2db454920e96a9e51e63e3d11c0bf69084-7fc8_verapache">Custom
+effects</a>. </p>
+
+                  </dd>
+
+               
+            </dl>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf69084-7fb6_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7fb6_verapache"><!-- --></a>
+         <h3 class="topictitle3">Available effects</h3>
+
+         
+         <div>
+            <p>The following table lists the Spark and MX effects: </p>
+
+            
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" frame="border" border="1" rules="all">
+                  
+                  
+                  
+                  <thead align="left">
+                     <tr>
+                        <th class="cellrowborder" valign="top" width="NaN%" id="d61539e308">
+                           <p>Spark Effect</p>
+
+                        </th>
+
+                        <th class="cellrowborder" valign="top" width="NaN%" id="d61539e314">
+                           <p>MX Effect</p>
+
+                        </th>
+
+                        <th class="cellrowborder" valign="top" width="NaN%" id="d61539e320">
+                           <p>Description</p>
+
+                        </th>
+
+                     </tr>
+
+                  </thead>
+
+                  <tbody>
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d61539e308 ">
+                           <div class="p">
+                              <pre class="codeblock">Animate 
+Animae3D 
+AnimateColor</pre>
+
+                           </div>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d61539e314 ">
+                           <div class="p">
+                              <pre class="codeblock">AnimateProperty</pre>
+
+                           </div>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d61539e320 ">
+                           <p>Animates a numeric property of a component,
+such as <samp class="codeph">height</samp>, <samp class="codeph">width</samp>, <samp class="codeph">scaleX</samp>,
+or <samp class="codeph">scaleY</samp>. You specify the property name, start
+value, and end value of the property to animate. The effect first
+sets the property to the start value, and then updates the property
+value over the duration of the effect until it reaches the end value. </p>
+
+                           <p>For
+example, if you want to change the width of a Button control, you
+can specify width as the property to animate, and starting and ending
+width values to the effect.</p>
+
+                        </td>
+
+                     </tr>
+
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d61539e308 ">
+                           <p>
+                              <samp class="codeph">AnimateFilter</samp>
+                           </p>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d61539e314 ">
+                           <p/>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d61539e320 ">
+                           <p>Animates the properties of a filter applied
+to the target. This effect does not actually modify the properties
+of the target. For example, you can use this property to animate
+a filter, such as a DropShadowFilter, applied to the target. </p>
+
+                        </td>
+
+                     </tr>
+
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d61539e308 ">
+                           <div class="p">
+                              <pre class="codeblock"/>
+
+                           </div>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d61539e314 ">
+                           <div class="p">
+                              <pre class="codeblock">Blur</pre>
+
+                           </div>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d61539e320 ">
+                           <p>Applies a blur visual effect to a component.
+A Blur effect softens the details of an image. You can produce blurs
+that range from a softly unfocused look to a Gaussian blur, a hazy
+appearance like viewing an image through semi-opaque glass. If you
+apply a Blur effect to a component, you cannot apply a BlurFilter
+or a second Blur effect to the component.</p>
+
+                           <p>The Blur effect
+uses the Flash BlurFilter class as part of its implementation. For
+more information, see <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/flash/filters/BlurFilter.html" target="_blank">flash.filters.BlurFilter</a> in
+the <em>
+                                 <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/" target="_blank">ActionScript 3.0 Reference for the Adobe
+Flash Platform</a>
+                              </em>.</p>
+
+                           <p>You can use the Spark AnimateFilter
+effect to replace the MX Blur effect.</p>
+
+                        </td>
+
+                     </tr>
+
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d61539e308 ">
+                           <p>
+                              <samp class="codeph">CallAction</samp>
+                           </p>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d61539e314 ">
+                           <p/>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d61539e320 ">
+                           <p>Animates the target by calling a function
+on the target. The effect lets you pass parameters to the function
+from the effect class. </p>
+
+                        </td>
+
+                     </tr>
+
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d61539e308 ">
+                           <div class="p">
+                              <pre class="codeblock"/>
+
+                           </div>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d61539e314 ">
+                           <div class="p">
+                              <pre class="codeblock">Dissolve</pre>
+
+                           </div>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d61539e320 ">
+                           <p>Modifies the <samp class="codeph">alpha</samp> property
+of an overlay to gradually have to target component appear or disappear.
+If the target object is a container, only the children of the container
+dissolve. The container borders do not dissolve.</p>
+
+                           <p>Note: To
+use the MX Dissolve effect with the <samp class="codeph">creationCompleteEffect</samp> trigger
+of a DataGrid control, you must define the data provider of the
+control inline using a child tag of the DataGrid control, or using
+data binding. This issue is a result of the data provider not being
+set until the <samp class="codeph">creationComplete</samp> event is dispatched.
+Therefore, when the effect starts playing, Flex has not completed
+the sizing of the DataGrid control. </p>
+
+                        </td>
+
+                     </tr>
+
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d61539e308 ">
+                           <div class="p">
+                              <pre class="codeblock">Fade 
+CrossFade</pre>
+
+                           </div>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d61539e314 ">
+                           <div class="p">
+                              <pre class="codeblock">Fade</pre>
+
+                           </div>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d61539e320 ">
+                           <p>Animate the component from transparent to
+opaque, or from opaque to transparent. </p>
+
+                           <p>If you specify the
+MX <samp class="codeph">Fade</samp> effect for the <samp class="codeph">showEffect</samp> or <samp class="codeph">hideEffect</samp> trigger,
+and if you omit the <samp class="codeph">alphaFrom</samp> and <samp class="codeph">alphaTo</samp> properties,
+the effect automatically transitions from 0.0 to the targets’ current <samp class="codeph">alpha</samp> value
+for a show trigger, and from the targets’ current <samp class="codeph">alpha</samp> value
+to 0.0 for a hide trigger. </p>
+
+                           <p>Note: To use these effects with
+MX components that display text, the component must either support
+the Flash Text Engine or you must use an embedded font with the
+component, not a device font. For more information, see <a href="flx_styles_st.html#WS2db454920e96a9e51e63e3d11c0bf69084-7fee_verapache">Styles
+and themes</a>.</p>
+
+                        </td>
+
+                     </tr>
+
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d61539e308 ">
+                           <div class="p">
+                              <pre class="codeblock"/>
+
+                           </div>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d61539e314 ">
+                           <div class="p">
+                              <pre class="codeblock">Glow</pre>
+
+                           </div>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d61539e320 ">
+                           <p>Applies a glow visual effect to a component.
+The Glow effect uses the Flash GlowFilter class as part of its implementation.
+For more information, see the <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/flash/filters/GlowFilter.html" target="_blank">flash.filters.GlowFilter</a> class
+in the <em>
+                                 <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/" target="_blank">ActionScript 3.0 Reference for the Adobe
+Flash Platform</a>
+                              </em>. If you apply a Glow effect to a component, you
+cannot apply a GlowFilter or a second Glow effect to the component. </p>
+
+                           <p>You
+can use the Spark AnimateFilter effect to replace the MX Glow effect.</p>
+
+                        </td>
+
+                     </tr>
+
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d61539e308 ">
+                           <div class="p">
+                              <pre class="codeblock"/>
+
+                           </div>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d61539e314 ">
+                           <div class="p">
+                              <pre class="codeblock">Iris</pre>
+
+                           </div>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d61539e320 ">
+                           <p>Animates the effect target by expanding
+or contracting a rectangular mask centered on the target. The effect
+can either grow the mask from the center of the target to expose
+the target, or contract it toward the target center to obscure the
+component. </p>
+
+                           <p>For more information, see <a href="flx_halo_effects_hf.html#WS2db454920e96a9e51e63e3d11c0bf69084-7fc4_verapache">Using
+MX mask effects</a>.</p>
+
+                        </td>
+
+                     </tr>
+
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d61539e308 ">
+                           <div class="p">
+                              <pre class="codeblock">Move</pre>
+
+                           </div>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d61539e314 ">
+                           <div class="p">
+                              <pre class="codeblock">Move</pre>
+
+                           </div>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d61539e320 ">
+                           <p>Changes the position of a component over
+a specified time interval. You typically apply this effect to a
+target in a container that uses absolute positioning, such as a
+MX Canvas container, or a Spark container that uses BasicLayout.
+If you apply it to a target in a container that performs automatic
+layout, the move occurs, but the next time the container updates its
+layout, it moves the target back to its original position. You can
+set the container's <samp class="codeph">autoLayout</samp> property to <samp class="codeph">false</samp> to
+disable the move back, but that disables layout for all controls
+in the container.</p>
+
+                        </td>
+
+                     </tr>
+
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d61539e308 ">
+                           <div class="p">
+                              <pre class="codeblock"/>
+
+                           </div>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d61539e314 ">
+                           <div class="p">
+                              <pre class="codeblock">Pause</pre>
+
+                           </div>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d61539e320 ">
+                           <p>Does nothing for a specified period of time.
+This effect is useful when you need to composite effects. For more
+information, see <a href="flx_behaviors_be.html#WS2db454920e96a9e51e63e3d11c0bf69084-7fc3_verapache">Creating
+composite effects</a>.</p>
+
+                        </td>
+
+                     </tr>
+
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d61539e308 ">
+                           <div class="p">
+                              <pre class="codeblock">Resize</pre>
+
+                           </div>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d61539e314 ">
+                           <div class="p">
+                              <pre class="codeblock">Resize</pre>
+
+                           </div>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d61539e320 ">
+                           <p>Changes the width and height of a component
+over a specified time interval. When you apply a Resize effect,
+the layout manager resizes neighboring components based on the size
+changes to the target component. To run the effect without resizing
+other components, place the target component in a Canvas container,
+or a Spark container that uses BasicLayout.</p>
+
+                           <p>When you use the
+Resize effect with Panel containers, you can hide Panel children
+to improve performance. For more information, see <a href="flx_halo_effects_hf.html#WS1b75b3cd39e0a19d6f1b8095120c95d3de4-8000_verapache">Improving performance
+when resizing Panel containers</a>.</p>
+
+                        </td>
+
+                     </tr>
+
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d61539e308 ">
+                           <div class="p">
+                              <pre class="codeblock">Rotate 
+Rotate3D</pre>
+
+                           </div>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d61539e314 ">
+                           <div class="p">
+                              <pre class="codeblock">Rotate</pre>
+
+                           </div>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d61539e320 ">
+                           <p>Rotates a component around a specified point.
+You can specify the coordinates of the center of the rotation, and
+the starting and ending angles of rotation. You can specify positive
+or negative values for the angles. </p>
+
+                           <p>Note: To use the rotate
+effects with MX components that display text, the component must
+either support the Flash Text Engine or you must use an embedded
+font with the component, not a device font. For more information,
+see <a href="flx_styles_st.html#WS2db454920e96a9e51e63e3d11c0bf69084-7fee_verapache">Styles
+and themes</a>.</p>
+
+                        </td>
+
+                     </tr>
+
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d61539e308 ">
+                           <p>
+                              <samp class="codeph">Scale </samp>
+                              <samp class="codeph">Scale3D</samp>
+                           </p>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d61539e314 ">
+                           <div class="p">
+                              <pre class="codeblock"/>
+
+                           </div>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d61539e320 ">
+                           <p>Scale a component. You can specify properties
+to scale the target in the x and y directions. </p>
+
+                        </td>
+
+                     </tr>
+
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d61539e308 ">
+                           <div class="p">
+                              <pre class="codeblock"/>
+
+                           </div>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d61539e314 ">
+                           <div class="p">
+                              <pre class="codeblock">SoundEffect</pre>
+
+                           </div>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d61539e320 ">
+                           <p>Plays an mp3 audio file. For example, you
+could play a sound when a user clicks a Button control. This effect
+lets you repeat the sound, select the source file, and control the
+volume and pan. </p>
+
+                           <p>You specify the mp3 file using the <samp class="codeph">source</samp> property.
+If you have already embedded the mp3 file, using the <samp class="codeph">Embed</samp> keyword,
+then you can pass the Class object of the mp3 file to the source
+property. Otherwise, specify the full URL to the mp3 file.</p>
+
+                           <p>For
+more information, see <a href="flx_halo_effects_hf.html#WS2db454920e96a9e51e63e3d11c0bf69084-7fc0_verapache">Using
+the MX sound effect</a>.</p>
+
+                        </td>
+
+                     </tr>
+
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d61539e308 ">
+                           <div class="p">
+                              <pre class="codeblock">Wipe </pre>
+
+                           </div>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d61539e314 ">
+                           <p>
+                              <samp class="codeph">WipeLeft
+WipeRight
+WipeUp 
+WipeDown </samp>
+                           </p>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d61539e320 ">
+                           <p>Defines a bar Wipe effect. The before or
+after state of the component must be invisible.</p>
+
+                        </td>
+
+                     </tr>
+
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d61539e308 ">
+                           <p>
+                              <samp class="codeph"/>
+                           </p>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d61539e314 ">
+                           <div class="p">
+                              <pre class="codeblock">Zoom</pre>
+
+                           </div>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d61539e320 ">
+                           <p>Zooms a component in or out from its center
+point by scaling the component.</p>
+
+                           <p>Note: When you apply a Zoom
+effect to text rendered using a system font, Flex scales the text
+between whole point sizes. Although you do not have to use embedded
+fonts when you apply a Zoom effect to text, the Zoom will appear
+smoother when you apply it to embedded fonts. For more information,
+see <a href="flx_styles_st.html#WS2db454920e96a9e51e63e3d11c0bf69084-7fee_verapache">Styles
+and themes</a>.</p>
+
+                           <p>You can use the Spark Scale effect to replace
+the MX Zoom effect.</p>
+
+                        </td>
+
+                     </tr>
+
+                  </tbody>
+
+               </table>
+</div>
+
+         </div>
+
+      </div>
+
+   </div>
+
+   <div class="nested1" id="WS2db454920e96a9e51e63e3d11c0bf5fdc3-7ff5_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf5fdc3-7ff5_verapache"><!-- --></a>
+      <h2 class="topictitle2">Applying effects </h2>
+
+      
+      <div>
+         <p>To apply an effect to a target, you must specify the target,
+and then initiate the effect. Once the effect has started, you can
+pause, stop, resume, and end the effect epigrammatically. </p>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf69084-7fbc_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7fbc_verapache"><!-- --></a>
+         <h3 class="topictitle3">Using the Effect.target and Effect.targets
+properties</h3>
+
+         
+         <div>
+            <p>Use the <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/effects/Effect.html#target" target="_blank">Effect.target</a> or <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/effects/Effect.html#Effect.targets" target="_blank">Effect.targets</a> properties
+to specify the effect targets. You use the <samp class="codeph">Effect.target</samp> property
+in MXML to specify a single target, and the <samp class="codeph">Effect.targets</samp> property
+to specify an array of targets, as the following example shows:</p>
+
+            <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- behaviors\TargetProp.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark"&gt; 
+ 
+    &lt;fx:Declarations&gt; 
+        &lt;s:Resize id="myResize" 
+            heightBy="25" 
+            widthBy="50" 
+            target="{myButton}"/&gt; 
+    &lt;/fx:Declarations&gt; 
+        
+    &lt;s:Button id="myButton" 
+        label="Resize target" 
+        click="myResize.end();myResize.play();"/&gt; 
+&lt;/s:Application&gt;</pre>
+
+            <p>In this example, you use data binding to the <samp class="codeph">target</samp> property
+to specify that the Button control is the target of the Resize effect. </p>
+
+            <p>In the next example, you apply a Resize effect to multiple Button
+controls by using data binding with the effect’s <samp class="codeph">targets</samp> property: </p>
+
+            <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- behaviors\TargetProp3Buttons.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark"&gt; 
+    &lt;s:layout&gt; 
+        &lt;s:VerticalLayout/&gt; 
+    &lt;/s:layout&gt; 
+ 
+    &lt;fx:Declarations&gt; 
+        &lt;s:Resize id="myResize" 
+            heightBy="25" 
+            widthBy="50" 
+            targets="{[myButton1, myButton2, myButton3]}"/&gt; 
+    &lt;/fx:Declarations&gt; 
+ 
+    &lt;s:Button id="myButton1" label="Button 1"/&gt; 
+    &lt;s:Button id="myButton2" label="Button 2"/&gt; 
+    &lt;s:Button id="myButton3" label="Button 3"/&gt; 
+    
+    &lt;s:Button id="myButton4" 
+        label="Zoom targets" 
+        click="myResize.end();myResize.play();"/&gt; 
+&lt;/s:Application&gt;</pre>
+
+            <p>Because you specified three targets to the effect, the <samp class="codeph">play()</samp> method
+invokes the effect on all three button controls. </p>
+
+            <p>If you use the <samp class="codeph">targets</samp> property to define multiple
+event targets, calling the <samp class="codeph">end()</samp> method with no
+arguments terminates the effect on all targets. If you pass an effect
+instance as an argument, just that instance is interrupted. </p>
+
+            <p>To obtain the effect instance, save the return value of the <samp class="codeph">play()</samp> method,
+as the following example shows:</p>
+
+            <pre class="codeblock"> var myResizeArray:Array = myResize.play();</pre>
+
+            <p>The Array contains EffectInstance objects, one per target of
+the effect. Pass the element from the Array to the <samp class="codeph">end()</samp> method
+that corresponds to the effect to end, as the following example
+shows:</p>
+
+            <pre class="codeblock">myResize.end(myResizeArray[1]);</pre>
+
+            <p>You can define an effect that specifies no targets. Instead,
+you can pass an Array of targets to the <samp class="codeph">play()</samp> method
+to invoke the effect on all components specified in the Array, as
+the following example shows:</p>
+
+            <pre class="codeblock"> myResize.play([comp1, comp2, comp3]); </pre>
+
+            <p>This example invokes the Resize effect on three components. </p>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf69084-7fc6_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7fc6_verapache"><!-- --></a>
+         <h3 class="topictitle3">Applying effects by using data
+binding</h3>
+
+         
+         <div>
+            <p>
+               You
+can use data binding in MXML to set properties of an effect. For
+example, the following example lets the user set the <samp class="codeph">heightBy</samp> and <samp class="codeph">widthBy</samp> properties
+of the Resize effect using a TextInput control. The <samp class="codeph">heightBy</samp> and <samp class="codeph">widthBy</samp> properties
+specify the increase, of pixels, of the size of the target.</p>
+
+            <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- behaviors\DatabindingEffects.mxml  --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark"&gt; 
+    &lt;s:layout&gt; 
+        &lt;s:VerticalLayout/&gt; 
+    &lt;/s:layout&gt; 
+ 
+    &lt;fx:Declarations&gt; 
+        &lt;s:Resize id="myResizeEffect" 
+            target="{myImage}" 
+            heightBy="{Number(resizeHeightInput.text)}" 
+            widthBy="{Number(resizeWidthInput.text)}"/&gt;        
+    &lt;/fx:Declarations&gt; 
+ 
+    &lt;s:Form&gt; 
+        &lt;s:FormItem label="Resize Height:"&gt; 
+            &lt;s:TextInput id="resizeHeightInput" 
+                text="0" width="30"/&gt;          
+        &lt;/s:FormItem&gt; 
+        &lt;s:FormItem label="Resize Width:"&gt; 
+            &lt;s:TextInput id="resizeWidthInput" 
+                text="0" width="30"/&gt; 
+        &lt;/s:FormItem&gt; 
+    &lt;/s:Form&gt; 
+ 
+    &lt;s:Image id="myImage" 
+        source="@Embed(source='assets/logo.jpg')"/&gt; 
+    &lt;s:Button label="Resize Image" click="myResizeEffect.play();"/&gt; 
+&lt;/s:Application&gt;</pre>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf5fdc3-7ff4_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf5fdc3-7ff4_verapache"><!-- --></a>
+         <h3 class="topictitle3">Playing an effect backward</h3>
+
+         
+         <div>
+            <p>You can pass an optional argument to the <samp class="codeph">play()</samp> method
+to play the effect backward, as the following example shows:</p>
+
+            <pre class="codeblock"> resizeLarge.play([comp1, comp2, comp3], true); </pre>
+
+            <p>In this example, you specify <samp class="codeph">true</samp> as the second
+argument to play the effect backward. The default value is <samp class="codeph">false</samp>.</p>
+
+            <p>You can also use the <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/effects/Effect.html#tpause()" target="_blank">Effect.pause()</a> method
+to pause an effect, the <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/effects/Effect.html#resume()" target="_blank">Effect.resume()</a> method
+to resume a paused effect, and the <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/effects/Effect.html#reverse()" target="_blank">Effect.reverse()</a> method
+to play an effect backward. </p>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf5fdc3-7ff3_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf5fdc3-7ff3_verapache"><!-- --></a>
+         <h3 class="topictitle3">Ending an effect</h3>
+
+         
+         <div>
+            <p>Use the <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/effects/Effect.html#tend()" target="_blank">end()</a> method
+to terminate an effect at any time, as the following example shows: </p>
+
+            <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- behaviors\ASend.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark"&gt; 
+ 
+    &lt;fx:Declarations&gt; 
+        &lt;s:Resize id="resizeLarge" 
+            heightTo="150" 
+            widthTo="150" 
+            duration="5000" 
+            target="{myTA}"/&gt; 
+    &lt;/fx:Declarations&gt; 
+    
+    &lt;s:Group height="228" width="328"&gt; 
+        &lt;s:Button label="Start" 
+            x="10" y="10" 
+            click="resizeLarge.end();resizeLarge.play();"/&gt; 
+        &lt;s:Button label="End" 
+            x="86" y="10" 
+            click="resizeLarge.end();"/&gt; 
+        &lt;s:Button label="Reset" 
+            click="myTA.height=100;myTA.width=100;" 
+            x="162" y="10"/&gt; 
+        &lt;s:TextArea id="myTA" 
+            x="10" y="40" 
+            height="100" 
+            width="100" 
+            text="Here is some text."/&gt; 
+    &lt;/s:Group&gt; 
+&lt;/s:Application&gt;</pre>
+
+            <p>In this example, you set the <samp class="codeph">duration</samp> property
+of the Resize effect to 10 seconds, and use a Button control to
+call the <samp class="codeph">end()</samp> method to terminate the effect when
+the user clicks the button. </p>
+
+            <p>When you call the <samp class="codeph">end()</samp> method, the effect jumps
+to its end state and then terminates. For the Resize effect, the
+effect sets the final size of the expanded TextArea control before
+it terminates, just as if you had let the effect finish playing.
+If the effect was a move effect, the target component moves to its
+final position before terminating. </p>
+
+            <p>You can end all effects on a component by calling the <samp class="codeph">UIComponent.endEffectsStarted()</samp> method
+on the component. The <samp class="codeph">endEffectsStarted()</samp> method
+calls the <samp class="codeph">end()</samp> method on every effect currently
+playing on the component. </p>
+
+            <p>If you defined a listener for the <samp class="codeph">effectEnd</samp> event,
+that listener gets invoked by the <samp class="codeph">end()</samp> method,
+just as if you had let the effect finish playing. For more information
+on working with effect events, see <a href="flx_behaviors_be.html#WS2db454920e96a9e51e63e3d11c0bf69084-7fbb_verapache">Handling
+effect events</a>.</p>
+
+            <p>After the effect starts, you can use the <samp class="codeph">pause()</samp> method
+to pause the effect at its current location. You can then call the <samp class="codeph">resume()</samp> method
+to start the effect, or the <samp class="codeph">end()</samp> method to terminate
+it. </p>
+
+            <p>Use the <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/effects/Effect.html#tstop()" target="_blank">stop()</a>
+                method
+to stop the effect in its current state, but not jump to the end.
+A call to the <samp class="codeph">stop()</samp> method dispatches the <samp class="codeph">effectEnd</samp> event.
+Unlike a call to the <samp class="codeph">pause()</samp> method, you cannot
+call the <samp class="codeph">resume()</samp> method after calling the <samp class="codeph">stop()</samp> method.
+However, you can call the <samp class="codeph">play()</samp> method to restart
+the effect.</p>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS3B844F8B-0B7B-4000-A5E1-E21F3822E345_verapache"><a name="WS3B844F8B-0B7B-4000-A5E1-E21F3822E345_verapache"><!-- --></a>
+         <h3 class="topictitle3">Creating effects in ActionScript</h3>
+
+         
+         <div>
+            <p>You can declare and play effects in ActionScript. The following
+example uses the event listener of a Button control’s <samp class="codeph">click</samp> event
+to invoke a Resize effect on an TextArea control: </p>
+
+            <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- behaviors\ASplayVBox.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    creationComplete="createEffect(event);"&gt; 
+    &lt;s:layout&gt; 
+        &lt;s:VerticalLayout/&gt; 
+    &lt;/s:layout&gt; 
+ 
+    &lt;fx:Script&gt; 
+        &lt;![CDATA[ 
+            // Import effect class. 
+            import spark.effects.Resize; 
+ 
+            // Create a resize effect 
+            private var resizeLarge:Resize = new Resize(); 
+ 
+            private function createEffect(eventObj:Event):void { 
+                // Set the TextArea as the effect target. 
+                resizeLarge.target=myTA; 
+                
+                // Set resized width and height, and effect duration. 
+                resizeLarge.widthTo=150; 
+                resizeLarge.heightTo=150; 
+                resizeLarge.duration=750; 
+            } 
+        ]]&gt; 
+    &lt;/fx:Script&gt; 
+ 
+    &lt;s:Button label="Start" 
+        click="resizeLarge.end();resizeLarge.play();"/&gt; 
+    &lt;s:Button label="Reset" 
+        click="myTA.width=100;myTA.height=100;"/&gt; 
+    &lt;s:TextArea id="myTA" 
+        height="100" width="100" 
+        text="Here is some text."/&gt; 
+&lt;/s:Application&gt;</pre>
+
+            <p>In this example, use the application’s <samp class="codeph">creationComplete</samp> event
+to configure the effect, and then invoke it by calling the <samp class="codeph">play()</samp> method
+in response to a user clicking the Button control. </p>
+
+         </div>
+
+      </div>
+
+   </div>
+
+   <div class="nested1" id="WS2db454920e96a9e51e63e3d11c0bf5fdc3-7fef_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf5fdc3-7fef_verapache"><!-- --></a>
+      <h2 class="topictitle2">Working with effects</h2>
+
+      
+      <div>
+         <p>Effects have many configuration settings that you can use
+to control the effect. For example, you can set the effect duration
+and repeat behavior, or handle effect events. The effect target
+also has configuration settings that you can use to configure it
+for effects. </p>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf5fdc3-7fee_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf5fdc3-7fee_verapache"><!-- --></a>
+         <h3 class="topictitle3">Setting effect durations</h3>
+
+         
+         <div>
+            <p>All effects take the <samp class="codeph">duration</samp> property
+that you can use to specify the time, in milliseconds, over which
+the effect occurs. The following example creates two versions of
+the Fade effect. The slowFade effect uses a two-second duration;
+the reallySlowFade effect uses an eight-second duration: </p>
+
+            <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- behaviors\FadeDuration.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark"&gt; 
+    &lt;s:layout&gt; 
+        &lt;s:VerticalLayout/&gt; 
+    &lt;/s:layout&gt; 
+ 
+    &lt;fx:Declarations&gt; 
+        &lt;s:Fade id="slowFade" 
+            duration="2000" 
+            target="{myButton1}"/&gt; 
+        &lt;s:Fade id="reallySlowFade" 
+            duration="8000" 
+            target="{myButton2}"/&gt; 
+    &lt;/fx:Declarations&gt; 
+ 
+    &lt;s:Button id="myButton1" 
+        label="Button 1" 
+        creationCompleteEffect="{slowFade}"/&gt; 
+    &lt;s:Button id="myButton2" 
+        label="Button 2" 
+        creationCompleteEffect="{reallySlowFade}"/&gt; 
+&lt;/s:Application&gt;</pre>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf5fdc3-7fea_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf5fdc3-7fea_verapache"><!-- --></a>
+         <h3 class="topictitle3">Delaying effect start </h3>
+
+         
+         <div>
+            <p>The <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/effects/Effect.html#startDelay" target="_blank">Effect.startDelay</a> property
+specifies a value, in milliseconds, that the effect waits once it
+is triggered before it begins. You can specify an integer value
+greater than or equal to 0. If you have used the <samp class="codeph">Effect.repeatCount</samp> property
+to specify the number of times to repeat the effect, the <samp class="codeph">startDelay</samp> property
+is applied only to the first time the effect plays, but not to the
+repeated playing of the effect.</p>
+
+            <p>If you set the <samp class="codeph">startDelay</samp> property for a Parallel
+effect, Flex inserts the delay between each effect of the parallel
+effect. </p>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf5fdc3-7fe9_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf5fdc3-7fe9_verapache"><!-- --></a>
+         <h3 class="topictitle3">Repeating effects</h3>
+
+         
+         <div>
+            <p>All effects support the <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/effects/Effect.html#repeatCount" target="_blank">Effect.repeatCount</a> and <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/effects/Effect.html#repeatDelay" target="_blank">Effect.repeatDelay</a> properties
+that let you configure whether effects repeat, where: </p>
+
+            <ul>
+               <li>
+                  <p>
+                     <samp class="codeph">repeatCount</samp> Specifies the number of
+times to play the effect. A value of 0 means to play the effect
+indefinitely until stopped by a call to the <samp class="codeph">end()</samp> method.
+The default value is 1. For a repeated effect, the <samp class="codeph">duration</samp> property specifies
+the duration of a single instance of the effect. Therefore, if an
+effect has a <samp class="codeph">duration</samp> property set to 2000, and
+a <samp class="codeph">repeatCount</samp> property set to 3, then the effect
+takes a total of 6000 ms (6 seconds) to play.</p>
+
+               </li>
+
+               <li>
+                  <p>
+                     <samp class="codeph">repeatDelay</samp> Specifies the amount of time,
+in milliseconds, to pause before repeating the effect. The default
+value is 0. </p>
+
+               </li>
+
+               <li>
+                  <p>
+                     <samp class="codeph">repeatBehavior</samp> (Spark effects only) Specifies <samp class="codeph">RepeatBehavior.LOOP</samp> (default)
+to repeat the effect each time, or <samp class="codeph">RepeatBehavior.REVERSE</samp> to
+reverse direction of the effect on each iteration. </p>
+
+               </li>
+
+            </ul>
+
+            <p>For example, the following example repeats the Rotate effect
+until the user clicks a Button control:</p>
+
+            <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- behaviors\RepeatEff.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark"&gt; 
+    &lt;s:layout&gt; 
+        &lt;s:VerticalLayout/&gt; 
+    &lt;/s:layout&gt; 
+ 
+    &lt;fx:Declarations&gt; 
+        &lt;s:Rotate id="myRotate" 
+            angleBy="360" 
+            repeatCount="0" 
+            target="{myImage}"/&gt; 
+    &lt;/fx:Declarations&gt; 
+ 
+    &lt;s:Label text="Click the image to start rotation."/&gt; 
+    &lt;s:Button id="myButton" 
+        label="Stop Rotation" 
+        click="myRotate.end();"/&gt; 
+    &lt;s:Image id="myImage" 
+        source="@Embed(source='assets/logo.jpg')" 
+        mouseDown="myRotate.end(); myRotate.play();"/&gt; 
+&lt;/s:Application&gt;</pre>
+
+            <p>All effects dispatch an <samp class="codeph">effectEnd</samp> event when
+the effect completes. If you repeat the effect, the effect dispatches
+the <samp class="codeph">effectEnd</samp> event after the final repetition.</p>
+
+            <p>If the effect is a tween effect, such as a MX Fade or MX Move
+effect, the effect dispatches both the <samp class="codeph">tweenEnd</samp> effect
+and the <samp class="codeph">endEffect</samp> when the effect completes. If
+you configure the tween effect to repeat, the <samp class="codeph">tweenEnd</samp> effect occurs
+at the end of every repetition of the effect, and the <samp class="codeph">endEffect</samp> event occurs
+after the final repetition.</p>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf69084-7fbb_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7fbb_verapache"><!-- --></a>
+         <h3 class="topictitle3">Handling effect events</h3>
+
+         
+         <div>
+            <p>Every Spark and MX effect class supports the following
+events:</p>
+
+            <ul>
+               <li>
+                  <p>
+                     <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/effects/Effect.html#effectStart" target="_blank">effectStart</a> Dispatched
+when the effect starts playing. The <samp class="codeph">type</samp> property
+of the event object for this event is set to <samp class="codeph">EffectEvent.EFFECT_START</samp>.</p>
+
+               </li>
+
+               <li>
+                  <p>
+                     <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/effects/Effect.html#effectEnd" target="_blank">effectEnd</a> Dispatched
+after the effect ends, either when the effect finishes playing or
+when the effect has been interrupted by a call to the <samp class="codeph">end()</samp> method.
+The <samp class="codeph">type</samp> property of the event object for this
+event is set to <samp class="codeph">EffectEvent.EFFECT_END</samp>.</p>
+
+               </li>
+
+               <li>
+                  <p>
+                     <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/effects/Effect.html#effectStop" target="_blank">effectStop</a> Dispatched
+after the effect stops by a call to the <samp class="codeph">stop()</samp> method. The <samp class="codeph">type</samp> property
+of the event object for this event is set to <samp class="codeph">EffectEvent.EFFECT_STOP</samp>.</p>
+
+               </li>
+
+            </ul>
+
+            <p>The event object passed to the event listener for these events
+is of type <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/events/EffectEvent.html" target="_blank">EffectEvent</a>. </p>
+
+            <p>The previous list of events are dispatched by all effects. The
+Spark and MX effects dispatch additional events. For more information,
+see <a href="flx_spark_effects_sf.html#WSebddb957d123ebb0-3f1f1b9d120914b4de1-8000_verapache">Handling
+Spark effect events</a> and <a href="flx_halo_effects_hf.html#WSA8A23863-A3B5-4122-A440-C32FF182C94F_verapache">Handling
+MX effect events</a>.</p>
+
+            <p>Flex dispatches one event for each target of an effect. Therefore,
+if you define a single target for an effect, Flex dispatches a single <samp class="codeph">effectStart</samp> event,
+and a single <samp class="codeph">effectEnd</samp> event. If you define three
+targets for an effect, Flex dispatches three <samp class="codeph">effectStart</samp> events,
+and three <samp class="codeph">effectEnd</samp> events.</p>
+
+            <p>The EffectEvent class is a subclass of the Event class, and contains
+all of the properties inherited from Event, including <samp class="codeph">target</samp>,
+and <samp class="codeph">type</samp>, and defines a new property named <samp class="codeph">effectInstance</samp>,
+where:</p>
+
+            <dl>
+               
+                  <dt class="dlterm">target</dt>
+
+                  <dd>
+                     <p>Contains a reference to the <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/effects/Effect.html" target="_blank">Effect</a> object
+that dispatched the event. This is the factory class of the effect.</p>
+
+                  </dd>
+
+               
+               
+                  <dt class="dlterm">type</dt>
+
+                  <dd>
+                     <p>Either <samp class="codeph">EffectEvent.EFFECT_END</samp> or <samp class="codeph">EffectEvent.EFFECT_START</samp>,
+depending on the event.</p>
+
+                  </dd>
+
+               
+               
+                  <dt class="dlterm">effectInstance</dt>
+
+                  <dd>
+                     <p>Contains a reference to the <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/effects/EffectInstance.html" target="_blank">EffectInstance</a> object.
+This is the object defined by the instance class for the effect.
+Flex creates one object of the instance class for each target of
+the effect. You access the target component of the effect using
+the <samp class="codeph">effectInstance.target</samp> property. </p>
+
+                  </dd>
+
+               
+            </dl>
+
+            <p>The following example defines an event listener for the <samp class="codeph">endEffect</samp> event:</p>
+
+            <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- behaviors\EventEffects2.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark"&gt; 
+    &lt;s:layout&gt; 
+        &lt;s:VerticalLayout/&gt; 
+    &lt;/s:layout&gt; 
+ 
+    &lt;fx:Script&gt; 
+        &lt;![CDATA[ 
+    
+            import mx.effects.*; 
+            import mx.events.EffectEvent; 
+            import mx.core.UIComponent; 
+    
+            private function endEffectListener(eventObj:EffectEvent):void { 
+                // Access the effect object. 
+                var effectObj:Effect = Effect(eventObj.target); 
+ 
+                // Access the target component of the effect. 
+                var effectTarget:UIComponent = 
+                    UIComponent(eventObj.effectInstance.target); 
+                // Write the target id and event type to the TextArea control.            
+                myTA.text = effectTarget.id; 
+                myTA.text = myTA.text + " " + eventObj.type; 
+            } 
+        ]]&gt; 
+    &lt;/fx:Script&gt; 
+    
+    &lt;fx:Declarations&gt; 
+        &lt;s:Fade id="slowFade" 
+            duration="2000" 
+            effectEnd="endEffectListener(event);" 
+            target="{myButton1}"/&gt; 
+    &lt;/fx:Declarations&gt; 
+ 
+    &lt;s:Button id="myButton1" 
+        label="Button 1" 
+        creationCompleteEffect="{slowFade}"/&gt; 
+ 
+    &lt;s:TextArea id="myTA" /&gt; 
+&lt;/s:Application&gt;</pre>
+
+            <p>If the effect has multiple targets, Flex dispatches an <samp class="codeph">effectStart</samp> event
+and <samp class="codeph">effectEnd</samp> event once per target, as the following
+example shows:</p>
+
+            <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- behaviors\EventEffects.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark"&gt; 
+    &lt;s:layout&gt; 
+        &lt;s:VerticalLayout/&gt; 
+    &lt;/s:layout&gt; 
+ 
+    &lt;fx:Script&gt; 
+        &lt;![CDATA[ 
+    
+            import mx.effects.*; 
+            import mx.events.EffectEvent; 
+            import mx.core.UIComponent; 
+    
+            private function endSlowFadeEffectListener(eventObj:EffectEvent):void  
+            { 
+                // Access the effect object. 
+                var effectObj:Effect = Effect(eventObj.target); 
+ 
+                // Access the target component of the effect. 
+                var effectTarget:UIComponent = 
+                    UIComponent(eventObj.effectInstance.target); 
+            
+                myTA.text = myTA.text + effectTarget.id + ' : '; 
+                myTA.text = myTA.text + " " + eventObj.type + '\n'; 
+            } 
+        ]]&gt; 
+    &lt;/fx:Script&gt; 
+ 
+    &lt;fx:Declarations&gt; 
+        &lt;s:Fade id="slowFade" 
+            duration="2000" 
+            effectEnd="endSlowFadeEffectListener(event);" 
+            targets="{[myButton1, myButton2, myButton3, myButton4]}"/&gt; 
+    &lt;/fx:Declarations&gt; 
+   
+    &lt;s:Button id="myButton1" 
+        label="Button 1" 
+        creationCompleteEffect="{slowFade}"/&gt; 
+    &lt;s:Button id="myButton2" 
+        label="Button 2" 
+        creationCompleteEffect="{slowFade}"/&gt; 
+    &lt;s:Button id="myButton3" 
+        label="Button 3" 
+        creationCompleteEffect="{slowFade}"/&gt; 
+    &lt;s:Button id="myButton4" 
+        label="Button 4" 
+        creationCompleteEffect="{slowFade}"/&gt; 
+    
+    &lt;s:TextArea id="myTA" height="125" width="250"/&gt; 
+&lt;/s:Application&gt;</pre>
+
+            <p>Flex dispatches an <samp class="codeph">effectEnd</samp> event once per
+target; therefore, the <samp class="codeph">endSlowFadeEffectListener()</samp> event
+listener is invoked four times, once per <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/controls/Button.html" target="_blank">Button</a> control. </p>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf69084-7fc3_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7fc3_verapache"><!-- --></a>
+         <h3 class="topictitle3">Creating composite effects</h3>
+
+         
+         <div>
+            <p>
+               
+               Flex
+supports two ways to combine, or <em>composite</em>, effects:</p>
+
+            <dl>
+               
+                  <dt class="dlterm">Parallel</dt>
+
+                  <dd>
+                     <p>The effects play at the same time. If you play effects in
+parallel, you must make sure that the effects do not modify the
+same property of the target. If two effects modify the same property,
+the effects conflict with each other and the results of the effects
+are undefined.</p>
+
+                  </dd>
+
+               
+               
+                  <dt class="dlterm">Sequence</dt>
+
+                  <dd>
+                     <p>
+                        
+                        One effect must complete before the next
+effect starts.</p>
+
+                     <p>To define a <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/effects/Parallel.html" target="_blank">Parallel</a> or <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/effects/Sequence.html" target="_blank">Sequence</a> effect,
+you use the <samp class="codeph">&lt;mx:Parallel&gt;</samp> or <samp class="codeph">&lt;,x:Sequence&gt;</samp> tag.
+The following example defines the Parallel effect, fadeResizeShow,
+which combines the Spark Fade and Resize effects in parallel, and fadeResizeHide,
+which combines the Fade and Resize effects in sequence:</p>
+
+                     <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- behaviors\CompositeEffects.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark"&gt; 
+    &lt;s:layout&gt; 
+        &lt;s:VerticalLayout/&gt; 
+    &lt;/s:layout&gt; 
+    
+    &lt;fx:Declarations&gt; 
+        &lt;s:Sequence id="fadeResizeHide" 
+            target="{aTextArea}" 
+            duration="1000"&gt; 
+            &lt;s:Fade id="fadeHide" 
+                alphaFrom="1.0" 
+                alphaTo="0.0"/&gt; 
+            &lt;s:Resize id="resizeHide" 
+                widthTo="0" 
+                heightTo="0"/&gt; 
+        &lt;/s:Sequence&gt;        
+        &lt;s:Parallel id="fadeResizeShow" 
+            target="{aTextArea}" 
+            duration="1000"&gt; 
+            &lt;s:Resize id="resizeShow" 
+                widthTo="100" 
+                heightTo="50"/&gt; 
+            &lt;s:Fade id="fadeShow" 
+                alphaFrom="0.0" 
+                alphaTo="1.0"/&gt; 
+        &lt;/s:Parallel&gt; 
+    &lt;/fx:Declarations&gt; 
+ 
+    &lt;s:TextArea id="aTextArea" 
+        width="100" height="50" 
+        text="Hello world."/&gt; 
+ 
+    &lt;s:Button id="myButton2" 
+        label="Hide!" 
+        click="fadeResizeHide.end();fadeResizeHide.play();"/&gt; 
+    &lt;s:Button id="myButton1" 
+        label="Show!" 
+        click="fadeResizeShow.end();fadeResizeShow.play();"/&gt; 
+&lt;/s:Application&gt;</pre>
+
+                     <p>The button controls alternates
+making the TextArea control visible and invisible. When the TextArea
+control becomes invisible, it uses the fadeResizeHide effect as its
+hide effect, and when it becomes invisible, it uses the fadeResizeShow
+effect. </p>
+
+                     <p>As a modification to this example, you could disable
+the Show button when the TextArea control is visible, and disable
+the Hide button when the TextArea control is invisible, as the following
+example shows:</p>
+
+                     <div class="p">
+                        <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- behaviors\CompositeEffectsEnable.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark"&gt; 
+    &lt;s:layout&gt; 
+        &lt;s:VerticalLayout/&gt; 
+    &lt;/s:layout&gt; 
+    
+    &lt;fx:Script&gt; 
+        &lt;![CDATA[ 
+            private function showHandler():void { 
+                myButton2.enabled=true; 
+                myButton1.enabled=false; 
+            } 
+ 
+            private function hideHandler():void { 
+                myButton2.enabled=false; 
+                myButton1.enabled=true; 
+            } 
+        ]]&gt; 
+    &lt;/fx:Script&gt; 
+    
+    &lt;fx:Declarations&gt; 
+        &lt;s:Sequence id="fadeResizeHide" 
+            target="{aTextArea}" 
+            duration="1000" 
+            effectEnd="hideHandler();"&gt; 
+            &lt;s:Fade id="fadeHide" 
+                alphaFrom="1.0" 
+                alphaTo="0.0"/&gt; 
+            &lt;s:Resize id="resizeHide" 
+                widthTo="0" 
+                heightTo="0"/&gt; 
+        &lt;/s:Sequence&gt;        
+        &lt;s:Parallel id="fadeResizeShow" 
+            target="{aTextArea}" 
+            duration="1000" 
+            effectEnd="showHandler();"&gt; 
+            &lt;s:Resize id="resizeShow" 
+                widthTo="100" 
+                heightTo="50"/&gt; 
+            &lt;s:Fade id="fadeShow" 
+                alphaFrom="0.0" 
+                alphaTo="1.0"/&gt; 
+        &lt;/s:Parallel&gt; 
+    &lt;/fx:Declarations&gt; 
+ 
+    &lt;s:TextArea id="aTextArea" 
+        width="100" height="50" 
+        text="Hello world."/&gt; 
+ 
+    &lt;s:Button id="myButton2" 
+        label="Hide!" 
+        click="fadeResizeHide.end();fadeResizeHide.play();"/&gt; 
+    &lt;s:Button id="myButton1" 
+        label="Show!" 
+        enabled="false" 
+        click="fadeResizeShow.end();fadeResizeShow.play();"/&gt; 
+&lt;/s:Application&gt;</pre>
+
+                     </div>
+
+                     <p>In this example, the Show
+button is initially disabled. Event handlers for the <samp class="codeph">effectEnd</samp> event
+toggle the <samp class="codeph">enable</samp> property for the two button based
+on the effect that played.</p>
+
+                     <p>You can nest <samp class="codeph">&lt;Parallel&gt;</samp> and <samp class="codeph">&lt;Sequence&gt;</samp> tags
+inside each other. For example, two effects can run in parallel,
+followed by a third effect running in sequence. </p>
+
+                     <p>In a Parallel
+or Sequence effect, the <samp class="codeph">duration</samp> property sets
+the duration of each effect. For example, if the a Sequence effect
+has its <samp class="codeph">duration</samp> property set to 3000, then each
+effect in the Sequence will take 3000 ms to play. </p>
+
+                  </dd>
+
+               
+            </dl>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf5fdc3-7fed_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf5fdc3-7fed_verapache"><!-- --></a>
+         <h3 class="topictitle3">Using embedded fonts with effects</h3>
+
+         
+         <div>
+            <p>The fade and rotate effects only work with components that
+support the Flash Text Engine (FTE), or with components that use
+an embedded font. All Spark components, and some MX components,
+support the FTE. Therefore, the fade and rotate effects work with
+text in the components.</p>
+
+            <p>However, if you apply a fade and rotate effects to a MX component
+that uses a system font, nothing happens to the text in the component.
+You either have to embed a font, or use the appropriate Spark component
+instead of the MX component. </p>
+
+            <p>When you apply an MX <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/effects/Zoom.html" target="_blank">Zoom</a> effect
+to text rendered using a system font, Flex scales the text between
+whole point sizes. While you do not have to use embedded fonts when
+you apply a Zoom effect to text, the Zoom will appear smoother when
+you apply it to embedded fonts.</p>
+
+            <p>The following example rotates text area controls. The first text
+area control is defined using the Spark TextArea component, whish
+supports the FTE. Therefore the text rotates when you apply the
+Spark Rotate effect to it. </p>
+
+            <p>The second text area control is defined using the MX TextArea
+control. This TextArea control uses an embedded font and, therefore,
+the text rotates. </p>
+
+            <p>The third text area control uses the MX TextArea control with
+the default system font. Therefore, when you apply the Spark Rotate
+effect, the text disappears and reappears when you rotate the component
+back to its initial state:</p>
+
+            <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- behaviors\EmbedFont.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    width="650"&gt; 
+    &lt;s:layout&gt; 
+        &lt;s:HorizontalLayout/&gt; 
+    &lt;/s:layout&gt; 
+ 
+    &lt;fx:Style&gt; 
+        @namespace s "library://ns.adobe.com/flex/spark"; 
+        @namespace mx "library://ns.adobe.com/flex/mx"; 
+        @font-face { 
+            src:url("../assets/MyriadWebPro.ttf"); 
+            font-family: myMyriadWebPro; 
+            embedAsCFF: true; 
+        } 
+ 
+        @font-face { 
+            src:url("../assets/MyriadWebPro.ttf"); 
+            font-family: myMyriadWebProMX; 
+            embedAsCFF: false; 
+        } 
+&lt;/fx:Style&gt; 
+ 
+    &lt;fx:Declarations&gt; 
+        &lt;s:Rotate id="rotateForward" 
+            angleFrom="0" angleTo="45"/&gt; 
+        &lt;s:Rotate id="rotateBack" 
+            angleFrom="45" angleTo="0"/&gt; 
+    &lt;/fx:Declarations&gt; 
+ 
+    &lt;s:VGroup&gt; 
+        &lt;s:Button label="Rotate Forward" 
+            click="rotateForward.end();rotateForward.play([l1]);"/&gt; 
+        &lt;s:Button label="Rotate Backward" 
+            click="rotateBack.end();rotateBack.play([l1]);"/&gt; 
+        &lt;s:TextArea id="l1" height="75" 
+            fontFamily="myMyriadWebPro" 
+            text="FTE supported. This text will rotate."/&gt; 
+    &lt;/s:VGroup&gt; 
+ 
+    &lt;s:VGroup&gt; 
+        &lt;s:Button label="Rotate Forward" 
+            click="rotateForward.end();rotateForward.play([l2]);"/&gt; 
+        &lt;s:Button label="Rotate Backward" 
+            click="rotateBack.end();rotateBack.play([l2]);"/&gt; 
+        &lt;mx:TextArea id="l2" height="75" 
+            fontFamily="myMyriadWebProMX" 
+            text="Embedded font. This text will rotate."/&gt; 
+    &lt;/s:VGroup&gt; 
+ 
+    &lt;s:VGroup&gt; 
+        &lt;s:Button label="Rotate Forward" 
+            click="rotateForward.end();rotateForward.play([l3]);"/&gt; 
+        &lt;s:Button label="Rotate Backward" 
+            click="rotateBack.end();rotateBack.play([l3]);"/&gt; 
+        &lt;mx:TextArea id="l3" height="75" 
+            text="System font. This text will not rotate."/&gt;    
+    &lt;/s:VGroup&gt; 
+&lt;/s:Application&gt;</pre>
+
+            <p>Notice that you had to embed the font twice: once for the Spark
+TextArea control and one for the MX TextArea control. For more information
+on embedding fonts for MX components, see <a href="flx_fonts_ft.html#WS0FA8AEDB-C69F-4f19-ADA5-AA5757217624_verapache">Embedding
+fonts with MX components</a>.</p>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf5fdc3-7fe3_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf5fdc3-7fe3_verapache"><!-- --></a>
+         <h3 class="topictitle3">Suspending background processing</h3>
+
+         
+         <div>
+            <p>To improve the performance of effects, you can disable
+background processing in your application for the duration of the
+effect by setting the <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/effects/Effect.html#suspendBackgroundProcessing" target="_blank">Effect.suspendBackgroundProcessing</a> property
+to <samp class="codeph">true</samp>. The background processing that is blocked
+includes component measurement and layout, and responses to data services
+for the duration of the effect. </p>
+
+            <p>The default value of the <samp class="codeph">suspendBackgroundProcessing</samp> property
+is <samp class="codeph">false</samp>. You can set it to <samp class="codeph">true</samp> in
+most cases. However, you should set it to <samp class="codeph">false</samp> if
+either of the following conditions is true for your application:</p>
+
+            <ul>
+               <li>
+                  <p>User input may arrive while the effect is playing, and
+the application must respond to the user input before the effect
+finishes playing.</p>
+
+               </li>
+
+               <li>
+                  <p>A response may arrive from the server while the effect is
+playing, and the application must process the response while the
+effect is still playing.</p>
+
+               </li>
+
+            </ul>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf69084-7fba_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7fba_verapache"><!-- --></a>
+         <h3 class="topictitle3">Disabling container layout for
+effects</h3>
+
+         
+         <div>
+            <p>By default, Flex updates the layout of a container’s children
+when a new child is added to it, when a child is removed from it,
+when a child is resized, and when a child is moved. Because some
+effects, such as the move and resize effects, modify a child’s position
+or size, they cause the container to update its layout.</p>
+
+            <p>
+               
+               However, when the container updates its layout,
+it can actually reverse the results of the effect. For example,
+you use a move effect to reposition a container child. At some time
+later, you change the size of another container child, which forces the
+container to update its layout. This layout update can cause the
+child that moved to be returned to its original position. </p>
+
+            <p>To prevent Flex from performing layout updates, you can set the <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/core/Container.html#autoLayout" target="_blank">autoLayout</a> property
+of a container to <samp class="codeph">false</samp>. Its default value is <samp class="codeph">true</samp>,
+which configures Flex so that it always updates layouts. You always
+set the <samp class="codeph">autoLayout</samp> property on the parent container
+of the component that uses the effect. For example, if you want
+to control the layout of a child of a <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/containers/Grid.html" target="_blank">Grid</a> container,
+you set the <samp class="codeph">autoLayout</samp> property for the parent
+GridItem container of the child, not for the Grid container.</p>
+
+            <p>You set the <samp class="codeph">autoLayout</samp> property to <samp class="codeph">false</samp> when
+you use a move effect in parallel with a resize or zoom effect.
+You must do this because the resize or zoom effect can cause an
+update to the container’s layout, which can return the child to
+its original location.</p>
+
+            <p>When you use the Zoom effect on its own, you can set the <samp class="codeph">autoLayout</samp> property
+to <samp class="codeph">false</samp>, or you may leave it with its default
+value of <samp class="codeph">true</samp>. For example, if you use a Zoom effect
+with the <samp class="codeph">autoLayout</samp> property set to <samp class="codeph">true</samp>, as
+the child grows or shrinks, Flex automatically updates the layout
+of the container to reposition its children based on the new size
+of the child. If you use a Zoom effect with the <samp class="codeph">autoLayout</samp> property
+set to <samp class="codeph">false</samp>, the child resizes around its center
+point, and the remaining children do not change position. </p>
+
+            <p>The container in the following example uses the default vertical
+alignment of <samp class="codeph">top</samp> and the default horizontal alignment
+of <samp class="codeph">left</samp>. If you apply a Zoom effect to the image,
+the container resizes to hold the image, and the image remains aligned
+with the upper-left corner of the container:</p>
+
+            <pre class="codeblock"> &lt;s:SkinnableContainer&gt; 
+	&lt;s:layout&gt; 
+		&lt;s:VerticalLayout/&gt; 
+	&lt;/s:layout&gt; 
+ 	&lt;s:Image source="myImage.jpg"/&gt; 
+ &lt;/s:SkinnableContainer&gt;</pre>
+
+            <p>In the next example, the image is centered in the container.
+If you apply a Zoom effect to the image, as it resizes, it remains
+centered in the container.</p>
+
+            <pre class="codeblock"> &lt;s:SkinnableContainer&gt; 
+	&lt;s:layout&gt; 
+		&lt;s:VerticalLayout horizontalAlign="center"/&gt; 
+	&lt;/s:layout&gt; 
+  	&lt;s:Image source="myImage.jpg"/&gt; 
+ &lt;/s:SkinnableContainer&gt;</pre>
+
+            <p>By default, the size of the container is big enough to hold the
+image at it original size. If you disable layout updates, and use
+the Zoom effect to enlarge the image, or use a move effect to reposition
+the image, the image might extend past the boundaries of the container,
+as the following example shows:</p>
+
+            <pre class="codeblock"> &lt;s:SkinnableContainer autoLayout="false"&gt; 
+	&lt;s:layout&gt; 
+		&lt;s:VerticalLayout horizontalAlign="center"/&gt; 
+	&lt;/s:layout&gt; 
+  	&lt;s:Image source="myImage.jpg"/&gt; 
+ &lt;/s:SkinnableContainer&gt;</pre>
+
+            <p>For a Spark container, if you set the <samp class="codeph">autoLayout</samp> property
+to <samp class="codeph">false</samp>, the container does not resize as the
+image resizes. The image can grow to a size so that it extends beyond
+the boundaries of the container. You can then decide to wrap the
+container in the Scroller component to add scroll bars rather than allowing
+the Image to extend past the container boundaries. </p>
+
+            <p>For an MX container, if you set the <samp class="codeph">autoLayout</samp> property
+to <samp class="codeph">false</samp>, the container does not resize as the
+image resizes. If the image grows to a size larger than the boundaries
+of the container, the container adds scroll bars and clips the image
+at its boundaries. </p>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf5fdc3-7fdb_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf5fdc3-7fdb_verapache"><!-- --></a>
+         <h3 class="topictitle3">Setting UIComponent.cachePolicy
+on the effect target</h3>
+
+         
+         <div>
+            <p>
+               An effect
+can use the bitmap caching feature in Adobe<sup>®</sup> Flash<sup>®</sup> Player to speed up animations. An effect
+typically uses bitmap caching when the target component’s drawing
+does not change while the effect is playing.</p>
+
+            <p>For example, the Fade effect works by modifying the <samp class="codeph">alpha</samp> property
+of the target component. Changing the <samp class="codeph">alpha</samp> property
+does not change the way the target component is drawn on the screen.
+Therefore, caching the target component as a bitmap can speed up
+the performance of the effect. The Move effect modifies the <samp class="codeph">x</samp> and <samp class="codeph">y</samp> properties
+of the target component. Modifying the values of these properties
+does not alter the way the target component is drawn, so it can
+take advantage of bitmap caching.</p>
+
+            <p>Not all effects can use bitmap caching. Effects such as <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/effects/Zoom.html" target="_blank">Zoom</a>, resize,
+and the wipe effects modify the target component in a way that alters
+the way it is drawn on the screen. The Zoom effect modifies the
+scale properties of the component, which changes its size. Caching
+the target component as a bitmap for such an effect would be counterproductive
+because the bitmap changes continuously while the effect plays.</p>
+
+            <p>
+               The <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/core/UIComponent.html#cachePolicy" target="_blank">UIComponent.cachePolicy</a> property
+controls the caching operation of a component during an effect.
+The <samp class="codeph">cachePolicy</samp> property can have the following
+values: </p>
+
+            <dl>
+               
+                  <dt class="dlterm">CachePolicy.ON</dt>
+
+                  <dd>
+                     <p>Specifies that the effect target is always cached.</p>
+
+                  </dd>
+
+               
+               
+                  <dt class="dlterm">CachePolicy.OFF</dt>
+
+                  <dd>
+                     <p>Specifies that the effect target is never cached.</p>
+
+                  </dd>
+
+               
+               
+                  <dt class="dlterm">CachePolicy.AUTO</dt>
+
+                  <dd>
+                     <p>Specifies that Flex determines whether the effect target should
+be cached. This is the default value. </p>
+
+                     <p>Flex uses the following
+rules to set the <samp class="codeph">cacheAsBitmap</samp> property: </p>
+
+                     <ul>
+                        <li>
+                           <p>When at least one effect that does not support bitmap caching
+is playing on a target, set the target's <samp class="codeph">cacheAsBitmap</samp> property
+to <samp class="codeph">false</samp>.</p>
+
+                        </li>
+
+                        <li>
+                           <p>When one or more effects that supports bitmap caching are
+playing on a target, set the target's <samp class="codeph">cacheAsBitmap</samp> property
+to <samp class="codeph">true</samp>.</p>
+
+                           <p>Typically, you leave the <samp class="codeph">cachePolicy</samp> property
+with its default value of <samp class="codeph">CachePolicy.AUTO</samp>. However,
+you might want to set the property to <samp class="codeph">CachePolicy.OFF</samp> because
+bitmap caching is interfering with your user interface, or because
+you know something about your application’s behavior such that disabling
+bitmap caching will have a beneficial effect on it. </p>
+
+                        </li>
+
+                     </ul>
+
+                  </dd>
+
+               
+            </dl>
+
+         </div>
+
+      </div>
+
+         <p>Adobe and Adobe Flash are either registered trademarks or trademarks of Adobe Systems Incorporated in the United States and/or other countries and are used by permission from Adobe.  No other license to the Adobe trademarks are granted.</p>
+   </div>
+
+
+</body>
+</html>

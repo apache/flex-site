@@ -1,0 +1,2869 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Licensed to the Apache Software Foundation (ASF) under one or more
+  contributor license agreements.  See the NOTICE file distributed with
+  this work for additional information regarding copyright ownership.
+  The ASF licenses this file to You under the Apache License, Version 2.0
+  (the "License"); you may not use this file except in compliance with
+  the License.  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+-->
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en-us" xml:lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="topic"/>
+<meta name="DC.Title" content="Spark DataGrid and Grid controls"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="WSd867f5c5d869105e43810e1112c55502365-8000_verapache"/>
+<link rel="stylesheet" type="text/css" href="commonltr.css"/>
+<title>Spark DataGrid and Grid controls</title>
+</head>
+<body id="WSd867f5c5d869105e43810e1112c55502365-8000_verapache"><a name="WSd867f5c5d869105e43810e1112c55502365-8000_verapache"><!-- --></a>
+
+
+   <h1 class="topictitle1">Spark DataGrid and Grid controls</h1>
+
+   
+   <div>
+      <p>The Spark <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/spark/components/DataGrid.html" target="_blank">DataGrid</a> control
+displays a row of column headings above a scrollable grid. The grid
+consists of a collection of individual cells arranged in rows and columns.
+The DataGrid control is designed to support smooth scrolling through a
+large number of rows and columns. </p>
+
+      <p>The Spark DataGrid control is implemented as a skinnable wrapper
+around the Spark <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/spark/components/Grid.html" target="_blank">Grid</a> control.
+The Grid control defines the columns of the data grid, and much
+of the functionality of the DataGrid control itself. </p>
+
+      <p>The DataGrid skin is responsible for laying out the grid, the
+column headers, and the scroller. The skin also configures the graphic
+elements used to render visual elements used as indicators, separators,
+and backgrounds. The DataGrid skin defines a default item renderer
+used to display the contents of each cell.</p>
+
+      <div class="p">
+         <div class="note"><span class="notetitle">Note:</span> Because the DataGrid control is implemented as a wrapper
+on the Grid control, they share much of the same functionality.
+Therefore, many of the examples below are for the DataGrid control,
+but can be easily modified to apply to the Grid control. </div>
+
+      </div>
+
+      <p>The Spark DataGrid control provides the following features:</p>
+
+      <ul>
+         <li>
+            <p>Interactive column width resizing</p>
+
+         </li>
+
+         <li>
+            <p>Control of column visibility</p>
+
+         </li>
+
+         <li>
+            <p>Cell and row selection </p>
+
+         </li>
+
+         <li>
+            <p>Single item and multiple item selection modes</p>
+
+         </li>
+
+         <li>
+            <p>Customizable column headers</p>
+
+         </li>
+
+         <li>
+            <p>Cell editing</p>
+
+         </li>
+
+         <li>
+            <p>Column sorting</p>
+
+         </li>
+
+         <li>
+            <p>Custom item renderers and item editors</p>
+
+         </li>
+
+         <li>
+            <p>Custom skins to control all aspects of the appearance of
+the DataGrid control</p>
+
+         </li>
+
+      </ul>
+
+   </div>
+
+   <div class="nested1" id="WS0ab2a460655f2dc3-427f401412c60d04dca-8000_verapache"><a name="WS0ab2a460655f2dc3-427f401412c60d04dca-8000_verapache"><!-- --></a>
+      <h2 class="topictitle2">Creating a Spark DataGrid control</h2>
+
+      
+      <div>
+         <p>You use the <samp class="codeph">&lt;s:DataGrid&gt;</samp> tag to
+define a Spark <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/spark/components/DataGrid.html" target="_blank">DataGrid</a> control
+in MXML. Specify an <samp class="codeph">id</samp> value if you intend to refer
+to a component elsewhere in your MXML, either in another tag or
+in an ActionScript block. </p>
+
+         <p>The DataGrid control uses a list-based data provider to supply
+the data to display. The data provider consists of a list of objects
+called <em>items</em>. Each item corresponds to one row of the DataGrid
+control. Each grid column typically corresponds to one property
+of each row item. For more information, see <a href="flx_about_dataproviders_ab.html#WS2db454920e96a9e51e63e3d11c0bf69084-7fb8_verapache">Data
+providers and collections</a>.</p>
+
+         <div class="p">You can specify data in several different ways. In the simplest
+case, use the <samp class="codeph">&lt;s:ArrayList&gt;</samp> and <samp class="codeph">&lt;fx:Object&gt;</samp> tags
+to define the entries. Each Object defines a row of the DataGrid
+control. The properties of each Object define the column entries
+for the row, as the following example shows: <pre class="codeblock">&lt;?xml version="1.0" encoding="utf-8"?&gt; 
+&lt;!-- dpcontrols\sparkdpcontrols\SparkDGSimple.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx"&gt; 
+ 
+    &lt;s:DataGrid&gt; 
+        &lt;s:dataProvider&gt; 
+            &lt;s:ArrayList&gt; 
+                &lt;fx:Object&gt; 
+                    &lt;fx:Artist&gt;Pavement&lt;/fx:Artist&gt; 
+                    &lt;fx:Price&gt;11.99&lt;/fx:Price&gt; 
+                    &lt;fx:Album&gt;Slanted and Enchanted&lt;/fx:Album&gt; 
+                &lt;/fx:Object&gt; 
+                &lt;fx:Object&gt; 
+                    &lt;fx:Price&gt;11.99&lt;/fx:Price&gt; 
+                    &lt;fx:Artist&gt;Pavement&lt;/fx:Artist&gt; 
+                    &lt;fx:Album&gt;Brighten the Corners&lt;/fx:Album&gt; 
+                &lt;/fx:Object&gt; 
+            &lt;/s:ArrayList&gt; 
+        &lt;/s:dataProvider&gt; 
+    &lt;/s:DataGrid&gt; 
+&lt;/s:Application&gt;</pre>
+
+         </div>
+
+         <div class="note"><span class="notetitle">Note:</span> You do not have to specify the <samp class="codeph">dataProvider</samp> tag
+in MXML because <samp class="codeph">dataProvider</samp> is the default property
+of the DataGrid control. </div>
+
+         <p>By default, each column displays one property from each data
+provider item. Each column heading displays the name of the associated
+property in the data provider item. </p>
+
+         <p>The index of rows in the DataGrid control is zero-based, meaning
+values are 0, 1, 2, ... , <em>n</em> ‑ 1, where <em>n</em> is the total
+number of items in the data provider. Column indexes are also zero-based.
+Therefore, if you select the first cell in the second row, the row
+index is 1 and the column index is 0. </p>
+
+      </div>
+
+      <div class="nested2" id="WS0ab2a460655f2dc3-427f401412c60d04dca-7fff_verapache"><a name="WS0ab2a460655f2dc3-427f401412c60d04dca-7fff_verapache"><!-- --></a>
+         <h3 class="topictitle3">Passing data to a DataGrid control </h3>
+
+         
+         <div>
+            <p>Specify the data provider for the <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/spark/components/DataGrid.html" target="_blank">DataGrid</a> control
+by using the <samp class="codeph">dataProvider</samp> property. The data type
+of the <samp class="codeph">dataProvider</samp> property is <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/collections/IList.html" target="_blank">IList</a>. That
+lets you use an <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/collections/ArrayList.html" target="_blank">ArrayList</a>, <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/collections/ArrayCollection.html" target="_blank">ArrayCollection</a>,
+or any other class that implements IList as the data provider.</p>
+
+            <p>ArrayList is a lightweight implementation of IList that is useful
+if you do not support row sorting in the DataGrid control. To support
+row sorting, use a class that implements the ICollectionView interface,
+such as ListCollectionView. Typically, you use a subclass of <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/collections/ListCollectionView.html" target="_blank">ListCollectionView</a>,
+such as ArrayCollection or <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/collections/XMLListCollection.html" target="_blank">XMLListCollection</a>,
+as the data provider to support row sorting. </p>
+
+            <p>Each row in the data grid corresponds to one item in the data
+provider. Data provider items can define their properties in differing
+orders. By default, the order of the columns corresponds to the
+order of the properties as defined in the first item in the data
+provider. </p>
+
+            <p>If a data provider item omits a property or a value for a property,
+the DataGrid control displays an empty cell in the corresponding
+column for that row. </p>
+
+            <div class="p">Flex lets you populate a <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/spark/components/DataGrid.html" target="_blank">DataGrid</a> control
+from an ActionScript variable definition or from a Flex data model.
+The following example populates a DataGrid control by using a variable: <pre class="codeblock">&lt;?xml version="1.0" encoding="utf-8"?&gt; 
+&lt;!-- dpcontrols\sparkdpcontrols\SparkDGPassedData.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    initialize="initData();"&gt; 
+    
+    &lt;fx:Script&gt; 
+        &lt;![CDATA[ 
+            import mx.collections.*; 
+            private var dgArray:Array = [ 
+                {Artist:'Pavement', Album:'Slanted and Enchanted', Price:11.99}, 
+                {Artist:'Pavement', Album:'Brighten the Corners', Price:11.99}]; 
+            
+            [Bindable] 
+            public var initDG:ArrayCollection; 
+            
+            // Initialize initDG variable from the Array. 
+            public function initData():void { 
+                initDG = new ArrayCollection(dgArray); 
+            } 
+        ]]&gt; 
+    &lt;/fx:Script&gt; 
+    
+    &lt;s:DataGrid id="myGrid" 
+        width="350" height="200" 
+        dataProvider="{initDG}"/&gt; 
+&lt;/s:Application&gt;</pre>
+
+            </div>
+
+            <p>In this example, you bind the variable <samp class="codeph">initDG</samp> to
+the <samp class="codeph">&lt;s:dataProvider&gt;</samp> property. </p>
+
+            <p>The following example populates the DataGrid control from XML
+data. In this example, you define the XML data by using the XMLList
+class. You then create an XMLListCollection object from the XMLList:</p>
+
+            <div class="p">
+               <pre class="codeblock">&lt;?xml version="1.0" encoding="utf-8"?&gt; 
+&lt;!-- dpcontrols\sparkdpcontrols\SparkDGXMLData.mxml --&gt; 
+&lt;s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    width="500"&gt; 
+    &lt;s:layout&gt; 
+        &lt;s:VerticalLayout/&gt; 
+    &lt;/s:layout&gt; 
+    &lt;fx:Declarations&gt; 
+        &lt;fx:XMLList id="employees"&gt; 
+            &lt;employee&gt; 
+                &lt;name&gt;Joanne Wall&lt;/name&gt; 
+                &lt;phone&gt;555-219-2012&lt;/phone&gt; 
+                &lt;email&gt;jwall@fictitious.com&lt;/email&gt; 
+                &lt;active&gt;true&lt;/active&gt; 
+            &lt;/employee&gt;            
+            &lt;employee&gt; 
+                &lt;name&gt;Mary Jones&lt;/name&gt; 
+                &lt;phone&gt;555-219-2000&lt;/phone&gt; 
+                &lt;email&gt;mjones@fictitious.com&lt;/email&gt; 
+                &lt;active&gt;true&lt;/active&gt; 
+            &lt;/employee&gt;            
+            &lt;employee&gt; 
+                &lt;name&gt;Maurice Smith&lt;/name&gt; 
+                &lt;phone&gt;555-219-2012&lt;/phone&gt; 
+                &lt;email&gt;maurice@fictitious.com&lt;/email&gt; 
+                &lt;active&gt;false&lt;/active&gt; 
+            &lt;/employee&gt;            
+            &lt;employee&gt; 
+                &lt;name&gt;Dave Davis&lt;/name&gt; 
+                &lt;phone&gt;555-219-2000&lt;/phone&gt; 
+                &lt;email&gt;ddavis@fictitious.com&lt;/email&gt; 
+                &lt;active&gt;true&lt;/active&gt; 
+            &lt;/employee&gt;            
+            &lt;employee&gt; 
+                &lt;name&gt;Tom Maple&lt;/name&gt; 
+                &lt;phone&gt;555-219-2000&lt;/phone&gt; 
+                &lt;email&gt;tmaple@fictitious.com&lt;/email&gt; 
+                &lt;active&gt;true&lt;/active&gt; 
+            &lt;/employee&gt;            
+        &lt;/fx:XMLList&gt; 
+        &lt;s:XMLListCollection id="employees2" source="{employees}"/&gt; 
+    &lt;/fx:Declarations&gt; 
+ 
+    &lt;s:DataGrid id="dg" width="500" dataProvider="{employees2}"&gt; 
+        &lt;s:columns&gt; 
+            &lt;s:ArrayList&gt; 
+                &lt;s:GridColumn dataField="name" headerText="Name"/&gt; 
+                &lt;s:GridColumn dataField="phone" headerText="Phone"/&gt; 
+                &lt;s:GridColumn dataField="email" headerText="Email"/&gt; 
+            &lt;/s:ArrayList&gt; 
+        &lt;/s:columns&gt; 
+    &lt;/s:DataGrid&gt; 
+    
+    &lt;s:Form&gt; 
+        &lt;s:FormItem label="Name"&gt; 
+            &lt;s:Label text="{dg.selectedItem.name}"/&gt; 
+        &lt;/s:FormItem&gt; 
+        &lt;s:FormItem label="Email"&gt; 
+            &lt;s:Label text="{dg.selectedItem.email}"/&gt; 
+        &lt;/s:FormItem&gt; 
+        &lt;s:FormItem label="Phone"&gt; 
+            &lt;s:Label text="{dg.selectedItem.phone}"/&gt; 
+        &lt;/s:FormItem&gt; 
+    &lt;/s:Form&gt; 
+&lt;/s:Application&gt;</pre>
+
+            </div>
+
+            <p>You can use Flex data access components: <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/rpc/http/mxml/HTTPService.html" target="_blank">HTTPService</a>, <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/rpc/soap/mxml/WebService.html" target="_blank">WebService</a>,
+and <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/rpc/remoting/mxml/RemoteObject.html" target="_blank">RemoteObject</a>,
+to supply data to the DataGrid. To use a remote data source to provide
+data, you represent the result of the remote service with the appropriate object,
+as follows:</p>
+
+            <ul>
+               <li>
+                  <p>A RemoteObject component automatically returns an <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/collections/ArrayCollection.html" target="_blank">ArrayCollection</a> for
+any data that is represented on the server as a java.util.List object,
+and you can use the returned object directly.</p>
+
+               </li>
+
+               <li>
+                  <p>For HTTPService and WebService results, cast the result data
+to a collection class if the data changes or if you use the same
+result in multiple places (the latter case is more efficient). As
+a rule, use an ArrayCollection for serialized (list-based) objects
+and an <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/collections/XMLListCollection.html" target="_blank">XMLListCollection</a> for
+XML data.</p>
+
+               </li>
+
+            </ul>
+
+            <p>The following code snippet shows this use, casting a list returned
+by a web service to an ArrayCollection:</p>
+
+            <pre class="codeblock"> 	&lt;s:WebService id="employeeWS" wsdl="http://server.com/service.wsdl" 
+ 		showBusyCursor="true" 
+ 		fault="alert(event.fault.faultstring)"&gt; 
+ 		&lt;s:operation name="getList"&gt; 
+ 			&lt;mx:request&gt; 
+ 				&lt;deptId&gt;{dept.selectedItem.data}&lt;/deptId&gt; 
+ 			&lt;/mx:request&gt; 
+ 		&lt;/s:operation&gt; 
+ 		... 
+ 	&lt;/s:WebService&gt; 
+  
+ 	&lt;fx:ArrayCollection id="ac" 
+ 		source="mx.utils.ArrayUtil.toArray(employeeWS.getList.lastResult)"/&gt; 
+ 	&lt;s:DataGrid dataProvider="{ac}" width="100%"&gt;</pre>
+
+            
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS0ab2a460655f2dc3-427f401412c60d04dca-7ffe_verapache"><a name="WS0ab2a460655f2dc3-427f401412c60d04dca-7ffe_verapache"><!-- --></a>
+         <h3 class="topictitle3">Configuring columns</h3>
+
+         
+         <div>
+            <p>A <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/spark/components/gridClasses/GridColumn.html" target="_blank">GridColumn</a> object
+represents each column in a DataGrid control. By default, the <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/spark/components/DataGrid.html" target="_blank">DataGrid</a> control
+creates a column for every property in the first item of the data
+provider. </p>
+
+            <p>Use the <samp class="codeph">DataGrid.columns</samp> property to explicitly
+define the columns of the DataGrid. By explicitly defining the columns,
+you can set the column order, set column visibility, and set additional
+column properties.</p>
+
+            <p>The data type of the <samp class="codeph">columns</samp> property is IList.
+That lets you use an ArrayList, ArrayCollection, or any other class
+that implements IList as the data provider. Most of the applications
+in this document use ArrayList to set the <samp class="codeph">columns</samp> property. </p>
+
+            <p>To support column sorting, use a class that implements the ICollectionView interface,
+such as ListCollectionView. Typically, you use a subclass of ListCollectionView,
+such as ArrayCollection, as the data provider.</p>
+
+            <div class="p">
+               <div class="note"><span class="notetitle">Note:</span> You can only sort the columns of the DataGrid programmatically
+by sorting the IList passed to the <samp class="codeph">columns</samp> property.
+That is, you cannot use the mouse to drag a column to rearrange
+the columns. </div>
+
+            </div>
+
+            <p>Use the <samp class="codeph">GridColumn.dataField</samp> property to specify
+the property of the data provider items displayed in a column, as
+the following example shows:</p>
+
+            <div class="p">
+               <pre class="codeblock">&lt;?xml version="1.0" encoding="utf-8"?&gt; 
+&lt;!-- dpcontrols\sparkdpcontrols\SparkDGSpecifyColumns.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx"&gt; 
+ 
+    &lt;s:DataGrid&gt; 
+        &lt;s:dataProvider&gt; 
+            &lt;s:ArrayCollection&gt; 
+                &lt;fx:Object Artist="Pavement" Price="11.99" 
+                           Album="Slanted and Enchanted"/&gt; 
+                &lt;fx:Object Artist="Pavement" 
+                           Album="Brighten the Corners" Price="11.99"/&gt; 
+            &lt;/s:ArrayCollection&gt; 
+        &lt;/s:dataProvider&gt; 
+        &lt;s:columns&gt; 
+            &lt;s:ArrayList&gt; 
+                &lt;s:GridColumn dataField="Album"/&gt; 
+                &lt;s:GridColumn dataField="Price"/&gt; 
+            &lt;/s:ArrayList&gt; 
+        &lt;/s:columns&gt; 
+    &lt;/s:DataGrid&gt; 
+&lt;/s:Application&gt;</pre>
+
+            </div>
+
+            <p>When you use the <samp class="codeph">&lt;s:columns&gt;</samp> tag, the
+DataGrid only displays the columns corresponding to the specified
+GridColumn objects. In this example, you only define columns for
+the Album and Price properties of the data provider. Therefore,
+the DataGrid does not display a column for the Price property. </p>
+
+            <p>You can reorder the columns by changing the order of the GridColumn
+objects, as the following example shows:</p>
+
+            <pre class="codeblock"> &lt;s:columns&gt; 
+	&lt;s:ArrayList&gt; 
+ 		&lt;s:GridColumn dataField="Price"/&gt; 
+	 	&lt;s:GridColumn dataField="Album"/&gt; 
+	&lt;/s:ArrayList&gt; 
+  &lt;/s:columns&gt;</pre>
+
+            <p>In this example, you specify that the Price column is the first
+column in the DataGrid control, and that the Album column is the
+second. </p>
+
+            <p>You can also use the <samp class="codeph">&lt;s:GridColumn&gt;</samp> tag
+to set other options. The following example uses the <samp class="codeph">headerText</samp> property
+to set the name of the column to a value different from the default
+name of Album, and uses the <samp class="codeph">width</samp> property to set
+an explicit column width:</p>
+
+            <pre class="codeblock"> &lt;s:columns&gt; 
+	&lt;s:ArrayList&gt; 
+ 	 	&lt;s:GridColumn dataField="Album" width="200"/&gt; 
+ 		&lt;s:GridColumn dataField="Price" headerText="List Price"/&gt; 
+	&lt;/s:ArrayList&gt; 
+  &lt;/s:columns&gt;</pre>
+
+            <div class="p">Rather than explicitly set the width of a column, you can define
+a typical item for the DataGrid control. The DataGrid uses the typical
+item, and any item renderer associated with a column, to compute
+the initial width of each column that does not specify an explicit
+width. Use the <samp class="codeph">typicalItem</samp> property to specify
+the data item, as the following example shows: <pre class="codeblock">&lt;?xml version="1.0" encoding="utf-8"?&gt; 
+&lt;!-- dpcontrols\sparkdpcontrols\SparkDGTypicalItem.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark"&gt; 
+        
+    &lt;s:DataGrid requestedRowCount="5"&gt; 
+        &lt;s:typicalItem&gt; 
+            &lt;s:DataItem key="9999999" name="Typical name length" 
+                price="1234.56" call="false"/&gt; 
+        &lt;/s:typicalItem&gt; 
+            
+        &lt;s:ArrayCollection id="items"&gt; 
+            &lt;s:DataItem key="1000" name="Abrasive" price="100.11" call="false"/&gt; 
+            &lt;s:DataItem key="1001" name="Brush" price="110.01" call="true"/&gt; 
+            &lt;s:DataItem key="1002" name="Clamp" price="120.02" call="false"/&gt; 
+            &lt;s:DataItem key="1003" name="Drill" price="130.03" call="true"/&gt; 
+            &lt;s:DataItem key="1004" name="Epoxy" price="140.04" call="false"/&gt; 
+            &lt;s:DataItem key="1005" name="File" price="150.05" call="true"/&gt; 
+        &lt;/s:ArrayCollection&gt; 
+    &lt;/s:DataGrid&gt; 
+&lt;/s:Application&gt;</pre>
+
+            </div>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS0ab2a460655f2dc3-427f401412c60d04dca-7ffd_verapache"><a name="WS0ab2a460655f2dc3-427f401412c60d04dca-7ffd_verapache"><!-- --></a>
+         <h3 class="topictitle3">Sorting the columns of the Spark
+DataGrid control</h3>
+
+         
+         <div>
+            <p>By default, the <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/spark/components/DataGrid.html" target="_blank">DataGrid</a> control
+displays rows in the order specified in the data items passed to
+its <samp class="codeph">dataProvider</samp> property. The control lets you
+sort data based on the cell value of a single column. To sort ascending
+order of a column, select the column header. Select it again to
+sort in descending order. </p>
+
+            <p>To disable sorting for the control, set the <samp class="codeph">DataGrid.sortableColumns</samp> property
+to <samp class="codeph">false</samp>. To disable sorting for an individual
+column, set the <samp class="codeph">GridColumn.sortable</samp> property to <samp class="codeph">false</samp>.</p>
+
+            <p>Create a custom sort by implementing a sort compare function.
+You can define a different sort compare function for each column
+of the control. For more information, see <a href="flx_spark_datagrid_sdg.html#WS8b1c39bd7e9fc3647f39ab2512d530e9965-8000_verapache">Create
+a custom sort for the Spark DataGrid control</a>.</p>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS0ab2a460655f2dc3-427f401412c60d04dca-7ffc_verapache"><a name="WS0ab2a460655f2dc3-427f401412c60d04dca-7ffc_verapache"><!-- --></a>
+         <h3 class="topictitle3">Hiding and displaying columns</h3>
+
+         
+         <div>
+            <div class="p">If you display a column at some times, but not at others,
+you can specify the <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/spark/components/gridClasses/GridColumn.html" target="_blank">GridColumn</a> class <samp class="codeph">visible</samp> property
+to hide or show the column. The following example lets you hide
+or show the album price by clicking a button: <pre class="codeblock">&lt;?xml version="1.0" encoding="utf-8"?&gt; 
+&lt;!-- dpcontrols\sparkdpcontrols\SparkDGVisibleColumn.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx"&gt; 
+    &lt;s:layout&gt; 
+        &lt;s:VerticalLayout/&gt; 
+    &lt;/s:layout&gt; 
+    
+    &lt;s:DataGrid id="myDG" width="350"&gt; 
+        &lt;s:ArrayCollection&gt; 
+            &lt;fx:Object Artist="Pavement" Price="11.99" 
+                Album="Slanted and Enchanted"/&gt; 
+            &lt;fx:Object Artist="Pavement" 
+                Album="Brighten the Corners" Price="11.99"/&gt; 
+        &lt;/s:ArrayCollection&gt; 
+        &lt;s:columns&gt; 
+            &lt;s:ArrayList&gt; 
+                &lt;s:GridColumn dataField="Artist"/&gt; 
+                &lt;s:GridColumn dataField="Album"/&gt; 
+                &lt;s:GridColumn id="price" dataField="Price" visible="false"/&gt; 
+            &lt;/s:ArrayList&gt; 
+        &lt;/s:columns&gt; 
+    &lt;/s:DataGrid&gt; 
+    
+    &lt;!-- The column id property specifies the column to show.--&gt; 
+    &lt;s:Button label="Toggle Price Column" 
+        click="price.visible = !price.visible;" /&gt; 
+&lt;/s:Application&gt;</pre>
+
+            </div>
+
+         </div>
+
+      </div>
+
+   </div>
+
+   <div class="nested1" id="WS0ab2a460655f2dc3-427f401412c60d04dca-7ffb_verapache"><a name="WS0ab2a460655f2dc3-427f401412c60d04dca-7ffb_verapache"><!-- --></a>
+      <h2 class="topictitle2">The Spark Grid control</h2>
+
+      
+      <div>
+         <p>The Spark <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/spark/components/DataGrid.html" target="_blank">DataGrid</a> control
+is a skinnable component that uses a <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/spark/components/Grid.html" target="_blank">Grid</a> control
+as a skin part. The Grid control displays a list of data items in
+a two-dimensional grid of cells. Each object in the data provider
+of the Grid control defines a single row. Individual properties
+of each object define each cell of the row.</p>
+
+         <p>A <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/spark/components/gridClasses/GridColumn.html" target="_blank">GridColumn</a> object
+represents each column of the Grid control. The GridColumn object
+is responsible for displaying a cell value for each row of the grid.
+To display a cell, the GridColumn object specifies an item renderer.
+To edit a cell, the GridColumn object specifies an item editor.</p>
+
+         <p>The Grid control only creates as many item renderers as are required
+to display the currently visible cells. For example, you define
+a Grid control with hundreds or thousands of rows. Flex only creates
+enough item renderers to display the currently visible cells, but
+not for the cells that are currently off the screen. </p>
+
+         <p>When a cell is moved off the visible area of the screen, its
+item renderer is recycled. That means the item renderer can be reused
+when a new cell moves onto the visible area of the screen. Recycling
+item renderers greatly reduces the overhead required to use the
+Grid control.</p>
+
+         <p>The following list describes some other differences between the
+DataGrid and Grid controls:</p>
+
+         <div class="p">
+            <ul>
+               <li>
+                  <p>Unlike the DataGrid control, the Grid control is not
+skinnable.</p>
+
+               </li>
+
+               <li>
+                  <p>By default, the Grid control does not display scroll bars.
+To add scroll bars, wrap the Grid control in the Scroller component.</p>
+
+               </li>
+
+               <li>
+                  <p>The Grid control does not provide default mouse or keyboard
+event handling. You must add support for those events yourself. </p>
+
+               </li>
+
+            </ul>
+
+         </div>
+
+      </div>
+
+   </div>
+
+   <div class="nested1" id="WS0ab2a460655f2dc3-427f401412c60d04dca-7ff9_verapache"><a name="WS0ab2a460655f2dc3-427f401412c60d04dca-7ff9_verapache"><!-- --></a>
+      <h2 class="topictitle2">Handling events in a Spark DataGrid control</h2>
+
+      
+      <div>
+         <p>The <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/spark/components/DataGrid.html" target="_blank">DataGrid</a> control
+defines event types that let you respond to user interaction. Many
+of these events are similar to events used by other Spark controls.
+For example, the DataGrid control dispatches a <samp class="codeph">gridClick</samp> event
+when a user clicks any cell in the DataGrid control, similar to
+the <samp class="codeph">click</samp> event used by other controls. Similarly,
+use the <samp class="codeph">gridMouseDown</samp> and <samp class="codeph">gridMouseUp</samp> events
+with the DataGrid control instead of the <samp class="codeph">mouseDown</samp> and <samp class="codeph">mouseUp</samp> events. </p>
+
+         <p>The DataGrid uses its own event types because it lets the DataGrid
+pass additional information to event handlers in the event object.
+For example, the DataGrid passes a <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/spark/events/GridEvent.html" target="_blank">spark.events.GridEvent</a> object
+to the event handler of a <samp class="codeph">gridClick</samp> event. The
+GridEvent class includes the cell location, and other information
+necessary to handle the event. </p>
+
+         <p>In your event handler, you often access properties of the DataGrid
+control. For example, you can access the DataGrid control by using
+the <samp class="codeph">event.currentTarget</samp> property, where <samp class="codeph">event</samp> is
+the event object passed to the event handler. </p>
+
+         <p>However, most of the properties of the DataGrid control are just
+references to properties of the underlying Grid control. Therefore,
+it is more efficient to access the Grid control directly in your
+event handler. You can access the Grid control by using the <samp class="codeph">grid</samp> skin
+part of the DataGrid control, as shown below:</p>
+
+         <pre class="codeblock">event.currentTarget.grid</pre>
+
+         <p>The <samp class="codeph">grid</samp> property in many event objects, such
+as event objects of type spark.events.GridEvent, also contains a
+reference to the underlying Grid control. Therefore, in an event
+handler where the event object contains a reference to the Grid
+control, you can reference it as follows:</p>
+
+         <pre class="codeblock">event.grid</pre>
+
+         <div class="p">In the following example, you handle the <samp class="codeph">gridClick</samp> event.
+In the event handler, you then reference the properties of the <samp class="codeph">event</samp> object,
+in this case the spark.events.GridEvent class, and properties of
+the underlying Grid control: <pre class="codeblock">&lt;?xml version="1.0" encoding="utf-8"?&gt; 
+&lt;!-- dpcontrols\sparkdpcontrols\SparkDGEvents.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    minWidth="450" minHeight="450"&gt; 
+    &lt;s:layout&gt; 
+        &lt;s:VerticalLayout/&gt; 
+    &lt;/s:layout&gt; 
+    
+    &lt;fx:Script&gt; 
+        &lt;![CDATA[ 
+            import spark.events.GridEvent; 
+            
+            private function gridClickEvent(event:GridEvent):void { 
+                // Access the colunm index, row index, and event type 
+                // by using the GridEvent object. 
+                clickColumn.text = String(event.columnIndex); 
+                clickRow.text = String(event.rowIndex); 
+                eventType.text = event.type; 
+                // Access the selection mode of the Grid control. 
+                selectionType.text = String(event.grid.selectionMode); 
+            } 
+        ]]&gt; 
+    &lt;/fx:Script&gt; 
+    
+    &lt;s:DataGrid id="myGrid" width="350" height="150" 
+        selectionMode="multipleCells" 
+        gridClick="gridClickEvent(event);"&gt; 
+        &lt;s:ArrayCollection&gt; 
+            &lt;fx:Object Artist="Pavement" Price="11.99" 
+                Album="Slanted and Enchanted" /&gt; 
+            &lt;fx:Object Artist="Pavement" Album="Brighten the Corners" 
+                Price="11.99" /&gt; 
+        &lt;/s:ArrayCollection&gt; 
+    &lt;/s:DataGrid&gt; 
+    
+    &lt;s:Form&gt; 
+        &lt;s:FormItem label="Column Index:"&gt; 
+            &lt;s:Label id="clickColumn"/&gt; 
+        &lt;/s:FormItem&gt; 
+        &lt;s:FormItem label="Row Index:"&gt; 
+            &lt;s:Label id="clickRow"/&gt; 
+        &lt;/s:FormItem&gt; 
+        &lt;s:FormItem label="Selection type:"&gt; 
+            &lt;s:Label id="selectionType"/&gt; 
+        &lt;/s:FormItem&gt; 
+        &lt;s:FormItem label="Type:"&gt; 
+            &lt;s:Label id="eventType"/&gt; 
+        &lt;/s:FormItem&gt; 
+    &lt;/s:Form&gt; 
+&lt;/s:Application&gt;</pre>
+
+         </div>
+
+         <p>In this example, you use the event handler to display the column
+index, row index, event type, and selection mode. </p>
+
+      </div>
+
+   </div>
+
+   <div class="nested1" id="WS0ab2a460655f2dc3-427f401412c60d04dca-7ff8_verapache"><a name="WS0ab2a460655f2dc3-427f401412c60d04dca-7ff8_verapache"><!-- --></a>
+      <h2 class="topictitle2">Selecting cells and rows in the
+Spark DataGrid control</h2>
+
+      
+      <div>
+         <p>The <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/spark/components/DataGrid.html" target="_blank">DataGrid</a> control
+lets you configure how the user can select cells and rows. For example,
+you can configure the control so that selection is disabled, or
+so that the user can select multiple cells of the grid, or multiple
+rows. </p>
+
+         <p>The following properties of the DataGrid control determine selection: </p>
+
+         <div class="p">
+            <ul>
+               <li>
+                  <p>
+                     <samp class="codeph">selectionMode</samp> Specifies the selection
+mode of the control. Possible values are: <samp class="codeph">none</samp> (selection
+disabled), <samp class="codeph">singleCell</samp>, <samp class="codeph">singleRow</samp> (default), <samp class="codeph">multipleCells</samp>,
+and <samp class="codeph">multipleRows</samp>. </p>
+
+               </li>
+
+               <li>
+                  <p>
+                     <samp class="codeph">requireSelection</samp> Specifies that a cell or
+row must always be selected. The default value is <samp class="codeph">false</samp>.
+If <samp class="codeph">true</samp>, and the <samp class="codeph">selectionMode</samp> property
+is not <samp class="codeph">none</samp>, then the first cell or row is selected
+by default until the user makes a selection, or until you set the
+selection programmatically.</p>
+
+               </li>
+
+            </ul>
+
+         </div>
+
+         <p>Use the keyboard or mouse to interact with the DataGrid control
+and to change selection. For example, when using the keyboard, use
+the Arrow keys to change the selected item. If you configure the
+DataGrid control for multiple selection, select multiple items by
+using the Shift and Arrow keys. For more information on keyboard
+navigation, see <a href="flx_spark_datagrid_sdg.html#WS0ab2a460655f2dc3-427f401412c60d04dca-7fe8_verapache">Spark
+DataGrid control keyboard shortcuts</a>.</p>
+
+      </div>
+
+      <div class="nested2" id="WS0ab2a460655f2dc3-427f401412c60d04dca-7ff7_verapache"><a name="WS0ab2a460655f2dc3-427f401412c60d04dca-7ff7_verapache"><!-- --></a>
+         <h3 class="topictitle3">Handling selection events</h3>
+
+         
+         <div>
+            <div class="p">Interactive changes to selection performed with a mouse
+or keyboard are processed in three steps: <ol>
+                  <li>
+                     <p>The <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/spark/components/DataGrid.html" target="_blank">DataGrid</a> control
+dispatches the <samp class="codeph">selectionChanging</samp> event. In the event
+handler for the <samp class="codeph">selectionChanging</samp> event, you can
+call the <samp class="codeph">preventDefault()</samp> method to cancel the
+proposed selection change. </p>
+
+                  </li>
+
+                  <li>
+                     <p>If the <samp class="codeph">selectionChanging</samp> event is not canceled,
+the control dispatches a <samp class="codeph">selectionChange</samp> event
+to indicate that the selection change has been committed. </p>
+
+                  </li>
+
+                  <li>
+                     <p>If the selection change is committed, or if there was a change
+to the caret with no change to the selected item, dispatch a <samp class="codeph">caretChange</samp> event. </p>
+
+                  </li>
+
+               </ol>
+
+            </div>
+
+            <p>You can change the selection programmatically by using methods
+of the DataGrid control. The control dispatches a<samp class="codeph"> valueCommit</samp> event
+on the change. Programmatic changes of selection are unconditionally
+committed, meaning that you cannot cancel them by calling the <samp class="codeph">preventDefault()</samp> method. </p>
+
+         </div>
+
+         <div><div class="relinfo"><strong>Related information</strong><br/>
+<div><a href="flx_spark_datagrid_sdg.html#WS0ab2a460655f2dc3-427f401412c60d04dca-7ff4_verapache">Working with the caret in the Spark DataGrid control</a></div>
+</div>
+</div>
+      </div>
+
+      <div class="nested2" id="WS0ab2a460655f2dc3-427f401412c60d04dca-7ff6_verapache"><a name="WS0ab2a460655f2dc3-427f401412c60d04dca-7ff6_verapache"><!-- --></a>
+         <h3 class="topictitle3">Handle single cell and single row
+selection in the spark DataGrid control</h3>
+
+         
+         <div>
+            <p>Several properties of the <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/spark/components/DataGrid.html" target="_blank">DataGrid</a> and
+Grid control handle cell and row selection in the control. These
+properties include the following:</p>
+
+            <div class="p">
+               <ul>
+                  <li>
+                     <p>
+                        <samp class="codeph">selectedCell</samp> If the <samp class="codeph">selectionMode</samp> property
+is <samp class="codeph">singleCell</samp>, this property contains the position
+of the cell in the grid as represented by the <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/spark/components/gridClasses/CellPosition.html" target="_blank">CellPosition</a> class.
+The <samp class="codeph">CellPosition.columnIndex</samp> and <samp class="codeph">CellPosition.rowIndex</samp> properties
+contain the cell location. </p>
+
+                  </li>
+
+                  <li>
+                     <p>
+                        <samp class="codeph">selectedIndex</samp> If the <samp class="codeph">selectionMode</samp> property
+is <samp class="codeph">singleRow</samp>, this property contains the index
+of the currently selected row. </p>
+
+                  </li>
+
+                  <li>
+                     <p>
+                        <samp class="codeph">selectedItem</samp> The object from the data provider
+corresponding to the currently selected data item. This object represents
+the entire row of the grid. </p>
+
+                  </li>
+
+               </ul>
+
+            </div>
+
+            <div class="note"><span class="notetitle">Note:</span> While the <samp class="codeph">selectedCell</samp>, <samp class="codeph">selectedIndex</samp>,
+and <samp class="codeph">selectedItem</samp> properties are all writable, it’s
+best to use methods of the DataGrid to change selection programmatically. </div>
+
+            <p>In the following example, when you select a row in the control,
+the event handler for the <samp class="codeph">selectionChange</samp> event
+displays the row index and the lastName field of the data item in
+TextArea controls: </p>
+
+            <div class="p">
+               <pre class="codeblock">&lt;?xml version="1.0" encoding="utf-8"?&gt; 
+&lt;!-- dpcontrols\sparkdpcontrols\SparkDGSelection.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    height="450" width="450"&gt; 
+    &lt;s:layout&gt; 
+        &lt;s:VerticalLayout/&gt; 
+    &lt;/s:layout&gt; 
+    
+    &lt;fx:Script&gt; 
+        &lt;![CDATA[ 
+            import spark.components.Grid; 
+            import spark.events.GridSelectionEvent; 
+            
+            protected function selectionChangeHandler(event:GridSelectionEvent):void { 
+                const eventGrid:Grid = event.currentTarget.grid; 
+                var currentIndx:int = eventGrid.selectedIndex; 
+                var currentDataItem:Object = eventGrid.selectedItem; 
+                selIndex.text = String(currentIndx); 
+                selLName.text = String(currentDataItem.lastName); 
+            } 
+            
+        ]]&gt; 
+    &lt;/fx:Script&gt; 
+    
+    &lt;s:DataGrid id="myDG" width="100%" 
+        selectionChange="selectionChangeHandler(event)"&gt; 
+        &lt;s:ArrayCollection&gt; 
+            &lt;fx:Object firstName="Bill" lastName="Smith" companyID="11233"/&gt; 
+            &lt;fx:Object firstName="Dave" lastName="Jones" companyID="13455"/&gt; 
+            &lt;fx:Object firstName="Mary" lastName="Davis" companyID="11543"/&gt; 
+            &lt;fx:Object firstName="Debbie" lastName="Cooper" companyID="14266"/&gt; 
+        &lt;/s:ArrayCollection&gt; 
+    &lt;/s:DataGrid&gt; 
+    
+    &lt;s:Label text="Selected index:"/&gt; 
+    &lt;s:TextArea id="selIndex" height="50"/&gt; 
+    
+    &lt;s:Label text="Selected Last Name:"/&gt; 
+    &lt;s:TextArea id="selLName" height="50"/&gt; 
+    
+&lt;/s:Application&gt;</pre>
+
+            </div>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS0ab2a460655f2dc3-427f401412c60d04dca-7ff5_verapache"><a name="WS0ab2a460655f2dc3-427f401412c60d04dca-7ff5_verapache"><!-- --></a>
+         <h3 class="topictitle3">Handle multiple cell and multiple
+row selection in the Spark DataGrid control</h3>
+
+         
+         <div>
+            <p>Use the <samp class="codeph">selectionMode</samp> property of the <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/spark/components/DataGrid.html" target="_blank">DataGrid</a> control
+to configure it for multiple selection. The default value of the <samp class="codeph">selectionMode</samp> property
+is <samp class="codeph">singleRow</samp>, which means that you can select only
+a single row at a time. Set the <samp class="codeph">selectionMode</samp> property
+to <samp class="codeph">multipleRows</samp> or to <samp class="codeph">multipleCells</samp> to select
+multiple rows or cells.</p>
+
+            <p>Several properties of the DataGrid and Grid control multiple
+selection. These properties include the following:</p>
+
+            <div class="p">
+               <ul>
+                  <li>
+                     <p>
+                        <samp class="codeph">selectedCells</samp> If the <samp class="codeph">selectionMode</samp> property
+is <samp class="codeph">multipleCells</samp>, a Vector of <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/spark/components/gridClasses/CellPosition.html" target="_blank">CellPosition</a> objects
+containing the selected cell locations. </p>
+
+                  </li>
+
+                  <li>
+                     <p>
+                        <samp class="codeph">selectedIndices</samp> If the <samp class="codeph">selectionMode</samp> property
+is <samp class="codeph">multipleRows</samp>, a Vector of integers containing
+the indexes of the currently selected rows. </p>
+
+                  </li>
+
+                  <li>
+                     <p>
+                        <samp class="codeph">selectedItems</samp> If the <samp class="codeph">selectionMode</samp> property
+is <samp class="codeph">multipleRows</samp>, a Vector of data provider items
+corresponding to the currently selected rows. </p>
+
+                  </li>
+
+               </ul>
+
+            </div>
+
+            <div class="note"><span class="notetitle">Note:</span> While the <samp class="codeph">selectedCells</samp>, <samp class="codeph">selectedIndices</samp>,
+and <samp class="codeph">selectedItems</samp> properties are all writable,
+it’s best to use methods of the DataGrid to change selection programmatically. </div>
+
+            <p>For multiple selection, the set of selected cells or rows extends
+from the selection <em>anchor</em> to the last selected row or cell.
+The <samp class="codeph">Grid.anchorRowIndex</samp> and <samp class="codeph">Grid.anchorColumnIndex</samp> properties
+represent the location of the selection anchor. </p>
+
+            <p>The <samp class="codeph">selectedIndex</samp> and <samp class="codeph">selectedItem</samp> properties
+are valid in multiple selection mode. These properties contain information
+about the first cell or row selected in the list of currently selected
+items. </p>
+
+            <div class="section"><h4 class="sectiontitle">Select contiguous items in the control</h4>
+               
+               <ol>
+                  <li>
+                     <p>Click the first item, either a row or cell, to select it.</p>
+
+                  </li>
+
+                  <li>
+                     <p>Hold down the Shift key as you select an additional item.</p>
+
+                     <ul>
+                        <li>
+                           <p>If the <samp class="codeph">selectionMode</samp> property is set to <samp class="codeph">multipleRows</samp>,
+click any cell in another row to select multiple, contiguous rows.</p>
+
+                        </li>
+
+                        <li>
+                           <p>If the <samp class="codeph">selectionMode</samp> property is set to <samp class="codeph">multipleCells</samp>,
+click any cell to select multiple, contiguous cells.</p>
+
+                        </li>
+
+                     </ul>
+
+                  </li>
+
+               </ol>
+
+            </div>
+
+            <div class="section"><h4 class="sectiontitle">Select discontiguous items in the control</h4>
+               
+               <ol>
+                  <li>
+                     <p>Click the first item, either a row or cell, to select it.</p>
+
+                  </li>
+
+                  <li>
+                     <p>Hold down the Control key (Windows) or the Command key (OSX)
+as you select an additional item.</p>
+
+                     <ul>
+                        <li>
+                           <p>If the <samp class="codeph">selectionMode</samp> property
+is set to <samp class="codeph">multipleRows</samp>, click any cell in another
+row to select that single row.</p>
+
+                        </li>
+
+                        <li>
+                           <p>If the <samp class="codeph">selectionMode</samp> property is set to <samp class="codeph">multipleCells</samp>,
+click any cell to select that single cell.</p>
+
+                        </li>
+
+                     </ul>
+
+                  </li>
+
+               </ol>
+
+               <div class="note"><span class="notetitle">Note:</span> You
+can also use the keyboard to select multiple contiguous or discontiguous items.
+For information on keyboard navigation, see <a href="flx_spark_datagrid_sdg.html#WS0ab2a460655f2dc3-427f401412c60d04dca-7fe8_verapache">Spark
+DataGrid control keyboard shortcuts</a>.</div>
+
+            </div>
+
+            <div class="section"><h4 class="sectiontitle">Example: Spark DataGrid using multiple selection</h4>
+               
+               <p>The
+following example sets the <samp class="codeph">selectionMode</samp> property
+to <samp class="codeph">multipleCells</samp>. This application uses an event
+handler for the <samp class="codeph">keyUp</samp> event to recognize the Control+C
+key combination and, if detected, copies the selected cells from
+the DataGrid control to your system’s clipboard. </p>
+
+               <p>After you
+copy the cells, you can paste the cells in another location in the
+application, or paste them in another application. In this example,
+you paste them to the TextArea control located at the bottom of
+the application:</p>
+
+               <div class="p">
+                  <pre class="codeblock">&lt;?xml version="1.0" encoding="utf-8"?&gt; 
+&lt;!-- dpcontrols\sparkdpcontrols\SparkDGMultiSelect.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx"&gt; 
+    &lt;s:layout&gt; 
+        &lt;s:VerticalLayout/&gt; 
+    &lt;/s:layout&gt; 
+    
+    &lt;fx:Script&gt; 
+        &lt;![CDATA[ 
+            import flash.events.KeyboardEvent; 
+            import flash.system.System; 
+            import spark.components.gridClasses.CellPosition; 
+            import flash.ui.Keyboard; 
+            
+            // Event handler to recognize when Ctrl-C is pressed, 
+            // and copy the selected cells to the system clipboard. 
+            private function myKeyUpHandler(event:KeyboardEvent):void 
+            { 
+                if (event.ctrlKey &amp;&amp; event.keyCode == Keyboard.C) 
+                { 
+                    // Separator used between Strings sent to clipboard 
+                    // to separate selected cells. 
+                    const separator:String = ","; 
+                    // The String sent to the clipboard 
+                    var dataString:String = ""; 
+                    
+                    // Loop over the selectedCells property. 
+                    // Data in selectedCells is ordered so that 
+                    // the last selected cell is at the head of the list. 
+                    const selectedCells:Vector.&lt;CellPosition&gt; = event.currentTarget.selectedCells; 
+                    const n:int = selectedCells.length; 
+                    for (var i:int = 0; i &lt; n; i++) 
+                    { 
+                        // Get the cell position. 
+                        var cell:CellPosition = selectedCells[i]; 
+                        
+                        // Get the row for the selected cell. 
+                        var data:Object = 
+                            event.currentTarget.grid.dataProvider[cell.rowIndex]; 
+                        
+                        // Get the name of the field for the selected cell. 
+                        var dataField:String = 
+                            event.currentTarget.grid.columns[cell.columnIndex].dataField; 
+                        
+                        // Get the cell data using the field name. 
+                        dataString = data[dataField] + separator + dataString; 
+                    } 
+                    
+                    // Remove trailing separator. 
+                    dataString = 
+                        dataString.substr(0, dataString.length - separator.length); 
+                    
+                    // Write dataString to the clipboard. 
+                    System.setClipboard(dataString); 
+                } 
+            } 
+        ]]&gt; 
+    &lt;/fx:Script&gt; 
+    
+    &lt;s:DataGrid 
+        selectionMode="multipleCells" 
+        keyUp="myKeyUpHandler(event);"&gt; 
+        &lt;s:ArrayCollection&gt; 
+            &lt;fx:Object&gt; 
+                &lt;fx:Artist&gt;Pavement&lt;/fx:Artist&gt; 
+                &lt;fx:Price&gt;11.99&lt;/fx:Price&gt; 
+                &lt;fx:Album&gt;Slanted and Enchanted&lt;/fx:Album&gt; 
+            &lt;/fx:Object&gt; 
+            &lt;fx:Object&gt; 
+                &lt;fx:Artist&gt;Pavement&lt;/fx:Artist&gt; 
+                &lt;fx:Album&gt;Brighten the Corners&lt;/fx:Album&gt; 
+                &lt;fx:Price&gt;11.99&lt;/fx:Price&gt; 
+            &lt;/fx:Object&gt; 
+        &lt;/s:ArrayCollection&gt; 
+        &lt;s:columns&gt; 
+            &lt;s:ArrayCollection&gt; 
+                &lt;s:GridColumn dataField="Artist"/&gt; 
+                &lt;s:GridColumn dataField="Album"/&gt; 
+                &lt;s:GridColumn dataField="Price"/&gt; 
+            &lt;/s:ArrayCollection&gt; 
+        &lt;/s:columns&gt; 
+    &lt;/s:DataGrid&gt; 
+    
+    &lt;s:TextArea id="myTA" text="Paste selected cells here ..."/&gt; 
+&lt;/s:Application&gt;</pre>
+
+               </div>
+
+            </div>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS0ab2a460655f2dc3-427f401412c60d04dca-7ff4_verapache"><a name="WS0ab2a460655f2dc3-427f401412c60d04dca-7ff4_verapache"><!-- --></a>
+         <h3 class="topictitle3">Working with the caret in the Spark
+DataGrid control</h3>
+
+         
+         <div>
+            <p>Depending on the selection mode of the <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/spark/components/DataGrid.html" target="_blank">DataGrid</a> control,
+the <em>caret</em> is the row or cell that currently responds to keyboard
+input. The caret can be the currently selected cell or row, or a
+different cell or row. The <samp class="codeph">Grid.caretRowIndex</samp> and <samp class="codeph">Grid.caretColumnIndex</samp> properties
+represent the caret location. </p>
+
+            <p>Change the caret with a combination of the Control and Arrow
+keys. You can select the caret by pressing the Space key. If multiple
+selection is enabled, press the Space key to add the caret to the
+list of selected cells or rows. Toggle selection of the caret by
+using the Control-Space keys.</p>
+
+            <p>The following example uses the <samp class="codeph">caretChange</samp> event
+and the <samp class="codeph">selectionChange</samp> event to display the location
+of the caret and of the selected row: </p>
+
+            <div class="p">
+               <pre class="codeblock">&lt;?xml version="1.0" encoding="utf-8"?&gt; 
+&lt;!-- dpcontrols\sparkdpcontrols\SparkDGCaret.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    height="450" width="450"&gt; 
+    &lt;s:layout&gt; 
+        &lt;s:VerticalLayout paddingTop="5" paddingLeft="5"/&gt; 
+    &lt;/s:layout&gt; 
+    &lt;fx:Script&gt; 
+        &lt;![CDATA[ 
+            import spark.events.GridCaretEvent; 
+            import spark.events.GridSelectionEvent; 
+            import spark.components.Grid; 
+ 
+            protected function selectionChangeHandler(event:GridSelectionEvent):void { 
+                const eventGrid:Grid = event.currentTarget.grid; 
+                selLabel.text = "The selected row is: " + 
+                    String(eventGrid.selectedIndex); 
+                caretLabel.text = "The caret row is: " + 
+                    String(eventGrid.caretRowIndex); 
+            } 
+ 
+            protected function caretChangeHandler(event:GridCaretEvent):void { 
+                const eventGrid:Grid = event.currentTarget.grid; 
+                selLabel.text = "The selected row is: " + 
+                    String(eventGrid.selectedIndex); 
+                caretLabel.text = "The caret row is: " + 
+                    String(eventGrid.caretRowIndex); 
+            } 
+        ]]&gt; 
+    &lt;/fx:Script&gt; 
+    
+    &lt;s:Label id="selLabel"/&gt; 
+    &lt;s:Label id="caretLabel"/&gt; 
+    
+    &lt;s:DataGrid id="myDG" width="100%" 
+        selectionChange="selectionChangeHandler(event);" 
+        caretChange="caretChangeHandler(event);"&gt; 
+        &lt;s:ArrayCollection&gt; 
+            &lt;fx:Object firstName="Bill" lastName="Smith" companyID="11233"/&gt; 
+            &lt;fx:Object firstName="Dave" lastName="Jones" companyID="13455"/&gt; 
+            &lt;fx:Object firstName="Mary" lastName="Davis" companyID="11543"/&gt; 
+            &lt;fx:Object firstName="Debbie" lastName="Cooper" companyID="14266"/&gt; 
+        &lt;/s:ArrayCollection&gt; 
+    &lt;/s:DataGrid&gt; 
+&lt;/s:Application&gt;</pre>
+
+            </div>
+
+            <p>To see the difference between the <samp class="codeph">selectedIndex</samp> and
+the <samp class="codeph">caretIndex</samp> properties:</p>
+
+            <div class="p">
+               <ol>
+                  <li>
+                     <p>Select a row in the DataGrid control by clicking it.
+Notice that the selected row is also the caret, and that the <samp class="codeph">selectedIndex</samp> and
+the <samp class="codeph">caretIndex</samp> properties have the same value.</p>
+
+                  </li>
+
+                  <li>
+                     <p>Use the Up Arrow and Down Arrow keys to move the selected
+row. Notice that the <samp class="codeph">selectedIndex</samp> and the <samp class="codeph">caretIndex</samp> properties
+have the same value.</p>
+
+                  </li>
+
+                  <li>
+                     <p>With a row selected:</p>
+
+                     <div class="p">
+                        <ul>
+                           <li>
+                              <p>(On Windows) Hold down
+the Control key, and then use the Up Arrow and Down Arrow keys to
+move the caret. </p>
+
+                           </li>
+
+                           <li>
+                              <p>(On OSX) Hold down the Command key, and then use the Up Arrow
+and Down Arrow keys to move the caret.</p>
+
+                           </li>
+
+                        </ul>
+
+                     </div>
+
+                     <p>Notice
+that the control highlights the caret row, but the index of the
+selected row does not change. Press the Space key to select the
+caret row.</p>
+
+                  </li>
+
+               </ol>
+
+            </div>
+
+         </div>
+
+      </div>
+
+   </div>
+
+   <div class="nested1" id="WSbe2da7400ffe6ad459d8011b12df10c3998-8000_verapache"><a name="WSbe2da7400ffe6ad459d8011b12df10c3998-8000_verapache"><!-- --></a>
+      <h2 class="topictitle2">Handle data binding warnings for
+the Spark DataGrid control</h2>
+
+      
+      <div>
+         <p>The Spark <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/spark/components/DataGrid.html" target="_blank">DataGrid</a> can
+work with static data, meaning data that does not change at runtime.
+For example, you can define static data as an <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/collections/ArrayCollection.html" target="_blank">ArrayCollection</a> of
+Objects. The following example defines static data in the DataGrid
+control:</p>
+
+         <div class="p">
+            <pre class="codeblock">&lt;s:DataGrid&gt; 
+	&lt;s:dataProvider&gt; 
+		&lt;s:ArrayCollection&gt; 
+			&lt;fx:Object Artist="Pavement" Album="Slanted and Enchanted" 
+				Price="11.99" Cover="../assets/slanted.jpg"/&gt; 
+			&lt;fx:Object Artist="Pavement" Album="Brighten the Corners" 
+				Price="11.99" Cover="../assets/brighten.jpg"/&gt; 
+		&lt;/s:ArrayCollection&gt; 
+	&lt;/s:dataProvider&gt; 
+... 
+&lt;/s:DataGrid&gt;</pre>
+
+         </div>
+
+         <p>Dynamic data is data that can change at runtime. When dynamic
+data changes, you want to ensure that the DataGrid recognizes those
+changes so that it updates its display accordingly. </p>
+
+         <p>The item renderer and item editor mechanism used by the Spark
+DataGrid control relies on data binding to items in the data provider.
+Data binding is event driven. That means an item in the data provider
+must be able to dispatch events to indicate that the item has changed.
+By using the data binding mechanism, the DataGrid control can update
+its display at runtime when an item changes. </p>
+
+         <p>In the previous example that used static data, you used the Object
+class to define the items of the data provider. The Object class
+does not dispatch events when it changes and, therefore, does not
+support data binding. The compiler recognizes this situation and
+issues a warning when you compile the application. You can ignore
+that warning for applications that use static data.</p>
+
+         <p>One way to add event support to items in the data provider is
+to make sure the class that defines the items is a subclass of the
+flash.events.EventDispatcher class. Or, ensure that the class implements
+the event mechanism. </p>
+
+         <p>Flex provides the <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/spark/utils/DataItem.html" target="_blank">spark.utils.DataItem</a> class
+that is a subclass of Object and supports events. Therefore, you
+can rewrite the previous example to use DataItem and support data
+binding, as shown below:</p>
+
+         <div class="p">
+            <pre class="codeblock">&lt;s:DataGrid&gt; 
+	&lt;s:dataProvider&gt; 
+		&lt;s:ArrayCollection&gt; 
+			&lt;fx:DataItem Artist="Pavement" Album="Slanted and Enchanted" 
+				Price="11.99" Cover="../assets/slanted.jpg"/&gt; 
+			&lt;fx:DataItem Artist="Pavement" Album="Brighten the Corners" 
+				Price="11.99" Cover="../assets/brighten.jpg"/&gt; 
+		&lt;/s:ArrayCollection&gt; 
+	&lt;/s:dataProvider&gt; 
+... 
+&lt;/s:DataGrid&gt;</pre>
+
+         </div>
+
+         <p>Because the DataItem class can dispatch events when the data
+changes, you can modify the data at runtime and have those changes
+reflected in the DataGrid. </p>
+
+         <p>Alternatively, you can represent your data by creating a class
+that includes the <samp class="codeph">[Bindable]</samp> metadata tag in the
+class definition. When you include the <samp class="codeph">[Bindable]</samp> metadata
+tag, Flex automatically adds support for event dispatching to the
+class. </p>
+
+         <div class="p">For example, you create the following subclass of Object that
+supports data binding by using the <samp class="codeph">[Bindable]</samp> metadata
+tag: <pre class="noswf">package myComponents 
+{ 
+    [Bindable] 
+    public class MyBindableObj extends Object 
+    { 
+        public function MyBindableObj() { 
+            super(); 
+        } 
+        
+        public var Artist:String; 
+        
+        public var Album:String; 
+        
+        public var Price:Number; 
+        
+        public var Cover:String; 
+    } 
+}</pre>
+
+         </div>
+
+         <p>By inserting the <samp class="codeph">[Bindable]</samp> metadata tag before
+the class definition, you specify that all public properties support
+data binding. You can then use your custom class to define the data
+provider, as the following example shows:</p>
+
+         <div class="p">
+            <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- binding/SparkDGBindingClass.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:myComp="myComponents.*"&gt; 
+    &lt;s:layout&gt; 
+        &lt;s:VerticalLayout/&gt; 
+    &lt;/s:layout&gt; 
+    
+    &lt;s:DataGrid&gt; 
+        &lt;s:dataProvider&gt; 
+            &lt;s:ArrayCollection&gt; 
+                &lt;myComp:MyBindableObj Artist="Pavement" 
+                    Album="Slanted and Enchanted" 
+                    Price="11.99" 
+                    Cover="../assets/slanted.jpg"/&gt; 
+                &lt;myComp:MyBindableObj Artist="Pavement" 
+                    Album="Brighten the Corners" 
+                    Price="11.99" 
+                    Cover="../assets/brighten.jpg"/&gt; 
+            &lt;/s:ArrayCollection&gt; 
+        &lt;/s:dataProvider&gt;         
+    &lt;/s:DataGrid&gt; 
+&lt;/s:Application&gt;</pre>
+
+         </div>
+
+      </div>
+
+      <div><div class="relinfo"><strong>Related information</strong><br/>
+<div><a href="flx_databinding_db.html#WS2db454920e96a9e51e63e3d11c0bf69084-7fe7_verapache">Data binding</a></div>
+<div><a href="flx_metadata_me.html#WS2db454920e96a9e51e63e3d11c0bf69084-7a2a_verapache">Bindable metadata tag</a></div>
+</div>
+</div>
+   </div>
+
+   <div class="nested1" id="WS0ab2a460655f2dc3-427f401412c60d04dca-7ff3_verapache"><a name="WS0ab2a460655f2dc3-427f401412c60d04dca-7ff3_verapache"><!-- --></a>
+      <h2 class="topictitle2">Creating item renderers and item
+editors for the Spark DataGrid control </h2>
+
+      
+      <div>
+         <p>You can create custom item renderers and item editors to
+control the display of the cells of the Spark <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/spark/components/DataGrid.html" target="_blank">DataGrid</a> and
+Grid controls. You can also create custom item renderers for the
+header cells of each column of the grid. </p>
+
+         <p>You set a custom renderer or editor for each column of the grid.
+Use the <samp class="codeph">GridColumn.itemRenderer</samp>, <samp class="codeph">GridColumn.itemEditor</samp>,
+and <samp class="codeph">GridColumn.headerRenderer</samp> properties to specify
+your custom renderer or editor. </p>
+
+         <p>You typically create custom item renderers and item editors in
+MXML. However, for the highest performance, create them in ActionScript. </p>
+
+      </div>
+
+      <div class="nested2" id="WS0ab2a460655f2dc3-427f401412c60d04dca-7ff2_verapache"><a name="WS0ab2a460655f2dc3-427f401412c60d04dca-7ff2_verapache"><!-- --></a>
+         <h3 class="topictitle3">The IGridItemRenderer and IGridItemEditor
+interfaces </h3>
+
+         
+         <div>
+            <p>Item and header renderers must implement the <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/spark/components/gridClasses/IGridItemRenderer.html" target="_blank">IGridItemRenderer</a> interface. Item
+editors must implement the <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/spark/components/gridClasses/IGridItemEditor.html" target="_blank">IGridItemEditor</a> interface.
+The following table describes these interfaces: </p>
+
+            <div class="p">
+               
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" frame="border" border="1" rules="all">
+                     
+                     
+                     
+                     <thead align="left">
+                        <tr>
+                           <th class="cellrowborder" valign="top" width="NaN%" id="d868494e1466">
+                              <p>Interface</p>
+
+                           </th>
+
+                           <th class="cellrowborder" valign="top" width="NaN%" id="d868494e1472">
+                              <p>Implemented by</p>
+
+                           </th>
+
+                           <th class="cellrowborder" valign="top" width="NaN%" id="d868494e1478">
+                              <p>Notes</p>
+
+                           </th>
+
+                        </tr>
+
+                     </thead>
+
+                     <tbody>
+                        <tr>
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d868494e1466 ">
+                              <p>IGridItemRenderer</p>
+
+                           </td>
+
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d868494e1472 ">
+                              <p>Custom item and header renderers</p>
+
+                           </td>
+
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d868494e1478 ">
+                              <p>All custom item and header renderers must
+implement the IGridItemRenderer interface. The base interface of
+IGridItemRenderer is IDataRenderer, the interface implemented by
+item renderers for the Spark list-based controls.</p>
+
+                           </td>
+
+                        </tr>
+
+                        <tr>
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d868494e1466 ">
+                              <p>IGridItemEditor</p>
+
+                           </td>
+
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d868494e1472 ">
+                              <p>Custom item editors</p>
+
+                           </td>
+
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d868494e1478 ">
+                              <p>All custom item editors must implement the
+IGridItemEditor interface. The base interface of IGridItemEditor
+is IDataRenderer.</p>
+
+                           </td>
+
+                        </tr>
+
+                     </tbody>
+
+                  </table>
+</div>
+
+            </div>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS0ab2a460655f2dc3-427f401412c60d04dca-7ff1_verapache"><a name="WS0ab2a460655f2dc3-427f401412c60d04dca-7ff1_verapache"><!-- --></a>
+         <h3 class="topictitle3">Using the predefined item renderers </h3>
+
+         
+         <div>
+            <p>When using the <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/spark/components/DataGrid.html" target="_blank">DataGrid</a> control,
+you want to ensure the highest performance possible. One of the
+main factors affecting performance is the time required to render
+of each visible cell of the grid. Therefore, you want your item
+renderers to perform at the highest level.</p>
+
+            <p>Flex defines several item renderers that you can use to achieve
+high performance with the DataGrid control. By default, the DataGrid
+control uses the DefaultGridItemRenderer renderer. This renderer
+is written in ActionScript to provide good performance across all
+platforms. </p>
+
+            <p>The following table describes the item renderer classes that
+ship with Flex:</p>
+
+            <div class="p">
+               
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" frame="border" border="1" rules="all">
+                     
+                     
+                     <thead align="left">
+                        <tr>
+                           <th class="cellrowborder" valign="top" width="NaN%" id="d868494e1575">
+                              <p>Item Renderer</p>
+
+                           </th>
+
+                           <th class="cellrowborder" valign="top" width="NaN%" id="d868494e1581">
+                              <p>Use</p>
+
+                           </th>
+
+                        </tr>
+
+                     </thead>
+
+                     <tbody>
+                        <tr>
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d868494e1575 ">
+                              <p>
+                                 <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/spark/skins/spark/DefaultGridItemRenderer.html" target="_blank">spark.skins.spark.DefaultGridItemRenderer</a>
+                              </p>
+
+                           </td>
+
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d868494e1581 ">
+                              <p>The default item renderer that displays
+the cell data in a text label using the UIFTETextField control.
+This class is not intended to be extended. Create a custom item
+renderer based on the GridItemRenderer class. </p>
+
+                              <p>Because it
+supports the Flash Text Engine (FTE), this item render also supports bidirectional
+text.</p>
+
+                           </td>
+
+                        </tr>
+
+                        <tr>
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d868494e1575 ">
+                              <p>
+                                 <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/spark/skins/spark/UITextFieldGridItemRenderer.html" target="_blank">spark.skins.spark.UITextFieldGridItemRenderer</a>
+                              </p>
+
+                           </td>
+
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d868494e1581 ">
+                              <p>Optimized for deployment on Microsoft Windows.
+For Windows, it provides improved performance over the DefaultGridItemRenderer.
+For other operating systems, use DefaultGridItemRenderer for best
+performance.</p>
+
+                              <p>Because it is based on the TextField component,
+this item renderer does not support bidirectional text.</p>
+
+                           </td>
+
+                        </tr>
+
+                        <tr>
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d868494e1575 ">
+                              <p>
+                                 <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/spark/components/gridClasses/GridItemRenderer.html" target="_blank">spark.components.gridClasses.GridItemRenderer</a>
+                              </p>
+
+                           </td>
+
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d868494e1581 ">
+                              <p>The base class for custom item renderers.
+This class implements the IGridItemRenderer interface.</p>
+
+                           </td>
+
+                        </tr>
+
+                     </tbody>
+
+                  </table>
+</div>
+
+            </div>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS0ab2a460655f2dc3-427f401412c60d04dca-7ff0_verapache"><a name="WS0ab2a460655f2dc3-427f401412c60d04dca-7ff0_verapache"><!-- --></a>
+         <h3 class="topictitle3">Creating an item renderer for a
+Spark DataGrid</h3>
+
+         
+         <div>
+            <p>Item renderers for the Spark list-based controls, such
+as List, must implement the IDataRenderer interface. Item renderers
+for the Spark <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/spark/components/DataGrid.html" target="_blank">DataGrid</a> must
+implement the <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/spark/components/gridClasses/IGridItemRenderer.html" target="_blank">IGridItemRenderer</a> interface,
+which is derived from the IDataRenderer interface. Therefore, the
+process of creating an item renderer for the DataGrid is similar
+to creating one for the List control. </p>
+
+            <p>An item renderer is associated with a column of the DataGrid
+control. The item renderer then controls the appearance of each
+cell in the column. However, each item renderer has access to the
+data item for an entire row of the DataGrid control. Use the <samp class="codeph">data</samp> property
+of the item renderer to access the data item.</p>
+
+            <p>By accessing the data item for the entire row, the item renderer
+can display multiple data fields, or display a single value created
+from multiple fields. For example, each row of the data provider
+for the DataGrid control in the following example contains four
+fields:</p>
+
+            <div class="p">
+               <pre class="codeblock">&lt;?xml version="1.0" encoding="utf-8"?&gt; 
+&lt;!-- dpcontrols\sparkdpcontrols\SparkDGComplexIR.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    width="450" height="450"&gt; 
+    
+    &lt;fx:Script&gt; 
+        &lt;![CDATA[ 
+            import mx.collections.ArrayCollection; 
+            
+            // Data includes URL to album cover. 
+            [Bindable] 
+            private var initDG:ArrayCollection = new ArrayCollection([ 
+                {Artist:'Pavement', Album:'Slanted and Enchanted', 
+                    Price:11.99, Cover:'assets/slanted.jpg'}, 
+                {Artist:'Pavement', Album:'Brighten the Corners', 
+                    Price:11.99, Cover:'assets/brighten.jpg'} 
+            ]); 
+        ]]&gt; 
+    &lt;/fx:Script&gt; 
+    
+    &lt;s:DataGrid id="myGrid" 
+        dataProvider="{initDG}" 
+        variableRowHeight="true"&gt;   
+        &lt;s:columns&gt; 
+            &lt;s:ArrayList&gt; 
+                &lt;s:GridColumn dataField="Artist"/&gt; 
+                &lt;s:GridColumn dataField="Album" itemRenderer="myComponents.DGComplexIR"/&gt; 
+                &lt;s:GridColumn dataField="Price"/&gt; 
+            &lt;/s:ArrayList&gt; 
+        &lt;/s:columns&gt;       
+    &lt;/s:DataGrid&gt;      
+&lt;/s:Application&gt;</pre>
+
+            </div>
+
+            <div class="p">However, the DataGrid control only defines three columns. It
+then uses the DGComplexIR.mxml item renderer to display the Album
+and Cover fields in a single column. The item render is shown below: <pre class="noswf">&lt;?xml version="1.0" encoding="utf-8"?&gt; 
+&lt;!-- dpcontrols\sparkdpcontrols\myComponents\DGComplexIR.mxml --&gt; 
+&lt;s:GridItemRenderer xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx"&gt; 
+ 
+    &lt;s:VGroup height="100" paddingTop="10"&gt; 
+        &lt;s:Label id="albumName" 
+            width="100%" 
+            text="{data.Album}"/&gt; 
+        &lt;s:Image id="albumImage" 
+            source="{data.Cover}"/&gt;    
+    &lt;/s:VGroup&gt; 
+&lt;/s:GridItemRenderer&gt;</pre>
+
+            </div>
+
+            <p>Notice how the item renderer uses the <samp class="codeph">data</samp> property
+of the item renderer to access the data item that corresponds to
+the entire row of the DataGrid control. </p>
+
+         </div>
+
+         <div class="nested3" id="WS0ab2a460655f2dc3-427f401412c60d04dca-7fef_verapache"><a name="WS0ab2a460655f2dc3-427f401412c60d04dca-7fef_verapache"><!-- --></a>
+            <h4 class="topictitle4">Creating inline renderers </h4>
+
+            
+            <div>
+               <p>In the previous example, the item renderer was defined
+in a file separate from the main application file. You can define
+inline item renderers for the <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/spark/components/DataGrid.html" target="_blank">DataGrid</a> control.
+By using an inline item renderer, your code can all be defined in
+a single file. To define an inline item renderer, you use the <samp class="codeph">&lt;fx:Component&gt;</samp> tag.
+For example using inline item renderers, see <a href="flx_spark_itemrenderers_sir.html#WSCE72ECF5-4631-436f-A821-D70693559F93_verapache">Defining
+an inline item renderer for a Spark container</a>.</p>
+
+               <p>The following example creates an inline item renderer by using
+the Spark Label control:</p>
+
+               <div class="p">
+                  <pre class="codeblock">&lt;?xml version="1.0" encoding="utf-8"?&gt; 
+&lt;!-- dpcontrols\sparkdpcontrols\SparkDGStyledIR.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    width="450" height="450"&gt; 
+    
+    &lt;fx:Script&gt; 
+        &lt;![CDATA[ 
+            import mx.collections.ArrayCollection; 
+            
+            // Data includes URL to album cover. 
+            [Bindable] 
+            private var initDG:ArrayCollection = new ArrayCollection([ 
+                {Artist:'Pavement', Album:'Slanted and Enchanted', 
+                    Price:11.99, Cover:'../assets/slanted.jpg'}, 
+                {Artist:'Pavement', Album:'Brighten the Corners', 
+                    Price:11.99, Cover:'../assets/brighten.jpg'} 
+            ]); 
+        ]]&gt; 
+    &lt;/fx:Script&gt; 
+    
+    &lt;s:DataGrid id="myGrid" 
+        dataProvider="{initDG}" 
+        variableRowHeight="true"&gt;   
+        &lt;s:columns&gt; 
+            &lt;s:ArrayList&gt; 
+                &lt;s:GridColumn dataField="Artist"&gt; 
+                    &lt;s:itemRenderer&gt; 
+                        &lt;fx:Component&gt; 
+                            &lt;s:GridItemRenderer&gt; 
+                                &lt;s:Label id="labelDisplay" fontSize="24"/&gt; 
+                            &lt;/s:GridItemRenderer&gt; 
+                        &lt;/fx:Component&gt; 
+                    &lt;/s:itemRenderer&gt;    
+                &lt;/s:GridColumn&gt; 
+                &lt;s:GridColumn dataField="Album"/&gt; 
+                &lt;s:GridColumn dataField="Price"/&gt; 
+            &lt;/s:ArrayList&gt; 
+        &lt;/s:columns&gt;       
+    &lt;/s:DataGrid&gt; 
+&lt;/s:Application&gt;</pre>
+
+               </div>
+
+            </div>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS0ab2a460655f2dc3-427f401412c60d04dca-7fee_verapache"><a name="WS0ab2a460655f2dc3-427f401412c60d04dca-7fee_verapache"><!-- --></a>
+         <h3 class="topictitle3">Creating a header renderer for
+a Spark DataGrid</h3>
+
+         
+         <div>
+            <p>The <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/spark/skins/spark/DataGridSkin.html" target="_blank">DataGridSkin</a> class
+uses the <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/spark/components/GridColumnHeaderGroup.html" target="_blank">GridColumnHeaderGroup</a> component
+to control the display of the column headers. The GridColumnHeaderGroup
+component displays a row of headers cells, where the vertical edges
+of the header cells are aligned with the grid columns. </p>
+
+            <p>The GridColumnHeaderGroup component arranges header renderer
+instances in a row, where the left and right edge of each renderer
+match the corresponding column. The renderers' height is the maximum
+preferred height for all of the displayed header renderers. </p>
+
+            <p>Like the Grid control and item renderers, the GridColumnHeaderGroup
+class only creates as many column header renderers and separators
+as are visible. Renderers and separators that have been scrolled
+out of view are recycled.</p>
+
+            <p>By default, the GridColumnHeaderGroup component uses the spark.skins.spark.DefaultGridHeaderRenderer
+class as the header renderer. To create a custom header renderer,
+define the renderer in MXML or ActionScript. Header renderers must
+implement the <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/spark/components/gridClasses/IGridItemRenderer.html" target="_blank">IGridItemRenderer</a> interface.</p>
+
+            <p>Then, use the <samp class="codeph">Grid.headerRenderer</samp> property to
+specify to use the custom renderer for the column.</p>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS0ab2a460655f2dc3-427f401412c60d04dca-7fed_verapache"><a name="WS0ab2a460655f2dc3-427f401412c60d04dca-7fed_verapache"><!-- --></a>
+         <h3 class="topictitle3">Creating an item editor for a Spark
+DataGrid</h3>
+
+         
+         <div>
+            <p>The <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/spark/components/DataGrid.html" target="_blank">DataGrid</a> control
+includes an <samp class="codeph">editable</samp> property that you set to <samp class="codeph">true</samp> to
+let users edit grid cells. By default, the value of the <samp class="codeph">editable</samp> property
+is <samp class="codeph">false</samp>, which means that you cannot edit the
+cells.</p>
+
+            <p>For a DataGrid control, setting the <samp class="codeph">editable</samp> property
+to <samp class="codeph">true</samp> enables editing for all columns of the
+grid. You can disable editing for any column by setting the <samp class="codeph">GridColumn.editable</samp> property
+to <samp class="codeph">false</samp>. </p>
+
+            <p>Item editing is cell based. To edit a cell, first select the
+cell or cell row, depending on the selection mode of the grid. Then
+select the cell to edit. If editing is enabled, an item editor appears
+over the selected cell. </p>
+
+            <div class="p">
+               <div class="note"><span class="notetitle">Note:</span> While an item editor is associated with a single cell,
+the editor actually has access to the data provider element for
+the entire row of the selected cell. Therefore, the item editor
+can access and modify any data for the row. </div>
+
+            </div>
+
+            <p>All item editors must implement the <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/spark/components/gridClasses/IGridItemEditor.html" target="_blank">IGridItemEditor</a> interface.
+The <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/spark/components/gridClasses/GridItemEditor.html" target="_blank">GridItemEditor</a> class
+implements the IGridItemEditor interface. GridItemEditor also adds the <samp class="codeph">value</samp> property
+that you can use to pass data to and from the item editor. Most
+custom item editors are created as subclasses of GridItemEditor.</p>
+
+            <p>The two most important questions when dealing with an item editor
+are: </p>
+
+            <div class="p">
+               <ul>
+                  <li>
+                     <p>How do you pass data to the item editor?</p>
+
+                     <p>Use
+the bindable <samp class="codeph">GridItemEditor.value</samp> property to pass
+data to the item editor. The data type of the <samp class="codeph">value</samp> property
+is Object, so you can use it to pass a single value to the item
+editor, or you can use it to pass multiple items as fields of the
+Object. </p>
+
+                     <p>The GridItemEditor class implements the <samp class="codeph">value</samp> property
+as a setter and a getter method. When the item editor is created,
+Flex calls the setter method, passing the cell data from the data
+provider item for the row. Typically, you override the setter method
+in your item editor to initialize any items in the item editor from
+the cell data. The <samp class="codeph">value</samp> property only exists while
+the item editor is open. </p>
+
+                     <p>To access the data provider element
+for the entire row, use the <samp class="codeph">data</samp> property of the
+item renderer. </p>
+
+                  </li>
+
+                  <li>
+                     <p>How do you pass data back to the DataGrid control from the
+item editor?</p>
+
+                     <p>Use the <samp class="codeph">GridItemEditor.value</samp> property
+to pass data back to the control. Typically, in your item editor
+you override the getter method for the <samp class="codeph">value</samp> property
+to return any results back to the DataGrid control. The DataGrid
+control writes the returned value to the data field of the data provider
+element for the row that corresponds to the edited cell.</p>
+
+                     <p>The
+item editor uses the <samp class="codeph">IGridItemEditor.save()</samp> method
+to write the <samp class="codeph">value</samp> property to the data provider
+of the DataGrid control. You can override the <samp class="codeph">save()</samp> method
+to control how the <samp class="codeph">value</samp> property is written to
+the data provider. For example, the item editor might return multiple
+values that you want to write to multiple fields of the data provider
+element for the row. Override the <samp class="codeph">save()</samp> method
+in this situation to update the data provider.</p>
+
+                  </li>
+
+               </ul>
+
+            </div>
+
+         </div>
+
+         <div class="nested3" id="WS8b1c39bd7e9fc364-1a0b75ef12ddd639592-8000_verapache"><a name="WS8b1c39bd7e9fc364-1a0b75ef12ddd639592-8000_verapache"><!-- --></a>
+            <h4 class="topictitle4">Using the predefined item editors</h4>
+
+            
+            <div>
+               <p>Flex ships with two item editors that you can use in your
+application. The following table describes these item editor classes:</p>
+
+               <div class="p">
+                  
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" frame="border" border="1" rules="all">
+                        
+                        
+                        <thead align="left">
+                           <tr>
+                              <th class="cellrowborder" valign="top" width="NaN%" id="d868494e1967">
+                                 <p>Item Editor</p>
+
+                              </th>
+
+                              <th class="cellrowborder" valign="top" width="NaN%" id="d868494e1973">
+                                 <p>Use</p>
+
+                              </th>
+
+                           </tr>
+
+                        </thead>
+
+                        <tbody>
+                           <tr>
+                              <td class="cellrowborder" valign="top" width="NaN%" headers="d868494e1967 ">
+                                 <p>spark.components.gridClasses.DefaultGridItemEditor</p>
+
+                              </td>
+
+                              <td class="cellrowborder" valign="top" width="NaN%" headers="d868494e1973 ">
+                                 <p>Uses a Spark TextArea control to let you
+edit the text value of a cell.</p>
+
+                                 <p>By default, the DataGrid control
+uses the DefaultGridItemEditor class.</p>
+
+                              </td>
+
+                           </tr>
+
+                           <tr>
+                              <td class="cellrowborder" valign="top" width="NaN%" headers="d868494e1967 ">
+                                 <p>spark.components.gridClasses.ComboBoxGridItemEditor</p>
+
+                              </td>
+
+                              <td class="cellrowborder" valign="top" width="NaN%" headers="d868494e1973 ">
+                                 <p>Uses a Spark ComboBox control to display
+a drop-down list of cell values. Select a value to set the new value
+of the cell.</p>
+
+                              </td>
+
+                           </tr>
+
+                        </tbody>
+
+                     </table>
+</div>
+
+               </div>
+
+               <div class="p">The following example shows a <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/spark/components/DataGrid.html" target="_blank">DataGrid</a> control
+that uses the ComboBoxGridItemEditor class as the item editor: <pre class="codeblock">&lt;?xml version="1.0" encoding="utf-8"?&gt; 
+&lt;!-- dpcontrols\sparkdpcontrols\SparkDGComboBoxIE.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+               xmlns:s="library://ns.adobe.com/flex/spark" 
+               xmlns:mx="library://ns.adobe.com/flex/mx" 
+               width="450"&gt; 
+    &lt;fx:Script&gt; 
+        &lt;![CDATA[                
+            import mx.collections.ArrayCollection; 
+            
+            [Bindable] 
+            private var myDP:ArrayCollection = new ArrayCollection([ 
+                {label1:"Order #2314", quant:3, color:'red'}, 
+                {label1:"Order #2315", quant:3, color:'red'}     
+            ]);       
+        ]]&gt; 
+    &lt;/fx:Script&gt; 
+    
+    &lt;s:DataGrid id="myDG" width="100%" 
+                dataProvider="{myDP}" 
+                variableRowHeight="true" 
+                editable="true" &gt; 
+        &lt;s:columns&gt; 
+            &lt;s:ArrayList&gt; 
+                &lt;s:GridColumn dataField="label1" headerText="Order #"/&gt; 
+                &lt;s:GridColumn dataField="quant" headerText="Qty"/&gt; 
+                &lt;s:GridColumn dataField="color" headerText="Color"&gt; 
+                    &lt;s:itemEditor&gt; 
+                        &lt;fx:Component&gt; 
+                            &lt;s:ComboBoxGridItemEditor&gt; 
+                                &lt;s:dataProvider&gt; 
+                                    &lt;s:ArrayList&gt; 
+                                        &lt;fx:String&gt;red&lt;/fx:String&gt; 
+                                        &lt;fx:String&gt;green&lt;/fx:String&gt; 
+                                        &lt;fx:String&gt;blue&lt;/fx:String&gt; 
+                                    &lt;/s:ArrayList&gt; 
+                                &lt;/s:dataProvider&gt; 
+                            &lt;/s:ComboBoxGridItemEditor&gt; 
+                        &lt;/fx:Component&gt; 
+                    &lt;/s:itemEditor&gt;    
+                &lt;/s:GridColumn&gt; 
+            &lt;/s:ArrayList&gt; 
+        &lt;/s:columns &gt; 
+    &lt;/s:DataGrid&gt; 
+&lt;/s:Application&gt;</pre>
+
+               </div>
+
+            </div>
+
+         </div>
+
+         <div class="nested3" id="WS0ab2a460655f2dc3-427f401412c60d04dca-7fec_verapache"><a name="WS0ab2a460655f2dc3-427f401412c60d04dca-7fec_verapache"><!-- --></a>
+            <h4 class="topictitle4">The item editing process</h4>
+
+            
+            <div>
+               <p>The following steps describe the lifecycle of an item editor:</p>
+
+               <div class="p">
+                  <ol>
+                     <li>
+                        <p>An editing session begins in response to a user gesture,
+such as the user clicking a selected cell. You can also make an
+explicit call to the <samp class="codeph">DataGrid.startItemEditorSession()</samp> method
+to start the editing session.</p>
+
+                     </li>
+
+                     <li>
+                        <p>Before the item editor appears, the DataGrid dispatches the <samp class="codeph">gridItemEditorSessionStarting</samp> event. </p>
+
+                        <p>You
+can cancel the editing session by calling the <samp class="codeph">preventDefault()</samp> method
+in the event handler for the <samp class="codeph">gridItemEditorSessionStarting</samp> event.</p>
+
+                     </li>
+
+                     <li>
+                        <p>Flex sets the <samp class="codeph">rowIndex</samp>, <samp class="codeph">column</samp>,
+and <samp class="codeph">data</samp> properties of the item editor. The <samp class="codeph">data</samp> property
+contains the data provider item for the entire row. </p>
+
+                        <p>Flex
+sets the <samp class="codeph">value</samp> property of the item editor to the
+value of the field in the data provider element that corresponds
+to the cell being edited. </p>
+
+                     </li>
+
+                     <li>
+                        <p>Flex calls the <samp class="codeph">IGridItemEditor.prepare()</samp> method. </p>
+
+                        <p>When
+the <samp class="codeph">prepare()</samp> method is called, the editor's size
+and location have been set and the editor's layout has been validated.
+You can override the <samp class="codeph">prepare()</samp> method to make any
+final modifications to the editor, such as modifying its visual
+characteristics or attaching event handlers.</p>
+
+                     </li>
+
+                     <li>
+                        <p>Flex makes the editor visible by setting its <samp class="codeph">visible</samp> property
+to <samp class="codeph">true</samp>. </p>
+
+                     </li>
+
+                     <li>
+                        <p>The DataGrid dispatches the <samp class="codeph">gridItemEditorStart</samp> event.</p>
+
+                     </li>
+
+                     <li>
+                        <p>When the item editor is first displayed, it is given keyboard
+focus and its <samp class="codeph">setFocus()</samp> method is called. You
+typically override the <samp class="codeph">setFocus()</samp> method of the
+item editor to shift the focus to a specific component in the item
+editor. </p>
+
+                     </li>
+
+                     <li>
+                        <p>The user interacts with the editor. </p>
+
+                     </li>
+
+                     <li>
+                        <p>The edit session ends when the user presses the Enter key
+to save the data, or the Escape key to cancel the edit. The session
+also ends, and the data is saved, when the users clicks outside
+the editor, or the editor loses keyboard focus. </p>
+
+                        <p>If the editing
+session is saved, Flex calls the <samp class="codeph">IGridtemEditor.saved()</samp> method
+to write the <samp class="codeph">value</samp> property back to the data provider. </p>
+
+                        <p>You
+can end the editing sessions programmatically by calling the <samp class="codeph">DataGrid.endEditorSession()</samp> method.</p>
+
+                     </li>
+
+                     <li>
+                        <p>Flex calls the <samp class="codeph">IGridtemEditor.discard()</samp> method. </p>
+
+                        <p>Override
+the <samp class="codeph">discard()</samp> method to reverse any settings you
+made in the <samp class="codeph">prepare()</samp> method, such as removing
+event handles, or perform any other cleanup.</p>
+
+                     </li>
+
+                     <li>
+                        <p>The DataGrid dispatches either the <samp class="codeph">gridItemEditorSessionSave</samp> or <samp class="codeph">gridItemEditorSessionCancel</samp> event.</p>
+
+                     </li>
+
+                  </ol>
+
+               </div>
+
+            </div>
+
+         </div>
+
+         <div class="nested3" id="WS0ab2a460655f2dc3-427f401412c60d04dca-7feb_verapache"><a name="WS0ab2a460655f2dc3-427f401412c60d04dca-7feb_verapache"><!-- --></a>
+            <h4 class="topictitle4">Example custom item editor</h4>
+
+            
+            <div>
+               <div class="p">The following example shows a <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/spark/components/DataGrid.html" target="_blank">DataGrid</a> control
+that uses and item editor to let the user change the value of the
+quant field of the data provider. The second column of the control
+specifies to use the DGNumStepperEditor.mxml item editor:<pre class="codeblock">&lt;?xml version="1.0" encoding="utf-8"?&gt; 
+&lt;!-- dpcontrols\sparkdpcontrols\SparkDGItemEditor.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    width="450"&gt; 
+    &lt;fx:Script&gt; 
+        &lt;![CDATA[                
+            import mx.collections.ArrayCollection; 
+            
+            [Bindable] 
+            private var myDP:ArrayCollection = new ArrayCollection([ 
+                {label1:"Order #2314", quant:3, Sent:true}, 
+                {label1:"Order #2315", quant:3, Sent:false}     
+            ]);       
+        ]]&gt; 
+    &lt;/fx:Script&gt; 
+    
+    &lt;s:DataGrid id="myDG" width="100%" 
+        dataProvider="{myDP}" 
+        variableRowHeight="true" 
+        editable="true" &gt; 
+        &lt;s:columns&gt; 
+            &lt;s:ArrayList&gt; 
+                &lt;s:GridColumn dataField="label1" headerText="Order #"/&gt; 
+                &lt;s:GridColumn dataField="quant" 
+                    headerText="Qty" 
+                    itemEditor="myComponents.DGNumStepperEditor"/&gt; 
+            &lt;/s:ArrayList&gt; 
+        &lt;/s:columns &gt; 
+    &lt;/s:DataGrid&gt; 
+&lt;/s:Application&gt;</pre>
+
+               </div>
+
+               <p>The DGNumStepperEditor.mxml item editor defines a NumericStepper
+control to set an integer value. The item editor overrides the setter
+method for the <samp class="codeph">value</samp> property to initialize the
+NumericStepper control with the current value of the cell. </p>
+
+               <div class="p">The override of the getter method for the <samp class="codeph">value</samp> property
+returns the current value of the NumericStepper control. The <samp class="codeph">save()</samp> method
+updates the data provider element for the row of the grid with this
+value. The DGNumStepperEditor.mxml item editor is shown below: <pre class="noswf">&lt;?xml version="1.0" encoding="utf-8"?&gt; 
+&lt;!-- dpcontrols\sparkdpcontrols\myComponents\DGNumStepperEditor.mxml --&gt; 
+&lt;s:GridItemEditor xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx"&gt; 
+ 
+    &lt;fx:Script&gt; 
+        &lt;![CDATA[ 
+            
+            // Override the setter to initialize the NumericStepper control 
+            // with the cell data. 
+            override public function set value(newValue:Object):void { 
+                ns.value = newValue as Number; 
+            } 
+ 
+            // Override the getter to return the current value of 
+            // the NumericStepper control. 
+            // The save() method updates the data provider element for the 
+            // row of the grid with this value. 
+            override public function get value():Object { 
+                return ns.value; 
+            } 
+            
+            // Override setFocus() to shift focus to the NumericStepper. 
+            override public function setFocus():void { 
+                ns.setFocus(); 
+            } 
+        ]]&gt; 
+    &lt;/fx:Script&gt; 
+ 
+    &lt;s:NumericStepper id="ns" width="100%" 
+        fontWeight="bold"/&gt; 
+&lt;/s:GridItemEditor&gt;</pre>
+
+               </div>
+
+            </div>
+
+         </div>
+
+         <div class="nested3" id="WS0ab2a460655f2dc3-427f401412c60d04dca-7fea_verapache"><a name="WS0ab2a460655f2dc3-427f401412c60d04dca-7fea_verapache"><!-- --></a>
+            <h4 class="topictitle4">Keyboard and mouse shortcuts with
+item editors for the Spark DataGrid</h4>
+
+            
+            <div>
+               <p>The following table describes how the item editor responds
+to user interaction: </p>
+
+               <div class="p">
+                  
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" frame="border" border="1" rules="all">
+                        
+                        
+                        <thead align="left">
+                           <tr>
+                              <th class="cellrowborder" valign="top" width="NaN%" id="d868494e2287">
+                                 <p>User interaction</p>
+
+                              </th>
+
+                              <th class="cellrowborder" valign="top" width="NaN%" id="d868494e2293">
+                                 <p>Response</p>
+
+                              </th>
+
+                           </tr>
+
+                        </thead>
+
+                        <tbody>
+                           <tr>
+                              <td class="cellrowborder" valign="top" width="NaN%" headers="d868494e2287 ">
+                                 <p>F2</p>
+
+                              </td>
+
+                              <td class="cellrowborder" valign="top" width="NaN%" headers="d868494e2293 ">
+                                 <p>If cell selection mode is enabled, edit
+the cell indicated by the caret. </p>
+
+                                 <p>If row selection mode is
+enabled, and a cell has not been edited before, edit the first visible
+cell in the row indicated by the caret. Otherwise edit the cell
+in the last edited column in the caret row.</p>
+
+                              </td>
+
+                           </tr>
+
+                           <tr>
+                              <td class="cellrowborder" valign="top" width="NaN%" headers="d868494e2287 ">
+                                 <p>Enter</p>
+
+                              </td>
+
+                              <td class="cellrowborder" valign="top" width="NaN%" headers="d868494e2293 ">
+                                 <p>Save the editor's value and close the editor.</p>
+
+                              </td>
+
+                           </tr>
+
+                           <tr>
+                              <td class="cellrowborder" valign="top" width="NaN%" headers="d868494e2287 ">
+                                 <p>Esc</p>
+
+                              </td>
+
+                              <td class="cellrowborder" valign="top" width="NaN%" headers="d868494e2293 ">
+                                 <p>Cancel the editing session by closing the
+editor without saving the value.</p>
+
+                              </td>
+
+                           </tr>
+
+                           <tr>
+                              <td class="cellrowborder" valign="top" width="NaN%" headers="d868494e2287 ">
+                                 <p>Tab</p>
+
+                              </td>
+
+                              <td class="cellrowborder" valign="top" width="NaN%" headers="d868494e2293 ">
+                                 <p>Save the editor's value, close the editor,
+and open the editor in the next column that is editable.</p>
+
+                              </td>
+
+                           </tr>
+
+                           <tr>
+                              <td class="cellrowborder" valign="top" width="NaN%" headers="d868494e2287 ">
+                                 <p>Shift+Tab</p>
+
+                              </td>
+
+                              <td class="cellrowborder" valign="top" width="NaN%" headers="d868494e2293 ">
+                                 <p>Save the editor's value, close the editor,
+and open the editor in the first previous column that is editable.</p>
+
+                              </td>
+
+                           </tr>
+
+                           <tr>
+                              <td class="cellrowborder" valign="top" width="NaN%" headers="d868494e2287 ">
+                                 <p>Ctrl+.</p>
+
+                              </td>
+
+                              <td class="cellrowborder" valign="top" width="NaN%" headers="d868494e2293 ">
+                                 <p>Cancel the editing session by closing the
+editor without saving the value.</p>
+
+                              </td>
+
+                           </tr>
+
+                           <tr>
+                              <td class="cellrowborder" valign="top" width="NaN%" headers="d868494e2287 ">
+                                 <p>Ctrl+Enter</p>
+
+                              </td>
+
+                              <td class="cellrowborder" valign="top" width="NaN%" headers="d868494e2293 ">
+                                 <p>Save the editor's value, close the editor,
+and move selection to the same column in the next row.</p>
+
+                              </td>
+
+                           </tr>
+
+                           <tr>
+                              <td class="cellrowborder" valign="top" width="NaN%" headers="d868494e2287 ">
+                                 <p>Ctrl+Shift+Enter</p>
+
+                              </td>
+
+                              <td class="cellrowborder" valign="top" width="NaN%" headers="d868494e2293 ">
+                                 <p>Save the editor's value, close the editor,
+and move selection to the same column in the previous row.</p>
+
+                              </td>
+
+                           </tr>
+
+                           <tr>
+                              <td class="cellrowborder" valign="top" width="NaN%" headers="d868494e2287 ">
+                                 <p>Single mouse click</p>
+
+                              </td>
+
+                              <td class="cellrowborder" valign="top" width="NaN%" headers="d868494e2293 ">
+                                 <p>Open the editor in response to a single
+click on the selected cell. The cell must already be selected.</p>
+
+                                 <p>If
+the Shift or Ctrl key is pressed when the click occurs, then the
+editor does not open because the Shift and Ctrl keys are used to
+modify the selection.</p>
+
+                              </td>
+
+                           </tr>
+
+                        </tbody>
+
+                     </table>
+</div>
+
+               </div>
+
+            </div>
+
+         </div>
+
+      </div>
+
+   </div>
+
+   <div class="nested1" id="WS8b1c39bd7e9fc3647f39ab2512d530e9965-8000_verapache"><a name="WS8b1c39bd7e9fc3647f39ab2512d530e9965-8000_verapache"><!-- --></a>
+      <h2 class="topictitle2">Create a custom sort for the Spark DataGrid
+control</h2>
+
+      
+      <div>
+         <p>By default, users can sort the row of a <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/spark/components/DataGrid.html" target="_blank">DataGrid</a> by
+clicking the column headers. Clicking the column header initially
+sorts the display in descending order of the entries in the selected
+column, and clicking the header again reverses the sort order. For
+an example, see <a href="flx_spark_datagrid_sdg.html#WS0ab2a460655f2dc3-427f401412c60d04dca-7ffd_verapache">Sorting
+the columns of the Spark DataGrid control</a>.</p>
+
+         <p>The <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/spark/components/gridClasses/GridColumn.html" target="_blank">GridColumn</a> 
+            <samp class="codeph">sortCompareFunction</samp> property
+lets you specify a custom comparison function used to sort the rows
+by that column. This property sets the <samp class="codeph">compareFunction</samp> property
+of the default Spark SortField class object used by the DataGrid. </p>
+
+         <p>The <samp class="codeph">sortCompareFunction</samp> property lets you specify
+the function that compares two objects and determines which would
+be higher in the sort order, without requiring you to explicitly
+create a Sort object on your data provider. </p>
+
+         <p>The comparison function passed to the <samp class="codeph">sortCompareFunction</samp> property must
+have the following signature:</p>
+
+         <div class="p">
+            <pre class="codeblock">function sortCompareFunction(obj1:Object, obj2:Object, gc:GridColumn):int { 
+	// Sort logic 
+}</pre>
+
+         </div>
+
+         <p>The <samp class="codeph">obj1</samp> and <samp class="codeph">obj2</samp> arguments
+specify the objects to compare, and <samp class="codeph">gc</samp> specifies the
+column of the DataGrid control to sort.</p>
+
+         <p>Flex ships with two collator classes to help you write your comparison
+function. The <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/spark/globalization/MatchingCollator.html" target="_blank">spark.globalization.MatchingCollator</a> and <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/spark/globalization/SortingCollator.html" target="_blank">spark.globalization.SortingCollator</a> provide
+locale-sensitive string comparison functions. </p>
+
+         <p>By default, the sorting used by the DataGrid control is case
+sensitive. In the following example, you use the SortingCollator
+class to perform a case-insensitive comparison of two cells to sort
+the Name column of the DataGrid: </p>
+
+         <div class="p">
+            <pre class="codeblock">&lt;?xml version="1.0" encoding="utf-8"?&gt; 
+&lt;!-- dpcontrols\sparkdpcontrols\SparkDGXMLSort.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    width="500" height="600"&gt; 
+    &lt;s:layout&gt; 
+        &lt;s:VerticalLayout paddingTop="10"/&gt; 
+    &lt;/s:layout&gt; 
+ 
+    &lt;fx:Declarations&gt; 
+        &lt;fx:XMLList id="employees"&gt; 
+            &lt;employee&gt; 
+                &lt;name&gt;Joanne Wall&lt;/name&gt; 
+                &lt;phone&gt;555-219-2012&lt;/phone&gt; 
+                &lt;email&gt;jwall@fictitious.com&lt;/email&gt; 
+                &lt;active&gt;true&lt;/active&gt; 
+            &lt;/employee&gt; 
+            &lt;employee&gt; 
+                &lt;name&gt;Mary Jones&lt;/name&gt; 
+                &lt;phone&gt;555-219-2000&lt;/phone&gt; 
+                &lt;email&gt;mjones@fictitious.com&lt;/email&gt; 
+                &lt;active&gt;true&lt;/active&gt; 
+            &lt;/employee&gt;            
+            &lt;employee&gt; 
+                &lt;name&gt;mary jones&lt;/name&gt; 
+                &lt;phone&gt;555-219-2000&lt;/phone&gt; 
+                &lt;email&gt;mjones@fictitious.com&lt;/email&gt; 
+                &lt;active&gt;true&lt;/active&gt; 
+            &lt;/employee&gt;            
+            &lt;employee&gt; 
+                &lt;name&gt;Maurice Smith&lt;/name&gt; 
+                &lt;phone&gt;555-219-2012&lt;/phone&gt; 
+                &lt;email&gt;maurice@fictitious.com&lt;/email&gt; 
+                &lt;active&gt;false&lt;/active&gt; 
+            &lt;/employee&gt;            
+            &lt;employee&gt; 
+                &lt;name&gt;Dave Davis&lt;/name&gt; 
+                &lt;phone&gt;555-219-2000&lt;/phone&gt; 
+                &lt;email&gt;ddavis@fictitious.com&lt;/email&gt; 
+                &lt;active&gt;true&lt;/active&gt; 
+            &lt;/employee&gt;            
+            &lt;employee&gt; 
+                &lt;name&gt;Tom Maple&lt;/name&gt; 
+                &lt;phone&gt;555-219-2000&lt;/phone&gt; 
+                &lt;email&gt;tmaple@fictitious.com&lt;/email&gt; 
+                &lt;active&gt;true&lt;/active&gt; 
+            &lt;/employee&gt;            
+        &lt;/fx:XMLList&gt; 
+        &lt;s:XMLListCollection id="employees2" source="{employees}"/&gt; 
+        &lt;s:XMLListCollection id="employees3" source="{employees}"/&gt; 
+    &lt;/fx:Declarations&gt; 
+    
+    &lt;fx:Script&gt; 
+        &lt;![CDATA[ 
+            import mx.events.FlexEvent; 
+            import spark.collections.Sort; 
+            import spark.collections.SortField; 
+            import spark.globalization.SortingCollator; 
+            
+            // Create an instance of the SortingCollator. 
+            private var collator:SortingCollator = new SortingCollator(); 
+            
+            // Define the sort compare function used by the first column. 
+            private function sortCompareFunction(obj1:Object, obj2:Object, gc:GridColumn):int { 
+                // Make the sort case insensitive. The default is case sensitive. 
+                collator.ignoreCase = true; 
+                return collator.compare(obj1[gc.dataField], obj2[gc.dataField]); 
+            } 
+        ]]&gt; 
+    &lt;/fx:Script&gt; 
+ 
+    &lt;s:Label text="Custom case insensitive sort of the Name colum"/&gt; 
+    &lt;s:DataGrid id="dg" width="500" dataProvider="{employees2}"&gt; 
+        &lt;s:columns&gt; 
+            &lt;s:ArrayList&gt; 
+                &lt;s:GridColumn dataField="name" headerText="Name" 
+                    sortCompareFunction="sortCompareFunction"/&gt; 
+                &lt;s:GridColumn dataField="phone" headerText="Phone"/&gt; 
+                &lt;s:GridColumn dataField="email" headerText="Email"/&gt; 
+            &lt;/s:ArrayList&gt; 
+        &lt;/s:columns&gt; 
+    &lt;/s:DataGrid&gt; 
+ 
+    &lt;s:Label text="Default case sensitive sort of the Name colum"/&gt; 
+    &lt;s:DataGrid width="500" dataProvider="{employees3}"&gt; 
+        &lt;s:columns&gt; 
+            &lt;s:ArrayList&gt; 
+                &lt;s:GridColumn dataField="name" headerText="Name"/&gt; 
+                &lt;s:GridColumn dataField="phone" headerText="Phone"/&gt; 
+                &lt;s:GridColumn dataField="email" headerText="Email"/&gt; 
+            &lt;/s:ArrayList&gt; 
+        &lt;/s:columns&gt; 
+    &lt;/s:DataGrid&gt;    
+&lt;/s:Application&gt;</pre>
+
+         </div>
+
+      </div>
+
+   </div>
+
+   <div class="nested1" id="WS0ab2a460655f2dc3-427f401412c60d04dca-7fe8_verapache"><a name="WS0ab2a460655f2dc3-427f401412c60d04dca-7fe8_verapache"><!-- --></a>
+      <h2 class="topictitle2">Spark DataGrid control keyboard shortcuts</h2>
+
+      
+      <div>
+         <p>A <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/spark/components/DataGrid.html" target="_blank">DataGrid</a> control
+displays a grid of rows and columns. Depending on the available
+screen space, all rows and columns might not be currently visible. Paging
+down through the data items displayed by a 10-row control shows
+items 0-9, 10-19, 20-29, and so on.</p>
+
+         <p>The user clicks individual data items to select them. If the
+DataGrid is configured for multiple selection, holds down Shift
+key while clicking to select multiple items. </p>
+
+         <p>
+            The
+control has the following default keyboard navigation features:</p>
+
+         
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" frame="border" border="1" rules="all">
+               
+               
+               <thead align="left">
+                  <tr>
+                     <th class="cellrowborder" valign="top" width="NaN%" id="d868494e2582">
+                        <p>Key</p>
+
+                     </th>
+
+                     <th class="cellrowborder" valign="top" width="NaN%" id="d868494e2588">
+                        <p>Action</p>
+
+                     </th>
+
+                  </tr>
+
+               </thead>
+
+               <tbody>
+                  <tr>
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d868494e2582 ">
+                        <p>Up Arrow</p>
+
+                     </td>
+
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d868494e2588 ">
+                        <p>Moves selection up one item. Hold down the
+Control key (Windows) or Command key (OSX) to only move the caret,
+but not change selection.</p>
+
+                     </td>
+
+                  </tr>
+
+                  <tr>
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d868494e2582 ">
+                        <p>Down Arrow</p>
+
+                     </td>
+
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d868494e2588 ">
+                        <p>Moves selection down one item. Hold down
+the Control key (Windows) or Command key (OSX) to only move the
+caret, but not change selection.</p>
+
+                     </td>
+
+                  </tr>
+
+                  <tr>
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d868494e2582 ">
+                        <p>Left Arrow</p>
+
+                     </td>
+
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d868494e2588 ">
+                        <p>In cell selection mode, moves selection
+one column to the left. Hold down the Control key (Windows) or Command
+key (OSX) to only move the caret, but not change the selected cell. </p>
+
+                     </td>
+
+                  </tr>
+
+                  <tr>
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d868494e2582 ">
+                        <p>Right Arrow</p>
+
+                     </td>
+
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d868494e2588 ">
+                        <p>In cell selection mode, moves selection
+one column to the right. Hold down the Control key (Windows) or Command
+key (OSX) to only move the caret, but not change the selected cell.</p>
+
+                     </td>
+
+                  </tr>
+
+                  <tr>
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d868494e2582 ">
+                        <p>Page Up</p>
+
+                     </td>
+
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d868494e2588 ">
+                        <p>Moves selection up one page.</p>
+
+                     </td>
+
+                  </tr>
+
+                  <tr>
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d868494e2582 ">
+                        <p>Page Down</p>
+
+                     </td>
+
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d868494e2588 ">
+                        <p>Moves selection down one page.</p>
+
+                     </td>
+
+                  </tr>
+
+                  <tr>
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d868494e2582 ">
+                        <p>Home</p>
+
+                     </td>
+
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d868494e2588 ">
+                        <p>Moves selection to the top of the grid.</p>
+
+                     </td>
+
+                  </tr>
+
+                  <tr>
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d868494e2582 ">
+                        <p>End</p>
+
+                     </td>
+
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d868494e2588 ">
+                        <p>Moves selection to the bottom of the grid.</p>
+
+                     </td>
+
+                  </tr>
+
+                  <tr>
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d868494e2582 ">
+                        <p>Control key (Windows) and Command key (OSX)
+and a navigation key</p>
+
+                     </td>
+
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d868494e2588 ">
+                        <p>Allows for multiple, noncontiguous selection
+and deselection in multiple selection mode. Works with Arrow keys,
+Page Up key, Page Down key, mouse click, and mouse drag.</p>
+
+                     </td>
+
+                  </tr>
+
+                  <tr>
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d868494e2582 ">
+                        <p>Shift key and a navigation key</p>
+
+                     </td>
+
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d868494e2588 ">
+                        <p>Allows for contiguous selection in multiple
+selection mode. Works with keypresses, click selection, and drag selection.
+Works with Arrow keys, Page Up key, Page Down key, mouse click,
+and mouse drag.</p>
+
+                     </td>
+
+                  </tr>
+
+                  <tr>
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d868494e2582 ">
+                        <p>Control-A</p>
+
+                     </td>
+
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d868494e2588 ">
+                        <p>Select all grid items</p>
+
+                     </td>
+
+                  </tr>
+
+                  <tr>
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d868494e2582 ">
+                        <p>Space</p>
+
+                     </td>
+
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d868494e2588 ">
+                        <p>Adds the caret to the selection list</p>
+
+                     </td>
+
+                  </tr>
+
+                  <tr>
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d868494e2582 ">
+                        <p>Control-Space</p>
+
+                     </td>
+
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d868494e2588 ">
+                        <p>Toggle the selection of the caret. </p>
+
+                     </td>
+
+                  </tr>
+
+                  <tr>
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d868494e2582 ">
+                        <p>Shift-Space</p>
+
+                     </td>
+
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d868494e2588 ">
+                        <p>Extends selection from the anchor to the
+caret</p>
+
+                     </td>
+
+                  </tr>
+
+               </tbody>
+
+            </table>
+</div>
+
+      </div>
+
+   </div>
+
+
+</body>
+</html>

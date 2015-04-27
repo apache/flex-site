@@ -1,0 +1,3676 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Licensed to the Apache Software Foundation (ASF) under one or more
+  contributor license agreements.  See the NOTICE file distributed with
+  this work for additional information regarding copyright ownership.
+  The ASF licenses this file to You under the Apache License, Version 2.0
+  (the "License"); you may not use this file except in compliance with
+  the License.  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+-->
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en-us" xml:lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="topic"/>
+<meta name="DC.Title" content="Laying out components"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="WS2db454920e96a9e51e63e3d11c0bf69084-7e4c_verapache"/>
+<link rel="stylesheet" type="text/css" href="commonltr.css"/>
+<title>Laying out components</title>
+</head>
+<body id="WS2db454920e96a9e51e63e3d11c0bf69084-7e4c_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7e4c_verapache"><!-- --></a>
+
+
+   <h1 class="topictitle1">Laying out components</h1>
+
+   <div>
+      <p>Flex lays out components by determining
+their sizes and positions; it provides you with multiple options
+for controlling both size and position. </p>
+
+   </div>
+
+   <div class="nested1" id="WS2db454920e96a9e51e63e3d11c0bf633a0-7fff_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf633a0-7fff_verapache"><!-- --></a>
+      <h2 class="topictitle2">About sizing and positioning</h2>
+
+      
+      <div>
+         <p>
+            
+            
+            Component
+layout has two parts: component sizing and component positioning.
+Flex controls the layout of components by using a set of rules.
+These layout rules are a combination of sizing rules for individual
+components, and sizing and positioning rules for containers.</p>
+
+         <p>Because Flex defines default layout rules, you often do not have
+to set the size or position of components. Instead, you can concentrate
+on building the logic of your application and let Flex control the
+layout. </p>
+
+         <p>While Flex has default layout rules, you can use the component’s
+properties and methods to customize the layout. For example, all
+components have several properties, including <samp class="codeph">height</samp> and <samp class="codeph">width</samp>,
+for specifying the component’s size in absolute or container-relative
+terms. </p>
+
+         <p>Each container also has properties and styles that you can use
+to configure aspects of layout. You can also use different positioning
+techniques for laying out components in a container. For example,
+some containers support absolute <em>x</em>- and <em>y</em>-coordinate–based
+positioning.</p>
+
+      </div>
+
+      <div class="nested2" id="WS172D38BC-2ED4-4afa-A01C-02E3A7CA73BF_verapache"><a name="WS172D38BC-2ED4-4afa-A01C-02E3A7CA73BF_verapache"><!-- --></a>
+         <h3 class="topictitle3">About layout with Spark and MX
+containers</h3>
+
+         
+         <div>
+            <p>While the sizing and layout rules for Spark and MX containers
+are almost identical, there are a few differences between the two
+types of containers: </p>
+
+            <div class="p">
+               <ul>
+                  <li>
+                     <p>Spark containers let you specify the layout class
+assigned to the container, such as BasicLayout, HorizontalLayout,
+VerticalLayout, and TileLayout. </p>
+
+                     <p>MX containers have a predefined
+layout built in to the class. Therefore, the MX VBox container always
+lays out its children in a vertical column, and the MX Tile container
+always lays out its children in rows and columns. The only exceptions
+to this rule are the MX Application and MX Panel containers. These containers
+let you switch among absolute, vertical, and horizontal layout.</p>
+
+                  </li>
+
+                  <li>
+                     <p>Spark containers use properties on the layout class to control
+the layout of the container. For example, use the <samp class="codeph">TileLayout.verticalGap</samp> and <samp class="codeph">TileLayout.horizontalGap</samp> properties
+to set the gaps between children of a Spark container that uses
+the TileLayout class.</p>
+
+                     <p>MX containers use properties and styles
+of the container class. Therefore, to set the gaps for a MX container,
+set the <samp class="codeph">verticalGap</samp> and <samp class="codeph">horizontalGap</samp> styles
+on the container.</p>
+
+                  </li>
+
+               </ul>
+
+            </div>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf633a0-7fec_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf633a0-7fec_verapache"><!-- --></a>
+         <h3 class="topictitle3">About the Layout Manager</h3>
+
+         
+         <div>
+            <p>
+               
+               The Layout Manager controls
+layout in Flex. The manager uses the following three-stage process
+to determine the size and position of each component in an application: </p>
+
+            <dl>
+               
+                  <dt class="dlterm">Stage 1 - Commitment pass</dt>
+
+                  <dd>
+                     <p>Determines the property settings of the application’s components.
+This pass allows components whose contents depend on property settings
+to configure themselves before Flex determines their sizes and positions. </p>
+
+                     <p>During
+the commitment pass, the Layout Manager causes each component to run
+its <samp class="codeph">commitProperties()</samp> method, which determines
+the property values.</p>
+
+                  </dd>
+
+               
+               
+                  <dt class="dlterm">Stage 2 - Measurement pass</dt>
+
+                  <dd>
+                     <p>Calculates the default size of every component in the application.
+This pass starts from the most deeply nested components and works
+out toward the application container. </p>
+
+                     <p>The measurement pass
+determines the <em>measured</em>, or default, size of each component.
+The default size of each container is based on the default or explicit (if
+specified) sizes of its children. For example, an SkinnableContainer
+that uses the HorizontalLayout class has a default width equal to
+the sum of the default or explicit widths of all its children, plus
+the thickness of the borders, any padding, and the gaps between
+the children. </p>
+
+                     <p>During the measurement pass, the Layout Manager
+causes each component to call its <samp class="codeph">measure()</samp> method
+to determine the component’s default size. All sizing properties
+are calculated before Flex applies any transform to the component, such
+as a rotation, skew, or other transform.</p>
+
+                  </dd>
+
+               
+               
+                  <dt class="dlterm">Stage 3 - Layout pass</dt>
+
+                  <dd>
+                     <p>Lays out your application, including moving and resizing any
+components. This pass starts from the outermost container and works
+in toward the innermost component. The layout pass determines the
+actual size and placement of each component. It also does any programmatic
+drawing, such as calls to the <samp class="codeph">lineTo()</samp> or <samp class="codeph">drawRect()</samp> methods.</p>
+
+                     <p>The
+Layout Manager causes each component to run its <samp class="codeph">updateDisplayList()</samp> method
+to lay out the component’s children; for this reason, this pass
+is also referred to as the update pass.</p>
+
+                  </dd>
+
+               
+            </dl>
+
+         </div>
+
+         <div class="nested3" id="WSCBC5F8C9-85FE-422f-8E21-C4D7C8957EEC_verapache"><a name="WSCBC5F8C9-85FE-422f-8E21-C4D7C8957EEC_verapache"><!-- --></a>
+            <h4 class="topictitle4">When lay out occurs</h4>
+
+            
+            <div>
+               <p>
+                  Flex
+lays out components when your application initializes. Flex also
+performs a layout pass when the application or a user does something
+that affects the sizes or positions of visual elements, including
+the following: </p>
+
+               <ul>
+                  <li>
+                     <p>The application changes properties that specify sizing
+or positioning, such as <samp class="codeph">x</samp>, <samp class="codeph">y</samp>, <samp class="codeph">width</samp>, <samp class="codeph">height</samp>, <samp class="codeph">scaleX</samp>, <samp class="codeph">scaleY</samp>, <samp class="codeph">rotationX</samp>, <samp class="codeph">rotationY</samp>,
+and the transform matrix.</p>
+
+                  </li>
+
+                  <li>
+                     <p>A change affects the calculated width or height of a component,
+such as when the label text for a Button control changes, or the
+user resizes a component.</p>
+
+                  </li>
+
+                  <li>
+                     <p>
+                        A
+child is added or removed from a container, a child is resized,
+or a child is moved. For example, if your application can change
+the size of a component, Flex updates the layout of the container
+to reposition its children, based on the new size of the child. </p>
+
+                  </li>
+
+                  <li>
+                     <p>A property or style that requires measurement and drawing,
+such as the <samp class="codeph">fontFamily</samp>, changes.</p>
+
+                  </li>
+
+               </ul>
+
+            </div>
+
+         </div>
+
+         <div class="nested3" id="WS2db454920e96a9e51e63e3d11c0bf69084-7dfd_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7dfd_verapache"><!-- --></a>
+            <h4 class="topictitle4">Manually forcing layout</h4>
+
+            
+            <div>
+               <p>Sometimes, you might have to programmatically cause Flex
+to update application layout. Situations where you must force a
+layout include the following:</p>
+
+               <ul>
+                  <li>
+                     <p>When printing multiple page data grids by using the PrintDataGrid
+class.</p>
+
+                  </li>
+
+                  <li>
+                     <p>Before playing an effect, if the start values have just been
+set on the target.</p>
+
+                  </li>
+
+                  <li>
+                     <p>When capturing bitmap data after making property changes.</p>
+
+                  </li>
+
+               </ul>
+
+               <p>To force a layout, call the <samp class="codeph">validateNow()</samp> method
+of the component to lay out. This method causes Flex to validate
+and update the properties, sizes, and layout of the object and all
+its children, and to redraw them, if necessary. Because this method
+is computation-intensive, be careful to call it only when it is necessary.</p>
+
+            </div>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf633a0-7ff4_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf633a0-7ff4_verapache"><!-- --></a>
+         <h3 class="topictitle3">About component sizing</h3>
+
+         
+         <div>
+            <p>Flex provides several ways for you to control the size
+of controls and containers: </p>
+
+            <dl>
+               
+                  <dt class="dlterm">Default sizing</dt>
+
+                  <dd>
+                     <p>Flex automatically determines the sizes of controls and containers.</p>
+
+                  </dd>
+
+               
+               
+                  <dt class="dlterm">Explicit sizing</dt>
+
+                  <dd>
+                     <p>You set the <samp class="codeph">height</samp> and <samp class="codeph">width</samp> properties
+of the component to absolute values.</p>
+
+                  </dd>
+
+               
+               
+                  <dt class="dlterm">Percentage-based sizing</dt>
+
+                  <dd>
+                     <p>You specify the component size as a percentage of its parent
+container’s size.</p>
+
+                  </dd>
+
+               
+               
+                  <dt class="dlterm">Constraint-based layout</dt>
+
+                  <dd>
+                     <p>You control size and position by anchoring component’s sides
+to locations in their container.</p>
+
+                     <p>For details on controlling
+component sizes, see <a href="flx_size_position_sp.html#WS2db454920e96a9e51e63e3d11c0bf69084-7dfc_verapache">Sizing
+components</a>.</p>
+
+                  </dd>
+
+               
+            </dl>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf69084-7e5a_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7e5a_verapache"><!-- --></a>
+         <h3 class="topictitle3">About component positioning</h3>
+
+         
+         <div>
+            <p>Flex provides two mechanisms for positioning controls:</p>
+
+            <dl>
+               
+                  <dt class="dlterm">Automatic positioning</dt>
+
+                  <dd>
+                     <p>
+                        Flex
+automatically positions a container’s children according to a set
+of container- and component-specific rules. Most containers use
+automatic positioning. Automatic positioning is sometimes referred
+to as automatic layout. One of the differences between Spark and
+MX containers is that the layout algorithm for MX containers is
+fixed, but for Spark containers it is selectable by changing the
+container’s <samp class="codeph">layout</samp> property. </p>
+
+                  </dd>
+
+               
+               
+                  <dt class="dlterm">Absolute positioning</dt>
+
+                  <dd>
+                     <p>
+                        You
+specify each child’s <samp class="codeph">x</samp> and <samp class="codeph">y</samp> properties,
+or use a constraint-based layout that specifies the distance between
+one or more of the container’s sides and the child’s sides, baseline,
+or center. Absolute positioning is sometimes referred to as absolute
+layout. Spark containers with a layout of BasicLayout and the MX
+Canvas container use absolute layout. You can also choose absolute
+layout for the MX Application and Panel containers.</p>
+
+                  </dd>
+
+               
+            </dl>
+
+            <p>For details on controlling the positions of controls, see <a href="flx_size_position_sp.html#WS2db454920e96a9e51e63e3d11c0bf69084-7dfb_verapache">Positioning
+components</a>.</p>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS6100B1EE-1489-400f-B8DC-412D14535439_verapache"><a name="WS6100B1EE-1489-400f-B8DC-412D14535439_verapache"><!-- --></a>
+         <h3 class="topictitle3">About basic layout properties and
+methods</h3>
+
+         
+         <div>
+            <p>While Flex provides many properties that you can use to
+control and monitor component layout, there are a few that you use
+frequently. The following figure shows these properties and methods:</p>
+
+            <div class="p">
+               <div class="figborder">
+                  <img src="images/sp_size_properties.png"/>
+               </div>
+
+            </div>
+
+            <p>This figure shows how Flex lays out a component in its parent
+container. The <samp class="codeph">x</samp>, <samp class="codeph">y</samp>, <samp class="codeph">height</samp>,
+and <samp class="codeph">width</samp> properties of the component determine
+its size before any skins or transformations are applied to it.
+These are properties that you can set when defining your application.</p>
+
+            <p>After Flex applies any skins or transformations to the component,
+Flex uses the rectangular area, called the <em>bounding box</em>,
+to position the component in its parent container. The bounding
+box defines the rectangular are taken up by the component in its
+parent container. In the absence of any skin or transformation, the
+size of the bounding box is the same as the height and width of
+the component. </p>
+
+            <p>A graphical component, such as Ellipse and Rect, can define a
+stroke for their border. If the component defines a stroke, the
+center of the stroke runs along the outer edge of the component.
+For example, if you define a two-pixels wide border, the border
+appears in the area one-pixel outside the component to one-pixel
+inside the component. The border has to fit completely within the bounding
+box. Therefore, the upper-left corner of the component might be offset
+from the edge of the bounding box to accommodate the border.</p>
+
+            <p>The following table describes the basic component layout properties
+and methods: </p>
+
+            <div class="p">
+               
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" frame="border" border="1" rules="all">
+                     
+                     
+                     <thead align="left">
+                        <tr>
+                           <th class="cellrowborder" valign="top" width="NaN%" id="d852158e542">
+                              <p>Property or method</p>
+
+                           </th>
+
+                           <th class="cellrowborder" valign="top" width="NaN%" id="d852158e548">
+                              <p>Description</p>
+
+                           </th>
+
+                        </tr>
+
+                     </thead>
+
+                     <tbody>
+                        <tr>
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d852158e542 ">
+                              <p>
+                                 <samp class="codeph">x</samp>, <samp class="codeph">y</samp>
+                              </p>
+
+                           </td>
+
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d852158e548 ">
+                              <p>The x and y coordinate of the upper-left
+corner of the component in the parent container. You can set these
+properties for the children of a container that use absolute layout.
+Otherwise, Flex calculates these values for you.</p>
+
+                           </td>
+
+                        </tr>
+
+                        <tr>
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d852158e542 ">
+                              <p>
+                                 <samp class="codeph">height</samp>, <samp class="codeph">width</samp>
+                              </p>
+
+                           </td>
+
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d852158e548 ">
+                              <p>The height and width of the component. You
+can set these properties as a pixel value or as a percent of the
+size of the parent container. Otherwise, Flex calculates these values
+for you.</p>
+
+                           </td>
+
+                        </tr>
+
+                        <tr>
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d852158e542 ">
+                              <p>
+                                 <samp class="codeph">top</samp>, <samp class="codeph">bottom</samp>, <samp class="codeph">left</samp>, <samp class="codeph">right</samp>
+                              </p>
+
+                           </td>
+
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d852158e548 ">
+                              <p>The distances between the sides of the component
+and sides of the parent container. Use these properties when performing
+constraint-based layout. Only containers that use absolute layout
+support constraint-based layout. For more information, see <a href="flx_size_position_sp.html#WS2db454920e96a9e51e63e3d11c0bf69084-7df9_verapache">Using
+constraints to control component layout </a>.</p>
+
+                           </td>
+
+                        </tr>
+
+                        <tr>
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d852158e542 ">
+                              <p>
+                                 <samp class="codeph">getLayoutBoundsX(), </samp>
+                                 <samp class="codeph">getLayoutBoundsY()</samp>
+                              </p>
+
+                           </td>
+
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d852158e548 ">
+                              <p>The x and y coordinates of the bounding
+box of the component in the parent container after any skins and
+transformations have been applied to the component. </p>
+
+                           </td>
+
+                        </tr>
+
+                        <tr>
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d852158e542 ">
+                              <p>
+                                 <samp class="codeph">getlayoutBoundsHeight(), </samp>
+                                 <samp class="codeph">getLayoutBoundsWidth()</samp>
+                              </p>
+
+                           </td>
+
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d852158e548 ">
+                              <p>The height hand width of the bounding box
+of the component in the parent container after any skins and transformations
+have been applied to the component. \</p>
+
+                           </td>
+
+                        </tr>
+
+                     </tbody>
+
+                  </table>
+</div>
+
+            </div>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf69084-7df1_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7df1_verapache"><!-- --></a>
+         <h3 class="topictitle3">Basic layout rules and considerations</h3>
+
+         
+         <div>
+            <p>Flex performs layout according to the following basic rules.
+If you remember these rules, you should be able to easily understand
+the details of Flex layout. These rules help you determine why Flex
+lays out your application as it does and to determine how to modify
+your application appearance. </p>
+
+            <p>For a detailed description of how Flex sizes components, see <a href="flx_size_position_sp.html#WS2db454920e96a9e51e63e3d11c0bf69084-7de4_verapache">Determining
+and controlling component sizes </a>. For detailed information
+on component positioning, see <a href="flx_size_position_sp.html#WS2db454920e96a9e51e63e3d11c0bf69084-7dfb_verapache">Positioning
+components</a>.</p>
+
+            <ul>
+               <li>
+                  <p>Flex first determines all components’ measured (default)
+or explicitly set sizes <em>up</em>, from the innermost child components
+to the outermost (Application) component. This is done in the measurement
+pass.</p>
+
+               </li>
+
+               <li>
+                  <p>After the measurement pass, Flex determines all percentage-based
+sizes and constraints applied to the components. Flex then lays
+out components <em>down</em>, from the outermost container to the
+innermost components. This is done in the layout pass.</p>
+
+               </li>
+
+               <li>
+                  <p>Sizes that you set to a pixel value are mandatory and fixed,
+and override any maximum or minimum size specifications that you
+set for the component.</p>
+
+               </li>
+
+               <li>
+                  <p>The default sizes determined in the measurement pass specify
+the sizes of components that do not have explicit or percentage-based
+sizes (or use constraint-based layout), and are fixed.</p>
+
+               </li>
+
+               <li>
+                  <p>Percentage-based size specifications are advisory, and are
+relative to the size of the parent container. The layout algorithms
+satisfy the request if possible, and use the percentage values to
+determine proportional sizes, but the actual sizes can be less than
+the requested sizes. Percentage-based sizes are always within the
+component’s maximum and minimum sizes, and, subject to those bounds,
+don’t cause a container’s children to exceed the container size.</p>
+
+               </li>
+
+            </ul>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf633a0-7fdc_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf633a0-7fdc_verapache"><!-- --></a>
+         <h3 class="topictitle3">Component layout patterns</h3>
+
+         
+         <div>
+            <p>
+               
+               Flex uses different patterns to lay out
+different containers and their children. These patterns generally
+fit in the type categories listed in the following table. The table
+describes the general layout behavior for each type, how the default size
+of the container is determined, and how Flex sizes percentage-based children.</p>
+
+            
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" frame="border" border="1" rules="all">
+                  
+                  
+                  
+                  <thead align="left">
+                     <tr>
+                        <th class="cellrowborder" valign="top" width="NaN%" id="d852158e781">
+                           <p>Pattern</p>
+
+                        </th>
+
+                        <th class="cellrowborder" valign="top" width="NaN%" id="d852158e787">
+                           <p>Container type</p>
+
+                        </th>
+
+                        <th class="cellrowborder" valign="top" width="NaN%" id="d852158e793">
+                           <p>Default layout behavior</p>
+
+                        </th>
+
+                     </tr>
+
+                  </thead>
+
+                  <tbody>
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d852158e781 ">
+                           <p>Absolute positioning</p>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d852158e787 ">
+                           <p>Spark container using BasicLayout</p>
+
+                           <p>MX
+Canvas container or Application or Panel container with <samp class="codeph">layout="absolute"</samp>
+                           </p>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d852158e793 ">
+                           <p>
+                              <strong>General layout: </strong>Children of the container
+do not interact. That is, children can overlap and the position
+of one child does not affect the position of any other child. You
+specify the child positions explicitly or use constraints to anchor
+the sides, baselines, or centers of the children relative to the
+parent container.</p>
+
+                           <p>
+                              <strong>Default sizing: </strong>The measurement pass
+finds the child with the lowest bottom edge and the child with the
+rightmost edge, and uses these values to determine the container
+size.</p>
+
+                           <p>
+                              <strong>Percentage-based children: </strong>Sizing uses different
+rules depending on whether you use constraint-based layout or <em>x</em>- and <em>y</em>-
+coordinate positioning. See <a href="flx_size_position_sp.html#WS2db454920e96a9e51e63e3d11c0bf69084-7df4_verapache">Flex
+component sizing techniques </a>.</p>
+
+                        </td>
+
+                     </tr>
+
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d852158e781 ">
+                           <p>Containers that arrange children linearly</p>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d852158e787 ">
+                           <p>Spark containers using HorizontalLayout
+or VerticalLayout</p>
+
+                           <p>MX Box, DividedBox, Form, Panel, TitleWindow containers</p>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d852158e793 ">
+                           <p>
+                              <strong>General layout: </strong>All children of the
+container are arranged in a single row or column. Each child’s height
+and width can differ from all other children’s heights or widths. </p>
+
+                           <p>
+                              <strong>Default sizing: </strong>The
+container fits the default or explicit sizes of all children and
+all gaps, borders, and padding.</p>
+
+                           <p>
+                              <strong>Percentage-based children: </strong>If
+children with percentage-based sizing request more than the available
+space, the actual sizes are set to fit in the space, proportionate
+to the requested percentages.</p>
+
+                        </td>
+
+                     </tr>
+
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d852158e781 ">
+                           <p>Grid</p>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d852158e787 ">
+                           <p>MX Grid container</p>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d852158e793 ">
+                           <p>
+                              <strong>General layout: </strong>A container with
+a vertical layout of rows. Each row is a container with a horizontal
+layout of child controls, where all items are constrained to align
+with each other. The heights of all the cells in a single row are
+the same, but each row can have a different height. The widths of
+all cells in a single column are the same, but each column can have
+a different width. You can define a different number of cells for
+each row or each column of the Grid container, and individual cells
+can span columns or rows.</p>
+
+                           <p>
+                              <strong>Default sizing: </strong>The grid
+fits the individual rows and children at their default sizes.</p>
+
+                           <p>
+                              <strong>Percentage-based children: </strong>If
+children use percentage-based sizing, the sizing rules fit the children
+GridItem components within their rows, and GridRow components within the
+grid size according to linear container sizing rules.</p>
+
+                        </td>
+
+                     </tr>
+
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d852158e781 ">
+                           <p>Tile</p>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d852158e787 ">
+                           <p>Spark container using TileLayout</p>
+
+                           <p>MX
+Tile container</p>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d852158e793 ">
+                           <p>
+                              <strong>General layout: </strong>The container is
+a grid of equal-sized cells. The cells can be in row-first or column-first
+order. </p>
+
+                           <p>For MX, if you do not specify explicit or percentage-based dimensions,
+the container has as close as possible to an equal number of rows
+and columns, with the <samp class="codeph">direction</samp> property determining
+the orientation with the larger number of items, if necessary.</p>
+
+                           <p>For
+Spark, if you do not specify explicit or percentage-based dimensions,
+the container arranges the rows and columns so that the container
+has an equal height and width. The <samp class="codeph">orientation</samp> property
+determining the orientation with the larger number of items, if
+necessary.</p>
+
+                           <p>
+                              <strong>Default sizing: </strong>If you do not specify <samp class="codeph">tileWidth</samp> and <samp class="codeph">tileHeight</samp> properties
+(MX Tile container) or <samp class="codeph">columnWidth</samp> and <samp class="codeph">rowHeight</samp> (Spark
+Tile layout), the container uses the measured or explicit size of
+the largest child cell for the size of each child cell.</p>
+
+                           <p>
+                              <strong>Percentage-based children: </strong>The
+percentage-based sizes of a child component specify a percentage
+of the individual cell, not of the Tile container.</p>
+
+                        </td>
+
+                     </tr>
+
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d852158e781 ">
+                           <p>Navigators</p>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d852158e787 ">
+                           <p>MX ViewStack, Accordion, and TabNavigator containers</p>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d852158e793 ">
+                           <p>
+                              <strong>General layout: </strong>The container displays
+one child at a time. </p>
+
+                           <p>
+                              <strong>Default sizing: </strong>The container
+size is determined by the measured or explicit dimensions of the
+initially selected child, and thereafter, all children are forced
+to be that initial size. If you set the <samp class="codeph">resizeToChild</samp> property
+to <samp class="codeph">true</samp> the container resizes to accommodate the
+measured or explicit size of each child, as that child appears. </p>
+
+                           <p>
+                              <strong>Percentage-based children: </strong>As
+a general rule, you either use 100% for both height and width, which
+causes the children to fill the navigator bounds, or do not use
+percentage-based sizing.</p>
+
+                        </td>
+
+                     </tr>
+
+                  </tbody>
+
+               </table>
+</div>
+
+         </div>
+
+      </div>
+
+   </div>
+
+   <div class="nested1" id="WS2db454920e96a9e51e63e3d11c0bf69084-7dfc_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7dfc_verapache"><!-- --></a>
+      <h2 class="topictitle2">Sizing components</h2>
+
+      
+      <div>
+         <p>Flex provides several ways for controlling the size of
+components. You can do the following tasks:</p>
+
+         <ul>
+            <li>
+               <p>Let Flex automatically determine component sizes.</p>
+
+            </li>
+
+            <li>
+               <p>Specify pixel sizes.</p>
+
+            </li>
+
+            <li>
+               <p>Specify component size as a percentage of the parent container.</p>
+
+            </li>
+
+            <li>
+               <p>Combine layout and sizing by specifying a constraint-based
+layout. </p>
+
+            </li>
+
+         </ul>
+
+         <p>Several Flex properties affect the size of components. As a rule,
+you use only a few properties for most applications, but a more
+complete understanding of these properties can help you understand
+the underlying Flex sizing mechanism and how Flex sizing properties
+interrelate. For information on the rules that Flex applies to determine
+the sizes of components based on the properties, see <a href="flx_size_position_sp.html#WS2db454920e96a9e51e63e3d11c0bf69084-7de4_verapache">Determining
+and controlling component sizes </a>.</p>
+
+         <p>For information on constraint-based layout, see <a href="flx_size_position_sp.html#WS2db454920e96a9e51e63e3d11c0bf69084-7df9_verapache">Using
+constraints to control component layout </a>.</p>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf633a0-7fe2_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf633a0-7fe2_verapache"><!-- --></a>
+         <h3 class="topictitle3">Commonly used sizing properties</h3>
+
+         
+         <div>
+            <p>You typically use the following properties to specify how
+a component is sized:</p>
+
+            <ul>
+               <li>
+                  <p>The <samp class="codeph">height</samp>, <samp class="codeph">width</samp>, <samp class="codeph">percentHeight</samp>,
+and <samp class="codeph">percentWidth</samp> properties specify the height
+and width of a component. In MXML tags, you use the <samp class="codeph">height</samp> and <samp class="codeph">width</samp> properties
+to specify the dimensions in pixels or as percentages of the parent
+container size. In ActionScript, you use the <samp class="codeph">height</samp> and <samp class="codeph">width</samp> properties
+to specify the dimensions in pixels, and use the <samp class="codeph">percentHeight</samp> and <samp class="codeph">percentWidth</samp> properties
+to specify the dimensions as a percentage of the parent container. </p>
+
+               </li>
+
+               <li>
+                  <p>The <samp class="codeph">minHeight</samp>, <samp class="codeph">minWidth</samp>, <samp class="codeph">maxHeight</samp>,
+and <samp class="codeph">maxWidth</samp> properties specify the minimum and
+maximum dimensions that a component can have if Flex determines
+the component size. These properties have no effect if you explicitly
+set the width or height in pixels.</p>
+
+               </li>
+
+            </ul>
+
+            <p>The following characteristics and their associated properties
+determine the size of the component: </p>
+
+            
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" frame="border" border="1" rules="all">
+                  
+                  
+                  
+                  <thead align="left">
+                     <tr>
+                        <th class="cellrowborder" valign="top" width="NaN%" id="d852158e1188">
+                           <p>Characteristic</p>
+
+                        </th>
+
+                        <th class="cellrowborder" valign="top" width="NaN%" id="d852158e1194">
+                           <p>Associated properties</p>
+
+                        </th>
+
+                        <th class="cellrowborder" valign="top" width="NaN%" id="d852158e1200">
+                           <p>Description</p>
+
+                        </th>
+
+                     </tr>
+
+                  </thead>
+
+                  <tbody>
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d852158e1188 ">
+                           <p>Actual dimensions</p>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d852158e1194 ">
+                           <p> 
+                              <samp class="codeph">height</samp>, <samp class="codeph">width</samp> 
+                           </p>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d852158e1200 ">
+                           <p>The height and width of the displayed control,
+in pixels, as determined by the layout pass. </p>
+
+                           <p>If you set any
+explicit values, they determine the corresponding actual values.</p>
+
+                        </td>
+
+                     </tr>
+
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d852158e1188 ">
+                           <p>Explicit dimensions</p>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d852158e1194 ">
+                           <p>
+                              <samp class="codeph">explicitHeight</samp>, <samp class="codeph">explicitWidth</samp>
+                           </p>
+
+                           <p>Setting
+the <samp class="codeph">height</samp> and <samp class="codeph">width</samp> properties
+to integer values also sets the <samp class="codeph">explicitHeight</samp> and <samp class="codeph">explicitWidth</samp> properties.</p>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d852158e1200 ">
+                           <p>A dimension that you set as a number of
+pixels. These dimensions cannot be overridden.</p>
+
+                           <p>Application
+developers typically use the <samp class="codeph">height</samp> and <samp class="codeph">width</samp> properties
+to set explicit dimensions.</p>
+
+                           <p>You cannot have both an explicit
+dimension and a percentage-based dimension; setting one unsets the
+other.</p>
+
+                        </td>
+
+                     </tr>
+
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d852158e1188 ">
+                           <p>Percentage-based dimensions</p>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d852158e1194 ">
+                           <p>
+                              <samp class="codeph">percentHeight</samp>, <samp class="codeph">percentWidth</samp>
+                           </p>
+
+                           <p>In
+MXML tags only, setting the <samp class="codeph">height</samp> and <samp class="codeph">width</samp> properties
+to percentage string values, such as “50%”, also sets the <samp class="codeph">percentHeight</samp> and <samp class="codeph">percentWidth</samp> properties.</p>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d852158e1200 ">
+                           <p>A dimension that you set as a number in
+the range 0-100, as a percentage of the viewable area of the parent
+container. </p>
+
+                           <p>If you set a percentage-based dimension, the component
+is resizable, and grows or shrinks if the parent dimension changes.</p>
+
+                        </td>
+
+                     </tr>
+
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d852158e1188 ">
+                           <p>Default dimensions</p>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d852158e1194 ">
+                           <p>
+                              <samp class="codeph">measuredHeight</samp>, <samp class="codeph">measuredWidth</samp>
+                           </p>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d852158e1200 ">
+                           <p>Not used directly by application developers.</p>
+
+                           <p>The
+dimensions of the component, as determined by the <samp class="codeph">measure()</samp> method
+of the component.</p>
+
+                           <p>These values cannot be outside the range
+determined by the component’s maximum and minimum height and width
+values. </p>
+
+                        </td>
+
+                     </tr>
+
+                  </tbody>
+
+               </table>
+</div>
+
+            <p>The following characteristics determine the minimum and maximum <em>default </em>and <em>percentage-based</em> dimensions
+that a component can have. They <em>do not</em> affect values that
+you set explicitly or, for MX containers only, dimensions determined by
+using constraint-based layout.</p>
+
+            
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" frame="border" border="1" rules="all">
+                  
+                  
+                  
+                  <thead align="left">
+                     <tr>
+                        <th class="cellrowborder" valign="top" width="NaN%" id="d852158e1405">
+                           <p>Characteristic</p>
+
+                        </th>
+
+                        <th class="cellrowborder" valign="top" width="NaN%" id="d852158e1411">
+                           <p>Associated Properties</p>
+
+                        </th>
+
+                        <th class="cellrowborder" valign="top" width="NaN%" id="d852158e1417">
+                           <p>Description</p>
+
+                        </th>
+
+                     </tr>
+
+                  </thead>
+
+                  <tbody>
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d852158e1405 ">
+                           <p>Minimum dimensions</p>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d852158e1411 ">
+                           <p>
+                              <samp class="codeph">minHeight</samp>, <samp class="codeph">minWidth </samp>
+                           </p>
+
+                           <p>Setting
+the explicit minimum dimensions also sets the <samp class="codeph">minHeight</samp> and <samp class="codeph">minWidth</samp> properties.</p>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d852158e1417 ">
+                           <p>The minimum dimensions a component can have. </p>
+
+                           <p>By
+default, Flex sets these dimensions to the values of the minimum default
+dimensions.</p>
+
+                        </td>
+
+                     </tr>
+
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d852158e1405 ">
+                           <p>Maximum dimensions</p>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d852158e1411 ">
+                           <p>
+                              <samp class="codeph">maxHeight</samp>, <samp class="codeph">maxWidth</samp> 
+                           </p>
+
+                           <p>Setting
+the explicit maximum dimensions also sets the <samp class="codeph">maxHeight</samp> and <samp class="codeph">maxWidth</samp> properties.</p>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d852158e1417 ">
+                           <p>The maximum dimensions a component can have.</p>
+
+                           <p>The
+default values of these properties are component-specific, but often
+are 10000 pixels.</p>
+
+                        </td>
+
+                     </tr>
+
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d852158e1405 ">
+                           <p>Minimum default dimensions</p>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d852158e1411 ">
+                           <p>
+                              <samp class="codeph">measuredMinHeight</samp>, <samp class="codeph">measuredMinWidth</samp> 
+                           </p>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d852158e1417 ">
+                           <p>Not used by application developers.</p>
+
+                           <p>The
+minimum valid dimensions, as determined by the <samp class="codeph">measure()</samp> method.
+The default values for these properties are component-specific;
+for many controls, the default values are 0.</p>
+
+                        </td>
+
+                     </tr>
+
+                  </tbody>
+
+               </table>
+</div>
+
+         </div>
+
+         <div class="nested3" id="WS7326D2FE-B32A-4174-9EE2-06310A2F8075_verapache"><a name="WS7326D2FE-B32A-4174-9EE2-06310A2F8075_verapache"><!-- --></a>
+            <h4 class="topictitle4">Basic sizing rules</h4>
+
+            
+            <div>
+               <p>The following rules describe how you can use Flex sizing
+properties to specify the size of a component:</p>
+
+               <ul>
+                  <li>
+                     <p>Any dimension property that you set overrides the corresponding
+default value; for example, an explicitly set <samp class="codeph">height</samp> property
+overrides any default height.</p>
+
+                  </li>
+
+                  <li>
+                     <p>Setting the <samp class="codeph">width</samp>, <samp class="codeph">height</samp>, <samp class="codeph">maxWidth</samp>, <samp class="codeph">maxHeight</samp>, <samp class="codeph">minWidth</samp>,
+or <samp class="codeph">minHeight</samp> property to a pixel value in MXML
+or ActionScript also sets the corresponding explicit property, such
+as <samp class="codeph">explicitHeight</samp> or <samp class="codeph">explicitMinHeight</samp>.</p>
+
+                  </li>
+
+                  <li>
+                     <p>The explicit height and width and the percentage-based height
+and width are mutually exclusive. Setting one value sets the other
+to <samp class="codeph">NaN</samp>; for example, if you set <samp class="codeph">height</samp> or <samp class="codeph">explicitHeight</samp> to
+50 and then set <samp class="codeph">percentHeight</samp> to 33, the value
+of the <samp class="codeph">explicitHeight</samp> property is <samp class="codeph">NaN</samp>,
+not 50, and the <samp class="codeph">height</samp> property returns a value
+that is determined by the <samp class="codeph">percentHeight</samp> setting.</p>
+
+                  </li>
+
+                  <li>
+                     <p>If you set the <samp class="codeph">height</samp> or <samp class="codeph">width</samp> property
+to a percentage value in an MXML tag, you actually set the percentage-based
+value, that is, the <samp class="codeph">percentHeight</samp> or <samp class="codeph">percentWidth</samp> property, <em>not</em> the
+explicit value. In ActionScript, you cannot set the <samp class="codeph">height</samp> or <samp class="codeph">width</samp> property
+to a percentage value; instead, set the <samp class="codeph">percentHeight</samp> or <samp class="codeph">percentWidth</samp> property.</p>
+
+                  </li>
+
+                  <li>
+                     <p>When you read the <samp class="codeph">height</samp> and <samp class="codeph">width</samp> properties
+at run time, the value is always the actual height or width of the
+control.</p>
+
+                  </li>
+
+               </ul>
+
+            </div>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf69084-7de4_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7de4_verapache"><!-- --></a>
+         <h3 class="topictitle3">Determining and controlling component
+sizes </h3>
+
+         
+         <div>
+            <p>Flex determines the sizes of controls and containers based
+on the components and their properties and how you can use Flex
+properties to control the sizes.</p>
+
+         </div>
+
+         <div class="nested3" id="WS19f279b149e7481c-46c7043612c12ea8592-8000_verapache"><a name="WS19f279b149e7481c-46c7043612c12ea8592-8000_verapache"><!-- --></a>
+            <h4 class="topictitle4">Determining component size</h4>
+
+            
+            <div>
+               <p>During the measurement pass, Flex determines the components’
+default (also called measured) sizes. During the layout pass, Flex
+determines the actual sizes of the components, based on the explicit
+or default sizes and any percentage-based size specifications. </p>
+
+               <p>The following list describes sizing rules and behaviors that
+apply to all components, including both controls and containers.
+For container-specific sizing rules, see below. For detailed information
+on percentage-based sizing, see <a href="flx_size_position_sp.html#WS19f279b149e7481c-5b4a1faf12c12e55893-7ffe_verapache">Using percentage-based
+sizing </a>.</p>
+
+               <ul>
+                  <li>
+                     <p>If you specify an explicit size for any component (that
+is not outside the component’s minimum or maximum bounds), Flex
+always uses that size. </p>
+
+                  </li>
+
+                  <li>
+                     <p>If you specify a percentage-based size for any component,
+Flex determines the component’s actual size as part of the parent
+container’s sizing procedure, based on the parent’s size, the component’s
+requested percentage, and the container-specific sizing and layout
+rules.</p>
+
+                  </li>
+
+                  <li>
+                     <p>The default and percentage-based sizes are always at least
+as large as any minimum size specifications. </p>
+
+                  </li>
+
+                  <li>
+                     <p>If you specify a child component size by using a percentage
+value and do not specify an explicit or percentage-based size for
+its container, the child component and the container use their default
+size. </p>
+
+                  </li>
+
+                  <li>
+                     <p>A child might require more space than is available in the
+parent container. The container can either let the component extend
+past its boundaries, or the container can clip the component to
+its boundaries.</p>
+
+                     <p>For Spark containers, the default is to let
+the child component extend past its boundaries. Set the <samp class="codeph">clipAndEnableScrolling</samp> property
+to <samp class="codeph">true</samp> to configure a parent to clip the child
+at the parent’s boundaries. If you clip the children to the container
+boundaries, you can use the Scroller component with the container
+to display scroll bars. For more information, see <a href="flx_containers_intro_cn.html#WSC5AF600B-9793-4dfd-AD9D-B9FC098869A8_verapache">Scrolling Spark
+containers</a>.</p>
+
+                     <p>For a MX container, if a child requires
+more space than is available in the parent container, the parent
+clips the children at the parent’s boundaries, and, by default,
+displays scroll bars on the container. Set the <samp class="codeph">clipContent</samp> property to <samp class="codeph">false</samp> to
+configure a parent to let the child extend past the parent’s boundaries.
+Use the <samp class="codeph">scrollPolicy</samp> property to control the display
+of the scroll bars. For more information, see <a href="flx_containers_intro_cn.html#WS2db454920e96a9e51e63e3d11c0bf69084-7e41_verapache">Scrolling
+MX containers</a>.</p>
+
+                  </li>
+
+                  <li>
+                     <p>If you specify a percentage-based size for a component, Flex
+uses the viewable area of the container in determining the sizes.</p>
+
+                  </li>
+
+                  <li>
+                     <p>When sizing and positioning components, Flex does not distinguish
+between visible and invisible components. By default, an invisible
+component is sized and positioned as if it were visible. To prevent
+Flex from considering an invisible component when it sizes and positions
+other components, set the component’s <samp class="codeph">includeInLayout</samp> property
+to <samp class="codeph">false</samp>. This property affects the layout of the
+children of all containers except Accordion, FormItem, or ViewStack.
+For more information, see <a href="flx_size_position_sp.html#WS19f279b149e7481c-6c11b9b112c12e14c34-8000_verapache">Preventing
+layout of hidden controls</a>.</p>
+
+                     <div class="note"><span class="notetitle">Note:</span> Setting
+a component’s <samp class="codeph">includeInLayout</samp> property to <samp class="codeph">false</samp> does
+not prevent Flex from displaying the component; it only prevents
+Flex from considering the component when it lays out other components.
+To prevent Flex from displaying the component, also set the visible
+property to <samp class="codeph">false</samp>.</div>
+
+                  </li>
+
+               </ul>
+
+            </div>
+
+         </div>
+
+         <div class="nested3" id="WS19f279b149e7481c-46c7043612c12ea8592-7fff_verapache"><a name="WS19f279b149e7481c-46c7043612c12ea8592-7fff_verapache"><!-- --></a>
+            <h4 class="topictitle4">Determining container size</h4>
+
+            
+            <div>
+               <p>Flex uses the following basic rules, in addition to the
+basic component sizing rules, to determine the size of a container:</p>
+
+               <ul>
+                  <li>
+                     <p>A percentage-based container size is advisory. Flex makes
+the container large enough to fit its children at their minimum
+sizes. For more information on percentage-based sizing, see <a href="flx_size_position_sp.html#WS19f279b149e7481c-5b4a1faf12c12e55893-7ffe_verapache">Using
+percentage-based sizing </a>. </p>
+
+                  </li>
+
+                  <li>
+                     <p>If you do not specify an explicit or percentage-based size
+for a container, Flex determines the container size by using explicit
+sizes that you specify for any of its children, and the default
+sizes for all other children.</p>
+
+                  </li>
+
+                  <li>
+                     <p>Flex does not consider any percentage-based settings of a
+container’s children when sizing the container; instead, it uses
+the child’s default size.</p>
+
+                  </li>
+
+                  <li>
+                     <p>If a MX container uses automatic scroll bars, Flex does not
+consider the size of the scroll bars when it determines the container’s
+default size in its measurement pass. Thus, if a scroll bar is required,
+a default-sized container might be too small for proper appearance.
+For more information, see <a href="flx_containers_intro_cn.html#WS2db454920e96a9e51e63e3d11c0bf69084-7e41_verapache">Scrolling MX
+containers</a>.</p>
+
+                     <p>For a Spark container, the Scroller component
+adds the scroll bars and are therefore separate from the container. </p>
+
+                  </li>
+
+               </ul>
+
+               <p>Each MX container and each Spark layout class for a Spark container
+has a set of rules that determines the container’s default size.
+For information on default sizes of each container and layout, see
+the specific container sections in the <em>
+                     <em>
+                        <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/" target="_blank">ActionScript 3.0 Reference for the Adobe
+Flash Platform</a>
+                     </em>
+                  </em>, and in <a href="flx_app_container_apc.html#WS2db454920e96a9e51e63e3d11c0bf69084-7ee7_verapache">Application
+containers </a>; <a href="flx_groups_containers_gc.html#WSD42D542D-CEFF-47e2-AFD5-C11F3E9B5AE2_verapache">Spark
+containers </a>; <a href="flx_layouts_lo.html#WS2db454920e96a9e51e63e3d11c0bf69084-7e4b_verapache">MX
+layout containers</a>; and <a href="flx_navigators_na.html#WS2db454920e96a9e51e63e3d11c0bf69084-7fb9_verapache">MX
+navigator containers</a>.</p>
+
+            </div>
+
+         </div>
+
+         <div class="nested3" id="WS19f279b149e7481c-46c7043612c12ea8592-7ffe_verapache"><a name="WS19f279b149e7481c-46c7043612c12ea8592-7ffe_verapache"><!-- --></a>
+            <h4 class="topictitle4">Example: Determining a container
+and child sizes </h4>
+
+            
+            <div>
+               <p>The following example code shows how Flex determines the
+sizes of an SkinnableContainer container and its children. In this
+example, the SkinnableContainer uses a HorizontalLayout with three
+Button controls:</p>
+
+               <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- components\HBoxSizeSpark.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark"&gt; 
+    &lt;s:layout&gt; 
+        &lt;s:VerticalLayout/&gt; 
+    &lt;/s:layout&gt; 
+    
+    &lt;s:SkinnableContainer id="hb1"&gt; 
+        &lt;s:layout&gt; 
+            &lt;s:HorizontalLayout/&gt; 
+        &lt;/s:layout&gt; 
+        &lt;s:Button id="b1" 
+            label="Label 1"/&gt; 
+        &lt;s:Button id="b2" 
+            label="Label 2" 
+            minWidth="80"/&gt; 
+        &lt;s:Button id="b3" 
+            label="Label 3"/&gt; 
+    &lt;/s:SkinnableContainer&gt; 
+    
+    &lt;s:Form&gt; 
+        &lt;s:FormItem label="SkinnableContainer:"&gt; 
+            &lt;s:Label text="{hb1.width}"/&gt; 
+        &lt;/s:FormItem&gt; 
+        &lt;s:FormItem label="Button #1:"&gt; 
+            &lt;s:Label text="{b1.width}"/&gt; 
+        &lt;/s:FormItem&gt; 
+        &lt;s:FormItem label="Button #2:"&gt; 
+            &lt;s:Label text="{b2.width}"/&gt; 
+        &lt;/s:FormItem&gt; 
+        &lt;s:FormItem label="Button #3:"&gt; 
+            &lt;s:Label text="{b3.width}"/&gt; 
+        &lt;/s:FormItem&gt; 
+    &lt;/s:Form&gt; 
+&lt;/s:Application&gt;</pre>
+
+               <p>By default, the SkinnableContainer with a HorizontalLayout uses
+a 6 pixel gap between children. Since the Application container
+specifies no sizing properties, the Application container sizes
+itself large enough to hold the SkinnableContainer container and
+the Form container.</p>
+
+               <p>The default width for buttons is based on the label text width;
+in this example it is 70 pixels for all three buttons. However,
+the second button sets its <samp class="codeph">minWidth</samp> property to
+80 pixels. Therefore, the SkinnableContainer width is 70 + 80 +
+70 + 12 = 232 pixels. </p>
+
+               <p>If you change the <samp class="codeph">minWidth</samp> property of the second
+button to 65 pixels, the calculation uses the button’s minimum width,
+70 pixels, so the SkinnableContainer width is 222 pixels.</p>
+
+               <p>In the following example, you explicitly set the width of the
+Application container to 600 pixels. The Application container defines
+no left or right padding so the content area of its children is
+the entire area of the Application container. The SkinnableContainer
+width is now 450 pixels, 75% of 600 pixels. </p>
+
+               <div class="p">
+                  <div class="note"><span class="notetitle">Note:</span> The MX Application container defines 24 pixels of right
+and left padding around its content area. Therefore, if the MX Application
+container has a width of 600 pixels, the maximum width of a child
+is 552 pixels. The container in this example would then be 414 pixels
+wide, 75% of 552 pixels.</div>
+
+               </div>
+
+               <p>The button sizes are 92, 276, and 70 pixels, respectively. The
+third button uses the default size. The first and second buttons
+use 25% and 75% of the remaining available space in the container
+after deducting the default-width button and the gaps.</p>
+
+               <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- components\HBoxSizePercentSpark.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    width="600"&gt; 
+    &lt;s:layout&gt; 
+        &lt;s:VerticalLayout/&gt; 
+    &lt;/s:layout&gt; 
+    
+    &lt;s:SkinnableContainer id="hb1" width="75%"&gt; 
+        &lt;s:layout&gt; 
+            &lt;s:HorizontalLayout/&gt; 
+        &lt;/s:layout&gt; 
+        &lt;s:Button id="b1" 
+            label="Label 1" 
+            width="25%"/&gt; 
+        &lt;s:Button id="b2" 
+            label="Label 2" 
+            width="75%" 
+            minWidth="80"/&gt; 
+        &lt;s:Button id="b3" 
+            label="Label 3"/&gt; 
+    &lt;/s:SkinnableContainer&gt; 
+    
+    &lt;s:Form&gt; 
+        &lt;s:FormItem label="SkinnableContainer:"&gt; 
+            &lt;s:Label text="{hb1.width}"/&gt; 
+        &lt;/s:FormItem&gt; 
+        &lt;s:FormItem label="Button #1:"&gt; 
+            &lt;s:Label text="{b1.width}"/&gt; 
+        &lt;/s:FormItem&gt; 
+        &lt;s:FormItem label="Button #2:"&gt; 
+            &lt;s:Label text="{b2.width}"/&gt; 
+        &lt;/s:FormItem&gt; 
+        &lt;s:FormItem label="Button #3:"&gt; 
+            &lt;s:Label text="{b3.width}"/&gt; 
+        &lt;/s:FormItem&gt; 
+    &lt;/s:Form&gt; 
+&lt;/s:Application&gt;</pre>
+
+               <p>If you set the SkinnableContainer <samp class="codeph">width</samp> property
+to 20%, however, the SkinnableContainer width is <em>not</em> 120
+pixels, 20% of the Application container width. This is because
+120 pixels is too small to fit the container’s children. Remember
+that percentage-based size specifications are advisory. The layout
+algorithms satisfy the request if possible, but the actual sizes
+can be different from the requested sizes.</p>
+
+               <p>Instead it is 183 pixels, the sum of 21 pixels for button 1 (the
+default minimum size), 80 pixels for button 2 (the specified minimum
+size), and 70 pixels (the specified minimum size) for button 2,
+16 pixels for the gaps between buttons. The buttons are 21, 80,
+and 70 pixels wide, respectively.</p>
+
+               <p>For more information and examples showing sizing of containers
+and children, see <a href="flx_size_position_sp.html#WS2db454920e96a9e51e63e3d11c0bf69084-7df4_verapache">Flex
+component sizing techniques </a>. For detailed information on
+percentage-based sizing, see <a href="flx_size_position_sp.html#WS19f279b149e7481c-5b4a1faf12c12e55893-7ffe_verapache">Using
+percentage-based sizing </a>.</p>
+
+            </div>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf69084-7df4_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7df4_verapache"><!-- --></a>
+         <h3 class="topictitle3">Flex component sizing techniques </h3>
+
+         
+         <div>
+            <p>
+               
+               You can use default sizing, explicit
+sizing, and percentage-based sizing techniques to control the size
+of components. For information on using constraint-based layout
+for component sizing, see <a href="flx_size_position_sp.html#WS2db454920e96a9e51e63e3d11c0bf69084-7df9_verapache">Using
+constraints to control component layout </a>.</p>
+
+         </div>
+
+         <div class="nested3" id="WS19f279b149e7481c-5b4a1faf12c12e55893-8000_verapache"><a name="WS19f279b149e7481c-5b4a1faf12c12e55893-8000_verapache"><!-- --></a>
+            <h4 class="topictitle4">Using default sizing</h4>
+
+            
+            <div>
+               <p>If you do not otherwise specify sizes, Flex calculates
+a size based on the default sizing characteristics of the particular
+component and the default or explicit sizes of the component’s child
+controls. </p>
+
+               <p>As a rule, determine whether a component’s default size (as listed
+for the component in the <em>
+                     <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/" target="_blank">ActionScript 3.0 Reference for the Adobe
+Flash Platform</a>
+                  </em>) is appropriate for your application.
+If it is, you do not have to specify an explicit or percentage-based
+size.</p>
+
+               <p>The following example shows how you can use default sizing for
+Button children of an BorderContainer container. In this example,
+none of the children of the container specify a <samp class="codeph">width</samp> property:</p>
+
+               <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- components\DefaultButtonSizeSpark.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:MyComps="myComponents.*"&gt; 
+ 
+    &lt;s:BorderContainer width="400" height="25"&gt; 
+        &lt;s:layout&gt; 
+            &lt;s:HorizontalLayout/&gt; 
+        &lt;/s:layout&gt; 
+        &lt;s:Button label="Label 1"/&gt; 
+        &lt;s:Button label="Label 2"/&gt; 
+        &lt;s:Button label="Label 3"/&gt; 
+    &lt;/s:BorderContainer&gt; 
+&lt;/s:Application&gt;</pre>
+
+               <p>Flex, therefore, uses the default sizes of the buttons, which
+accommodate the button label and default padding, and draws this
+application as the following image shows:</p>
+
+               <div class="figborder">
+                  <img src="images/sp_sizingsample1.png" alt="Flex application using default button sizes"/>
+               </div>
+
+               <p>Notice the empty space to the right of the third button, because
+the sum of the default sizes is less than the available space. </p>
+
+            </div>
+
+         </div>
+
+         <div class="nested3" id="WS19f279b149e7481c-5b4a1faf12c12e55893-7fff_verapache"><a name="WS19f279b149e7481c-5b4a1faf12c12e55893-7fff_verapache"><!-- --></a>
+            <h4 class="topictitle4">Specifying an explicit size</h4>
+
+            
+            <div>
+               <p>Use the <samp class="codeph">width</samp> and <samp class="codeph">height</samp> properties
+of a component to explicitly set its size. In this example, Flex
+sets the component sizes to 300 by 40 pixels.</p>
+
+               <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- components\ExplicitTextSize.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark"&gt; 
+ 
+    &lt;s:Group&gt; 
+        &lt;s:TextInput id="myInput" 
+            text="This TextInput control is 200 by 40 pixels." 
+            width="300" 
+            height="40"/&gt; 
+    &lt;/s:Group&gt; 
+&lt;/s:Application&gt;</pre>
+
+               <p>The following example shows setting the sizes of a container
+and its child: </p>
+
+               <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- components\ExplicitHBoxSize.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark"&gt; 
+ 
+    &lt;s:Group width="150" height="50"&gt; 
+        &lt;s:TextInput id="myInput" 
+            text="Enter the zip code" 
+            width="200" height="40"/&gt; 
+    &lt;/s:Group&gt; 
+&lt;/s:Application&gt;</pre>
+
+               <p>Because the specified TextInput control size is larger than that
+of its parent container, it extends beyond the boundaries of the
+container. If you set the <samp class="codeph">clipAndEnableScrolling</samp> property
+of the container to <samp class="codeph">true</samp>, the child is clipped
+at the container boundaries. </p>
+
+               <div class="p">You can also use scroll bars to see the entire TextInput control
+by wrapping the Group container in the Scroller control, as the
+following example shows: <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- components\ExplicitHBoxSizeScroll.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark"&gt; 
+ 
+    &lt;s:Scroller&gt; 
+        &lt;s:Group width="150" height="50"&gt; 
+            &lt;s:TextInput id="myInput" 
+                text="Enter the zip code" 
+                width="200" height="40"/&gt;            
+        &lt;/s:Group&gt; 
+    &lt;/s:Scroller&gt; 
+&lt;/s:Application&gt;</pre>
+
+               </div>
+
+               <p>For more information on using scroll bars with Spark containers,
+see <a href="flx_containers_intro_cn.html#WSC5AF600B-9793-4dfd-AD9D-B9FC098869A8_verapache">Scrolling Spark
+containers</a>.</p>
+
+               <p>Note that for MX containers, the <samp class="codeph">clipContent</samp> property
+of the container defaults to <samp class="codeph">true</samp>. Therefore, MX
+containers clip the control at the container boundary and displays
+scroll bars. For more information on using scroll bars with MX containers,
+see <a href="flx_containers_intro_cn.html#WS2db454920e96a9e51e63e3d11c0bf69084-7e41_verapache">Scrolling
+MX containers</a>.</p>
+
+            </div>
+
+         </div>
+
+         <div class="nested3" id="WS19f279b149e7481c-5b4a1faf12c12e55893-7ffe_verapache"><a name="WS19f279b149e7481c-5b4a1faf12c12e55893-7ffe_verapache"><!-- --></a>
+            <h4 class="topictitle4">Using percentage-based sizing </h4>
+
+            
+            <div>
+               <p>
+                  Percentage-based
+sizing dynamically determines and maintains a component’s size relative
+to its container; for example, you can specify that the component’s width
+is 75% of the container. This sizing technique has several advantages
+over default or explicit fixed sizing: </p>
+
+               <ul>
+                  <li>
+                     <p>You only have to specify a size relative to the container;
+you don’t have to determine exact measurements.</p>
+
+                  </li>
+
+                  <li>
+                     <p>The component size changes dynamically when the container
+size changes.</p>
+
+                  </li>
+
+                  <li>
+                     <p>The sizing mechanism automatically takes into account the
+remaining available space and fits components even if their requested
+size exceeds the space.</p>
+
+                  </li>
+
+               </ul>
+
+               <p>To specify a percentage value, use one of the following coding
+techniques:</p>
+
+               <ol>
+                  <li>
+                     <p>
+                        In
+an MXML tag, set the <samp class="codeph">height</samp> or <samp class="codeph">width</samp> property
+to a percentage value; for example:</p>
+
+                     <pre class="codeblock"> &lt;s:TextArea id="ta1" width="70%" height="40%"/&gt;</pre>
+
+                  </li>
+
+                  <li>
+                     <p>In an MXML tag or an ActionScript statement, set the <samp class="codeph">percentHeight</samp> or <samp class="codeph">percentWidth</samp> property
+to a numeric value; for example:</p>
+
+                     <pre class="codeblock"> ta1.percentWidth=70;</pre>
+
+                  </li>
+
+               </ol>
+
+               <p>The exact techniques Flex uses to determine the dimensions of
+a component that uses percentage-based sizing depend on the type
+of container. For example, a MX Tile container, or a Spark container
+using the TileLayout class, has cells that are all the largest default
+or explicit dimensions of the largest child. Child control percentage
+values specify a percentage of the tile cell size, not of the container size.
+The percentage sizes of most other containers is relative to the
+overall container size.</p>
+
+            </div>
+
+         </div>
+
+         <div class="nested3" id="WS19f279b149e7481c-5b4a1faf12c12e55893-7ffd_verapache"><a name="WS19f279b149e7481c-5b4a1faf12c12e55893-7ffd_verapache"><!-- --></a>
+            <h4 class="topictitle4">Sizing percentage-based children
+of a linear container with automatic positioning</h4>
+
+            
+            <div>
+               <p>When Flex sizes children of a container that uses automatic
+positioning to lay out children in a single direction, Flex does
+the following:</p>
+
+               <ol>
+                  <li>
+                     <p>Determines the size of the viewable area of the parent
+container, and uses those dimensions for sizing calculations. The
+viewable area is the part of the container that is being displayed
+and can contain child components, text, images, or other content.
+For more information on calculating the size of containers, see <a href="flx_size_position_sp.html#WS19f279b149e7481c-46c7043612c12ea8592-8000_verapache">Determining
+component size</a>.</p>
+
+                  </li>
+
+                  <li>
+                     <p>Determines the desired sizes of container children with percentage-based sizes
+as a percentage of the viewable area of the container, minus any
+padding and gaps between the children.</p>
+
+                  </li>
+
+                  <li>
+                     <p>Reserves space for all children with explicit or default
+sizes.</p>
+
+                  </li>
+
+                  <li>
+                     <p>If available space (parent container size minus all reserved
+space, including borders, padding, and gaps) cannot accommodate
+the percentage requests, divides the available space in proportion
+to the specified percentages.</p>
+
+                  </li>
+
+                  <li>
+                     <p>If a minimum or maximum height or width specification conflicts
+with a calculated value, uses the minimum or maximum value, and
+recalculates all other percentage-based components based on the
+reduced available space.</p>
+
+                  </li>
+
+                  <li>
+                     <p>Rounds the size down to the next integer.</p>
+
+                  </li>
+
+               </ol>
+
+               <p>The following examples show how the requested percentage can
+differ from the size when the component is laid out:</p>
+
+               <ul>
+                  <li>
+                     <p>Suppose that 50% of a SkinnableContainer is available
+after reserving space for all explicit-sized and default-sized children,
+and for all gaps and padding. If one component requests 20% of the
+parent, and another component requests 60%, the first component
+is sized to 12.5% (20 /(20+ 60) * 50%) of the parent container and
+the second component is sized to 37.5% of the parent container. </p>
+
+                  </li>
+
+                  <li>
+                     <p>
+                        
+                        
+                        
+                        If any component requests 100% of its
+parent application container’s space, it occupies all the container <em>except</em> for
+the application’s padding.</p>
+
+                  </li>
+
+               </ul>
+
+            </div>
+
+         </div>
+
+         <div class="nested3" id="WS19f279b149e7481c-5b4a1faf12c12e55893-7ffc_verapache"><a name="WS19f279b149e7481c-5b4a1faf12c12e55893-7ffc_verapache"><!-- --></a>
+            <h4 class="topictitle4">Example: Using percentage-based
+children </h4>
+
+            
+            <div>
+               <p>The following example specifies percentage-based sizes
+for the first two of three buttons in a BorderContainer container:</p>
+
+               <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- components\PercentHBoxChildren.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark"&gt; 
+ 
+    &lt;s:BorderContainer width="400" height="25"&gt; 
+        &lt;s:layout&gt; 
+            &lt;s:HorizontalLayout/&gt; 
+        &lt;/s:layout&gt; 
+        &lt;s:Button id="b1" label="Label 1" width="25%"/&gt; 
+        &lt;s:Button id="b2" label="Label 2" width="40%"/&gt; 
+        &lt;s:Button id="b3" label="Label 3"/&gt; 
+    &lt;/s:BorderContainer&gt; 
+&lt;/s:Application&gt;</pre>
+
+               <p>In this example, the default width of the third button is 70
+pixels. The BorderContainer container has no padding by default,
+but has a one-pixel wide border on both sides. Therefore, of the
+400 pixel width, only 398 are available for laying out children.
+The HorizontalLayout class uses a 6-pixel horizontal gap between
+each component. </p>
+
+               <p>The first button requests 25% of the available 398 pixels of
+space, or 100 pixels (All calculated values are to the nearest pixel).
+The second button requests 40%, or 159 pixels. There is still unused
+space to the right of the third button.</p>
+
+               <p>Flex draws the following application:</p>
+
+               <div class="figborder">
+                  <img src="images/sp_sizingsample2.png" alt="The default width of the third button is 66 pixels"/>
+               </div>
+
+               <p>Now change the percentage values requested to 50% and 40%, respectively:</p>
+
+               <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- components\PercentHBoxChildren5040.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark"&gt; 
+ 
+    &lt;s:BorderContainer width="400" height="25"&gt; 
+        &lt;s:layout&gt; 
+            &lt;s:HorizontalLayout/&gt; 
+        &lt;/s:layout&gt; 
+        &lt;s:Button id="b1" label="Label 1" width="50%"/&gt; 
+        &lt;s:Button id="b2" label="Label 2" width="40%"/&gt; 
+        &lt;s:Button id="b3" label="Label 3"/&gt; 
+    &lt;/s:BorderContainer&gt;    
+&lt;/s:Application&gt;</pre>
+
+               <p>In this example, the first button requests 50% of the available
+space, or 200 pixels. The second button still requests 40%, or 160
+pixels, for a total of 360 pixels. However, the BorderContainer
+container only has 318 pixels free after reserving 70 pixels for
+the default-width button, 2 pixels for the borders, and 12 pixels
+for the gaps between components. </p>
+
+               <p>Flex divides the available space proportionally between the two
+buttons, giving .5/(.5 + .4) * 318 = 176 pixels, to the first button
+and .4/(.5 + .4) * 318 = 140 pixels, to the second button. </p>
+
+               <p>Flex draws the following application:</p>
+
+               <div class="figborder">
+                  <img src="images/sp_sizingsample3.png" alt="The first button requests 50% of the available HBox space"/>
+               </div>
+
+            </div>
+
+         </div>
+
+         <div class="nested3" id="WS19f279b149e7481c-5b4a1faf12c12e55893-7ffb_verapache"><a name="WS19f279b149e7481c-5b4a1faf12c12e55893-7ffb_verapache"><!-- --></a>
+            <h4 class="topictitle4">Sizing percentage-based children
+of a container with absolute positioning</h4>
+
+            
+            <div>
+               <p>Spark containers with a layout of BasicLayout, or MX Canvas,
+MX Panel, and MX Application containers can use absolute positioning.
+When Flex sizes children of a container that uses absolute positioning,
+it does the following:</p>
+
+               <ol>
+                  <li>
+                     <p>Determines the viewable area of the parent container,
+and uses the corresponding dimensions as the container dimensions
+for sizing calculations. For more information on calculating the
+size of containers, see <a href="flx_size_position_sp.html#WS19f279b149e7481c-46c7043612c12ea8592-8000_verapache">Determining component
+size</a>.</p>
+
+                  </li>
+
+                  <li>
+                     <p>Determines the sizes of children with percentage-based sizes
+by multiplying the decimal value by the container dimension minus
+the position of the control in the dimension’s direction. For example,
+if you specify <samp class="codeph">x="10"</samp> and <samp class="codeph">width="100%"</samp> for
+a child, the child size extends only to the edge of the viewable
+area, not beyond.</p>
+
+                     <div class="p">
+                        <div class="note"><span class="notetitle">Note:</span> The Spark BasicLayout class always
+calculates the percentage based on the size of the container, regardless
+of the position of the child component in the container.</div>
+
+                     </div>
+
+                     <p>Because
+controls can overlay other controls or padding, the sizing calculations do
+not consider padding or any other children when determining the
+size of a child.</p>
+
+                  </li>
+
+                  <li>
+                     <p>If a minimum or maximum height or width specification conflicts
+with a calculated value, uses the minimum or maximum value.</p>
+
+                  </li>
+
+                  <li>
+                     <p>For MX containers, round the size down to the closest integer.</p>
+
+                     <p>For
+Spark containers, round the size up or down to the closest integer. </p>
+
+                  </li>
+
+               </ol>
+
+            </div>
+
+         </div>
+
+         <div class="nested3" id="WS19f279b149e7481c-5b4a1faf12c12e55893-7ffa_verapache"><a name="WS19f279b149e7481c-5b4a1faf12c12e55893-7ffa_verapache"><!-- --></a>
+            <h4 class="topictitle4">Example: Using percentage-based
+children with absolute positioning</h4>
+
+            
+            <div>
+               <p>The following code shows the percentage-based sizing behavior
+with absolute positioning:</p>
+
+               <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- components\PercentSizeAbsPosit.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark"&gt; 
+    &lt;s:layout&gt; 
+        &lt;s:VerticalLayout gap="25"/&gt; 
+    &lt;/s:layout&gt; 
+    &lt;s:BorderContainer 
+        width="200" height="75"&gt; 
+        &lt;s:layout&gt; 
+            &lt;s:BasicLayout/&gt; 
+        &lt;/s:layout&gt; 
+        &lt;s:BorderContainer 
+            x="20" y="10" 
+            width="100%" height="25" 
+            backgroundColor="#666666"/&gt; 
+    &lt;/s:BorderContainer&gt; 
+ 
+    &lt;s:BorderContainer 
+        width="200" height="75"&gt; 
+        &lt;s:layout&gt; 
+            &lt;s:BasicLayout/&gt; 
+        &lt;/s:layout&gt; 
+        &lt;s:BorderContainer 
+            left="20" top="10" 
+            width="100%" height="25" 
+            backgroundColor="#666666"/&gt; 
+    &lt;/s:BorderContainer&gt; 
+&lt;/s:Application&gt;</pre>
+
+               <p>Flex draws the following application:</p>
+
+               <div class="figborder">
+                  <img src="images/sp_canvasPercentSizing.png" alt="Percentage-based sizing behavior with absolute positioning"/>
+               </div>
+
+            </div>
+
+         </div>
+
+         <div class="nested3" id="WS19f279b149e7481c-5b4a1faf12c12e55893-7ff9_verapache"><a name="WS19f279b149e7481c-5b4a1faf12c12e55893-7ff9_verapache"><!-- --></a>
+            <h4 class="topictitle4">Using minimum or maximum dimensions</h4>
+
+            
+            <div>
+               <p>You can also use the <samp class="codeph">minWidth</samp>, <samp class="codeph">minHeight</samp>, <samp class="codeph">maxWidth</samp>,
+and <samp class="codeph">maxHeight</samp> properties with a percentage-based
+component to constrain its size. Consider the following example:</p>
+
+               <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- components\PercentChildrenMin.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark"&gt; 
+    &lt;s:layout&gt; 
+        &lt;s:VerticalLayout/&gt; 
+    &lt;/s:layout&gt; 
+ 
+    &lt;s:BorderContainer id="bc" width="400" height="25"&gt; 
+        &lt;s:layout&gt; 
+            &lt;s:HorizontalLayout/&gt; 
+        &lt;/s:layout&gt; 
+        &lt;s:Button id="b1" label="Label 1" width="50%"/&gt; 
+        &lt;s:Button id="b2" label="Label 2" width="40%" minWidth="150"/&gt; 
+        &lt;s:Button id="b3" label="Label 3"/&gt; 
+    &lt;/s:BorderContainer&gt; 
+    
+    &lt;s:Form&gt; 
+        &lt;s:FormItem label="Container:"&gt; 
+            &lt;s:Label text="{bc.width}"/&gt; 
+        &lt;/s:FormItem&gt; 
+        &lt;s:FormItem label="Button #1:"&gt; 
+            &lt;s:Label text="{b1.width}"/&gt; 
+        &lt;/s:FormItem&gt; 
+        &lt;s:FormItem label="Button #2:"&gt; 
+            &lt;s:Label text="{b2.width}"/&gt; 
+        &lt;/s:FormItem&gt; 
+        &lt;s:FormItem label="Button #3:"&gt; 
+            &lt;s:Label text="{b3.width}"/&gt; 
+        &lt;/s:FormItem&gt; 
+    &lt;/s:Form&gt;    
+&lt;/s:Application&gt;</pre>
+
+               <p>To determine the widths of the percentage-based button sizes,
+Flex first determines the sizes as described in the second example
+in <a href="flx_size_position_sp.html#WS19f279b149e7481c-5b4a1faf12c12e55893-7ffc_verapache">Example:
+Using percentage-based children </a>, which results in requested
+values of 176 for the first button and 140 for the second button.
+However, the minimum width of the second button is 150, so Flex
+sets its size to 150 pixels, and reduces the size of the first button
+to occupy the remaining available space, which results in a width
+of 166 pixels. </p>
+
+               <p>Flex draws the following application:</p>
+
+               <div class="figborder">
+                  <img src="images/sp_sizingsample4.png" alt="Flex application with the minimum width of the second button set to 150 pixels."/>
+               </div>
+
+            </div>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf633a0-7ffd_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf633a0-7ffd_verapache"><!-- --></a>
+         <h3 class="topictitle3">Setting the application container
+size </h3>
+
+         
+         <div>
+            <p>When you size an application, you often start by setting
+the size of the Application or Application container. The application
+containers determine the boundaries of your application in the Adobe<sup>®</sup> Flash<sup>®</sup> Player
+or Adobe<sup>®</sup> AIR™.</p>
+
+            <p>The <samp class="codeph">width</samp> and <samp class="codeph">height</samp> properties
+specified by the application container are used to set the width
+and height of the <samp class="codeph">&lt;object&gt;</samp> and <samp class="codeph">&lt;embed&gt;</samp> tags
+in the HTML wrapper page. Those numbers determine the portion of
+the HTML page that is allocated to the Flash Player plug-in. </p>
+
+            <p>If you are not autogenerating the HTML wrapper, set the application
+containers <samp class="codeph">width</samp> and <samp class="codeph">height</samp> properties
+to 100%. That way, the application scales to fit the space that
+is allocated to the Flash plug-in.</p>
+
+            <p>
+               Set
+the application container size as the following example shows: </p>
+
+            <pre class="noswf">&lt;?xml version="1.0"?&gt; 
+&lt;!-- components\AppExplicit.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    height="100" 
+    width="150"&gt; 
+    
+        &lt;!-- Application children go here. --&gt; 
+&lt;/s:Application&gt;</pre>
+
+            <p>In this example, you set the application container size to 100
+by 150 pixels. Anything in the application larger than this window
+is clipped at the window boundaries. Therefore, if you define a
+200 pixel by 200 pixel DataGrid control, it is clipped. </p>
+
+            <p>If you are using the Spark Application container, you can modify
+the container’s skin to add scroll bars. For more information, see <a href="flx_app_container_apc.html#WSA508AA1B-D2AD-4b42-B840-443CC56DE17D_verapache">Using
+scroll bars with the application container</a>. If you are using
+the MX Application container, it automatically displays scroll bars. </p>
+
+            <p>For more information on sizing the Application container, see <a href="flx_app_container_apc.html#WS2db454920e96a9e51e63e3d11c0bf69084-7ee7_verapache">Application containers </a>. </p>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS202E0E43-0515-4703-8F95-B22FE53A430A_verapache"><a name="WS202E0E43-0515-4703-8F95-B22FE53A430A_verapache"><!-- --></a>
+         <h3 class="topictitle3">Using padding and custom gaps</h3>
+
+         
+         <div>
+            <p>There may be situations where you want your containers
+to have padding around the edges. Some containers, such as the MX
+Application container, have padding by default; others, such as
+the Spark Application container, have padding values of 0 by default. </p>
+
+            <p>Use the <samp class="codeph">paddingTop</samp>, <samp class="codeph">paddingBottom</samp>, <samp class="codeph">paddingRight</samp>,and <samp class="codeph">paddingLeft</samp> style
+properties to set the padding around the content area of a MX container.
+To set the padding for a Spark container, you can either use the padding
+properties of the layout classes, such as HorizontalLayout or VerticalLayout,
+or define a container skin. </p>
+
+            <p>Also, MX containers and Spark layouts define gaps between children,
+which you might want to change from the default values. If your
+application has nonzero padding and gaps, Flex reserves the necessary
+pixels before it sizes any percentage-based components. </p>
+
+            <p>Consider the following example:</p>
+
+            <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- components\PadContainer.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark"&gt; 
+    &lt;s:layout&gt; 
+        &lt;s:VerticalLayout/&gt; 
+    &lt;/s:layout&gt; 
+        
+    &lt;s:BorderContainer width="400" height="25"&gt; 
+        &lt;s:layout&gt; 
+            &lt;s:HorizontalLayout 
+                paddingLeft="5" 
+                paddingRight="5" 
+                gap="15"/&gt;                
+        &lt;/s:layout&gt; 
+        
+        &lt;s:Button id="b1" 
+            label="Label 1" 
+            width="75%"/&gt; 
+        &lt;s:Button id="b2" 
+            label="Label 2" 
+            minWidth="120"/&gt; 
+        &lt;s:Button id="b3" 
+            label="Label 3"/&gt; 
+    &lt;/s:BorderContainer&gt; 
+ 
+    &lt;s:Form&gt; 
+        &lt;s:FormItem label="Button #1:"&gt; 
+            &lt;s:Label text="{b1.width}"/&gt; 
+        &lt;/s:FormItem&gt; 
+        &lt;s:FormItem label="Button #2:"&gt; 
+            &lt;s:Label text="{b2.width}"/&gt; 
+        &lt;/s:FormItem&gt; 
+        &lt;s:FormItem label="Button #3:"&gt; 
+            &lt;s:Label text="{b3.width}"/&gt; 
+        &lt;/s:FormItem&gt; 
+    &lt;/s:Form&gt; 
+&lt;/s:Application&gt;</pre>
+
+            <p>The left and right padding of the container is set to 5 pixels,
+and the gap between children is 15 pixels. The default width of
+the third button is 70 pixels. That leaves 288 pixels for the two
+percentage-based components. The second button requires its minimum
+size of 120 pixels, leaving 168 pixels available for the first button. </p>
+
+         </div>
+
+      </div>
+
+   </div>
+
+   <div class="nested1" id="WS2db454920e96a9e51e63e3d11c0bf69084-7dfb_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7dfb_verapache"><!-- --></a>
+      <h2 class="topictitle2">Positioning components</h2>
+
+      
+      <div>
+         <p>The position of a component is defined by the x and y coordinates
+of its top, left corner in its parent container. For most containers,
+Flex automatically determines the location of the component in its
+parent container. This is called <em>automatic positioning</em>.</p>
+
+         <p>Some containers let you explicitly specify the x and y coordinates
+of the component in it parent container. This is called <em>absolute positioning</em>.
+These containers include the following: </p>
+
+         <div class="p">
+            <ul>
+               <li>
+                  <p>A Spark container using the BasicLayout class </p>
+
+               </li>
+
+               <li>
+                  <p>The MX Canvas container </p>
+
+               </li>
+
+               <li>
+                  <p>The MX Application and Panel containers with the <samp class="codeph">layout</samp> property
+set to <samp class="codeph">absolute</samp>
+                  </p>
+
+               </li>
+
+            </ul>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf633a0-7fea_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf633a0-7fea_verapache"><!-- --></a>
+         <h3 class="topictitle3">Automatic positioning</h3>
+
+         
+         <div>
+            <p>With automatic positioning, Flex positions the container
+children according to the container’s layout rules, such as the
+layout direction, the container padding, and the gaps between children
+of that container. </p>
+
+            <p>
+               For containers
+that use automatic positioning, setting the <samp class="codeph">x</samp> or <samp class="codeph">y</samp> property
+directly on a child or calling the child’s <samp class="codeph">move()</samp> method
+has no effect, or only a temporary effect. This is because the container
+recalculates the child’s position and does not use the specified
+value. You can, however, specify absolute positions for the children
+of these containers under some circumstances; for more information,
+see below.</p>
+
+            <p>You can control aspects of the layout by specifying container
+properties; for details on the properties, see the property descriptions
+for the container in the <em>
+                  <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/" target="_blank">ActionScript 3.0 Reference for the Adobe
+Flash Platform</a>
+               </em>. You also control the layout by controlling
+component sizes and by using techniques such as adding spacers.</p>
+
+            <div class="section" id="WS2db454920e96a9e51e63e3d11c0bf633a0-7fea_verapache__WS2db454920e96a9e51e63e3d11c0bf633a0-7fee_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf633a0-7fea_verapache__WS2db454920e96a9e51e63e3d11c0bf633a0-7fee_verapache"><!-- --></a><h4 class="sectiontitle">Using
+the Spacer control to control layout</h4>
+               
+               <p>
+                  
+                  
+                  
+                  Flex
+includes a Spacer control that helps you lay out children within
+a parent container. The Spacer control is invisible, but it does
+allocate space within its parent. </p>
+
+               <p>In the following example,
+you use a percentage-based Spacer control to push the Button control
+to the right so that it is aligned with the right edge of the HBox container:</p>
+
+               <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- components\SpacerHBox.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark"&gt; 
+    &lt;s:layout&gt; 
+        &lt;s:VerticalLayout/&gt; 
+    &lt;/s:layout&gt; 
+    
+    &lt;fx:Script&gt; 
+        &lt;![CDATA[ 
+            [Embed(source="assets/flexlogo.jpg")] 
+            [Bindable] 
+            public var imgCls:Class; 
+        ]]&gt; 
+    &lt;/fx:Script&gt; 
+    
+    &lt;s:SkinnableContainer width="400"&gt; 
+        &lt;s:layout&gt; 
+            &lt;s:HorizontalLayout/&gt; 
+        &lt;/s:layout&gt; 
+        &lt;mx:Image source="{imgCls}"/&gt; 
+        &lt;s:Label  text="Company XYZ"/&gt; 
+        &lt;mx:Spacer width="100%"/&gt; 
+        &lt;s:Button label="Close"/&gt; 
+    &lt;/s:SkinnableContainer&gt; 
+&lt;/s:Application&gt;</pre>
+
+               <p>In this example, the Spacer
+control is the only percentage-based component in the parent container.
+Flex sizes the Spacer control to occupy all available space in the
+container that is not required for other components. By expanding
+the Spacer control, Flex pushes the Button control to the right
+edge of the container. </p>
+
+               <p>You can use all sizing and positioning
+properties with the Spacer control, such as <samp class="codeph">width</samp>, <samp class="codeph">height</samp>, <samp class="codeph">maxWidth</samp>, <samp class="codeph">maxHeight</samp>, <samp class="codeph">minWidth</samp>,
+and <samp class="codeph">minHeight</samp>. </p>
+
+            </div>
+
+            <div class="section" id="WS2db454920e96a9e51e63e3d11c0bf633a0-7fea_verapache__WS2db454920e96a9e51e63e3d11c0bf69084-7dfa_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf633a0-7fea_verapache__WS2db454920e96a9e51e63e3d11c0bf69084-7dfa_verapache"><!-- --></a><h4 class="sectiontitle">Disabling
+automatic positioning temporarily</h4>
+               
+               <p>You can use effects,
+such as the Move and Zoom effects, to modify the size or position
+of a child in response to a user action. For example, you might
+define a child so that when the user selects it, the child moves
+to the top of the container and doubles in size. These effects modify
+the <samp class="codeph">x</samp> and <samp class="codeph">y</samp> properties of the
+child as part of the effect. Similarly, you might want to change
+the position of a control by changing its <em>x</em> or <em>y</em> coordinate
+value, for example, in response to a button click.</p>
+
+               <p>Containers
+that use automatic positioning ignore the values of the <samp class="codeph">x</samp> and <samp class="codeph">y</samp> properties
+of their children during a layout update. Therefore, the layout
+update cancels any modifications to the <samp class="codeph">x</samp> and <samp class="codeph">y</samp> properties
+performed by the effect, and the child does not remain in its new
+location.</p>
+
+               <p>You can prevent Flex from performing automatic positioning
+updates that conflict with the requested action of your application
+by setting the <samp class="codeph">autoLayout</samp> property of a container
+to <samp class="codeph">false</samp>. Setting this property to <samp class="codeph">false</samp> prevents
+Flex from laying out the container’s contents when a child moves
+or resizes. The default value is <samp class="codeph">true</samp>, which enables
+Flex to update layouts.</p>
+
+               <p>For MX containers only, even when
+you set the <samp class="codeph">autoLayout</samp> property of a container
+to <samp class="codeph">false</samp>, Flex updates the layout when you add
+or remove a child. Application initialization, deferred instantiation,
+and the <samp class="codeph">&lt;mx:Repeater&gt;</samp> tag add or remove children,
+so layout updates always occur during these processes, regardless
+of the value of the <samp class="codeph">autoLayout</samp> property. Therefore,
+during container initialization, Flex defines the initial layout
+of the container children regardless of the value of the <samp class="codeph">autoLayout</samp> property. </p>
+
+               <p>The
+following example disables layout updates for a VBox container: </p>
+
+               <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- components\DisableVBoxLayout.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark"&gt; 
+    &lt;s:layout&gt; 
+        &lt;s:VerticalLayout/&gt; 
+    &lt;/s:layout&gt; 
+    
+    &lt;mx:VBox id="vb1" autoLayout="false" 
+        width="200" 
+        height="200"&gt; 
+        &lt;s:Button id="b1" 
+            label="Button 1"/&gt; 
+        &lt;s:Button id="b2" 
+            label="Button 2" 
+            click="{b2.x += 10; vb1.invalidateDisplayList();}"/&gt; 
+        &lt;s:Button id="b3" 
+            label="Button 3" 
+            creationComplete="b3.x = 100; b3.y = 75;"/&gt; 
+    &lt;/mx:VBox&gt; 
+&lt;/s:Application&gt;</pre>
+
+               <p>In this example, Flex initially
+lays out all three Button controls according to the rules of the
+VBox container. The <samp class="codeph">creationComplete</samp> event listener
+for the third button is dispatched after the VBox control has laid
+out its children, but before Flex displays the buttons. Therefore,
+when the third button appears, it is at the <em>x</em> and <em>y</em> positions
+specified by the <samp class="codeph">creationComplete</samp> listener. </p>
+
+               <p>After
+the buttons appear, Flex shifts the second button 10 pixels to the
+right each time a user clicks it. The button click also triggers
+the container to update its layout by calling the <samp class="codeph">updateDisplay()</samp> method. </p>
+
+               <p>Setting
+the <samp class="codeph">autoLayout</samp> property of a container to <samp class="codeph">false</samp> prohibits
+Flex from updating a container’s layout after a child moves or resizes,
+so you should set it to <samp class="codeph">false</samp> only when necessary.
+You should always test your application with the <samp class="codeph">autoLayout</samp> property
+set to the default value of <samp class="codeph">true</samp>, and set it to <samp class="codeph">false</samp> only as
+necessary for the specific container and specific actions of the
+children in that container. </p>
+
+               <p>For more information on effects,
+see <a href="flx_behaviors_be.html#WS2db454920e96a9e51e63e3d11c0bf69084-7fec_verapache">Introduction
+to effects</a>.</p>
+
+            </div>
+
+         </div>
+
+         <div class="nested3" id="WS19f279b149e7481c-6c11b9b112c12e14c34-8000_verapache"><a name="WS19f279b149e7481c-6c11b9b112c12e14c34-8000_verapache"><!-- --></a>
+            <h4 class="topictitle4">Preventing layout of hidden controls</h4>
+
+            
+            <div>
+               <p>
+                  By
+default, Flex lays out and reserves space for all components, including
+hidden components, but it does not display the hidden controls.
+A hidden component is one with its <samp class="codeph">visible</samp> property
+set to <samp class="codeph">false</samp>. You see blank spots where the hidden
+controls should appear when you make them visible. In place of the hidden
+controls, you see their container’s background.</p>
+
+               <p>However, you can prevent Flex from considering the child component
+when it lays out the container’s other children by setting the child
+component’s <samp class="codeph">includeInLayout</samp> property of the component
+to <samp class="codeph">false</samp>.</p>
+
+               <p>When a component’s <samp class="codeph">includeInLayout</samp> property
+is <samp class="codeph">false</samp>, Flex does not include it in the layout
+calculations for other components. In other words, Flex does not
+reserve space for the component, but still draws it. As a result,
+the component can appear underneath the components that follow it
+in the layout order. To prevent Flex from drawing the component,
+you must also set its <samp class="codeph">visible</samp> property to <samp class="codeph">false</samp>.</p>
+
+               <p>The following example shows the effects of the <samp class="codeph">includeInLayout</samp> and <samp class="codeph">visible</samp> properties.
+It lets you toggle each of these properties independently on the
+middle of three Panel controls in a SkinnableContainer: </p>
+
+               <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- components\HiddenBoxLayout.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    height="500"&gt; 
+    &lt;s:layout&gt; 
+        &lt;s:VerticalLayout/&gt; 
+    &lt;/s:layout&gt; 
+    
+    &lt;s:SkinnableContainer&gt; 
+        &lt;s:layout&gt; 
+            &lt;s:VerticalLayout/&gt; 
+        &lt;/s:layout&gt; 
+        &lt;s:Panel id="p1" 
+            title="Panel 1"/&gt; 
+        &lt;s:Panel id="p2" 
+            title="Panel 2"/&gt; 
+        &lt;s:Panel id="p3" 
+            title="Panel 3"/&gt; 
+    &lt;/s:SkinnableContainer&gt; 
+ 
+    &lt;s:SkinnableContainer&gt; 
+        &lt;s:layout&gt; 
+            &lt;s:HorizontalLayout/&gt; 
+        &lt;/s:layout&gt; 
+        &lt;s:Button label="Toggle Panel 2 Visible" 
+            click="{p2.visible=!p2.visible;}"/&gt; 
+        &lt;s:Button label="Toggle Panel 2 in Layout" 
+            click="{p2.includeInLayout=!p2.includeInLayout;}"/&gt; 
+    &lt;/s:SkinnableContainer&gt; 
+&lt;/s:Application&gt;</pre>
+
+               <p>Run this application and click the buttons to see the results
+of different combinations of <samp class="codeph">visible</samp> and <samp class="codeph">includeInLayout</samp> properties.
+The example shows the following behaviors:</p>
+
+               <ul>
+                  <li>
+                     <p>If you include the second Panel container in the layout
+but make it invisible, Flex reserves space for it.</p>
+
+                  </li>
+
+                  <li>
+                     <p>If you exclude the second Panel container from the layout,
+the SkinnableContainer resizes and the third Panel container moves
+up. If you then include the second Panel container in the layout,
+the SkinnableContainer resizes again, and the third Panel container
+moves down.</p>
+
+                  </li>
+
+                  <li>
+                     <p>If you exclude the second Panel container from the layout
+but make it visible, Flex still draws it, but does not consider
+it in laying out the third Panel container, so the two panels overlap. </p>
+
+                  </li>
+
+               </ul>
+
+            </div>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf633a0-7fdb_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf633a0-7fdb_verapache"><!-- --></a>
+         <h3 class="topictitle3">Absolute positioning </h3>
+
+         
+         <div>
+            <p>With absolute positioning, you specify the position of
+the child by setting its <samp class="codeph">x</samp> and <samp class="codeph">y</samp> properties,
+or you specify a constraint-based layout; otherwise, Flex places the
+child at position 0,0 of the parent container. When you specify
+the <em>x</em> and <em>y</em> coordinates, Flex repositions the controls
+only when you change the property values. </p>
+
+            <p>The following example uses absolute positioning to place two
+Spark BorderContainer containers inside a SkinnableContainer. Absolute
+positioning is the default layout of a SkinnableContainer:</p>
+
+            <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- components\AbsoluteLayout.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark"&gt; 
+    &lt;s:layout&gt; 
+        &lt;s:VerticalLayout/&gt; 
+    &lt;/s:layout&gt; 
+ 
+    &lt;s:SkinnableContainer 
+        width="100" height="100"&gt; 
+        &lt;s:BorderContainer id="b1" 
+            width="80" height="80" 
+            x="20" y="20" 
+            backgroundColor="#A9C0E7"&gt; 
+        &lt;/s:BorderContainer&gt; 
+ 
+        &lt;s:BorderContainer id="b2" 
+            width="50" height="50" 
+            x="120" y="50" 
+            backgroundColor="#FF0000"&gt; 
+        &lt;/s:BorderContainer&gt; 
+    &lt;/s:SkinnableContainer&gt; 
+&lt;/s:Application&gt;</pre>
+
+            <div class="p">This example produces the following image:<div class="figborder">
+                  <img src="images/sp_non_overlap_containers.png"/>
+               </div>
+
+            </div>
+
+            <p>When you use absolute positioning, you have full control over
+the locations of the container’s children. This lets you overlap
+components. The following example moves the second BorderContainer
+container so that it partially overlaps the first. </p>
+
+            <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- components\AbsoluteLayoutOverlap.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark"&gt; 
+    &lt;s:layout&gt; 
+        &lt;s:VerticalLayout/&gt; 
+    &lt;/s:layout&gt; 
+ 
+    &lt;s:SkinnableContainer 
+        width="100" height="100"&gt; 
+        &lt;s:BorderContainer id="b1" 
+            width="80" height="80" 
+            x="20" y="20" 
+            backgroundColor="#A9C0E7"&gt; 
+        &lt;/s:BorderContainer&gt; 
+        
+        &lt;s:BorderContainer id="b2" 
+            width="50" height="50" 
+            x="0" y="50" 
+            backgroundColor="#FF0000"&gt; 
+        &lt;/s:BorderContainer&gt; 
+    &lt;/s:SkinnableContainer &gt; 
+&lt;/s:Application&gt;</pre>
+
+            <p>This example produces the following image:</p>
+
+            <div class="figborder">
+               <img src="images/sp_overlap_containers.png"/>
+            </div>
+
+            <div class="note"><span class="notetitle">Note:</span> If you use percentage-based sizing for the children
+of a control that uses absolute positioning, the percentage-based
+components resize when the parent container resizes, and the result
+may include unwanted overlapping of controls.</div>
+
+         </div>
+
+      </div>
+
+   </div>
+
+   <div class="nested1" id="WS2db454920e96a9e51e63e3d11c0bf69084-7df9_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7df9_verapache"><!-- --></a>
+      <h2 class="topictitle2">Using constraints to control component layout </h2>
+
+      
+      <div>
+         <p>
+            
+            You can manage a child component’s
+size and position simultaneously by using constraint-based layout,
+or by using constraint rows and columns. Constraint-based layout
+lets you anchor the sides or center of a component to positions relative
+to the viewable region of the component’s container. The <em>viewable region</em> is
+the part of the component that is being displayed, and it can contain
+child controls, text, images, or other contents.</p>
+
+         <p>Constraint rows and columns let you subdivide a container into
+vertical and horizontal constraint regions to control the size and
+positioning of child components with respect to each other and within
+the parent container.</p>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf633a0-7fd9_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf633a0-7fd9_verapache"><!-- --></a>
+         <h3 class="topictitle3">Creating a constraint-based layout</h3>
+
+         
+         <div>
+            <p>You can use constraint-based layout to determine the position
+and size of the immediate children of any container that supports
+absolute positioning. With constraint-based layout, you can do the
+following:</p>
+
+            <ul>
+               <li>
+                  <p>Anchor one or more edges of a component at a pixel offset
+from the corresponding edge of its container’s viewable region.
+The anchored child edge stays at the same distance from the parent
+edge when the container resizes. If you anchor both edges in a dimension,
+such as top and bottom, the component resizes if the container resizes. </p>
+
+               </li>
+
+               <li>
+                  <p>Anchor the child’s horizontal or vertical center (or both)
+at a pixel offset from the center of the container’s viewable region.
+The child does not resize in the specified dimension unless you
+also use percentage-based sizing.</p>
+
+               </li>
+
+               <li>
+                  <p>Anchor the baseline of a component at a pixel offset from
+the top edge of its parent container.</p>
+
+               </li>
+
+            </ul>
+
+            <p>You can specify a constraint-based layout for any Flex framework
+component (that is, any component that extends the UIComponent class).
+The following rules specify how to position and size components
+by using constraint-based layout:</p>
+
+            <ul>
+               <li>
+                  <p>Place the component in any Spark container that uses
+BasicLayout, in a MX Canvas container, or in a MX Application or
+MX Panel container with the <samp class="codeph">layout</samp> property set
+to <samp class="codeph">absolute</samp>.</p>
+
+               </li>
+
+               <li>
+                  <div class="p">Specify the constraints by using the <samp class="codeph">baseline</samp>, <samp class="codeph">top</samp>, <samp class="codeph">bottom</samp>, <samp class="codeph">left</samp>, <samp class="codeph">right</samp>, <samp class="codeph">horizontalCenter</samp>,
+or <samp class="codeph">verticalCenter</samp> properties of UIComponent and
+GraphicElement. <div class="note"><span class="notetitle">Note:</span> In previous releases of Flex, the baseline,
+top, bottom, left, right, horizontalCenter, or verticalCenter properties
+were implemented as styles. You can still use them as styles in
+this release. </div>
+
+                  </div>
+
+                  <p>The <samp class="codeph">top</samp>, <samp class="codeph">bottom</samp>, <samp class="codeph">left</samp>,
+and <samp class="codeph">right</samp> properties specify the distances between
+the component sides and the corresponding container sides. </p>
+
+                  <p>The <samp class="codeph">baseline</samp> constraint
+specifies the distance between the baseline position of a component
+and the upper edge of its parent container. Every component calculates
+its baseline position as the y-coordinate of the baseline of the
+first line of text of the component. The baseline of a UIComponent object
+that does not contain any text is calculated as if the UIComponent object
+contained a UITextField object that uses the component's styles,
+and the top of the UITextField object coincides with the component's
+top. </p>
+
+                  <p>The <samp class="codeph">horizontalCenter</samp> and <samp class="codeph">verticalCenter</samp> properties
+specify distance between the component’s center point and the container’s
+center, in the specified direction; a negative number moves the
+component left or up from the center.</p>
+
+                  <p>The following example
+anchors the Form control’s left and right sides 20 pixels from its
+container’s sides:</p>
+
+                  <pre class="codeblock"> &lt;mx:Form id="myForm" left="20" right="20"/&gt;</pre>
+
+               </li>
+
+               <li>
+                  <p>Do not specify a <samp class="codeph">top</samp> or <samp class="codeph">bottom</samp> property
+with a <samp class="codeph">verticalCenter</samp> property; the <samp class="codeph">verticalCenter</samp> value
+overrides the other properties. Similarly, do not specify a <samp class="codeph">left</samp> or <samp class="codeph">right</samp> property
+with a <samp class="codeph">horizontalCenter</samp> property.</p>
+
+               </li>
+
+               <li>
+                  <p>A size determined by constraint-based layout overrides any
+explicit or percentage-based size specifications. If you specify <samp class="codeph">left</samp> and <samp class="codeph">right</samp> constraints,
+for example, the resulting constraint-based width overrides any width
+set by a <samp class="codeph">width</samp> or <samp class="codeph">percentWidth</samp> property.</p>
+
+               </li>
+
+            </ul>
+
+         </div>
+
+         <div class="nested3" id="WS19f279b149e7481c20f776d112c12e90bd5-8000_verapache"><a name="WS19f279b149e7481c20f776d112c12e90bd5-8000_verapache"><!-- --></a>
+            <h4 class="topictitle4">Precedence rules for constraint-based
+components</h4>
+
+            
+            <div>
+               <ul>
+                  <li>
+                     <p>If you specify a single edge constraint (<samp class="codeph">left, right, top, </samp>or<samp class="codeph"> bottom</samp>) without
+any other sizing or positioning parameter, the component size is
+the default size and its position is determined by the constraint
+value. If you specify a size parameter (width or height), the size
+is determined by that parameter.</p>
+
+                  </li>
+
+                  <li>
+                     <p>If you specify a pair of constraints (<samp class="codeph">left-right</samp> or <samp class="codeph">top-bottom</samp>),
+the size and position of the component is determined by those constraint
+values. If you also specify a center constraint (<samp class="codeph">horizontalCenter</samp> or <samp class="codeph">verticalCenter</samp>),
+the size of the component is calculated from the edge constraints
+and its position is determined by the center constraint value.</p>
+
+                  </li>
+
+                  <li>
+                     <p>Component size determined by a pair of constraint-based layout
+properties (<samp class="codeph">left-right</samp> or <samp class="codeph">top-bottom</samp>)
+overrides any explicit or percentage-based size specifications.
+For example, if you specify both <samp class="codeph">left</samp> and <samp class="codeph">right</samp> constraints,
+the calculated constraint-based width overrides the width set by a <samp class="codeph">width</samp> or <samp class="codeph">percentWidth</samp> property.</p>
+
+                  </li>
+
+                  <li>
+                     <p>Edge constraints override <samp class="codeph">baseline</samp> constraints.</p>
+
+                  </li>
+
+               </ul>
+
+            </div>
+
+         </div>
+
+         <div class="nested3" id="WS19f279b149e7481c20f776d112c12e90bd5-7fff_verapache"><a name="WS19f279b149e7481c20f776d112c12e90bd5-7fff_verapache"><!-- --></a>
+            <h4 class="topictitle4">Example: Using constraint-based
+layout for a form</h4>
+
+            
+            <div>
+               <p>The following example code shows how you can use constraint-based
+layout for a form. In this example, the Form control uses a constraint-based
+layout to position its top just inside the canvas padding. The form
+left and right edges are 20 pixels from the outer SkinnableContainer
+container’s left and right edges. The second, inner, SkinnableContainer
+that contains the buttons uses a constraint-based layout to place
+itself 20 pixels from the right edge and 10 pixels from the bottom
+edge of the outer SkinnableContainer container.</p>
+
+               <p>If you change the size of your browser, stand-alone Flash Player,
+or AIR application, you can see the effects of dynamically resizing
+the application container on the Form layout. The form and the buttons
+overlap as the application grows smaller, for example. </p>
+
+               <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- components\ConstraintLayout.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark"&gt; 
+    &lt;s:layout&gt; 
+        &lt;s:VerticalLayout/&gt; 
+    &lt;/s:layout&gt; 
+ 
+    &lt;s:SkinnableContainer width="100%" height="100%"&gt; 
+         &lt;!-- Anchor the top of the form at the top of the canvas. 
+            Anchor the form sides 20 pixels from the canvas sides. --&gt; 
+        &lt;s:Form id="myForm" 
+                backgroundColor="#DDDDDD" 
+                top="0" 
+                left="20" 
+                right="20"&gt; 
+                
+            &lt;s:FormItem label="Product:" width="100%"&gt; 
+                &lt;!-- Specify a fixed width to keep the ComboBox control from 
+                    resizing as you change the application size. --&gt; 
+                &lt;s:ComboBox width="200"/&gt; 
+            &lt;/s:FormItem&gt; 
+ 
+            &lt;s:FormItem label="User" width="100%"&gt; 
+                &lt;s:ComboBox width="200"/&gt; 
+            &lt;/s:FormItem&gt; 
+ 
+            &lt;s:FormItem label="Date"&gt; 
+                &lt;mx:DateField/&gt; 
+            &lt;/s:FormItem&gt; 
+ 
+            &lt;s:FormItem width="100%" 
+                    label="Hours:"&gt; 
+                &lt;s:TextInput width="75"/&gt; 
+            &lt;/s:FormItem&gt; 
+ 
+            &lt;s:FormItem width="100%" 
+                    label="Minutes:"&gt; 
+                &lt;s:TextInput width="75"/&gt; 
+            &lt;/s:FormItem&gt; 
+        &lt;/s:Form&gt; 
+ 
+        &lt;!-- Anchor the box with the buttons 20 pixels from the canvas 
+            right edge and 10 pixels from the bottom. --&gt; 
+        &lt;s:SkinnableContainer id="okCancelBox" 
+                right="20" 
+                bottom="10"&gt; 
+            &lt;s:layout&gt; 
+                &lt;s:HorizontalLayout/&gt; 
+            &lt;/s:layout&gt; 
+            &lt;s:Button label="OK"/&gt; 
+            &lt;s:Button label="Cancel"/&gt; 
+        &lt;/s:SkinnableContainer&gt; 
+    &lt;/s:SkinnableContainer&gt; 
+&lt;/s:Application&gt;</pre>
+
+            </div>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf633a0-7ff2_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf633a0-7ff2_verapache"><!-- --></a>
+         <h3 class="topictitle3">Using constraint rows and columns
+with MX containers and the Spark FormLayout class</h3>
+
+         
+         <div>
+            <p>You can subdivide a container that supports absolute positioning
+into vertical and horizontal constraint regions to control the size
+and positioning of child components with respect to each other,
+or with respect to the parent container. </p>
+
+            <div class="p">
+               <div class="note"><span class="notetitle">Note:</span> Constraint rows and columns are only supported by the MX
+containers, and the Spark FormLayout class. </div>
+
+            </div>
+
+            <p>You define the horizontal and vertical constraint regions of
+a container by using the <samp class="codeph">constraintRows</samp> and <samp class="codeph">constraintColumns</samp> properties.
+These properties contain Arrays of constraint objects that partition
+the container horizontally (ConstraintColumn objects) and vertically
+(ConstraintRow objects). ConstraintRow objects are laid out in the
+order they are defined, from top to bottom in their container; ConstraintColumn
+objects are laid out from left to right in the order they are defined.</p>
+
+            <p>The following example shows a <samp class="codeph">Canvas</samp> container
+partitioned into two vertical regions and two horizontal regions.
+The first constraint column occupies 212 pixels from the leftmost
+edge of the <samp class="codeph">Canvas</samp>. The second constraint column occupies
+100% of the remaining Canvas width. The rows in this example occupy 80%
+and 20% of the Canvas container’s height from top to bottom, respectively.</p>
+
+            <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- constraints\BasicRowColumn.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark"&gt; 
+    &lt;s:layout&gt; 
+        &lt;s:VerticalLayout/&gt; 
+    &lt;/s:layout&gt; 
+    &lt;mx:Canvas&gt; 
+        &lt;mx:constraintColumns&gt; 
+            &lt;mx:ConstraintColumn id="col1" width="212"/&gt; 
+            &lt;mx:ConstraintColumn id="col2" width="100%"/&gt; 
+        &lt;/mx:constraintColumns&gt; 
+        &lt;mx:constraintRows&gt; 
+            &lt;mx:ConstraintRow id="row1" height="80%"/&gt; 
+            &lt;mx:ConstraintRow id="row2" height="20%"/&gt; 
+        &lt;/mx:constraintRows&gt; 
+ 
+    &lt;!-- Position child components based on 
+        the constraint columns and rows. --&gt; 
+    &lt;/mx:Canvas&gt;    
+&lt;/s:Application&gt;</pre>
+
+            <p>Constraint rows and columns do not have to occupy 100% of the
+available area in a container. The following example shows a single
+constraint column that occupies 20% of the Canvas width; 80% of
+the container is unallocated:</p>
+
+            <pre class="noswf">&lt;?xml version="1.0"?&gt; 
+&lt;!-- constraints\BasicColumn_20Percent.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark"&gt; 
+    &lt;s:layout&gt; 
+        &lt;s:VerticalLayout/&gt; 
+    &lt;/s:layout&gt; 
+ 
+    &lt;mx:Canvas&gt; 
+        &lt;mx:constraintColumns&gt; 
+            &lt;mx:ConstraintColumn id="col1" width="20%"/&gt; 
+        &lt;/mx:constraintColumns&gt; 
+    &lt;/mx:Canvas&gt; 
+ 
+    &lt;!-- Position child components based on 
+        the constraint column. --&gt; 
+ 
+&lt;/s:Application&gt;</pre>
+
+            <div class="section" id="WS2db454920e96a9e51e63e3d11c0bf633a0-7ff2_verapache__WS2db454920e96a9e51e63e3d11c0bf633a0-7fd8_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf633a0-7ff2_verapache__WS2db454920e96a9e51e63e3d11c0bf633a0-7fd8_verapache"><!-- --></a><h4 class="sectiontitle">Creating
+constraint rows and columns</h4>
+               
+               <p>Constraint columns and rows
+have three sizing options: fixed, percent, and content. These options
+dictate the amount of space that the constraint region occupies
+in the container. As child components are added to or removed from the
+parent container, the space allocated to each ConstraintColumn and ConstraintRow
+instance is computed according to its sizing option.</p>
+
+               <ul>
+                  <li>
+                     <p>
+                        <em>Fixed size</em> means the space allocated to the constraint
+region is a fixed pixel size. In the following example, you set
+the fixed with of a ConstraintColumn instance to 100 pixels:</p>
+
+                     <pre class="codeblock"> &lt;mx:ConstraintColumn id="col1" width="100"/&gt; </pre>
+
+                     <p>As
+the parent container grows or shrinks, the ConstraintColumn instance remains
+100 pixels wide.</p>
+
+                  </li>
+
+                  <li>
+                     <p>
+                        <em>Percent size</em> means that the space allocated to the
+constraint row or column is calculated as a percentage of the space
+remaining in the parent container after the space allocated to fixed
+and content size child objects has been deducted from the available
+space.</p>
+
+                     <p>In the following example, you set the width of a ConstraintColumn
+instance to 80%:</p>
+
+                     <pre class="codeblock"> &lt;mx:ConstraintColumn  id="col1" width="80%"/&gt; </pre>
+
+                     <p>As
+the parent container grows or shrinks, the ConstraintColumn always
+takes up 80% of the available width.</p>
+
+                     <p>A best practice in specifying
+percent constraints is to ensure that the sum of all percent constraints
+is less than or equal to 100%. However, if the total value of percent
+specifications is greater than 100%, the actual allocated percentages are
+calculated so that the proportional values for all constraints total
+100%. For example, if the percentages for two constraint objects
+are specified as 100% and 50%, the values are adjusted to 66.6%
+and 33.3% (two-thirds for the first value and one-third for the
+second).</p>
+
+                  </li>
+
+                  <li>
+                     <p>
+                        <em>Content size</em> (default) means that the space allocated
+to the region is dictated by the size of the child objects in that
+space. As the size of the content changes, so does the size of the
+region. Content sizing is the default when you do not specify either
+fixed or percentage sizing parameters.</p>
+
+                     <p>In the following example,
+you specify content size by omitting any explicit width setting:</p>
+
+                     <pre class="codeblock"> &lt;mx:ConstraintColumn  id="col1"/&gt; </pre>
+
+                     <p>The
+width of this ConstraintColumn is determined by the width of its
+largest child. When children span multiple content sized constraint
+rows or constraint columns, Flex divides the space consumed by the
+children among the rows and columns.</p>
+
+                  </li>
+
+               </ul>
+
+               <p>For the ConstraintColumn
+class, you can also use the <samp class="codeph">maxWidth</samp> and <samp class="codeph">minWidth</samp> properties
+to limit the width of the column. For the ConstraintRow class, you
+can use the <samp class="codeph">maxHeight</samp> and <samp class="codeph">minHeight</samp> properties
+to limit the height of the row. Minimum and maximum sizes for constraint
+columns and rows limit how much the constraint regions grow or shrink
+when you resize their parent containers. If the parent container
+with a constraint region shrinks to less than the minimum size for
+that region when you resize the container, scroll bars appear to
+show clipped content.</p>
+
+               <div class="note"><span class="notetitle">Note:</span> Minimum and maximum
+limits are only applicable to percentage and content sized constraint
+regions. For fixed size constraint regions, minimum and maximum values,
+if specified, are ignored.</div>
+
+            </div>
+
+            <div class="section" id="WS2db454920e96a9e51e63e3d11c0bf633a0-7ff2_verapache__WS2db454920e96a9e51e63e3d11c0bf633a0-7fe9_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf633a0-7ff2_verapache__WS2db454920e96a9e51e63e3d11c0bf633a0-7fe9_verapache"><!-- --></a><h4 class="sectiontitle">Positioning
+child components based on constraint rows and constraint columns</h4>
+               
+               <p>Anchor
+a child component to a constraint row or constraint column by prepending
+the constraint region’s ID to any of the child’s constraint parameters. For
+example, if the ID of a ConstraintColumn is "col1", you can specify
+a set of child constraints as <samp class="codeph">left="col1:10"</samp>, <samp class="codeph">right="col1:30"</samp>, <samp class="codeph">horizontalCenter="col1:0"</samp>.</p>
+
+               <p>If
+you do not qualify constraint parameters (<samp class="codeph">left, right, top</samp>,
+and <samp class="codeph">bottom</samp>) a constraint region ID, the component
+is constrained relative to the edges of its parent container. Components
+can occupy a single constraint region (row or column) or can span
+multiple regions. </p>
+
+               <p>The following example uses constraint rows
+and constraint columns to position three Button controls in a Canvas
+container:</p>
+
+               <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- constraints\ConstrainButtons.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark"&gt; 
+    &lt;s:layout&gt; 
+        &lt;s:VerticalLayout/&gt; 
+    &lt;/s:layout&gt; 
+ 
+    &lt;mx:Canvas id="myCanvas" backgroundColor="0x6699FF"&gt; 
+        &lt;mx:constraintColumns&gt; 
+            &lt;mx:ConstraintColumn id="col1" width="100"/&gt; 
+            &lt;mx:ConstraintColumn id="col2" width="100"/&gt; 
+        &lt;/mx:constraintColumns&gt; 
+        &lt;mx:constraintRows&gt; 
+            &lt;mx:ConstraintRow id="row1" height="100"/&gt; 
+            &lt;mx:ConstraintRow id="row2" height="100"/&gt; 
+        &lt;/mx:constraintRows&gt; 
+ 
+        &lt;s:Button label="Button 1" 
+            top="row1:10" bottom="row1:10" 
+            left="10"/&gt; 
+        &lt;s:Button label="Button 2" 
+            left="col2:10" right="col2:10"/&gt; 
+        &lt;s:Button label="Button 3" 
+            top="row2:10" bottom="row2:10" 
+            left="col1:10" right="10"/&gt; 
+    &lt;/mx:Canvas&gt; 
+ 
+    &lt;s:Label text="canvas width:{myCanvas.width}"/&gt; 
+    &lt;s:Label text="canvas height:{myCanvas.height}"/&gt; 
+&lt;/s:Application&gt;</pre>
+
+               <p>The next example defines the
+constraint rows and columns by using percentages. As you resize
+the application, the Button controls resize accordingly.</p>
+
+               <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- constraints\ConstrainButtonsPercent.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark"&gt; 
+    &lt;s:layout&gt; 
+        &lt;s:VerticalLayout/&gt; 
+    &lt;/s:layout&gt; 
+ 
+    &lt;mx:Canvas id="myCanvas" 
+        backgroundColor="0x6699FF" 
+        width="100%" height="100%"&gt; 
+ 
+        &lt;mx:constraintColumns&gt; 
+            &lt;mx:ConstraintColumn id="col1" width="30%"/&gt; 
+            &lt;mx:ConstraintColumn id="col2" width="40%"/&gt; 
+            &lt;mx:ConstraintColumn id="col3" width="30%"/&gt; 
+        &lt;/mx:constraintColumns&gt; 
+        &lt;mx:constraintRows&gt; 
+            &lt;mx:ConstraintRow id="row1" height="35%"/&gt; 
+            &lt;mx:ConstraintRow id="row2" height="55%"/&gt; 
+        &lt;/mx:constraintRows&gt; 
+ 
+        &lt;s:Button label="Button 1" 
+            top="row1:10" bottom="row2:10" 
+            left="10"/&gt; 
+        &lt;s:Button label="Button 2" 
+            left="col2:10" right="col3:10"/&gt; 
+        &lt;s:Button label="Button 3" 
+            top="row2:10" bottom="row2:10" 
+            left="col3:10" right="col3:10"/&gt; 
+    &lt;/mx:Canvas&gt; 
+ 
+    &lt;s:Label text="canvas width:{myCanvas.width}"/&gt; 
+    &lt;s:Label text="canvas height:{myCanvas.height}"/&gt;    
+&lt;/s:Application&gt;</pre>
+
+               <p>While you can specify any combination
+of qualified and unqualified constraints, some constraint properties
+may be overridden. The priority of sizing and positioning constraints
+are as follows:</p>
+
+               <ol>
+                  <li>
+                     <p>Center constraint specifications override
+all other constraint values when determining the position of a control.</p>
+
+                  </li>
+
+                  <li>
+                     <p>Next, left edge and top positions are determined.</p>
+
+                  </li>
+
+                  <li>
+                     <p>Finally, right edge and bottom positions are calculated to
+best fit the component.</p>
+
+                  </li>
+
+               </ol>
+
+               <p>The following table defines
+the behavior of constrained components when they are contained in
+a single constraint region. <em>Edge 1</em> is the first specified
+edge constraint for a child component (<samp class="codeph">left</samp>, <samp class="codeph">right</samp>, <samp class="codeph">top</samp>,
+or <samp class="codeph">bottom</samp>). <em>Edge 2</em> is the second specified
+edge constraint of a pair (<samp class="codeph">left</samp> and <samp class="codeph">right</samp>, <samp class="codeph">top</samp> and <samp class="codeph">bottom</samp>). <em>Size</em> is
+an explicit size for a child component (<samp class="codeph">width</samp>, <samp class="codeph">height</samp>). <em>Center</em> is
+the positioning constraint to center the child object (<samp class="codeph">horizontalCenter</samp> or <samp class="codeph">verticalCenter</samp>).</p>
+
+               
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" frame="border" border="1" rules="all">
+                     
+                     
+                     
+                     
+                     
+                     
+                     <thead align="left">
+                        <tr>
+                           <th class="cellrowborder" valign="top" width="NaN%" id="d852158e3627">
+                              <p>Constraint Parameters</p>
+
+                           </th>
+
+                           <th class="cellrowborder" valign="top" width="NaN%" id="d852158e3633">
+                              <p> </p>
+
+                           </th>
+
+                           <th class="cellrowborder" valign="top" width="NaN%" id="d852158e3639">
+                              <p> </p>
+
+                           </th>
+
+                           <th class="cellrowborder" valign="top" width="NaN%" id="d852158e3645">
+                              <p> </p>
+
+                           </th>
+
+                           <th class="cellrowborder" valign="top" width="NaN%" id="d852158e3651">
+                              <p>Behavior</p>
+
+                           </th>
+
+                           <th class="cellrowborder" valign="top" width="NaN%" id="d852158e3658">
+                              <p> </p>
+
+                           </th>
+
+                        </tr>
+
+                        <tr>
+                           <th class="cellrowborder" valign="top" width="NaN%" id="d852158e3667">
+                              <p>Edge 1</p>
+
+                           </th>
+
+                           <th class="cellrowborder" valign="top" width="NaN%" id="d852158e3673">
+                              <p>Edge 2</p>
+
+                           </th>
+
+                           <th class="cellrowborder" valign="top" width="NaN%" id="d852158e3679">
+                              <p>Size</p>
+
+                           </th>
+
+                           <th class="cellrowborder" valign="top" width="NaN%" id="d852158e3685">
+                              <p>Center</p>
+
+                           </th>
+
+                           <th class="cellrowborder" valign="top" width="NaN%" id="d852158e3691">
+                              <p>Size</p>
+
+                           </th>
+
+                           <th class="cellrowborder" valign="top" width="NaN%" id="d852158e3698">
+                              <p>Position</p>
+
+                           </th>
+
+                        </tr>
+
+                     </thead>
+
+                     <tbody>
+                        <tr>
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d852158e3627 d852158e3667 ">
+                              <p>x</p>
+
+                           </td>
+
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d852158e3633 d852158e3673 ">
+                              <p> </p>
+
+                           </td>
+
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d852158e3639 d852158e3679 ">
+                              <p> </p>
+
+                           </td>
+
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d852158e3645 d852158e3685 ">
+                              <p> </p>
+
+                           </td>
+
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d852158e3651 d852158e3691 ">
+                              <p>Default component size</p>
+
+                           </td>
+
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d852158e3658 d852158e3698 ">
+                              <p>Relative to specified edge constraint</p>
+
+                           </td>
+
+                        </tr>
+
+                        <tr>
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d852158e3627 d852158e3667 ">
+                              <p>x</p>
+
+                           </td>
+
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d852158e3633 d852158e3673 ">
+                              <p>x</p>
+
+                           </td>
+
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d852158e3639 d852158e3679 ">
+                              <p> </p>
+
+                           </td>
+
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d852158e3645 d852158e3685 ">
+                              <p> </p>
+
+                           </td>
+
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d852158e3651 d852158e3691 ">
+                              <p>Calculated from specified edge constraints</p>
+
+                           </td>
+
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d852158e3658 d852158e3698 ">
+                              <p>Relative to specified edge constraints</p>
+
+                           </td>
+
+                        </tr>
+
+                        <tr>
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d852158e3627 d852158e3667 ">
+                              <p>x</p>
+
+                           </td>
+
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d852158e3633 d852158e3673 ">
+                              <p>x</p>
+
+                           </td>
+
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d852158e3639 d852158e3679 ">
+                              <p>x</p>
+
+                           </td>
+
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d852158e3645 d852158e3685 ">
+                              <p> </p>
+
+                           </td>
+
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d852158e3651 d852158e3691 ">
+                              <p>Determined from specified edge constraints.
+Explicit size is overridden</p>
+
+                           </td>
+
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d852158e3658 d852158e3698 ">
+                              <p>Relative to specified edge constraints</p>
+
+                           </td>
+
+                        </tr>
+
+                        <tr>
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d852158e3627 d852158e3667 ">
+                              <p>x</p>
+
+                           </td>
+
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d852158e3633 d852158e3673 ">
+                              <p> </p>
+
+                           </td>
+
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d852158e3639 d852158e3679 ">
+                              <p>x</p>
+
+                           </td>
+
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d852158e3645 d852158e3685 ">
+                              <p> </p>
+
+                           </td>
+
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d852158e3651 d852158e3691 ">
+                              <p>Specified size</p>
+
+                           </td>
+
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d852158e3658 d852158e3698 ">
+                              <p>Relative to specified edge</p>
+
+                           </td>
+
+                        </tr>
+
+                        <tr>
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d852158e3627 d852158e3667 ">
+                              <p>x</p>
+
+                           </td>
+
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d852158e3633 d852158e3673 ">
+                              <p> </p>
+
+                           </td>
+
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d852158e3639 d852158e3679 ">
+                              <p> </p>
+
+                           </td>
+
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d852158e3645 d852158e3685 ">
+                              <p>x</p>
+
+                           </td>
+
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d852158e3651 d852158e3691 ">
+                              <p>Default component size</p>
+
+                           </td>
+
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d852158e3658 d852158e3698 ">
+                              <p>Centered in constraint region; edge constraint
+is ignored</p>
+
+                           </td>
+
+                        </tr>
+
+                        <tr>
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d852158e3627 d852158e3667 ">
+                              <p>x</p>
+
+                           </td>
+
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d852158e3633 d852158e3673 ">
+                              <p>x</p>
+
+                           </td>
+
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d852158e3639 d852158e3679 ">
+                              <p> </p>
+
+                           </td>
+
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d852158e3645 d852158e3685 ">
+                              <p>x</p>
+
+                           </td>
+
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d852158e3651 d852158e3691 ">
+                              <p>Calculated from edge constraints</p>
+
+                           </td>
+
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d852158e3658 d852158e3698 ">
+                              <p>Centered in constraint region</p>
+
+                           </td>
+
+                        </tr>
+
+                        <tr>
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d852158e3627 d852158e3667 ">
+                              <p>x</p>
+
+                           </td>
+
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d852158e3633 d852158e3673 ">
+                              <p> </p>
+
+                           </td>
+
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d852158e3639 d852158e3679 ">
+                              <p>x</p>
+
+                           </td>
+
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d852158e3645 d852158e3685 ">
+                              <p>x</p>
+
+                           </td>
+
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d852158e3651 d852158e3691 ">
+                              <p>Explicit size</p>
+
+                           </td>
+
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d852158e3658 d852158e3698 ">
+                              <p>Centered in constraint region; single edge
+constraint is ignored</p>
+
+                           </td>
+
+                        </tr>
+
+                        <tr>
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d852158e3627 d852158e3667 ">
+                              <p> </p>
+
+                           </td>
+
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d852158e3633 d852158e3673 ">
+                              <p> </p>
+
+                           </td>
+
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d852158e3639 d852158e3679 ">
+                              <p> </p>
+
+                           </td>
+
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d852158e3645 d852158e3685 ">
+                              <p>x</p>
+
+                           </td>
+
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d852158e3651 d852158e3691 ">
+                              <p>Default size of component</p>
+
+                           </td>
+
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d852158e3658 d852158e3698 ">
+                              <p>Centered in constraint region</p>
+
+                           </td>
+
+                        </tr>
+
+                     </tbody>
+
+                  </table>
+</div>
+
+            </div>
+
+            <div class="section"><h4 class="sectiontitle">Using Baseline property</h4>
+               
+               <p>The baseline property
+can be specified as a number or can be specified with respect to
+the max ascent of the row.</p>
+
+               <p>If the baseline value on a row
+is only a number, the elements contained by the row are positioned
+that many pixels below the top of the container. If the baseline
+value is defined with respect to the max ascent of the row, then
+it is defined in the format: "maxAscent:x". The default value is
+"maxAscent:0".</p>
+
+               <p>The following code example defines four labels
+in a group, where each label is constrained with a baseline alignment
+to row1 and maxAscent:5.</p>
+
+               <pre class="codeblock">&lt;?xml version="1.0" encoding="utf-8"?&gt; 
+&lt;!-- containers\layouts\spark\SparkFormItemLayoutBaselineAlignment.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+               xmlns:mx="library://ns.adobe.com/flex/mx" 
+               xmlns:s="library://ns.adobe.com/flex/spark"&gt; 
+    
+    &lt;s:Group y="200" x="30"&gt; 
+        &lt;s:layout&gt; 
+            &lt;s:FormItemLayout&gt; 
+                &lt;s:constraintRows&gt; 
+                    &lt;s:ConstraintRow id="row1" /&gt; 
+                    &lt;s:ConstraintRow id="row2" baseline="maxAscent:5"/&gt; 
+                    &lt;s:ConstraintRow id="row3" baseline="30"/&gt; 
+                &lt;/s:constraintRows&gt; 
+            &lt;/s:FormItemLayout&gt; 
+        &lt;/s:layout&gt; 
+        &lt;s:Label fontSize="20" text="hello!" baseline="row1:10" x="38" color="blue"/&gt; 
+        &lt;s:Label fontSize="25" text="hello!" baseline="row1:0" x="89" color="#FF9933"/&gt; 
+        &lt;s:Label fontSize="35" text="hello!" baseline="row1:0" x="149" color="green"/&gt; 
+        &lt;s:Label fontSize="50" text="hello!" baseline="row1:0" x="234" /&gt; 
+    &lt;/s:Group&gt; 
+&lt;/s:Application&gt;</pre>
+
+            </div>
+
+         </div>
+
+      </div>
+
+         <p>Adobe, Adobe AIR and Adobe Flash are either registered trademarks or trademarks of Adobe Systems Incorporated in the United States and/or other countries and are used by permission from Adobe.  No other license to the Adobe trademarks are granted.</p>
+   </div>
+
+
+</body>
+</html>

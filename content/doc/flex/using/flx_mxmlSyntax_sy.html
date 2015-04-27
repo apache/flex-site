@@ -1,0 +1,1239 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Licensed to the Apache Software Foundation (ASF) under one or more
+  contributor license agreements.  See the NOTICE file distributed with
+  this work for additional information regarding copyright ownership.
+  The ASF licenses this file to You under the Apache License, Version 2.0
+  (the "License"); you may not use this file except in compliance with
+  the License.  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+-->
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en-us" xml:lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="topic"/>
+<meta name="DC.Title" content="MXML syntax"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="WS2db454920e96a9e51e63e3d11c0bf69084-8000_verapache"/>
+<link rel="stylesheet" type="text/css" href="commonltr.css"/>
+<title>MXML syntax</title>
+</head>
+<body id="WS2db454920e96a9e51e63e3d11c0bf69084-8000_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-8000_verapache"><!-- --></a>
+
+
+   <h1 class="topictitle1">MXML syntax</h1>
+
+   
+   <div>
+      <p>MXML is an XML language that you use to lay out user-interface
+components for   Flex applications. </p>
+
+   </div>
+
+   <div class="nested1" id="WS2db454920e96a9e51e63e3d11c0bf5f65f-7ff4_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf5f65f-7ff4_verapache"><!-- --></a>
+      <h2 class="topictitle2">Basic MXML syntax</h2>
+
+      
+      <div>
+         <p>
+            
+            Most
+MXML tags correspond to ActionScript 3.0 classes or properties of
+classes. Flex parses MXML tags and compiles a SWF file that contains
+the corresponding ActionScript objects.</p>
+
+         <p>ActionScript 3.0 uses syntax based on the ECMAScript edition
+4 draft language specification. ActionScript 3.0 includes the following
+features:</p>
+
+         <ul>
+            <li>
+               <p>Formal class definition syntax</p>
+
+            </li>
+
+            <li>
+               <p>Formal packages structure</p>
+
+            </li>
+
+            <li>
+               <p>Typing of variables, parameters, and return values (compile-time
+only)</p>
+
+            </li>
+
+            <li>
+               <p>Implicit getters and setters that use the <samp class="codeph">get</samp> and <samp class="codeph">set</samp> keywords</p>
+
+            </li>
+
+            <li>
+               <p>Inheritance</p>
+
+            </li>
+
+            <li>
+               <p>Public and private members</p>
+
+            </li>
+
+            <li>
+               <p>Static members</p>
+
+            </li>
+
+            <li>
+               <p>Cast operator</p>
+
+            </li>
+
+         </ul>
+
+         <p>For more information about ActionScript 3.0, see <a href="flx_usingas_ua.html#WS2db454920e96a9e51e63e3d11c0bf69084-7ffe_verapache">Using
+ActionScript</a>.</p>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf5f65f-7ff3_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf5f65f-7ff3_verapache"><!-- --></a>
+         <h3 class="topictitle3">Naming MXML files</h3>
+
+         
+         <div>
+            <p>
+               
+               MXML filenames must adhere to
+the following naming conventions: </p>
+
+            <ul>
+               <li>
+                  <p>Filenames must be valid ActionScript identifiers, which
+means they must start with a letter or underscore character (_),
+and they can only contain letters, numbers, and underscore characters
+after that.</p>
+
+               </li>
+
+               <li>
+                  <p>Filenames must not be the same as ActionScript class names,
+component <samp class="codeph">id</samp> values, or the word <em>application</em>.
+Do not use filenames that match the names of MXML tags that are
+in the <samp class="codeph">fx:</samp>, <samp class="codeph">s:</samp>, or <samp class="codeph">mx:</samp> namespace.</p>
+
+               </li>
+
+               <li>
+                  <p>Filenames must end with a lowercase .mxml file extension.</p>
+
+               </li>
+
+            </ul>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf5f65f-7ff2_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf5f65f-7ff2_verapache"><!-- --></a>
+         <h3 class="topictitle3">Using tags that represent ActionScript
+classes</h3>
+
+         
+         <div>
+            <p>
+               
+               
+               An MXML tag that corresponds to an ActionScript
+class uses the same naming conventions as the ActionScript class.
+Class names begin with a capital letter, and capital letters separate
+the words in class names. For example, when a tag corresponds to
+an ActionScript class, its properties correspond to the properties
+and events of that class.</p>
+
+         </div>
+
+      </div>
+
+   </div>
+
+   <div class="nested1" id="WS2db454920e96a9e51e63e3d11c0bf5f65f-7ff1_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf5f65f-7ff1_verapache"><!-- --></a>
+      <h2 class="topictitle2">Setting component properties</h2>
+
+      
+      <div>
+         <p>
+            In
+MXML, a component property uses the same naming conventions as the
+corresponding ActionScript property. A property name begins with
+a lowercase letter, and capital letters separate words in the property
+names.</p>
+
+         <p>You can set most component properties as tag attributes, in the
+form:</p>
+
+         <pre class="codeblock"> &lt;s:Label width="50" height="25" text="Hello World"/&gt;</pre>
+
+         <p>You can set all component properties as child tags, in the form:</p>
+
+         <pre class="codeblock"> &lt;s:Label&gt; 
+ 	&lt;s:width&gt;50&lt;/s:width&gt; 
+ 	&lt;s:height&gt;25&lt;/s:height&gt; 
+ 	&lt;s:text&gt;Hello World&lt;/s:text&gt; 
+ &lt;/s:Label&gt;</pre>
+
+         <p>You often use child tags when setting the value of a property
+to a complex Object because it is not possible to specify a complex
+Object as the value of tag attribute. In the following example,
+you use child tags to set the data provider of a Spark List control
+to an ArrayCollection object:</p>
+
+         <pre class="codeblock"> &lt;s:List&gt;  
+ 	&lt;s:dataProvider&gt; 
+ 		&lt;s:ArrayCollection&gt; 
+ 			&lt;fx:String&gt;AK&lt;/fx:String&gt; 
+ 			&lt;fx:String&gt;AL&lt;/fx:String&gt; 
+ 			&lt;fx:String&gt;AR&lt;/fx:String&gt; 
+ 		&lt;/s:ArrayCollection&gt; 
+ 	&lt;/s:dataProvider&gt; 
+ &lt;/s:List&gt;</pre>
+
+         <p>The one restriction on setting properties that use child tags
+is that the namespace prefix of a child tag, <samp class="codeph">s:</samp> in
+the previous example, must match the namespace prefix of the component
+tag. Note that the <em>value</em> of the property in the previous
+example does not have to use the same namespace as the property tag. </p>
+
+         <p>
+            
+            
+            Each of a component’s properties is one
+of the following types:</p>
+
+         <ul>
+            <li>
+               <p>Scalar properties, such as a number or string </p>
+
+            </li>
+
+            <li>
+               <p>Array of scalar values, such as an array of numbers or strings</p>
+
+            </li>
+
+            <li>
+               <p>ActionScript object </p>
+
+            </li>
+
+            <li>
+               <p>Array of ActionScript objects</p>
+
+            </li>
+
+            <li>
+               <p>ActionScript properties</p>
+
+            </li>
+
+            <li>
+               <p>XML data</p>
+
+            </li>
+
+         </ul>
+
+         <p>It’s best to assign scalar values using tag attributes, and that
+you assign complex types, such as ActionScript objects, by using
+child tags.</p>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf5f65f-7fff_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf5f65f-7fff_verapache"><!-- --></a>
+         <h3 class="topictitle3">Setting scalar properties</h3>
+
+         
+         <div>
+            <p>
+               You
+usually specify the value of a scalar property as a property of
+a component tag, as the following example shows:</p>
+
+            <pre class="codeblock"> &lt;s:Label width="50" height="25" text="Hello World"/&gt;</pre>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf5f65f-7ff8_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf5f65f-7ff8_verapache"><!-- --></a>
+         <h3 class="topictitle3">Setting properties using constants</h3>
+
+         
+         <div>
+            <p>The valid values of many component properties are defined
+by static constants, where these static constants are defined in
+an ActionScript class. In MXML, you can either use the static constant
+to set the property value, or use the value of the static constant,
+as the following example shows:</p>
+
+            <pre class="codeblock"> &lt;!-- Set the property using the static constant. --&gt; 
+ &lt;s:Wipe <strong>direction="{spark.effects.WipeDirection.LEFT}"</strong>&gt; 
+ 	... 
+ &lt;/s:Wipe&gt; 
+  
+ &lt;!-- Set the property using the value of the static constant. --&gt; 
+ &lt;s:Wipe <strong>direction="left"</strong>&gt; 
+ 	... 
+ &lt;/s:Wipe&gt;</pre>
+
+            <p>The <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/spark/effects/Wipe.html" target="_blank">Wipe</a> effect
+defines a property named <samp class="codeph">direction</samp> that defines
+the direction of the wipe effect. In this example, you explicitly
+set the <samp class="codeph">direction</samp> property to cause the wipe effect
+to move left.</p>
+
+            <p>In the first example, you set the <samp class="codeph">direction</samp> property
+using a static constant named <samp class="codeph">LEFT</samp>, which is defined
+in the spark.effects.WipeDirection class. In MXML, you must use
+data binding syntax when setting a property value to a static constant.
+The advantage of using the static constant is that the Flex compiler recognizes
+incorrect property values, and issues an error message at compile time.</p>
+
+            <p>Alternatively, you can set the value of the <samp class="codeph">direction</samp> property
+to the value of the static constant. The value of the <samp class="codeph">LEFT</samp> static
+constant is <samp class="codeph">"left"</samp>. When you use the value of the
+static constant to set the property value, the Flex compiler cannot
+determine if you used an unsupported value. If you incorrectly set
+the property, you will not know until you get a run-time error. </p>
+
+            <p>In ActionScript, you should use static constants to set property
+values whenevera possible, as the following example shows:</p>
+
+            <pre class="codeblock"> var myWipe:Wipe = new Wipe(); 
+ <strong>myWipe.direction=spark.effects.WipeDirection.LEFT;</strong></pre>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf5f65f-7ffe_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf5f65f-7ffe_verapache"><!-- --></a>
+         <h3 class="topictitle3">Setting the default property</h3>
+
+         
+         <div>
+            <p>Many Flex components define a single default property.
+The <em>default property</em> is the MXML tag that is implicit for
+content inside of the MXML tag if you do not explicitly specify
+a property. For example, consider the following MXML tag definition:</p>
+
+            <pre class="codeblock"> &lt;s:SomeTag&gt; 
+ 	anything here 
+ &lt;/s:SomeTag&gt;</pre>
+
+            <p>If this tag defines a default property named <samp class="codeph">default_property</samp>,
+the preceding tag definition is equivalent to the following code:</p>
+
+            <pre class="codeblock"> &lt;s:SomeTag&gt; 
+ 	<strong>&lt;s:default_property&gt;</strong> 
+ 		anything here 
+ 	<strong>&lt;/s:default_property&gt;</strong> 
+ &lt;/s:SomeTag&gt;</pre>
+
+            <p>It is also equivalent to the following code:</p>
+
+            <pre class="codeblock"> &lt;s:SomeTag default_property="anything here"/&gt;</pre>
+
+            <p>The default property provides a shorthand mechanism for setting
+a single property. For a Spark List, the default property is the <samp class="codeph">dataProvider</samp> property. Therefore,
+the two List definitions in the following code are equivalent:</p>
+
+            <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- mxml\DefProp.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark"&gt; 
+    &lt;s:layout&gt; 
+        &lt;s:HorizontalLayout/&gt; 
+    &lt;/s:layout&gt; 
+ 
+    &lt;!-- Omit the default property. --&gt; 
+    &lt;s:List&gt; 
+        &lt;s:ArrayCollection&gt; 
+            &lt;fx:String&gt;AK&lt;/fx:String&gt; 
+            &lt;fx:String&gt;AL&lt;/fx:String&gt; 
+            &lt;fx:String&gt;AR&lt;/fx:String&gt; 
+        &lt;/s:ArrayCollection&gt; 
+    &lt;/s:List&gt; 
+    
+    &lt;!-- Explicitly speficy the default property. --&gt; 
+    &lt;s:List&gt; 
+        &lt;s:dataProvider&gt; 
+            &lt;s:ArrayCollection&gt; 
+                &lt;fx:String&gt;AK&lt;/fx:String&gt; 
+                &lt;fx:String&gt;AL&lt;/fx:String&gt; 
+                &lt;fx:String&gt;AR&lt;/fx:String&gt; 
+            &lt;/s:ArrayCollection&gt; 
+        &lt;/s:dataProvider&gt; 
+    &lt;/s:List&gt;    
+&lt;/s:Application&gt;</pre>
+
+            <p>Not all Flex components define a default property. To determine
+the default property for each component, see the <em>
+                  <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/" target="_blank">ActionScript 3.0 Reference for the Adobe<sup>®</sup> Flash<sup>®</sup>
+Platform</a>
+               </em>. </p>
+
+            <p>You can also define a default property when you create a custom
+component. For more information, see <a href="flx_metadata_me.html#WS2db454920e96a9e51e63e3d11c0bf69084-7fe9_verapache">Metadata
+tags in custom components</a>.</p>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf5f65f-7ffc_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf5f65f-7ffc_verapache"><!-- --></a>
+         <h3 class="topictitle3">Escaping characters using the backslash
+character</h3>
+
+         
+         <div>
+            <p>When setting a property value in MXML, you can escape a
+reserved character by prefixing it with the backslash character
+(\), as the following example shows:</p>
+
+            <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- mxml\EscapeChar.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark"&gt; 
+ 
+    &lt;s:Label text="\{\}"/&gt; 
+ 
+&lt;/s:Application&gt;</pre>
+
+            <p>In this example, you want to use literal curly brace characters
+({ }) in a text string. But Flex uses curly braces to indicate a
+data binding operation. Therefore, you prefix each curly brace with
+the backslash character to cause the MXML compiler to interpret
+them as literal characters. </p>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf5f65f-7ff7_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf5f65f-7ff7_verapache"><!-- --></a>
+         <h3 class="topictitle3">Setting String properties using
+the backslash character</h3>
+
+         
+         <div>
+            <p>The MXML compiler automatically escapes the backslash character
+in MXML when the character is part of the value specified for a
+property of type String. Therefore, it always converts <samp class="codeph">"\"</samp> to <samp class="codeph">"\\"</samp>.</p>
+
+            <p>This is necessary because the ActionScript compiler recognizes <samp class="codeph">"\\"</samp> as
+the character sequence for a literal "\" character, and strips out
+the leading backslash when it initializes the property value. </p>
+
+            <div class="note"><span class="notetitle">Note:</span> Do not use the backslash character (\) as a
+separator in the path to an application asset. You should always
+use a forward slash character (/) as the separator.</div>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf5f65f-8000_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf5f65f-8000_verapache"><!-- --></a>
+         <h3 class="topictitle3">Including a newline character in
+a String value</h3>
+
+         
+         <div>
+            <p>For properties of type String, you can insert a newline
+character in the String in several ways:</p>
+
+            <ul>
+               <li>
+                  <p>By using data binding with the '\n' characters in your
+String value in MXML</p>
+
+               </li>
+
+               <li>
+                  <p>By inserting the <samp class="codeph">&amp;#13;</samp> code in your
+String value in MXML</p>
+
+               </li>
+
+               <li>
+                  <p>By inserting <samp class="codeph">"\n"</samp> in an ActionScript String
+variable used to initialize the MXML property</p>
+
+               </li>
+
+            </ul>
+
+            <p>To use data binding, wrap the newline character in curly brace
+characters ({ }), as the following example shows:</p>
+
+            <pre class="codeblock"> &lt;s:TextArea width="100%" text="Display{'\n'}Content"/&gt;</pre>
+
+            <p>To use the <samp class="codeph">&amp;#13;</samp> code to insert a newline
+character, include that code in the property value in MXML, as the
+following example shows:</p>
+
+            <pre class="codeblock"> &lt;s:TextArea width="100%" text="Display&amp;#13;Content"/&gt;</pre>
+
+            <p>To use an ActionScript String variable to insert a newline character,
+create an ActionScript variable, and then use data binding to set
+the property in MXML, as the following example shows:</p>
+
+            <pre class="codeblock"> &lt;fx:Script&gt; 
+ 	&lt;![CDATA[ 
+ 		[Bindable] 
+ 		public var myText:String = "Display" + "\n" + "Content"; 
+ 	]]&gt; 
+ &lt;/fx:Script&gt; 
+  
+ &lt;s:TextArea width="100%" text="{myText}"/&gt;</pre>
+
+            <p>In this example, you set the <samp class="codeph">text</samp> property of
+the <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/spark/components/TextArea.html" target="_blank">TextArea</a> control
+to a value that includes a newline character.</p>
+
+            <p>Notice that this example includes the <samp class="codeph">[Bindable]</samp> metadata
+tag before the property definition. This metadata tag specifies
+that the <samp class="codeph">myText</samp> property can be used as the source
+of a data binding expression. Data binding automatically copies
+the value of a <samp class="codeph">source</samp> property of one object to
+the destination property of another object at run time when the <samp class="codeph">source</samp> property
+changes. </p>
+
+            <p>If you omit this metadata tag, the compiler issues a warning
+message specifying that the property cannot be used as the source
+for data binding. For more information, see <a href="flx_databinding_db.html#WS2db454920e96a9e51e63e3d11c0bf69084-7fe7_verapache">Data
+binding</a>.</p>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS03d33b8076db57b9-510157fd12209564a64-8000_verapache"><a name="WS03d33b8076db57b9-510157fd12209564a64-8000_verapache"><!-- --></a>
+         <h3 class="topictitle3">Mixing content types</h3>
+
+         
+         <div>
+            <div class="p">Flex supports the mixing of content for attribute values.
+The attribute must correspond to a property of type Object or Array.
+Mixed content consists of non white space character data and MXML
+tags, as the following example shows: <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- mxml\DefPropMixed.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark"&gt; 
+ 
+    &lt;s:RichText  fontFamily="Verdana" fontWeight="bold"&gt; 
+        &lt;s:content&gt; 
+            &lt;fx:String&gt;Hello World!&lt;/fx:String&gt;&lt;s:br/&gt; 
+            &lt;fx:String&gt;Hello Universe&lt;/fx:String&gt;&lt;s:br/&gt; 
+            Hello Flex! 
+        &lt;/s:content&gt; 
+    &lt;/s:RichText&gt; 
+&lt;/s:Application&gt;</pre>
+
+            </div>
+
+            <p>In this example, the <samp class="codeph">RichText.content</samp> property
+is of type Object. The property value contains values defined by <samp class="codeph">&lt;fx:String&gt;</samp> tag,
+and by character data (“Hello Flex!”). Character data is almost
+always converted to a value of type String. However, an Array property
+may be defined to support an explicit data type for its values.
+In that case, the compiler converts the character data to the appropriate
+data type. </p>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf69084-7fe8_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7fe8_verapache"><!-- --></a>
+         <h3 class="topictitle3">Setting Arrays of scalar values</h3>
+
+         
+         <div>
+            <p>
+               When
+a class has a property that takes an Array as its value, you can
+represent the property in MXML using child tags. The component in
+the following example has a <samp class="codeph">children</samp> property that
+contains an Array of numbers:</p>
+
+            <pre class="codeblock"> &lt;mynamespace:MyComponent&gt; 
+ 	&lt;mynamespace:children&gt; 
+ 		&lt;fx:Array&gt; 
+ 			&lt;fx:Number&gt;94062&lt;/fx:Number&gt; 
+ 			&lt;fx:Number&gt;14850&lt;/fx:Number&gt; 
+ 			&lt;fx:Number&gt;53402&lt;/fx:Number&gt; 
+ 		&lt;/fx:Array&gt; 
+ 	&lt;/mynamespace:children&gt; 
+ &lt;/mynamespace:MyComponent&gt;</pre>
+
+            <p>The <samp class="codeph">&lt;fx:Array&gt;</samp> and <samp class="codeph">&lt;/fx:Array&gt;</samp> tags
+around the Array elements are optional. Therefore, you can also
+write this example as the following code shows:</p>
+
+            <pre class="codeblock">&lt;mynamespace:MyComponent&gt; 
+	&lt;mynamespace:children&gt; 
+		&lt;fx:Number&gt;94062&lt;/fx:Number&gt; 
+		&lt;fx:Number&gt;14850&lt;/fx:Number&gt; 
+		&lt;fx:Number&gt;53402&lt;/fx:Number&gt; 
+	&lt;/mynamespace:children&gt; 
+&lt;/mynamespace:MyComponent&gt;</pre>
+
+            <p>In this example, since the data type of the <samp class="codeph">children</samp> property
+is defined as Array, Flex automatically converts the three number
+definitions into a three-element array.</p>
+
+            <p>Component developers may have specified additional information
+within the component definition that defines the data type of the
+Array elements. For example, if the developer specified that the <samp class="codeph">dataProvider</samp> property
+supports only String elements, this example would cause a compiler
+error because you specified numbers to it. The <em>
+                  <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/" target="_blank">ActionScript 3.0 Reference for the Adobe
+Flash Platform</a>
+               </em> documents the Array properties that define
+a required data type for the Array elements.</p>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf5f65f-7ff0_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf5f65f-7ff0_verapache"><!-- --></a>
+         <h3 class="topictitle3">Setting Object properties</h3>
+
+         
+         <div>
+            <p>
+               When
+a component has a property that takes an object as its value, you
+can represent the property in MXML using a child tag with tag attributes,
+as the following example shows:</p>
+
+            <pre class="codeblock"> &lt;mynamespace:MyComponent&gt; 
+ 	&lt;mynamespace:nameOfProperty&gt; 
+ 		&lt;mynamespace:typeOfObject prop1="val1" prop2="val2"/&gt; 
+ 	&lt;/mynamespace:nameOfProperty&gt; 
+ &lt;/mynamespace:MyComponent&gt;</pre>
+
+            <p>The following example shows an ActionScript class that defines
+an Address object. This object is used as a property of the PurchaseOrder
+component in the next example.</p>
+
+            <pre class="codeblock"> class Address  { 
+ 	public var name:String; 
+ 	public var street:String; 
+ 	public var city:String; 
+ 	public var state:String; 
+ 	public var zip:Number; 
+ }</pre>
+
+            <p>The following example shows an ActionScript class that defines
+a PurchaseOrder component that has a property type of Address:</p>
+
+            <pre class="codeblock"> import example.Address; 
+  
+ class PurchaseOrder { 
+ 	public var shippingAddress:Address; 
+ 	public var quantity:Number; 
+ ... 
+ }</pre>
+
+            <p>In MXML, you define the PurchaseOrder component as the following
+example shows:</p>
+
+            <pre class="codeblock"> &lt;mynamespace:PurchaseOrder quantity="3" xmlns:e="example"&gt; 
+	 &lt;mynamespace:shippingAddress&gt; 
+ 		&lt;mynamespace:Address name="Fred" street="123 Elm St."/&gt; 
+ 	&lt;/mynamespace:shippingAddress&gt; 
+ &lt;/mynamespace:PurchaseOrder&gt;</pre>
+
+            <p>If the value of the <samp class="codeph">shippingAddress</samp> property
+is a subclass of Address (such as DomesticAddress), you can declare
+the property value, as the following example shows:</p>
+
+            <pre class="codeblock"> &lt;mynamespace:PurchaseOrder quantity="3" xmlns:e="example"&gt; 
+ 	&lt;mynamespace:shippingAddress&gt; 
+ 		&lt;mynamespace:DomesticAddress name="Fred" street="123 Elm St."/&gt; 
+ 	&lt;/mynamespace:shippingAddress&gt; 
+ &lt;/mynamespace:PurchaseOrder&gt;</pre>
+
+            <p>If the property is explicitly typed as Object like the <samp class="codeph">value</samp> property
+in the following example, you can specify an anonymous object using
+the <samp class="codeph">&lt;fx:Object&gt;</samp> tag.</p>
+
+            <pre class="codeblock"> class ObjectHolder { 
+ 	public var value:Object 
+ }</pre>
+
+            <p>The following example shows how you specify an anonymous object
+as the value of the <samp class="codeph">value</samp> property:</p>
+
+            <pre class="codeblock"> &lt;mynamespace:ObjectHolder&gt; 
+ 	&lt;mynamespace:value&gt; 
+ 		&lt;fx:Object foo='bar'/&gt; 
+ 	&lt;/mynamespace:value&gt; 
+ &lt;/mynamespace:ObjectHolder&gt;</pre>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf5f65f-7ffd_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf5f65f-7ffd_verapache"><!-- --></a>
+         <h3 class="topictitle3">Populating an Object with an Array</h3>
+
+         
+         <div>
+            <p>When a component has a property of type Object that takes
+an Array as its value, you can represent the property in MXML using
+child tags, as the following example shows:</p>
+
+            <pre class="codeblock"> &lt;mynamespace:MyComponent&gt; 
+ 	&lt;mynamespace:nameOfObjectProperty&gt; 
+ 		&lt;fx:Array&gt; 
+ 			&lt;fx:Number&gt;94062&lt;/fx:Number&gt; 
+ 			&lt;fx:Number&gt;14850&lt;/fx:Number&gt; 
+ 			&lt;fx:Number&gt;53402&lt;/fx:Number&gt; 
+ 		&lt;/fx:Array&gt; 
+ 	&lt;/mynamespace:nameOfObjectProperty&gt; 
+ &lt;/mynamespace:MyComponent&gt;</pre>
+
+            <p>In this example, you initialize the Object property to a three-element
+array of numbers. </p>
+
+            <p>As described in the section <a href="flx_mxmlSyntax_sy.html#WS2db454920e96a9e51e63e3d11c0bf69084-7fe8_verapache">Setting
+Arrays of scalar values</a>, the <samp class="codeph">&lt;fx:Array&gt;</samp> tag and
+the <samp class="codeph">&lt;/fx:Array&gt;</samp> tag around the Array elements
+are optional and may be omitted, as the following example shows:</p>
+
+            <pre class="codeblock"> &lt;mynamespace:MyComponent&gt; 
+ 	&lt;mynamespace:nameOfObjectProperty&gt; 
+ 		&lt;fx:Number&gt;94062&lt;/fx:Number&gt; 
+ 		&lt;fx:Number&gt;14850&lt;/fx:Number&gt; 
+ 		&lt;fx:Number&gt;53402&lt;/fx:Number&gt; 
+ 	&lt;/mynamespace:nameOfObjectProperty&gt; 
+ &lt;/mynamespace:MyComponent&gt;</pre>
+
+            <p>The only exception to this rule is when you specify a single
+Array element for the Object property. In that case, Flex does not
+create an Object containing a single-element array, but instead
+creates an object and sets it to the specified value. This is a
+difference between the following two lines:</p>
+
+            <pre class="codeblock"> object=[element] // Object containing a one-element array 
+ object=element // object equals value </pre>
+
+            <p>If you want to create a single-element array, include the <samp class="codeph">&lt;fx:Array&gt;</samp> and <samp class="codeph">&lt;/fx:Array&gt;</samp> tags
+around the array element, as the following example shows:</p>
+
+            <pre class="codeblock"> &lt;mynamespace:MyComponent&gt; 
+ 	&lt;mynamespace:nameOfObjectProperty&gt; 
+ 		&lt;fx:Array&gt; 
+ 			&lt;fx:Number&gt;94062&lt;/fx:Number&gt; 
+ 		&lt;/fx:Array&gt; 
+ 	&lt;/mynamespace:nameOfObjectProperty&gt; 
+ &lt;/mynamespace:MyComponent&gt;</pre>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf5f65f-7fef_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf5f65f-7fef_verapache"><!-- --></a>
+         <h3 class="topictitle3">Populating Arrays of objects</h3>
+
+         
+         <div>
+            <p>When a component has a property that takes an Array of
+objects as its value, you can represent the property in MXML using
+child tags, as the following example shows:</p>
+
+            <pre class="codeblock"> &lt;mynamespace:MyComponent&gt; 
+ 	&lt;mynamespace:nameOfProperty&gt; 
+ 		&lt;fx:Array&gt; 
+ 			&lt;mynamespace:objectType prop1="val1" prop2="val2"/&gt; 
+ 			&lt;mynamespace:objectType prop1="val1" prop2="val2"/&gt; 
+ 			&lt;mynamespace:objectType prop1="val1" prop2="val2"/&gt; 
+ 		&lt;/fx:Array&gt; 
+ 	&lt;/mynamespace:nameOfProperty&gt; 
+ &lt;/mynamespace:MyComponent&gt;</pre>
+
+            <p>The component in the following example contains an Array of ListItem
+objects. Each ListItem object has properties named <samp class="codeph">label</samp> and <samp class="codeph">data</samp>.</p>
+
+            <pre class="codeblock"> &lt;mynamespace:MyComponent&gt; 
+ 	&lt;mynamespace:dataProvider&gt; 
+ 		&lt;fx:Array&gt; 
+ 			&lt;mynamespace:ListItem label="One" data="1"/&gt; 
+ 			&lt;mynamespace:ListItem label="Two" data="2"/&gt; 
+ 		&lt;/fx:Array&gt; 
+ 	&lt;/mynamespace:dataProvider&gt; 
+ &lt;/mynamespace:MyComponent&gt;</pre>
+
+            <p>The following example shows how you specify an anonymous object
+as the value of the <samp class="codeph">dataProvider</samp> property:</p>
+
+            <pre class="codeblock"> &lt;mynamespace:MyComponent&gt; 
+ 	&lt;mynamespace:dataProvider&gt; 
+ 		&lt;fx:Array&gt; 
+ 			&lt;fx:Object label="One" data="1"/&gt; 
+ 			&lt;fx:Object label="Two" data="2"/&gt; 
+ 		&lt;/fx:Array&gt; 
+ 	&lt;/mynamespace:dataProvider&gt; 
+ &lt;/mynamespace:MyComponent&gt;</pre>
+
+            <p>As described in the section <a href="flx_mxmlSyntax_sy.html#WS2db454920e96a9e51e63e3d11c0bf69084-7fe8_verapache">Setting
+Arrays of scalar values</a>, the <samp class="codeph">&lt;fx:Array&gt;</samp> tag and
+the <samp class="codeph">&lt;/fx:Array&gt;</samp> tag around the Array elements
+are optional and may be omitted, as the following example shows:</p>
+
+            <pre class="codeblock"> &lt;mynamespace:MyComponent&gt; 
+ 	&lt;mynamespace:dataProvider&gt; 
+ 		&lt;fx:Object label="One" data="1"/&gt; 
+ 		&lt;fx:Object label="Two" data="2"/&gt; 
+ 	&lt;/mynamespace:dataProvider&gt; 
+ &lt;/mynamespace:MyComponent&gt;</pre>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS03d33b8076db57b9626da506121e50da8d4-8000_verapache"><a name="WS03d33b8076db57b9626da506121e50da8d4-8000_verapache"><!-- --></a>
+         <h3 class="topictitle3">Populating a Vector</h3>
+
+         
+         <div>
+            <p>The Vector class lets you access and manipulate a vector.
+A Vector is an array whose elements all have the same data type.
+The data type of a Vector's elements is known as the Vector's <em>base</em> type.
+The base type can be any class, including built in classes and custom
+classes. The base type is specified when declaring a Vector variable
+as well as when creating an instance by calling the class constructor. </p>
+
+            <p>In MXML, define an instance of a Vector class in a <samp class="codeph">&lt;fx:Declarations&gt;</samp> block, as
+the following example shows:</p>
+
+            <div class="p">
+               <pre class="codeblock">&lt;fx:Declarations&gt; <strong> 
+	&lt;fx:Vector type="String"&gt; </strong> 
+		&lt;fx:String&gt;one&lt;/fx:String&gt; 
+		&lt;fx:String&gt;two&lt;/fx:String&gt; 
+		&lt;fx:String&gt;three&lt;/fx:String&gt; 
+	&lt;/fx:Vector&gt; 
+   
+	<strong>&lt;fx:Vector type="Vector.&amp;lt;String&amp;gt;"&gt;</strong> 
+		&lt;fx:Vector type="String"&gt; 
+			&lt;fx:String&gt;one&lt;/fx:String&gt; 
+			&lt;fx:String&gt;two&lt;/fx:String&gt; 
+			&lt;fx:String&gt;three&lt;/fx:String&gt; 
+		&lt;/fx:Vector&gt; 
+	&lt;/fx:Vector&gt; 
+&lt;/fx:Declarations&gt;</pre>
+
+            </div>
+
+            <p>The first example defines a Vector with a base type of String.
+The second example defines a Vector of Vectors of type String. Notice
+that you use the HTML escape characters <samp class="codeph">&amp;lt;</samp> and <samp class="codeph">&amp;gt;</samp> ,
+instead of &lt; and &gt;, in the nested Vector. This syntax is necessary
+to conform to XML syntax rules. </p>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf5f65f-7fee_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf5f65f-7fee_verapache"><!-- --></a>
+         <h3 class="topictitle3">Setting properties that contain
+XML data</h3>
+
+         
+         <div>
+            <p>
+               
+               
+               If a component contains a property that
+takes XML data, the value of the property is an XML fragment to
+which you can apply a namespace. In the following example, the <samp class="codeph">value</samp> property
+of the MyComponent object is XML data:</p>
+
+            <pre class="codeblock"> &lt;mynamespace:MyComponent&gt; 
+ 	&lt;mynamespace:value xmlns:a="http://www.example.com/myschema"&gt; 
+ 		&lt;fx:XML&gt; 
+ 			&lt;a:purchaseorder&gt; 
+ 				&lt;a:billingaddress&gt; 
+ 				... 
+ 				&lt;/a:billingaddress&gt; 
+ 				... 
+ 			&lt;/a:purchaseorder&gt; 
+ 		&lt;/fx:XML&gt; 
+ 	&lt;/mynamespace:value&gt; 
+ &lt;/mynamespace:MyComponent&gt;</pre>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf5f65f-7fed_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf5f65f-7fed_verapache"><!-- --></a>
+         <h3 class="topictitle3">Setting style properties in MXML</h3>
+
+         
+         <div>
+            <p>A style property of an MXML tag differs from other properties
+because it corresponds to an ActionScript style, rather than to
+a property of an ActionScript class. You set these properties in
+ActionScript using the <samp class="codeph">setStyle(</samp>
+               <em>stylename</em>
+               <samp class="codeph">, </samp>
+               <em>value</em>
+               <samp class="codeph">)</samp> method
+rather than <samp class="codeph">object.property=value</samp> notation. </p>
+
+            <p>
+               
+               
+               For
+example, you can set the <samp class="codeph">fontFamily</samp> style property
+in MXML, as the following code shows: </p>
+
+            <pre class="codeblock"> &lt;s:TextArea id="myText" text="hello world" fontFamily="Tahoma"/&gt;</pre>
+
+            <p>This MXML code is equivalent to the following ActionScript code:</p>
+
+            <pre class="codeblock"> myText.setStyle("fontFamily", "Tahoma");</pre>
+
+            <p>You define style properties in custom ActionScript classes by
+using the <samp class="codeph">[Style]</samp> metadata tags, rather than defining
+them as ActionScript variables or setter/getter methods. For more
+information, see <a href="flx_metadata_me.html#WS2db454920e96a9e51e63e3d11c0bf69084-7fe9_verapache">Metadata
+tags in custom components</a>.</p>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf5f65f-7ffa_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf5f65f-7ffa_verapache"><!-- --></a>
+         <h3 class="topictitle3">Setting event properties in MXML</h3>
+
+         
+         <div>
+            <p>An event property of an MXML tag lets you specify the event
+listener function for an event. This property corresponds to setting
+the event listener in ActionScript using the <samp class="codeph">addEventListener()</samp> method. </p>
+
+            <p>
+               
+               
+               For
+example, you can set the <samp class="codeph">creationComplete</samp> event
+property in MXML, as the following code shows: </p>
+
+            <pre class="codeblock"> &lt;s:TextArea id="myText" creationComplete="creationCompleteHandler();"/&gt;</pre>
+
+            <p>This MXML code is equivalent to the following ActionScript code:</p>
+
+            <pre class="codeblock"> myText.addEventListener("creationComplete", creationCompleteHandler); </pre>
+
+            <p>You define event properties in custom ActionScript classes by
+using the <samp class="codeph">[Event]</samp> metadata tags, rather than defining
+them as ActionScript variables or setter/getter methods. For more
+information, see <a href="flx_metadata_me.html#WS2db454920e96a9e51e63e3d11c0bf69084-7fe9_verapache">Metadata
+tags in custom components</a>.</p>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf5f65f-7ff5_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf5f65f-7ff5_verapache"><!-- --></a>
+         <h3 class="topictitle3">Specifying a URL value </h3>
+
+         
+         <div>
+            <p>Some MXML tags, such as the <samp class="codeph">&lt;fx:Script&gt;</samp> tag,
+have a property that takes a URL of an external file as a value.
+For example, you can use the <samp class="codeph">source</samp> property in
+an <samp class="codeph">&lt;fx:Script&gt;</samp> tag to reference an external
+ActionScript file instead of typing ActionScript directly in the
+body of the <samp class="codeph">&lt;fx:Script&gt;</samp> tag.</p>
+
+            <div class="note"><span class="notetitle">Note:</span> You specify a script in the <samp class="codeph">source</samp> property
+of an <samp class="codeph">&lt;fx:Script&gt;</samp> tag. You do not specify
+ActionScript classes in the <samp class="codeph">source</samp> property. For
+information on using ActionScript classes, see <a href="flx_usingas_ua.html#WS2db454920e96a9e51e63e3d11c0bf69084-7fe3_verapache">Creating
+ActionScript components</a>.</div>
+
+            <p>
+               MXML supports the following
+types of URLs: </p>
+
+            <ul>
+               <li>
+                  <p>Absolute, as in the following example:</p>
+
+                  <pre class="codeblock"> &lt;fx:Style source="http://www.somesite.com/mystyles.css"&gt;</pre>
+
+               </li>
+
+               <li>
+                  <p>A path used at compile time that is relative to the application,
+as in the following example:</p>
+
+                  <pre class="codeblock"> &lt;fx:Script source="/myscript.as"/&gt;</pre>
+
+               </li>
+
+               <li>
+                  <p>Relative to the current file location, as in the following
+example:</p>
+
+                  <pre class="codeblock"> &lt;fx:Script source="../myscript.as"/&gt;</pre>
+
+               </li>
+
+               <li>
+                  <p>A path used at run time that is relative to the context root
+of the Java web application in which a Flex application is running.
+For example:</p>
+
+                  <pre class="codeblock"> &lt;mx:HTTPService url="@ContextRoot()/directory/myfile.xml"/&gt;</pre>
+
+                  <p>You
+can only use the <samp class="codeph">@ContextRoot()</samp> token if you are
+using the web-tier compiler or if you set the value of the <samp class="codeph">context-root</samp> compiler
+argument</p>
+
+               </li>
+
+            </ul>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf5f65f-7ff9_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf5f65f-7ff9_verapache"><!-- --></a>
+         <h3 class="topictitle3">Specifying a RegExp value</h3>
+
+         
+         <div>
+            <p>For a property of type RegExp, you can specify its value
+in MXML using the following format:</p>
+
+            <pre class="codeblock"> "/<em>pattern</em>/<em>flags</em>"</pre>
+
+            <dl>
+               
+                  <dt class="dlterm">pattern</dt>
+
+                  <dd>
+                     <p>Specifies the regular expression within the two slashes.
+Both slashes are required. </p>
+
+                  </dd>
+
+               
+               
+                  <dt class="dlterm">flags</dt>
+
+                  <dd>
+                     <p>(Optional) Specifies any flags for the regular expression.</p>
+
+                     <p>For
+example, the <samp class="codeph">regExpression</samp> property of an MXML
+component is of type RegExp. Therefore, you can set its value as
+the following example shows:</p>
+
+                     <pre class="codeblock"> &lt;mynamespace:MyComponent regExpression="/\Wcat/gi"/&gt;</pre>
+
+                     <p>Or
+set it using child tags, as the following example shows:</p>
+
+                     <pre class="codeblock"> &lt;mynamespace:MyComponent&gt; 
+ 	<strong>&lt;mynamespace:regExpression&gt;/\Wcat/gi&lt;/mynamespace:regExpression&gt;</strong>	 
+ &lt;/mynamespace:MyComponent&gt;</pre>
+
+                     <p>The <em>flags</em> portion
+of the regular expression is optional, so you can also specify it as
+the following example shows:</p>
+
+                     <pre class="codeblock"> &lt;mynamespace:MyComponent regExpression="/\Wcat/"/&gt;</pre>
+
+                  </dd>
+
+               
+            </dl>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf5f65f-7fec_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf5f65f-7fec_verapache"><!-- --></a>
+         <h3 class="topictitle3">Using compiler tags</h3>
+
+         
+         <div>
+            <p>
+               
+               
+               
+               <em>Compiler tags</em> are
+tags that do not directly correspond to ActionScript objects or properties.
+They include the following: </p>
+
+            <ul>
+               <li>
+                  <p>
+                     <samp class="codeph">&lt;fx:Binding&gt;</samp> 
+                  </p>
+
+               </li>
+
+               <li>
+                  <p>
+                     <samp class="codeph">&lt;fx:Component&gt;</samp>
+                  </p>
+
+               </li>
+
+               <li>
+                  <p>
+                     <samp class="codeph">&lt;fx:Declarations&gt;</samp>
+                  </p>
+
+               </li>
+
+               <li>
+                  <p>
+                     <samp class="codeph">&lt;fx:Definition&gt;</samp>
+                  </p>
+
+               </li>
+
+               <li>
+                  <p>
+                     <samp class="codeph">&lt;fx:DesignLayer&gt;</samp>
+                  </p>
+
+               </li>
+
+               <li>
+                  <p>
+                     <samp class="codeph">&lt;fx:Library&gt;</samp>
+                  </p>
+
+               </li>
+
+               <li>
+                  <p>
+                     <samp class="codeph">&lt;fx:Metadata&gt;</samp>
+                  </p>
+
+               </li>
+
+               <li>
+                  <p>
+                     <samp class="codeph">&lt;fx:Model&gt;</samp> 
+                  </p>
+
+               </li>
+
+               <li>
+                  <p>
+                     <samp class="codeph">&lt;fx:Private&gt;</samp> 
+                  </p>
+
+               </li>
+
+               <li>
+                  <p>
+                     <samp class="codeph">&lt;fx:Reparent&gt;</samp> 
+                  </p>
+
+               </li>
+
+               <li>
+                  <p>
+                     <samp class="codeph">&lt;fx:Script&gt;</samp> 
+                  </p>
+
+               </li>
+
+               <li>
+                  <p>
+                     <samp class="codeph">&lt;fx:Style&gt;</samp> 
+                  </p>
+
+               </li>
+
+            </ul>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf69084-7ff7_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7ff7_verapache"><!-- --></a>
+         <h3 class="topictitle3">MXML tag rules</h3>
+
+         
+         <div>
+            <p>
+               
+               
+               MXML
+has the following syntax requirements: </p>
+
+            <ul>
+               <li>
+                  <p>The <samp class="codeph">id</samp> property is not required on any
+tag.</p>
+
+               </li>
+
+               <li>
+                  <p>The <samp class="codeph">id</samp> property is not allowed on the root
+tag.</p>
+
+               </li>
+
+               <li>
+                  <p>Boolean properties take only <samp class="codeph">true</samp> and <samp class="codeph">false</samp> values.</p>
+
+               </li>
+
+               <li>
+                  <p>The <samp class="codeph">&lt;fx:Binding&gt;</samp> tag requires both <samp class="codeph">source</samp> and <samp class="codeph">destination</samp> properties.</p>
+
+               </li>
+
+               <li>
+                  <p>The <samp class="codeph">&lt;fx:Binding&gt;</samp> tag cannot contain
+an <samp class="codeph">id</samp> property.</p>
+
+               </li>
+
+            </ul>
+
+            <p/>
+
+         </div>
+
+      </div>
+
+         <p>Adobe and Adobe Flash are either registered trademarks or trademarks of Adobe Systems Incorporated in the United States and/or other countries and are used by permission from Adobe.  No other license to the Adobe trademarks are granted.</p>
+   </div>
+
+
+</body>
+</html>

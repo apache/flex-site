@@ -1,0 +1,561 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Licensed to the Apache Software Foundation (ASF) under one or more
+  contributor license agreements.  See the NOTICE file distributed with
+  this work for additional information regarding copyright ownership.
+  The ASF licenses this file to You under the Apache License, Version 2.0
+  (the "License"); you may not use this file except in compliance with
+  the License.  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+-->
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en-us" xml:lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="topic"/>
+<meta name="DC.Title" content="Custom style properties"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="WS2db454920e96a9e51e63e3d11c0bf69084-7a20_verapache"/>
+<link rel="stylesheet" type="text/css" href="commonltr.css"/>
+<title>Custom style properties</title>
+</head>
+<body id="WS2db454920e96a9e51e63e3d11c0bf69084-7a20_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7a20_verapache"><!-- --></a>
+
+
+   <h1 class="topictitle1">Custom style properties</h1>
+
+   <div>
+      <p>Styles are useful for defining the look and feel of your
+applications, including letting users set component skins. You can
+use them to change the appearance of a single component, or apply
+them across all components, including custom components. </p>
+
+   </div>
+
+   <div class="nested1" id="WS2db454920e96a9e51e63e3d11c0bf687e7-7ff7_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf687e7-7ff7_verapache"><!-- --></a>
+      <h2 class="topictitle2">About styles</h2>
+
+      
+      <div>
+         <p>You can modify the appearance of Flex components through
+style properties. These properties can define the size of a font
+used in a control, or the background color used in the <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/controls/Tree.html" target="_blank">Tree</a> control.
+In Flex, some styles are inherited from parent containers to their
+children, and across style types and classes. This means that you
+can define a style once, and then have that style apply to all controls
+of a single type or to a set of controls. Also, you can override
+individual properties for each control at a local, document, or
+global level, giving you great flexibility in controlling the appearance
+of your applications.</p>
+
+         <p>For more information, see <a href="flx_styles_st.html#WS2db454920e96a9e51e63e3d11c0bf69084-7fee_verapache">Styles
+and themes</a>. </p>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf687e7-7ffd_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf687e7-7ffd_verapache"><!-- --></a>
+         <h3 class="topictitle3">About inheritance in Cascading
+Style Sheets</h3>
+
+         
+         <div>
+            <p>When you implement a style property in an ActionScript
+component, that property is automatically inherited by any subclasses
+of your class, just as methods and properties are inherited. This
+type of inheritance is called object-oriented inheritance. </p>
+
+            <p>
+               Some style properties
+also support Cascading Style Sheet (CSS) inheritance. CSS inheritance
+means that if you set the value of a style property on a parent container,
+a child of that container inherits the value of the property when
+your application runs. For example, if you define the <samp class="codeph">fontFamily</samp> style
+as Times for a <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/spark/components/Panel.html" target="_blank">Panel</a> container,
+all children of that container use Times for <samp class="codeph">fontFamily</samp>, unless
+they override that property. </p>
+
+            <p>In general, color and text styles support CSS inheritance, regardless
+of whether they are set by using CSS or style properties. All other
+styles do not support CSS inheritance, unless otherwise noted.</p>
+
+            <p>If you set a style on a parent that does not support CSS inheritance,
+such as <samp class="codeph">textDecoration</samp>, only the parent container
+uses that value, and not its children. There is an exception to
+the rules of CSS inheritance. If you use the global type selector
+in a CSS style definition, Flex applies those style properties to
+all controls, regardless of whether the properties are inheritable.</p>
+
+            <p>For more information about style inheritance, see <a href="flx_styles_st.html#WS2db454920e96a9e51e63e3d11c0bf69084-7e83_verapache">About
+style inheritance</a>.</p>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf687e7-7ffc_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf687e7-7ffc_verapache"><!-- --></a>
+         <h3 class="topictitle3">About setting styles</h3>
+
+         
+         <div>
+            <p>
+               Flex provide
+several ways of setting component styles: using MXML tag attributes,
+calling the <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/core/UIComponent.html#setStyle()" target="_blank">setStyle()</a> method,
+and CSS. </p>
+
+            <div class="section" id="WS2db454920e96a9e51e63e3d11c0bf687e7-7ffc_verapache__WS2db454920e96a9e51e63e3d11c0bf687e7-7ff8_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf687e7-7ffc_verapache__WS2db454920e96a9e51e63e3d11c0bf687e7-7ff8_verapache"><!-- --></a><h4 class="sectiontitle">Setting
+styles using MXML tag attributes</h4>
+               
+               <p>Component users can use
+MXML tag attributes to set a style property on a component. For
+example, the following code creates a TextArea control, and then sets
+the <samp class="codeph">backgroundColor</samp> style of the component to blue
+(0x0000FF):</p>
+
+               <pre class="codeblock"> &lt;mx:TextArea id="myTA" backgroundColor="0x0000FF"/&gt;</pre>
+
+            </div>
+
+            <div class="section" id="WS2db454920e96a9e51e63e3d11c0bf687e7-7ffc_verapache__WS2db454920e96a9e51e63e3d11c0bf687e7-8000_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf687e7-7ffc_verapache__WS2db454920e96a9e51e63e3d11c0bf687e7-8000_verapache"><!-- --></a><h4 class="sectiontitle">Setting
+styles using the setStyle() method</h4>
+               
+               <p>Component users can
+use the <samp class="codeph">setStyle()</samp> method to set a style property
+on a component. For example, the following code creates a <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/spark/components/TextArea.html" target="_blank">TextArea</a> control,
+and then sets the <samp class="codeph">fontWeight</samp> style of the component
+to bold:</p>
+
+               <pre class="codeblock"> var myTA:TextArea=new TextArea(); 
+ myTA.setStyle('fontWeight', 'bold');</pre>
+
+            </div>
+
+            <div class="section" id="WS2db454920e96a9e51e63e3d11c0bf687e7-7ffc_verapache__WS2db454920e96a9e51e63e3d11c0bf687e7-7fff_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf687e7-7ffc_verapache__WS2db454920e96a9e51e63e3d11c0bf687e7-7fff_verapache"><!-- --></a><h4 class="sectiontitle">Setting
+styles using CSS</h4>
+               
+               <div class="p">
+                  Component
+users can use the <samp class="codeph">&lt;fx:Styles&gt;</samp> tag to set
+CSS styles in an MXML application, as the following example shows: <pre class="codeblock">&lt;?xml version="1.0" encoding="utf-8"?&gt; 
+&lt;!-- createcomps_styles/CCStyles.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:MyComp="myComponents.*" &gt; 
+     
+    &lt;fx:Style&gt; 
+        @namespace s "library://ns.adobe.com/flex/spark"; 
+        s|TextArea {fontWeight: "bold"}  
+    &lt;/fx:Style&gt; 
+     
+    &lt;s:TextArea/&gt; 
+  
+&lt;/s:Application&gt;</pre>
+
+               </div>
+
+               <p>You can also import an
+external CSS file, as the following example shows:</p>
+
+               <pre class="codeblock"> &lt;fx:Style source="myStyle.css"/&gt;</pre>
+
+            </div>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf687e7-7ffb_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf687e7-7ffb_verapache"><!-- --></a>
+         <h3 class="topictitle3">Overriding the styleChanged() method</h3>
+
+         
+         <div>
+            <p>When a user sets a style on a component, Flex calls the
+component’s <samp class="codeph">styleChanged()</samp> method, passing to it
+the name of the style being set. When you create a custom component,
+you can override the <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/core/UIComponent.html#styleChanged()" target="_blank">UIComponent.styleChanged()</a> method
+to check the style name passed to it, and handle the change accordingly,
+as the following example shows:</p>
+
+            <pre class="codeblock"> var bBackgroundColor:Boolean=false; 
+  
+ override public function styleChanged(styleProp:String):void { 
+  
+ 	super.styleChanged(styleProp); 
+  
+ 	// Check to see if style changed.  
+ 	if (styleProp=="backgroundColor")  
+ 	{ 
+ 		bBackgroundColor=true;  
+ 		invalidateDisplayList(); 
+ 		return; 
+ 	} 
+ }</pre>
+
+            <p>The <samp class="codeph">styleChanged()</samp> method first calls superclass’ <samp class="codeph">styleChanged()</samp> method
+to let the superclass handle the style change.</p>
+
+            <p>After the superclass gets a call to handle the style change,
+your component can detect that the user set the <samp class="codeph">backgroundColor</samp> style,
+and handle it. By handling the style change after the superclass
+makes the change, you can override the way the superclass handles
+the style. </p>
+
+            <p>Notice that the method calls the <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/core/UIComponent.html#invalidateDisplayList()" target="_blank">invalidateDisplayList()</a> method,
+which causes Flex to execute the component’s <samp class="codeph">updateDisplayList()</samp> method
+at the next screen update. Although you can detect style changes
+in the <samp class="codeph">styleChanged()</samp> method, you still use the <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/core/UIComponent.html#updateDisplayList()" target="_blank">updateDisplayList()</a> method
+to draw the component on the screen. For more information, see <a href="flx_skinstyle_ss.html#WS2db454920e96a9e51e63e3d11c0bf69084-79da_verapache">Defining
+a style property</a>.</p>
+
+            <p>Typically, you use a flag to indicate that a style changed. In
+the <samp class="codeph">updateDisplayList()</samp> method, you check the flag
+and update the component based on the new style setting, as the
+following example shows:</p>
+
+            <pre class="codeblock"> override protected function updateDisplayList(unscaledWidth:Number, unscaledHeight:Number):void { 
+  
+ 	super.updateDisplayList(unscaledWidth, unscaledHeight); 
+  
+ 	// Check to see if style changed.  
+ 	if (bBackgroundColor==true)  
+ 	{ 
+ 		// Redraw the component using the new style. 
+ 		... 
+ 	} 
+ }</pre>
+
+            <p>By using flags to signal style updates to the <samp class="codeph">updateDisplayList()</samp> method, the <samp class="codeph">updateDisplayList()</samp> method
+has to perform only the updates based on the style changes; it may
+not have to redraw or recalculate the appearance of the entire component.
+For example, if you are changing only the border color of a component,
+it is more efficient to redraw only the border, rather than redrawing the
+entire component every time someone changes a style.</p>
+
+         </div>
+
+      </div>
+
+   </div>
+
+   <div class="nested1" id="WS2db454920e96a9e51e63e3d11c0bf687e7-7ff6_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf687e7-7ff6_verapache"><!-- --></a>
+      <h2 class="topictitle2">Example: Creating style properties</h2>
+
+      
+      <div>
+         <p>When you create a component, you might want to create a
+style property so that component users can configure it by using
+styles. For example, you create a component, named StyledRectangle,
+that uses a gradient fill pattern to define its color, as the following
+example shows:</p>
+
+         <div class="figborder">
+            <img src="images/ss_gradientRect.png" alt="The StyledRectangle component uses a gradient fill pattern to define its color."/>
+         </div>
+
+         <p>This gradient is defined by two colors that you set by using
+a new style property called <samp class="codeph">fillColors</samp>. The <samp class="codeph">fillColors</samp> style
+takes an array of two colors that component users can set. The StyledRectangle.as
+class defines default colors for the <samp class="codeph">fillColors</samp> style,
+but you can also set them, as the following example shows:</p>
+
+         <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- skinstyle\MainRectWithFillStyles.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:MyComp="myComponents.*"&gt; 
+    &lt;s:layout&gt; 
+        &lt;s:VerticalLayout/&gt; 
+    &lt;/s:layout&gt; 
+ 
+    &lt;!-- Set style by using a CSS type selector. --&gt; 
+    &lt;fx:Style&gt; 
+        @namespace "myComponents.*"; 
+        StyledRectangle {fillColors: #FF00FF, #00FFFF} 
+    &lt;/fx:Style&gt; 
+ 
+    &lt;!-- By default, use the style defined by the CSS type selector. --&gt; 
+    &lt;MyComp:StyledRectangle id="mySR1"/&gt; 
+ 
+    &lt;!-- By default, use the style defined by the CSS type selector. --&gt; 
+    &lt;MyComp:StyledRectangle id="mySR2"/&gt; 
+ 
+    &lt;!-- Change the default style by using the setStyle() method. --&gt; 
+    &lt;mx:Button label="Set gradient" 
+        click="mySR2.setStyle('fillColors', [0x000000, 0xFFFFFF]);"/&gt; 
+ 
+    &lt;!-- Set fillColors in MXML. --&gt; 
+    &lt;MyComp:StyledRectangle id="mySR3" fillColors="[0x00FF00, 0xFFFFFF]"/&gt; 
+ 
+&lt;/s:Application&gt;</pre>
+
+         <p>In this example, the CSS type selector for the StyledRectangle
+component sets the initial values of the <samp class="codeph">fillColors</samp> property
+to <samp class="codeph">#FF00FF</samp> and <samp class="codeph">#00FFFF</samp>. For the
+second StyledRectangle components, you use the <samp class="codeph">click</samp> event
+of a <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/controls/Button.html" target="_blank">Button</a> control
+to change the <samp class="codeph">fillColor</samp> style by using the <samp class="codeph">setStyle()</samp> method. The
+third component sets the style property by using an MXML tag attribute.</p>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf69084-79da_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-79da_verapache"><!-- --></a>
+         <h3 class="topictitle3">Defining a style property</h3>
+
+         
+         <div>
+            <p>You define a style property for a component in the class
+definition.</p>
+
+            <ol>
+               <li>
+                  <p>Insert the <samp class="codeph">[Style]</samp> metadata tag that
+defines the style before the class definition. </p>
+
+                  <p>You insert
+the <samp class="codeph">[Style]</samp> metadata tag before the class definition
+to define the MXML tag attribute for a style property. If you omit
+the <samp class="codeph">[Style]</samp> metadata tag, the MXML compiler issues
+a syntax error when you try to set the property as an MXML tag attribute. </p>
+
+                  <p>The <samp class="codeph">[Style]</samp> metadata
+tag has the following syntax: </p>
+
+                  <pre class="codeblock"> [Style(name="style_name"[,property="value",...])]</pre>
+
+                  <p>For
+more information, see <a href="flx_metadata_me.html#WS2db454920e96a9e51e63e3d11c0bf69084-7fe9_verapache">Metadata
+tags in custom components</a>.</p>
+
+               </li>
+
+               <li>
+                  <p>
+                     
+                     
+                     Override
+the <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/core/UIComponent.html#styleChanged()" target="_blank">styleChanged()</a> method
+to detect changes to the property.</p>
+
+               </li>
+
+               <li>
+                  <p>Override <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/core/UIComponent.html#updateDisplayList()" target="_blank">updateDisplayList()</a> method
+to incorporate the style into the component display.</p>
+
+               </li>
+
+               <li>
+                  <p>Define a static initializer to set the default value of the
+style property. </p>
+
+                  <p>For more information, see <a href="flx_skinstyle_ss.html#WS2db454920e96a9e51e63e3d11c0bf69084-79d9_verapache">Setting
+default style values</a>.</p>
+
+               </li>
+
+            </ol>
+
+            <p>The following code example defines the StyledRectangle component
+and the <samp class="codeph">fillColors</samp> style. It also defines a second
+style property named <samp class="codeph">alphas</samp> that you can use to
+set the alpha values of the fill:</p>
+
+            <pre class="codeblock">package myComponents 
+{ 
+    // skinstyle/myComponents/StyledRectangle.as 
+    import mx.core.UIComponent; 
+    import mx.styles.CSSStyleDeclaration; 
+    import mx.styles.StyleManager; 
+    import flash.display.GradientType; 
+    import mx.core.FlexGlobals; 
+ 
+    // Insert the [Style] metadata tag to define the name, type 
+    // and other information about the style property for the 
+    // MXML compiler. 
+    [Style(name="fillColors",type="Array",format="Color",inherit="no")] 
+    [Style(name="alphas",type="Array",format="Number",inherit="no")] 
+ 
+    public class StyledRectangle extends UIComponent 
+    {    
+        // Define a static variable. 
+        private static var classConstructed:Boolean = classConstruct(); 
+    
+        // Define a static method. 
+        private static function classConstruct():Boolean { 
+            if (!FlexGlobals.topLevelApplication.styleManager.getStyleDeclaration("myComponents.StyledRectangle")) 
+            { 
+                // If there is no CSS definition for StyledRectangle, 
+                // then create one and set the default value. 
+                var myRectStyles:CSSStyleDeclaration = new CSSStyleDeclaration(); 
+                myRectStyles.defaultFactory = function():void 
+                { 
+                    this.fillColors = [0xFF0000, 0x0000FF]; 
+                    this.alphas = [0.5, 0.5]; 
+                } 
+                FlexGlobals.topLevelApplication.styleManager.setStyleDeclaration("myComponents.StyledRectangle", myRectStyles, true); 
+ 
+            } 
+            return true; 
+        } 
+    
+        // Constructor  
+        public function StyledRectangle() { 
+            super();    
+        }           
+    
+        // Define a default size of 100 x 100 pixels. 
+        override protected function measure():void { 
+            super.measure(); 
+ 
+            measuredWidth = measuredMinWidth = 100; 
+            measuredHeight = measuredMinHeight = 100; 
+        } 
+ 
+        // Define the flag to indicate that a style property changed. 
+        private var bStypePropChanged:Boolean = true; 
+ 
+        // Define the variable to hold the current gradient fill colors. 
+        private var fillColorsData:Array; 
+ 
+        // Define the variable to hold the current alpha values. 
+        private var alphasData:Array; 
+ 
+        // Define the variable for additional control on the fill. 
+        // You can create a style property for this as well. 
+        private var ratios:Array = [0x00, 0xFF]; 
+        
+        // Override the styleChanged() method to detect changes in your new style. 
+        override public function styleChanged(styleProp:String):void { 
+ 
+            super.styleChanged(styleProp); 
+ 
+            // Check to see if style changed. 
+            if (styleProp=="fillColors" || styleProp=="alphas") 
+            { 
+                bStypePropChanged=true; 
+                invalidateDisplayList(); 
+                return; 
+            } 
+        } 
+    
+    
+        // Override updateDisplayList() to update the component 
+        // based on the style setting. 
+        override protected function updateDisplayList(unscaledWidth:Number, 
+                unscaledHeight:Number):void { 
+            super.updateDisplayList(unscaledWidth, unscaledHeight); 
+ 
+            // Check to see if style changed. 
+            if (bStypePropChanged==true) 
+            { 
+                // Redraw gradient fill only if style changed. 
+                fillColorsData=getStyle("fillColors"); 
+                alphasData=getStyle("alphas"); 
+                
+                graphics.beginGradientFill(GradientType.LINEAR, 
+                    fillColorsData, alphasData, ratios);  
+                graphics.drawRect(0, 0, unscaledWidth, unscaledHeight); 
+                
+                bStypePropChanged=false; 
+            } 
+        } 
+    } 
+}</pre>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf69084-79d9_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-79d9_verapache"><!-- --></a>
+         <h3 class="topictitle3">Setting default style values</h3>
+
+         
+         <div>
+            <p>
+               One
+of the issues that you have to decide when you create a style property
+for your component is how to set its default value. Setting a default
+value for a style property is not as simple as calling the <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/core/UIComponent.html#setStyle()" target="_blank">setStyle</a>
+               <samp class="codeph">()</samp> method
+in the component’s constructor; you must take into consideration
+how Flex processes styles, and the order of precedence of styles. </p>
+
+            <p>When Flex compiles your application, Flex first examines any
+style definitions in the <samp class="codeph">&lt;fx:Style&gt;</samp> tag,
+before it creates any components. Therefore, if you call <samp class="codeph">setStyle()</samp> from
+within the component’s constructor, which occurs after processing
+the <samp class="codeph">&lt;fx:Style&gt;</samp> tag, you set the style property
+on each instance of the component; this overrides any conflicting
+CSS declarations in the <samp class="codeph">&lt;fx:Style&gt;</samp> tag.</p>
+
+            <p>The easiest way to set a default value for a style property is
+to define a static initializer in your component. A static initializer
+is executed once, the first time Flex creates an instance of a component.
+In <a href="flx_skinstyle_ss.html#WS2db454920e96a9e51e63e3d11c0bf69084-79da_verapache">Defining
+a style property</a>, you defined a static initializer, by using
+the <samp class="codeph">classConstructed</samp> variable and the <samp class="codeph">classConstruct() </samp>method,
+as part of the StyledRectangle.as class. </p>
+
+            <p>The <samp class="codeph">classConstruct()</samp> method is invoked the first
+time Flex creates a StyledRectangle component. This method determines
+whether a style definition for the StyledRectangle class already
+exists, defined by using the <samp class="codeph">&lt;fx:Style&gt;</samp> tag.
+If no style is defined, the <samp class="codeph">classConstruct()</samp> method
+creates one, and sets the default value for the style property. </p>
+
+            <p>Therefore, if you omit the <samp class="codeph">&lt;fx:Style&gt;</samp> tag
+from your application, the style definition is created by the <samp class="codeph">classConstruct()</samp> method,
+as the following example shows: </p>
+
+            <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- skinstyle\MainRectNoStyles.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:MyComp="myComponents.*"&gt; 
+    &lt;s:layout&gt; 
+        &lt;s:VerticalLayout/&gt; 
+    &lt;/s:layout&gt; 
+ 
+    &lt;MyComp:StyledRectangle/&gt; 
+    
+&lt;/s:Application&gt;</pre>
+
+            <p>If you include the <samp class="codeph">&lt;fx:Style&gt;</samp> tag, the <samp class="codeph">&lt;fx:Style&gt;</samp> tag
+creates the default style definition, as the following example shows:</p>
+
+            <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- skinstyle\MainRectCSSStyles.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:MyComp="myComponents.*"&gt; 
+ 
+    &lt;fx:Style&gt; 
+        @namespace "myComponents.*"; 
+        StyledRectangle {fillColors: #FF00FF, #00FFFF} 
+    &lt;/fx:Style&gt; 
+ 
+    &lt;MyComp:StyledRectangle/&gt; 
+    
+&lt;/s:Application&gt;</pre>
+
+         </div>
+
+      </div>
+
+   </div>
+
+
+</body>
+</html>

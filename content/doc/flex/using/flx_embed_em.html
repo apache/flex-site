@@ -1,0 +1,1687 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Licensed to the Apache Software Foundation (ASF) under one or more
+  contributor license agreements.  See the NOTICE file distributed with
+  this work for additional information regarding copyright ownership.
+  The ASF licenses this file to You under the Apache License, Version 2.0
+  (the "License"); you may not use this file except in compliance with
+  the License.  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+-->
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en-us" xml:lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="topic"/>
+<meta name="DC.Title" content="Embedding assets"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="WS2db454920e96a9e51e63e3d11c0bf69084-7fce_verapache"/>
+<link rel="stylesheet" type="text/css" href="commonltr.css"/>
+<title>Embedding assets</title>
+</head>
+<body id="WS2db454920e96a9e51e63e3d11c0bf69084-7fce_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7fce_verapache"><!-- --></a>
+
+
+   <h1 class="topictitle1">Embedding assets</h1>
+
+   <div>
+      <p>
+         
+         
+         Many
+applications built in Flex use external assets
+like images, sounds, and fonts. Although you can reference and load
+assets at run time, you often compile these assets into your applications.
+The process of compiling an asset into your application is called <em>embedding</em> 
+         <em>the asset</em>.
+Flex lets you embed image files, movie files, MP3 files, and TrueType
+fonts into your applications. </p>
+
+      <p>For information on embedding fonts, see <a href="flx_fonts_ft.html#WS2db454920e96a9e51e63e3d11c0bf69084-7f9e_verapache">Fonts</a>. </p>
+
+   </div>
+
+   <div class="nested1" id="WS2db454920e96a9e51e63e3d11c0bf60546-7fff_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf60546-7fff_verapache"><!-- --></a>
+      <h2 class="topictitle2">About embedding assets</h2>
+
+      
+      <div>
+         <p>
+            
+            When
+you embed an asset, you compile it into your application’s SWF file.
+The advantage of embedding an asset is that it is included in the
+SWF file, and can be accessed faster than it can if the application
+has to load it from a remote location at run time. The disadvantage
+of embedding an asset is that your SWF file is larger than if you
+load the asset at run time. </p>
+
+         <p>You should use the Image tag when embedding a general purpose
+image file in an application. The Spark component set also includes
+a BitmapImage class, but that class should be used only for embedding
+images in skins and FXG components. For more information, see <a href="flx_controls_ctr.html#WSc5cd04c102ae3e97-33ad5caa12c719dc7c8-8000_verapache">Image
+control</a>.</p>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf60546-7ffe_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf60546-7ffe_verapache"><!-- --></a>
+         <h3 class="topictitle3">Examples of embedding assets</h3>
+
+         
+         <div>
+            <p>One of the most common uses of the embed mechanism is to
+import an image for a Flex control by using the <samp class="codeph">@Embed()</samp> directive
+in an MXML tag definition. For example, many controls support icons
+or skins that you can embed in the application. The <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/spark/components/Button.html" target="_blank">Button</a> control
+lets you specify label text, as well as an optional icon image,
+as the following example shows:</p>
+
+            <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- embed\ButtonIcon.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx"&gt; 
+ 
+    &lt;s:Button label="Icon Button" 
+        height="30" 
+        icon="@Embed(source='logo.gif')"/&gt; 
+&lt;/s:Application&gt;</pre>
+
+            <p>Another option for embedding is to associate the embedded image
+with a variable by using the <samp class="codeph">[Embed]</samp> metadata tag.
+In this way, you can reference the embedded image from multiple
+locations in your application, as the following example shows:</p>
+
+            <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- embed\ButtonIconClass.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx"&gt; 
+    &lt;s:layout&gt; 
+        &lt;s:VerticalLayout/&gt; 
+    &lt;/s:layout&gt; 
+ 
+    &lt;fx:Script&gt; 
+        &lt;![CDATA[ 
+            [Embed(source="logo.gif")] 
+            [Bindable] 
+            public var imgCls:Class; 
+        ]]&gt; 
+    &lt;/fx:Script&gt; 
+    &lt;s:Button label="Icon Button 1" 
+        height="30" 
+        icon="{imgCls}"/&gt; 
+    &lt;s:Button label="Icon Button 2" 
+        height="30" 
+        icon="{imgCls}"/&gt; 
+&lt;/s:Application&gt;</pre>
+
+            <p>For style properties, you can embed an asset as part of a style
+sheet definition by using the <samp class="codeph">Embed()</samp> directive,
+as the following example shows:</p>
+
+            <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- embed\ButtonIconCSS.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx"&gt; 
+ 
+    &lt;fx:Style&gt;  
+        .myCustomButton { 
+            icon:Embed(source="logo.gif"); 
+        } 
+    &lt;/fx:Style&gt; 
+ 
+    &lt;s:Button label="Icon Button Style Def" 
+        styleName="myCustomButton"/&gt; 
+&lt;/s:Application&gt;</pre>
+
+            <div class="note"><span class="notetitle">Note:</span> The equal sign (=) in the style sheet is a Flex
+extension that may not be supported by all CSS processors. If you
+find that it is not supported, you can use the <samp class="codeph">Embed(</samp>
+               <samp class="codeph">
+                  <em>filename</em>
+               </samp>
+               <samp class="codeph">)</samp> syntax.</div>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf60546-7ffd_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf60546-7ffd_verapache"><!-- --></a>
+         <h3 class="topictitle3">Accessing assets at run time</h3>
+
+         
+         <div>
+            <p>
+               The
+alternative to embedding an asset is to load the asset at run time.
+You can load an asset from the local file system in which the SWF
+file runs, or you can access a remote asset, typically through an
+HTTP request over a network.</p>
+
+            <p>Embedded assets load immediately, because they are already part
+of the Flex SWF file. However, they add to the size of your application
+and slow down the application initialization process. Embedded assets
+also require you to recompile your applications whenever your asset
+changes.</p>
+
+            <p>Assets loaded at run time exist as separate, independent files
+on your web server (or elsewhere) and are not compiled into your
+Flex applications. The referenced assets add no overhead to an application’s
+initial load time. However, you might experience a delay when you
+use the asset and load it in Adobe<sup>®</sup> Flash<sup>®</sup> Player or Adobe<sup>®</sup> AIR™. These assets are independent of your Flex
+application, so you can change them without causing a recompile
+operation, as long as the names of the modified assets remain the
+same.</p>
+
+            <p>For examples that load an asset at run time, see <a href="flx_controls_ctr.html#WSc5cd04c102ae3e97-33ad5caa12c719dc7c8-8000_verapache">Image
+control</a>and <a href="flx_controls_ctr.html#WS2db454920e96a9e51e63e3d11c0bf69084-7f9c_verapache">SWFLoader control</a>.</p>
+
+            <p>For security, by default Flash Player does not allow an application
+to access some types of remote data (such as SWF files) at run time
+from a domain other than the domain from which the application was
+served. Therefore, a server that hosts data must be in the same
+domain as the server hosting your application, or the server must
+define a crossdomain.xml file. A crossdomain.xml file is an XML
+file that provides a way for a server to indicate that its data
+and documents are available to SWF files served from specific domains,
+or from all domains. For more information on application security,
+see <a href="flx_security2_se.html#WS2db454920e96a9e51e63e3d11c0bf69084-7f9b_verapache">Security</a>. </p>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf60546-7ffc_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf60546-7ffc_verapache"><!-- --></a>
+         <h3 class="topictitle3">Supported file types</h3>
+
+         
+         <div>
+            <p>
+               You
+can embed the following types of files in a Flex application. </p>
+
+            
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" frame="border" border="1" rules="all">
+                  
+                  
+                  
+                  
+                  <thead align="left">
+                     <tr>
+                        <th class="cellrowborder" valign="top" width="NaN%" id="d202283e220">
+                           <p>File Type</p>
+
+                        </th>
+
+                        <th class="cellrowborder" valign="top" width="NaN%" id="d202283e226">
+                           <p>File Format</p>
+
+                        </th>
+
+                        <th class="cellrowborder" valign="top" width="NaN%" id="d202283e232">
+                           <p>MIME Type</p>
+
+                        </th>
+
+                        <th class="cellrowborder" valign="top" width="NaN%" id="d202283e238">
+                           <p>Description and Examples</p>
+
+                        </th>
+
+                     </tr>
+
+                  </thead>
+
+                  <tbody>
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d202283e220 ">
+                           <p>Images</p>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d202283e226 ">
+                           <p>GIF</p>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d202283e232 ">
+                           <p>image/gif</p>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d202283e238 ">
+                           <p>
+                              <a href="flx_embed_em.html#WS2db454920e96a9e51e63e3d11c0bf69084-7fa7_verapache">Embedding JPEG, GIF, and PNG images</a>
+                           </p>
+
+                        </td>
+
+                     </tr>
+
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d202283e220 ">
+                           <p>Images</p>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d202283e226 ">
+                           <p>.JPG, .JPEG</p>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d202283e232 ">
+                           <p>image/jpeg</p>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d202283e238 ">
+                           <p>
+                              <a href="flx_embed_em.html#WS2db454920e96a9e51e63e3d11c0bf69084-7fa7_verapache">Embedding JPEG, GIF, and PNG images</a>
+                           </p>
+
+                        </td>
+
+                     </tr>
+
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d202283e220 ">
+                           <p>Images</p>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d202283e226 ">
+                           <p>PNG</p>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d202283e232 ">
+                           <p>image/png</p>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d202283e238 ">
+                           <p>
+                              <a href="flx_embed_em.html#WS2db454920e96a9e51e63e3d11c0bf69084-7fa7_verapache">Embedding JPEG, GIF, and PNG images</a>
+                           </p>
+
+                        </td>
+
+                     </tr>
+
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d202283e220 ">
+                           <p>Images</p>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d202283e226 ">
+                           <p>SVG</p>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d202283e232 ">
+                           <p>image/svg</p>
+
+                           <p>image/svg-xml</p>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d202283e238 ">
+                           <p>
+                              <a href="flx_embed_em.html#WS2db454920e96a9e51e63e3d11c0bf69084-7fa4_verapache">Embedding SVG images</a>
+                           </p>
+
+                        </td>
+
+                     </tr>
+
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d202283e220 ">
+                           <p>Flash</p>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d202283e226 ">
+                           <p>SWF</p>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d202283e232 ">
+                           <p>application/x-shockwave-flash</p>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d202283e238 ">
+                           <p>
+                              <a href="flx_embed_em.html#WS2db454920e96a9e51e63e3d11c0bf69084-7fa3_verapache">Embedding SWF files</a>
+                           </p>
+
+                        </td>
+
+                     </tr>
+
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d202283e220 ">
+                           <p>Flash</p>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d202283e226 ">
+                           <p>Symbols stored in a SWF file</p>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d202283e232 ">
+                           <p>application/x-shockwave-flash</p>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d202283e238 ">
+                           <p>
+                              <a href="flx_embed_em.html#WS2db454920e96a9e51e63e3d11c0bf69084-7fa3_verapache">Embedding SWF files</a>
+                           </p>
+
+                        </td>
+
+                     </tr>
+
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d202283e220 ">
+                           <p>Audio</p>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d202283e226 ">
+                           <p>MP3</p>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d202283e232 ">
+                           <p>audio/mpeg</p>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d202283e238 ">
+                           <p>
+                              <a href="flx_embed_em.html#WS2db454920e96a9e51e63e3d11c0bf69084-7fa1_verapache">Embedding sounds</a>
+                           </p>
+
+                        </td>
+
+                     </tr>
+
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d202283e220 ">
+                           <p>Font</p>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d202283e226 ">
+                           <p>TTF (TrueType)</p>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d202283e232 ">
+                           <p>application/x-font-truetype</p>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d202283e238 ">
+                           <p/>
+
+                        </td>
+
+                     </tr>
+
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d202283e220 ">
+                           <p>Font</p>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d202283e226 ">
+                           <p>FON (System font)</p>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d202283e232 ">
+                           <p>application/x-font</p>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d202283e238 ">
+                           <p/>
+
+                        </td>
+
+                     </tr>
+
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d202283e220 ">
+                           <p>All other types</p>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d202283e226 ">
+                           <p> </p>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d202283e232 ">
+                           <p>application/octet-stream</p>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d202283e238 ">
+                           <p>
+                              <a href="flx_embed_em.html#WS2db454920e96a9e51e63e3d11c0bf69084-7fa0_verapache">Embedding all other file types</a>
+                           </p>
+
+                        </td>
+
+                     </tr>
+
+                  </tbody>
+
+               </table>
+</div>
+
+         </div>
+
+      </div>
+
+   </div>
+
+   <div class="nested1" id="WS2db454920e96a9e51e63e3d11c0bf60546-7ffb_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf60546-7ffb_verapache"><!-- --></a>
+      <h2 class="topictitle2">Syntax for embedding assets</h2>
+
+      
+      <div>
+         <p>The syntax that you use for embedding assets depends on
+where in your application you embed the asset. Flex supports the
+following syntaxes:</p>
+
+         <ul>
+            <li>
+               <p>
+                  <samp class="codeph">[Embed(</samp>
+                  <em>parameter1, paramater2, ...</em>
+                  <samp class="codeph">)]</samp> metadata
+tag</p>
+
+               <p>You use this syntax to embed an asset in an ActionScript
+file, or in an <samp class="codeph">&lt;fx:Script&gt;</samp> block in an MXML
+file. For more information, see <a href="flx_embed_em.html#WS2db454920e96a9e51e63e3d11c0bf69084-7f9a_verapache">Using
+the [Embed] metadata tag</a>.</p>
+
+            </li>
+
+            <li>
+               <p>
+                  <samp class="codeph">@Embed(</samp>
+                  <em>parameter1, paramater2, ...</em>
+                  <samp class="codeph">)</samp> directive</p>
+
+               <p>You
+use this syntax in an MXML tag definition to embed an asset. For
+more information, see <a href="flx_embed_em.html#WS2db454920e96a9e51e63e3d11c0bf69084-7f99_verapache">Using
+the @Embed() directive in MXML </a>.</p>
+
+            </li>
+
+            <li>
+               <p>
+                  <samp class="codeph">Embed(</samp>
+                  <em>parameter1, paramater2, ...</em>
+                  <samp class="codeph">)</samp> directive</p>
+
+               <p>You
+use this syntax in an <samp class="codeph">&lt;fx:Style&gt;</samp> block in
+an MXML file to embed an asset. For more information, see <a href="flx_embed_em.html#WS2db454920e96a9e51e63e3d11c0bf69084-7f98_verapache">Embedding
+assets in style sheets</a>.</p>
+
+            </li>
+
+         </ul>
+
+         <p>All three varieties of the embed syntax let you access the same
+assets; the only difference is where you use them in your application.</p>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf60546-7ffa_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf60546-7ffa_verapache"><!-- --></a>
+         <h3 class="topictitle3">Escaping the @ character</h3>
+
+         
+         <div>
+            <p>You can use the slash character (\) to escape the at sign
+character (@) when you want to use a literal @ character. For example,
+the string “\@Embed(foo)” means the literal string “@Embed(foo)”).
+You use two slash characters (\\) to escape a single backslash character.
+For example, use the character string “\@” to specify the literal
+strings “\@”.</p>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf69084-7f90_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7f90_verapache"><!-- --></a>
+         <h3 class="topictitle3">Embed parameters </h3>
+
+         
+         <div>
+            <p>Each form of the embed syntax takes one or more optional
+parameters. The exact syntax that you use to embed assets depends
+on where they are embedded. Some of these parameters are available
+regardless of what type of asset you are embedding, and others are
+specific to a particular type of media. For example, you can use
+the <samp class="codeph">source</samp> and <samp class="codeph">mimeType</samp> parameters
+with any type of media, but the <samp class="codeph">scaleGridRight</samp> parameter
+applies only to images.</p>
+
+            <p>The following table describes the parameters that are available
+for any type of embedded asset. For more information, see <a href="flx_embed_em.html#WS2db454920e96a9e51e63e3d11c0bf69084-7f97_verapache">About
+the source parameter</a> and <a href="flx_embed_em.html#WS2db454920e96a9e51e63e3d11c0bf69084-7f96_verapache">About
+the MIME type</a>.</p>
+
+            
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" frame="border" border="1" rules="all">
+                  
+                  
+                  <thead align="left">
+                     <tr>
+                        <th class="cellrowborder" valign="top" width="NaN%" id="d202283e717">
+                           <p>Parameter</p>
+
+                        </th>
+
+                        <th class="cellrowborder" valign="top" width="NaN%" id="d202283e723">
+                           <p>Description</p>
+
+                        </th>
+
+                     </tr>
+
+                  </thead>
+
+                  <tbody>
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d202283e717 ">
+                           <div class="p">
+                              <pre class="codeblock">source=<em>asset</em></pre>
+
+                           </div>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d202283e723 ">
+                           <p>Specifies the name and path of the asset
+to embed; either an absolute path or a path relative to the file
+containing the embed statement. The embedded asset must be a locally
+stored asset. Therefore you cannot specify a URL for an asset to
+embed.</p>
+
+                           <p>For more information on setting the path, see <a href="flx_embed_em.html#WS2db454920e96a9e51e63e3d11c0bf69084-7f9f_verapache">About
+setting the path to the embedded asset</a>. </p>
+
+                        </td>
+
+                     </tr>
+
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d202283e717 ">
+                           <div class="p">
+                              <pre class="codeblock">mimeType=<em>type</em></pre>
+
+                           </div>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d202283e723 ">
+                           <p>Specifies the mime type of the asset. </p>
+
+                           <p>For
+more information, see <a href="flx_embed_em.html#WS2db454920e96a9e51e63e3d11c0bf69084-7f96_verapache">About
+the MIME type</a>.</p>
+
+                        </td>
+
+                     </tr>
+
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d202283e717 ">
+                           <p>
+                              <samp class="codeph">smoothing=true|false</samp>
+                           </p>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d202283e723 ">
+                           <p>Specifies whether the bitmap is smoothed
+when scaled. If <samp class="codeph">true</samp>, the bitmap is smoothed when scaled.
+If <samp class="codeph">false</samp>, the bitmap is not smoothed when scaled.
+This property can be used with any image format.</p>
+
+                        </td>
+
+                     </tr>
+
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d202283e717 ">
+                           <p>
+                              <samp class="codeph">compression=true|false</samp>
+                           </p>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d202283e723 ">
+                           <p>For lossless images only (GIF and PNG) specifies
+to compress the embedded image in the generated SWF file. </p>
+
+                        </td>
+
+                     </tr>
+
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d202283e717 ">
+                           <p>
+                              <samp class="codeph">quality=<em>val</em>
+                              </samp>
+                           </p>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d202283e723 ">
+                           <p>If you specify <samp class="codeph">compression=true</samp>,
+specifies a percentage value, between 0 and 100, to control the
+compression algorithm. The lower the value, the higher the amount
+of compression.</p>
+
+                        </td>
+
+                     </tr>
+
+                  </tbody>
+
+               </table>
+</div>
+
+            <p>The following table describes the parameters that are specific
+for images and Sprite objects. For more information, see <a href="flx_embed_em.html#WS2db454920e96a9e51e63e3d11c0bf69084-7f95_verapache">Using
+9-slice scaling with embedded images</a>.</p>
+
+            
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" frame="border" border="1" rules="all">
+                  
+                  
+                  <thead align="left">
+                     <tr>
+                        <th class="cellrowborder" valign="top" width="NaN%" id="d202283e875">
+                           <p>Parameter</p>
+
+                        </th>
+
+                        <th class="cellrowborder" valign="top" width="NaN%" id="d202283e881">
+                           <p>Description</p>
+
+                        </th>
+
+                     </tr>
+
+                  </thead>
+
+                  <tbody>
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d202283e875 ">
+                           <div class="p">
+                              <pre class="codeblock">scaleGridTop</pre>
+
+                           </div>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d202283e881 ">
+                           <p>Specifies the distance in pixels of the
+upper dividing line from the top of the image in a 9-slice scaling
+formatting system. The distance is relative to the original, unscaled
+size of the image. </p>
+
+                        </td>
+
+                     </tr>
+
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d202283e875 ">
+                           <div class="p">
+                              <pre class="codeblock">scaleGridBottom</pre>
+
+                           </div>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d202283e881 ">
+                           <p>Specifies the distance in pixels of the
+lower dividing line from the top of the image in a 9-slice scaling
+formatting system. The distance is relative to the original, unscaled
+size of the image.</p>
+
+                        </td>
+
+                     </tr>
+
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d202283e875 ">
+                           <div class="p">
+                              <pre class="codeblock">scaleGridLeft</pre>
+
+                           </div>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d202283e881 ">
+                           <p>Specifies the distance in pixels of the
+left dividing line from the left side of the image in a 9-slice
+scaling formatting system. The distance is relative to the original,
+unscaled size of the image.</p>
+
+                        </td>
+
+                     </tr>
+
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d202283e875 ">
+                           <div class="p">
+                              <pre class="codeblock">scaleGridRight</pre>
+
+                           </div>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d202283e881 ">
+                           <p>Specifies the distance in pixels of the
+right dividing line from the left side of the image in a 9-slice
+scaling formatting system. The distance is relative to the original,
+unscaled size of the image.</p>
+
+                        </td>
+
+                     </tr>
+
+                  </tbody>
+
+               </table>
+</div>
+
+            <p>The following table describes the parameter that is specific
+to SWF files. For more information, see <a href="flx_embed_em.html#WS2db454920e96a9e51e63e3d11c0bf69084-7fa3_verapache">Embedding
+SWF files</a>.</p>
+
+            
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" frame="border" border="1" rules="all">
+                  
+                  
+                  <thead align="left">
+                     <tr>
+                        <th class="cellrowborder" valign="top" width="NaN%" id="d202283e986">
+                           <p>Parameter</p>
+
+                        </th>
+
+                        <th class="cellrowborder" valign="top" width="NaN%" id="d202283e992">
+                           <p>Description</p>
+
+                        </th>
+
+                     </tr>
+
+                  </thead>
+
+                  <tbody>
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d202283e986 ">
+                           <div class="p">
+                              <pre class="codeblock">symbol</pre>
+
+                           </div>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d202283e992 ">
+                           <p>Specifies the symbol in a SWF file to embed,
+for use with Adobe Flash Player 8 and earlier, and for Flash Player
+9 static assets. Use static assets for simple artwork or skins that
+do not contain any ActionScript 3.0 code.</p>
+
+                        </td>
+
+                     </tr>
+
+                  </tbody>
+
+               </table>
+</div>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf69084-7f97_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7f97_verapache"><!-- --></a>
+         <h3 class="topictitle3">About the source parameter</h3>
+
+         
+         <div>
+            <p>In almost all cases, you must specify the <samp class="codeph">source</samp> parameter,
+or nothing is embedded. </p>
+
+            <p>The <samp class="codeph">source</samp> parameter is the default parameter
+of the <samp class="codeph">[Embed]</samp> metadata tag; therefore, if you
+are not specifying any other parameters, you can just supply its value
+without explicitly including the parameter name or assigning it
+the desired value, as the following example shows:</p>
+
+            <pre class="codeblock"> &lt;fx:Style&gt;	 
+ 	.myCustomButton1 { 
+ 		<strong>icon:Embed("logo.gif");</strong> 
+	} 
+ 	.myCustomButton2 { 
+		<strong>icon:Embed(source="logo.gif");</strong> 
+	} 
+  &lt;/fx:Style&gt;</pre>
+
+         </div>
+
+         <div class="nested3" id="WS2db454920e96a9e51e63e3d11c0bf69084-7f9f_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7f9f_verapache"><!-- --></a>
+            <h4 class="topictitle4">About setting the path to the embedded
+asset</h4>
+
+            
+            <div>
+               <p>You can specify a fully qualified path to the image, as
+the following examples show:</p>
+
+               <pre class="codeblock"> &lt;s:Button label="Icon Button"  
+ 	icon="@Embed(source='c:/myapp/assets/logo.gif')"/&gt; </pre>
+
+               <div class="note"><span class="notetitle">Note:</span> Do not use the backslash character (\) as a
+separator in the path.</div>
+
+               <p>If the path does not start with a slash character, Flex first
+searches for the file relative to the file that contains the <samp class="codeph">[Embed]</samp> metadata
+tag. For example, the MXML file testEmbed.mxml includes the following
+code:</p>
+
+               <pre class="codeblock"> &lt;s:Button label="Icon Button" icon="@Embed(source='assets/logo.gif')"/&gt;</pre>
+
+               <p>In this example, Flex searches the subdirectory named assets
+in the directory that contains the testEmbed.mxml file. If the image
+is not found, Flex then searches for the image in the SWC files
+associated with the application.</p>
+
+               <p>If the path starts with a slash character, Flex first searches
+the directory of the MXML file for the asset, and then it searches
+the source path. You specify the source path to the Flex compiler
+by using the <samp class="codeph">source-path</samp> compiler option. For example,
+you set the <samp class="codeph">source-path</samp> option as the following
+code shows:</p>
+
+               <pre class="codeblock"> -source-path=a1,a2,a3</pre>
+
+               <p>The MXML file a1/testEmbed.mxml then uses the following code:</p>
+
+               <pre class="codeblock"> &lt;s:Button label="Icon Button" icon="@Embed(source='/assets/logo.gif')"/&gt;</pre>
+
+               <p>Flex first searches for the file in a1/assets, then in a2/assets,
+and then in a3/assets. If the image is not found, Flex searches
+for the image in the SWC files associated with the application.</p>
+
+               <p>If the MXML file is in the a2 directory, as in a2/testEmbed.mxml,
+Flex first searches the a2 directory and then the directories specified
+by the <samp class="codeph">source-path</samp> option. </p>
+
+            </div>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf69084-7f96_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7f96_verapache"><!-- --></a>
+         <h3 class="topictitle3">About the MIME type</h3>
+
+         
+         <div>
+            <p>
+               
+               
+               You
+can optionally specify a MIME type for the imported asset by using
+the <samp class="codeph">mimeType</samp> parameter. If you do not specify a <samp class="codeph">mimeType</samp> parameter,
+Flex makes a best guess about the type of the imported file based
+on the file extension. If you do specify it, the <samp class="codeph">mimeType</samp> parameter
+overrides the default guess of the asset type.</p>
+
+            <p>Flex supports the following MIME types.</p>
+
+            <ul>
+               <li>
+                  <p>application/octet-stream </p>
+
+               </li>
+
+               <li>
+                  <p>application/x-font</p>
+
+               </li>
+
+               <li>
+                  <p>application/x-font-truetype</p>
+
+               </li>
+
+               <li>
+                  <p>application/x-shockwave-flash</p>
+
+               </li>
+
+               <li>
+                  <p>audio/mpeg</p>
+
+               </li>
+
+               <li>
+                  <p>image/gif</p>
+
+               </li>
+
+               <li>
+                  <p>image/jpeg</p>
+
+               </li>
+
+               <li>
+                  <p>image/png</p>
+
+               </li>
+
+               <li>
+                  <p>image/svg</p>
+
+               </li>
+
+               <li>
+                  <p>image/svg-xml</p>
+
+               </li>
+
+            </ul>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf69084-7f9a_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7f9a_verapache"><!-- --></a>
+         <h3 class="topictitle3">Using the [Embed] metadata tag</h3>
+
+         
+         <div>
+            <p>You can use the <samp class="codeph">[Embed]</samp> metadata tag to
+import JPEG, GIF, PNG, SVG, SWF, TTF, and MP3 files.</p>
+
+            <p>You must use the <samp class="codeph">[Embed]</samp> metadata tag before
+a variable definition, where the variable is of type Class. The
+following example loads an image file, assigns it to the <samp class="codeph">imgCls</samp> variable,
+and then uses that variable to set the value of the <samp class="codeph">source</samp> property
+of an <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/controls/Image.html" target="_blank">Image</a> control:</p>
+
+            <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- embed\ImageClass.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    width="100" height="80"&gt; 
+    
+    &lt;fx:Script&gt; 
+        &lt;![CDATA[ 
+            [Embed(source="logo.gif")] 
+            [Bindable] 
+            public var imgCls:Class; 
+        ]]&gt; 
+    &lt;/fx:Script&gt; 
+ 
+    &lt;s:Image source="{imgCls}"/&gt; 
+&lt;/s:Application&gt;</pre>
+
+            <p>Notice that Flex uses data binding to tie the <samp class="codeph">imgCls</samp> variable
+to the <samp class="codeph">source</samp> property. If you omit the <samp class="codeph">[Bindable]</samp> metadata
+tag preceding the <samp class="codeph">imgCls</samp> variable definition, Flex
+can perform the data binding operation only once, at application
+startup. When you include the <samp class="codeph">[Bindable]</samp> metadata
+tag, Flex recognizes any changes to the <samp class="codeph">imgCls</samp> variable
+and updates any components that use that variable when a change
+to it occurs. </p>
+
+            <p>Generally, this method of embedding assets provides more flexibility
+than other methods because you can import an asset once and then
+use it in multiple places in your application, and because you can
+update the asset and have the data binding mechanism propagate that
+update throughout your application.</p>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf69084-7f99_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7f99_verapache"><!-- --></a>
+         <h3 class="topictitle3">Using the @Embed() directive in
+MXML </h3>
+
+         
+         <div>
+            <p>Many Flex components, such as <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/controls/Button.html" target="_blank">Button</a> and <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/containers/TabNavigator.html" target="_blank">TabNavigator</a>,
+take an <samp class="codeph">icon</samp> property or other property that lets
+you specify an image to the control. You can embed the image asset
+by specifying the property value by using the <samp class="codeph">@Embed()</samp> directive
+in MXML. You can use any supported graphic file with the <samp class="codeph">@Embed()</samp> directive,
+including SWF files and assets inside SWF files.</p>
+
+            <p>You can use the <samp class="codeph">@Embed()</samp> directive to set an
+MXML tag property, or to set a property value by using a child tag.
+The <samp class="codeph">@Embed()</samp> directive returns a value of type
+Class or String. If the component’s property is of type String,
+the <samp class="codeph">@Embed()</samp> directive returns a String. If the
+component’s property is of type Class, the <samp class="codeph">@Embed()</samp> directive
+returns a Class. Using the <samp class="codeph">@Embed()</samp> directive with
+a property that requires a value of any other data type results
+in an error.</p>
+
+            <p>The following example creates a Button control and sets its <samp class="codeph">icon</samp> property
+by using the <samp class="codeph">@Embed()</samp> directive:</p>
+
+            <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- embed\ButtonAtEmbed.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx"&gt; 
+ 
+    &lt;s:Button label="Icon Button" 
+        height="30" 
+        icon="@Embed(source='logo.gif')"/&gt; 
+    
+&lt;/s:Application&gt;</pre>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf69084-7f98_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7f98_verapache"><!-- --></a>
+         <h3 class="topictitle3">Embedding assets in style sheets</h3>
+
+         
+         <div>
+            <p>
+               Many
+style properties of Flex components support imported assets. </p>
+
+            <p>You can also use these style properties to set the skins for
+a component. <em>Skinning</em> is the process of changing the appearance
+of a component by modifying or replacing its visual elements. These
+elements can be made up of images, SWF files, or class files that
+contain drawing API methods.</p>
+
+            <p>For more information on skinning and on embedding assets by using
+style sheets, see <a href="flx_skinning_sk.html#WS2db454920e96a9e51e63e3d11c0bf69084-7fed_verapache">Skinning
+MX components</a>. </p>
+
+         </div>
+
+      </div>
+
+   </div>
+
+   <div class="nested1" id="WS2db454920e96a9e51e63e3d11c0bf60546-7ff2_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf60546-7ff2_verapache"><!-- --></a>
+      <h2 class="topictitle2">Embedding asset types</h2>
+
+      
+      <div>
+         <p>You can import various types of media, including images,
+SWF files, and sound files. </p>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf69084-7fa7_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7fa7_verapache"><!-- --></a>
+         <h3 class="topictitle3">Embedding JPEG, GIF, and PNG images</h3>
+
+         
+         <div>
+            <p>Flex supports embedding JPEG, GIF, and PNG files. You can
+use these images for icons, skins, and other types of application
+assets.</p>
+
+            <p>You might want to manipulate an embedded image at run time. To
+manipulate it, you determine the data type of the object representing
+the image and then use the appropriate ActionScript methods and
+properties of the object.</p>
+
+            <p>For example, you use the <samp class="codeph">[Embed]</samp> metadata tag
+in ActionScript to embed a GIF image, as the following code shows:</p>
+
+            <pre class="codeblock"> [Embed(source="logo.gif")] 
+ [Bindable] 
+ public var imgCls:Class;</pre>
+
+            <p>In this example, you define a class named imgCls that represents
+the embedded image. When embedding JPEG, GIF, and PNG files, Flex
+defines imgCls as a reference to a subclass of the mx.core.BitmapAsset
+class, which is a subclass of the flash.display.Bitmap class. </p>
+
+            <p>In ActionScript, you can create and manipulate an object that
+represents the embedded image before passing it to a control. To
+do so, you create an object with the type of the embedded class,
+manipulate it, and then pass the object to the control, as the following
+example shows: </p>
+
+            <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- embed/EmbedAccessClassObject.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx"&gt; 
+    
+    &lt;fx:Script&gt; 
+        &lt;![CDATA[        
+            import mx.core.BitmapAsset; 
+        
+            [Embed(source="logo.gif")] 
+            [Bindable] 
+            public var imgCls:Class; 
+ 
+            private function modImage():void {            
+                // Create an object from the embed class. 
+                // Since the embedded image is a GIF file, 
+                // the data type is BitmapAsset. 
+                var imgObj:BitmapAsset = new imgCls() as BitmapAsset; 
+                
+                // Modify the object. 
+                imgObj.bitmapData.noise(4); 
+ 
+                // Write the modified object to the Image control. 
+                myImage.source=imgObj; 
+            } 
+        ]]&gt; 
+    &lt;/fx:Script&gt; 
+    
+    &lt;s:HGroup&gt; 
+        &lt;s:Image id="myImageRaw" source="{imgCls}"/&gt; 
+        &lt;s:Image id="myImage" creationComplete="modImage();"/&gt; 
+    &lt;/s:HGroup&gt; 
+&lt;/s:Application&gt;</pre>
+
+            <p>In this example, the first Image control displays the unaltered
+image and the second Image control displays the modified image.
+You use the <samp class="codeph">bitmapData</samp> property of the mx.core.BitmapAsset
+class to modify the object. The <samp class="codeph">bitmapData</samp> property
+is of type flash.display.BitmapData; therefore you can use all of
+the methods and properties of the BitmapData class to manipulate
+the object.</p>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf69084-7fa4_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7fa4_verapache"><!-- --></a>
+         <h3 class="topictitle3">Embedding SVG images</h3>
+
+         
+         <div>
+            <p>
+               
+               Flex supports importing
+Scalable Vector Graphics (SVG) images, or a GZip compressed SVG
+image in a SVGZ file, into an application. This lets you import SVG
+images and use SVG images as icons for Flex controls.</p>
+
+            <p>Flex supports a subset of the SVG 1.1 specification to let you
+import static, two-dimensional scalable vector graphics. This includes
+support for basic SVG document structure, Cascading Style Sheets
+(CSS) styling, transformations, paths, basic shapes, colors, and
+a subset of text, painting, gradients, and fonts. Flex does not
+support SVG animation, scripting, or interactivity with the imported
+SVG image.</p>
+
+            <p>For example, you use the <samp class="codeph">[Embed]</samp> metadata tag
+in ActionScript to embed an SVG image, as the following code shows:</p>
+
+            <pre class="codeblock"> [Embed(source="logo.svg")] 
+ [Bindable] 
+ public var imgCls:Class;</pre>
+
+            <p>In this example, you define a class named imgCls that represents
+the embedded image. When embedding an SVG image, Flex defines imgCls
+as a reference to a subclass of the mx.core.SpriteAsset class, which
+is a subclass of the <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/flash/display/Sprite.html" target="_blank">flash.display.Sprite</a> class.
+Therefore, you can manipulate the image by using the methods and
+properties of the SpriteAsset class. For an example that manipulates
+an imported image, see <a href="flx_embed_em.html#WS2db454920e96a9e51e63e3d11c0bf69084-7fa7_verapache">Embedding
+JPEG, GIF, and PNG images</a>.</p>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf69084-7fa1_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7fa1_verapache"><!-- --></a>
+         <h3 class="topictitle3">Embedding sounds</h3>
+
+         
+         <div>
+            <p>
+               Flex supports
+embedding MP3 sound files for later playback. The following example
+creates a simple media player with Play and Stop buttons:</p>
+
+            <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- embed/EmbedSound.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx"&gt; 
+ 
+    &lt;fx:Script&gt; 
+        &lt;![CDATA[ 
+        
+            import flash.media.*; 
+        
+            [Embed(source="sample.mp3")] 
+            [Bindable] 
+            public var sndCls:Class; 
+            
+            public var snd:Sound = new sndCls() as Sound; 
+            public var sndChannel:SoundChannel; 
+            
+            public function playSound():void { 
+                sndChannel=snd.play(); 
+            }   
+            
+            public function stopSound():void { 
+                sndChannel.stop(); 
+            }   
+        ]]&gt; 
+    &lt;/fx:Script&gt; 
+ 
+    &lt;s:HGroup&gt; 
+        &lt;s:Button label="play" click="playSound();"/&gt; 
+        &lt;s:Button label="stop" click="stopSound();"/&gt; 
+    &lt;/s:HGroup&gt; 
+&lt;/s:Application&gt;</pre>
+
+            <p>In this example, you define a class named sndCls that represents
+the embedded MP3 file. When embedding MP3 files, Flex defines sndCls
+as a reference to a subclass of the <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/core/SoundAsset.html" target="_blank">mx.core.SoundAsset</a>,
+which is a subclass of the <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/flash/media/Sound.html" target="_blank">flash.media.Sound</a> class. </p>
+
+            <p>Flex can handle any legal filename, including filenames that
+contain spaces and punctuation marks. If the MP3 filename includes
+regular quotation marks, be sure to use single quotation marks around
+the filename.</p>
+
+            <p>You do not have to embed the sound file to use it with Flex.
+You can also use the Sound class to load a sound file at run time.
+For more information, see the <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/flash/media/Sound.html" target="_blank">Sound</a> class
+in the <em>
+                  <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/" target="_blank">ActionScript 3.0 Reference for the Adobe
+Flash Platform</a>
+               </em>.</p>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf69084-7fa3_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7fa3_verapache"><!-- --></a>
+         <h3 class="topictitle3">Embedding SWF files</h3>
+
+         
+         <div>
+            <p>Flex fully supports embedding Flash SWF files. You can
+embed different types of SWF files. </p>
+
+            <div class="section" id="WS2db454920e96a9e51e63e3d11c0bf69084-7fa3_verapache__WS2db454920e96a9e51e63e3d11c0bf60546-7fed_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7fa3_verapache__WS2db454920e96a9e51e63e3d11c0bf60546-7fed_verapache"><!-- --></a><h4 class="sectiontitle">Embedding
+SWF files for Flash Player 8 and earlier, and for static Flash Player
+9 or later assets</h4>
+               
+               <p>You can embed SWF files created for
+Flash Player 8 and earlier and for Flash Player 9 or later static
+assets. Use static assets for simple artwork or skins that do not contain
+any ActionScript 3.0 code. When embedded, your Flex application cannot
+interact with the embedded SWF file. That is, you cannot use ActionScript in
+a Flex application to access the properties or methods of a SWF
+file created for Flash Player 8 or earlier or for static Flash Player
+9 or later assets.</p>
+
+               <div class="note"><span class="notetitle">Note:</span> You can use the flash.net.LocalConnection
+class to communicate between a Flex application and a SWF file. </div>
+
+               <p>For
+example, you use the <samp class="codeph">[Embed]</samp> metadata tag in ActionScript
+to embed a SWF file, as the following code shows:</p>
+
+               <pre class="codeblock"> [Embed(source="icon.swf")] 
+ [Bindable] 
+ public var imgCls:Class;</pre>
+
+               <p>In this example, you define
+a class named imgCls that represents the embedded SWF file. Flex
+defines imgCls as a reference to a subclass of the <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/core/MovieClipAsset.html" target="_blank">mx.core.MovieClipAsset</a> class,
+which is a subclass of the <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/flash/display/MovieClip.html" target="_blank">flash.display.MovieClip</a> class.
+Therefore you can manipulate the image by using the methods and
+properties of the MovieClipAsset class. </p>
+
+            </div>
+
+            <div class="section" id="WS2db454920e96a9e51e63e3d11c0bf69084-7fa3_verapache__WS2db454920e96a9e51e63e3d11c0bf60546-7fec_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7fa3_verapache__WS2db454920e96a9e51e63e3d11c0bf60546-7fec_verapache"><!-- --></a><h4 class="sectiontitle">Embedding
+SWF symbols</h4>
+               
+               <p>
+                  Flex
+lets you reference exported symbols in an embedded SWF file. If
+the symbol has dependencies, Flex embeds them also; otherwise, Flex
+embeds only the specified symbol from the SWF file. To reference
+a symbol, you specify the <samp class="codeph">symbol</samp> parameter: </p>
+
+               <pre class="codeblock"> [Embed(source='<em>SWFFileName</em>.swf', symbol='<em>symbolName</em>')]</pre>
+
+               <div class="note"><span class="notetitle">Note:</span> Flash defines three types of symbols: Button,
+MovieClip, and Graphic. You can embed Button and MovieClip symbols
+in a Flex application, but you cannot embed a Graphic symbol because
+it cannot be exported for ActionScript. </div>
+
+               <p>This capability
+is useful when you have a SWF file that contains multiple exported symbols,
+but you want to load only some of them into your Flex application. Loading
+only the symbols that your application requires makes the resulting
+Flex SWF file smaller than if you imported the entire SWF file.</p>
+
+               <p>A
+Flex application can import any number of SWF files. However, if
+two SWF files have the same filename and the exported symbol names
+are the same, you cannot reference the duplicate symbols, even if
+the SWF files are in separate directories. </p>
+
+               <p>If the SWF file
+contains any ActionScript code, Flex prints a warning during compilation
+and then strips out the ActionScript from the embed symbol. This means
+that you can only embed the symbol itself. </p>
+
+               <p>The following
+example imports a green square from a SWF file that contains a library
+of different shapes: </p>
+
+               <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- embed\EmbedSWFSymbol.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" &gt; 
+ 
+    &lt;s:Image id="image0" 
+        source="@Embed(source='circleSquare.swf', symbol='greenSquare')"/&gt; 
+&lt;/s:Application&gt;</pre>
+
+               <p>If you use the <samp class="codeph">[Embed]</samp> metadata
+tag in ActionScript to embed the symbol, you can access the object
+that represents the symbol, as the following code shows:</p>
+
+               <pre class="codeblock"> [Embed(source='shapes.swf', symbol='greenSquare')] 
+ [Bindable] 
+ public var imgCls:Class;</pre>
+
+               <p>In this example, you define
+a class named imgCls that represents the embedded symbol. Internally,
+Flex defines imgCls as a reference to a subclass of either one of
+the following classes: </p>
+
+               <dl>
+                  
+                     <dt class="dlterm">SpriteAsset </dt>
+
+                     <dd>
+                        <p>For single-frame SWF files</p>
+
+                     </dd>
+
+                  
+                  
+                     <dt class="dlterm">MovieClipAsset</dt>
+
+                     <dd>
+                        <p>For multiframe SWF files</p>
+
+                     </dd>
+
+                  
+               </dl>
+
+            </div>
+
+            <div class="section" id="WS2db454920e96a9e51e63e3d11c0bf69084-7fa3_verapache__WS2db454920e96a9e51e63e3d11c0bf60546-7feb_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7fa3_verapache__WS2db454920e96a9e51e63e3d11c0bf60546-7feb_verapache"><!-- --></a><h4 class="sectiontitle">Embedding
+SWF files that represent Flex applications</h4>
+               
+               <p>You can embed
+SWF files that represent Flex applications. For example, you use the <samp class="codeph">[Embed]</samp> metadata
+tag in ActionScript to embed a SWF file, as the following code shows:</p>
+
+               <pre class="codeblock"> [Embed(source="flex2.swf")] 
+ [Bindable] 
+ public var flexAppCls:Class;</pre>
+
+               <p>In this example, you
+define a class named flexAppCls that represents the embedded SWF
+file. Flex defines flexAppCls as a reference to a subclass of the <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/core/MovieClipAsset.html" target="_blank">mx.core.MovieClipAsset</a> class,
+which is a subclass of the <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/flash/display/MovieClip.html" target="_blank">flash.display.MovieClip</a> class.
+Therefore you can manipulate the embedded SWF file by using the methods
+and properties of the MovieClipAsset class. </p>
+
+               <p>You typically
+embed a Flex application when you do not require the embedding application
+to interact with the embedded application. If the embedding application
+requires interactivity with the embedded application, you might
+consider implementing it as a custom component, rather than as a
+separate application.</p>
+
+               <p>Alternatively, if you use the SWFLoader
+control to load the Flex application at run time, the embedding
+application can interact with the loaded application to access its
+properties and methods. For more information and examples, see <a href="flx_controls_ctr.html#WS2db454920e96a9e51e63e3d11c0bf69084-7f91_verapache">Interacting
+with a loaded Flex application</a>. </p>
+
+            </div>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf69084-7f95_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7f95_verapache"><!-- --></a>
+         <h3 class="topictitle3">Using 9-slice scaling with embedded
+images</h3>
+
+         
+         <div>
+            <p>Flex supports the 9-slice scaling of embedded images. This
+feature lets you define nine sections of an image that scale independently.
+The nine regions are defined by two horizontal lines and two vertical
+lines running through the image, which form the inside edges of
+a 3 by 3 grid. For images with borders or fancy corners, 9-slice
+scaling provides more flexibility than full-graphic scaling.</p>
+
+            <p>The following example show an image, and the same image with
+the regions defined by the 9-slice scaling borders:</p>
+
+            <div class="figborder">
+               <img src="images/em_embed9slice_w_grid.png" alt="An image, and the same image with the regions defined by the 9-slice scaling borders"/>
+            </div>
+
+            <p>When you scale an embedded image that uses 9-slice scaling, all
+text and gradients are scaled normally. However, for other types
+of objects the following rules apply:</p>
+
+            <ul>
+               <li>
+                  <p>Content in the center region is scaled normally.</p>
+
+               </li>
+
+               <li>
+                  <p>Content in the corners is not scaled.</p>
+
+               </li>
+
+               <li>
+                  <p>Content in the top and bottom regions is scaled only horizontally.
+Content in the left and right regions is scaled only vertically.</p>
+
+               </li>
+
+               <li>
+                  <p>All fills (including bitmaps, video, and gradients) are stretched
+to fit their shapes.</p>
+
+               </li>
+
+            </ul>
+
+            <p>If you rotate the image, all subsequent scaling is normal, as
+if you did not define any 9-slice scaling.</p>
+
+            <p>To use 9-slice scaling, define the following four parameters
+in your embed statement: <samp class="codeph">scaleGridTop</samp>, <samp class="codeph">scaleGridBottom</samp>, <samp class="codeph">scaleGridLeft</samp>,
+and <samp class="codeph">scaleGridRight</samp>. For more information on these
+parameters, see <a href="flx_embed_em.html#WS2db454920e96a9e51e63e3d11c0bf69084-7f90_verapache">Embed parameters </a>.</p>
+
+            <p>An embedded SWF file may already contain 9-slice scaling information
+specified by using Adobe Flash Professional. In that case, the SWF
+file ignores any 9-slice scaling parameters that you specify in
+the embed statement. </p>
+
+            <p>The following example uses 9-slice scaling to maintain a set
+border, regardless of how the image itself is resized.</p>
+
+            <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- embed\Embed9slice.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    height="1200" width="600"&gt; 
+    &lt;fx:Script&gt; 
+        &lt;![CDATA[ 
+            [Embed(source="slice_9_grid.gif", 
+                scaleGridTop="25", scaleGridBottom="125", 
+                scaleGridLeft="25", scaleGridRight="125")] 
+            [Bindable] 
+            public var imgCls:Class;            
+        ]]&gt; 
+    &lt;/fx:Script&gt; 
+    
+    &lt;s:VGroup&gt; 
+        &lt;s:Image source="{imgCls}"/&gt; 
+        &lt;s:Image source="{imgCls}" width="300" height="300"/&gt; 
+        &lt;s:Image source="{imgCls}" width="450" height="450"/&gt; 
+    &lt;/s:VGroup&gt; 
+&lt;/s:Application&gt;</pre>
+
+            <p>The original image is 30 by 30 pixels. The preceding code produces
+a resizable image that maintains a 5-pixel border:</p>
+
+            <div class="figborder">
+               <img src="images/em_embed9slice.png" alt="A resizable image that maintains a 5-pixel border"/>
+            </div>
+
+            <p>If you had omitted the 9-slice scaling, the scaled image would
+have appeared exactly like the unscaled image, as the following
+image shows: </p>
+
+            <div class="figborder">
+               <img src="images/em_embedNo9sliceLargeScale.png" alt="Omitting the 9-slice scaling means the scaled image appears exactly like the unscaled image"/>
+            </div>
+
+            <p>In this example, you define a class named imgCls that represents
+the embedded image. If the image is a SWF file that uses 9-slice
+scaling, Flex defines imgCls as a subclass of the mx.core.SpriteAsset
+class, which is a subclass of the <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/flash/display/Sprite.html" target="_blank">flash.display.Sprite</a> class.
+Therefore you can use all of the methods and properties of the SpriteAsset
+class to manipulate the object. </p>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf69084-7fa0_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7fa0_verapache"><!-- --></a>
+         <h3 class="topictitle3">Embedding all other file types</h3>
+
+         
+         <div>
+            <p>You can embed any file type in a Flex application as a
+bit map array. However, Flex does not recognize or process files
+other than those described previously. If you embed any other file
+type, you must provide the transcode logic to properly present it
+to the application user. </p>
+
+            <p>To load a file type that is not specifically supported by Flex,
+use the <samp class="codeph">[Embed]</samp> metadata tag to define the source
+file and MIME type "application/octet-stream". Then define a new
+class variable for the embedded file. The embedded object is a ByteArrayAsset
+type object.</p>
+
+            <p>The following code embeds a bitmap (.bmp) file and displays properties
+of the embedded object when you click the Show Properties button.
+To display or use the object in any other way, you must provide
+code to create a supported object type.</p>
+
+            <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- embed\EmbedOtherFileTypes.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx"&gt; 
+    &lt;s:layout&gt; 
+        &lt;s:VerticalLayout/&gt; 
+    &lt;/s:layout&gt; 
+ 
+    &lt;fx:Script&gt; 
+        &lt;![CDATA[ 
+            import mx.core.UIComponent; 
+            import mx.core.BitmapAsset; 
+   
+            [Embed(source="logo.bmp",mimeType="application/octet-stream")] 
+            private var FileClass : Class; 
+   
+            private function captureEmbeddedImage():void { 
+                var fileByteArray:Object = new FileClass(); 
+                myTA.text+= "File length:  " + String(fileByteArray.length) + "\n"; 
+                myTA.text+="File type:  " + 
+                    String(getQualifiedSuperclassName(fileByteArray)) + "\n"; 
+            }   
+        ]]&gt; 
+    &lt;/fx:Script&gt; 
+ 
+    &lt;s:Button 
+        id="showProperties" 
+        label="Show Properties" 
+        click="captureEmbeddedImage();"/&gt; 
+        
+    &lt;s:TextArea id="myTA" 
+        width="75%" 
+        height="100"/&gt;                
+&lt;/s:Application&gt;</pre>
+
+         </div>
+
+      </div>
+
+         <p>Adobe and Adobe Flash are either registered trademarks or trademarks of Adobe Systems Incorporated in the United States and/or other countries and are used by permission from Adobe.  No other license to the Adobe trademarks are granted.</p>
+   </div>
+
+
+</body>
+</html>

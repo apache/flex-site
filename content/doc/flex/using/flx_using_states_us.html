@@ -1,0 +1,1726 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Licensed to the Apache Software Foundation (ASF) under one or more
+  contributor license agreements.  See the NOTICE file distributed with
+  this work for additional information regarding copyright ownership.
+  The ASF licenses this file to You under the Apache License, Version 2.0
+  (the "License"); you may not use this file except in compliance with
+  the License.  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+-->
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en-us" xml:lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="topic"/>
+<meta name="DC.Title" content="View states"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="WS2db454920e96a9e51e63e3d11c0bf69084-7fb4_verapache"/>
+<link rel="stylesheet" type="text/css" href="commonltr.css"/>
+<title>View states</title>
+</head>
+<body id="WS2db454920e96a9e51e63e3d11c0bf69084-7fb4_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7fb4_verapache"><!-- --></a>
+
+
+   <h1 class="topictitle1">View states</h1>
+
+   <div>
+      <p>View states let you vary the content and appearance of
+a component or application, typically in response to a user action.
+When changing the view state, you can change the value of a property
+or style, change an event handler, or change the parent of a component.</p>
+
+      <p>Transitions define how a change of view state looks as it occurs
+on the screen. For information on transitions, see <a href="flx_transitions_tr.html#WS2db454920e96a9e51e63e3d11c0bf69084-7f6a_verapache">Transitions</a>.</p>
+
+   </div>
+
+   <div class="nested1" id="WS2db454920e96a9e51e63e3d11c0bf63611-7ff1_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf63611-7ff1_verapache"><!-- --></a>
+      <h2 class="topictitle2">About view states </h2>
+
+      
+      <div>
+         <p>
+            In many
+rich Internet applications, the interface changes based on the task
+the user is performing. A simple example is an image that changes
+when the user rolls the mouse over it. More complex examples include
+user interfaces whose contents change depending on the user’s progress
+through a task, such as changing from a browse view to a detail
+view. View states let you easily implement such applications. </p>
+
+         <p>At its simplest, a view state defines a particular view of a
+component. For example, a product thumbnail could have two view
+states; a default view state with minimal information, and a “rich”
+state with links for more information. The following figure shows
+two view states for a component:</p>
+
+         <div class="figborder">
+            <img src="images/us_CellRendererCart.png" alt="A base state with minimal information, and a rich state to add the item to a shopping cart"/>
+            <dl>
+               
+                  <dt class="dlterm">
+                     <strong>A.</strong>
+                  </dt>
+
+                  <dd>Default view state</dd>
+
+               
+               
+                  <dt class="dlterm">
+                     <strong>B.</strong>
+                  </dt>
+
+                  <dd>Rich view state</dd>
+
+               
+            </dl>
+
+         </div>
+
+         <p>To create a view state, you define a default view state, and
+then define a set of changes, or <em>overrides</em>, that modify the
+default view state to define the new view state. Each additional
+view state can modify the default view state by adding or removing
+child components, by setting style and property values, or by defining state-specific
+event handlers. </p>
+
+         <p>For example, the default view state of the application could
+be the home page and include a logo, a sidebar, and some welcome
+content. When the user clicks a button in the sidebar, the application
+dynamically changes its appearance, meaning its view state, by replacing
+the main content area with a purchase order form but leaving the
+logo and sidebar in place.</p>
+
+         <p>Two places in your application where you must use view states
+is when defining skins and item renderers for Spark components.
+For more information, see <a href="flx_gumboskinning_gs.html#WS53116913-F952-4b21-831F-9DE85B647C8A_verapache">Spark Skinning</a> and <a href="flx_spark_itemrenderers_sir.html#WS4bebcd66a74275c3-fc6548e124e49b51c4-8000_verapache">Custom
+Spark item renderers</a>.</p>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf63611-7ffb_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf63611-7ffb_verapache"><!-- --></a>
+         <h3 class="topictitle3">Defining a login interface by using
+view states</h3>
+
+         
+         <div>
+            <p>One use of view states is to implement a login and registration
+form. In this example, the default view state prompts the user to
+log in, and includes a LinkButton control that lets the user register,
+if necessary, as the following image shows: </p>
+
+            <div class="figborder"><span class="figdesc">LinkButton control (A)</span>
+               
+               <img src="images/us_loginBox.png" alt="Login and registration form"/>
+            </div>
+
+            <p>If the user selects the Need to Register link, the form changes
+view state to display registration information, as the following
+image shows:</p>
+
+            <div class="figborder">
+               <img src="images/us_registerBox.png" alt="If the user selects the Need to Register link, the form changes view state to display registration information."/>
+               <dl>
+                  
+                     <dt class="dlterm">
+                        <strong>A.</strong>
+                     </dt>
+
+                     <dd>Modified title of Panel container</dd>
+
+                  
+                  
+                     <dt class="dlterm">
+                        <strong>B.</strong>
+                     </dt>
+
+                     <dd>New form item</dd>
+
+                  
+                  
+                     <dt class="dlterm">
+                        <strong>C.</strong>
+                     </dt>
+
+                     <dd>Modified label of Button control</dd>
+
+                  
+                  
+                     <dt class="dlterm">
+                        <strong> D.</strong>
+                     </dt>
+
+                     <dd>New LinkButton control</dd>
+
+                  
+               </dl>
+
+            </div>
+
+            <p>Notice the following changes to the default view state to create
+this view state:</p>
+
+            <ul>
+               <li>
+                  <p>The title of the Panel container is set to Register</p>
+
+               </li>
+
+               <li>
+                  <p>The Form container has a new TextInput control for confirming
+the password</p>
+
+               </li>
+
+               <li>
+                  <p>The label of the Button control is set to Register</p>
+
+               </li>
+
+               <li>
+                  <p>The LinkButton control has been replaced with a new LinkButton
+control that lets the user change state back to the default view
+state</p>
+
+               </li>
+
+            </ul>
+
+            <p>When the user clicks the Return to Login link, the view state
+changes back to the default view state to display the Login form.
+This change reverses all the changes made when changing to the register
+view state. </p>
+
+            <p>To see the code that creates this example, see <a href="flx_using_states_us.html#WS2db454920e96a9e51e63e3d11c0bf69084-7dd4_verapache">Example:
+Login form application</a>.</p>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf63611-7ff0_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf63611-7ff0_verapache"><!-- --></a>
+         <h3 class="topictitle3">Comparing view states to MX navigator
+containers</h3>
+
+         
+         <div>
+            <p>View states give you one way to change the appearance of
+an application or component in response to a user action. You can
+also use MX navigator containers, such as the Accordion, Tab Navigator,
+and ViewStack containers when you perform changes that affect several
+components. </p>
+
+            <p>Your choice of using navigator containers or states depends on
+your application requirements and user-interface design. For example,
+if you want to use a tabbed interface, use a TabNavigator container.
+You might decide to use the Accordion container to let the user
+navigate through a complex form, rather than using view states to
+perform this action.</p>
+
+            <p>When comparing view states to ViewStack containers, one thing
+to consider is that you cannot easily share components between the
+different views of a ViewStack container. That means you have to
+recreate a component each time you change views. For example, if
+you want to show a search component in all views of a View Stack
+container, you must define it in each view.</p>
+
+            <p>When using view states, you can easily share components across
+multiple view states by defining the component once, and then including
+it in each view state. For more information about sharing components
+among view states, see <a href="flx_using_states_us.html#WS2db454920e96a9e51e63e3d11c0bf69084-7ddd_verapache">Controlling
+when to create added children</a>. For more information on navigator containers,
+see <a href="flx_navigators_na.html#WS2db454920e96a9e51e63e3d11c0bf69084-7fb9_verapache">MX
+navigator containers</a>.</p>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf63611-7ff9_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf63611-7ff9_verapache"><!-- --></a>
+         <h3 class="topictitle3">Example: Creating a simple view
+state</h3>
+
+         
+         <div>
+            <p>The following example shows an application with a default
+view state, and one additional view state named "NewButton". In
+this example, changing to the NewButton view state adds button b2
+to the Group container, and disables button b1. Switching back to
+the default view state removes b2 and enables b1:</p>
+
+            <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- states\StatesSimple.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark"&gt; 
+ 
+    &lt;s:states&gt; 
+        &lt;!-- Define the new view states. --&gt; 
+        &lt;s:State name="default"/&gt; 
+        &lt;s:State name="NewButton"/&gt; 
+    &lt;/s:states&gt;    
+    &lt;s:VGroup id="g1"&gt; 
+ 
+        &lt;s:HGroup&gt; 
+            &lt;!-- Disable Button in the NewButton view state. --&gt; 
+            &lt;s:Button id="b1" label="Click Me" 
+                enabled.NewButton="false"/&gt; 
+ 
+            &lt;!-- Add a new child control to the VBox. --&gt; 
+            &lt;s:Button id="b2" label="New Button" 
+                includeIn="NewButton"/&gt; 
+        &lt;/s:HGroup&gt; 
+ 
+        &lt;!-- Define Button control to switch to NewButton view state. --&gt; 
+        &lt;s:Button label="Change to NewButton state" 
+            click="currentState='NewButton';"/&gt;            
+        &lt;!-- Define Button control to switch to default view state. --&gt; 
+        &lt;s:Button label="Change to default view state" 
+            click="currentState='default';"/&gt; 
+    &lt;/s:VGroup&gt;    
+&lt;/s:Application&gt;</pre>
+
+         </div>
+
+      </div>
+
+   </div>
+
+   <div class="nested1" id="WS2db454920e96a9e51e63e3d11c0bf63611-7ffa_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf63611-7ffa_verapache"><!-- --></a>
+      <h2 class="topictitle2">Create and apply view states</h2>
+
+      
+      <div>
+         <p>The properties, styles, event handlers, and components
+that you define for an application or custom component specify its
+default view state. Any additional view state specify changes to
+the default view state. </p>
+
+         <p>For each additional view state, define overrides of the default
+view state. Overrides modify the properties, styles, and event handlers
+for a component, add a component to a view state, remove a component
+from a view state, or change the parent container of a component
+in a view state.</p>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf63611-7fff_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf63611-7fff_verapache"><!-- --></a>
+         <h3 class="topictitle3">Creating view states</h3>
+
+         
+         <div>
+            <p>Consider the following when you define a view state.</p>
+
+            <ul>
+               <li>
+                  <p>Define view states at the root of an application or at
+the root of a custom component; that is, as a property of the Application
+container of an application file, or of the root tag of an MXML
+component. </p>
+
+               </li>
+
+               <li>
+                  <p>Define states by using a component’s <samp class="codeph">states</samp> property,
+normally by using the <samp class="codeph">&lt;s:states&gt;</samp> tag in MXML.</p>
+
+               </li>
+
+               <li>
+                  <p>Populate the <samp class="codeph">states</samp> property with an Array
+of one or more State objects, where each State object corresponds
+to a view state.</p>
+
+               </li>
+
+               <li>
+                  <p>Use the <samp class="codeph">name</samp> property of the State object
+to specify its identifier. To change to that view state, you set
+a component’s <samp class="codeph">currentState</samp> property to the value
+of the <samp class="codeph">name</samp> property.</p>
+
+                  <div class="p">
+                     <div class="note"><span class="notetitle">Note:</span> View state definitions
+are processed at compile time. Therefore, you cannot use data binding
+to set the <samp class="codeph">State.name</samp> property because data binding
+occurs at run time.</div>
+
+                  </div>
+
+               </li>
+
+            </ul>
+
+            <p>The following MXML code shows this structure:</p>
+
+            <pre class="codeblock"> &lt;s:Application&gt;  
+ 	&lt;!-- Define the view states.  
+ 		The &lt;s:states&gt; tag can also be a child tag of  
+ 		the root tag of a custom component.  
+ 	--&gt; 
+ 	&lt;s:states&gt; 
+ 		&lt;s:State name="State1"/&gt; 
+		&lt;s:State name="State2"/&gt; 
+		&lt;s:State name="State3"/&gt; 
+		. 
+ 		. 
+ 	&lt;/s:states&gt; 
+ 	&lt;!-- Application definition. --&gt; 
+ 	. 
+ 	. 
+ &lt;/s:Application&gt;</pre>
+
+            <p>The default view state is defined as the first view state in
+the <samp class="codeph">&lt;s:states&gt;</samp> Array. An application uses
+the default view state when it loads. The name of the default view
+state is not reserved, so it is not required to be "default". </p>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf63611-7ff8_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf63611-7ff8_verapache"><!-- --></a>
+         <h3 class="topictitle3">Changing view state</h3>
+
+         
+         <div>
+            <p>The UIComponent class defines the <samp class="codeph">currentState</samp> property
+that you use to set the current view state. When the application
+starts, the default value of the <samp class="codeph">currentState</samp> property
+is the name of the first view state defined by the <samp class="codeph">&lt;s:states&gt;</samp> tag.</p>
+
+            <p>In the next example, you use a Button control to set the <samp class="codeph">currentState</samp> property
+of the Application object to "State1" or "State2", the names of
+a view state specified by the <samp class="codeph">&lt;s:State&gt;</samp> tag:</p>
+
+            <div class="p">
+               <pre class="codeblock"> &lt;s:Button id="b1" label="Change to State 1" click="currentState='State2';"/&gt; 
+ &lt;s:Button id="b2" label="Change to the default" click="currentState='State1';"/&gt;</pre>
+
+            </div>
+
+            <p>The second button in the previous example sets the current state
+to "State1" so that you can switch back to the default view state
+from "State2". </p>
+
+            <p>You can also set the <samp class="codeph">currentState</samp> property to
+an empty String to set it to the default state, as the following
+example shows:</p>
+
+            <div class="p">
+               <pre class="codeblock">  &lt;s:Button id="b2" label="Change to the default" click="currentState='';"/&gt;</pre>
+
+            </div>
+
+            <p>You can change a component’s view state by calling the <samp class="codeph">setCurrentState()</samp> method
+of the UIComponent class. Use this method when you do <em>not</em> want
+to apply a transition that you have defined between two view states.
+For more information on transitions, see <a href="flx_transitions_tr.html#WS2db454920e96a9e51e63e3d11c0bf69084-7f6a_verapache">Transitions</a>. </p>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS4A0D570F-4B5F-48e6-A17C-DB8F866EE250_verapache"><a name="WS4A0D570F-4B5F-48e6-A17C-DB8F866EE250_verapache"><!-- --></a>
+         <h3 class="topictitle3">Setting properties, styles, and
+events for a view state</h3>
+
+         
+         <div>
+            <div class="p">Define state-specific property and style values by using
+the dot (.) operator with any writable MXML tag attribute. The dot
+notation has the following format:<pre class="codeblock"><em>propertyOrStyleName</em>.<em>stateName</em></pre>
+
+            </div>
+
+            <div class="p">For example, specify the value of the <samp class="codeph">label</samp> property
+of a Button control for the default view state and for one additional
+view state, as the following example shows:<pre class="codeblock">&lt;s:Button <strong>label</strong>="Default State" <strong>label.State2</strong>="New State"/&gt;</pre>
+
+            </div>
+
+            <p>The value of the <samp class="codeph">label</samp> property qualified by
+“State2” specifies the value for the property in that view state.
+The unqualified property definition, the one that omits the dot
+notation, defines the value of the property for all view states
+where you do not explicitly define an override. </p>
+
+            <p>Do not define an override for every property, style, and event
+for all view states. Only define the override for those view states
+where you want to change the value of the element. </p>
+
+            <p>You can also use child tags with the dot notation to define property
+overrides, as the following example shows for the b1 button control:</p>
+
+            <div class="p">
+               <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- states\StatesSimpleChildTags.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark"&gt; 
+ 
+    &lt;s:states&gt; 
+        &lt;!-- Define the new view states. --&gt; 
+        &lt;s:State name="default"/&gt; 
+        &lt;s:State name="NewButton"/&gt; 
+    &lt;/s:states&gt;    
+ 
+    &lt;s:VGroup &gt; 
+        &lt;s:HGroup&gt; 
+            &lt;!-- Disable Button in the NewButton view state. --&gt; 
+            &lt;s:Button id="b1"&gt; 
+                &lt;s:label&gt;Click Me&lt;/s:label&gt; 
+                &lt;s:label.NewButton&gt;Disabled&lt;/s:label.NewButton&gt; 
+                &lt;s:enabled.NewButton&gt;false&lt;/s:enabled.NewButton&gt; 
+            &lt;/s:Button&gt; 
+            
+            &lt;!-- Add a new child control to the VBox. --&gt; 
+            &lt;s:Button id="b2" label="New Button" 
+                includeIn="NewButton"/&gt; 
+        &lt;/s:HGroup&gt; 
+ 
+        &lt;!-- Define Button control to switch to NewButton view state. --&gt; 
+        &lt;s:Button label="Change to NewButton state" 
+            click="currentState='NewButton';"/&gt;            
+        &lt;!-- Define Button control to switch to default view state. --&gt; 
+        &lt;s:Button label="Change to default view state" 
+            click="currentState='default';"/&gt; 
+    &lt;/s:VGroup&gt;    
+&lt;/s:Application&gt;</pre>
+
+            </div>
+
+            <div class="p">To clear the value of a property in a view state, set the property
+to the value <samp class="codeph">@Clear()</samp>, as the following example
+shows:<pre class="codeblock">&lt;s:Button color="0xFF0000" <strong>color.State1="@Clear()"</strong>/&gt;</pre>
+
+            </div>
+
+            <p>For a style property, setting the value to <samp class="codeph">@Clear()</samp> corresponds
+to calling the <samp class="codeph">clearStyle()</samp> method on the property.</p>
+
+            <p>Use the dot operator to change the event handler for a specific
+view state, as the following example shows. In this example, the
+handler for the <samp class="codeph">click</samp> event for button b1 is set
+based on the view state: </p>
+
+            <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- states\StatesEventHandlersSimple.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark"&gt; 
+ 
+    &lt;s:states&gt; 
+        &lt;s:State name="default"/&gt; 
+        &lt;s:State name="logout"/&gt; 
+    &lt;/s:states&gt; 
+ 
+    &lt;s:VGroup &gt; 
+        &lt;s:Button id="b1" label="Click Me" 
+            click="ta1.text='hello';" 
+            click.logout="ta1.text='goodbye'"/&gt; 
+        &lt;s:TextArea id="ta1" height="100" width ="50%"/&gt; 
+ 
+        &lt;s:Button label="Default State" 
+            click="currentState='';" 
+            enabled="false" 
+            enabled.logout="true"/&gt; 
+        &lt;s:Button label="Logout State" 
+            click="currentState='logout';" 
+            enabled="true" 
+            enabled.logout="false"/&gt; 
+    &lt;/s:VGroup&gt; 
+&lt;/s:Application&gt;</pre>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS434685AA-B886-4f71-BF3F-F81884986F28_verapache"><a name="WS434685AA-B886-4f71-BF3F-F81884986F28_verapache"><!-- --></a>
+         <h3 class="topictitle3">Adding or removing components for
+a view state</h3>
+
+         
+         <div>
+            <p>Use the <samp class="codeph">includeIn</samp> and <samp class="codeph">excludeFrom</samp> MXML
+attributes to specify the set of view states in which a component
+is included, where: </p>
+
+            <ul>
+               <li>
+                  <p>The <samp class="codeph">includeIn</samp> attribute specifies the
+list of view states where the component appears. This attribute
+takes a comma delimited list of view state names, all which must
+have been previously declared in the <samp class="codeph">&lt;s:states&gt;</samp> Array. </p>
+
+               </li>
+
+               <li>
+                  <p>The <samp class="codeph">excludeFrom</samp> attribute specifies the
+list of view states where the component is omitted. This attribute
+takes a comma delimited list of view state names. </p>
+
+               </li>
+
+               <li>
+                  <p>The <samp class="codeph">excludeFrom</samp> and <samp class="codeph">includeIn</samp> attributes
+are mutually exclusive; it is an error to define both on a single
+MXML tag.</p>
+
+               </li>
+
+            </ul>
+
+            <p>The following example uses view states to add components to the
+application based on the current state:</p>
+
+            <div class="p">
+               <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- states\StatesSimpleIncExc.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark"&gt; 
+    &lt;s:layout&gt; 
+        &lt;s:VerticalLayout/&gt; 
+    &lt;/s:layout&gt; 
+ 
+    &lt;s:states&gt; 
+        &lt;s:State name="default"/&gt; 
+        &lt;s:State name="addCheckBox"/&gt; 
+        &lt;s:State name="addTextInput"/&gt; 
+        &lt;s:State name="addCheckBoxandButton"/&gt; 
+    &lt;/s:states&gt; 
+     
+    &lt;s:HGroup &gt; 
+        &lt;!-- Included in the addCheckBox and addCheckBoxandButton view states. --&gt; 
+        &lt;s:CheckBox id="myCB" label="Checkbox" 
+           includeIn="addCheckBox, addCheckBoxandButton"/&gt; 
+     
+        &lt;!-- Included in the addTextInput view state. --&gt; 
+        &lt;s:TextInput id="myTI" 
+           includeIn="addTextInput"/&gt;    
+        &lt;!-- Included in the addCheckBoxandButton view state. --&gt; 
+        &lt;s:Button id="myB" 
+           includeIn="addCheckBoxandButton"/&gt; 
+        
+        &lt;!-- Exclude from addTextInput view state. --&gt; 
+        &lt;s:TextArea text="Exclude from addTextInput" 
+            excludeFrom="addTextInput"/&gt;        
+    &lt;/s:HGroup&gt; 
+ 
+    &lt;s:HGroup&gt; 
+        &lt;s:Button label="Add CheckBox" 
+            click="currentState='addCheckBox'"/&gt; 
+        &lt;s:Button label="Show Textinput Only" 
+            click="currentState='addTextInput'"/&gt;    
+        &lt;s:Button label="Add CheckBox and Button" 
+            click="currentState='addCheckBoxandButton'"/&gt; 
+        &lt;s:Button label="Default" 
+            click="currentState='default'"/&gt; 
+    &lt;/s:HGroup&gt; 
+&lt;/s:Application&gt;</pre>
+
+            </div>
+
+            <div class="p">You can specify the <samp class="codeph">includeIn</samp> and <samp class="codeph">excludeFrom</samp> attributes
+on any MXML object within an MXML document, with the exception of
+the following tags:<ul>
+                  <li>
+                     <p>The root tag of an MXML document,
+such as the Application tag or the root tag in an MXML component.</p>
+
+                  </li>
+
+                  <li>
+                     <p>Tags that represent properties of their parent tag. For example,
+the <samp class="codeph">&lt;s:label&gt;</samp> tag of the <samp class="codeph">&lt;s:Button&gt;</samp> tag.</p>
+
+                  </li>
+
+                  <li>
+                     <p>Descendants of the <samp class="codeph">&lt;fx:XML&gt;</samp>, <samp class="codeph">&lt;fx:XMLList&gt;</samp>,
+or <samp class="codeph">&lt;fx:Model&gt;</samp> tags.</p>
+
+                  </li>
+
+                  <li>
+                     <p>Any language tags, such as the <samp class="codeph">&lt;fx:Binding&gt;</samp>,<samp class="codeph"> &lt;fx:Declarations&gt;</samp>, <samp class="codeph">&lt;fx:Metadata&gt;</samp>, <samp class="codeph">&lt;fx:Script&gt;</samp>,
+and <samp class="codeph">&lt;fx:Style&gt;</samp> tags.</p>
+
+                  </li>
+
+               </ul>
+
+            </div>
+
+         </div>
+
+         <div class="nested3" id="WS1ca064e08d7aa930-463c6ef8129dbfccfbb-8000_verapache"><a name="WS1ca064e08d7aa930-463c6ef8129dbfccfbb-8000_verapache"><!-- --></a>
+            <h4 class="topictitle4">Restriction on modifying container
+children when using view states</h4>
+
+            
+            <div>
+               <p>When you use view states to control the children of a container,
+do not add or remove container children, or change the order of
+children in the container, at runtime. For example, the following
+container defines a Button control that appear only in State2:</p>
+
+               <div class="p">
+                  <pre class="codeblock">&lt;s:Group id="myGroup"&gt; 
+	&lt;s:Button/&gt; 
+	&lt;s:Button <strong>includeIn="State2"</strong>/&gt; 
+	&lt;s:Button/&gt; 
+&lt;/s:Group&gt;</pre>
+
+               </div>
+
+               <p>The view states infrastructure relies on the structure of the
+container as defined by the MXML file. Changing the child order
+of the container at runtime can cause your application to fail.
+Therefore, do not call the <samp class="codeph">addElement()</samp>, <samp class="codeph">removeElement()</samp>, <samp class="codeph">setElementIndex()</samp> method
+on the Group container at runtime, or any other method that changes
+the child order of the container. </p>
+
+            </div>
+
+         </div>
+
+         <div class="nested3" id="WS6E785CD1-6ABA-4a3d-B976-052EBE9BAE4A_verapache"><a name="WS6E785CD1-6ABA-4a3d-B976-052EBE9BAE4A_verapache"><!-- --></a>
+            <h4 class="topictitle4">Changing the parent of a component</h4>
+
+            
+            <div>
+               <p>A view state can change the parent container of a component.
+Changing the parent container of a component is called <em>reparenting</em> the
+component.</p>
+
+               <div class="p">Use the <samp class="codeph">&lt;fx:Reparent&gt;</samp> tag to change the
+parent container of a component. The <samp class="codeph">&lt;fx:Reparent&gt;</samp> tag
+has the following syntax:<pre class="codeblock">&lt;fx:Reparent target="<em>targetComp</em>" includeIn="<em>stateName</em>"&gt;</pre>
+
+               </div>
+
+               <p>The <samp class="codeph">target</samp> property specifies the target component,
+and the <samp class="codeph">includeIn</samp> property specifies a view state.
+When the current view state is set to <em>stateName</em>, the target
+component becomes a child of the parent component of the <samp class="codeph">&lt;fx:Reparent&gt;</samp> tag.
+You can think of the <samp class="codeph">&lt;fx:Reparent&gt;</samp> tag as
+a placeholder for the component for a specific view state.</p>
+
+               <p>You can use the <samp class="codeph">&lt;fx:Reparent&gt;</samp> tag in any
+component that can hold a child component, and the child can use
+the <samp class="codeph">includeIn</samp> or <samp class="codeph">excludeFrom</samp> keywords. </p>
+
+               <div class="p">The following example uses the <samp class="codeph">&lt;fx:Reparent&gt;</samp> tag
+to switch a Button control between two Panel containers:<pre class="codeblock">&lt;?xml version="1.0" encoding="utf-8"?&gt; 
+&lt;!-- states\NewStatesReparent.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark"&gt; 
+    &lt;s:layout&gt; 
+        &lt;s:VerticalLayout/&gt; 
+    &lt;/s:layout&gt; 
+ 
+    &lt;s:states&gt; 
+        &lt;s:State name="Parent1"/&gt; 
+        &lt;s:State name="Parent2"/&gt; 
+    &lt;/s:states&gt; 
+    
+    &lt;s:HGroup&gt; 
+        &lt;s:Panel id="Panel1" 
+            height="100" width="100" 
+            title="Panel 1"&gt; 
+            &lt;s:Button id="setCB" includeIn="Parent1"/&gt; 
+        &lt;/s:Panel&gt; 
+        &lt;s:Panel id="Panel2" 
+            height="100" width="100" 
+            title="Panel 2"&gt; 
+            &lt;fx:Reparent target="setCB" includeIn="Parent2"/&gt; 
+        &lt;/s:Panel&gt;     
+    &lt;/s:HGroup&gt; 
+ 
+    &lt;s:HGroup&gt; 
+        &lt;s:Button label="Parent 1" 
+            click="currentState='Parent1'" 
+            enabled.Parent1="false"/&gt; 
+        &lt;s:Button label="Parent 2" 
+            click="currentState='Parent2'" 
+            enabled.Parent2="false"/&gt; 
+    &lt;/s:HGroup&gt; 
+&lt;/s:Application&gt;</pre>
+
+               </div>
+
+               <p>Two <samp class="codeph">&lt;fx:Reparent&gt;</samp> tags cannot target the
+same component for the same view state. That means a component can
+only have a single parent in each view state. </p>
+
+            </div>
+
+         </div>
+
+         <div class="nested3" id="WS2db454920e96a9e51e63e3d11c0bf69084-7ddd_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7ddd_verapache"><!-- --></a>
+            <h4 class="topictitle4">Controlling when to create added
+children</h4>
+
+            
+            <div>
+               <p> When you remove a component as part of a change of view
+state, you remove the component from the application’s display list,
+which means that it no longer appears on the screen. Even though
+the component is no longer visible, the component still exists and
+you can access it from within your application. </p>
+
+               <p>When you add a component as part of a change of view state, you
+can either create the component before the first change to the view
+state, or create it at the time of the first change. If you create
+the component before the first change, you can access the component
+from within your application even though you have not yet changed
+view states. If you create the component when you perform the first
+change to the view state, you cannot access it until you perform
+that first change. </p>
+
+               <p>By default Flex creates container children when they are first
+required as part of a change of view state. However, if a child
+requires a long time to create, users might see a delay when the
+view state changes. Therefore, you can choose to create the child
+before the state changes to improve your application’s apparent speed
+and responsiveness. </p>
+
+               <p>Regardless of when you create a component, the component remains
+in memory after you change out of the view state that creates it.
+Therefore, after the first change to a view state, you can always
+access the component even if that view state is no longer the current
+view state. </p>
+
+               <p>The specification of when the child is created is called its <em>creation policy. </em>For
+more general information on creation policies and controlling how
+children are created, see <a href="flx_layoutperformance_lp.html#WS2db454920e96a9e51e63e3d11c0bf69084-7ee5_verapache">Improving
+startup performance</a>.</p>
+
+               <p>Use the <samp class="codeph">itemCreationPolicy</samp> property to specify
+the creation policy. The <samp class="codeph">itemCreationPolicy</samp> property
+supports the following values: </p>
+
+               <dl>
+                  
+                     <dt class="dlterm">
+                        <samp class="codeph">deferred</samp>
+                     </dt>
+
+                     <dd>
+                        <p>Creates the component instance when it is first added by
+a change to the view state. This is the default value. </p>
+
+                     </dd>
+
+                  
+                  
+                     <dt class="dlterm">
+                        <samp class="codeph">immediate</samp>
+                     </dt>
+
+                     <dd>
+                        <p>Creates the component instance at application startup. </p>
+
+                     </dd>
+
+                  
+               </dl>
+
+               <p>The following example uses the Immediate view state to add a
+Button control named newButtonImmediate. You set the <samp class="codeph">itemCreationPolicy</samp> property for
+this button to <samp class="codeph">immediate</samp> to create the button at
+application startup. Therefore, the application can access it to
+set its <samp class="codeph">label</samp> property before it switches to the
+Immediate view state.</p>
+
+               <p>The application also uses the Deferred view state to create the
+button named newButtonDeferred with the <samp class="codeph">itemCreationPolicy</samp> property
+set to <samp class="codeph">deferred</samp>. Therefore, this button is created
+when you first change to the Deferred view state, and you cannot
+access it until after the first switch to the Deferred view state:</p>
+
+               <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- states\StatesCreationPolicy.mxml  --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    creationComplete="initButton();"&gt; 
+    
+    &lt;fx:Script&gt; 
+        &lt;![CDATA[ 
+ 
+            // Because the Immediate view state creates the Button control 
+            // at application startup, you can access the control to 
+            // set the label before the first switch 
+            // to the Immediate view state. 
+            public function initButton():void { 
+                newButtonImmediate.label="Immediate Button"; 
+ 
+                // Uncommenting this line to access the label causes a 
+                // Run Time Exception because newButtonDeferred does not exist yet. 
+                // newButtonDeferred.label="Deferred Button"; 
+            }            
+        ]]&gt; 
+    &lt;/fx:Script&gt; 
+ 
+    &lt;s:states&gt; 
+        &lt;s:State name="default"/&gt; 
+        &lt;s:State name="Immediate"/&gt; 
+        &lt;s:State name="Deferred"/&gt; 
+    &lt;/s:states&gt;    
+    
+    &lt;s:Panel id="myPanel" 
+        title="Static and dynamic states" 
+        width="300" height="150"&gt; 
+        &lt;s:layout&gt; 
+            &lt;s:VerticalLayout/&gt; 
+        &lt;/s:layout&gt; 
+        &lt;!-- Create the Button control at application startup. --&gt; 
+        &lt;s:Button id="newButtonImmediate" 
+            includeIn="Immediate" 
+            itemCreationPolicy="immediate"/&gt; 
+ 
+        &lt;!-- Create the Button control when you switch to this view state. --&gt; 
+        &lt;s:Button id="newButtonDeferred" 
+            label="Deferred button" 
+            includeIn="Deferred" 
+            itemCreationPolicy="deferred"/&gt; 
+            
+        &lt;!-- Change to the Immediate view state. --&gt; 
+        &lt;s:Button label="Change to Immediate state" 
+            click="currentState='Immediate';"/&gt; 
+            
+        &lt;!-- Change to the Deferred view state. --&gt; 
+        &lt;s:Button label="Change to Deferred state" 
+          click="currentState='Deferred';"/&gt; 
+ 
+        &lt;!-- Change to the default view state. --&gt; 
+        &lt;s:Button label="Change to default state" 
+          click="currentState='default';"/&gt; 
+    &lt;/s:Panel&gt; 
+&lt;/s:Application&gt;</pre>
+
+            </div>
+
+         </div>
+
+         <div class="nested3" id="WSce19a0e5a003e2ed751bcef6120fd146f63-8000_verapache"><a name="WSce19a0e5a003e2ed751bcef6120fd146f63-8000_verapache"><!-- --></a>
+            <h4 class="topictitle4">Controlling caching of objects
+created in a view state</h4>
+
+            
+            <div>
+               <p>A change to a view state can cause Flex to create an object.
+By default, after Flex creates the object, the object is cached
+indefinitely, even after you switch to another view state. The item
+is cached even if the destination view state excludes the object.</p>
+
+               <p>Use the <samp class="codeph">itemDestructionPolicy</samp> attribute with
+the <samp class="codeph">includeIn</samp> and <samp class="codeph">excludeFrom</samp> attributes
+configure Flex to completely destroy the object when leaving a view
+state, including deleting it from the cache. Typically it is more efficient
+to allow items to be cached because it improves performance when switching
+back to the view state that created the object, or to a view state
+that uses the object. However your application might define a view
+state that is rarely used, and you do not want to allocate memory
+for caching the object. </p>
+
+               <p>You can use the <samp class="codeph">itemDestructionPolicy</samp> attribute
+on any object in MXML that supports the <samp class="codeph">includeIn</samp> and <samp class="codeph">excludeFrom</samp> attributes.
+The possible values for <samp class="codeph">itemDestructionPolicy</samp> are <samp class="codeph">never</samp> (default)
+and <samp class="codeph">auto</samp>. </p>
+
+               <p>The value of <samp class="codeph">never</samp> specifies that the object
+is cached indefinitely. A value of <samp class="codeph">auto</samp> means that
+the object is destroyed when leaving a view state where the object
+exists. The following example sets the attribute to <samp class="codeph">auto</samp>:</p>
+
+               <div class="p">
+                  <pre class="codeblock">&lt;s:TextInput includeIn="newTextInput" itemDestructionPolicy="auto"/&gt;</pre>
+
+               </div>
+
+            </div>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS9AB5F8CA-82B3-4804-8AD1-A32DA95B6829_verapache"><a name="WS9AB5F8CA-82B3-4804-8AD1-A32DA95B6829_verapache"><!-- --></a>
+         <h3 class="topictitle3">Defining view state groups</h3>
+
+         
+         <div>
+            <p>The <samp class="codeph">stateGroups</samp> attribute of the <samp class="codeph">&lt;s:States&gt;</samp> tag
+lets you group one or more states together. For example, if multiple
+components appear in the same set of view states, create a view
+state group that contains all these view states. Then, when you
+set the <samp class="codeph">currentState</samp> property to any view state
+in the group, the components appears.</p>
+
+            <p>In the following example, the CheckBox control named myCB appears
+when you change to any view state in Group1: </p>
+
+            <div class="p">
+               <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- states\StatesSimpleGroups.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark"&gt; 
+    &lt;s:layout&gt; 
+        &lt;s:VerticalLayout/&gt; 
+    &lt;/s:layout&gt; 
+    
+    &lt;s:states&gt; 
+        &lt;s:State name="default"/&gt; 
+        &lt;s:State name="addCheckBox" stateGroups="Group1"/&gt; 
+        &lt;s:State name="addTextInput"/&gt; 
+        &lt;s:State name="addCheckBoxandButton" stateGroups="Group1"/&gt; 
+    &lt;/s:states&gt; 
+      
+    &lt;s:HGroup&gt; 
+        &lt;!-- Included in the addCheckBox and addCheckBoxandButton view states. --&gt; 
+        &lt;s:CheckBox id="myCB" label="Checkbox" 
+            includeIn="Group1"/&gt; 
+     
+       &lt;!-- Included in the addTextInput view state. --&gt; 
+       &lt;s:TextInput id="myTI" 
+            includeIn="addTextInput"/&gt;    
+        &lt;!-- Included in the addCheckBoxandButton view state. --&gt; 
+        &lt;s:Button id="myB" 
+           includeIn="addCheckBoxandButton"/&gt; 
+        
+        &lt;!-- Exclude from addTextInput view state. --&gt; 
+        &lt;s:TextArea text="Exclude from addTextInput" 
+           excludeFrom="addTextInput"/&gt;             
+    &lt;/s:HGroup&gt; 
+ 
+    &lt;s:HGroup&gt; 
+        &lt;s:Button label="Add CheckBox" 
+            click="currentState='addCheckBox'"/&gt; 
+        &lt;s:Button label="Add Textinput" 
+            click="currentState='addTextInput'"/&gt;    
+        &lt;s:Button label="Add Group 1" 
+            click="currentState='addCheckBoxandButton'"/&gt; 
+        &lt;s:Button label="Default" 
+            click="currentState='default'"/&gt; 
+    &lt;/s:HGroup&gt; 
+&lt;/s:Application&gt;</pre>
+
+            </div>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf69084-7dd4_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7dd4_verapache"><!-- --></a>
+         <h3 class="topictitle3">Example: Login form application</h3>
+
+         
+         <div>
+            <p>The following example creates the Login and Register forms
+shown in <a href="flx_using_states_us.html#WS2db454920e96a9e51e63e3d11c0bf63611-7ff1_verapache">About view
+states </a>. This application has the following features:</p>
+
+            <ul>
+               <li>
+                  <p>When the user clicks the Need to Register LinkButton
+control, the event handler for the <samp class="codeph">click</samp> event
+sets the view state to Register. </p>
+
+               </li>
+
+               <li>
+                  <p>The Register state code adds a TextInput control, changes
+properties of the Panel container and Button control, removes the
+existing LinkButton controls, and adds a new LinkButton control. </p>
+
+               </li>
+
+               <li>
+                  <p>When the user clicks the Return to Login LinkButton control,
+the event handler for the <samp class="codeph">click</samp> event resets the
+view state to the default view state.</p>
+
+               </li>
+
+            </ul>
+
+            <div class="note"><span class="notetitle">Note:</span> For an example that adds a transition to animate
+the change between view states, see <a href="flx_transitions_tr.html#WS2db454920e96a9e51e63e3d11c0bf69084-7dc3_verapache">Example:
+Using transitions with a login form</a>. </div>
+
+            <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- states\LoginExample.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark"&gt; 
+ 
+    &lt;!-- The Application class states property defines the view states.--&gt; 
+    &lt;s:states&gt; 
+        &lt;s:State name="default"/&gt;    
+        &lt;s:State name="Register"/&gt; 
+    &lt;/s:states&gt; 
+ 
+    &lt;!-- Set title of the Panel container based on the view state.--&gt; 
+    &lt;s:Panel id="loginPanel" 
+        title="Login" title.Register="Register"&gt; 
+        &lt;s:layout&gt; 
+            &lt;s:VerticalLayout/&gt; 
+        &lt;/s:layout&gt;        
+        &lt;s:Form id="loginForm"&gt; 
+            &lt;s:FormItem label="Username:"&gt; 
+                &lt;s:TextInput/&gt; 
+            &lt;/s:FormItem&gt; 
+            
+            &lt;s:FormItem label="Password:"&gt; 
+                &lt;s:TextInput/&gt; 
+            &lt;/s:FormItem&gt; 
+            
+            &lt;s:FormItem id="confirm" label="Confirm:" includeIn="Register"&gt; 
+                &lt;!-- Add a TextInput control to the form for the Register view state. --&gt;           
+                &lt;s:TextInput/&gt; 
+            &lt;/s:FormItem&gt;            
+            
+            &lt;s:FormItem&gt;            
+                &lt;!-- Use the LinkButton to change view state.--&gt; 
+                &lt;s:HGroup&gt; 
+                    &lt;!-- Set label of the control based on the view state.--&gt; 
+                    &lt;mx:LinkButton id="registerLink" 
+                        label="Need to Register?" 
+                        label.Register="Return to Login" 
+                        click="currentState='Register'" 
+                        click.Register="currentState=''"/&gt; 
+                    &lt;s:Button id="loginButton" 
+                        label="Login" label.Register="Register"/&gt; 
+                &lt;/s:HGroup&gt; 
+            &lt;/s:FormItem&gt;            
+        &lt;/s:Form&gt; 
+    &lt;/s:Panel&gt; 
+&lt;/s:Application&gt;</pre>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf69084-7dca_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7dca_verapache"><!-- --></a>
+         <h3 class="topictitle3">Example: Controlling layout using
+view states groups</h3>
+
+         
+         <div>
+            <p>In this example, you define an application with three Panel
+containers and three view states, as the following example shows:</p>
+
+            <div class="figborder">
+               <img src="images/tr_transPanelStatesREAL.png" alt="Define an application with three Panel containers and three view states"/>
+               <dl>
+                  
+                     <dt class="dlterm">
+                        <strong>A.</strong>
+                     </dt>
+
+                     <dd>Default view state</dd>
+
+                  
+                  
+                     <dt class="dlterm">
+                        <strong>B.</strong>
+                     </dt>
+
+                     <dd>One view state</dd>
+
+                  
+                  
+                     <dt class="dlterm">
+                        <strong>C.</strong>
+                     </dt>
+
+                     <dd>Two view state</dd>
+
+                  
+               </dl>
+
+            </div>
+
+            <p>To change view state, click the Panel container that you want
+to display in the expanded size. For a version of this example that
+adds a transition to animate the view state change, see <a href="flx_transitions_tr.html#WS2db454920e96a9e51e63e3d11c0bf69084-7fae_verapache">Defining
+transitions</a>. </p>
+
+            <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- states/ThreePanel.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark" width="400"&gt; 
+ 
+    &lt;!-- Define the two view states, in addition to the default view state.--&gt; 
+    &lt;s:states&gt; 
+        &lt;s:State name="default"/&gt; 
+        &lt;s:State name="One"/&gt; 
+        &lt;s:State name="Two"/&gt; 
+    &lt;/s:states&gt; 
+ 
+    &lt;!-- Define the Group container holding the three Panel containers.--&gt; 
+    &lt;s:Group width="100%" height="100%"&gt; 
+        &lt;s:Panel id="p1" title="One" 
+                x="0" y="0" 
+                x.One="110" y.One="0" 
+                x.Two="0" y.Two="0" 
+                width="100" height="100" 
+                width.One="200" height.One="210" 
+                width.Two="100" height.Two="100" 
+                click="currentState='One'"&gt; 
+            &lt;s:Label fontSize="24" text="One"/&gt; 
+        &lt;/s:Panel&gt; 
+        
+        &lt;s:Panel id="p2" title="Two" 
+                x="0" y="110" 
+                x.One="0" y.One="0" 
+                x.Two="110" y.Two="0" 
+                width="100" height="100" 
+                width.One="100" height.One="100" 
+                width.Two="200" height.Two="210" 
+                click="currentState='Two'"&gt; 
+            &lt;s:Label fontSize="24" text="Two"/&gt; 
+        &lt;/s:Panel&gt; 
+        
+        &lt;s:Panel id="p3" title="Three" 
+                x="110" y="0" 
+                x.One="0" y.One="110" 
+                x.Two="0" y.Two="110" 
+                width="200" height="210" 
+                width.One="100" height.One="100" 
+                width.Two="100" height.Two="100" 
+                click="currentState='default'"&gt; 
+            &lt;s:Label fontSize="24" text="Three"/&gt; 
+        &lt;/s:Panel&gt; 
+    &lt;/s:Group&gt; 
+&lt;/s:Application&gt;</pre>
+
+            <p>You can optimize this application by using view state groups,
+as the following example shows:</p>
+
+            <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- states/ThreePanelGroups.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark" width="400"&gt; 
+ 
+    &lt;!-- Define the two view states, in addition to the default state.--&gt; 
+    &lt;s:states&gt; 
+        &lt;s:State name="default" stateGroups="grpDefaultOne, grpDefaultTwo"/&gt; 
+        &lt;s:State name="One" stateGroups="grpDefaultOne, grpOneTwo "/&gt; 
+        &lt;s:State name="Two" stateGroups="grpDefaultTwo, grpOneTwo"/&gt; 
+    &lt;/s:states&gt; 
+ 
+    &lt;!-- Define the Group container holding the three Panel containers.--&gt; 
+    &lt;s:Group width="100%" height="100%"&gt; 
+        &lt;s:Panel id="p1" title="One" 
+                x.grpDefaultTwo="0" y.grpDefaultTwo="0" 
+                x.One="110" y.One="0" 
+                width.grpDefaultTwo="100" height.grpDefaultTwo="100" 
+                width.One="200" height.One="210" 
+                click="currentState='One'"&gt; 
+            &lt;s:Label fontSize="24" text="One"/&gt; 
+        &lt;/s:Panel&gt; 
+        
+        &lt;s:Panel id="p2" title="Two" 
+                x="0" y="110" 
+                x.One="0" y.One="0" 
+                x.Two="110" y.Two="0" 
+                width.grpDefaultOne="100" height.grpDefaultOne="100" 
+                width.Two="200" height.Two="210" 
+                click="currentState='Two'"&gt; 
+            &lt;s:Label fontSize="24" text="Two"/&gt; 
+        &lt;/s:Panel&gt; 
+        
+        &lt;s:Panel id="p3" title="Three" 
+                x="110" y="0" 
+                x.grpOneTwo="0" y.grpOneTwo="110" 
+                width="200" height="210" 
+                width.grpOneTwo="100" height.grpOneTwo="100" 
+                click="currentState='default'"&gt; 
+            &lt;s:Label fontSize="24" text="Three"/&gt; 
+        &lt;/s:Panel&gt; 
+    &lt;/s:Group&gt; 
+&lt;/s:Application&gt;</pre>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf63611-7ff7_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf63611-7ff7_verapache"><!-- --></a>
+         <h3 class="topictitle3">Using view state events</h3>
+
+         
+         <div>
+            <p>When a component’s <samp class="codeph">currentState</samp> property
+changes, the State object for the states being exited and entered
+dispatch the following events:</p>
+
+            <dl>
+               
+                  <dt class="dlterm">enterState</dt>
+
+                  <dd>
+                     <p>Dispatched after a view state is entered. Dispatched by a
+State object and by a component.</p>
+
+                  </dd>
+
+               
+               
+                  <dt class="dlterm">exitState</dt>
+
+                  <dd>
+                     <p>Dispatched when a view state is about to be exited. Dispatched
+by a State object before it is exited, and by a component before
+it exits the current view state.</p>
+
+                     <p>The component on which you
+modify the <samp class="codeph">currentState</samp> property to cause the state
+change dispatches the following events:</p>
+
+                  </dd>
+
+               
+               
+                  <dt class="dlterm">currentStateChanging</dt>
+
+                  <dd>
+                     <p>Dispatched when the view state is about to change. It is dispatched
+by a component after its <samp class="codeph">currentState</samp> property
+changes, but before the view state changes. You can use this event
+to request any data from the server required by the new view state. </p>
+
+                  </dd>
+
+               
+               
+                  <dt class="dlterm">currentStateChange</dt>
+
+                  <dd>
+                     <p>Dispatched after the view state has completed changing. It
+is dispatched by a component after its <samp class="codeph">currentState</samp> property
+changes. You can use this event to send data back to a server indicating
+the user’s current view state.</p>
+
+                  </dd>
+
+               
+            </dl>
+
+            <div class="p">The following example uses the <samp class="codeph">enterState</samp> and <samp class="codeph">exitState</samp> events
+to update two TextArea controls with the name of the new state and
+of the old state: <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- states\StatesSimpleEvent.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    height="450"&gt; 
+ 
+    &lt;s:states&gt; 
+        &lt;!-- Define the new view states. --&gt; 
+        &lt;s:State name="default" 
+            enterState="MyEnterTA.text = 'Enter state: default';" 
+            exitState="MyExitTA.text = 'Exit state: default';"/&gt; 
+        &lt;s:State name="NewButton" 
+            enterState="MyEnterTA.text = 'Enter state: NewButton';" 
+            exitState="MyExitTA.text = 'Exit state: NewButton';"/&gt; 
+    &lt;/s:states&gt;    
+    &lt;s:VGroup id="g1"&gt; 
+        &lt;s:HGroup&gt; 
+            &lt;s:Button id="b1" label="Click Me" 
+                enabled.NewButton="false"/&gt; 
+            &lt;s:Button id="b2" label="New Button" 
+                includeIn="NewButton"/&gt; 
+        &lt;/s:HGroup&gt; 
+ 
+        &lt;s:Button label="Change to NewButton state" 
+            click="currentState='NewButton';"/&gt;            
+        &lt;s:Button label="Change to default view state" 
+            click="currentState='default';"/&gt; 
+ 
+        &lt;s:TextArea id="MyEnterTA"/&gt; 
+        &lt;s:TextArea id="MyExitTA"/&gt; 
+        
+    &lt;/s:VGroup&gt;    
+&lt;/s:Application&gt;</pre>
+
+            </div>
+
+         </div>
+
+      </div>
+
+   </div>
+
+   <div class="nested1" id="WS2db454920e96a9e51e63e3d11c0bf63611-7ff2_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf63611-7ff2_verapache"><!-- --></a>
+      <h2 class="topictitle2">Defining view states in custom components</h2>
+
+      
+      <div>
+         <p>If a custom component has multiple view states, define
+the view states in the component code, not in the main application.
+You can then set the view state of the component independently of
+the view state of the enclosing application. </p>
+
+         <div class="p">The following example shows a custom component that implements
+a login dialog box with two view states: Login and Register. The
+main application sets the <samp class="codeph">currentState</samp> property
+of the component to Login. However, you can set it to Register if
+you want that to be the default view state, or use data binding
+to set it at run time:<pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- states\myComponents\LoginComponent.mxml --&gt; 
+&lt;!-- Set title of the Panel container based on the view state.--&gt; 
+&lt;s:Panel xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    title="Login" title.Register="Register"&gt; 
+        
+    &lt;!-- The states property defines the view states.--&gt; 
+    &lt;s:states&gt; 
+        &lt;s:State name="Login"/&gt;    
+        &lt;s:State name="Register"/&gt; 
+    &lt;/s:states&gt; 
+ 
+    &lt;s:Form id="loginForm"&gt; 
+        &lt;s:FormItem label="Username:"&gt; 
+            &lt;s:TextInput/&gt; 
+        &lt;/s:FormItem&gt; 
+        &lt;s:FormItem label="Password:"&gt; 
+            &lt;s:TextInput/&gt; 
+        &lt;/s:FormItem&gt; 
+        &lt;!-- Add a TextInput control to the form for the Register view state. --&gt;           
+        &lt;s:FormItem id="confirm" label="Confirm:" includeIn="Register"&gt; 
+            &lt;s:TextInput/&gt; 
+        &lt;/s:FormItem&gt;            
+        &lt;s:FormItem&gt;            
+            &lt;s:HGroup&gt; 
+                &lt;!-- Use the LinkButton to change to the Register view state.--&gt;                   
+                &lt;!-- Exclude the LinkButton from the Register view state.--&gt;                   
+                &lt;mx:LinkButton id="registerLink" 
+                    includeIn="Login" 
+                    label="Need to Register?" 
+                    click="currentState='Register'"/&gt; 
+                &lt;!-- Add a LinkButton to the form for the Register view state. --&gt;           
+                &lt;mx:LinkButton label="Return to Login" 
+                    includeIn="Register" 
+                    click="currentState=''"/&gt; 
+                &lt;mx:Spacer width="100%" id="spacer1"/&gt; 
+                &lt;!-- Set label of the control based on the view state.--&gt; 
+                &lt;s:Button id="loginButton" 
+                    label="Login" label.Register="Register" /&gt; 
+            &lt;/s:HGroup&gt; 
+        &lt;/s:FormItem&gt;            
+    &lt;/s:Form&gt; 
+&lt;/s:Panel&gt;</pre>
+
+         </div>
+
+         <div class="p">You can then use this component in an application, as the following
+example shows:<pre class="codeblock">&lt;?xml version="1.0" encoding="utf-8"?&gt; 
+&lt;!-- states\LoginMain.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:MyComp="myComponents.*"&gt; 
+    &lt;s:layout&gt; 
+        &lt;s:VerticalLayout/&gt; 
+    &lt;/s:layout&gt; 
+    &lt;s:Label text="Login or Register" 
+        fontSize="14" fontWeight="bold"/&gt; 
+ 
+    &lt;MyComp:LoginComponent currentState="Login"/&gt; 
+&lt;/s:Application&gt;</pre>
+
+         </div>
+
+      </div>
+
+   </div>
+
+   <div class="nested1" id="WS2db454920e96a9e51e63e3d11c0bf63611-7ffe_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf63611-7ffe_verapache"><!-- --></a>
+      <h2 class="topictitle2">Using view states with a custom
+item renderer</h2>
+
+      
+      <div>
+         <p>A shopping application that displays multiple items on
+a page might have a custom thumbnail item renderer with two view
+states. In one view state, the item cell might look the following
+image:</p>
+
+         <div class="figborder">
+            <img src="images/us_CellRenderer2.png" alt="The base view state"/>
+         </div>
+
+         <p>When the user rolls the mouse over the item, the view state changes:
+the thumbnail no longer has the availability and rating information,
+but now has buttons that let the user get more information or add
+the item to the wish list or cart. In the new state, the cell also
+has a border and a drop shadow, as the following image shows:</p>
+
+         <div class="figborder">
+            <img src="images/us_CellRenderer3.png" alt="In the new state, the cell also has a border and a drop shadow"/>
+         </div>
+
+         <p>In this example, the application item renderer’s two view states
+have different child components and have different component styles.
+The summary state, for example, includes an availability label and
+a star rating image, and has no border. The rolled-over state replaces
+the label and rating components with three buttons, and has an outset
+border.</p>
+
+         <p>For information on item renderers, see <a href="flx_cellrenderer_cr.html#WS2db454920e96a9e51e63e3d11c0bf69084-7fb7_verapache">MX
+item renderers and item editors</a>.</p>
+
+         <div class="section" id="WS2db454920e96a9e51e63e3d11c0bf63611-7ffe_verapache__WS2db454920e96a9e51e63e3d11c0bf63611-7fef_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf63611-7ffe_verapache__WS2db454920e96a9e51e63e3d11c0bf63611-7fef_verapache"><!-- --></a><h3 class="sectiontitle">Example:
+Using view states with a custom item renderer</h3>
+            
+            <p>The following
+code shows an application that uses a custom item renderer to display
+catalog items. When the user moves the mouse over an item, the item renderer
+changes to a state where the picture is slightly enlarged, the price appears
+in the cell, and a text box shows a message about the item. All
+changes are made by the item renderer’s state, including the change
+in the parent application.</p>
+
+            <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- states\StatesRendererMain.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark"&gt; 
+    &lt;s:layout&gt; 
+        &lt;s:VerticalLayout horizontalAlign="center"/&gt; 
+    &lt;/s:layout&gt; 
+    
+    &lt;s:DataGroup itemRenderer="myComponents.ImageComp" 
+        width="300" height="400"&gt; 
+        &lt;s:layout&gt; 
+            &lt;s:TileLayout columnWidth="150" rowHeight="175" 
+                requestedColumnCount="2" requestedRowCount="2" /&gt; 
+        &lt;/s:layout&gt; 
+        &lt;mx:ArrayCollection&gt; 
+            &lt;fx:Object 
+                name="Nokia 3595" 
+                data="1" 
+                price="129.99" 
+                image="assets/Nokia_3595.gif" 
+                description="Kids love it."/&gt; 
+            &lt;fx:Object 
+                name= "Nokia 3650" 
+                data="1" 
+                price="99.99" 
+                image="assets/Nokia_3650.gif" 
+                description="Impress your friends."/&gt; 
+            &lt;fx:Object 
+                name="Nokia 6010" 
+                data="1" 
+                price="49.99" 
+                image="assets/Nokia_6010.gif" 
+                description="Good for everyone."/&gt; 
+            &lt;fx:Object 
+                name="Nokia 6360" 
+                data="1" 
+                price="19.99" 
+                image="assets/Nokia_6360.gif" 
+                description="Great deal!"/&gt; 
+        &lt;/mx:ArrayCollection&gt; 
+    &lt;/s:DataGroup&gt; 
+&lt;/s:Application&gt;</pre>
+
+            <p>The following code defines
+the item renderer, in the file ImageComp.mxml:</p>
+
+            <pre class="codeblock">&lt;?xml version="1.0" encoding="utf-8"?&gt; 
+&lt;s:ItemRenderer xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark"&gt; 
+    &lt;s:layout&gt; 
+        &lt;s:VerticalLayout/&gt; 
+    &lt;/s:layout&gt; 
+ 
+    &lt;s:states&gt; 
+        &lt;s:State name="normal"/&gt; 
+        &lt;s:State name="hovered"/&gt; 
+        &lt;s:State name="selected"/&gt; 
+    &lt;/s:states&gt;     
+    &lt;s:Image id="img1" 
+        source="{data.image}" 
+        width="75" width.hovered="85" 
+        height="75" height.hovered="85"/&gt; 
+    &lt;s:Label text="{data.name}" 
+        color="blue" 
+        fontSize.hovered="16"/&gt; 
+    &lt;s:Label text.hovered="{data.price}"/&gt; 
+    &lt;s:TextArea id="t1" 
+        visible="false" visible.hovered="true" 
+        height="30" width="125" 
+        text.hovered="{data.description}"/&gt; 
+&lt;/s:ItemRenderer&gt;</pre>
+
+         </div>
+
+      </div>
+
+   </div>
+
+   <div class="nested1" id="WS2db454920e96a9e51e63e3d11c0bf63611-7fea_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf63611-7fea_verapache"><!-- --></a>
+      <h2 class="topictitle2">Using view states with the browser manager</h2>
+
+      
+      <div>
+         <p>The Flex browser manager lets users navigate through an
+application by using the web browser’s back and forward navigation
+commands. The browser manager can track when the application enters
+a state so that users can use the browser to navigate between states,
+such as states that correspond to different stages in an application
+process.</p>
+
+         <p>To use the browser manager, you first obtain a reference to the
+BrowserManager object by calling the <samp class="codeph">BrowserManager.getInstance()</samp> method.
+This method returns the current instance of the manager, which implements IBrowserManager
+interface. You can then call methods on the browser manager such
+as <samp class="codeph">setTitle()</samp> and <samp class="codeph">setFragment()</samp>. </p>
+
+         <p>To save the current state of an application, you write the state
+name as a name-value pair to the application URL in the browser's
+address bar. When the user clicks the browser’s Forward or Back
+button, extract the state from the browser’s URL and set the <samp class="codeph">currentState</samp> value
+appropriately. For more information the browser manager, see <a href="flx_deep_linking_dl.html#WS2db454920e96a9e51e63e3d11c0bf64e50-7ff4_verapache">Using
+the BrowserManager</a>.</p>
+
+         <p>The following code shows how you can code a search interface
+so that the browser manager tracks the state of the application: </p>
+
+         <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- states\StatesBrowserManager.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    creationComplete="initApp();"&gt; 
+ 
+    &lt;fx:Script&gt; 
+        &lt;![CDATA[ 
+            import mx.managers.BrowserManager; 
+            import mx.managers.IBrowserManager; 
+            import mx.events.BrowserChangeEvent; 
+            import mx.utils.URLUtil; 
+        
+            // The search string value. 
+            [Bindable] 
+            public var searchString:String; 
+ 
+            // The BrowserManager instance. 
+            private var browserManager:IBrowserManager; 
+        
+            // Initialize the BrowserManager when the application is created. 
+            public function initApp():void { 
+                browserManager = BrowserManager.getInstance(); 
+                browserManager.addEventListener(BrowserChangeEvent.BROWSER_URL_CHANGE, parseURL); 
+                browserManager.init("", "Browser Manager for View States"); 
+                // Set the default state as a name/value pair in the URL. 
+                updateURL('default');                
+            } 
+            
+            // Handle the event when the user clicks the Forward or Back button 
+            // in the browser. This event handler retrieves the value of the 
+            // state property from the new URL, and uses it to set currentState property. 
+            private var stateFromURL:String; 
+            private function parseURL(e:Event):void { 
+                var o:Object = URLUtil.stringToObject(browserManager.fragment); 
+                stateFromURL = o.state; 
+                currentState=stateFromURL; 
+            }           
+            // On a state change, save the value of the new 
+            // currentState property as name/value pair of the URL. 
+            private function updateURL(myCurrentState:String):void { 
+                var s:String = "state=" + myCurrentState; 
+                browserManager.setFragment(s); 
+            }            
+        
+            // The method for doing the search. 
+            // For the sake of simplicity it doesn't do any searching. 
+            // It does change the state to display the results box, 
+            // and save the new state in the URL. 
+            public function doSearch():void { 
+                currentState = "results"; 
+                updateURL('results'); 
+                searchString = searchInput.text; 
+            } 
+ 
+            // Method to revert the state to the default state. 
+            // Saves the new state in in the URL. 
+            public function reset():void { 
+                currentState = ''; 
+                searchInput.text = ""; 
+                searchString = ""; 
+                updateURL('default'); 
+            } 
+        ]]&gt; 
+    &lt;/fx:Script&gt; 
+    
+    &lt;s:states&gt; 
+        &lt;!-- The state for displaying the search results --&gt; 
+        &lt;s:State name="default"/&gt; 
+        &lt;s:State name="results"/&gt; 
+    &lt;/s:states&gt; 
+ 
+    &lt;!-- In the default state, just show a panel 
+        with a search text input and button. --&gt; 
+    &lt;s:Panel id="panel1" 
+        title="Search" title.results="Results" 
+        resizeEffect="Resize" 
+        width="10%" height="10%" 
+        width.results="100%" height.results="100%"&gt; 
+        &lt;s:layout&gt; 
+            &lt;s:VerticalLayout/&gt; 
+        &lt;/s:layout&gt; 
+        &lt;s:SkinnableContainer id="searchFields" defaultButton="{b}"&gt; 
+            &lt;s:layout&gt; 
+                &lt;s:HorizontalLayout/&gt; 
+            &lt;/s:layout&gt; 
+            &lt;s:TextInput id="searchInput"/&gt; 
+            &lt;s:Button id="b" 
+                label="Go" 
+                click="doSearch();"/&gt; 
+            &lt;s:Button includeIn="results" 
+                label="Reset" 
+                click="reset();"/&gt; 
+        &lt;/s:SkinnableContainer&gt; 
+        &lt;s:Label includeIn="results" 
+            text="Search results for {searchString}"/&gt; 
+    &lt;/s:Panel&gt; 
+&lt;/s:Application&gt;</pre>
+
+         <p>In this example, when the user changes state, the <samp class="codeph">updateURL()</samp> method
+writes the current state to the browser’s URL as a name/value pair.
+When the user clicks the browser’s Forward or Back button, the <samp class="codeph">parseURL()</samp> method
+extracts the state from the browser’s URL and set the <samp class="codeph">currentState</samp> value.</p>
+
+         <p>You can modify the <samp class="codeph">updateURL()</samp> method to write
+more than just the current state to the URL. For example, you can
+write the search string to the URL. You then use the <samp class="codeph">parseURL()</samp> method
+to extract it and update the TextInput control named searchInput.</p>
+
+      </div>
+
+   </div>
+
+
+</body>
+</html>

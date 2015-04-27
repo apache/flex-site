@@ -1,0 +1,2042 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Licensed to the Apache Software Foundation (ASF) under one or more
+  contributor license agreements.  See the NOTICE file distributed with
+  this work for additional information regarding copyright ownership.
+  The ASF licenses this file to You under the Apache License, Version 2.0
+  (the "License"); you may not use this file except in compliance with
+  the License.  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+-->
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en-us" xml:lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="topic"/>
+<meta name="DC.Title" content="Communicating with the wrapper"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="WS2db454920e96a9e51e63e3d11c0bf69084-7f17_verapache"/>
+<link rel="stylesheet" type="text/css" href="commonltr.css"/>
+<title>Communicating with the wrapper</title>
+</head>
+<body id="WS2db454920e96a9e51e63e3d11c0bf69084-7f17_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7f17_verapache"><!-- --></a>
+
+
+   <h1 class="topictitle1">Communicating with the wrapper</h1>
+
+   
+   <div>
+      <p>
+         You exchange
+data between an  Flex application and the
+HTML page that embeds that application in several ways, depending
+on the type of integration that your application requires. </p>
+
+   </div>
+
+   <div class="nested1" id="WS2db454920e96a9e51e63e3d11c0bf626ae-7ff8_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf626ae-7ff8_verapache"><!-- --></a>
+      <h2 class="topictitle2">About exchanging data with applications</h2>
+
+      
+      <div>
+         <p>Applications built with Flex generally exist inside larger
+web applications that control everything from security to state
+management to the overall look and feel of the website. In this
+scenario it is important that the application is able to communicate
+with the surrounding environment, providing a deeper integration
+with the larger web application. Enabling the application to communicate
+with the environment provides a method of integration with other technologies
+such as Ajax.</p>
+
+         <p>Often, an application is loaded in a browser within a wrapper.
+This wrapper is often an HTML page that can include JavaScript or
+other client-side logic that the application can interact with. </p>
+
+         <p>There are several ways to communicate between the surrounding
+environment and the application; depending on the type of integration
+required, any combination of <samp class="codeph">flashVars </samp>properties,
+query string parameters, the <samp class="codeph">navigateToURL()</samp> method,
+and the ExternalInterface class can be employed. In addition, you
+can communicate between two applications on the same page by using
+SharedObjects.</p>
+
+         <p>To pass request data into your applications, you can define <samp class="codeph">flashVars</samp> properties
+inside your HTML wrapper and access their values using the <samp class="codeph">FlexGlobals.topLevelApplication.parameters</samp>.
+For more information, see <a href="flx_passingarguments_pa.html#WS2db454920e96a9e51e63e3d11c0bf69084-7f5e_verapache">Passing
+request data with flashVars properties</a>. Using these techniques,
+you can personalize an application without requiring a recompilation.</p>
+
+         <p>Use the methods of the <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/flash/external/ExternalInterface.html" target="_blank">ExternalInterface</a> API
+to call the methods of your applications and vice versa. The <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/flash/external/ExternalInterface.html#addCallback()" target="_blank">addCallback()</a> method
+exposes methods of your application to the wrapper. The <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/flash/external/ExternalInterface.html#call()" target="_blank">call()</a> method
+invokes a method within the wrapper and returns any results. If
+the wrapper is HTML, the <samp class="codeph">addCallback()</samp> and <samp class="codeph">call()</samp> methods
+enable method invocation between your application and the hosted
+scripting language running within the browser. For more information,
+see <a href="flx_passingarguments_pa.html#WS2db454920e96a9e51e63e3d11c0bf69084-7ea8_verapache">About
+the ExternalInterface API</a>.</p>
+
+         <p>In some situations, you want to open a new browser window or
+navigate to a new location. You can do this with the <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/flash/net/package.html#navigateToURL()" target="_blank">navigateToURL()</a> global
+function. Although it is not part of the ExternalInterface API,
+this method is flexible enough to let you write JavaScript inside
+it, and invoke JavaScript functions on the resulting HTML page.
+The <samp class="codeph">navigateToURL()</samp> method is a global function
+in the flash.net package. </p>
+
+      </div>
+
+      <div><div class="relinfo"><strong>Related information</strong><br/>
+<div><a href="flx_wrapper_wr.html#WS2db454920e96a9e51e63e3d11c0bf69084-7ecf_verapache">Creating a wrapper</a></div>
+</div>
+</div>
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf626ae-7ff4_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf626ae-7ff4_verapache"><!-- --></a>
+         <h3 class="topictitle3">Determining the application’s URL</h3>
+
+         
+         <div>
+            <p>Flex provides some simple mechanisms for getting information
+about the browser and the environment in which the application runs.
+From within the application, you can get the URL to the SWF file
+by using the <samp class="codeph">FlexGlobals.topLevelApplication.url</samp> property.
+To access properties of the FlexGlobals class, you must import mx.core.FlexGlobals.</p>
+
+            <p>The following example gets the SWF file’s URL and extracts the
+host name from the URL:</p>
+
+            <pre class="codeblock">&lt;?xml version="1.0" encoding="utf-8"?&gt; 
+&lt;!-- wrapper/GetURLInfo.mxml --&gt; 
+&lt;s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark" creationComplete="getHostName()"&gt; 
+    &lt;s:layout&gt; 
+        &lt;s:VerticalLayout/&gt; 
+    &lt;/s:layout&gt; 
+ 
+  &lt;fx:Script&gt; 
+    &lt;![CDATA[ 
+      import mx.core.FlexGlobals; 
+ 
+      [Bindable] 
+      public var g_HostString:String; 
+      [Bindable] 
+      public var g_ContextRoot:String; 
+      [Bindable] 
+      public var g_BaseURL:String; 
+      private function getHostName():void { 
+         g_BaseURL = FlexGlobals.topLevelApplication.url; 
+         var pattern1:RegExp = new RegExp("http://[^/]*/"); 
+         if (pattern1.test(g_BaseURL) == true) { 
+            g_HostString = pattern1.exec(g_BaseURL).toString(); 
+         } else{ 
+            g_HostString = "http://localhost/" 
+         }   
+      } 
+      ]]&gt; 
+    &lt;/fx:Script&gt; 
+ 
+  &lt;mx:Form&gt; 
+     &lt;mx:FormItem label="Base URL:"&gt; 
+        &lt;mx:Label text="{g_BaseURL}"/&gt; 
+     &lt;/mx:FormItem&gt; 
+     &lt;mx:FormItem label="Host Name:"&gt; 
+        &lt;mx:Label text="{g_HostString}"/&gt; 
+     &lt;/mx:FormItem&gt; 
+  &lt;/mx:Form&gt; 
+&lt;/s:Application&gt;</pre>
+
+            <p>You can also use the flash.system.Capabilities class to access
+information about the client, such as Operating System, Player version,
+and language. </p>
+
+            <p>You can access more information about the browser and the application’s environment
+using the ExternalInterface. For more information, see <a href="flx_passingarguments_pa.html#WS2db454920e96a9e51e63e3d11c0bf69084-7ea8_verapache">About
+the ExternalInterface API</a>.</p>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf69084-7ea8_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7ea8_verapache"><!-- --></a>
+         <h3 class="topictitle3">About the ExternalInterface API</h3>
+
+         
+         <div>
+            <p>
+               You
+use the <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/flash/external/ExternalInterface.html" target="_blank">ExternalInterface</a> API
+to let your application call methods in the wrapper and to allow
+the wrapper to call functions in your application. The ExternalInterface
+API consists primarily of the <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/flash/external/ExternalInterface.html#call()" target="_blank">call()</a> and <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/flash/external/ExternalInterface.html#addCallback()" target="_blank">addCallback()</a> methods
+in the flash.external package. </p>
+
+            <p>The following browsers support the ExternalInterface API:</p>
+
+            <ul>
+               <li>
+                  <p>All versions of Internet Explorer for Windows (5.0 and
+later)</p>
+
+               </li>
+
+               <li>
+                  <p>Embedded custom ActiveX containers, such as a desktop application embedding
+the Adobe<sup>®</sup> Flash<sup>®</sup> Player
+ActiveX control</p>
+
+               </li>
+
+               <li>
+                  <p>Any browser that supports the NPRuntime interface (which
+currently includes the following browsers):</p>
+
+                  <ul>
+                     <li>
+                        <p>Firefox
+1.0 and later</p>
+
+                     </li>
+
+                     <li>
+                        <p>Mozilla 1.7.5 and later</p>
+
+                     </li>
+
+                     <li>
+                        <p>Netscape 8.0 and later</p>
+
+                     </li>
+
+                     <li>
+                        <p>Safari 1.3 and later</p>
+
+                     </li>
+
+                  </ul>
+
+               </li>
+
+            </ul>
+
+            <p>Before you execute code that uses the ExternalInterface API,
+you should check whether the browser supports it. You do this by
+using the <samp class="codeph">available</samp> property of the ExternalInterface
+object in your application. The <samp class="codeph">available</samp> property
+is a Boolean value that is <samp class="codeph">true</samp> if the browser
+supports the ExternalInterface API and <samp class="codeph">false</samp> if
+the browser does not. It is a read-only property.</p>
+
+            <p>The following example uses the <samp class="codeph">available</samp> property
+to detect support for the ExternalInterface API before executing
+methods that use the class:</p>
+
+            <pre class="codeblock">&lt;?xml version="1.0" encoding="utf-8"?&gt; 
+&lt;!-- wrapper/CheckExternalInterface.mxml --&gt; 
+&lt;s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    creationComplete="checkEI()"&gt; 
+     &lt;s:layout&gt; 
+        &lt;s:BasicLayout/&gt; 
+     &lt;/s:layout&gt; 
+     
+     &lt;fx:Script&gt; 
+        &lt;![CDATA[ 
+         [Bindable] 
+         public var eiStatus:String; 
+ 
+         private function checkEI():void { 
+               eiStatus = ExternalInterface.available.toString(); 
+         } 
+         ]]&gt; 
+     &lt;/fx:Script&gt; 
+  
+     &lt;s:Label id="l1" text="External Interface supported? {eiStatus}"/&gt; 
+&lt;/s:Application&gt; </pre>
+
+            <p>The <samp class="codeph">available</samp> property determines only if the
+browser can support the <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/flash/external/ExternalInterface.html" target="_blank">ExternalInterface</a> API,
+based on its version and manufacturer. If JavaScript is disabled
+in the browser, the <samp class="codeph">available</samp> property still returns <samp class="codeph">true</samp>.</p>
+
+            <p>For examples of using the ExternalInterface API with applications,
+see <a href="flx_passingarguments_pa.html#WS2db454920e96a9e51e63e3d11c0bf69084-7f31_verapache">Using
+the ExternalInterface API to access JavaScript</a> and <a href="flx_passingarguments_pa.html#WS2db454920e96a9e51e63e3d11c0bf69084-7e92_verapache">Accessing
+Flex from JavaScript</a>.</p>
+
+            <p>In addition to requiring that browsers meet certain version requirements,
+the ExternalInterface API requires that JavaScript is enabled in
+the browser. You can use the <samp class="codeph">&lt;noscript&gt;</samp> tag
+in the HTML page to handle a browser with disabled JavaScript. For
+more information, see <a href="flx_passingarguments_pa.html#WS2db454920e96a9e51e63e3d11c0bf69084-7e9a_verapache">Handling
+browsers that disable JavaScript</a>.</p>
+
+            <p>The ExternalInterface API is restricted by the security sandbox
+in which the SWF file is running. Its use relies on the domain-based
+security restrictions that the <samp class="codeph">allowScriptAccess</samp> and <samp class="codeph">allowNetworking</samp> parameters
+define. You set the values of the <samp class="codeph">allowScriptAccess</samp> and <samp class="codeph">allowNetworking</samp> parameters in
+the SWF file’s wrapper. </p>
+
+         </div>
+
+         <div><div class="relinfo"><strong>Related information</strong><br/>
+<div><a href="flx_wrapper_wr.html#WS2db454920e96a9e51e63e3d11c0bf69084-7ecf_verapache">Creating a wrapper</a></div>
+<div><a href="flx_security2_se.html#WS2db454920e96a9e51e63e3d11c0bf69084-7f9b_verapache">Security</a></div>
+<div><a href="flx_passingarguments_pa.html#WS2db454920e96a9e51e63e3d11c0bf69084-7ea6_verapache">About ExternalInterface API security in Flex</a></div>
+</div>
+</div>
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf626ae-7ff3_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf626ae-7ff3_verapache"><!-- --></a>
+         <h3 class="topictitle3">Enabling Netscape connections</h3>
+
+         
+         <div>
+            <p>In some versions of Netscape browsers, you must set the
+value of the <samp class="codeph">swliveconnect</samp> property to <samp class="codeph">true</samp> in
+your HTML wrapper to enable the application to connect with the
+page’s scripting language (usually JavaScript).</p>
+
+            <div class="p">If you are using SWFObject 2 to embed your application, then
+set the value of the <samp class="codeph">swliveconnect</samp> property on
+the params object to <samp class="codeph">true</samp>, as the following example
+shows:<pre class="codeblock">var params = {}; 
+params.swfliveconnect = "true"; 
+params.quality = "high"; 
+params.bgcolor = "#ffffff"; 
+params.allowscriptaccess = "sameDomain";</pre>
+
+            </div>
+
+            <p>If your wrapper uses the <samp class="codeph">&lt;object&gt;</samp> and <samp class="codeph">&lt;embed&gt;</samp> syntax,
+include <samp class="codeph">swliveconnect=true</samp> in the <samp class="codeph">&lt;embed&gt;</samp> tag
+in your wrapper, as the following example shows:</p>
+
+            <pre class="codeblock"> &lt;embed pluginspage='http://www.adobe.com/go/getflashplayer'  
+ 	width='300'  
+ 	height='100' 
+ 	flashvars='' 
+ 	src='TitleTest.mxml.swf' 
+ 	name='MyApp' 
+ 	swliveconnect='true' 
+ /&gt;</pre>
+
+            <p>You are not required to set the value of <samp class="codeph">swliveconnect</samp> to <samp class="codeph">true</samp> in
+the <samp class="codeph">&lt;object&gt;</samp> tag because the <samp class="codeph">&lt;object&gt;</samp> tag
+is used by Microsoft Internet Explorer, and not by Netscape browsers.</p>
+
+         </div>
+
+      </div>
+
+   </div>
+
+   <div class="nested1" id="WS2db454920e96a9e51e63e3d11c0bf626ae-7feb_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf626ae-7feb_verapache"><!-- --></a>
+      <h2 class="topictitle2">Passing request data with flashVars properties</h2>
+
+      
+      <div>
+         <p>You pass request data to applications built with Flex by
+defining the <samp class="codeph">flashVars</samp> properties in the wrapper.
+You can also access URL fragments by using the BrowserManager. For
+more information, see <a href="flx_deep_linking_dl.html#WS2db454920e96a9e51e63e3d11c0bf69084-7e9c_verapache">Passing
+request data with URL fragments</a>.</p>
+
+         <p>The <samp class="codeph">flashVars</samp> properties and URL fragments are
+read in the application at run time. As a result, changing <samp class="codeph">flashVars</samp> properties
+or URL fragments does not require you to recompile the application.</p>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf69084-7f5e_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7f5e_verapache"><!-- --></a>
+         <h3 class="topictitle3">Passing request data with flashVars
+properties</h3>
+
+         
+         <div>
+            <p>You add <samp class="codeph">flashVars</samp> variables by creating
+an object called flashvars, setting properties on that object, and
+then passing that object to the <samp class="codeph">swfobject.embedSWF()</samp> method
+of SWFObject 2.</p>
+
+            <div class="p">The following example sets the <samp class="codeph">firstname</samp> and <samp class="codeph">lastname</samp> properties
+of the flashvars object, and then passes that object to the <samp class="codeph">embedSWF()</samp> method:<pre class="codeblock">&lt;script type="text/javascript"&gt; 
+	var swfVersionStr = "10.0.0"; 
+	var xiSwfUrlStr = "playerProductInstall.swf"; 
+	var flashvars = {}; 
+	flashvars.firstname = "Nick"; 
+	flashvars.lastname = "Danger"; 
+	var params = {}; 
+	params.quality = "high"; 
+	params.bgcolor = "#ffffff"; 
+	params.allowscriptaccess = "sameDomain"; 
+	var attributes = {}; 
+	attributes.id = "TestProject"; 
+	attributes.name = "TestProject"; 
+	attributes.align = "middle"; 
+	swfobject.embedSWF( 
+		"FlashVarTest.swf", "flashContent", "100%", "100%", swfVersionStr, 
+		xiSwfUrlStr, flashvars, params, attributes); 
+	swfobject.createCSS("#flashContent", "display:block;text-align:left;"); 
+&lt;/script&gt;</pre>
+
+            </div>
+
+            <p>
+               
+               If your wrapper uses the <samp class="codeph">&lt;object&gt;</samp> and <samp class="codeph">&lt;embed&gt;</samp> tags,
+you can pass variables to your applications by using the <samp class="codeph">flashVars</samp> properties
+in the <samp class="codeph">&lt;object&gt;</samp> and <samp class="codeph">&lt;embed&gt;</samp> tags
+in your wrapper. You do this by adding ampersand-separated sets of
+name-value pairs to these properties.</p>
+
+            <p>The following example sets the values of the <samp class="codeph">firstname</samp> and <samp class="codeph">lastname</samp> in
+the <samp class="codeph">flashVars</samp> properties inside the <samp class="codeph">&lt;object&gt;</samp> and <samp class="codeph">&lt;embed&gt;</samp> tags
+in a simple wrapper:</p>
+
+            <pre class="codeblock">&lt;html&gt; 
+&lt;head&gt; 
+&lt;title&gt;code/wrapper/SimplestFlashVarTestWrapper.html&lt;/title&gt; 
+&lt;style&gt; 
+ 
+body { 
+ 
+ 
+margin: 0px; 
+ 
+ 
+overflow:hidden 
+ 
+} 
+&lt;/style&gt; 
+&lt;/head&gt; 
+&lt;body scroll='no'&gt; 
+&lt;table width='100%' height='100%' cellspacing='0' cellpadding='0'&gt;&lt;tr&gt;&lt;td valign='top'&gt; 
+ 
+&lt;h1&gt;Simplest FlashVarTest Wrapper&lt;/h1&gt; 
+ 
+    &lt;object id='mySwf' classid='clsid:D27CDB6E-AE6D-11cf-96B8-444553540000' height='100%' width='100%'&gt; 
+        &lt;param name='src' value='FlashVarTest.swf'/&gt; 
+        &lt;param name='flashVars' value='firstname=Nick&amp;lastname=Danger'/&gt; 
+        &lt;embed name='mySwf' src='FlashVarTest.swf' height='100%' width='100%' flashVars='firstname=Nick&amp;lastname=Danger'/&gt; 
+    &lt;/object&gt; 
+ 
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt; 
+&lt;/body&gt; 
+&lt;/html&gt;</pre>
+
+            <p>The value of the <samp class="codeph">flashVars</samp> properties do not
+have to be static. If you use JSP to return the wrapper, for example,
+you can use any JSP expression for the value of the <samp class="codeph">flashVars</samp> properties
+that can be evaluated to a String.</p>
+
+            <p>The following example uses the values stored in the HttpServletRequest
+object (in this case, you can use form or query string parameters):</p>
+
+            <pre class="codeblock">&lt;!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"&gt; 
+&lt;!-- saved from url=(0014)about:internet --&gt; 
+ 
+&lt;% 
+ 
+String fName = (String) request.getParameter("firstname"); 
+ 
+String lName = (String) request.getParameter("lastname"); 
+%&gt; 
+ 
+&lt;html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"&gt; 
+    &lt;head&gt; 
+        &lt;title&gt;DynamicFlashVarTestWrapper.jsp&lt;/title&gt; 
+        &lt;script type="text/javascript" src="swfobject.js"&gt;&lt;/script&gt; 
+        
+        &lt;script type="text/javascript"&gt; 
+            var swfVersionStr = "0"; 
+            var xiSwfUrlStr = ""; 
+            var flashvars = {}; 
+            flashvars.firstname = "&lt;%= fName %&gt;"; 
+            flashvars.lastname = "&lt;%= lName %&gt;"; 
+            var params = {}; 
+            params.quality = "high"; 
+            params.bgcolor = "#ffffff"; 
+            params.allowscriptaccess = "sameDomain"; 
+            var attributes = {}; 
+            attributes.id = "FlashVarTest"; 
+            attributes.name = "FlashVarTest"; 
+            attributes.align = "middle"; 
+            swfobject.embedSWF( 
+                "FlashVarTest.swf", "flashContent", 
+                "100%", "100%", 
+                swfVersionStr, xiSwfUrlStr, 
+                flashvars, params, attributes); 
+        &lt;/script&gt; 
+    &lt;/head&gt; 
+ 
+    &lt;body&gt; 
+        &lt;div id="flashContent"/&gt; 
+   &lt;/body&gt; 
+&lt;/html&gt; </pre>
+
+            <div class="p">You can also PHP expressions to pass query string parameters
+in a wrapper, as the following example shows:<pre class="codeblock">&lt;!-- saved from url=(0014)about:internet --&gt; 
+&lt;html lang="en"&gt; 
+&lt;head&gt; 
+&lt;?php 
+	@ $fName = $_GET['firstname']; 
+	@ $lName = $_GET['lastname']; 
+?&gt; 
+&lt;script type="text/javascript" src="swfobject.js"&gt;&lt;/script&gt; 
+&lt;script type="text/javascript"&gt; 
+	var swfVersionStr = ""; 
+	var xiSwfUrlStr = ""; 
+	var flashvars = {}; 
+	flashvars.fName = "&lt;?php echo $fName; ?&gt;" 
+	flashvars.lName =  "&lt;?php echo $lName; ?&gt;" 
+	var params = {}; 
+	params.quality = "high"; 
+	params.bgcolor = "#ffffff"; 
+	params.allowscriptaccess = "sameDomain"; 
+	var attributes = {}; 
+	attributes.id = "FlashVarTest"; 
+	attributes.name = "FlashVarTest"; 
+	attributes.align = "middle"; 
+	swfobject.embedSWF( 
+		"FlashVarTest.swf", "flashContent", 
+		"100%", "100%", 
+		swfVersionStr, xiSwfUrlStr, 
+		flashvars, params, attributes); 
+	swfobject.createCSS("#flashContent", "display:block;text-align:left;"); 
+&lt;/script&gt; 
+&lt;/head&gt; 
+&lt;body &gt; 
+	&lt;div id="flashContent"&gt; 
+&lt;/body&gt; 
+&lt;/html&gt;</pre>
+
+            </div>
+
+            <p>For more information about the HTML wrapper, see <a href="flx_wrapper_wr.html#WS2db454920e96a9e51e63e3d11c0bf69084-7ecf_verapache">Creating
+a wrapper</a>.</p>
+
+            <p>If your user requests the SWF file directly in the browser, without
+a wrapper, you can access variables on the query string without
+providing additional code in the wrapper (because there is no wrapper).
+The following URL passes the name Nick and the hometown San Francisco
+to the application:</p>
+
+            <pre class="codeblock"> <strong>http://localhost:8100/flex/myApp.swf?myName=Nick&amp;myHometown=San%20Francisco</strong></pre>
+
+            <div class="section" id="WS2db454920e96a9e51e63e3d11c0bf69084-7f5e_verapache__WS2db454920e96a9e51e63e3d11c0bf626ae-7ff7_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7f5e_verapache__WS2db454920e96a9e51e63e3d11c0bf626ae-7ff7_verapache"><!-- --></a><h4 class="sectiontitle">About
+flashVars properties encoding</h4>
+               
+               <p>
+                  The values of the <samp class="codeph">flashVars</samp> properties
+must be URL encoded. The format of the string is a set of name-value
+pairs separated by an ampersand (&amp;). You can escape special
+and nonprintable characters with a percent symbol (%) followed by
+a two-digit hexadecimal value. You can represent a single blank
+space by using the plus sign (+).</p>
+
+               <p>
+                  The
+encoding for <samp class="codeph">flashVars</samp> properties is the same as
+the page. Internet Explorer provides UTF-16-compliant strings on
+the Windows platform. Netscape sends a UTF-8-encoded string to Flash
+Player.</p>
+
+               <p>Most browsers support a <samp class="codeph">flashVars</samp> string
+or query string up to 64 KB (65535 bytes) in length. They can include
+any number of name-value pairs. </p>
+
+            </div>
+
+            <div class="section" id="WS2db454920e96a9e51e63e3d11c0bf69084-7f5e_verapache__WS2db454920e96a9e51e63e3d11c0bf626ae-7ff6_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7f5e_verapache__WS2db454920e96a9e51e63e3d11c0bf626ae-7ff6_verapache"><!-- --></a><h4 class="sectiontitle">Using
+the SWF file path to pass request data</h4>
+               
+               <p>You can append
+the values of properties to the application’s SWF file path in the wrapper.
+The <samp class="codeph">swfUrlStr</samp>
+                  <samp class="codeph"/> property identifies
+the location of the application’s SWF file. It is the first argument
+in the <samp class="codeph">swfobject.embedSWF()</samp> method call.</p>
+
+               <div class="p">The
+following example appends query string parameters to the <samp class="codeph">swfUrlStr</samp> properties
+in the custom wrapper:<pre class="codeblock">&lt;!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"&gt; 
+&lt;!-- saved from url=(0014)about:internet --&gt; 
+&lt;html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"&gt; 
+    &lt;head&gt; 
+        &lt;title&gt;wrapper/SwfObjectWithFlashVars.html&lt;/title&gt; 
+        &lt;script type="text/javascript" src="swfobject.js"&gt;&lt;/script&gt; 
+        &lt;script type="text/javascript"&gt; 
+            var swfVersionStr = "0"; 
+            var xiSwfUrlStr = ""; 
+            var flashvars = {}; 
+            var params = {}; 
+            params.quality = "high"; 
+            params.bgcolor = "#ffffff"; 
+            params.allowscriptaccess = "sameDomain"; 
+            var attributes = {}; 
+            attributes.id = "FlashVarTest"; 
+            attributes.name = "FlashVarTest"; 
+            attributes.align = "middle"; 
+            swfobject.embedSWF( 
+                "FlashVarTest.swf?firstname=Nick&amp;lastname=Danger", 
+                "flashContent", "100%", "100%", 
+                swfVersionStr, xiSwfUrlStr, 
+                flashvars, params, attributes); 
+        &lt;/script&gt; 
+    &lt;/head&gt; 
+    &lt;body&gt; 
+        &lt;div id="flashContent"/&gt; 
+   &lt;/body&gt; 
+&lt;/html&gt;</pre>
+
+               </div>
+
+               <p>Variables you define in this manner
+are accessible in the same way as <samp class="codeph">flashVars</samp> properties.
+For more information, see <a href="flx_passingarguments_pa.html#WS2db454920e96a9e51e63e3d11c0bf69084-7e99_verapache">Accessing
+the flashVars properties</a>.</p>
+
+            </div>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf69084-7e99_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7e99_verapache"><!-- --></a>
+         <h3 class="topictitle3">Accessing the flashVars properties</h3>
+
+         
+         <div>
+            <p>To access the values of the <samp class="codeph">flashVars</samp> properties,
+you use the FlexGlobals object’s <samp class="codeph">topLevelApplication.parameters</samp> property.
+This property points to a dynamic object that stores the parameters
+as name-value pairs. You can access variables on the parameters
+object by specifying <samp class="codeph">parameters.<em>variable_name</em>
+               </samp>. </p>
+
+            <p>In your application, you typically assign the values of the run-time
+properties to local variables. You assign the values of these properties
+after the Application’s <samp class="codeph">creationComplete</samp> event
+is dispatched. Otherwise, the run-time properties might not be available
+when you try to assign their values to local variables.</p>
+
+            <p>The following example defines the <samp class="codeph">myName</samp> and <samp class="codeph">myHometown</samp> variables
+and binds them to the text of <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/controls/Label.html" target="_blank">Label</a> controls
+in the <samp class="codeph">initVars()</samp> method:</p>
+
+            <pre class="noswf">&lt;?xml version="1.0" encoding="utf-8"?&gt; 
+&lt;!-- wrapper/ApplicationParameters.mxml --&gt; 
+&lt;s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark" creationComplete="initVars()"&gt; 
+     &lt;s:layout&gt; 
+          &lt;s:VerticalLayout/&gt; 
+     &lt;/s:layout&gt; 
+     
+       &lt;fx:Script&gt;&lt;![CDATA[ 
+          import mx.core.FlexGlobals; 
+       
+          /* Declare bindable properties in Application scope. */ 
+          [Bindable] 
+          public var myName:String; 
+          [Bindable] 
+          public var myHometown:String; 
+           
+          /* Assign values to new properties. */ 
+          private function initVars():void { 
+               myName = FlexGlobals.topLevelApplication.parameters.myName; 
+               myHometown = FlexGlobals.topLevelApplication.parameters.myHometown; 
+          } 
+     ]]&gt;&lt;/fx:Script&gt; 
+       
+     &lt;s:HGroup&gt; 
+          &lt;s:Label text="Name: "/&gt; 
+          &lt;s:Label text="{myName}" fontWeight="bold"/&gt; 
+     &lt;/s:HGroup&gt; 
+     
+     &lt;s:HGroup&gt; 
+           &lt;s:Label text="Hometown: "/&gt; 
+           &lt;s:Label text="{myHometown}" fontWeight="bold"/&gt; 
+     &lt;/s:HGroup&gt; 
+&lt;/s:Application&gt; </pre>
+
+            <p>When a user requests this application with the <samp class="codeph">myName</samp> and <samp class="codeph">myHometown</samp> parameters
+defined as <samp class="codeph">flashVars</samp> properties or as query string
+parameters, Flex displays their values in the Label controls. </p>
+
+            <div class="p">To view all the <samp class="codeph">flashVars</samp> properties, you can
+iterate over the <samp class="codeph">FlexGlobals.topLevelApplication.parameters</samp> properties,
+as the following example shows:<pre class="noswf">&lt;?xml version="1.0" encoding="utf-8"?&gt; 
+&lt;!-- wrapper/FlashVarTest.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    creationComplete="init()"&gt; 
+     
+     &lt;s:layout&gt; 
+        &lt;s:HorizontalLayout/&gt; 
+     &lt;/s:layout&gt; 
+     
+     &lt;fx:Script&gt;&lt;![CDATA[ 
+         import mx.core.FlexGlobals; 
+ 
+         private function init():void { 
+              for (var i:String in FlexGlobals.topLevelApplication.parameters) { 
+                 ta1.text += i + ":" + FlexGlobals.topLevelApplication.parameters[i] + "\n"; 
+              } 
+          } 
+      ]]&gt;&lt;/fx:Script&gt; 
+       
+      &lt;s:Label text="flashVars"/&gt; 
+      &lt;s:RichText id="ta1" width="300" height="200"/&gt; 
+ 
+&lt;/s:Application&gt;</pre>
+
+            </div>
+
+         </div>
+
+      </div>
+
+   </div>
+
+   <div class="nested1" id="WS2db454920e96a9e51e63e3d11c0bf626ae-7fe8_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf626ae-7fe8_verapache"><!-- --></a>
+      <h2 class="topictitle2">Accessing JavaScript functions</h2>
+
+      
+      <div>
+         <p>
+            You
+can call JavaScript functions in the enclosing HTML page from your
+application. By allowing Flex to communicate with the browser, you
+can change style settings, invoke remote processes, or perform any
+other action that you can normally do from within the page’s scripts. </p>
+
+         <p>You can even pass data from the application to the enclosing
+HTML page, process it, and then pass it back to the application.
+You do this by using the <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/flash/external/ExternalInterface.html" target="_blank">ExternalInterface</a> API
+or the <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/flash/net/package.html#navigateToURL()" target="_blank">navigateToURL()</a> method.
+For more information, see <a href="flx_passingarguments_pa.html#WS2db454920e96a9e51e63e3d11c0bf69084-7f31_verapache">Using the
+ExternalInterface API to access JavaScript</a> and <a href="flx_passingarguments_pa.html#WS2db454920e96a9e51e63e3d11c0bf69084-7ea7_verapache">Using
+the navigateToURL() method in Flex</a>.</p>
+
+         <p>Whenever you communicate with the enclosing page, you must determine
+if the browser can handle the kinds of actions that you want to
+perform. Therefore, you should first determine if the browser supports
+the objects that you want to use. For some general guidelines for
+determining browser support, see <a href="flx_passingarguments_pa.html#WS2db454920e96a9e51e63e3d11c0bf69084-7f31_verapache">Using
+the ExternalInterface API to access JavaScript</a>.</p>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf69084-7f31_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7f31_verapache"><!-- --></a>
+         <h3 class="topictitle3">Using the ExternalInterface API
+to access JavaScript</h3>
+
+         
+         <div>
+            <p>The easiest way to call JavaScript functions from your
+application is to use the <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/flash/external/ExternalInterface.html" target="_blank">ExternalInterface</a> API.
+You can use this API to call any JavaScript method on the wrapper,
+pass parameters, and get a return value. If the method call fails,
+Flex returns an exception. </p>
+
+            <p>The ExternalInterface API encapsulates checks for browser support,
+so you are not required to do that when using its methods. However,
+you can check whether the browser supports the interface by using
+its <samp class="codeph">available</samp> property. For more information, see <a href="flx_passingarguments_pa.html#WS2db454920e96a9e51e63e3d11c0bf69084-7ea8_verapache">About
+the ExternalInterface API</a>.</p>
+
+            <p>The ExternalInterface API consists of a single class, flash.external.ExternalInterface.
+This class has the <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/flash/external/ExternalInterface.html#call()" target="_blank">call()</a> static
+method that you use to facilitate the JavaScript to Flash communication.
+You can also call methods in your application from the wrapper by
+using the ExternalInterface API’s <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/flash/external/ExternalInterface.html#addCallback()" target="_blank">addCallback()</a> method.
+For more information, see <a href="flx_passingarguments_pa.html#WS2db454920e96a9e51e63e3d11c0bf69084-7eaa_verapache">About
+the addCallback() method</a>.</p>
+
+         </div>
+
+         <div class="nested3" id="WS2db454920e96a9e51e63e3d11c0bf626ae-7fed_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf626ae-7fed_verapache"><!-- --></a>
+            <h4 class="topictitle4">Calling JavaScript methods from
+applications</h4>
+
+            
+            <div>
+               <p>The <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/flash/external/ExternalInterface.html" target="_blank">ExternalInterface</a> API
+makes it very simple to call methods in the enclosing wrapper. You
+use the static <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/flash/external/ExternalInterface.html#call()" target="_blank">call()</a> method,
+which has the following signature:</p>
+
+               <pre class="codeblock"> flash.external.ExternalInterface.call(<em>function_name</em>:String[, <em>arg1</em>, ...]):Object;</pre>
+
+               <p>The <em>function_name</em> is the name of the function in the HTML
+page’s JavaScript. The arguments are the arguments that you pass
+to the JavaScript function. You can pass one or more arguments in
+the traditional way of separating them with commas, or you can pass
+an object that is deserialized by the browser. The arguments are
+optional.</p>
+
+               <p>The following example <samp class="codeph">&lt;fx:Script&gt;</samp> block
+calls the JavaScript <samp class="codeph">changeDocumentTitle()</samp> function
+in the enclosing wrapper by using the <samp class="codeph">call()</samp> method:</p>
+
+               <pre class="noswf">&lt;?xml version="1.0" encoding="utf-8"?&gt; 
+&lt;!-- wrapper/WrapperCaller.mxml --&gt; 
+&lt;s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark"&gt; 
+     &lt;s:layout&gt; 
+        &lt;s:HorizontalLayout/&gt; 
+     &lt;/s:layout&gt; 
+ 
+  &lt;fx:Script&gt; 
+     import flash.external.*; 
+  
+     public function callWrapper():void { 
+        var s:String; 
+        if (ExternalInterface.available) { 
+           var wrapperFunction:String = "changeDocumentTitle"; 
+           s = ExternalInterface.call(wrapperFunction,ti1.text); 
+        } else { 
+           s = "Wrapper not available"; 
+        } 
+        trace(s); 
+     } 
+  &lt;/fx:Script&gt; 
+  
+  &lt;mx:Form&gt; 
+     &lt;mx:FormItem label="New Title:"&gt; 
+        &lt;mx:TextInput id="ti1"/&gt; 
+     &lt;/mx:FormItem&gt; 
+  &lt;/mx:Form&gt; 
+  
+  &lt;s:Button label="Change Document Title" click="callWrapper()"/&gt;     
+&lt;/s:Application&gt; </pre>
+
+               <p>In your HTML wrapper, you define a function as you would any
+other JavaScript function. You can return a value, as the following
+example shows:</p>
+
+               <pre class="noswf">&lt;!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"&gt; 
+&lt;!-- saved from url=(0014)about:internet --&gt; 
+&lt;html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"&gt; 
+    &lt;head&gt; 
+        &lt;title&gt;Wrapper Being Called&lt;/title&gt; 
+        &lt;script type="text/javascript" src="swfobject.js"&gt;&lt;/script&gt; 
+        &lt;script type="text/javascript"&gt; 
+            var swfVersionStr = "0"; 
+            var xiSwfUrlStr = ""; 
+            var flashvars = {}; 
+            var params = {}; 
+            params.quality = "high"; 
+            params.bgcolor = "#ffffff"; 
+            params.allowscriptaccess = "sameDomain"; 
+            var attributes = {}; 
+            attributes.id = "WrapperCaller"; 
+            attributes.name = "WrapperCaller"; 
+            attributes.align = "middle"; 
+            swfobject.embedSWF( 
+                "WrapperCaller.swf", "flashContent", 
+                "100%", "100%", 
+                swfVersionStr, xiSwfUrlStr, 
+                flashvars, params, attributes); 
+        &lt;/script&gt; 
+    &lt;/head&gt; 
+ 
+     &lt;SCRIPT LANGUAGE="JavaScript"&gt; 
+         function changeDocumentTitle(a) { 
+             window.document.title=a; 
+             alert(a); 
+             return "successful"; 
+         } 
+     &lt;/SCRIPT&gt; 
+ 
+    &lt;body&gt; 
+        &lt;div id="flashContent"/&gt; 
+   &lt;/body&gt; 
+&lt;/html&gt;</pre>
+
+               <p>Using the ExternalInterface's <samp class="codeph">call()</samp> method
+requires that the embedded application have a name in the wrapper;
+you must set the <samp class="codeph">attributes.id</samp> and <samp class="codeph">attributes.name</samp> properties
+to the name of the SWF file. If you are using the <samp class="codeph">&lt;object&gt;</samp> and <samp class="codeph">&lt;embed&gt;</samp> tags
+in your wrapper, you must define an <samp class="codeph">id</samp> attribute on
+the <samp class="codeph">&lt;object&gt;</samp> tag and a <samp class="codeph">name</samp> attribute
+on the <samp class="codeph">&lt;embed&gt;</samp> tag. Without these, no call
+to or from your application will succeed. In addition, these properties cannot
+contain periods or other special characters.</p>
+
+               <p>The <samp class="codeph">call()</samp> method accepts zero or more arguments,
+which can be ActionScript types. Flex serializes the ActionScript
+types as JavaScript numbers and strings. If you pass an object,
+you can access the properties of that deserialized object in the
+JavaScript, as the following example shows:</p>
+
+               <pre class="noswf">&lt;?xml version="1.0" encoding="utf-8"?&gt; 
+&lt;!-- wrapper/DataTypeSender.mxml --&gt; 
+&lt;s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark"&gt; 
+     &lt;s:layout&gt; 
+        &lt;s:HorizontalLayout/&gt; 
+     &lt;/s:layout&gt; 
+  &lt;fx:Script&gt;&lt;![CDATA[ 
+     import flash.external.*; 
+  
+     public function callWrapper():void { 
+        var s:String; 
+        if (ExternalInterface.available) { 
+           var o:Object = new Object(); 
+           o.fname = "Nick"; 
+           o.lname = "Danger"; 
+           var wrapperFunction:String = "receiveComplexDataTypes"; 
+           s = ExternalInterface.call(wrapperFunction, o); 
+        } else { 
+           s = "Wrapper not available"; 
+        } 
+        trace(s); 
+     } 
+  ]]&gt;&lt;/fx:Script&gt; 
+  
+  &lt;s:Button label="Send" click="callWrapper()"/&gt; 
+ 
+&lt;/s:Application&gt;</pre>
+
+               <p>Flex only serializes public, nonstatic variables and read-write
+properties of ActionScript objects. You can pass numbers and strings
+as properties on objects, simple objects such as primitive types
+and arrays, or arrays of simple objects.</p>
+
+               <p>The JavaScript code can then access properties of the object,
+as the following example shows:</p>
+
+               <pre class="codeblock">&lt;!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"&gt; 
+&lt;!-- saved from url=(0014)about:internet --&gt; 
+&lt;html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"&gt; 
+    &lt;head&gt; 
+        &lt;title&gt;Data Type Sender Test&lt;/title&gt; 
+        &lt;script type="text/javascript" src="swfobject.js"&gt;&lt;/script&gt; 
+        &lt;script type="text/javascript"&gt; 
+            var swfVersionStr = "0"; 
+            var xiSwfUrlStr = ""; 
+            var flashvars = {}; 
+            var params = {}; 
+            params.quality = "high"; 
+            params.bgcolor = "#ffffff"; 
+            params.allowscriptaccess = "sameDomain"; 
+            var attributes = {}; 
+            attributes.id = "DataTypeSender"; 
+            attributes.name = "DataTypeSender"; 
+            attributes.align = "middle"; 
+            swfobject.embedSWF( 
+                "DataTypeSender.swf", "flashContent", 
+                "100%", "100%", 
+                swfVersionStr, xiSwfUrlStr, 
+                flashvars, params, attributes); 
+        &lt;/script&gt; 
+    &lt;/head&gt; 
+ 
+ 
+&lt;SCRIPT LANGUAGE="JavaScript"&gt; 
+ 
+ 
+function receiveComplexDataTypes(o) { 
+ 
+ 
+ 
+alert("Welcome " + o.fname + " " + o.lname + "!"); 
+ 
+ 
+ 
+return "successful"; 
+ 
+ 
+} 
+ 
+&lt;/SCRIPT&gt; 
+ 
+    &lt;body&gt; 
+        &lt;div id="flashContent"/&gt; 
+   &lt;/body&gt; 
+&lt;/html&gt; </pre>
+
+               <p>You can also embed objects within objects, such as an Array within
+an Object, as the following example shows:</p>
+
+               <pre class="noswf">&lt;?xml version="1.0" encoding="utf-8"?&gt; 
+&lt;!-- wrapper/ComplexDataTypeSender.mxml --&gt; 
+&lt;s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark"&gt; 
+     &lt;s:layout&gt; 
+      &lt;s:HorizontalLayout/&gt; 
+     &lt;/s:layout&gt; 
+  &lt;fx:Script&gt;&lt;![CDATA[ 
+     import flash.external.*; 
+  
+     public function callWrapper():void { 
+        var s:String; 
+        if (ExternalInterface.available) { 
+           var o:Object = new Object(); 
+           o.fname = "Nick"; 
+           o.lname = "Danger"; 
+           o.b = new Array("DdW","E&amp;T","LotR:TS"); 
+           var wrapperFunction:String = "receiveComplexDataTypes"; 
+           s = ExternalInterface.call(wrapperFunction, o); 
+        } else { 
+           s = "Wrapper not available"; 
+        } 
+        trace(s); 
+     } 
+  ]]&gt;&lt;/fx:Script&gt; 
+  
+  &lt;s:Button label="Send" click="callWrapper()"/&gt; 
+&lt;/s:Application&gt;</pre>
+
+               <p>The code triggers the <samp class="codeph">receiveComplexDataTypes()</samp> JavaScript
+function in the following wrapper:</p>
+
+               <pre class="codeblock">&lt;!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"&gt; 
+&lt;!-- saved from url=(0014)about:internet --&gt; 
+&lt;html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"&gt; 
+    &lt;head&gt; 
+        &lt;title&gt;Complex Data Type Sender Test&lt;/title&gt; 
+        &lt;script type="text/javascript" src="swfobject.js"&gt;&lt;/script&gt; 
+        &lt;script type="text/javascript"&gt; 
+            var swfVersionStr = "0"; 
+            var xiSwfUrlStr = ""; 
+            var flashvars = {}; 
+            var params = {}; 
+            params.quality = "high"; 
+            params.bgcolor = "#ffffff"; 
+            params.allowscriptaccess = "sameDomain"; 
+            var attributes = {}; 
+            attributes.id = "ComplexDataTypeSender"; 
+            attributes.name = "ComplexDataTypeSender"; 
+            attributes.align = "middle"; 
+            swfobject.embedSWF( 
+                "ComplexDataTypeSender.swf", "flashContent", 
+                "100%", "100%", 
+                swfVersionStr, xiSwfUrlStr, 
+                flashvars, params, attributes); 
+        &lt;/script&gt; 
+    &lt;/head&gt; 
+ 
+ 
+&lt;SCRIPT LANGUAGE="JavaScript"&gt; 
+ 
+ 
+function receiveComplexDataTypes(o) { 
+ 
+ 
+ 
+// Get value of fname and lname properties. 
+ 
+ 
+ 
+var s = ("Welcome " + o.fname + " " + o.lname + "!\n"); 
+ 
+ 
+ 
+// Iterate over embedded object's properties. 
+ 
+ 
+ 
+for (i=0; i&lt;o.b.length; i++) { 
+ 
+ 
+ 
+ 
+s +=  i + ": " + o.b[i] + "\n"; 
+ 
+ 
+ 
+} 
+ 
+ 
+ 
+alert(s); 
+ 
+ 
+} 
+ 
+&lt;/SCRIPT&gt; 
+ 
+    &lt;body&gt; 
+        &lt;div id="flashContent"/&gt; 
+   &lt;/body&gt; 
+&lt;/html&gt;</pre>
+
+               <p>Flex and Flash Player have strict security in place to prevent
+cross-site scripting. By default, you cannot call script on an HTML
+page if the HTML page is not in the same domain as the application.
+However, you can expand the sources from which scripts can be called.
+For more information, see <a href="flx_passingarguments_pa.html#WS2db454920e96a9e51e63e3d11c0bf69084-7ea6_verapache">About
+ExternalInterface API security in Flex</a>.</p>
+
+               <p>You cannot pass objects or arrays that contain circular references.
+For example, you cannot pass the following object:</p>
+
+               <pre class="codeblock"> var obj = new Object(); 
+ obj.prop = obj; // Circular reference.</pre>
+
+               <p>Circular references cause infinite loops in both ActionScript
+and JavaScript.</p>
+
+            </div>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf69084-7ea7_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7ea7_verapache"><!-- --></a>
+         <h3 class="topictitle3">Using the navigateToURL() method
+in Flex</h3>
+
+         
+         <div>
+            <p>The <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/flash/net/package.html#navigateToURL()" target="_blank">navigateToURL()</a> method
+loads a document from a specific URL into a window or passes variables
+to another application at a defined URL. You can use this method
+to call JavaScript functions in the HTML page that encloses an application.</p>
+
+            <p>
+               You should
+not confuse the functionality of the <samp class="codeph">navigateToURL()</samp> method with
+the <samp class="codeph">load()</samp> method of the <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/flash/net/URLLoader.html" target="_blank">URLLoader</a> class.
+The URLLoader class loads a specified URL into an object for manipulation
+with ActionScript. The <samp class="codeph">navigateToURL()</samp> method navigates
+to the specified URL with a browser.</p>
+
+            <p>In most cases, you should use the <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/flash/external/ExternalInterface.html" target="_blank">ExternalInterface</a> API
+to perform Flex-to-wrapper communication. However, the <samp class="codeph">navigateToURL()</samp> method
+is not part of the ExternalInterface API and, therefore, does not
+have as stringent a set of requirements for which browsers support
+it. These requirements are described in <a href="flx_passingarguments_pa.html#WS2db454920e96a9e51e63e3d11c0bf69084-7ea8_verapache">About
+the ExternalInterface API</a>.</p>
+
+            <p>The <samp class="codeph">navigateToURL()</samp> method is restricted by
+the security sandbox in which the SWF file is running. Its use relies
+on the domain-based security restrictions that the <samp class="codeph">allowScriptAccess</samp> and <samp class="codeph">allowNetworking</samp> parameters
+define. You set the values of the <samp class="codeph">allowScriptAccess</samp> and <samp class="codeph">allowNetworking</samp> parameters
+in the SWF file’s wrapper. </p>
+
+            <p>For more information on these parameters, see <a href="flx_wrapper_wr.html#WS2db454920e96a9e51e63e3d11c0bf69084-7ecf_verapache">Creating
+a wrapper</a>. For more information on security restrictions,
+see <a href="flx_security2_se.html#WS2db454920e96a9e51e63e3d11c0bf69084-7f9b_verapache">Security</a>.</p>
+
+         </div>
+
+         <div class="nested3" id="WS2db454920e96a9e51e63e3d11c0bf626ae-7fec_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf626ae-7fec_verapache"><!-- --></a>
+            <h4 class="topictitle4">The navigateToURL() method syntax</h4>
+
+            
+            <div>
+               <p>The <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/flash/net/package.html#navigateToURL()" target="_blank">navigateToURL()</a> method
+is in the flash.net package. It has the following signature:</p>
+
+               <pre class="codeblock"> navigateToURL(<em>request</em>:URLRequest, <em>window</em>:String):void</pre>
+
+               <p>The <em>request</em> argument is a <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/flash/net/URLRequest.html" target="_blank">URLRequest</a> object
+that specifies the destination. The <em>window</em> argument specifies
+whether to launch a new browser window or load the new URL into
+the current window. The following table describes the valid values
+for the <em>window</em> argument:</p>
+
+               
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" frame="border" border="1" rules="all">
+                     
+                     
+                     <thead align="left">
+                        <tr>
+                           <th class="cellrowborder" valign="top" width="NaN%" id="d821534e1078">
+                              <p>Value</p>
+
+                           </th>
+
+                           <th class="cellrowborder" valign="top" width="NaN%" id="d821534e1084">
+                              <p>Description</p>
+
+                           </th>
+
+                        </tr>
+
+                     </thead>
+
+                     <tbody>
+                        <tr>
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d821534e1078 ">
+                              <div class="p">
+                                 <pre class="codeblock">_self</pre>
+
+                              </div>
+
+                           </td>
+
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d821534e1084 ">
+                              <p>Specifies the current frame in the current
+window. </p>
+
+                           </td>
+
+                        </tr>
+
+                        <tr>
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d821534e1078 ">
+                              <div class="p">
+                                 <pre class="codeblock">_blank</pre>
+
+                              </div>
+
+                           </td>
+
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d821534e1084 ">
+                              <p>Specifies a new window. This new window
+acts as a pop-up window in the client’s browser, so you must be
+aware that a pop-up blocker could prevent it from loading.</p>
+
+                           </td>
+
+                        </tr>
+
+                        <tr>
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d821534e1078 ">
+                              <div class="p">
+                                 <pre class="codeblock">_parent</pre>
+
+                              </div>
+
+                           </td>
+
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d821534e1084 ">
+                              <p>Specifies the parent of the current frame. </p>
+
+                           </td>
+
+                        </tr>
+
+                        <tr>
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d821534e1078 ">
+                              <div class="p">
+                                 <pre class="codeblock">_top</pre>
+
+                              </div>
+
+                           </td>
+
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d821534e1084 ">
+                              <p>Specifies the top-level frame in the current
+window. </p>
+
+                           </td>
+
+                        </tr>
+
+                     </tbody>
+
+                  </table>
+</div>
+
+               <p>You pass a URLRequest object to the <samp class="codeph">navigateToURL()</samp> method.
+This object defines the URL target, variables, method (POST or GET),
+window, and headers for the request. The following example defines
+a simple URL to navigate to:</p>
+
+               <pre class="codeblock">&lt;?xml version="1.0" encoding="utf-8"?&gt; 
+&lt;!-- wrapper/SimplestNavigateToURL.mxml --&gt; 
+&lt;s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark"&gt; 
+     &lt;s:layout&gt; 
+      &lt;s:HorizontalLayout/&gt; 
+     &lt;/s:layout&gt; 
+  &lt;fx:Script&gt;&lt;![CDATA[ 
+     import flash.net.*; 
+     public function openNewWindow(event:MouseEvent):void { 
+        var u:URLRequest = new URLRequest("http://www.adobe.com/flex"); 
+        navigateToURL(u,"_blank"); 
+     } 
+  ]]&gt;&lt;/fx:Script&gt; 
+  &lt;s:Button label="Open New Window" click="openNewWindow(event)"/&gt; 
+&lt;/s:Application&gt;</pre>
+
+               <p>The <samp class="codeph">navigateToURL()</samp> method URL encodes the value
+of the <samp class="codeph">url</samp> argument.</p>
+
+               <p>To send data with a URLRequest object, you can append variables
+to the request string. The following example launches a new window
+and passes a search term to the URL:</p>
+
+               <pre class="codeblock">&lt;?xml version="1.0" encoding="utf-8"?&gt; 
+&lt;!-- wrapper/SimpleNavigateToURL.mxml --&gt; 
+&lt;s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark"&gt; 
+    &lt;s:layout&gt; 
+        &lt;s:HorizontalLayout/&gt; 
+    &lt;/s:layout&gt; 
+  
+    &lt;fx:Script&gt; 
+        &lt;![CDATA[ 
+            import flash.net.*; 
+            public function executeSearch(event:MouseEvent):void { 
+                var u:URLRequest = new URLRequest("http://www.google.com/search?hl=en&amp;q=" + ta1.text); 
+                navigateToURL(u,"_blank"); 
+            } 
+        ]]&gt; 
+    &lt;/fx:Script&gt; 
+ 
+    &lt;s:TextArea id="ta1"/&gt; 
+    &lt;s:Button label="Search" click="executeSearch(event)"/&gt; 
+ 
+&lt;/s:Application&gt;</pre>
+
+               <p>In addition to appending strings, you can also use the <samp class="codeph">data</samp> property
+of the URLRequest to add URL variables to a GET or POST request.
+The query string parameters are of type <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/flash/net/URLVariables.html" target="_blank">URLVariables</a>.
+Flex adds ampersand delimiters for you in the URL request string.
+The following example adds <samp class="codeph">name=fred</samp> to the URLRequest:</p>
+
+               <pre class="codeblock">&lt;?xml version="1.0" encoding="utf-8"?&gt; 
+&lt;!-- wrapper/NavigateWithGetMethod.mxml --&gt; 
+&lt;s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark"&gt; 
+     &lt;s:layout&gt; 
+      &lt;s:HorizontalLayout/&gt; 
+     &lt;/s:layout&gt; 
+  &lt;fx:Script&gt;&lt;![CDATA[ 
+     import flash.net.*; 
+     public function openNewWindow(event:MouseEvent):void { 
+        var url:URLRequest = new URLRequest("http://aspexamples.adobe.com/chart_examples/stocks.aspx"); 
+        var uv:URLVariables = new URLVariables(); 
+        url.method = "GET"; 
+        uv.tickerSymbol = ti1.text; 
+        url.data = uv; 
+        navigateToURL(url,"_blank"); 
+     } 
+  ]]&gt;&lt;/fx:Script&gt; 
+  &lt;mx:TextInput id="ti1" text="STRK"/&gt; 
+    
+  &lt;s:Button label="Open New Window" click="openNewWindow(event)"/&gt; 
+&lt;/s:Application&gt;</pre>
+
+               <p>To use POST data with the URLRequest object, set the value of
+the URLRequest object’s <samp class="codeph">method</samp> property to POST.</p>
+
+            </div>
+
+         </div>
+
+         <div class="nested3" id="WS2db454920e96a9e51e63e3d11c0bf626ae-7ff5_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf626ae-7ff5_verapache"><!-- --></a>
+            <h4 class="topictitle4">Opening multiple windows with the
+navigateToURL() method</h4>
+
+            
+            <div>
+               <p>You can open any number of new browser windows with calls
+to the <samp class="codeph">navigateToURL()</samp> method. However, because
+ActionScript is asynchronous, if you tried a simple loop over the
+method, Flash Player would only open the browser window for the
+last call. To avoid this, you use the <samp class="codeph">callLater()</samp> method.
+This method instructs Flash Player to open a new browser window
+on each new frame in your application. The following example uses
+the <samp class="codeph">callLater()</samp> method to open multiple browser
+windows with the <samp class="codeph">navigateToURL()</samp> method:</p>
+
+               <p>
+                  
+               </p>
+
+               <pre class="codeblock">&lt;?xml version="1.0" encoding="utf-8"?&gt; 
+&lt;!-- wrapper/NavigateToMultipleURLs.mxml --&gt; 
+&lt;s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark"&gt; 
+     &lt;s:layout&gt; 
+      &lt;s:HorizontalLayout/&gt; 
+     &lt;/s:layout&gt; 
+  &lt;fx:Script&gt;&lt;![CDATA[ 
+     import flash.net.navigateToURL; 
+     private var listingData:Array=[ 
+        "http://flex.org", 
+        "http://www.adobe.com", 
+        "http://aspexamples.adobe.com" 
+     ]; 
+ 
+     private function openWindows(n: Number):void { 
+        if (n &lt; listingData.length) { 
+           navigateToURL(new URLRequest(listingData[n]), '_blank'); 
+           callLater(callLater, [openWindows, [n+1]]); 
+        } 
+     } 
+  ]]&gt;&lt;/fx:Script&gt;  
+  &lt;s:Button label="Click Me to Open Multiple Windows" 
+    click="openWindows(0)"/&gt; 
+&lt;/s:Application&gt;</pre>
+
+               <p>Some browsers block popups. You might need to disable popup blocking
+to view this example. In some cases, you can also Control+click
+the button to avoid the popup blocker behavior.</p>
+
+            </div>
+
+         </div>
+
+         <div class="nested3" id="WS2db454920e96a9e51e63e3d11c0bf626ae-7fe9_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf626ae-7fe9_verapache"><!-- --></a>
+            <h4 class="topictitle4">Calling JavaScript functions with
+the URLRequest object</h4>
+
+            
+            <div>
+               <p>
+                  You
+can use the<a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/flash/net/URLRequest.html" target="_blank">URLRequest</a> to
+call a JavaScript function by embedding that function in the first
+parameter of the method, as the following example shows:</p>
+
+               <pre class="codeblock"> public var u:URLRequest = new URLRequest("javascript:window.close()");</pre>
+
+               <p>The previous code does not work on all browsers. You should include
+code that detects the browser type, and closes the window based
+on the type of browser. Also, some browsers, such as Internet Explorer,
+behave in unexpected ways when you invoke a URLRequest that contains
+JavaScript. Here are some examples:</p>
+
+               <ul>
+                  <li>
+                     <p>Executes the JavaScript URLs asynchronously. This means
+that it is possible to have multiple calls to the <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/flash/net/package.html#navigateToURL()" target="_blank">navigateToURL()</a> method
+that is trying to execute JavaScript methods, and have only the
+last one occur. Each one overwrites the next.</p>
+
+                  </li>
+
+                  <li>
+                     <p>Stops all other navigation, such as loading of images and
+IFRAMEs when you call a JavaScript URL.</p>
+
+                  </li>
+
+                  <li>
+                     <p>Displays a security warning dialog box if the URL contains
+ampersand (&amp;) or question mark (?) characters.</p>
+
+                  </li>
+
+               </ul>
+
+            </div>
+
+         </div>
+
+         <div class="nested3" id="WS2db454920e96a9e51e63e3d11c0bf626ae-7ff1_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf626ae-7ff1_verapache"><!-- --></a>
+            <h4 class="topictitle4">Invoking JavaScript with the navigateToURL()
+method</h4>
+
+            
+            <div>
+               <p>You can use the <samp class="codeph">navigateToURL()</samp> method
+to invoke JavaScript functions on the HTML page in which the application
+runs. However, when passing parameters by using the <samp class="codeph">navigateToURL()</samp> method,
+you must enclose each parameter in quotation marks, as the following
+example shows:</p>
+
+               <pre class="noswf">&lt;?xml version="1.0" encoding="utf-8"?&gt; 
+&lt;!-- wrapper/CallingJavaScriptWithNavigateToURL.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark"&gt; 
+     &lt;s:layout&gt; 
+      &lt;s:HorizontalLayout/&gt; 
+     &lt;/s:layout&gt; 
+    &lt;fx:Script&gt;&lt;![CDATA[ 
+        import flash.net.*; 
+        public function callWrapper(e:Event):void { 
+            var eType:String = String(e.type); 
+            var eName:String = String(e.currentTarget.id); 
+            var u:URLRequest = new URLRequest("javascript:catchClick('" + eName + "','" + eType + "')"); 
+            navigateToURL(u,"_self"); 
+        } 
+    ]]&gt;&lt;/fx:Script&gt; 
+ 
+    &lt;s:Button id="b1" click="callWrapper(event)" label="Call Wrapper"/&gt; 
+&lt;/s:Application&gt;</pre>
+
+               <p>The enclosing HTML wrapper includes the JavaScript to process
+this call, as the following example shows:</p>
+
+               <pre class="codeblock">&lt;!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"&gt; 
+&lt;!-- saved from url=(0014)about:internet --&gt; 
+&lt;html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"&gt; 
+    &lt;head&gt; 
+        &lt;title&gt;navigateToURL() Wrapper&lt;/title&gt; 
+        &lt;script type="text/javascript" src="swfobject.js"&gt;&lt;/script&gt; 
+        &lt;script type="text/javascript"&gt; 
+            var swfVersionStr = "0"; 
+            var xiSwfUrlStr = ""; 
+            var flashvars = {}; 
+            var params = {}; 
+            params.quality = "high"; 
+            params.bgcolor = "#ffffff"; 
+            params.allowscriptaccess = "sameDomain"; 
+            var attributes = {}; 
+            attributes.id = "CallingJavaScriptWithNavigateToURL"; 
+            attributes.name = "CallingJavaScriptWithNavigateToURL"; 
+            attributes.align = "middle"; 
+            swfobject.embedSWF( 
+                "CallingJavaScriptWithNavigateToURL.swf", "flashContent", 
+                "100%", "100%", 
+                swfVersionStr, xiSwfUrlStr, 
+                flashvars, params, attributes); 
+        &lt;/script&gt; 
+    &lt;/head&gt; 
+ 
+ 
+&lt;SCRIPT LANGUAGE="JavaScript"&gt; 
+ 
+ 
+function catchClick(name, type) { 
+ 
+ 
+ 
+alert(name + " triggered the " + type + " event."); 
+ 
+ 
+} 
+ 
+&lt;/SCRIPT&gt; 
+ 
+    &lt;body&gt; 
+        &lt;div id="flashContent"/&gt; 
+   &lt;/body&gt; 
+&lt;/html&gt;</pre>
+
+               <p>You can also use the <samp class="codeph">navigateToURL()</samp> method
+with basic JavaScript functions in the URLRequest itself. For example,
+you can launch the default e-mail client with a single line of code:</p>
+
+               <pre class="codeblock">&lt;?xml version="1.0" encoding="utf-8"?&gt; 
+&lt;!-- wrapper/EmailWithNavigateToURL.mxml --&gt; 
+&lt;s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark"&gt; 
+     &lt;s:layout&gt; 
+        &lt;s:HorizontalLayout/&gt; 
+     &lt;/s:layout&gt; 
+  &lt;fx:Script&gt; 
+     import flash.net.*; 
+     public function sendMail(e:Event):void { 
+        var u:URLRequest = new URLRequest("mailto:" + ti1.text); 
+        navigateToURL(u,"_self"); 
+     } 
+  &lt;/fx:Script&gt; 
+  &lt;s:Button id="b1" click="sendMail(event)" label="Send Mail"/&gt; 
+  &lt;mx:Form&gt; 
+     &lt;mx:FormItem&gt; 
+        &lt;mx:Label text="Email Address: "/&gt; 
+     &lt;/mx:FormItem&gt; 
+     &lt;mx:FormItem&gt; 
+        &lt;mx:TextInput id="ti1"/&gt; 
+     &lt;/mx:FormItem&gt; 
+  &lt;/mx:Form&gt; 
+&lt;/s:Application&gt;</pre>
+
+               <p>Not all browsers support invoking the <samp class="codeph">javascript</samp> protocol
+with the <samp class="codeph">navigateToURL()</samp> method. If possible, you
+should use the <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/flash/external/ExternalInterface.html#call()" target="_blank">call()</a> method
+of the ExternalInterface API to invoke JavaScript methods in the
+enclosing HTML page. For more information, see <a href="flx_passingarguments_pa.html#WS2db454920e96a9e51e63e3d11c0bf69084-7f31_verapache">Using
+the ExternalInterface API to access JavaScript</a>.</p>
+
+            </div>
+
+         </div>
+
+      </div>
+
+   </div>
+
+   <div class="nested1" id="WS2db454920e96a9e51e63e3d11c0bf69084-7e92_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7e92_verapache"><!-- --></a>
+      <h2 class="topictitle2">Accessing Flex from JavaScript</h2>
+
+      
+      <div>
+         <p>You can call Flex methods from your enclosing wrapper by
+using the <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/flash/external/ExternalInterface.html" target="_blank">ExternalInterface</a> API.
+You do this by adding a public method in your application to a list of
+callable methods. In your application, you add a local Flex function
+to the list by using the <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/flash/external/ExternalInterface.html#addCallback()" target="_blank">addCallback()</a> method
+of the ExternalInterface API. This method registers an ActionScript
+method as callable from the JavaScript or VBScript in the wrapper.</p>
+
+         <div class="note"><span class="notetitle">Note:</span> This feature requires that the client is running
+certain browsers. For more information, see <a href="flx_passingarguments_pa.html#WS2db454920e96a9e51e63e3d11c0bf69084-7ea8_verapache">About
+the ExternalInterface API</a>.</div>
+
+         <p>The signature for the <samp class="codeph">addCallback()</samp> method is
+as follows:</p>
+
+         <pre class="codeblock"> addCallback(<em>function_name</em>:String, <em>closure</em>:Function):void</pre>
+
+         <p>The <em>function_name</em> parameter is the name by which you call
+the Flex function from your HTML page’s scripts. The <em>closure</em> parameter
+is the local name of the function that you want to call. This parameter
+can be a method on the application or an object instance.</p>
+
+         <p>The following example declares the <samp class="codeph">myFunc()</samp> function
+to be callable by the wrapper:</p>
+
+         <pre class="noswf">&lt;?xml version="1.0"?&gt; 
+&lt;!-- wrapper/AddCallbackExample.mxml --&gt; 
+&lt;s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark" creationComplete="initApp()"&gt; 
+    &lt;fx:Script&gt; 
+        import flash.external.*; 
+ 
+         public function initApp():void { 
+            ExternalInterface.addCallback("myFlexFunction",myFunc); 
+         }  
+         public function myFunc(s:String):void { 
+            l1.text = s; 
+         } 
+    &lt;/fx:Script&gt; 
+ 
+    &lt;s:Label id="l1"/&gt; 
+  
+&lt;/s:Application&gt;</pre>
+
+         <div class="p">To call the Flex method from the HTML wrapper, you get a reference
+to the movie object. The name of the movie is the same value as
+the <samp class="codeph">attributes.id</samp> and <samp class="codeph">attributes.name</samp> properties.
+In this case, it is AddCallbackExample, as the following example
+wrapper shows:<pre class="codeblock">&lt;!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"&gt; 
+&lt;!-- saved from url=(0014)about:internet --&gt; 
+&lt;html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"&gt; 
+    &lt;head&gt; 
+        &lt;title&gt;addCallback() Wrapper&lt;/title&gt; 
+        &lt;script type="text/javascript" src="swfobject.js"&gt;&lt;/script&gt; 
+        &lt;script type="text/javascript"&gt; 
+            var swfVersionStr = "0"; 
+            var xiSwfUrlStr = ""; 
+            var flashvars = {}; 
+            var params = {}; 
+            params.quality = "high"; 
+            params.bgcolor = "#ffffff"; 
+            params.allowscriptaccess = "sameDomain"; 
+            var attributes = {}; 
+            attributes.id = "AddCallbackExample"; 
+            attributes.name = "AddCallbackExample"; 
+            attributes.align = "middle"; 
+            swfobject.embedSWF( 
+                "AddCallbackExample.swf", "flashContent", 
+                "100%", "100%", 
+                swfVersionStr, xiSwfUrlStr, 
+                flashvars, params, attributes); 
+        &lt;/script&gt; 
+    &lt;/head&gt; 
+ 
+&lt;SCRIPT LANGUAGE="JavaScript"&gt; 
+ 
+ 
+function callApp() { 
+ 
+ 
+ 
+window.document.title = document.getElementById("newTitle").value; 
+ 
+ 
+ 
+var AddCallbackExample = document.getElementById("AddCallbackExample"); 
+ 
+ 
+ 
+AddCallbackExample.myFlexFunction(window.document.title); 
+ 
+ 
+} 
+ 
+&lt;/SCRIPT&gt; 
+ 
+    &lt;body&gt; 
+ 
+ 
+&lt;form id="f1"&gt; 
+ 
+ 
+ 
+Enter a new title: &lt;input type="text" size="30" id="newTitle" onchange="callApp()"&gt; 
+ 
+ 
+&lt;/form&gt; 
+        &lt;div id="flashContent"/&gt; 
+   &lt;/body&gt; 
+&lt;/html&gt;</pre>
+
+         </div>
+
+         <p>If your wrapper uses <samp class="codeph">&lt;object&gt;</samp> and <samp class="codeph">&lt;embed&gt;</samp> tags,
+the movie object is the same value as the <samp class="codeph">id</samp> and <samp class="codeph">name</samp> properties
+of the <samp class="codeph">&lt;object&gt;</samp> and <samp class="codeph">&lt;embed&gt;</samp> tags. You
+then call the method on that object, passing whatever parameters
+you want, as the following example shows:</p>
+
+         <pre class="codeblock">&lt;html&gt; 
+&lt;head&gt; 
+&lt;title&gt;wrapper/AddCallbackWrapper.html&lt;/title&gt; 
+&lt;/head&gt; 
+&lt;body scroll='no'&gt; 
+ 
+&lt;SCRIPT LANGUAGE="JavaScript"&gt; 
+    function callApp() { 
+        window.document.title = document.getElementById("newTitle").value; 
+        mySwf.myFlexFunction(window.document.title); 
+    } 
+&lt;/SCRIPT&gt; 
+ 
+&lt;h1&gt;AddCallback Wrapper&lt;/h1&gt; 
+ 
+&lt;form id="f1"&gt; 
+    Enter a new title: &lt;input type="text" size="30" id="newTitle" onchange="callApp()"&gt; 
+&lt;/form&gt; 
+ 
+&lt;table width='100%' height='100%' cellspacing='0' cellpadding='0'&gt; 
+    &lt;tr&gt; 
+        &lt;td valign='top'&gt; 
+            &lt;object id='mySwf' classid='clsid:D27CDB6E-AE6D-11cf-96B8-444553540000' height='200' width='400'&gt; 
+                &lt;param name='src' value='AddCallbackExample.swf'/&gt; 
+                &lt;param name='flashVars' value=''/&gt; 
+                &lt;embed name='mySwf' src='AddCallbackExample.swf' height='100%' width='100%' flashVars=''/&gt; 
+            &lt;/object&gt; 
+        &lt;/td&gt; 
+    &lt;/tr&gt; 
+&lt;/table&gt; 
+ 
+&lt;/body&gt;&lt;/html&gt;</pre>
+
+         <p>If there is no method with the appropriate name in the application
+or that method hasn’t been made callable, the browser throws a JavaScript
+error. </p>
+
+         <p>Getting a reference to the application object and other DOM objects
+is not the same in Internet Explorer as it is in Chrome or FireFox.
+If you do not know which browser your users will be using when they
+request your application, you should make your wrapper’s script
+browser independent. For some ideas on detecting the browser type,
+you can look at the code in the swfobject.js file. To cover most cases,
+you typically use the <samp class="codeph">getElementById()</samp> method.</p>
+
+         <p>Flash Player has strict security in place to prevent cross-site
+scripting. By default, Flex methods are not callable by HTML scripts.
+You must explicitly identify them as callable. You also cannot call
+a Flex method from an HTML page if the HTML page is not in the same
+domain as the application. However, it is possible to expand the
+sources from which Flex methods are called. For more information, see <a href="flx_passingarguments_pa.html#WS2db454920e96a9e51e63e3d11c0bf69084-7eaa_verapache">About
+the addCallback() method</a>.</p>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf69084-7e9a_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7e9a_verapache"><!-- --></a>
+         <h3 class="topictitle3">Handling browsers that disable
+JavaScript</h3>
+
+         
+         <div>
+            <p>In some cases, the client’s browser either does not support
+JavaScript or the user has purposely disabled it. You can use the <samp class="codeph">&lt;noscript&gt;</samp> tag
+in the wrapper to define what happens when this user tries to run
+your applications. Most commonly, you use the <samp class="codeph">&lt;object&gt;</samp> and <samp class="codeph">&lt;embed&gt;</samp> tags
+inside the wrapper’s <samp class="codeph">&lt;noscript&gt;</samp> block to
+embed the application. However, without scripting, deep linking
+and Express Install functionality is not available.</p>
+
+            <div class="p">The following is an example of a <samp class="codeph">&lt;noscript&gt;</samp> block
+that embeds an application built with Flex:<pre class="codeblock">&lt;!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"&gt; 
+&lt;!-- saved from url=(0014)about:internet --&gt; 
+&lt;html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"&gt; 
+    &lt;head&gt; 
+        &lt;title&gt;wrapper/NoScriptWrapper.html&lt;/title&gt; 
+        &lt;meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /&gt; 
+    &lt;/head&gt; 
+    &lt;body&gt; 
+       
+&lt;noscript&gt; 
+            &lt;object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" width="100%" height="100%" id="AddCallbackExample"&gt; 
+                &lt;param name="movie" value="TestProject.swf" /&gt; 
+                &lt;param name="quality" value="high" /&gt; 
+                &lt;param name="bgcolor" value="#ffffff" /&gt; 
+                &lt;param name="allowScriptAccess" value="sameDomain" /&gt; 
+                &lt;!--[if !IE]&gt; 
+                &lt;object type="application/x-shockwave-flash" data="TestProject.swf" width="100%" height="100%"&gt; 
+                    &lt;param name="quality" value="high" /&gt; 
+                    &lt;param name="bgcolor" value="#ffffff" /&gt; 
+                    &lt;param name="allowScriptAccess" value="sameDomain" /&gt; 
+                &lt;![endif]--&gt; 
+                &lt;!--[if gte IE 6]&gt; 
+                
+&lt;p&gt; 
+                
+Either scripts and active content are not permitted to run or Adobe Flash Player version 
+                
+10.0.0 or greater is not installed. 
+                
+&lt;/p&gt; 
+                &lt;![endif]--&gt; 
+                    &lt;a href="http://www.adobe.com/go/getflashplayer"&gt; 
+                        &lt;img src="http://www.adobe.com/images/shared/download_buttons/get_flash_player.gif" alt="Get Adobe Flash Player" /&gt; 
+                    &lt;/a&gt; 
+                &lt;!--[if !IE]&gt; 
+                &lt;/object&gt; 
+                &lt;![endif]--&gt; 
+            &lt;/object&gt; 
+ 
+    &lt;/noscript&gt; 
+   &lt;/body&gt; 
+&lt;/html&gt;</pre>
+
+            </div>
+
+            <p>If your application <em>requires</em> functionality that is available
+only to scripting-enabled browsers (such as deep linking or access
+to the ExternalInterface API), then you can insert a message in
+the <samp class="codeph">&lt;noscript&gt;</samp> block that warns the user against
+accessing your application while JavaScript is disabled. The following example
+warns users when someone with JavaScript disabled tries to run your application:</p>
+
+            <pre class="codeblock">&lt;!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"&gt; 
+&lt;!-- saved from url=(0014)about:internet --&gt; 
+&lt;html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"&gt; 
+    &lt;head&gt; 
+        &lt;title&gt;wrapper/NoScriptWarning.html&lt;/title&gt; 
+        &lt;script type="text/javascript" src="swfobject.js"&gt;&lt;/script&gt; 
+        &lt;script type="text/javascript"&gt; 
+            var swfVersionStr = "0"; 
+            var xiSwfUrlStr = ""; 
+            var flashvars = {}; 
+            var params = {}; 
+            params.quality = "high"; 
+            params.bgcolor = "#ffffff"; 
+            params.allowscriptaccess = "sameDomain"; 
+            var attributes = {}; 
+            attributes.id = "TestProject"; 
+            attributes.name = "TestProject"; 
+            attributes.align = "middle"; 
+            swfobject.embedSWF( 
+                "TestProject.swf", 
+                "flashContent", "100%", "100%", 
+                swfVersionStr, xiSwfUrlStr, 
+                flashvars, params, attributes); 
+        &lt;/script&gt; 
+    &lt;/head&gt; 
+    &lt;body&gt; 
+        &lt;div id="flashContent"/&gt; 
+       
+&lt;noscript&gt; 
+ 
+&lt;EM&gt;Your browser either does not support JavaScript or has disabled it. 
+ 
+Some features of this application require JavaScript. 
+ 
+ 
+ 
+Please enable JavaScript and reload this page.&lt;/EM&gt; 
+       
+&lt;/noscript&gt; 
+   &lt;/body&gt; 
+&lt;/html&gt;</pre>
+
+         </div>
+
+      </div>
+
+   </div>
+
+   <div class="nested1" id="WS2db454920e96a9e51e63e3d11c0bf69084-7ea6_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7ea6_verapache"><!-- --></a>
+      <h2 class="topictitle2">About ExternalInterface API security
+in Flex</h2>
+
+      
+      <div>
+         <p>
+            Allowing
+applications built with Flex to call embedded scripts on HTML pages and
+vice versa is subject to stringent security constraints. By default,
+scripts on the HTML page can communicate only with ActionScript
+in an application if the page and the application are in the same
+domain. You can expand this restriction to include applications
+outside of the domain. </p>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf626ae-7ff9_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf626ae-7ff9_verapache"><!-- --></a>
+         <h3 class="topictitle3">About the call() method</h3>
+
+         
+         <div>
+            <p>The success of the <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/flash/external/ExternalInterface.html#call()" target="_blank">call()</a> method
+depends on the HTML page’s use of the <samp class="codeph">allowScriptAccess</samp> parameter.
+This parameter is not an ActionScript mechanism; it is an HTML parameter.
+Its value determines whether your application can call JavaScript
+in the HTML page, and it applies to all functions on the page. The
+default value of <samp class="codeph">allowScriptAccess</samp> only allows
+communication if the application and the HTML page are in the same
+domain.</p>
+
+            <div class="p">In an HTML wrapper that uses SWFObject 2, you set the value of
+the <samp class="codeph">allowscriptaccess</samp> property on the params object
+that is passed to the <samp class="codeph">swfobject.embedSWF()</samp> method.
+The following example sets the value of the <samp class="codeph">allowScriptAccess</samp> property
+to <samp class="codeph">sameDomain</samp>:<pre class="codeblock">var params = {}; 
+params.quality = "high"; 
+params.bgcolor = "#ffffff"; 
+params.allowscriptaccess = "sameDomain";</pre>
+
+            </div>
+
+            <p>The following table describes the valid values of the <samp class="codeph">allowScriptAccess</samp> parameter: </p>
+
+            
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" frame="border" border="1" rules="all">
+                  
+                  
+                  <thead align="left">
+                     <tr>
+                        <th class="cellrowborder" valign="top" width="NaN%" id="d821534e1630">
+                           <p>Value</p>
+
+                        </th>
+
+                        <th class="cellrowborder" valign="top" width="NaN%" id="d821534e1636">
+                           <p>Description</p>
+
+                        </th>
+
+                     </tr>
+
+                  </thead>
+
+                  <tbody>
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d821534e1630 ">
+                           <p>
+                              <samp class="codeph">never</samp>
+                           </p>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d821534e1636 ">
+                           <p>The <samp class="codeph">call()</samp> method fails.</p>
+
+                        </td>
+
+                     </tr>
+
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d821534e1630 ">
+                           <p>
+                              <samp class="codeph">sameDomain</samp>
+                           </p>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d821534e1636 ">
+                           <p>The <samp class="codeph">call()</samp> method succeeds
+if the calling application is from same domain as the HTML page
+that loaded the application. This is the default value.</p>
+
+                        </td>
+
+                     </tr>
+
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d821534e1630 ">
+                           <p>
+                              <samp class="codeph">always</samp>
+                           </p>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d821534e1636 ">
+                           <p>The <samp class="codeph">call()</samp> method succeeds,
+regardless of whether the calling application is in the same domain
+as the HTML page that loaded the application.</p>
+
+                        </td>
+
+                     </tr>
+
+                  </tbody>
+
+               </table>
+</div>
+
+            <p>If your HTML wrapper uses the <samp class="codeph">&lt;object&gt;</samp> and <samp class="codeph">&lt;embed&gt; </samp>tags,
+you set the value of the <samp class="codeph">allowScriptAccess</samp> property
+on the <samp class="codeph">&lt;object&gt;</samp> tag as follows:</p>
+
+            <pre class="codeblock"> &lt;object id='SendComplexDataTypes' classid='clsid:D27CDB6E-AE6D-11cf-96B8-444553540000' allowScriptAccess='sameDomain' height='100%' width='100%'&gt;</pre>
+
+            <p>On the <samp class="codeph">&lt;embed&gt;</samp> tag, set the property as
+follows:</p>
+
+            <pre class="codeblock"> &lt;embed name='SendComplexDataTypes.mxml.swf' src='SendComplexDataTypes.mxml.swf' allowScriptAccess='sameDomain' height='100%' width='100%' flashvars=''/&gt;</pre>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf69084-7eaa_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7eaa_verapache"><!-- --></a>
+         <h3 class="topictitle3">About the addCallback() method</h3>
+
+         
+         <div>
+            <p>Flex prevents JavaScript methods from calling just any
+method in your application by requiring that you explicitly make
+the method callable. The default for all methods is to not be callable
+from JavaScript. The <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/flash/external/ExternalInterface.html" target="_blank">ExternalInterface</a> API enables
+a SWF file to expose a specific interface that JavaScript can call.</p>
+
+            <p>By default, an HTML page can only communicate with the ActionScript
+in your application if it originates from the same domain. You allow
+HTML pages outside of the application’s domain to call methods of
+your application using the <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/flash/system/Security.html#allowDomain()" target="_blank">allowDomain()</a> method.
+For more information, see the <em>
+                  <a href="http://www.adobe.com/go/learn_flex4_apiref_en" target="_blank">ActionScript 3.0 Reference for the Adobe
+Flash Platform</a>
+               </em>.</p>
+
+            <p/>
+
+         </div>
+
+      </div>
+
+         <p>Adobe and Adobe Flash are either registered trademarks or trademarks of Adobe Systems Incorporated in the United States and/or other countries and are used by permission from Adobe.  No other license to the Adobe trademarks are granted.</p>
+   </div>
+
+
+</body>
+</html>

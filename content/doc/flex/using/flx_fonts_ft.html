@@ -1,0 +1,3247 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Licensed to the Apache Software Foundation (ASF) under one or more
+  contributor license agreements.  See the NOTICE file distributed with
+  this work for additional information regarding copyright ownership.
+  The ASF licenses this file to You under the Apache License, Version 2.0
+  (the "License"); you may not use this file except in compliance with
+  the License.  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+-->
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en-us" xml:lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="topic"/>
+<meta name="DC.Title" content="Fonts"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="WS2db454920e96a9e51e63e3d11c0bf69084-7f9e_verapache"/>
+<link rel="stylesheet" type="text/css" href="commonltr.css"/>
+<title>Fonts</title>
+</head>
+<body id="WS2db454920e96a9e51e63e3d11c0bf69084-7f9e_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7f9e_verapache"><!-- --></a>
+
+
+   <h1 class="topictitle1">Fonts</h1>
+
+   <div>
+      <p>You can include fonts in your  Flex applications.
+Although it is easier and more efficient to use the default device
+fonts, you can embed other fonts so that you can apply special effects
+to text-based controls, such as rotating and fading. </p>
+
+   </div>
+
+   <div class="nested1" id="WS2db454920e96a9e51e63e3d11c0bf6320a-7fff_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf6320a-7fff_verapache"><!-- --></a>
+      <h2 class="topictitle2">About fonts</h2>
+
+      
+      <div>
+         <p>
+            When you compile
+an application in Flex, the application stores the names of the fonts
+that you used to create the text. Adobe<sup>®</sup> Flash<sup>®</sup> Player uses the font names to locate identical
+or similar fonts on the user’s system when the application runs. You
+can also embed fonts in the application so that the exact font is
+used, regardless of whether the client’s system has that font.</p>
+
+         <p>
+            
+            You define the font that appears in each of
+your components by using the <samp class="codeph">fontFamily</samp> style property.
+You can set this property in an external style sheet, an <samp class="codeph">&lt;fx:Style&gt;</samp> block,
+or inline. This property can take a list of fonts, as the following
+example shows:</p>
+
+         <pre class="codeblock"> .myClass { 
+ 	<strong>fontFamily: Arial, Helvetica;</strong> 
+ 	color: Red; 
+ 	fontSize: 22; 
+ 	fontWeight: bold; 
+ }</pre>
+
+         <p>If the client’s system does not have the first font in the list,
+Flash Player attempts to find the second, and so on, until it finds
+a font that matches. If no fonts match, Flash Player makes a best
+guess to determine which font the client uses.</p>
+
+         <p>Fonts are inheritable style properties. So, if you set a font
+style on a container, all controls inside that container inherit
+that style, as the following example shows:</p>
+
+         <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- fonts/InheritableExample.mxml --&gt; 
+&lt;s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009"    
+    xmlns:mx="library://ns.adobe.com/flex/mx"     
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    width="600"&gt; 
+ 
+    &lt;s:layout&gt; 
+        &lt;s:VerticalLayout/&gt; 
+    &lt;/s:layout&gt; 
+ 
+  &lt;fx:Style&gt;    
+    @namespace s "library://ns.adobe.com/flex/spark"; 
+  
+     s|VGroup { 
+        fontFamily: Helvetica; 
+        fontSize: 13pt; 
+     } 
+     
+     s|HGroup { 
+        fontFamily: Times; 
+        fontSize: 13pt; 
+     } 
+  &lt;/fx:Style&gt; 
+ 
+  &lt;s:Panel title="Styles Inherited from VGroup Type Selector"&gt; 
+     &lt;s:VGroup&gt;  
+        &lt;s:Button label="This Button uses Helvetica"/&gt; 
+        &lt;s:Label text="This Label control is in Helvetica."/&gt; 
+        &lt;s:RichText height="75" width="200"&gt; 
+            &lt;s:text&gt; 
+            The text in this RichText control uses the Helvetica font 
+            because it is inherited from the VGroup style. 
+            &lt;/s:text&gt; 
+        &lt;/s:RichText&gt; 
+     &lt;/s:VGroup&gt; 
+  &lt;/s:Panel&gt; 
+  &lt;s:Panel title="Styles Inherited from HGroup Type Selector"&gt; 
+     &lt;s:HGroup&gt; 
+        &lt;s:Button label="This Button uses Times"/&gt; 
+        &lt;s:Label text="This Label control is in Times."/&gt; 
+        &lt;s:RichText height="75" width="200"&gt; 
+            &lt;s:text&gt; 
+            The text in this RichText control uses the Times font 
+            because it is inherited from the HGroup style. 
+            &lt;/s:text&gt; 
+        &lt;/s:RichText&gt; 
+     &lt;/s:HGroup&gt; 
+  &lt;/s:Panel&gt; 
+&lt;/s:Application&gt;</pre>
+
+         <p>This example defines the HGroup and VGroup type selectors’ <samp class="codeph">fontSize</samp> and <samp class="codeph">fontFamily</samp> properties.
+Flex applies these styles to all components in the container that
+support those properties; in these cases, the Button, Label, and RichText
+controls.</p>
+
+         <p>Controls that support FTE have limited font fallback. What this
+means is that when you try to use a special character that is not
+available in a font, Flash Player attempts to use a character from
+another font if possible.</p>
+
+      </div>
+
+   </div>
+
+   <div class="nested1" id="WS2db454920e96a9e51e63e3d11c0bf6320a-7ffe_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf6320a-7ffe_verapache"><!-- --></a>
+      <h2 class="topictitle2">Using device fonts</h2>
+
+      
+      <div>
+         <p>
+            
+            
+            
+            
+            You
+can specify any font for the <samp class="codeph">fontFamily</samp> property.
+However, not all systems have all font faces, which can result in
+an unexpected appearance of text in your application. The safest
+course when specifying font faces is to include a device font as
+a default at the end of the font list. <em>Device fonts</em> do not
+export font outline information and are not embedded in the SWF
+file. Instead, Flash Player uses whatever font on the client’s local
+computer most closely resembles the device font. </p>
+
+         <p>Flash Player supports three device fonts. The following table
+describes these fonts:</p>
+
+         
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" frame="border" border="1" rules="all">
+               
+               
+               <thead align="left">
+                  <tr>
+                     <th class="cellrowborder" valign="top" width="NaN%" id="d211623e137">
+                        <p>Font name</p>
+
+                     </th>
+
+                     <th class="cellrowborder" valign="top" width="NaN%" id="d211623e143">
+                        <p>Description</p>
+
+                     </th>
+
+                  </tr>
+
+               </thead>
+
+               <tbody>
+                  <tr>
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d211623e137 ">
+                        <div class="p">
+                           <pre class="codeblock">_sans</pre>
+
+                        </div>
+
+                     </td>
+
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d211623e143 ">
+                        <p>The <samp class="codeph">_sans</samp> device font is
+a sans-serif typeface; for example, Helvetica or Arial.</p>
+
+                     </td>
+
+                  </tr>
+
+                  <tr>
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d211623e137 ">
+                        <div class="p">
+                           <pre class="codeblock">_serif</pre>
+
+                        </div>
+
+                     </td>
+
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d211623e143 ">
+                        <p>The <samp class="codeph">_serif</samp> device font
+is a serif typeface; for example, Times Roman.</p>
+
+                     </td>
+
+                  </tr>
+
+                  <tr>
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d211623e137 ">
+                        <div class="p">
+                           <pre class="codeblock">_typewriter</pre>
+
+                        </div>
+
+                     </td>
+
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d211623e143 ">
+                        <p>The <samp class="codeph">_typewriter</samp> device
+font is a monospace font; for example, Courier.</p>
+
+                     </td>
+
+                  </tr>
+
+               </tbody>
+
+            </table>
+</div>
+
+         <p>The following example specifies the device font <samp class="codeph">_sans</samp> to
+use if Flash Player cannot find either of the other fonts on the
+client machine:</p>
+
+         <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- fonts/DeviceFont.mxml --&gt; 
+&lt;s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009"    
+    xmlns:mx="library://ns.adobe.com/flex/mx"     
+    xmlns:s="library://ns.adobe.com/flex/spark"&gt; 
+ 
+    &lt;!-- Use a vertical layout --&gt; 
+    &lt;s:layout&gt; 
+        &lt;s:VerticalLayout/&gt; 
+    &lt;/s:layout&gt; 
+    
+  &lt;fx:Style&gt; 
+      @namespace s "library://ns.adobe.com/flex/spark"; 
+ 
+     .myClass { 
+        fontFamily: Arial, Helvetica, "_sans"; 
+        color: Red; 
+        fontSize: 12; 
+        fontWeight: bold; 
+     } 
+  &lt;/fx:Style&gt; 
+ 
+  &lt;s:Panel title="myClass Class Selector with Device Font"&gt; 
+     &lt;s:VGroup styleName="myClass"&gt; 
+        &lt;s:Button label="Click Me"/&gt; 
+        &lt;s:Label text="This is a Label control."/&gt; 
+        &lt;s:RichText width="200"&gt; 
+            &lt;s:text&gt; 
+            The text in the RichText control uses the myClass class selector. 
+            &lt;/s:text&gt; 
+        &lt;/s:RichText&gt; 
+     &lt;/s:VGroup&gt; 
+  &lt;/s:Panel&gt; 
+&lt;/s:Application&gt;</pre>
+
+         <div class="note"><span class="notetitle">Note:</span> You must surround device font names with quotation
+marks when defining them with style declarations.</div>
+
+         <p>Using device fonts does not affect the size of the SWF file because
+the fonts reside on the client. However, using device fonts can
+affect performance of the application because it requires that Flash
+Player interact with the local operating system. Also, if you use
+only device fonts, your selection is limited to three fonts.</p>
+
+      </div>
+
+   </div>
+
+   <div class="nested1" id="WS2db454920e96a9e51e63e3d11c0bf69084-7f5f_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7f5f_verapache"><!-- --></a>
+      <h2 class="topictitle2">Embed fonts</h2>
+
+      
+      <div>
+         <p>
+            
+            
+            Rather
+than rely on a client machine to have the fonts you specify, you
+can embed fonts in your application. This means that the font is
+always available to Flash Player when the application is running,
+and you do not have to consider the implications of a missing font.</p>
+
+         <p>Supported file types include TrueType fonts (*.ttf), OpenType
+fonts (*.otf), as well as TrueType Collections (*.ttc), Mac Data
+Fork Fonts (*.dfont), and Mac Resource Fork TrueType Suitcases (which
+do not have a file extension).</p>
+
+         <div class="note"><span class="notetitle">Note:</span> Check your font licenses before embedding any
+font files in your applications. Fonts might have licensing restrictions
+that preclude them from being stored as vector information.</div>
+
+         <p>
+            <strong>Benefits of embedded fonts</strong>
+         </p>
+
+         <p>Embedded fonts have the following benefits:</p>
+
+         <ul>
+            <li>
+               <p>Client environment does not need the font to be installed.</p>
+
+            </li>
+
+            <li>
+               <p>Embedded fonts can be rotated and faded.</p>
+
+            </li>
+
+            <li>
+               <p>Embedded fonts are anti-aliased, which means that their edges
+are smoothed for easier readability. This is especially apparent
+when the text size is large.</p>
+
+            </li>
+
+            <li>
+               <p>Embedded fonts provide smoother playback when zooming.</p>
+
+            </li>
+
+            <li>
+               <p>Text appears exactly as you expect when you use embedded
+fonts.</p>
+
+            </li>
+
+            <li>
+               <p>When you embed a font, you can use the advanced anti-aliasing
+information that provides clear, high-quality text rendering in
+SWF files. Using advanced anti-aliasing greatly improves the readability
+of text, particularly when it is rendered at smaller font sizes.
+For more information about advanced anti-aliasing, see <a href="flx_fonts_ft.html#WS2db454920e96a9e51e63e3d11c0bf69084-7e0d_verapache">Using
+advanced anti-aliasing with non-CFF based fonts</a>.</p>
+
+            </li>
+
+         </ul>
+
+         <p>
+            <strong>Drawbacks of using embedded fonts</strong>
+         </p>
+
+         <p>Using embedded fonts is not always the best solution, however.
+Embedded fonts have the following limitations and drawbacks:</p>
+
+         <ul>
+            <li>
+               <p>Embed only TrueType or OpenType fonts and related “collection”
+formats. To embed other font types such as Type 1 PostScript fonts,
+embed that font in a SWF file that you create in Flash or with the
+fontswf utility, and then embed that SWF file in your application.
+For information about using the fontswf utility, see <a href="flx_fonts_ft.html#WS02f7d8d4857b16776fadeef71269f135e73-8000_verapache">Using
+the fontswf utility</a>.</p>
+
+            </li>
+
+            <li>
+               <p>Embedded fonts increase the file size of your application,
+because the document must contain font outlines for the text. This
+can result in longer download times for your users.</p>
+
+            </li>
+
+            <li>
+               <p>In some cases, the text that is rendered by embedded fonts
+is truncated when they are used in visual components. This can happen,
+for example, when you explicitly set the width of a control. In
+these cases, you might be required to change the padding properties
+of the component by using style properties or subclassing it. This
+only occurs with some fonts.</p>
+
+            </li>
+
+            <li>
+               <p>If you use MX controls in a Flex 4 application, you might
+have to add additional code to make the MX control use the embedded
+font. For more information, see <a href="flx_fonts_ft.html#WS0FA8AEDB-C69F-4f19-ADA5-AA5757217624_verapache">Embedding
+fonts with MX components</a>.</p>
+
+            </li>
+
+         </ul>
+
+         <p>
+            <strong>Embed fonts with CSS</strong> 
+         </p>
+
+         <p>You typically use Cascading Style Sheets (CSS) syntax for embedding
+fonts in applications. You use the <samp class="codeph">@font-face</samp> “at-rule”
+declaration to specify the source of the embedded font and then
+define the name of the font by using the <samp class="codeph">fontFamily</samp> property.
+You typically specify the <samp class="codeph">@font-face</samp> declaration
+for each face of the font for the same family that you use (for
+example, plain, bold, and italic). </p>
+
+         <p>
+            <strong>Embed fonts with ActionScript</strong>
+         </p>
+
+         <p>You can also embed fonts in ActionScript by using the <samp class="codeph">[Embed]</samp> metadata
+tag. As with the <samp class="codeph">@font-face</samp> declaration, you must
+specify a separate <samp class="codeph">[Embed]</samp> tag for each font face.</p>
+
+         <p>
+            <strong>Finding fonts</strong>
+         </p>
+
+         <p>If you attempt to embed a font that the Flex compiler cannot
+find, Flex throws an error and your application does not compile.
+As a result, be sure to include directories that contain your fonts
+in the source path, or use absolute paths to the font file.</p>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf69084-7e0e_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7e0e_verapache"><!-- --></a>
+         <h3 class="topictitle3">Embedded font syntax</h3>
+
+         
+         <div>
+            <p>To embed TrueType or OpenType fonts, you use the following
+syntax in your style sheet or <samp class="codeph">&lt;fx:Style&gt;</samp> tag:</p>
+
+            <pre class="codeblock"> @font-face { 
+ 	src: url("<em>location</em>"); 
+ 	fontFamily: <em>alias</em>; 
+ 	[fontStyle: normal | italic | oblique] ; 
+ 	[fontWeight: normal | bold | heavy] ; 
+	[embedAsCFF:true | false] ; 
+ 	[advancedAntiAliasing: true | false]; 
+ }</pre>
+
+            <div class="p">The following table describes the properties for the <samp class="codeph">@font-face</samp> rule:
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" frame="border" border="1" rules="all">
+                     
+                     
+                     <thead align="left">
+                        <tr>
+                           <th class="cellrowborder" valign="top" width="NaN%" id="d211623e456">
+                              <p>Property</p>
+
+                           </th>
+
+                           <th class="cellrowborder" valign="top" width="NaN%" id="d211623e462">
+                              <p>Description</p>
+
+                           </th>
+
+                        </tr>
+
+                     </thead>
+
+                     <tbody>
+                        <tr>
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d211623e456 ">
+                              <p>
+                                 <samp class="codeph">src</samp>
+                              </p>
+
+                           </td>
+
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d211623e462 ">
+                              <p>Specifies the file path location of a font.
+In Flex 4 and later, you cannot embed a font by its local name only. </p>
+
+                              <p>If
+you specify a relative location, the location is relative to the
+file in which the <samp class="codeph">@font-face</samp> rule appears.</p>
+
+                           </td>
+
+                        </tr>
+
+                        <tr>
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d211623e456 ">
+                              <p>
+                                 <samp class="codeph">fontFamily</samp>
+                              </p>
+
+                           </td>
+
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d211623e462 ">
+                              <p>Sets the alias for the font that you use
+to apply the font in style sheets. This property is required. </p>
+
+                              <p>If
+you embed a font with a family name that matches the family name
+of a system font, the Flex compiler gives you a warning. You can
+disable this warning by setting the <samp class="codeph">show-shadows-system-font-warnings</samp> compiler
+option to <samp class="codeph">false</samp>.</p>
+
+                           </td>
+
+                        </tr>
+
+                        <tr>
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d211623e456 ">
+                              <p>
+                                 <samp class="codeph">fontStyle</samp>
+                              </p>
+
+                           </td>
+
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d211623e462 ">
+                              <p>Set the style type face value for the font. </p>
+
+                              <p>This
+property is optional, unless you are embedding a face that requires
+it. </p>
+
+                              <p>The default value is <samp class="codeph">normal</samp>. Valid values
+are <samp class="codeph">normal</samp>, <samp class="codeph">italic</samp>, and <samp class="codeph">oblique</samp>.</p>
+
+                           </td>
+
+                        </tr>
+
+                        <tr>
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d211623e456 ">
+                              <p>
+                                 <samp class="codeph">fontWeight</samp>
+                              </p>
+
+                           </td>
+
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d211623e462 ">
+                              <p>Set the weight type face value for the font. </p>
+
+                              <p>This
+property is optional, unless you are embedding a face that requires
+it. </p>
+
+                              <p>The default value is <samp class="codeph">normal</samp>. Valid values
+are <samp class="codeph">normal</samp>, <samp class="codeph">bold</samp>, and <samp class="codeph">heavy</samp>.</p>
+
+                           </td>
+
+                        </tr>
+
+                        <tr>
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d211623e456 ">
+                              <p>
+                                 <samp class="codeph">embedAsCFF</samp>
+                              </p>
+
+                           </td>
+
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d211623e462 ">
+                              <p>Indicates whether to embed an FTE-enabled
+font for components. Flash Text Engine (FTE) is a library that provides
+text controls with a rich set of formatting options. </p>
+
+                              <p>For
+Flex 4 and later, the default value is <samp class="codeph">true</samp>. If
+you set the <samp class="codeph">compatibility-version</samp> compiler option
+to 3.0.0, then the default value is <samp class="codeph">false</samp>.</p>
+
+                              <p>If
+you set the <samp class="codeph">embedAsCFF</samp> property to <samp class="codeph">true</samp>,
+then you can use the advanced formatting features of FTE such as
+bidirectional text, kerning, and ligatures. If you set the value
+of <samp class="codeph">embedAsCFF</samp> to <samp class="codeph">false</samp>, then the
+embedded font does not support FTE, and works only with the MX text
+components. </p>
+
+                              <p>For information on using FTE-based classes for
+text rendering in your MX text controls, see <a href="flx_fonts_ft.html#WS0FA8AEDB-C69F-4f19-ADA5-AA5757217624_verapache">Embedding
+fonts with MX components</a>.</p>
+
+                           </td>
+
+                        </tr>
+
+                        <tr>
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d211623e456 ">
+                              <p>
+                                 <samp class="codeph">advancedAntiAliasing</samp>
+                              </p>
+
+                           </td>
+
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d211623e462 ">
+                              <p>Determines whether to include the advanced
+anti-aliasing information when embedding the font. </p>
+
+                              <p>This property
+is optional and only used for legacy fonts. This property is ignored if
+you embed a font with the <samp class="codeph">embedAsCFF</samp> property set
+to <samp class="codeph">true</samp>. </p>
+
+                              <p>You cannot use this option when
+embedding fonts from a SWF file because this option requires access
+to the original, raw font file to pre-calculate anti-aliasing information
+at compile time. </p>
+
+                              <p>For more information on using advanced anti-aliasing,
+see <a href="flx_fonts_ft.html#WS2db454920e96a9e51e63e3d11c0bf69084-7e0d_verapache">Using
+advanced anti-aliasing with non-CFF based fonts</a>.</p>
+
+                           </td>
+
+                        </tr>
+
+                     </tbody>
+
+                  </table>
+</div>
+
+            </div>
+
+            <p>
+               <strong>Example of @font-face rule</strong>
+            </p>
+
+            <p>The following example embeds the MyriadWebPro.ttf font file:</p>
+
+            <pre class="codeblock"> @font-face { 
+ 	src: url("../assets/MyriadWebPro.ttf"); 
+ 	fontFamily: myFontFamily; 
+ 	embedAsCFF: true; 
+ }</pre>
+
+            <p>After you embed a font with an <samp class="codeph">@font-face</samp> declaration,
+you can use the value of the <samp class="codeph">fontFamily</samp> property,
+or <em>alias</em>, in a selector’s property declarations. The following
+example uses <samp class="codeph">myFontFamily</samp>, the value of the <samp class="codeph">fontFamily</samp> property,
+as the font in the VGroup type selector:</p>
+
+            <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- fonts/EmbeddedFontFace.mxml --&gt; 
+&lt;s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009"    
+    xmlns:mx="library://ns.adobe.com/flex/mx"     
+    xmlns:s="library://ns.adobe.com/flex/spark"&gt; 
+ 
+    &lt;s:layout&gt; 
+        &lt;s:VerticalLayout/&gt; 
+    &lt;/s:layout&gt; 
+ 
+  &lt;fx:Style&gt; 
+     @namespace s "library://ns.adobe.com/flex/spark"; 
+ 
+     @font-face { 
+        src:url("../assets/MyriadWebPro.ttf"); 
+        fontFamily: myFontFamily; 
+        embedAsCFF: true; 
+     } 
+     
+     s|VGroup { 
+        fontFamily: myFontFamily; 
+        fontSize: 15; 
+     }     
+  &lt;/fx:Style&gt; 
+ 
+  &lt;s:Panel title="Embedded Font Applied With Type Selector"&gt; 
+     &lt;s:VGroup&gt; 
+        &lt;!-- This MX button tries to use a system font. --&gt; 
+        &lt;mx:Button label="Click Me"/&gt; 
+ 
+        &lt;!-- This Spark button uses the font of the VGroup container. --&gt; 
+        &lt;s:Button label="Click Me"/&gt; 
+        &lt;s:Label text="This is a Label control."/&gt; 
+        &lt;s:RichText width="250"&gt; 
+            &lt;s:text&gt; 
+                The text in this RichText control uses the 
+                font set on the VGroup. 
+            &lt;/s:text&gt; 
+        &lt;/s:RichText&gt; 
+     &lt;/s:VGroup&gt; 
+  &lt;/s:Panel&gt; 
+ 
+  &lt;!-- This button uses the default font because it is not in the VGroup. --&gt; 
+  &lt;s:Button label="Click Me"/&gt; 
+    
+&lt;/s:Application&gt;</pre>
+
+            <p>
+               <strong>Considerations when using the MX Button control</strong>
+            </p>
+
+            <p>When you run this example, you might notice that the label on
+the MX Button (in the “mx” namespace) disappears. This is because
+the default style of an MX Button control’s label uses a bold typeface.
+However, the embedded font’s typeface (Myriad Web Pro) does not
+contain a definition for the bold typeface. </p>
+
+            <p>The Spark Button (in the “s” namespace) control’s label renders
+with the embedded font because it does not require a bold faced
+font.</p>
+
+            <div class="p">To ensure that the MX Button control’s label uses the proper
+typeface, you can:<ul>
+                  <li>
+                     <p>Apply the MXFTEText.css theme if you
+mix MX and Spark components and use embedded fonts. In this case,
+you should embed both the plain and bold faces of the embedded font
+in separate <samp class="codeph">@font-face</samp> rules. For more information, see <a href="flx_fonts_ft.html#WSda78ed3a750d6b8f-26a13bbf123c441239d-8000_verapache">Using
+FTE in MX controls</a>. This theme sets <samp class="codeph">embedAsCFF</samp> to <samp class="codeph">false</samp>.</p>
+
+                  </li>
+
+                  <li>
+                     <p>Add <samp class="codeph">fontWeight:bold</samp> to the <samp class="codeph">@font-face</samp> rule.
+This will render the MX Button label’s text, but with a device font.</p>
+
+                  </li>
+
+                  <li>
+                     <p>Embed a bold typeface so that the label of an MX Button control
+is rendered with the correct font. For information on embedding
+bold typefaces, see <a href="flx_fonts_ft.html#WS2db454920e96a9e51e63e3d11c0bf69084-7e06_verapache">Using multiple
+typefaces</a>.</p>
+
+                  </li>
+
+                  <li>
+                     <p>Change the MX Button control’s label typeface to be non-bold.
+You can do this by creating a custom skin for the MX Button control.</p>
+
+                  </li>
+
+               </ul>
+
+            </div>
+
+            <p>
+               <strong>Apply embedded font inline</strong>
+            </p>
+
+            <p>You can also apply the embedded font inline by specifying the
+alias as the value of the control’s <samp class="codeph">fontFamily</samp> property,
+as the following example shows:</p>
+
+            <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- fonts/EmbeddedFontFaceInline.mxml --&gt; 
+&lt;s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009"    
+    xmlns:mx="library://ns.adobe.com/flex/mx"     
+    xmlns:s="library://ns.adobe.com/flex/spark"&gt; 
+ 
+    &lt;s:layout&gt; 
+        &lt;s:VerticalLayout/&gt; 
+    &lt;/s:layout&gt; 
+ 
+  &lt;fx:Style&gt; 
+     @font-face { 
+        src:url("../assets/MyriadWebPro.ttf"); 
+        fontFamily: myFontFamily; 
+        embedAsCFF: true; 
+     } 
+  &lt;/fx:Style&gt; 
+ 
+  &lt;s:Panel title="Embedded Font Applied Inline"&gt; 
+     &lt;s:VGroup fontFamily="myFontFamily"&gt; 
+        &lt;s:Button label="Click Me"/&gt; 
+        &lt;s:Label text="This is a Label."/&gt; 
+        &lt;s:RichText width="200" fontFamily="myFontFamily"&gt; 
+            &lt;s:text&gt;The text in the RichText control is Myriad Web Pro.&lt;/s:text&gt; 
+        &lt;/s:RichText&gt; 
+     &lt;/s:VGroup&gt; 
+  &lt;/s:Panel&gt; 
+&lt;/s:Application&gt;</pre>
+
+         </div>
+
+         <div class="nested3" id="WS2db454920e96a9e51e63e3d11c0bf69084-7e0a_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7e0a_verapache"><!-- --></a>
+            <h4 class="topictitle4">Locating embedded fonts</h4>
+
+            
+            <div>
+               <p>The <samp class="codeph">src</samp> property in the <samp class="codeph">@font-face</samp> declaration
+specifies the location of the font family. You use the <samp class="codeph">src</samp> property
+to embed a TrueType or OpenType font by location by specifying a
+valid URI to the font. The URI can be relative (for example, ../fontfolder/akbar.ttf)
+or absolute (for example, c:/myfonts/akbar.ttf). The URI can also
+point to a SWF file that has embedded fonts within it, such as a
+SWF file created with the fontswf utility. For information about
+using the fontswf utility, see <a href="flx_fonts_ft.html#WS02f7d8d4857b16776fadeef71269f135e73-8000_verapache">Using
+the fontswf utility</a>.</p>
+
+               <p>You must specify the <samp class="codeph">url</samp> of the <samp class="codeph">src</samp> property
+in the <samp class="codeph">@font-face</samp> declaration. All other properties
+are optional.</p>
+
+            </div>
+
+         </div>
+
+         <div class="nested3" id="WS2db454920e96a9e51e63e3d11c0bf6320a-7ffa_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf6320a-7ffa_verapache"><!-- --></a>
+            <h4 class="topictitle4">Embedding fonts in ActionScript</h4>
+
+            
+            <div>
+               <p>
+                  You
+can embed TrueType or OTF font files by location by using the <samp class="codeph">[Embed]</samp> metadata
+tag in ActionScript. To embed a font by location, you use the <samp class="codeph">source</samp> property
+in the <samp class="codeph">[Embed]</samp> metadata tag. </p>
+
+               <p>The <samp class="codeph">[Embed]</samp> metadata tag takes the same properties
+that you set as the @font-face rule. You separate them with commas.
+For the list of properties, see <a href="flx_fonts_ft.html#WS2db454920e96a9e51e63e3d11c0bf69084-7e0e_verapache">Embedded
+font syntax</a>
+               </p>
+
+               <p>The following examples embed fonts by location by using the <samp class="codeph">[Embed]</samp> tag syntax:</p>
+
+               <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- fonts/EmbeddedFontFaceActionScriptByLocation.mxml --&gt; 
+&lt;s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009"    
+    xmlns:mx="library://ns.adobe.com/flex/mx"     
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    width="700"&gt; 
+ 
+    &lt;s:layout&gt; 
+        &lt;s:VerticalLayout/&gt; 
+    &lt;/s:layout&gt; 
+ 
+  &lt;fx:Style&gt; 
+     .mystyle1 { 
+        fontFamily:myMyriadFont; 
+        fontSize: 32pt; 
+     } 
+     .mystyle2 { 
+        fontFamily:myBoldMyriadFont; 
+        fontSize: 32pt; 
+        fontWeight: bold; 
+     } 
+  &lt;/fx:Style&gt; 
+  
+  &lt;fx:Script&gt; 
+     /* 
+      * Embed a font by location. 
+      */ 
+     [Embed(source='../assets/MyriadWebPro.ttf', 
+        fontName='myMyriadFont', 
+        mimeType='application/x-font', 
+        embedAsCFF='true' 
+     )] 
+     // You do not use this variable directly. It exists so that 
+     // the compiler will link in the font. 
+     private var font1:Class; 
+     
+     /* 
+      * Embed a font with bold typeface by location. 
+      */ 
+     [Embed(source='../assets/MyriadWebPro-Bold.ttf', 
+        fontWeight='bold', 
+        fontName='myBoldMyriadFont', 
+        mimeType='application/x-font', 
+        embedAsCFF='true' 
+     )] 
+     private var font2:Class; 
+     
+  &lt;/fx:Script&gt; 
+ 
+  &lt;s:Panel title="Embedded Fonts Using ActionScript"&gt; 
+     &lt;s:VGroup&gt; 
+        &lt;s:RichText 
+            width="100%" 
+            height="75" 
+            styleName="mystyle1" 
+            text="This text uses the MyriadWebPro font." 
+        /&gt; 
+        &lt;s:RichText 
+            width="100%" 
+            height="75" 
+            styleName="mystyle2" 
+            text="This text uses the MyriadWebPro-Bold font." 
+        /&gt; 
+     &lt;/s:VGroup&gt; 
+  &lt;/s:Panel&gt; 
+&lt;/s:Application&gt;</pre>
+
+               <p>You use the value of the <samp class="codeph">fontName</samp> property that
+you set in the <samp class="codeph">[Embed]</samp> tag as the alias (<samp class="codeph">fontFamily</samp>)
+in your style definition. </p>
+
+               <p>Note that specifying the <samp class="codeph">mimeType</samp> is not necessary
+if your font uses a known file extension such as *.ttf.</p>
+
+               <p>To embed a font with a different typeface (such as bold or italic),
+you specify the <samp class="codeph">fontWeight</samp> or <samp class="codeph">fontStyle</samp> properties
+in the <samp class="codeph">[Embed]</samp> statement and in the style definition.
+For more information on embedding different typefaces, see <a href="flx_fonts_ft.html#WS2db454920e96a9e51e63e3d11c0bf69084-7e06_verapache">Using
+multiple typefaces</a>.</p>
+
+               <p>You can specify a subset of the font’s character range by specifying
+the <samp class="codeph">unicodeRange</samp> parameter in the <samp class="codeph">[Embed]</samp> metadata
+tag or the <samp class="codeph">@font-face</samp> declaration. Embedding a
+range of characters rather than using the default of all characters
+can reduce the size of the embedded font and, therefore, reduce
+the final output size of your SWF file. For more information, see <a href="flx_fonts_ft.html#WS2db454920e96a9e51e63e3d11c0bf69084-7e04_verapache">Setting
+character ranges</a>.</p>
+
+            </div>
+
+            <div class="nested4" id="WS02f7d8d4857b1677-11e364d1266679ac18-8000_verapache"><a name="WS02f7d8d4857b1677-11e364d1266679ac18-8000_verapache"><!-- --></a>
+               <h5 class="topictitle5">Embedding fonts in container formats</h5>
+
+               
+               <div>
+                  <p>When the <samp class="codeph">@font-face src</samp> property points
+to a file that is a “container” of several fonts (such as a *.ttc
+or *.dfont file), you use the <samp class="codeph">fontFamily</samp> property to
+select the precise font face you want out of the collection. The
+value of the <samp class="codeph">fontFamily</samp> property should be the
+full font name of the exact font face that you want to target.</p>
+
+                  <div class="p">The following example embeds and uses two different fonts from
+the same TTC file:<pre class="noswf">&lt;?xml version="1.0"?&gt; 
+&lt;!-- fonts/TTCTest.mxml --&gt; 
+&lt;s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009"    
+    xmlns:mx="library://ns.adobe.com/flex/mx"     
+    xmlns:s="library://ns.adobe.com/flex/spark"&gt; 
+ 
+    &lt;s:layout&gt; 
+        &lt;s:VerticalLayout/&gt; 
+    &lt;/s:layout&gt; 
+ 
+    &lt;fx:Style&gt; 
+        @namespace s "library://ns.adobe.com/flex/spark"; 
+        @font-face { 
+            src:url("../assets/CAMBRIA.TTC"); 
+            fontFamily: "Cambria Math"; 
+            embedAsCFF: true; 
+        } 
+ 
+        @font-face { 
+            src:url("../assets/CAMBRIA.TTC"); 
+            fontFamily: "Cambria"; 
+            embedAsCFF: true; 
+        } 
+ 
+        .useCambriaMath { 
+            fontFamily: "Cambria Math"; 
+            fontSize:24; 
+        }     
+        .useCambria { 
+            fontFamily: "Cambria"; 
+            fontSize:24; 
+        }     
+    &lt;/fx:Style&gt; 
+ 
+    &lt;s:HGroup&gt; 
+        &lt;s:Button label="Default Font" fontSize="24"/&gt; 
+        &lt;s:Button label="Cambria Math" styleName="useCambriaMath"/&gt; 
+        &lt;s:Button label="Cambria" styleName="useCambria"/&gt; 
+    &lt;/s:HGroup&gt; 
+ 
+&lt;/s:Application&gt;</pre>
+
+                  </div>
+
+                  <p>You can also use this technique when using the <samp class="codeph">[Embed]</samp> syntax.</p>
+
+               </div>
+
+            </div>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf69084-7e0d_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7e0d_verapache"><!-- --></a>
+         <h3 class="topictitle3">Using advanced anti-aliasing with
+non-CFF based fonts</h3>
+
+         
+         <div>
+            <p>Flex 3 components in the Halo theme use non-CFF fonts.
+The text in these components is rendered with the flash.text.TextField
+API (instead of the new Flash Text Engine (FTE).</p>
+
+            <p>
+               
+               
+               
+               
+               When
+you embed non-CFF fonts (with the <samp class="codeph">embedAsCFF</samp> property
+set to <samp class="codeph">false</samp>), you can use advanced anti-aliasing
+to provide those fonts with additional information about the font.
+Non-CFF embedded fonts that use the advanced anti-aliasing information
+are typically clearer and appear sharper at smaller font sizes.
+CFF fonts have this information by default.</p>
+
+            <p>By default, non-CFF fonts that you embed in applications use
+the advanced anti-aliasing information. This default is set by the <samp class="codeph">fonts.advanced-anti-aliasing</samp> compiler
+option in the flex-config.xml file (the default value is <samp class="codeph">true</samp>). You
+can override this default value by setting the value in your style
+sheets or changing it in the configuration file. To disable advanced
+anti-aliasing in style sheets, you set the <samp class="codeph">advancedAntiAliasing</samp> style
+property to <samp class="codeph">false</samp> in your <samp class="codeph">@font-face</samp> rule,
+as the following example shows:</p>
+
+            <pre class="codeblock"> @font-face { 
+ 	src:url("../assets/MyriadWebPro.ttf"); 
+ 	fontFamily: myFontFamily; 
+ 	advancedAntiAliasing: false; 
+	embedAsCFF: false; 
+ }</pre>
+
+            <p>Using advanced anti-aliasing can degrade the performance of your
+compiler. This is not a run-time concern, but can be noticeable
+if you compile your applications frequently or use the web-tier
+compiler. Using advanced anti-aliasing can also cause a slight delay
+when you load SWF files. You notice this delay especially if you
+are using several different character sets, so be aware of the number
+of fonts that you use. The presence of advanced anti-aliasing information
+may also cause an increase in the memory usage in Flash Player and
+Adobe<sup>®</sup> AIR™. Using four
+or five fonts, for example, can increase memory usage by approximately
+4 MB.</p>
+
+            <p>When you embed non-CFF fonts that use advanced anti-aliasing
+in your applications, the fonts function exactly as other embedded
+fonts. They are anti-aliased, you can rotate them, and you can make
+them partially or wholly transparent.</p>
+
+            <p>
+               
+               
+               
+               Font
+definitions that use advanced anti-aliasing support several additional
+styles properties: <samp class="codeph">fontAntiAliasType</samp>, <samp class="codeph">fontGridFitType</samp>, <samp class="codeph">fontSharpness</samp>, and <samp class="codeph">fontThickness</samp>.
+These properties are all inheriting styles, but they are applied
+on the component being styled. They are not relevant to the actual
+font embedding process (and thus must not be specified in the <samp class="codeph">@font-face</samp> rule).</p>
+
+            <p>Because the advanced anti-aliasing-related style properties are
+CSS styles, you can use them in the same way that you use standard
+style properties, such as <samp class="codeph">fontFamily</samp> and <samp class="codeph">fontSize</samp>.
+For example, a text-based component could use subpixel-fitted advanced
+anti-aliasing of New Century 14 at sharpness 50 and thickness -35,
+while all Button controls could use pixel-fitted advanced anti-aliasing
+of Tahoma 10 at sharpness 0 and thickness 0. These styles apply
+to all the text in a TextField control; you cannot apply them to
+some characters and not others.</p>
+
+            <p>The default values for the advanced anti-aliasing styles properties
+are defined in the defaults.css file. If you replace this file or
+use another style sheet that overrides these properties, Flash Player
+and AIR use the standard font renderer to render the fonts that
+use advanced anti-aliasing. If you embed fonts that use advanced
+anti-aliasing, you must set the <samp class="codeph">fontAntiAliasType</samp> property
+to <samp class="codeph">advanced</samp>, or you lose the benefits of the advanced
+anti-aliasing information.</p>
+
+            <p>The following table describes these properties:</p>
+
+            
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" frame="border" border="1" rules="all">
+                  
+                  
+                  <thead align="left">
+                     <tr>
+                        <th class="cellrowborder" valign="top" width="NaN%" id="d211623e1123">
+                           <p>Style property</p>
+
+                        </th>
+
+                        <th class="cellrowborder" valign="top" width="NaN%" id="d211623e1129">
+                           <p>Description</p>
+
+                        </th>
+
+                     </tr>
+
+                  </thead>
+
+                  <tbody>
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d211623e1123 ">
+                           <p>
+                              <samp class="codeph">fontAntiAliasType</samp>
+                           </p>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d211623e1129 ">
+                           <p>Sets the <samp class="codeph">antiAliasType</samp> property
+of internal TextField controls. The valid values are <samp class="codeph">normal</samp> and <samp class="codeph">advanced</samp>.
+The default value is <samp class="codeph">advanced</samp>, which enables advanced
+anti-aliasing for the font. </p>
+
+                           <p>Set this property to <samp class="codeph">normal</samp> to
+prevent the compiler from using advanced anti-aliasing.</p>
+
+                           <p>This
+style has no effect for system fonts or fonts embedded without the
+advanced anti-aliasing information. </p>
+
+                        </td>
+
+                     </tr>
+
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d211623e1123 ">
+                           <p>
+                              <samp class="codeph">fontGridFitType</samp>
+                           </p>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d211623e1129 ">
+                           <p>Sets the <samp class="codeph">gridFitType</samp> property
+of internal TextField controls. The valid values are <samp class="codeph">none</samp>, <samp class="codeph">pixel</samp>,
+and <samp class="codeph">subpixel</samp>. The default value is <samp class="codeph">pixel</samp>.
+For more information, see the <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/flash/text/TextField.html" target="_blank">TextField</a> and <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/flash/text/GridFitType.html" target="_blank">GridFitType</a> classes
+in the <em>
+                                 <a href="http://www.adobe.com/go/learn_flex4_apiref_en" target="_blank">ActionScript 3.0 Reference for the Adobe
+Flash Platform</a>
+                              </em>. </p>
+
+                           <p>This property has the same effect
+as the <samp class="codeph">gridFitType</samp> style property of the TextField
+control for system fonts, only it applies when you embed fonts with
+advanced anti-aliasing.</p>
+
+                           <p>Changing the value of this property
+has no effect unless the <samp class="codeph">fontAntiAliasType</samp> property
+is set to <samp class="codeph">advanced</samp>.</p>
+
+                        </td>
+
+                     </tr>
+
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d211623e1123 ">
+                           <p>
+                              <samp class="codeph">fontSharpness</samp>
+                           </p>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d211623e1129 ">
+                           <p>Sets the <samp class="codeph">sharpness</samp> property
+of internal TextField controls. The valid values are numbers from
+-400 to 400. The default value is 0. </p>
+
+                           <p>This property has the
+same effect as the <samp class="codeph">fontSharpness</samp> style property
+on the TextField control for system fonts, only it applies when
+you embed fonts with advanced anti-aliasing.</p>
+
+                           <p>Changing the
+value of this property has no effect unless the <samp class="codeph">fontAntiAliasType</samp> property
+is set to <samp class="codeph">advanced</samp>.</p>
+
+                        </td>
+
+                     </tr>
+
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d211623e1123 ">
+                           <p>
+                              <samp class="codeph">fontThickness</samp>
+                           </p>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d211623e1129 ">
+                           <p>Sets the <samp class="codeph">thickness</samp> property
+of internal TextField controls. The valid values are numbers from
+-200 to 200. The default value is 0. </p>
+
+                           <p>This property has the
+same effect as the <samp class="codeph">fontThickness</samp> style property
+on the TextField control for system fonts, only it applies when
+you embed fonts with advanced anti-aliasing.</p>
+
+                           <p>Changing the
+value of this property has no effect unless the <samp class="codeph">fontAntiAliasType</samp> property
+is set to <samp class="codeph">advanced</samp>.</p>
+
+                        </td>
+
+                     </tr>
+
+                  </tbody>
+
+               </table>
+</div>
+
+            <p>To use functionality similar to advanced anti-aliasing with CFF
+based fonts, you use the functionality of FTE that is built into
+Spark’s text-based controls. For more information, see <a href="flx_formatters_fm.html#WS2db454920e96a9e51e63e3d11c0bf69084-7fef_verapache">Formatting
+Data</a>.</p>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf6320a-7ff8_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf6320a-7ff8_verapache"><!-- --></a>
+         <h3 class="topictitle3">Detecting embedded fonts</h3>
+
+         
+         <div>
+            <p>You can use the <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/managers/SystemManager.html" target="_blank">SystemManager</a> class’s <samp class="codeph">isFontFaceEmbedded()</samp> method
+to determine whether the font is embedded or whether it has been
+registered globally with the <samp class="codeph">register()</samp> method
+of the <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/flash/text/Font.html" target="_blank">Font</a> class. The <samp class="codeph">isFontFaceEmbedded()</samp> method
+takes a single argument—the object that describes the font’s <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/flash/text/TextFormat.html" target="_blank">TextFormat</a>—and
+returns a Boolean value that indicates whether the font family you
+specify is embedded, as the following example shows:</p>
+
+            <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- fonts/DetectingEmbeddedFonts.mxml --&gt; 
+&lt;s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009"    
+    xmlns:mx="library://ns.adobe.com/flex/mx"     
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+     creationComplete="determineIfFontFaceIsEmbedded()"&gt; 
+     
+    &lt;s:layout&gt; 
+        &lt;s:VerticalLayout/&gt; 
+    &lt;/s:layout&gt; 
+     
+  &lt;fx:Style&gt; 
+     @font-face { 
+        src: url(../assets/MyriadWebPro.ttf); 
+        fontFamily: myPlainFont; 
+        embedAsCFF: true; 
+     } 
+     
+     .myStyle1 { 
+        fontFamily: myPlainFont; 
+        fontSize:12pt 
+     } 
+  &lt;/fx:Style&gt; 
+  
+  &lt;fx:Script&gt;&lt;![CDATA[ 
+     import mx.managers.SystemManager; 
+     import mx.core.FlexGlobals; 
+     import flash.text.TextFormat; 
+     
+    [Bindable] 
+     private var b1:Boolean; 
+    [Bindable] 
+     private var b2:Boolean; 
+     
+     public function determineIfFontFaceIsEmbedded():void { 
+        var tf1:TextFormat = new TextFormat(); 
+        tf1.font = "myPlainFont"; 
+        
+        var tf2:TextFormat = new TextFormat(); 
+        tf2.font = "Arial"; 
+        
+        b1 = FlexGlobals.topLevelApplication.systemManager. 
+           isFontFaceEmbedded(tf1); 
+        b2 = FlexGlobals.topLevelApplication.systemManager. 
+           isFontFaceEmbedded(tf2); 
+     } 
+  ]]&gt;&lt;/fx:Script&gt; 
+ 
+  &lt;s:Form&gt; 
+     &lt;s:FormItem label="isFontFaceEmbedded (myPlainFont):"&gt; 
+        &lt;s:Label id="l1" text=" {b1}"/&gt; 
+     &lt;/s:FormItem&gt;         
+     &lt;s:FormItem label="isFontFaceEmbedded (Arial):"&gt; 
+        &lt;s:Label id="l2" text="{b2}"/&gt; 
+     &lt;/s:FormItem&gt;         
+  &lt;/s:Form&gt;    
+&lt;/s:Application&gt;</pre>
+
+            <p>In this example, the font identified by the myPlainFont family
+name is embedded, but the Arial font is not.</p>
+
+            <p>You can use the <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/flash/text/Font.html" target="_blank">Font</a> class’s <samp class="codeph">enumerateFonts()</samp> method
+to output information about device or embedded fonts. The following
+example lists embedded fonts:</p>
+
+            <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- fonts/EnumerateFonts.mxml --&gt; 
+&lt;s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009"    
+    xmlns:mx="library://ns.adobe.com/flex/mx"     
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    creationComplete="listFonts()"&gt; 
+    
+    &lt;s:layout&gt; 
+        &lt;s:VerticalLayout/&gt; 
+    &lt;/s:layout&gt; 
+ 
+  &lt;fx:Style&gt; 
+     @font-face { 
+        src:url("../assets/MyriadWebPro.ttf"); 
+        fontFamily: myFont; 
+        embedAsCFF: true; 
+     } 
+ 
+     @font-face { 
+        src:url("../assets/MyriadWebPro-Bold.ttf"); 
+        fontFamily: myFont; 
+        fontWeight: bold; 
+        embedAsCFF: true; 
+     } 
+ 
+     @font-face { 
+        src:url("../assets/MyriadWebPro-Italic.ttf"); 
+        fontFamily: myFont; 
+        fontStyle: italic; 
+        embedAsCFF: true; 
+     } 
+     
+     .myPlainStyle { 
+        fontSize: 20; 
+        fontFamily: myFont; 
+     } 
+     
+     .myBoldStyle { 
+        fontSize: 20; 
+        fontFamily: myFont; 
+        fontWeight: bold; 
+     } 
+ 
+     .myItalicStyle { 
+        fontSize: 20; 
+        fontFamily: myFont; 
+        fontStyle: italic; 
+     } 
+  &lt;/fx:Style&gt; 
+ 
+  &lt;fx:Script&gt;&lt;![CDATA[ 
+     private function listFonts():void { 
+        var fontArray:Array = Font.enumerateFonts(true); 
+        ta1.text += "Fonts: \n"; 
+        for(var i:int = 0; i &lt; fontArray.length; i++) { 
+            var thisFont:Font = fontArray[i]; 
+            ta1.text += "FONT " + i + ":: name: " + thisFont.fontName + "; typeface: " + 
+                thisFont.fontStyle + "; type: " + thisFont.fontType; 
+            if (thisFont.fontType == "embeddedCFF"||thisFont.fontType == "embedded") { 
+                ta1.text += "*";              
+            }            
+            ta1.text +=  "\n"; 
+            
+        } 
+        
+     } 
+  ]]&gt;&lt;/fx:Script&gt; 
+ 
+  &lt;s:VGroup&gt; 
+     &lt;s:RichText text="Plain Label" styleName="myPlainStyle"/&gt; 
+     &lt;s:RichText text="Bold Label" styleName="myBoldStyle"/&gt; 
+     &lt;s:RichText text="Italic Label" styleName="myItalicStyle"/&gt; 
+     &lt;s:TextArea id="ta1" height="200" width="400"/&gt; 
+     &lt;s:RichText text="* Embedded" styleName="myItalicStyle"/&gt; 
+  &lt;/s:VGroup&gt; 
+&lt;/s:Application&gt;</pre>
+
+            <p>The following list shows the first few lines of sample output.
+This list will vary depending on the client’s system.</p>
+
+            <pre class="codeblock">FONT 0:: name: myFont; typeface: regular; type: embeddedCFF* 
+FONT 1:: name: myFont; typeface: bold; type: embeddedCFF* 
+FONT 2:: name: myFont; typeface: italic; type: embeddedCFF* 
+FONT 3:: name: Marlett; typeface: regular; type: device 
+FONT 4:: name: Arial; typeface: regular; type: device 
+FONT 5:: name: Arial CE; typeface: regular; type: device</pre>
+
+            <p>The <samp class="codeph">enumerateFonts()</samp> method takes a single Boolean
+argument: <samp class="codeph">enumerateDeviceFonts</samp>. The default value
+of the <samp class="codeph">enumerateDeviceFonts</samp> property is <samp class="codeph">false</samp>,
+which means it returns an Array of embedded fonts by default. </p>
+
+            <p>If you set the <samp class="codeph">enumerateDeviceFonts</samp> argument
+to <samp class="codeph">true</samp>, the <samp class="codeph">enumerateFonts()</samp> method
+returns an array of available device fonts on the client system,
+but only if the client’s mms.cfg file sets the <samp class="codeph">DisableDeviceFontEnumeration</samp> property
+to 0, the default value. If you set the <samp class="codeph">DisableDeviceFontEnumeration</samp> property
+to 1, Flash Player cannot list device fonts on a client computer
+unless you explicitly configure the client to allow it. For more
+information about configuring the client with the mms.cfg file,
+see the Flash Player documentation.</p>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS02f7d8d4857b16776fadeef71269f135e73-8000_verapache"><a name="WS02f7d8d4857b16776fadeef71269f135e73-8000_verapache"><!-- --></a>
+         <h3 class="topictitle3">Using the fontswf utility</h3>
+
+         
+         <div>
+            <p>The fontswf utility is a simple command line tool that
+converts a single font face from a font file into a SWF file. This
+SWF file can be used as the source of an embedded font in your applications.
+Supported font file types are *.ttf, *.otf, *.ttc, and *.dfont.</p>
+
+            <p>The fontswf utility is for users of the <a href="http://opensource.adobe.com/wiki/display/flexsdk/Legal+Stuff" target="_blank">Mozilla Public License</a> version of
+the Flex SDK. This version includes only open-source technology.
+Because the font managers are not open-source, this utility can
+be used in their place so that you can embed fonts in your applications.</p>
+
+            <p>The fontswf utility is in the <em>sdk_root</em>/bin directory of
+the Flex SDK. If you do not have the fontswf utility in your bin
+directory, you must get a more recent version of the SDK.</p>
+
+            <div class="p">You use fontswf by invoking it from the command line, as the
+following example shows:<pre class="codeblock">fontswf [options] <em>font_input_file</em></pre>
+
+            </div>
+
+            <div class="p">For example:<pre class="codeblock">c:\flex\bin&gt; fontswf -4 -u U+0020-007F -bold -o c:/temp/myboldfont.swf c:/assets/fonts/myboldfont.swf</pre>
+
+            </div>
+
+            <div class="p">The following table describes the options for the fontswf utility:
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" frame="border" border="1" rules="all">
+                     
+                     
+                     <thead align="left">
+                        <tr>
+                           <th class="cellrowborder" valign="top" width="NaN%" id="d211623e1483">
+                              <p>Option</p>
+
+                           </th>
+
+                           <th class="cellrowborder" valign="top" width="NaN%" id="d211623e1489">
+                              <p>Description</p>
+
+                           </th>
+
+                        </tr>
+
+                     </thead>
+
+                     <tbody>
+                        <tr>
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d211623e1483 ">
+                              <p>
+                                 <samp class="codeph">-a, -alias <em>name</em>
+                                 </samp>
+                              </p>
+
+                           </td>
+
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d211623e1489 ">
+                              <p>Sets the font’s alias. The default is the
+font’s family name. </p>
+
+                           </td>
+
+                        </tr>
+
+                        <tr>
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d211623e1483 ">
+                              <p>
+                                 <samp class="codeph">-b, -bold</samp>
+                              </p>
+
+                           </td>
+
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d211623e1489 ">
+                              <p>Embeds the font’s bold face.</p>
+
+                           </td>
+
+                        </tr>
+
+                        <tr>
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d211623e1483 ">
+                              <p>
+                                 <samp class="codeph">-i, -italic</samp>
+                              </p>
+
+                           </td>
+
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d211623e1489 ">
+                              <p>Embeds the font’s italic face.</p>
+
+                           </td>
+
+                        </tr>
+
+                        <tr>
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d211623e1483 ">
+                              <p>
+                                 <samp class="codeph">-o, -output <em>file_path</em>
+                                 </samp>
+                              </p>
+
+                           </td>
+
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d211623e1489 ">
+                              <p>Sets the output file path for the SWF file.</p>
+
+                           </td>
+
+                        </tr>
+
+                        <tr>
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d211623e1483 ">
+                              <p>
+                                 <samp class="codeph">-u, -unicode-range <em>range</em>
+                                 </samp>
+                              </p>
+
+                           </td>
+
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d211623e1489 ">
+                              <p>Sets the included character range.</p>
+
+                              <p>The
+default value is “*”, which includes all characters.</p>
+
+                              <p>For information
+on using character ranges, see <a href="flx_fonts_ft.html#WS2db454920e96a9e51e63e3d11c0bf69084-7e04_verapache">Setting
+character ranges</a>.</p>
+
+                           </td>
+
+                        </tr>
+
+                        <tr>
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d211623e1483 ">
+                              <p>
+                                 <samp class="codeph">-3</samp>
+                              </p>
+
+                           </td>
+
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d211623e1489 ">
+                              <p>Generates a font SWF file for applications
+that use TextField-based text rendering. Use this option if you
+are creating a font SWF file for a Flex 3 application.</p>
+
+                           </td>
+
+                        </tr>
+
+                        <tr>
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d211623e1483 ">
+                              <p>
+                                 <samp class="codeph">-4</samp>
+                              </p>
+
+                           </td>
+
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d211623e1489 ">
+                              <p>Generates a font SWF file for applications
+that support CFF (Flex 4) with Flash Player 10.</p>
+
+                              <p>This is the
+default option.</p>
+
+                           </td>
+
+                        </tr>
+
+                     </tbody>
+
+                  </table>
+</div>
+
+            </div>
+
+         </div>
+
+      </div>
+
+   </div>
+
+   <div class="nested1" id="WS2db454920e96a9e51e63e3d11c0bf69084-7e06_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7e06_verapache"><!-- --></a>
+      <h2 class="topictitle2">Using multiple typefaces</h2>
+
+      
+      <div>
+         <p>
+            Most
+fonts have four typeface styles: plain, bold, italic, and bold-italic.
+You can embed any number of these typeface styles for each font
+in your applications. If you embed only the bold typeface in your
+application, you cannot use the normal (or plain) typeface unless
+you also embed that typeface. For each typeface that you use, you
+must add a new <samp class="codeph">@font-face</samp> declaration to your style
+sheet. </p>
+
+         <div class="note"><span class="notetitle">Note:</span> Some Flex controls, such as the MX <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/controls/Button.html" target="_blank">Button</a> control,
+use the bold typeface style by default, rather than the plain style.
+If you use an embedded font for an MX Button’s label, you must either
+embed the bold font style for that font, or set the default typeface
+for the MX Button label to match a typeface that you embed.</div>
+
+         <p>
+            
+            The following example embeds the bold, italic,
+and plain typefaces of the Myriad Web Pro font. After
+you define the font face, you define selectors for the font by using
+the same alias as the <samp class="codeph">fontFamily</samp>. You define one
+for the bold, one for the italic, and one for the plain face. To
+apply the font styles, this example applies the class selectors
+to the Label controls inline:</p>
+
+         <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- fonts/MultipleFaces.mxml --&gt; 
+&lt;s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009"    
+    xmlns:mx="library://ns.adobe.com/flex/mx"     
+    xmlns:s="library://ns.adobe.com/flex/spark"&gt; 
+ 
+    &lt;!-- Use a vertical layout --&gt; 
+    &lt;s:layout&gt; 
+        &lt;s:VerticalLayout/&gt; 
+    &lt;/s:layout&gt; 
+ 
+  &lt;fx:Style&gt; 
+     @font-face { 
+        src:url("../assets/MyriadWebPro.ttf"); 
+        fontFamily: myFont; 
+        embedAsCFF: true; 
+     } 
+ 
+     @font-face { 
+        /* Note the different filename for boldface. */ 
+        src:url("../assets/MyriadWebPro-Bold.ttf"); 
+        fontFamily: myFont; /* Notice that this is the same alias. */ 
+        fontWeight: bold; 
+        embedAsCFF: true; 
+     } 
+ 
+     @font-face { 
+        /* Note the different filename for italic face. */ 
+        src:url("../assets/MyriadWebPro-Italic.ttf"); 
+        fontFamily: myFont; /* Notice that this is the same alias. */ 
+        fontStyle: italic; 
+        embedAsCFF: true; 
+     } 
+     
+     .myPlainStyle { 
+        fontSize: 32; 
+        fontFamily: myFont; 
+     } 
+     
+     .myBoldStyle { 
+        fontSize: 32; 
+        fontFamily: myFont; 
+        fontWeight: bold; 
+     } 
+ 
+     .myItalicStyle { 
+        fontSize: 32; 
+        fontFamily: myFont; 
+        fontStyle: italic; 
+     } 
+  &lt;/fx:Style&gt; 
+ 
+  &lt;s:VGroup&gt; 
+     &lt;s:Label text="Plain Text" styleName="myPlainStyle"/&gt; 
+     &lt;s:Label text="Italic Text" styleName="myItalicStyle"/&gt; 
+     &lt;s:Label text="Bold Text" styleName="myBoldStyle"/&gt; 
+  &lt;/s:VGroup&gt; 
+ 
+&lt;/s:Application&gt;</pre>
+
+         <p>Optionally, you can apply the bold or italic type to controls
+inline, as the following example shows:</p>
+
+         <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- fonts/MultipleFacesAppliedInline.mxml --&gt; 
+&lt;s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009"    
+    xmlns:mx="library://ns.adobe.com/flex/mx"     
+    xmlns:s="library://ns.adobe.com/flex/spark"&gt; 
+ 
+    &lt;s:layout&gt; 
+        &lt;s:VerticalLayout/&gt; 
+    &lt;/s:layout&gt; 
+ 
+  &lt;fx:Style&gt; 
+     @font-face { 
+        src:url("../assets/MyriadWebPro.ttf"); 
+        fontFamily: myFont; 
+        embedAsCFF: true; 
+     } 
+ 
+     @font-face { 
+        src:url("../assets/MyriadWebPro-Bold.ttf"); 
+        fontFamily: myFont; 
+        fontWeight: bold; 
+        embedAsCFF: true; 
+     } 
+ 
+     @font-face { 
+        src:url("../assets/MyriadWebPro-Italic.ttf"); 
+        fontFamily: myFont; 
+        fontStyle: italic; 
+        embedAsCFF: true; 
+     } 
+     
+     .myStyle1 { 
+        fontSize: 32; 
+        fontFamily: myFont; 
+     } 
+  &lt;/fx:Style&gt; 
+ 
+  &lt;s:VGroup styleName="myStyle1"&gt; 
+     &lt;s:Label text="Plain Text"/&gt; 
+     &lt;s:Label text="Italic Text" fontStyle="italic"/&gt; 
+     &lt;s:Label text="Bold Text" fontWeight="bold"/&gt; 
+  &lt;/s:VGroup&gt; 
+ 
+&lt;/s:Application&gt;</pre>
+
+         <p>If you use a bold-italic font, the font must have a separate
+typeface for that font. You specify both properties (<samp class="codeph">fontWeight</samp> and <samp class="codeph">fontStyle</samp>)
+in the <samp class="codeph">@font-face</samp> and selector blocks, as the following
+example shows:</p>
+
+         <pre class="codeblock"> @font-face { 
+ 	src:url("../assets/KNIZIA-BI.TTF"); 
+ 	fontStyle: italic; 
+ 	fontWeight: bold; 
+ 	fontFamily: myFont; 
+ 	embedAsCFF: true; 
+ } 
+ .myBoldItalicStyle { 
+ 	fontFamily:myFont; 
+ 	fontWeight:bold; 
+ 	fontStyle:italic; 
+ 	fontSize: 32; 
+ }</pre>
+
+         <p>In the <samp class="codeph">@font-face</samp> definition, you can specify
+whether the font is bold or italic by using the <samp class="codeph">fontWeight</samp> and <samp class="codeph">fontStyle</samp> properties.
+For a bold font, you can set <samp class="codeph">fontWeight</samp> to <samp class="codeph">bold</samp> or
+an integer greater than or equal to 700. You can specify the <samp class="codeph">fontWeight</samp> as <samp class="codeph">plain</samp> or <samp class="codeph">normal</samp> for
+a nonboldface font. For an italic font, you can set <samp class="codeph">fontStyle</samp> to <samp class="codeph">italic</samp> or <samp class="codeph">oblique</samp>.
+You can specify the <samp class="codeph">fontStyle</samp> as <samp class="codeph">plain</samp> or <samp class="codeph">normal</samp> for
+a nonitalic face. If you do not specify a <samp class="codeph">fontWeight</samp> or <samp class="codeph">fontStyle</samp>,
+Flex assumes you embedded the plain or regular font face.</p>
+
+         <p>You can also add any other properties for the embedded font,
+such as <samp class="codeph">fontSize</samp>, to the selector, as you would
+with any class or type selector.</p>
+
+         <p>Some fonts with multiple faces are packaged as TTC (TrueType
+Collection) files. In these cases, you can use the <samp class="codeph">fontFamily</samp> alias
+to embed the specific face in the TTC file that you want. For more
+information, see <a href="flx_fonts_ft.html#WS02f7d8d4857b1677-11e364d1266679ac18-8000_verapache">Embedding
+fonts in container formats</a>.</p>
+
+         <p>By default, Flex includes the entire font definition for each
+embedded font in the application, so you should limit the number
+of fonts that you use to reduce the size of the application. You
+can limit the size of the font definition by defining the character
+range of the font. For more information, see <a href="flx_fonts_ft.html#WS2db454920e96a9e51e63e3d11c0bf69084-7e04_verapache">Setting
+character ranges</a>.</p>
+
+      </div>
+
+   </div>
+
+   <div class="nested1" id="WS2db454920e96a9e51e63e3d11c0bf69084-7e04_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7e04_verapache"><!-- --></a>
+      <h2 class="topictitle2">Setting character ranges</h2>
+
+      
+      <div>
+         <p>By specifying a range (or subset) of characters that compose
+the face of an embedded font, you reduce the size of an embedded
+font. Each character in a font that you use must be described; removing
+some of these characters reduces the overall size of the description
+information that Flex must include for each embedded font.</p>
+
+         <p>
+            You
+can set the range of glyphs in the flex-config.xml file or in the <samp class="codeph">@font-face</samp> declaration.
+You specify individual characters or ranges of characters using
+the Unicode values for the characters, and you can set multiple
+ranges for each font declaration.</p>
+
+         <p>The syntax for setting a character range is as follows:</p>
+
+         <pre class="codeblock">U+[beginning of range]-[end of range];</pre>
+
+         <div class="p">For example:<pre class="codeblock">U+0041-005A</pre>
+
+         </div>
+
+         <p>You can also use wild cards Unicode range syntax; for example:</p>
+
+         <div class="p">
+            <pre class="codeblock">U+00??</pre>
+
+         </div>
+
+         <p>This is the same as <samp class="codeph">U+0000-00FF</samp>.</p>
+
+         <div class="p">You can also refer to a single character without a range; for
+example:<pre class="codeblock">U+0041</pre>
+
+         </div>
+
+         <div class="p">Finally, you can specify a list of ranges by using a comma separator;
+for example:<pre class="codeblock">U+0041,U+0043-00FF,U+0045</pre>
+
+         </div>
+
+         <p>If you use a character that is outside of the declared range,
+Flex displays a device font for that character (for FTE-based controls)
+or a blank character (for non-FTE-based controls). For more information
+on setting character ranges in applications built with Flex, see
+the CSS-2 Fonts specification at <a href="http://www.w3.org/TR/1998/REC-CSS2-19980512/fonts.html#descdef-unicode-range" target="_blank">www.w3.org/TR/1998/REC-CSS2-19980512/fonts.html#descdef-unicode-range</a>.</p>
+
+         <p>If you embed a font from a SWF file that you create with Flash
+or the fontswf utility, you should set the character range to include
+only those characters that you need to keep the size of the SWF
+file as small as possible. For information about using the fontswf
+utility, see <a href="flx_fonts_ft.html#WS02f7d8d4857b16776fadeef71269f135e73-8000_verapache">Using
+the fontswf utility</a>.</p>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf6320a-7ff4_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf6320a-7ff4_verapache"><!-- --></a>
+         <h3 class="topictitle3">Setting ranges in font-face declarations</h3>
+
+         
+         <div>
+            <p>
+               You
+can set the range of embedded characters in an application by using
+the <samp class="codeph">unicodeRange</samp> property of the @<samp class="codeph">font-face</samp> declaration.
+The following example embeds the Myriad Web Pro font and defines
+the range of characters for the font in the <samp class="codeph">&lt;fx:Style&gt;</samp> tag:</p>
+
+            <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- fonts/EmbeddedFontCharacterRange.mxml --&gt; 
+&lt;s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009"    
+    xmlns:mx="library://ns.adobe.com/flex/mx"     
+    xmlns:s="library://ns.adobe.com/flex/spark"&gt; 
+ 
+    &lt;s:layout&gt; 
+        &lt;s:VerticalLayout/&gt; 
+    &lt;/s:layout&gt; 
+ 
+  &lt;fx:Style&gt; 
+     @namespace s "library://ns.adobe.com/flex/spark"; 
+ 
+     @font-face { 
+        src:url("../assets/MyriadWebPro.ttf"); 
+        fontFamily: myFontFamily; 
+        embedAsCFF: true; 
+        unicodeRange: 
+           U+0041-005A, /* Upper-Case [A..Z] */ 
+           U+0061-007A, /* Lower-Case a-z */ 
+           U+0030-0039, /* Numbers [0..9] */ 
+           U+002E-002E; /* Period [.] */ 
+     } 
+ 
+     s|RichText { 
+        fontFamily: myFontFamily; 
+        fontSize: 32; 
+     }     
+  &lt;/fx:Style&gt; 
+ 
+  &lt;s:Panel title="Embedded Font Character Range"&gt; 
+        &lt;s:RichText width="400" height="150"&gt; 
+            &lt;s:text&gt;The Text Uses Only Some of Available Characters 0 1 2 3 4 5 6 7 8 9.&lt;/s:text&gt; 
+        &lt;/s:RichText&gt; 
+  &lt;/s:Panel&gt; 
+&lt;/s:Application&gt;</pre>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf6320a-7ff3_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf6320a-7ff3_verapache"><!-- --></a>
+         <h3 class="topictitle3">Setting language ranges in flex-config.xml</h3>
+
+         
+         <div>
+            <p>
+               
+               You can specify the language
+and character range for embedded fonts in the flex-config.xml file
+by using the <samp class="codeph">&lt;language-range&gt;</samp> child tag.
+This lets you define the range once and use it across multiple <samp class="codeph">@font-face</samp> blocks. </p>
+
+            <p>
+               The
+following example creates named ranges in the flex‑config.xml file:</p>
+
+            <pre class="codeblock"> &lt;fonts&gt; 
+ 	&lt;languages&gt; 
+ 		&lt;language-range&gt; 
+ 			&lt;lang&gt;englishRange&lt;/lang&gt; 
+ 			&lt;range&gt;U+0020-007E&lt;/range&gt; 
+ 		&lt;/language-range&gt; 
+ 		&lt;language-range&gt; 
+ 			&lt;lang&gt;lowerCaseEnglish&lt;/lang&gt; 
+ 			&lt;range&gt;U+0061-007A&lt;/range&gt; 
+ 		&lt;/language-range&gt; 
+ 	&lt;languages&gt; 
+ &lt;/fonts&gt;</pre>
+
+            <p>In your style sheet, you point to the defined ranges by using
+the <samp class="codeph">unicodeRange</samp> property of the <samp class="codeph">@font-face</samp> declaration,
+as the following example shows:</p>
+
+            <pre class="codeblock"> @font-face { 
+ 	fontFamily: myPlainFont;  
+ 	src: url("../assets/MyriadWebPro.ttf"); 
+ 	unicodeRange: "englishRange";  
+	embedAsCFF: true; 
+ } </pre>
+
+            <p>
+               
+               Flex
+includes a file that lists convenient mappings of the Flash UnicodeTable.xml character
+ranges for use in the Flex configuration file. For the Flex SDK,
+the file is located at <em>flex_install_dir</em>/frameworks/flash-unicode-table.xml.</p>
+
+            <p>The following example shows the predefined range Latin 1:</p>
+
+            <pre class="codeblock"> &lt;language-range&gt; 
+ 	&lt;lang&gt;Latin I&lt;/lang&gt; 
+ 	&lt;range&gt;U+0020,U+00A1-00FF,U+2000-206F,U+20A0-20CF,U+2100-2183&lt;/range&gt; 
+ &lt;/language-range&gt;</pre>
+
+            <p>To make ranges listed in the flash-unicode-table.xml file available
+in your applications, copy the ranges from this file and add them
+to the flex-config.xml files.</p>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf6320a-7ff2_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf6320a-7ff2_verapache"><!-- --></a>
+         <h3 class="topictitle3">Detecting available ranges</h3>
+
+         
+         <div>
+            <p>You can use the <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/flash/text/Font.html" target="_blank">Font</a> class
+to detect the available characters in an embedded font. You do this
+with the <samp class="codeph">hasGlyphs()</samp> method. </p>
+
+            <p>The following example embeds the same font twice, each time restricting
+the font to different character ranges. The first font includes
+support only for the letters A and B. The second font family includes
+all 128 glyphs in the Basic Latin block.</p>
+
+            <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- charts/CharacterRangeDetection.mxml --&gt; 
+&lt;s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009"    
+    xmlns:mx="library://ns.adobe.com/flex/mx"     
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    creationComplete="checkCharacterSupport();" 
+&gt; 
+    &lt;s:layout&gt; 
+        &lt;s:VerticalLayout/&gt; 
+    &lt;/s:layout&gt; 
+ 
+    &lt;fx:Style&gt; 
+        @font-face { 
+            font-family: myABFont; 
+            src:url("../assets/MyriadWebPro.ttf"); 
+            /* 
+            * Limit range to the characters A and B. 
+            */ 
+            unicodeRange: U+0041-0042; 
+            embedAsCFF: true; 
+        } 
+ 
+        @font-face { 
+            font-family: myWideRangeFont; 
+            src:url("../assets/MyriadWebPro.ttf"); 
+            /* 
+            * Set range to the 128 characters in 
+            * the Basic Latin block. 
+            */ 
+            unicodeRange: U+0041-007F; 
+            embedAsCFF: true; 
+        } 
+    &lt;/fx:Style&gt; 
+ 
+    &lt;fx:Script&gt;&lt;![CDATA[ 
+        public function checkCharacterSupport():void { 
+            var fontArray:Array = Font.enumerateFonts(false); 
+            for(var i:int = 0; i &lt; fontArray.length; i++) { 
+                var thisFont:Font = fontArray[i]; 
+                if (thisFont.hasGlyphs("DHARMA")) { 
+                    ta1.text += "The font '" + thisFont.fontName + 
+                        "' supports these glyphs.\n"; 
+                } else { 
+                    ta1.text += "The font '" + thisFont.fontName + 
+                        "' does not support these glyphs.\n"; 
+                } 
+            } 
+        } 
+    ]]&gt;&lt;/fx:Script&gt; 
+ 
+    &lt;s:VGroup&gt; 
+        &lt;s:RichText&gt; 
+            &lt;s:text&gt;myABFont unicodeRange: U+0041-0042 (characters A and B)&lt;/s:text&gt; 
+        &lt;/s:RichText&gt; 
+        &lt;s:RichText&gt; 
+            &lt;s:text&gt;myWideRangeFont unicodeRange: U+0041-007F (Basic Latin chars)&lt;/s:text&gt; 
+        &lt;/s:RichText&gt; 
+ 
+        &lt;s:Label text="Glyphs: DHARMA"/&gt; 
+ 
+        &lt;s:RichText id="ta1" height="150" width="300"/&gt; 
+    &lt;/s:VGroup&gt; 
+ 
+&lt;/s:Application&gt;</pre>
+
+         </div>
+
+      </div>
+
+   </div>
+
+   <div class="nested1" id="WS2db454920e96a9e51e63e3d11c0bf6320a-7ff1_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf6320a-7ff1_verapache"><!-- --></a>
+      <h2 class="topictitle2">Embedding multi-byte fonts</h2>
+
+      
+      <div>
+         <p>
+            
+            When
+using multi-byte fonts that have a large number of characters, such
+as those used in Asian languages, you should embed the smallest
+possible set of characters. If you embed a font’s entire character
+set, the size of your application’s SWF file can be very large.
+You can define sets of Unicode character ranges in the flex-config.xml
+file and then reference the name of that range in your style’s <samp class="codeph">@font-face</samp> declaration.</p>
+
+         <p>The Flex CookBook shows you <a href="http://cookbooks.adobe.com/post_Simply_Embed_Fonts_with_Limited_Character_Sets_in-16219.html" target="_blank">how to limit character sets when embedding fonts</a>.</p>
+
+         <p>Flex provides predefined character ranges for common multi-byte
+scripts such as Thai, Kanji, Hangul, and Hebrew in the flash-unicode-table.xml
+file. This file is not processed by Flex, but is included to provide
+you with ready definitions for various character ranges. For example,
+the following character range for Thai is listed in the flash-unicode-table.xml
+file:</p>
+
+         <pre class="codeblock"> &lt;language-range&gt; 
+ 	&lt;lang&gt;Thai&lt;/lang&gt; 
+ 	&lt;range&gt;U+0E01-0E5B&lt;/range&gt; 
+ &lt;/language-range&gt;</pre>
+
+         <p>To use this language in your application, copy the character
+range to the flex-config.xml file or pass it on the command line
+by using the <samp class="codeph">fonts.languages.language-range</samp> option.
+Add the full definition as a child tag to the <samp class="codeph">&lt;languages&gt;</samp> tag,
+as the following example shows:</p>
+
+         <pre class="codeblock"> &lt;flex-config&gt; 
+	&lt;compiler&gt; 
+ 		&lt;fonts&gt; 
+ 			&lt;languages&gt; 
+ 				&lt;language-range&gt; 
+ 					&lt;lang&gt;thai&lt;/lang&gt; 
+ 					&lt;range&gt;U+0E01-0E5B&lt;/range&gt; 
+ 				&lt;/language-range&gt; 
+ 			&lt;/languages&gt; 
+ 		&lt;/fonts&gt; 
+	&lt;/compiler&gt; 
+ 	... 
+ &lt;/flex-config&gt;</pre>
+
+         <p>You can change the value of the <samp class="codeph">&lt;lang&gt;</samp> element
+to anything you want. When you embed the font by using CSS, you
+refer to the language by using this value in the <samp class="codeph">unicodeRange</samp> property
+of the <samp class="codeph">@font-face</samp> declaration, as the following
+example shows:</p>
+
+         <pre class="codeblock"> @font-face { 
+ 	fontFamily:"Thai_font"; 
+ 	src: url("../assets/THAN.TTF"); /* Embed from file */ 
+  	unicodeRange:"thai"; 
+	embedAsCFF: true; 
+ }</pre>
+
+      </div>
+
+   </div>
+
+   <div class="nested1" id="WS0FA8AEDB-C69F-4f19-ADA5-AA5757217624_verapache"><a name="WS0FA8AEDB-C69F-4f19-ADA5-AA5757217624_verapache"><!-- --></a>
+      <h2 class="topictitle2">Embedding fonts with MX components</h2>
+
+      
+      <div>
+         <p>The <samp class="codeph">embedAsCFF</samp> (Compact Font Format) property
+indicates whether to embed a font that supports the advanced text
+layout features used by the Flash Text Engine (FTE). This is sometimes
+referred to as DefineFont4. If you set the value of the <samp class="codeph">embedAsCFF</samp> property
+to <samp class="codeph">true</samp>, then you can only use that font with controls
+that support FTE. If you set the value of the <samp class="codeph">embedAsCFF</samp> property
+to <samp class="codeph">false</samp>, then the embedded font does not support
+FTE and you can only use that font with controls that do not have
+FTE support.</p>
+
+         <p>The implications of this appear when you try to use MX controls
+with a font that was embedded with FTE support. In those cases,
+the text does not appear, as the following example shows. </p>
+
+         <div class="p">In the first panel, the embedded CFF font is applied to the Spark
+control and the embedded non-CFF font is applied to the MX control.
+The result is that the Button labels show correctly. In the second
+Panel, both Button labels use the CFF font. The result is that no
+text appears for the MX control in the second Panel because the
+MX control does not support CFF.<pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- fonts/CFFTest.mxml --&gt; 
+&lt;s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009"    
+    xmlns:mx="library://ns.adobe.com/flex/mx"     
+    xmlns:s="library://ns.adobe.com/flex/spark"&gt; 
+ 
+    &lt;s:layout&gt; 
+        &lt;s:VerticalLayout/&gt; 
+    &lt;/s:layout&gt; 
+ 
+  &lt;fx:Style&gt; 
+     @font-face { 
+        src:url("../assets/MyriadWebPro.ttf"); 
+        fontFamily: myCFFFont; 
+        embedAsCFF: true; 
+     } 
+ 
+     @font-face { 
+        src:url("../assets/MyriadWebPro.ttf"); 
+        fontFamily: myFontNoCFF; 
+        embedAsCFF: false; 
+     } 
+     
+     .myCFFStyle { 
+        fontSize: 32; 
+        fontFamily: myCFFFont; 
+     } 
+ 
+     .myStyleNoCFF { 
+        fontSize: 32; 
+        fontFamily: myFontNoCFF; 
+     } 
+  &lt;/fx:Style&gt; 
+ 
+  &lt;s:Panel title="Using Correct Fonts"&gt; 
+    &lt;s:VGroup&gt; 
+        &lt;s:Button label="Spark Button" styleName="myCFFStyle"/&gt; 
+        &lt;mx:Button label="MX Button" styleName="myStyleNoCFF"/&gt; 
+    &lt;/s:VGroup&gt; 
+  &lt;/s:Panel&gt; 
+ 
+  &lt;s:Panel title="Using Incorrect Fonts"&gt; 
+    &lt;s:VGroup&gt; 
+        &lt;s:Button label="Spark Button" styleName="myCFFStyle"/&gt; 
+        &lt;!-- The Button label will not show up because it's a MX control that 
+        is attempting to use a Spark-compatible embedded font. --&gt; 
+        &lt;mx:Button label="MX Label" styleName="myCFFStyle"/&gt; 
+    &lt;/s:VGroup&gt; 
+  &lt;/s:Panel&gt; 
+ 
+&lt;/s:Application&gt;</pre>
+
+         </div>
+
+         <p>As this example illustrates, if you mix MX and Spark controls
+inside the same application, you might not be able to use the same
+embedded font.</p>
+
+         <div class="p">There are two possible remedies to this situation:<ul>
+               <li>
+                  <p>Specify that the MX controls use FTE classes to render text,
+rather than their default text renderers.</p>
+
+               </li>
+
+               <li>
+                  <p>Embed both the non-CFF version of the font in addition to
+the CFF version of the font. This is the less-desireable approach
+because it increases the size of your SWF file.</p>
+
+               </li>
+
+            </ul>
+
+         </div>
+
+         <p>The following sections describe each of these solutions.</p>
+
+      </div>
+
+      <div><div class="relinfo"><strong>Related information</strong><br/>
+<div><a href="flx_textcontrols_tc.html#WS2db454920e96a9e51e63e3d11c0bf69084-7d84_verapache">MX text controls</a></div>
+</div>
+</div>
+      <div class="nested2" id="WSda78ed3a750d6b8f-26a13bbf123c441239d-8000_verapache"><a name="WSda78ed3a750d6b8f-26a13bbf123c441239d-8000_verapache"><!-- --></a>
+         <h3 class="topictitle3">Using FTE in MX controls</h3>
+
+         
+         <div>
+            <p>The controls that support FTE include all Spark components
+in the spark.components.* package. This includes the Spark text
+controls such as Label, RichText, and RichEditableText. This also
+includes Spark versions of the TextInput and TextArea controls.
+This does not include MX controls in the mx.controls.* package.</p>
+
+            <p>The reason that MX controls do not support FTE is that in previous
+versions of Flex, they used the UITextField subcomponent to render
+text. This subcomponent does not support FTE. Spark controls, on
+the other hand, use FTE-compatible classes to render text.</p>
+
+            <p>The Flex SDK provides the <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/core/UIFTETextField.html" target="_blank">mx.core.UIFTETextField</a> and <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/controls/MXFTETextInput.html" target="_blank">mx.controls.MXFTETextInput</a> classes
+that support FTE for MX text controls. You can use these classes
+in some MX controls so that those controls can use CFF versions
+of embedded fonts. As a result, those controls can use the same
+embedded fonts that you also use with the Spark controls. You do
+this by setting the <samp class="codeph">textFieldClass</samp> and <samp class="codeph">textInputClass</samp> styles
+to use these classes.</p>
+
+            <p>The easiest way to use the MXFTETextInput and UIFTETextField
+classes with your MX text controls is to apply the MXFTEText.css
+theme file to your application. This theme causes your MX controls
+to use the MXFTETextInput and UIFTETextField classes for text rendering.
+The MXFTEText.css theme file is a convenience theme that is set
+up to apply only FTE-supporting classes to MX controls. </p>
+
+            <div class="p">The following excerpt from the MXFTEText.css theme file shows
+that the <samp class="codeph">textInputClass</samp> and <samp class="codeph">textFieldClass</samp> style
+properties are set to classes that support FTE:<pre class="codeblock">DateField { 
+	textInputClass: ClassReference("mx.controls.MXFTETextInput"); 
+} 
+Label { 
+	textFieldClass: ClassReference("mx.core.UIFTETextField"); 
+}</pre>
+
+            </div>
+
+            <p>On the command line, you specify the MXFTEText.css theme file
+by using the <samp class="codeph">theme</samp> compiler option, as the following
+example shows:</p>
+
+            <pre class="codeblock">mxmlc -theme+=frameworks/projects/spark/MXFTEText.css MyApp.mxml</pre>
+
+            <p>Note that instead of setting <samp class="codeph">theme=<em>filename</em>
+               </samp>,
+this example uses <samp class="codeph">theme+=<em>filename</em>
+               </samp>. This
+is so that the MXFTEText.css file is used as a theme, <em>in addition</em> to
+the default themes, not as a replacement of the default themes.</p>
+
+            <div class="p">The following example is compiled with the the MXFTEText.css
+theme. Because this theme is used, the MX text controls can use
+the same embedded font as the Spark embedded font. If you compile
+this example without the <samp class="codeph">theme</samp> option, the label
+for the MX Button does not render.<pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- fonts/UseTLFTextTheme.mxml --&gt; 
+&lt;!-- Compile this example by setting theme=MXFTEText.css for a compiler argument. --&gt; 
+&lt;s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009"    
+    xmlns:mx="library://ns.adobe.com/flex/mx"     
+    xmlns:s="library://ns.adobe.com/flex/spark"&gt; 
+ 
+    &lt;s:layout&gt; 
+        &lt;s:VerticalLayout/&gt; 
+    &lt;/s:layout&gt; 
+ 
+  &lt;fx:Style&gt; 
+     @font-face { 
+        src:url("../assets/MyriadWebPro.ttf"); 
+        fontFamily: myCFFFont; 
+        embedAsCFF: true; 
+     } 
+ 
+     .myCFFStyle { 
+        fontSize: 32; 
+        fontFamily: myCFFFont; 
+     } 
+  &lt;/fx:Style&gt; 
+ 
+  &lt;s:Panel title="Spark and MX Buttons"&gt; 
+    &lt;s:VGroup&gt; 
+        &lt;s:Button label="Spark Button" styleName="myCFFStyle"/&gt; 
+        &lt;mx:Button label="MX Button" styleName="myCFFStyle"/&gt; 
+    &lt;/s:VGroup&gt; 
+  &lt;/s:Panel&gt; 
+ 
+&lt;/s:Application&gt;</pre>
+
+            </div>
+
+            <div class="p">The MX DataGrid control has a special class, FTEDataGridItemRenderer,
+that you can use for custom item renderers. The MXFTEText.css theme
+file specifies it as follows:<pre class="codeblock">defaultDataGridItemRenderer: ClassReference("mx.controls.dataGridClasses.FTEDataGridItemRenderer");</pre>
+
+            </div>
+
+            <p>Some controls are not affected by the MXFTEText.css theme. This
+is because some MX controls have Spark equivalents, such as Button
+or ComboBox. As a result, you should use the Spark version of the
+control instead of the MX version where possible.</p>
+
+            <div class="p">Rather than use the MXFTEText.css theme file to add FTE support
+to your MX controls, you can manually replace the non-FTE classes
+with the FTE classes for text rendering on a MX control. You do
+this by setting the value of the control’s <samp class="codeph">textFieldClass</samp> or <samp class="codeph">textInputClass</samp> style
+properties to the UIFTETextField or MXFTETextInput classes, as the
+following example shows:<pre class="codeblock">&lt;?xml version="1.0" encoding="utf-8"?&gt; 
+&lt;!-- fonts/TextFieldClassExample.mxml --&gt; 
+&lt;s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark"           
+    xmlns:mx="library://ns.adobe.com/flex/mx"&gt; 
+ 
+    &lt;s:layout&gt; 
+        &lt;s:VerticalLayout 
+            paddingLeft="20" paddingRight="20" 
+            paddingTop="20" paddingBottom="20" /&gt; 
+    &lt;/s:layout&gt; 
+ 
+    &lt;fx:Style&gt; 
+        @namespace mx "library://ns.adobe.com/flex/mx"; 
+        @namespace s "library://ns.adobe.com/flex/spark"; 
+ 
+        @font-face { 
+            src:url("../assets/MyriadWebPro.ttf"); 
+            fontFamily: cffFont; 
+            embedAsCFF: true; 
+        } 
+ 
+        mx|Label{ 
+            fontFamily: cffFont; 
+            fontSize: 22; 
+            textFieldClass:ClassReference("mx.core.UIFTETextField"); 
+        } 
+        s|Label{ 
+            fontFamily: cffFont; 
+            fontSize: 22; 
+        } 
+    &lt;/fx:Style&gt; 
+ 
+    &lt;mx:Label text="Hello World 1234567890 [MX Label]" width="100%"/&gt; 
+    &lt;s:Label text="Hello World 1234567890 [Spark Label]" width="100%"/&gt; 
+ 
+&lt;/s:Application&gt; </pre>
+
+            </div>
+
+            <div class="p">You can also specify the value of the <samp class="codeph">textFieldClass</samp> or <samp class="codeph">textInputClass</samp> style
+properties inline, as the following example shows:<pre class="codeblock">&lt;mx:Label text="Hello World 1234567890 [Label]" width="100%" textFieldClass="mx.core.UIFTETextField"/&gt;</pre>
+
+            </div>
+
+            <p>Do not use the <samp class="codeph">setStyle()</samp> method to specify
+the value of these style properties in ActionScript.</p>
+
+            <p>The UIFTETextField class does not support editing, scrolling,
+selection, linking, or rich text. As a result, you can only use
+this class on MX controls that do not use these features. The MXFTETextInput
+class can be edited and is selectable.</p>
+
+            <div class="p">The following MX controls support the UIFTETextField and MXFTETextInput classes,
+which means that you can use CFF fonts with them:<ul>
+                  <li>
+                     <p>Accordion</p>
+
+                  </li>
+
+                  <li>
+                     <p>Alert (the text is not selectable)</p>
+
+                  </li>
+
+                  <li>
+                     <p>Button</p>
+
+                  </li>
+
+                  <li>
+                     <p>ButtonBar</p>
+
+                  </li>
+
+                  <li>
+                     <p>CheckBox</p>
+
+                  </li>
+
+                  <li>
+                     <p>DateChooser</p>
+
+                  </li>
+
+                  <li>
+                     <p>FileSystemComboBox</p>
+
+                  </li>
+
+                  <li>
+                     <p>FileSystemHistoryButton</p>
+
+                  </li>
+
+                  <li>
+                     <p>FormHeading</p>
+
+                  </li>
+
+                  <li>
+                     <p>FormItem</p>
+
+                  </li>
+
+                  <li>
+                     <p>FormHeading</p>
+
+                  </li>
+
+                  <li>
+                     <p>FormItem</p>
+
+                  </li>
+
+                  <li>
+                     <p>HSlider (the labels follow the same rules as the MX Label
+control)</p>
+
+                  </li>
+
+                  <li>
+                     <p>LinkBar</p>
+
+                  </li>
+
+                  <li>
+                     <p>LinkButton</p>
+
+                  </li>
+
+                  <li>
+                     <p>Menu</p>
+
+                  </li>
+
+                  <li>
+                     <p>MenuBar</p>
+
+                  </li>
+
+                  <li>
+                     <p>Panel</p>
+
+                  </li>
+
+                  <li>
+                     <p>PopUpButton</p>
+
+                  </li>
+
+                  <li>
+                     <p>PopUpMenuButton</p>
+
+                  </li>
+
+                  <li>
+                     <p>PrintDataGrid</p>
+
+                  </li>
+
+                  <li>
+                     <p>ProgressBar</p>
+
+                  </li>
+
+                  <li>
+                     <p>RadioButton</p>
+
+                  </li>
+
+                  <li>
+                     <p>TabBar</p>
+
+                  </li>
+
+                  <li>
+                     <p>TabNavigator</p>
+
+                  </li>
+
+                  <li>
+                     <p>TitleWindow</p>
+
+                  </li>
+
+                  <li>
+                     <p>ToggleButtonBar</p>
+
+                  </li>
+
+                  <li>
+                     <p>ToolTip</p>
+
+                  </li>
+
+                  <li>
+                     <p>VSlider (the labels follow the same rules as the MX Label
+control)</p>
+
+                  </li>
+
+               </ul>
+
+            </div>
+
+            <div class="p">Other MX controls have some limitations when it comes to using
+the UIFTETextField and MXFTETextInput classes. In some cases, you
+should use the Spark equivalents. In other cases, you can use the
+UIFTETextField and MXFTETextInput subcomponents with the MX control,
+as long as you avoid using advanced text features, such as editability
+or the <samp class="codeph">htmlText</samp> property. The following table describes
+these limitations:
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" frame="border" border="1" rules="rows">
+                     
+                     
+                     <thead align="left">
+                        <tr>
+                           <th class="cellrowborder" valign="top" width="NaN%" id="d211623e2489">
+                              <p>MX control</p>
+
+                           </th>
+
+                           <th class="cellrowborder" valign="top" width="NaN%" id="d211623e2495">
+                              <p>Description</p>
+
+                           </th>
+
+                        </tr>
+
+                     </thead>
+
+                     <tbody>
+                        <tr>
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d211623e2489 ">
+                              <p>List-based components (such
+as List, FileSystemList, HorizontalList, TileList, DataGrid, and
+Tree)</p>
+
+                           </td>
+
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d211623e2495 ">
+                              <p>Some list-based components have Spark equivalents
+(including List, HorizontalList, and TileList). You can use the
+UIFTETextField and MXFTETextInput classes in the other components
+if you do not use selection, editability, HTML links, or scrolling.
+Otherwise, you should embed a non-CFF version of the font to support
+these controls.</p>
+
+                           </td>
+
+                        </tr>
+
+                        <tr>
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d211623e2489 ">
+                              <p>Label and Text</p>
+
+                           </td>
+
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d211623e2495 ">
+                              <p>Use Spark equivalents such as Label, RichText,
+and RichEditableText. You can use UIFTETextField with the Label
+and Text controls if the text is not selectable or you do not use
+the <samp class="codeph">htmlText</samp> property to specify the content of
+the controls.</p>
+
+                              <p>Otherwise, you should embed a non-CFF version
+of the font to support these controls.</p>
+
+                           </td>
+
+                        </tr>
+
+                        <tr>
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d211623e2489 ">
+                              <p>TextInput and TextArea</p>
+
+                           </td>
+
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d211623e2495 ">
+                              <p>Use the Spark equivalents. Otherwise, you
+should embed a non-CFF version of the font to support these controls.</p>
+
+                           </td>
+
+                        </tr>
+
+                        <tr>
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d211623e2489 ">
+                              <p>RichTextEditor</p>
+
+                           </td>
+
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d211623e2495 ">
+                              <p>There is no equivalent class. In this case,
+you should embed a non-CFF version of the font to support this control.</p>
+
+                           </td>
+
+                        </tr>
+
+                        <tr>
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d211623e2489 ">
+                              <p>ColorPicker</p>
+
+                           </td>
+
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d211623e2495 ">
+                              <p>There is no equivalent class. In this case,
+you should embed a non-CFF version of the font to support this control.
+However, the ColorPicker control only uses the font to display a
+color value, so in some cases, using an embedded font might not
+be necessary.</p>
+
+                           </td>
+
+                        </tr>
+
+                        <tr>
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d211623e2489 ">
+                              <p>ComboBox</p>
+
+                           </td>
+
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d211623e2495 ">
+                              <p>Use the Spark equivalent. If your ComboBox’s
+text does not need to be editable, you can use the MXFTETextInput
+class. Otherwise, you should embed a non-CFF version of the font
+to support this control.</p>
+
+                           </td>
+
+                        </tr>
+
+                        <tr>
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d211623e2489 ">
+                              <p>DateField</p>
+
+                           </td>
+
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d211623e2495 ">
+                              <p>If you do not use editability, then you
+can use the MXFTETextInput class. Otherwise, you should embed a
+non-CFF version of the font to support this control.</p>
+
+                           </td>
+
+                        </tr>
+
+                        <tr>
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d211623e2489 ">
+                              <p>NumericStepper</p>
+
+                           </td>
+
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d211623e2495 ">
+                              <p>If you do not use editability, then you
+can use the MXFTETextInput class. Otherwise, you should embed a
+non-CFF version of the font to support this control.</p>
+
+                           </td>
+
+                        </tr>
+
+                     </tbody>
+
+                  </table>
+</div>
+
+            </div>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WSda78ed3a750d6b8f4a287f0c123c441bd1d-8000_verapache"><a name="WSda78ed3a750d6b8f4a287f0c123c441bd1d-8000_verapache"><!-- --></a>
+         <h3 class="topictitle3">Embedding non-CFF versions of fonts
+for MX components</h3>
+
+         
+         <div>
+            <div class="p">To use MX controls with embedded fonts, you can embed the
+non-CFF version of the font instead of changing the properties of
+the control to use CFF fonts. You should do this only if your MX
+control:<ul>
+                  <li>
+                     <p>Has no Spark equivalent</p>
+
+                  </li>
+
+                  <li>
+                     <p>Does not support using the UIFTETextField and MXFTETextInput
+classes for text rendering</p>
+
+                  </li>
+
+                  <li>
+                     <p>Must use selection, scrolling, or HTML text </p>
+
+                  </li>
+
+                  <li>
+                     <p>Is editable</p>
+
+                  </li>
+
+               </ul>
+If you embed a non-CFF version of
+a font in addition to a CFF version of the font in your application,
+your SWF file will be larger than if you embedded only a single
+version of the font. As a result, only do this when absolutely necessary.</div>
+
+            <p>If you compile an application with the <samp class="codeph">compatibility-version</samp> compiler option
+set to 3.0.0, then the non-CFF version of the font is embedded automatically.</p>
+
+            <div class="p">The following example embeds both a non-CFF version and a CFF
+version of the font so that the Spark and MX Labels use embedded
+fonts. The reason this is required is that the Label is selectable
+in this example.<pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- fonts/EmbedBoth.mxml --&gt; 
+&lt;s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009"    
+    xmlns:mx="library://ns.adobe.com/flex/mx"     
+    xmlns:s="library://ns.adobe.com/flex/spark"&gt; 
+ 
+    &lt;s:layout&gt; 
+        &lt;s:VerticalLayout/&gt; 
+    &lt;/s:layout&gt; 
+ 
+  &lt;fx:Style&gt; 
+     @font-face { 
+        src:url("../assets/MyriadWebPro.ttf"); 
+        fontFamily: myCFFFont; 
+        embedAsCFF: true; 
+     } 
+ 
+     @font-face { 
+        src:url("../assets/MyriadWebPro.ttf"); 
+        fontFamily: myFontNoCFF; 
+        advancedAntiAliasing: true; 
+        embedAsCFF: false; 
+     } 
+     
+     .myCFFStyle { 
+        fontSize: 32; 
+        fontFamily: myCFFFont; 
+     } 
+ 
+     .myStyleNoCFF { 
+        fontSize: 32; 
+        fontFamily: myFontNoCFF; 
+     } 
+  &lt;/fx:Style&gt; 
+ 
+  &lt;s:Panel title="Using Two Different Embedded Fonts"&gt; 
+    &lt;s:VGroup&gt; 
+        &lt;s:Label text="Spark Label" 
+            styleName="myCFFStyle"/&gt; 
+        &lt;mx:Label text="MX Label" 
+            styleName="myStyleNoCFF" selectable="true"/&gt; 
+    &lt;/s:VGroup&gt; 
+  &lt;/s:Panel&gt; 
+ 
+&lt;/s:Application&gt;</pre>
+
+            </div>
+
+            <p>Note that when embedding a non-CFF font, you have the option
+of specifying the <samp class="codeph">advancedAntiAliasing</samp> property.
+With CFF fonts, this property is ignored. The advanced anti-aliasing
+functionality is provided natively with FTE.</p>
+
+         </div>
+
+      </div>
+
+   </div>
+
+   <div class="nested1" id="WS2db454920e96a9e51e63e3d11c0bf6320a-7fec_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf6320a-7fec_verapache"><!-- --></a>
+      <h2 class="topictitle2">Troubleshooting fonts in applications</h2>
+
+      
+      <div>
+         <p>There are some techniques that you can use to successfully
+embed fonts into your applications.</p>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf6320a-7feb_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf6320a-7feb_verapache"><!-- --></a>
+         <h3 class="topictitle3">Resolving compiler errors</h3>
+
+         
+         <div>
+            <p>The following table describes common compiler errors and
+their solutions:</p>
+
+            
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" frame="border" border="1" rules="all">
+                  
+                  
+                  <thead align="left">
+                     <tr>
+                        <th class="cellrowborder" valign="top" width="NaN%" id="d211623e2745">
+                           <p>Error</p>
+
+                        </th>
+
+                        <th class="cellrowborder" valign="top" width="NaN%" id="d211623e2751">
+                           <p>Solution</p>
+
+                        </th>
+
+                     </tr>
+
+                  </thead>
+
+                  <tbody>
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d211623e2745 ">
+                           <div class="p">
+                              <pre class="codeblock">Unable to resolve ‘<em>swf_file_name</em>’ for transcoding</pre>
+
+                           </div>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d211623e2751 ">
+                           <p>Indicates that the font was not found by
+the compiler. Ensure that the path to the font is correct in the <samp class="codeph">@font-face</samp> declaration
+or the <samp class="codeph">[Embed]</samp> tag and that the path is accessible
+by the compiler.</p>
+
+                        </td>
+
+                     </tr>
+
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d211623e2745 ">
+                           <div class="p">
+                              <pre class="codeblock">Font ‘<em>font_name</em>’ with <em>style_description</em> not found</pre>
+
+                           </div>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d211623e2751 ">
+                           <p>Indicates that the <samp class="codeph">fontName</samp> property
+used in the <samp class="codeph">[Embed]</samp> statement might not match the name
+of the font.</p>
+
+                           <p>For fonts in SWF files, ensure that the spelling
+and word spacing of the font name in the list of available fonts
+in Flash is the same as the <samp class="codeph">fontName</samp> property in
+your <samp class="codeph">[Embed]</samp> statement and the <samp class="codeph">fontFamily</samp> property
+that you use in your style definitions.</p>
+
+                           <p>This error can also
+mean that the font’s style was not properly embedded in Flash. Open
+the FLA file and ensure that there is a text area with the font
+and style described, that the text is dynamic, and that you selected
+a character range for that text.</p>
+
+                        </td>
+
+                     </tr>
+
+                  </tbody>
+
+               </table>
+</div>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf6320a-7fea_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf6320a-7fea_verapache"><!-- --></a>
+         <h3 class="topictitle3">Resolving run-time errors</h3>
+
+         
+         <div>
+            <p>To determine if your fonts are embedded properly, you can
+use the isFontFaceEmbedded() method of the SystemManager, as described
+in <a href="flx_fonts_ft.html#WS2db454920e96a9e51e63e3d11c0bf6320a-7ff8_verapache">Detecting embedded
+fonts</a>.</p>
+
+            <p>If you are using fonts embedded for Spark controls with MX controls,
+you should refer to <a href="flx_fonts_ft.html#WS0FA8AEDB-C69F-4f19-ADA5-AA5757217624_verapache">Embedding
+fonts with MX components</a>.</p>
+
+            <p>To properly embed your fonts, try the following techniques:</p>
+
+            <ul>
+               <li>
+                  <p>If one type of control is not correctly displaying its
+text, ensure that you are embedding the appropriate typeface. For
+example, the MX Button control’s text labels require the bold typeface.
+If you do not embed the bold typeface, the MX Button control does
+not display the label’s text.</p>
+
+               </li>
+
+               <li>
+                  <p>In your application, ensure that you set all properties for
+each font typeface in the <samp class="codeph">@font-face</samp> declaration
+or <samp class="codeph">[Embed]</samp> statement. To embed a bold typeface,
+you must set the <samp class="codeph">fontWeight</samp> property to <samp class="codeph">bold</samp>,
+as the following example shows:</p>
+
+                  <pre class="codeblock"> @font-face { 
+ 	src: url(../assets/MyriadWebProEmbed.ttf); 
+ 	fontFamily: "Myriad Web Pro"; 
+ 	<strong>fontWeight: bold;</strong> 
+	embedAsCFF: true; 
+ }</pre>
+
+                  <p>You also must set the <samp class="codeph">fontWeight</samp> style
+property in your style definition:</p>
+
+                  <pre class="codeblock"> .myStyle2 { 
+ 	fontFamily: "Myriad Web Pro"; 
+ 	fontWeight: bold;  
+ 	fontSize: 12pt; 
+ }</pre>
+
+                  <p>If you use the <samp class="codeph">[Embed]</samp> statement,
+you must set the <samp class="codeph">fontWeight</samp> property to <samp class="codeph">bold</samp> as
+the following example shows:</p>
+
+                  <pre class="codeblock"> [Embed(source="MyriadWebProEmbed.ttf", fontName="Myriad Web Pro",fontWeight="bold")]</pre>
+
+               </li>
+
+               <li>
+                  <p>For fonts that are embedded in SWF files that you import,
+open the FLA file in Flash and ensure that all of the typefaces
+were added properly. Select each text area and do the following:</p>
+
+                  <ul>
+                     <li>
+                        <p>Check that the font name is correct. Ensure that the spelling
+and word spacing of the font name in the list of available fonts
+in Flash is the same as the <samp class="codeph">fontFamily</samp> property
+in the <samp class="codeph">@font-face</samp> declaration or the <samp class="codeph">fontName</samp> property
+in your <samp class="codeph">[Embed]</samp> statement. This value must also match
+the <samp class="codeph">fontFamily</samp> property that you use in your style
+definitions. </p>
+
+                        <p>If you did not select an anti-aliasing option
+for the font in Flash 8 (for example, you chose Bitmap Text (no
+anti-alias)), you might need to change the value of the font name
+to a format that matches <em>fontName</em>_<em>fontSize</em>pt_st (for
+example, "Wingdings_8pt_st"). In the CSS for that bitmap font, be
+sure to set <samp class="codeph">fontAntiAliasType</samp> to <samp class="codeph">normal</samp>.</p>
+
+                        <p>To
+determine the exact font name exported by Flash (which you must match
+as the value of the <samp class="codeph">fontFamily</samp> property in your
+application), open the SWF file in Flash and select Debug &gt; Variables.</p>
+
+                     </li>
+
+                     <li>
+                        <p>Check that the style is properly applied. For example, select
+the bold text area and check that the typeface really is bold.</p>
+
+                     </li>
+
+                     <li>
+                        <p>Click the Embed button and ensure that the range of embedded
+characters includes the characters that you use in your application.</p>
+
+                     </li>
+
+                     <li>
+                        <p>Check that each text area is set to Dynamic Text and not
+Static Text or Input Text. The type of text is indicated by the
+first drop-down box in the text’s Properties tab.</p>
+
+                     </li>
+
+                     <li>
+                        <p>Unless the SWF file was compiled with CFF, you must set the
+value of the embedAsCFF property to false for the imported font.</p>
+
+                     </li>
+
+                  </ul>
+
+               </li>
+
+               <li>
+                  <p>For fonts in SWF files, ensure that you are using the latest
+SWF file that contains your fonts and was generated in Flash. Regenerate
+the SWF file in Flash if necessary.</p>
+
+               </li>
+
+               <li>
+                  <div class="p">Ensure that the value of the <samp class="codeph">embedAsCFF</samp> property
+is correct for the way that you are using a font. For Spark controls,
+set <samp class="codeph">embedAsCFF</samp> to <samp class="codeph">true</samp>. For fonts that
+are used by MX controls, try setting <samp class="codeph">embedAsCFF</samp> to <samp class="codeph">false</samp>.
+The following example sets the <samp class="codeph">embedAsCFF</samp> property
+to <samp class="codeph">false</samp> in the @font-face declaration:<pre class="codeblock">@font-face {  
+	src: url(../assets/MyriadWebProEmbed.ttf); 
+	fontFamily: "Myriad Web Pro";  
+	fontWeight: bold; 
+	embedAsCFF: false; 
+}</pre>
+
+                  </div>
+
+               </li>
+
+            </ul>
+
+         </div>
+
+      </div>
+
+   </div>
+
+   <div class="nested1" id="WS2db454920e96a9e51e63e3d11c0bf69084-7e09_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7e09_verapache"><!-- --></a>
+      <h2 class="topictitle2">About the font managers</h2>
+
+      
+      <div>
+         <div class="note"><span class="notetitle">Note:</span> This is an advanced topic. Most developers do not need
+to adjust the font managers for their applications.</div>
+
+         <p>
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            Flex
+includes several font managers to handle embedded fonts. The font managers
+take embedded font definitions and draw each character in Flash Player.
+This process is known as <em>transcoding</em>. The font managers are
+Batik, JRE, AFE (Adobe Font Engine), and CFF, represented by the
+BatikFontManager, JREFontManager, AFEFontManager, and CFFFontManager
+classes, respectively. </p>
+
+         <p>The CFF font manager supports both TrueType and OpenType fonts.
+It also supports URL and system fonts. Use this manager for all
+CFF fonts.</p>
+
+         <p>The AFE font manager supports both TrueType and OpenType fonts.
+It also adds support for all non-CFF font embedding in Flex 4. The
+AFE font manager is the only font manager that you can use to transcode
+TrueType or OpenType fonts for non-CFF fonts. The fonts can only
+be referenced by a path to the font file, not by an OS-specific
+font name. If you embed an OpenType font, the compiler will use the
+AFE font manager to transcode the font because the other font managers
+do not support OpenType fonts, unless that OpenType font is a system
+font, in which case, the compiler will throw an error. None of the
+font managers can transcode OpenType fonts that are embedded as
+system fonts.</p>
+
+         <p>The Batik font manager transcodes only TrueType fonts, but does
+not support TrueType Collections (*.ttc). It does not transcode
+system fonts. If you specify the font location when you embed the
+font, the compiler will use the Batik font manager. In general,
+the Batik font manager provides smoother rendering and more accurate
+line metrics (which affect multiline text and line-length calculations)
+than the JRE font manager. </p>
+
+         <p>The JRE font manager transcodes TrueType system fonts, but the
+quality of output is generally not as good as the Batik font manager.
+If you install the font on your system, the compiler will use the
+JRE font manager because the Batik font manager does not support
+system fonts.</p>
+
+         <p>The following table shows which fonts are supported by which
+font managers:</p>
+
+         
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" frame="border" border="1" rules="all">
+               
+               
+               
+               
+               
+               <thead align="left">
+                  <tr>
+                     <th class="cellrowborder" valign="top" width="NaN%" id="d211623e3131">
+                        <p/>
+
+                     </th>
+
+                     <th class="cellrowborder" valign="top" width="NaN%" id="d211623e3136">
+                        <p>CFF</p>
+
+                     </th>
+
+                     <th class="cellrowborder" valign="top" width="NaN%" id="d211623e3142">
+                        <p>Batik</p>
+
+                     </th>
+
+                     <th class="cellrowborder" valign="top" width="NaN%" id="d211623e3148">
+                        <p>AFE</p>
+
+                     </th>
+
+                     <th class="cellrowborder" valign="top" width="NaN%" id="d211623e3154">
+                        <p>JRE</p>
+
+                     </th>
+
+                  </tr>
+
+               </thead>
+
+               <tbody>
+                  <tr>
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d211623e3131 ">
+                        <p>Font type</p>
+
+                     </td>
+
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d211623e3136 ">
+                        <p>TrueType, OpenType</p>
+
+                     </td>
+
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d211623e3142 ">
+                        <p>TrueType</p>
+
+                     </td>
+
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d211623e3148 ">
+                        <p>TrueType, OpenType</p>
+
+                     </td>
+
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d211623e3154 ">
+                        <p>TrueType</p>
+
+                     </td>
+
+                  </tr>
+
+                  <tr>
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d211623e3131 ">
+                        <p>Method of embedding</p>
+
+                     </td>
+
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d211623e3136 ">
+                        <p>URL, system</p>
+
+                     </td>
+
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d211623e3142 ">
+                        <p>URL</p>
+
+                     </td>
+
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d211623e3148 ">
+                        <p>URL</p>
+
+                     </td>
+
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d211623e3154 ">
+                        <p>System</p>
+
+                     </td>
+
+                  </tr>
+
+               </tbody>
+
+            </table>
+</div>
+
+         <p>You determine which font managers the compiler can use in the
+flex-config.xml file. The default setting is to use all of them,
+as the following example shows:</p>
+
+         <pre class="codeblock"> &lt;fonts&gt; 
+ 	&lt;managers&gt; 
+ 		&lt;manager-class&gt;flash.fonts.JREFontManager&lt;/manager-class&gt; 
+ 		&lt;manager-class&gt;flash.fonts.BatikFontManager&lt;/manager-class&gt; 
+ 		&lt;manager-class&gt;flash.fonts.AFEFontManager&lt;/manager-class&gt; 
+		 &lt;manager-class&gt;flash.fonts.CFFFontManager&lt;/manager-class&gt; 
+ 	&lt;/managers&gt; 
+ &lt;/fonts&gt;</pre>
+
+         <p>The preference of <samp class="codeph">&lt;manager&gt;</samp> elements is
+in reverse order. This means that by default the CFF font manager
+is the preferred font manager; the compiler checks to see if a font
+can be transcoded using it first. If not, then the compiler checks
+to see whether the font can be transcoded using the AFE font manager
+and then the Batik font manager. Finally, if the other font managers
+fail, the compiler checks to see whether the JRE font manager can
+transcode the font.</p>
+
+      </div>
+
+         <p>Adobe, Adobe AIR, Adobe Font Engine and Adobe Flash are either registered trademarks or trademarks of Adobe Systems Incorporated in the United States and/or other countries and are used by permission from Adobe.  No other license to the Adobe trademarks are granted.</p>
+   </div>
+
+
+</body>
+</html>

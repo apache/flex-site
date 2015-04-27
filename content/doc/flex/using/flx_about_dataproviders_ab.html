@@ -1,0 +1,3966 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Licensed to the Apache Software Foundation (ASF) under one or more
+  contributor license agreements.  See the NOTICE file distributed with
+  this work for additional information regarding copyright ownership.
+  The ASF licenses this file to You under the Apache License, Version 2.0
+  (the "License"); you may not use this file except in compliance with
+  the License.  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+-->
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en-us" xml:lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="topic"/>
+<meta name="DC.Title" content="Data providers and collections"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="WS2db454920e96a9e51e63e3d11c0bf69084-7fb8_verapache"/>
+<link rel="stylesheet" type="text/css" href="commonltr.css"/>
+<title>Data providers and collections</title>
+</head>
+<body id="WS2db454920e96a9e51e63e3d11c0bf69084-7fb8_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7fb8_verapache"><!-- --></a>
+
+
+   <h1 class="topictitle1">Data providers and collections</h1>
+
+   <div>
+      <p>
+         
+         A <em>collection</em> object contains a data
+object, such as an Array or an XMList object, and provides a set
+of methods that let you access, sort, filter, and modify the data items
+in that data object. Several controls, known as <em>data provider controls</em>,
+have a <samp class="codeph">dataProvider</samp> property that you populate
+with a collection.</p>
+
+      <p>The mx.collections.ArrayCollection and mx.collections.XMLListCollection
+classes are specific collection implementations that you can use
+with any data provider control in the Flex framework. Most data
+provider controls also support using the mx.collections.ArrayList
+class. This class is similar to the ArrayCollection class, except
+that is uses less memory, but does not have as many features.</p>
+
+      <p>For more information on Flex components that use data providers,
+see <a href="flx_spark_dpcontrols_sdp.html#WSc2368ca491e3ff923c946c5112135c8ee9e-8000_verapache">Spark
+list-based controls</a>, <a href="flx_dpcontrols_dpc.html#WS2db454920e96a9e51e63e3d11c0bf69084-7d7e_verapache">MX
+data-driven controls</a>, and <a href="flx_menucontrols_mc.html#WS2db454920e96a9e51e63e3d11c0bf69084-7d7b_verapache">Menu-based
+controls</a>.</p>
+
+   </div>
+
+   <div class="nested1" id="WS2db454920e96a9e51e63e3d11c0bf69084-7b6b_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7b6b_verapache"><!-- --></a>
+      <h2 class="topictitle2">About collections and data provider components</h2>
+
+      
+      <div>
+         <p>Data provider components require data for display or user
+interaction. To provide this data, you assign a collection, which
+is usually an ArrayCollection, ArrayList, or XMLListCollection object,
+to the data provider component’s <samp class="codeph">dataProvider</samp> property. </p>
+
+         <p>Optionally, for MX controls only, you can assign a raw data object
+such as an Array, XML, or XMLList object to the data provider component’s <samp class="codeph">dataProvider</samp> property;
+however, this is not considered a best practice because of the limitations
+noted in <a href="flx_about_dataproviders_ab.html#WS2db454920e96a9e51e63e3d11c0bf69084-7b6c_verapache">About
+data provider components</a>.</p>
+
+         <p>The source of data in a collection object can be local or a remote
+source, such as a web service or a PHP page that you call with a
+Flex data access component. </p>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf668d2-7ffe_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf668d2-7ffe_verapache"><!-- --></a>
+         <h3 class="topictitle3">About collections</h3>
+
+         
+         <div>
+            <p>
+               
+               <em>Collections</em> are
+objects that provide a uniform way to access and represent the data
+contained in a data source object, such as an Array or an XMLList
+object. Collections provide a level of abstraction between components
+and the data objects that you use to populate them. </p>
+
+            <p>The standard collection types in the Flex framework, the ArrayCollection
+and XMLListCollection classes, extend the mx.collections.ListCollectionView
+class, which implements the mx.collections.ICollectionView and mx.collections.IList interfaces.
+These interfaces provide the underlying functionality for viewing
+and modifying data objects. An ArrayCollection object takes an Array
+as its source object. An XMLListCollection object take an XMLList
+object as its source object.</p>
+
+            <p>Collections provide the following features:</p>
+
+            <ul>
+               <li>
+                  <p>Ensure that a component is properly updated when the
+underlying data changes. Components are not updated when noncollection
+data objects change. (They <em>are</em> updated to reflect the new
+data the next time they are refreshed.) If the data provider is
+a collection, the components are updated immediately after the collection
+change occurs.</p>
+
+               </li>
+
+               <li>
+                  <p>Provide mechanisms for handling paged data from remote data
+sources that may not initially be available and may arrive over
+a period of time.</p>
+
+               </li>
+
+               <li>
+                  <p>Provide a consistent set of operations on the data, independent
+of those provided by the raw data source. For example, you can insert
+and delete objects by using an index into the collection, independently
+of whether the underlying data is, for example, in an Array or an
+Object.</p>
+
+               </li>
+
+               <li>
+                  <p>Provide a specific <em>view</em> of the data that can be in
+sorted order, or filtered by a developer-supplied method. This is
+only a view of the data; it does not change the data.</p>
+
+               </li>
+
+               <li>
+                  <p>Use a single collection to populate multiple components from
+the same data source.</p>
+
+               </li>
+
+               <li>
+                  <p>Use collections to switch data sources for a component at
+run time, and to modify the content of the data source so that changes
+are reflected by all components that use the data source. </p>
+
+               </li>
+
+               <li>
+                  <p>Use collection methods to access data in the underlying data
+source.</p>
+
+               </li>
+
+            </ul>
+
+            <div class="note"><span class="notetitle">Note:</span> If you use a raw data object, such as an Array,
+as the value of an MX control’s data provider, Flex automatically
+wraps the object in a collection wrapper (either an ArrayCollection
+or XMLListCollection). The control does not automatically detect changes
+that are made directly to the raw object. A change in the length
+of an array, for example, does not result in an update of the control.
+You can, however, use an object proxy, a listener interface, or
+the <samp class="codeph">
+                  <em>itemUpdated()</em>
+               </samp> method to notify the view of
+certain changes. For Spark controls, you cannot use a raw object
+as the value of the control’s data provider. You must specify an
+object that implements the IList interface. Classes that implement
+IList include ArrayCollection, ArrayList, and XMLListCollection.</div>
+
+            <p>Another type of collection, ArrayList, extends the IList interface
+but not the ICollectionView interface. As a result, it is more lightweight
+and provides most of the same functionality as the ArrayCollection
+class. It does not, however, support sorting, filtering, or cursors.</p>
+
+            <div class="section" id="WS2db454920e96a9e51e63e3d11c0bf668d2-7ffe_verapache__WS2db454920e96a9e51e63e3d11c0bf668d2-7ffd_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf668d2-7ffe_verapache__WS2db454920e96a9e51e63e3d11c0bf668d2-7ffd_verapache"><!-- --></a><h4 class="sectiontitle">Collection
+interfaces</h4>
+               
+               <p>
+                  Collections
+use the following interfaces to define how a collection represents data
+and provides access to it. The standard Flex framework collections,
+the ArrayCollection and XMLListCollection classes, implement both
+the ICollectionView interface and the IList interface. The IList
+and ICollectionView interfaces provide alternate methods for accessing
+and changing data. The IList interface is simpler; it provides add,
+set, get, and remove operations that operate directly on linear
+data.</p>
+
+               
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" frame="border" border="1" rules="all">
+                     
+                     
+                     <thead align="left">
+                        <tr>
+                           <th class="cellrowborder" valign="top" width="NaN%" id="d20e194">
+                              <p>Interface</p>
+
+                           </th>
+
+                           <th class="cellrowborder" valign="top" width="NaN%" id="d20e200">
+                              <p>Description</p>
+
+                           </th>
+
+                        </tr>
+
+                     </thead>
+
+                     <tbody>
+                        <tr>
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d20e194 ">
+                              <p>
+                                 <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/collections/IList.html" target="_blank">IList</a>
+                              </p>
+
+                           </td>
+
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d20e200 ">
+                              <p>A direct representation of items organized
+in an ordinal fashion. The interface presents the data from the
+source object in the same order as it exists in that object, and
+provides access and manipulation methods based on an index. The
+IList class does not provide sorting, filtering, or cursor functionality.</p>
+
+                           </td>
+
+                        </tr>
+
+                        <tr>
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d20e194 ">
+                              <p>
+                                 <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/collections/ICollectionView.html" target="_blank">ICollectionView</a>
+                              </p>
+
+                           </td>
+
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d20e200 ">
+                              <p>A view of a collection of items. You can
+modify the view to show the data in sorted order and to show a subset of
+the items in the source object, as specified by a filter function.
+A class that implements this interface can use an IList interface
+as the underlying collection.</p>
+
+                              <p>The interface provides access
+to an IViewCursor object for access to the items.</p>
+
+                           </td>
+
+                        </tr>
+
+                        <tr>
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d20e194 ">
+                              <p>
+                                 <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/collections/IViewCursor.html" target="_blank">IViewCursor</a>
+                              </p>
+
+                           </td>
+
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d20e200 ">
+                              <p>Enumerates an object that implements the
+ICollectionView interface bidirectionally. The<em> view cursor</em> provides find,
+seek, and bookmarking capabilities, and lets you modify the underlying
+data (and the view) by inserting and removing items.</p>
+
+                           </td>
+
+                        </tr>
+
+                     </tbody>
+
+                  </table>
+</div>
+
+               <p>The ICollectionView interface (also called
+the <em>collection view</em>) provides a more complex set of operations
+than the IList interface, and is appropriate when the underlying
+data is not organized linearly. Its data access techniques, however,
+are more complex than those of the IList interface, so you should
+use the IList interface if you need only simple, indexed access
+to a linear collection. The collection view can represent a subset
+of the underlying data, as determined by a sort or filter operation.</p>
+
+            </div>
+
+            <div class="section" id="WS2db454920e96a9e51e63e3d11c0bf668d2-7ffe_verapache__WS2db454920e96a9e51e63e3d11c0bf668d2-7ffc_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf668d2-7ffe_verapache__WS2db454920e96a9e51e63e3d11c0bf668d2-7ffc_verapache"><!-- --></a><h4 class="sectiontitle">Collection
+classes</h4>
+               
+               <p>
+                  The
+following table describes the public classes in the mx.collections.*
+and spark.collections.* packages. It does not include constant,
+event, and error classes. For complete reference information on
+collection-related classes, see the <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/collections/package-detail.html" target="_blank">MX collections</a>, <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/spark/collections/package-detail.html" target="_blank">Spark collections</a>,
+and <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/collections/errors/package-detail.html" target="_blank">collections.errors</a> packages,
+and the <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/events/CollectionEvent.html" target="_blank">CollectionEvent</a> and <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/events/CollectionEventKind.html" target="_blank">CollectionEventKind</a> classes
+in the <em>
+                     <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/" target="_blank">ActionScript 3.0 Reference for the Adobe
+Flash Platform</a>
+                  </em>.</p>
+
+               
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" frame="border" border="1" rules="all">
+                     
+                     
+                     <thead align="left">
+                        <tr>
+                           <th class="cellrowborder" valign="top" width="NaN%" id="d20e334">
+                              <p>Class</p>
+
+                           </th>
+
+                           <th class="cellrowborder" valign="top" width="NaN%" id="d20e340">
+                              <p>Description</p>
+
+                           </th>
+
+                        </tr>
+
+                     </thead>
+
+                     <tbody>
+                        <tr>
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d20e334 ">
+                              <p>
+                                 <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/collections/ArrayCollection.html" target="_blank">ArrayCollection</a>
+                              </p>
+
+                           </td>
+
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d20e340 ">
+                              <p>A standard collection for working with Arrays.
+Implements the IList and ICollectionView interfaces.</p>
+
+                           </td>
+
+                        </tr>
+
+                        <tr>
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d20e334 ">
+                              <p>
+                                 <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/collections/ArrayList.html" target="_blank">ArrayList</a>
+                              </p>
+
+                           </td>
+
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d20e340 ">
+                              <p>A standard collection for working with Arrays.
+Implements the IList interface. You can use this class instead of the
+ArrayCollection class if you do not need to sort, filter, or use
+cursors in your collection.</p>
+
+                           </td>
+
+                        </tr>
+
+                        <tr>
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d20e334 ">
+                              <p>
+                                 <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/collections/AsyncListView.html" target="_blank">AsyncListView</a>
+                              </p>
+
+                           </td>
+
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d20e340 ">
+                              <p>A standard collections that handles <samp class="codeph">ItemPendingErrors</samp> thrown
+by the <samp class="codeph">getItemAt()</samp>, <samp class="codeph">removeItemAt()</samp>, and <samp class="codeph">toArray()</samp> methods.Use
+this class to support data paging when accessing data from a remote
+server. </p>
+
+                           </td>
+
+                        </tr>
+
+                        <tr>
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d20e334 ">
+                              <p>
+                                 <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/collections/XMLListCollection.html" target="_blank">XMLListCollection</a>
+                              </p>
+
+                           </td>
+
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d20e340 ">
+                              <p>A standard collection for working with XMLList
+objects. Implements the IList and ICollectionView interfaces, and
+a subset of XMLList methods.</p>
+
+                           </td>
+
+                        </tr>
+
+                        <tr>
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d20e334 ">
+                              <p>
+                                 <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/collections/CursorBookmark.html" target="_blank">CursorBookmark</a>
+                              </p>
+
+                           </td>
+
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d20e340 ">
+                              <p>Represents the position of a view cursor
+within a collection.</p>
+
+                              <p>You can save a view cursor position in
+a CursorBookmark object and use the object to return the view cursor to
+the position at a later time.</p>
+
+                           </td>
+
+                        </tr>
+
+                        <tr>
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d20e334 ">
+                              <p>
+                                 <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/spark/collections/Sort.html" target="_blank">Sort</a>
+                              </p>
+
+                           </td>
+
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d20e340 ">
+                              <p>Provides the information and methods required
+to sort a collection.</p>
+
+                           </td>
+
+                        </tr>
+
+                        <tr>
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d20e334 ">
+                              <p>
+                                 <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/spark/collections/SortField.html" target="_blank">SortField</a>
+                              </p>
+
+                           </td>
+
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d20e340 ">
+                              <p>Provides properties and methods that determine
+how a specific field affects data sorting in a collection.</p>
+
+                           </td>
+
+                        </tr>
+
+                        <tr>
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d20e334 ">
+                              <p>
+                                 <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/collections/ItemResponder.html" target="_blank">ItemResponder</a>
+                              </p>
+
+                           </td>
+
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d20e340 ">
+                              <p>(Used only if the data source is remote.)
+Handles cases when requested data is not yet available.</p>
+
+                           </td>
+
+                        </tr>
+
+                        <tr>
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d20e334 ">
+                              <p>
+                                 <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/collections/ListCollectionView.html" target="_blank">ListCollectionView</a>
+                              </p>
+
+                           </td>
+
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d20e340 ">
+                              <p>Superclass of the ArrayCollection and XMLListCollection
+classes. Adapts an object that implements the IList interface to
+the ICollectionView interface so that it can be passed to anything
+that expects an IList or an ICollectionView. </p>
+
+                           </td>
+
+                        </tr>
+
+                     </tbody>
+
+                  </table>
+</div>
+
+            </div>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf69084-7b6c_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7b6c_verapache"><!-- --></a>
+         <h3 class="topictitle3">About data provider components</h3>
+
+         
+         <div>
+            <p>
+               Several
+Flex components, including all list-based controls, are called data provider
+components because they have a <samp class="codeph">dataProvider</samp> property
+that consumes data from an ArrayCollection, ArrayList, XMLListCollection
+object, or a custom collection. For example, the value of an MX
+Tree control’s <samp class="codeph">dataProvider</samp> property determines
+the structure of the tree and any associated data assigned to each
+tree node, and a ComboBox control’s <samp class="codeph">dataProvider</samp> property
+determines the items in the control’s drop-down list. Many standard
+controls, including the ColorPicker and MenuBar controls, also have
+a <samp class="codeph">dataProvider</samp> property.</p>
+
+            <p>For Spark list-based controls, the value of the <samp class="codeph">dataProvider</samp> property
+must implement the IList interface. Classes that implement IList
+include ArrayCollection, ArrayList, and XMLListCollection.</p>
+
+            <p>For the MX list-based controls, you can specify raw data objects,
+such as an Array of strings or objects or an XML object, the value
+of the <samp class="codeph">dataProvider</samp> property. For MX controls,
+Flex automatically wraps the raw data in a collection. </p>
+
+            <p>It's best that you always specify a collection as the
+value of the <samp class="codeph">dataProvider</samp> property. Using collections
+explicitly ensures data synchronization and provides both simpler
+and more sophisticated data access and manipulation tools than are
+available when you are using raw objects directly as data providers.
+Collections can also provide a consistent interface for accessing
+and managing data of different types. For more information about
+collections, see <a href="flx_about_dataproviders_ab.html#WS2db454920e96a9e51e63e3d11c0bf69084-7b6b_verapache">About
+collections and data provider components</a>. </p>
+
+            <p>Although raw data objects for MX controls are automatically wrapped
+in an ArrayCollection object or XMLListCollection, they are subject
+to the following limitations:</p>
+
+            <ul>
+               <li>
+                  <p>Raw objects are often not sufficient if you have data
+that changes, because the data provider component does not receive
+a notification of any changes to the base object. The component
+therefore does not get updated until it must be redrawn due to other
+changes in the application, or if the data provider is reassigned.
+At that time, it gets the data again from the updated raw object.</p>
+
+               </li>
+
+               <li>
+                  <p>Raw objects do not provide advanced tools for accessing,
+sorting, or filtering data. For example, if you use an Array as
+the data provider, you must use the native Adobe<sup>®</sup> Flash<sup>®</sup> Array methods to manipulate the data. </p>
+
+               </li>
+
+            </ul>
+
+            <p>For detailed descriptions of the individual controls, see the
+pages for the controls in the <em>
+                  <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/" target="_blank">ActionScript 3.0 Reference for the Adobe
+Flash Platform</a>
+               </em>. For information on programming with many
+of the data provider components, see <a href="flx_dpcontrols_dpc.html#WS2db454920e96a9e51e63e3d11c0bf69084-7d7e_verapache">MX
+data-driven controls</a>.</p>
+
+            <div class="section" id="WS2db454920e96a9e51e63e3d11c0bf69084-7b6c_verapache__WS2db454920e96a9e51e63e3d11c0bf668d2-7ffa_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7b6c_verapache__WS2db454920e96a9e51e63e3d11c0bf668d2-7ffa_verapache"><!-- --></a><h4 class="sectiontitle">Data
+objects</h4>
+               
+               <p>
+                  The
+Flex framework supports the following types of data objects for
+populating data provider components:</p>
+
+               <dl>
+                  
+                     <dt class="dlterm">Linear
+or list-based data objects</dt>
+
+                     <dd>
+                        <p>are flat data structures consisting of some number of objects,
+each of which has the same structure; they are often one-dimensional
+Arrays or ActionScript object graphs, or simple XML structures.
+You can specify one of these data structures in an ArrayList, ArrayCollection
+or XMLListCollection object’s <samp class="codeph">source</samp> property or
+as the value of a data provider control’s <samp class="codeph">dataProvider</samp> property.</p>
+
+                        <p>You
+can use list-based data objects with all data provider controls,
+but you do not typically use them with Tree and most menu-based
+controls, which typically use hierarchical data structures. For
+data that can change dynamically, you typically use an ArrayCollection,
+ArrayList, or XMLListCollection object to represent and manipulate
+these data objects rather than the raw data object. You can also
+use a custom object that implements the ICollectionView and/or IList
+interfaces. If you do not require sorting, cursors, and filtering,
+you can use a class that implements just the IList interface</p>
+
+                     </dd>
+
+                  
+                  
+                     <dt class="dlterm">Hierarchical data objects</dt>
+
+                     <dd>
+                        <p>consist of cascading levels of often asymmetrical data. Often,
+the source of the data is an XML object, but the source can be a generic
+Object tree or trees of typed objects. You typically use hierarchical
+data objects with Flex controls that are designed to display hierarchical
+data: </p>
+
+                        <ul>
+                           <li>
+                              <p>Tree</p>
+
+                           </li>
+
+                           <li>
+                              <p>Menu</p>
+
+                           </li>
+
+                           <li>
+                              <p>MenuBar</p>
+
+                           </li>
+
+                           <li>
+                              <p>PopUpMenuButton</p>
+
+                           </li>
+
+                        </ul>
+
+                        <p>A hierarchical data object
+matches the layout of a tree or cascading menu. For example, a tree
+often has a root node, with one or more branch or leaf child nodes.
+Each branch node can hold additional child branch or leaf nodes,
+but a leaf node is an endpoint of the tree.</p>
+
+                        <p>The Flex hierarchical
+data provider controls use <em>data descriptor</em> interfaces to access
+and manipulate hierarchical data objects, and the Flex framework provides
+one class, the <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/controls/treeClasses/DefaultDataDescriptor.html" target="_blank">DefaultDataDescriptor</a> class,
+which implements the required interfaces. If your data object does
+not conform to the structural requirements of the default data descriptor,
+you can create your own data descriptor class that implements the
+required interfaces.</p>
+
+                        <p>You can use an ArrayCollection object
+or XMLListCollection object, or a custom object that implements
+the ICollectionView and IList interfaces to access and manipulate
+dynamic hierarchical data.</p>
+
+                        <p>You can also use a hierarchical
+data object with controls that take linear data, such as the List
+control and the DataGrid control, by extracting specific data for linear
+display.</p>
+
+                        <p>For more information on using hierarchical data providers,
+see <a href="flx_about_dataproviders_ab.html#WS2db454920e96a9e51e63e3d11c0bf69084-7b69_verapache">Hierarchical
+data objects</a>. </p>
+
+                     </dd>
+
+                  
+               </dl>
+
+            </div>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf668d2-7ff9_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf668d2-7ff9_verapache"><!-- --></a>
+         <h3 class="topictitle3">Specifying data providers in MXML
+applications</h3>
+
+         
+         <div>
+            <p>The Flex framework lets you specify and access data for
+data provider components in many ways. For example, you can bind
+a collection that contains data from a remote source to the <samp class="codeph">dataProvider</samp> property
+of a data provider component; you can define the data provider in
+a <samp class="codeph">dataProvider</samp> child tag of a data provider component;
+or you can define the data provider in ActionScript.</p>
+
+            <p>All access techniques belong to one of the following patterns,
+whether data is local or is provided from a remote source:</p>
+
+            <ul>
+               <li>
+                  <p>Using a collection implementation, such as an ArrayList
+object, ArrayCollection object, or XMLListCollection object, directly.
+This pattern is particularly useful for collections where object
+reusability is not important.</p>
+
+               </li>
+
+               <li>
+                  <p>Using a collection interface. This pattern provides the maximum
+of independence from the underlying collection implementation.</p>
+
+               </li>
+
+               <li>
+                  <p>Using a raw data object, such as an Array, with an MX list-based
+control. This pattern is discouraged unless data is completely static.</p>
+
+               </li>
+
+            </ul>
+
+            <div class="section" id="WS2db454920e96a9e51e63e3d11c0bf668d2-7ff9_verapache__WS2db454920e96a9e51e63e3d11c0bf69084-7b68_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf668d2-7ff9_verapache__WS2db454920e96a9e51e63e3d11c0bf69084-7b68_verapache"><!-- --></a><h4 class="sectiontitle">Using
+a collection object explicitly</h4>
+               
+               <p>
+                  You
+can use a collection, such as an ArrayList, ArrayCollection, or
+XMLListCollection object, as a data provider explicitly in an MXML
+control by assigning it to the component’s <samp class="codeph">dataProvider</samp> property.
+This technique is more direct than using an interface and is appropriate
+if the data provider is always of the same collection type. </p>
+
+               <p>
+                  For list-based controls, you often
+use an ArrayList object as the data provider, and populate the ArrayList
+object by using an Array that is local or from a remote data source.
+The following example shows an ArrayList object declared in line
+in a ComboBox control: </p>
+
+               <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- dpcontrols\ArrayCollectionInComboBox.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx"&gt; 
+    
+    &lt;s:ComboBox id="myCB"&gt; 
+        &lt;s:ArrayList id="stateArray"&gt; 
+            &lt;fx:Object label="AL" data="Montgomery"/&gt; 
+            &lt;fx:Object label="AK" data="Juneau"/&gt; 
+            &lt;fx:Object label="AR" data="Little Rock"/&gt; 
+        &lt;/s:ArrayList&gt; 
+    &lt;/s:ComboBox&gt; 
+&lt;/s:Application&gt;</pre>
+
+               <p>In this example, the default
+property of the ComboBox control, <samp class="codeph">dataProvider</samp>, defines
+an ArrayList object. Because <samp class="codeph">dataProvider</samp> is the
+default property of the ComboBox control, it is not declared. The
+default property of the ArrayList object, <samp class="codeph">source</samp>,
+is an Array of Objects, each of which has a label and a data field. Because
+the ArrayList object’s <samp class="codeph">source</samp> property takes an
+Array object, it is not necessary to declare the <samp class="codeph">&lt;fx:Array&gt;</samp> tag
+as the parent of the <samp class="codeph">&lt;fx:Object&gt;</samp> tags.</p>
+
+               <p>The
+following example uses ActionScript to declare and create an ArrayList object:</p>
+
+               <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- dpcontrols\ArrayCollectionInAS.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    initialize="initData();"&gt; 
+    
+    &lt;fx:Script&gt; 
+        &lt;![CDATA[ 
+            import mx.collections.*; 
+            [Bindable] 
+            public var stateArray:ArrayList; 
+            
+            public function initData():void { 
+                stateArray=new ArrayList( 
+                [{label:"AL", data:"Montgomery"}, 
+                {label:"AK", data:"Juneau"}, 
+                {label:"AR", data:"Little Rock"}]); 
+            } 
+        ]]&gt; 
+    &lt;/fx:Script&gt; 
+ 
+    &lt;s:ComboBox id="myComboBox" dataProvider="{stateArray}"/&gt; 
+&lt;/s:Application&gt;</pre>
+
+               <p>After you define the ComboBox
+control, the <samp class="codeph">dataProvider</samp> property of the ComboBox
+control provides access to the collection that represents the underlying
+source object, and you can use the property to modify the data provider.
+If you add the following button to the preceding code, for example,
+you can click the button to add the label and data for Arizona to
+the end of the list in the ComboBox control, as in the following
+example:</p>
+
+               <pre class="codeblock"> &lt;s:Button label="Add AZ" 
+	click="stateArray.addItem({'label':'AZ', 'data':'Phoenix'});"/&gt;</pre>
+
+               <p>In
+many cases, an ArrayList class is adequate for defining a non-XML
+data provider. However, for web services, remote objects, and uses
+that require cursors, filters, and sorts, you use the ArrayCollection
+class.</p>
+
+               <div class="p">The following example shows an ArrayCollection object
+that is populated from a remote data source, in this case a remote
+object, as the data provider of a DataGrid control. Note that the <samp class="codeph">ArrayUtil.toArray()</samp> method
+is used to ensure that the data sent to the ArrayCollection object
+is an Array. <pre class="noswf">&lt;?xml version="1.0"?&gt; 
+&lt;!-- dpcontrols\ROParamBind22.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx"&gt; 
+    &lt;s:layout&gt; 
+        &lt;s:VerticalLayout gap="10"/&gt; 
+    &lt;/s:layout&gt; 
+    
+    &lt;fx:Script&gt; 
+        &lt;![CDATA[ 
+            import mx.controls.Alert; 
+            import mx.utils.ArrayUtil; 
+        ]]&gt; 
+    &lt;/fx:Script&gt; 
+    
+    &lt;fx:Declarations&gt; 
+        &lt;mx:RemoteObject 
+            id="employeeRO" 
+            destination="roDest" 
+            showBusyCursor="true" 
+            fault="Alert.show(event.fault.faultString, 'Error');"&gt; 
+            &lt;mx:method name="getList"&gt; 
+                &lt;mx:arguments&gt; 
+                    &lt;deptId&gt;{dept.selectedItem.data}&lt;/deptId&gt; 
+                &lt;/mx:arguments&gt; 
+            &lt;/mx:method&gt; 
+        &lt;/mx:RemoteObject&gt; 
+ 
+        &lt;mx:ArrayCollection id="employeeAC" 
+            source="{ArrayUtil.toArray(employeeRO.getList.lastResult)}"/&gt; 
+    &lt;/fx:Declarations&gt; 
+ 
+    &lt;s:HGroup&gt; 
+        &lt;s:Label text="Select a department:"/&gt; 
+        &lt;s:ComboBox id="dept" width="150"&gt; 
+            &lt;s:dataProvider&gt; 
+                &lt;mx:ArrayCollection&gt; 
+                    &lt;mx:source&gt; 
+                        &lt;fx:Object label="Engineering" data="ENG"/&gt; 
+                        &lt;fx:Object label="Product Management" data="PM"/&gt; 
+                        &lt;fx:Object label="Marketing" data="MKT"/&gt; 
+                    &lt;/mx:source&gt; 
+                &lt;/mx:ArrayCollection&gt; 
+            &lt;/s:dataProvider&gt; 
+        &lt;/s:ComboBox&gt; 
+        &lt;s:Button label="Get Employee List" 
+            click="employeeRO.getList.send()"/&gt; 
+    &lt;/s:HGroup&gt; 
+    
+    &lt;mx:DataGrid dataProvider="{employeeAC}" width="100%"&gt; 
+        &lt;mx:columns&gt; 
+            &lt;mx:DataGridColumn dataField="name" headerText="Name"/&gt; 
+            &lt;mx:DataGridColumn dataField="phone" headerText="Phone"/&gt; 
+            &lt;mx:DataGridColumn dataField="email" headerText="Email"/&gt; 
+        &lt;/mx:columns&gt; 
+    &lt;/mx:DataGrid&gt; 
+&lt;/s:Application&gt;</pre>
+
+               </div>
+
+            </div>
+
+            <div class="section" id="WS2db454920e96a9e51e63e3d11c0bf668d2-7ff9_verapache__WS2db454920e96a9e51e63e3d11c0bf668d2-7ff7_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf668d2-7ff9_verapache__WS2db454920e96a9e51e63e3d11c0bf668d2-7ff7_verapache"><!-- --></a><h4 class="sectiontitle">Accessing
+data by using collection interfaces</h4>
+               
+               <p>If you know that a
+control’s data can always be represented by a specific collection
+class, use an ArrayList, ArrayCollection, or XMLListCollection object explicitly,
+as shown above. If your code might be used with different types
+of collections—for example, if you might switch between object-based
+data and XML data from a remote data service—then you should use
+the ICollectionView interface in your application code, as the following
+example shows:</p>
+
+               <pre class="codeblock"> public var myICV:ICollectionView = indeterminateCollection; 
+... 
+ &lt;s:ComboBox id="cb1" dataProvider="{myICV}" initialize="sortICV()"/&gt; </pre>
+
+               <p>You
+can then manipulate the interface as needed to select data for viewing,
+or to get and modify the data in the underlying data object. </p>
+
+            </div>
+
+            <div class="section" id="WS2db454920e96a9e51e63e3d11c0bf668d2-7ff9_verapache__WS2db454920e96a9e51e63e3d11c0bf668d2-7ff6_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf668d2-7ff9_verapache__WS2db454920e96a9e51e63e3d11c0bf668d2-7ff6_verapache"><!-- --></a><h4 class="sectiontitle">Using
+a raw data object as a data provider for an MX control</h4>
+               
+               <div class="p">When
+the data is static, you can use a raw data object, such as an Array
+object, directly as a data provider for an MX control. For example,
+you could use an array for a static list of U.S. Postal Service
+state designators. Do not use the data object directly as the <samp class="codeph">dataProvider</samp> property
+of a control if the object contents can change dynamically, for
+example in response to user input or programmatic processing. <div class="note"><span class="notetitle">Note:</span> For
+Spark list-based controls, you cannot use a raw object as the value
+of the control’s data provider. You must specify an object that
+implements the IList interface. Classes that implement IList include
+ArrayCollection, ArrayList, and XMLListCollection.</div>
+
+               </div>
+
+               <p>The
+result returned by an HTTP service or web service is often an Array,
+and if you treat that data as read-only, you can use the Array directly
+as a data provider. However, it is a better practice to use a collection
+explicitly. List-based controls turn Array-based data providers
+into collections internally, so there is no performance advantage
+to using an Array directly as the data provider. If you pass an Array
+to multiple controls, it is more efficient to convert the Array
+into a collection when the data is received, and then pass the collection
+to the controls.</p>
+
+               <p>The following example shows an MX ComboBox
+control that takes a static Array as its <samp class="codeph">dataProvider</samp> value.
+As noted previously, using raw objects as data providers is not
+a best practice and should be considered only for data objects that
+will not change.</p>
+
+               <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- dpcontrols/StaticComboBox.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx"&gt; 
+    
+    &lt;fx:Script&gt; 
+        &lt;![CDATA[ 
+            [Bindable] 
+            public var myArray:Array = ["AL", "AK", "AR"]; 
+        ]]&gt; 
+    &lt;/fx:Script&gt; 
+    
+    &lt;mx:ComboBox id="myCB0" dataProvider="{myArray}"/&gt; 
+&lt;/s:Application&gt;</pre>
+
+               <p>In the preceding example, the
+Array specified as the <samp class="codeph">dataProvider</samp> is automatically
+wrapped in an ArrayCollection object. This is the default type for data
+providers to be wrapped in. If the data provider were an XML or
+XMLList object, it would be wrapped in an XMLListCollection object.
+In this example, the ArrayCollection does not have an <samp class="codeph">id</samp> property,
+but you can use ArrayCollection methods and properties directly
+through the <samp class="codeph">dataProvider</samp> property, as the following
+example shows: </p>
+
+               <pre class="codeblock">&lt;mx:Button label="Add AZ" 	 
+	click="myCB0.dataProvider.addItem({'label':'AZ','data':'Phoenix'});"/&gt;</pre>
+
+            </div>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf668d2-7ff5_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf668d2-7ff5_verapache"><!-- --></a>
+         <h3 class="topictitle3">Setting a data provider in ActionScript</h3>
+
+         
+         <div>
+            <p>You may set the <samp class="codeph">dataProvider</samp> property
+of a control in ActionScript, as well as in MXML, as the following
+example shows:</p>
+
+            <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- dpcontrols/DataGridValidateNow.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+   initialize="initData();"&gt; 
+ 
+   &lt;fx:Script&gt; 
+       &lt;![CDATA[ 
+    
+            import mx.collections.ArrayList; 
+ 
+            [Bindable] 
+            private var DGArray:ArrayList = new ArrayList([ 
+                {Artist:'Pavement', Album:'Slanted and Enchanted', Price:11.99}, 
+                {Artist:'Pavement', Album:'Brighten the Corners', Price:11.99}]); 
+         
+            // Initialize initDG ArrayList variable from the ArrayList. 
+            public function initData():void { 
+                myGrid.dataProvider = DGArray; 
+            } 
+        ]]&gt; 
+   &lt;/fx:Script&gt; 
+ 
+   &lt;mx:DataGrid id="myGrid"&gt; 
+      &lt;mx:columns&gt; 
+         &lt;mx:DataGridColumn dataField="Album"/&gt; 
+         &lt;mx:DataGridColumn dataField="Price"/&gt; 
+      &lt;/mx:columns&gt; 
+   &lt;/mx:DataGrid&gt; 
+&lt;/s:Application&gt;</pre>
+
+            <p>In this example, you use the <samp class="codeph">intialize</samp> event
+to set the <samp class="codeph">dataProvider</samp> property of the DataGrid
+control. </p>
+
+            <p>In some situations, you might set the <samp class="codeph">dataProvider</samp> property,
+and then immediately attempt to perform an action on the control
+based on the setting of the <samp class="codeph">dataProvider</samp> property,
+as the following example shows:</p>
+
+            <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- dpcontrols/DataGridValidateNowSelindex.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    initialize="initData();"&gt; 
+ 
+   &lt;fx:Script&gt; 
+       &lt;![CDATA[ 
+            import mx.collections.ArrayList; 
+ 
+            [Bindable] 
+            private var DGArray:ArrayList = new ArrayList([ 
+                {Artist:'Pavement', Album:'Slanted and Enchanted', Price:11.99}, 
+                {Artist:'Pavement', Album:'Brighten the Corners', Price:11.99}]); 
+         
+            // Initialize initDG ArrayList variable from the ArrayList. 
+            public function initData():void { 
+                myGrid.dataProvider = DGArray; 
+                myGrid.validateNow(); 
+                myGrid.selectedIndex=1; 
+            } 
+        ]]&gt; 
+   &lt;/fx:Script&gt; 
+ 
+   &lt;mx:DataGrid id="myGrid"&gt; 
+      &lt;mx:columns&gt; 
+         &lt;mx:DataGridColumn dataField="Album"/&gt; 
+         &lt;mx:DataGridColumn dataField="Price"/&gt; 
+      &lt;/mx:columns&gt; 
+   &lt;/mx:DataGrid&gt; 
+&lt;/s:Application&gt;</pre>
+
+            <p>In this example, setting the <samp class="codeph">selectedindex</samp> to
+1 might fail because the DataGrid control is in the process of setting
+the <samp class="codeph">dataProvider</samp> property. Therefore, you insert
+the <samp class="codeph">validateNow()</samp> method after setting the data provider.
+The <samp class="codeph">validateNow()</samp> method validates and updates
+the properties and layout of the control, and then redraws it, if
+necessary. </p>
+
+            <p>Do not insert the <samp class="codeph">validateNow()</samp> method every
+time you set the <samp class="codeph">dataProvider</samp> property because
+it can affect the performance of your application; it is only required
+in some situations when you attempt to perform an operation on the
+control immediately after setting its <samp class="codeph">dataProvider</samp> property. </p>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf668d2-7ff4_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf668d2-7ff4_verapache"><!-- --></a>
+         <h3 class="topictitle3">Example: Using a collection</h3>
+
+         
+         <div>
+            <p>The following sample code shows how you can use a standard
+collection, an ArrayCollection object, to represent and manipulate
+an Array for use in a control. This example shows the following
+features:</p>
+
+            <ul>
+               <li>
+                  <p>Using an <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/collections/ArrayCollection.html" target="_blank">ArrayCollection</a> to
+represent data in an Array</p>
+
+               </li>
+
+               <li>
+                  <p>Sorting the ArrayCollection</p>
+
+               </li>
+
+               <li>
+                  <p>Inserting data in the ArrayCollection</p>
+
+               </li>
+
+            </ul>
+
+            <p>Note that if the example did not include sorting, it could use
+an ArrayList rather than an ArrayCollection as the data provider.</p>
+
+            <p>This example also shows the insertion’s effect on the Array and
+the ArrayCollection representation of the Array: </p>
+
+            <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- dpcontrols\SimpleDP.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" width="600" 
+    initialize="sortAC();"&gt; 
+    &lt;fx:Script&gt; 
+        &lt;![CDATA[ 
+            import mx.collections.ArrayCollection; 
+            import spark.collections.Sort; 
+            import spark.collections.SortField; 
+    
+            // Function to sort the ArrayCollection in descending order. 
+            public function sortAC():void { 
+                var sortA:Sort = new Sort(); 
+                sortA.fields=[new SortField("label")]; 
+                myAC.sort=sortA; 
+                //Refresh the collection view to show the sort. 
+                myAC.refresh(); 
+            } 
+            // Function to add an item in the ArrayCollection. 
+            // Data added to the view is also added to the underlying Array. 
+            // The ArrayCollection must be sorted for this to work. 
+            public function addItemToMyAC():void { 
+                myAC.addItem({label:"MD", data:"Annapolis"}); 
+            } 
+        ]]&gt; 
+    &lt;/fx:Script&gt; 
+ 
+    &lt;fx:Declarations&gt; 
+        &lt;!-- An ArrayCollection with an array of objects --&gt; 
+        &lt;mx:ArrayCollection id="myAC"&gt; 
+            &lt;!-- Use an fx:Array tag to associate an id with the array. --&gt; 
+            &lt;fx:Array id="myArray"&gt; 
+                &lt;fx:Object label="MI" data="Lansing"/&gt; 
+                &lt;fx:Object label="MO" data="Jefferson City"/&gt; 
+                &lt;fx:Object label="MA" data="Boston"/&gt; 
+                &lt;fx:Object label="MT" data="Helena"/&gt; 
+                &lt;fx:Object label="ME" data="Augusta"/&gt; 
+                &lt;fx:Object label="MS" data="Jackson"/&gt; 
+                &lt;fx:Object label="MN" data="Saint Paul"/&gt; 
+            &lt;/fx:Array&gt; 
+        &lt;/mx:ArrayCollection&gt; 
+    &lt;/fx:Declarations&gt; 
+ 
+    &lt;s:HGroup width="100%"&gt; 
+        &lt;!-- A ComboBox populated by the collection view of the Array. --&gt; 
+        &lt;s:ComboBox id="cb1" dataProvider="{myAC}"/&gt; 
+        &lt;s:Button id="b1" label="Add MD" click="addItemToMyAC();"/&gt; 
+    &lt;/s:HGroup&gt; 
+&lt;/s:Application&gt;</pre>
+
+         </div>
+
+      </div>
+
+   </div>
+
+   <div class="nested1" id="WS2db454920e96a9e51e63e3d11c0bf668d2-7ff3_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf668d2-7ff3_verapache"><!-- --></a>
+      <h2 class="topictitle2">Using simple data access properties
+and methods</h2>
+
+      
+      <div>
+         <p>Collections provide simple properties and methods for indexed
+access to linear data. These properties and methods are defined
+in the <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/collections/IList.html" target="_blank">IList</a> interface,
+which provides a direct representation of the underlying data object.
+Any operation that changes the collection also changes the data
+provider in a similar manner: if you insert an item as the third
+item in the collection, it is also the third item in the underlying
+data object, which is an Array when working with ArrayList or an ArrayCollection
+object. The underlying data object is an XMLList object when working
+with XMLListCollection objects.</p>
+
+         <div class="note"><span class="notetitle">Note:</span> If you use the ICollectionView interface to
+sort or filter a collection, do not use the IList interface to manipulate
+the data, because the results are indeterminate.</div>
+
+         <p>Simple data access properties and methods let you do the following:</p>
+
+         <ul>
+            <li>
+               <p>Get, set, add, or remove an item at a specific index
+into the collection</p>
+
+            </li>
+
+            <li>
+               <p>Add an item at the end of the collection</p>
+
+            </li>
+
+            <li>
+               <p>Get the index of a specific item in the collection</p>
+
+            </li>
+
+            <li>
+               <p>Remove all items in the collection</p>
+
+            </li>
+
+            <li>
+               <p>Get the length of the collection</p>
+
+            </li>
+
+         </ul>
+
+         <p>You can use this functionality directly on ArrayList, ArrayCollection,
+and XMLListCollection objects and also on the <samp class="codeph">dataProvider</samp> property
+of any standard Flex data provider component.</p>
+
+         <p>The following sample code uses an ArrayList object to display
+an Array of elements in a ComboBox control. For an example that
+shows how to manage an ArrayCollection of objects with multiple
+fields, see <a href="flx_about_dataproviders_ab.html#WS2db454920e96a9e51e63e3d11c0bf69084-7b67_verapache">Example:
+Modifying data in a DataGrid control</a>. </p>
+
+         <p>In the following example the Array data source initially consists
+of the following elements:</p>
+
+         <pre class="codeblock"> "AZ", "MA", "MZ", "MN", "MO", "MS"</pre>
+
+         <p>When you click the Button control, the application uses the <samp class="codeph">length</samp> property
+of the ArrayList and several of its methods to do the following:</p>
+
+         <ol>
+            <li>
+               <p>Change the data in the Array and the displayed data in
+the ComboBox control to a correct alphabetical list of the U.S.
+state abbreviations for states that start with M:</p>
+
+               <pre class="codeblock"> MA, ME, MI, MN, MO, MS, MT</pre>
+
+            </li>
+
+            <li>
+               <p>Display in a TextArea control information about the tasks
+it performed and the resulting Array.</p>
+
+            </li>
+
+         </ol>
+
+         <p>The code includes comments that describe the changes to the data
+object.</p>
+
+         <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- dpcontrols\UseIList.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    initialize="initData();"&gt; 
+    &lt;s:layout&gt; 
+        &lt;s:VerticalLayout/&gt; 
+    &lt;/s:layout&gt; 
+ 
+    &lt;fx:Script&gt; 
+        &lt;![CDATA[ 
+            import mx.collections.*; 
+ 
+            // The data provider is an Array of Strings 
+            public var myArray:Array = ["AZ", "MA", "MZ", "MN", "MO", "MS"]; 
+            // Declare an ArrayList that represents the Array. 
+            [Bindable] 
+            public var myAL:ArrayList; 
+ 
+            //Initialize the ArrayList. 
+            public function initData():void { 
+                myAL = new ArrayList(myArray); 
+            } 
+ 
+            // The function to change the collection, and therefore 
+            // the Array. 
+            public function changeCollection():void { 
+                // Get the original collection length. 
+                var oldLength:int=myAL.length; 
+ 
+                // Remove the invalid first item, AZ. 
+                var removedItem:String=String(myAL.removeItemAt(0)); 
+                // Add ME as the second item. (ILists used 0-based indexing.) 
+                myAL.addItemAt("ME", 1); 
+                // Add MT at the end of the Array and collection. 
+                myAL.addItem("MT"); 
+                // Change the third item from MZ to MI. 
+                myAL.setItemAt("MI", 2); 
+                // Get the updated collection length. 
+                var newLength:int=myAL.length; 
+                // Get the index of the item with the value ME. 
+                var addedItemIndex:int=myAL.getItemIndex("ME"); 
+                // Get the fifth item in the collection. 
+                var index4Item:String=String(myAL.getItemAt(4)); 
+ 
+                // Display the information in the TextArea control. 
+                ta1.text="Start Length: " + oldLength + ". New Length: " + 
+                    newLength; 
+                ta1.text+=".\nRemoved " + removedItem; 
+                ta1.text+=".\nAdded ME at index " + addedItemIndex; 
+                ta1.text+=".\nThe item at index 4 is " + index4Item + "."; 
+                // Show that the base Array has been changed. 
+                ta1.text+="\nThe base Array is: " + myArray.join(); 
+            } 
+        ]]&gt; 
+    &lt;/fx:Script&gt; 
+ 
+    &lt;s:ComboBox id="myCB" dataProvider="{myAL}"/&gt; 
+    &lt;s:TextArea id="ta1" height="75" width="300"/&gt; 
+    &lt;s:Button label="rearrange list" click="changeCollection();"/&gt; 
+&lt;/s:Application&gt;</pre>
+
+      </div>
+
+   </div>
+
+   <div class="nested1" id="WS2db454920e96a9e51e63e3d11c0bf668d2-7ff2_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf668d2-7ff2_verapache"><!-- --></a>
+      <h2 class="topictitle2">Working with data views </h2>
+
+      
+      <div>
+         <p>Classes that implement the <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/collections/ICollectionView.html" target="_blank">ICollectionView</a> interface,
+such as ArrayCollection and XMLListCollection, provide a <em>view</em> of
+the underlying data object as a collection of items. Although they
+are more complex, data views give you more flexibility than the
+simple data access methods and properties that are defined in the
+IList interface. Data views provide the following features:</p>
+
+         <ul>
+            <li>
+               <p>You can modify the data view to show the data in sorted
+order or to show a subset of the items in the data provider without
+changing the underlying data. For more information, see <a href="flx_about_dataproviders_ab.html#WS2db454920e96a9e51e63e3d11c0bf69084-7b66_verapache">Sorting
+and filtering data for viewing</a>.</p>
+
+            </li>
+
+            <li>
+               <p>You can access the collection data by using a <em>cursor</em>,
+which lets you move through the collection, use bookmarks to save
+specific locations in the collection, and insert and delete items
+in the collection (and therefore in the underlying data source).
+For more information, see <a href="flx_about_dataproviders_ab.html#WS2db454920e96a9e51e63e3d11c0bf69084-7b65_verapache">Using
+a view cursor</a>.</p>
+
+            </li>
+
+            <li>
+               <p>You can represent remote data that might not initially be
+available, or parts of the data set that might become available
+at different times. For more information, see <a href="flx_about_dataproviders_ab.html#WS2db454920e96a9e51e63e3d11c0bf69084-7b64_verapache">Collection
+change notification</a> and <a href="flx_about_dataproviders_ab.html#WS2db454920e96a9e51e63e3d11c0bf69084-7b63_verapache">Remote
+data in data provider components</a>.</p>
+
+            </li>
+
+         </ul>
+
+         <p>You can use data views directly on ArrayCollection and XMLListCollection
+objects and also on the <samp class="codeph">dataProvider</samp> property of
+standard Flex data provider components <em>except</em> those that
+are subclasses of the NavBar class (ButtonBar, LinkBar, TabBar,
+and ToggleButtonBar). It is a better practice to work directly on the
+collection objects than on the <samp class="codeph">dataProvider</samp> property.</p>
+
+         <p>Note that the ArrayList class implements the IList interface
+but not the ICollectionView interface.</p>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf69084-7b66_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7b66_verapache"><!-- --></a>
+         <h3 class="topictitle3">Sorting and filtering data for
+viewing</h3>
+
+         
+         <div>
+            <p>
+               
+               Collections
+let you sort and filter data in the data view so that the data in
+the collection is a reordered subset of the underlying data. Data
+view operations have no effect on the underlying data object content,
+only on the subset of data that the collection view represents,
+and therefore on what is displayed by any control that uses the
+collection.</p>
+
+            <div class="section" id="WS2db454920e96a9e51e63e3d11c0bf69084-7b66_verapache__WS2db454920e96a9e51e63e3d11c0bf668d2-7ff0_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7b66_verapache__WS2db454920e96a9e51e63e3d11c0bf668d2-7ff0_verapache"><!-- --></a><h4 class="sectiontitle">Sorting </h4>
+               
+               <p>A <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/spark/collections/Sort.html" target="_blank">Sort</a> object
+lets you sort data in a collection. You can specify multiple fields
+to use in sorting the data, require that the resulting entries be
+unique, and specify a custom comparison function to use for ordering
+the sorted output. You can also use a Sort object to find items
+in a collection. When you create a Sort object, or change its properties,
+you must call the <samp class="codeph">refresh()</samp> method on the collection to
+show the results.</p>
+
+               <p>You use <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/spark/collections/SortField.html" target="_blank">SortField</a> objects
+to specify the fields to use in the sort. You create SortField objects
+and put them in the Sort class object’s <samp class="codeph">fields</samp> array.</p>
+
+               <p>To
+create case-insensitive sorts, use the <samp class="codeph">ignoreCase</samp> property
+of the SortingCollator.</p>
+
+            </div>
+
+            <div class="section" id="WS2db454920e96a9e51e63e3d11c0bf69084-7b66_verapache__WS2db454920e96a9e51e63e3d11c0bf668d2-7fef_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7b66_verapache__WS2db454920e96a9e51e63e3d11c0bf668d2-7fef_verapache"><!-- --></a><h4 class="sectiontitle">Filtering</h4>
+               
+               <p>You
+use a filter function to limit the data view in the collection to
+a subset of the source data object. The function must take a single
+Object parameter, which corresponds to a collection item, and must
+return a Boolean value specifying whether to include the item in
+the view. As with sorting, when you specify or change the filter
+function, you must call the <samp class="codeph">refresh()</samp> method on
+the collection to show the filtered results. To limit a collection
+view of an array of strings to contain only strings starting with
+M, for example, use the following filter function:</p>
+
+               <pre class="codeblock"> public function stateFilterFunc(item:Object):Boolean  { 
+ 	return item &gt;= "M" &amp;&amp; item &lt; "N"; 
+ }</pre>
+
+            </div>
+
+            <div class="section" id="WS2db454920e96a9e51e63e3d11c0bf69084-7b66_verapache__WS2db454920e96a9e51e63e3d11c0bf668d2-7fee_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7b66_verapache__WS2db454920e96a9e51e63e3d11c0bf668d2-7fee_verapache"><!-- --></a><h4 class="sectiontitle">Example:
+Sorting and filtering an ArrayCollection</h4>
+               
+               <p>The following
+example shows the use of the filter function and a sort together. You
+can use the buttons to sort the collection, to filter the collection,
+or to do both. Use the Reset button to restore the collection view
+to its original state. </p>
+
+               <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- dpcontrols\SortFilterArrayCollection.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    width="600"&gt; 
+    &lt;s:layout&gt; 
+        &lt;s:VerticalLayout/&gt; 
+    &lt;/s:layout&gt; 
+    
+    &lt;fx:Script&gt; 
+        &lt;![CDATA[ 
+            import mx.collections.ArrayCollection; 
+            import spark.collections.Sort; 
+            import spark.collections.SortField; 
+    
+            /* Function to sort the ICollectionView 
+               in ascending order. */ 
+            public function sortAC():void { 
+                var sortA:Sort = new Sort(); 
+                sortA.fields=[new SortField("label")]; 
+                myAC.sort=sortA; 
+                //Refresh the collection view to show the sort. 
+                myAC.refresh(); 
+            } 
+ 
+            /* Function to filter out all items with labels 
+               that are not in the range of M-N. */ 
+            public function stateFilterFunc(item:Object):Boolean { 
+                return item.label &gt;= "M" &amp;&amp; item.label &lt; "O"; 
+            } 
+            
+            /* Function to apply the filter function the ICollectionView. */ 
+            public function filterAC():void { 
+                myAC.filterFunction=stateFilterFunc; 
+                /* Refresh the collection view to apply the filter. */ 
+                myAC.refresh(); 
+            } 
+ 
+            /* Function to Reset the view to its original state. */ 
+            public function resetAC():void { 
+                myAC.filterFunction=null; 
+                myAC.sort=null; 
+                //Refresh the collection view. 
+                myAC.refresh(); 
+            } 
+ 
+        ]]&gt; 
+    &lt;/fx:Script&gt; 
+ 
+    &lt;fx:Declarations&gt; 
+        &lt;!-- An ArrayCollection with an array of objects. --&gt; 
+        &lt;mx:ArrayCollection id="myAC"&gt; 
+            &lt;fx:Array id="myArray"&gt; 
+                &lt;fx:Object label="LA" data="Baton Rouge"/&gt; 
+                &lt;fx:Object label="NH" data="Concord"/&gt; 
+                &lt;fx:Object label="TX" data="Austin"/&gt; 
+                &lt;fx:Object label="MA" data="Boston"/&gt; 
+                &lt;fx:Object label="AZ" data="Phoenix"/&gt; 
+                &lt;fx:Object label="OR" data="Salem"/&gt; 
+                &lt;fx:Object label="FL" data="Tallahassee"/&gt; 
+                &lt;fx:Object label="MN" data="Saint Paul"/&gt; 
+                &lt;fx:Object label="NY" data="Albany"/&gt; 
+            &lt;/fx:Array&gt; 
+        &lt;/mx:ArrayCollection&gt; 
+    &lt;/fx:Declarations&gt; 
+ 
+    &lt;!-- Buttons to filter, sort, or reset the view in the second ComboBox 
+            control. --&gt; 
+    &lt;s:HGroup width="100%"&gt; 
+        &lt;s:Button id="sortButton" label="Sort" click="sortAC();"/&gt; 
+        &lt;s:Button id="filterButton" label="Filter" click="filterAC();"/&gt; 
+        &lt;s:Button id="resetButton" label="Reset" click="resetAC();"/&gt; 
+    &lt;/s:HGroup&gt; 
+    &lt;s:ComboBox id="cb1" dataProvider="{myAC}"/&gt; 
+&lt;/s:Application&gt;</pre>
+
+               <p>For a more complex example
+of sorting a DataGrid control, which does both an initial sort of
+the data and a custom sort when you click a column heading, see <a href="flx_spark_datagrid_sdg.html#WS8b1c39bd7e9fc3647f39ab2512d530e9965-8000_verapache">Create
+a custom sort for the Spark DataGrid control</a>.</p>
+
+            </div>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf69084-7b65_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7b65_verapache"><!-- --></a>
+         <h3 class="topictitle3">Using a view cursor</h3>
+
+         
+         <div>
+            <p>You use a view cursor to traverse the items in a collection’s
+data view and to access and modify data in the collection. A <em>cursor</em> is
+a position indicator; it points to a particular item in the collection.
+Collections have a <samp class="codeph">createCursor()</samp> method that returns
+a view cursor. View cursor methods and properties are defined in
+the <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/collections/IViewCursor.html" target="_blank">IViewCursor</a> interface.</p>
+
+            <p>You can use view cursor methods and properties to perform the
+following operations:</p>
+
+            <ul>
+               <li>
+                  <p>Move the cursor backward or forward</p>
+
+               </li>
+
+               <li>
+                  <p>Move the cursor to specific items</p>
+
+               </li>
+
+               <li>
+                  <p>Get the item at a cursor location</p>
+
+               </li>
+
+               <li>
+                  <p>Add, remove, and change items</p>
+
+               </li>
+
+               <li>
+                  <p>Save a cursor position by using a bookmark, and return to
+it later</p>
+
+               </li>
+
+            </ul>
+
+            <p>When you use standard Flex collection classes, ArrayCollection
+and XMLListCollection, you use the IViewCursor interface directly;
+as the following code snippet shows, you do not reference an object
+instance: </p>
+
+            <pre class="codeblock"> public var myAC:ICollectionView = new ArrayCollection(myArray);  
+ public var myCursor:IViewCursor; 
+ . 
+ . 
+ myCursor=myAC.createCursor();</pre>
+
+            <div class="section" id="WS2db454920e96a9e51e63e3d11c0bf69084-7b65_verapache__WS2db454920e96a9e51e63e3d11c0bf668d2-7fec_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7b65_verapache__WS2db454920e96a9e51e63e3d11c0bf668d2-7fec_verapache"><!-- --></a><h4 class="sectiontitle">Manipulating
+the view cursor</h4>
+               
+               <p>
+                  A
+view cursor object includes the following methods and properties
+for moving the cursor:</p>
+
+               <ol>
+                  <li>
+                     <p>The <samp class="codeph">moveNext()</samp> and <samp class="codeph">movePrevious()</samp> methods
+move the cursor forward and backward by one item. Use the <samp class="codeph">beforeFirst</samp> and <samp class="codeph">afterLast</samp> properties
+to check whether you’ve reached the bounds of the view. The following
+example moves the cursor to the last item in the view:</p>
+
+                     <pre class="codeblock"> while (! myCursor.afterLast) { 
+ 		myCursor.moveNext(); 
+ }</pre>
+
+                  </li>
+
+                  <li>
+                     <p>The <samp class="codeph">findAny()</samp>, <samp class="codeph">findFirst()</samp>,
+and <samp class="codeph">findLast()</samp> methods move the cursor to an item
+that matches the parameter. Before you can use these methods, you
+must apply a Sort to the collection (because the functions use Sort
+methods). </p>
+
+                  </li>
+
+               </ol>
+
+               <p>If it is not important to find the first
+occurrence of an item or the last occurrence of an item in a nonunique
+index, the <samp class="codeph">findAny()</samp> method can be somewhat more
+efficient than either the <samp class="codeph">findFirst()</samp> or the <samp class="codeph">findLast()</samp> method.</p>
+
+               <p>If
+the associated data is from a remote source, and not all of the
+items are cached locally, the find methods begin an asynchronous
+fetch from the remote source; if a fetch is already in progress,
+they wait for it to complete before making another fetch request.</p>
+
+               <p>The
+following example finds an item inside a collection of simple objects—in
+this case, an ArrayCollection of state ZIP code strings. It creates
+a default Sort object, applies it to an ArrayCollection object,
+and finds the first instance of the string <samp class="codeph">"MZ"</samp> in
+a simple array of strings:</p>
+
+               <pre class="codeblock"> var sortD:Sort = new Sort(); 
+ // The null first parameter on the SortField constructor specifies a 
+ // collection of simple objects (String, numeric, or Boolean values). 
+ // The true second parameter specifies a case-insensitive sort. 
+ sortD.fields = [new SortField(null, true)]; 
+ myAC.sort=sortD; 
+ myAC.refresh(); 
+ myCursor.findFirst("MZ");</pre>
+
+               <p>To find a complex object,
+you can use the <samp class="codeph">findFirst()</samp> method to search on multiple
+sort fields. You cannot, however, skip fields in the parameter of
+any of the find methods. If an object has three fields, for example,
+you can specify any of the following field combinations in the parameter:
+1, 1,2, or 1,2,3, but you cannot specify only fields 1 and 3. </p>
+
+               <p>Both
+of the following lines find an object with the label value <samp class="codeph">"ME"</samp> and
+data value <samp class="codeph">"Augusta"</samp>:</p>
+
+               <pre class="codeblock"> myCursor.findFirst({label:"ME"}); 
+ myCursor.findFirst({label:"ME", data:"Augusta"});</pre>
+
+               <ol>
+                  <li>
+                     <p>The <samp class="codeph">seek()</samp> method moves the cursor to a
+position relative to a bookmark. You use this method to move the
+cursor to the first or last item in a view, or to move to a bookmark
+position that you have saved. </p>
+
+                  </li>
+
+               </ol>
+
+            </div>
+
+            <div class="section" id="WS2db454920e96a9e51e63e3d11c0bf69084-7b65_verapache__WS2db454920e96a9e51e63e3d11c0bf668d2-7feb_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7b65_verapache__WS2db454920e96a9e51e63e3d11c0bf668d2-7feb_verapache"><!-- --></a><h4 class="sectiontitle">Getting,
+adding, and removing data items</h4>
+               
+               <p>A view cursor object includes
+the following methods and properties for accessing and changing
+data in the view:</p>
+
+               <ul>
+                  <li>
+                     <p>The <samp class="codeph">current</samp> property
+is a reference to the item at the current cursor location.</p>
+
+                  </li>
+
+                  <li>
+                     <p>The <samp class="codeph">insert()</samp> method inserts an item before
+the current cursor location. However, if the collection is sorted
+(for example, to do a <samp class="codeph">find()</samp> operation, the sort
+moves the item to the sorted order location, not to the cursor location. </p>
+
+                  </li>
+
+                  <li>
+                     <p>The <samp class="codeph">remove()</samp> method removes the item at
+the current cursor location; if the removed item is not the last
+item, the cursor points to the location after the removed item. </p>
+
+                  </li>
+
+               </ul>
+
+               <p>The
+following example shows the results of using <samp class="codeph">insert()</samp> and <samp class="codeph">remove()</samp> on the <samp class="codeph">current</samp> property:</p>
+
+               <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- dpcontrols\GetAddRemoveItems.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    initialize="initData();"&gt; 
+    &lt;s:layout&gt; 
+        &lt;s:VerticalLayout/&gt; 
+    &lt;/s:layout&gt; 
+        
+    &lt;fx:Script&gt; 
+        &lt;![CDATA[ 
+            import mx.collections.*; 
+            public var myArray:Array = [{label:"MA", data:"Massachusetts"}, 
+            {label:"MN", data:"Minnesota"}, {label:"MO", data:"Missouri"}]; 
+            [Bindable] 
+            public var myAC:ArrayCollection; 
+            public var myCursor:IViewCursor; 
+ 
+            /* Initialize the ArrayCollection when you 
+               initialize the application. */ 
+            public function initData():void { 
+                myAC = new ArrayCollection(myArray); 
+            } 
+ 
+            /* The function to change the collection, 
+               and therefore the Array. */ 
+            public function testCollection():void { 
+                /* Get an IViewCursor object for accessing the collection data. */ 
+                myCursor=myAC.createCursor(); 
+                ta1.text="At start, the cursor is at: " + myCursor.current.label + "."; 
+                var removedItem:String=String(myCursor.remove()); 
+                ta1.text+="\nAfter removing the current item, the cursor is at: " 
+                    + myCursor.current.label + "."; 
+                myCursor.insert({label:"ME", data:"Augusta"}); 
+                ta1.text+="\nAfter adding an item, the cursor is at: " 
+                    + myCursor.current.label + "."; 
+            } 
+        ]]&gt; 
+    &lt;/fx:Script&gt; 
+ 
+    &lt;s:ComboBox id="myCB" dataProvider="{myAC}"/&gt; 
+    &lt;s:TextArea id="ta1" height="75" width="350"/&gt; 
+    &lt;s:Button label="Run Test" click="testCollection();"/&gt; 
+&lt;/s:Application&gt;</pre>
+
+            </div>
+
+            <div class="section" id="WS2db454920e96a9e51e63e3d11c0bf69084-7b65_verapache__WS2db454920e96a9e51e63e3d11c0bf69084-7b61_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7b65_verapache__WS2db454920e96a9e51e63e3d11c0bf69084-7b61_verapache"><!-- --></a><h4 class="sectiontitle">Using
+bookmarks</h4>
+               
+               <p>
+                  
+                  You
+use a bookmark to save a cursor location for later use. You can
+also use the built-in <samp class="codeph">FIRST</samp> and <samp class="codeph">LAST</samp> bookmark
+properties to move the cursor to the first or last item in the data
+view.</p>
+
+            </div>
+
+            <div class="section" id="WS2db454920e96a9e51e63e3d11c0bf69084-7b65_verapache__WS2db454920e96a9e51e63e3d11c0bf668d2-7fe9_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7b65_verapache__WS2db454920e96a9e51e63e3d11c0bf668d2-7fe9_verapache"><!-- --></a><h4 class="sectiontitle">Create
+and use a bookmark</h4>
+               
+               <ol>
+                  <li>
+                     <p>Move the cursor to a desired
+location in the data view. </p>
+
+                  </li>
+
+                  <li>
+                     <p>Assign the current value of the <samp class="codeph">bookmark</samp> property
+to a variable, as in the following line:</p>
+
+                     <pre class="codeblock"> var myBookmark:CursorBookmark=myCursor.bookmark;</pre>
+
+                  </li>
+
+                  <li>
+                     <p>Do some operations that might move the cursor.</p>
+
+                  </li>
+
+                  <li>
+                     <p>When you must return to the bookmarked cursor location (or
+to a specific offset from the bookmarked location), call the IViewCursor <samp class="codeph">seek()</samp> method, as
+in the following line:</p>
+
+                     <pre class="codeblock"> myCursor.seek(myBookmark);</pre>
+
+                  </li>
+
+               </ol>
+
+               <p>The
+following example counts the number of items in a collection between
+the selected item in a ComboBox control and the end of the collection,
+and then returns the cursor to the initial location:</p>
+
+               <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- dpcontrols\UseBookmarks.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    initialize="run();"&gt; 
+    &lt;s:layout&gt; 
+        &lt;s:VerticalLayout/&gt; 
+    &lt;/s:layout&gt; 
+    
+    &lt;fx:Script&gt; 
+        &lt;![CDATA[ 
+            import mx.collections.ArrayCollection; 
+            import mx.collections.IViewCursor; 
+            import mx.collections.CursorBookmark; 
+            import spark.collections.Sort; 
+            import spark.collections.SortField; 
+            private var myCursor:IViewCursor; 
+ 
+            // Initialize variables. 
+            public function run():void { 
+                // Initialize the cursor. 
+                myCursor=myAC.createCursor(); 
+                // The findFirst() method, used in 
+                // countFromSelection() requires a 
+                // sorted view. 
+                var sort:Sort = new Sort(); 
+                sort.fields=[new SortField("label")]; 
+                myAC.sort=sort; 
+                //You must refresh the view to apply the sort. 
+                myAC.refresh(); 
+            } 
+ 
+            // Count the items following the current 
+            // cursor location. 
+            public function countLast(theCursor:IViewCursor):int { 
+                var counter:int=0; 
+                // Set a bookmark at the current cursor location. 
+                var mark:CursorBookmark=theCursor.bookmark; 
+                // Move the cursor to the end of the Array. 
+                // The moveNext() method returns false when the cursor 
+                // is after the last item. 
+                    while (theCursor.moveNext()) { 
+                    counter++; 
+                } 
+                // Return the cursor to the initial location. 
+                theCursor.seek(mark); 
+                return counter; 
+            } 
+ 
+            // Function triggered by ComboBox change event. 
+            // Calls the countLast() function to count the 
+            // number of items to the end of the collection. 
+            public function countFromSelection():void { 
+                myCursor.findFirst(myCB.selectedItem); 
+                var count:int = countLast(myCursor); 
+                ta1.text += myCursor.current.label + " is " + count + 
+                                " from the last item.\n"; 
+            } 
+        ]]&gt; 
+    &lt;/fx:Script&gt; 
+ 
+    &lt;fx:Declarations&gt; 
+        &lt;!-- The data provider, an ArrayCollection with an array of objects. --&gt; 
+        &lt;mx:ArrayCollection id="myAC"&gt; 
+            &lt;fx:Object label="MA" data="Boston"/&gt; 
+            &lt;fx:Object label="ME" data="Augusta"/&gt; 
+            &lt;fx:Object label="MI" data="Lansing"/&gt; 
+            &lt;fx:Object label="MN" data="Saint Paul"/&gt; 
+            &lt;fx:Object label="MO" data="Jefferson City"/&gt; 
+            &lt;fx:Object label="MS" data="Jackson"/&gt; 
+            &lt;fx:Object label="MT" data="Helena"/&gt; 
+        &lt;/mx:ArrayCollection&gt; 
+    &lt;/fx:Declarations&gt; 
+ 
+    &lt;s:ComboBox id="myCB" 
+        dataProvider="{myAC}" change="countFromSelection();"/&gt; 
+    &lt;s:TextArea id="ta1" height="200" width="175"/&gt; 
+&lt;/s:Application&gt;</pre>
+
+            </div>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf668d2-7fe8_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf668d2-7fe8_verapache"><!-- --></a>
+         <h3 class="topictitle3">Example: Updating an Array by using
+data view methods and properties </h3>
+
+         
+         <div>
+            <p>The following example uses the data view methods and properties
+of an <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/collections/ArrayCollection.html" target="_blank">ArrayCollection</a> object
+to display an Array with the following elements in a ComboBox control:</p>
+
+            <pre class="codeblock"> "AZ", "MA", "MZ", "MN", "MO", "MS"</pre>
+
+            <p>When you click the Update View button, the application uses the <samp class="codeph">length</samp> property
+and several methods of the ICollectionView interface to do the following:</p>
+
+            <ul>
+               <li>
+                  <p>Change the data in the array and the displayed data in
+the ComboBox control to a correct alphabetical list of the U.S.
+state abbreviations for the following states that start with the
+letter M: </p>
+
+                  <pre class="codeblock"> MA, ME, MI, MN, MO, MS, MT</pre>
+
+               </li>
+
+               <li>
+                  <p>Save a bookmark that points to the ME item that it adds,
+and later restores the cursor to this position.</p>
+
+               </li>
+
+               <li>
+                  <p>Display in a TextArea control information about the tasks
+it performed and the resulting array.</p>
+
+               </li>
+
+            </ul>
+
+            <p>When you click the Sort button, the application reverses the
+order of the items in the view, and limits the viewed range to ME–MO.</p>
+
+            <p>When you click the Reset button, the application resets the data
+provider array and the collection view.</p>
+
+            <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- dpcontrols\UpdateArrayViaICollectionView.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    initialize="initData();"&gt; 
+    &lt;s:layout&gt; 
+        &lt;s:VerticalLayout/&gt; 
+    &lt;/s:layout&gt; 
+        
+    &lt;fx:Script&gt; 
+        &lt;![CDATA[ 
+            import mx.collections.ArrayCollection; 
+            import mx.collections.CursorBookmark; 
+            import mx.collections.IViewCursor; 
+            import spark.collections.Sort; 
+            import spark.collections.SortField;            
+            
+            // The data provider is an array of Strings. 
+            public var myArray:Array = ["AZ", "MA", "MZ", "MN", "MO", "MS"]; 
+            // Declare an ArrayCollection that represents the Array. 
+            // The variable must be bindable so the ComboBox can update properly. 
+            [Bindable] 
+            public var myAC:ArrayCollection; 
+            //Boolean flag to ensure the update routine hasn't been run before. 
+            public var runBefore:Boolean=false; 
+            //Initialize the ArrayCollection the application initializes. 
+            public function initData():void { 
+                myAC = new ArrayCollection(myArray); 
+            } 
+ 
+            // The function to change the collection. 
+            public function changeCollection():void { 
+                //Running this twice without resetting causes an error. 
+                if (! runBefore) { 
+                    runBefore=true; 
+                    // Get an IViewCursor object for accessing the collection data. 
+                    var myCursor:IViewCursor=myAC.createCursor(); 
+                    // Get the original collection length. 
+                    var oldLength:int=myAC.length; 
+ 
+                    // The cursor is initially at the first item; delete it. 
+                    var removedItem:String=String(myCursor.remove()); 
+ 
+                    // Add ME as the second item. 
+                    // The cursor is at the (new) first item; 
+                    // move it to the second item. 
+                    myCursor.moveNext(); 
+                    // Insert ME before the second item. 
+                    myCursor.insert("ME"); 
+ 
+                    // Add MT at the end of the collection. 
+                    //Use the LAST bookmark property to go to the end of the view. 
+                    // Add an offset of 1 to position the cursor after the last item. 
+                    myCursor.seek(CursorBookmark.LAST, 1); 
+                    myCursor.insert("MT"); 
+                    // Change MZ to MI. 
+                    // The findFirst() method requires a sorted view. 
+                    var sort:Sort = new Sort(); 
+                    myAC.sort=sort; 
+                    // Refresh the collection view to apply the sort. 
+                    myAC.refresh(); 
+                    // Make sure there is a MZ item, and no MI in the array. 
+                     if (myCursor.findFirst("MZ") &amp;&amp; !myCursor.findFirst("MI")) { 
+                        // The IViewCursor does not have a replace operation. 
+                        // First, remove "MZ". 
+                        myCursor.remove(); 
+                        // Because the view is now sorted, the insert puts this item 
+                        // in the right place in the sorted view, but at the end of 
+                        // the underlying Array data provider. 
+                        myCursor.insert("MI"); 
+                    } 
+ 
+                    // Get the updated collection length. 
+                    var newLength:int=myAC.length; 
+ 
+                    // Set a bookmark at the item with the value ME, 
+                    myCursor.findFirst("ME"); 
+                    var MEMark:CursorBookmark=myCursor.bookmark; 
+                    // Move the cursor to the last item in the Array. 
+                    myCursor.seek(CursorBookmark.LAST); 
+                    // Get the last item in the collection. 
+                    var lastItem:String=String(myCursor.current); 
+                    // Return the cursor to the bookmark position. 
+                    myCursor.seek(MEMark); 
+                    // Get the item at the cursor location. 
+                    var MEItem:String=String(myCursor.current); 
+ 
+                    // Display the information in the TextArea control. 
+                    ta1.text="Start Length: " + oldLength + ". End Length: " 
+                                    + newLength; 
+                    ta1.text+=".\nRemoved " + removedItem; 
+                    ta1.text+=".\nLast Item is " + lastItem; 
+                    ta1.text+=".\nItem at MEMark is " + MEItem; 
+                    // Show that the base Array has been changed. 
+                    // Notice that the Array is NOT in sorted order. 
+                    ta1.text+="\nThe base Array is: " + myArray.join(); 
+                } // End runBefore condition 
+            } 
+ 
+            // Filter function used in the sortICV method to limit the range. 
+            public function MEMOFilter(item:Object):Boolean { 
+                return item &gt;= "ME" &amp;&amp; item &lt;= "MO"; 
+            } 
+            
+            // Sort the collection view in descending order, 
+            // and limit the items to the range ME - MO. 
+            public function sortICV():void { 
+                var sort:Sort = new Sort(); 
+                sort.fields=[new SortField(null, false, true)]; 
+                myAC.filterFunction=MEMOFilter; 
+                myAC.sort=sort; 
+                // Refresh the ArrayCollection to apply the sort and filter 
+                // function. 
+                myAC.refresh(); 
+                //Call the ComboBox selectedIndex() method to replace the "MA" 
+                //in the display with the first item in the sorted view. 
+                myCB.selectedIndex=0; 
+                ta1.text="Sorted"; 
+            } 
+ 
+            //Reset the Array and update the display to run the example again. 
+            public function resetView():void { 
+                myArray = ["AZ", "MA", "MZ", "MN", "MO", "MS"]; 
+                myAC = new ArrayCollection(myArray); 
+                ta1.text="Reset"; 
+                runBefore=false; 
+            } 
+        ]]&gt; 
+    &lt;/fx:Script&gt; 
+ 
+    &lt;s:ComboBox id="myCB" dataProvider="{myAC}"/&gt; 
+    &lt;s:TextArea id="ta1" height="75" width="300"/&gt; 
+    &lt;s:HGroup&gt; 
+        &lt;s:Button label="Update View" click="changeCollection();"/&gt; 
+        &lt;s:Button label="Sort View" click="sortICV();"/&gt; 
+        &lt;s:Button label="Reset View" click="resetView();"/&gt; 
+    &lt;/s:HGroup&gt; 
+&lt;/s:Application&gt;</pre>
+
+         </div>
+
+      </div>
+
+   </div>
+
+   <div class="nested1" id="WS2db454920e96a9e51e63e3d11c0bf668d2-7fe7_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf668d2-7fe7_verapache"><!-- --></a>
+      <h2 class="topictitle2">Collection events and manual change notification</h2>
+
+      
+      <div>
+         <p>Collections use events to indicate changes to the collection.
+You can use these events to monitor changes and update the display
+accordingly.</p>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf668d2-7fe6_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf668d2-7fe6_verapache"><!-- --></a>
+         <h3 class="topictitle3">Collection events</h3>
+
+         
+         <div>
+            <p>Collections use CollectionEvent, PropertyChangeEvent, and
+FlexEvent objects in the following ways:</p>
+
+            <ul>
+               <li>
+                  <p>Collections dispatch a <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/events/CollectionEvent.html" target="_blank">CollectionEvent</a> (mx.events.CollectionEvent)
+event whenever the collection changes. All collection events have
+the <samp class="codeph">type</samp> property value <samp class="codeph">CollectionEvent.COLLECTION_CHANGE</samp>. </p>
+
+               </li>
+
+               <li>
+                  <p>The CollectionEvent object includes a <samp class="codeph">kind</samp> property
+that indicates the way in which the collection changed. You can
+determine the change by comparing the <samp class="codeph">kind</samp> property
+value with the <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/events/CollectionEventKind.html" target="_blank">CollectionEventKind</a> constants;
+for example, <samp class="codeph">UPDATE</samp>. </p>
+
+               </li>
+
+               <li>
+                  <p>The CollectionEvent object includes an <samp class="codeph">items</samp> property
+that is an Array of objects whose type varies depending on the event
+kind. For ADD and REMOVE kind events, the array contains the added
+or removed items. For UPDATE events, the <samp class="codeph">items</samp> property
+contains an Array of <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/events/PropertyChangeEvent.html" target="_blank">PropertyChangeEvent</a> event objects.
+This object’s properties indicate the type of change and the property value
+before and after the change. </p>
+
+               </li>
+
+               <li>
+                  <p>The <samp class="codeph">PropertyChangeEvent</samp> class <samp class="codeph">kind</samp> property
+indicates the way in which the property changed. You can determine
+the change type by comparing the <samp class="codeph">kind</samp> property
+value with the <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/events/PropertyChangeEvent.html" target="_blank">PropertyChangeEventKind</a> constants;
+for example, <samp class="codeph">UPDATE</samp>. </p>
+
+               </li>
+
+               <li>
+                  <p>View cursor objects dispatch a <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/events/FlexEvent.html#CURSOR_UPDATE" target="_blank">FlexEvent </a>class
+event with the <samp class="codeph">type</samp> property value of <samp class="codeph">mx.events.FlexEvent.CURSOR_UPDATE </samp>when
+the cursor position changes.</p>
+
+               </li>
+
+            </ul>
+
+            <p>You use collection events to monitor changes to a collection
+to update the display. For example, if a custom control uses a collection
+as its data provider, and you want the control to be updated dynamically
+and to display the revised data each time the collection changes,
+the control can monitor the collection events and update accordingly. </p>
+
+            <p>You could, for example, build a simple rental-car reservation
+system that uses collection events. This application uses <samp class="codeph">COLLECTION_CHANGE</samp> event
+type listeners for changes to its <samp class="codeph">reservations</samp> and <samp class="codeph">cars</samp> data
+collections. </p>
+
+            <p>The CollectionEvent listener method, named <samp class="codeph">reservationsChanged</samp>,
+tests the event <samp class="codeph">kind</samp> field and does the following:</p>
+
+            <ul>
+               <li>
+                  <p>If the event <samp class="codeph">kind</samp> property is <samp class="codeph">ADD</samp>,
+iterates through the objects in the event’s <samp class="codeph">items</samp> property
+and calls a function to update the reservation information display
+with boxes that display the time span of each reservation.</p>
+
+               </li>
+
+               <li>
+                  <p>If the event <samp class="codeph">kind</samp> property is <samp class="codeph">REMOVE</samp>,
+iterates through the objects in the event’s <samp class="codeph">items</samp> property
+and calls a function to remove the reservation box for each item.</p>
+
+               </li>
+
+               <li>
+                  <p>If the event <samp class="codeph">kind</samp> property is <samp class="codeph">UPDATE</samp>,
+iterates through the <samp class="codeph">PropertyChangeEvent</samp> objects
+in the event’s <samp class="codeph">items</samp> property and calls the update
+function to update each item.</p>
+
+               </li>
+
+               <li>
+                  <p>If the event <samp class="codeph">kind</samp> property is <samp class="codeph">RESET</samp>,
+calls a function to reset the reservation information.</p>
+
+               </li>
+
+            </ul>
+
+            <p>The following example shows the <samp class="codeph">reservationsChanged</samp> CollectionEvent event
+listener function:</p>
+
+            <pre class="codeblock"> private function reservationsChanged(event:CollectionEvent):void { 
+ 	switch (event.kind) { 
+ 		case CollectionEventKind.ADD: 
+ 			for (var i:uint = 0; i &lt; event.items.length; i++) { 
+ 					updateReservationBox(Reservation(event.items[i])); 
+ 			} 
+ 			break; 
+  
+ 		case CollectionEventKind.REMOVE: 
+ 			for (var i:uint = 0; i &lt; event.items.length; i++) { 
+ 				removeReservationBox(Reservation(event.items[i])); 
+ 			} 
+ 			break; 
+  
+ 		case CollectionEventKind.UPDATE: 
+ 			for (var i:uint = 0; i &lt; event.items.length; i++) { 
+ 				if (event.items[i] is PropertyChangeEvent) { 
+ 					if (PropertyChangeEvent(event.items[i]) != null) { 
+ 						 updateReservationBox(Reservation(PropertyChangeEvent( 
+ 							event.items[i]).source)); 
+ 					} 
+ 				} 
+ 				else if (event.items[i] is Reservation) { 
+ 					updateReservationBox(Reservation(event.items[i])); 
+ 				} 
+ 		} 
+ 		break; 
+  
+ 		case CollectionEventKind.RESET: 
+ 			refreshReservations(); 
+ 			break; 
+ 	} 
+ }</pre>
+
+            <p>The <samp class="codeph">updateReservationBox()</samp> method either shows
+or hides a box that shows the time span of the reservation. The <samp class="codeph">removeReservationBox()</samp> method
+removes a reservation box. The <samp class="codeph">refreshReservations()</samp> method redisplays
+all current reservation information.</p>
+
+            <p>For more information on the application and the individual methods,
+see the sample code.</p>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf69084-7b64_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7b64_verapache"><!-- --></a>
+         <h3 class="topictitle3">Collection change notification</h3>
+
+         
+         <div>
+            <p>
+               Collections
+include the <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/collections/ICollectionView.html#itemUpdated()" target="_blank">itemUpdated()</a> method,
+which notifies a collection that the underlying data has changed
+and ensures that the collection’s data view is up to date when items
+in the underlying data object do not implement the IEventDispatcher
+interface. This method takes the item that was modified, the property in
+the item that was updated, and its old and new values as parameters.
+Collections also provide the <samp class="codeph">enableAutoUpdate()</samp> and <samp class="codeph">disableAutoUpdate()</samp> methods,
+which enable and disable the automatic updating of the data view when
+the underlying data provider changes.</p>
+
+            <div class="section" id="WS2db454920e96a9e51e63e3d11c0bf69084-7b64_verapache__WS2db454920e96a9e51e63e3d11c0bf668d2-7fe4_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7b64_verapache__WS2db454920e96a9e51e63e3d11c0bf668d2-7fe4_verapache"><!-- --></a><h4 class="sectiontitle">Using
+the itemUpdated() method </h4>
+               
+               <p>Use the <samp class="codeph">itemUpdated()</samp> method
+to notify the collection of changes to a data provider object if
+the object does not implement the IEventDispatcher interface; in
+this case the object is not monitorable. Adobe Flash and Flex Objects
+and other basic data types do not implement this interface. Therefore
+you must use the <samp class="codeph">itemUpdated()</samp> method to update
+the collection when you modify the properties of a data provider
+such as an Array or through the display object. </p>
+
+               <p>You can also
+use the <samp class="codeph">itemUpdated()</samp> method if you must use an
+Array, rather than a collection, as an MX control’s data provider.
+Then the component wraps the Array in a collection wrapper. The
+wrapper must be manually notified of any changes made to the underlying
+Array data object, and you can use the <samp class="codeph">itemUpdated()method</samp> for
+that notification.</p>
+
+               <p>You do <em>not</em> have to use the <samp class="codeph">itemUpdated()</samp> method
+if you add or remove items directly in a collection or use any of
+the ICollectionView or IList methods to modify the collection. </p>
+
+               <p>Also,
+specifying the <samp class="codeph">[Bindable]</samp> metadata tag above a
+class definition, or above a variable declaration within the class,
+ensures that the class implements the IEventDispatcher interface,
+and causes the class to dispatch propertyChange events. If you specify
+the <samp class="codeph">[Bindable]</samp> tag above the class declaration,
+the class dispatches propertyChange events for all properties; if
+you mark only specific properties as <samp class="codeph">[Bindable]</samp>,
+the class dispatches events for only those properties. The collection
+listens for the propertyChange events. Therefore, if you have a
+collection called <samp class="codeph">myCollection</samp> that consists of
+instances of a class that has a [<samp class="codeph">Bindable]</samp> 
+                  <samp class="codeph">myVariable</samp> variable,
+an expression such as <samp class="codeph">myCollection.getItemAt(0).myVariable="myText"</samp> causes
+the item to dispatch an event, and you do not have to use the <samp class="codeph">itemUpdated()</samp> method.
+(For more information on the <samp class="codeph">[Bindable]</samp> metadata
+tag and its use, see <a href="flx_databinding_db.html#WS2db454920e96a9e51e63e3d11c0bf69084-7fe7_verapache">Data
+binding</a>.)</p>
+
+               <p>The most common use of t he <samp class="codeph">itemUpdate()</samp> method
+is to notify a collection of changes to a custom class data source
+that you cannot make bindable or modify to implement the IEventDispatcher
+interface. The following schematic example shows how you could use
+the <samp class="codeph">itemUpdated()</samp> method in such a circumstance.</p>
+
+               <p>Assume
+you have a class that you do not control or edit and that looks
+like the following:</p>
+
+               <pre class="codeblock"> public class ClassICantEdit { 
+ 	public var field1:String; 
+ 	public var field2:String; 
+ }</pre>
+
+               <p>You have an ArrayCollection that uses these objects,
+such as the following, which you populate with <samp class="codeph">classICantEdit</samp> objects:</p>
+
+               <pre class="codeblock"> public var myCollection:ArrayCollection = new ArrayCollection();</pre>
+
+               <p>You
+have a DataGrid control such as the following: </p>
+
+               <pre class="codeblock"> &lt;s:DataGrid dataProvider="{myCollection}"/&gt;</pre>
+
+               <p>When
+you update a field in the <samp class="codeph">myCollection</samp> ArrayCollection,
+as follows, the DataGrid control is not automatically updated:</p>
+
+               <pre class="codeblock"> myCollection.getItemAt(0).field1="someOtherValue";</pre>
+
+               <p>To
+update the DataGrid control, you must use the collection’s <samp class="codeph">itemUpdated()</samp> method:</p>
+
+               <pre class="codeblock"> myCollection.itemUpdated(collectionOfThoseClasses.getItemAt(0));</pre>
+
+            </div>
+
+            <div class="section" id="WS2db454920e96a9e51e63e3d11c0bf69084-7b64_verapache__WS2db454920e96a9e51e63e3d11c0bf668d2-7fe3_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7b64_verapache__WS2db454920e96a9e51e63e3d11c0bf668d2-7fe3_verapache"><!-- --></a><h4 class="sectiontitle">Disabling
+and enabling automatic updating </h4>
+               
+               <p>A collection’s <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/collections/ICollectionView.html#disableAutoUpdate()" target="_blank">disableAutoUpdate()</a> method
+prevents events that represent changes to the underlying data from
+being broadcast by the view. It also prevents the collection from
+being updated as a result of these changes.</p>
+
+               <p>Use this method
+to prevent the collection, and therefore the control that uses it as
+a data provider, from showing intermediate changes in a set of multiple changes.
+The DataGrid class, for example, uses the <samp class="codeph">disableAutoUpdate()</samp> method
+to prevent updates to the collection while a specific item is selected. When
+the item is no longer selected, the DataGrid control calls the <samp class="codeph">enableAutoUpdate()</samp> method.
+Doing this ensures that, if a DataGrid control uses a sorted collection
+view, items that you edit do not jump around while you’re editing. </p>
+
+               <p>You
+can also use the <samp class="codeph">disableAutoUpdate()</samp> method to
+optimize performance in cases where multiple items in a collection
+are being edited at once. By disabling the auto update until all
+changes are made, a control like the DataGrid control can receive
+an update event as a single batch instead of reacting to multiple
+events.</p>
+
+               <p>The following code snippet shows the use of the <samp class="codeph">disableAutoUpdate()</samp> and <samp class="codeph">enableAutoUpdate()</samp> methods:</p>
+
+               <pre class="codeblock"> var obj:myObject = myCollection.getItemAt(0); 
+ myCollection.disableAutoUpdate(); 
+ obj.prop1 = 'foo'; 
+ obj.prop2 = 'bar'; 
+ myCollection.enableAutoUpdate();</pre>
+
+            </div>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf69084-7b67_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7b67_verapache"><!-- --></a>
+         <h3 class="topictitle3">Example: Modifying data in a DataGrid
+control</h3>
+
+         
+         <div>
+            <p>The following example lets you add, remove, or modify data
+in a DataGrid control:</p>
+
+            <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- dpcontrols\ModifyDataGridData.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    width="500" height="600" &gt; 
+    &lt;s:layout&gt; 
+        &lt;s:VerticalLayout/&gt; 
+    &lt;/s:layout&gt; 
+ 
+    &lt;fx:Script&gt; 
+        &lt;![CDATA[ 
+            import mx.events.*; 
+            import mx.collections.*; 
+    
+            // Add event information to a log (displayed in the TextArea). 
+            public function collectionEventHandler(event:CollectionEvent):void { 
+                switch(event.kind) { 
+                    case CollectionEventKind.ADD: 
+                        addLog("Item "+ event.location + " added"); 
+                        break; 
+                    case CollectionEventKind.REMOVE: 
+                        addLog("Item "+ event.location + " removed"); 
+                        break; 
+                    case CollectionEventKind.REPLACE: 
+                        addLog("Item "+ event.location + " Replaced"); 
+                        break; 
+                    case CollectionEventKind.UPDATE: 
+                        addLog("Item updated"); 
+                        break; 
+                } 
+            } 
+            // Helper function for adding information to the log. 
+            public function addLog(str:String):void { 
+                log.text += str + "\n"; 
+            } 
+    
+            // Add a person to the ArrayCollection. 
+            public function addPerson():void { 
+                ac.addItem({first:firstInput.text, last:lastInput.text, 
+                    email:emailInput.text}); 
+                    clearInputs(); 
+            } 
+    
+            // Remove a person from the ArrayCollection. 
+            public function removePerson():void { 
+                // Make sure an item is selected. 
+                if (dg.selectedIndex &gt;= 0) { 
+                    ac.removeItemAt(dg.selectedIndex); 
+            } 
+        } 
+    
+        // Update an existing person in the ArrayCollection. 
+        public function updatePerson():void { 
+            // Make sure an item is selected. 
+            if (dg.selectedItem !== null) { 
+                ac.setItemAt({first:firstInput.text, last:lastInput.text, 
+                    email:emailInput.text}, dg.selectedIndex); 
+            } 
+        } 
+    
+        // The change event listener for the DataGrid. 
+        // Clears the text input controls and updates them with the contents 
+        // of the selected item. 
+        public function dgChangeHandler():void { 
+            clearInputs(); 
+            firstInput.text = dg.selectedItem.first; 
+            lastInput.text = dg.selectedItem.last; 
+            emailInput.text = dg.selectedItem.email; 
+        } 
+    
+        // Clear the text from the input controls. 
+        public function clearInputs():void { 
+            firstInput.text = ""; 
+            lastInput.text = ""; 
+            emailInput.text = ""; 
+        } 
+ 
+        // The labelFunction for the ComboBox; 
+        // Puts first and last names in the ComboBox. 
+        public function myLabelFunc(item:Object):String { 
+            return item.first + " " + item.last; 
+        } 
+        ]]&gt; 
+    &lt;/fx:Script&gt; 
+    
+    &lt;fx:Declarations&gt; 
+        &lt;!-- The ArrayCollection used by the DataGrid and ComboBox. --&gt; 
+        &lt;mx:ArrayCollection id="ac" 
+            collectionChange="collectionEventHandler(event)"&gt; 
+            &lt;mx:source&gt; 
+                &lt;fx:Object first="Matt" last="Matthews" email="matt@myco.com"/&gt; 
+                &lt;fx:Object first="Sue" last="Sanderson" email="sue@myco.com"/&gt; 
+                &lt;fx:Object first="Harry" last="Harrison" email="harry@myco.com"/&gt; 
+            &lt;/mx:source&gt; 
+        &lt;/mx:ArrayCollection&gt; 
+    &lt;/fx:Declarations&gt; 
+ 
+    &lt;mx:DataGrid width="450" id="dg" dataProvider="{ac}" 
+            change="dgChangeHandler()"&gt; 
+        &lt;mx:columns&gt; 
+            &lt;mx:DataGridColumn dataField="first" headerText="First Name"/&gt; 
+            &lt;mx:DataGridColumn dataField="last" headerText="Last Name"/&gt; 
+            &lt;mx:DataGridColumn dataField="email" headerText="Email"/&gt; 
+        &lt;/mx:columns&gt; 
+    &lt;/mx:DataGrid&gt; 
+ 
+    &lt;!-- The ComboBox and DataGrid controls share an ArrayCollection as their 
+        data provider. 
+        The ComboBox control uses the labelFunction property to construct the 
+        labels from the dataProvider fields. --&gt; 
+    &lt;s:ComboBox id="cb" dataProvider="{ac}" labelFunction="myLabelFunc"/&gt; 
+    
+    &lt;!-- Form for data to add or change in the ArrayCollection. --&gt; 
+    &lt;s:Form&gt; 
+       &lt;s:FormItem label="First Name"&gt; 
+            &lt;s:TextInput id="firstInput"/&gt; 
+       &lt;/s:FormItem&gt; 
+       &lt;s:FormItem label="Last Name"&gt; 
+            &lt;s:TextInput id="lastInput"/&gt; 
+       &lt;/s:FormItem&gt; 
+       &lt;s:FormItem label="Email"&gt; 
+            &lt;s:TextInput id="emailInput"/&gt; 
+       &lt;/s:FormItem&gt; 
+    &lt;/s:Form&gt; 
+    
+    &lt;s:HGroup&gt; 
+        &lt;!-- Buttons to initiate operations on the collection. --&gt; 
+        &lt;s:Button label="Add New" click="addPerson()"/&gt; 
+        &lt;s:Button label="Update Selected" click="updatePerson()"/&gt; 
+        &lt;s:Button label="Remove Selected" click="removePerson()"/&gt; 
+        &lt;!-- Clear the text input fields. --&gt; 
+        &lt;s:Button label="Clear" click="clearInputs()"/&gt; 
+    &lt;/s:HGroup&gt; 
+    
+    &lt;!-- The application displays event information here --&gt; 
+    &lt;s:Label text="Log"/&gt; 
+    &lt;s:TextArea id="log" width="100" height="100%"/&gt; 
+&lt;/s:Application&gt;</pre>
+
+         </div>
+
+      </div>
+
+   </div>
+
+   <div class="nested1" id="WS2db454920e96a9e51e63e3d11c0bf69084-7b69_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7b69_verapache"><!-- --></a>
+      <h2 class="topictitle2">Hierarchical data objects</h2>
+
+      
+      <div>
+         <p>
+            
+            You use hierarchical data objects
+with the controls that display a nested hierarchy of nodes and subnodes,
+such as tree branches and leaves, as well as Menu submenus and items.
+The following controls use hierarchical data objects:</p>
+
+         <ul>
+            <li>
+               <p>
+                  <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/controls/Menu.html" target="_blank">Menu</a> 
+               </p>
+
+            </li>
+
+            <li>
+               <p>
+                  <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/controls/MenuBar.html" target="_blank">MenuBar</a> 
+               </p>
+
+            </li>
+
+            <li>
+               <p>
+                  <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/controls/PopUpMenuButton.html" target="_blank">PopUpMenuButton</a> 
+               </p>
+
+            </li>
+
+            <li>
+               <p>
+                  <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/controls/Tree.html" target="_blank">Tree</a> 
+               </p>
+
+            </li>
+
+         </ul>
+
+         <p>The hierarchical components all use the same mechanism to work
+with the data provider. The following examples use the Tree control,
+but the examples apply to the other components. </p>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf668d2-7fe0_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf668d2-7fe0_verapache"><!-- --></a>
+         <h3 class="topictitle3">About hierarchical data objects</h3>
+
+         
+         <div>
+            <p>The Flex framework, by default, supports two types of hierarchical
+data objects.</p>
+
+            <dl>
+               
+                  <dt class="dlterm">XML</dt>
+
+                  <dd>
+                     <p>can be any of the following: Strings containing well-formed
+XML; or <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/XML.html" target="_blank">XML</a>, <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/XMLList.html" target="_blank">XMLList</a>,
+or <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/collections/XMLListCollection.html" target="_blank">XMLListCollection</a> objects,
+including objects generated by the <a href="mxml/xml.html" target="_blank">&lt;fx:XML&gt;</a> and <a href="mxml/xmlList.html" target="_blank">&lt;fx:XMLList&gt;</a> compile-time
+tags. (These tags support data binding, which you cannot do directly
+in ActionScript.) Flex can automatically structure a Tree or menu-based
+control to reflect the nesting hierarchy of well-formed XML. </p>
+
+                  </dd>
+
+               
+               
+                  <dt class="dlterm">Objects</dt>
+
+                  <dd>
+                     <p>can be any set of nested Objects or Object subclasses (including
+Arrays or <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/collections/ArrayCollection.html" target="_blank">ArrayCollection</a> objects)
+that have a structure where the children of a node are in a <samp class="codeph">children</samp> field.
+For more information, see <a href="flx_about_dataproviders_ab.html#WS8b1c39bd7e9fc364-6c6e41b812c12f090d7-8000_verapache">Creating
+a custom data descriptor</a>. You can also use the <samp class="codeph">&lt;fx:Model&gt;</samp> compile-time
+tag to create nested objects that support data binding, but you
+must follow the structure defined in <a href="flx_about_dataproviders_ab.html#WS2db454920e96a9e51e63e3d11c0bf69084-7b5e_verapache">Using
+the &lt;fx:Model&gt; tag with Tree and menu-based controls</a>. </p>
+
+                     <p>You
+can add support for other hierarchical data provider structures,
+such as nested Objects where the children might be in fields with
+varying names.</p>
+
+                  </dd>
+
+               
+            </dl>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf69084-7b5d_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7b5d_verapache"><!-- --></a>
+         <h3 class="topictitle3">Data descriptors and hierarchical
+data structure</h3>
+
+         
+         <div>
+            <p>
+               Hierarchical
+data used in Tree and menu-based controls must be in a form that can
+be parsed and manipulated by using a data descriptor class. A <em>data descriptor</em> is
+a class that provides an interface between the hierarchical control
+and the data provider object. It implements a set of control-specific
+methods to determine the data provider contents and structure; to
+get, add, and remove data; and to change control-specific data properties.</p>
+
+            <div class="p">Flex defines two data descriptor interfaces for hierarchical
+controls:<ul>
+                  <li>
+                     <p>
+                        <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/controls/treeClasses/ITreeDataDescriptor.html" target="_blank">ITreeDataDescriptor</a> —
+Methods used by <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/controls/Tree.html" target="_blank">Tree</a> controls</p>
+
+                  </li>
+
+                  <li>
+                     <p>
+                        <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/controls/menuClasses/IMenuDataDescriptor.html" target="_blank">IMenuDataDescriptor</a> —
+Methods for <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/controls/Menu.html" target="_blank">Menu</a>, <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/controls/MenuBar.html" target="_blank">MenuBar</a>,
+and <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/controls/PopUpMenuButton.html" target="_blank">PopUpMenuButton</a> controls</p>
+
+                  </li>
+
+               </ul>
+
+            </div>
+
+            <p>The Flex framework provides a <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/controls/treeClasses/DefaultDataDescriptor.html" target="_blank">DefaultDataDescriptor</a> class
+that implements both interfaces. You can use the <samp class="codeph">dataDescriptor</samp> property
+to specify a custom data descriptor class that handles data models
+that do not conform to the default descriptor structure.</p>
+
+         </div>
+
+         <div class="nested3" id="WS2db454920e96a9e51e63e3d11c0bf668d2-7fde_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf668d2-7fde_verapache"><!-- --></a>
+            <h4 class="topictitle4">Data descriptor methods and source
+requirements</h4>
+
+            
+            <div>
+               <p>The following table describes the methods of both interfaces,
+and the behavior of the DefaultDataDescriptor class. The first line
+of each interface/method entry indicates whether the method belongs
+to the ITreeDataDescriptor interface, the IMenuDataDescriptor interface,
+or both interfaces, and therefore indicates whether the method is
+used for trees, menus, or both.</p>
+
+               
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" frame="border" border="1" rules="all">
+                     
+                     
+                     
+                     <thead align="left">
+                        <tr>
+                           <th class="cellrowborder" valign="top" width="NaN%" id="d20e2397">
+                              <p>Method</p>
+
+                           </th>
+
+                           <th class="cellrowborder" valign="top" width="NaN%" id="d20e2403">
+                              <p>Returns</p>
+
+                           </th>
+
+                           <th class="cellrowborder" valign="top" width="NaN%" id="d20e2409">
+                              <p>DefaultDataDescriptor behavior</p>
+
+                           </th>
+
+                        </tr>
+
+                     </thead>
+
+                     <tbody>
+                        <tr>
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d20e2397 ">
+                              <p>hasChildren(<em>node</em>, [<em>model</em>])</p>
+
+                           </td>
+
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d20e2403 ">
+                              <p>A Boolean value indicating whether the node
+is a branch with children.</p>
+
+                           </td>
+
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d20e2409 ">
+                              <p>For XML, returns <samp class="codeph">true</samp> if
+the node has at least one child element.</p>
+
+                              <p>For other objects,
+returns <samp class="codeph">true</samp> if the node has a nonempty <samp class="codeph">children</samp> field.</p>
+
+                           </td>
+
+                        </tr>
+
+                        <tr>
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d20e2397 ">
+                              <p>getChildren(<em>node</em>, [<em>collection</em>])</p>
+
+                           </td>
+
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d20e2403 ">
+                              <p>A node’s children.</p>
+
+                           </td>
+
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d20e2409 ">
+                              <p>For XML, returns an XMLListCollection with
+the child elements.</p>
+
+                              <p>For other Objects, returns the contents
+of the node’s <samp class="codeph">children</samp> field.</p>
+
+                           </td>
+
+                        </tr>
+
+                        <tr>
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d20e2397 ">
+                              <p>isBranch(<em>node</em>, [<em>collection</em>])</p>
+
+                           </td>
+
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d20e2403 ">
+                              <p>Whether a node is a branch.</p>
+
+                           </td>
+
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d20e2409 ">
+                              <p>For XML, returns <samp class="codeph">true</samp> if
+the node has at least one child, or if it has an <samp class="codeph">isBranch</samp> attribute.</p>
+
+                              <p>For
+other Objects, returns <samp class="codeph">true</samp> if the node has an <samp class="codeph">isBranch</samp> field.</p>
+
+                           </td>
+
+                        </tr>
+
+                        <tr>
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d20e2397 ">
+                              <p>getData(<em>node</em>, [<em>collection</em>])</p>
+
+                           </td>
+
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d20e2403 ">
+                              <p>The node data.</p>
+
+                           </td>
+
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d20e2409 ">
+                              <p>Returns the node.</p>
+
+                           </td>
+
+                        </tr>
+
+                        <tr>
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d20e2397 ">
+                              <p>addChildAt(<em>node</em>, <em>child</em>, <em>index</em>, [<em>model</em>])</p>
+
+                           </td>
+
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d20e2403 ">
+                              <p>A Boolean value indicating whether the operation succeeded.</p>
+
+                           </td>
+
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d20e2409 ">
+                              <p>For all cases, inserts the node as a child
+object before the node currently in the index location.</p>
+
+                           </td>
+
+                        </tr>
+
+                        <tr>
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d20e2397 ">
+                              <p>removeChildAt </p>
+
+                              <p>(<em>node</em>, <em>index</em>,
+[<em>model</em>])</p>
+
+                           </td>
+
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d20e2403 ">
+                              <p>A Boolean value indicating whether the operation succeeded.</p>
+
+                           </td>
+
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d20e2409 ">
+                              <p>For all cases, removes the child of the
+node in the index location.</p>
+
+                           </td>
+
+                        </tr>
+
+                        <tr>
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d20e2397 ">
+                              <p>getType(<em>node</em>)</p>
+
+                              <p>(IMenuDataDescriptor
+only)</p>
+
+                           </td>
+
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d20e2403 ">
+                              <p>A String with the menu node type. Meaningful
+values are <samp class="codeph">check</samp>, <samp class="codeph">radio</samp>, and <samp class="codeph">separator</samp>.</p>
+
+                           </td>
+
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d20e2409 ">
+                              <p>For XML, returns the value of the <samp class="codeph">type</samp> attribute
+of the node.</p>
+
+                              <p>For other Objects, returns the contents of the
+node’s <samp class="codeph">type</samp> field.</p>
+
+                           </td>
+
+                        </tr>
+
+                        <tr>
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d20e2397 ">
+                              <p>isEnabled(<em>node</em>)</p>
+
+                              <p>(IMenuDataDescriptor
+only)</p>
+
+                           </td>
+
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d20e2403 ">
+                              <p>A Boolean value indicating whether a menu
+node is enabled.</p>
+
+                           </td>
+
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d20e2409 ">
+                              <p>For XML, returns the value of the <samp class="codeph">enabled</samp> attribute
+of the node.</p>
+
+                              <p>For other Objects, returns the contents of the
+node’s <samp class="codeph">enabled</samp> field.</p>
+
+                           </td>
+
+                        </tr>
+
+                        <tr>
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d20e2397 ">
+                              <p>setEnabled(<em>node</em>, <em>value</em>)</p>
+
+                              <p>(IMenuDataDescriptor
+only)</p>
+
+                           </td>
+
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d20e2403 ">
+                              <p> </p>
+
+                           </td>
+
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d20e2409 ">
+                              <p>For XML, sets the value of the <samp class="codeph">enabled</samp> attribute
+of the node to <samp class="codeph">true</samp> or <samp class="codeph">false</samp>.</p>
+
+                              <p>For
+other Objects, sets the contents of the node’s <samp class="codeph">enabled</samp> field.</p>
+
+                           </td>
+
+                        </tr>
+
+                        <tr>
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d20e2397 ">
+                              <p>isToggled(<em>node</em>)</p>
+
+                              <p>(IMenuDataDescriptor
+only) </p>
+
+                           </td>
+
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d20e2403 ">
+                              <p>A Boolean value indicating whether a menu
+node is selected</p>
+
+                           </td>
+
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d20e2409 ">
+                              <p>Returns the value of the node’s <samp class="codeph">toggled</samp> attribute.</p>
+
+                           </td>
+
+                        </tr>
+
+                        <tr>
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d20e2397 ">
+                              <p>setToggled(<em>node</em>, <em>value</em>)</p>
+
+                              <p>(IMenuDataDescriptor
+only)</p>
+
+                           </td>
+
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d20e2403 ">
+                              <p> </p>
+
+                           </td>
+
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d20e2409 ">
+                              <p>For XML, sets the value of the <samp class="codeph">selected</samp> attribute
+of the node to <samp class="codeph">true</samp> or <samp class="codeph">false</samp>.</p>
+
+                              <p>For
+other Objects, sets the contents of the node’s <samp class="codeph">enabled</samp> field.</p>
+
+                           </td>
+
+                        </tr>
+
+                        <tr>
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d20e2397 ">
+                              <p>getGroupName(<em>node</em>)</p>
+
+                              <p>(IMenuDataDescriptor
+only)</p>
+
+                           </td>
+
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d20e2403 ">
+                              <p>The name of the radio button group to which
+the node belongs.</p>
+
+                           </td>
+
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d20e2409 ">
+                              <p>For XML, returns the value of the <samp class="codeph">groupName</samp> attribute
+of the node.</p>
+
+                              <p>For other Objects, returns the contents of the
+node’s <samp class="codeph">groupName</samp> field.</p>
+
+                           </td>
+
+                        </tr>
+
+                     </tbody>
+
+                  </table>
+</div>
+
+               <p>The following example Object follows the default data provider
+structure for a Tree control, and is correctly handled by the DefaultDataDescriptor
+class:</p>
+
+               <pre class="codeblock"> [Bindable] 
+ public var fileSystemStructure:Object =  
+ 	{label:"mx", children: [ 
+ 		{label:"Containers", children: [ 
+ 			{label:"Accordian", children:[]}, 
+ 			{label:"DividedBox", children: [ 
+ 				{label:"BoxDivider.as", data:"BoxDivider.as"},  
+ 				{label:"BoxUniter.as", data:"BoxUniter.as"}]}, 
+ 			{label: "Grid", children:[]}]}, 
+ 		{label: "Controls", children: [ 
+ 			{label: "Alert", data: "Alert.as"}, 
+ 			{label: "Styles", children: [ 
+ 				{label: "AlertForm.as", data:"AlertForm.as"}]}, 
+ 			{label: "Tree", data: "Tree.as"}, 
+ 			{label: "Button", data: "Button.as"}]}, 
+ 		{label: "Core", children:[]} 
+ 	]};</pre>
+
+               <p>For objects, the root is the Object instance, so there must always
+be a single root (as with XML). You could also use an Array containing
+nested Arrays as the data provider. In this case the provider has
+no root; each element in the top level array appears at the top
+level of the control. </p>
+
+               <p>The DefaultDataDescriptor can properly handle well-formed XML
+nodes. The <samp class="codeph">isBranch()</samp> method, however, returns <samp class="codeph">true</samp> only
+if the parameter node has child nodes or if the node has an <samp class="codeph">isBranch</samp> attribute
+with the value <samp class="codeph">true</samp>. Therefore, if your XML object
+uses any technique other than a <samp class="codeph">true</samp> 
+                  <samp class="codeph">isBranch</samp> attribute
+to indicate empty branches, you must create a custom data descriptor.</p>
+
+               <p>The DefaultDataDescriptor handles collections properly. For example,
+if a node’s <samp class="codeph">children</samp> property is an ICollectionView
+instance, the <samp class="codeph">getChildren()</samp> method returns the
+children as an ICollectionView object.</p>
+
+            </div>
+
+         </div>
+
+         <div class="nested3" id="WS2db454920e96a9e51e63e3d11c0bf69084-7b5e_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7b5e_verapache"><!-- --></a>
+            <h4 class="topictitle4">Using the &lt;fx:Model&gt; tag
+with Tree and menu-based controls</h4>
+
+            
+            <div>
+               <p>The <samp class="codeph">&lt;fx:Model&gt;</samp> tag lets you define
+a data provider structure in MXML. The Flex compiler converts the
+contents of the tag into a hierarchical graph of ActionScript Objects.
+The <samp class="codeph">&lt;fx:Model&gt;</samp> tag has two advantages over
+defining an Object data provider in ActionScript:</p>
+
+               <ul>
+                  <li>
+                     <p>You can define the structure by using an easily read,
+XML-like format.</p>
+
+                  </li>
+
+                  <li>
+                     <p>You can bind structure entries to ActionScript variables,
+so that you can use <samp class="codeph">&lt;fx:Model&gt;</samp> to create
+an object-based data provider that gets its data from multiple dynamic
+sources.</p>
+
+                  </li>
+
+               </ul>
+
+               <p>To use an <samp class="codeph">&lt;fx:Model&gt;</samp> tag with a control
+that uses a data descriptor, the object generated by the compiler
+must conform to the data descriptor requirements, as discussed in <a href="flx_about_dataproviders_ab.html#WS2db454920e96a9e51e63e3d11c0bf69084-7b5d_verapache">Data
+descriptors and hierarchical data structure</a>. Also, as with
+an XML object, the tag must have a single root element. </p>
+
+               <p>In most situations, you should consider using an <a href="mxml/xml.html" target="_blank">&lt;fx:XML&gt;</a> or <a href="mxml/xmlList.html" target="_blank">&lt;fx:XMLList&gt;</a> tag, as
+described in <a href="flx_about_dataproviders_ab.html#WS2db454920e96a9e51e63e3d11c0bf69084-7b5c_verapache">XML-based
+data objects</a>, instead of using an <samp class="codeph">&lt;fx:Model&gt;</samp> tag. The
+XML-based tags support data binding to elements, and the DefaultDataDescriptor
+class supports all well-structured XML. Therefore you can use a
+more natural structure, where node names can represent their function,
+and you do not have to artificially name nodes “children.” </p>
+
+               <p>To use an <samp class="codeph">&lt;fx:Model&gt;</samp> tag as the data provider
+for a control that uses the DefaultDataDescriptor class, all child
+nodes must be named “children.” This requirement differs from the
+structure that you use with an Object, where the array that contains
+the child objects is named "children".</p>
+
+               <p>The following example shows the use of an <samp class="codeph">&lt;fx:Model&gt;</samp> tag
+with data binding as a data provider for a menu, and shows how you
+can change the menu structure dynamically:</p>
+
+               <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- dpcontrols\ModelWithMenu.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns="*"&gt; 
+    &lt;s:layout&gt; 
+        &lt;s:VerticalLayout/&gt; 
+    &lt;/s:layout&gt; 
+    
+    &lt;fx:Script&gt; 
+        &lt;![CDATA[ 
+ 
+            import mx.controls.Menu; 
+            public var productMenu:Menu; 
+ 
+            public function initMenu(): void { 
+                productMenu = Menu.createMenu(null, Products.Department); 
+                productMenu.setStyle("disabledColor", 0xCC3366); 
+                productMenu.show(10,10); 
+            } 
+        ]]&gt; 
+    &lt;/fx:Script&gt; 
+ 
+    &lt;fx:Declarations&gt; 
+        &lt;fx:Model id="Products"&gt; 
+            &lt;Root&gt; 
+                &lt;Department label="Toys"&gt; 
+                    &lt;children label="Teddy Bears"/&gt; 
+                    &lt;children label="Action Figures"/&gt; 
+                    &lt;children label="Building Blocks"/&gt; 
+                &lt;/Department&gt; 
+                &lt;Department label="Kitchen"&gt; 
+                    &lt;children label="Electronics"&gt; 
+                        &lt;children label="Crock Pot"/&gt; 
+                        &lt;children label="Panini Grill"/&gt; 
+                    &lt;/children&gt; 
+                    &lt;children label="Cookware"&gt; 
+                        &lt;children label="Grill Pan"/&gt; 
+                        &lt;children label="Iron Skillet" enabled="false"/&gt; 
+                    &lt;/children&gt; 
+                &lt;/Department&gt; 
+                &lt;!-- The items in this entry are bound to the form data --&gt; 
+                &lt;Department label="{menuName.text}"&gt; 
+                    &lt;children label="{item1.text}"/&gt; 
+                    &lt;children label="{item2.text}"/&gt; 
+                    &lt;children label="{item3.text}"/&gt; 
+                &lt;/Department&gt; 
+            &lt;/Root&gt; 
+        &lt;/fx:Model&gt; 
+    &lt;/fx:Declarations&gt; 
+ 
+    &lt;s:Button label="Show Products" click="initMenu()"/&gt; 
+    &lt;!-- If you change the contents of the form, the next time you 
+        display the Menu, it will show the updated data in the last 
+        main menu item. --&gt; 
+    &lt;s:Form&gt; 
+        &lt;s:FormItem label="Third Submenu title"&gt; 
+            &lt;s:TextInput id="menuName" text="Clothing"/&gt; 
+        &lt;/s:FormItem&gt; 
+        &lt;s:FormItem label="Item 1"&gt; 
+            &lt;s:TextInput id="item1" text="Sweaters"/&gt; 
+        &lt;/s:FormItem&gt; 
+        &lt;s:FormItem label="Item 2"&gt; 
+            &lt;s:TextInput id="item2" text="Shoes"/&gt; 
+        &lt;/s:FormItem&gt; 
+        &lt;s:FormItem label="Item 3"&gt; 
+            &lt;s:TextInput id="item3" text="Jackets"/&gt; 
+        &lt;/s:FormItem&gt; 
+    &lt;/s:Form&gt; 
+&lt;/s:Application&gt;</pre>
+
+            </div>
+
+         </div>
+
+         <div class="nested3" id="WS8b1c39bd7e9fc364-6c6e41b812c12f090d7-8000_verapache"><a name="WS8b1c39bd7e9fc364-6c6e41b812c12f090d7-8000_verapache"><!-- --></a>
+            <h4 class="topictitle4">Creating a custom data descriptor</h4>
+
+            
+            <div>
+               <p>If your hierarchical data does not fit the formats supported
+by the DefaultDataDescriptor class—for example, if your data is
+in an object that does not use a children field—you can write a
+custom data descriptor and specify it in your Tree control’s <samp class="codeph">dataDescriptor</samp> property.
+The custom data descriptor must implement all methods of the <samp class="codeph">ITreeDataDescriptor</samp> interface. </p>
+
+               <p>The following example shows how you can create a custom data
+descriptor—in this case, for use with a Tree control. This data
+descriptor correctly handles a data provider that consists of nested
+ArrayCollection objects.</p>
+
+               <p>The following code shows the MyCustomTreeDataDescriptor class,
+which implements only the ITreeDataDescriptor interface, so it supports
+Tree controls but not menu-based controls. The custom class supports
+tree nodes whose children field is either an ArrayCollection or
+an Object. When getting a node’s children, if the children object
+is an ArrayCollection, it returns the object; otherwise, it wraps
+the children object in an ArrayCollection before returning it. When
+adding a node, it uses a different method to add the node, depending
+on the children field type.</p>
+
+               <pre class="codeblock">package myComponents 
+// myComponents/MyCustomTreeDataDescriptor.as 
+{ 
+import mx.collections.ArrayCollection; 
+import mx.collections.CursorBookmark; 
+import mx.collections.ICollectionView; 
+import mx.collections.IViewCursor; 
+import mx.events.CollectionEvent; 
+import mx.events.CollectionEventKind; 
+import mx.controls.treeClasses.*; 
+ 
+public class MyCustomTreeDataDescriptor implements ITreeDataDescriptor 
+{ 
+ 
+    // The getChildren method requires the node to be an Object 
+    // with a children field. 
+    // If the field contains an ArrayCollection, it returns the field 
+    // Otherwise, it wraps the field in an ArrayCollection. 
+    public function getChildren(node:Object, 
+        model:Object=null):ICollectionView 
+    { 
+        try 
+        { 
+            if (node is Object) { 
+                if(node.children is ArrayCollection){ 
+                    return node.children; 
+                }else{ 
+                    return new ArrayCollection(node.children); 
+                } 
+            } 
+        } 
+        catch (e:Error) { 
+            trace("[Descriptor] exception checking for getChildren"); 
+        } 
+        return null; 
+    } 
+ 
+    // The isBranch method simply returns true if the node is an 
+    // Object with a children field. 
+    // It does not support empty branches, but does support null children 
+    // fields. 
+    public function isBranch(node:Object, model:Object=null):Boolean { 
+        try { 
+            if (node is Object) { 
+                if (node.children != null)  { 
+                    return true; 
+                } 
+            } 
+        } 
+        catch (e:Error) { 
+            trace("[Descriptor] exception checking for isBranch"); 
+        } 
+        return false; 
+    } 
+ 
+    // The hasChildren method Returns true if the 
+    // node actually has children. 
+    public function hasChildren(node:Object, model:Object=null):Boolean { 
+        if (node == null) 
+            return false; 
+        var children:ICollectionView = getChildren(node, model); 
+        try { 
+            if (children.length &gt; 0) 
+                return true; 
+        } 
+        catch (e:Error) { 
+        } 
+        return false; 
+    } 
+    // The getData method simply returns the node as an Object. 
+    public function getData(node:Object, model:Object=null):Object { 
+        try { 
+            return node; 
+        } 
+        catch (e:Error) { 
+        } 
+        return null; 
+    } 
+ 
+    // The addChildAt method does the following: 
+    // If the parent parameter is null or undefined, inserts 
+    // the child parameter as the first child of the model parameter. 
+    // If the parent parameter is an Object and has a children field, 
+    // adds the child parameter to it at the index parameter location. 
+    // It does not add a child to a terminal node if it does not have 
+    // a children field. 
+    public function addChildAt(parent:Object, child:Object, index:int, 
+            model:Object=null):Boolean { 
+        var event:CollectionEvent = new CollectionEvent(CollectionEvent.COLLECTION_CHANGE); 
+        event.kind = CollectionEventKind.ADD; 
+        event.items = [child]; 
+        event.location = index; 
+        if (!parent) { 
+            var iterator:IViewCursor = model.createCursor(); 
+            iterator.seek(CursorBookmark.FIRST, index); 
+            iterator.insert(child); 
+        } 
+        else if (parent is Object) { 
+            if (parent.children != null) { 
+                if(parent.children is ArrayCollection) { 
+                    parent.children.addItemAt(child, index); 
+                    if (model){ 
+                        model.dispatchEvent(event); 
+                        model.itemUpdated(parent); 
+                    } 
+                    return true; 
+                } 
+                else { 
+                    parent.children.splice(index, 0, child); 
+                    if (model) 
+                        model.dispatchEvent(event); 
+                    return true; 
+                } 
+            } 
+        } 
+        return false; 
+    } 
+ 
+    // The removeChildAt method does the following: 
+    // If the parent parameter is null or undefined, 
+    // removes the child at the specified index 
+    // in the model. 
+    // If the parent parameter is an Object and has a children field, 
+    // removes the child at the index parameter location in the parent. 
+    public function removeChildAt(parent:Object, child:Object, index:int, model:Object=null):Boolean 
+    { 
+        var event:CollectionEvent = new CollectionEvent(CollectionEvent.COLLECTION_CHANGE); 
+        event.kind = CollectionEventKind.REMOVE; 
+        event.items = [child]; 
+        event.location = index; 
+ 
+        //handle top level where there is no parent 
+        if (!parent) 
+        { 
+            var iterator:IViewCursor = model.createCursor(); 
+            iterator.seek(CursorBookmark.FIRST, index); 
+            iterator.remove(); 
+            if (model) 
+                model.dispatchEvent(event); 
+            return true; 
+        } 
+        else if (parent is Object) 
+        { 
+            if (parent.children != undefined) 
+            { 
+                parent.children.splice(index, 1); 
+                if (model) 
+                    model.dispatchEvent(event); 
+                return true; 
+            } 
+        } 
+        return false; 
+    } 
+ 
+} 
+}</pre>
+
+               <p>The following example uses the MyCustomTreeDataDescriptor to
+handle hierarchical nested ArrayCollections and objects. When you
+click the button, it adds a node to the tree by calling the data
+descriptor’s <samp class="codeph">addChildAt()</samp> method. Notice that you
+would not normally use the <samp class="codeph">addChildAt()</samp> method
+directly. Instead, you would use the methods of a Tree or menu-based
+control, which in turn use the data descriptor methods to modify
+the data provider.</p>
+
+               <pre class="codeblock">&lt;?xml version="1.0" encoding="iso-8859-1"?&gt; 
+&lt;!-- dpcontrols\CustDataDescriptor.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns="*" 
+    creationComplete="initCollections();"&gt; 
+    &lt;s:layout&gt; 
+        &lt;s:VerticalLayout/&gt; 
+    &lt;/s:layout&gt; 
+ 
+    &lt;fx:Script&gt; 
+        &lt;![CDATA[ 
+            import mx.collections.*; 
+            import mx.controls.treeClasses.*; 
+            import myComponents.*; 
+    
+            /* Variables used to construct the ArrayCollection data provider 
+               First top-level node and its children. */ 
+            public var nestArray1:Array = [ 
+                {label:"item1", children: [ 
+                    {label:"item1 child", children:     [ 
+                        {label:"item 1 child child", data:"child data"} 
+                    ]} 
+                ]} 
+            ]; 
+            /* Second top-level node and its children. */ 
+            public var nestArray2:Array = [ 
+                {label:"item2", children: [ 
+                    {label:"item2 child", children: [ 
+                        {label:"item 2 child child", data:"child data"} 
+                    ]} 
+                ]} 
+            ]; 
+            /* Second top-level node and its children. */ 
+            public var nestArray3:Array = [ 
+                {label:"item3", children: [ 
+                    {label:"item3 child", children: [ 
+                        {label:"item 3 child child", data:"child data"} 
+                    ]} 
+                ]} 
+            ]; 
+            /* Variable for the tree array. */ 
+            public var treeArray:Array 
+            /* Variables for the three Array collections that correspond to the 
+               top-level nodes. */ 
+            public var col1:ArrayCollection; 
+            public var col2:ArrayCollection; 
+            public var col3:ArrayCollection; 
+            
+            /* Variable for the ArrayCollection used as the Tree data provider. */ 
+            [Bindable] 
+            public var ac:ArrayCollection; 
+            
+            /* Build the ac ArrayCollection from its parts. */ 
+            public function initCollections():void{ 
+                /* Wrap each top-level node in an ArrayCollection. */ 
+                col1 = new ArrayCollection(nestArray1); 
+                col2 = new ArrayCollection(nestArray2); 
+                col3 = new ArrayCollection(nestArray3); 
+ 
+                /* Put the three top-level node 
+                   ArrayCollections in the treeArray. */ 
+                treeArray = [ 
+                    {label:"first thing", children: col1}, 
+                    {label:"second thing", children: col2}, 
+                    {label:"third thing", children: col3}, 
+                ]; 
+                /* Wrap the treeArray in an ArrayCollection. */ 
+                ac = new ArrayCollection(treeArray); 
+            } 
+ 
+            /* Adds a child node as the first child of the selected node, 
+               if any. The default selectedItem is null, which causes the 
+               data descriptor addChild method to add it as the first child 
+               of the ac ArrayCollection. */ 
+            public function clickAddChildren():void { 
+                var newChild:Object = new Object(); 
+                newChild.label = "New Child"; 
+                newChild.children = new ArrayCollection(); 
+                tree.dataDescriptor.addChildAt(tree.selectedItem, newChild, 0, ac); 
+            } 
+ 
+        ]]&gt; 
+    &lt;/fx:Script&gt; 
+ 
+    &lt;mx:Tree width="200" id="tree" dataProvider="{ac}" 
+        dataDescriptor="{new MyCustomTreeDataDescriptor()}"/&gt;    
+    &lt;s:Button label="Add Child" click="clickAddChildren();"/&gt; 
+&lt;/s:Application&gt;</pre>
+
+            </div>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf69084-7b5c_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7b5c_verapache"><!-- --></a>
+         <h3 class="topictitle3">XML-based data objects</h3>
+
+         
+         <div>
+            <p>
+               The
+data for a tree is often retrieved from a server in the form of
+XML, but it can also be well-formed XML defined within the <samp class="codeph">&lt;mx:Tree&gt;</samp> tag.
+The <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/controls/treeClasses/DefaultDataDescriptor.html" target="_blank">DefaultDataDescriptor</a> class
+can handle well-formed XML data structures.</p>
+
+            <p>You can use an <a href="mxml/xml.html" target="_blank">&lt;fx:XML&gt;</a> or <a href="mxml/xmlList.html" target="_blank">&lt;fx:XMLList&gt;</a> tag
+to define an <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/XML.html" target="_blank">XML</a> or <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/XMLList.html" target="_blank">XMLList</a> object in
+MXML. Unlike the XML and XMLList classes in ActionScript, these
+tags let you use MXML binding expressions in the XML text to extract
+node contents from variable data. For example, you can bind a node's
+name attribute to a text input value, as in the following example:</p>
+
+            <pre class="codeblock"> &lt;fx:XMLList id="myXMLList"&gt; 
+ 	&lt;child name="{textInput1.text}"/&gt; 
+ 	&lt;child name="{textInput2.text}"/&gt; 
+ &lt;/fx:XMLList&gt;</pre>
+
+            <p>You can use an XML object directly as a data provider to a hierarchical
+data control. However, if the object changes dynamically, you should
+do the following:</p>
+
+            <ol>
+               <li>
+                  <p>Convert the XML or XMLList object to an <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/collections/XMLListCollection.html" target="_blank">XMLListCollection</a> object. </p>
+
+               </li>
+
+               <li>
+                  <p>Make all updates to the data by modifying the XMLListCollection
+object. </p>
+
+               </li>
+
+            </ol>
+
+            <p>Doing this ensures that the component represents the dynamic
+data. The XMLListCollection class supports the use of all <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/collections/IList.html" target="_blank">IList</a> and <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/collections/ICollectionView.html" target="_blank">ICollectionView</a> interface methods,
+and adds many of the most commonly used XMLList class methods. For more
+information on using XMLListCollections, see <a href="flx_about_dataproviders_ab.html#WS2db454920e96a9e51e63e3d11c0bf69084-7b5b_verapache">XMLListCollection
+objects</a>.</p>
+
+            <p>The following code example defines two Tree controls. The first
+uses an XML object directly, and the second uses an XMLListCollection
+object as the data source:</p>
+
+            <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- dpcontrols\UseXMLDP.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    width="650"&gt; 
+    &lt;s:layout&gt; 
+        &lt;s:VerticalLayout/&gt; 
+    &lt;/s:layout&gt; 
+    
+    &lt;fx:Declarations&gt; 
+        &lt;fx:XML id="capitals"&gt; 
+            &lt;root&gt; 
+                &lt;Capitals label="U.S. State Capitals"&gt; 
+                    &lt;capital label="AL" value="Montgomery"/&gt; 
+                    &lt;capital label="AK" value="Juneau"/&gt; 
+                    &lt;capital label="AR" value="Little Rock"/&gt; 
+                    &lt;capital label="AZ" value="Phoenix"/&gt;       
+                &lt;/Capitals&gt; 
+                &lt;Capitals label="Canadian Province Capitals"&gt; 
+                    &lt;capital label="AB" value="Edmonton"/&gt; 
+                    &lt;capital label="BC" value="Victoria"/&gt; 
+                    &lt;capital label="MB" value="Winnipeg"/&gt; 
+                    &lt;capital label="NB" value="Fredericton"/&gt; 
+                &lt;/Capitals&gt; 
+            &lt;/root&gt; 
+        &lt;/fx:XML&gt; 
+ 
+        &lt;!-- Create an XMLListCollection representing the Tree nodes. 
+             capitals.Capitals is an XMLList with both Capitals elements. --&gt; 
+        &lt;mx:XMLListCollection id="capitalColl" source="{capitals.Capitals}"/&gt; 
+    &lt;/fx:Declarations&gt; 
+ 
+    &lt;s:Label text="These two Tree controls appear identical, although their data sources are different."/&gt; 
+ 
+    &lt;s:HGroup&gt; 
+        &lt;!-- When you use an XML-based data provider with a tree 
+             you must specify the label field, even if it 
+             is "label". The XML object includes the root, 
+             so you must set showRoot="false". Remember that 
+             the Tree will not, by default, reflect dynamic changes 
+             to the XML object. --&gt; 
+        &lt;mx:Tree id="Tree1" dataProvider="{capitals}" labelField="@label" 
+            showRoot="false" width="300"/&gt; 
+        
+        &lt;!-- The XMLListCollection does not include the XML root. --&gt; 
+        &lt;mx:Tree id="Tree2" dataProvider="{capitalColl}" labelField="@label" 
+            width="300"/&gt;       
+    &lt;/s:HGroup&gt; 
+&lt;/s:Application&gt;</pre>
+
+            <p>This example shows two important features of using a hierarchical
+data provider with a Tree control:</p>
+
+            <ul>
+               <li>
+                  <p>ECMAScript for XML (E4X) objects must have a single root
+node, which might not be appropriate for displaying in the Tree.
+Also, trees can have multiple elements at their highest level. To
+prevent the tree from displaying the root node, set the <samp class="codeph">showRoot</samp> property
+to <samp class="codeph">false</samp>. (The default <samp class="codeph">showRoot</samp> value for
+the Tree control is <samp class="codeph">true</samp>.) XMLList collections,
+however, do not have a single root, and you typically do not need
+to use the <samp class="codeph">showRoot</samp> property. </p>
+
+               </li>
+
+               <li>
+                  <p>When you use an XML, XMLList, or XMLListCollection object
+as the tree data provider, you must specify the <samp class="codeph">labelField</samp> property,
+even if it is “label”, if the field is an XML attribute. You must
+do this because you must use the @ sign to signify an attribute. </p>
+
+               </li>
+
+            </ul>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf69084-7b5b_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7b5b_verapache"><!-- --></a>
+         <h3 class="topictitle3">XMLListCollection objects</h3>
+
+         
+         <div>
+            <p>
+               XMLListCollection
+objects provide collection functionality to an XMLList object and
+make available some of the XML manipulation methods of the native XMLList
+class, such as the <samp class="codeph">attributes()</samp>, <samp class="codeph">children()</samp>,
+and <samp class="codeph">elements() </samp>methods. For details of the supported
+methods, see XMLListCollectionin the <em>
+                  <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/" target="_blank">ActionScript 3.0 Reference for the Adobe
+Flash Platform</a>
+               </em>.</p>
+
+            <p>The following simple example uses an XMLListCollection object
+as the data provider for a List control. It uses XMLListCollection
+methods to dynamically add items to and remove them from the data
+provider and its representation in the List control. The example
+uses a Tree control to represent a selection of shopping items and
+a List collection to represent a shopping list.</p>
+
+            <p>Users add items to the List control by selecting an item in a
+Tree control (which uses a static XML object as its data provider)
+and clicking a button. When the user clicks the button, the event
+listener uses the XMListCollection <samp class="codeph">addItem()</samp> method
+to add the selected XML node to the XMLListCollection. Because the data
+provider is a collection, the List control is updated to show the
+new data.</p>
+
+            <p>Users remove items in a similar manner, by selecting an item
+in the list and clicking the Remove button. The event listener uses
+the XMListCollection <samp class="codeph">removeItemAt()</samp> method to remove
+the item from the data provider and its representation in the List
+control.</p>
+
+            <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- dpcontrols\XMLListCollectionWithList.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    width="550"&gt;    
+    
+    &lt;fx:Script&gt; 
+        &lt;![CDATA[ 
+            import mx.collections.XMLListCollection; 
+            import mx.collections.ArrayCollection; 
+    
+            /* An XML object with categorized produce. */ 
+            [Bindable] 
+            public var myData:XML= 
+                &lt;catalog&gt; 
+                  &lt;category name="Meat"&gt; 
+                      &lt;product name="Buffalo"/&gt; 
+                      &lt;product name="T Bone Steak"/&gt; 
+                      &lt;product name="Whole Chicken"/&gt; 
+                  &lt;/category&gt; 
+                  &lt;category name="Vegetables"&gt; 
+                      &lt;product name="Broccoli"/&gt;                         
+                      &lt;product name="Vine Ripened Tomatoes"/&gt; 
+                      &lt;product name="Yellow Peppers"/&gt; 
+                  &lt;/category&gt; 
+                  &lt;category name="Fruit"&gt; 
+                      &lt;product name="Bananas"/&gt; 
+                      &lt;product name="Grapes"/&gt; 
+                      &lt;product name="Strawberries"/&gt; 
+                  &lt;/category&gt; 
+              &lt;/catalog&gt;; 
+ 
+            /* An XMLListCollection representing the data 
+               for the shopping List. */ 
+           [Bindable] 
+           public var listDP:XMLListCollection = new XMLListCollection(new XMLList()); 
+    
+           /* Add the item selected in the Tree to the List XMLList data provider. */ 
+           private function doTreeSelect():void { 
+               if (prodTree.selectedItem) 
+               listDP.addItem(prodTree.selectedItem.copy()); 
+           } 
+ 
+           /* Remove the selected in the List from the XMLList data provider. */ 
+           private function doListRemove():void { 
+               if (prodList.selectedItem) 
+                   listDP.removeItemAt(prodList.selectedIndex); 
+           } 
+        ]]&gt; 
+    &lt;/fx:Script&gt; 
+    
+    &lt;s:HGroup&gt; 
+        &lt;mx:Tree id="prodTree" dataProvider="{myData}" width="200" 
+            showRoot="false" labelField="@name"/&gt;           
+        &lt;s:VGroup&gt; 
+            &lt;s:Button id="treeSelect" label="Add to List" 
+                click="doTreeSelect()"/&gt; 
+            &lt;s:Button id="listRemove" label="Remove from List" 
+                click="doListRemove()"/&gt; 
+        &lt;/s:VGroup&gt;         
+        &lt;s:List id="prodList" dataProvider="{listDP}" width="200" 
+            labelField="@name"/&gt;        
+    &lt;/s:HGroup&gt; 
+&lt;/s:Application&gt;</pre>
+
+         </div>
+
+      </div>
+
+   </div>
+
+   <div class="nested1" id="WS2db454920e96a9e51e63e3d11c0bf69084-7b63_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7b63_verapache"><!-- --></a>
+      <h2 class="topictitle2">Remote data in data provider components</h2>
+
+      
+      <div>
+         <p>You use Flex data access components: <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/rpc/http/mxml/HTTPService.html" target="_blank">HTTPService</a>, <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/rpc/soap/mxml/WebService.html" target="_blank">WebService</a>,
+and <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/rpc/remoting/mxml/RemoteObject.html" target="_blank">RemoteObject</a>,
+to supply data to Flex data provider components. </p>
+
+         <p>To use a remote data source to provide data, you represent the
+result of the remote service with the appropriate object, as follows:</p>
+
+         <ul>
+            <li>
+               <p>A RemoteObject component automatically returns an <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/collections/ArrayCollection.html" target="_blank">ArrayCollection</a> for
+any data that is represented on the server as a java.util.List object,
+and you can use the returned object directly.</p>
+
+            </li>
+
+            <li>
+               <p>For HTTPService and WebService results, cast the result data
+to a collection class if the data changes or if you use the same
+result in multiple places (the latter case is more efficient). As
+a general rule, use an ArrayCollection for serialized (list-based)
+objects and an <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/collections/XMLListCollection.html" target="_blank">XMLListCollection</a> for
+XML data.</p>
+
+            </li>
+
+         </ul>
+
+         <p>The following code snippet shows this use, casting a list returned
+by a web service to an Array in an ArrayCollection:</p>
+
+         <pre class="codeblock"> 	&lt;mx:WebService id="employeeWS" wsdl="http://server.com/service.wsdl" 
+ 		showBusyCursor="true" 
+ 		fault="alert(event.fault.faultstring)"&gt; 
+ 		&lt;mx:operation name="getList"&gt; 
+ 			&lt;mx:request&gt; 
+ 				&lt;deptId&gt;{dept.selectedItem.data}&lt;/deptId&gt; 
+ 			&lt;/mx:request&gt; 
+ 		&lt;/mx:operation&gt; 
+ 		... 
+ 	&lt;/mx:WebService&gt; 
+  
+ 	&lt;mx:ArrayCollection id="ac" 
+ 		source="mx.utils.ArrayUtil.toArray(employeeWS.getList.lastResult)"/&gt; 
+ 	&lt;mx:DataGrid dataProvider="{ac}" width="100%"&gt;</pre>
+
+         
+
+      </div>
+
+      <div class="nested2" id="WS2c2b6b5d2efbc2ce-17a157741258e87ac50-8000_verapache"><a name="WS2c2b6b5d2efbc2ce-17a157741258e87ac50-8000_verapache"><!-- --></a>
+         <h3 class="topictitle3">Handling data pages with Spark
+components</h3>
+
+         
+         <div>
+            <p>You can use a data collection with a remote data source.
+Often, you want to access the data as it arrives from the server
+rather than waiting for all of the remote data to load. Multiple
+data items in a collection can be grouped into pages. The application
+can then handle each page as it arrives, rather than waiting for
+the entire collection.</p>
+
+            <p>A collection that supported data pages dispatches an ItemPendingError
+error when a request for data item is pending. The application can
+then handle the error as necessary.</p>
+
+            <p>The MX List and MX DataGrid controls have built in support for
+handling ItemPendingError errors. However, the Spark DataGroup and
+other Spark controls, such as List, do not.</p>
+
+            <p>To support data paging with Spark controls, use the AsyncListView
+as the data provider of the control. The AsyncListView class implements
+the IList interface, so it can be used as the data provider of a
+Spark control. AsyncListView handles ItemPendingError errors thrown
+when items requested by a call to the <samp class="codeph">getItemAt()</samp> method
+are not available. </p>
+
+            <p>The following example uses the AsyncListView class with a Spark
+List control:</p>
+
+            <div class="p">
+               <pre class="codeblock">&lt;fx:Declarations&gt; 
+	// Define an ArrayCollection to hold the data from a DataService. 
+	&lt;mx:ArrayCollection id="products"/&gt; 
+	&lt;mx:DataService id="ds" destination="inventory"/&gt; 
+&lt;/fx:Declarations&gt; 
+// Define a Button control to populate the ArrayCollection. 
+&lt;s:Button label="Get Data" click="ds.fill(products);"/&gt; 
+ 
+// Wrap the ArrayCollection in an AsyncListView class to handle ItemPendingError events. 
+&lt;s:List&gt; 
+	&lt;mx:AsyncListView list="{products}"/&gt; 
+&lt;/s:List&gt;</pre>
+
+            </div>
+
+            <p>In this example, the AsyncListView class handles any ItemPendingError
+errors generated when a data item is not yet available.</p>
+
+            <p>The AsyncListView class defines two properties, <samp class="codeph">createPendingItemFunction</samp> and <samp class="codeph">createFailedItemFunction</samp>, that
+you can use to specify callback functions executed for an ItemPendingError error.
+The callback function specified by <samp class="codeph">createPendingItemFunction</samp> creates
+a placeholder item in the collection when a request is pending.
+The callback function specified by <samp class="codeph">createFailedItemFunction</samp> creates
+a placeholder item in the collection when a request fails. </p>
+
+            <p>The following example creates these callback functions:</p>
+
+            <div class="p">
+               <pre class="codeblock">&lt;fx:Script&gt; 
+	&lt;![CDATA[ 
+		import mx.collections.errors.ItemPendingError; 
+	 
+		private function createPendingItem(index:int, ipe:ItemPendingError):Object { 
+			return "[" + index + " ...]"; 
+		} 
+ 
+		private function createFailedItem(index:int, info:Object):Object { 
+			return "[" + index + " failed]"; 
+		} 
+	]]&gt; 
+&lt;/fx:Script&gt; 
+ 
+&lt;fx:Declarations&gt; 
+	&lt;mx:ArrayCollection id="products"/&gt; 
+	&lt;mx:DataService id="ds" destination="inventory"/&gt; 
+&lt;/fx:Declarations&gt; 
+ 
+&lt;s:Button label="Get Data" click="ds.fill(products);"/&gt; 
+ 
+&lt;s:List&gt; 
+	&lt;mx:AsyncListView list="{products}" 
+		createPendingItemFunction="{createPendingItem}" 
+		createFailedItemFunction="{createFailedItem}"/&gt; 
+&lt;/s:List&gt;</pre>
+
+            </div>
+
+         </div>
+
+      </div>
+
+   </div>
+
+   <div class="nested1" id="WS2db454920e96a9e51e63e3d11c0bf668d2-7fd8_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf668d2-7fd8_verapache"><!-- --></a>
+      <h2 class="topictitle2">Data providers and the uid property</h2>
+
+      
+      <div>
+         <p>Flex data provider controls use a unique identifier (UID)
+to track data items. Flex can automatically create and manage UIDs.
+However, there are circumstances when you must supply your own <samp class="codeph">uid</samp> property
+by implementing the <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/core/IUID.html" target="_blank">IUID</a> interface,
+and there are circumstances when supplying your own <samp class="codeph">uid</samp> property improves
+processing efficiency.</p>
+
+         <p>Because the Object and Array classes are dynamic, you normally
+do not do anything special for data objects whose items belong to
+these classes. However, you should consider implementing the IUID
+if your data object items belong to custom classes that you define.</p>
+
+         <div class="note"><span class="notetitle">Note:</span> When Flex creates a UID for an object, such
+as an item in an ArrayCollection, it adds the UID as an <samp class="codeph">mx_internal_uid</samp> property
+of the item. Flex creates <samp class="codeph">mx_internal_uid</samp> properties
+for any objects that are dynamic and do not have bindable properties.
+To avoid having Flex create <samp class="codeph">mx_internal_uid</samp> properties, the
+object class should do any of the following things: have at least
+one property with a <samp class="codeph">[Bindable]</samp> metadata tag; implement
+the IUID interface; or have a <samp class="codeph">uid</samp> property with
+a value.</div>
+
+         <p>If Flex must consider two or more different objects to be identical,
+the objects must implement the IUID interface so that you can assign
+the same <samp class="codeph">uid</samp> value to multiple objects. A typical
+case where you must implement the IUID interface is an application
+that uses paged collections. As the cursor moves through the collection,
+a particular item might be pulled down from the server and released from
+memory repeatedly. Every time the item is pulled into memory, a
+new object is created to represent the item. If you need to compare
+items for equality, Flex should consider all objects that represent
+the same item to be the same “thing.” </p>
+
+         <p>More common than the case where you must implement the IUID interface
+is the case where you can improve processing efficiency by doing
+so. As a general rule, you do not implement the IUID interface if
+the data provider elements are members of dynamic classes. Flex
+can automatically create a <samp class="codeph">uid</samp> property for these
+classes. There is still some inefficiency, however, so you might
+consider implementing the IUID interface if processing efficiency
+is particularly important.</p>
+
+         <p>In all other cases, Flex uses the Dictionary mechanism to manage
+the <samp class="codeph">uid</samp>, which might not be as efficient as supplying
+your own UID.</p>
+
+         <p>The IUID interface contains a single property, <samp class="codeph">uid</samp>,
+which is a unique identifier for the class member, and no methods.
+Flex provides a <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/utils/UIDUtil.html" target="_blank">UIDUtil</a> class
+that uses a pseudo-random-number generator to create an identifier
+that conforms to the standard GUID format. Although this identifier
+is not guaranteed to be universally unique, it should be unique
+among all members of your class. To implement a class that uses
+the UIDUtil class, such as a Person class that has fields for a
+first name, last name, and ID, you can use the following pattern: </p>
+
+         <pre class="codeblock"> package { 
+ 	import mx.core.IUID; 
+ 	import mx.utils.UIDUtil; 
+  
+ 	[Bindable] 
+ 	public class Person implements IUID { 
+ 		public var id:String; 
+ 		public var firstName:String; 
+ 		public var lastName:String; 
+ 		private var _uid:String; 
+  
+ 		public function Person() { 
+ 			_uid = UIDUtil.createUID(); 
+ 		} 
+  
+ 		public function get uid():String { 
+ 			return _uid; 
+ 		} 
+  
+ 		public function set uid(value:String):void { 
+ 			// Do nothing, the constructor created the uid. 
+ 		} 
+ 	} 
+ }</pre>
+
+         <p>You do not need to use the UIDUtil class in a case where the
+objects contain a uniquely-identifying field such as an employee
+ID. In this case, you can use the person’s ID as the <samp class="codeph">uid</samp> property,
+because the <samp class="codeph">uid</samp> property values uniquely identify
+the object only in the data provider. The following example implements this
+approach:</p>
+
+         <pre class="codeblock"> package  
+ { 
+ 	import mx.core.IUID; 
+  
+ 	[Bindable] 
+ 	public class Person implements IUID { 
+ 		public var employee_id:String; 
+ 		public var firstName:String; 
+ 		public var lastName:String;  
+  
+ 		public function get uid(): String { 
+ 			return employee_id; 
+ 		} 
+  
+ 		public function set uid(value: String): void { 
+ 			employee_id=value; 
+ 		} 
+ 	} 
+ } </pre>
+
+         <div class="note"><span class="notetitle">Note:</span> Object cloning does not manage or have a relationship
+with UIDs, so if you clone something that has an internal UID you
+must also change that internal UID. UIDs are stored on mx_internal_uid
+only for dynamic Objects. Instances of data classes that implement
+IUID store their UIDs in a uid property, so that is the property that
+must be changed after cloning.</div>
+
+         <p>Adobe and Adobe Flash are either registered trademarks or trademarks of Adobe Systems Incorporated in the United States and/or other countries and are used by permission from Adobe.  No other license to the Adobe trademarks are granted.</p>
+
+      </div>
+
+   </div>
+
+
+</body>
+</html>

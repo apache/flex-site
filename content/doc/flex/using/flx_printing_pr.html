@@ -1,0 +1,1710 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Licensed to the Apache Software Foundation (ASF) under one or more
+  contributor license agreements.  See the NOTICE file distributed with
+  this work for additional information regarding copyright ownership.
+  The ASF licenses this file to You under the Apache License, Version 2.0
+  (the "License"); you may not use this file except in compliance with
+  the License.  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+-->
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en-us" xml:lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="topic"/>
+<meta name="DC.Title" content="Printing"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="WS2db454920e96a9e51e63e3d11c0bf65381-8000_verapache"/>
+<link rel="stylesheet" type="text/css" href="commonltr.css"/>
+<title>Printing</title>
+</head>
+<body id="WS2db454920e96a9e51e63e3d11c0bf65381-8000_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf65381-8000_verapache"><!-- --></a>
+
+
+   <h1 class="topictitle1">Printing </h1>
+
+   
+   <div>
+      <p>
+         Many
+applications built in  Flex let users print
+from within the application. For example, you might have an application
+that returns confirmation information after a user completes a purchase.
+Your application can allow users to print the information on the
+page to keep for their records.</p>
+
+      <div class="note"><span class="notetitle">Note:</span> You can also print by using the context menu
+in Adobe<sup>®</sup> Flash<sup>®</sup> Player,
+or the Flash ActionScript PrintJob class, which is documented in
+the <em>
+            <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/" target="_blank">ActionScript 3.0 Reference for the Adobe
+Flash Platform</a>
+         </em>.</div>
+
+   </div>
+
+   <div class="nested1" id="WS2db454920e96a9e51e63e3d11c0bf65381-7ffa_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf65381-7ffa_verapache"><!-- --></a>
+      <h2 class="topictitle2">About printing by using Flex classes</h2>
+
+      
+      <div>
+         <p>
+            The Flex
+mx.printing package contains classes that facilitate the creation
+of printing output from Flex applications:</p>
+
+         <dl>
+            
+               <dt class="dlterm">FlexPrintJob</dt>
+
+               <dd>
+                  <p>A class that prints one or more objects. Automatically splits
+large objects for printing on multiple pages and scales the output
+to fit the page size.</p>
+
+               </dd>
+
+            
+            
+               <dt class="dlterm">PrintDataGrid</dt>
+
+               <dd>
+                  <p>A subclass of the DataGrid control with a default appearance that
+is customized for printing. The class includes properties and a
+method that provide additional sizing and printing features.</p>
+
+               </dd>
+
+            
+            
+               <dt class="dlterm">PrintAdvancedDataGrid</dt>
+
+               <dd>
+                  <p>A subclass of the AdvancedDataGrid control with a default
+appearance that is customized for printing. The class includes properties and
+a method that provide additional sizing and printing features.</p>
+
+               </dd>
+
+            
+            
+               <dt class="dlterm">PrintOLAPDataGrid</dt>
+
+               <dd>
+                  <p>A subclass of the OLAPDataGrid control with a default appearance
+that is customized for printing. The class includes properties and
+a method that provide additional sizing and printing features.</p>
+
+               </dd>
+
+            
+            
+               <dt class="dlterm">FlexPrintJobScaleType</dt>
+
+               <dd>
+                  <p>Defines constants used in the FlexPrintJob <samp class="codeph">addObject()</samp> method.</p>
+
+                  <p>Together,
+these classes give you control over how the user prints information from
+the application. For example, your application can print only a
+selected subset of the information on the screen, or it can print
+information that is not being displayed. Also, your application
+can reformat the information and optimize its layout and appearance
+for printing.</p>
+
+               </dd>
+
+            
+         </dl>
+
+      </div>
+
+   </div>
+
+   <div class="nested1" id="WS2db454920e96a9e51e63e3d11c0bf65381-7ffc_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf65381-7ffc_verapache"><!-- --></a>
+      <h2 class="topictitle2">Using the FlexPrintJob class</h2>
+
+      
+      <div>
+         <p>
+            You
+use the <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/printing/FlexPrintJob.html" target="_blank">FlexPrintJob</a> class to print
+one or more Flex objects, such as a Form or VBox container. For
+each object that you specify, Flex prints the object and all objects
+that it contains. The objects can be all or part of the displayed
+interface, or they can be components that format data specifically
+for printing. The FlexPrintJob class lets you scale the output to
+fit the page, and automatically uses multiple pages to print an
+object that does not fit on a single page. </p>
+
+         <p>You use the FlexPrintJob class to print a dynamically rendered
+document that you format specifically for printing. This capability
+is especially useful for rendering and printing such information
+as receipts, itineraries, and other displays that contain external
+dynamic content, such as database content and dynamic text. </p>
+
+         <p>You often use the FlexPrintJob class within an event listener.
+For example, you can use a Button control with an event listener
+that prints some or all of the application. </p>
+
+         <div class="note"><span class="notetitle">Note:</span> The FlexPrintJob class causes the operating
+system to display a Print dialog box. You cannot print without some
+user action.</div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf65381-7ff4_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf65381-7ff4_verapache"><!-- --></a>
+         <h3 class="topictitle3">Build and send a print job</h3>
+
+         
+         <div>
+            <p>
+               You
+print output by building and sending a print job. </p>
+
+            <ol>
+               <li>
+                  <p>Create an instance of the FlexPrintJob class: </p>
+
+                  <pre class="codeblock"> var printJob:FlexPrintJob = new FlexPrintJob();</pre>
+
+               </li>
+
+               <li>
+                  <p>Start the print job: </p>
+
+                  <pre class="codeblock"> printJob.start(); </pre>
+
+                  <p>This
+causes the operating system to display a Print dialog box.</p>
+
+               </li>
+
+               <li>
+                  <p>Add one or more objects to the print job and specify how
+to scale them:</p>
+
+                  <pre class="codeblock"> printJob.addObject(myObject, FlexPrintJobScaleType.MATCH_WIDTH); </pre>
+
+                  <p>Each
+object starts on a new page.</p>
+
+               </li>
+
+               <li>
+                  <p>Send the print job to the printer: </p>
+
+                  <pre class="codeblock"> printJob.send(); </pre>
+
+               </li>
+
+               <li>
+                  <p>Free up any unneeded objects.</p>
+
+               </li>
+
+            </ol>
+
+            <div class="note"><span class="notetitle">Note:</span> Because you are spooling a print job to the
+user’s operating system between your calls to the <samp class="codeph">start()</samp> and <samp class="codeph">send()</samp> methods,
+you should limit the code between these calls to print-specific
+activities. For example, the content should not interact with the
+user between the <samp class="codeph">start()</samp> and <samp class="codeph">send()</samp> methods.</div>
+
+            <p>The following sections detail the procedures to use in these
+steps.</p>
+
+            <div class="section" id="WS2db454920e96a9e51e63e3d11c0bf65381-7ff4_verapache__WS2db454920e96a9e51e63e3d11c0bf65381-7ffb_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf65381-7ff4_verapache__WS2db454920e96a9e51e63e3d11c0bf65381-7ffb_verapache"><!-- --></a><h4 class="sectiontitle">Starting
+a print job</h4>
+               
+               <p>
+                  To
+start a print job, you create an instance of the <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/printing/FlexPrintJob.html" target="_blank">FlexPrintJob</a> class
+and call its <samp class="codeph">start()</samp> method. This method prompts
+Flash Player or Adobe<sup>®</sup> AIR™ to
+spool the print job to the user’s operating system, which causes
+the user’s operating system to display a Print dialog box. </p>
+
+               <p>If
+the user selects an option to begin printing from the Print dialog
+box, the<samp class="codeph"> start(</samp>) method returns a value of <samp class="codeph">true</samp>.
+If the user cancels the print job, the return value is <samp class="codeph">false</samp>.
+After the user exits the operating system Print dialog box, the <samp class="codeph">start()</samp> method
+uses the printer information to set values for the FlexPrintJob
+object’s <samp class="codeph">pageHeight</samp> and <samp class="codeph">pageWidth</samp> properties,
+which represent the dimensions of the printed page area.</p>
+
+               <div class="note"><span class="notetitle">Note:</span> Depending on the user’s operating system, an additional
+dialog box might appear until spooling is complete and the application
+calls the <samp class="codeph">send()</samp> method.</div>
+
+               <p>Only one print
+job can be active at a time. You cannot start a second print job until
+one of the following has happened with the previous print job:</p>
+
+               <ul>
+                  <li>
+                     <p>The <samp class="codeph">start()</samp> method returns a value of <samp class="codeph">false</samp> (the
+job failed). </p>
+
+                  </li>
+
+                  <li>
+                     <p>The <samp class="codeph">send()</samp> method completes execution following
+a successful call to the <samp class="codeph">addObject()</samp> method. Because
+the <samp class="codeph">send()</samp> method is synchronous, code that follows
+it can assume that the call completed successfully.</p>
+
+                  </li>
+
+               </ul>
+
+            </div>
+
+            <div class="section" id="WS2db454920e96a9e51e63e3d11c0bf65381-7ff4_verapache__WS2db454920e96a9e51e63e3d11c0bf65381-7ff6_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf65381-7ff4_verapache__WS2db454920e96a9e51e63e3d11c0bf65381-7ff6_verapache"><!-- --></a><h4 class="sectiontitle">Adding
+objects to the print job</h4>
+               
+               <p>You use the <samp class="codeph">addObject()</samp> method
+of the <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/printing/FlexPrintJob.html" target="_blank">FlexPrintJob</a> class to add objects
+to the print job. Each object starts on a new page; therefore, the
+following code prints a DataGrid control and a Button control on
+separate pages:</p>
+
+               <pre class="codeblock"> printJob.addObject(myDataGrid); 
+ printJob.addObject(myButton);</pre>
+
+            </div>
+
+            <div class="section" id="WS2db454920e96a9e51e63e3d11c0bf65381-7ff4_verapache__WS2db454920e96a9e51e63e3d11c0bf65381-7ff5_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf65381-7ff4_verapache__WS2db454920e96a9e51e63e3d11c0bf65381-7ff5_verapache"><!-- --></a><h4 class="sectiontitle">Scaling
+a print job</h4>
+               
+               <p>The <em>scaleType</em> parameter of the <samp class="codeph">addObject()</samp> method
+determines how to scale the output. Use the following <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/printing/FlexPrintJobScaleType.html" target="_blank">FlexPrintJobScaleType</a> class
+constants to specify the scaling method:</p>
+
+               
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" frame="border" border="1" rules="all">
+                     
+                     
+                     <thead align="left">
+                        <tr>
+                           <th class="cellrowborder" valign="top" width="NaN%" id="d831150e385">
+                              <p>Constant</p>
+
+                           </th>
+
+                           <th class="cellrowborder" valign="top" width="NaN%" id="d831150e391">
+                              <p>Action</p>
+
+                           </th>
+
+                        </tr>
+
+                     </thead>
+
+                     <tbody>
+                        <tr>
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d831150e385 ">
+                              <p>MATCH_WIDTH</p>
+
+                           </td>
+
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d831150e391 ">
+                              <p>(Default) Scales the object to fill the
+available page width. If the resulting object height exceeds the
+page height, the output spans multiple pages.</p>
+
+                           </td>
+
+                        </tr>
+
+                        <tr>
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d831150e385 ">
+                              <p>MATCH_HEIGHT</p>
+
+                           </td>
+
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d831150e391 ">
+                              <p>Scales the object to fill the available
+page height. If the resulting object width exceeds the page width,
+the output spans multiple pages.</p>
+
+                           </td>
+
+                        </tr>
+
+                        <tr>
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d831150e385 ">
+                              <p>SHOW_ALL</p>
+
+                           </td>
+
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d831150e391 ">
+                              <p>Scales the object to fit on a single page,
+filling one dimension; that is, it selects the smaller of the MATCH_WIDTH
+or MATCH_HEIGHT scale types.</p>
+
+                           </td>
+
+                        </tr>
+
+                        <tr>
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d831150e385 ">
+                              <p>FILL_PAGE</p>
+
+                           </td>
+
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d831150e391 ">
+                              <p>Scales the object to fill at least one page
+completely; that is, it selects the larger of the MATCH_WIDTH or MATCH_HEIGHT
+scale types.</p>
+
+                           </td>
+
+                        </tr>
+
+                        <tr>
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d831150e385 ">
+                              <p>NONE</p>
+
+                           </td>
+
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d831150e391 ">
+                              <p>Does not scale the output. The printed page
+has the same dimensions as the object on the screen. If the object
+height, width, or both dimensions exceed the page width or height,
+the output spans multiple pages.</p>
+
+                           </td>
+
+                        </tr>
+
+                     </tbody>
+
+                  </table>
+</div>
+
+               <p>If an object requires multiple pages, the
+output splits at the page boundaries. This can result in unreadable
+text or inappropriately split graphics. For information on how to
+format your print job to avoid these problems, see <a href="flx_printing_pr.html#WS2db454920e96a9e51e63e3d11c0bf69084-7c7e_verapache">Printing multipage
+output</a>.</p>
+
+               <p>The <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/printing/FlexPrintJob.html" target="_blank">FlexPrintJob</a> class
+includes two properties that can help your application determine
+how to scale the print job. These properties are read-only and are initially
+0. When the application calls the <samp class="codeph">start()</samp> method
+and the user selects the Print option in the operating system Print
+dialog box, Flash Player or AIR retrieves the print settings from
+the operating system. The <samp class="codeph">start()</samp> method populates
+the following properties:</p>
+
+               
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" frame="border" border="1" rules="all">
+                     
+                     
+                     
+                     
+                     <thead align="left">
+                        <tr>
+                           <th class="cellrowborder" valign="top" width="NaN%" id="d831150e516">
+                              <p>Property</p>
+
+                           </th>
+
+                           <th class="cellrowborder" valign="top" width="NaN%" id="d831150e522">
+                              <p>Type</p>
+
+                           </th>
+
+                           <th class="cellrowborder" valign="top" width="NaN%" id="d831150e528">
+                              <p>Unit</p>
+
+                           </th>
+
+                           <th class="cellrowborder" valign="top" width="NaN%" id="d831150e534">
+                              <p>Description</p>
+
+                           </th>
+
+                        </tr>
+
+                     </thead>
+
+                     <tbody>
+                        <tr>
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d831150e516 ">
+                              <p>
+                                 <samp class="codeph">pageHeight</samp>
+                              </p>
+
+                           </td>
+
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d831150e522 ">
+                              <p>Number</p>
+
+                           </td>
+
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d831150e528 ">
+                              <p>Points </p>
+
+                           </td>
+
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d831150e534 ">
+                              <p>Height of the printable area on the page;
+does not include any user-set margins.</p>
+
+                           </td>
+
+                        </tr>
+
+                        <tr>
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d831150e516 ">
+                              <p>
+                                 <samp class="codeph">pageWidth </samp>
+                              </p>
+
+                           </td>
+
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d831150e522 ">
+                              <p>Number</p>
+
+                           </td>
+
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d831150e528 ">
+                              <p>Points </p>
+
+                           </td>
+
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d831150e534 ">
+                              <p>Width of the printable area on the page;
+does not include any user-set margins.</p>
+
+                           </td>
+
+                        </tr>
+
+                     </tbody>
+
+                  </table>
+</div>
+
+               <div class="note"><span class="notetitle">Note:</span> A point is a print unit
+of measurement that is 1/72 of an inch. Flex automatically maps
+72 pixels to one inch (72 points) of printed output, based on the
+printer settings.</div>
+
+            </div>
+
+            <div class="section" id="WS2db454920e96a9e51e63e3d11c0bf65381-7ff4_verapache__WS2db454920e96a9e51e63e3d11c0bf65381-7ff9_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf65381-7ff4_verapache__WS2db454920e96a9e51e63e3d11c0bf65381-7ff9_verapache"><!-- --></a><h4 class="sectiontitle">Completing
+the print operation</h4>
+               
+               <p>
+                  To send the print job to a printer after
+using the <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/printing/FlexPrintJob.html" target="_blank">FlexPrintJob </a>
+                  <samp class="codeph">addObject()</samp> method,
+use the <samp class="codeph">send()</samp> method, which causes Flash Player
+or AIR to stop spooling the print job so that the printer starts
+printing. </p>
+
+               <p>
+                  After
+sending the print job to a printer, if you use print-only components
+to format output for printing, call <samp class="codeph">removeChild()</samp> to
+remove the print-specific component. For more information, see <a href="flx_printing_pr.html#WS2db454920e96a9e51e63e3d11c0bf69084-7c80_verapache">Using
+a print-specific output format</a>.</p>
+
+            </div>
+
+            <div class="section" id="WS2db454920e96a9e51e63e3d11c0bf65381-7ff4_verapache__WS2db454920e96a9e51e63e3d11c0bf65381-7ff7_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf65381-7ff4_verapache__WS2db454920e96a9e51e63e3d11c0bf65381-7ff7_verapache"><!-- --></a><h4 class="sectiontitle">Example:
+A simple print job</h4>
+               
+               <p>The following example prints a DataGrid
+object exactly as it appears on the screen, without scaling: </p>
+
+               <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- printing\DGPrint.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx"&gt; 
+ 
+    &lt;fx:Script&gt; 
+        &lt;![CDATA[ 
+            import mx.printing.*; 
+ 
+            // Create a PrintJob instance. 
+            private function doPrint():void { 
+                // Create an instance of the FlexPrintJob class. 
+                var printJob:FlexPrintJob = new FlexPrintJob(); 
+ 
+                // Start the print job. 
+                if (printJob.start() != true) return; 
+ 
+                // Add the object to print. Do not scale it. 
+                printJob.addObject(myDataGrid, FlexPrintJobScaleType.NONE); 
+ 
+                // Send the job to the printer. 
+                printJob.send(); 
+            } 
+        ]]&gt; 
+    &lt;/fx:Script&gt; 
+ 
+    &lt;mx:VBox id="myVBox"&gt; 
+        &lt;mx:DataGrid id="myDataGrid" width="300"&gt; 
+            &lt;mx:dataProvider&gt; 
+                &lt;fx:Object Product="Flash" Code="1000"/&gt; 
+                &lt;fx:Object Product="Flex" Code="2000"/&gt; 
+                &lt;fx:Object Product="ColdFusion" Code="3000"/&gt; 
+                &lt;fx:Object Product="JRun" Code="4000"/&gt; 
+            &lt;/mx:dataProvider&gt; 
+        &lt;/mx:DataGrid&gt; 
+        &lt;mx:Button id="myButton" 
+            label="Print" 
+            click="doPrint();"/&gt; 
+    &lt;/mx:VBox&gt; 
+&lt;/s:Application&gt;</pre>
+
+               <p>
+                  In
+this example, selecting the Button control invokes the <samp class="codeph">doPrint()</samp> event listener.
+The event listener creates an instance of the FlexPrintJob class
+to print the DataGrid control, adds the DataGrid control to the
+print job using the <samp class="codeph">addObject()</samp> method, and then
+uses the <samp class="codeph">send()</samp> method to print the page. </p>
+
+               <p>To
+print the DataGrid and Button controls on your page, specify myVBox,
+the ID of the object that contains both controls, in the <samp class="codeph">addObject()</samp> method’s <em>object</em> parameter.
+If want to print the DataGrid and Button controls on separate pages, specify
+each object in a separate <samp class="codeph">addObject()</samp> method.</p>
+
+               <p>To
+print the DataGrid control so that it spans the page width, omit
+the second <samp class="codeph">addObject()</samp> method parameter, or specify <samp class="codeph">FlexPrintJobScaleType.MATCH_WIDTH</samp>.
+To print the DataGrid control with the largest size that fits on
+a single page, specify <samp class="codeph">FlexPrintJobScaleType.SHOW_ALL</samp>.
+In the previous example, <samp class="codeph">FlexPrintJobScaleType.SHOW_ALL</samp> has
+the same result as <samp class="codeph">FlexPrintJobScaleType.MATCH_WIDTH</samp> because
+the DataGrid is short.</p>
+
+            </div>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS5a4fa6696c3ef406-5e8f1e6f12526e69c36-8000_verapache"><a name="WS5a4fa6696c3ef406-5e8f1e6f12526e69c36-8000_verapache"><!-- --></a>
+         <h3 class="topictitle3">Print containers with a transparent
+background</h3>
+
+         
+         <div>
+            <p>Many Flex containers, such as the Spark Group and MX Box
+containers, are transparent by default. If you print a transparent
+container, the background color of anything behind the transparent
+container prints.</p>
+
+            <p>As an alternative to the Spark Group container, use a Spark BorderContainer
+or a SkinnableContainer with the <samp class="codeph">backgroundColor</samp> property
+set. You can also define another container behind the Group with
+the appropriate background color. Or, set the <samp class="codeph">backgroundColor</samp> property
+of the Application container.</p>
+
+            <p>For the MX Box and other containers, make sure to set the <samp class="codeph">backgroundColor</samp> property. </p>
+
+         </div>
+
+      </div>
+
+   </div>
+
+   <div class="nested1" id="WS2db454920e96a9e51e63e3d11c0bf69084-7c80_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7c80_verapache"><!-- --></a>
+      <h2 class="topictitle2">Using a print-specific output format</h2>
+
+      
+      <div>
+         <p>In most cases, you do not want your printed output to look
+like the screen display. The screen might use a horizontally oriented
+layout that is not appropriate for paper printing. You might have
+display elements on the screen that would be distracting in a printout.
+You might also have other reasons for wanting the printed and displayed
+content to differ; for example, you might want to omit a password
+field.</p>
+
+         <p>To print your output with print-specific contents and appearance,
+use separate objects for the screen layout and the print layout,
+and share the data used in the screen layout with the print layout.
+You then use the print layout in your call or calls to the <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/printing/FlexPrintJob.html" target="_blank">FlexPrintJob</a>
+            <samp class="codeph"> addObject()</samp> method.</p>
+
+         <p>If your form includes a DataGrid, AdvancedDataGrid, or OLAPDataGrid
+control, use the <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/printing/PrintDataGrid.html" target="_blank">PrintDataGrid</a>, <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/printing/PrintAdvancedDataGrid.html" target="_blank">PrintAdvancedDataGrid</a>, <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/printing/PrintOLAPDataGrid.html" target="_blank">PrintOLAPDataGrid</a> or
+control in your print layout. The print version of these controls
+have two advantages over the normal controls for printed output:</p>
+
+         <ul>
+            <li>
+               <p>It has a default appearance that is designed specifically
+for printing. </p>
+
+            </li>
+
+            <li>
+               <p>It has properties and methods that support printing grids
+that contain multiple pages of data. </p>
+
+            </li>
+
+         </ul>
+
+         <p>The code in the next section uses a short PrintDataGrid control.
+For more information on using the PrintDataGrid control, see <a href="flx_printing_pr.html#WS2db454920e96a9e51e63e3d11c0bf69084-7c7d_verapache">Using
+the PrintDataGrid control for multipage grids</a>. For more information
+on using the PrintAdvancedDataGrid and PrintOLAPDataGrid control,
+see <a href="flx_printing_pr.html#WS2db454920e96a9e51e63e3d11c0bf69084-7c78_verapache">Using
+the PrintAdvancedDataGrid control</a>.</p>
+
+         <div class="section" id="WS2db454920e96a9e51e63e3d11c0bf69084-7c80_verapache__WS2db454920e96a9e51e63e3d11c0bf69084-7c7b_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7c80_verapache__WS2db454920e96a9e51e63e3d11c0bf69084-7c7b_verapache"><!-- --></a><h3 class="sectiontitle">Example:
+A simple print-specific output format</h3>
+            
+            <p>This example creates
+a Flex form with three text boxes for entering contact information,
+and a data grid that displays several lines of product information.
+The following image shows how the output of this application looks
+on the screen:</p>
+
+            <div class="figborder">
+               <img src="images/pr_printSimpleScreen.png" alt="Flex form with three text boxes for entering contact information, and a data grid that displays several lines of product information"/>
+            </div>
+
+            <p>The
+following image shows how the output looks when the user clicks
+the Print button to print the data:</p>
+
+            <div class="figborder">
+               <img src="images/pr_printSimplePrint.png" alt="Print output"/>
+            </div>
+
+            <p>In
+this example, the MXML application file displays the screen and
+controls the printing. A separate custom MXML component defines
+the appearance of the printed output.</p>
+
+            <p>When the user clicks
+the Print button, the application’s <samp class="codeph">doPrint()</samp> method does
+the following things:</p>
+
+            <ol>
+               <li>
+                  <p>Creates and starts the print
+job to display the operating system’s Print dialog box.</p>
+
+               </li>
+
+               <li>
+                  <p>After the user starts the print operation in the Print dialog
+box, creates a child control using the myPrintView component.</p>
+
+               </li>
+
+               <li>
+                  <p>Sets the MyPrintView control’s data from the form data.</p>
+
+               </li>
+
+               <li>
+                  <p>Sends the print job to the printer.</p>
+
+               </li>
+
+               <li>
+                  <p>Cleans up memory by removing the print-specific child component. </p>
+
+               </li>
+
+            </ol>
+
+            <p>The
+printed output does not include the labels from the screen, and
+the application combines the text from the screen’s three input
+boxes into a single string for printing in a Label control.</p>
+
+            <p>The
+following code shows the contents of the application file:</p>
+
+            <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- printing\DGPrintCustomComp.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    height="450" width="600"&gt; 
+ 
+    &lt;fx:Script&gt; 
+        &lt;![CDATA[ 
+            import mx.printing.FlexPrintJob; 
+            import myComponents.MyPrintView; 
+ 
+            public function doPrint():void { 
+                // Create a FlexPrintJob instance. 
+                var printJob:FlexPrintJob = new FlexPrintJob(); 
+    
+                // Start the print job. 
+                if(printJob.start()) { 
+                    // Create a MyPrintView control as a child 
+                    // of the current view. 
+                    var formPrintView:MyPrintView = new MyPrintView(); 
+                    addElement(formPrintView); 
+    
+                    // Populate the print control's contact label 
+                    // with the text from the form's name, 
+                    // phone, and e-mail controls. 
+                    formPrintView.contact.text = 
+                        "Contact: " + custName.text + "  " + 
+                        custPhone.text + "  " + custEmail.text; 
+    
+                    // Set the print control's data grid data provider to be 
+                    // the displayed data grid's data provider. 
+                    formPrintView.myDataGrid.dataProvider = 
+                        myDataGrid.dataProvider; 
+    
+                    // Add the SimplePrintview control to the print job. 
+                    // For comparison, try setting the 
+                    // second parameter to "none". 
+                    printJob.addObject(formPrintView); 
+    
+                    // Send the job to the printer. 
+                    printJob.send(); 
+    
+                    // Remove the print-specific control to free memory. 
+                    removeElement(formPrintView); 
+                } 
+            } 
+        ]]&gt; 
+    &lt;/fx:Script&gt; 
+ 
+    &lt;!-- The form to display--&gt; 
+    &lt;mx:Form id="myForm"&gt; 
+        &lt;mx:FormHeading label="Contact Information"/&gt; 
+        &lt;mx:FormItem label="Name: "&gt; 
+            &lt;mx:TextInput id="custName" 
+                width="200" 
+                text="Samuel Smith" 
+                fontWeight="bold"/&gt; 
+        &lt;/mx:FormItem&gt; 
+        &lt;mx:FormItem label="Phone: "&gt; 
+            &lt;mx:TextInput id="custPhone" 
+                width="200" 
+                text="617-555-1212" 
+                fontWeight="bold"/&gt; 
+        &lt;/mx:FormItem&gt; 
+        &lt;mx:FormItem label="Email: "&gt; 
+            &lt;mx:TextInput id="custEmail" 
+                width="200" 
+                text="sam@sam.com" 
+                fontWeight="bold"/&gt; 
+        &lt;/mx:FormItem&gt; 
+ 
+        &lt;mx:FormHeading label="Product Information"/&gt; 
+        &lt;mx:DataGrid id="myDataGrid" width="300"&gt; 
+            &lt;mx:dataProvider&gt; 
+                &lt;fx:Object Product="Flash" Code="1000"/&gt; 
+                &lt;fx:Object Product="Flex" Code="2000"/&gt; 
+                &lt;fx:Object Product="ColdFusion" Code="3000"/&gt; 
+                &lt;fx:Object Product="JRun" Code="4000"/&gt; 
+            &lt;/mx:dataProvider&gt; 
+        &lt;/mx:DataGrid&gt; 
+        &lt;mx:Button id="myButton" 
+            label="Print" 
+            click="doPrint();"/&gt; 
+    &lt;/mx:Form&gt; 
+&lt;/s:Application&gt;</pre>
+
+            <p>The following MyPrintView.mxml
+file defines the component used by the application’s <samp class="codeph">doPrint()</samp> method.
+The component is a VBox container; it contains a Label control,
+into which the application writes the contact information from the first
+three fields of the form, and a PrintDataGrid control, which displays
+the data from the data source of the screen view’s DataGrid control.
+For more information on the PrintDataGrid control and its advantages
+for printing, see <a href="flx_printing_pr.html#WS2db454920e96a9e51e63e3d11c0bf69084-7c7d_verapache">Using
+the PrintDataGrid control for multipage grids</a>.</p>
+
+            <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- printing\myComponents\MyPrintView.mxml --&gt; 
+&lt;mx:VBox xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    backgroundColor="#FFFFFF" 
+    height="300" width="500" 
+    paddingTop="50" paddingLeft="50" paddingRight="50"&gt; 
+ 
+    &lt;!-- The controls to print, a label and a PrintDataGrid control. --&gt; 
+    &lt;mx:Label id="contact"/&gt; 
+    &lt;mx:PrintDataGrid id="myDataGrid" width="100%"&gt; 
+        &lt;mx:columns&gt; 
+            &lt;mx:DataGridColumn dataField="Product"/&gt; 
+            &lt;mx:DataGridColumn dataField="Code"/&gt; 
+        &lt;/mx:columns&gt; 
+    &lt;/mx:PrintDataGrid&gt; 
+&lt;/mx:VBox&gt;</pre>
+
+         </div>
+
+      </div>
+
+   </div>
+
+   <div class="nested1" id="WS2db454920e96a9e51e63e3d11c0bf69084-7c7e_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7c7e_verapache"><!-- --></a>
+      <h2 class="topictitle2">Printing multipage output </h2>
+
+      
+      <div>
+         <p>You can print well-formatted multipage output under the
+following conditions:</p>
+
+         <ul>
+            <li>
+               <p>When each control fits on a print page or less. You often
+encounter such jobs when printing a form with fixed-length fields. </p>
+
+            </li>
+
+            <li>
+               <p>When the printed output includes one or more PrintDataGrid
+controls that are too long to print on a single page, particularly
+if the control height might vary, depending on the data. A good
+example of this type of output is a customer order receipt, which
+starts with the customer information, has an indeterminate number
+of order line items, and ends with total information.</p>
+
+            </li>
+
+         </ul>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf65381-7fef_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf65381-7fef_verapache"><!-- --></a>
+         <h3 class="topictitle3">Printing known-length multipage
+output</h3>
+
+         
+         <div>
+            <p>If you know the length of each component in a multipage
+document, you can create a separate print layout component for each
+page you print, and specify each layout page in a separate <samp class="codeph">addObject()</samp> method,
+as follows: </p>
+
+            <pre class="codeblock"> printJob.addObject(introPrintView, "ShowAll"); 
+ printJob.addObject(finDetailPrintView, "ShowAll"); 
+ printJob.addObject(hrDetailPrintView, "ShowAll"); 
+ printJob.addObject(summaryPrintView, "ShowAll");</pre>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf69084-7c7d_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7c7d_verapache"><!-- --></a>
+         <h3 class="topictitle3">Using the PrintDataGrid control
+for multipage grids</h3>
+
+         
+         <div>
+            <p>
+               
+               When a DataGrid control with many rows does
+not fit on a single screen in your application, you typically have
+scroll bars that let users view all the data. When you print the
+DataGrid control, the output is the same as the screen display. Therefore,
+if your DataGrid control has rows or columns that are not immediately visible,
+they do not print. If you replace the DataGrid control with a PrintDataGrid control
+that does not have a height specified (or has a large height), you
+print all the rows, but some rows could be partially printed on
+the bottom of one page and partially printed at the top of another,
+as you often see with HTML printout.</p>
+
+            <p>You can solve these problems by using the following features
+of the <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/printing/PrintDataGrid.html" target="_blank">PrintDataGrid</a> control. These
+features let you correctly print grids that contain multiple pages
+of data without splitting rows across pages:</p>
+
+            <dl>
+               
+                  <dt class="dlterm">sizeToPage property</dt>
+
+                  <dd>
+                     <p>Makes the printed data grid contain only full rows.</p>
+
+                  </dd>
+
+               
+               
+                  <dt class="dlterm">nextPage() method</dt>
+
+                  <dd>
+                     <p>Gets the next printable page of data.</p>
+
+                  </dd>
+
+               
+               
+                  <dt class="dlterm">validNextPage property</dt>
+
+                  <dd>
+                     <p>Is <samp class="codeph">true</samp> if printing the data requires an
+additional page.</p>
+
+                  </dd>
+
+               
+            </dl>
+
+            <div class="section" id="WS2db454920e96a9e51e63e3d11c0bf69084-7c7d_verapache__WS2db454920e96a9e51e63e3d11c0bf65381-7ff1_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7c7d_verapache__WS2db454920e96a9e51e63e3d11c0bf65381-7ff1_verapache"><!-- --></a><h4 class="sectiontitle">Using
+the sizeToPage attribute to format pages</h4>
+               
+               <p>A <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/printing/PrintAdvancedDataGrid.html" target="_blank">PrintDataGrid</a> page
+consists of the rows that are visible in the control’s current view.
+Suppose, for example, that a PrintDataGrid control has a height
+of 130 pixels. The total height of each row and header is 30 pixels,
+and the control’s data provider has 10 rows. In this situation,
+the printed PrintDataGrid page contains only three complete data
+rows, plus the header. The <samp class="codeph">sizeToPage</samp> property specifies
+whether to include a fourth and partial data row.</p>
+
+               <p>The <samp class="codeph">sizeToPage</samp> property,
+which is <samp class="codeph">true</samp> by default, causes the PrintDataGrid control
+to remove any partially visible or empty rows and to resize itself
+to include only complete rows in the current view. For the data
+grid described in the preceding paragraph, when this property is <samp class="codeph">true</samp>,
+the DataGrid shrinks to show three complete data rows, and no incomplete
+rows; if the attribute is <samp class="codeph">false</samp>, the grid includes
+a partial row at the bottom. </p>
+
+               <p>The following properties provide
+information on page sizing that are affected by the <samp class="codeph">sizeToPage</samp> property:</p>
+
+               
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" frame="border" border="1" rules="all">
+                     
+                     
+                     <thead align="left">
+                        <tr>
+                           <th class="cellrowborder" valign="top" width="NaN%" id="d831150e1070">
+                              <p>Property</p>
+
+                           </th>
+
+                           <th class="cellrowborder" valign="top" width="NaN%" id="d831150e1076">
+                              <p>Description</p>
+
+                           </th>
+
+                        </tr>
+
+                     </thead>
+
+                     <tbody>
+                        <tr>
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d831150e1070 ">
+                              <div class="p">
+                                 <pre class="codeblock">currentPageHeight</pre>
+
+                              </div>
+
+                           </td>
+
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d831150e1076 ">
+                              <p>Contains the height of the grid, in pixels,
+that results if the <samp class="codeph">sizeToPage</samp> property is <samp class="codeph">true</samp>.
+If the <samp class="codeph">sizeToPage</samp> property is <samp class="codeph">true</samp>,
+the <samp class="codeph">currentPageHeight</samp> property equals the <samp class="codeph">height</samp> property.</p>
+
+                           </td>
+
+                        </tr>
+
+                        <tr>
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d831150e1070 ">
+                              <div class="p">
+                                 <pre class="codeblock">originalHeight</pre>
+
+                              </div>
+
+                           </td>
+
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d831150e1076 ">
+                              <p>Contains the grid height that results if
+the <samp class="codeph">sizeToPage</samp> property is <samp class="codeph">false</samp>.
+If the <samp class="codeph">sizeToPage</samp> property is <samp class="codeph">false</samp>,
+the <samp class="codeph">originalHeight</samp> property equals the <samp class="codeph">height</samp> property.</p>
+
+                           </td>
+
+                        </tr>
+
+                     </tbody>
+
+                  </table>
+</div>
+
+               <p>In most applications, you leave the <samp class="codeph">sizeToPage</samp> attribute
+at its default value (<samp class="codeph">true</samp>), and use the <samp class="codeph">height</samp> property
+to determine the grid height.</p>
+
+               <p>The<samp class="codeph"> sizeToPage</samp> property
+does <em>not</em> affect the way the page breaks when a single PrintDataGrid
+control page is longer than a print page. To print multipage data
+grids without splitting rows, you must divide the grid items into
+multiple views by using the <samp class="codeph">nextPage()</samp> method,
+as described in the following section.</p>
+
+            </div>
+
+            <div class="section" id="WS2db454920e96a9e51e63e3d11c0bf69084-7c7d_verapache__WS2db454920e96a9e51e63e3d11c0bf69084-7c79_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7c7d_verapache__WS2db454920e96a9e51e63e3d11c0bf69084-7c79_verapache"><!-- --></a><h4 class="sectiontitle">Using
+the nextPage() method and validNextPage property to print multiple
+pages</h4>
+               
+               <p>The <samp class="codeph">validNextPage</samp> property is <samp class="codeph">true</samp> if
+the PrintDataGrid control has data beyond the rows that fit on the
+current print page. You use it to determine whether you need to
+format and print an additional page.</p>
+
+               <p>The <samp class="codeph">nextPage()</samp> method
+lets you page through the data provider contents by setting the
+first row of the PrintDataGrid control to be the data provider row
+that follows the last row of the previous PrintDataGrid page. In
+other words, the <samp class="codeph">nextPage()</samp> method increases the
+grid’s <samp class="codeph">verticalScrollPosition</samp> property by the value
+of the grid’s <samp class="codeph">rowCount</samp> property. </p>
+
+               <p>The following
+code shows a loop that prints a grid using multiple pages, without having
+rows that span pages:</p>
+
+               <pre class="codeblock"> // Queue the first page. 
+ printJob.addObject(thePrintView); 
+ // While there are more pages, print them. 
+ while (thePrintView.myDataGrid.validNextPage) { 
+ 	//Put the next page of data in the view. 
+ 	thePrintView.myDataGrid.nextPage(); 
+ 	//Queue the additional page. 
+ 	printJob.addObject(thePrintView); 
+ }</pre>
+
+               <p>The section <a href="flx_printing_pr.html#WS2db454920e96a9e51e63e3d11c0bf69084-7c81_verapache">Example:
+Printing with multipage PrintDataGrid controls</a> shows how to
+use the <samp class="codeph">nextPage()</samp> method to print a report with
+a multipage data grid.</p>
+
+            </div>
+
+            <div class="section" id="WS2db454920e96a9e51e63e3d11c0bf69084-7c7d_verapache__WS2db454920e96a9e51e63e3d11c0bf69084-7df5_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7c7d_verapache__WS2db454920e96a9e51e63e3d11c0bf69084-7df5_verapache"><!-- --></a><h4 class="sectiontitle">Updating
+the PrintDataGrid layout</h4>
+               
+               <p>When you use a PrintDataGrid
+control to print a single data grid across multiple pages, you queue
+each page of the grid individually. If your application customizes
+each page beyond simply using the <samp class="codeph">nextPage()</samp> method
+to page through the PrintDataGrid, you must call the <samp class="codeph">validateNow()</samp> method
+to update the page layout before you print each page, as shown in <a href="flx_printing_pr.html#WS2db454920e96a9e51e63e3d11c0bf69084-7c7f_verapache">Print
+output component</a>.</p>
+
+            </div>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf69084-7c81_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7c81_verapache"><!-- --></a>
+         <h3 class="topictitle3">Example: Printing with multipage
+PrintDataGrid controls</h3>
+
+         
+         <div>
+            <p>The following example prints a data grid in which you can
+specify the number of items in the data provider. You can, therefore,
+set the DataGrid control contents to print on one, two, or more
+pages, so that you can see the effects of different-sized data sets
+on the printed result. </p>
+
+            <p>The example also shows how you can put header information before
+the grid and footer information after the grid, as in a shipping
+list or receipt. It uses the technique of selectively showing and
+hiding the header and footer, depending on the page being printed.
+To keep the code as short as possible, the example uses simple placeholder
+information only. </p>
+
+            <p>The application consists of the following files:</p>
+
+            <ul>
+               <li>
+                  <p>The application file displays the form to the user, including
+TextArea and Button controls to set the number of lines and a Print
+button. The file includes the code to initialize the view, get the
+data, and handle the user’s print request. It uses the FormPrintView
+MXML component as a template for the printed output.</p>
+
+               </li>
+
+               <li>
+                  <p>The FormPrintView.mxml file formats the printed output. It
+has two major elements:</p>
+
+                  <ul>
+                     <li>
+                        <p>The print output template
+includes the PrintDataGrid control and uses two MXML components
+to format the header and footer contents.</p>
+
+                     </li>
+
+                     <li>
+                        <p>The <samp class="codeph">showPage()</samp> function determines which
+sections of the template to include in a particular page of the
+output, based on the page type: first, middle, last, or single.
+On the first page of multipage output, the <samp class="codeph">showPage()</samp> function
+hides the footer; on the middle and last pages, it hides the header.
+On a single page, it shows both header and footer.</p>
+
+                     </li>
+
+                  </ul>
+
+               </li>
+
+               <li>
+                  <p>The FormPrintHeader.mxml and formPrintFooter.mxml files specify
+the contents of the start and the end of the output. To keep the
+application simple, the header has a single, static Label control.
+The footer displays a total of the numbers in the Quantity column.
+In a more complete application, the header page could have, for
+example, a shipping address, and the footer page could show more
+detail about the shipment totals.</p>
+
+               </li>
+
+            </ul>
+
+            <p>The files include detailed comments explaining the purpose of
+the code. </p>
+
+         </div>
+
+         <div class="nested3" id="WS2db454920e96a9e51e63e3d11c0bf65381-7feb_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf65381-7feb_verapache"><!-- --></a>
+            <h4 class="topictitle4">Multipage print application file</h4>
+
+            
+            <div>
+               <p>The following code shows the multipage print application
+file:</p>
+
+               <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- printing\MultiPagePrint.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    initialize="initData();"&gt; 
+ 
+    &lt;fx:Script&gt; 
+    &lt;![CDATA[ 
+        import mx.printing.*; 
+        import mx.collections.ArrayCollection; 
+        // Import the MXML custom print view control. 
+        import myComponents.FormPrintView; 
+ 
+        // Declare variables and initialize simple variables. 
+        // The dgProvider ArrayCollection is the DataGrid data provider. 
+        // It must be bindable because you change its contents dynamically. 
+        [Bindable] 
+        public var dgProvider:ArrayCollection; 
+        public var footerHeight:Number = 20; 
+        public var prodIndex:Number; 
+        public var prodTotal:Number = 0; 
+        
+        // Data initialization, called when the application initializes. 
+        public function initData():void { 
+            // Create the data provider for the DataGrid control. 
+            dgProvider = new ArrayCollection; 
+        } 
+        
+        // Fill the dgProvider ArrayCollection with the specified items. 
+        public function setdgProvider(items:int):void { 
+            // First initialize the index and clear any existing data. 
+            prodIndex=1; 
+            dgProvider.removeAll(); 
+            
+            // Fill the ArrayCollection, and calculate a product total. 
+            // For simplicity, it increases the Index field value by 
+            // 1, and the Qty field by 7 for each item. 
+            for (var z:int=0; z&lt;items; z++) 
+            { 
+                var prod1:Object = {}; 
+                prod1.Qty = prodIndex * 7; 
+                prod1.Index = prodIndex++; 
+                prodTotal += prod1.Qty; 
+                dgProvider.addItem(prod1); 
+            } 
+        } 
+ 
+        // The function to print the output. 
+        public function doPrint():void { 
+            // Create a FlexPrintJob instance. 
+            var printJob:FlexPrintJob = new FlexPrintJob(); 
+            
+            // Start the print job. 
+            if (printJob.start()) { 
+                // Create a FormPrintView control 
+                // as a child of the application. 
+                var thePrintView:FormPrintView = new FormPrintView(); 
+                addElement(thePrintView); 
+                
+                // Set the print view properties. 
+                thePrintView.width=printJob.pageWidth; 
+                thePrintView.height=printJob.pageHeight; 
+                thePrintView.prodTotal = prodTotal; 
+                
+                // Set the data provider of the FormPrintView 
+                // component's DataGrid to be the data provider of 
+                // the displayed DataGrid. 
+                thePrintView.myDataGrid.dataProvider = 
+                    myDataGrid.dataProvider; 
+                
+                // Create a single-page image. 
+                thePrintView.showPage("single"); 
+                
+                // If the print image's DataGrid can hold all the  
+                // data provider's rows, add the page to the print job. 
+                if(!thePrintView.myDataGrid.validNextPage) 
+                { 
+                    printJob.addObject(thePrintView); 
+                } 
+                // Otherwise, the job requires multiple pages. 
+                else 
+                { 
+                    // Create the first page and add it to the print job. 
+                    thePrintView.showPage("first"); 
+                    printJob.addObject(thePrintView); 
+                    thePrintView.pageNumber++; 
+                    
+                    // Loop through the following code 
+                    // until all pages are queued. 
+                    while(true) 
+                    { 
+                        // Move the next page of data to the top of 
+                        // the PrintDataGrid. 
+                        thePrintView.myDataGrid.nextPage(); 
+ 
+                        // Try creating a last page. 
+                        thePrintView.showPage("last");  
+                        // If the page holds the remaining data, or if 
+                        // the last page was completely filled by the last  
+                        // grid data, queue it for printing. 
+                        // Test if there is data for another 
+                        // PrintDataGrid page. 
+                        if(!thePrintView.myDataGrid.validNextPage) 
+                        { 
+                            // This is the last page; 
+                            // queue it and exit the print loop. 
+                            printJob.addObject(thePrintView); 
+                            break; 
+                        } 
+                        else 
+                        // This is not the last page. Queue a middle page. 
+                        { 
+                            thePrintView.showPage("middle"); 
+                            printJob.addObject(thePrintView); 
+                            thePrintView.pageNumber++; 
+                        } 
+                    } 
+                } 
+                // All pages are queued; remove the FormPrintView 
+                // control to free memory. 
+                removeElement(thePrintView); 
+            } 
+            // Send the job to the printer. 
+            printJob.send(); 
+        } 
+    ]]&gt; 
+    &lt;/fx:Script&gt; 
+ 
+    &lt;!-- The form that appears on the user's system.--&gt; 
+    &lt;mx:Form id="myForm" width="80%"&gt; 
+        &lt;mx:FormHeading label="Product Information"/&gt; 
+                &lt;mx:DataGrid id="myDataGrid" dataProvider="{dgProvider}"&gt; 
+                &lt;mx:columns&gt; 
+                    &lt;mx:DataGridColumn dataField="Index"/&gt; 
+                    &lt;mx:DataGridColumn dataField="Qty"/&gt; 
+                &lt;/mx:columns&gt; 
+            &lt;/mx:DataGrid&gt; 
+        &lt;mx:Text width="100%" 
+            text="Specify the number of lines and click Fill Grid first. 
+            Then you can click Print."/&gt; 
+        &lt;mx:TextInput id="dataItems" text="35"/&gt; 
+        &lt;mx:HBox&gt; 
+            &lt;mx:Button id="setDP" 
+                label="Fill Grid" 
+                click="setdgProvider(int(dataItems.text));"/&gt; 
+            &lt;mx:Button id="printDG" 
+                label="Print" 
+                click="doPrint();"/&gt; 
+        &lt;/mx:HBox&gt; 
+    &lt;/mx:Form&gt; 
+&lt;/s:Application&gt;</pre>
+
+            </div>
+
+         </div>
+
+         <div class="nested3" id="WS2db454920e96a9e51e63e3d11c0bf69084-7c7f_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7c7f_verapache"><!-- --></a>
+            <h4 class="topictitle4">Print output component</h4>
+
+            
+            <div>
+               <p>The following lines show the FormPrintView.mxml custom
+component file: </p>
+
+               <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- printing\myComponents\FormPrintView.mxml --&gt; 
+&lt;mx:VBox xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:MyComp="myComponents.*" 
+    backgroundColor="#FFFFFF" 
+    paddingTop="50" paddingBottom="50" paddingLeft="50"&gt; 
+ 
+    &lt;fx:Script&gt; 
+        &lt;![CDATA[ 
+            import mx.core.* 
+            
+            // Declare and initialize the variables used in the component. 
+            // The application sets the actual prodTotal value. 
+            [Bindable] 
+            public var pageNumber:Number = 1; 
+            [Bindable] 
+            public var prodTotal:Number = 0; 
+ 
+            // Control the page contents by selectively hiding the header and 
+            // footer based on the page type. 
+            public function showPage(pageType:String):void { 
+                if(pageType == "first" || pageType == "middle") { 
+                    // Hide the footer. 
+                    footer.includeInLayout=false; 
+                    footer.visible = false; 
+                } 
+                if(pageType == "middle" || pageType == "last") { 
+                    // The header won't be used again; hide it. 
+                    header.includeInLayout=false; 
+                    header.visible = false; 
+                } 
+                if(pageType == "last") { 
+                    // Show the footer. 
+                    footer.includeInLayout=true; 
+                    footer.visible = true; 
+                } 
+                //Update the DataGrid layout to reflect the results. 
+                validateNow(); 
+            } 
+        ]]&gt; 
+    &lt;/fx:Script&gt; 
+ 
+    &lt;!-- The template for the printed page, 
+        with the contents for all pages. --&gt; 
+    &lt;mx:VBox width="80%" horizontalAlign="left"&gt; 
+        &lt;mx:Label text="Page {pageNumber}"/&gt; 
+    &lt;/mx:VBox&gt; 
+    &lt;MyComp:FormPrintHeader id="header"/&gt; 
+    
+    &lt;!-- The sizeToPage property is true by default, so the last 
+        page has only as many grid rows as are needed for the data. --&gt; 
+    &lt;mx:PrintDataGrid id="myDataGrid" width="60%" height="100%"&gt; 
+    &lt;!-- Specify the columns to ensure that their order is correct. --&gt; 
+        &lt;mx:columns&gt; 
+            &lt;mx:DataGridColumn dataField="Index" /&gt; 
+            &lt;mx:DataGridColumn dataField="Qty" /&gt; 
+        &lt;/mx:columns&gt; 
+    &lt;/mx:PrintDataGrid&gt; 
+    
+    &lt;!-- Create a FormPrintFooter control 
+        and set its prodTotal variable. --&gt; 
+    &lt;MyComp:FormPrintFooter id="footer" pTotal="{prodTotal}"/&gt; 
+&lt;/mx:VBox&gt;</pre>
+
+            </div>
+
+         </div>
+
+         <div class="nested3" id="WS2db454920e96a9e51e63e3d11c0bf65381-7fee_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf65381-7fee_verapache"><!-- --></a>
+            <h4 class="topictitle4">Header and footer files</h4>
+
+            
+            <div>
+               <p>The following lines show the FormPrintHeader.mxml file.</p>
+
+               <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- printing\myComponents\FormPrintHeader.mxml --&gt; 
+&lt;mx:VBox xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    width="60%" 
+    horizontalAlign="right" &gt; 
+ 
+    &lt;mx:Label text="This is a placeholder for first page contents"/&gt; 
+&lt;/mx:VBox&gt;</pre>
+
+               <p>The following lines show the FormPrintFooter.mxml file:</p>
+
+               <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- printing\myComponents\FormPrintFooter.mxml --&gt; 
+&lt;mx:VBox xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    width="60%" 
+    horizontalAlign="right"&gt; 
+    
+    &lt;!-- Declare and initialize the product total variable. --&gt; 
+    &lt;fx:Script&gt; 
+        &lt;![CDATA[ 
+            [Bindable] 
+            public var pTotal:Number = 0; 
+        ]]&gt; 
+        &lt;/fx:Script&gt; 
+ 
+    &lt;mx:Label text="Product Total: {pTotal}"/&gt; 
+&lt;/mx:VBox&gt;</pre>
+
+            </div>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf69084-7c78_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7c78_verapache"><!-- --></a>
+         <h3 class="topictitle3">Using the PrintAdvancedDataGrid
+control</h3>
+
+         
+         <div>
+            <p>The <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/printing/PrintAdvancedDataGrid.html" target="_blank">PrintAdvancedDataGrid</a> and <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/printing/PrintOLAPDataGrid.html" target="_blank">PrintOLAPDataGrid </a>controls
+provide the same functionality for the AdvancedDataGrid and OLAPDataGrid
+controls as the PrintDataGrid control does for the DataGrid control.
+For more information, see <a href="flx_printing_pr.html#WS2db454920e96a9e51e63e3d11c0bf69084-7c7d_verapache">Using the
+PrintDataGrid control for multipage grids</a>.</p>
+
+            <p>The following example uses the PrintAdvancedDataGrid control
+to print an instance of the AdvancedDataGrid control.</p>
+
+            <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- printing\ADGPrint.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx"&gt; 
+ 
+    &lt;fx:Script&gt; 
+        &lt;![CDATA[ 
+            import mx.printing.*; 
+            import mx.collections.ArrayCollection; 
+            import mx.printing.PrintAdvancedDataGrid; 
+                    
+            include "SimpleHierarchicalData.as"; 
+ 
+            // Create a PrintJob instance. 
+            private function doPrint():void { 
+                // Create an instance of the FlexPrintJob class. 
+                var printJob:FlexPrintJob = new FlexPrintJob(); 
+                  
+                // Initialize the PrintAdvancedDataGrid control. 
+                var printADG:PrintAdvancedDataGrid = 
+                    new PrintAdvancedDataGrid(); 
+                // Exclude the PrintAdvancedDataGrid control from layout. 
+                printADG.includeInLayout = false; 
+                printADG.source = adg; 
+ 
+                // Add the print-specific control to the application.                
+                addElement(printADG); 
+                
+                // Start the print job. 
+                if (printJob.start() == false) {                
+                    // User cancelled print job. 
+                    // Remove the print-specific control to free memory.                
+                    removeElement(printADG); 
+                    return; 
+                } 
+ 
+                // Add the object to print. Do not scale it. 
+                printJob.addObject(printADG, FlexPrintJobScaleType.NONE); 
+ 
+                // Send the job to the printer. 
+                printJob.send(); 
+ 
+                // Remove the print-specific control to free memory.                
+                removeElement(printADG); 
+            } 
+        ]]&gt; 
+    &lt;/fx:Script&gt; 
+ 
+    &lt;mx:VBox id="myVBox" 
+        width="100%" height="100%"&gt; 
+        &lt;mx:AdvancedDataGrid id="adg" 
+            width="100%" height="100%"&gt; 
+            &lt;mx:dataProvider&gt; 
+                &lt;mx:HierarchicalData source="{dpHierarchy}"/&gt; 
+            &lt;/mx:dataProvider&gt; 
+            &lt;mx:columns&gt; 
+                &lt;mx:AdvancedDataGridColumn dataField="Region"/&gt; 
+                &lt;mx:AdvancedDataGridColumn dataField="Territory_Rep" 
+                    headerText="Territory Rep"/&gt; 
+                &lt;mx:AdvancedDataGridColumn dataField="Actual"/&gt; 
+                &lt;mx:AdvancedDataGridColumn dataField="Estimate"/&gt; 
+            &lt;/mx:columns&gt; 
+        &lt;/mx:AdvancedDataGrid&gt;    
+        &lt;mx:Button id="myButton" 
+            label="Print" 
+            click="doPrint();"/&gt; 
+    &lt;/mx:VBox&gt;    
+&lt;/s:Application&gt;</pre>
+
+            <div class="p">The contents of the included SimpleHierarchicalData.as file are
+as follows:<pre class="codeblock">[Bindable] 
+private var dpHierarchy:ArrayCollection = new ArrayCollection([ 
+  {Region:"Southwest", children: [ 
+     {Region:"Arizona", children: [ 
+        {Territory_Rep:"Barbara Jennings", Actual:38865, Estimate:40000}, 
+        {Territory_Rep:"Dana Binn", Actual:29885, Estimate:30000}]},  
+     {Region:"Central California", children: [ 
+        {Territory_Rep:"Joe Smith", Actual:29134, Estimate:30000}]},  
+     {Region:"Nevada", children: [ 
+        {Territory_Rep:"Bethany Pittman", Actual:52888, Estimate:45000}]},  
+     {Region:"Northern California", children: [ 
+        {Territory_Rep:"Lauren Ipsum", Actual:38805, Estimate:40000}, 
+        {Territory_Rep:"T.R. Smith", Actual:55498, Estimate:40000}]},  
+     {Region:"Southern California", children: [ 
+        {Territory_Rep:"Alice Treu", Actual:44985, Estimate:45000}, 
+        {Territory_Rep:"Jane Grove", Actual:44913, Estimate:45000}]} 
+  ]} 
+]);</pre>
+
+            </div>
+
+            <p>This example uses the <samp class="codeph">PrintAdvancedDataGrid.source</samp> property
+to initialize the PrintAdvancedDataGrid control from the AdvancedDataGrid control. </p>
+
+            <p>To support the AdvancedDataGrid control, the PrintAdvancedDataGrid
+control adds the following properties not available in the PrintDataGrid
+control:</p>
+
+            
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" frame="border" border="1" rules="all">
+                  
+                  
+                  <thead align="left">
+                     <tr>
+                        <th class="cellrowborder" valign="top" width="NaN%" id="d831150e1455">
+                           <p>Property</p>
+
+                        </th>
+
+                        <th class="cellrowborder" valign="top" width="NaN%" id="d831150e1461">
+                           <p>Description</p>
+
+                        </th>
+
+                     </tr>
+
+                  </thead>
+
+                  <tbody>
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d831150e1455 ">
+                           <div class="p">
+                              <pre class="codeblock">allowInteractions</pre>
+
+                           </div>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d831150e1461 ">
+                           <p>If <samp class="codeph">true</samp>, allow some interactions
+with the control, such as column resizing, column reordering, and
+expanding or collapsing nodes. The default value is <samp class="codeph">false</samp>.</p>
+
+                        </td>
+
+                     </tr>
+
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d831150e1455 ">
+                           <div class="p">
+                              <pre class="codeblock">displayIcons</pre>
+
+                           </div>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d831150e1461 ">
+                           <p>If <samp class="codeph">true</samp>, display the folder
+and leaf icons in the navigation tree. The default value is <samp class="codeph">true</samp>.</p>
+
+                        </td>
+
+                     </tr>
+
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d831150e1455 ">
+                           <div class="p">
+                              <pre class="codeblock">source</pre>
+
+                           </div>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d831150e1461 ">
+                           <p>Initialize the PrintAdvancedDataGrid control
+and all of its properties from the specified AdvancedDataGrid control. </p>
+
+                        </td>
+
+                     </tr>
+
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d831150e1455 ">
+                           <div class="p">
+                              <pre class="codeblock">validPreviousPage</pre>
+
+                           </div>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d831150e1461 ">
+                           <p>Indicates that the data provider contains
+data rows that precede the rows that the PrintAdvancedDataGrid control
+currently displays.</p>
+
+                        </td>
+
+                     </tr>
+
+                  </tbody>
+
+               </table>
+</div>
+
+            <p/>
+
+         </div>
+
+      </div>
+
+         <p>Adobe, Adobe AIR and Adobe Flash are either registered trademarks or trademarks of Adobe Systems Incorporated in the United States and/or other countries and are used by permission from Adobe.  No other license to the Adobe trademarks are granted.</p>
+   </div>
+
+
+</body>
+</html>

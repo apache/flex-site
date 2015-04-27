@@ -1,0 +1,3533 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Licensed to the Apache Software Foundation (ASF) under one or more
+  contributor license agreements.  See the NOTICE file distributed with
+  this work for additional information regarding copyright ownership.
+  The ASF licenses this file to You under the Apache License, Version 2.0
+  (the "License"); you may not use this file except in compliance with
+  the License.  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+-->
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en-us" xml:lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="topic"/>
+<meta name="DC.Title" content="Optimizing applications"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="WS2db454920e96a9e51e63e3d11c0bf67110-8000_verapache"/>
+<link rel="stylesheet" type="text/css" href="commonltr.css"/>
+<title>Optimizing applications</title>
+</head>
+<body id="WS2db454920e96a9e51e63e3d11c0bf67110-8000_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf67110-8000_verapache"><!-- --></a>
+
+
+   <h1 class="topictitle1">Optimizing applications</h1>
+
+   <div>
+      <p/>
+
+   </div>
+
+   <div class="nested1" id="WS2db454920e96a9e51e63e3d11c0bf67110-7fff_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf67110-7fff_verapache"><!-- --></a>
+      <h2 class="topictitle2">Improving client-side performance</h2>
+
+      
+      <div>
+         <p>Tuning software to achieve maximum performance is not an
+easy task. You must commit to producing efficient implementations
+and monitor software performance continuously during the software
+development process.</p>
+
+         <p>
+            Employ
+the following general guidelines when you test applications for
+performance, such as using the <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/flash/utils/package.html#getTimer()" target="_blank">getTimer()</a> method
+and checking initialization time. </p>
+
+         <p>Before you begin actual testing, you should understand some of
+the influences that client settings can have on performance testing.
+For more information, see <a href="flx_performance_pe.html#WS2db454920e96a9e51e63e3d11c0bf69084-7b09_verapache">Configuring
+the client environment</a>.</p>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf67110-7ffe_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf67110-7ffe_verapache"><!-- --></a>
+         <h3 class="topictitle3">General guidelines</h3>
+
+         
+         <div>
+            <p>
+               
+               You can use the following general
+guidelines when you improve your application and the environment
+in which it runs:</p>
+
+            <ul>
+               <li>
+                  <p>Set performance targets early in the software design
+stage. If possible, try to estimate an acceptable performance target
+early in the application development cycle. Certain usage scenarios
+dictate the performance requirements. It would be disappointing
+to fully implement a product feature and then find out that it is
+too slow to be useful. </p>
+
+               </li>
+
+               <li>
+                  <p>Understand performance characteristics of the application
+framework, and employ the strategies that maximize the efficiency
+of components and operations.</p>
+
+               </li>
+
+               <li>
+                  <p>Understand performance characteristics of the application
+code. In medium-sized or large-sized projects, it is common for
+a product feature to use codes or components written by other developers
+or by third-party vendors. Knowing what is slow and what is fast
+in dependent components and code is essential in getting the design
+right.</p>
+
+               </li>
+
+               <li>
+                  <p>Do not attempt to test a large application’s performance
+all at once. Rather, test small pieces of the application so that
+you can focus on the relevant results instead of being overwhelmed
+by data.</p>
+
+               </li>
+
+               <li>
+                  <p>Test the performance of your application early and often.
+It is always best to identify problem areas early and resolve them
+in an iterative manner, rather then trying to shove performance
+enhancements into existing, poorly performing code at the end of
+your application development cycle. </p>
+
+               </li>
+
+               <li>
+                  <p>Avoid optimizing code too early. Even though early testing
+can highlight performance hot spots, refrain from fixing them while
+you are still developing those areas of the application; doing so
+might unexpectedly delay the implementation schedule. Instead, document
+the issues and prioritize all the performance issues as soon as
+your team finishes the feature implementation.</p>
+
+               </li>
+
+            </ul>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf67110-7ffd_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf67110-7ffd_verapache"><!-- --></a>
+         <h3 class="topictitle3">Testing applications for performance</h3>
+
+         
+         <div>
+            <p>
+               You
+can use various techniques to test start-up and run-time performance
+of your applications, such as monitoring memory consumption, timing
+application initialization, and timing events. The Flex profiler
+provides this type of information without requiring you to write
+any additional code. </p>
+
+         </div>
+
+         <div class="nested3" id="WS2db454920e96a9e51e63e3d11c0bf67110-7ffc_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf67110-7ffc_verapache"><!-- --></a>
+            <h4 class="topictitle4">Calculating application initialization
+time</h4>
+
+            
+            <div>
+               <p>
+                  
+                  
+                  One approach to performance profiling
+is to use code to gauge the start-up time of your application. This
+can help identify bottlenecks in the initialization process, and
+reveal deficiencies in your application design, such as too many
+components or too much reliance on nested containers.</p>
+
+               <p>
+                  
+                  The <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/flash/utils/package.html#getTimer()" target="_blank">getTimer()</a> method
+in flash.utils returns the number of milliseconds that have elapsed
+since Adobe<sup>®</sup> Flash<sup>®</sup> Player
+or Adobe AIR™ was initialized. This indicates the
+amount of time since the application began playing. The Timer class
+provides a set of methods and properties that you can use to determine
+how long it takes to execute an operation.</p>
+
+               <p>
+                  
+                  
+                  Before
+each update of the screen, Flash Player calls the set of functions
+that are scheduled for the update. Sometimes, a function should
+be called in the next update to allow the rest of the code scheduled
+for the current update to execute. You can instruct Flash Player
+or AIR to call a function in the next update by using the <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/core/UIComponent.html#callLater()" target="_blank">callLater()</a> method.
+This method accepts a function pointer as an argument. The method
+then puts the function pointer on a queue, so that the function
+is called the next time the player dispatches either a <samp class="codeph">render</samp> event
+or an <samp class="codeph">enterFrame</samp> event.</p>
+
+               <p>The following example records the time it takes the <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/core/Application.html" target="_blank">Application</a> object
+to create, measure, lay out, and draw all of its children. This
+example does not include the time to download the SWF file to the
+client, or to perform any of the server-side processing, such as
+checking the Flash Player version, checking the SWF file cache,
+and so on.</p>
+
+               <pre class="codeblock">&lt;?xml version="1.0" encoding="utf-8"?&gt; 
+&lt;!-- optimize/ShowInitializationTime.mxml --&gt; 
+&lt;s:Application  
+    xmlns:fx="http://ns.adobe.com/mxml/2009"    
+    xmlns:mx="library://ns.adobe.com/flex/mx"     
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    creationComplete="callLater(showInitTime)"&gt; 
+ 
+    &lt;s:layout&gt; 
+        &lt;s:VerticalLayout/&gt; 
+    &lt;/s:layout&gt; 
+ 
+    &lt;fx:Script&gt;&lt;![CDATA[ 
+        import flash.utils.Timer; 
+ 
+        [Bindable] 
+        public var t:String; 
+        private function showInitTime():void { 
+            // Record the number of ms since the player was initialized. 
+            t = "App startup: " + getTimer() + " ms"; 
+        } 
+    ]]&gt;&lt;/fx:Script&gt; 
+ 
+    &lt;s:Label id="tb1" text="{t}"/&gt;              
+&lt;/s:Application&gt; </pre>
+
+               <p>This example uses the <samp class="codeph">callLater()</samp> method to
+delay the recording of the startup time until after the application
+finishes and the first screen updates. The reason that the <samp class="codeph">showInitTime</samp> function
+pointer is passed to the <samp class="codeph">callLater()</samp> method is
+to make sure that the application finishes initializing itself before
+calling the <samp class="codeph">getTimer()</samp> method.</p>
+
+               <p>For more information on using the <samp class="codeph">callLater()</samp> method,
+see <a href="flx_layoutperformance_lp.html#WS2db454920e96a9e51e63e3d11c0bf69084-7b06_verapache">Using
+the callLater() method</a>.</p>
+
+            </div>
+
+         </div>
+
+         <div class="nested3" id="WS2db454920e96a9e51e63e3d11c0bf67110-7ffb_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf67110-7ffb_verapache"><!-- --></a>
+            <h4 class="topictitle4">Calculating elapsed time</h4>
+
+            
+            <div>
+               <p>
+                  
+                  
+                  
+                  
+                  Some operations take longer than others.
+Whether these operations are related to data loading, instantiation,
+effects, or some other factor, it’s important for you to know how
+long each aspect of your application takes.</p>
+
+               <p>You can calculate elapsed time from application startup by using
+the <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/flash/utils/package.html#getTimer()" target="_blank">getTimer()</a> method.
+The following example calculates the elapsed times for the <samp class="codeph">preinitialize</samp> and <samp class="codeph">creationComplete</samp> events
+for all the form elements. You can modify this example to show individual
+times for the initialization and creation of each form element.</p>
+
+               <pre class="codeblock">&lt;?xml version="1.0" encoding="utf-8"?&gt; 
+&lt;!-- optimize/ShowElapsedTime.mxml --&gt; 
+&lt;s:Application  
+    xmlns:fx="http://ns.adobe.com/mxml/2009"    
+    xmlns:mx="library://ns.adobe.com/flex/mx"     
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    initialize="init()" 
+    height="750"&gt; 
+ 
+    &lt;s:layout&gt; 
+        &lt;s:VerticalLayout/&gt; 
+    &lt;/s:layout&gt; 
+ 
+    &lt;fx:Script&gt;&lt;![CDATA[ 
+        import mx.collections.ArrayCollection; 
+        
+        [Bindable] 
+        public var dp:ArrayCollection = new ArrayCollection ([ 
+            {food:"apple", type:"fruit", color:"red"}, 
+            {food:"potato", type:"vegetable", color:"brown"}, 
+            {food:"pear", type:"fruit", color:"green"}, 
+            {food:"orange", type:"fruit", color:"orange"}, 
+            {food:"spinach", type:"vegetable", color:"green"}, 
+            {food:"beet", type:"vegetable", color:"red"} 
+        ]); 
+ 
+        public var sTime:Number; 
+        public var eTime:Number; 
+        public var pTime:Number; 
+ 
+        private function init():void { 
+            f1.addEventListener("preinitialize", logPreInitTime, true); 
+            f1.addEventListener("creationComplete", logCreationCompTime, true); 
+        } 
+ 
+        private var isFirst:Boolean = true; 
+ 
+        private function logPreInitTime(e:Event):void { 
+            // Get the time when the preinitialize event is dispatched. 
+            sTime = getTimer(); 
+            
+            trace("Preinitialize time for " + e.target + ": " + sTime.toString());            
+        } 
+ 
+        private function logCreationCompTime(e:Event):void { 
+            // Get the time when the creationComplete event is dispatched. 
+            eTime = getTimer(); 
+    
+            /* Use target rather than currentTarget because these events are 
+               triggered by each child of the Form control during the capture 
+               phase. */ 
+            trace("CreationComplete time for " + e.target + ": " + eTime.toString()); 
+        } 
+    
+    ]]&gt;&lt;/fx:Script&gt; 
+ 
+    &lt;s:Form id="f1"&gt; 
+        &lt;s:FormHeading label="Sample Form" id="fh1"/&gt; 
+        &lt;s:FormItem label="List Control" id="fi1"&gt; 
+            &lt;s:List dataProvider="{dp}" labelField="food" id="list1"/&gt; 
+        &lt;/s:FormItem&gt; 
+        &lt;s:FormItem label="DataGrid control" id="fi2"&gt; 
+            &lt;s:DataGrid width="200" dataProvider="{dp}" id="dg1"/&gt; 
+        &lt;/s:FormItem&gt; 
+        &lt;s:FormItem label="Date controls" id="fi3"&gt; 
+            &lt;mx:DateChooser id="dc"/&gt; 
+            &lt;mx:DateField id="df"/&gt; 
+        &lt;/s:FormItem&gt; 
+    &lt;/s:Form&gt; 
+&lt;/s:Application&gt;</pre>
+
+            </div>
+
+         </div>
+
+         <div class="nested3" id="WS2db454920e96a9e51e63e3d11c0bf67110-7ffa_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf67110-7ffa_verapache"><!-- --></a>
+            <h4 class="topictitle4">Calculating memory usage</h4>
+
+            
+            <div>
+               <p>You use the <samp class="codeph">totalMemory</samp> property in the <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/flash/system/System.html" target="_blank">System</a> class
+to find out how much memory has been allocated to Flash Player or
+AIR on the client. The <samp class="codeph">totalMemory</samp> property represents
+all the memory allocated to Flash Player or AIR, not necessarily
+the memory being used by objects. Depending on the operating system,
+Flash Player or AIR will be allocated more or less resources and will
+allocate memory with what is provided. </p>
+
+               <p>
+                  
+                  
+                  You can record the value of <samp class="codeph">totalMemory</samp> over
+time by using a <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/flash/utils/Timer.html" target="_blank">Timer</a> class
+to set up a recurring interval for the timer event, and then listening
+for that event.</p>
+
+               <p>The following example displays the total amount of memory allocated
+(totmem) to Flash Player at 1-second intervals. This value will
+increase and decrease. In addition, this example shows the maximum
+amount of memory that had been allocated (maxmem) since the application
+started. This value will only increase.</p>
+
+               <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- optimize/ShowTotalMemory.mxml --&gt; 
+&lt;s:Application     
+    xmlns:fx="http://ns.adobe.com/mxml/2009"    
+    xmlns:mx="library://ns.adobe.com/flex/mx"     
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    initialize="initTimer()"&gt; 
+ 
+    &lt;fx:Script&gt;&lt;![CDATA[ 
+        import flash.utils.Timer; 
+        import flash.events.TimerEvent; 
+ 
+        [Bindable] 
+        public var time:Number = 0; 
+        [Bindable] 
+        public var totmem:Number = 0; 
+        [Bindable] 
+        public var maxmem:Number = 0; 
+ 
+ 
+ 
+        public function initTimer():void { 
+            // The first parameter is the interval (in milliseconds). The 
+            // second parameter is number of times to run (0 means infinity). 
+            var myTimer:Timer = new Timer(1000, 0); 
+            myTimer.addEventListener("timer", timerHandler); 
+            myTimer.start(); 
+        } 
+        
+        public function timerHandler(event:TimerEvent):void { 
+            time = getTimer() 
+            totmem = flash.system.System.totalMemory; 
+            maxmem = Math.max(maxmem, totmem); 
+        } 
+    ]]&gt;&lt;/fx:Script&gt; 
+    
+    &lt;s:Form&gt; 
+        &lt;s:FormItem label="Time:"&gt; 
+            &lt;s:Label text="{time} ms"/&gt; 
+        &lt;/s:FormItem&gt; 
+        &lt;s:FormItem label="totalMemory:"&gt; 
+            &lt;s:Label text="{totmem} bytes"/&gt; 
+        &lt;/s:FormItem&gt; 
+        &lt;s:FormItem label="Max. Memory:"&gt; 
+            &lt;s:Label text="{maxmem} bytes"/&gt; 
+        &lt;/s:FormItem&gt; 
+    &lt;/s:Form&gt; 
+&lt;/s:Application&gt;</pre>
+
+            </div>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf69084-7b09_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7b09_verapache"><!-- --></a>
+         <h3 class="topictitle3">Configuring the client environment</h3>
+
+         
+         <div>
+            <p>When testing applications for performance, it is important
+to configure the client properly.</p>
+
+         </div>
+
+         <div class="nested3" id="WS2db454920e96a9e51e63e3d11c0bf67110-7ff8_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf67110-7ff8_verapache"><!-- --></a>
+            <h4 class="topictitle4">Choosing the version of Flash Player</h4>
+
+            
+            <div>
+               <p>
+                  When
+you test your applications for performance, use the standard version
+of Adobe<sup>®</sup> Flash<sup>®</sup> Player
+or AIR rather than the debugger version of Flash Player or ADL,
+if possible. The debugger version of Flash Player provides support
+for the <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/flash/utils/package.html#trace()" target="_blank">trace()</a> method
+and the Logging API. Using logging or the <samp class="codeph">trace()</samp> method
+can significantly slow player performance, because the player must
+write log entries to disk while running the application.</p>
+
+               <p>If you do use the debugger version of Flash Player, you can disable
+logging and the <samp class="codeph">trace()</samp> method by setting the <samp class="codeph">TraceOutputFileEnable</samp> property
+to 0 in your mm.cfg file. You can also set the <samp class="codeph">omit-trace-statements</samp> compiler
+option to <samp class="codeph">false</samp>. </p>
+
+               <p>You can keep <samp class="codeph">trace()</samp> logging working, but disable
+the Logging API that you might be using in your application, by
+setting the logging level of the <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/logging/targets/TraceTarget.html" target="_blank">TraceTarget</a> logging
+target to <samp class="codeph">NONE</samp>, as the following example shows:</p>
+
+               <pre class="codeblock"> myLogger.log(LogEventLevel.NONE, s);</pre>
+
+               <p>For performance testing, consider writing run-time test results
+to text components in the application rather than calling the <samp class="codeph">trace()</samp> method
+so that you can use the standard version of Flash Player and not
+the debugger version of Flash Player.</p>
+
+               <p>For more information about configuring <samp class="codeph">trace()</samp> method
+output and logging, see <a href="flx_logging_lg.html#WS2db454920e96a9e51e63e3d11c0bf69084-7ffc_verapache">Logging</a>.</p>
+
+            </div>
+
+         </div>
+
+         <div class="nested3" id="WS2db454920e96a9e51e63e3d11c0bf67110-7ff7_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf67110-7ff7_verapache"><!-- --></a>
+            <h4 class="topictitle4">Disabling SpeedStep</h4>
+
+            
+            <div>
+               <p>
+                  
+                  
+                  
+                  If
+you are running performance tests on a Windows laptop computer,
+disable Intel SpeedStep functionality. SpeedStep toggles the speed
+of the CPU to maximize battery life. SpeedStep can toggle the CPU
+at unpredictable times, which makes the results of a performance
+test less accurate than they would otherwise be.</p>
+
+               <ol>
+                  <li>
+                     <p>Select Start &gt; Settings &gt; Control Panel.</p>
+
+                  </li>
+
+                  <li>
+                     <p>Double-click the Power Settings icon. The Power Options Properties
+dialog box displays.</p>
+
+                  </li>
+
+                  <li>
+                     <p>Select the Power Schemes tab.</p>
+
+                  </li>
+
+                  <li>
+                     <p>Select High System Performance from the Power Schemes drop-down
+box.</p>
+
+                  </li>
+
+                  <li>
+                     <p>Click OK.</p>
+
+                  </li>
+
+               </ol>
+
+            </div>
+
+         </div>
+
+         <div class="nested3" id="WS2db454920e96a9e51e63e3d11c0bf67110-7ff6_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf67110-7ff6_verapache"><!-- --></a>
+            <h4 class="topictitle4">Changing timeout length</h4>
+
+            
+            <div>
+               <p>
+                  
+                  
+                  When you test your application, be aware
+of the <samp class="codeph">scriptTimeLimit</samp> property. If an application
+takes too long to initialize, Flash Player warns users that a script is
+causing Flash Player to run slowly and prompts the user to abort
+the application. If this is the situation, you can set the <samp class="codeph">scriptTimeLimit</samp> property
+of the <samp class="codeph">&lt;s:Application&gt;</samp> tag to a longer time
+so that the application has enough time to initialize.</p>
+
+               <p>However, the default value of the <samp class="codeph">scriptTimeLimit</samp> property
+is 60 seconds, which is also the maximum, so you can only increase
+the value if you have previously set it to a lower value. You rarely
+need to change this value.</p>
+
+               <p>The following example sets the <samp class="codeph">scriptTimeLimit</samp> property
+to 30:</p>
+
+               <pre class="noswf">&lt;?xml version="1.0" encoding="utf-8"?&gt; 
+&lt;!-- optimize/ChangeScriptTimeLimit.mxml --&gt; 
+&lt;s:Application  
+    xmlns:fx="http://ns.adobe.com/mxml/2009"    
+    xmlns:mx="library://ns.adobe.com/flex/mx"     
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    scriptTimeLimit="30"&gt; 
+ 
+    &lt;s:layout&gt; 
+        &lt;s:VerticalLayout/&gt; 
+    &lt;/s:layout&gt; 
+ 
+&lt;/s:Application&gt;</pre>
+
+            </div>
+
+         </div>
+
+         <div class="nested3" id="WS2db454920e96a9e51e63e3d11c0bf67110-7ff5_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf67110-7ff5_verapache"><!-- --></a>
+            <h4 class="topictitle4">Preventing client-side caching</h4>
+
+            
+            <div>
+               <p>
+                  
+                  
+                  
+                  When
+you test performance, ensure that you are not serving files from
+the local cache to Flash Player. Otherwise, this can give false
+results about download times. Also, during development and testing,
+you might want to change aspects of the application such as embedded
+images, but the browser continues to use the old images from your
+cache. </p>
+
+               <p>If the date and time in the If-Modified-Since request header
+matches the date and time in the Last-Modified response header,
+the browser loads the SWF file from its cache. Then the server returns
+the “304 Not Modified” message. If the Last-Modified header is more
+recent, the server returns the SWF file.</p>
+
+               <p>You can use the following techniques to disable client-side caching:</p>
+
+               <ul>
+                  <li>
+                     <p>
+                        Delete
+the Flex files from the browser’s cache after each interaction with
+your application. Browsers typically store the SWF file and other
+remote assets in their cache. On Microsoft Internet Explorer in
+Windows XP, for example, you can delete all the files in c:\Documents
+and Settings\username\Local Settings\Temporary Internet Files to
+force a refresh of the files on the next request. For more information,
+see <a href="flx_security2_se.html#WS2db454920e96a9e51e63e3d11c0bf69084-7b04_verapache">Caching</a>.</p>
+
+                  </li>
+
+                  <li>
+                     <p>
+                        
+                        
+                        Set
+the HTTP headers for the SWF file request in the HTML wrapper to
+prevent caching of the SWF file on the client. The following example
+shows how to set headers that prevent caching in JSP:</p>
+
+                     <pre class="codeblock"> // Set Cache-Control to no-cache. 
+ response.setHeader("Cache-Control", "no-cache"); 
+ // Prevent proxy caching. 
+ response.setHeader("Pragma", "no-cache");  
+ // Set expiration date to a date in the past. 
+ response.setDateHeader("Expires", 946080000000L); //Approx Jan 1, 2000 
+ // Force always modified. 
+ response.header("Last-Modified", new Date());</pre>
+
+                     <p>Note
+that in some cases, setting the <samp class="codeph">Pragma</samp> header to <samp class="codeph">“no-cache”</samp> can cause
+a runtime error with GET requests over SSL with the HTTPService
+class. In this case, setting just the <samp class="codeph">Cache-control</samp> header
+should work. </p>
+
+                  </li>
+
+               </ul>
+
+               <p>Marc Speck has a <a href="http://faindu.wordpress.com/2008/04/18/ie7-ssl-xml-flex-error-2032-stream-error/" target="_blank">blog entry</a> that describes the issue
+and presents several solutions.</p>
+
+            </div>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf67110-7ff4_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf67110-7ff4_verapache"><!-- --></a>
+         <h3 class="topictitle3">Reducing SWF file sizes</h3>
+
+         
+         <div>
+            <p>
+               
+               
+               
+               You can improve initial
+user experience by reducing the time it takes to start an application.
+Part of this time is determined by the download process, where the SWF
+file is returned from the server to the client. The smaller the
+SWF file, the shorter the download wait. In addition, reducing the
+size of the SWF file also results in a shorter application initialization
+time. Larger SWF files take longer to unpack in Flash Player.</p>
+
+            <p>The mxmlc compiler includes several options that can help reduce
+SWF file size.</p>
+
+         </div>
+
+         <div class="nested3" id="WS2db454920e96a9e51e63e3d11c0bf67110-7ff3_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf67110-7ff3_verapache"><!-- --></a>
+            <h4 class="topictitle4">Using the bytecode optimizer</h4>
+
+            
+            <div>
+               <p>
+                  
+                  The
+bytecode optimizer can reduce the size of the application’s SWF
+file by using bytecode merging and peephole optimization. Peephole
+optimization removes redundant instructions from the bytecode.</p>
+
+            </div>
+
+         </div>
+
+         <div class="nested3" id="WS2db454920e96a9e51e63e3d11c0bf67110-7ff2_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf67110-7ff2_verapache"><!-- --></a>
+            <h4 class="topictitle4">Disabling debugging</h4>
+
+            
+            <div>
+               <p>
+                  Disabling
+debugging can make your SWF files smaller. When debugging is enabled,
+the Flex compilers include line numbers and other navigational information
+in the SWF file that are only used in a debugging environment. Disabling debugging
+reduces functionality of the fdb command-line debugger.</p>
+
+               <p>To disable debugging when using the command-line compiler, set
+the <samp class="codeph">debug</samp> compiler option to <samp class="codeph">false</samp>.
+The default value for the mxmlc compiler is <samp class="codeph">false</samp>. The
+default value for the compc compiler is <samp class="codeph">true</samp>. Setting
+this to <samp class="codeph">false</samp> reduces the size of hte SWF file
+inside the SWC file.</p>
+
+               <p>For more information about debugging, see <a href="flx_debugging_de.html#WS2db454920e96a9e51e63e3d11c0bf69084-7ffb_verapache">Command-line
+debugger</a>.</p>
+
+            </div>
+
+         </div>
+
+         <div class="nested3" id="WS19f279b149e7481c45454d9412c561d3223-8000_verapache"><a name="WS19f279b149e7481c45454d9412c561d3223-8000_verapache"><!-- --></a>
+            <h4 class="topictitle4">Using the size report</h4>
+
+            
+            <div>
+               <p>The <samp class="codeph">size-report</samp> compiler option outputs
+a high-level summary of the size of each type of data within your
+application’s SWF file. You can use this information to identify
+problem areas in an application. For example, if you embed multiple fonts,
+you can compare the size that each embedded font takes up. If one
+font is considerably larger than the others, you could reduce the
+number of symbols embedded by that font.</p>
+
+               <div class="p">The following example creates a size report called mysizereport.xml
+for the MainApp application:<pre class="codeblock">mxmlc -size-report=mysizereport.xml MainApp.mxml</pre>
+
+               </div>
+
+               <div class="p">The following table describes the areas of the report:
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" frame="border" border="1" rules="all">
+                        
+                        
+                        <thead align="left">
+                           <tr>
+                              <th class="cellrowborder" valign="top" width="NaN%" id="d824809e777">
+                                 <p>Report tag</p>
+
+                              </th>
+
+                              <th class="cellrowborder" valign="top" width="NaN%" id="d824809e783">
+                                 <p>Description</p>
+
+                              </th>
+
+                           </tr>
+
+                        </thead>
+
+                        <tbody>
+                           <tr>
+                              <td class="cellrowborder" valign="top" width="NaN%" headers="d824809e777 ">
+                                 <p>
+                                    <samp class="codeph">&lt;swf&gt;</samp>
+                                 </p>
+
+                              </td>
+
+                              <td class="cellrowborder" valign="top" width="NaN%" headers="d824809e783 ">
+                                 <p>The compressed and uncompressed SWF file
+size, in bytes.</p>
+
+                              </td>
+
+                           </tr>
+
+                           <tr>
+                              <td class="cellrowborder" valign="top" width="NaN%" headers="d824809e777 ">
+                                 <p>
+                                    <samp class="codeph">&lt;headerData&gt;</samp>
+                                 </p>
+
+                              </td>
+
+                              <td class="cellrowborder" valign="top" width="NaN%" headers="d824809e783 ">
+                                 <p>The size of the actual SWF file format header,
+product info, and other marker data.</p>
+
+                              </td>
+
+                           </tr>
+
+                           <tr>
+                              <td class="cellrowborder" valign="top" width="NaN%" headers="d824809e777 ">
+                                 <p>
+                                    <samp class="codeph">&lt;actionScript&gt;</samp>
+                                 </p>
+
+                              </td>
+
+                              <td class="cellrowborder" valign="top" width="NaN%" headers="d824809e783 ">
+                                 <p>The ActionScript data associated with this
+SWF file. For non-debug SWFs, ActionScript bytecode (abc) and constant
+pool data is consolidated into a single block within the frame that
+it is associated with. For debug SWF or SWC files, the ActionScript
+bytecode blocks are generally broken down by symbol. </p>
+
+                                 <p>All
+entries are sorted largest to smallest.</p>
+
+                              </td>
+
+                           </tr>
+
+                           <tr>
+                              <td class="cellrowborder" valign="top" width="NaN%" headers="d824809e777 ">
+                                 <p>
+                                    <samp class="codeph">&lt;frames&gt;</samp>
+                                 </p>
+
+                              </td>
+
+                              <td class="cellrowborder" valign="top" width="NaN%" headers="d824809e783 ">
+                                 <p>A frame by frame summary of all script and
+tag data for each frame. Applications usually consist of two or
+more frames, with the first frame containing all preloader logic as
+well as the top level SystemManager definition.</p>
+
+                              </td>
+
+                           </tr>
+
+                           <tr>
+                              <td class="cellrowborder" valign="top" width="NaN%" headers="d824809e777 ">
+                                 <p>
+                                    <samp class="codeph">&lt;frameData&gt;</samp>
+                                 </p>
+
+                              </td>
+
+                              <td class="cellrowborder" valign="top" width="NaN%" headers="d824809e783 ">
+                                 <p>Additional SWF tags that are related to
+frame definitions. For example, frame labels, symbol definitions,
+export definitions, and showFrame tags.</p>
+
+                              </td>
+
+                           </tr>
+
+                           <tr>
+                              <td class="cellrowborder" valign="top" width="NaN%" headers="d824809e777 ">
+                                 <p>
+                                    <samp class="codeph">&lt;bitmaps&gt;</samp>
+                                 </p>
+
+                              </td>
+
+                              <td class="cellrowborder" valign="top" width="NaN%" headers="d824809e783 ">
+                                 <p>The embedded bitmap data. All entries are
+sorted largest to smallest. If appropriate, the symbol name of each
+bitmap is provided. </p>
+
+                                 <p>The original file name of the embedded
+asset is not provided.</p>
+
+                              </td>
+
+                           </tr>
+
+                           <tr>
+                              <td class="cellrowborder" valign="top" width="NaN%" headers="d824809e777 ">
+                                 <p>
+                                    <samp class="codeph">&lt;fonts&gt;</samp>
+                                 </p>
+
+                              </td>
+
+                              <td class="cellrowborder" valign="top" width="NaN%" headers="d824809e783 ">
+                                 <p>The embedded font data. All entries are
+sorted largest to smallest. If appropriate, the symbol name of each
+font is provided.</p>
+
+                                 <p>The original font face name or path is not
+provided, nor any enumeration of the embedded glyphs.</p>
+
+                              </td>
+
+                           </tr>
+
+                           <tr>
+                              <td class="cellrowborder" valign="top" width="NaN%" headers="d824809e777 ">
+                                 <p>
+                                    <samp class="codeph">&lt;sprites&gt;</samp>
+                                 </p>
+
+                              </td>
+
+                              <td class="cellrowborder" valign="top" width="NaN%" headers="d824809e783 ">
+                                 <p>The sprite data. All entries are sorted
+largest to smallest. If appropriate, the symbol name of each sprite
+definition is provided.</p>
+
+                              </td>
+
+                           </tr>
+
+                           <tr>
+                              <td class="cellrowborder" valign="top" width="NaN%" headers="d824809e777 ">
+                                 <p>
+                                    <samp class="codeph">&lt;shapes&gt;</samp>
+                                 </p>
+
+                              </td>
+
+                              <td class="cellrowborder" valign="top" width="NaN%" headers="d824809e783 ">
+                                 <p>The shape data. All entries are sorted largest
+to smallest. If appropriate, the symbol name of each shape definition
+is provided.</p>
+
+                              </td>
+
+                           </tr>
+
+                           <tr>
+                              <td class="cellrowborder" valign="top" width="NaN%" headers="d824809e777 ">
+                                 <p>
+                                    <samp class="codeph">&lt;bindaryData&gt;</samp>
+                                 </p>
+
+                              </td>
+
+                              <td class="cellrowborder" valign="top" width="NaN%" headers="d824809e783 ">
+                                 <p>The generic binary data. This includes embedded
+SWF files, PixelBender shaders, or any other miscellaneous embed
+data. All entries are sorted largest to smallest. If appropriate,
+the symbol name of each data definition is provided.The original
+file name for each asset is not provided.</p>
+
+                              </td>
+
+                           </tr>
+
+                           <tr>
+                              <td class="cellrowborder" valign="top" width="NaN%" headers="d824809e777 ">
+                                 <p>
+                                    <samp class="codeph">&lt;sounds&gt;</samp>
+                                 </p>
+
+                              </td>
+
+                              <td class="cellrowborder" valign="top" width="NaN%" headers="d824809e783 ">
+                                 <p>The embedded sound data. All entries are
+sorted largest to smallest. If appropriate, the symbol name of each
+sound is provided.The original file name for each asset is not provided.</p>
+
+                              </td>
+
+                           </tr>
+
+                           <tr>
+                              <td class="cellrowborder" valign="top" width="NaN%" headers="d824809e777 ">
+                                 <p>
+                                    <samp class="codeph">&lt;videos&gt;</samp>
+                                 </p>
+
+                              </td>
+
+                              <td class="cellrowborder" valign="top" width="NaN%" headers="d824809e783 ">
+                                 <p>The embedded video data. All entries are
+sorted largest to smallest. If appropriate, the symbol name of each
+video asset is provided.The original file name for each asset is
+not provided.</p>
+
+                              </td>
+
+                           </tr>
+
+                        </tbody>
+
+                     </table>
+</div>
+
+               </div>
+
+               <div class="p">The following is a sample size report:<pre class="codeblock">&lt;?xml version="1.0" encoding="UTF-8"?&gt; 
+&lt;report&gt; 
+  &lt;swf size="614011" compressedSize="318895"&gt; 
+ 
+    &lt;!-- Header data (SWF attributes, product info, markers, etc.) --&gt; 
+    &lt;headerData totalSize="533"&gt; 
+      &lt;data type="metaData" size="465"/&gt; 
+      &lt;data type="productInfo" size="28"/&gt; 
+      &lt;data type="swfHeader" size="21"/&gt; 
+      &lt;data type="fileAttributes" size="6"/&gt; 
+      &lt;data type="scriptLimits" size="6"/&gt; 
+      &lt;data type="backgroundColor" size="5"/&gt; 
+      &lt;data type="endMarker" size="2"/&gt; 
+    &lt;/headerData&gt; 
+ 
+    &lt;!-- Cumulative frame size summary. --&gt; 
+    &lt;frames totalSize="613478"&gt; 
+      &lt;frame name="_MultipleFaces_mx_managers_SystemManager" size="76648" frame="1"/&gt; 
+      &lt;frame name="MultipleFaces" size="536830" frame="2"/&gt; 
+    &lt;/frames&gt; 
+ 
+    &lt;!-- Actionscript code and constant data. --&gt; 
+    &lt;actionScript totalSize="501609"&gt; 
+      &lt;abc name="frame2" size="425053" frame="2"/&gt; 
+      &lt;abc name="frame1" size="76556" frame="1"/&gt; 
+    &lt;/actionScript&gt; 
+ 
+    &lt;!-- defineFont/2/3/4. --&gt; 
+    &lt;fonts totalSize="97660"&gt; 
+      &lt;font name="MultipleFaces__embed__font_myFont_medium_italic_1704731415" fontName="myFont" size="34180" frame="2"/&gt; 
+      &lt;font name="MultipleFaces__embed__font_myFont_bold_normal_673776644" fontName="myFont" size="33472" frame="2"/&gt; 
+      &lt;font name="MultipleFaces__embed__font_myFont_medium_normal_1681983489" fontName="myFont" size="30008" frame="2"/&gt; 
+    &lt;/fonts&gt; 
+ 
+    &lt;!-- defineSprite. --&gt; 
+    &lt;sprites totalSize="19"&gt; 
+      &lt;sprite name="_MultipleFaces_Styles__embed_css_Assets_swf_mx_skins_cursor_BusyCursor_2036984981" size="19" frame="2"/&gt; 
+    &lt;/sprites&gt; 
+ 
+    &lt;!-- defineShape/2/3/4. --&gt; 
+    &lt;shapes totalSize="261"&gt; 
+      &lt;shape size="261" frame="2"/&gt; 
+    &lt;/shapes&gt; 
+ 
+    &lt;!-- SWF, Pixel Bender, or other miscellaneous embed data. --&gt; 
+    &lt;binaryData totalSize="12506"&gt; 
+      &lt;data name="mx.graphics.shaderClasses.SaturationShader_ShaderClass" size="2298" frame="2"/&gt; 
+      &lt;data name="mx.graphics.shaderClasses.HueShader_ShaderClass" size="2268" frame="2"/&gt; 
+      &lt;data name="mx.graphics.shaderClasses.SoftLightShader_ShaderClass" size="1920" frame="2"/&gt; 
+      &lt;data name="mx.graphics.shaderClasses.LuminosityShader_ShaderClass" size="1282" frame="2"/&gt; 
+      &lt;data name="mx.graphics.shaderClasses.ColorShader_ShaderClass" size="1272" frame="2"/&gt; 
+      &lt;data name="mx.graphics.shaderClasses.ColorBurnShader_ShaderClass" size="1144" frame="2"/&gt; 
+      &lt;data name="mx.graphics.shaderClasses.ColorDodgeShader_ShaderClass" size="1074" frame="2"/&gt; 
+      &lt;data name="mx.graphics.shaderClasses.ExclusionShader_ShaderClass" size="624" frame="2"/&gt; 
+      &lt;data name="mx.graphics.shaderClasses.LuminosityMaskShader_ShaderClass" size="624" frame="2"/&gt; 
+    &lt;/binaryData&gt; 
+ 
+    &lt;!-- Additional frame tags (symbolClass, exportAssets, showFrame, etc). --&gt; 
+    &lt;frameData totalSize="1423"&gt; 
+      &lt;tag type="symbolClass" size="774" frame="2"/&gt; 
+      &lt;tag type="exportAssets" size="539" frame="2"/&gt; 
+      &lt;tag type="symbolClass" size="47" frame="1"/&gt; 
+      &lt;tag type="frameLabel" size="43" frame="1"/&gt; 
+      &lt;tag type="frameLabel" size="16" frame="2"/&gt; 
+      &lt;tag type="showFrame" size="2" frame="1"/&gt; 
+      &lt;tag type="showFrame" size="2" frame="2"/&gt; 
+    &lt;/frameData&gt; 
+  &lt;/swf&gt; 
+&lt;/report&gt;</pre>
+
+               </div>
+
+            </div>
+
+         </div>
+
+         <div class="nested3" id="WS2db454920e96a9e51e63e3d11c0bf67110-7ff1_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf67110-7ff1_verapache"><!-- --></a>
+            <h4 class="topictitle4">Using strict mode</h4>
+
+            
+            <div>
+               <p>
+                  
+                  When you set the <samp class="codeph">strict</samp> compiler
+option to <samp class="codeph">true</samp>, the compiler verifies that definitions
+and package names in <samp class="codeph">import</samp> statements are used
+in the application. If the imported classes are not used, the compiler
+reports an error. </p>
+
+               <p>The following example shows some examples of when strict mode
+throws a compiler error:</p>
+
+               <pre class="codeblock"> package { 
+ 	import flash.utils.Timer; // Error. This class is not used. 
+ 	import flash.printing.* // Error. This class is not used. 
+ 	import mx.controls.Button; // Error. This class is not used. 
+ 	import mx.core.Application; // No error. This class is used. 
+  
+ 	public class Foo extends Application { 
+ 	} 
+ }</pre>
+
+               <p>The <samp class="codeph">strict</samp> option also performs compile-time
+type checking, which provides a small optimization increase in the
+application at run time.</p>
+
+               <p>The default value of the <samp class="codeph">strict</samp> compiler option
+is <samp class="codeph">true</samp>.</p>
+
+            </div>
+
+         </div>
+
+         <div class="nested3" id="WS2db454920e96a9e51e63e3d11c0bf69084-7adc_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7adc_verapache"><!-- --></a>
+            <h4 class="topictitle4">Examining linker dependencies</h4>
+
+            
+            <div>
+               <p>
+                  
+                  
+                  
+                  To find ways to reduce SWF file
+sizes, you can look at the list of ActionScript classes that are
+linked into your SWF file.</p>
+
+               <p>You can generate a report of linker dependencies by using the <samp class="codeph">link-report</samp> compiler
+option. This option takes a single file name. The compiler generates
+a report, and writes it to the specified file, that shows an application’s
+linker dependencies in an XML format. </p>
+
+               <p>The following example shows the dependencies for the ProgrammaticSkin
+script as it appears in the linker report:</p>
+
+               <pre class="codeblock"> &lt;script name="C:\flex3sdk\frameworks\libs\framework.swc(mx/skins/ProgrammaticSkin)" mod="1141055632000" size="5807"&gt; 
+ 	&lt;def id="mx.skins:ProgrammaticSkin"/&gt; 
+ 	&lt;pre id="mx.core:IFlexDisplayObject"/&gt; 
+ 	&lt;pre id="mx.styles:IStyleable"/&gt; 
+ 	&lt;pre id="mx.managers:ILayoutClient"/&gt; 
+ 	&lt;pre id="flash.display:Shape"/&gt; 
+ 	&lt;dep id="String"/&gt; 
+ 	&lt;dep id="flash.geom:Matrix"/&gt; 
+ 	&lt;dep id="mx.core:mx_internal"/&gt; 
+ 	&lt;dep id="uint"/&gt; 
+ 	&lt;dep id="mx.core:UIComponent"/&gt; 
+ 	&lt;dep id="int"/&gt; 
+ 	&lt;dep id="Math"/&gt; 
+ 	&lt;dep id="Object"/&gt; 
+ 	&lt;dep id="Array"/&gt; 
+ 	&lt;dep id="mx.core:IStyleClient"/&gt; 
+ 	&lt;dep id="Boolean"/&gt; 
+ 	&lt;dep id="Number"/&gt; 
+ 	&lt;dep id="flash.display:Graphics"/&gt; 
+ &lt;/script&gt;</pre>
+
+               <p>The following table describes the tags used in this file:</p>
+
+               
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" frame="border" border="1" rules="all">
+                     
+                     
+                     <thead align="left">
+                        <tr>
+                           <th class="cellrowborder" valign="top" width="NaN%" id="d824809e1140">
+                              <p>Tag</p>
+
+                           </th>
+
+                           <th class="cellrowborder" valign="top" width="NaN%" id="d824809e1146">
+                              <p>Description</p>
+
+                           </th>
+
+                        </tr>
+
+                     </thead>
+
+                     <tbody>
+                        <tr>
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d824809e1140 ">
+                              <div class="p">
+                                 <pre class="codeblock">&lt;script&gt;</pre>
+
+                              </div>
+
+                           </td>
+
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d824809e1146 ">
+                              <p>Indicates the name of a compilation unit
+used in the creation of the application SWF file. Compilation units
+must contain at least one public definition, such as a class, function,
+or namespace.</p>
+
+                              <p>The <samp class="codeph">name</samp> attribute shows the
+origin of the script, either from a source file or from a SWC file
+(for example, frameworks.swc).</p>
+
+                              <p>If you set the value of the <samp class="codeph">keep-generated-actionscript </samp>compiler
+argument to <samp class="codeph">true</samp>, all classes in the generated folder
+are listed as scripts in this file.</p>
+
+                              <p>The <samp class="codeph">size</samp> attribute
+shows the class' uncompressed size, in bytes.</p>
+
+                              <p>The <samp class="codeph">mod</samp> attribute
+shows the time stamp when the script was created.</p>
+
+                           </td>
+
+                        </tr>
+
+                        <tr>
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d824809e1140 ">
+                              <div class="p">
+                                 <pre class="codeblock">&lt;def&gt;</pre>
+
+                              </div>
+
+                           </td>
+
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d824809e1146 ">
+                              <p>Indicates the name of a definition. A definition,
+like a script, can be a class, function, or namespace.</p>
+
+                           </td>
+
+                        </tr>
+
+                        <tr>
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d824809e1140 ">
+                              <div class="p">
+                                 <pre class="codeblock">&lt;pre&gt;</pre>
+
+                              </div>
+
+                           </td>
+
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d824809e1146 ">
+                              <p>Indicates a definition that must be linked
+in to the SWF file before the current definition is linked in. This
+tag means prerequisite.</p>
+
+                              <p>For class definitions, this tag shows
+the direct parent class (for example, flash.events:Event), plus
+all implemented interfaces (for example, mx.core:IFlexDisplayObject
+and mx.managers:ILayoutClient) of the class.</p>
+
+                           </td>
+
+                        </tr>
+
+                        <tr>
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d824809e1140 ">
+                              <div class="p">
+                                 <pre class="codeblock">&lt;dep&gt;</pre>
+
+                              </div>
+
+                           </td>
+
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d824809e1146 ">
+                              <p>Indicates other definitions that this definition
+depends on (for example, String, _ScrollBarStyle, and mx.core:IChildList). This
+is a reference to a definition that the current script requires. </p>
+
+                              <p>Some
+script definitions have no dependencies, so the <samp class="codeph">&lt;script&gt;</samp> tag
+might have no <samp class="codeph">&lt;dep&gt;</samp> child tags.</p>
+
+                           </td>
+
+                        </tr>
+
+                        <tr>
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d824809e1140 ">
+                              <div class="p">
+                                 <pre class="codeblock">&lt;ext&gt;</pre>
+
+                              </div>
+
+                           </td>
+
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d824809e1146 ">
+                              <p>Indicates a dependency to an asset that
+was not linked in. These dependencies show up in the linker report
+when you use the <samp class="codeph">external-library-path</samp>, <samp class="codeph">externs</samp>,
+or <samp class="codeph">load-externs</samp> compiler options to add assets
+to the SWF file.</p>
+
+                           </td>
+
+                        </tr>
+
+                     </tbody>
+
+                  </table>
+</div>
+
+               <p>You can examine the list of prerequisites and dependencies for
+your application definition. You do this by searching for your application’s
+root MXML file by its name; for example, MyApp.mxml. You might discover
+that you are linking in some classes inadvertently. When writing
+code, it is common to make a reference to a class but not actually
+require that class in your application. That reference causes the
+referenced class to be linked in, and it also links in all the classes
+on which the referenced class depends.</p>
+
+               <p>If you look through the linker report, you might find that you
+are linking in a class that is not needed. If you do find an unneeded
+class, try to identify the linker dependency that is causing the
+class to be linked in, and try to find a way to rewrite the code
+to eliminate that dependency. </p>
+
+            </div>
+
+         </div>
+
+         <div class="nested3" id="WSda78ed3a750d6b8f-6e9a3868121ef8f3b11-8000_verapache"><a name="WSda78ed3a750d6b8f-6e9a3868121ef8f3b11-8000_verapache"><!-- --></a>
+            <h4 class="topictitle4">Viewing SWC file dependencies</h4>
+
+            
+            <div>
+               <p>The swcdepends command line tool has a small set of options
+that lets you view dependencies on SWC files in your application.
+This tool is located in the sdk/bin directory. By default, the tool
+outputs a list of SWC files ordered by dependencies. For each SWC
+file in the list, the tool shows a sub-list of SWC files that the
+SWC file is dependent on.</p>
+
+               <p>The output is sorted by the number of dependencies. SWC files
+with the fewest dependencies are listed first, followed by those
+with the most dependencies. For each SWC file in the list, SWC files
+that are dependent on it are listed below it and indented in the
+output.</p>
+
+               <div class="p">The swcdepends tool supports all the options of the mxmlc command
+line compiler. In addition, it has several options that let you
+customize the output. The following table describes these options:
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" frame="border" border="1" rules="all">
+                        
+                        
+                        <thead align="left">
+                           <tr>
+                              <th class="cellrowborder" valign="top" width="NaN%" id="d824809e1337">
+                                 <p>Option</p>
+
+                              </th>
+
+                              <th class="cellrowborder" valign="top" width="NaN%" id="d824809e1343">
+                                 <p>Description</p>
+
+                              </th>
+
+                           </tr>
+
+                        </thead>
+
+                        <tbody>
+                           <tr>
+                              <td class="cellrowborder" valign="top" width="NaN%" headers="d824809e1337 ">
+                                 <p>
+                                    <samp class="codeph">dependency.minimize-dependency-set=true|false</samp>
+                                 </p>
+
+                              </td>
+
+                              <td class="cellrowborder" valign="top" width="NaN%" headers="d824809e1343 ">
+                                 <p>Determines whether all SWC files are included
+for depencies, or just the first one. For example, some classes
+are defined in more than one SWC file. When this option is <samp class="codeph">true</samp>,
+only the first SWC file in which the class is defined is added as
+a dependency. When this option is <samp class="codeph">false</samp>, all SWC
+files that define a class appear as dependencies.</p>
+
+                              </td>
+
+                           </tr>
+
+                           <tr>
+                              <td class="cellrowborder" valign="top" width="NaN%" headers="d824809e1337 ">
+                                 <p>
+                                    <samp class="codeph">dependency.show-external-classes=false|true</samp>
+                                 </p>
+
+                              </td>
+
+                              <td class="cellrowborder" valign="top" width="NaN%" headers="d824809e1343 ">
+                                 <p>Shows classes that cause a dependency from
+one SWC to another. The default value is <samp class="codeph">false</samp>.</p>
+
+                              </td>
+
+                           </tr>
+
+                           <tr>
+                              <td class="cellrowborder" valign="top" width="NaN%" headers="d824809e1337 ">
+                                 <p>
+                                    <samp class="codeph">dependency.show-swcs</samp> 
+                                    <em>
+                                       <samp class="codeph">swc_filename</samp>
+                                    </em>
+                                 </p>
+
+                              </td>
+
+                              <td class="cellrowborder" valign="top" width="NaN%" headers="d824809e1343 ">
+                                 <p>Limits the output to show just the given
+SWC files. Does not change the set of SWC files used to determine
+dependencies.</p>
+
+                              </td>
+
+                           </tr>
+
+                           <tr>
+                              <td class="cellrowborder" valign="top" width="NaN%" headers="d824809e1337 ">
+                                 <p>
+                                    <samp class="codeph">dependency.show-types</samp>
+                                 </p>
+
+                              </td>
+
+                              <td class="cellrowborder" valign="top" width="NaN%" headers="d824809e1343 ">
+                                 <p>Shows the dependency type(s) of a class.</p>
+
+                              </td>
+
+                           </tr>
+
+                           <tr>
+                              <td class="cellrowborder" valign="top" width="NaN%" headers="d824809e1337 ">
+                                 <p>
+                                    <samp class="codeph">dependency.types</samp> 
+                                    <em>
+                                       <samp class="codeph">type</samp>
+                                    </em>
+                                 </p>
+
+                              </td>
+
+                              <td class="cellrowborder" valign="top" width="NaN%" headers="d824809e1343 ">
+                                 <p>Limits the dependency checking to only the
+specified types. By default all the dependency types are specified.
+This option is useful when you want to see what RSLs are needed
+by the RSL from a given SWC file. </p>
+
+                                 <div class="p">The set of types is as
+follows:<ul>
+                                       <li>
+                                          <p>e - expression</p>
+
+                                       </li>
+
+                                       <li>
+                                          <p>i - inheritance</p>
+
+                                       </li>
+
+                                       <li>
+                                          <p>n - namespace</p>
+
+                                       </li>
+
+                                       <li>
+                                          <p>s - signature</p>
+
+                                       </li>
+
+                                    </ul>
+
+                                 </div>
+
+                                 <p>You can specify “i” to
+see all the SWC files that have an inheritance dependency on a SWC
+file. Some or all of the dependent SWC files must be RSLs; as a
+result, be sure that the required classes are loaded before the
+RSL for the SWC file is loaded. </p>
+
+                                 <p>You can specify multiple
+dependency types by using a comma-separated list, as the following
+example shows:</p>
+
+                                 <div class="p">
+                                    <pre class="codeblock">-dependency.types=i,e</pre>
+
+                                 </div>
+
+                                 <p>This
+example limits the dependency list to external classes with either
+inheritance or expression dependency types.</p>
+
+                              </td>
+
+                           </tr>
+
+                        </tbody>
+
+                     </table>
+</div>
+
+               </div>
+
+            </div>
+
+         </div>
+
+         <div class="nested3" id="WS2db454920e96a9e51e63e3d11c0bf67110-7fef_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf67110-7fef_verapache"><!-- --></a>
+            <h4 class="topictitle4">Avoiding initializing unused classes</h4>
+
+            
+            <div>
+               <p>
+                  
+                  
+                  Some
+common ways to avoid unnecessary references include avoiding initializing
+classes that you do not use and performing type-checking with the <samp class="codeph">getQualifiedClassName()</samp> method.</p>
+
+               <p>The following example checks if the class is a Button control.
+This example forces the compiler to include a Button in the SWF
+file, even if the child is not a Button control and the entire application
+has no Button controls. </p>
+
+               <pre class="codeblock">&lt;?xml version="1.0" encoding="utf-8"?&gt; 
+&lt;!-- optimize/UnusedClasses.mxml --&gt; 
+&lt;s:Application  
+    xmlns:fx="http://ns.adobe.com/mxml/2009"    
+    xmlns:mx="library://ns.adobe.com/flex/mx"     
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    creationComplete="checkChildType()"&gt; 
+ 
+    &lt;s:layout&gt; 
+        &lt;s:VerticalLayout/&gt; 
+    &lt;/s:layout&gt; 
+ 
+    &lt;fx:Script&gt;&lt;![CDATA[ 
+        import spark.components.Button; 
+ 
+        [Bindable] 
+        private var s:String; 
+ 
+        public function checkChildType():void { 
+            var child:DisplayObject = getChildAt(0); 
+            var childIsButton:Boolean = child is spark.components.Button; 
+            s = "child is spark.components.Button: " + childIsButton.toString(); // False. 
+        } 
+    ]]&gt;&lt;/fx:Script&gt; 
+ 
+    &lt;!-- This control is here so that the getChildAt() method succeeds. --&gt; 
+    &lt;s:DataGrid/&gt; 
+ 
+    &lt;s:Group&gt; 
+        &lt;s:Label text="{s}"/&gt; 
+    &lt;/s:Group&gt; 
+&lt;/s:Application&gt;</pre>
+
+               <p>You can use the <samp class="codeph">getQualifiedClassName()</samp> method
+to accomplish the same task as the previous example. This method
+returns a String that you can compare to the name of a class without
+causing that class to be linked into the SWF. </p>
+
+               <p>The following example does not create a linker dependency on
+the Button control:</p>
+
+               <pre class="codeblock">&lt;?xml version="1.0" encoding="utf-8"?&gt; 
+&lt;!-- optimize/GetQualifiedClassNameExample.mxml --&gt; 
+&lt;s:Application  
+    xmlns:fx="http://ns.adobe.com/mxml/2009"    
+    xmlns:mx="library://ns.adobe.com/flex/mx"     
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    creationComplete="checkChildType()"&gt; 
+ 
+    &lt;s:layout&gt; 
+         &lt;s:VerticalLayout/&gt; 
+    &lt;/s:layout&gt; 
+ 
+    &lt;fx:Script&gt;&lt;![CDATA[ 
+    [Bindable] 
+    private var s:String; 
+ 
+    [Bindable] 
+    private var t:String; 
+ 
+    public function checkChildType():void {     
+        var child:DisplayObject = vg1.getChildAt(0); 
+        var childClassName:String = getQualifiedClassName(child); 
+        var childIsButton:Boolean = childClassName == "spark.components::Button" 
+        s = "child class name = Button (" + childIsButton + ")"; 
+        t = "child is " + childClassName; 
+    } 
+    ]]&gt;&lt;/fx:Script&gt; 
+ 
+    &lt;s:VGroup id="vg1"&gt; 
+        &lt;s:DataGrid/&gt;         
+        &lt;s:Label text="{s}"/&gt; 
+        &lt;s:Label text="{t}"/&gt; 
+    &lt;/s:VGroup&gt; 
+&lt;/s:Application&gt;</pre>
+
+            </div>
+
+         </div>
+
+         <div class="nested3" id="WS2db454920e96a9e51e63e3d11c0bf67110-7fee_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf67110-7fee_verapache"><!-- --></a>
+            <h4 class="topictitle4">Externalizing assets</h4>
+
+            
+            <div>
+               <p>There are various methods of externalizing assets used
+by your applications; these include:</p>
+
+               <ul>
+                  <li>
+                     <p>Using modules</p>
+
+                  </li>
+
+                  <li>
+                     <p>Using run-time stylesheets</p>
+
+                  </li>
+
+                  <li>
+                     <p>Using Runtime Shared Libraries (RSLs)</p>
+
+                  </li>
+
+                  <li>
+                     <p>Loading assets at run time rather than embedding them</p>
+
+                  </li>
+
+               </ul>
+
+               <p>This section describes loading assets at run time. For information
+about modules and run-time stylesheets, see <a href="flx_modular_md.html#WS2db454920e96a9e51e63e3d11c0bf69084-7f22_verapache">Modular
+applications</a> and <a href="flx_styles_st.html#WS2db454920e96a9e51e63e3d11c0bf69084-7f8c_verapache">Loading
+style sheets at run time</a>. For information about RSLs, see <a href="flx_performance_pe.html#WS2db454920e96a9e51e63e3d11c0bf69084-7b01_verapache">Using
+RSLs to reduce SWF file size</a>.</p>
+
+               <p>
+                  
+                  One
+method of reducing the SWF file size is to externalize assets; that
+is, to load the assets at run time rather than embed them at compile
+time. You can do this with assets such as images, SWF files, and
+sound files. </p>
+
+               <p>Embedded assets load immediately, because they are already part
+of the Flex SWF file. However, they add to the size of your application
+and slow down the application initialization process. Embedded assets
+also require you to recompile your applications whenever your asset
+changes. </p>
+
+               <p>The following example embeds the butterfly.gif file into the
+application at compile time:</p>
+
+               <pre class="codeblock">&lt;?xml version="1.0" encoding="utf-8"?&gt; 
+&lt;!-- optimize/EmbedAtCompileTime.mxml --&gt; 
+&lt;s:Application  
+    xmlns:fx="http://ns.adobe.com/mxml/2009"    
+    xmlns:mx="library://ns.adobe.com/flex/mx"     
+    xmlns:s="library://ns.adobe.com/flex/spark"&gt; 
+ 
+    &lt;s:layout&gt; 
+         &lt;s:VerticalLayout/&gt; 
+    &lt;/s:layout&gt;    
+    &lt;s:Image source="@Embed(source='../assets/butterfly.gif')"/&gt; 
+&lt;/s:Application&gt;</pre>
+
+               <p>The following example loads the butterfly.gif file into the application
+at run time:</p>
+
+               <pre class="codeblock">&lt;?xml version="1.0" encoding="utf-8"?&gt; 
+&lt;!-- optimize/EmbedAtRunTime.mxml --&gt; 
+&lt;s:Application  
+    xmlns:fx="http://ns.adobe.com/mxml/2009"    
+    xmlns:mx="library://ns.adobe.com/flex/mx"     
+    xmlns:s="library://ns.adobe.com/flex/spark"&gt; 
+ 
+    &lt;s:layout&gt; 
+         &lt;s:VerticalLayout/&gt; 
+    &lt;/s:layout&gt;    
+    &lt;s:Image source="assets/butterfly.gif"/&gt;    
+&lt;/s:Application&gt;</pre>
+
+               <p>The only supported image type that you cannot load at run time
+is SVG. Flash Player and AIR require that the compiler transcodes
+that file type at compile time. The Player and AIR runtime cannot
+transcode that file type at run time.</p>
+
+               <p>When you load SWF files from domains that are not the same as
+the loading SWF file, you must use a crossdomain.xml file or other
+mechanism to enable the proper permissions. For more information
+on using the crossdomain.xml file, see <a href="flx_security2_se.html#WS2db454920e96a9e51e63e3d11c0bf69084-7f2b_verapache">Using
+cross-domain policy files</a>.</p>
+
+            </div>
+
+         </div>
+
+         <div class="nested3" id="WS2db454920e96a9e51e63e3d11c0bf67110-7fed_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf67110-7fed_verapache"><!-- --></a>
+            <h4 class="topictitle4">Using character ranges for embedded
+fonts</h4>
+
+            
+            <div>
+               <p>By specifying a range of symbols that compose the face
+of an embedded font, you reduce the size of an embedded font. Each
+character in a font must be described; if you remove some of these
+characters, it reduces the overall size of the description information
+that Flex must include for each embedded font.</p>
+
+               <p>You can set the range of glyphs in the flex-config.xml file or
+in the <samp class="codeph">@font-face</samp> declaration in each MXML file.
+You specify individual characters or ranges of characters using
+the Unicode values for the characters, and you can set multiple ranges
+for each font declaration.</p>
+
+               <p>In CSS, you can set the Unicode range with the <samp class="codeph">unicodeRange</samp> property,
+as the following example shows:</p>
+
+               <pre class="codeblock"> @font-face { 
+ 	src:url("../assets/MyriadWebPro.ttf"); 
+ 	fontFamily: myFontFamily; 
+ 	unicodeRange: 
+ 		U+0041-005A, /* Upper-Case [A..Z] */ 
+ 		U+0061-007A, /* Lower-Case a-z */ 
+ 		U+0030-0039, /* Numbers [0..9] */ 
+ 		U+002E-002E; /* Period [.] */ 
+	embedAsCFF:true; 
+ }</pre>
+
+               <p>In the flex-config.xml file, you can set the Unicode range with
+the <samp class="codeph">&lt;language-range&gt;</samp> block, as the following
+example shows:</p>
+
+               <pre class="codeblock"> &lt;language-range&gt; 
+ 	&lt;lang&gt;Latin I&lt;/lang&gt; 
+ 	&lt;range&gt;U+0020,U+00A1-00FF,U+2000-206F,U+20A0-20CF,U+2100-2183&lt;/range&gt; 
+ &lt;/language-range&gt;</pre>
+
+               <p>For more information, see <a href="flx_fonts_ft.html#WS2db454920e96a9e51e63e3d11c0bf69084-7f9e_verapache">Fonts</a>.</p>
+
+            </div>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf67110-7fec_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf67110-7fec_verapache"><!-- --></a>
+         <h3 class="topictitle3">Using multiple SWF files</h3>
+
+         
+         <div>
+            <p>
+               
+               
+               One
+way to reduce the size of an application’s file is to break the
+application up into logical parts that can be sent to the client
+and loaded over a series of requests rather than all at once. By
+breaking a monolithic application into smaller applications, users
+can interact with your application more quickly, but possibly experience
+some delays while the application is running.</p>
+
+            <p>One approach is to use the <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/controls/SWFLoader.html" target="_blank">SWFLoader</a> control
+to load sub-applications. This technique can work with SWF files
+that add graphics or animations to an application, or SWF files
+that act as stand-alone applications inside the main application.
+It also provides some level of interoperability between the main application
+and loaded sub-applications. If you load SWF files that require
+a large amount of user interaction, however, consider building them
+as custom components. </p>
+
+            <p>When loading sub-applications into a main application, you should
+be aware of the following factors:</p>
+
+            <div class="p">
+               <dl>
+                  
+                     <dt class="dlterm">Versioning</dt>
+
+                     <dd>
+                        <p>SWF files produced with earlier versions of Flex or ActionScript
+may not work properly when loaded with the SWFLoader control. You
+can use the <samp class="codeph">loadForCompatibility</samp> property of the
+SWFLoader control to ensure that sub-applications loaded into a
+main application will work, even if the applications were compiled
+with a different version of the compiler.</p>
+
+                     </dd>
+
+                  
+                  
+                     <dt class="dlterm">Security</dt>
+
+                     <dd>
+                        <p>When loading sub-applications, especially ones that were
+created by a third-party, you should consider loading them into
+their own SecurityDomain. While this places additional limitations
+on the level of interoperability between the main application and
+the sub-application, it ensures that the content is safe from attack.</p>
+
+                     </dd>
+
+                  
+               </dl>
+
+            </div>
+
+            <p>For more information about creating and loading sub-applications,
+see <a href="flx_loading_applications_la.html#WS2db454920e96a9e51e63e3d11c0bf69084-7d14_verapache">Developing
+and loading sub-applications</a>.</p>
+
+            <p>Rather than loading SWF files into the main application with
+the SWFLoader control, consider having the SWF files communicate
+with each other as separate applications. You can do this with local <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/flash/net/SharedObject.html" target="_blank">SharedObject</a>s, <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/flash/net/LocalConnection.html" target="_blank">LocalConnection </a>objects, or
+with the ExternalInterface API.</p>
+
+            <p>You can also use modules to externalize sections of your application
+into dynamically loaded SWFs. While modules do not work as standalone
+applications, they can be loaded and unloaded in your main application.
+For more information, see <a href="flx_modular_md.html#WS2db454920e96a9e51e63e3d11c0bf69084-7f22_verapache">Modular
+applications</a>.</p>
+
+         </div>
+
+         <div class="nested3" id="WS2db454920e96a9e51e63e3d11c0bf67110-7feb_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf67110-7feb_verapache"><!-- --></a>
+            <h4 class="topictitle4">Comparing dynamic and static linking</h4>
+
+            
+            <div>
+               <p>
+                  
+                  
+                  
+                  Most
+large applications use libraries of ActionScript classes and components.
+You must decide whether to use static or dynamic linking when using
+these libraries in your applications.</p>
+
+               <p>
+                  When you
+use <em>static linking</em>, the compiler includes all components,
+classes, and their dependencies in the application SWF file when
+you compile the application. The result is a larger SWF file that
+takes longer to download but loads and runs quickly because all
+the code is in the SWF file. To compile your application that uses
+libraries and to statically link those definitions into your application,
+you use the <samp class="codeph">library-path</samp> and <samp class="codeph">include-libraries</samp> options
+to specify the locations of SWC files. </p>
+
+               <p>
+                  <em>Dynamic linking</em> is when some classes used by an application
+are left in an external file that is loaded at run time. The result
+is a smaller SWF file size for the main application, but the application
+relies on external files that are loaded during run time. </p>
+
+               <p>
+                  
+                  To dynamically link classes and components,
+you compile a library. You then instruct the compiler to exclude
+that library’s contents from the application SWF file. You must
+still provide link-checking at compile time even though the classes are
+not going to be included in the final SWF file. </p>
+
+               <p>You use dynamic linking by creating component libraries and compiling
+them with your application by using the <samp class="codeph">external-library-path</samp>, <samp class="codeph">externs</samp>,
+or <samp class="codeph">load-externs</samp> compiler options. These options
+instruct the compiler to exclude resources defined by their arguments
+from inclusion in the application, but to check links against them
+and prepare to load them at run time. The <samp class="codeph">external-library-path</samp> option
+specifies SWC files or directories for dynamic linking. The <samp class="codeph">externs</samp> option
+specifies individual classes or symbols for dynamic linking. The <samp class="codeph">load-externs</samp> option
+specifies an XML file that describes which classes to use for dynamic
+linking. This XML file has the same syntax as the file produced
+by the <samp class="codeph">link-report</samp> compiler option.</p>
+
+               <p>For more information about linking, see <a href="flx_rsl_rsl.html#WS2db454920e96a9e51e63e3d11c0bf69084-7f1e_verapache">About
+linking</a>. For more information about compiler options, see <a href="flx_compilers_cpl.html#WS2db454920e96a9e51e63e3d11c0bf69084-7ffd_verapache">Flex
+compilers</a>.</p>
+
+            </div>
+
+         </div>
+
+         <div class="nested3" id="WS2db454920e96a9e51e63e3d11c0bf69084-7b01_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7b01_verapache"><!-- --></a>
+            <h4 class="topictitle4">Using RSLs to reduce SWF file size</h4>
+
+            
+            <div>
+               <p>
+                  
+                  
+                  
+                  One
+way to reduce the size of your application’s SWF file is by externalizing shared
+assets into stand-alone files that can be separately downloaded
+and cached on the client. These shared assets are loaded by any
+number of applications at run time, but must be transferred only
+once to the client. These shared files are known as <em>Runtime Shared Libraries</em> (RSLs).</p>
+
+               <p>If you have multiple applications but those applications share
+a core set of custom components or classes, your users will be required
+to download those assets only once as an RSL. The applications that
+share the assets in the RSL use the same cached RSL as the source
+for the libraries as long as they are in the same domain. The resulting
+file size for your applications can be reduced. The benefits increase
+as the number of applications that use the RSL increases. </p>
+
+               <p>When you create an RSL, be sure to optimize it prior to deployment.
+This removes debugging information as well as unnecessary metadata
+from the RSL, which can dramatically reduce its size.</p>
+
+               <p>By default, Flex compiles your applications against the framework
+RSLs. </p>
+
+               <p>For more information, see <a href="flx_rsl_rsl.html#WS2db454920e96a9e51e63e3d11c0bf69084-7fd1_verapache">Runtime
+Shared Libraries</a>.</p>
+
+            </div>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf67110-7fe9_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf67110-7fe9_verapache"><!-- --></a>
+         <h3 class="topictitle3">Application coding</h3>
+
+         
+         <div>
+            <p>The MXML language provides a rich set of controls and classes
+that you can use to create interactive applications. This richness
+sometimes can reduce performance. However, there are some techniques
+that a Flex developer can use to improve the run-time performance
+of the application.</p>
+
+         </div>
+
+         <div class="nested3" id="WS2db454920e96a9e51e63e3d11c0bf67110-7fe8_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf67110-7fe8_verapache"><!-- --></a>
+            <h4 class="topictitle4">Object creation and destruction</h4>
+
+            
+            <div>
+               <p>
+                  
+                  <em>Object creation</em> is
+the task of instantiating all the objects in your application. These
+objects include controls, components, and objects that contain data
+and other dynamic information. Optimizing the process of object
+creation and destruction can result in significant performance gains. <em>Object destruction</em> is
+the act of reallocating memory for objects after all references
+to those objects have been removed. This task is carried out by
+the garbage collector at regular intervals. You can improve the
+frequency that Flash Player and AIR destroy objects by removing
+references to objects. </p>
+
+               <p>No single task during application initialization takes up the
+most time. The best way to improve performance is to create fewer
+objects. You can do this by deferring the instantiation of objects,
+or changing the order in which they are created to improve perceived
+performance.</p>
+
+               <div class="section" id="WS2db454920e96a9e51e63e3d11c0bf67110-7fe8_verapache__WS2db454920e96a9e51e63e3d11c0bf67110-7fe6_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf67110-7fe8_verapache__WS2db454920e96a9e51e63e3d11c0bf67110-7fe6_verapache"><!-- --></a><h5 class="sectiontitle">Using
+deferred creation</h5>
+                  
+                  <p>
+                     
+                     
+                     To improve the start-up time of your application,
+you can minimize the number of objects that are created when the
+application is first loaded. If a user-interface component is not
+initially visible at start up, create that component only when you
+need it. This is called deferred creation. Containers that have
+multiple views, such as an Accordion, provide built-in support for
+this behavior. You can use ActionScript to customize the creation
+order of multiple-view containers or defer the creation of other
+containers and controls.</p>
+
+                  <p>To use deferred creation, you set
+the value of a component’s <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/core/Container.html#creationPolicy" target="_blank">creationPolicy</a> property
+to <samp class="codeph">all</samp>, <samp class="codeph">auto</samp>, or <samp class="codeph">none</samp>.
+If you set it to <samp class="codeph">none</samp>, Flex does not instantiate
+a control’s children immediately, but waits until you instruct Flex
+to do so. If you set the <samp class="codeph">creationPolicy</samp> property
+on a container, then the children of that container are affected
+by its setting. So, for example, if you set the <samp class="codeph">creationPolicy</samp> property
+to none on a Panel container, then all children of the Panel are
+not created when the application starts up. The children are only created
+when you manually instantiate them.</p>
+
+                  <p>For Spark containers that
+extend SkinnableContainer, you call the <samp class="codeph">createDeferredContent()</samp> method
+to create deferred components. Only SkinnableContainer and containers
+that extend it support deferred instantiation; Groups do not. When
+a Group is created, its children are always created.</p>
+
+                  <div class="p">In the
+following example with a Spark container, the children of the Panel container
+are not instantiated when the application is first loaded, but only
+after the user clicks the button: <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- optimize/CreationPolicyNoneSpark.mxml --&gt; 
+&lt;s:Application     
+    xmlns:fx="http://ns.adobe.com/mxml/2009"    
+    xmlns:mx="library://ns.adobe.com/flex/mx"     
+    xmlns:s="library://ns.adobe.com/flex/spark"&gt; 
+ 
+    &lt;s:layout&gt; 
+        &lt;s:VerticalLayout/&gt; 
+    &lt;/s:layout&gt; 
+ 
+    &lt;fx:Script&gt;&lt;![CDATA[ 
+ 
+        private function createButtons(e:Event):void { 
+            myPanel.createDeferredContent(); 
+        } 
+ 
+    ]]&gt;&lt;/fx:Script&gt; 
+ 
+    &lt;s:Panel id="myPanel" title="Panel with Deferred Content" creationPolicy="none"&gt; 
+        &lt;s:VGroup&gt; 
+            &lt;s:Button id="b1" label="Hurley"/&gt; 
+            &lt;s:Button id="b2" label="Jack"/&gt; 
+            &lt;s:Button id="b3" label="Sawyer"/&gt; 
+        &lt;/s:VGroup&gt; 
+    &lt;/s:Panel&gt; 
+    
+    &lt;s:Button id="myButton" click="createButtons(event)" label="Create Buttons"/&gt; 
+ 
+&lt;/s:Application&gt;</pre>
+
+                  </div>
+
+                  <p>For MX containers, call
+methods such as <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/core/Container.html#createComponentFromDescriptor()" target="_blank">createComponentFromDescriptor()</a> and <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/core/Container.html#createComponentsFromDescriptor()" target="_blank">createComponentsFromDescriptor()</a> on
+the container to instantiate its children at run time.  </p>
+
+                  <p>In
+the following example with an MX container, the children of the
+VBox container are not be instantiated when the application is first
+loaded, but only after the user clicks the button:</p>
+
+                  <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- optimize/CreationPolicyNone.mxml --&gt; 
+&lt;s:Application     
+    xmlns:fx="http://ns.adobe.com/mxml/2009"    
+    xmlns:mx="library://ns.adobe.com/flex/mx"     
+    xmlns:s="library://ns.adobe.com/flex/spark"&gt; 
+ 
+    &lt;s:layout&gt; 
+        &lt;s:VerticalLayout/&gt; 
+    &lt;/s:layout&gt; 
+ 
+    &lt;fx:Script&gt;&lt;![CDATA[ 
+ 
+        private function createButtons(e:Event):void { 
+            myVBox.createComponentsFromDescriptors(); 
+        } 
+ 
+    ]]&gt;&lt;/fx:Script&gt; 
+ 
+    &lt;s:Panel title="VBox with Deferred Content"&gt; 
+        &lt;mx:VBox id="myVBox" height="100" width="125" creationPolicy="none"&gt; 
+            &lt;s:Button id="b1" label="Hurley"/&gt; 
+            &lt;s:Button id="b2" label="Jack"/&gt; 
+            &lt;s:Button id="b3" label="Sawyer"/&gt; 
+        &lt;/mx:VBox&gt; 
+    &lt;/s:Panel&gt; 
+ 
+    &lt;s:Button id="myButton" click="createButtons(event)" label="Create Buttons"/&gt; 
+    
+&lt;/s:Application&gt;</pre>
+
+                  <p>For more information on using
+deferred instantiation, see <a href="flx_layoutperformance_lp.html#WS2db454920e96a9e51e63e3d11c0bf69084-7af8_verapache">Using
+deferred creation</a>.</p>
+
+               </div>
+
+               <div class="section" id="WS2db454920e96a9e51e63e3d11c0bf67110-7fe8_verapache__WS2db454920e96a9e51e63e3d11c0bf67110-7fe5_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf67110-7fe8_verapache__WS2db454920e96a9e51e63e3d11c0bf67110-7fe5_verapache"><!-- --></a><h5 class="sectiontitle">Destroying
+unused objects</h5>
+                  
+                  <p>Flash Player provides built-in garbage
+collection that frees up memory by destroying objects that are no
+longer used. To ensure that the garbage collector destroys your
+unused objects, remove all references to that object, including
+the parent’s reference to the child. </p>
+
+                  <p>
+                     
+                     For
+Spark containers, you can call the <samp class="codeph">removeElement()</samp>, <samp class="codeph">removeAllElements()</samp>,
+or <samp class="codeph">removeElementAt()</samp> methods to remove references
+to child controls. For MX containers, you can call the <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/core/Container.html#removeChild()" target="_blank">removeChild()</a> or <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/core/Container.html#removeChildAt()" target="_blank">removeChildAt()</a> method
+to remove references to child controls that are no longer needed. </p>
+
+                  <p>The
+following example removes references to button instances from the
+MX myVBox and Spark myGroup containers:</p>
+
+                  <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- optimize/DestroyObjects.mxml --&gt; 
+&lt;s:Application     
+    xmlns:fx="http://ns.adobe.com/mxml/2009"    
+    xmlns:mx="library://ns.adobe.com/flex/mx"     
+    xmlns:s="library://ns.adobe.com/flex/spark"&gt; 
+    &lt;s:layout&gt; 
+        &lt;s:VerticalLayout/&gt; 
+    &lt;/s:layout&gt; 
+ 
+    &lt;fx:Script&gt;&lt;![CDATA[ 
+        private function destroyButtons(e:Event):void { 
+            myVBox.removeChild(b1); 
+            myVBox.removeChild(b2); 
+            myVBox.removeChild(b3); 
+            
+            myGroup.removeElement(b4); 
+        } 
+    ]]&gt;&lt;/fx:Script&gt; 
+ 
+    &lt;s:Panel title="VBox and Group"&gt; 
+        &lt;s:VGroup&gt;        
+            &lt;mx:VBox id="myVBox" height="100" width="125"&gt; 
+                &lt;s:Button id="b1" label="Hurley"/&gt; 
+                &lt;s:Button id="b2" label="Jack"/&gt; 
+                &lt;s:Button id="b3" label="Sawyer"/&gt; 
+            &lt;/mx:VBox&gt; 
+ 
+            &lt;s:Group id="myGroup"&gt; 
+                &lt;s:Button id="b4" label="Other"/&gt; 
+            &lt;/s:Group&gt; 
+        &lt;/s:VGroup&gt;        
+    &lt;/s:Panel&gt; 
+    
+    &lt;s:Button id="myButton2" click="destroyButtons(event)" label="Destroy Buttons"/&gt; 
+ 
+&lt;/s:Application&gt;</pre>
+
+                  <p>You can clear references to
+unused variables by setting them to <samp class="codeph">null</samp> in your ActionScript;
+for example:</p>
+
+                  <pre class="codeblock"> myDataProvider = null</pre>
+
+                  <p>
+                     
+                     
+                     
+                     
+                     To ensure that destroyed objects
+are garbage collected, you must also remove event listeners on them
+by using the <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/flash/events/EventDispatcher.html#removeEventListener()" target="_blank">removeEventListener()</a> method,
+as the following example shows:</p>
+
+                  <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- optimize/RemoveListeners.mxml --&gt; 
+&lt;s:Application     
+    xmlns:fx="http://ns.adobe.com/mxml/2009"    
+    xmlns:mx="library://ns.adobe.com/flex/mx"     
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    creationComplete="initApp(event)"&gt; 
+ 
+    &lt;s:layout&gt; 
+        &lt;s:VerticalLayout/&gt; 
+    &lt;/s:layout&gt; 
+ 
+    &lt;fx:Script&gt;&lt;![CDATA[ 
+        private function initApp(e:Event):void { 
+            b1.addEventListener("click",myClickHandler); 
+            b2.addEventListener("click",myClickHandler); 
+            b3.addEventListener("click",myClickHandler); 
+        } 
+ 
+        private function destroyButtons(e:Event):void { 
+            b1.removeEventListener("click",myClickHandler); 
+            b2.removeEventListener("click",myClickHandler); 
+            b3.removeEventListener("click",myClickHandler); 
+ 
+            myVGroup.removeAllElements(); 
+        } 
+        
+        private function myClickHandler(e:Event):void { 
+            // Do something here. 
+        } 
+    ]]&gt;&lt;/fx:Script&gt; 
+ 
+    &lt;s:Panel title="VGroup with child controls"&gt; 
+        &lt;s:VGroup id="myVGroup" height="100" width="125"&gt; 
+            &lt;s:Button id="b1" label="Hurley"/&gt; 
+            &lt;s:Button id="b2" label="Jack"/&gt; 
+            &lt;s:Button id="b3" label="Sawyer"/&gt; 
+        &lt;/s:VGroup&gt; 
+    &lt;/s:Panel&gt; 
+    
+    &lt;s:Button id="myButton" click="destroyButtons(event)" label="Destroy Buttons"/&gt; 
+ 
+&lt;/s:Application&gt;</pre>
+
+                  <p>You cannot call the <samp class="codeph">removeEventListener()</samp> method
+on an event handler that you added inline. In the following example,
+you cannot call <samp class="codeph">removeEventListener()</samp> on b1’s <samp class="codeph">click</samp> event
+handler, but you can call it on b2’s and b3’s event handlers:</p>
+
+                  <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- optimize/RemoveSomeListeners.mxml --&gt; 
+&lt;s:Application     
+    xmlns:fx="http://ns.adobe.com/mxml/2009"    
+    xmlns:mx="library://ns.adobe.com/flex/mx"     
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    creationComplete="initApp(event)"&gt; 
+ 
+    &lt;s:layout&gt; 
+        &lt;s:VerticalLayout/&gt; 
+    &lt;/s:layout&gt; 
+ 
+    &lt;fx:Script&gt;&lt;![CDATA[ 
+        private function initApp(e:Event):void { 
+            b2.addEventListener("click",myClickHandler); 
+            b3.addEventListener("click",myClickHandler); 
+        } 
+ 
+        private function destroyButtons(e:Event):void { 
+            b2.removeEventListener("click",myClickHandler); 
+            b3.removeEventListener("click",myClickHandler); 
+ 
+            myVGroup.removeAllElements(); 
+        } 
+        
+        private function myClickHandler(e:Event):void { 
+            // Do something here. 
+        } 
+    ]]&gt;&lt;/fx:Script&gt; 
+ 
+    &lt;s:Panel title="VGroup with child controls"&gt; 
+        &lt;s:VGroup id="myVGroup" height="100" width="125"&gt; 
+            &lt;s:Button id="b1" label="Hurley" click="myClickHandler(event)"/&gt; 
+            &lt;s:Button id="b2" label="Jack"/&gt; 
+            &lt;s:Button id="b3" label="Sawyer"/&gt; 
+        &lt;/s:VGroup&gt; 
+    &lt;/s:Panel&gt; 
+    
+    &lt;s:Button id="myButton" click="destroyButtons(event)" label="Destroy Buttons"/&gt; 
+ 
+&lt;/s:Application&gt;</pre>
+
+                  <p>The <em>weakRef</em> parameter
+to the <samp class="codeph">addEventListener()</samp> method provides you with
+some control over memory resources for listeners. A strong reference
+(when <samp class="codeph">weakRef</samp> is <samp class="codeph">false</samp>) prevents
+the listener from being garbage collected. A weak reference (when <samp class="codeph">weakRef</samp> is <samp class="codeph">true</samp>)
+does not. The default value of the <em>weakRef</em> parameter is <samp class="codeph">false</samp>.</p>
+
+                  <p>For
+more information about the <samp class="codeph">removeEventListener()</samp> method,
+see <a href="flx_events_ev.html#WS2db454920e96a9e51e63e3d11c0bf69084-7ee9_verapache">Events</a>.</p>
+
+               </div>
+
+            </div>
+
+         </div>
+
+         <div class="nested3" id="WS2db454920e96a9e51e63e3d11c0bf67110-7fe4_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf67110-7fe4_verapache"><!-- --></a>
+            <h4 class="topictitle4">Using styles</h4>
+
+            
+            <div>
+               <p>
+                  You use
+styles to define the look and feel of your applications. You can
+use them to change the appearance of a single component, or apply
+them globally. Be aware that some methods of applying styles are
+more computationally expensive than others. You can increase your
+application’s performance by changing the way you apply styles.</p>
+
+               <p>For more information about using styles, see <a href="flx_styles_st.html#WS2db454920e96a9e51e63e3d11c0bf69084-7fee_verapache">Styles
+and themes</a>.</p>
+
+            </div>
+
+            <div class="nested4" id="WS8b1c39bd7e9fc364-4b104d7a12c134ea9ff-8000_verapache"><a name="WS8b1c39bd7e9fc364-4b104d7a12c134ea9ff-8000_verapache"><!-- --></a>
+               <h5 class="topictitle5">Loading stylesheets at run time</h5>
+
+               
+               <div>
+                  <p>You can load stylesheets at run time by using the StyleManager.
+These style sheets take the form of SWF files that are dynamically
+loaded while your application runs. </p>
+
+                  <p>By loading style sheets at run time, you can load images (for
+graphical skins), fonts, type and class selectors, and programmatic
+skins into your application without embedding them at compile time.
+This lets skins and fonts be partitioned into separate SWF files,
+away from the main application. As a result, the application’s SWF
+file size is smaller, which reduces the initial download time. However,
+the first time a run-time style sheet is used, it takes longer for
+the styles and skins to be applied because Flex must download the
+necessary CSS-based SWF file. </p>
+
+               </div>
+
+            </div>
+
+            <div class="nested4" id="WS8b1c39bd7e9fc364-4b104d7a12c134ea9ff-7fff_verapache"><a name="WS8b1c39bd7e9fc364-4b104d7a12c134ea9ff-7fff_verapache"><!-- --></a>
+               <h5 class="topictitle5">Reducing calls to the setStyle()
+method</h5>
+
+               
+               <div>
+                  <p>
+                     
+                     
+                     Run-time
+cascading styles are very powerful, but use them sparingly and in
+the correct context. Calling the <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/core/UIComponent.html#setStyle()" target="_blank">setStyle()</a> method
+can be an expensive operation because the call requires notifying
+all the children of the newly-styled object. The resulting tree
+of children that must be notified can be quite large.</p>
+
+                  <p>
+                     
+                     A common mistake that impacts
+performance is overusing or unnecessarily using the <samp class="codeph">setStyle()</samp> method.
+In general, you only use the <samp class="codeph">setStyle()</samp> method
+when you change styles on existing objects. Do not use it when you
+set up styles for an object for the first time. Instead, set styles
+in an <samp class="codeph">&lt;fx:Style&gt;</samp> block, as style properties
+on the MXML tag, through an external CSS style sheet, or as global
+styles. </p>
+
+                  <p>
+                     
+                     Some applications must call the <samp class="codeph">setStyle()</samp> method
+during the application or object instantiation. If this is the case,
+call the <samp class="codeph">setStyle()</samp> method early in the instantiation
+phase. Early in the instantiation phase means setting styles from
+the component or application’s <samp class="codeph">preinitialize</samp> event,
+instead of the <samp class="codeph">initialize</samp> or <samp class="codeph">creationComplete</samp> event.
+By setting the styles as early as possible during initialization,
+you avoid unnecessary style notification and lookup.</p>
+
+                  <p>If you programmatically create a component and want to set styles
+on that component, call the <samp class="codeph">setStyle()</samp> method before
+you attach it to the display list with a call to the <samp class="codeph">addElement()</samp> method,
+as the following example shows:</p>
+
+                  <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- optimize/CreateStyledButton.mxml --&gt; 
+&lt;s:Application     
+    xmlns:fx="http://ns.adobe.com/mxml/2009"    
+    xmlns:mx="library://ns.adobe.com/flex/mx"     
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    creationComplete="initApp(event)"&gt; 
+ 
+    &lt;fx:Script&gt;&lt;![CDATA[ 
+        import spark.components.Button; 
+    
+        public function initApp(e:Event):void { 
+            var b:Button = new Button(); 
+            b.label="Click Me"; 
+            b.setStyle("color", 0x00CCFF); 
+            panel1.addElement(b); 
+        } 
+    ]]&gt;&lt;/fx:Script&gt; 
+        
+    &lt;s:Panel id="panel1"/&gt; 
+    
+&lt;/s:Application&gt;</pre>
+
+               </div>
+
+            </div>
+
+            <div class="nested4" id="WS8b1c39bd7e9fc364-4b104d7a12c134ea9ff-7ffe_verapache"><a name="WS8b1c39bd7e9fc364-4b104d7a12c134ea9ff-7ffe_verapache"><!-- --></a>
+               <h5 class="topictitle5">Setting global styles</h5>
+
+               
+               <div>
+                  <p>
+                     Changing global
+styles (changing a CSS ruleset that is associated with a class or type
+selector) at run time is an expensive operation. Any time you change
+a global style, Flash Player must perform the following actions:</p>
+
+                  <ul>
+                     <li>
+                        <p>Traverse the entire application looking for instances
+of that control.</p>
+
+                     </li>
+
+                     <li>
+                        <p>Check all the control’s children if the style is inheriting.</p>
+
+                     </li>
+
+                     <li>
+                        <p>Redraw that control.</p>
+
+                     </li>
+
+                  </ul>
+
+                  <p>The following example globally changes the Button control’s color
+style property:</p>
+
+                  <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- optimize/ApplyGlobalStyles.mxml --&gt; 
+&lt;s:Application  
+    xmlns:fx="http://ns.adobe.com/mxml/2009"    
+    xmlns:mx="library://ns.adobe.com/flex/mx"     
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    creationComplete="initApp(event)"&gt; 
+ 
+    &lt;fx:Script&gt;&lt;![CDATA[ 
+        public function initApp(e:Event):void { 
+            styleManager.getStyleDeclaration("spark.components.Button").setStyle("color", 0x00CCFF); 
+        } 
+    ]]&gt;&lt;/fx:Script&gt; 
+        
+    &lt;s:Panel id="panel1"&gt; 
+        &lt;s:Button id="b1" label="Click Me"/&gt; 
+        &lt;s:Button id="b2" label="Click Me"/&gt; 
+        &lt;s:Button id="b3" label="Click Me"/&gt; 
+    &lt;/s:Panel&gt; 
+    
+&lt;/s:Application&gt;</pre>
+
+                  <p>If possible, set global styles at authoring time by using CSS.
+If you must set them at run time, try to set styles by using the
+techniques described in <a href="flx_performance_pe.html#WS8b1c39bd7e9fc364-4b104d7a12c134ea9ff-7fff_verapache">Reducing
+calls to the setStyle() method</a>.</p>
+
+               </div>
+
+            </div>
+
+            <div class="nested4" id="WS8b1c39bd7e9fc364-4b104d7a12c134ea9ff-7ffd_verapache"><a name="WS8b1c39bd7e9fc364-4b104d7a12c134ea9ff-7ffd_verapache"><!-- --></a>
+               <h5 class="topictitle5">Calling the setStyleDeclaration()
+and loadStyleDeclarations() methods</h5>
+
+               
+               <div>
+                  <p>
+                     
+                     
+                     The <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/styles/StyleManager.html#setStyleDeclaration()" target="_blank">setStyleDeclaration()</a> method
+is computationally expensive. You can prevent Flash Player from
+applying or clearing the new styles immediately by setting the <samp class="codeph">update</samp> parameter
+to <samp class="codeph">false</samp>. </p>
+
+                  <p>
+                     The following
+example sets new class selectors on different targets, but does
+not trigger the update until the last style declaration is applied:</p>
+
+                  <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- optimize/SetStyleDeclarationExample.mxml --&gt; 
+&lt;s:Application  
+    xmlns:fx="http://ns.adobe.com/mxml/2009"    
+    xmlns:mx="library://ns.adobe.com/flex/mx"     
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    creationComplete="initApp()"&gt; 
+ 
+    &lt;s:layout&gt; 
+        &lt;s:VerticalLayout/&gt; 
+    &lt;/s:layout&gt; 
+ 
+    &lt;fx:Script&gt; 
+        &lt;![CDATA[ 
+        private var myButtonStyle:CSSStyleDeclaration = 
+            new CSSStyleDeclaration('myButtonStyle'); 
+        private var myLabelStyle:CSSStyleDeclaration = 
+            new CSSStyleDeclaration('myLabelStyle'); 
+        private var myTextAreaStyle:CSSStyleDeclaration = 
+            new CSSStyleDeclaration('myTextAreaStyle'); 
+ 
+        private function initApp():void { 
+            myButtonStyle.setStyle('color', 'blue'); 
+            myLabelStyle.setStyle('color', 'blue'); 
+            myTextAreaStyle.setStyle('color', 'blue'); 
+        } 
+ 
+        private function applyStyles():void { 
+            styleManager.setStyleDeclaration("spark.components.Button", myButtonStyle, false); 
+            styleManager.setStyleDeclaration("spark.components.Label", myLabelStyle, false); 
+            styleManager.setStyleDeclaration("spark.components.TextArea", myTextAreaStyle, true); 
+        } 
+        ]]&gt; 
+    &lt;/fx:Script&gt; 
+ 
+    &lt;s:Button id="myButton" label="Click Me" click="applyStyles()"/&gt; 
+    &lt;s:Label id="myLabel" text="This is a label"/&gt; 
+    &lt;s:TextArea id="myTextArea" text="This is a TextArea"/&gt; 
+ 
+&lt;/s:Application&gt;</pre>
+
+                  <p>When you pass <samp class="codeph">false</samp> for the <samp class="codeph">update</samp> parameter,
+Flash Player stores the selector but does not apply the style. When
+you pass <samp class="codeph">true</samp> for the <samp class="codeph">update</samp> parameter,
+Flash Player recomputes the styles for every visual component in
+the application.</p>
+
+                  <p>
+                     
+                     
+                     The <samp class="codeph">loadStyleDeclarations()</samp> method
+is similarly computationally expensive. When you load a new style
+sheet, this method triggers an update to the display list by default.
+You can prevent Flash Player from applying or clearing the new style
+sheets immediately by setting the <samp class="codeph">update</samp> parameter
+to <samp class="codeph">false</samp>. When you chain calls to <samp class="codeph">loadStyleDeclarations()</samp> methods,
+set the update parameter to <samp class="codeph">false</samp> for all calls
+except the last one. </p>
+
+               </div>
+
+            </div>
+
+         </div>
+
+         <div class="nested3" id="WS2db454920e96a9e51e63e3d11c0bf67110-7fdf_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf67110-7fdf_verapache"><!-- --></a>
+            <h4 class="topictitle4">Working with containers</h4>
+
+            
+            <div>
+               <p>
+                  
+                  
+                  
+                  
+                  Containers
+provide a hierarchical structure that lets you control the layout characteristics
+of container children. You can use containers to control child sizing
+and positioning, or to control navigation among multiple child containers.</p>
+
+               <p>When you develop your application, try to minimize the number
+of containers that you use. This is because most containers provide
+relative sizing and positioning, which can be resource-intensive
+operations, especially when an application first starts.</p>
+
+               <div class="section" id="WS2db454920e96a9e51e63e3d11c0bf67110-7fdf_verapache__WS2db454920e96a9e51e63e3d11c0bf67110-7fde_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf67110-7fdf_verapache__WS2db454920e96a9e51e63e3d11c0bf67110-7fde_verapache"><!-- --></a><h5 class="sectiontitle">Minimizing
+container nesting</h5>
+                  
+                  <p>One common mistake is to create a container
+that contains a single child. Sometimes having a single child in
+a container is necessary, such as when you use the container’s padding
+to position the child. But try to identify and remove containers
+such as these that provide no real functionality. Also keep in mind
+that the root of an MXML component does not need to be a container.</p>
+
+                  <p>Another
+sign of possibly too many containers is when you have a container nested
+inside another container, where both the parent and child containers have
+the same type (for example, the HBox or HGroup containers).</p>
+
+                  <p>It
+is good practice to avoid deeply nested layouts when possible. For
+simple applications, if you have nested containers more than three
+levels deep, you can probably produce the same layout with fewer
+levels of containers. Deep nesting can lead to performance problems.
+For larger applications, deeper nesting might be unavoidable.</p>
+
+                  <p>When
+you nest containers, each container instance runs measuring and
+sizing algorithms on its children (some of which are containers
+themselves, so this measuring procedure can be recursive). When
+the layout algorithms have processed, and the relative layout values
+have been calculated, Flash Player draws the complex collection
+of objects comprising the view. By eliminating unnecessary work
+at object creation time, you can improve the performance of your
+application.</p>
+
+               </div>
+
+               <div class="section" id="WS2db454920e96a9e51e63e3d11c0bf67110-7fdf_verapache__WS2db454920e96a9e51e63e3d11c0bf67110-7fdd_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf67110-7fdf_verapache__WS2db454920e96a9e51e63e3d11c0bf67110-7fdd_verapache"><!-- --></a><h5 class="sectiontitle">Using
+Grid containers</h5>
+                  
+                  <p>
+                     A <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/containers/Grid.html" target="_blank">Grid</a> container
+is useful for aligning multiple objects. When you use Grid containers,
+however, you introduce additional levels of containers with the <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/containers/GridItem.html" target="_blank">GridItem</a> and <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/containers/GridRow.html" target="_blank">GridRow</a> controls.
+In many cases, you can achieve the same results by using the HGroup
+and VGroup containers, and these containers use fewer levels of
+nesting.</p>
+
+               </div>
+
+               <div class="section" id="WS2db454920e96a9e51e63e3d11c0bf67110-7fdf_verapache__WS2db454920e96a9e51e63e3d11c0bf67110-7fdc_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf67110-7fdf_verapache__WS2db454920e96a9e51e63e3d11c0bf67110-7fdc_verapache"><!-- --></a><h5 class="sectiontitle">Using
+absolute layout for containers</h5>
+                  
+                  <p>
+                     
+                     
+                     You
+can sometimes improve application start-up time by using containers
+that support absolute positioning of their children, instead of
+relative layout containers. Containers that support absolute layout
+include all Spark containers, plus the MX containers Canvas, Application,
+and Panel. Containers that only use relative layout include MX containers
+like <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/containers/Form.html" target="_blank">Form</a>, HBox,
+VBox, Grid, and <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/containers/Tile.html" target="_blank">Tile</a>.</p>
+
+                  <p>All
+Spark containers support both absolute and relative layout.</p>
+
+                  <p>
+                     
+                     
+                     
+                     Containers that use absolute positioning
+eliminate the layout logic that relative layout containers use to
+perform automatic positioning of their children at startup, and
+replace it with explicit pixel-based positioning. When you use absolute
+positioning, you must remember to set the <em>x</em> and <em>y</em> positions
+of all of the container’s children. If you do not set the <em>x</em> and <em>y</em> positions,
+the container’s children lay out on top of each other at the default <em>x</em>, <em>y</em> coordinates
+(0,0).</p>
+
+                  <p>Container that use absolute positioning are not always
+more efficient than relative layout containers, however, because
+they must measure themselves to make sure that they are large enough
+to contain their children. </p>
+
+                  <p>Applications that use absolute
+positioning typically contain a much flatter containment hierarchy.
+As a result, using these containers can lead to less nesting and
+fewer overall containers, which improves performance.</p>
+
+                  <p>Containers
+that use absolute positioning support constraints, which means that if
+the container changes size, the children inside the container move
+with it.</p>
+
+               </div>
+
+               <div class="section" id="WS2db454920e96a9e51e63e3d11c0bf67110-7fdf_verapache__WS2db454920e96a9e51e63e3d11c0bf67110-7fdb_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf67110-7fdf_verapache__WS2db454920e96a9e51e63e3d11c0bf67110-7fdb_verapache"><!-- --></a><h5 class="sectiontitle">Using
+absolute sizing</h5>
+                  
+                  <p>
+                     
+                     Writing object widths and heights into
+the code can save time because the Flex layout containers do not
+have to calculate the size of the object at run time. By specifying
+container or control widths or heights, you lighten the relative
+layout container’s processing load and subsequently decrease the
+creation time for the container or control. This technique works
+with any container or control.</p>
+
+               </div>
+
+            </div>
+
+         </div>
+
+         <div class="nested3" id="WS2db454920e96a9e51e63e3d11c0bf69084-7af1_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7af1_verapache"><!-- --></a>
+            <h4 class="topictitle4">Improving effect performance</h4>
+
+            
+            <div>
+               <p>
+                  
+                  
+                  Effects
+let you add animation and motion to your application in response
+to user or programmatic action. For example, you can use effects
+to cause a dialog box to bounce slightly when it receives focus,
+or to slowly fade in when it becomes visible.</p>
+
+               <p>Effects can be one of the most processor-intensive tasks performed
+by an application. Use the techniques described in this section
+to improve the performance of effects. For more information, see <a href="flx_behaviors_be.html#WS2db454920e96a9e51e63e3d11c0bf69084-7fec_verapache">Introduction
+to effects</a>.</p>
+
+               <div class="section" id="WS2db454920e96a9e51e63e3d11c0bf69084-7af1_verapache__WS2db454920e96a9e51e63e3d11c0bf67110-7fd9_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7af1_verapache__WS2db454920e96a9e51e63e3d11c0bf67110-7fd9_verapache"><!-- --></a><h5 class="sectiontitle">Increasing
+effect duration</h5>
+                  
+                  <p>
+                     Increase
+the duration of your effect with the <samp class="codeph">duration</samp> property.
+Doing this spreads the distinct, choppy stages over a longer period
+of time, which lets the human eye fill in the difference for a smoother
+effect.</p>
+
+               </div>
+
+               <div class="section" id="WS2db454920e96a9e51e63e3d11c0bf69084-7af1_verapache__WS2db454920e96a9e51e63e3d11c0bf67110-7fd8_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7af1_verapache__WS2db454920e96a9e51e63e3d11c0bf67110-7fd8_verapache"><!-- --></a><h5 class="sectiontitle">Hiding
+parts of the target view</h5>
+                  
+                  <p>Make parts of the target view
+invisible when the effect starts, play the effect, and then make
+those parts visible when the effect has completed. To do this, you
+add logic in the <samp class="codeph">effectStart</samp> and <samp class="codeph">effectEnd</samp> event
+handlers that controls what is visible before and after the effect.</p>
+
+                  <p>When
+you apply a Resize effect to a <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/containers/Panel.html" target="_blank">Panel</a> container,
+for example, the measurement and layout algorithm for the effect
+executes repeatedly over the duration of the effect. When a Panel
+container has many children, the animation can be jerky because
+Flex cannot update the screen quickly enough. Also, resizing one
+Panel container often causes other Panel containers in the same view
+to resize. </p>
+
+                  <p>To solve this problem, you can use the Resize
+effect’s <samp class="codeph">hideChildrenTargets</samp> property to hide the
+children of Panel containers while the Resize effect is playing.
+The value of the <samp class="codeph">hideChildrenTargets</samp> property is
+an Array of Panel containers that should include the Panel containers
+that resize during the animation. When the <samp class="codeph">hideChildrenTargets</samp> property
+is <samp class="codeph">true</samp>, and before the Resize effect plays, Flex
+iterates through the Array and hides the children of each of the
+specified Panel containers.</p>
+
+               </div>
+
+               <div class="section" id="WS2db454920e96a9e51e63e3d11c0bf69084-7af1_verapache__WS2db454920e96a9e51e63e3d11c0bf67110-7fd7_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7af1_verapache__WS2db454920e96a9e51e63e3d11c0bf67110-7fd7_verapache"><!-- --></a><h5 class="sectiontitle">Avoiding
+bitmap-based backgrounds</h5>
+                  
+                  <p>
+                     Designers
+often give their views background images that are solid colors with gradients,
+slight patterns, and so forth. To ease what Flash Player redraws
+during an effect, try using a solid background color for your background
+image. Or, if you want a slight gradient instead of a solid color,
+use a background image that is a SWF or FXG file. These are easier
+for Flash Player to redraw than standard JPG or PNG files. </p>
+
+               </div>
+
+               <div class="section" id="WS2db454920e96a9e51e63e3d11c0bf69084-7af1_verapache__WS2db454920e96a9e51e63e3d11c0bf67110-7fd6_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7af1_verapache__WS2db454920e96a9e51e63e3d11c0bf67110-7fd6_verapache"><!-- --></a><h5 class="sectiontitle">Suspending
+background processing</h5>
+                  
+                  <p>
+                     To improve the performance of effects,
+you can disable background processing in your application for the
+duration of the effect by setting the <samp class="codeph">suspendBackgroundProcessing</samp> property
+of the <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/effects/Effect.html" target="_blank">Effect</a> to <samp class="codeph">true</samp>.
+The background processing that is blocked includes component measurement
+and layout, and responses to data services for the duration of the
+effect.</p>
+
+               </div>
+
+               <div class="section" id="WS2db454920e96a9e51e63e3d11c0bf69084-7af1_verapache__WS2db454920e96a9e51e63e3d11c0bf67110-7fd5_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7af1_verapache__WS2db454920e96a9e51e63e3d11c0bf67110-7fd5_verapache"><!-- --></a><h5 class="sectiontitle">Using
+the cachePolicy property </h5>
+                  
+                  <p>
+                     
+                     
+                     An effect can use bitmap caching in Flash
+Player to speed up animations. An effect typically uses bitmap caching
+when the target component’s drawing does not change while the effect
+is playing.</p>
+
+                  <p>The <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/core/UIComponent.html#cachePolicy" target="_blank">cachePolicy</a> property
+of <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/core/UIComponent.html" target="_blank">UIComponent</a>s
+controls the caching operation of a component during an effect.
+The <samp class="codeph">cachePolicy</samp> property can have the following
+values: </p>
+
+                  <dl>
+                     
+                        <dt class="dlterm">CachePolicy.ON</dt>
+
+                        <dd>
+                           <p>Specifies that the effect target is always cached.</p>
+
+                        </dd>
+
+                     
+                     
+                        <dt class="dlterm">CachePolicy.OFF</dt>
+
+                        <dd>
+                           <p>Specifies that the effect target is never cached.</p>
+
+                        </dd>
+
+                     
+                     
+                        <dt class="dlterm">CachePolicy.AUTO</dt>
+
+                        <dd>
+                           <p>Specifies that Flex determines whether the effect target should
+be cached. This is the default value.</p>
+
+                           <p>
+                              The <samp class="codeph">cachePolicy</samp> property
+is useful when an object is included in a redraw region but the
+object does not change. The <samp class="codeph">cachePolicy</samp> property
+provides a wrapper for the <samp class="codeph">cacheAsBitmap</samp> property. </p>
+
+                        </dd>
+
+                     
+                  </dl>
+
+               </div>
+
+            </div>
+
+         </div>
+
+         <div class="nested3" id="WS2db454920e96a9e51e63e3d11c0bf67110-7fd4_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf67110-7fd4_verapache"><!-- --></a>
+            <h4 class="topictitle4">Improving rendering speed</h4>
+
+            
+            <div>
+               <p>
+                  
+                  
+                  The
+actual rendering of objects on the screen can take a significant
+amount of time. Improving the rendering times can dramatically improve
+your application’s performance. Use the techniques in this section
+to help improve rendering speed. In addition, use the techniques
+described in the previous section, <a href="flx_performance_pe.html#WS2db454920e96a9e51e63e3d11c0bf69084-7af1_verapache">Improving
+effect performance</a>, to improve effect rendering speed.</p>
+
+               <div class="section" id="WS2db454920e96a9e51e63e3d11c0bf67110-7fd4_verapache__WS2db454920e96a9e51e63e3d11c0bf67110-7fd3_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf67110-7fd4_verapache__WS2db454920e96a9e51e63e3d11c0bf67110-7fd3_verapache"><!-- --></a><h5 class="sectiontitle">Setting
+movie quality</h5>
+                  
+                  <p>
+                     
+                     You can use the <samp class="codeph">quality</samp> property
+of the wrapper’s <samp class="codeph">&lt;object&gt;</samp> and <samp class="codeph">&lt;embed&gt;</samp> tags
+to change the rendering of your application in Flash Player. Valid
+values for the <samp class="codeph">quality</samp> property are <samp class="codeph">low</samp>, <samp class="codeph">medium</samp>, <samp class="codeph">high</samp>, <samp class="codeph">autolow</samp>, <samp class="codeph">autohigh</samp>,
+and <samp class="codeph">best</samp>. The default value is <samp class="codeph">best</samp>.</p>
+
+                  <p>
+                     
+                     
+                     The <samp class="codeph">low</samp> setting
+favors playback speed over appearance and never uses anti-aliasing.
+The <samp class="codeph">autolow</samp> setting emphasizes speed at first but
+improves appearance whenever possible. The <samp class="codeph">autohigh</samp> setting
+emphasizes playback speed and appearance equally at first, but sacrifices
+appearance for playback speed if necessary. The <samp class="codeph">medium</samp> setting
+applies some anti-aliasing and does not smooth bitmaps. The <samp class="codeph">high</samp> setting
+favors appearance over playback speed and always applies anti-aliasing.
+The <samp class="codeph">best</samp> setting provides the best display quality and
+does not consider playback speed. All output is anti-aliased and
+all bitmaps are smoothed. </p>
+
+                  <p>For information on these settings,
+see <a href="flx_wrapper_wr.html#WS2db454920e96a9e51e63e3d11c0bf69084-7f18_verapache">About
+the object and embed tags</a>.</p>
+
+               </div>
+
+               <div class="section" id="WS2db454920e96a9e51e63e3d11c0bf67110-7fd4_verapache__WS2db454920e96a9e51e63e3d11c0bf69084-7af3_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf67110-7fd4_verapache__WS2db454920e96a9e51e63e3d11c0bf69084-7af3_verapache"><!-- --></a><h5 class="sectiontitle">Understanding
+redraw regions</h5>
+                  
+                  <p>
+                     
+                     A <em>redraw region</em> is the region around
+an object that must be redrawn when that object changes. Everything
+in a redraw region is redrawn during the next rendering phase after
+an object changes. The area that Flash Player redraws includes the
+object, and any objects that overlap with the redraw region, such
+as the background or the object’s container.</p>
+
+                  <p>
+                     
+                     You can see redraw regions at run
+time in the debugger version of Flash Player by selecting View &gt;
+Show Redraw Regions in the player’s menu. When you select this option,
+the debugger version of Flash Player draws red rectangles around each
+redraw region while the application runs.</p>
+
+                  <p>By looking at the
+redraw regions, you can get a sense of what is changing and how
+much rendering is occurring while your application runs. Flash Player sometimes
+combines the redraw regions of several objects into a single region that
+it redraws. As a result, if your objects are spaced close enough
+together, they might be redrawn as part of one region, which is
+better than if they are redrawn separately. If the number of regions
+is too large, Flash Player might redraw the entire screen.</p>
+
+               </div>
+
+               <div class="section" id="WS2db454920e96a9e51e63e3d11c0bf67110-7fd4_verapache__WS2db454920e96a9e51e63e3d11c0bf69084-7af2_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf67110-7fd4_verapache__WS2db454920e96a9e51e63e3d11c0bf69084-7af2_verapache"><!-- --></a><h5 class="sectiontitle">Using
+the cacheAsBitmap property</h5>
+                  
+                  <p>
+                     
+                     
+                     
+                     To improve rendering speeds, make careful
+use of the <samp class="codeph">cacheAsBitmap</samp> property. You can set
+this property on any <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/core/UIComponent.html" target="_blank">UIComponent</a>. </p>
+
+                  <p>When
+you set the <samp class="codeph">cacheAsBitmap</samp> property to <samp class="codeph">true</samp>,
+Flash Player stores a copy of the initial bitmap image of an object
+in memory. If you later need that object, and the object’s properties
+have not changed, Flash Player uses the cached version to redraw
+the object. This can be faster than using the vectors that make
+up the object.</p>
+
+                  <p>Setting the <samp class="codeph">cacheAsBitmap</samp> property
+to <samp class="codeph">true</samp> can be especially useful if you use animations
+or other effects that move objects on the screen. Instead of redrawing
+the object in each frame during the animation, Flash Player can
+use the cached bitmap.</p>
+
+                  <p>The downside is that changing the properties
+of objects that are cached as bitmaps is more computationally expensive.
+Each time you change a property that affects the cached object’s
+appearance, Flash Player must remove the old bitmap and store a
+new bitmap in the cache. As a result, only set the <samp class="codeph">cacheAsBitmap</samp> property
+to <samp class="codeph">true</samp> for objects that do not change much.</p>
+
+                  <p>Enable
+bitmap caching only when you need it, such as during the duration
+of an animation, and only on a few objects at a time because it
+can be a memory-intensive operation. The best approach might be
+to change this property at various times during the object’s life
+cycle, rather than setting it once.</p>
+
+               </div>
+
+               <div class="section" id="WS2db454920e96a9e51e63e3d11c0bf67110-7fd4_verapache__WS2db454920e96a9e51e63e3d11c0bf67110-7fd0_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf67110-7fd4_verapache__WS2db454920e96a9e51e63e3d11c0bf67110-7fd0_verapache"><!-- --></a><h5 class="sectiontitle">Using
+filters</h5>
+                  
+                  <p>
+                     To
+improve rendering speeds, do not overuse filters such as <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/flash/filters/DropShadowFilter.html" target="_blank">DropShadowFilter</a>. The
+expense of the filter is proportional to the number of pixels in
+the object that you are applying the filter to. As a result, it
+is best to use filters on smaller objects. An alternative to the
+DropShadowFilter is to use the <samp class="codeph">dropShadowEnabled</samp> property.
+For more information, see <a href="flx_styles_st.html#WS02f7d8d4857b16775e12de371262da447a3-7fff_verapache">Using
+the dropShadowEnabled property</a>.</p>
+
+               </div>
+
+               <div class="section" id="WS2db454920e96a9e51e63e3d11c0bf67110-7fd4_verapache__WS2db454920e96a9e51e63e3d11c0bf67110-7fcf_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf67110-7fd4_verapache__WS2db454920e96a9e51e63e3d11c0bf67110-7fcf_verapache"><!-- --></a><h5 class="sectiontitle">Using
+device text</h5>
+                  
+                  <p>Mixing device text and vector graphics can
+slow rendering speeds. For example, a <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/controls/DataGrid.html" target="_blank">DataGrid</a> control
+that contains both text and graphics inside a cell will be much slower
+to redraw than a DataGrid that contains just text.</p>
+
+               </div>
+
+               <div class="section" id="WS2db454920e96a9e51e63e3d11c0bf67110-7fd4_verapache__WS2db454920e96a9e51e63e3d11c0bf67110-7fce_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf67110-7fd4_verapache__WS2db454920e96a9e51e63e3d11c0bf67110-7fce_verapache"><!-- --></a><h5 class="sectiontitle">Using
+clip masks</h5>
+                  
+                  <p>
+                     
+                     Using
+the <samp class="codeph">scrollRect</samp> and <samp class="codeph">mask</samp> properties
+of an object are expensive operations. Try to minimize the number
+of times you use these properties.</p>
+
+               </div>
+
+            </div>
+
+         </div>
+
+         <div class="nested3" id="WS19f279b149e7481c-23d6f6a12c50578c27-8000_verapache"><a name="WS19f279b149e7481c-23d6f6a12c50578c27-8000_verapache"><!-- --></a>
+            <h4 class="topictitle4">Virtualizing lists and containers</h4>
+
+            
+            <div>
+               <p>When you use item renderers or list-based controls where
+not every child is visible on the screen, you should use virtualization
+to reduce memory usage.</p>
+
+               <p>Ideally, you want a parent control to reuse children as the children
+scroll off the screen, instead of creating a new child for each
+newly-visible list item. This is the process of virtualization.
+For example, suppose there is a list of 10 items, but only 5 are
+visible on the screen at one time. When the user scrolls down to
+view the sixth item, you want item 1 to be reassigned to item 2,
+item 2 to be reassigned to item 1, and so on. The result is that
+only 5 items are in memory at any given time, rather than all 10.</p>
+
+               <p>To enable virtualization, use the <samp class="codeph">useVirtualLayout</samp> property.
+The default value of this property for list-based controls such
+as ButtonBar, TabBar, DropDownList, and ComboBox is <samp class="codeph">true</samp>. </p>
+
+               <p>For containers, which wrap item renderers, you can set the virtualization
+on the layout. The default value of <samp class="codeph">useVirtualLayout</samp> on
+layouts such as BasicLayout, VerticalLayout, TileLayout, and HorizontalLayout
+is <samp class="codeph">false</samp>. Set this property to <samp class="codeph">true</samp> to
+enable virtualization for the containers. </p>
+
+            </div>
+
+         </div>
+
+         <div class="nested3" id="WS2db454920e96a9e51e63e3d11c0bf67110-7fcd_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf67110-7fcd_verapache"><!-- --></a>
+            <h4 class="topictitle4">Using large data sets</h4>
+
+            
+            <div>
+               <p>You can minimize overhead when working with large data
+sets.</p>
+
+               <div class="section" id="WS2db454920e96a9e51e63e3d11c0bf67110-7fcd_verapache__WS2db454920e96a9e51e63e3d11c0bf67110-7fcc_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf67110-7fcd_verapache__WS2db454920e96a9e51e63e3d11c0bf67110-7fcc_verapache"><!-- --></a><h5 class="sectiontitle">Paging</h5>
+                  
+                  <p>When
+you use a <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/data/DataService.html" target="_blank">DataService</a> class
+to get your remote data, you might have a collection that does not
+initially load all of its data on the client. You can prevent large
+amounts of data from traveling over the network and slowing down
+your application while that data is processed using paging. The
+data that you get incrementally is referred to as <em>paged</em> data,
+and the data that has not yet been received is <em>pending</em> data.</p>
+
+                  <p>Paging
+data using the DataService class provides the following benefits:</p>
+
+                  <ul>
+                     <li>
+                        <p>Maximum message size on the destination can be configured.</p>
+
+                     </li>
+
+                     <li>
+                        <p>If size exceeds the maximum value, multiple message batches
+are used.</p>
+
+                     </li>
+
+                     <li>
+                        <p>Client reassembles separate messages.</p>
+
+                     </li>
+
+                     <li>
+                        <p>Asynchronous data paging across the network.</p>
+
+                     </li>
+
+                     <li>
+                        <p>User interface elements can display portions of the collection
+without waiting for the entire collection to load.</p>
+
+                     </li>
+
+                  </ul>
+
+                  <p>For
+more information, see <a href="flx_about_dataproviders_ab.html#WS2db454920e96a9e51e63e3d11c0bf69084-7fb8_verapache">Data
+providers and collections</a>.</p>
+
+               </div>
+
+               <div class="section" id="WS2db454920e96a9e51e63e3d11c0bf67110-7fcd_verapache__WS2db454920e96a9e51e63e3d11c0bf67110-7fcb_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf67110-7fcd_verapache__WS2db454920e96a9e51e63e3d11c0bf67110-7fcb_verapache"><!-- --></a><h5 class="sectiontitle">Disabling
+live scrolling</h5>
+                  
+                  <p>
+                     
+                     
+                     Using
+a <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/controls/DataGrid.html" target="_blank">DataGrid</a> control
+with large data sets might make it slow to scroll when using the
+scrollbar. When the DataGrid displays newly visible data, it calls
+the <samp class="codeph">getItemAt()</samp> method on the data provider. </p>
+
+                  <p>The
+default behavior of a DataGrid is to continuously update data when
+the user is scrolling through it. As a result, performance can degrade
+if you just simply scroll through the data on a DataGrid because
+the DataGrid is continuously calling the <samp class="codeph">getItemAt()</samp> method.
+This can be a computationally expensive method to call.</p>
+
+                  <p>
+                     You can disable this <em>live scrolling</em> so
+that the view is only updated when the scrolling stops by setting
+the <samp class="codeph">liveScrolling</samp> property to false. </p>
+
+                  <p>The
+default value of the <samp class="codeph">liveScrolling</samp> property is
+true. All subclasses of <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/core/ScrollControlBase.html" target="_blank">ScrollControlBase</a>,
+including the MX <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/controls/TextArea.html" target="_blank">TextArea</a>, <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/controls/HorizontalList.html" target="_blank">HorizontalList</a>, <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/controls/TileList.html" target="_blank">TileList</a>,
+and DataGrid classes, have this property.</p>
+
+               </div>
+
+            </div>
+
+         </div>
+
+         <div class="nested3" id="WS2db454920e96a9e51e63e3d11c0bf67110-7fca_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf67110-7fca_verapache"><!-- --></a>
+            <h4 class="topictitle4">Dynamically repeating components</h4>
+
+            
+            <div>
+               <p>
+                  
+                  There are relative benefits of using <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/controls/List.html" target="_blank">List</a>-based controls
+(rather than the Repeater control) to dynamically repeat components.
+If you must use the Repeater, however, there are techniques for
+improving the performance of that control.</p>
+
+               <div class="section" id="WS2db454920e96a9e51e63e3d11c0bf67110-7fca_verapache__WS2db454920e96a9e51e63e3d11c0bf67110-7fc9_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf67110-7fca_verapache__WS2db454920e96a9e51e63e3d11c0bf67110-7fc9_verapache"><!-- --></a><h5 class="sectiontitle">Comparing
+MX List-based controls to the Repeater control</h5>
+                  
+                  <p>To dynamically
+repeat components, you can choose between the <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/core/Repeater.html" target="_blank">Repeater</a> or List-based
+controls, such as <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/controls/HorizontalList.html" target="_blank">HorizontalList</a>, <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/controls/TileList.html" target="_blank">TileList</a>,
+or <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/controls/List.html" target="_blank">List</a>. To achieve
+better performance, you can often replace layouts you created with
+a Repeater with the combination of a HorizontalList or TileList
+and an item renderer.</p>
+
+                  <p>The Repeater object is useful for repeating
+a small set of simple user interface components, such as <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/controls/RadioButton.html" target="_blank">RadioButton</a> controls
+and other controls typically used in Form containers. You can use
+the HorizontalList, TileList, or List control when you display more
+than a few repeated objects.</p>
+
+                  <p>The HorizontalList control displays
+data horizontally, similar to the <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/containers/HBox.html" target="_blank">HBox</a> container.
+The HorizontalList control always displays items from left to right.
+The TileList control displays data in a tile layout, similar to
+the Tile container. The TileList control provides a direction property
+that determines if the next item is down or to the right. The List
+control displays data in a single vertical column. </p>
+
+                  <p>Unlike
+the Repeater object, which instantiates all objects that are repeated,
+the HorizontalList, TileList, and List controls only instantiate
+what is visible in the list. The Repeater control takes a data provider
+(typically an Array) that creates a new copy of its children for
+each entry in the Array. If you put the Repeater control’s children
+inside a container that does not use deferred instantiation, your Repeater
+control might create many objects that are not initially visible.</p>
+
+                  <p>For
+example, a <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/containers/VBox.html" target="_blank">VBox</a> container
+creates all objects within itself when it is first created. In the
+following example, the Repeater control creates all the objects whether
+or not they are initially visible:</p>
+
+                  <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- optimize/VBoxRepeater.mxml --&gt; 
+&lt;s:Application     
+    xmlns:fx="http://ns.adobe.com/mxml/2009"    
+    xmlns:mx="library://ns.adobe.com/flex/mx"     
+    xmlns:s="library://ns.adobe.com/flex/spark"&gt; 
+    &lt;fx:Script&gt;&lt;![CDATA[ 
+        import mx.collections.ArrayCollection; 
+    
+        [Bindable] 
+        public var imgList:ArrayCollection = new ArrayCollection([ 
+            {img:"butterfly.gif"}, 
+            {img:"butterfly-gray.gif"}, 
+            {img:"butterfly-silly.gif"} 
+        ]);     
+    ]]&gt;&lt;/fx:Script&gt; 
+ 
+    &lt;mx:Panel title="VBox with Repeater"&gt; 
+        &lt;mx:VBox height="150" width="250"&gt; 
+            &lt;mx:Repeater id="r" dataProvider="{imgList}"&gt; 
+                &lt;mx:Image source="../assets/{r.currentItem.img}"/&gt; 
+            &lt;/mx:Repeater&gt; 
+        &lt;/mx:VBox&gt; 
+    &lt;/mx:Panel&gt; 
+ 
+&lt;/s:Application&gt;</pre>
+
+                  <p>If you use a List-based control,
+however, Flex only creates those controls in the list that are initially
+visible. The following example uses the List control to create only the
+image needed for rendering:</p>
+
+                  <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- optimize/ListItems.mxml --&gt; 
+&lt;s:Application     
+    xmlns:fx="http://ns.adobe.com/mxml/2009"    
+    xmlns:mx="library://ns.adobe.com/flex/mx"     
+    xmlns:s="library://ns.adobe.com/flex/spark"&gt; 
+   &lt;fx:Script&gt;&lt;![CDATA[ 
+        import mx.collections.ArrayCollection; 
+    
+        private static var birdList:Array = ["../assets/butterfly.gif","../assets/butterfly-gray.gif","../assets/butterfly-silly.gif"]; 
+        [Bindable] 
+        private var birdListAC:ArrayCollection = new ArrayCollection(birdList); 
+ 
+        private function initCatalog():void { 
+            birdlist.dataProvider = birdListAC; 
+        } 
+ 
+    ]]&gt;&lt;/fx:Script&gt; 
+ 
+    &lt;s:Panel title="List"&gt; 
+        &lt;mx:List id="birdlist" 
+            rowHeight="150" 
+            width="250" 
+            rowCount="1" 
+            itemRenderer="mx.controls.Image" 
+            creationComplete="initCatalog()"&gt; 
+        &lt;/mx:List&gt;  
+    &lt;/s:Panel&gt; 
+&lt;/s:Application&gt;</pre>
+
+               </div>
+
+               <div class="section" id="WS2db454920e96a9e51e63e3d11c0bf67110-7fca_verapache__WS2db454920e96a9e51e63e3d11c0bf67110-7fc8_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf67110-7fca_verapache__WS2db454920e96a9e51e63e3d11c0bf67110-7fc8_verapache"><!-- --></a><h5 class="sectiontitle">Using
+the Repeater control</h5>
+                  
+                  <p>When using a <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/core/Repeater.html" target="_blank">Repeater</a> control,
+keep the following techniques in mind:</p>
+
+                  <ul>
+                     <li>
+                        <p>Avoid repeating
+objects that have clip masks because using clip masks is a resource-
+intensive process.</p>
+
+                     </li>
+
+                     <li>
+                        <p>Ensure that the containers used as the children of the Repeater
+control do not have unnecessary container nesting and are as small
+as possible. If a single instance of the repeated view takes a noticeable
+amount of time to instantiate, repeating makes it worse. For example,
+multiple Grid containers in a Repeater object do not perform well
+because Grid containers themselves are resource-intensive containers
+to instantiate.</p>
+
+                     </li>
+
+                     <li>
+                        <p>
+                           Set
+the <samp class="codeph">recycleChildren</samp> property to <samp class="codeph">true</samp>.
+The <samp class="codeph">recycleChildren</samp> property is a Boolean value
+that, when set to <samp class="codeph">true</samp>, binds new data items into existing
+Repeater children, incrementally creates children if there are more data
+items, and destroys extra children that are no longer required. </p>
+
+                     </li>
+
+                  </ul>
+
+                  <p>The
+default value of the <samp class="codeph">recycleChildren</samp> property is <samp class="codeph">false</samp> to
+ensure that you do not leave stale state information in a repeated
+instance. For example, suppose you use a Repeater object to display
+photo images and each Image control has an associated NumericStepper
+control for how many prints you want to order.</p>
+
+                  <p>Some of the
+state information, such as the image, comes from the <samp class="codeph">dataProvider</samp> property.
+Other state information, such as the print count, is set by user
+interaction. If you set the <samp class="codeph">recycleChildren</samp> property
+to <samp class="codeph">true</samp> and page through the photos by incrementing
+the Repeater object's <samp class="codeph">startingIndex</samp> value, the
+Image controls bind to the new images, but the NumericStepper control
+maintains the old information. Use <samp class="codeph">recycleChildren="false"</samp> only
+if it is too cumbersome to reset the state information manually,
+or if you are confident that modifying your <samp class="codeph">dataProvider</samp> property
+should not trigger a recreation of the Repeater object’s children.</p>
+
+                  <p>Keep
+in mind that the <samp class="codeph">recycleChildren</samp> property has no
+effect on a Repeater object’s speed when the Repeater object loads
+the first time. The <samp class="codeph">recycleChildren</samp> property improves
+performance only for subsequent changes to the Repeater control’s
+data provider. If you know that your Repeater object creates children
+only once, you do not have to use the <samp class="codeph">recycleChildren</samp> property
+or worry about the stale state situation. </p>
+
+               </div>
+
+            </div>
+
+         </div>
+
+         <div class="nested3" id="WS90429196-60AA-49fb-9AB6-BD213DFC272D_verapache"><a name="WS90429196-60AA-49fb-9AB6-BD213DFC272D_verapache"><!-- --></a>
+            <h4 class="topictitle4">Using FXG</h4>
+
+            
+            <div>
+               <p>If you use FXG to draw graphic elements in your application,
+or to draw skin parts, you should consider some of the performance
+issues around how you use it. </p>
+
+               <p>When using FXG, do not convert it to MXML graphics and mix the
+tags inline with your application or other components. Instead,
+store the FXG file as a separate document. This causes the mxmlc
+compiler to convert the FXG to Flash primitives rather than map
+the FXG elements to Flex tags. Flash primitives are much more optimized.</p>
+
+               <p>For more information, see <a href="flx_fxg_fx.html#WS6A72DBB6-E49E-465f-BAA8-462440405918_verapache">Using
+FXG in applications built with Flex</a>.</p>
+
+            </div>
+
+         </div>
+
+         <div class="nested3" id="WSda78ed3a750d6b8fb07340123a4cf5e73-8000_verapache"><a name="WSda78ed3a750d6b8fb07340123a4cf5e73-8000_verapache"><!-- --></a>
+            <h4 class="topictitle4">Comparing ArrayLists and ArrayCollections</h4>
+
+            
+            <div>
+               <p>The ArrayList and ArrayCollection classes store data and
+provide access to the backing arrays through methods and properties.</p>
+
+               <div class="p">The ArrayList class implements the IList interface. The ArrayCollection
+class implements the IList and ICollectionView interfaces. As a
+result, the ArrayList class is more lightweight. However, ArrayLists
+have fewer features than ArrayCollections. ArrayLists do not support:<ul>
+                     <li>
+                        <p>Cursors</p>
+
+                     </li>
+
+                     <li>
+                        <p>Filters</p>
+
+                     </li>
+
+                     <li>
+                        <p>Sorts</p>
+
+                     </li>
+
+                  </ul>
+
+               </div>
+
+               <div class="p">In many cases, you can use an ArrayList instead of an ArrayCollection
+for data-driven UI components as long as you do not require cursors,
+filters, and sorts. The following example shows an ArrayList and
+an ArrayCollection. The control that uses an ArrayList should be
+faster and use less memory.<pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- optimize/ArrayListVersusArrayCollection.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx"&gt; 
+  
+    &lt;s:layout&gt; 
+        &lt;s:VerticalLayout/&gt; 
+    &lt;/s:layout&gt; 
+    
+    &lt;s:Label text="This ComboBox uses an ArrayList as a data provider:"/&gt; 
+    &lt;!-- Using an ArrayList is more efficient. --&gt; 
+   &lt;s:ComboBox&gt; 
+      &lt;s:ArrayList&gt; 
+         &lt;fx:String&gt;AK&lt;/fx:String&gt; 
+         &lt;fx:String&gt;AL&lt;/fx:String&gt; 
+         &lt;fx:String&gt;AR&lt;/fx:String&gt; 
+      &lt;/s:ArrayList&gt; 
+   &lt;/s:ComboBox&gt; 
+    
+    &lt;s:Label text="This ComboBox uses an ArrayCollection as a data provider:"/&gt; 
+   &lt;s:ComboBox&gt; 
+      &lt;s:ArrayCollection&gt; 
+         &lt;fx:String&gt;AK&lt;/fx:String&gt; 
+         &lt;fx:String&gt;AL&lt;/fx:String&gt; 
+         &lt;fx:String&gt;AR&lt;/fx:String&gt; 
+      &lt;/s:ArrayCollection&gt; 
+   &lt;/s:ComboBox&gt; 
+&lt;/s:Application&gt;</pre>
+
+               </div>
+
+               <p>In most cases, you cannot get an ArrayList from a web service
+or remote object call. The results should be set as an ArrayCollection.</p>
+
+            </div>
+
+         </div>
+
+      </div>
+
+   </div>
+
+   <div class="nested1" id="WS2db454920e96a9e51e63e3d11c0bf67110-7fc7_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf67110-7fc7_verapache"><!-- --></a>
+      <h2 class="topictitle2">Improving charting component performance</h2>
+
+      
+      <div>
+         <p>
+            
+            
+            You can use various techniques
+to improve the performance of charting controls. </p>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf67110-7fc6_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf67110-7fc6_verapache"><!-- --></a>
+         <h3 class="topictitle3">Avoiding filtering series data</h3>
+
+         
+         <div>
+            <p>
+               When
+possible, set the <samp class="codeph">filterData</samp> property to <samp class="codeph">false</samp>.
+In the transformation from data to screen coordinates, the various
+series types filter the incoming data to remove any missing values
+that are outside the range of the chart; missing values would render
+incorrectly if drawn to the screen. For example, a chart that represents
+vacation time for each week in 2003 might not have a value for the July
+fourth weekend because the company was closed. If you know your
+data model will not have any missing values at run time, or values
+that fall outside the chart’s data range, you can instruct a series
+to explicitly skip the filtering step by setting its <samp class="codeph">filterData</samp> property
+to <samp class="codeph">false</samp>.</p>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf67110-7fc5_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf67110-7fc5_verapache"><!-- --></a>
+         <h3 class="topictitle3">Coding the LinearAxis object</h3>
+
+         
+         <div>
+            <p>
+               
+               If possible, do not let
+a LinearAxis object autocalculate its range. A <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/charts/LinearAxis.html" target="_blank">LinearAxis</a> control
+calculating its numeric range can be a resource-intensive calculation.
+If you know reasonable minimum and maximum values for the range
+of your LinearAxis, specify them to help your charts render more
+quickly. </p>
+
+            <p>In addition to specifying the range for a LinearAxis, specify
+an interval (the numeric distance between label values along the
+axis) value. Otherwise, the chart control must calculate this value.</p>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf67110-7fc4_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf67110-7fc4_verapache"><!-- --></a>
+         <h3 class="topictitle3">Coding the CategoryAxis object</h3>
+
+         
+         <div>
+            <p>
+               
+               Modifying a <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/charts/CategoryAxis.html" target="_blank">CategoryAxis</a> object’s
+data provider is more resource intensive than modifying a <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/charts/chartClasses/Series.html" target="_blank">Series</a> object’s
+data provider. If the data bound to your chart is going to change,
+but the categories in your chart will stay static, have the CategoryAxis’ data
+provider and Series’ data provider refer to different objects. This
+prevents the CategoryAxis from reevaluating its data provider, which
+is a resource-intensive computation. </p>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf67110-7fc3_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf67110-7fc3_verapache"><!-- --></a>
+         <h3 class="topictitle3">Styling AxisRenderer objects</h3>
+
+         
+         <div>
+            <p>
+               
+               
+               Improve the rendering time of your AxisRenderers
+objects by setting particular styles. The <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/charts/AxisRenderer.html" target="_blank">AxisRenderers</a> perform
+many calculations to ensure that they render correctly in all situations.
+The more help you can give them in restricting their options, the
+faster they render. Setting the <samp class="codeph">labelRotation</samp> and <samp class="codeph">canStagger</samp> styles
+on the AxisRenderer improve performance. You can set these styles
+within the tag or in CSS.</p>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf67110-7fc2_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf67110-7fc2_verapache"><!-- --></a>
+         <h3 class="topictitle3">Specifying gutter styles</h3>
+
+         
+         <div>
+            <p>
+               
+               Specify gutter styles when possible.
+The gutter area of a Cartesian chart is the area between the margins
+and the actual axis lines. With default values, the chart adjusts
+the gutter values to accommodate axis decorations. Calculating these gutter
+values can be resource intensive. By explicitly setting the values
+of the <samp class="codeph">gutterLeft</samp>, <samp class="codeph">gutterRight</samp>, <samp class="codeph">gutterTop</samp>,
+and <samp class="codeph">gutterBottom</samp> style properties, your charts
+draw quicker and more efficiently. </p>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf67110-7fc1_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf67110-7fc1_verapache"><!-- --></a>
+         <h3 class="topictitle3">Using drop shadows</h3>
+
+         
+         <div>
+            <p>
+               
+               
+               To improve performance, do not
+use drop-shadows on your series items unless they are necessary.
+You can selectively add shadows to individual chart series by using
+renderers such as the <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/charts/renderers/ShadowBoxItemRenderer.html" target="_blank">ShadowBoxItemRenderer</a> and <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/charts/renderers/ShadowLineRenderer.html" target="_blank">ShadowLineRenderer</a> classes.</p>
+
+            <p>Shadows are implemented as filters in charting controls. As a
+result, you must remove these shadows by setting the chart control’s <samp class="codeph">seriesFilters</samp> property to
+an empty Array. The following example removes the shadows from all
+series, but then changes the renderer for the third series to be
+a shadow renderer:</p>
+
+            <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- optimize/RemoveShadowsColumnChart.mxml --&gt; 
+&lt;s:Application     
+    xmlns:fx="http://ns.adobe.com/mxml/2009"    
+    xmlns:mx="library://ns.adobe.com/flex/mx"     
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    height="600"&gt; 
+    &lt;fx:Script&gt;&lt;![CDATA[ 
+        import mx.collections.ArrayCollection; 
+        [Bindable] 
+        public var expenses:ArrayCollection = new ArrayCollection([ 
+            {Month: "Jan", Income: 2000, Expenses: 1500, Profit: 500}, 
+            {Month: "Feb", Income: 1000, Expenses: 200, Profit: 800}, 
+            {Month: "Mar", Income: 1500, Expenses: 500, Profit: 1000} 
+        ]); 
+    ]]&gt;&lt;/fx:Script&gt; 
+    
+    &lt;s:Panel title="Column Chart"&gt; 
+ 
+ 
+&lt;s:layout&gt; 
+ 
+ 
+ 
+&lt;s:VerticalLayout/&gt; 
+ 
+ 
+&lt;/s:layout&gt; 
+        &lt;mx:ColumnChart id="myChart" dataProvider="{expenses}"&gt; 
+            &lt;mx:seriesFilters&gt; 
+                &lt;fx:Array/&gt; 
+            &lt;/mx:seriesFilters&gt; 
+            &lt;mx:horizontalAxis&gt; 
+                &lt;mx:CategoryAxis dataProvider="{expenses}" categoryField="Month"/&gt; 
+            &lt;/mx:horizontalAxis&gt; 
+            &lt;mx:series&gt; 
+                &lt;mx:ColumnSeries xField="Month" yField="Income" displayName="Income"/&gt; 
+                &lt;mx:ColumnSeries xField="Month" yField="Expenses" displayName="Expenses"/&gt; 
+                &lt;mx:ColumnSeries xField="Month" yField="Profit" displayName="Profit" 
+                    itemRenderer="mx.charts.renderers.ShadowBoxItemRenderer"/&gt; 
+            &lt;/mx:series&gt; 
+        &lt;/mx:ColumnChart&gt; 
+        &lt;mx:Legend dataProvider="{myChart}"/&gt; 
+    &lt;/s:Panel&gt; 
+&lt;/s:Application&gt;</pre>
+
+            <p/>
+
+         </div>
+
+      </div>
+
+         <p>Adobe, Adobe AIR and Adobe Flash are either registered trademarks or trademarks of Adobe Systems Incorporated in the United States and/or other countries and are used by permission from Adobe.  No other license to the Adobe trademarks are granted.</p>
+   </div>
+
+
+</body>
+</html>

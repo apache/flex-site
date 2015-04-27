@@ -1,0 +1,2415 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Licensed to the Apache Software Foundation (ASF) under one or more
+  contributor license agreements.  See the NOTICE file distributed with
+  this work for additional information regarding copyright ownership.
+  The ASF licenses this file to You under the Apache License, Version 2.0
+  (the "License"); you may not use this file except in compliance with
+  the License.  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+-->
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en-us" xml:lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="topic"/>
+<meta name="DC.Title" content="Resource Bundles"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="WS2db454920e96a9e51e63e3d11c0bf69084-7fcf_verapache"/>
+<link rel="stylesheet" type="text/css" href="commonltr.css"/>
+<title>Resource Bundles</title>
+</head>
+<body id="WS2db454920e96a9e51e63e3d11c0bf69084-7fcf_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7fcf_verapache"><!-- --></a>
+
+
+   <h1 class="topictitle1">Resource Bundles</h1>
+
+   <div>
+      <p> Flex provides support for resource
+bundles in your applications.</p>
+
+   </div>
+
+   <div class="nested1" id="WS2db454920e96a9e51e63e3d11c0bf6119c-7ffd_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf6119c-7ffd_verapache"><!-- --></a>
+      <h2 class="topictitle2">Introduction to resource bundles</h2>
+
+      
+      <div>
+         <p>A <em>resource bundle</em> is a list of assets that is organized
+by locale. These assets can be just about anything, from strings,
+numbers, formats, and images to styles. You typically have a separate
+resource bundle for each locale that your application supports.</p>
+
+         <p>To localize an application with resource bundles, you first create
+properties files that define the localized assets. You then compile
+these properties files into the application as resource bundles,
+or create resource modules from the properties files and load them
+at run time.</p>
+
+         <p>Flex lets you change locales on the fly; if you compile more
+than one resource bundle into an application, you can toggle the
+resource bundle based on the locale. In addition, if you compile
+resource modules, you can load and unload the SWF files at run time
+based on the locale. You can even create new resource bundles programmatically. </p>
+
+         <div class="p">How you load your resource bundles depends on how many locales
+your application supports:<ul>
+               <li>
+                  <p>If your application supports
+just one or two locales, then you typically compile all the resources
+into the application. For more information, see <a href="flx_l10n_ln.html#WS2db454920e96a9e51e63e3d11c0bf69084-7f3a_verapache">Using resources</a>.</p>
+
+               </li>
+
+               <li>
+                  <p>If your application supports many locales, you will likely
+want to load the appropriate resources at run time rather than compile
+all supported resources into the application at compile time. To
+do this, you compile your resource bundles into resource modules.
+For more information, see <a href="flx_l10n_ln.html#WS2db454920e96a9e51e63e3d11c0bf69084-7f3c_verapache">Using
+resource modules</a>.</p>
+
+               </li>
+
+            </ul>
+
+         </div>
+
+         <p>If your application only needs to format numbers, currencies,
+and sort orders, you can use the built-in support for localization
+in the spark.globalization.* classes without using resource bundles.</p>
+
+      </div>
+
+      <div><div class="relinfo"><strong>Related information</strong><br/>
+<div><a href="flx_l10n_ln.html#WS19f279b149e7481c-1c03f02c12bd00c4763-8000_verapache">Localization</a></div>
+</div>
+</div>
+   </div>
+
+   <div class="nested1" id="WS2db454920e96a9e51e63e3d11c0bf69084-7f2d_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7f2d_verapache"><!-- --></a>
+      <h2 class="topictitle2">Creating resources</h2>
+
+      
+      <div>
+         <p>You define resource bundles in <em>resource properties files</em>.
+These properties files contain key/value pairs and are in UTF-8
+format. You commonly use these properties files to specify the values
+of Strings in your applications, such as the label on a button or
+the items in a drop down list. The following example specifies the
+values for a form’s labels in English:</p>
+
+         <pre class="codeblock"> # locale/en_US/RegistrationForm.properties 
+ registration_title=Registration 
+ submit_button=Submit Form 
+ personname=Name 
+ street_address=Street Address 
+ city=City 
+ state=State 
+ zip=ZIP Code 
+ thanks=Thank you for registering!</pre>
+
+         <p>Resources can also embed binary assets such as audio files, video
+files, SWF files, and images. To embeds these assets in your properties
+files, you use the <samp class="codeph">Embed()</samp> directive, just as you
+would include assets in a runtime style sheet. The following example
+embeds a JPG file as a resource:</p>
+
+         <pre class="codeblock"> flag=Embed("images/unitedstates.jpg")</pre>
+
+         <p>You can also extract symbols from an embedded SWF file when using
+the <samp class="codeph">Embed()</samp> directive, as the following example
+shows:</p>
+
+         <pre class="codeblock"> flag=Embed(source="FlagsOfTheWorld.swf", symbol="unitedstates")</pre>
+
+         <p>To include custom classes, such as a programmatic skin, you can
+use the <samp class="codeph">ClassReference()</samp> directive. The following
+example embeds the MySorter class in the sortingClasses.en_US package:</p>
+
+         <pre class="codeblock"> SORTER=ClassReference("sortingClasses.en_US.MySorter")</pre>
+
+         <p>For information on how to use these various types of resources
+in your application, see <a href="flx_l10n_ln.html#WS2db454920e96a9e51e63e3d11c0bf69084-7f3a_verapache">Using
+resources</a>.</p>
+
+         <p>You typically store resource properties files in a locale/<em>locale_name</em> subdirectory. You
+add this directory to your source path so that the compiler can
+find it when you compile your application, and append the locale
+to the <samp class="codeph">locale</samp> compiler option. For information
+on how to compile resources into your Flex application, see <a href="flx_l10n_ln.html#WS2db454920e96a9e51e63e3d11c0bf69084-7f36_verapache">Compiling
+resources into Flex applications</a>.</p>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf69084-7f36_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7f36_verapache"><!-- --></a>
+         <h3 class="topictitle3">Compiling resources into Flex applications</h3>
+
+         
+         <div>
+            <p>After you create the resource properties files, you can
+either compile them as resource bundles into your application or
+you compile them into resource modules and load them at run time.
+If you compile the resources into the application, the compiler
+converts them to subclasses of the <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/resources/ResourceBundle.html" target="_blank">ResourceBundle </a>class, and
+adds them to the application at compile time. If you compile the
+resources into resource modules, the compiler converts them to SWF
+files that you then load at run time on an as-needed basis.</p>
+
+            <p>For information on compiling and using resource modules, see <a href="flx_l10n_ln.html#WS2db454920e96a9e51e63e3d11c0bf69084-7f3c_verapache">Using
+resource modules</a>.</p>
+
+         </div>
+
+         <div class="nested3" id="WS2db454920e96a9e51e63e3d11c0bf6119c-7ff2_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf6119c-7ff2_verapache"><!-- --></a>
+            <h4 class="topictitle4">Compile resources into the application
+on the command line</h4>
+
+            
+            <div>
+               <ol>
+                  <li>
+                     <p>Specify one or more locales to compile the application
+for with the <samp class="codeph">locale</samp> compiler option. The value
+of this option is used by the <samp class="codeph">source-path</samp> option to
+find the resource properties files. The <samp class="codeph">library-path</samp> option
+also uses this value to include localized framework resources.</p>
+
+                  </li>
+
+                  <li>
+                     <p>Specify the location of the resources with the <samp class="codeph">source-path</samp> option.
+You can add the resources for more than one locale by using the <samp class="codeph">{locale}</samp> token. </p>
+
+                  </li>
+
+                  <li>
+                     <p>Set the value of the <samp class="codeph">allow-source-path-overlap</samp> compiler
+option to <samp class="codeph">true</samp>. This is optional, but if you do
+not set it, you might get a warning that the source path for the
+locale is a subdirectory of the project’s source path.</p>
+
+                  </li>
+
+               </ol>
+
+               <p>In the following example, the LocalizedForm.mxml application
+uses a custom resource bundle for a single locale, en_US:</p>
+
+               <pre class="codeblock"> mxmlc -locale=en_US -source-path=c:\myapp\locale\{locale} -allow-source-path-overlap=true c:\myapp\LocalizedForm.mxml</pre>
+
+            </div>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf69084-7ed7_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7ed7_verapache"><!-- --></a>
+         <h3 class="topictitle3">Properties file syntax</h3>
+
+         
+         <div>
+            <p>Properties files are parsed as they are in Java. Each line
+typically takes the form of key=value. The following rules apply
+to properties files:</p>
+
+            <ul>
+               <li>
+                  <p>Lines in properties files are not terminated by semi-colons
+or other characters.</p>
+
+               </li>
+
+               <li>
+                  <p>You can use an equals sign, a colon, or whitespace to separate
+the key from the value; for example:</p>
+
+                  <pre class="codeblock"> key = value 
+ key : value 
+ key value</pre>
+
+               </li>
+
+               <li>
+                  <p>To add a comment to your properties file, start the line
+with a # or !. You can insert whitespace before the # or ! on a
+comment line. The following are examples of comments in a properties
+file:</p>
+
+                  <pre class="codeblock"> ! This is a comment. 
+ # This is a comment.</pre>
+
+               </li>
+
+               <li>
+                  <p>Whitespace at the beginning of a value is stripped. Trailing
+whitespace is not stripped from the value.</p>
+
+               </li>
+
+               <li>
+                  <p>You can use standard escape sequences such as \n (newline),
+\r (return), \t (tab), \u0020 (space), and \\ (backslash).</p>
+
+               </li>
+
+               <li>
+                  <p>Backslash-space is an escape sequence for a space; for example,
+if a value starts with a space, you must write it as backslash-space
+or the compiler will interpret it as optional whitespace preceding
+the value. You are not required to escape spaces within a value.
+The following example starts the value with a space:</p>
+
+                  <pre class="codeblock"> key =\ value</pre>
+
+               </li>
+
+               <li>
+                  <p>You can continue a line by ending it with a backslash. Leading
+whitespace on the next line is stripped.</p>
+
+               </li>
+
+               <li>
+                  <p>Backslashes that are not part of an escape sequence are removed.
+For example, \A is just A.</p>
+
+               </li>
+
+               <li>
+                  <p>You are not required to escape a double quote or a single
+quote.</p>
+
+               </li>
+
+               <li>
+                  <p>Lines that contain only whitespace are ignored.</p>
+
+               </li>
+
+            </ul>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf69084-7f34_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7f34_verapache"><!-- --></a>
+         <h3 class="topictitle3">Adding new locales</h3>
+
+         
+         <div>
+            <p>To add new locales to your projects:</p>
+
+            <ol>
+               <li>
+                  <p>Add the locale to the <samp class="codeph">locale</samp> compiler
+option. This is typically a comma-separated list, as the following
+example shows:</p>
+
+                  <pre class="codeblock"> -locale=en_US,es_ES</pre>
+
+                  <p>If
+you edit the flex-config.xml file, you add locales by using the
+following syntax:</p>
+
+                  <pre class="codeblock"> &lt;locale&gt; 
+ 	&lt;locale-element&gt;en_US&lt;/locale-element&gt; 
+ 	&lt;locale-element&gt;es_ES&lt;/locale-element&gt; 
+ &lt;/locale&gt;</pre>
+
+               </li>
+
+               <li>
+                  <p>Ensure that the new locale’s resource properties files are
+in the source path. The source path entry for localized resources
+typically uses the <samp class="codeph">{locale}</samp> token so that all new
+locales are automatically added to the source path, as long as those
+locales’ resource directories have the same parent directory.</p>
+
+               </li>
+
+               <li>
+                  <p>Create the framework resource bundles for the new locale,
+if the framework resource bundles do not already exist. You can
+see a list of the supported bundles by looking at the directory
+list under framework/bundles. The supported list includes en_US,
+ja_JP, fr_FR, ru_RU, and es_ES.</p>
+
+               </li>
+
+            </ol>
+
+            <p>The <samp class="codeph">locale</samp> option defines what locale’s resources
+to include on the source path. It also instructs the compiler to
+include the localized framework resources for the specified locales.
+Framework components such as Label and Button use resources, just
+like your application and custom components can use resources. The
+resources required by these classes are located in the libraries
+like framework.swc or in separate resource bundle libraries. By
+default, framework resources for many common locales are included
+in the Flex SDK. </p>
+
+            <p>To use any supported locale, you do not need to do anything other
+than create properties files for your locale. For locales that are
+not included, such as en_IN, in addition to creating the new properties
+files, you must also create new framework locale files before compiling
+your Flex application.</p>
+
+            <p>To create a locale’s framework resources, use the copylocale
+utility in the /sdk/bin directory.</p>
+
+            <p>The syntax for the copylocale utility is as follows:</p>
+
+            <pre class="codeblock"> copylocale <em>original_locale</em>  <em>new_locale</em></pre>
+
+            <p>For example, to create the framework locale files for the en_IN
+locale, use the following command:</p>
+
+            <pre class="codeblock"> copylocale en_US en_IN</pre>
+
+            <p>This utility creates a new directory under frameworks/locale/<em>locale_name</em>.
+The name of this directory matches the name of the new locale. This
+directory is parallel to the other locale directories. In this example,
+it creates the locale/en_IN directory. This utility also creates
+SWC files in the new directory, including the framework_rb.swc and
+rpc_rb.swc files.</p>
+
+            <p>These resources must be in the library path. By default, the <samp class="codeph">locale/{locale}</samp> entry
+is already set for your <samp class="codeph">library-path</samp> compiler option,
+so you do not need to change any configuration options.</p>
+
+            <p>When you compile your application, and add the new locale to
+the <samp class="codeph">locale</samp> option, the compiler includes the localized
+framework resources in the SWC files for that new locale. </p>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf6119c-7ffc_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf6119c-7ffc_verapache"><!-- --></a>
+         <h3 class="topictitle3">About the ResourceBundle class</h3>
+
+         
+         <div>
+            <p>For each resource properties file, the Flex compiler generates
+a class that extends the ResourceBundle class, and adds that class
+to the application. The name of the class is the name of the properties
+file, with an underscore replacing the period in the filename.</p>
+
+            <p>The generated ResourceBundle class overrides a single method, <samp class="codeph">getContent()</samp>,
+which returns an object that defines the values in the properties
+file. For example, if you use the RegistrationForm.properties file,
+the compiler generates the following class:</p>
+
+            <pre class="codeblock"> public class RegistrationForm_properties extends ResourceBundle { 
+ 	override protected function getContent():Object { 
+ 		var properties:Object = {}; 
+ 		properties["registration_button"] = "Registration"; 
+ 		properties["submit_button"] = "Submit Form"; 
+ 		properties["personname"] = "Name"; 
+ 		properties["street"] = "Street Address"; 
+ 		properties["city"] = "City"; 
+ 		properties["state"] = "State"; 
+ 		properties["zip"] = "ZIP Code"; 
+ 		properties["thanks"] = "Thank you for registering!"; 
+ 		return properties; 
+ 	} 
+ }</pre>
+
+            <p>To view the generated classes, you can set the <samp class="codeph">keep-generated-actionscript</samp> compiler
+option to <samp class="codeph">true</samp> when you compile your application with
+an existing resource properties file.</p>
+
+            <p>You can write your own classes that extend the ResourceBundle
+class rather than create resource properties files that the compiler
+then uses to generate the resource bundle classes. You can then
+use those classes if you include them in your project. For more
+information, see <a href="flx_l10n_ln.html#WS2db454920e96a9e51e63e3d11c0bf69084-7f2c_verapache">Creating
+resource bundles at run time</a>.</p>
+
+         </div>
+
+      </div>
+
+   </div>
+
+   <div class="nested1" id="WS2db454920e96a9e51e63e3d11c0bf69084-7f3a_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7f3a_verapache"><!-- --></a>
+      <h2 class="topictitle2">Using resource bundles</h2>
+
+      
+      <div>
+         <p>After you create a resource properties file, you can use
+it in your Flex application as a resource bundle (the compiler converts
+properties files to subclasses of the ResourceBundle class when
+you compile your application). You can either bind values from the
+resource to an expression, or you can use methods of the ResourceBundle
+class to access those values.</p>
+
+         <p>There are two ways to access the values in resource bundles:</p>
+
+         <ul>
+            <li>
+               <p>
+                  <samp class="codeph">@Resource</samp> directive</p>
+
+            </li>
+
+            <li>
+               <p>Methods of the ResourceManager class</p>
+
+            </li>
+
+         </ul>
+
+         <p>Using the <samp class="codeph">@Resource</samp> directive to include resource
+bundles in your application is the simplest method. In the directive,
+you specify the name of the properties file and the key that you
+want to use. This method is simple to use, but is also restrictive
+in how it can be used. For example, you can only use the <samp class="codeph">@Resource</samp> directive
+in MXML and you cannot change locales at run time. In addition,
+this directive only returns Strings. </p>
+
+         <p>The other way to access resource bundles is through the <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/resources/ResourceBundle.html" target="_blank">ResourceManager </a>class. You
+can use the methods of the ResourceManager class in ActionScript,
+whereas you can only use the <samp class="codeph">@Resource</samp> directive
+in MXML. These methods can return data types other than Strings,
+such as ints, Booleans, and Numbers. You can also use this class
+to switch locales at run time, so if you compiled multiple locales
+into the same application, you can change from one locale to the
+other. </p>
+
+         <p>The following sections describe how to use the <samp class="codeph">@Resource</samp> directive
+and the ResourceManager class to access resource bundles in your
+Flex application.</p>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf6119c-7ff6_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf6119c-7ff6_verapache"><!-- --></a>
+         <h3 class="topictitle3">Using the @Resource directive</h3>
+
+         
+         <div>
+            <p>In MXML, you can use the <samp class="codeph">@Resource</samp> directive
+to access your resource bundles. You pass the <samp class="codeph">@Resource</samp> directive
+the name of the resource bundle (the name of the properties file
+without the .properties extension) and the name of the key from
+the key/value pairs in the properties file. The directive returns
+a String of the key’s value from your resource bundle.</p>
+
+            <div class="p">The following example creates a form; the values for the labels
+in the form are extracted from the RegistrationForm.properties resource
+properties file. <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- resourcebundles/LocalizedForm.mxml --&gt; 
+&lt;s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark"&gt; 
+ 
+    &lt;s:layout&gt; 
+        &lt;s:VerticalLayout/&gt; 
+    &lt;/s:layout&gt; 
+ 
+    &lt;s:Form&gt; 
+        &lt;s:FormItem label="@Resource(key='personname', bundle='RegistrationForm')"&gt; 
+            &lt;s:TextInput/&gt; 
+        &lt;/s:FormItem&gt; 
+        &lt;s:FormItem label="@Resource(key='street_address', bundle='RegistrationForm')"&gt; 
+            &lt;s:TextInput/&gt; 
+        &lt;/s:FormItem&gt; 
+        &lt;s:FormItem label="@Resource(key='city', bundle='RegistrationForm')"&gt; 
+            &lt;s:TextInput/&gt; 
+        &lt;/s:FormItem&gt; 
+        &lt;s:FormItem label="@Resource(key='state', bundle='RegistrationForm')"&gt; 
+            &lt;s:TextInput/&gt; 
+        &lt;/s:FormItem&gt; 
+        &lt;s:FormItem label="@Resource(key='zip', bundle='RegistrationForm')"&gt; 
+            &lt;s:TextInput/&gt; 
+        &lt;/s:FormItem&gt; 
+    &lt;/s:Form&gt; 
+&lt;/s:Application&gt;</pre>
+
+            </div>
+
+            <p>Because this application only uses a single locale, you compile
+it with the following compiler options:</p>
+
+            <pre class="codeblock"> -locale=en_US -allow-source-path-overlap=true -source-path=locale/{locale}</pre>
+
+            <p>Accessing the values in a resource bundle with the <samp class="codeph">@Resource</samp> directive
+is restrictive in that the directive can only be used in an MXML
+tag. In addition, you cannot change the locale at run time.</p>
+
+            <p>To use a class, such as a programmatic skin, as a resource, you
+use the <samp class="codeph">ClassReference()</samp> directive in your properties
+file. The following example embeds the MyCheckBoxIcon_en_US class
+in the properties file:</p>
+
+            <pre class="codeblock"> CHECKBOXSKIN=ClassReference("MyCheckBoxIcon_en_US")</pre>
+
+            <p>You then reference that class in your style properties, as the
+following example shows:</p>
+
+            <pre class="codeblock"> &lt;mx:CheckBox selected="true" 
+ 	selectedUpIcon="@Resource(key=’bundle1’, ’CHECKBOXSKIN’)" 
+ 	selectedDownIcon="@Resource(key=’bundle1’, ’CHECKBOXSKIN’)" 
+ 	selectedOverIcon="@Resource(key=’bundle1’, ’CHECKBOXSKIN’)"/&gt;</pre>
+
+            <p>To use a binary asset such as an image, you embed the image in
+the resource properties file. You can then use the asset anywhere
+that you might use an embedded image. To embed an image in the properties
+file, you use the <samp class="codeph">Embed</samp> directive in your properties
+file, as the following example shows:</p>
+
+            <pre class="codeblock"> flag=Embed("images/unitedstates.gif")</pre>
+
+            <p>The location of the image is relative to the location of the
+properties file. In this case, the images directory is under locale/en_US.</p>
+
+            <div class="p">In your application, you use the <samp class="codeph">@Resource</samp> directive
+anywhere a String might supply the location of the image. The following
+example uses the image as a source for the <samp class="codeph">&lt;s:Image&gt;</samp> tag:<pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- resourcebundles/LocalizedFormResourceWithImage.mxml --&gt; 
+&lt;s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark"&gt; 
+     &lt;s:layout&gt; 
+        &lt;s:VerticalLayout/&gt; 
+    &lt;/s:layout&gt; 
+ 
+   &lt;s:Image source="@Resource(key='flag', bundle='RegistrationForm')"/&gt; 
+ 
+    &lt;s:Form&gt; 
+        &lt;s:FormItem label="@Resource(key='personname', bundle='RegistrationForm')"&gt; 
+            &lt;s:TextInput/&gt; 
+        &lt;/s:FormItem&gt; 
+        &lt;s:FormItem label="@Resource(key='street_address', bundle='RegistrationForm')"&gt; 
+            &lt;s:TextInput/&gt; 
+        &lt;/s:FormItem&gt; 
+        &lt;s:FormItem label="@Resource(key='city', bundle='RegistrationForm')"&gt; 
+            &lt;s:TextInput/&gt; 
+        &lt;/s:FormItem&gt; 
+        &lt;s:FormItem label="@Resource(key='state', bundle='RegistrationForm')"&gt; 
+            &lt;s:TextInput/&gt; 
+        &lt;/s:FormItem&gt; 
+        &lt;s:FormItem label="@Resource(key='zip', bundle='RegistrationForm')"&gt; 
+            &lt;s:TextInput/&gt; 
+        &lt;/s:FormItem&gt; 
+    &lt;/s:Form&gt; 
+&lt;/s:Application&gt;</pre>
+
+            </div>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf6119c-7ff0_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf6119c-7ff0_verapache"><!-- --></a>
+         <h3 class="topictitle3">Using the ResourceManager</h3>
+
+         
+         <div>
+            <p>To use resource bundles in ActionScript, you use the methods
+of the ResourceManager class, such as <samp class="codeph">getString()</samp> and <samp class="codeph">getClass()</samp>.
+Using the ResourceManager is more flexible than using the <samp class="codeph">@Resource</samp> directive
+because it lets you dynamically rather than declaratively set the
+values of properties from resources. It also lets you change locales
+at run time so that all localized resources in your application
+can be updated at once.</p>
+
+            <p>When using the ResourceManager, you must specify metadata that
+defines the resource bundles for your application. The syntax for
+this metadata is as follows:</p>
+
+            <pre class="codeblock"> &lt;fx:Metadata&gt; 
+ 	[ResourceBundle("<em>Resource_file_name</em>")] 
+ &lt;/fx:Metadata&gt;</pre>
+
+            <p>For example:</p>
+
+            <pre class="codeblock"> &lt;fx:Metadata&gt; 
+ 	[ResourceBundle("RegistrationForm")] 
+ &lt;/fx:Metadata&gt;</pre>
+
+            <p>For multiple resource bundles, add each one on a separate line
+inside the same <samp class="codeph">&lt;fx:Metadata&gt;</samp> tag, as the
+following example shows:</p>
+
+            <pre class="codeblock"> &lt;fx:Metadata&gt; 
+ 	[ResourceBundle("RegistrationForm")] 
+ 	[ResourceBundle("StyleProperties")] 
+ 	[ResourceBundle("FormatterProperties")] 
+ &lt;/fx:Metadata&gt;</pre>
+
+            <p>In an ActionScript class, you apply the metadata above the class
+name, as the following example shows:</p>
+
+            <pre class="codeblock">[ResourceBundle("RegistrationForm")] 
+ public class MyComponent extends UIComponent {  
+ 	... 
+ }</pre>
+
+            <p>You can also bind expressions to the ResourceManager. These expressions
+are updated any time the locale changes.</p>
+
+            <div class="p">The following example uses ActionScript to set the value of the
+Alert message, and binds the labels in the form to resources by
+using the ResourceManager’s <samp class="codeph">getString()</samp> method.<pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- resourcebundles/LocalizedFormWithBinding.mxml --&gt; 
+&lt;s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark"&gt; 
+ 
+    &lt;fx:Script&gt;&lt;![CDATA[ 
+        import mx.resources.ResourceBundle; 
+        import mx.controls.Alert; 
+ 
+        private function registrationComplete():void { 
+            Alert.show(resourceManager.getString('RegistrationForm', 'thanks')); 
+        }  
+    ]]&gt;&lt;/fx:Script&gt; 
+ 
+    &lt;s:layout&gt; 
+        &lt;s:VerticalLayout/&gt; 
+    &lt;/s:layout&gt; 
+ 
+    &lt;fx:Metadata&gt; 
+        [ResourceBundle("RegistrationForm")] 
+    &lt;/fx:Metadata&gt; 
+    &lt;s:Form&gt; 
+        &lt;s:FormItem label="{resourceManager.getString('RegistrationForm','personname')}"&gt; 
+            &lt;s:TextInput/&gt; 
+        &lt;/s:FormItem&gt; 
+        &lt;s:FormItem label="{resourceManager.getString('RegistrationForm','street_address')}"&gt; 
+            &lt;s:TextInput/&gt; 
+        &lt;/s:FormItem&gt; 
+        &lt;s:FormItem label="{resourceManager.getString('RegistrationForm','city')}"&gt; 
+            &lt;s:TextInput/&gt; 
+        &lt;/s:FormItem&gt; 
+        &lt;s:FormItem label="{resourceManager.getString('RegistrationForm','state')}"&gt; 
+            &lt;s:TextInput/&gt; 
+        &lt;/s:FormItem&gt; 
+        &lt;s:FormItem label="{resourceManager.getString('RegistrationForm','zip')}"&gt; 
+            &lt;s:TextInput/&gt; 
+        &lt;/s:FormItem&gt; 
+    &lt;/s:Form&gt; 
+    &lt;s:Button id="b1" 
+        label="{resourceManager.getString('RegistrationForm','submit_button')}" 
+        click="registrationComplete()"/&gt; 
+&lt;/s:Application&gt;</pre>
+
+            </div>
+
+            <p>To use a binary asset such as an image with the ResourceManager,
+you embed the image in the resource properties file. You can then
+use the asset anywhere that you might use an embedded image. To
+embed an image in the properties file, you use the <samp class="codeph">Embed</samp> directive
+in your properties file, as the following example shows:</p>
+
+            <pre class="codeblock"> flag=Embed("images/unitedstates.gif")</pre>
+
+            <p>The location of the image is relative to the location of the
+properties file. In this case, the images directory is under locale/en_US.</p>
+
+            <div class="p">To use the image in your application, you use the ResourceManager’s <samp class="codeph">getClass()</samp> method.
+The following example uses the GIF file as both a skin for the Button
+control and a source for the <samp class="codeph">&lt;s:Image&gt;</samp> tag:<pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- resourcebundles/LocalizedFormBindingWithImages.mxml --&gt; 
+&lt;s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    creationComplete="initApp()"&gt; 
+    &lt;fx:Script&gt;&lt;![CDATA[ 
+        import mx.resources.ResourceBundle; 
+        import mx.controls.Alert; 
+ 
+        private function initApp():void { 
+            b1.setStyle("downSkin", resourceManager.getClass("RegistrationForm", "flag"));            
+        } 
+ 
+        private function registrationComplete():void { 
+            Alert.show(resourceManager.getString('RegistrationForm', 'thanks')); 
+        }  
+    ]]&gt;&lt;/fx:Script&gt; 
+    
+    &lt;s:layout&gt; 
+        &lt;s:VerticalLayout/&gt; 
+    &lt;/s:layout&gt; 
+ 
+    &lt;fx:Metadata&gt; 
+        [ResourceBundle("RegistrationForm")] 
+    &lt;/fx:Metadata&gt; 
+    &lt;s:Image source="{resourceManager.getClass('RegistrationForm', 'flag')}"/&gt; 
+ 
+    &lt;s:Form&gt; 
+        &lt;s:FormItem label="{resourceManager.getString('RegistrationForm','personname')}"&gt; 
+            &lt;s:TextInput/&gt; 
+        &lt;/s:FormItem&gt; 
+        &lt;s:FormItem label="{resourceManager.getString('RegistrationForm','street_address')}"&gt; 
+            &lt;s:TextInput/&gt; 
+        &lt;/s:FormItem&gt; 
+        &lt;s:FormItem label="{resourceManager.getString('RegistrationForm','city')}"&gt; 
+            &lt;s:TextInput/&gt; 
+        &lt;/s:FormItem&gt; 
+        &lt;s:FormItem label="{resourceManager.getString('RegistrationForm','state')}"&gt; 
+            &lt;s:TextInput/&gt; 
+        &lt;/s:FormItem&gt; 
+        &lt;s:FormItem label="{resourceManager.getString('RegistrationForm','zip')}"&gt; 
+            &lt;s:TextInput/&gt; 
+        &lt;/s:FormItem&gt; 
+    &lt;/s:Form&gt; 
+    &lt;s:Button id="b1" 
+        label="{resourceManager.getString('RegistrationForm','submit_button')}" 
+        click="registrationComplete()"/&gt; 
+&lt;/s:Application&gt;</pre>
+
+            </div>
+
+            <p>To use a class, such as a programmatic skin, as a resource, you
+use the <samp class="codeph">ClassReference()</samp> directive in your properties
+file. The following example embeds the MyCheckBoxIcon_en_US class
+in the properties file:</p>
+
+            <pre class="codeblock"> CHECKBOXSKIN=ClassReference("MyCheckBoxIcon_en_US")</pre>
+
+            <p>You can bind the value of the <samp class="codeph">getClass()</samp> method
+for programmatic skins, as the following example shows:</p>
+
+            <pre class="codeblock"> &lt;mx:CheckBox selected="true" 
+ 	selectedUpIcon="{resourceManager.getClass('bundle1','CHECKBOXSKIN')}" 
+ 	selectedDownIcon="{resourceManager.getClass('bundle1','CHECKBOXSKIN')}" 
+ 	selectedOverIcon="{resourceManager.getClass('bundle1','CHECKBOXSKIN')}"/&gt;</pre>
+
+            <p>For more information about the ResourceManager, see <a href="flx_l10n_ln.html#WS2db454920e96a9e51e63e3d11c0bf69084-7f3b_verapache">About
+the ResourceManager</a>.</p>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf6119c-7fef_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf6119c-7fef_verapache"><!-- --></a>
+         <h3 class="topictitle3">Changing locales at run time with
+the ResourceManager</h3>
+
+         
+         <div>
+            <p>A common use of localization is to provide multiple locales
+for a single application, and to let the user switch the locale
+at run time. You can compile all possible locales into the application
+and then choose from among them. This solution is not very flexible
+because you can only select from locales that you added to the application
+at compile time. This solution can also lead to larger applications
+because the resource properties files and all of their dependencies must
+be compiled into the application. </p>
+
+            <p>You can also compile resource properties files into resource
+module SWF files, and then dynamically load those SWF files at run
+time. These modules provide all the resources for the locales. The
+advantage to this approach is that the application SWF file is smaller
+because the resources are externalized, but it requires an additional
+network request for each resource module that the client loads.
+For information on using resource modules, see <a href="flx_l10n_ln.html#WS2db454920e96a9e51e63e3d11c0bf69084-7f3c_verapache">Using
+resource modules</a>.</p>
+
+            <p>You change the locale at run time by changing the value of the
+ResourceManager’s <samp class="codeph">localeChain</samp> property. This property
+takes an Array as its value. The Array’s first element is the current
+locale (such as en_US or es_ES). </p>
+
+            <p>To be able to change the locale at run time without using resource
+modules, you compile all the available locales into the application
+at compile time by including them as part of the <samp class="codeph">locale</samp> option.
+This compiler option takes a comma-separated list of locales. If
+you add a second locale, such as es_ES, change the <samp class="codeph">locale</samp> option
+to the following:</p>
+
+            <pre class="codeblock"> -locale=en_US,es_ES</pre>
+
+            <p>The Flex application uses the list of locales in the <samp class="codeph">localeChain</samp> property
+to determine precedence when getting values from resource bundles.
+If a value does not exist in the first locale in the list, the Flex
+application looks for that value in the next locale in the list,
+and so on. </p>
+
+            <p>Before compiling additional locales into an application, you
+must generate the framework resources for that locale, if they are
+not already created. You do this with the copylocale command-line
+utility. For more information, see <a href="flx_l10n_ln.html#WS2db454920e96a9e51e63e3d11c0bf69084-7f34_verapache">Adding
+new locales</a>.</p>
+
+            <p>The order of the locales on the command line can be important.
+The application defaults to the first locale in the list if you
+do not specifically set the value of the ResourceManager’s <samp class="codeph">localeChain</samp> property
+when the application initializes.</p>
+
+            <div class="p">The following example lets you select a new locale from the ComboBox
+control. When you change that value, the application updates the <samp class="codeph">localeChain</samp> property.
+The application’s locale-specific assets, such as the form labels,
+flag image, and alert message should change to the new locale.<pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- resourcebundles/BasicLocaleChain.mxml --&gt; 
+&lt;s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    creationComplete="initApp()"&gt; 
+    &lt;s:layout&gt; 
+        &lt;s:VerticalLayout/&gt; 
+    &lt;/s:layout&gt; 
+ 
+    &lt;fx:Script&gt;&lt;![CDATA[ 
+        import mx.resources.ResourceBundle; 
+        import mx.controls.Alert; 
+ 
+        [Bindable] 
+        private var locales:Array = [ "es_ES","en_US" ]; 
+ 
+        private function initApp():void { 
+            b1.setStyle("downSkin", resourceManager.getClass("RegistrationForm", "flag"));            
+    
+            // Initialize the ComboBox to the first locale in the locales Array. 
+            localeComboBox.selectedIndex = locales.indexOf(resourceManager.localeChain[0]); 
+        } 
+ 
+        private function registrationComplete():void { 
+            Alert.show(resourceManager.getString('RegistrationForm', 'thanks')); 
+        }  
+        private function comboChangeHandler():void { 
+            // Set the localeChain to either the one-element Array 
+            // [ "en_US" ] or the one-element Array [ "es_ES" ]. 
+            resourceManager.localeChain = [ localeComboBox.selectedItem ]; 
+            
+            // This style is not bound to the resource bundle, so it must be reset when 
+            // the new locale is selected. 
+            b1.setStyle("downSkin", resourceManager.getClass("RegistrationForm", "flag"));            
+        } 
+    ]]&gt;&lt;/fx:Script&gt; 
+ 
+    &lt;fx:Metadata&gt; 
+        [ResourceBundle("RegistrationForm")] 
+    &lt;/fx:Metadata&gt; 
+    &lt;s:Image source="{resourceManager.getClass('RegistrationForm', 'flag')}"/&gt; 
+ 
+    &lt;mx:ComboBox id="localeComboBox" 
+        dataProvider="{locales}" 
+        change="comboChangeHandler()"/&gt; 
+ 
+    &lt;s:Form&gt; 
+        &lt;s:FormItem label="{resourceManager.getString('RegistrationForm','personname')}"&gt; 
+            &lt;s:TextInput/&gt; 
+        &lt;/s:FormItem&gt; 
+        &lt;s:FormItem label="{resourceManager.getString('RegistrationForm','street_address')}"&gt; 
+            &lt;s:TextInput/&gt; 
+        &lt;/s:FormItem&gt; 
+        &lt;s:FormItem label="{resourceManager.getString('RegistrationForm','city')}"&gt; 
+            &lt;s:TextInput/&gt; 
+        &lt;/s:FormItem&gt; 
+        &lt;s:FormItem label="{resourceManager.getString('RegistrationForm','state')}"&gt; 
+            &lt;s:TextInput/&gt; 
+        &lt;/s:FormItem&gt; 
+        &lt;s:FormItem label="{resourceManager.getString('RegistrationForm','zip')}"&gt; 
+            &lt;s:TextInput/&gt; 
+        &lt;/s:FormItem&gt; 
+    &lt;/s:Form&gt; 
+    &lt;s:Button id="b1" 
+        label="{resourceManager.getString('RegistrationForm','submit_button')}" 
+        click="registrationComplete()"/&gt; 
+&lt;/s:Application&gt;</pre>
+
+            </div>
+
+            <p>When you compile this example application, you must add both
+locales to the <samp class="codeph">locale</samp> option, as the following
+list of compiler options shows:</p>
+
+            <pre class="codeblock"> -locale=en_US,es_ES -allow-source-path-overlap=true -source-path=locale/{locale}</pre>
+
+            <p>Because this application uses multiple locales, you must prepare
+properties files for each one. You should have the following files
+in your project to use this example:</p>
+
+            <pre class="codeblock"> /main/BasicLocaleChain.mxml 
+ /main/locale/en_US/RegistrationForm.properties 
+ /main/locale/en_US/images/unitedstates.gif 
+ /main/locale/es_ES/RegistrationForm.properties 
+ /main/locale/es_ES/images/spain.gif</pre>
+
+            <p>The contents of the properties files for this example should
+be similar to the following:</p>
+
+            <pre class="codeblock"> # /locale/en_US/RegistrationForm.properties 
+ registration_title=Registration 
+ submit_button=Submit Form 
+ personname=Name 
+ street_address=Street Address 
+ city=City 
+ state=State 
+ zip=ZIP Code 
+ thanks=Thank you for registering! 
+ flag=Embed("images/unitedstates.gif") 
+  
+ # /locale/es_ES/RegistrationForm.properties 
+ registration_title=Registro 
+ submit_button=Enviar el formulario 
+ personname=Nombre 
+ street_address=Dirección de calle 
+ city=Ciudad 
+ state=Estado 
+ zip=Código postal 
+ thanks=¡Gracias por inscribirse! 
+ flag=Embed("images/spain.gif")</pre>
+
+            <p>If you do not bind the properties in your application to your
+resources, then those values are not updated when the locale changes. </p>
+
+            <p>When you compile an application for multiple locales, the ResourceManager's <samp class="codeph">localeChain</samp> property
+is initialized to the locales specified by the <samp class="codeph">locale</samp> compiler
+option. For example, if the <samp class="codeph">locale</samp> option is <samp class="codeph">-locale=en_US,es_ES</samp>,
+the application defaults to the English resources because en_US
+is listed first. You can override this default initial value at
+run time by specifying the value of the <samp class="codeph">localeChain</samp> as
+an application parameter in the <samp class="codeph">flashVars</samp> variable
+in the HTML template.</p>
+
+            <p>If you write your own HTML template, you can pass variables as <samp class="codeph">flashVars</samp> properties
+in the <samp class="codeph">&lt;object&gt;</samp> and <samp class="codeph">&lt;embed&gt;</samp> tags.
+The following example specifies that the es_ES locale is the first
+in the <samp class="codeph">localeChain</samp> property’s Array:</p>
+
+            <pre class="codeblock"> &lt;object id=’mySwf’  
+ 	classid=’clsid:D27CDB6E-AE6D-11cf-96B8-444553540000’  
+ 	codebase=’http://fpdownload.macromedia.com/get/flashplayer/current/swflash.cab’  
+ 	height=’100%’  
+ 	width=’100%’&gt; 
+ 	&lt;param name=’src’ value=’BasicLocaleChain.swf’/&gt; 
+ 	&lt;param name=’flashVars’ value=’localeChain=es_ES,en_US’/&gt; 
+ 	&lt;embed name=’mySwf’  
+ 		src=’FlashVarTest.swf’  
+ 		pluginspage=’http://www.adobe.com/go/getflashplayer’  
+ 		height=’100%’  
+ 		width=’100%’  
+ 		flashVars=’localeChain=es_ES,en_US’ 
+ 	/&gt; 
+ &gt;</pre>
+
+            <p>If you are using SWFObject 2, the default template that Flex
+uses, define and pass the <samp class="codeph">flashVars</samp> object to the <samp class="codeph">embedSWF()</samp> JavaScript
+method, as the following example shows:</p>
+
+            <pre class="codeblock">&lt;script type="text/javascript" src="swfobject.js"&gt;&lt;/script&gt; 
+        &lt;script type="text/javascript"&gt; 
+            var swfVersionStr = "0"; 
+            var xiSwfUrlStr = ""; 
+            var flashvars = {}; 
+			flashvars.localeChain="es_ES,en_US" 
+            var params = {}; 
+            params.quality = "high"; 
+            params.bgcolor = "#ffffff"; 
+            params.allowscriptaccess = "sameDomain"; 
+            var attributes = {}; 
+            attributes.id = "TestProject"; 
+            attributes.name = "TestProject"; 
+            attributes.align = "middle"; 
+            swfobject.embedSWF( 
+                "TestProject.swf", "flashContent", 
+                "100%", "100%", 
+                swfVersionStr, xiSwfUrlStr, 
+                flashvars, params, attributes); 
+&lt;/script&gt; </pre>
+
+            <p>This initializes the value of the <samp class="codeph">localeChain</samp> property
+to <samp class="codeph">["es_ES", "en_US"]</samp>.</p>
+
+            <p>For more information about using <samp class="codeph">flashVars</samp> properties,
+see <a href="flx_passingarguments_pa.html#WS2db454920e96a9e51e63e3d11c0bf626ae-7feb_verapache">Passing
+request data with flashVars properties</a>.</p>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf69084-7f3b_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7f3b_verapache"><!-- --></a>
+         <h3 class="topictitle3">About the ResourceManager</h3>
+
+         
+         <div>
+            <p>The ResourceManager manages all resource bundles, regardless
+of their source. They can be loaded as resource modules, compiled
+into the application, or created programmatically. </p>
+
+            <p>The ResourceManager class is a Singleton. All components that
+extend UIComponent, Formatter, or Validator have a <samp class="codeph">resourceManager</samp> property,
+which lets you access this manager. If you create other classes
+that need to use the ResourceManager, you can call the <samp class="codeph">ResourceManager.getInstance()</samp> method
+to get a reference to it. </p>
+
+            <p>Whenever you set the value of the <samp class="codeph">localeChain</samp> property,
+the ResourceManager dispatches a <samp class="codeph">change</samp> event.
+This event causes values that are bound to resource properties to
+be updated. You can manually dispatch this event by calling the
+ResourceManager’s <samp class="codeph">update()</samp> method. The <samp class="codeph">change</samp> event
+causes the following to occur:</p>
+
+            <ul>
+               <li>
+                  <p>Binding expressions involving resource-access methods
+of ResourceManager such as <samp class="codeph">getString()</samp> are updated.</p>
+
+               </li>
+
+               <li>
+                  <p>Components that extend UIComponent, Formatter, or Validator
+execute their <samp class="codeph">resourcesChanged()</samp> method. This is
+how components such as CurrencyFormatter can update their default
+value for resource-backed properties such as <samp class="codeph">currencySymbol</samp>.
+If you are writing another kind of class that needs to respond to
+resource changes, you can listen for <samp class="codeph">change</samp> events
+from the ResourceManager.</p>
+
+               </li>
+
+            </ul>
+
+            <p>The <samp class="codeph">localeChain</samp> property is an Array so that
+the ResourceManager can support incomplete locales. For example,
+suppose you localize an application for English as spoken in India
+(by using the "en_IN" locale). Most of the resources are the same
+as for U.S. English (the en_US locale), so there is no reason to
+duplicate them all in the en_IN locale’s resources. The en_IN locale’s
+properties files need only to have the resources that differ between
+the en_US and en_IN locales. If the ResourceManager has bundles
+for both en_US and en_IN and you set the value of the <samp class="codeph">localeChain</samp> property
+to <samp class="codeph">["en_IN", "en_US"]</samp>, the ResourceManager searches
+for a resource first in the en_IN bundle. If the resource is not found
+there, then the ResourceManager searches for the resource in the
+en_US bundle. If the ResourceManager does not find the resource
+you specify in any locale, its methods return null.</p>
+
+            <p>The most commonly used method of the ResourceManager for resource
+access is the <samp class="codeph">getString()</samp> method. However, the
+ResourceManager supports other data types. You can get resources
+typed as Numbers, Booleans, Uints, and ints by using other methods,
+as the following example shows:</p>
+
+            <pre class="codeblock"> resourceManager.getNumber("myResources", "PRICE"); // Returns a Number like 19.99. 
+ resourceManager.getInt("myResources", "AGE"); // Returns an int like 21. 
+ resourceManager.getUint("myResources", "COLOR"); // Returns a Uint like 0xFF33AA. 
+ resourceManager.getBoolean("myResources", "SENIOR") // Returns the Boolean like true.</pre>
+
+            <p>You can also use methods such as <samp class="codeph">getClass()</samp>, <samp class="codeph">getString()</samp>, <samp class="codeph">getObject()</samp>,
+and <samp class="codeph">getStringArray()</samp>.</p>
+
+         </div>
+
+      </div>
+
+   </div>
+
+   <div class="nested1" id="WS2db454920e96a9e51e63e3d11c0bf69084-7f3c_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7f3c_verapache"><!-- --></a>
+      <h2 class="topictitle2">Using resource modules</h2>
+
+      
+      <div>
+         <p>Resource modules are SWF files, separate from your application
+SWF file, that contain resources bundles for a single locale. Your
+application can preload one or more resource modules as it starts
+up, before it displays its user interface. It can also load resource
+modules later, such as in response to the user selecting a new locale.
+The ResourceManager interacts with all resource bundles the same, whether
+the bundles it manages were originally compiled into the application
+or loaded from resource modules. </p>
+
+         <p>Resource modules can be a better approach to localization than
+compile-time resources because you externalize the resource modules
+that can be loaded at run time. This creates a smaller application
+SWF file, but then requires that you load a separate SWF file for
+each resource module that you use. The result can be an increased
+number of network requests and an aggregate application size that is
+larger than if you compiled the locale resources into the application.
+However, if you have many locales, then loading them separately
+should save resources in the long run.</p>
+
+         <p>You are limited as to when you can use resources in resource
+modules during the application initialization sequence. The earliest
+that you can access a resource bundle in a resource module is during
+the application’s preinitialize event handler. You should not try
+to access a resource at class initialization time or during preloading.</p>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf6119c-7ffb_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf6119c-7ffb_verapache"><!-- --></a>
+         <h3 class="topictitle3">Creating resource modules</h3>
+
+         
+         <div>
+            <p>To create a resource module, you must do the following:</p>
+
+            <ul>
+               <li>
+                  <p>Determine the required resource bundles</p>
+
+               </li>
+
+               <li>
+                  <p>Create the resource module SWF file</p>
+
+               </li>
+
+            </ul>
+
+            <p>The following sections describe these tasks.</p>
+
+         </div>
+
+         <div class="nested3" id="WS2db454920e96a9e51e63e3d11c0bf69084-7f38_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7f38_verapache"><!-- --></a>
+            <h4 class="topictitle4">Determining the required resource
+bundles to include in a resource module</h4>
+
+            
+            <div>
+               <p>Before you can compile a resource module, you must know
+which resource bundles to put into it. In other words, you must
+know which resource bundles your application — and all of its framework
+classes — actually require. This includes not just the custom resource
+bundles that you create, but also the framework resource bundles
+that are required by the application. </p>
+
+               <p>To determine which resource bundles an application needs, you
+use the <samp class="codeph">resource-bundle-list</samp> compiler option. When
+you compile an application, this option outputs a list of the needed
+bundles by examining the <samp class="codeph">[ResourceBundle]</samp> metadata
+on all of the classes in your application.</p>
+
+               <p>The <samp class="codeph">resource-bundle-list</samp> option takes a filename
+as its argument. This filename is where the compiler writes the
+list of bundles. On the Macintosh OS X, you must specify an absolute
+path for this option. On all other operating systems, you can specify
+a relative or absolute path.</p>
+
+               <p>When using the <samp class="codeph">resource-bundle-list</samp> option,
+you must also set the value of the <samp class="codeph">locale</samp> option
+to an empty string.</p>
+
+               <p>The following command-line example generates a resource bundle
+list for the application MyApp: </p>
+
+               <pre class="codeblock"> mxmlc -locale= -resource-bundle-list=myresources.txt MyApp.mxml</pre>
+
+               <p>In this example, the compiler writes a file called myresources.txt.
+This file contains a list similar to the following:</p>
+
+               <pre class="codeblock"> bundles = RegistrationForm collections containers controls core effects skins styles</pre>
+
+               <p>If you use custom resource bundles, those will be included in
+this list. In this example, the name of the resource properties
+file is RegistrationForm. The others are bundles containing framework
+resources.</p>
+
+               <p>You use this list to instruct the compiler which resource bundles
+to include when you compile a resource module. </p>
+
+            </div>
+
+         </div>
+
+         <div class="nested3" id="WS2db454920e96a9e51e63e3d11c0bf6119c-7fec_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf6119c-7fec_verapache"><!-- --></a>
+            <h4 class="topictitle4">Compiling a resource module</h4>
+
+            
+            <div>
+               <p>To compile a resource module, you must use the mxmlc command-line
+compiler. The output is a SWF file that you can then load at run
+time.</p>
+
+               <p>To compile a resource module on the command line, use the following
+guidelines:</p>
+
+               <ul>
+                  <li>
+                     <p>Do not specify an MXML file to compile.</p>
+
+                  </li>
+
+                  <li>
+                     <p>Specify the <samp class="codeph">include-resource-bundles</samp> option. </p>
+
+                  </li>
+
+                  <li>
+                     <p>Specify the locale by using the <samp class="codeph">locale</samp> option.</p>
+
+                  </li>
+
+                  <li>
+                     <p>Add the locales to the source path.</p>
+
+                  </li>
+
+               </ul>
+
+               <p>The <samp class="codeph">include-resource-bundles</samp> option takes a
+comma-separated list of resource bundles to include in the resource
+module. You generated this list of required resource bundles in <a href="flx_l10n_ln.html#WS2db454920e96a9e51e63e3d11c0bf69084-7f38_verapache">Determining
+the required resource bundles to include in a resource module</a>.</p>
+
+               <p>When compiling a resource module, you must also specify the locale
+by using the <samp class="codeph">locale</samp> option. </p>
+
+               <p>The following example compiles a resource module for the en_US
+locale:</p>
+
+               <pre class="codeblock"> mxmlc -locale=en_US  
+ 	-source-path=locale/{locale} 
+ 	-include-resource-bundles=RegistrationForm,collections,containers,controls,core, 
+ 	 effects,skins,styles  
+ 	-output en_US_ResourceModule.swf</pre>
+
+               <p>You can compile the resources for only a single locale into each
+resource module. As a result, you cannot specify more than one locale
+for the <samp class="codeph">locale</samp> option.</p>
+
+               <p>You should use a common naming convention for all of your locales’
+resource modules. For example, specify the locale in the SWF file’s
+name, but keep the rest of the file name the same for all locales.
+This is because when you load the resource module, you want to be
+able to dynamically determine which SWF file to load. In the previous
+example, the resource module for the en_US locale is named en_US_ResourceModule.swf.
+If you then generated a resource module for the es_ES locale, it
+would be named es_ES_ResourceModule.swf.</p>
+
+            </div>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf6119c-7ffa_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf6119c-7ffa_verapache"><!-- --></a>
+         <h3 class="topictitle3">Loading resource modules at run
+time</h3>
+
+         
+         <div>
+            <p>To load a resource module at run time, you use the ResourceManager’s <samp class="codeph">loadResourceModule()</samp> method.
+After the resource module has finished loading, you set the value
+of the ResourceManager’s <samp class="codeph">localeChain</samp> property to the
+newly-loaded locale.</p>
+
+            <p>The ResourceManager’s <samp class="codeph">loadResourceModule()</samp> method
+asynchronously loads a resource module. It works similarly to the <samp class="codeph">loadStyleDeclarations()</samp> method
+of the StyleManager, which loads style modules. </p>
+
+            <p>The <samp class="codeph">loadResourceModule()</samp> method takes several
+parameters. The first parameter is the URL for the resource modules’s
+SWF file. This is the only required parameter. The second parameter
+is <samp class="codeph">update</samp>. You set this to <samp class="codeph">true</samp> or <samp class="codeph">false</samp>, depending
+on whether you want the resource bundles to immediately update in the
+application. For more information, see <a href="flx_l10n_ln.html#WS2db454920e96a9e51e63e3d11c0bf69084-7f2e_verapache">Updating
+resource modules</a>. The final two parameters are <samp class="codeph">applicationDomain</samp> and <samp class="codeph">securityDomain</samp>.
+These parameters specify the domains into which the resource module
+is loaded. In most cases, you should accept the default values (<samp class="codeph">null</samp>)
+for these parameters. The result is that the resource module is
+loaded into child domains of the current domains.</p>
+
+            <p>The <samp class="codeph">loadResourceModule()</samp> method returns an instance
+of the IEventDispatcher class. You can use this object to dispatch <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/events/ResourceEvent.html" target="_blank">ResourceEvent </a>types
+based on the success of the resource module’s loading. You have
+access to the <samp class="codeph">ResourceEvent.PROGRESS</samp>, <samp class="codeph">ResourceEvent.COMPLETE</samp>,
+and <samp class="codeph">ResourceEvent.ERROR</samp> events of the loading process. </p>
+
+            <p>You should not call the <samp class="codeph">loadResourceModule()</samp> method
+and then immediately try to use the resource module because the
+resource module’s SWF file must be transferred across the network
+and then loaded by the application. As a result, you should add
+a listener for the ResourceManager’s <samp class="codeph">ResourceEvent.COMPLETE</samp> event.
+When the <samp class="codeph">ResourceEvent.COMPLETE</samp> event is dispatched,
+you can set the <samp class="codeph">localeChain</samp> property to use the
+newly-loaded resource module. </p>
+
+            <div class="p">The following example loads a resource module when the user selects
+the locale from the ComboBox control. It builds the name of the
+SWF file (in this case, it is either en_US_ResourceModule.swf or
+es_ES_ResourceModule.swf), and passes that file name to the <samp class="codeph">loadResourceModule()</samp> method.<pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- resourcebundles/ResourceModuleApp.mxml --&gt; 
+&lt;s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    creationComplete="initApp()"&gt; 
+    &lt;fx:Script&gt;&lt;![CDATA[ 
+        import mx.resources.ResourceBundle; 
+        import mx.controls.Alert; 
+        import mx.events.ResourceEvent; 
+ 
+        [Bindable] 
+        private var locales:Array = [ "es_ES","en_US" ]; 
+ 
+        private function initApp():void { 
+            /* Set the index to -1 so that the prompt appears 
+               when the application first loads. */ 
+            localeComboBox.selectedIndex = -1;            
+        } 
+ 
+        private function registrationComplete():void { 
+            Alert.show(resourceManager.getString('RegistrationForm', 'thanks')); 
+        }  
+        private function comboChangeHandler():void { 
+            var newLocale:String = String(localeComboBox.selectedItem); 
+ 
+            /* Ensure that you are not loading the same resource module more than once. */ 
+            if (resourceManager.getLocales().indexOf(newLocale) != -1) { 
+                completeHandler(null); 
+            } else { 
+                // Build the file name of the resource module. 
+                var resourceModuleURL:String = newLocale + "_ResourceModule.swf"; 
+                
+                var eventDispatcher:IEventDispatcher = 
+                    resourceManager.loadResourceModule(resourceModuleURL); 
+                eventDispatcher.addEventListener(ResourceEvent.COMPLETE, completeHandler); 
+            }            
+        } 
+        
+        private function completeHandler(event:ResourceEvent):void { 
+            resourceManager.localeChain = [ localeComboBox.selectedItem ]; 
+ 
+            /* This style is not bound to the resource bundle, so it must be reset when 
+               the new locale is selected. */ 
+            b1.setStyle("downSkin", resourceManager.getClass("RegistrationForm", "flag"));            
+        }        
+    ]]&gt;&lt;/fx:Script&gt; 
+ 
+    &lt;s:layout&gt; 
+        &lt;s:VerticalLayout/&gt; 
+    &lt;/s:layout&gt; 
+ 
+    &lt;fx:Metadata&gt; 
+        [ResourceBundle("RegistrationForm")] 
+    &lt;/fx:Metadata&gt; 
+    &lt;s:Image source="{resourceManager.getClass('RegistrationForm', 'flag')}"/&gt; 
+ 
+    &lt;mx:ComboBox id="localeComboBox" 
+        prompt="Select One..." 
+        dataProvider="{locales}" 
+        change="comboChangeHandler()"/&gt; 
+ 
+    &lt;s:Form&gt; 
+        &lt;s:FormItem label="{resourceManager.getString('RegistrationForm','personname')}"&gt; 
+            &lt;s:TextInput/&gt; 
+        &lt;/s:FormItem&gt; 
+        &lt;s:FormItem label="{resourceManager.getString('RegistrationForm','street_address')}"&gt; 
+            &lt;s:TextInput/&gt; 
+        &lt;/s:FormItem&gt; 
+        &lt;s:FormItem label="{resourceManager.getString('RegistrationForm','city')}"&gt; 
+            &lt;s:TextInput/&gt; 
+        &lt;/s:FormItem&gt; 
+        &lt;s:FormItem label="{resourceManager.getString('RegistrationForm','state')}"&gt; 
+            &lt;s:TextInput/&gt; 
+        &lt;/s:FormItem&gt; 
+        &lt;s:FormItem label="{resourceManager.getString('RegistrationForm','zip')}"&gt; 
+            &lt;s:TextInput/&gt; 
+        &lt;/s:FormItem&gt; 
+    &lt;/s:Form&gt; 
+    
+    &lt;s:Button id="b1" 
+        label="{resourceManager.getString('RegistrationForm','submit_button')}" 
+        click="registrationComplete()"/&gt; 
+    
+&lt;/s:Application&gt;</pre>
+
+            </div>
+
+            <p>To compile an application that uses only resource modules, do
+not specify any locales to be compiled into the application. You
+do this by setting the value of the <samp class="codeph">locale</samp> option
+to an empty String. For example, on the command line, you can compile
+an application named MyApp.mxml with the following command:</p>
+
+            <pre class="codeblock"> mxmlc -locale= MyApp.mxml</pre>
+
+            <p>If you compile an application that uses both compiled-in resources
+and resource modules, then you specify the locale(s) for the compiled-in
+resources with the <samp class="codeph">locale</samp> option.</p>
+
+            <p>You should try to avoid loading the same resource module more
+than once in the application. To do this, you can use the ResourceManager’s <samp class="codeph">getLocales()</samp> method.
+This method returns an Array of locales. You can compare this list against
+the resource module’s locale that you are about to load.</p>
+
+            <p>You can find out which resource bundles exist for a specified
+locale by using the <samp class="codeph">getBundleNamesForLocale()</samp> method. </p>
+
+            <p>You can get a reference to a particular locale’s resource bundle
+by calling the <samp class="codeph">getResourceBundle()</samp> method. Once
+you have a reference to a ResourceBundle, you can use a for-in loop
+to iterate over its content object. For more information, see <a href="flx_l10n_ln.html#WS2db454920e96a9e51e63e3d11c0bf69084-7f30_verapache">Enumerating
+resources</a>.</p>
+
+         </div>
+
+         <div class="nested3" id="WS2db454920e96a9e51e63e3d11c0bf6119c-7fe9_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf6119c-7fe9_verapache"><!-- --></a>
+            <h4 class="topictitle4">Loading remote resource modules</h4>
+
+            
+            <div>
+               <p>Loading a remote resource module typically requires a crossdomain.xml
+file that gives the loading application permission to load the SWF
+file. You can do without a crossdomain.xml file if your application
+is in the local-trusted sandbox, but this is usually restricted
+to SWF files that have been installed as applications on the local
+machine. For more information about crossdomain.xml files, see <a href="flx_security2_se.html#WS2db454920e96a9e51e63e3d11c0bf69084-7f2b_verapache">Using cross-domain
+policy files</a>.</p>
+
+               <p>Also, to use a remote resource module, you must compile the loading
+application with network access (have the <samp class="codeph">use-network</samp> compiler
+option set to <samp class="codeph">true</samp>, the default). If you compile
+and run the application on a local file system, you might not be
+able to load a remotely accessible SWF file. </p>
+
+            </div>
+
+         </div>
+
+         <div class="nested3" id="WS2db454920e96a9e51e63e3d11c0bf69084-7f2e_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7f2e_verapache"><!-- --></a>
+            <h4 class="topictitle4">Updating resource modules</h4>
+
+            
+            <div>
+               <p>The second parameter of the <samp class="codeph">loadResourceModule()</samp> method
+is <samp class="codeph">update</samp>. Set the <samp class="codeph">update</samp> parameter
+to <samp class="codeph">true</samp> to force an immediate update of the resource
+bundles in the application. Set it to <samp class="codeph">false</samp> to
+avoid an immediate update of the resource bundles in the application.
+The resources are updated the next time you call this method or
+the <samp class="codeph">unloadResourceModule()</samp> method with the <samp class="codeph">update</samp> property
+set to <samp class="codeph">true</samp>. </p>
+
+               <p>Each time you call the <samp class="codeph">loadResourceModule()</samp> method
+with the <samp class="codeph">update</samp> parameter set to <samp class="codeph">true</samp>,
+Adobe<sup>®</sup> Flash<sup>®</sup> Player and AIR™ reapply all resource bundles in the application,
+which can degrade performance. If you load multiple resource modules
+at the same time, you should set the <samp class="codeph">update</samp> parameter
+to <samp class="codeph">false</samp> for all but the last call to this method.
+As a result, Flash Player and AIR only apply the resource bundles
+once for all new resource module SWF files rather than once for each
+new resource module SWF file.</p>
+
+            </div>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf6119c-8000_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf6119c-8000_verapache"><!-- --></a>
+         <h3 class="topictitle3">Preloading resource modules at
+run time</h3>
+
+         
+         <div>
+            <p>You can load a resource module when the application starts
+up by calling the <samp class="codeph">loadResourceModule()</samp> method from
+your application initialization code, and then specifying the value
+of the <samp class="codeph">localeChain</samp> property after the module loads.
+This is useful if you have a default locale that you want all users
+to start the application with. However, you can also specify the
+locale that the application should load on startup by passing <samp class="codeph">flashVars</samp> properties
+in the HTML wrapper. This lets you specify a locale based on some
+run time value such as the <samp class="codeph">Accept-Language</samp> HTTP
+header or the <samp class="codeph">Capabilities.language</samp> property in ActionScript. </p>
+
+            <p>The following table describes the <samp class="codeph">flashVars</samp> properties
+that you pass to set the preloaded resource modules:</p>
+
+            
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" frame="border" border="1" rules="all">
+                  
+                  
+                  <thead align="left">
+                     <tr>
+                        <th class="cellrowborder" valign="top" width="NaN%" id="d837124e1503">
+                           <p>flashVars property</p>
+
+                        </th>
+
+                        <th class="cellrowborder" valign="top" width="NaN%" id="d837124e1509">
+                           <p>Description</p>
+
+                        </th>
+
+                     </tr>
+
+                  </thead>
+
+                  <tbody>
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d837124e1503 ">
+                           <div class="p">
+                              <pre class="codeblock">localeChain</pre>
+
+                           </div>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d837124e1509 ">
+                           <p>A comma-separated list of locales that initializes
+the <samp class="codeph">localeChain</samp> property of the ResourceManager
+class. If the <samp class="codeph">localeChain</samp> property is not explicitly
+set, then it is initialized to the list of locales for which the
+application was compiled, as specified by the <samp class="codeph">locale</samp> compiler
+option.</p>
+
+                        </td>
+
+                     </tr>
+
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d837124e1503 ">
+                           <div class="p">
+                              <pre class="codeblock">resourceModuleURLs</pre>
+
+                           </div>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d837124e1509 ">
+                           <p>A comma-separated list of URLs from which
+resource modules will be sequentially preloaded. Resource modules
+are loaded by the same class as RSLs, but are loaded after the RSLs. </p>
+
+                           <p>The
+URLs can be relative or absolute.</p>
+
+                        </td>
+
+                     </tr>
+
+                  </tbody>
+
+               </table>
+</div>
+
+            <p>As with URL parameters, you must separate these values with an
+ampersand (&amp;). You must also ensure that the values are URL
+encoded.</p>
+
+            <p>If you write your own HTML template, you can pass variables as <samp class="codeph">flashVars</samp> properties
+in the <samp class="codeph">&lt;object&gt;</samp> and <samp class="codeph">&lt;embed&gt;</samp> tags.
+The following example specifies that the es_ES locale’s resource
+module is preloaded when the application launches:</p>
+
+            <pre class="codeblock"> &lt;object id=’mySwf’  
+ 	classid=’clsid:D27CDB6E-AE6D-11cf-96B8-444553540000’  
+ 	codebase=’http://fpdownload.macromedia.com/get/flashplayer/current/swflash.cab’  
+ 	height=’100%’  
+ 	width=’100%’&gt; 
+ 	&lt;param name=’src’ value=’ResourceModuleApp.swf’/&gt; 
+ 	&lt;param name=’flashVars’ 
+ 		value=’resourceModuleURLs=es_ES_ResourceModule.swf&amp;localeChain=es_ES’/&gt; 
+ 	&lt;embed name=’mySwf’  
+ 		src=’ResourceModuleApp.swf’  
+ 		pluginspage=’http://www.adobe.com/go/getflashplayer’  
+ 		height=’100%’  
+ 		width=’100%’  
+ 		flashVars=’resourceModuleURLs=es_ES_ResourceModule.swf&amp;localeChain=es_ES’ 
+ 	/&gt; 
+ &gt;</pre>
+
+            <p>If you are using the SWFObject 2 template that Flex uses by default,
+define and pass the <samp class="codeph">flashVars</samp> object to the <samp class="codeph">embedSWF()</samp> JavaScript
+method, as the following example shows:</p>
+
+            <pre class="codeblock">&lt;script type="text/javascript" src="swfobject.js"&gt;&lt;/script&gt; 
+        &lt;script type="text/javascript"&gt; 
+            var swfVersionStr = "0"; 
+            var xiSwfUrlStr = ""; 
+            var flashvars = {}; 
+	  flashvars.resourceModuleURLs="es_ES_resourceModule.swf" 
+	 flashvars.localeChain="es_ES" 
+            var params = {}; 
+            params.quality = "high"; 
+            params.bgcolor = "#ffffff"; 
+            params.allowscriptaccess = "sameDomain"; 
+            var attributes = {}; 
+            attributes.id = "TestProject"; 
+            attributes.name = "TestProject"; 
+            attributes.align = "middle"; 
+            swfobject.embedSWF( 
+                "TestProject.swf", "flashContent", 
+                "100%", "100%", 
+                swfVersionStr, xiSwfUrlStr, 
+                flashvars, params, attributes); 
+&lt;/script&gt; </pre>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf6119c-7feb_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf6119c-7feb_verapache"><!-- --></a>
+         <h3 class="topictitle3">Using a combination of compile-time
+resources and resource modules</h3>
+
+         
+         <div>
+            <p>You might have a default locale that you want all users
+of your application to start with. You can compile this locale’s
+resources into the application. You can then load external resource
+modules if the user changes the locale. </p>
+
+            <p>To do this, you compile the resource module as you normally would.
+When you compile the application, rather than specifying an empty
+String for the <samp class="codeph">locale</samp> option, you set it to the
+locale that you want to compile into the application. This compiled-in
+locale’s resource bundles become the default bundles when the application
+starts. You can then load a resource module SWF file as you normally would
+at run time.</p>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf6119c-7fe4_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf6119c-7fe4_verapache"><!-- --></a>
+         <h3 class="topictitle3">Unloading resource modules at run
+time</h3>
+
+         
+         <div>
+            <p>You can unload a resource module when you are no longer
+using it. For example, if the user changes to a different locale,
+you can unload the resource module for one locale after loading
+the resource module for the new locale. This can reduce the memory
+footprint used by the application.</p>
+
+            <p>To unload a resource module, you can use the ResourceManager’s <samp class="codeph">unloadResourceModule()</samp> method.
+This removes the resource module’s SWF file from memory. Its resources
+cannot be used until that module is reloaded.</p>
+
+            <p>Resource module SWF files are cached by the browser just like
+any other SWF file. As a result, if you unload a resource module,
+and then later want to reload it, Flash Player and AIR will load
+it from the browser’s cache rather than make another network request.
+If the browser’s cache was cleared, though, then Flash Player and
+AIR will load the resource module’s SWF file with a network request
+again.</p>
+
+            <p>You can unload individual resource bundles rather than the entire
+resource module. You do this with the ResourceManager’s <samp class="codeph">removeResourceBundle()</samp> method.
+This method takes a locale and the resource bundle’s name, which
+you can access with the <samp class="codeph">getBundleNamesForLocale()</samp> method.
+Rather than iterate over the resource bundle names, you can use
+the <samp class="codeph">removeResourceBundlesForLocale()</samp> method, which
+removes all resource bundles for a locale.</p>
+
+         </div>
+
+      </div>
+
+   </div>
+
+   <div class="nested1" id="WS2db454920e96a9e51e63e3d11c0bf69084-7f2c_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7f2c_verapache"><!-- --></a>
+      <h2 class="topictitle2">Creating resource bundles at run
+time</h2>
+
+      
+      <div>
+         <p>You can edit or create resource bundles programmatically.
+The process for creating a resource bundle is as follows: </p>
+
+         <ol>
+            <li>
+               <p>Create a new ResourceBundle with the <samp class="codeph">new</samp> operator.</p>
+
+            </li>
+
+            <li>
+               <p>Set the resource key/value pairs on the <samp class="codeph">content</samp> object
+of the new ResourceBundle. </p>
+
+            </li>
+
+            <li>
+               <p>Add the bundle to the ResourceManager with the <samp class="codeph">addResourceBundle()</samp> method. </p>
+
+            </li>
+
+            <li>
+               <p>Call the ResourceManager’s <samp class="codeph">update()</samp> method
+to apply the new changes.</p>
+
+            </li>
+
+         </ol>
+
+         <p>The following example creates a new resource bundle for the fr_FR
+locale with two values: </p>
+
+         <pre class="codeblock"> var moreResources:ResourceBundle = new ResourceBundle("fr_FR", "moreResources"); 
+ moreResources.content["OPEN"] = "Ouvrez"; 
+ moreResources.content["CLOSE"] = "Fermez"; 
+ resourceManager.addResourceBundle(moreResources, false); 
+ resourceManager.update();</pre>
+
+         <p>After you add the resource bundle to the ResourceManager, you
+can use the ResourceManager’s methods to find the new resources;
+for example:</p>
+
+         <pre class="codeblock"> resourceManager.localeChain = [ "fr_FR" ]; 
+ trace(resourceManager.getString("moreResources", "OPEN")); // outputs "Ouvrez"</pre>
+
+         <p>If you use the <samp class="codeph">addResourceBundle()</samp> method to
+add another bundle with the same locale and bundle name, the new
+one will overwrite the old one. However, creating new bundle values
+does not update the application. You must also call the ResourceManager’s <samp class="codeph">update()</samp> method
+to update existing resource bundles.</p>
+
+         <div class="p">The following example replaces some of the existing resources
+in the en_US locale’s RegistrationForm resource bundle with new
+values:<pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- resourcebundles/CreateReplacementBundle.mxml --&gt; 
+&lt;s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    creationComplete="initApp()"&gt; 
+    &lt;fx:Script&gt;&lt;![CDATA[ 
+        import mx.resources.ResourceBundle; 
+        import mx.controls.Alert; 
+ 
+        [Bindable] 
+        private var locales:Array = [ "es_ES","en_US" ]; 
+ 
+        private function initApp():void { 
+            /* Initialize the ComboBox to the first locale in the locales Array. */ 
+            localeComboBox.selectedIndex = locales.indexOf(resourceManager.localeChain[0]); 
+        } 
+ 
+        private function registrationComplete():void { 
+            Alert.show(resourceManager.getString('RegistrationForm', 'thanks')); 
+        }  
+        private function comboChangeHandler():void { 
+            /* Set the localeChain to either the one-element Array 
+               [ "en_US" ] or the one-element Array [ "es_ES" ]. */ 
+            resourceManager.localeChain = [ localeComboBox.selectedItem ];            
+        } 
+        
+        private function createReplacementBundle():void { 
+            var newRB:ResourceBundle = new ResourceBundle("en_US", "RegistrationForm"); 
+            
+            newRB.content["registration_title"] = "Registration Form"; 
+            newRB.content["submit_button"] = "Submit This Form"; 
+            newRB.content["personname"] = "Enter Your Name Here:"; 
+            newRB.content["street_address"] = "Enter Your Street Address Here:"; 
+            newRB.content["city"] = "Enter Your City Here:"; 
+            newRB.content["state"] = "Enter Your State Here:"; 
+            newRB.content["zip"] = "Enter Your ZIP Code Here:"; 
+            
+            resourceManager.addResourceBundle(newRB);            
+            resourceManager.update();            
+        } 
+    ]]&gt;&lt;/fx:Script&gt; 
+ 
+    &lt;s:layout&gt; 
+        &lt;s:VerticalLayout/&gt; 
+    &lt;/s:layout&gt; 
+ 
+    &lt;fx:Metadata&gt; 
+        [ResourceBundle("RegistrationForm")] 
+    &lt;/fx:Metadata&gt; 
+    &lt;s:Image source="{resourceManager.getClass('RegistrationForm', 'flag')}"/&gt; 
+ 
+    &lt;mx:ComboBox id="localeComboBox" 
+        dataProvider="{locales}" 
+        change="comboChangeHandler()"/&gt; 
+ 
+    &lt;s:Form&gt; 
+        &lt;s:FormItem label="{resourceManager.getString('RegistrationForm','personname')}"&gt; 
+            &lt;s:TextInput/&gt; 
+        &lt;/s:FormItem&gt; 
+        &lt;s:FormItem label="{resourceManager.getString('RegistrationForm','street_address')}"&gt; 
+            &lt;s:TextInput/&gt; 
+        &lt;/s:FormItem&gt; 
+        &lt;s:FormItem label="{resourceManager.getString('RegistrationForm','city')}"&gt; 
+            &lt;s:TextInput/&gt; 
+        &lt;/s:FormItem&gt; 
+        &lt;s:FormItem label="{resourceManager.getString('RegistrationForm','state')}"&gt; 
+            &lt;s:TextInput/&gt; 
+        &lt;/s:FormItem&gt; 
+        &lt;s:FormItem label="{resourceManager.getString('RegistrationForm','zip')}"&gt; 
+            &lt;s:TextInput/&gt; 
+        &lt;/s:FormItem&gt; 
+    &lt;/s:Form&gt; 
+    
+    &lt;s:Button id="b1" 
+        label="{resourceManager.getString('RegistrationForm','submit_button')}" 
+        click="registrationComplete()"/&gt; 
+    
+    &lt;s:Button id="b2" 
+        label="Change Bundle" 
+        click="createReplacementBundle()"/&gt; 
+    
+&lt;/s:Application&gt;</pre>
+
+         </div>
+
+         <p>You can also programmatically create a new locale and new resource
+bundles for that locale. However, you should only create a new locale
+programmatically if you compiled with that locale’s framework resources,
+as described in <a href="flx_l10n_ln.html#WS2db454920e96a9e51e63e3d11c0bf69084-7f34_verapache">Adding
+new locales</a>.</p>
+
+         <p>If you programmatically create your own bundles for a new locale
+but do not create any framework bundles for that locale prior to
+compiling the application, you will get run-time exceptions when
+the framework components try to access framework bundles for the
+new locale. For example, suppose you programmatically create bundles
+for the fr_FR locale but do not compile with the fr_FR framework
+bundles. If you then set the <samp class="codeph">localeChain</samp> property
+to <samp class="codeph">["fr_FR"]</samp>, you will get run-time exceptions
+when the framework components try to access framework resources
+for the fr_FR locale. As a result, if you plan on creating bundles
+for the fr_FR locale at run time, you should compile the application
+with the fr_FR framework bundles. You can then set the <samp class="codeph">localeChain</samp> property
+to <samp class="codeph">["fr_FR"]</samp> without getting run-time errors.</p>
+
+         <p>When programmatically creating bundles, you cannot put the class
+of a run-time loaded image into the bundle because its class did
+not exist at compile time. Classes representing images are created
+only at compile time, for embedded images. As a result, you should
+explicitly set the source of an image rather than get the source
+of that image from a resource bundle.</p>
+
+         <div class="p">The following example creates a new bundle for the fr_FR locale
+at run time. It explicitly assigns the source of the image when
+the fr_FR locale is selected rather than loading it from the resource
+bundle because the image’s class was not available at compile time.<pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- resourcebundles/CreateNewLocaleAndBundle.mxml --&gt; 
+&lt;s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    creationComplete="initApp()"&gt; 
+    &lt;fx:Script&gt;&lt;![CDATA[ 
+        import mx.resources.ResourceBundle; 
+        import mx.controls.Alert; 
+        import flash.display.*; 
+ 
+        [Bindable] 
+        private var locales:Array; 
+ 
+        private function initApp():void { 
+            locales =  [ "es_ES","en_US" ]; 
+            
+            /* Initialize the ComboBox to the first locale in the locales Array. */ 
+            localeComboBox.selectedIndex = locales.indexOf(resourceManager.localeChain[0]); 
+            
+            updateFlag(); 
+        } 
+ 
+        private function registrationComplete():void { 
+            Alert.show(resourceManager.getString('RegistrationForm', 'thanks')); 
+        }  
+        private function comboChangeHandler():void { 
+            /* Set the localeChain to either the one-element Array 
+               [ "en_US" ] or the one-element Array [ "es_ES" ]. */ 
+            resourceManager.localeChain = [ localeComboBox.selectedItem ];            
+            updateFlag(); 
+        } 
+        
+        private var newRB:ResourceBundle; 
+        
+        private function updateFlag():void { 
+            if (resourceManager.localeChain[0] == "fr_FR") { 
+                /* Explicitly change the value of the flagImage source when the 
+                   locale is fr_FR because there was no class at compile time. */ 
+                flagImage.source = "../assets/france.gif";            
+            } else { 
+                /* Get the class from the resource bundle; this assumes that the classes 
+                   for all other locales were embedded in the resource bundles at 
+                   compile time. */ 
+                flagImage.source = resourceManager.getClass('RegistrationForm', 'flag');        
+            }            
+        } 
+        
+        private function createNewBundle():void { 
+            locales.push("fr_FR"); 
+ 
+            newRB = new ResourceBundle("fr_FR", "RegistrationForm"); 
+ 
+            newRB.content["registration_title"] = "La Forme d'Enregistration"; 
+            newRB.content["submit_button"] = "Soumettez La Forme"; 
+            newRB.content["personname"] = "Nom"; 
+            newRB.content["street_address"] = "Rue"; 
+            newRB.content["city"] = "Ville"; 
+            newRB.content["state"] = "Etat"; 
+            newRB.content["zip"] = "Code postal"; 
+            newRB.content["thanks"] = "Merci de l'enregistrement!";                                    
+            updateFlag(); 
+ 
+            resourceManager.addResourceBundle(newRB);            
+            resourceManager.update();            
+        } 
+        
+        private function resetApp():void { 
+            resourceManager.removeResourceBundlesForLocale("fr_FR"); 
+            initApp(); 
+            resourceManager.update();            
+        } 
+    ]]&gt;&lt;/fx:Script&gt; 
+ 
+    &lt;s:layout&gt; 
+        &lt;s:VerticalLayout/&gt; 
+    &lt;/s:layout&gt; 
+ 
+    &lt;fx:Metadata&gt; 
+        [ResourceBundle("RegistrationForm")] 
+    &lt;/fx:Metadata&gt; 
+    &lt;s:Image id="flagImage"/&gt; 
+ 
+    &lt;mx:ComboBox id="localeComboBox" 
+        dataProvider="{locales}" 
+        change="comboChangeHandler()"/&gt; 
+ 
+    &lt;s:Form&gt; 
+        &lt;s:FormItem label="{resourceManager.getString('RegistrationForm','personname')}"&gt; 
+            &lt;s:TextInput/&gt; 
+        &lt;/s:FormItem&gt; 
+        &lt;s:FormItem label="{resourceManager.getString('RegistrationForm','street_address')}"&gt; 
+            &lt;s:TextInput/&gt; 
+        &lt;/s:FormItem&gt; 
+        &lt;s:FormItem label="{resourceManager.getString('RegistrationForm','city')}"&gt; 
+            &lt;s:TextInput/&gt; 
+        &lt;/s:FormItem&gt; 
+        &lt;s:FormItem label="{resourceManager.getString('RegistrationForm','state')}"&gt; 
+            &lt;s:TextInput/&gt; 
+        &lt;/s:FormItem&gt; 
+        &lt;s:FormItem label="{resourceManager.getString('RegistrationForm','zip')}"&gt; 
+            &lt;s:TextInput/&gt; 
+        &lt;/s:FormItem&gt; 
+    &lt;/s:Form&gt; 
+ 
+    &lt;s:Button id="b1" 
+        label="{resourceManager.getString('RegistrationForm','submit_button')}" 
+        click="registrationComplete()"/&gt; 
+ 
+    &lt;mx:HRule width="100%" strokeWidth="1"/&gt;    
+    
+    &lt;s:HGroup&gt; 
+        &lt;s:Button id="b2" label="Add New Bundle" click="createNewBundle();"/&gt; 
+        &lt;s:Button id="b3" label="Reset" click="resetApp();"/&gt; 
+    &lt;/s:HGroup&gt; 
+ 
+&lt;/s:Application&gt;</pre>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf6119c-7fea_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf6119c-7fea_verapache"><!-- --></a>
+         <h3 class="topictitle3">Adding, removing, or changing individual
+resources </h3>
+
+         
+         <div>
+            <p>You can add, remove, or change individual resources within
+a resource bundle in ActionScript. To do this, you first get a reference
+to the ResourceBundle with the <samp class="codeph">getResourceBundle()</samp> method.
+You pass the locale and the name of the resource bundle to this
+method. You then edit the <samp class="codeph">content</samp> property of the ResourceBundle,
+which is an object with key/value pairs for its resources. </p>
+
+            <p>The following example adds a new resource to the RegistrationForm
+resource bundle:</p>
+
+            <pre class="codeblock"> var rb:ResourceBundle =  
+ 	ResourceBundle(resourceManager.getResourceBundle("en_US", "RegistrationForm")); 
+ rb.content["cancel_button"] = "Cancel";</pre>
+
+            <p>You can change an existing value by specifying the key, as the
+following example shows:</p>
+
+            <pre class="codeblock"> rb.content["cancel_button"] = "Quit";</pre>
+
+            <p>To delete a resource from a resource bundle, you use the <samp class="codeph">delete</samp> keyword, followed
+by the key in the <samp class="codeph">content</samp> object. The following
+example deletes the <samp class="codeph">cancel_button</samp> resource that
+was added in the previous example:</p>
+
+            <pre class="codeblock"> delete rb.content["cancel_button"];</pre>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf69084-7f30_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7f30_verapache"><!-- --></a>
+         <h3 class="topictitle3">Enumerating resources </h3>
+
+         
+         <div>
+            <p>You can enumerate all resources in a resource bundle by
+using a <samp class="codeph">for</samp> 
+               <samp class="codeph">in</samp> loop in ActionScript.
+To do this, you get a reference to the resource bundle, and then loop
+over the <samp class="codeph">content</samp> object.</p>
+
+            <p>Methods that you might use when enumerating resources include <samp class="codeph">getLocales()</samp>, <samp class="codeph">getBundleNamesForLocale()</samp>,
+and <samp class="codeph">getResourceBundle()</samp>.</p>
+
+            <p>The <samp class="codeph">getLocales()</samp> method returns an Array such
+as <samp class="codeph">["en_US", "ja_JP"]</samp> which contains, in no particular
+order, all of the locales for bundles that exist in the ResourceManager.
+The <samp class="codeph">getBundleNamesForLocale()</samp> method returns an
+Array such as <samp class="codeph">["controls", "containers"]</samp> which
+contains all of the bundle names for the specified locale. The <samp class="codeph">getResourceBundle()</samp> method takes
+a locale and a bundle name and returns a reference to the specified resource
+bundle. </p>
+
+            <div class="p">The following example prints the keys and values for all resource
+bundles in all locales in the ResourceManager. This includes the
+framework bundles for the locales, in addition to any custom resources
+such as RegistrationForm.properties.<pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- resourcebundles/EnumerateAllBundles.mxml --&gt; 
+&lt;s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    creationComplete="enumerateBundles()"&gt; 
+    &lt;fx:Script&gt;&lt;![CDATA[ 
+        import mx.resources.ResourceBundle; 
+        import mx.controls.Alert; 
+ 
+        private function registrationComplete():void { 
+            /* Use the ResourceManager to set localized values in ActionScript. */ 
+            Alert.show(resourceManager.getString('RegistrationForm', 'thanks')); 
+        } 
+        
+        private function enumerateBundles():void { 
+            for each (var locale:String in resourceManager.getLocales()) { 
+                ta1.text += "****************************************\n"; 
+                ta1.text += "locale: " + locale + "\n"; 
+                ta1.text += "****************************************\n"; 
+                for each (var bundleName:String in resourceManager.getBundleNamesForLocale(locale)) { 
+                    ta1.text += "  --------------------------------------\n"; 
+                    ta1.text += "  bundleName: " + bundleName + "\n"; 
+                    var bundle:ResourceBundle = 
+                        ResourceBundle(resourceManager.getResourceBundle(locale, bundleName)); 
+                    for (var key:String in bundle.content) { 
+                        ta1.text += "    -" + key + ":" + bundle.content[key]  + "\n"; 
+                    } 
+                } 
+            }        
+        } 
+    ]]&gt;&lt;/fx:Script&gt; 
+ 
+    &lt;s:layout&gt; 
+        &lt;s:VerticalLayout/&gt; 
+    &lt;/s:layout&gt; 
+ 
+    &lt;fx:Metadata&gt; 
+        [ResourceBundle("RegistrationForm")] 
+    &lt;/fx:Metadata&gt; 
+    &lt;s:Form&gt; 
+        &lt;s:FormItem label="@Resource(key='personname', bundle='RegistrationForm')"&gt; 
+            &lt;s:TextInput/&gt; 
+        &lt;/s:FormItem&gt; 
+        &lt;s:FormItem label="@Resource(key='street_address', bundle='RegistrationForm')"&gt; 
+            &lt;s:TextInput/&gt; 
+        &lt;/s:FormItem&gt; 
+        &lt;s:FormItem label="@Resource(key='city', bundle='RegistrationForm')"&gt; 
+            &lt;s:TextInput/&gt; 
+        &lt;/s:FormItem&gt; 
+        &lt;s:FormItem label="@Resource(key='state', bundle='RegistrationForm')"&gt; 
+            &lt;s:TextInput/&gt; 
+        &lt;/s:FormItem&gt; 
+        &lt;s:FormItem label="@Resource(key='zip', bundle='RegistrationForm')"&gt; 
+            &lt;s:TextInput/&gt; 
+        &lt;/s:FormItem&gt; 
+    &lt;/s:Form&gt; 
+    &lt;s:Button id="b1" 
+        label="@Resource(key='submit_button', bundle='RegistrationForm')" 
+        click="registrationComplete()"/&gt; 
+    
+    &lt;s:TextArea id="ta1" width="100%" height="100%"/&gt; 
+&lt;/s:Application&gt;</pre>
+
+            </div>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS19f279b149e7481c-6f660f0612ca9140b8f-8000_verapache"><a name="WS19f279b149e7481c-6f660f0612ca9140b8f-8000_verapache"><!-- --></a>
+         <h3 class="topictitle3">Preventing memory leaks in modules
+and sub-applications</h3>
+
+         
+         <div>
+            <p>The ResourceManager is a singleton that holds a reference
+to all resource bundles in the system. This includes resource bundles
+used by sub-applications and modules. When a sub-application or
+module defines a new resource bundle that is not in the application
+domain of the main application, the ResourceManager creates a reference
+from the main application to the application domain of the sub-application
+or module. Because of this reference, the resource bundle cannot
+be garbage collected, which can result in extra memory being allocated but
+not used.</p>
+
+            <p>To avoid this situation, set the <samp class="codeph">addResourceBundle()</samp> method’s <samp class="codeph">useWeakReference</samp> parameter
+to <samp class="codeph">true</samp> in the sub-application or module. This
+creates a weak reference between the ResourceManager and the resource bundle,
+so that the resource bundle can be garbage collected. If the <samp class="codeph">useWeakReference</samp> property
+is set to <samp class="codeph">false</samp> (the default), the resource bundle
+will not be garbage collected. To prevent the resource bundle from
+being garbage collected until the right time, create a hard reference
+to it; remove that reference when you are ready remove the resource
+bundle or the module that uses it.</p>
+
+         </div>
+
+      </div>
+
+   </div>
+
+   <div class="nested1" id="WS2db454920e96a9e51e63e3d11c0bf6119c-7ff4_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf6119c-7ff4_verapache"><!-- --></a>
+      <h2 class="topictitle2">Custom formatting with resource bundles</h2>
+
+      
+      <div>
+         <p>The way applications present dates, times, and currencies
+varies greatly for each locale. For example, the U.S. standard for
+representing dates is month/day/year, whereas the European standard
+for representing dates is day/month/year. One of the more common
+localization tasks is to provide the formatting values for times, dates,
+and currencies. </p>
+
+         <p>The Spark formatters support the formats of all locales supported
+by the client’s operating system. However, in some cases, you might
+want to override the behavior of these controls or provide your
+own fallback mechanism. You can use values in the resource bundles
+to set properties on Flex controls such as the DateTimeFormatter
+and CurrencyFormatter.</p>
+
+         <p>The following properties file sets the values that the DateTimeFormatter
+and CurrencyFormatter will use for the en_US locale:</p>
+
+         <pre class="codeblock"> # locale/en_US/FormattingValues.properties 
+ CHROMECOLOR=0x0000FF 
+ DATE_FORMAT=MM/dd/yy 
+ TIME_FORMAT=L:NN A 
+ CURRENCY_PRECISION=2 
+ CURRENCY_SYMBOL=$ 
+ THOUSANDS_SEPARATOR=, 
+ DECIMAL_SEPARATOR=.</pre>
+
+         <p>For the British locale, the properties file might appear as follows:</p>
+
+         <pre class="codeblock"> # locale/es_ES/FormattingValues.properties 
+ CHROMECOLOR=0xFF0000 
+ DATE_FORMAT=dd/MM/yy 
+ TIME_FORMAT=HH:NN 
+ CURRENCY_PRECISION=2 
+ CURRENCY_SYMBOL=£ 
+ THOUSANDS_SEPARATOR=. 
+ DECIMAL_SEPARATOR=,</pre>
+
+         <div class="p">The following example uses resources bundles to set up the formatters:<pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- resourcebundles/FormattingExample.mxml --&gt; 
+&lt;s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    creationComplete="initApp(event)" 
+    chromeColor="{resourceManager.getUint('FormattingValues', 'CHROMECOLOR')}"&gt; 
+    &lt;s:layout&gt; 
+        &lt;s:VerticalLayout/&gt; 
+    &lt;/s:layout&gt; 
+ 
+    &lt;fx:Declarations&gt; 
+        &lt;s:DateTimeFormatter id="dateFormatter" 
+            dateTimePattern="{resourceManager.getString('FormattingValues', 'DATE_FORMAT')}"/&gt; 
+        &lt;s:DateTimeFormatter id="timeFormatter" 
+            dateTimePattern="{resourceManager.getString('FormattingValues', 'TIME_FORMAT')}"/&gt;    
+        &lt;s:CurrencyFormatter id="currencyFormatter" 
+            useCurrencySymbol="true" 
+            useGrouping="true" 
+            currencySymbol="{resourceManager.getString('FormattingValues', 'CURRENCY_SYMBOL')}" 
+            groupingSeparator="{resourceManager.getString('FormattingValues', 'THOUSANDS_SEPARATOR')}" 
+            decimalSeparator="{resourceManager.getString('FormattingValues', 'DECIMAL_SEPARATOR')}"/&gt;        
+    &lt;/fx:Declarations&gt; 
+ 
+    &lt;fx:Script&gt;&lt;![CDATA[ 
+        import mx.resources.ResourceBundle; 
+ 
+        [Bindable] 
+        private var locales:Array = [ "en_US","es_ES"]; 
+ 
+        [Bindable] 
+        private var dateValue:String; 
+        [Bindable] 
+        private var timeValue:String;           
+        [Bindable] 
+        private var currencyValue:String;           
+        private var d:Date = new Date(); 
+ 
+        private function initApp(e:Event):void { 
+            localeComboBox.selectedIndex = locales.indexOf(resourceManager.localeChain[0]);            
+            applyFormats(e);            
+            
+            // Updating the localeChain does not reapply formatters. As a result, you must 
+            // apply them whenever the ResourceManager's change event is triggered. 
+            resourceManager.addEventListener(Event.CHANGE, applyFormats); 
+            
+        } 
+ 
+        private function comboChangeHandler():void { 
+            // Changing the localeChain property triggers a change event, so the 
+            // applyFormats() method will be called whenever you select a new locale. 
+            resourceManager.localeChain = [ localeComboBox.selectedItem ];            
+        } 
+        
+        private function applyFormats(e:Event):void { 
+            dateValue = dateFormatter.format(d); 
+            timeValue = timeFormatter.format(d); 
+            currencyValue = currencyFormatter.format(1000);         
+        } 
+    ]]&gt;&lt;/fx:Script&gt; 
+ 
+    &lt;fx:Metadata&gt; 
+        [ResourceBundle("FormattingValues")] 
+    &lt;/fx:Metadata&gt; 
+    &lt;mx:ComboBox id="localeComboBox" 
+        dataProvider="{locales}" 
+        change="comboChangeHandler()"/&gt; 
+        
+    &lt;s:Form&gt; 
+        &lt;s:FormItem label="Date"&gt; 
+            &lt;s:TextInput id="ti1" text="{dateValue}"/&gt; 
+        &lt;/s:FormItem&gt; 
+        &lt;s:FormItem label="Time"&gt; 
+            &lt;s:TextInput text="{timeValue}"/&gt; 
+        &lt;/s:FormItem&gt; 
+        &lt;s:FormItem label="Currency"&gt; 
+            &lt;s:TextInput text="{currencyValue}"/&gt; 
+        &lt;/s:FormItem&gt; 
+    &lt;/s:Form&gt; 
+&lt;/s:Application&gt;</pre>
+
+         </div>
+
+      </div>
+
+   </div>
+
+   <div class="nested1" id="WS2db454920e96a9e51e63e3d11c0bf6119c-7fe6_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf6119c-7fe6_verapache"><!-- --></a>
+      <h2 class="topictitle2">Adding styles and fonts to localized resources</h2>
+
+      
+      <div>
+         <p>To localize styles, you can bind the value of the style
+property to a value from the resource bundle. For example, if the
+resource property file defines the value of a <samp class="codeph">FONTCOLOR</samp> key
+(<samp class="codeph">FONTCOLOR=0xFF0000</samp>), you can use it by binding
+its value to the style property in your application, as the following
+examples show:</p>
+
+         <pre class="codeblock">&lt;s:Application 
+	xmlns:fx="http://ns.adobe.com/mxml/2009" 
+	xmlns:mx="library://ns.adobe.com/flex/mx" 
+	xmlns:s="library://ns.adobe.com/flex/spark" 
+	chromeColor="{resourceManager.getUint('MyStyles', 'color')}"&gt; </pre>
+
+         <p>If you are using the ResourceManager to reference the value in
+the resource bundle, then be sure to use the appropriate method.
+For example, if the value is a color like 0xFF0000, use the ResourceManager’s <samp class="codeph">getUint()</samp> method.
+If the value is a class, like a programmatic skin, then use the <samp class="codeph">getClass()</samp> method. </p>
+
+         <p>For color styles, you must use hex notation (such as 0xFF0000)
+rather than the VGA color names (such as red, blue, or fuchsia)
+in the resource properties files when binding a color style to a
+resource. </p>
+
+         <p>You can also localize the fonts that an application uses. For
+example, if the locale is ja_JP, then you would want to use a font
+that supports Japanese characters, but if the locale is en_US, then
+a font that supports the much smaller English character set would
+be adequate.</p>
+
+         <p>One approach to localizing fonts in your applications is to embed
+all the fonts and then get the name of the font’s class selector
+from the resource bundle. In the resource properties file, you could
+set the values of the font, as the following example shows:</p>
+
+         <pre class="codeblock"> # /locale/en_US/FontProps.properties 
+ TEXTSTYLE=myENFont 
+ # /locale/ja_JP/FontProps.properties 
+ TEXTSTYLE=myJAFont</pre>
+
+         <p>In your application’s style sheet, you embed both fonts, as the
+following example shows:</p>
+
+         <pre class="codeblock"> &lt;fx:Style&gt; 
+ 	@font-face { 
+ 		src: url("ENFont.ttf"); 
+ 		fontFamily: EmbeddedENFont; 
+ } 
+ 	@font-face { 
+ 		src: url("JAFont.ttf"); 
+ 		fontFamily: EmbeddedJAFont; 
+ 	} 
+ 	.myENFont{ 
+ 		fontFamily: EmbeddedENFont; 
+ 	} 
+ 	.myJAFont{ 
+ 		fontFamily: EmbeddedJAFont; 
+ 	} 
+ &lt;/fx:Style&gt;</pre>
+
+         <p>In your MXML tags, you can use the <samp class="codeph">styleName</samp> property
+to apply the appropriate class selector, as the following example
+shows:</p>
+
+         <pre class="codeblock"> &lt;s:RichText styleName="{resourceManager.getString('FontProps', 'TEXTSTYLE')}"/&gt;</pre>
+
+         <p>Another approach to localizing fonts is to use style modules,
+and load them at run time based on which locale is selected. To
+do this, for each font/locale combination, you compile a style module
+that embeds the font and sets any necessary selectors. The style
+module could be as simple as the following:</p>
+
+         <pre class="codeblock"> @font-face { 
+ 	src:url("../assets/MyENFont.ttf"); 
+ 	fontFamily: myFontFamily; 
+ 	advancedAntiAliasing: true; 
+ } 
+ .global { 
+ 	   fontFamily: myFontFamily;  
+ }</pre>
+
+         <p>When you compile the style module’s SWF file, you can name it
+anything you want, but if you give it a name that contains the locale,
+you can then use that name programatically in your application.
+For example, name the style module MyStyleSheet_en_US.swf for the
+en_US locale and MyStyleSheet_ja_JP.swf for the ja_JP locale.</p>
+
+         <p>In your application, where you handle the resource bundle update
+logic, you can include logic that unloads the existing style module
+and loads a new one based on the current locale. You could also
+add the name of the style sheet to your resource bundle and extract
+it from that when the locale changes. </p>
+
+         <p>For more information on using style modules, see <a href="flx_styles_st.html#WS2db454920e96a9e51e63e3d11c0bf69084-7f8c_verapache">Loading
+style sheets at run time</a>.</p>
+
+      </div>
+
+         <p>Adobe and Adobe Flash are either registered trademarks or trademarks of Adobe Systems Incorporated in the United States and/or other countries and are used by permission from Adobe.  No other license to the Adobe trademarks are granted.</p>
+   </div>
+
+
+</body>
+</html>

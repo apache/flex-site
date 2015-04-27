@@ -1,0 +1,1040 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Licensed to the Apache Software Foundation (ASF) under one or more
+  contributor license agreements.  See the NOTICE file distributed with
+  this work for additional information regarding copyright ownership.
+  The ASF licenses this file to You under the Apache License, Version 2.0
+  (the "License"); you may not use this file except in compliance with
+  the License.  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+-->
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en-us" xml:lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="topic"/>
+<meta name="DC.Title" content="Simple MXML components"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="WS2db454920e96a9e51e63e3d11c0bf69084-7feb_verapache"/>
+<link rel="stylesheet" type="text/css" href="commonltr.css"/>
+<title>Simple MXML components</title>
+</head>
+<body id="WS2db454920e96a9e51e63e3d11c0bf69084-7feb_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7feb_verapache"><!-- --></a>
+
+
+   <h1 class="topictitle1">Simple MXML components</h1>
+
+   
+   <div>
+      <p>Applications for  Flex typically
+consist of multiple MXML and ActionScript files, and each MXML file
+is a separate MXML component. MXML components let you encapsulate
+functionality in a reusable component, extend an existing Flex component
+by adding new functionality to it, and reference the MXML component
+by using an MXML tag.</p>
+
+      <p>For information on advanced techniques for creating MXML components,
+see <a href="flx_mxmlcomponents_advanced_mxa.html#WS2db454920e96a9e51e63e3d11c0bf69084-7a35_verapache">Advanced
+MXML components</a>. </p>
+
+   </div>
+
+   <div class="nested1" id="WS2db454920e96a9e51e63e3d11c0bf68cf9-7ffb_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf68cf9-7ffb_verapache"><!-- --></a>
+      <h2 class="topictitle2">About MXML components</h2>
+
+      
+      <div>
+         <p>
+            In
+typical applications, you do not code the entire application within
+a single source code file. Such an implementation makes it difficult
+for multiple developers to work on the project simultaneously, makes
+it difficult to debug, and discourages code reuse. </p>
+
+         <p>Instead, you develop applications by using multiple MXML and
+ActionScript files. This architecture promotes a modular design,
+code reuse, and lets multiple developers contribute to the implementation. </p>
+
+         <p>MXML components are MXML files that you reference by using MXML
+tags from within other MXML files. One of the main uses of MXML
+components is to extend the functionality of an existing Flex component.</p>
+
+         <p>For example, Flex supplies a ComboBox control that you can use
+as part of a form that collects address information from a customer.
+You can use a ComboBox to let the user select the State portion
+of the address from a list of the 50 states in the U.S. In an application
+that has multiple locations where a user can enter an address, it
+would be tedious to create and initialize multiple ComboBox controls with
+the information about all 50 states. </p>
+
+         <p>Instead, you create an MXML component that contains a ComboBox
+control with all 50 states defined within it. Then, wherever you
+must add a state selector to your application, you use your custom
+MXML component.</p>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf69084-79b3_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-79b3_verapache"><!-- --></a>
+         <h3 class="topictitle3">Creating MXML components</h3>
+
+         
+         <div>
+            <p>
+               An
+application that uses MXML components includes a main MXML application file,
+which contains the <samp class="codeph">&lt;s:Application&gt;</samp> root tag,
+and references one or more components that are defined in separate
+MXML and ActionScript files. Each MXML component extends an existing
+Flex component, or another MXML component. </p>
+
+            <p>You create an MXML component in an MXML file where the component’s filename
+becomes its MXML tag name. For example, a file named StateComboBox.mxml
+defines a component with the tag name of <samp class="codeph">&lt;StateComboBox&gt;</samp>. </p>
+
+            <p>The root tag of an MXML component is a component tag, either
+a Flex component or another MXML component. The root tag specifies
+the namespace definitions for the component. For example, the following
+MXML component extends the standard Flex <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/spark/components/ComboBox.html" target="_blank">ComboBox</a> control. </p>
+
+            <pre class="noswf">&lt;?xml version="1.0"?&gt; 
+&lt;!-- createcomps_mxml/StateComboBox.mxml --&gt; 
+&lt;s:ComboBox xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx"&gt; 
+ 
+    &lt;s:dataProvider&gt; 
+        &lt;s:ArrayList&gt; 
+            &lt;fx:String&gt;AK&lt;/fx:String&gt; 
+            &lt;fx:String&gt;AL&lt;/fx:String&gt; 
+            &lt;!-- Add all other states. --&gt; 
+        &lt;/s:ArrayList&gt; 
+    &lt;/s:dataProvider&gt; 
+&lt;/s:ComboBox&gt;</pre>
+
+            <p>As part of its implementation, a custom MXML component can reference
+another custom MXML component.</p>
+
+            <p>The main application, or any other MXML component file, references
+the StateComboBox component, as the following example shows:</p>
+
+            <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- createcomps_mxml/MXMLMyApplication.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:MyComp="*"&gt; 
+ 
+    &lt;MyComp:StateComboBox/&gt; 
+&lt;/s:Application&gt;</pre>
+
+            <p>In this example, the main application file includes a new namespace
+definition of <samp class="codeph">xmlns:MyComp="*"</samp> as part of the <samp class="codeph">&lt;s:Application&gt;</samp> tag.
+This namespace definition specifies the location of the MXML component.
+In this case, it specifies that the component is in the same directory
+as the main application file. </p>
+
+            <p>As a best practice, store your components in a subdirectory.
+For example, you can write this file to the myComponents directory,
+a subdirectory of your main application directory. For more information
+on the namespace, see <a href="flx_mxml_mx.html#WS2db454920e96a9e51e63e3d11c0bf69084-79b5_verapache">Developing
+applications in MXML</a>.</p>
+
+            <p>The StateComboBox.mxml file specifies the ComboBox control as
+its root tag, so you can reference all of the properties of the
+ComboBox control within the MXML tag of your custom component, or
+in the ActionScript specified within an <samp class="codeph">&lt;fx:Script&gt;</samp> tag.
+For example, the following code specifies the <samp class="codeph">maxChars</samp> property
+and a listener for the <samp class="codeph">close</samp> event for your custom
+control:</p>
+
+            <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- createcomps_mxml/MyApplicationProps.mxml--&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:local="*"&gt; 
+    &lt;s:layout&gt; 
+        &lt;s:VerticalLayout/&gt; 
+    &lt;/s:layout&gt; 
+ 
+    &lt;fx:Script&gt; 
+        &lt;![CDATA[ 
+ 
+            import flash.events.Event; 
+ 
+            private function handleCloseEvent(eventObj:Event):void { 
+                myTA.text="foo"; 
+            }   
+        ]]&gt; 
+    &lt;/fx:Script&gt; 
+ 
+    &lt;local:StateComboBox maxChars="25" 
+        close="handleCloseEvent(event);"/&gt; 
+    &lt;mx:TextArea id="myTA" /&gt; 
+&lt;/s:Application&gt;</pre>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS4b4ddee4904fe7794bf0678b1219d815f04-8000_verapache"><a name="WS4b4ddee4904fe7794bf0678b1219d815f04-8000_verapache"><!-- --></a>
+         <h3 class="topictitle3">Limitation on the default property
+of the root tag</h3>
+
+         
+         <div>
+            <p>Many Flex components define a single default property.
+The <em>default property</em> is the MXML tag property that is implicit
+for content inside of the MXML tag if you do not explicitly specify
+a property. For example, consider the following MXML tag definition:</p>
+
+            <pre class="codeblock"> &lt;s:SomeTag&gt; 
+ 	anything here 
+ &lt;/s:SomeTag&gt;</pre>
+
+            <p>If this tag defines a default property named <samp class="codeph">default_property</samp>,
+the preceding tag definition is equivalent to the following code:</p>
+
+            <pre class="codeblock"> &lt;s:SomeTag&gt; 
+ 	<strong>&lt;s:default_property&gt;</strong> 
+ 		anything here 
+ 	<strong>&lt;/s:default_property&gt;</strong> 
+ &lt;/s:SomeTag&gt;</pre>
+
+            <p>However, the default property mechanism does not work for root
+tags of MXML components. In this situation, you must use child tags
+to define the default property, as the following example shows:</p>
+
+            <pre class="codeblock"> &lt;?xml version="1.0"?&gt; 
+ &lt;s:SomeTag xmlns:fx="http://ns.adobe.com/mxml/2009" 
+	xmlns:s="library://ns.adobe.com/flex/spark" 
+	xmlns:mx="library://ns.adobe.com/flex/halo"&gt; 
+ 	&lt;s:default_property&gt; 
+ 		anything here 
+ 	&lt;/s:default_property&gt; 
+ &lt;/s:SomeTag&gt;</pre>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf68cf9-8000_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf68cf9-8000_verapache"><!-- --></a>
+         <h3 class="topictitle3">MXML components and ActionScript
+classes</h3>
+
+         
+         <div>
+            <p>When you create a custom MXML component, you define a new
+ActionScript class where the class name corresponds to the filename
+of the MXML component. Your new class is a subclass of the component’s
+root tag, and therefore inherits all of the properties and methods
+of the root tag. However, because you are defining the component
+in MXML, many of the intricacies of creating an ActionScript class
+are hidden from you. </p>
+
+            <p>For example, in <a href="flx_mxmlcomponents_mxc.html#WS2db454920e96a9e51e63e3d11c0bf69084-79b3_verapache">Creating
+MXML components</a>, you defined the component StateComboBox.mxml
+by using the <samp class="codeph">&lt;s:ComboBox&gt;</samp> tag as its root
+tag. Therefore, StateComboBox.mxml defines a subclass of the ComboBox
+class. </p>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf68cf9-7ff8_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf68cf9-7ff8_verapache"><!-- --></a>
+         <h3 class="topictitle3">Creating composite MXML components</h3>
+
+         
+         <div>
+            <p>
+               A
+composite MXML component is a component that contains multiple component
+definitions within it. To create a composite component, you specify a
+container as its root tag, and then add components as children of
+the container. </p>
+
+            <p>For example, the following component contains an address form
+created by specifying a <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/spark/components/Form.html" target="_blank">Form</a> container
+as the root tag of the component, and then defining several children
+of the Form container. One of the <samp class="codeph">&lt;mx:FormItem&gt;</samp> tags contains
+a reference to the <samp class="codeph">&lt;MyComp:StateComboBox&gt;</samp> tag
+that you created in <a href="flx_mxmlcomponents_mxc.html#WS2db454920e96a9e51e63e3d11c0bf69084-79b3_verapache">Creating
+MXML components</a>: </p>
+
+            <pre class="noswf">&lt;?xml version="1.0"?&gt; 
+&lt;!-- createcomps_mxml/AddressForm.mxml --&gt; 
+&lt;s:Form xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:MyComp="*"&gt; 
+ 
+    &lt;s:FormItem label="NameField"&gt; 
+        &lt;s:TextInput/&gt; 
+    &lt;/s:FormItem&gt; 
+ 
+    &lt;s:FormItem label="Street"&gt; 
+        &lt;s:TextInput/&gt; 
+    &lt;/s:FormItem&gt; 
+ 
+    &lt;s:FormItem label="City" &gt; 
+        &lt;s:TextInput/&gt; 
+    &lt;/s:FormItem&gt; 
+ 
+    &lt;s:FormItem label="State" &gt; 
+        &lt;MyComp:StateComboBox/&gt; 
+    &lt;/s:FormItem&gt; 
+&lt;/s:Form&gt;</pre>
+
+            <p>The following application file references the AddressForm component
+in the <samp class="codeph">&lt;AddressForm&gt;</samp> tag:</p>
+
+            <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- createcomps_mxml/MyApplicationAddressForm.mxml--&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx"  
+    xmlns:MyComp="*" &gt; 
+ 
+    &lt;MyComp:AddressForm/&gt; 
+&lt;/s:Application&gt;</pre>
+
+            <p>If you include child tags of the root container tag in an MXML
+component file, you cannot add child tags when you use the component
+as a custom tag in another MXML file. If you define an empty container
+in an MXML file, you can add child tags when you use the component
+as a custom tag.</p>
+
+            <div class="note"><span class="notetitle">Note:</span> The restriction on child tags refers to the
+child tags that correspond to visual components. Visual components
+are subclasses of the UIComponent component. You can always insert
+tags for nonvisual components, such as ActionScript blocks, styles,
+effects, formatters, validators, and other types of nonvisual components, regardless
+of how you define your custom component. </div>
+
+            <p>The following example defines an empty Form container in an MXML component:</p>
+
+            <pre class="noswf">&lt;?xml version="1.0"?&gt; 
+&lt;!-- createcomps_mxml/EmptyForm.mxml --&gt; 
+&lt;s:Form xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+/&gt;</pre>
+
+            <p>This component defines no children of the Form container; therefore,
+you can add children when you use it in another MXML file, as the
+following example shows:</p>
+
+            <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- mxml/MainEmptyForm.mxml--&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:MyComp="*"&gt; 
+ 
+    &lt;MyComp:EmptyForm&gt;    
+        &lt;s:FormItem label="Name"&gt; 
+            &lt;s:TextInput/&gt; 
+        &lt;/s:FormItem&gt; 
+    &lt;/MyComp:EmptyForm&gt; 
+&lt;/s:Application&gt;</pre>
+
+            <p>The AddressForm.mxml file specifies the Form container as its
+root tag. Because you define a container as the root tag of the
+MXML component, you are creating a subclass of that container, and
+you can reference all of the properties and methods of the root
+tag when using your MXML component. Therefore, in the main application,
+you can reference all of the properties of the Form container in the
+MXML tag that corresponds to your custom component, or in any ActionScript
+code in the main application. However, you cannot reference properties
+of the children of the Form container.</p>
+
+            <p>For example, the following example sets the <samp class="codeph">fontSize</samp> property
+and a listener for the <samp class="codeph">creationComplete</samp> event for
+your custom control, but you cannot specify properties for the child <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/controls/CheckBox.html" target="_blank">CheckBox</a> or <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/controls/TextInput.html" target="_blank">TextInput</a> controls
+of the Form container:</p>
+
+            <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- createcomps_mxml/MainEmptyFormProps.mxml--&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:MyComp="*"&gt; 
+ 
+    &lt;fx:Script&gt; 
+        &lt;![CDATA[ 
+            import mx.events.FlexEvent; 
+ 
+            private function handleCreationCompleteEvent(event:FlexEvent):void { 
+                // Handle creationComplete event. 
+            }   
+        ]]&gt; 
+    &lt;/fx:Script&gt; 
+ 
+    &lt;MyComp:AddressForm fontSize="15" 
+        creationComplete="handleCreationCompleteEvent(event);"/&gt; 
+&lt;/s:Application&gt;</pre>
+
+            <p>To configure the children of a custom MXML component, you define
+new properties in the MXML component, and then use those new properties
+to pass configuration information to the component children. For
+more information, see <a href="flx_mxmlcomponents_advanced_mxa.html#WS2db454920e96a9e51e63e3d11c0bf69084-7a35_verapache">Advanced
+MXML components</a>.</p>
+
+         </div>
+
+      </div>
+
+   </div>
+
+   <div class="nested1" id="WS2db454920e96a9e51e63e3d11c0bf68cf9-7ffd_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf68cf9-7ffd_verapache"><!-- --></a>
+      <h2 class="topictitle2">Scoping in custom components</h2>
+
+      
+      <div>
+         <p>
+            
+            <em>Scoping</em> is
+mostly a description of what the <samp class="codeph">this</samp> keyword refers
+to at any given point in your application. In an <samp class="codeph">&lt;fx:Script&gt;</samp> tag
+in an MXML file, the <samp class="codeph">this</samp> keyword always refers
+to the current scope. In the main application file, the file that
+contains the <samp class="codeph">&lt;s:Application&gt;</samp> tag, the current
+scope is the Application object; therefore, the <samp class="codeph">this</samp> keyword
+refers to the Application object. </p>
+
+         <p>In an MXML component, Flex executes in the context of the custom
+component. The current scope is defined by the root tag of the file.
+So, the <samp class="codeph">this</samp> keyword refers not to the Application
+object, but to the object defined by the root tag of the MXML file. </p>
+
+         <p>For more information on scoping, see <a href="flx_usingas_ua.html#WS2db454920e96a9e51e63e3d11c0bf69084-7ffe_verapache">Using
+ActionScript</a>.</p>
+
+         <p>The root tag of an MXML component cannot contain an <samp class="codeph">id</samp> property.
+Therefore, if you refer to the object defined by the root tag in
+the body of the component, you must use the <samp class="codeph">this</samp> keyword,
+as the following example shows: </p>
+
+         <pre class="noswf">&lt;?xml version="1.0"?&gt; 
+&lt;!-- createcomps_mxml/myComponents/StateComboBoxThis.mxml --&gt; 
+&lt;s:ComboBox xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    close="handleCloseEvent(event);"&gt; 
+ 
+    &lt;fx:Script&gt; 
+        &lt;![CDATA[ 
+ 
+            import flash.events.Event; 
+ 
+            // Define a property to hold the current index. 
+            public var stateIndex:Number;               
+            private function handleCloseEvent(eventObj:Event):void { 
+                stateIndex = this.selectedIndex; 
+            }   
+        ]]&gt; 
+    &lt;/fx:Script&gt; 
+ 
+    &lt;s:dataProvider&gt;   
+        &lt;s:ArrayList&gt; 
+            &lt;fx:String&gt;AK&lt;/fx:String&gt; 
+            &lt;fx:String&gt;AL&lt;/fx:String&gt; 
+        &lt;/s:ArrayList&gt; 
+    &lt;/s:dataProvider&gt; 
+&lt;/s:ComboBox&gt;</pre>
+
+         <p>This example defines an event listener for the ComboBox control
+that updates the <samp class="codeph">stateIndex</samp> property when the ComboBox
+control closes. </p>
+
+      </div>
+
+   </div>
+
+   <div class="nested1" id="WS2db454920e96a9e51e63e3d11c0bf68cf9-7ffe_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf68cf9-7ffe_verapache"><!-- --></a>
+      <h2 class="topictitle2">Applying styles to your custom component</h2>
+
+      
+      <div>
+         <p>Along with skins, styles define the look and feel of your
+Flex applications. You can use styles to change the appearance of
+a single component, or apply them across all components. </p>
+
+         <p>
+            When
+working with custom components, you have several options for how
+you use styles. You can define your custom components so that they
+contain no style information at all. That design allows the application
+developer who is using your component to apply styles to match the
+rest of their application. For example, if you define a custom component
+to display text, the application developer can style it to ensure
+that the font, font size, and font style of your component match the
+rest of the application.</p>
+
+         <p>Alternatively, you might develop a component that you want to
+deploy with a built-in look so that it is not necessary for application
+developers to apply any additional styles to it. This type of component
+might be useful for applications that require a header or footer
+with a fixed look, while the body of the application has more flexibility
+in its look.</p>
+
+         <p>Or you might develop a custom component by using a combination
+of these approaches. This type of design lets application developers
+set some styles, but not others. </p>
+
+         <p>For general information on Flex styles, see <a href="flx_styles_st.html#WS2db454920e96a9e51e63e3d11c0bf69084-7fee_verapache">Styles
+and themes</a>. For information on creating custom styles, see <a href="flx_skinstyle_ss.html#WS2db454920e96a9e51e63e3d11c0bf69084-7a20_verapache">Custom
+style properties</a>. </p>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf68cf9-7ff6_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf68cf9-7ff6_verapache"><!-- --></a>
+         <h3 class="topictitle3">Applying styles from the custom
+component</h3>
+
+         
+         <div>
+            <p>You can choose to define styles within your MXML component
+so that the component has the same appearance whenever it is used,
+and application developers do not have to worry about applying styles
+to it. </p>
+
+            <p>In the definition of your custom component, you define styles
+by using one or both of the following mechanisms:</p>
+
+            <ul>
+               <li>
+                  <p>Tag properties</p>
+
+               </li>
+
+               <li>
+                  <p>Class selectors</p>
+
+               </li>
+
+            </ul>
+
+            <p>The following custom component defines a style by using a tag
+property of the <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/controls/ComboBox.html" target="_blank">ComboBox</a> control:</p>
+
+            <p>
+               
+            </p>
+
+            <pre class="noswf">&lt;?xml version="1.0"?&gt; 
+&lt;!-- createcomps_mxml/myComponents/StateComboBoxWithStyleProps.mxml --&gt; 
+&lt;s:ComboBox xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+ 
+    fontWeight="bold" 
+    fontSize="15"&gt; 
+ 
+    &lt;s:dataProvider&gt;   
+        &lt;s:ArrayList&gt; 
+            &lt;fx:String&gt;AK&lt;/fx:String&gt; 
+            &lt;fx:String&gt;AL&lt;/fx:String&gt; 
+        &lt;/s:ArrayList&gt; 
+    &lt;/s:dataProvider&gt; 
+&lt;/s:ComboBox&gt;</pre>
+
+            <p>Alternatively, you can define these styles by using a class selector
+style declaration, as the following example shows:</p>
+
+            <p>
+               
+            </p>
+
+            <pre class="noswf">&lt;?xml version="1.0"?&gt; 
+&lt;!-- createcomps_mxml/myComponents/StateComboBoxWithStyleClassSel.mxml --&gt; 
+&lt;s:ComboBox xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    styleName="myCBStyle"&gt; 
+ 
+    &lt;fx:Style&gt; 
+        .myCBStyle { 
+            fontWeight : bold; 
+            fontSize : 15; 
+            } 
+    &lt;/fx:Style&gt; 
+ 
+    &lt;s:dataProvider&gt;   
+        &lt;s:ArrayList&gt; 
+            &lt;fx:String&gt;AK&lt;/fx:String&gt; 
+            &lt;fx:String&gt;AL&lt;/fx:String&gt; 
+        &lt;/s:ArrayList&gt; 
+    &lt;/s:dataProvider&gt; 
+&lt;/s:ComboBox&gt;</pre>
+
+            <div class="note"><span class="notetitle">Note:</span> You cannot define a type selector in an MXML
+component. If you define a type selector, a compiler error occurs.</div>
+
+            <p>Application developers can apply additional styles to the component.
+For example, if your component defines styles for the open duration
+and font size, application developers can still specify font color
+or other styles. The following example uses StateComboBoxWithStyleProps.mxml
+in an application and specifies the font color style for the control:</p>
+
+            <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- mxml/MainStyleWithPropsAddColor.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:MyComp="myComponents.*"&gt; 
+ 
+    &lt;MyComp:StateComboBoxWithStyleProps color="red"/&gt; 
+    
+&lt;/s:Application&gt;</pre>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf68cf9-7ff5_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf68cf9-7ff5_verapache"><!-- --></a>
+         <h3 class="topictitle3">Applying styles from the referencing
+file</h3>
+
+         
+         <div>
+            <p>When you reference an MXML component, the referencing file
+can specify style definitions to the MXML component by using the
+following mechanisms:</p>
+
+            <ul>
+               <li>
+                  <p>Tag properties</p>
+
+               </li>
+
+               <li>
+                  <p>Class selectors</p>
+
+               </li>
+
+               <li>
+                  <p>Type selectors</p>
+
+               </li>
+
+            </ul>
+
+            <p>The styles that application developers can apply correspond to
+the styles supported by the root tag of the MXML component. The
+following example uses a tag property to set a style for the custom
+MXML component: </p>
+
+            <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- createcomps_mxml/MainStyleWithPropsOverrideOpenDur.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:MyComp="myComponents.*"&gt; 
+ 
+    &lt;MyComp:StateComboBoxWithStyleProps 
+        fontSize="12"/&gt; 
+&lt;/s:Application&gt;</pre>
+
+            <p>When you specify styles as tag attributes, those styles override
+any conflicting styles set in the definition of the MXML component.</p>
+
+            <p>You can use a class selector to define styles. Often you use
+a class selector to apply styles to specific instances of a control,
+as the following example shows:</p>
+
+            <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- createcomps_mxml/MainStyleOverrideUsingClassSel.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:MyComp="myComponents.*"&gt; 
+    &lt;s:layout&gt; 
+        &lt;s:VerticalLayout/&gt; 
+    &lt;/s:layout&gt; 
+ 
+    &lt;fx:Style&gt; 
+        .myStateComboBox { 
+            color : green; 
+        } 
+    &lt;/fx:Style&gt; 
+    &lt;MyComp:StateComboBoxWithStyleProps 
+        styleName="myStateComboBox"/&gt; 
+    &lt;s:ComboBox&gt; 
+        &lt;s:dataProvider&gt;   
+            &lt;s:ArrayList&gt; 
+                &lt;fx:String&gt;AK&lt;/fx:String&gt; 
+                &lt;fx:String&gt;AL&lt;/fx:String&gt; 
+            &lt;/s:ArrayList&gt; 
+        &lt;/s:dataProvider&gt; 
+    &lt;/s:ComboBox&gt; 
+&lt;/s:Application&gt;</pre>
+
+            <p>In this example, you use the <samp class="codeph">styleName</samp> property
+in the tag definition of an MXML component to apply styles to a
+specific instance of the MXML component. However, those styles are
+not applied to the <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/spark/components/ComboBox.html" target="_blank">ComboBox</a> control
+defined in the main application file, nor would they be applied
+to any other instances of StateComboBox.mxml unless you also specify
+the <samp class="codeph">styleName</samp> property as part of defining those
+instances of the MXML component.</p>
+
+            <p>When you specify any styles by using a class selector, those
+styles override all styles that you set by using a class selector
+in the MXML file. Those styles do not override styles that you set
+by using tag properties in the MXML file.</p>
+
+            <p>You can also use a type selector to define styles. A type selector
+applies styles to all instances of a component, as the following
+example shows:</p>
+
+            <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- createcomps_mxml/MainStyleOverrideUsingTypeSel.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:MyComp="myComponents.*"&gt; 
+ 
+    &lt;fx:Style&gt; 
+        @namespace "myComponents.*"; 
+        StateComboBoxWithStyleProps { 
+            color : red; 
+        } 
+    &lt;/fx:Style&gt; 
+    &lt;MyComp:StateComboBoxWithStyleProps/&gt; 
+&lt;/s:Application&gt;</pre>
+
+            <p>In this example, the type selector specifies the <samp class="codeph">color</samp> style
+for all instances of the StateComboBox control in the application.
+Notice that with type selectors, you also have to include a namespace
+definition for the component in the <samp class="codeph">&lt;fx:Style&gt;</samp> tag.</p>
+
+            <p> When you specify any styles by using a type selector, those
+styles override all styles that you set by using a class selector
+in the MXML file. Those styles do not override styles that you set
+by using tag properties in the MXML file.</p>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf68cf9-7ff7_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf68cf9-7ff7_verapache"><!-- --></a>
+         <h3 class="topictitle3">Applying a type selector to the
+root tag of a custom component</h3>
+
+         
+         <div>
+            <p>
+               All custom
+components contain a root tag that specifies the superclass of the component.
+In the case of StateComboBox.mxml, the root tag is <samp class="codeph">&lt;s:ComboBox&gt;</samp>.
+If you define a type selector for the <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/spark/components/ComboBox.html" target="_blank">ComboBox</a> control,
+or for a superclass of the ComboBox control, in your main application
+file, that style definition is also applied to any custom component
+that uses a ComboBox control as its root tag, as the following example
+shows:</p>
+
+            <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- createcomps_mxml/MainStyleOverrideUsingCBTypeSel.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:MyComp="myComponents.*"&gt; 
+    &lt;s:layout&gt; 
+        &lt;s:VerticalLayout/&gt; 
+    &lt;/s:layout&gt; 
+ 
+    &lt;fx:Style&gt; 
+        @namespace s "library://ns.adobe.com/flex/spark"; 
+        s|ComboBox { 
+            fontSize: 15; 
+            color: red; 
+        } 
+    &lt;/fx:Style&gt; 
+    &lt;MyComp:StateComboBoxWithStyleProps/&gt; 
+    &lt;s:ComboBox&gt; 
+        &lt;s:dataProvider&gt;   
+            &lt;s:ArrayList&gt; 
+                &lt;fx:String&gt;AK&lt;/fx:String&gt; 
+                &lt;fx:String&gt;AL&lt;/fx:String&gt; 
+            &lt;/s:ArrayList&gt; 
+        &lt;/s:dataProvider&gt; 
+    &lt;/s:ComboBox&gt; 
+&lt;/s:Application&gt;</pre>
+
+            <p>In this example, all ComboBox controls and all StateComboBox.mxml
+controls have a <samp class="codeph">fontSize</samp> of 15 points and red text. </p>
+
+            <p>If you define a type selector for a superclass of the custom
+control and for the custom control itself, Flex ignores any conflicting
+settings from the type selector for the superclass, as the following
+example shows:</p>
+
+            <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- mxml/MainStyleOverrideUsingCBTypeSelConflict.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:MyComp="myComponents.*"&gt; 
+    &lt;s:layout&gt; 
+        &lt;s:VerticalLayout/&gt; 
+    &lt;/s:layout&gt; 
+ 
+    &lt;fx:Style&gt; 
+        @namespace s "library://ns.adobe.com/flex/spark"; 
+        @namespace "myComponents.*"; 
+        s|ComboBox { 
+            color: red; 
+            fontSize: 15; 
+        } 
+        StateComboBoxWithStyleProps { 
+            color: green; 
+        } 
+    &lt;/fx:Style&gt; 
+    &lt;MyComp:StateComboBoxWithStyleProps/&gt; 
+    &lt;s:ComboBox&gt; 
+        &lt;s:dataProvider&gt;   
+            &lt;s:ArrayList&gt; 
+                &lt;fx:String&gt;AK&lt;/fx:String&gt; 
+                &lt;fx:String&gt;AL&lt;/fx:String&gt; 
+            &lt;/s:ArrayList&gt; 
+        &lt;/s:dataProvider&gt; 
+    &lt;/s:ComboBox&gt; 
+&lt;/s:Application&gt;</pre>
+
+            <p>In this example, the StateComboBox control uses green text, and
+the values for the <samp class="codeph">fontSize</samp> style specified in
+the type selector for the ComboBox control.</p>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf69084-7a00_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7a00_verapache"><!-- --></a>
+         <h3 class="topictitle3">Applying styles from a defaults.css
+file</h3>
+
+         
+         <div>
+            <p>Flex includes a global style sheet, named defaults.css,
+inside the framework.swc file in the /frameworks/libs directory.
+This global style sheet contains style definitions for the global
+class selector and type selectors for most Flex components. Flex
+implicitly loads the defaults.css file and applies it to all Flex
+applications during compilation.</p>
+
+            <p>One of the most common ways for you to distribute your custom
+MXML and ActionScript components is to create a SWC file. A SWC
+file is an archive file of Flex components that make it easy to
+exchange components among Flex developers. You need to exchange
+only a single file, rather than the MXML or ActionScript files,
+images, and other resource files. The SWF file inside a SWC file
+is compiled, which means that the code is hidden from casual view. </p>
+
+            <p>For more information about SWC files, see <a href="flx_compilers_cpl.html#WS2db454920e96a9e51e63e3d11c0bf69084-7ffd_verapache">Flex
+compilers</a>. </p>
+
+            <p>A SWC file can contain a local style sheet, named defaults.css,
+that contains the default style settings for the custom components
+defined within the SWC file. When Flex compiles your application,
+it automatically applies the local defaults.css to the components
+in your SWC file. In this way, you can override the global defaults.css
+style sheet with the local version in your SWC file.</p>
+
+            <p>The only requirements on the local version are:</p>
+
+            <ul>
+               <li>
+                  <p>You can include only a single style sheet in the SWC
+file.</p>
+
+               </li>
+
+               <li>
+                  <p>The file must be named defaults.css.</p>
+
+               </li>
+
+               <li>
+                  <p>The file must be in the top-most directory of the SWC file.</p>
+
+               </li>
+
+            </ul>
+
+            <div class="p">For example, you define a custom ComboBox control, named StateComboBox.mxml,
+as the following example shows: <pre class="noswf">&lt;?xml version="1.0"?&gt; 
+&lt;!-- createcomps_mxml/StateComboBox.mxml --&gt; 
+&lt;s:ComboBox xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx"&gt; 
+ 
+    &lt;s:dataProvider&gt; 
+        &lt;s:ArrayList&gt; 
+            &lt;fx:String&gt;AK&lt;/fx:String&gt; 
+            &lt;fx:String&gt;AL&lt;/fx:String&gt; 
+            &lt;!-- Add all other states. --&gt; 
+        &lt;/s:ArrayList&gt; 
+    &lt;/s:dataProvider&gt; 
+&lt;/s:ComboBox&gt;</pre>
+
+            </div>
+
+            <p>Notice that this control does not define any style settings.</p>
+
+            <p>Then you create a defaults.css file in the same directory to
+define the default style settings for the custom component, as the
+following example shows:</p>
+
+            <pre class="noswf">@namespace "*"; 
+StateComboBox 
+{ 
+    arrowButtonWidth: 40; 
+    cornerRadius: 10; 
+    fontSize: "14"; 
+    fontWeight: "bold"; 
+    color: red; 
+    leading: 0; 
+    paddingLeft: 10; 
+    paddingRight: 10; 
+}</pre>
+
+            <p>To create the SWC file, you run the compc command-line compiler
+from the directory that contains the defaults.css and StateComboBox.mxml
+files. Use the <samp class="codeph">include-file</samp> option to specify the
+style sheet, as the following example shows:</p>
+
+            <pre class="codeblock"> <em>flex_install_dir</em>\bin\compc -source-path .  
+ 	-include-classes StateComboBox  
+ 	-include-file defaults.css defaults.css  
+ 	-o MyComponentsSWC.swc</pre>
+
+            <p>This example creates a SWC file named MyComponentsSWC.swc.</p>
+
+            <div class="note"><span class="notetitle">Note:</span> You can also use the <samp class="codeph">include-stylesheet</samp> option
+to include the style sheet if the style sheet references assets
+that must be compiled, such as programmatic skins or other class
+files. For more information, see <a href="flx_compilers_cpl.html#WS2db454920e96a9e51e63e3d11c0bf69084-7ffd_verapache">Flex
+compilers</a>.</div>
+
+            <div class="p">Then you write an application, named CreateCompsDefaultCSSApplication.mxml,
+that uses the StateComboBox control, as the following example shows: <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- defaultCSS_app/CreateCompsDefaultCSSApplication.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:MyComp="*"&gt; 
+    &lt;s:layout&gt; 
+        &lt;s:VerticalLayout/&gt; 
+    &lt;/s:layout&gt; 
+ 
+    &lt;s:Label text="Custom MXML component using defaults.css from SWC file."/&gt; 
+    &lt;MyComp:StateComboBox/&gt; 
+ 
+    &lt;s:Label text="Default ComboBox control using the default defaults.css file."/&gt; 
+    &lt;s:ComboBox&gt; 
+        &lt;s:dataProvider&gt; 
+            &lt;s:ArrayList&gt; 
+                &lt;fx:String&gt;AK&lt;/fx:String&gt; 
+                &lt;fx:String&gt;AL&lt;/fx:String&gt; 
+            &lt;/s:ArrayList&gt; 
+        &lt;/s:dataProvider&gt; 
+    &lt;/s:ComboBox&gt; 
+&lt;/s:Application&gt;</pre>
+
+            </div>
+
+            <p>Notice that you include a namespace definition for the StateComboBox
+control in CreateCompsDefaultCSSApplication.mxml to reference the
+component. Because the MXML component is in the top-most directory
+of the SWC file, its package name is blank, and you reference it
+by using a namespace definition of <samp class="codeph">xmlns:MyComp="*"</samp>.</p>
+
+            <p>To compile an application that uses MyComponentsSWC.swc, copy
+MyComponentsSWC.swc to the directory that contains the application.
+Then use the <samp class="codeph">-library-path</samp> option to the mxmlc
+command-line compiler, as the following example shows:</p>
+
+            <pre class="codeblock"> <em>flex_install_dir</em>\bin\mxmlc  
+ 	-file-specs CreateCompsDefaultCSSApplication.mxml  
+ 	--library-path+=.</pre>
+
+            <p>In the previous example, the defaults.css file and the component
+file were in the same directory. Typically, you place components
+in a directory structure, where the package name of the component
+reflects the directory location of the component in the SWC file. </p>
+
+            <p>In the next example, you put the StateComboBox.mxml file in the
+myComponents subdirectory of the SWC file, where the subdirectory
+corresponds to the package name of the component. However, defaults.css
+must still be in the top-level directory of the SWC file, regardless
+of the directory structure of the SWC file. You compile this SWC
+file by using the following command line:</p>
+
+            <pre class="codeblock"> <em>flex_install_dir</em>\bin\compc -source-path .  
+ 	<strong>-include-classes myComponents.StateComboBox</strong> 
+ 	-include-file defaults.css defaults.css  
+ 	-o MyComponentsSWC.swc</pre>
+
+            <div class="p">To use the StateComboBox.mxml component in your application,
+you define CreateCompsDefaultCSSApplication.mxml as the following
+example shows: <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- defaultCSS_app/CreateCompsDefaultCSSApplicationSubDir.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:MyComp="myComponents.*"&gt; 
+    &lt;s:layout&gt; 
+        &lt;s:VerticalLayout/&gt; 
+    &lt;/s:layout&gt; 
+  
+    &lt;s:Label text="Custom MXML component using defaults.css from SWC file."/&gt; 
+    &lt;MyComp:StateComboBox/&gt; 
+ 
+    &lt;s:Label text="Default ComboBox control using the default defaults.css file."/&gt; 
+    &lt;s:ComboBox&gt; 
+        &lt;s:dataProvider&gt; 
+            &lt;s:ArrayList&gt; 
+                &lt;fx:String&gt;AK&lt;/fx:String&gt; 
+                &lt;fx:String&gt;AL&lt;/fx:String&gt; 
+            &lt;/s:ArrayList&gt; 
+        &lt;/s:dataProvider&gt; 
+    &lt;/s:ComboBox&gt; 
+&lt;/s:Application&gt;</pre>
+
+            </div>
+
+            <p>Notice that the namespace definition for the StateComboBox control
+in CreateCompsDefaultCSSApplication.mxml includes <samp class="codeph">myComponents.*</samp> to
+match the directory structure, and package name, of the component
+in the SWC file. </p>
+
+            <p>You can modify and test your defaults.css file without having
+to recreate the SWC file by using the ‑<samp class="codeph">defaultscssfiles</samp>‑‑
+option to the compiler. The CSS files added by the <samp class="codeph">-defaults-css-files</samp> option
+have a higher precedence than those in SWC files, so that they can
+override a corresponding definition in a SWC file. </p>
+
+            <p>When you are done modifying the defaults.css file, recreate the
+SWC file with the updated defaults.css file.</p>
+
+            <p/>
+
+         </div>
+
+      </div>
+
+   </div>
+
+
+</body>
+</html>

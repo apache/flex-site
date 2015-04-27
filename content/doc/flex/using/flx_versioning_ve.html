@@ -1,0 +1,286 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Licensed to the Apache Software Foundation (ASF) under one or more
+  contributor license agreements.  See the NOTICE file distributed with
+  this work for additional information regarding copyright ownership.
+  The ASF licenses this file to You under the Apache License, Version 2.0
+  (the "License"); you may not use this file except in compliance with
+  the License.  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+-->
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en-us" xml:lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="topic"/>
+<meta name="DC.Title" content="Versioning"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="WS2db454920e96a9e51e63e3d11c0bf69084-7f28_verapache"/>
+<link rel="stylesheet" type="text/css" href="commonltr.css"/>
+<title>Versioning</title>
+</head>
+<body id="WS2db454920e96a9e51e63e3d11c0bf69084-7f28_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7f28_verapache"><!-- --></a>
+
+
+   <h1 class="topictitle1">Versioning</h1>
+
+   <div>
+      <p>You might encounter some versioning issues when working
+on  Flex applications. When compiling, you
+can choose the version of the SDK to use and you can target specific
+versions of Adobe<sup>®</sup> Flash<sup>®</sup> Player.
+You can replicate behavior of previous SDK versions. Also, you can
+design applications that can load modules and other SWF files that
+were compiled with different SDKs.</p>
+
+   </div>
+
+   <div class="nested1" id="WS2db454920e96a9e51e63e3d11c0bf61e50-7ffd_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf61e50-7ffd_verapache"><!-- --></a>
+      <h2 class="topictitle2">Overview of versioning</h2>
+
+      
+      <div>
+         <p>When a new version of Flex is released, it usually includes
+changes to the APIs and compiler. As a result, if you were working
+on a project but then upgraded your version of the SDK, you might
+have to refactor some part of your code to be compatible with the
+new version. In addition, if the audience for your application is
+restricted in which version of Flash Player it can use, you might
+have to make certain concessions to ensure that your application
+runs without errors.</p>
+
+         <p>
+            <strong>Maintain older look and feel</strong>
+         </p>
+
+         <p>The differences between some versions of Flex go beyond new features.
+The layout schemes and the styles of many components might have
+changed from one version to the next. If you want to use new Flex
+features but have your application look and feel the same as an
+older version of Flex, you can specify the version whose styles
+you want to use with the <samp class="codeph">compatibility-version</samp> compiler
+option. For more information, see <a href="flx_versioning_ve.html#WS2db454920e96a9e51e63e3d11c0bf69084-7ede_verapache">Backward
+compatibility</a>.</p>
+
+         <p>
+            <strong>Target specific Player versions</strong>
+         </p>
+
+         <p>With current Flex tools, you can target your application toward
+a specific version of Flash Player. To do this, you use the <samp class="codeph">target-player</samp> compiler
+option. This is not the same as targeting an application to a specific <em>SWF version</em>.
+For more information, see <a href="flx_versioning_ve.html#WS2db454920e96a9e51e63e3d11c0bf69084-7ee0_verapache">Targeting
+Flash Player versions</a>. </p>
+
+         <p>
+            <strong>Ensure sub-applications and applications work together</strong>
+         </p>
+
+         <p>If you want to load a sub-application into a main application
+that was compiled with a different version of the compiler, you
+can use the <samp class="codeph">loadForCompatibility</samp> property of the
+SWFLoader control. Setting this property ensures that each SWF file
+contains its own definitions of the linked classes, removing reliance
+on particular APIs that might have changed between versions. You
+can only use this property when the main application and sub-application
+were compiled with version 3.2 of the Flex framework or later. In addition,
+the main application must be compiled with a more recent or the
+same version of the compiler as the sub-applications. For more information,
+see <a href="flx_loading_applications_la.html#WS2db454920e96a9e51e63e3d11c0bf69084-7f0c_verapache">Developing
+multi-versioned applications</a>.</p>
+
+      </div>
+
+   </div>
+
+   <div class="nested1" id="WS2db454920e96a9e51e63e3d11c0bf69084-7ede_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7ede_verapache"><!-- --></a>
+      <h2 class="topictitle2">Backward compatibility</h2>
+
+      
+      <div>
+         <p>To specify the version of the Flex compiler and framework
+that the output should be compatible with, use the <samp class="codeph">compatibility-version</samp> compiler
+option. Possible values for this compiler option are defined as
+constants in the <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/core/FlexVersion.html" target="_blank">FlexVersion</a> class. This option
+affects some behavior such as the theme, layout rules, padding and
+gaps, skins, and other style settings. In addition, it affects the rules
+for parsing properties files.</p>
+
+         <p>If you do not explicitly set the value of the <samp class="codeph">compatibility-version</samp> option, the
+compiler defaults to the current SDK’s version. </p>
+
+         <p>For the command-line compilers, you can either pass the <samp class="codeph">compatibility-version</samp> compiler
+option on the command line or set the value in the configuration
+file. The following example sets the compatibility version to 4.0
+in the flex-config.xml file:</p>
+
+         <pre class="codeblock"> &lt;compiler&gt; 
+ 	&lt;mxml&gt; 
+ 		&lt;compatibility-version&gt;4.0&lt;/compatibility-version&gt; 
+ 	&lt;mxml&gt; 
+ &lt;compiler&gt;</pre>
+
+         <p>When you set the <samp class="codeph">compatibility-version</samp> option,
+you must be sure that the configuration files that you use are compatible
+with the version you select. </p>
+
+         <p>You can programmatically access the version of the application
+that you are running by using the <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/core/FlexVersion.html" target="_blank">FlexVersion</a> class.
+To get the current compatibility version in your application, use
+the <samp class="codeph">compatibilityVersionString</samp> property of that class.
+This lets you conditionalize the logic in your application based
+on the compatibility version.</p>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf61e50-7ffa_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf61e50-7ffa_verapache"><!-- --></a>
+         <h3 class="topictitle3">Using themes with compatibility-version</h3>
+
+         
+         <div>
+            <p>When you set the compatibility version, you should also
+be sure to use the appropriate theme file that matches that version.
+Themes are located in the frameworks/themes directory. For Flex
+4.x, you do not have to specify a theme file. The default Spark
+theme file is designed for Flex 4.x compatibility. However, if you want
+the Flex 3 look and feel, you must specify the Halo theme or another
+theme that is compatible with the Flex 3 SDK. </p>
+
+            <div class="p">The following command-line example uses the Halo theme and sets <samp class="codeph">compatibility-version</samp> to
+3.0.0:<pre class="codeblock">mxmlc -compatibility-version=3.0.0 -theme=..\frameworks\themes\Halo\halo.swc MyApp.mxml</pre>
+
+            </div>
+
+            <p>For more information on using themes, see <a href="flx_styles_st.html#WS2db454920e96a9e51e63e3d11c0bf69084-7f85_verapache">About
+themes</a>. </p>
+
+            <p>The default style sheets for several versions of Flex are available
+in the framework.swc file. This SWC file contains the current default
+style sheet (defaults.css) and the Flex 3 default style sheet (defaults-3.0.0.css).
+The compiler uses the style sheet that is appropriate for the compatibility
+version you set. For example, if you set the <samp class="codeph">compatibility-version</samp> option
+to 3.0, then the compiler uses the Flex 3 default style sheet.</p>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WSda78ed3a750d6b8f-e7e343d123edb6080e-8000_verapache"><a name="WSda78ed3a750d6b8f-e7e343d123edb6080e-8000_verapache"><!-- --></a>
+         <h3 class="topictitle3">Differences between SDK 3 and SDK
+4.x</h3>
+
+         
+         <div>
+            <p>The differences between SDK 3 and SDK 4.x that result from
+setting the <samp class="codeph">compatibility-version</samp> option include
+fonts, skins, and styles. </p>
+
+            <p>If you set <samp class="codeph">compatibility-version</samp> to 3.0.0, differences
+include:</p>
+
+            <div class="p">
+               <ul>
+                  <li>
+                     <p>The value of <samp class="codeph">embedAsCFF</samp> defaults
+to <samp class="codeph">false</samp>. This means that non-CFF fonts are embedded,
+rather than CFF fonts. For more information, see <a href="flx_fonts_ft.html#WS0FA8AEDB-C69F-4f19-ADA5-AA5757217624_verapache">Embedding fonts
+with MX components</a>.</p>
+
+                  </li>
+
+                  <li>
+                     <p>The Halo theme should be used to define the look and feel
+of your application. This includes styles and skins.</p>
+
+                  </li>
+
+                  <li>
+                     <p>Bi-directional binding will not work.</p>
+
+                  </li>
+
+               </ul>
+
+            </div>
+
+            <p>For a list of differences when using the <samp class="codeph">compatibility-version</samp> compiler option,
+see <a href="http://opensource.adobe.com/wiki/display/flexsdk/Flex+4+Backwards+Compatability" target="_blank">Flex 4: Backward Compatibility</a>.</p>
+
+         </div>
+
+      </div>
+
+   </div>
+
+   <div class="nested1" id="WS2db454920e96a9e51e63e3d11c0bf69084-7ee0_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7ee0_verapache"><!-- --></a>
+      <h2 class="topictitle2">Targeting Flash Player versions</h2>
+
+      
+      <div>
+         <p>Use the <samp class="codeph">target-player</samp> compiler option
+to specify the version of Flash Player that you want to target with
+the application. Features requiring a later version of Flash Player
+are not compiled into the application.</p>
+
+         <p>One reason for setting the target Player version is if you are
+unsure of Player usage penetration rates and want to choose a Player
+version that is lower than the most recent one. Another reason is
+if your users are locked in to a particular Player version, such
+as when they are on an intranet and cannot upgrade.</p>
+
+         <p>The <samp class="codeph">target-player</samp> option has the following syntax:</p>
+
+         <pre class="codeblock"> -target-player=<em>major_version</em>.<em>minor_version</em>.<em>revision</em></pre>
+
+         <p>The <em>major_version</em> is required while <em>minor_version</em> and <em>revision</em> are
+optional. If you do not specify the <em>minor_version</em> or <em>revision</em>,
+the compiler uses zero. </p>
+
+         <p>For Flex 4.0, the only supported value of the <samp class="codeph">target-player</samp> option
+is 10.0.0. For Flex 4.1, the default value is 10.1.0. For Flex 4.5,
+the default value is 10.2.0. For Flex 4.6, the default value is
+11.1.</p>
+
+         <p>The minimum value for Flex 4.6 is 11.1. The minimum value for
+Flex 4.5 is 10.2.0. For Flex 4.0 and 4.1, the minimum value is 10.0.0
+(although Flex 4.1 included Player 10.1). </p>
+
+         <p>If you do not explicitly set the value of this option, the compiler
+uses the default from the flex-config.xml file.</p>
+
+         <p>
+            <strong>SWF version (advanced)</strong>
+         </p>
+
+         <p>The <samp class="codeph">swf-version</samp> compiler option specifies the
+SWF file format version of the output SWF file. Features requiring
+a later version of the SWF file format are not compiled into the
+application. This is different from the Player version in that it refers
+to the SWF specification versioning scheme. </p>
+
+         <div class="p">For example, to compile an application to version 10 of the SWF
+specification, use the following:<pre class="codeblock">-swf-version=10</pre>
+
+         </div>
+
+         <p>This is an advanced option that you should only use if you have
+an understanding of the SWF specification that you are targeting.
+For information about the SWF specifications, visit the <a href="http://www.adobe.com/devnet/swf.html" target="_blank">SWF
+Technology Center</a>.</p>
+
+      </div>
+
+         <p>Adobe and Adobe Flash are either registered trademarks or trademarks of Adobe Systems Incorporated in the United States and/or other countries and are used by permission from Adobe.  No other license to the Adobe trademarks are granted.</p>
+   </div>
+
+
+</body>
+</html>

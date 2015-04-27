@@ -1,0 +1,3919 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Licensed to the Apache Software Foundation (ASF) under one or more
+  contributor license agreements.  See the NOTICE file distributed with
+  this work for additional information regarding copyright ownership.
+  The ASF licenses this file to You under the Apache License, Version 2.0
+  (the "License"); you may not use this file except in compliance with
+  the License.  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+-->
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en-us" xml:lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="topic"/>
+<meta name="DC.Title" content="Custom Spark item renderers"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="WS4bebcd66a74275c3-fc6548e124e49b51c4-8000_verapache"/>
+<link rel="stylesheet" type="text/css" href="commonltr.css"/>
+<title>Custom Spark item renderers</title>
+</head>
+<body id="WS4bebcd66a74275c3-fc6548e124e49b51c4-8000_verapache"><a name="WS4bebcd66a74275c3-fc6548e124e49b51c4-8000_verapache"><!-- --></a>
+
+
+   <h1 class="topictitle1">Custom Spark item renderers</h1>
+
+   
+   <div>
+      <p>The Spark list-based controls, such as List and ComboBox,
+support custom item renderers. You can also use Spark item renderers
+with some MX controls, such as the MX DataGrid and MX Tree controls.</p>
+
+   </div>
+
+   <div class="nested1" id="WS03d33b8076db57b9-23c04461124bbeca597-8000_verapache"><a name="WS03d33b8076db57b9-23c04461124bbeca597-8000_verapache"><!-- --></a>
+      <h2 class="topictitle2">Define a custom Spark item renderer</h2>
+
+      
+      <div>
+         <p>Several Spark components represent lists of items. These
+list-based components, such as <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/spark/components/DataGroup.html" target="_blank">DataGroup</a>, <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/spark/components/List.html" target="_blank">List</a>, and <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/spark/components/DataGrid.html" target="_blank">DataGrid</a>,
+let the application user scroll through the item list. Some components,
+such as List, also let you select one or more items from the list. </p>
+
+         <p>You define a custom item renderer to control the display of a
+data item in a list-based component. The appearance can include
+the font, background color, border, and any other visual aspects
+of the data item.</p>
+
+         <p>An item renderer also defines the appearance of a data item when
+the user interacts with it. For example, the item renderer can display
+the data item one way when the user hovers over the data item, and
+in a different way when the user selects the data item. </p>
+
+         <p>Many Spark components support both skins and item renderers.
+While the item renderer defines the appearance of the data item,
+the skin defines the complete visual appearance of the component.
+The skin can include borders, scroll bars, and any other aspects
+of the appearance of the component. For more information on skins,
+see <a href="flx_gumboskinning_gs.html#WS53116913-F952-4b21-831F-9DE85B647C8A_verapache">Spark
+Skinning</a>.</p>
+
+      </div>
+
+      <div class="nested2" id="WS77c1dbb1bd80d3836ab89340129eba41c7c-8000_verapache"><a name="WS77c1dbb1bd80d3836ab89340129eba41c7c-8000_verapache"><!-- --></a>
+         <h3 class="topictitle3">Item renderer architecture</h3>
+
+         
+         <div>
+            <p>Create an item renderer in MXML or ActionScript. The advantage
+to creating item renderers in MXML is that it requires the least
+amount of code because much of the item renderer functionality is
+built into the base class, <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/spark/components/supportClasses/ItemRenderer.html" target="_blank">ItemRenderer</a>,
+that you use to define MXML item renderers.</p>
+
+            <p>ActionScript item renderers provide the best performance because
+they give you complete control over the implementation. In an ActionScript
+item renderer, you only implement the code necessary to support
+your application requirements. Create an ActionScript item renderer
+as a subclass of the <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/spark/components/LabelItemRenderer.html" target="_blank">spark.components.LabelItemRenderer</a> class
+for mobile applications, and the <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/core/UIComponent.html" target="_blank">mx.core.UIComponent</a> class
+for desktop applications. </p>
+
+            <p>The Spark item renderer architecture is defined by interfaces.
+Regardless of how you create your item renderer, MXML or ActionScript,
+the item renderer typically implements two interfaces: </p>
+
+            
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" frame="border" border="1" rules="all">
+                  
+                  
+                  
+                  <thead align="left">
+                     <tr>
+                        <th class="cellrowborder" valign="top" width="NaN%" id="d884678e107">
+                           <p>Item renderer interface</p>
+
+                        </th>
+
+                        <th class="cellrowborder" valign="top" width="NaN%" id="d884678e113">
+                           <p>Implemented by</p>
+
+                        </th>
+
+                        <th class="cellrowborder" valign="top" width="NaN%" id="d884678e119">
+                           <p>Use</p>
+
+                        </th>
+
+                     </tr>
+
+                  </thead>
+
+                  <tbody>
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d884678e107 ">
+                           <p>
+                              <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/core/IDataRenderer.html" target="_blank">IDataRenderer</a>
+                           </p>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d884678e113 ">
+                           <p>Item renderer</p>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d884678e119 ">
+                           <p>Defines the <samp class="codeph">data</samp> property
+used to pass information to an item renderer. </p>
+
+                           <p>At a minimum,
+an item renderer must implement IDataRenderer to display data. </p>
+
+                        </td>
+
+                     </tr>
+
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d884678e107 ">
+                           <p>
+                              <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/spark/components/IItemRenderer.html" target="_blank">IItemRenderer</a>
+                           </p>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d884678e113 ">
+                           <p>Item renderer</p>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d884678e119 ">
+                           <p>Defines the APIs that a component must implement
+to create an item renderer that can communicate with a host component
+to support user interaction with the data item. User interactions
+include selection, dragging, and the caret indicator. For some components,
+such as the Spark List control, user interaction includes item selection.</p>
+
+                        </td>
+
+                     </tr>
+
+                  </tbody>
+
+               </table>
+</div>
+
+            <p>The list-based components that uses the item renderer is called
+the host component, or item renderer owner. To function as a host
+component, the component must implement the IItemRendererOwner interface.</p>
+
+            
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" frame="border" border="1" rules="all">
+                  
+                  
+                  
+                  <thead align="left">
+                     <tr>
+                        <th class="cellrowborder" valign="top" width="NaN%" id="d884678e206">
+                           <p>Host component interface</p>
+
+                        </th>
+
+                        <th class="cellrowborder" valign="top" width="NaN%" id="d884678e212">
+                           <p>Implemented by</p>
+
+                        </th>
+
+                        <th class="cellrowborder" valign="top" width="NaN%" id="d884678e218">
+                           <p>Use</p>
+
+                        </th>
+
+                     </tr>
+
+                  </thead>
+
+                  <tbody>
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d884678e206 ">
+                           <p>
+                              <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/spark/components/IItemRendererOwner.html" target="_blank">IItemRendererOwner</a>
+                           </p>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d884678e212 ">
+                           <p>Host component of an item renderer</p>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d884678e218 ">
+                           <p>Defines the methods used by the host component
+to pass data to the item renderer.</p>
+
+                        </td>
+
+                     </tr>
+
+                  </tbody>
+
+               </table>
+</div>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS6C993ECE-068D-4bb6-9272-E82F08E28797_verapache"><a name="WS6C993ECE-068D-4bb6-9272-E82F08E28797_verapache"><!-- --></a>
+         <h3 class="topictitle3">Custom item renderer example</h3>
+
+         
+         <div>
+            <div class="p">To better understand how item renderers work, examine the
+implementation of a custom item renderer. Shown below is the code
+for a custom MXML item renderer for the <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/spark/components/SkinnableDataContainer.html" target="_blank">SkinnableDataContainer</a> container
+that changes the font of the data item when the user hovers over
+the data item: <pre class="noswf">&lt;?xml version="1.0" encoding="utf-8"?&gt; 
+&lt;!-- containers\spark\myComponents\MySimpleCustomItemRenderer.mxml --&gt; 
+&lt;s:ItemRenderer xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark"&gt; 
+ 
+    &lt;s:states&gt; 
+        &lt;s:State name="normal"/&gt; 
+        &lt;s:State name="hovered"/&gt; 
+    &lt;/s:states&gt; 
+    
+    &lt;s:Label id="labelDisplay" 
+        verticalCenter="0" 
+        left="3" right="3" top="6" bottom="4" 
+        fontSize.hovered='14' fontStyle.hovered="italic"/&gt; 
+&lt;/s:ItemRenderer&gt;</pre>
+
+            </div>
+
+            <p>The base class of this item renderer is the <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/spark/components/supportClasses/ItemRenderer.html" target="_blank">ItemRenderer</a> class.
+The ItemRenderer class implements the IDataRenderer and IItemRenderer
+interfaces. It is also a subclass of the Group class, so it is itself
+a container. In the body of the item renderer, define the layout,
+view states, and child controls of the item renderer used to represent
+the data item. </p>
+
+            <p>The default layout of the ItemRenderer class is <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/spark/layouts/BasicLayout.html" target="_blank">BasicLayout</a>.
+In this example, since there is no specification for the <samp class="codeph">layout</samp> property,
+the item renderer uses BasicLayout.</p>
+
+            <p>The item renderer can define view states. All view states are
+optional. In this example, you handle the normal and hovered view
+states. The normal state defines the appearance of the data item
+when there is no user interaction. The hovered view state defines
+the appearance when the user hovers the pointer over the data item. </p>
+
+            <p>This example uses the hovered view state to change the font when
+the user mouses over the data item. In this example, the custom
+item renderer displays the text in 14 point, italic font on mouse
+over. For more information on using view states in an item renderer,
+see <a href="flx_spark_itemrenderers_sir.html#WS05A80398-9DD3-445a-BD33-A7D9FD695FA3_verapache">Defining
+item renderer view states for a Spark container</a>.</p>
+
+            <p>The Label control is centered vertically in the display area
+of the item renderer, and is constrained to be three pixels in from
+the left border, three pixels in from the right border, six pixels
+in from the top border, and four pixels in from the bottom border.
+You can use these same settings in your custom item renderers to
+mimic the look of the default Flex item renderer, or change them
+as necessary for your application. </p>
+
+            <p>The <samp class="codeph">id</samp> of the Label control in the item renderer
+is <samp class="codeph">labelDisplay</samp>. This is a specially named component
+in an item renderer. Flex writes the String representation of the
+data item to the component named <samp class="codeph">labelDisplay</samp>.
+Flex also uses the <samp class="codeph">labelDisplay</samp> component to determine
+the value of the <samp class="codeph">baselinePosition</samp> property in the
+host component. </p>
+
+            <div class="p">The following application uses this custom item renderer: <pre class="codeblock">&lt;?xml version="1.0" encoding="utf-8"?&gt; 
+&lt;!-- containers\spark\SparkDataGroupContainerSimpleIR.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark"&gt; 
+ 
+    &lt;s:SkinnableDataContainer 
+        itemRenderer="myComponents.MySimpleCustomItemRenderer"&gt; 
+        &lt;s:layout&gt; 
+            &lt;s:VerticalLayout/&gt; 
+        &lt;/s:layout&gt; 
+        &lt;mx:ArrayList&gt; 
+            &lt;fx:String&gt;Bill Smith&lt;/fx:String&gt; 
+            &lt;fx:String&gt;Dave Jones&lt;/fx:String&gt; 
+            &lt;fx:String&gt;Mary Davis&lt;/fx:String&gt; 
+            &lt;fx:String&gt;Debbie Cooper&lt;/fx:String&gt; 
+        &lt;/mx:ArrayList&gt; 
+    &lt;/s:SkinnableDataContainer&gt; 
+&lt;/s:Application&gt;</pre>
+
+            </div>
+
+         </div>
+
+      </div>
+
+   </div>
+
+   <div class="nested1" id="WS684a1733bf2efe8a4bab272a129d72a6e2f-7ffe_verapache"><a name="WS684a1733bf2efe8a4bab272a129d72a6e2f-7ffe_verapache"><!-- --></a>
+      <h2 class="topictitle2">Differences between mobile and
+desktop item renderers</h2>
+
+      
+      <div>
+         <p>An item renderer is often designed to appear differently
+in a mobile application than in a desktop application. Therefore,
+while it is possible, you typically do not use the same item renderer
+in a mobile application and in a desktop application.</p>
+
+         <div class="p">For example, the differences between an item renderer for a mobile
+and a desktop application include the following: <ul>
+               <li>
+                  <p>The
+size of a mobile item renderer tends to be larger than for a desktop
+item renderer.</p>
+
+               </li>
+
+               <li>
+                  <p>An item renderer for the selected item on in a mobile application
+usually indicates selection with a checkmark or other icon. For
+a desktop application, item renderers usually show selection by
+changing the <samp class="codeph">backgroundColor</samp> style.</p>
+
+               </li>
+
+               <li>
+                  <p>The caret in a mobile application is usually indicated by
+changing the <samp class="codeph">backgroundColor</samp> style. For a desktop
+application, the caret is usually indicated by drawing a border
+around the item. </p>
+
+               </li>
+
+            </ul>
+
+         </div>
+
+         <p>The way you create item renderers can also depend on whether
+the application is for a desktop application or for a mobile application.
+You define item renderers in two ways:</p>
+
+         <div class="p">
+            <ul>
+               <li>
+                  <p>MXML</p>
+
+                  <p>Use MXML to define item renderers for desktop
+applications. MXML item renderers are simple to implement, but do
+not provide the highest performance often necessary for mobile applications.
+You typically create an MXML item renderer as a subclass of the <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/spark/components/ItemRenderer.html" target="_blank">spark.components.ItemRenderer</a> class. </p>
+
+                  <p>For
+a mobile application, if your component hosting the item renderer displays
+only has a few data items or does not support scrolling, you might
+be able to use an MXML item renderer. </p>
+
+               </li>
+
+               <li>
+                  <p>ActionScript</p>
+
+                  <p>Use ActionScript for item renderers for
+applications that require the highest performance. For item renderers
+used in mobile applications, or for item renderers to use in both
+mobile and desktop applications, create them in ActionScript. For
+a mobile project, you typically create ActionScript item renderers
+as a subclass of the <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/spark/components/LabelItemRenderer.html" target="_blank">spark.components.LabelItemRenderer</a> class. </p>
+
+               </li>
+
+            </ul>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS8b1c39bd7e9fc364-797df4f612e6e44b9fd-7fff_verapache"><a name="WS8b1c39bd7e9fc364-797df4f612e6e44b9fd-7fff_verapache"><!-- --></a>
+         <h3 class="topictitle3">Interacting with a mobile and desktop
+item renderer</h3>
+
+         
+         <div>
+            <p>The <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/core/UIComponent.html" target="_blank">mx.core.UIComponent</a> class
+defines the <samp class="codeph">interactionMode</samp> style property that
+you use to configure components for the type of input used in the
+application. For the Halo and Spark themes, the default value is <samp class="codeph">mouse</samp> to
+indicate that the mouse is the primary input device. For the Mobile
+theme, the default value is <samp class="codeph">touch</samp> to indicate the
+primary input is the touch screen.</p>
+
+            <div class="p">One important difference between item renderers for desktop and
+for mobile applications is the way you interact with the application.
+For desktop applications, you use a mouse to interact with the application.
+You can use the mouse to: <ul>
+                  <li>
+                     <p>Move the mouse pointer over
+a data item. This is referred to as hovering over the item.</p>
+
+                  </li>
+
+                  <li>
+                     <p>Select the item by clicking on it. Many Spark components
+let the user select multiple data items by using the Shift and Control
+keys in combination with the mouse. </p>
+
+                  </li>
+
+                  <li>
+                     <p>Display a caret item. The caret item is the data item that
+currently has focus. The caret item can be the currently selected
+data item, or it can be a different item.</p>
+
+                  </li>
+
+                  <li>
+                     <p>Drag and drop data items when enabled by the Spark control. </p>
+
+                  </li>
+
+               </ul>
+
+            </div>
+
+            <p>When you interact with an application on a mobile device, you
+often use a touch screen or a five-way navigation control, not a
+mouse. With a mobile application, the data items in a list-based
+control do not enter the hovered state, and you typically do not
+have to support drag and drop. Therefore, when implementing an item
+renderer for mobile applications, you do not have to worry about supporting
+those situations.</p>
+
+            <p>MXML item renderers define view states. View states provide MXML
+item renderers with a simple mechanism for handling the different
+states of the data item. In ActionScript item renderers, you do
+not use view states. Instead, you handle user interaction in the
+body of your item renderer. </p>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS8b1c39bd7e9fc364-797df4f612e6e44b9fd-8000_verapache"><a name="WS8b1c39bd7e9fc364-797df4f612e6e44b9fd-8000_verapache"><!-- --></a>
+         <h3 class="topictitle3">Differences between down and selected
+item renderers in a mobile application</h3>
+
+         
+         <div>
+            <p>For mobile applications, an item renderer must distinguish
+between an item being in the down state and the item being in the
+selected state. An item is down when the user presses down on the
+item. An item is selected when the user releases their finger after
+pressing down on the item.</p>
+
+            <div class="note"><span class="notetitle">Note:</span> In a desktop application, one where <samp class="codeph">interactionMode</samp> is <samp class="codeph">mouse</samp>, selection
+occurs on the <samp class="codeph">mouseDown</samp> event. </div>
+
+            <p>When a user presses down on an item, the item renderer does not
+immediately enter the down state. Instead, the item renderer waits
+for the duration of time specified by the <samp class="codeph">touchDelay</samp> property.
+The default delay duration specified by the <samp class="codeph">touchDelay</samp> property
+is 100 ms.</p>
+
+            <p>This delay ensures that the user did not intend to initiate a
+scroll operation. If the item renderer immediately went to the down
+state, and the user intended to scroll, the item renderer would
+flicker from the normal state to the down state, and then back to
+the normal state. </p>
+
+         </div>
+
+      </div>
+
+   </div>
+
+   <div class="nested1" id="WS77c1dbb1bd80d3836ecbb5ec129ec77b1e1-8000_verapache"><a name="WS77c1dbb1bd80d3836ecbb5ec129ec77b1e1-8000_verapache"><!-- --></a>
+      <h2 class="topictitle2">Working with item renderers</h2>
+
+      
+      <div>
+         <p/>
+
+      </div>
+
+      <div class="nested2" id="WS3B0D227A-DBFE-424c-9076-E834C5833E30_verapache"><a name="WS3B0D227A-DBFE-424c-9076-E834C5833E30_verapache"><!-- --></a>
+         <h3 class="topictitle3">Passing data to a Spark item renderer</h3>
+
+         
+         <div>
+            <p>The host component of the item renderer is called the item
+renderer’s owner. The host component passes information to the item
+renderer by using the properties defined by the IDataRenderer and
+IItemRenderer interfaces. </p>
+
+            <p>The following table describes the properties of the <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/core/IDataRenderer.html" target="_blank">IDataRenderer</a> and <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/spark/components/IItemRenderer.html" target="_blank">IItemRenderer</a> interfaces: </p>
+
+            <div class="p">
+               
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" frame="border" border="1" rules="all">
+                     
+                     
+                     
+                     
+                     <thead align="left">
+                        <tr>
+                           <th class="cellrowborder" valign="top" width="NaN%" id="d884678e594">
+                              <p>Item renderer property</p>
+
+                           </th>
+
+                           <th class="cellrowborder" valign="top" width="NaN%" id="d884678e600">
+                              <p>Type</p>
+
+                           </th>
+
+                           <th class="cellrowborder" valign="top" width="NaN%" id="d884678e606">
+                              <p>Description</p>
+
+                           </th>
+
+                           <th class="cellrowborder" valign="top" width="NaN%" id="d884678e612">
+                              <p>Interface</p>
+
+                           </th>
+
+                        </tr>
+
+                     </thead>
+
+                     <tbody>
+                        <tr>
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d884678e594 ">
+                              <p>
+                                 <samp class="codeph">data</samp>
+                              </p>
+
+                           </td>
+
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d884678e600 ">
+                              <p>Object</p>
+
+                           </td>
+
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d884678e606 ">
+                              <p>The data item to render or edit as defined
+in the data provider of the host component.</p>
+
+                           </td>
+
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d884678e612 ">
+                              <p>IDataRenderer</p>
+
+                           </td>
+
+                        </tr>
+
+                        <tr>
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d884678e594 ">
+                              <p>
+                                 <samp class="codeph">dragging</samp>
+                              </p>
+
+                           </td>
+
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d884678e600 ">
+                              <p>Boolean</p>
+
+                           </td>
+
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d884678e606 ">
+                              <p>Contains <samp class="codeph">true</samp> if the item
+renderer is being dragged.</p>
+
+                              <p>Mobile applications do not support
+drag and drop. Therefore, for an item renderer used only in a mobile
+application, you can define this property with a setter/getter that
+always returns <samp class="codeph">false</samp>. To use the item renderer
+in a desktop application that supports drag and drop, you must implement
+it. </p>
+
+                           </td>
+
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d884678e612 ">
+                              <p>IItemRenderer</p>
+
+                           </td>
+
+                        </tr>
+
+                        <tr>
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d884678e594 ">
+                              <p>
+                                 <samp class="codeph">itemIndex</samp>
+                              </p>
+
+                           </td>
+
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d884678e600 ">
+                              <p>int</p>
+
+                           </td>
+
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d884678e606 ">
+                              <p>The index of the item in the data provider
+of the host component of the item renderer.</p>
+
+                           </td>
+
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d884678e612 ">
+                              <p>IItemRenderer</p>
+
+                           </td>
+
+                        </tr>
+
+                        <tr>
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d884678e594 ">
+                              <p>
+                                 <samp class="codeph">label</samp>
+                              </p>
+
+                           </td>
+
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d884678e600 ">
+                              <p>String</p>
+
+                           </td>
+
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d884678e606 ">
+                              <p>A String representation of the data item
+to display in the item renderer.</p>
+
+                           </td>
+
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d884678e612 ">
+                              <p>IItemRenderer</p>
+
+                           </td>
+
+                        </tr>
+
+                        <tr>
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d884678e594 ">
+                              <p>
+                                 <samp class="codeph">selected</samp>
+                              </p>
+
+                           </td>
+
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d884678e600 ">
+                              <p>Boolean</p>
+
+                           </td>
+
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d884678e606 ">
+                              <p>Contains <samp class="codeph">true</samp> if the item
+renderer can show itself as selected. </p>
+
+                              <p>Many Spark components,
+such as the DataGroup and SkinnableDataContainers support item renderers,
+but do not support the selection of a data item. Other Spark components,.
+such as List, ComboBox, and DataGrid, support the selection of a
+data item. </p>
+
+                           </td>
+
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d884678e612 ">
+                              <p>IItemRenderer</p>
+
+                           </td>
+
+                        </tr>
+
+                        <tr>
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d884678e594 ">
+                              <p>
+                                 <samp class="codeph">showsCaret</samp>
+                              </p>
+
+                           </td>
+
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d884678e600 ">
+                              <p>Boolean</p>
+
+                           </td>
+
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d884678e606 ">
+                              <p>Contains <samp class="codeph">true</samp> if the item
+renderer can show itself as focused.</p>
+
+                           </td>
+
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d884678e612 ">
+                              <p>IItemRenderer</p>
+
+                           </td>
+
+                        </tr>
+
+                     </tbody>
+
+                  </table>
+</div>
+
+            </div>
+
+            <p>Your item renderer might also implement the <samp class="codeph">hovered</samp> property.
+The hovered property is not defined by an interface but is implemented
+by many Flex item renderers. The following table describes the <samp class="codeph">hovered</samp> property: </p>
+
+            
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" frame="border" border="1" rules="all">
+                  
+                  
+                  
+                  
+                  <thead align="left">
+                     <tr>
+                        <th class="cellrowborder" valign="top" width="NaN%" id="d884678e851">
+                           <p>Item renderer property</p>
+
+                        </th>
+
+                        <th class="cellrowborder" valign="top" width="NaN%" id="d884678e857">
+                           <p>Type</p>
+
+                        </th>
+
+                        <th class="cellrowborder" valign="top" width="NaN%" id="d884678e863">
+                           <p>Description</p>
+
+                        </th>
+
+                        <th class="cellrowborder" valign="top" width="NaN%" id="d884678e869">
+                           <p>Interface</p>
+
+                        </th>
+
+                     </tr>
+
+                  </thead>
+
+                  <tbody>
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d884678e851 ">
+                           <p>
+                              <samp class="codeph">hovered</samp>
+                           </p>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d884678e857 ">
+                           <p>Boolean</p>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d884678e863 ">
+                           <p>Contains <samp class="codeph">true</samp> when the
+user hovers over the list item. Typically, the item renderer listens
+for the <samp class="codeph">rollOver</samp> and <samp class="codeph">rollOut</samp> events
+to set <samp class="codeph">hovered</samp> and to update the display of the
+item renderer accordingly.</p>
+
+                           <p>Mobile applications do not support
+hovered. For an item renderer used in a mobile application, you
+are not required to implement the hovered property. To use the item
+renderer in a desktop application, you must implement it. The predefined
+mobile item renderers supplied with Flex implement the hovered property
+so that you can use the item renderer in a mobile and desktop application.</p>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d884678e869 ">
+                           <p>None</p>
+
+                        </td>
+
+                     </tr>
+
+                  </tbody>
+
+               </table>
+</div>
+
+            <p>The <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/core/UIComponent.html" target="_blank">UIComponent</a> class,
+the base class for all Flex components including item renderers,
+defines the <samp class="codeph">owner</samp> property. The <samp class="codeph">owner</samp> property
+contains a reference to the component that hosts the item renderer.
+For example, the SkinnableDataContainer can be the owner of an item
+renderer. From within the item renderer, you can access the host
+component by using the <samp class="codeph">owner</samp> property.</p>
+
+            <div class="p">The host component of an item renderer must implement the <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/spark/components/IItemRendererOwner.html" target="_blank">IItemRendererOwner</a> interface.
+That interface defines the following methods to write information
+to the item renderer: 
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" frame="border" border="1" rules="all">
+                     
+                     
+                     
+                     <thead align="left">
+                        <tr>
+                           <th class="cellrowborder" valign="top" width="NaN%" id="d884678e965">
+                              <p>Host component method</p>
+
+                           </th>
+
+                           <th class="cellrowborder" valign="top" width="NaN%" id="d884678e971">
+                              <p>Description</p>
+
+                           </th>
+
+                           <th class="cellrowborder" valign="top" width="NaN%" id="d884678e977">
+                              <p>Interface</p>
+
+                           </th>
+
+                        </tr>
+
+                     </thead>
+
+                     <tbody>
+                        <tr>
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d884678e965 ">
+                              <p>
+                                 <samp class="codeph">itemToLabel()</samp>
+                              </p>
+
+                           </td>
+
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d884678e971 ">
+                              <p>Converts the data item to a String representation. </p>
+
+                              <p>Host
+components can override this method to customize the String conversion.</p>
+
+                           </td>
+
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d884678e977 ">
+                              <p>IItemRendererOwner</p>
+
+                           </td>
+
+                        </tr>
+
+                        <tr>
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d884678e965 ">
+                              <p>
+                                 <samp class="codeph">updateRenderer()</samp>
+                              </p>
+
+                           </td>
+
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d884678e971 ">
+                              <p>Write the data item as a String to the <samp class="codeph">label</samp> property.
+Updates the <samp class="codeph">owner</samp> property with a reference to
+the host component. The last thing this method does is set the <samp class="codeph">data</samp> property
+of the item renderer.</p>
+
+                              <p>Host components can override this method
+to write additional information to the item renderer.</p>
+
+                           </td>
+
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d884678e977 ">
+                              <p>IItemRendererOwner</p>
+
+                           </td>
+
+                        </tr>
+
+                     </tbody>
+
+                  </table>
+</div>
+
+            </div>
+
+            <p>Before you create a custom item renderer, decide how to pass
+the data item to the item renderer. In some situations, you want
+the host component to perform any processing on the data item before
+it passes it to the item renderer. If so, override the <samp class="codeph">itemToLabel()</samp> and <samp class="codeph">updateRenderer()</samp> methods
+in the host component. The item renderer then accesses the data
+by using the <samp class="codeph">label</samp> property.</p>
+
+            <p>Instead of the host component processing the data item, the item
+renderer can perform the processing. If you want the item renderer
+to process the data item, use <samp class="codeph">IDataRenderer.data</samp> property
+to pass it. The item renderer then accesses the <samp class="codeph">data</samp> property
+and performs any processing on the data item before displaying it. </p>
+
+            <p>For an example that overrides the <samp class="codeph">itemToLabel()</samp> and <samp class="codeph">updateRenderer()</samp> methods,
+see <a href="flx_spark_itemrenderers_sir.html#WSdfd41de286dc919d-63248ba71211ccd7b7c-8000_verapache">Passing
+data using the IItemRenderer.label property</a>. For an example
+that overrides the <samp class="codeph">data</samp> property, see <a href="flx_spark_itemrenderers_sir.html#WSdfd41de286dc919d-63248ba71211ccd7b7c-7fff_verapache">Passing
+data using the IIDataRenderer.data property</a>. </p>
+
+         </div>
+
+         <div class="nested3" id="WSdfd41de286dc919d-63248ba71211ccd7b7c-8000_verapache"><a name="WSdfd41de286dc919d-63248ba71211ccd7b7c-8000_verapache"><!-- --></a>
+            <h4 class="topictitle4">Passing data using the IItemRenderer.label
+property</h4>
+
+            
+            <div>
+               <p>If the data item is a String, or a value that can easily
+be converted to a String, you can use the <samp class="codeph">IItemRenderer.label</samp> property
+to pass it to the item renderer. If the data item is in a format
+that must be converted to a String representation, override the <samp class="codeph">IItemRendererOwner.itemToLabel()</samp> method
+in the host component to customize the conversion. </p>
+
+               <div class="p">
+                  <div class="note"><span class="notetitle">Note:</span> The example item renderers in this section are written
+in MXML. For examples written in ActionScript, see <a href="flx_spark_itemrenderers_sir.html#WS684a1733bf2efe8a-50bd10db129d6a5f31a-8000_verapache">Create
+a Spark item renderer in ActionScript</a>.</div>
+
+               </div>
+
+               <p>In the following example, the children of the SkinnableDataContainer
+container are Strings specifying different colors:</p>
+
+               <div class="p">
+                  <pre class="codeblock">&lt;?xml version="1.0" encoding="utf-8"?&gt; 
+&lt;!-- containers\spark\SparkDataContainerColor.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:MyComps="myComponents.*"&gt; 
+ 
+    &lt;s:SkinnableDataContainer 
+        itemRenderer="myComponents.MySimpleColorRenderer"&gt; 
+        &lt;mx:ArrayList&gt; 
+            &lt;fx:String&gt;red&lt;/fx:String&gt; 
+            &lt;fx:String&gt;green&lt;/fx:String&gt; 
+            &lt;fx:String&gt;blue&lt;/fx:String&gt; 
+        &lt;/mx:ArrayList&gt;  
+    &lt;/s:SkinnableDataContainer&gt; 
+&lt;/s:Application&gt;</pre>
+
+               </div>
+
+               <div class="p">This example uses a custom item renderer named MySimpleColorRenderer, defined
+in the file MySimpleColorRenderer.mxml, that shows the String text
+in a background of the matching color. Shown below is the MXML item
+renderer:<pre class="noswf">&lt;?xml version="1.0" encoding="utf-8"?&gt; 
+&lt;!-- containers\spark\myComponents\MySimpleColorRenderer.mxml --&gt; 
+&lt;s:ItemRenderer xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    autoDrawBackground="false"&gt; 
+    
+    &lt;fx:Script&gt; 
+        &lt;![CDATA[    
+            
+            // Property to hold the RGB color value. 
+            [Bindable] 
+            public var myColor:uint; 
+        
+            // Write String to labelDisplay component. 
+            override public function set label(value:String):void 
+            { 
+                super.label = value; 
+                labelDisplay.text = label; 
+                
+                // Determine the RGB color value from the data item. 
+                if (label == "red") 
+                    myColor = 0xFF0000; 
+                if (label == "green") 
+                    myColor = 0x00FF00; 
+                if (label == "blue") 
+                    myColor = 0x0000FF; 
+            } 
+        ]]&gt; 
+    &lt;/fx:Script&gt; 
+    
+    &lt;!-- Set the background color to the RGB color value.--&gt; 
+    &lt;s:Rect width="100%" height="100%" alpha="0.5"&gt; 
+        &lt;s:fill&gt; 
+            &lt;s:SolidColor color="{myColor}" /&gt; 
+        &lt;/s:fill&gt; 
+    &lt;/s:Rect&gt; 
+ 
+    &lt;!-- Display the color name --&gt; 
+    &lt;s:Label id="labelDisplay"/&gt; 
+&lt;/s:ItemRenderer&gt;</pre>
+
+               </div>
+
+               <p>In this example, the item renderer overrides the <samp class="codeph">label</samp> property
+to write the color to the Label control, and set the fill color
+of the Rect component. </p>
+
+               <p>This item renderer displays the data with no visual changes based
+on state. Therefore, it sets the <samp class="codeph">ItemRenderer.autoDrawBackground</samp> property
+to <samp class="codeph">false</samp>. This item renderer is useful for displaying
+data in the container when it does not have any user interaction.
+For an example of an item renderer that changes its display based
+on user interaction, see <a href="flx_spark_itemrenderers_sir.html#WS77c1dbb1bd80d38313b7ce1c129eb7d5e04-7fff_verapache">Controlling
+the background color using the autoDrawBackground property</a>.</p>
+
+               <div class="p">If you want to modify the String passed to the <samp class="codeph">label</samp> property,
+you can override the <samp class="codeph">itemToLabel()</samp> method in the
+host component. The <samp class="codeph">itemToLabel()</samp> method has the
+following signature:<pre class="codeblock">itemToLabel(item:Object):String</pre>
+
+               </div>
+
+               <p>The method takes a single argument representing the data item.
+It returns a String representation of the data item for display
+in the item renderer. </p>
+
+               <p>In the following example, each data item is represented by an
+Object containing three fields. The custom SkinnableDataContainer
+container, called MyDataGroup, overrides the <samp class="codeph">itemToLabel()</samp> method
+to format the Object as a String before passing the String to the
+item renderer. The example then uses the DefaultItemRenderer to
+display the text:</p>
+
+               <div class="p">
+                  <pre class="codeblock">&lt;?xml version="1.0" encoding="utf-8"?&gt; 
+&lt;!-- containers\spark\SparkDataGroupContainerOverride.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:MyComps="myComponents.*"&gt; 
+ 
+    &lt;!-- Define a custom DataGroup container to override the itemToLabel() method. --&gt; 
+    &lt;MyComps:MyDataGroup itemRenderer="spark.skins.spark.DefaultItemRenderer"&gt; 
+        &lt;MyComps:layout&gt; 
+            &lt;s:VerticalLayout/&gt; 
+        &lt;/MyComps:layout&gt; 
+ 
+        &lt;mx:ArrayList&gt; 
+            &lt;fx:Object firstName="Bill" lastName="Smith" companyID="11233"/&gt; 
+            &lt;fx:Object firstName="Dave" lastName="Jones" companyID="13455"/&gt; 
+            &lt;fx:Object firstName="Mary" lastName="Davis" companyID="11543"/&gt; 
+            &lt;fx:Object firstName="Debbie" lastName="Cooper" companyID="14266"/&gt; 
+        &lt;/mx:ArrayList&gt; 
+    &lt;/MyComps:MyDataGroup&gt; 
+&lt;/s:Application&gt;</pre>
+
+               </div>
+
+               <p>The MyDataGroup.mxml file defines the custom SkinnableDataContainer container
+that overrides the <samp class="codeph">itemToLabel()</samp> method:</p>
+
+               <div class="p">
+                  <pre class="noswf">&lt;?xml version="1.0" encoding="utf-8"?&gt; 
+&lt;!-- containers\spark\myComponents\MyDataGroup.mxml --&gt; 
+&lt;s:SkinnableDataContainer xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx"&gt; 
+    &lt;s:layout&gt; 
+        &lt;s:VerticalLayout/&gt; 
+    &lt;/s:layout&gt; 
+ 
+    &lt;fx:Script&gt; 
+        &lt;![CDATA[        
+            // Override to return the Object as a formatted String. 
+            override public function itemToLabel(item:Object):String { 
+                var tempString:String; 
+                if (item == null) 
+                    return " "; 
+ 
+                tempString = item.firstName + " " + item.lastName 
+                    + " " + ", ID: " + item.companyID; 
+                return tempString; 
+            } 
+        ]]&gt; 
+    &lt;/fx:Script&gt; 
+&lt;/s:SkinnableDataContainer&gt;</pre>
+
+               </div>
+
+            </div>
+
+         </div>
+
+         <div class="nested3" id="WSdfd41de286dc919d-63248ba71211ccd7b7c-7fff_verapache"><a name="WSdfd41de286dc919d-63248ba71211ccd7b7c-7fff_verapache"><!-- --></a>
+            <h4 class="topictitle4">Passing data using the IIDataRenderer.data
+property</h4>
+
+            
+            <div>
+               <p>Rather than processing the data in the host component,
+you can let the item renderer perform all the processing of the
+data item for display. In this situation, use the <samp class="codeph">ItemRenderer.data</samp> property
+to pass the data item to the item renderer. This technique lets
+you define a set of item renderers that display the same data in
+different ways depending on your application requirements.</p>
+
+               <div class="p">
+                  <div class="note"><span class="notetitle">Note:</span> The example item renderers in this section are written
+in MXML. For examples written in ActionScript, see <a href="flx_spark_itemrenderers_sir.html#WS684a1733bf2efe8a-50bd10db129d6a5f31a-8000_verapache">Create
+a Spark item renderer in ActionScript</a>.</div>
+
+               </div>
+
+               <div class="p">In the next example, each data item is represented by an Object
+that defines three fields: <pre class="codeblock">&lt;?xml version="1.0" encoding="utf-8"?&gt; 
+&lt;!-- containers\spark\SparkDataGroupContainerSimple.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark"&gt; 
+ 
+    &lt;s:SkinnableDataContainer 
+        itemRenderer="myComponents.MySimpleItemRenderer"&gt; 
+        &lt;s:layout&gt; 
+            &lt;s:VerticalLayout/&gt; 
+        &lt;/s:layout&gt; 
+        &lt;mx:ArrayList&gt; 
+            &lt;fx:Object firstName="Bill" lastName="Smith" companyID="11233"/&gt; 
+            &lt;fx:Object firstName="Dave" lastName="Jones" companyID="13455"/&gt; 
+            &lt;fx:Object firstName="Mary" lastName="Davis" companyID="11543"/&gt; 
+            &lt;fx:Object firstName="Debbie" lastName="Cooper" companyID="14266"/&gt; 
+        &lt;/mx:ArrayList&gt; 
+    &lt;/s:SkinnableDataContainer&gt; 
+&lt;/s:Application&gt;</pre>
+
+               </div>
+
+               <p>The <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/spark/components/SkinnableDataContainer.html" target="_blank">SkinnableDataContainer</a> uses
+a custom item renderer named MySimpleItemRenderer.mxml. The custom
+item renderer displays the firstName and lastName fields in a single
+Label control, and display the companyID in a second Label control: </p>
+
+               <div class="p">
+                  <pre class="noswf">&lt;?xml version="1.0" encoding="utf-8"?&gt; 
+&lt;!-- containers\spark\myComponents\MySimpleItemRenderer.mxml --&gt; 
+&lt;s:ItemRenderer xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark"&gt; 
+ 
+    &lt;s:HGroup verticalCenter="0" left="2" right="2" top="2" bottom="2"&gt; 
+        &lt;s:Label text="{data.lastName}, {data.firstName}"/&gt; 
+        &lt;s:Label text="{data.companyID}"/&gt; 
+    &lt;/s:HGroup&gt; 
+&lt;/s:ItemRenderer&gt;</pre>
+
+               </div>
+
+               <p>The <samp class="codeph">data</samp> property contains an Object passed
+from the <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/spark/components/DataGroup.html" target="_blank">DataGroup</a> container. The
+Object represents the data item in its original form. The renderer
+uses data binding to populate the controls in the item renderer
+from the <samp class="codeph">data</samp> property. The two Label controls
+are defined in a Group container so that they can be layed out horizontally.</p>
+
+               <div class="p">Rather than using data binding, you can override the <samp class="codeph">data</samp> property
+in the item renderer. Within the override, you can modify the data
+or perform other processing, then set properties in the renderer.
+The following example shows an alternative implementation of MySimpleItemRenderer.mxml
+that overrides the <samp class="codeph">data</samp> property: <pre class="noswf">&lt;?xml version="1.0" encoding="utf-8"?&gt; 
+&lt;!-- containers\spark\myComponents\MySimpleItemRendererDataOverride.mxml --&gt; 
+&lt;s:ItemRenderer xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark"&gt; 
+ 
+    &lt;fx:Script&gt; 
+        &lt;![CDATA[ 
+            
+            override public function set data(value:Object):void { 
+                super.data = value; 
+                
+                // Check to see if the data property is null. 
+                if (value== null) 
+                    return; 
+                // If the data property is not null, 
+                // set the Label controls appropriately. 
+                nameLabel.text = value.firstName + ', ' + value.lastName; 
+                compLabel.text = value.companyID; 
+            } 
+        ]]&gt; 
+    &lt;/fx:Script&gt; 
+    &lt;s:HGroup verticalCenter="0" left="2" right="2" top="2" bottom="2"&gt; 
+        &lt;s:Label id="nameLabel"/&gt; 
+        &lt;s:Label id="compLabel"/&gt; 
+    &lt;/s:HGroup&gt; 
+&lt;/s:ItemRenderer&gt;</pre>
+
+               </div>
+
+            </div>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS03d33b8076db57b9-43c4a246124bc002543-8000_verapache"><a name="WS03d33b8076db57b9-43c4a246124bc002543-8000_verapache"><!-- --></a>
+         <h3 class="topictitle3">Controlling the background display
+of an item renderer</h3>
+
+         
+         <div>
+            <p>An item renderer controls the background display of the
+data item in the host component. Typically, an item renderer changes
+the background display of the data item to reflect user interaction.
+For example, an item renderer can use a transparent background when
+there is no user interaction with the data item. It could draw a
+blue background when the data item is selected, and a different background
+when the user hovers over the data item.</p>
+
+            <div class="p">Flex defines the following CSS styles to define background colors
+for the three common user interactions: 
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" frame="border" border="1" rules="all">
+                     
+                     
+                     
+                     
+                     <thead align="left">
+                        <tr>
+                           <th class="cellrowborder" valign="top" width="NaN%" id="d884678e1316">
+                              <p>Interaction</p>
+
+                           </th>
+
+                           <th class="cellrowborder" valign="top" width="NaN%" id="d884678e1322">
+                              <p>Style</p>
+
+                           </th>
+
+                           <th class="cellrowborder" valign="top" width="NaN%" id="d884678e1328">
+                              <p>Value for Spark theme</p>
+
+                           </th>
+
+                           <th class="cellrowborder" valign="top" width="NaN%" id="d884678e1334">
+                              <p>Value for Mobile theme</p>
+
+                           </th>
+
+                        </tr>
+
+                     </thead>
+
+                     <tbody>
+                        <tr>
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d884678e1316 ">
+                              <p>none</p>
+
+                           </td>
+
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d884678e1322 ">
+                              <p>
+                                 <samp class="codeph">contentBackgroundColor</samp>
+                              </p>
+
+                           </td>
+
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d884678e1328 ">
+                              <p>0xFFFFFF (white)</p>
+
+                           </td>
+
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d884678e1334 ">
+                              <p>0x464646 (dark grey)</p>
+
+                           </td>
+
+                        </tr>
+
+                        <tr>
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d884678e1316 ">
+                              <p>hovered</p>
+
+                           </td>
+
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d884678e1322 ">
+                              <p>
+                                 <samp class="codeph">rollOverColor</samp>
+                              </p>
+
+                           </td>
+
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d884678e1328 ">
+                              <p>0xCEDBEF (light blue)</p>
+
+                           </td>
+
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d884678e1334 ">
+                              <p>0xCEDBEF (light blue/grey)</p>
+
+                           </td>
+
+                        </tr>
+
+                        <tr>
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d884678e1316 ">
+                              <p>selected</p>
+
+                           </td>
+
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d884678e1322 ">
+                              <p>
+                                 <samp class="codeph">selectionColor</samp>
+                              </p>
+
+                           </td>
+
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d884678e1328 ">
+                              <p>0xA8C6EE (dark blue)</p>
+
+                           </td>
+
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d884678e1334 ">
+                              <p>0xB2B2B2 (light grey)</p>
+
+                           </td>
+
+                        </tr>
+
+                     </tbody>
+
+                  </table>
+</div>
+
+            </div>
+
+            <p>These colors are defined in the default.css file for the spark.swc
+and mobilecomponents.swc file. If you want your item renderer to
+mimic the color setting of Flex, use these same colors for setting
+the background color of your custom item renderers. </p>
+
+            <p>You can use these same styles in a custom item renderer to mimic
+the default background colors used by Flex component. Or, you can
+define your item renderers to use different colors and backgrounds. </p>
+
+            <p>If you define an MXML item renderer, you typically create it
+as a subclass of the ItemRenderer class. The ItemRenderer class
+defines the default background color for all types of user interactions.
+By default the item renderer draws a transparent background around
+the item when there is not user interaction. It draws a light-blue
+background around an item when you hover over it. For more information, see <a href="flx_spark_itemrenderers_sir.html#WS77c1dbb1bd80d38313b7ce1c129eb7d5e04-7fff_verapache">Controlling
+the background color using the autoDrawBackground property</a>.</p>
+
+            <p>If you define an item renderer in ActionScript, you define the
+background colors of the data item. You can choose to implement
+your item renderer to use the predefined CSS styles, or define your
+own. </p>
+
+            <div class="p">In your main application, you can redefine the CSS styles for
+the background colors. The following applications sets the <samp class="codeph">rollOverColor</samp> style
+of the application to green: <pre class="codeblock">&lt;?xml version="1.0" encoding="utf-8"?&gt; 
+&lt;!-- containers\spark\SparkDataGroupContainerSimpleIRStyled.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark"&gt; 
+ 
+    &lt;fx:Style&gt; 
+        @namespace s "library://ns.adobe.com/flex/spark"; 
+        s|ItemRenderer { rollOverColor : green }       
+    &lt;/fx:Style&gt; 
+    
+    &lt;s:SkinnableDataContainer 
+        itemRenderer="myComponents.MySimpleCustomItemRenderer"&gt; 
+        &lt;s:layout&gt; 
+            &lt;s:VerticalLayout/&gt; 
+        &lt;/s:layout&gt; 
+        &lt;mx:ArrayList&gt; 
+            &lt;fx:String&gt;Bill Smith&lt;/fx:String&gt; 
+            &lt;fx:String&gt;Dave Jones&lt;/fx:String&gt; 
+            &lt;fx:String&gt;Mary Davis&lt;/fx:String&gt; 
+            &lt;fx:String&gt;Debbie Cooper&lt;/fx:String&gt; 
+        &lt;/mx:ArrayList&gt; 
+    &lt;/s:SkinnableDataContainer&gt; 
+&lt;/s:Application&gt;</pre>
+
+            </div>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS94F31173-40D5-4ddd-B7B3-17D02BD57EAF_verapache"><a name="WS94F31173-40D5-4ddd-B7B3-17D02BD57EAF_verapache"><!-- --></a>
+         <h3 class="topictitle3">Using an item renderer function
+with a Spark container</h3>
+
+         
+         <div>
+            <p>In some applications, you display different types of data
+items in a single container. In this scenario, each type of data
+item needs its own item renderer. Or, you mix data items and Flex
+components in a container. To mix data items and Flex components,
+define different item renderers for the data items and the Flex components. </p>
+
+            <p>You can use an item renderer function to examine each data item
+to determine which item renderer to use. The <samp class="codeph">DataGroup.itemRendererFunction</samp> and <samp class="codeph">SkinnableDataContainer.itemRendererFunction</samp> property
+takes a function with the following signature:</p>
+
+            <div class="p">
+               <pre class="codeblock">function itemRendererFunction(item:Object):ClassFactory</pre>
+
+            </div>
+
+            <p>Where <samp class="codeph">item</samp> is the data item, and the return
+value is the item renderer. If the child is a Flex component, return
+DefaultComplexItemRenderer to display the child in a Group container.
+Alternatively, return <samp class="codeph">null</samp> to display the child
+with no renderer.</p>
+
+            <p>The following example defines an item renderer function to return
+one item renderer for data items defined as Object, and another
+item renderer for data items defined as String:</p>
+
+            <pre class="codeblock">&lt;?xml version="1.0" encoding="utf-8"?&gt; 
+&lt;!-- containers\spark\SparkDataGroupContainerFunction.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark"&gt; 
+ 
+    &lt;fx:Script&gt; 
+        &lt;![CDATA[ 
+            
+            import myComponents.MySimpleItemRendererFunction; 
+            import spark.skins.spark.DefaultItemRenderer; 
+        
+            private function selectRenderer(item:Object):ClassFactory { 
+                var classFactory:ClassFactory; 
+                if (item is String) { 
+                    // If the item is a String, use DefaultItemRenderer. 
+                    classFactory = new ClassFactory(DefaultItemRenderer); 
+                } 
+                else { 
+                    // If the item is an Object, use MySimpleItemRendererFunction. 
+                    classFactory = new ClassFactory(MySimpleItemRendererFunction); 
+                } 
+                return classFactory; 
+            } 
+        ]]&gt;  
+    &lt;/fx:Script&gt; 
+ 
+    &lt;s:DataGroup itemRendererFunction="selectRenderer"&gt; 
+        &lt;s:layout&gt; 
+            &lt;s:TileLayout requestedColumnCount="3"/&gt; 
+        &lt;/s:layout&gt; 
+        &lt;mx:ArrayList&gt; 
+            &lt;fx:Object firstName="Bill" lastName="Smith" companyID="11233"/&gt; 
+            &lt;fx:String&gt;617-555-1212&lt;/fx:String&gt; 
+            &lt;fx:String&gt;Newton&lt;/fx:String&gt; 
+            &lt;fx:Object firstName="Dave" lastName="Jones" companyID="13455"/&gt; 
+            &lt;fx:String&gt;617-555-5555&lt;/fx:String&gt; 
+            &lt;fx:String&gt;Newton&lt;/fx:String&gt; 
+            &lt;fx:Object firstName="Mary" lastName="Davis" companyID="11543"/&gt; 
+            &lt;fx:String&gt;617-555-6666&lt;/fx:String&gt; 
+            &lt;fx:String&gt;Newton&lt;/fx:String&gt; 
+        &lt;/mx:ArrayList&gt;            
+    &lt;/s:DataGroup&gt; 
+&lt;/s:Application&gt;</pre>
+
+            <p>You also use item renderer function when mixing data items and
+Flex components in the container. Flex components implement the <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/core/IVisualElement.html" target="_blank">IVisualElement</a> interface, and
+therefore do not need an item renderer to draw them on the screen.
+In your item renderer function, you can determine if the data item
+corresponds to a Flex component. If so, the item renderer function
+returns the DefaultComplexItemRenderer, as the following example
+shows:</p>
+
+            <div class="p">
+               <pre class="codeblock">&lt;?xml version="1.0" encoding="utf-8"?&gt; 
+&lt;!-- containers\spark\SparkDataGroupContainerFunctionVisual.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark"&gt; 
+ 
+    &lt;fx:Script&gt; 
+        &lt;![CDATA[ 
+            import mx.core.IVisualElement; 
+            
+            import myComponents.MySimpleItemRendererEmployee; 
+            import spark.skins.spark.DefaultComplexItemRenderer; 
+        
+            private function selectRenderer(item:Object):ClassFactory { 
+                var classFactory:ClassFactory; 
+                if(item is IVisualElement){ 
+                    // If the item is a Flex component, use DefaultComplexItemRenderer. 
+                    classFactory = new ClassFactory(DefaultComplexItemRenderer); 
+                } 
+                else if (item is Object){ 
+                    // If the item is an Object, use MySimpleItemRendererFunction. 
+                    classFactory = new ClassFactory(MySimpleItemRendererEmployee); 
+                } 
+                return classFactory; 
+            } 
+        ]]&gt; 
+    &lt;/fx:Script&gt; 
+ 
+    &lt;s:DataGroup itemRendererFunction="selectRenderer"&gt; 
+        &lt;s:layout&gt; 
+            &lt;s:VerticalLayout/&gt; 
+        &lt;/s:layout&gt; 
+        &lt;mx:ArrayList&gt; 
+            &lt;fx:Object firstName="Bill" lastName="Smith" companyID="11233"/&gt; 
+            &lt;fx:Object firstName="Dave" lastName="Jones" companyID="13455"/&gt; 
+            &lt;fx:Object firstName="Mary" lastName="Davis" companyID="11543"/&gt; 
+            &lt;fx:Object firstName="Debbie" lastName="Cooper" companyID="14266"/&gt; 
+            &lt;s:Button label="Add Employee"/&gt; 
+        &lt;/mx:ArrayList&gt; 
+    &lt;/s:DataGroup&gt; 
+&lt;/s:Application&gt;</pre>
+
+            </div>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS81F79717-DDA9-4cd3-A8CC-4D384C6ED934_verapache"><a name="WS81F79717-DDA9-4cd3-A8CC-4D384C6ED934_verapache"><!-- --></a>
+         <h3 class="topictitle3">Spark item renderer precedence</h3>
+
+         
+         <div>
+            <p>The DataGroup and SkinnableDataContainer containers use
+the follow rules to determine the item renderer for a child:</p>
+
+            <div class="p">
+               <ol>
+                  <li>
+                     <p>If the <samp class="codeph">itemRendererFunction</samp> property
+is defined, call the associated function to obtain the item renderer.
+If the function returns <samp class="codeph">null</samp>, go to rule 2.</p>
+
+                  </li>
+
+                  <li>
+                     <p>If the <samp class="codeph">itemRenderer</samp> property is defined,
+use the specified item renderer to display the item.</p>
+
+                  </li>
+
+                  <li>
+                     <p>If the item is implements mx.core.IVisualElement and is of
+type flash.display.DisplayObject, use it directly.</p>
+
+                  </li>
+
+                  <li>
+                     <p>Dispatch a runtime error if no item renderer found.</p>
+
+                  </li>
+
+               </ol>
+
+            </div>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS5ED0A932-BA59-4a77-9A9D-3745FE21D1E9_verapache"><a name="WS5ED0A932-BA59-4a77-9A9D-3745FE21D1E9_verapache"><!-- --></a>
+         <h3 class="topictitle3">Creating a recyclable item renderer
+for virtual layout</h3>
+
+         
+         <div>
+            <p>With virtual layout disabled, the DataGroup and SkinnableDataContainer containers
+create one instance of the item renderer for each child. With virtual layout
+enabled, the container only creates enough item renderers to display
+its currently visible children. Virtual layout greatly reduces the
+overhead required to use the DataGroup and SkinnableDataContainer
+containers.</p>
+
+            <p>With virtual layout enabled, when a child is moved off the visible
+area of the container, its item renderer is recycled. When the item
+renderer is reused, its <samp class="codeph">data</samp> property is set to
+the data item representing the new child. Therefore, if a recycled
+item renderer performs any actions based on the value of the <samp class="codeph">data</samp> property,
+it must first check that the property is not <samp class="codeph">null</samp>.</p>
+
+            <p>When the item renderer is reassigned, Flex also calls the <samp class="codeph">updateRenderer()</samp> method
+of the item renderer owner. This method must set the <samp class="codeph">owner</samp> and <samp class="codeph">label</samp> properties
+on the item renderer. Subclasses of SkinnableDataContainer, can
+use the <samp class="codeph">updateRenderer()</samp> method to set additional
+properties on the item renderer.</p>
+
+            <p>Because a container can reuse an item renderer, ensure that you
+fully define its state. For example, you use a <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/controls/CheckBox.html" target="_blank">CheckBox</a> control
+in an item renderer to display a <samp class="codeph">true</samp> (checked)
+or <samp class="codeph">false</samp> (unchecked) value based on the current
+value of the <samp class="codeph">data</samp> property. A common mistake is
+to assume that the CheckBox control is always in its default state
+of unchecked and only inspect the data property for a value of <samp class="codeph">true</samp>. </p>
+
+            <p>However, remember that the CheckBox can be recycled and had previously
+been checked. Therefore, inspect the <samp class="codeph">data</samp> property
+for a value of <samp class="codeph">false</samp>, and explicitly uncheck the
+control if it is checked, as the following example shows:
+            </p>
+
+            <div class="p">
+               <pre class="noswf">&lt;?xml version="1.0" encoding="utf-8"?&gt; 
+&lt;!-- containers\spark\myComponents\MySimpleItemRendererCB.mxml --&gt; 
+&lt;s:ItemRenderer xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    dataChange="setMgr();"&gt; 
+    
+    &lt;fx:Script&gt; 
+        &lt;![CDATA[ 
+            private function setMgr():void { 
+                // Check to see if the data property is null. 
+                if (data == null) 
+                    return; 
+                // If the data property is not null, 
+                // set the CheckBox control appropriately.. 
+                if (data.manager == "yes") { 
+                    mgr.selected = true; 
+                } 
+                else { 
+                    mgr.selected = false;                    
+                } 
+            } 
+        ]]&gt; 
+    &lt;/fx:Script&gt; 
+ 
+    &lt;s:HGroup verticalCenter="0" left="2" right="2" top="2" bottom="2"&gt; 
+        &lt;s:Label text="{data.lastName}, {data.firstName}"/&gt;               
+        &lt;s:Label text="{data.companyID}"/&gt;     
+        &lt;s:CheckBox id="mgr"/&gt;                  
+    &lt;/s:HGroup&gt; 
+&lt;/s:ItemRenderer&gt;</pre>
+
+            </div>
+
+            <p>Use the <samp class="codeph">dataChange</samp> event of the ItemRenderer
+class to detect the change to its <samp class="codeph">data</samp> property.
+This event is dispatched whenever the <samp class="codeph">data</samp> property changes.
+Alternatively, you can override the <samp class="codeph">data</samp> property.</p>
+
+            <p>Alternatively, you can override the <samp class="codeph">ItemRenderer.data</samp> property
+itself, as the following example shows: </p>
+
+            <p>
+               
+            </p>
+
+            <div class="p">
+               <pre class="noswf">&lt;?xml version="1.0" encoding="utf-8"?&gt; 
+&lt;!-- containers\spark\myComponents\MySimpleItemRendererCBData.mxml --&gt; 
+&lt;s:ItemRenderer xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark"&gt; 
+    
+    &lt;fx:Script&gt; 
+        &lt;![CDATA[ 
+        
+            override public function set data(value:Object):void { 
+                super.data = value; 
+ 
+                // Check to see if the data property is null. 
+                if (value== null) 
+                    return; 
+                // If the data property is not null, 
+                // set the CheckBox control appropriately.. 
+                if (value.manager == "yes") { 
+                    mgr.selected = true; 
+                } 
+                else { 
+                    mgr.selected = false; 
+                } 
+            } 
+        ]]&gt; 
+    &lt;/fx:Script&gt; 
+ 
+    &lt;s:HGroup verticalCenter="0" left="2" right="2" top="2" bottom="2"&gt; 
+        &lt;s:Label text="{data.lastName}, {data.firstName}"/&gt;               
+        &lt;s:Label text="{data.companyID}"/&gt;     
+        &lt;s:CheckBox id="mgr"/&gt; 
+    &lt;/s:HGroup&gt; 
+&lt;/s:ItemRenderer&gt;</pre>
+
+            </div>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS5FBF5A10-D788-40bb-A608-CEECF14C5038_verapache"><a name="WS5FBF5A10-D788-40bb-A608-CEECF14C5038_verapache"><!-- --></a>
+         <h3 class="topictitle3">Defining a typical item for determining
+the size of an item renderer</h3>
+
+         
+         <div>
+            <p>When using virtual layout with the DataGroup and SkinnableDataContainer containers,
+you can pass to the container a data item that defines a typical
+data item. The container then uses the typical data item, and the
+associated item renderer, to determine the default size of the child.
+By defining the typical item, the container does not have to size
+each child as it is drawn on the screen.</p>
+
+            <p>If you do not specify the data item, by default the control uses
+the first item in the data provider as the typical data item. </p>
+
+            <p>Use the <samp class="codeph">typicalItem</samp> property of the container
+to specify the data item, as the following example shows:</p>
+
+            <div class="p">
+               <pre class="codeblock">&lt;?xml version="1.0" encoding="utf-8"?&gt; 
+&lt;!-- containers\spark\SparkDataGroupContainerTypicalItem.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark"&gt; 
+    
+    &lt;s:layout&gt; 
+        &lt;s:VerticalLayout/&gt; 
+    &lt;/s:layout&gt; 
+ 
+    &lt;fx:Script&gt; 
+        &lt;![CDATA[ 
+            [Bindable] 
+            public var typicalObj:Object = { 
+                    firstName:"Long first name", 
+                    lastName:"Even longer last name", 
+                    companyID:"123456", 
+                    manager:"yes" 
+            }; 
+        ]]&gt; 
+    &lt;/fx:Script&gt; 
+ 
+    &lt;s:Scroller&gt; 
+        &lt;s:DataGroup itemRenderer="myComponents.MySimpleItemRendererCB" 
+            height="100" 
+            typicalItem="{typicalObj}" &gt; 
+            &lt;s:layout&gt; 
+                &lt;s:VerticalLayout useVirtualLayout="true"/&gt; 
+            &lt;/s:layout&gt; 
+            &lt;mx:ArrayList&gt; 
+                &lt;fx:Object firstName="Bill" lastName="Smith" 
+                    companyID="11233" manager="yes"/&gt; 
+                &lt;fx:Object firstName="Dave" lastName="Jones" 
+                    companyID="13455" manager="no"/&gt; 
+                &lt;fx:Object firstName="Mary" lastName="Davis" 
+                    companyID="11543" manager="yes"/&gt; 
+                &lt;fx:Object firstName="Debbie" lastName="Cooper" 
+                    companyID="14266" manager="no"/&gt; 
+                &lt;fx:Object firstName="Bob" lastName="Martins" 
+                    companyID="11233" manager="yes"/&gt; 
+                &lt;fx:Object firstName="Jack" lastName="Jones" 
+                    companyID="13455" manager="no"/&gt; 
+                &lt;fx:Object firstName="Sam" lastName="Johnson" 
+                    companyID="11543" manager="yes"/&gt; 
+                &lt;fx:Object firstName="Tom" lastName="Fitz" 
+                    companyID="14266" manager="no"/&gt; 
+                &lt;fx:Object firstName="Dave" lastName="Mead" 
+                    companyID="11233" manager="yes"/&gt; 
+                &lt;fx:Object firstName="Dave" lastName="Jones" 
+                    companyID="13455" manager="no"/&gt; 
+                &lt;fx:Object firstName="Mary" lastName="Davis" 
+                    companyID="11543" manager="yes"/&gt; 
+                &lt;fx:Object firstName="Debbie" lastName="Cooper" 
+                    companyID="14266" manager="no"/&gt; 
+            &lt;/mx:ArrayList&gt;            
+        &lt;/s:DataGroup&gt; 
+    &lt;/s:Scroller&gt; 
+&lt;/s:Application&gt;</pre>
+
+            </div>
+
+            <p>In this example, you define typicalObj, an Object that represents
+a data item with a long value for the firstName and lastName fields.
+You then pass typicalObj to the <samp class="codeph">typicalItem</samp> property
+of the container. The container uses that data item, and the associated
+item renderer, to determine the size of the children. </p>
+
+            <p>Specifying a value for the <samp class="codeph">typicalItem</samp> property
+passes that value, and the associated item renderer, to the <samp class="codeph">typicalLayoutElement</samp> property
+of the layout of the container. For more information on the <samp class="codeph">typicalLayoutElement</samp> property,
+see <a href="flx_groups_containers_gc.html#WS514ED026-76E0-46a6-A7DB-8824E6EDF846_verapache">Set
+the row height or column width of a layout</a>.</p>
+
+         </div>
+
+      </div>
+
+   </div>
+
+   <div class="nested1" id="WS77c1dbb1bd80d38313b7ce1c129eb7d5e04-8000_verapache"><a name="WS77c1dbb1bd80d38313b7ce1c129eb7d5e04-8000_verapache"><!-- --></a>
+      <h2 class="topictitle2">Create a Spark item renderer in
+MXML</h2>
+
+      
+      <div>
+         <p>MXML item renderers require the least amount of code to
+create. Typically, you create an MXML item renderer as a subclass
+of the ItemRenderer class.</p>
+
+      </div>
+
+      <div class="nested2" id="WS77c1dbb1bd80d38313b7ce1c129eb7d5e04-7fff_verapache"><a name="WS77c1dbb1bd80d38313b7ce1c129eb7d5e04-7fff_verapache"><!-- --></a>
+         <h3 class="topictitle3">Controlling the background color
+using the autoDrawBackground property</h3>
+
+         
+         <div>
+            <p>To completely control the background color of an item renderer,
+set the <samp class="codeph">ItemRenderer.autoDrawBackground</samp> property
+to <samp class="codeph">false</samp>. When you set that property to <samp class="codeph">false</samp>,
+your item renderer is responsible for displaying the background
+colors for all user interactions. </p>
+
+            <div class="p">The following custom item renderer alternates the background
+color between white and green for the items in a SkinnableDataContainer: <pre class="noswf">&lt;?xml version="1.0" encoding="utf-8"?&gt; 
+&lt;!-- containers\spark\myComponents\MyAlternatingItemRenderer.mxml --&gt; 
+&lt;s:ItemRenderer xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    autoDrawBackground="false"&gt; 
+    
+    &lt;fx:Script&gt; 
+        &lt;![CDATA[ 
+            
+            // Make the default background color white. 
+            [Bindable] 
+            public var myBGColor:int = 0xFFFFFF; 
+            
+            // Override the itemIndex set function to draw a 
+            // white background behind even number items, 
+            // and a green background behind odd numbered items. 
+            override public function set itemIndex(value:int):void { 
+                if ((value%2) == 0) { 
+                    myBGColor= 0xFFFFFF; 
+                } 
+                if ((value%2) == 1) { 
+                    myBGColor= 0xCCFF66; 
+                } 
+            } 
+        ]]&gt; 
+    &lt;/fx:Script&gt; 
+ 
+    &lt;s:states&gt; 
+        &lt;s:State name="normal"/&gt; 
+        &lt;s:State name="hovered"/&gt; 
+    &lt;/s:states&gt; 
+    &lt;s:Rect id="myRect" 
+        left="0" right="0" top="0" bottom="0" 
+        alpha="1.0"&gt; 
+        &lt;s:stroke&gt; 
+            &lt;s:SolidColorStroke 
+                color="0xA8C6EE" 
+                weight="1"/&gt; 
+        &lt;/s:stroke&gt; 
+        &lt;s:fill&gt; 
+            &lt;!-- Bind the myBGColor property to the fill color. --&gt; 
+            &lt;s:SolidColor 
+                color="{myBGColor}"/&gt; 
+        &lt;/s:fill&gt; 
+    &lt;/s:Rect&gt;     
+    
+    &lt;s:Label id="labelDisplay" 
+        verticalCenter="0" 
+        left="3" right="3" top="6" bottom="4" 
+        fontSize.hovered='14' fontStyle.hovered="italic"/&gt; 
+&lt;/s:ItemRenderer&gt;</pre>
+
+            </div>
+
+            <p>This example overrides the <samp class="codeph">itemIndex</samp> property
+of the ItemRenderer class. The <samp class="codeph">itemIndex</samp> property
+contains the index of the data item in the data provider of the
+host component. In the override, set the background color to green
+for odd-numbered items, and to white for even-numbered items. </p>
+
+            <div class="p">The following application uses this item renderer:<pre class="codeblock">&lt;?xml version="1.0" encoding="utf-8"?&gt; 
+&lt;!-- containers\spark\SparkDataGroupContainerAlternatingIR.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark"&gt; 
+ 
+    &lt;s:SkinnableDataContainer 
+        itemRenderer="myComponents.MyAlternatingItemRenderer"&gt; 
+        &lt;s:layout&gt; 
+            &lt;s:VerticalLayout/&gt; 
+        &lt;/s:layout&gt; 
+        &lt;mx:ArrayList&gt; 
+            &lt;fx:String&gt;Bill Smith&lt;/fx:String&gt; 
+            &lt;fx:String&gt;Dave Jones&lt;/fx:String&gt; 
+            &lt;fx:String&gt;Mary Davis&lt;/fx:String&gt; 
+            &lt;fx:String&gt;Debbie Cooper&lt;/fx:String&gt; 
+        &lt;/mx:ArrayList&gt; 
+    &lt;/s:SkinnableDataContainer&gt; 
+&lt;/s:Application&gt;</pre>
+
+            </div>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS05A80398-9DD3-445a-BD33-A7D9FD695FA3_verapache"><a name="WS05A80398-9DD3-445a-BD33-A7D9FD695FA3_verapache"><!-- --></a>
+         <h3 class="topictitle3">Defining item renderer view states
+for a Spark container</h3>
+
+         
+         <div>
+            <p>Item renderers support optional view states. You typically
+use view states in MXML item renderers to control the appearance
+of a data item based on user interaction with the item. The ItemRenderer
+class supports all views states so that you can use those item renderers
+with list-based classes.</p>
+
+            <div class="p">Flex defines the following view states that you can support in
+your item renderers. <ul>
+                  <li>
+                     <p>normal The data item has no user
+interaction.</p>
+
+                  </li>
+
+                  <li>
+                     <p>hovered The mouse is over the data item.</p>
+
+                  </li>
+
+                  <li>
+                     <p>selected The data item is selected.</p>
+
+                  </li>
+
+                  <li>
+                     <p>dragging The data item is being dragged.</p>
+
+                  </li>
+
+                  <li>
+                     <p>normalAndShowCaret The data item is in the normal state,
+and it has focus in the item list. </p>
+
+                  </li>
+
+                  <li>
+                     <p>hoveredAndShowCaret The data item is in the hovered state,
+and it has focus in the item list.</p>
+
+                  </li>
+
+                  <li>
+                     <p>selectedAndShowCaret The data item is in the normal state,
+and it has focus in the item list.</p>
+
+                  </li>
+
+               </ul>
+
+            </div>
+
+            <p>When the user interacts with a control in a way that changes
+the view state of the item renderer, Flex first determines if the
+renderer defines that view state. If the item renderer supports
+the view state, Flex sets the item renderer to use that view state.
+If the item renderer does not supports the view state, Flex does
+nothing.</p>
+
+            <p>The selected, normalAndShowCaret, hoveredAndShowCaret, and selectedAndShowCaret
+view states are supported by the list-based components. The list-based
+components are subclasses of the <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/spark/components/supportClasses/ListBase.html" target="_blank">spark.components.supportClasses.ListBase</a> class.
+The <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/spark/components/DataGroup.html" target="_blank">DataGroup</a> and <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/spark/components/SkinnableDataContainer.html" target="_blank">SkinnableDataContainer</a> containers do
+not implement these view states. </p>
+
+            <p>The view states supported by your item renderers, and the action
+performed by a change to each view state, are determined by your
+application requirements. For example, you can alter the display
+of the data renderer based on the view state, show different data,
+or do nothing. Your item renderer can also define additional view
+states.</p>
+
+            <p>In the next example, you define a SkinnableDataContainer to display
+an Object with four fields: firstName, lastName, companyID, and
+phone:</p>
+
+            <div class="p">
+               <pre class="codeblock">&lt;?xml version="1.0" encoding="utf-8"?&gt; 
+&lt;!-- containers\spark\SparkDataGroupContainerSimpleStates.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark"&gt; 
+ 
+    &lt;s:SkinnableDataContainer itemRenderer="myComponents.MySimpleItemRendererWithStates"&gt; 
+        &lt;s:layout&gt; 
+            &lt;s:VerticalLayout/&gt; 
+        &lt;/s:layout&gt; 
+        &lt;mx:ArrayList&gt; 
+            &lt;fx:Object firstName="Bill" lastName="Smith" 
+                companyID="11233" phone="617-555-1212"/&gt; 
+            &lt;fx:Object firstName="Dave" lastName="Jones" 
+                companyID="13455" phone="617-555-1213"/&gt; 
+            &lt;fx:Object firstName="Mary" lastName="Davis" 
+                companyID="11543" phone="617-555-1214"/&gt; 
+            &lt;fx:Object firstName="Debbie" lastName="Cooper" 
+                companyID="14266" phone="617-555-1215"/&gt; 
+        &lt;/mx:ArrayList&gt; 
+    &lt;/s:SkinnableDataContainer&gt; 
+&lt;/s:Application&gt;</pre>
+The following item renderer displays
+the text of the Label controls in bold, blue font for the hover
+state:</div>
+
+            <div class="p">
+               <pre class="noswf">&lt;?xml version="1.0" encoding="utf-8"?&gt; 
+&lt;!-- containers\spark\myComponents\MySimpleItemRendererWithStates.mxml --&gt; 
+&lt;s:ItemRenderer xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    autoDrawBackground="false"&gt; 
+ 
+    &lt;s:states&gt; 
+        &lt;s:State name="normal"/&gt; 
+        &lt;s:State name="hovered"/&gt; 
+    &lt;/s:states&gt; 
+    
+    &lt;s:HGroup verticalCenter="0" horizontalCenter="0"&gt; 
+        &lt;s:Label text="{data.lastName}, {data.firstName}" 
+            color.hovered="blue" 
+            fontWeight.hovered="bold"/&gt; 
+        &lt;s:Label text="{data.companyID}" 
+            color.hovered="blue" 
+            fontWeight.hovered="bold"/&gt; 
+        &lt;s:Label text="{data.phone}" 
+            color.hovered="blue" 
+            fontWeight.hovered="bold"/&gt; 
+    &lt;/s:HGroup&gt; 
+&lt;/s:ItemRenderer&gt;</pre>
+
+            </div>
+
+            <p>Because a SkinnableDataContainer does not support the selected
+view state, the item renderer does not define any settings for the
+selected state. </p>
+
+            <div class="p">You can also include a transition in an item renderer. A transition
+plays whenever you change a view state. The following item renderer
+uses a transition to display the company ID and telephone number
+of the employee on mouse over: <pre class="noswf">&lt;?xml version="1.0" encoding="utf-8"?&gt; 
+&lt;!-- containers\spark\myComponents\MySimpleItemRendererWithTrans.mxml --&gt; 
+&lt;s:ItemRenderer xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    autoDrawBackground="false"&gt; 
+ 
+    &lt;s:states&gt; 
+        &lt;s:State name="normal"/&gt; 
+        &lt;s:State name="hovered"/&gt; 
+    &lt;/s:states&gt; 
+ 
+    &lt;s:transitions&gt; 
+        &lt;s:Transition fromState="normal"&gt; 
+            &lt;s:Sequence&gt; 
+                &lt;s:Resize target="{this}" /&gt; 
+                &lt;mx:SetPropertyAction targets="{[cID, empPhone]}" 
+                    name="visible" value="true" /&gt; 
+             &lt;/s:Sequence&gt; 
+        &lt;/s:Transition&gt; 
+        &lt;s:Transition toState="normal"&gt; 
+            &lt;s:Sequence&gt; 
+                &lt;mx:SetPropertyAction targets="{[cID, empPhone]}" 
+                    name="visible" value="false" /&gt; 
+                &lt;s:Resize target="{this}" /&gt; 
+            &lt;/s:Sequence&gt; 
+        &lt;/s:Transition&gt; 
+    &lt;/s:transitions&gt; 
+ 
+    &lt;s:VGroup verticalCenter="0" horizontalCenter="0"&gt; 
+        &lt;s:Label text="{data.lastName}, {data.firstName}" 
+            color.hovered="blue" 
+            fontWeight.hovered="bold"/&gt;               
+        &lt;s:Label id="cID" 
+            includeIn="hovered" 
+            includeInLayout.hovered="true" 
+            includeInLayout.normal="false" 
+            text="{data.companyID}"/&gt; 
+        &lt;s:Label id="empPhone" 
+            includeIn="hovered" 
+            includeInLayout.hovered="true" 
+            includeInLayout.normal="false" 
+            text="{data.phone}"/&gt; 
+    &lt;/s:VGroup&gt; 
+&lt;/s:ItemRenderer&gt;</pre>
+
+            </div>
+
+            <div class="p">The following application uses this item renderer: <pre class="codeblock">&lt;?xml version="1.0" encoding="utf-8"?&gt; 
+&lt;!-- containers\spark\SparkDataGroupContainerSimpleStatesTransition.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark"&gt; 
+ 
+    &lt;s:SkinnableDataContainer itemRenderer="myComponents.MySimpleItemRendererWithTrans"&gt; 
+        &lt;s:layout&gt; 
+            &lt;s:VerticalLayout/&gt; 
+        &lt;/s:layout&gt; 
+        &lt;mx:ArrayList&gt; 
+            &lt;fx:Object firstName="Bill" lastName="Smith" 
+                companyID="11233" phone="617-555-1212"/&gt; 
+            &lt;fx:Object firstName="Dave" lastName="Jones" 
+                companyID="13455" phone="617-555-1213"/&gt; 
+            &lt;fx:Object firstName="Mary" lastName="Davis" 
+                companyID="11543" phone="617-555-1214"/&gt; 
+            &lt;fx:Object firstName="Debbie" lastName="Cooper" 
+                companyID="14266" phone="617-555-1215"/&gt; 
+        &lt;/mx:ArrayList&gt; 
+    &lt;/s:SkinnableDataContainer&gt; 
+&lt;/s:Application&gt;</pre>
+
+            </div>
+
+            <p>For more information on view states, see <a href="flx_using_states_us.html#WS2db454920e96a9e51e63e3d11c0bf69084-7fb4_verapache">View
+states</a>. For more information on transitions, see <a href="flx_transitions_tr.html#WS2db454920e96a9e51e63e3d11c0bf69084-7f6a_verapache">Transitions</a>.</p>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WSCE72ECF5-4631-436f-A821-D70693559F93_verapache"><a name="WSCE72ECF5-4631-436f-A821-D70693559F93_verapache"><!-- --></a>
+         <h3 class="topictitle3">Defining an inline item renderer
+for a Spark container</h3>
+
+         
+         <div>
+            <p>The examples of item renderers shown above are all defined
+in an MXML file. That makes the item renderer highly reusable because
+you can reference it from multiple containers.</p>
+
+            <p>You can also define inline item renderers in the MXML definition
+of a component. By using an inline item renderer, your code can
+all be defined in a single file. However, it is not easy to reuse
+an inline item renderer.</p>
+
+            <p>The following example uses an inline item renderer with the SkinnableDataContainer
+container:</p>
+
+            <div class="p">
+               <pre class="codeblock">&lt;?xml version="1.0" encoding="utf-8"?&gt; 
+&lt;!-- containers\spark\SparkDataGroupContainerInline.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark"&gt; 
+ 
+    &lt;s:SkinnableDataContainer&gt; 
+        &lt;s:layout&gt; 
+            &lt;s:VerticalLayout/&gt; 
+        &lt;/s:layout&gt; 
+        &lt;mx:ArrayList&gt; 
+            &lt;fx:Object firstName="Bill" lastName="Smith" companyID="11233"/&gt; 
+            &lt;fx:Object firstName="Dave" lastName="Jones" companyID="13455"/&gt; 
+            &lt;fx:Object firstName="Mary" lastName="Davis" companyID="11543"/&gt; 
+            &lt;fx:Object firstName="Debbie" lastName="Cooper" companyID="14266"/&gt; 
+        &lt;/mx:ArrayList&gt; 
+        &lt;s:itemRenderer&gt; 
+            &lt;fx:Component&gt; 
+                &lt;s:ItemRenderer&gt; 
+                    &lt;s:Group verticalCenter="0" left="2" right="2" top="2" bottom="2"&gt; 
+                        &lt;s:layout&gt; 
+                            &lt;s:HorizontalLayout/&gt; 
+                        &lt;/s:layout&gt; 
+                        &lt;s:Label text="{data.lastName}, {data.firstName}"/&gt; 
+                        &lt;s:Label text="{data.companyID}"/&gt; 
+                    &lt;/s:Group&gt; 
+                &lt;/s:ItemRenderer&gt; 
+            &lt;/fx:Component&gt; 
+        &lt;/s:itemRenderer&gt;  
+    &lt;/s:SkinnableDataContainer&gt; 
+&lt;/s:Application&gt;</pre>
+
+            </div>
+
+            <p>Notice that you define the item renderer inline by using the <samp class="codeph">itemRenderer</samp> property
+of the DataGroup container. The first child tag of the <samp class="codeph">itemRenderer</samp> property
+is always the <samp class="codeph">&lt;fx:Component&gt;</samp> tag. Inside
+the <samp class="codeph">&lt;fx:Component&gt;</samp> tag is the same code as
+was in the MySimpleItemRenderer.mxml file shown above.</p>
+
+         </div>
+
+         <div class="nested3" id="WS77776671-4E61-457a-9C7C-9C2320DBAB8C_verapache"><a name="WS77776671-4E61-457a-9C7C-9C2320DBAB8C_verapache"><!-- --></a>
+            <h4 class="topictitle4">Items allowed in an inline component</h4>
+
+            
+            <div>
+               <p>There is only one restriction on what you can and cannot
+do in an inline item renderer. You cannot create an empty <samp class="codeph">&lt;fx:Component&gt;&lt;/fx:Component&gt;</samp> tag.
+For example, you can combine effect and style definitions in an
+inline item renderer along with your rendering logic. </p>
+
+               <p>You can include the following items in an inline item renderer:</p>
+
+               <ul>
+                  <li>
+                     <p>Binding tags</p>
+
+                  </li>
+
+                  <li>
+                     <p>Effect tags</p>
+
+                  </li>
+
+                  <li>
+                     <p>Metadata tags</p>
+
+                  </li>
+
+                  <li>
+                     <p>Model tags</p>
+
+                  </li>
+
+                  <li>
+                     <p>Scripts tags</p>
+
+                  </li>
+
+                  <li>
+                     <p>Service tags</p>
+
+                  </li>
+
+                  <li>
+                     <p>State tags</p>
+
+                  </li>
+
+                  <li>
+                     <p>Style tags</p>
+
+                  </li>
+
+                  <li>
+                     <p>XML tags</p>
+
+                  </li>
+
+                  <li>
+                     <p>
+                        <samp class="codeph">id</samp> attributes, except for the top-most component</p>
+
+                  </li>
+
+               </ul>
+
+            </div>
+
+         </div>
+
+         <div class="nested3" id="WS7314132D-C151-409b-A366-4851B96CC14F_verapache"><a name="WS7314132D-C151-409b-A366-4851B96CC14F_verapache"><!-- --></a>
+            <h4 class="topictitle4">Using the Component tag</h4>
+
+            
+            <div>
+               <p>The <samp class="codeph">&lt;fx:Component&gt;</samp> tag defines a
+new scope in an MXML file, where the local scope of the item renderer
+is defined by the MXML code block delimited by the <samp class="codeph">&lt;fx:Component&gt;</samp> and <samp class="codeph">&lt;/fx:Component&gt;</samp> tags.
+To access elements outside the local scope of the item renderer,
+you prefix the element name with the <samp class="codeph">outerDocument</samp> keyword. </p>
+
+               <div class="p">For example, you define one variable named localVar in the scope
+of the main application. You define another variable with the same
+name in the scope of the item renderer. From within the item renderer,
+you access the application’s localVar by prefixing it with <samp class="codeph">outerDocument</samp> keyword,
+as the following example shows: <pre class="codeblock">&lt;?xml version="1.0" encoding="utf-8"?&gt; 
+&lt;!-- containers\spark\SparkDataGroupContainerInlineScope.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark"&gt; 
+ 
+    &lt;fx:Script&gt; 
+        &lt;![CDATA[ 
+            // Variable in the Application scope. 
+            [Bindable]                        
+            public var localVar:String="Application scope"; 
+        ]]&gt; 
+    &lt;/fx:Script&gt; 
+ 
+    &lt;s:SkinnableDataContainer&gt; 
+        &lt;s:layout&gt; 
+            &lt;s:VerticalLayout/&gt; 
+        &lt;/s:layout&gt; 
+        &lt;mx:ArrayList&gt; 
+            &lt;fx:Object firstName="Bill" lastName="Smith" companyID="11233"/&gt; 
+            &lt;fx:Object firstName="Dave" lastName="Jones" companyID="13455"/&gt; 
+            &lt;fx:Object firstName="Mary" lastName="Davis" companyID="11543"/&gt; 
+            &lt;fx:Object firstName="Debbie" lastName="Cooper" companyID="14266"/&gt; 
+        &lt;/mx:ArrayList&gt;            
+        &lt;s:itemRenderer&gt; 
+            &lt;fx:Component&gt; 
+                &lt;s:ItemRenderer&gt; 
+                    &lt;fx:Script&gt; 
+                        &lt;![CDATA[ 
+                            // Variable in the Renderer scope. 
+                            [Bindable]                        
+                            public var localVar:String="Renderer scope"; 
+                        ]]&gt; 
+                    &lt;/fx:Script&gt; 
+                    &lt;s:Group verticalCenter="0" left="2" right="2" top="2" bottom="2"&gt; 
+                        &lt;s:layout&gt; 
+                            &lt;s:HorizontalLayout/&gt; 
+                        &lt;/s:layout&gt; 
+                        &lt;s:Label text="{data.lastName}, {data.firstName}"/&gt;               
+                        &lt;s:Label text="{data.companyID}"/&gt;             
+                        &lt;s:Label text="{'Renderer localVar = ' + localVar}"/&gt; 
+                        &lt;s:Label text="{'Application localVar = ' + outerDocument.localVar}"/&gt; 
+                    &lt;/s:Group&gt; 
+                &lt;/s:ItemRenderer&gt; 
+            &lt;/fx:Component&gt; 
+        &lt;/s:itemRenderer&gt;  
+    &lt;/s:SkinnableDataContainer&gt; 
+&lt;/s:Application&gt;</pre>
+
+               </div>
+
+               <div class="section"><h5 class="sectiontitle">Creating a reusable inline item renderer</h5>
+                  
+                  <p>Rather
+than defining an inline item renderer in the definition of a component, you
+can define a reusable inline item renderer for use in multiple locations
+in your application.</p>
+
+                  <p>To create a reusable inline item renderer,
+specify the <samp class="codeph">className</samp> property of the <samp class="codeph">&lt;fx:Component&gt;</samp> tag.
+By naming the class, you define a way to reference the item renderer,
+and the elements of the item renderer.</p>
+
+                  <p>The following example
+uses the <samp class="codeph">&lt;fx:Component&gt;</samp> tag to define an
+inline item renderer for two containers: </p>
+
+                  <div class="p">
+                     <pre class="codeblock">&lt;?xml version="1.0" encoding="utf-8"?&gt; 
+&lt;!-- containers\spark\SparkDataGroupContainerInlineReuse.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark"&gt; 
+    &lt;s:layout&gt; 
+        &lt;s:VerticalLayout/&gt; 
+    &lt;/s:layout&gt; 
+ 
+    &lt;fx:Declarations&gt; 
+        &lt;fx:Component id="inlineRenderer" className="myIR"&gt; 
+            &lt;s:ItemRenderer&gt; 
+                &lt;s:Group verticalCenter="0" horizontalCenter="0"&gt; 
+                    &lt;s:layout&gt; 
+                        &lt;s:HorizontalLayout/&gt; 
+                    &lt;/s:layout&gt; 
+                    &lt;s:Label text="{data.lastName}, {data.firstName}"/&gt; 
+                    &lt;s:Label text="{data.companyID}"/&gt; 
+                &lt;/s:Group&gt;             
+            &lt;/s:ItemRenderer&gt; 
+        &lt;/fx:Component&gt;        
+    &lt;/fx:Declarations&gt; 
+ 
+    &lt;s:SkinnableDataContainer itemRenderer="myIR"&gt; 
+        &lt;s:layout&gt; 
+            &lt;s:VerticalLayout/&gt; 
+        &lt;/s:layout&gt; 
+        &lt;mx:ArrayList&gt; 
+            &lt;fx:Object firstName="Bill" lastName="Smith" companyID="11233"/&gt; 
+            &lt;fx:Object firstName="Dave" lastName="Jones" companyID="13455"/&gt; 
+            &lt;fx:Object firstName="Mary" lastName="Davis" companyID="11543"/&gt; 
+            &lt;fx:Object firstName="Debbie" lastName="Cooper" companyID="14266"/&gt; 
+        &lt;/mx:ArrayList&gt; 
+    &lt;/s:SkinnableDataContainer&gt; 
+    &lt;s:SkinnableDataContainer itemRenderer="myIR"&gt; 
+        &lt;s:layout&gt; 
+            &lt;s:VerticalLayout/&gt; 
+        &lt;/s:layout&gt; 
+        &lt;mx:ArrayList&gt; 
+            &lt;fx:Object firstName="Jim" lastName="Sullivan" companyID="11233"/&gt; 
+            &lt;fx:Object firstName="Joan" lastName="Connors" companyID="13455"/&gt; 
+            &lt;fx:Object firstName="Jack" lastName="Wilson" companyID="11543"/&gt; 
+            &lt;fx:Object firstName="Jeff" lastName="Lodge" companyID="14266"/&gt; 
+        &lt;/mx:ArrayList&gt; 
+    &lt;/s:SkinnableDataContainer&gt; 
+&lt;/s:Application&gt;</pre>
+
+                  </div>
+
+                  <p>In this example, you use
+data binding to specify the renderer as the value of the <samp class="codeph">itemRenderer</samp> property
+for the two containers. </p>
+
+               </div>
+
+            </div>
+
+         </div>
+
+      </div>
+
+   </div>
+
+   <div class="nested1" id="WS684a1733bf2efe8a-50bd10db129d6a5f31a-8000_verapache"><a name="WS684a1733bf2efe8a-50bd10db129d6a5f31a-8000_verapache"><!-- --></a>
+      <h2 class="topictitle2">Create a Spark item renderer in ActionScript</h2>
+
+      
+      <div>
+         <p>To ensure that your application achieves the highest performance,
+implement item renderers in ActionScript. Typically, you create
+item renderers in ActionScript only for mobile applications, but
+you can create them for desktop application as well.</p>
+
+         <p>The item renderer typically implements two interfaces: </p>
+
+         
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" frame="border" border="1" rules="all">
+               
+               
+               
+               <thead align="left">
+                  <tr>
+                     <th class="cellrowborder" valign="top" width="NaN%" id="d884678e2198">
+                        <p>Item renderer interface</p>
+
+                     </th>
+
+                     <th class="cellrowborder" valign="top" width="NaN%" id="d884678e2204">
+                        <p>Implemented by</p>
+
+                     </th>
+
+                     <th class="cellrowborder" valign="top" width="NaN%" id="d884678e2210">
+                        <p>Use</p>
+
+                     </th>
+
+                  </tr>
+
+               </thead>
+
+               <tbody>
+                  <tr>
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d884678e2198 ">
+                        <p>
+                           <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/core/IDataRenderer.html" target="_blank">IDataRenderer</a>
+                        </p>
+
+                     </td>
+
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d884678e2204 ">
+                        <p>Item renderer</p>
+
+                     </td>
+
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d884678e2210 ">
+                        <p>Defines the <samp class="codeph">data</samp> property
+used to pass information to an item renderer. </p>
+
+                        <p>At a minimum,
+an item renderer must implement IDataRenderer to display data. </p>
+
+                     </td>
+
+                  </tr>
+
+                  <tr>
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d884678e2198 ">
+                        <p>
+                           <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/spark/components/IItemRenderer.html" target="_blank">IItemRenderer</a>
+                        </p>
+
+                     </td>
+
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d884678e2204 ">
+                        <p>Item renderer</p>
+
+                     </td>
+
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d884678e2210 ">
+                        <p>Defines the APIs that a component must implement
+to create an item renderer that can communicate with a host component
+to support user interaction with the data item. User interactions
+include selection, dragging, and the caret indicator. For some components,
+such as the Spark List control, user interaction includes item selection.</p>
+
+                     </td>
+
+                  </tr>
+
+               </tbody>
+
+            </table>
+</div>
+
+         <p>Create an ActionScript item renderer in one of the following
+ways:</p>
+
+         <div class="p">
+            <ul>
+               <li>
+                  <p>Create an ActionScript subclass from an existing item
+renderer class, such as <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/spark/components/LabelItemRenderer.html" target="_blank">spark.components.LabelItemRenderer</a>, <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/spark/components/IconItemRenderer.html" target="_blank">spark.components.IconItemRenderer</a>, or <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/spark/components/supportClasses/ItemRenderer.html" target="_blank">spark.components.supportClasses.ItemRenderer</a>.
+The existing item renderer classes already implement all necessary
+interfaces. </p>
+
+                  <p>For the highest performance in a mobile application,
+create a subclass of spark.components.LabelItemRenderer. In your
+subclass, you can control the background display and the layout
+of the data items. </p>
+
+                  <p>If you want to use the built-in Flex layout
+mechanism, and are not as concerned with performance, create a subclass
+of spark.components.supportClasses.ItemRenderer. </p>
+
+                  <p>For more
+information, see <a href="flx_spark_itemrenderers_sir.html#WS684a1733bf2efe8a3a0afb75129d7657f1c-7fff_verapache">Create
+an ActionScript item renderer as a subclass of the LabelItemRenderer
+class</a>.</p>
+
+                  <p>For more information on using LabelItemRenderer
+and IconItemRenderer, see <a href="flx_spark_dpcontrols_sdp.html#WS77c1dbb1bd80d3836663fb6012af31eb8a5-8000_verapache">Using
+a mobile item renderer with a Spark list-based control</a>.</p>
+
+               </li>
+
+               <li>
+                  <p>Create an ActionScript subclass of the mx.core.UIComponent
+class.</p>
+
+                  <p>By implementing an item renderer as a subclass of the
+UIComponent class, you can obtain the best performance because you
+only have to implement the logic necessary to support your application.
+However, basing an item renderer on UIComponent requires the most
+effort. To be used as an item renderer, your subclass must implement
+the mx.core.IDataRenderer and spark.components.IItemRenderer interfaces. </p>
+
+               </li>
+
+            </ul>
+
+         </div>
+
+         <p>For example implementations of item renderers written in ActionScript,
+view the source code for the spark.components.LabelItemRenderer,
+spark.components.IconItemRenderer, and spark.components.supportClasses.ItemRenderer classes.</p>
+
+      </div>
+
+      <div class="nested2" id="WS354da6572731dfda71e7a5912af75ba748-8000_verapache"><a name="WS354da6572731dfda71e7a5912af75ba748-8000_verapache"><!-- --></a>
+         <h3 class="topictitle3">Creating item renderers in ActionScript</h3>
+
+         
+         <div>
+            <p>To define an item renderer in ActionScript, override the
+necessary methods from the parent class, and call any necessary
+invalidation methods from within your overrides. For general information
+on this process, see <a href="flx_ascomponents_spark_advanced_sas.html#WS460ee381960520ad-2811830c121e9107ecb-8000_verapache">Create
+advanced Spark visual components in ActionScript</a>.</p>
+
+            <p>The methods that you have to override in your class depend on
+the parent class of the item renderer. You optionally can override
+one or more of the following protected methods of the parent class:</p>
+
+            
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" frame="border" border="1" rules="all">
+                  
+                  
+                  <thead align="left">
+                     <tr>
+                        <th class="cellrowborder" valign="top" width="NaN%" id="d884678e2374">
+                           <p>Method</p>
+
+                        </th>
+
+                        <th class="cellrowborder" valign="top" width="NaN%" id="d884678e2380">
+                           <p>Description</p>
+
+                        </th>
+
+                     </tr>
+
+                  </thead>
+
+                  <tbody>
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d884678e2374 ">
+                           <div class="p">
+                              <pre class="codeblock">commitProperties()</pre>
+
+                           </div>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d884678e2380 ">
+                           <p>Commits any changes to component properties,
+either to make the changes occur at the same time or to ensure that
+properties are set in a specific order.</p>
+
+                           <p>For more information,
+see <a href="flx_ascomponents_advanced_asa.html#WS2db454920e96a9e51e63e3d11c0bf69084-79eb_verapache">Implementing
+the commitProperties() method</a>.</p>
+
+                        </td>
+
+                     </tr>
+
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d884678e2374 ">
+                           <div class="p">
+                              <pre class="codeblock">createChildren()</pre>
+
+                           </div>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d884678e2380 ">
+                           <p>Creates any child components of the component.
+For example, the ComboBox control contains a TextInput control and
+a Button control as child components. </p>
+
+                           <p>For more information,
+see <a href="flx_ascomponents_advanced_asa.html#WS2db454920e96a9e51e63e3d11c0bf69084-79ec_verapache">Implementing
+the createChildren() method</a>.</p>
+
+                        </td>
+
+                     </tr>
+
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d884678e2374 ">
+                           <div class="p">
+                              <pre class="codeblock">measure()</pre>
+
+                           </div>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d884678e2380 ">
+                           <p>Sets the default size and default minimum
+size of the component. </p>
+
+                           <p>For more information, see <a href="flx_ascomponents_advanced_asa.html#WS2db454920e96a9e51e63e3d11c0bf69084-79ed_verapache">Implementing
+the measure() method</a>.</p>
+
+                        </td>
+
+                     </tr>
+
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d884678e2374 ">
+                           <p>
+                              <samp class="codeph">styleChanged()</samp> 
+                           </p>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d884678e2380 ">
+                           <p>Detects changes to style properties.</p>
+
+                           <p>For
+more information, see <a href="flx_skinstyle_ss.html#WS2db454920e96a9e51e63e3d11c0bf687e7-7ffb_verapache">Overriding
+the styleChanged() method</a>.</p>
+
+                        </td>
+
+                     </tr>
+
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d884678e2374 ">
+                           <div class="p">
+                              <pre class="codeblock">updateDisplayList()</pre>
+
+                           </div>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d884678e2380 ">
+                           <p>Sizes and positions the children of the
+component on the screen based on all previous property and style settings,
+and draws any skins or graphic elements used by the component. The
+parent container for the component determines the size of the component
+itself.</p>
+
+                           <div class="p">
+                              <div class="note"><span class="notetitle">Note:</span> You typically only have to implement this method
+when you use the mx.core.UIComponent class as the base class of
+your item renderer. You do not have to implement it when creating
+a subclass of the LabelItemRenderer class. Override <samp class="codeph">LabelItemRenderer.drawBackground()</samp> and <samp class="codeph">LabelItemRenderer.layoutContent()</samp> instead.</div>
+
+                           </div>
+
+                           <p>For
+more information, see <a href="flx_ascomponents_advanced_asa.html#WS2db454920e96a9e51e63e3d11c0bf69084-79e9_verapache">Implementing
+the updateDisplayList() method</a>.</p>
+
+                        </td>
+
+                     </tr>
+
+                  </tbody>
+
+               </table>
+</div>
+
+            <div class="p">If the parent class is the LabelItemRenderer, you typically override
+one or both of the following methods: 
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" frame="border" border="1" rules="all">
+                     
+                     
+                     <thead align="left">
+                        <tr>
+                           <th class="cellrowborder" valign="top" width="NaN%" id="d884678e2544">
+                              <p>Method</p>
+
+                           </th>
+
+                           <th class="cellrowborder" valign="top" width="NaN%" id="d884678e2550">
+                              <p>Description</p>
+
+                           </th>
+
+                        </tr>
+
+                     </thead>
+
+                     <tbody>
+                        <tr>
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d884678e2544 ">
+                              <p>
+                                 <samp class="codeph">drawBackground()</samp>
+                              </p>
+
+                           </td>
+
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d884678e2550 ">
+                              <p>Defines the background display of the item
+renderer.</p>
+
+                           </td>
+
+                        </tr>
+
+                        <tr>
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d884678e2544 ">
+                              <p>
+                                 <samp class="codeph">layoutContents()</samp>
+                              </p>
+
+                           </td>
+
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d884678e2550 ">
+                              <p>Lays out the children of the item renderer.</p>
+
+                           </td>
+
+                        </tr>
+
+                     </tbody>
+
+                  </table>
+</div>
+
+            </div>
+
+            <p>Flex uses an invalidation mechanism to synchronize modifications
+to components. Flex implements the invalidation mechanism as a set
+of methods that you call to signal that something about the component
+has changed and requires Flex to call the component’s <samp class="codeph">commitProperties()</samp>, <samp class="codeph">measure()</samp>,
+or <samp class="codeph">updateDisplayList()</samp> methods.</p>
+
+            <p>The following table describes the invalidation methods:</p>
+
+            
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" frame="border" border="1" rules="all">
+                  
+                  
+                  <thead align="left">
+                     <tr>
+                        <th class="cellrowborder" valign="top" width="NaN%" id="d884678e2628">
+                           <p>Invalidation method</p>
+
+                        </th>
+
+                        <th class="cellrowborder" valign="top" width="NaN%" id="d884678e2634">
+                           <p>Description</p>
+
+                        </th>
+
+                     </tr>
+
+                  </thead>
+
+                  <tbody>
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d884678e2628 ">
+                           <div class="p">
+                              <pre class="codeblock">invalidateProperties()</pre>
+
+                           </div>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d884678e2634 ">
+                           <p>Marks a component so that its <samp class="codeph">commitProperties()</samp> method
+gets called during the next screen update.</p>
+
+                        </td>
+
+                     </tr>
+
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d884678e2628 ">
+                           <div class="p">
+                              <pre class="codeblock">invalidateSize()</pre>
+
+                           </div>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d884678e2634 ">
+                           <p>Marks a component so that its <samp class="codeph">measure()</samp> method
+gets called during the next screen update.</p>
+
+                        </td>
+
+                     </tr>
+
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d884678e2628 ">
+                           <div class="p">
+                              <pre class="codeblock">invalidateDisplayList()</pre>
+
+                           </div>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d884678e2634 ">
+                           <p>Marks a component so that its <samp class="codeph">updateDisplayList()</samp> methods
+get called during the next screen update.</p>
+
+                        </td>
+
+                     </tr>
+
+                  </tbody>
+
+               </table>
+</div>
+
+            <p>When a component calls an invalidation method, it signals to
+Flex that the component must be updated. When multiple components
+call invalidation methods, Flex coordinates the updates so that
+they all occur together during the next screen update. For more
+information on these methods, see <a href="flx_ascomponents_advanced_asa.html#WS2db454920e96a9e51e63e3d11c0bf68641-7ff9_verapache">About
+the invalidation methods</a>.</p>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS684a1733bf2efe8a3a0afb75129d7657f1c-7fff_verapache"><a name="WS684a1733bf2efe8a3a0afb75129d7657f1c-7fff_verapache"><!-- --></a>
+         <h3 class="topictitle3">Create an ActionScript item renderer
+as a subclass of the LabelItemRenderer class</h3>
+
+         
+         <div>
+            <div class="p">The following example shows a view component for a mobile
+application: <pre class="noswf">&lt;?xml version="1.0" encoding="utf-8"?&gt; 
+&lt;!-- containers\mobile\views\ListColor.mxml --&gt; 
+&lt;s:View xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    title="Colors"&gt; 
+    &lt;s:layout&gt; 
+        &lt;s:VerticalLayout paddingTop="10"/&gt; 
+    &lt;/s:layout&gt; 
+    
+    &lt;s:Label text="Favorites"/&gt; 
+    &lt;s:SkinnableDataContainer 
+        itemRenderer="myComponents.MySimpleColorRenderer"&gt; 
+        &lt;mx:ArrayList&gt; 
+            &lt;fx:String&gt;red&lt;/fx:String&gt; 
+            &lt;fx:String&gt;green&lt;/fx:String&gt; 
+            &lt;fx:String&gt;blue&lt;/fx:String&gt; 
+        &lt;/mx:ArrayList&gt;  
+    &lt;/s:SkinnableDataContainer&gt; 
+&lt;/s:View&gt;</pre>
+
+            </div>
+
+            <p>In this example, the <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/spark/components/SkinnableDataContainer.html" target="_blank">SkinnableDataContainer</a> contains
+three data items corresponding to three colors. In this example,
+you define an item renderer in the file MySimpleColorRenderer.as.
+Your custom item renderer displays the text of the data item and
+changes the background color of the data item to match the text.</p>
+
+            <p>Because this is a mobile application, for optimal performance
+create the item renderer as a subclass of the LabelItemRenderer
+class. This example does not change the way the data item is layed
+out in the container, only its background color. Therefore, you
+only override the <samp class="codeph">LabelItemRenderer.drawBackground()</samp> method,
+and not the <samp class="codeph">LabelItemRenderer.layoutContent()</samp> method.</p>
+
+            <div class="p">The MySimpleColorRenderer.as item renderer is shown below: <pre class="noswf">package myComponents 
+{ 
+    // containers\mobile\myComponents\MySimpleColorRenderer .as 
+    import spark.components.LabelItemRenderer; 
+    
+    public class MySimpleColorRenderer extends LabelItemRenderer 
+    { 
+        public function MySimpleColorRenderer() { 
+            super(); 
+        } 
+        
+        // Use the value of the myColor property to draw 
+        // the background color of the item in the list. 
+        override protected function drawBackground(unscaledWidth:Number, unscaledHeight:Number):void { 
+            // Define a var to hold the color. 
+            var myColor:uint; 
+ 
+            // Determine the RGB color value from the label property. 
+            if (data == "red") 
+                myColor = 0xFF0000; 
+            if (data == "green") 
+                myColor = 0x00FF00; 
+            if (data == "blue") 
+                myColor = 0x0000FF; 
+ 
+            graphics.beginFill(myColor, 1); 
+            graphics.drawRect(0, 0, unscaledWidth, unscaledHeight); 
+            
+        } 
+    } 
+}</pre>
+
+            </div>
+
+            <p>This item renderer accesses the <samp class="codeph">LabelItemRenderer.data</samp> property
+in the override of the <samp class="codeph">drawbackground()</samp> method
+to determine the background color of the item. The <samp class="codeph">label</samp> property
+contains the String value to display in the item renderer.</p>
+
+         </div>
+
+         <div class="nested3" id="WS354da6572731dfda-28275bce12af7985b6f-8000_verapache"><a name="WS354da6572731dfda-28275bce12af7985b6f-8000_verapache"><!-- --></a>
+            <h4 class="topictitle4">Override the LabelItemRenderer.layoutComponents()
+method in an item renderer</h4>
+
+            
+            <div>
+               <p>By default, the <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/spark/components/LabelItemRenderer.html" target="_blank">LabelItemRenderer</a> class
+uses a single <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/spark/components/supportClasses/StyleableTextField.html" target="_blank">spark.components.supportClasses.StyleableTextField</a> control
+to display a String. The name of the StyleableTextField control
+in the item renderer is <samp class="codeph">labelDisplay</samp>. </p>
+
+               <p>In the next example, you define an item renderer to display multiple
+fields of a data item in separate StyleableTextField controls in
+the item renderer. This example uses the predefined <samp class="codeph">labelDisplay</samp> control
+to display the first and last name fields of the data item. It then
+adds a second StyleableTextField control to display the company
+ID field.</p>
+
+               <p>Shown below is the view component for the mobile application: </p>
+
+               <div class="p">
+                  <pre class="noswf">&lt;?xml version="1.0" encoding="utf-8"?&gt; 
+&lt;!-- containers\mobile\views\EmployeeMainViewIR.mxml --&gt; 
+&lt;s:View xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    title="Employees View Main"&gt; 
+    &lt;s:layout&gt; 
+        &lt;s:VerticalLayout paddingTop="10"/&gt; 
+    &lt;/s:layout&gt; 
+ 
+    &lt;fx:Script&gt; 
+        &lt;![CDATA[ 
+            public function myLabelFunction(item:Object):String { 
+                return item.lastName + ', ' + item.firstName;; 
+            } 
+        ]]&gt; 
+    &lt;/fx:Script&gt; 
+    
+    &lt;s:Label text="Select an employee name"/&gt; 
+    &lt;s:List id="myList" 
+        width="100%" height="100%" 
+        itemRenderer="myComponents.MyGroupItemRenderer" 
+        labelFunction="myLabelFunction"&gt; 
+        &lt;s:ArrayCollection&gt; 
+            &lt;fx:Object firstName="Bill" lastName="Smith" companyID="11233"/&gt; 
+            &lt;fx:Object firstName="Dave" lastName="Jones" companyID="13455"/&gt; 
+            &lt;fx:Object firstName="Mary" lastName="Davis" companyID="11543"/&gt; 
+            &lt;fx:Object firstName="Debbie" lastName="Cooper" companyID="14266"/&gt; 
+        &lt;/s:ArrayCollection&gt; 
+    &lt;/s:List&gt; 
+&lt;/s:View&gt;</pre>
+
+               </div>
+
+               <div class="p">The <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/spark/components/List.html" target="_blank">List</a> control
+uses the <samp class="codeph">itemRenderer</samp> property to specify the name
+of the custom item renderer as MyGroupItemRenderer.as. In MyGroupItemRenderer.as, you:<ul>
+                     <li>
+                        <p>Define the StyleableTextField control named compLabelDisplay.</p>
+
+                     </li>
+
+                     <li>
+                        <p>Override the protected <samp class="codeph">createChildren()</samp> method
+to create the compLabelDisplay control. </p>
+
+                     </li>
+
+                     <li>
+                        <p>Override the protected <samp class="codeph">styleChanged()</samp> method
+to propagate and style changes to the compLabelDisplay control.</p>
+
+                     </li>
+
+                     <li>
+                        <p>Override the <samp class="codeph">data</samp> property to initialize
+the compLabelDisplay control. The <samp class="codeph">data</samp> property
+contains the original Object representing the data item in the List
+control.</p>
+
+                     </li>
+
+                     <li>
+                        <p>Override the <samp class="codeph">measure()</samp> method to calculate
+the size of the labelDsiplay and compLabelDisplay controls. </p>
+
+                     </li>
+
+                     <li>
+                        <p>Override the <samp class="codeph">layoutContents()</samp> method to
+size and position the labelDisplay and compLabelDisplay controls.
+The override uses the padding styles to calculate the availale space
+for the components. </p>
+
+                     </li>
+
+                  </ul>
+
+               </div>
+
+               <div class="p">Shown below is the definition of MyGroupItemRenderer, the item
+renderer: <pre class="noswf">package myComponents 
+{ 
+    // containers\mobile\myComponents\MyGroupItemRenderer.as 
+    import spark.components.LabelItemRenderer; 
+    import spark.components.supportClasses.StyleableTextField; 
+ 
+    public class MyGroupItemRenderer extends LabelItemRenderer 
+    { 
+        public function MyGroupItemRenderer(){ 
+            super(); 
+        } 
+        
+        // Define the StyleableTextField control used 
+        // to display the company ID. 
+        public var compLabelDisplay:StyleableTextField; 
+        
+        // The distance between the label and the company ID. 
+        public var verticalGap:Number = 10; 
+        
+        // Override createChildren() to create the StyleableTextField control. 
+        override protected function createChildren():void { 
+            super.createChildren(); 
+            
+            // Make sure it does not already exist. 
+            if (!compLabelDisplay) { 
+                compLabelDisplay = new StyleableTextField(); 
+                
+                // Specify The object that provides styles for the control. 
+                // This property must be set for the control to pick up 
+                // the correct styles. 
+                compLabelDisplay.styleName = this; 
+                
+                // Set basic attributes of the control. 
+                compLabelDisplay.editable = false; 
+                compLabelDisplay.selectable = false; 
+                compLabelDisplay.multiline = false; 
+                compLabelDisplay.wordWrap = false; 
+                
+                // Add the control as a child of the item renderer. 
+                addChild(compLabelDisplay); 
+            } 
+        } 
+        
+        // Override styleChanged() to proopgate style changes to compLabelDisplay. 
+        override public function styleChanged(styleName:String):void { 
+            super.styleChanged(styleName); 
+            
+            // Pass any style changes to compLabelDisplay. 
+            if (compLabelDisplay) 
+                compLabelDisplay.styleChanged(styleName); 
+        } 
+        
+        // Override the data property to initialize compLabelDisplay. 
+        // The label function in the view specifies the String 
+        // displayed in labelDisplay. 
+        override public function set data(value:Object):void { 
+            super.data = value; 
+            
+            compLabelDisplay.text = String(value.companyID); 
+        } 
+        
+        // Override measure() to calculate the size required by the item renderer. 
+        override protected function measure():void { 
+            // Measure the labelDisplay by calling super.measure() 
+            super.measure(); 
+ 
+            // Then consider the compLabelDisplay if it exists. 
+            if (compLabelDisplay) 
+            { 
+                var horizontalPadding:Number = getStyle("paddingLeft") + getStyle("paddingRight"); 
+                var verticalPadding:Number = getStyle("paddingTop") + getStyle("paddingBottom"); 
+                
+                // Commit the styles changes to compLabelDisplay. 
+                // This method must be called before the text is displayed, 
+                // and any time the styles have changed. 
+                // This method does nothing if the styles have already been committed. 
+                compLabelDisplay.commitStyles(); 
+                measuredWidth =  Math.max(getElementPreferredWidth(labelDisplay), getElementPreferredWidth(compLabelDisplay)) 
+                measuredWidth += horizontalPadding; 
+                
+                measuredHeight =  getElementPreferredHeight(labelDisplay); 
+                measuredHeight += getElementPreferredHeight(compLabelDisplay); 
+                measuredHeight += verticalPadding + verticalGap; 
+            } 
+        } 
+        
+        // Override layoutContents() to lay out the item renderer. 
+        override protected function layoutContents(unscaledWidth:Number, unscaledHeight:Number):void { 
+            // Because you are handling the layout of both the 
+            // predefined labelDisplay component and the new 
+            // compLabelDisplay component, you do not have to call 
+            // super.layoutContents(). 
+            
+            // Make sure labelDisplay and compLabelDisplay exist. 
+            if (!labelDisplay) 
+                return; 
+            if (!compLabelDisplay) 
+                return; 
+            
+            // Get the padding from the associated styles. 
+            var paddingLeft:Number = getStyle("paddingLeft"); 
+            var paddingRight:Number = getStyle("paddingRight"); 
+            var paddingTop:Number = getStyle("paddingTop"); 
+            var paddingBottom:Number = getStyle("paddingBottom"); 
+            
+            // Calculate the available space for the component. 
+            var viewWidth:Number  = unscaledWidth - paddingLeft - paddingRight; 
+            var viewHeight:Number = unscaledHeight - paddingTop - paddingBottom; 
+            
+            // Calcualte the size of the labelDisplay component. 
+            var labelWidth:Number = Math.max(viewWidth, 0); 
+            var labelHeight:Number = 0; 
+            
+            if (label != "") { 
+                labelDisplay.commitStyles(); 
+                
+                // Reset text if it was truncated before. 
+                if (labelDisplay.isTruncated) 
+                    labelDisplay.text = label; 
+                
+                labelHeight = getElementPreferredHeight(labelDisplay); 
+            } 
+            
+            // Set the size and position of the labelDisplay component. 
+            setElementSize(labelDisplay, labelWidth, labelHeight);    
+            setElementPosition(labelDisplay, paddingLeft, paddingTop); 
+            
+            // Attempt to truncate the text now that we have its official width 
+            labelDisplay.truncateToFit(); 
+            
+            // Size and position the compLabelDisplay component. 
+            var compLabelWidth:Number = Math.max(viewWidth, 0); 
+            var compLabelHeight:Number = 0; 
+            
+            compLabelDisplay.commitStyles(); 
+            compLabelHeight = getElementPreferredHeight(compLabelDisplay); 
+            
+            setElementSize(compLabelDisplay, compLabelWidth, compLabelHeight); 
+            setElementPosition(compLabelDisplay, paddingLeft, paddingTop + labelHeight + verticalGap); 
+        } 
+    } 
+}</pre>
+
+               </div>
+
+            </div>
+
+         </div>
+
+      </div>
+
+   </div>
+
+   <div class="nested1" id="WS03d33b8076db57b9-1c32bcb9124deadc3e9-8000_verapache"><a name="WS03d33b8076db57b9-1c32bcb9124deadc3e9-8000_verapache"><!-- --></a>
+      <h2 class="topictitle2">Using a Spark item renderer with
+an MX control </h2>
+
+      
+      <div>
+         <p>Many MX list-based controls, such as the <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/controls/DataGrid.html" target="_blank">DataGrid</a>, <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/controls/AdvancedDataGrid.html" target="_blank">AdvancedDataGrid</a>,
+and <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/controls/Tree.html" target="_blank">Tree</a>, support
+item renderers. These three MX list-based controls also support
+item editors. Item editors let you create a custom view of data
+during the editing process. The item editor returns the new data
+back to the control so that the control can update its data provider. </p>
+
+         <div class="p">
+            <div class="note"><span class="notetitle">Note:</span> Many MX controls, such as the MX List and MX TileList controls,
+support item renderers or item editors. However, Flex provides the
+Spark List and Spark TileLayout class as replacements for the MX
+List and MX TileList controls. Always use the Spark components,
+when possible, in your application. There is no Spark equivalent
+for the MX DataGrid, MX AdvancedDataGrid, and MX Tree controls.
+Therefore, only those MX controls support the MXItemRenderer class. </div>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS1e88a8e2971cdab4-7f51452a124e3de2dbe-8000_verapache"><a name="WS1e88a8e2971cdab4-7f51452a124e3de2dbe-8000_verapache"><!-- --></a>
+         <h3 class="topictitle3">About MX item renderers and item
+editors</h3>
+
+         
+         <div>
+            <p>All of the functionality of MX item renderers and item
+editors is supported by the MXItemRenderer class. Therefore, you
+should be familiar with the architecture of MX item renderers and
+editors before you create them based on the MXItemRenderer class.</p>
+
+            <div class="p">See the following documentation for basic information on MX item
+renderers: <ul>
+                  <li>
+                     <p>
+                        <a href="flx_cellrenderer_cr.html#WS2db454920e96a9e51e63e3d11c0bf64fe7-7fff_verapache">About
+MX item renderers</a>
+                     </p>
+
+                  </li>
+
+                  <li>
+                     <p>
+                        <a href="flx_cellrenderer_cr.html#WS2db454920e96a9e51e63e3d11c0bf69084-7ca3_verapache">Creating
+MX item renderers and item editor components</a>
+                     </p>
+
+                  </li>
+
+                  <li>
+                     <p>
+                        <a href="flx_celleditor_ce.html#WS2db454920e96a9e51e63e3d11c0bf651fa-7ffb_verapache">About
+the MX cell editing process</a>
+                     </p>
+
+                  </li>
+
+                  <li>
+                     <p>
+                        <a href="flx_celleditor_ce.html#WS2db454920e96a9e51e63e3d11c0bf651fa-7ffb_verapache">About
+the MX cell editing process</a>
+                     </p>
+
+                  </li>
+
+                  <li>
+                     <p>
+                        <a href="flx_advdatagrid_ad.html#WS2db454920e96a9e51e63e3d11c0bf69084-7bf2_verapache">Using
+item renderers with the AdvancedDataGrid control</a>
+                     </p>
+
+                  </li>
+
+                  <li>
+                     <p>
+                        <a href="flx_celleditor_ce.html#WS2db454920e96a9e51e63e3d11c0bf69084-7c8c_verapache">Returning
+data from an MX item editor</a>
+                     </p>
+
+                  </li>
+
+                  <li>
+                     <p>
+                        <a href="flx_celleditor_ce.html#WS2db454920e96a9e51e63e3d11c0bf651fa-7ffa_verapache">Using
+MX cell editing events</a>
+                     </p>
+
+                  </li>
+
+                  <li>
+                     <p>
+                        <a href="flx_celleditor_ce.html#WS2db454920e96a9e51e63e3d11c0bf651fa-7ff1_verapache">MX
+item editor examples</a>
+                     </p>
+
+                  </li>
+
+               </ul>
+
+            </div>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS03d33b8076db57b9-3edf2834124deb0ca54-8000_verapache"><a name="WS03d33b8076db57b9-3edf2834124deb0ca54-8000_verapache"><!-- --></a>
+         <h3 class="topictitle3">Using the MXItemRenderer class</h3>
+
+         
+         <div>
+            <p>You base a Spark item renderer or item editor for an MX
+control on the MXItemRenderer class. While you can base an item
+renderer or editor on the MXItemRenderer class itself, you typically
+create them based on one of the following subclasses of MXItemRenderer:</p>
+
+            <div class="p">
+               <ul>
+                  <li>
+                     <p>
+                        <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/controls/dataGridClasses/MXDataGridItemRenderer.html" target="_blank">MXDataGridItemRenderer</a> The
+base class for a Spark item renderer or editor for the MX DataGrid
+control.</p>
+
+                  </li>
+
+                  <li>
+                     <p>
+                        <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/controls/advancedDataGridClasses/MXAdvancedDataGridItemRenderer.html" target="_blank">MXAdvancedDataGridItemRenderer</a> The
+base class for a Spark item renderer or editor for the MX AdvancedDataGrid
+control.</p>
+
+                  </li>
+
+                  <li>
+                     <p>
+                        <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/controls/treeClasses/MXTreeItemRenderer.html" target="_blank">MXTreeItemRenderer</a> The
+base class for a Spark item renderer or editor for the MX Tree control.</p>
+
+                  </li>
+
+               </ul>
+
+            </div>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS03d33b8076db57b94b8621f4124df8a10ab-8000_verapache"><a name="WS03d33b8076db57b94b8621f4124df8a10ab-8000_verapache"><!-- --></a>
+         <h3 class="topictitle3">Creating a Spark item renderer
+for an MX DataGrid control</h3>
+
+         
+         <div>
+            <div class="p">The following application shows an MX <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/controls/DataGrid.html" target="_blank">DataGrid</a> control
+that uses a custom item renderer: <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- itemRenderers\sparkmx\SparkMainDGImageRenderer.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    width="650"&gt; 
+    
+    &lt;fx:Script&gt; 
+        &lt;![CDATA[ 
+            import mx.collections.ArrayCollection; 
+        
+            [Bindable]                
+            private var initDG:ArrayCollection = new ArrayCollection([ 
+                {Artist:'Pavement', Album:'Slanted and Enchanted', 
+                    Price:11.99, Cover: '../assets/slanted.jpg'}, 
+                {Artist:'Pavement', Album:'Brighten the Corners', 
+                    Price:11.99, Cover: '../assets/brighten.jpg'} 
+            ]); 
+        ]]&gt; 
+    &lt;/fx:Script&gt; 
+ 
+    &lt;mx:DataGrid id="myGrid" height="400" width="600" 
+        dataProvider="{initDG}"&gt;  
+        &lt;mx:columns&gt; 
+            &lt;mx:DataGridColumn dataField="Artist"/&gt; 
+            &lt;mx:DataGridColumn dataField="Album"/&gt; 
+            &lt;mx:DataGridColumn dataField="Cover" 
+                itemRenderer="myComponents.RendererDGImage"/&gt; 
+            &lt;mx:DataGridColumn dataField="Price"/&gt; 
+        &lt;/mx:columns&gt;       
+    &lt;/mx:DataGrid&gt;  
+&lt;/s:Application&gt;</pre>
+
+            </div>
+
+            <p>In this example, you use the custom item renderer to display
+the album cover for each album listed in the DataGrid control. The
+Cover field of the data provider of the DataGrid contains the path
+to the JPG file for the cover.</p>
+
+            <div class="p">Shown below is the definition of the RendererDGImage.mxml file
+that defines the item renderer: <pre class="noswf">&lt;?xml version="1.0"?&gt; 
+&lt;!-- itemRenderers\sparkmx\myComponents\RendererDGImage.mxml --&gt; 
+&lt;s:MXDataGridItemRenderer xmlns:fx="http://ns.adobe.com/mxml/2009" 
+        xmlns:s="library://ns.adobe.com/flex/spark" 
+        xmlns:mx="library://ns.adobe.com/flex/mx"&gt; 
+ 
+        &lt;mx:Image id="albumImage" height="175" source="{data.Cover}"/&gt; 
+&lt;/s:MXDataGridItemRenderer&gt;</pre>
+
+            </div>
+
+            <p>Notice that this item renderer is based on the MXDataGridItemRenderer
+class. The item renderer uses the Image control to display the album
+cover.</p>
+
+            <div class="p">The next example also displays the album name and cover image,
+but uses a single column of the DataGrid to display both fields: <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- itemRenderers\sparkm\SparkMainDGTitleRenderer.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    width="650"&gt; 
+    
+    &lt;fx:Script&gt; 
+        &lt;![CDATA[ 
+            import mx.collections.ArrayCollection; 
+        
+            [Bindable]                
+            private var initDG:ArrayCollection = new ArrayCollection([ 
+                {Artist:'Pavement', Album:'Slanted and Enchanted', 
+                    Price:11.99, Cover: '../../assets/slanted.jpg'}, 
+                {Artist:'Pavement', Album:'Brighten the Corners', 
+                    Price:11.99, Cover: '../../assets/brighten.jpg'} 
+            ]); 
+        ]]&gt; 
+    &lt;/fx:Script&gt; 
+ 
+    &lt;mx:DataGrid id="myGrid" width="600" 
+        dataProvider="{initDG}" 
+        variableRowHeight="true"&gt;  
+        &lt;mx:columns&gt; 
+            &lt;mx:DataGridColumn dataField="Artist" /&gt; 
+            &lt;mx:DataGridColumn dataField="Album" 
+                itemRenderer="myComponents.RendererDGTitleImage" /&gt; 
+            &lt;mx:DataGridColumn dataField="Price"  /&gt; 
+        &lt;/mx:columns&gt;       
+    &lt;/mx:DataGrid&gt;  
+&lt;/s:Application&gt;</pre>
+
+            </div>
+
+            <div class="p">The RendererDGTitleImage.mxml file implements the render. It
+uses a Spark Label control and the MX Image control to display the
+album name and cover image in a single cell: <pre class="noswf">&lt;?xml version="1.0"?&gt; 
+&lt;!-- itemRenderers\sparkmx\myComponents\RendererDGTitleImage.mxml --&gt; 
+&lt;s:MXDataGridItemRenderer xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx"&gt; 
+    &lt;s:layout&gt; 
+        &lt;s:HorizontalLayout verticalAlign="middle" 
+            paddingLeft="5" paddingRight="5"/&gt; 
+    &lt;/s:layout&gt; 
+ 
+    &lt;s:Label id="albumName" 
+        width="100%" 
+        text="{data.Album}"/&gt; 
+    &lt;mx:Image id="albumImage" 
+        source="{data.Cover}"/&gt;    
+&lt;/s:MXDataGridItemRenderer&gt; </pre>
+
+            </div>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS03d33b8076db57b9-3edf2834124deb0ca54-7fff_verapache"><a name="WS03d33b8076db57b9-3edf2834124deb0ca54-7fff_verapache"><!-- --></a>
+         <h3 class="topictitle3">Creating a Spark item renderer
+for an MX AdvancedDataGrid control</h3>
+
+         
+         <div>
+            <div class="p">The following application uses the <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/controls/AdvancedDataGrid.html" target="_blank">AdvancedDataGrid</a> control: <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- itemrenderers/sparkmx/SparkHierarchicalADGSimpleRenderer.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark"&gt; 
+ 
+    &lt;fx:Script&gt; 
+        &lt;![CDATA[ 
+              import mx.collections.ArrayCollection; 
+                
+              include "SimpleHierarchicalData.as"; 
+        ]]&gt; 
+    &lt;/fx:Script&gt; 
+ 
+    &lt;mx:AdvancedDataGrid width="100%" height="100%"&gt; 
+        &lt;mx:dataProvider&gt; 
+            &lt;mx:HierarchicalData source="{dpHierarchy}"/&gt; 
+        &lt;/mx:dataProvider&gt; 
+        &lt;mx:columns&gt; 
+            &lt;mx:AdvancedDataGridColumn dataField="Region"/&gt; 
+            &lt;mx:AdvancedDataGridColumn dataField="Territory_Rep" 
+                headerText="Territory Rep"/&gt; 
+            &lt;mx:AdvancedDataGridColumn dataField="Actual"/&gt; 
+            &lt;mx:AdvancedDataGridColumn dataField="Estimate"/&gt; 
+            &lt;mx:AdvancedDataGridColumn id="diffCol" 
+                headerText="Difference"/&gt; 
+        &lt;/mx:columns&gt; 
+ 
+        &lt;mx:rendererProviders&gt; 
+            &lt;mx:AdvancedDataGridRendererProvider column="{diffCol}" 
+                depth="3" renderer="myComponents.SummaryRenderer"/&gt; 
+        &lt;/mx:rendererProviders&gt; 
+    &lt;/mx:AdvancedDataGrid&gt; 
+&lt;/s:Application&gt;</pre>
+
+            </div>
+
+            <p>This application uses the custom item renderer defined in the
+file SummaryRenderer.mxml to display the value of the Difference
+column. The value is determined by the difference between the Estimate
+and Actual columns. If the territory representative exceeded sales
+estimate, the cell appears in green. If the territory representative
+did not exceed the estimate, the cell appears in red. </p>
+
+            <div class="p">The SummaryRenderer.mxml also includes a CurrencyFormatter to
+format the value in dollars. The SummaryRenderer.mxml is shown below: <pre class="noswf">&lt;?xml version="1.0"?&gt; 
+&lt;!-- itemrenderers/sparkmx/myComponents/SummaryRenderer.mxml --&gt; 
+&lt;s:MXAdvancedDataGridItemRenderer xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    textAlign="center"&gt; 
+    
+    &lt;fx:Script&gt; 
+        &lt;![CDATA[ 
+ 
+            override public function set data(value:Object):void 
+            { 
+                // Calculate the difference. 
+                var diff:Number = 
+                    Number(value["Actual"]) - Number(value["Estimate"]); 
+                if (diff &lt; 0) 
+                { 
+                    // If Estimate was greater than Actual, 
+                    // display results in red. 
+                    setStyle("color", "red"); 
+                    myLabel.text = "Undersold by " + usdFormatter.format(diff); 
+                } 
+                else 
+                { 
+                    // If Estimate was less than Actual, 
+                    // display results in green. 
+                    setStyle("color", "green"); 
+                    myLabel.text = "Exceeded estimate by " + usdFormatter.format(diff); 
+                } 
+            } 
+        ]]&gt; 
+    &lt;/fx:Script&gt; 
+ 
+    &lt;fx:Declarations&gt; 
+        &lt;mx:CurrencyFormatter id="usdFormatter" precision="2" 
+            currencySymbol="$" decimalSeparatorFrom="." 
+            decimalSeparatorTo="." useNegativeSign="true" 
+            useThousandsSeparator="true" alignSymbol="left"/&gt; 
+    &lt;/fx:Declarations&gt; 
+ 
+    &lt;s:Label id="myLabel"/&gt; 
+&lt;/s:MXAdvancedDataGridItemRenderer&gt;</pre>
+
+            </div>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS03d33b8076db57b9-3edf2834124deb0ca54-7ffe_verapache"><a name="WS03d33b8076db57b9-3edf2834124deb0ca54-7ffe_verapache"><!-- --></a>
+         <h3 class="topictitle3">Creating a Spark item renderer
+for an MX Tree control</h3>
+
+         
+         <div>
+            <div class="p">The following application uses an MX <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/controls/Tree.html" target="_blank">Tree</a> control
+to display XML data: <pre class="codeblock">&lt;?xml version="1.0" encoding="iso-8859-1"?&gt; 
+&lt;!-- itemRenderers\tree\SparkMainTreeItemRenderer.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    initialize="initCollections();"&gt; 
+    &lt;s:layout&gt; 
+        &lt;s:VerticalLayout/&gt; 
+    &lt;/s:layout&gt; 
+ 
+    &lt;fx:Script&gt; 
+        &lt;![CDATA[ 
+   
+            import mx.collections.*; 
+    
+            public var xmlBalanced:XMLList = 
+                &lt;&gt; 
+                    &lt;node label="Containers"&gt; 
+                        &lt;node label="DividedBoxClasses"&gt; 
+                            &lt;node label="BoxDivider" data="BoxDivider.as"/&gt; 
+                        &lt;/node&gt; 
+                        &lt;node label="GridClasses"&gt; 
+                            &lt;node label="GridRow" data="GridRow.as"/&gt; 
+                            &lt;node label="GridItem" data="GridItem.as"/&gt; 
+                            &lt;node label="Other File" data="Other.as"/&gt; 
+                        &lt;/node&gt; 
+                    &lt;/node&gt; 
+                    &lt;node label="Data"&gt; 
+                        &lt;node label="Messages"&gt; 
+                            &lt;node label="DataMessage" 
+                                data="DataMessage.as"/&gt; 
+                            &lt;node label="SequenceMessage" 
+                                data="SequenceMessage.as"/&gt; 
+                        &lt;/node&gt; 
+                        &lt;node label="Events"&gt; 
+                            &lt;node label="ConflictEvents" 
+                                data="ConflictEvent.as"/&gt; 
+                            &lt;node label="CommitFaultEvent" 
+                                data="CommitFaultEvent.as"/&gt; 
+                        &lt;/node&gt; 
+                    &lt;/node&gt; 
+                &lt;/&gt;; 
+                
+            [Bindable] 
+            public var xlcBalanced:XMLListCollection; 
+    
+            private function initCollections():void { 
+                xlcBalanced = new XMLListCollection(xmlBalanced); 
+            } 
+        ]]&gt; 
+    &lt;/fx:Script&gt; 
+ 
+    &lt;mx:Text width="400" 
+        text="The nodes with children are in bold red text, with the number of children in parenthesis.)"/&gt; 
+ 
+    &lt;mx:Tree id="compBalanced" 
+        width="400" height="500" 
+        dataProvider="{xlcBalanced}" 
+        labelField="@label"  
+        itemRenderer="myComponents.MyTreeItemRenderer"/&gt; 
+&lt;/s:Application&gt;</pre>
+
+            </div>
+
+            <div class="p">This application uses the item renderer defined by the MyTreeItemRenderer.mxml
+file to display the parent nodes in a red, bold font. It also shows
+the number of child nodes for each parent in parenthesis. Shown
+below is the definition of MyTreeItemRenderer.mxml: <pre class="noswf">&lt;?xml version="1.0" encoding="utf-8"?&gt; 
+&lt;!-- itemRenderers\sparkmx\myComponents\MyTreeItemRenderer.mxml --&gt; 
+&lt;s:MXTreeItemRenderer xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx"&gt; 
+    
+    &lt;fx:Script&gt; 
+        &lt;![CDATA[ 
+ 
+            import mx.controls.treeClasses.*; 
+            import mx.collections.*; 
+            
+            // Override the set method for the data property 
+            // to set the font color and style of each node.        
+            override public function set data(value:Object):void { 
+                super.data = value; 
+                if(treeListData.hasChildren) 
+                { 
+                    setStyle("color", 0xff0000); 
+                    setStyle("fontWeight", 'bold'); 
+                    var tmp:XMLList = 
+                        new XMLList(treeListData.item); 
+                    var myStr:int = tmp[0].children().length(); 
+                    labelDisplay.text =  treeListData.label + 
+                        "(" + myStr + ")"; 
+                } 
+                else 
+                { 
+                    setStyle("color", 0x000000); 
+                    setStyle("fontWeight", 'normal'); 
+                    labelDisplay.text =  treeListData.label; 
+                }  
+            } 
+        ]]&gt; 
+    &lt;/fx:Script&gt; 
+    
+    &lt;s:HGroup left="0" right="0" verticalCenter="0"&gt; 
+        &lt;s:Rect id="indentationSpacer" 
+            width="{treeListData.indent}" height="22" 
+            alpha="0"&gt; 
+            &lt;s:fill&gt; 
+                &lt;s:SolidColor color="0xFFFFFF" /&gt; 
+            &lt;/s:fill&gt; 
+        &lt;/s:Rect&gt; 
+        &lt;s:Group id="disclosureGroup"&gt; 
+            &lt;s:BitmapImage source="{treeListData.disclosureIcon}" 
+                width="16" height="16" 
+                visible="{treeListData.hasChildren}" /&gt; 
+        &lt;/s:Group&gt; 
+        &lt;s:BitmapImage source="{treeListData.icon}" 
+            width="16" height="16"/&gt; 
+        &lt;s:Label id="labelDisplay" /&gt; 
+    &lt;/s:HGroup&gt; 
+&lt;/s:MXTreeItemRenderer&gt;</pre>
+
+            </div>
+
+            <p>The item renderer uses the <samp class="codeph">treeListData</samp> property
+of the MXTreeItemRenderer class to determine the information about
+the tree node. The <samp class="codeph">treeListData</samp> property is of
+type TreeListData. TreeListData defines information such as the
+depth of the node in the tree, any icon associated with the node,
+and the data object of the node from the tree’s data provider. </p>
+
+            <p>This item renderer overrides the <samp class="codeph">ItemRenderer.data</samp> property
+to control the display of the tree nodes. The override first determines
+if the node is a parent node and, if so, sets the text display to
+use a bold, red font. It then adds the number of children to the
+display of the node. </p>
+
+            <p>The second part of the item renderer defines the appearance of
+the node in the Tree control. In this example, you use a Rect control
+to define a white background for the node. The item renderer uses
+two BitmapImage controls to define the appearance of any icons.
+The Label control defines the appearance of the text displayed by
+the node. </p>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS03d33b8076db57b9-3edf2834124deb0ca54-7ffd_verapache"><a name="WS03d33b8076db57b9-3edf2834124deb0ca54-7ffd_verapache"><!-- --></a>
+         <h3 class="topictitle3">Creating a Spark item editor for
+an MX DataGrid control</h3>
+
+         
+         <div>
+            <p>An MX <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/controls/DataGrid.html" target="_blank">DataGrid</a>, <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/controls/AdvancedDataGrid.html" target="_blank">AdvancedDataGrid</a>,
+or <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/controls/Tree.html" target="_blank">Tree</a> control
+displays an item editor when the <samp class="codeph">editable</samp> property
+of the control is set to <samp class="codeph">true</samp>. The item editor
+appears when the user releases the mouse button while over a cell,
+tabs to the cell, or in another way attempts to edit the cell. By
+default, the <samp class="codeph">editable</samp> property is <samp class="codeph">false</samp>. </p>
+
+            <div class="p">When creating an item editor for an MX DataGrid or Tree control,
+the item editor usually returns a single value corresponding to
+the new value in the control’s data provider. For example, the following
+item renderer returns a single value named myRetValue: <pre class="noswf">&lt;?xml version="1.0"?&gt; 
+&lt;!-- itemRenderers\sparkmx\myComponents\NSEditor.mxml --&gt; 
+&lt;s:MXDataGridItemRenderer xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx"&gt; 
+    
+    &lt;fx:Script&gt; 
+        &lt;![CDATA[ 
+            public var myRetVal:int = 0; 
+        ]]&gt; 
+    &lt;/fx:Script&gt; 
+    
+    &lt;!-- Use the valueCommit event when the user selects the 
+         cell but does not change the value. --&gt; 
+    &lt;s:NumericStepper id="myNS" 
+        value="{data.quant}" 
+        stepSize="1" 
+        maximum="50" 
+        change="myRetVal=myNS.value;" 
+        valueCommit="myRetVal=myNS.value;"/&gt; 
+&lt;/s:MXDataGridItemRenderer&gt;</pre>
+
+            </div>
+
+            <p>This item editor contains a single NumericStepper control. When
+the item editor is open, the <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/spark/components/NumericStepper.html" target="_blank">NumericStepper</a> appears
+in the DataGrid control. The user can then use the NumericStepper
+to edit the value of the cell. </p>
+
+            <div class="p">The user ends the editing session by removing focus from the
+cell. Flex then commits the new value in the DataGrid control. The
+following application uses this item editor: <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- itemRenderers\sparkmx\SparkMainNSEditor.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx"&gt; 
+     
+    &lt;fx:Script&gt; 
+        &lt;![CDATA[ 
+            import mx.collections.ArrayCollection; 
+        
+            [Bindable] 
+            private var myDP:ArrayCollection = new ArrayCollection([ 
+                {label1:"Order #2314", quant:3, Sent:true}, 
+                {label1:"Order #2315", quant:3, Sent:false}     
+            ]);               
+        ]]&gt; 
+    &lt;/fx:Script&gt; 
+ 
+    &lt;mx:DataGrid id="myDG" dataProvider="{myDP}" 
+            variableRowHeight="true" 
+            editable="true" &gt; 
+        &lt;mx:columns&gt; 
+            &lt;mx:DataGridColumn dataField="label1" 
+                headerText="Order #"/&gt; 
+            &lt;mx:DataGridColumn dataField="quant" 
+                itemEditor="myComponents.NSEditor" 
+                editorDataField="myRetVal"/&gt; 
+        &lt;/mx:columns &gt; 
+    &lt;/mx:DataGrid&gt; 
+&lt;/s:Application&gt;</pre>
+
+            </div>
+
+            <p>Notice in the main application that the DataGridColumn uses the <samp class="codeph">itemEditor</samp> property
+to specify the name of the item editor. It uses the <samp class="codeph">editorDataField</samp> property
+to specify the name of the property of the item editor that contains
+the return value. </p>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WSe4a8921a90b47cdb530affeb1255a66825c-8000_verapache"><a name="WSe4a8921a90b47cdb530affeb1255a66825c-8000_verapache"><!-- --></a>
+         <h3 class="topictitle3">Creating an inline Spark item editor
+for an MX DataGrid control</h3>
+
+         
+         <div>
+            <div class="p">An MX <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/controls/DataGrid.html" target="_blank">DataGrid</a>, <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/controls/AdvancedDataGrid.html" target="_blank">AdvancedDataGrid</a>,
+or <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/controls/Tree.html" target="_blank">Tree</a> control
+can use an inline item renderer or editor. The following example
+uses a Spark <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/spark/components/DropDownList.html" target="_blank">DropDownList</a> control
+as the item editor for a column of an MX DataGrid control: <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- itemRenderers\sparkmx\SparkDGInlineRenderer.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    width="650"&gt; 
+    
+    &lt;fx:Script&gt; 
+        &lt;![CDATA[ 
+            import mx.collections.ArrayCollection; 
+            
+            [Bindable]                
+            private var initDG:ArrayCollection = new ArrayCollection([ 
+                {Artist:'Pavement', Album:'Slanted and Enchanted', 
+                    Price:11.99, Cover: '../assets/slanted.jpg', Rating:'none'}, 
+                {Artist:'Pavement', Album:'Brighten the Corners', 
+                    Price:11.99, Cover: '../assets/brighten.jpg', Rating:'none'} 
+            ]); 
+        ]]&gt; 
+    &lt;/fx:Script&gt; 
+ 
+    &lt;mx:DataGrid id="myGrid" height="400" width="600" 
+        dataProvider="{initDG}" editable="true"&gt;  
+        &lt;mx:columns&gt; 
+            &lt;mx:DataGridColumn dataField="Artist"/&gt; 
+            &lt;mx:DataGridColumn dataField="Album"/&gt; 
+            &lt;mx:DataGridColumn dataField="Rating" editorDataField="rating"&gt; 
+                &lt;mx:itemEditor&gt; 
+                    &lt;fx:Component&gt; 
+                        &lt;s:MXDataGridItemRenderer focusEnabled="true" height="22" &gt; 
+                            &lt;fx:Script&gt; 
+                                &lt;![CDATA[ 
+                                    import mx.collections.ArrayList; 
+                                    
+                                    public function get rating():String { 
+                                        return  dd.selectedItem; 
+                                    } 
+                                ]]&gt; 
+                            &lt;/fx:Script&gt; 
+                            &lt;s:DropDownList id="dd" top="5" left="5" 
+                                selectedItem="{data.Rating}" 
+                                initialize="dd.dataProvider = 
+                                    new ArrayList(['none', 'no good', 'good', 'great'])"/&gt; 
+                        &lt;/s:MXDataGridItemRenderer&gt; 
+                    &lt;/fx:Component&gt; 
+                &lt;/mx:itemEditor&gt; 
+            &lt;/mx:DataGridColumn&gt; 
+            &lt;mx:DataGridColumn dataField="Cover" 
+                itemRenderer="myComponents.RendererDGImage"/&gt; 
+            &lt;mx:DataGridColumn dataField="Price"/&gt; 
+        &lt;/mx:columns&gt;       
+    &lt;/mx:DataGrid&gt;  
+&lt;/s:Application&gt;</pre>
+
+            </div>
+
+            <p>This example adds a Rating column to the DataGrid. The user clicks
+in a cell of the Rating column to open the item editor. When the
+user removes focus from the cell, the value of the DropDownList
+is copied to the data provider of the DataGrid. </p>
+
+         </div>
+
+      </div>
+
+   </div>
+
+
+</body>
+</html>

@@ -1,0 +1,4518 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Licensed to the Apache Software Foundation (ASF) under one or more
+  contributor license agreements.  See the NOTICE file distributed with
+  this work for additional information regarding copyright ownership.
+  The ASF licenses this file to You under the Apache License, Version 2.0
+  (the "License"); you may not use this file except in compliance with
+  the License.  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+-->
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en-us" xml:lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="topic"/>
+<meta name="DC.Title" content="MX layout containers"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="WS2db454920e96a9e51e63e3d11c0bf69084-7e4b_verapache"/>
+<link rel="stylesheet" type="text/css" href="commonltr.css"/>
+<title>MX layout containers</title>
+</head>
+<body id="WS2db454920e96a9e51e63e3d11c0bf69084-7e4b_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7e4b_verapache"><!-- --></a>
+
+
+   <h1 class="topictitle1">MX layout containers</h1>
+
+   <div>
+      <p>
+         In  Flex, MX layout containers provide a hierarchical
+structure to arrange and configure the components, such as Button
+and ComboBox controls, of a Flex application. </p>
+
+      <p>For detailed information on how Flex lays out containers and
+their children, see <a href="flx_size_position_sp.html#WS2db454920e96a9e51e63e3d11c0bf69084-7e4c_verapache">Laying
+out components</a>.</p>
+
+      <p>Flex also provides a set of Spark containers. These containers
+are designed to simplify skinning and optimize performance. It’s
+best to use the Spark containers when possible. For more information,
+see <a href="flx_groups_containers_gc.html#WSD42D542D-CEFF-47e2-AFD5-C11F3E9B5AE2_verapache">Spark
+containers </a>.</p>
+
+   </div>
+
+   <div class="nested1" id="WS2db454920e96a9e51e63e3d11c0bf62f1b-7fef_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf62f1b-7fef_verapache"><!-- --></a>
+      <h2 class="topictitle2">About layout containers</h2>
+
+      
+      <div>
+         <p>
+            
+            A
+layout container defines a rectangular region of the Adobe<sup>®</sup> Flash<sup>®</sup> Player drawing
+surface and controls the sizing and positioning of the child controls
+and child containers defined within it. For example, a Form layout
+container sizes and positions its children in a layout similar to
+an HTML form.</p>
+
+         <p>To use a layout container, you create the container, and then
+add the components that define your application.</p>
+
+      </div>
+
+   </div>
+
+   <div class="nested1" id="WS2db454920e96a9e51e63e3d11c0bf69084-7e56_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7e56_verapache"><!-- --></a>
+      <h2 class="topictitle2">MX Canvas layout container</h2>
+
+      
+      <div>
+         <div class="p">
+            
+            A <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/containers/Canvas.html" target="_blank">Canvas</a> layout
+container defines a rectangular region in which you place child containers
+and controls. Unlike all other components, you cannot let Flex lay child
+controls out automatically. You must use <em>absolute</em> or <em>constraint-based</em> layout to
+position child components. With absolute layout you specify the <em>x</em> and <em>y</em> positions
+of the children; with constraint-based layout you specify side,
+baseline, or center anchors. For detailed information on using these
+layout techniques, see <a href="flx_size_position_sp.html#WS2db454920e96a9e51e63e3d11c0bf69084-7e4c_verapache">Laying
+out components</a>.<div class="note"><span class="notetitle">Note:</span> When possible, it’s best to use the
+Spark containers with BasicLayout instead of the MX Canvas container.
+For more information, see <a href="flx_groups_containers_gc.html#WSD42D542D-CEFF-47e2-AFD5-C11F3E9B5AE2_verapache">Spark
+containers </a>.</div>
+
+         </div>
+
+         <p>For complete reference information, see the <em>
+               <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/" target="_blank">ActionScript 3.0 Reference for the Adobe
+Flash Platform</a>
+            </em>.</p>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf69084-7e1b_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7e1b_verapache"><!-- --></a>
+         <h3 class="topictitle3">Creating and using a Canvas control</h3>
+
+         
+         <div>
+            <p>
+               You
+define a canvas control in MXML by using the <samp class="codeph">&lt;mx:Canvas&gt;</samp> tag.
+Specify an <samp class="codeph">id</samp> value if you intend to refer to a
+component elsewhere in your MXML, either in another tag or an ActionScript
+block. </p>
+
+            <div class="section" id="WS2db454920e96a9e51e63e3d11c0bf69084-7e1b_verapache__WS2db454920e96a9e51e63e3d11c0bf62f1b-7ff9_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7e1b_verapache__WS2db454920e96a9e51e63e3d11c0bf62f1b-7ff9_verapache"><!-- --></a><h4 class="sectiontitle">Creating
+a Canvas Control by using absolute positioning</h4>
+               
+               <p>
+                  You can use the <samp class="codeph">x</samp> and <samp class="codeph">y</samp> properties
+of each child to specify the child’s location in the Canvas container.
+These properties specify the <em>x</em> and <em>y </em>coordinates of
+a child relative to the upper-left corner of the Canvas container,
+where the upper-left corner is at coordinates (0,0). Values for
+the <em>x</em> and <em>y</em> coordinates can be positive or negative
+integers. You can use negative values to place a child outside the
+visible area of the container, and then use ActionScript to move
+the child to the visible area, possibly as a response to an event.</p>
+
+               <p>The
+following example shows a Canvas container with three LinkButton
+controls and three Image controls:</p>
+
+               <div class="figborder">
+                  <img src="images/lo_view_container_ex.png" alt="Canvas container with three LinkButton controls and three Image controls"/>
+               </div>
+
+               <p>The
+following MXML code creates this Canvas container:</p>
+
+               <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- containers\layouts\CanvasSimple.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark"&gt; 
+ 
+    &lt;mx:Canvas id="myCanvas" 
+      height="200" width="200" 
+      borderStyle="solid" 
+      backgroundColor="white"&gt; 
+ 
+      &lt;mx:LinkButton label="Search" 
+        x="10" y="30" 
+        click="navigateToURL(new URLRequest('http://www.adobe.com/cfusion/search/index.cfm'))"/&gt; 
+      &lt;mx:Image 
+        height="50" width="50" 
+        x="100" y="10" 
+        source="@Embed(source='assets/search.jpg')" 
+        click="navigateToURL(new URLRequest('http://www.adobe.com/cfusion/search/index.cfm'))"/&gt; 
+ 
+      &lt;mx:LinkButton label="Help" 
+        x="10" y="100" 
+        click="navigateToURL(new URLRequest('http://www.adobe.com/go/gn_supp'))"/&gt; 
+      &lt;mx:Image 
+        height="50" width="50" 
+        x="100" y="75" 
+        source="@Embed(source='assets/help.jpg')" 
+        click="navigateToURL(new URLRequest('http://www.adobe.com/go/gn_supp'))"/&gt; 
+ 
+      &lt;mx:LinkButton label="Complaints" 
+        x="10" y="170" 
+        click="navigateToURL( 
+            new URLRequest('http://www.adobe.com/go/gn_contact'))"/&gt; 
+      &lt;mx:Image 
+        height="50" width="50" 
+        x="100" y="140" 
+        source="@Embed(source='assets/complaint.jpg')" 
+        click="navigateToURL( 
+            new URLRequest('http://www.adobe.com/go/gn_contact'))"/&gt; 
+    &lt;/mx:Canvas&gt; 
+&lt;/s:Application&gt;</pre>
+
+            </div>
+
+            <div class="section" id="WS2db454920e96a9e51e63e3d11c0bf69084-7e1b_verapache__WS2db454920e96a9e51e63e3d11c0bf62f1b-7fd1_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7e1b_verapache__WS2db454920e96a9e51e63e3d11c0bf62f1b-7fd1_verapache"><!-- --></a><h4 class="sectiontitle">Creating
+a Canvas container by using constraint-based layout</h4>
+               
+               <p>You
+can also use <em>constraint-based layout</em> to anchor any combination
+of the top, left, right, bottom sides, and baseline of a child at
+a specific distance from the Canvas edges, or to anchor the horizontal
+or vertical center of the child at a specific (positive or negative)
+pixel distance from the Canvas center. To specify a constraint-based
+layout, use the <samp class="codeph">top</samp>, <samp class="codeph">bottom</samp>, <samp class="codeph">left</samp>, <samp class="codeph">right</samp>, <samp class="codeph">baseline</samp>, <samp class="codeph">horizontalCenter</samp>,
+and <samp class="codeph">verticalCenter</samp> styles. When you anchor the top
+and bottom, or the left and right sides of the child container to
+the Canvas sides, if the Canvas control resizes, the children also
+resize. The following example uses constraint-based layout to position
+an HBox horizontally, and uses absolute values to specify the vertical
+width and position:</p>
+
+               <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- containers\layouts\CanvasConstraint.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    backgroundColor="gray" 
+    height="200" width="200"&gt; 
+ 
+    &lt;mx:Canvas 
+        width="150" height="150" 
+        horizontalCenter="0" verticalCenter="0" 
+        backgroundColor="#FFFFFF"&gt; 
+ 
+        &lt;mx:HBox id="hBox2" 
+            left="30" 
+            right="30" 
+            y="50" 
+            height="50" 
+            backgroundColor="#A9C0E7"&gt; 
+        &lt;/mx:HBox&gt; 
+    &lt;/mx:Canvas&gt; 
+&lt;/s:Application&gt;</pre>
+
+               <p>The example produces the following
+image:</p>
+
+               <div class="figborder">
+                  <img src="images/lo_canvasConstraint.png" alt="Canvas container using constraint-based layout"/>
+               </div>
+
+            </div>
+
+            <div class="section" id="WS2db454920e96a9e51e63e3d11c0bf69084-7e1b_verapache__WS2db454920e96a9e51e63e3d11c0bf62f1b-7fc7_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7e1b_verapache__WS2db454920e96a9e51e63e3d11c0bf62f1b-7fc7_verapache"><!-- --></a><h4 class="sectiontitle">Preventing
+overlapping children</h4>
+               
+               <p>When you use a Canvas container,
+some of your components may overlap, because the Canvas container
+ignores its children’s sizes when it positions them. Similarly,
+children components may overlap any borders or padding, because
+the Canvas container does not adjust the coordinate system to account
+for them.</p>
+
+               <p>In the following example, the size and position
+of each component is carefully calculated to ensure that none of
+the components overlap: </p>
+
+               <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- containers\layouts\CanvasOverlap.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    width="100" height="100"&gt; 
+ 
+    &lt;fx:Script&gt; 
+        &lt;![CDATA[ 
+            [Embed(source="assets/BlackBox.jpg")] 
+            [Bindable] 
+            public var imgCls:Class; 
+        ]]&gt; 
+    &lt;/fx:Script&gt; 
+    
+    &lt;mx:Canvas id="chboard" backgroundColor="#FFFFFF"&gt; 
+        &lt;mx:Image source="{imgCls}" 
+            width="10" height="10" x="0" y="0"/&gt; 
+        &lt;mx:Image source="{imgCls}" 
+            width="10" height="10" x="20" y="0"/&gt; 
+        &lt;mx:Image source="{imgCls}" 
+            width="10" height="10" x="40" y="0"/&gt; 
+        &lt;mx:Image source="{imgCls}" 
+            width="10" height="10" x="10" y="10"/&gt; 
+        &lt;mx:Image source="{imgCls}" 
+            width="10" height="10" x="30" y="10"/&gt; 
+        &lt;mx:Image source="{imgCls}" 
+            width="10" height="10" x="0" y="20"/&gt; 
+        &lt;mx:Image source="{imgCls}" 
+            width="10" height="10" x="20" y="20"/&gt; 
+        &lt;mx:Image source="{imgCls}" 
+            width="10" height="10" x="40" y="20"/&gt; 
+        &lt;mx:Image source="{imgCls}" 
+            width="10" height="10" x="10" y="30"/&gt; 
+        &lt;mx:Image source="{imgCls}" 
+            width="10" height="10" x="30" y="30"/&gt; 
+        &lt;mx:Image source="{imgCls}" 
+            width="10" height="10" x="0" y="40"/&gt; 
+        &lt;mx:Image source="{imgCls}" 
+            width="10" height="10" x="20" y="40"/&gt; 
+        &lt;mx:Image source="{imgCls}" 
+            width="10" height="10" x="40" y="40"/&gt; 
+    &lt;/mx:Canvas&gt; 
+&lt;/s:Application&gt;</pre>
+
+               <p>This example produces the following
+image:</p>
+
+               <div class="figborder">
+                  <img src="images/lo_canvascheckerboard.png" alt="Canvas container with no overlapping children"/>
+               </div>
+
+               <p>If
+you set the <samp class="codeph">width</samp> and <samp class="codeph">height </samp>properties
+of one of the images to 20 pixels but don’t change the positions
+accordingly, that image overlaps other images in the checkerboard.
+For example, if you replace the seventh <samp class="codeph">&lt;mx:Image&gt;</samp> tag
+in the preceding example with the following line, the resulting
+image looks like the following image:</p>
+
+               <pre class="codeblock"> &lt;mx:Image source="{imgCls}" width="20" height="20" x="20" y="20"/&gt;</pre>
+
+               <div class="figborder">
+                  <img src="images/lo_canvascheckerboardpercentage.png" alt="Canvas container with overlapping children"/>
+               </div>
+
+            </div>
+
+            <div class="section" id="WS2db454920e96a9e51e63e3d11c0bf69084-7e1b_verapache__WS2db454920e96a9e51e63e3d11c0bf62f1b-7fc6_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7e1b_verapache__WS2db454920e96a9e51e63e3d11c0bf62f1b-7fc6_verapache"><!-- --></a><h4 class="sectiontitle">Repositioning
+children at run time</h4>
+               
+               <p>You can build logic into your application
+to reposition a child of a Canvas container at run time. For example,
+in response to a button click, the following code repositions an
+input text box that has the <samp class="codeph">id</samp> value <samp class="codeph">text1</samp> to
+the position x=110, y=110:</p>
+
+               <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- containers\layouts\CanvasRepos.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark"&gt; 
+ 
+    &lt;mx:Canvas 
+        width="300" height="185" 
+        backgroundColor="#FFFFFF"&gt; 
+ 
+        &lt;mx:TextInput id="text1" 
+            text="Move me" 
+            x="10" y="10" 
+        /&gt; 
+        &lt;mx:Button id="button1" 
+            label="Move text1" 
+            x="10" y="150" 
+            click="text1.x=110; text1.y=110;" 
+        /&gt; 
+        &lt;mx:Button label="Reset" 
+            click="text1.x=10; text1.y=10;" x="111" y="150"/&gt; 
+    &lt;/mx:Canvas&gt; 
+&lt;/s:Application&gt;</pre>
+
+            </div>
+
+         </div>
+
+      </div>
+
+   </div>
+
+   <div class="nested1" id="WS2db454920e96a9e51e63e3d11c0bf69084-7e57_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7e57_verapache"><!-- --></a>
+      <h2 class="topictitle2">MX Box, HBox, and VBox layout containers</h2>
+
+      
+      <div>
+         <div class="p">
+            
+            
+            
+            
+            
+            The <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/containers/Box.html" target="_blank">Box</a> layout
+container lays out its children in a single vertical column or a single
+horizontal row. You use the <samp class="codeph">direction</samp> property
+of a Box container to determine either vertical (default) or horizontal
+layout. The <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/containers/HBox.html" target="_blank">HBox</a> and <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/containers/VBox.html" target="_blank">VBox</a> containers
+are Box containers with <samp class="codeph">horizontal</samp> and <samp class="codeph">vertical</samp> 
+            <samp class="codeph">direction</samp> property
+values.When possible, it’s best to use<div class="note"><span class="notetitle">Note:</span> When possible, it’s
+best to use the Spark containers with HorizontalLayout or VerticalLayout
+instead of the MX box containers. For more information, see <a href="flx_groups_containers_gc.html#WSD42D542D-CEFF-47e2-AFD5-C11F3E9B5AE2_verapache">Spark containers </a>.</div>
+
+         </div>
+
+         <p>To lay out children in multiple rows or columns, use a Tile or
+Grid container. For more information, see <a href="flx_layouts_lo.html#WS2db454920e96a9e51e63e3d11c0bf69084-7e4f_verapache">MX
+Tile layout container </a> and <a href="flx_layouts_lo.html#WS2db454920e96a9e51e63e3d11c0bf69084-7e52_verapache">MX
+Grid layout container</a>.</p>
+
+         <p>The following example shows one Box container with a horizontal
+layout and one with a vertical layout: </p>
+
+         <div class="figborder">
+            <img src="images/lo_hvbox_example.png" alt="Box container with a horizontal layout and with a vertical layout"/>
+         </div>
+
+         <p>For complete reference information, see the <em>
+               <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/" target="_blank">ActionScript 3.0 Reference for the Adobe
+Flash Platform</a>
+            </em>.</p>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf62f1b-7ff5_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf62f1b-7ff5_verapache"><!-- --></a>
+         <h3 class="topictitle3">Creating a Box, HBox, or VBox container</h3>
+
+         
+         <div>
+            <p>You use the <samp class="codeph">&lt;mx:Box&gt;</samp>, <samp class="codeph">&lt;mx:VBox&gt;</samp>,
+and <samp class="codeph">&lt;mx:HBox&gt;</samp> tags to define Box containers.
+Use the VBox (vertical box) and HBox (horizontal box) containers
+as shortcuts so you do not have to specify the <samp class="codeph">direction</samp> property
+in the Box container. Specify an <samp class="codeph">id</samp> value if you
+intend to refer to a component elsewhere in your MXML, either in
+another tag or in an ActionScript block. </p>
+
+            <p>The following example creates a Box container with a vertical
+layout: </p>
+
+            <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- containers\layouts\BoxSimple.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark"&gt; 
+ 
+    &lt;mx:Box direction="vertical" 
+        borderStyle="solid" 
+        paddingTop="10" 
+        paddingBottom="10" 
+        paddingLeft="10" 
+        paddingRight="10"&gt; 
+ 
+        &lt;mx:Button id="fname" label="Button 1"/&gt; 
+        &lt;mx:Button id="lname" label="Button 2"/&gt; 
+        &lt;mx:Button id="addr1" label="Button 3"/&gt; 
+        &lt;mx:ComboBox id="state"&gt; 
+              &lt;mx:ArrayList&gt; 
+                 &lt;fx:String&gt;ComboBox 1&lt;/fx:String&gt; 
+              &lt;/mx:ArrayList&gt; 
+        &lt;/mx:ComboBox&gt; 
+    &lt;/mx:Box&gt; 
+&lt;/s:Application&gt;</pre>
+
+            <p>The following code example is equivalent to the previous example,
+except that this example defines a vertical Box container by using
+the <samp class="codeph">&lt;mx:VBox&gt;</samp> tag: </p>
+
+            <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- containers\layouts\VBoxSimple.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark"&gt; 
+ 
+    &lt;mx:VBox borderStyle="solid" 
+        paddingTop="10" 
+        paddingBottom="10" 
+        paddingLeft="10" 
+        paddingRight="10"&gt; 
+        
+        &lt;mx:Button id="fname" label="Button 1"/&gt; 
+        &lt;mx:Button id="lname" label="Button 2"/&gt; 
+        &lt;mx:Button id="addr1" label="Button 3"/&gt; 
+        &lt;mx:ComboBox id="state"&gt; 
+              &lt;mx:ArrayList&gt; 
+                 &lt;fx:String&gt;ComboBox 1&lt;/fx:String&gt; 
+              &lt;/mx:ArrayList&gt; 
+        &lt;/mx:ComboBox&gt; 
+    &lt;/mx:VBox&gt; 
+&lt;/s:Application&gt;</pre>
+
+         </div>
+
+      </div>
+
+   </div>
+
+   <div class="nested1" id="WS2db454920e96a9e51e63e3d11c0bf69084-7e55_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7e55_verapache"><!-- --></a>
+      <h2 class="topictitle2">MX ControlBar layout container</h2>
+
+      
+      <div>
+         <p>
+            
+            You
+use the MX <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/containers/ControlBar.html" target="_blank">ControlBar</a> container
+with a MX Panel or MX TitleWindow container to hold components that
+can be shared by the other children in the Panel or TitleWindow
+container. For a product catalog, the ControlBar container can hold
+the Flex controls to specify quantity and to add an item to a shopping cart,
+as the following example shows: </p>
+
+         <div class="figborder">
+            <img src="images/lo_controlbar_ex.png" alt="ControlBar container"/>
+            <dl>
+               
+                  <dt class="dlterm">
+                     <strong>A.</strong>
+                  </dt>
+
+                  <dd>Panel container</dd>
+
+               
+               
+                  <dt class="dlterm">
+                     <strong>B.</strong>
+                  </dt>
+
+                  <dd>ControlBar container</dd>
+
+               
+            </dl>
+
+         </div>
+
+         <div class="p">
+            <div class="note"><span class="notetitle">Note:</span> You cannot use the MX ControlBar container with the Spark
+Panel container. The Spark Panel container defines the controlBarContent
+and controlBarLayout properties that you use the add this functionality.
+For more information, see <a href="flx_groups_containers_gc.html#WS842193BB-33E4-4bdc-9FD8-D76515B11FAE_verapache">The Spark
+Panel container</a>
+            </div>
+
+         </div>
+
+         <p>For complete reference information, see the <em>
+               <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/" target="_blank">ActionScript 3.0 Reference for the Adobe
+Flash Platform</a>
+            </em>.</p>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf62f1b-7ff4_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf62f1b-7ff4_verapache"><!-- --></a>
+         <h3 class="topictitle3">Creating an MX ControlBar container</h3>
+
+         
+         <div>
+            <p>
+               You
+use the <samp class="codeph">&lt;mx:ControlBar&gt;</samp> tag to define a ControlBar
+control in MXML. Specify an <samp class="codeph">id</samp> value if you intend
+to refer to a component elsewhere in your MXML code, either in another
+tag or in an ActionScript block. You specify the <samp class="codeph">&lt;mx:ControlBar&gt;</samp> tag
+as the last child tag of an <samp class="codeph">&lt;mx:Panel&gt;</samp> tag,
+as the following example shows: </p>
+
+            <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- containers\layouts\CBarSimple.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark"&gt; 
+ 
+    &lt;fx:Script&gt; 
+        &lt;![CDATA[ 
+            private function addToCart():void { 
+                // Handle event. 
+            } 
+        ]]&gt; 
+    &lt;/fx:Script&gt; 
+ 
+    &lt;mx:Panel title="My Application" 
+        paddingTop="10" paddingBottom="10" 
+        paddingLeft="10" paddingRight="10"&gt; 
+ 
+        &lt;mx:HBox width="250" height="200"&gt; 
+            &lt;!-- Area for your catalog. --&gt; 
+        &lt;/mx:HBox&gt; 
+    
+        &lt;mx:ControlBar width="250"&gt; 
+            &lt;mx:Label text="Quantity"/&gt; 
+            &lt;mx:NumericStepper/&gt; 
+            &lt;!-- Use Spacer to push Button control to the right. --&gt; 
+            &lt;mx:Spacer width="100%"/&gt; 
+            &lt;mx:Button label="Add to Cart" 
+                click="addToCart();"/&gt; 
+        &lt;/mx:ControlBar&gt; 
+    &lt;/mx:Panel&gt; 
+&lt;/s:Application&gt;</pre>
+
+         </div>
+
+      </div>
+
+   </div>
+
+   <div class="nested1" id="WS2db454920e96a9e51e63e3d11c0bf69084-7e58_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7e58_verapache"><!-- --></a>
+      <h2 class="topictitle2">MX ApplicationControlBar layout container</h2>
+
+      
+      <div>
+         <p>You use the MX <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/containers/ApplicationControlBar.html" target="_blank">ApplicationControlBar</a> container
+to hold components that provide access to application navigation
+elements and commands. An ApplicationControlBar container for an
+editor, for example, could include Button controls for setting the
+font weight, a ComboBox to select the font, and a MenuBar control to
+select the edit mode. The ApplicationControlBar is a subclass of
+the ControlBar class; however, it has a different look and feel. </p>
+
+         <p>Typically, you place an ApplicationControlBar container at the
+top of the application, as the following example shows:</p>
+
+         <div class="figborder">
+            <img src="images/lo_appCB.png" alt="ApplicationControlBar container at the top of the application"/>
+         </div>
+
+         <p>If you dock the ApplicationControlBar container at the top of
+an application, it does not scroll with the application contents. </p>
+
+         <div class="p">
+            <div class="note"><span class="notetitle">Note:</span> You cannot use the MX ApplicationControlBar container with
+the Spark Application container. The Spark Application container
+defines the controlBarContent and controlBarLayout properties that
+you use the add this functionality. For more information, see <a href="flx_app_container_apc.html#WSb817c4ad2e650dbf638f754123c979de55-8000_verapache">Adding
+a control bar area to the application container</a>
+            </div>
+
+         </div>
+
+         <p>For complete reference information, see the <em>
+               <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/" target="_blank">ActionScript 3.0 Reference for the Adobe
+Flash Platform</a>
+            </em>.</p>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf62f1b-7ff1_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf62f1b-7ff1_verapache"><!-- --></a>
+         <h3 class="topictitle3">Creating an ApplicationControlBar
+container</h3>
+
+         
+         <div>
+            <p>You use the <samp class="codeph">&lt;mx:ApplicationControlBar&gt;</samp> tag
+to define a ControlBar control in MXML. Specify an <samp class="codeph">id</samp> value
+if you intend to refer to a component elsewhere in your MXML code,
+either in another tag or in an ActionScript block. </p>
+
+            <p>The ApplicationControlBar container can be in either of the following
+modes: </p>
+
+            <dl>
+               
+                  <dt class="dlterm">Docked mode</dt>
+
+                  <dd>
+                     <p>The bar is always at the top of the application’s drawing
+area. Any application-level scroll bars don’t apply to the container,
+so it always remains at the top of the visible area, and the bar
+expands to fill the width of the application. To created a docked
+ApplicationControlBar container, set its <samp class="codeph">dock</samp> property
+to <samp class="codeph">true</samp>.</p>
+
+                  </dd>
+
+               
+               
+                  <dt class="dlterm">Normal mode</dt>
+
+                  <dd>
+                     <p>The bar can be placed anywhere in the application, is sized
+and positioned just like any other component, and scrolls with the
+application. The ApplicationControlBar floats if its <samp class="codeph">dock</samp> property
+is <samp class="codeph">false</samp>. The default value is <samp class="codeph">false</samp>.</p>
+
+                     <div class="note"><span class="notetitle">Note:</span> In contrast to the ControlBar container, it is
+possible to set the <samp class="codeph">backgroundColor</samp> style for an
+instance of the ApplicationControlBar. The ApplicationControlBar
+container has two styles, <samp class="codeph">fillColors</samp> and <samp class="codeph">fillAlpha</samp>,
+that are not supported by the ControlBar container.</div>
+
+                     <p>The
+following example shows an application with a simple docked ApplicationControlBar
+that includes a MenuBar. The Application also includes an HBox control
+that exceeds the application size; when you scroll the application
+to view the bottom of the HBox control, the ApplicationControlBar
+control does not scroll.</p>
+
+                     <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- containers\layouts\AppCBarSimple.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    width="550"&gt; 
+    &lt;s:layout&gt; 
+        &lt;s:VerticalLayout/&gt; 
+    &lt;/s:layout&gt; 
+ 
+    &lt;fx:Script&gt; 
+        &lt;![CDATA[ 
+            import mx.controls.Alert; 
+        ]]&gt; 
+    &lt;/fx:Script&gt; 
+ 
+    &lt;fx:Declarations&gt; 
+        &lt;fx:XMLList id="menuXML"&gt; 
+            &lt;fx:menuitem label="File"&gt; 
+                &lt;fx:menuitem label="New" data="New"/&gt; 
+                &lt;fx:menuitem label="Open" data="Open"/&gt; 
+                &lt;fx:menuitem label="Save" data="Save"/&gt; 
+                &lt;fx:menuitem label="Exit" data="Exit"/&gt; 
+            &lt;/fx:menuitem&gt; 
+            &lt;fx:menuitem label="Edit"&gt; 
+                &lt;fx:menuitem label="Cut" data="Cut"/&gt; 
+                &lt;fx:menuitem label="Copy" data="Copy"/&gt; 
+                &lt;fx:menuitem label="Paste" data="Paste"/&gt; 
+            &lt;/fx:menuitem&gt; 
+            &lt;fx:menuitem label="View"/&gt; 
+        &lt;/fx:XMLList&gt; 
+ 
+        &lt;fx:Array id="cmbDP"&gt; 
+            &lt;fx:String&gt;Item 1&lt;/fx:String&gt; 
+            &lt;fx:String&gt;Item 2&lt;/fx:String&gt; 
+            &lt;fx:String&gt;Item 3&lt;/fx:String&gt; 
+        &lt;/fx:Array&gt; 
+    &lt;/fx:Declarations&gt; 
+ 
+    &lt;mx:ApplicationControlBar id="dockedBar" 
+        dock="true"&gt; 
+        &lt;mx:MenuBar height="100%" 
+            dataProvider="{menuXML}" 
+            labelField="@label" 
+            showRoot="true"/&gt; 
+        &lt;mx:HBox paddingBottom="5" 
+            paddingTop="5"&gt; 
+            &lt;mx:ComboBox dataProvider="{cmbDP}"/&gt; 
+            &lt;mx:Spacer width="100%"/&gt; 
+            &lt;mx:TextInput id="myTI" text=""/&gt; 
+            &lt;mx:Button id="srch1" 
+                label="Search" 
+                click="Alert.show('Searching')"/&gt; 
+        &lt;/mx:HBox&gt; 
+    &lt;/mx:ApplicationControlBar&gt; 
+    
+    &lt;mx:TextArea width="300" height="200"/&gt; 
+&lt;/s:Application&gt;</pre>
+
+                  </dd>
+
+               
+            </dl>
+
+         </div>
+
+      </div>
+
+   </div>
+
+   <div class="nested1" id="WS2db454920e96a9e51e63e3d11c0bf69084-7e54_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7e54_verapache"><!-- --></a>
+      <h2 class="topictitle2">MX DividedBox, HDividedBox, and VDividedBox
+layout containers</h2>
+
+      
+      <div>
+         <p>
+            
+            
+            
+            
+            
+            The <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/containers/DividedBox.html" target="_blank">DividedBox</a> layout
+container lays out its children horizontally or vertically, similar
+to a Box container, except that it inserts a divider between each
+child. You can use a mouse pointer to move the dividers in order
+to resize the area of the container allocated to each child. The
+DividedBox container can use MX and Spark components as children.</p>
+
+         <p>Use the <samp class="codeph">direction</samp> property of a DividedBox container
+to determine vertical (default) or horizontal layout. The <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/containers/HDividedBox.html" target="_blank">HDividedBox</a> and <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/containers/VDividedBox.html" target="_blank">VDividedBox</a> containers
+are DividedBox containers with <samp class="codeph">horizontal</samp> and <samp class="codeph">vertical</samp> 
+            <samp class="codeph">direction</samp> property
+values.</p>
+
+         <p>The following example shows a DividedBox container:</p>
+
+         <div class="figborder">
+            <img src="images/lo_db.png" alt="DividedBox container"/>
+         </div>
+
+         <p>In this example, the outermost container is a horizontal DividedBox
+container. The horizontal divider marks the border between a Tree
+control and a vertical DividedBox container. </p>
+
+         <p>The vertical DividedBox container holds a DataGrid control (top)
+and a TextArea control (bottom). The vertical divider marks the
+border between these two controls. </p>
+
+         <p>For complete reference information, see the <em>
+               <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/" target="_blank">ActionScript 3.0 Reference for the Adobe
+Flash Platform</a>
+            </em>.</p>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf62f1b-7fe9_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf62f1b-7fe9_verapache"><!-- --></a>
+         <h3 class="topictitle3">Creating a DividedBox, HDividedBox,
+or VDividedBox container</h3>
+
+         
+         <div>
+            <p>
+               You
+use the <samp class="codeph">&lt;mx:DividedBox&gt;</samp>, <samp class="codeph">&lt;mx:VDividedBox&gt;</samp>,
+and <samp class="codeph">&lt;mx:HDividedBox&gt;</samp> tags to define DividedBox
+containers. Specify an <samp class="codeph">id</samp> value if you intend to
+refer to a component elsewhere in your MXML, either in another tag
+or in an ActionScript block. Typically, you use the VDividedBox (vertical
+DividedBox) and HDividedBox (horizontal DividedBox) containers as shortcuts
+so that you do not have to specify the <samp class="codeph">direction</samp> property. </p>
+
+            <p>The following code example creates the image shown in <a href="flx_layouts_lo.html#WS2db454920e96a9e51e63e3d11c0bf69084-7e54_verapache">MX
+DividedBox, HDividedBox, and VDividedBox layout containers</a>: </p>
+
+            <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- containers\layouts\HDivBoxSimple.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    backgroundColor="white"&gt; 
+ 
+    &lt;fx:Script&gt; 
+      &lt;![CDATA[ 
+        private function myGrid_initialize():void { 
+          myGrid.dataProvider = [ 
+            {Artist:'Pavement', Album:'Slanted and Enchanted', 
+                Price:11.99, Comment:'One of their best. 4 Stars.'}, 
+            {Artist:'Pavement', Album:'Brighten the Corners', 
+                Price:11.99, Comment:'My favorite.'} 
+          ]; 
+        } 
+      ]]&gt; 
+    &lt;/fx:Script&gt; 
+ 
+    &lt;mx:HDividedBox width="100%" height="100%"&gt; 
+        &lt;mx:Tree id="tree1" 
+            width="30%" height="100%" 
+            labelField="@label" 
+            showRoot="true"&gt; 
+            &lt;fx:XMLList&gt; 
+                &lt;fx:menuitem label="Products"&gt; 
+                    &lt;fx:menuitem label="Posters" isBranch="true"/&gt; 
+                    &lt;fx:menuitem label="CDs"&gt; 
+                        &lt;fx:menuitem label="Pavement"/&gt; 
+                        &lt;fx:menuitem label="Pavarotti"/&gt; 
+                        &lt;fx:menuitem label="Phish"/&gt; 
+                    &lt;/fx:menuitem&gt; 
+                    &lt;fx:menuitem label="T-shirts" isBranch="true"/&gt; 
+                    &lt;fx:menuitem label="Tickets" isBranch="true"/&gt; 
+                &lt;/fx:menuitem&gt; 
+            &lt;/fx:XMLList&gt; 
+        &lt;/mx:Tree&gt; 
+ 
+        &lt;mx:VDividedBox width="70%" height="100%"&gt; 
+            &lt;mx:DataGrid id="myGrid" 
+                width="100%" height="100%" 
+                initialize="myGrid_initialize();" 
+                change="currentMessage.text= 
+                    event.currentTarget.selectedItem.Comment;"/&gt; 
+            &lt;mx:TextArea id="currentMessage" 
+                width="100%" 
+                height="60" 
+                text="One of their best. 4 Stars."/&gt; 
+        &lt;/mx:VDividedBox&gt; 
+    &lt;/mx:HDividedBox&gt; 
+&lt;/s:Application&gt;</pre>
+
+            <p>Notice that this example does not implement the logic to change
+the top area of the VDividedBox container when you select a node
+in the Tree control. </p>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf62f1b-7fe7_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf62f1b-7fe7_verapache"><!-- --></a>
+         <h3 class="topictitle3">Using the dividers</h3>
+
+         
+         <div>
+            <p>
+               
+               The dividers of a DividedBox
+container let you resize the area of the container allocated for
+a child. However, for the dividers to function, the child has to
+be resizable; that is, it must specify a percentage-based size.
+So, a child with an explicit or default height or width cannot be
+resized in the corresponding direction by using a divider. Therefore,
+when you use the DividedBox container, you typically use percentage
+sizing for its children to make them resizable. </p>
+
+            <p>When you specify a percentage value for the <samp class="codeph">height</samp> or <samp class="codeph">width</samp> properties
+of a child to make it resizable, Flex initially sizes the child
+to the specified percentage, if possible. Then Flex can resize the
+child to take up all available space. </p>
+
+            <p>You can use the dividers to resize a percentage-sized child up
+to its maximum size, or down to its minimum size. To constrain the
+minimum size or maximum size of an area of the DividedBox, set an
+explicit value for the <samp class="codeph">minWidth</samp> and <samp class="codeph">minHeight</samp> properties
+or the <samp class="codeph">maxWidth</samp> and <samp class="codeph">maxHeight</samp> properties
+of the children in that area. </p>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf62f1b-7fe6_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf62f1b-7fe6_verapache"><!-- --></a>
+         <h3 class="topictitle3">Using live dragging</h3>
+
+         
+         <div>
+            <p>
+               By
+default, the DividedBox container disables live dragging. This means
+that the DividedBox container does not update the layout of its
+children until the user finishes dragging the divider, when the
+user releases the mouse button on a selected divider.</p>
+
+            <p>You can configure the DividedBox container to use live dragging
+by setting the <samp class="codeph">liveDragging</samp> property to <samp class="codeph">true</samp>.
+With live dragging enabled, the DividedBox container updates its
+layout as the user moves a divider. In some cases, you may encounter
+decreased performance if you enable live dragging. </p>
+
+         </div>
+
+      </div>
+
+   </div>
+
+   <div class="nested1" id="WS2db454920e96a9e51e63e3d11c0bf69084-7e53_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7e53_verapache"><!-- --></a>
+      <h2 class="topictitle2">MX Form, FormHeading, and FormItem layout
+containers</h2>
+
+      
+      <div>
+         <p>
+            
+            Forms
+are one of the most common methods that web applications use to
+collect information from users. Forms are used for collecting registration,
+purchase, and billing information, and for many other data collection
+tasks. </p>
+
+         <div class="note"><span class="notetitle">Note:</span> When possible, it’s best to use the Spark Form container instead
+of the MX Form container. For more information, see <a href="flx_groups_containers_gc.html#WSc5cd04c102ae3e973827a8e912ac2b325a4-8000_verapache">The
+Spark Form, Spark FormHeading, and Spark FormItem containers</a>.</div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf69084-7e1a_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7e1a_verapache"><!-- --></a>
+         <h3 class="topictitle3">About forms</h3>
+
+         
+         <div>
+            <p>Flex supports form development by using the Form layout
+container and several child components of the Form container. The
+Form container lets you control the layout of a form, mark form
+fields as required or optional, handle error messages, and bind
+your form data to the Flex data model to perform data checking and validation.
+Also, you can apply style sheets to configure the appearance of
+your forms. </p>
+
+            <p>You use three different components to create your forms, as the
+following example shows:</p>
+
+            <div class="figborder">
+               <img src="images/lo_form_example2.png" alt="Form container"/>
+               <dl>
+                  
+                     <dt class="dlterm">
+                        <strong>A.</strong>
+                     </dt>
+
+                     <dd>Form container</dd>
+
+                  
+                  
+                     <dt class="dlterm">
+                        <strong>B.</strong>
+                     </dt>
+
+                     <dd>FormHeading control</dd>
+
+                  
+                  
+                     <dt class="dlterm">
+                        <strong>C.</strong>
+                     </dt>
+
+                     <dd>FormItem containers</dd>
+
+                  
+               </dl>
+
+            </div>
+
+            <p>For complete reference information, see <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/containers/Form.html" target="_blank">Form</a>, <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/containers/FormHeading.html" target="_blank">FormHeading</a>,
+and <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/containers/FormItem.html" target="_blank">FormItem</a> in the <em>
+                  <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/" target="_blank">ActionScript 3.0 Reference for the Adobe
+Flash Platform</a>
+               </em>.</p>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf62f1b-7fdb_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf62f1b-7fdb_verapache"><!-- --></a>
+         <h3 class="topictitle3">Creating forms</h3>
+
+         
+         <div>
+            <p>You typically create a form by defining the following elements:</p>
+
+            <ul>
+               <li>
+                  <p>The Form control</p>
+
+               </li>
+
+               <li>
+                  <p>FormHeading components, nested inside the Form control</p>
+
+               </li>
+
+               <li>
+                  <p>FormItem containers, nested inside the Form control</p>
+
+               </li>
+
+               <li>
+                  <p>Form fields, such as ComboBox and TextInput controls, nested
+inside the FormItem containers</p>
+
+                  <p>You can also include other
+components inside a form, such as HRule controls, as needed.</p>
+
+               </li>
+
+            </ul>
+
+            <div class="section" id="WS2db454920e96a9e51e63e3d11c0bf62f1b-7fdb_verapache__WS2db454920e96a9e51e63e3d11c0bf62f1b-7ff3_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf62f1b-7fdb_verapache__WS2db454920e96a9e51e63e3d11c0bf62f1b-7ff3_verapache"><!-- --></a><h4 class="sectiontitle">Creating
+the Form container</h4>
+               
+               <p>The <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/containers/Form.html" target="_blank">Form</a> container
+is the outermost container of a Flex form. The primary use of the
+Form container is to control the sizing and layout of the contents
+of the form, including the size of labels and the gap between items.
+The Form container always arranges its children vertically and left-aligns
+them in the form. The form container contains one or more FormHeading
+and FormItem containers.</p>
+
+               <p>You use the <samp class="codeph">&lt;mx:Form&gt;</samp> tag
+to define the Form container. Specify an <samp class="codeph">id</samp> value
+if you intend to refer to the entire form elsewhere in your MXML,
+either in another tag or in an ActionScript block. </p>
+
+               <p>
+                  The following code example shows
+the Form container definition for the form shown in the previous
+image in <a href="flx_layouts_lo.html#WS2db454920e96a9e51e63e3d11c0bf69084-7e1a_verapache">About
+forms</a>: </p>
+
+               <pre class="noswf">&lt;?xml version="1.0"?&gt; 
+&lt;!-- containers\layouts\FormSimple.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark"&gt; 
+ 
+    &lt;mx:Form id="myForm" width="400" height="100"&gt; 
+ 
+        &lt;!-- Define FormHeading and FormItem components here --&gt; 
+ 
+    &lt;/mx:Form&gt; 
+&lt;/s:Application&gt;</pre>
+
+               <p>For complete reference information,
+see the <em>
+                     <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/" target="_blank">ActionScript 3.0 Reference for the Adobe
+Flash Platform</a>
+                  </em>.</p>
+
+            </div>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf62f1b-7fda_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf62f1b-7fda_verapache"><!-- --></a>
+         <h3 class="topictitle3">Creating a FormHeading control</h3>
+
+         
+         <div>
+            <p>
+               A <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/containers/FormHeading.html" target="_blank">FormHeading</a> control
+specifies an optional label for a group of FormItem containers.
+The left side of the label is aligned with the left side of the
+controls in the form. You can have multiple FormHeading controls
+in your form to designate multiple content areas. You can also use
+FormHeading controls with a blank <samp class="codeph">label</samp> to create
+vertical space in your form.</p>
+
+            <p>You use the <samp class="codeph">&lt;mx:FormHeading&gt;</samp> tag to define
+a FormHeading container. Specify an <samp class="codeph">id</samp> value if
+you intend to refer to the heading elsewhere in your MXML, either
+in another tag or in an ActionScript block. </p>
+
+            <p>The following code example defines the FormHeading control for
+the image shown in <a href="flx_layouts_lo.html#WS2db454920e96a9e51e63e3d11c0bf69084-7e1a_verapache">About
+forms</a>:</p>
+
+            <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- containers\layouts\FormHeadingSimple.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark"&gt; 
+ 
+    &lt;mx:Form id="myForm" width="400" height="100"&gt; 
+ 
+        &lt;mx:FormHeading label="Billing Information"/&gt; 
+ 
+        &lt;!--Define FormItem containers here. --&gt; 
+ 
+    &lt;/mx:Form&gt; 
+&lt;/s:Application&gt;</pre>
+
+            <p>For complete reference information, see the <em>
+                  <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/" target="_blank">ActionScript 3.0 Reference for the Adobe
+Flash Platform</a>
+               </em>.</p>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf62f1b-7fd9_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf62f1b-7fd9_verapache"><!-- --></a>
+         <h3 class="topictitle3">Creating a FormItem container</h3>
+
+         
+         <div>
+            <p>A <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/containers/FormItem.html" target="_blank">FormItem</a> container
+specifies a form element consisting of the following parts:</p>
+
+            <ul>
+               <li>
+                  <p>A single label </p>
+
+               </li>
+
+               <li>
+                  <p>One or more child controls or containers, such as input controls</p>
+
+                  <p>
+                     The label is vertically aligned
+with the first child in the FormItem container and is right-aligned
+in the region to the left of the container. </p>
+
+                  <p>You use the <samp class="codeph">&lt;mx:FormItem&gt;</samp> tag
+to define a FormItem container. Specify an <samp class="codeph">id</samp> value
+if you intend to refer to the item elsewhere in your MXML, either
+in another tag or in an ActionScript block. </p>
+
+                  <p>Form containers
+typically contain multiple FormItem containers, as the following
+example shows:</p>
+
+                  <div class="figborder">
+                     <img src="images/lo_form_item_ex.png" alt="Form containers containing multiple FormItem containers"/>
+                  </div>
+
+                  <p>In
+this example, you define three FormItem containers: one with the
+label First Name, one with the label Last Name, and one with the
+label Address. The Address FormItem container holds two controls
+to let a user enter two lines of address information. Each of the
+other two FormItem containers includes a single control. </p>
+
+                  <p>For
+complete reference information, see <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/containers/FormItem.html" target="_blank">FormItem</a> in
+the <em>
+                        <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/" target="_blank">ActionScript 3.0 Reference for the Adobe
+Flash Platform</a>
+                     </em>.</p>
+
+               </li>
+
+            </ul>
+
+            <div class="section" id="WS2db454920e96a9e51e63e3d11c0bf62f1b-7fd9_verapache__WS2db454920e96a9e51e63e3d11c0bf62f1b-7fed_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf62f1b-7fd9_verapache__WS2db454920e96a9e51e63e3d11c0bf62f1b-7fed_verapache"><!-- --></a><h4 class="sectiontitle">Specifying
+form item direction</h4>
+               
+               <p>When you create a FormItem container,
+you specify its direction by using the value <samp class="codeph">vertical </samp>(default)
+or <samp class="codeph">horizontal</samp> for the <samp class="codeph">direction </samp>property: </p>
+
+               <dl>
+                  
+                     <dt class="dlterm">vertical</dt>
+
+                     <dd>
+                        <p>Flex positions children vertically to the right of the FormItem
+label. </p>
+
+                     </dd>
+
+                  
+                  
+                     <dt class="dlterm">horizontal</dt>
+
+                     <dd>
+                        <p>Flex positions children horizontally to the right of the
+FormItem label. If all children do not fit on a single row, they
+are divided into multiple rows with equal-sized columns. You can
+ensure that all children fit on a single line by using percentage-based
+widths or by specifying explicit widths wide enough for all of the
+components.</p>
+
+                     </dd>
+
+                  
+               </dl>
+
+            </div>
+
+            <div class="section" id="WS2db454920e96a9e51e63e3d11c0bf62f1b-7fd9_verapache__WS2db454920e96a9e51e63e3d11c0bf62f1b-7fd8_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf62f1b-7fd9_verapache__WS2db454920e96a9e51e63e3d11c0bf62f1b-7fd8_verapache"><!-- --></a><h4 class="sectiontitle">Controlling
+form item label style</h4>
+               
+               <p>You control the style of a FormItem
+label by setting the <samp class="codeph">labelStyleName</samp> style property.
+The following example sets the FormItem label color to dark blue
+and its font size to 20 pixels:</p>
+
+               <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- containers\layouts\FormItemStyle.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark"&gt; 
+ 
+    &lt;fx:Style&gt; 
+        .myFormItemLabelStyle { 
+            color: #333399; 
+            fontSize: 20; 
+         } 
+         
+    &lt;/fx:Style&gt; 
+ 
+    &lt;fx:Script&gt; 
+        &lt;![CDATA[ 
+            private function processValues(zip:String, pn:String):void { 
+                // Validate and process data. 
+            } 
+        ]]&gt; 
+    &lt;/fx:Script&gt; 
+ 
+    &lt;mx:Form id="myForm" defaultButton="{mySubmitButton}"&gt; 
+ 
+        &lt;mx:FormItem label="Zip Code" 
+            labelStyleName="myFormItemLabelStyle"&gt; 
+            &lt;mx:TextInput id="zipCode"/&gt; 
+        &lt;/mx:FormItem&gt; 
+        &lt;mx:FormItem label="Phone Number"&gt; 
+            &lt;mx:TextInput id="phoneNumber"/&gt; 
+        &lt;/mx:FormItem&gt; 
+    
+        &lt;mx:FormItem&gt; 
+            &lt;mx:Button label="Submit" id="mySubmitButton" 
+                click="processValues(zipCode.text, phoneNumber.text);"/&gt; 
+        &lt;/mx:FormItem&gt; 
+    
+    &lt;/mx:Form&gt; 
+&lt;/s:Application&gt;</pre>
+
+            </div>
+
+            <div class="section" id="WS2db454920e96a9e51e63e3d11c0bf62f1b-7fd9_verapache__WS2db454920e96a9e51e63e3d11c0bf62f1b-7fd6_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf62f1b-7fd9_verapache__WS2db454920e96a9e51e63e3d11c0bf62f1b-7fd6_verapache"><!-- --></a><h4 class="sectiontitle">Example:
+A simple form</h4>
+               
+               <p>The following example shows the FormItem
+container definitions for the example form: </p>
+
+               <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- containers\layouts\FormComplete.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark"&gt; 
+ 
+    &lt;fx:Script&gt; 
+        &lt;![CDATA[ 
+            private function submitForm():void { 
+                // Handle the form submission. 
+            } 
+        ]]&gt; 
+    &lt;/fx:Script&gt; 
+ 
+    &lt;mx:Form id="myForm" width="400"&gt; 
+ 
+        &lt;mx:FormHeading label="Billing Information"/&gt; 
+ 
+        &lt;mx:FormItem label="First Name"&gt; 
+            &lt;mx:TextInput id="fname" width="100%"/&gt; 
+        &lt;/mx:FormItem&gt; 
+ 
+        &lt;mx:FormItem label="Last Name"&gt; 
+            &lt;mx:TextInput id="lname" width="100%"/&gt; 
+        &lt;/mx:FormItem&gt; 
+ 
+        &lt;mx:FormItem label="Address"&gt; 
+            &lt;mx:TextInput id="addr1" width="100%"/&gt; 
+            &lt;mx:TextInput id="addr2" width="100%"/&gt; 
+        &lt;/mx:FormItem&gt; 
+ 
+        &lt;mx:FormItem label="City / State" direction="vertical"&gt; 
+            &lt;mx:TextInput id="city"/&gt; 
+            &lt;mx:ComboBox id="st" width="75"&gt; 
+              &lt;mx:ArrayList&gt; 
+                 &lt;fx:String&gt;MA&lt;/fx:String&gt; 
+                 &lt;fx:String&gt;NH&lt;/fx:String&gt; 
+                 &lt;fx:String&gt;RI&lt;/fx:String&gt; 
+              &lt;/mx:ArrayList&gt;                     
+            &lt;/mx:ComboBox&gt; 
+        &lt;/mx:FormItem&gt; 
+ 
+        &lt;mx:FormItem label="ZIP Code"&gt; 
+            &lt;mx:TextInput id="zip" width="100"/&gt; 
+        &lt;/mx:FormItem&gt; 
+ 
+        &lt;mx:FormItem label="Country"&gt; 
+            &lt;mx:ComboBox id="cntry"&gt; 
+              &lt;mx:ArrayList&gt; 
+                 &lt;fx:String&gt;USA&lt;/fx:String&gt; 
+                 &lt;fx:String&gt;UAE&lt;/fx:String&gt; 
+                 &lt;fx:String&gt;UAW&lt;/fx:String&gt; 
+              &lt;/mx:ArrayList&gt;                     
+            &lt;/mx:ComboBox&gt; 
+        &lt;/mx:FormItem&gt; 
+ 
+        &lt;mx:FormItem&gt; 
+            &lt;mx:HRule width="200" height="1"/&gt; 
+            &lt;mx:Button label="Submit Form" click="submitForm();"/&gt; 
+        &lt;/mx:FormItem&gt; 
+    &lt;/mx:Form&gt; 
+&lt;/s:Application&gt;</pre>
+
+            </div>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf62f1b-7fe3_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf62f1b-7fe3_verapache"><!-- --></a>
+         <h3 class="topictitle3">Laying out forms</h3>
+
+         
+         <div>
+            <p>Flex determines the default size of a form in the following
+ways:</p>
+
+            <ul>
+               <li>
+                  <p>The default height is large enough to hold the default
+or explicit heights of all the container children, plus the Form
+container top and bottom padding and the gaps between children. </p>
+
+               </li>
+
+               <li>
+                  <p>The default width is large enough to accommodate the widest
+FormItem label, plus the <samp class="codeph">indicatorGap</samp> between the
+labels and the child controls, plus the widest default or explicit
+width among the child controls in the FormItems.</p>
+
+               </li>
+
+            </ul>
+
+            <div class="section" id="WS2db454920e96a9e51e63e3d11c0bf62f1b-7fe3_verapache__WS2db454920e96a9e51e63e3d11c0bf62f1b-7fd3_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf62f1b-7fe3_verapache__WS2db454920e96a9e51e63e3d11c0bf62f1b-7fd3_verapache"><!-- --></a><h4 class="sectiontitle">Aligning
+and spacing Form container children</h4>
+               
+               <p>
+                  All Form container labels
+are right-aligned, and all children are left-aligned in the container.
+You cannot override this alignment.</p>
+
+               <p>The following example
+shows the spacing of Form container children that you can control:</p>
+
+               <div class="figborder">
+                  <img src="images/lo_form_example_w_width.png" alt="Spacing of Form container children"/>
+                  <dl>
+                     
+                        <dt class="dlterm">
+                           <strong>A.</strong>
+                        </dt>
+
+                        <dd>Form container: labelWidth</dd>
+
+                     
+                     
+                        <dt class="dlterm">
+                           <strong>B.</strong>
+                        </dt>
+
+                        <dd>Form container: verticalGap = 6</dd>
+
+                     
+                     
+                        <dt class="dlterm">
+                           <strong> C.</strong>
+                        </dt>
+
+                        <dd>FormItem container: verticalGap = 6</dd>
+
+                     
+                     
+                        <dt class="dlterm">
+                           <strong>D.</strong>
+                        </dt>
+
+                        <dd>Form container: indicatorGap = 14</dd>
+
+                     
+                  </dl>
+
+               </div>
+
+               <p>The
+following table describes the style properties that you use to control
+spacing and their default values:</p>
+
+               
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" frame="border" border="1" rules="all">
+                     
+                     
+                     
+                     
+                     <thead align="left">
+                        <tr>
+                           <th class="cellrowborder" valign="top" width="NaN%" id="d274487e1455">
+                              <p>Component</p>
+
+                           </th>
+
+                           <th class="cellrowborder" valign="top" width="NaN%" id="d274487e1461">
+                              <p>Style</p>
+
+                           </th>
+
+                           <th class="cellrowborder" valign="top" width="NaN%" id="d274487e1467">
+                              <p>Description</p>
+
+                           </th>
+
+                           <th class="cellrowborder" valign="top" width="NaN%" id="d274487e1473">
+                              <p>Default value</p>
+
+                           </th>
+
+                        </tr>
+
+                     </thead>
+
+                     <tbody>
+                        <tr>
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d274487e1455 ">
+                              <p>
+                                 <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/containers/Form.html" target="_blank">Form</a>
+                              </p>
+
+                           </td>
+
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d274487e1461 ">
+                              <div class="p">
+                                 <pre class="codeblock">verticalGap</pre>
+
+                              </div>
+
+                           </td>
+
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d274487e1467 ">
+                              <p>Vertical space between Form container children</p>
+
+                           </td>
+
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d274487e1473 ">
+                              <p>6 pixels</p>
+
+                           </td>
+
+                        </tr>
+
+                        <tr>
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d274487e1455 ">
+                              <p/>
+
+                           </td>
+
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d274487e1461 ">
+                              <div class="p">
+                                 <pre class="codeblock">horizontalGap</pre>
+
+                              </div>
+
+                           </td>
+
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d274487e1467 ">
+                              <p>Horizontal space between Form container children</p>
+
+                           </td>
+
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d274487e1473 ">
+                              <p>8 pixels</p>
+
+                           </td>
+
+                        </tr>
+
+                        <tr>
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d274487e1455 ">
+                              <p/>
+
+                           </td>
+
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d274487e1461 ">
+                              <div class="p">
+                                 <pre class="codeblock">labelWidth</pre>
+
+                              </div>
+
+                           </td>
+
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d274487e1467 ">
+                              <p>Width of labels</p>
+
+                           </td>
+
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d274487e1473 ">
+                              <p>Calculated by the container based on the
+child labels</p>
+
+                           </td>
+
+                        </tr>
+
+                        <tr>
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d274487e1455 ">
+                              <p/>
+
+                           </td>
+
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d274487e1461 ">
+                              <div class="p">
+                                 <pre class="codeblock">paddingTop 
+paddingBottom 
+paddingLeft 
+paddingRight</pre>
+
+                              </div>
+
+                           </td>
+
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d274487e1467 ">
+                              <p>Border spacing around children</p>
+
+                           </td>
+
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d274487e1473 ">
+                              <p>16 pixels on all sides</p>
+
+                           </td>
+
+                        </tr>
+
+                        <tr>
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d274487e1455 ">
+                              <p/>
+
+                           </td>
+
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d274487e1461 ">
+                              <div class="p">
+                                 <pre class="codeblock">indicatorGap</pre>
+
+                              </div>
+
+                           </td>
+
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d274487e1467 ">
+                              <p>Gap between the end of the area in the form reserved
+for labels and the FormItem children or FormHeading heading</p>
+
+                           </td>
+
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d274487e1473 ">
+                              <p>14 pixels </p>
+
+                           </td>
+
+                        </tr>
+
+                        <tr>
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d274487e1455 ">
+                              <p>
+                                 <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/containers/FormHeading.html" target="_blank">FormHeading</a>
+                              </p>
+
+                           </td>
+
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d274487e1461 ">
+                              <div class="p">
+                                 <pre class="codeblock">indicatorGap</pre>
+
+                              </div>
+
+                           </td>
+
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d274487e1467 ">
+                              <p>Overrides the indicator gap set by the <samp class="codeph">&lt;mx:Form&gt;</samp> tag</p>
+
+                           </td>
+
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d274487e1473 ">
+                              <p>14 pixels</p>
+
+                           </td>
+
+                        </tr>
+
+                        <tr>
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d274487e1455 ">
+                              <p/>
+
+                           </td>
+
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d274487e1461 ">
+                              <div class="p">
+                                 <pre class="codeblock">paddingTop</pre>
+
+                              </div>
+
+                           </td>
+
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d274487e1467 ">
+                              <p>Gap between the top of the component and the
+label text</p>
+
+                           </td>
+
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d274487e1473 ">
+                              <p>16 pixels</p>
+
+                           </td>
+
+                        </tr>
+
+                        <tr>
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d274487e1455 ">
+                              <p>
+                                 <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/containers/FormItem.html" target="_blank">FormItem</a>
+                              </p>
+
+                           </td>
+
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d274487e1461 ">
+                              <div class="p">
+                                 <pre class="codeblock">direction</pre>
+
+                              </div>
+
+                           </td>
+
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d274487e1467 ">
+                              <p>Direction of FormItem children: <samp class="codeph">vertical</samp> or <samp class="codeph">horizontal</samp>
+                              </p>
+
+                           </td>
+
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d274487e1473 ">
+                              <p>
+                                 <samp class="codeph">vertical</samp>
+                              </p>
+
+                           </td>
+
+                        </tr>
+
+                        <tr>
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d274487e1455 ">
+                              <p/>
+
+                           </td>
+
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d274487e1461 ">
+                              <div class="p">
+                                 <pre class="codeblock">horizontalGap</pre>
+
+                              </div>
+
+                           </td>
+
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d274487e1467 ">
+                              <p>Horizontal spacing between children in a FormItem
+container</p>
+
+                           </td>
+
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d274487e1473 ">
+                              <p>8 pixels </p>
+
+                           </td>
+
+                        </tr>
+
+                        <tr>
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d274487e1455 ">
+                              <p/>
+
+                           </td>
+
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d274487e1461 ">
+                              <div class="p">
+                                 <pre class="codeblock">labelWidth</pre>
+
+                              </div>
+
+                           </td>
+
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d274487e1467 ">
+                              <p>The width for the FormItem heading</p>
+
+                           </td>
+
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d274487e1473 ">
+                              <p>The width of the label text</p>
+
+                           </td>
+
+                        </tr>
+
+                        <tr>
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d274487e1455 ">
+                              <p/>
+
+                           </td>
+
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d274487e1461 ">
+                              <div class="p">
+                                 <pre class="codeblock">paddingTop 
+paddingBottom 
+paddingLeft 
+paddingRight</pre>
+
+                              </div>
+
+                           </td>
+
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d274487e1467 ">
+                              <p>Border spacing around the FormItem</p>
+
+                           </td>
+
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d274487e1473 ">
+                              <p>0 pixels on all sides</p>
+
+                           </td>
+
+                        </tr>
+
+                        <tr>
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d274487e1455 ">
+                              <p/>
+
+                           </td>
+
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d274487e1461 ">
+                              <div class="p">
+                                 <pre class="codeblock">verticalGap</pre>
+
+                              </div>
+
+                           </td>
+
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d274487e1467 ">
+                              <p>Vertical spacing between children in a FormItem
+container</p>
+
+                           </td>
+
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d274487e1473 ">
+                              <p>6 pixels </p>
+
+                           </td>
+
+                        </tr>
+
+                        <tr>
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d274487e1455 ">
+                              <p/>
+
+                           </td>
+
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d274487e1461 ">
+                              <div class="p">
+                                 <pre class="codeblock">indicatorGap</pre>
+
+                              </div>
+
+                           </td>
+
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d274487e1467 ">
+                              <p>Overrides the indicator gap set by the <samp class="codeph">&lt;mx:Form&gt;</samp> tag</p>
+
+                           </td>
+
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d274487e1473 ">
+                              <p>Determined by the <samp class="codeph">&lt;mx:Form&gt;</samp> tag</p>
+
+                           </td>
+
+                        </tr>
+
+                     </tbody>
+
+                  </table>
+</div>
+
+            </div>
+
+            <div class="section" id="WS2db454920e96a9e51e63e3d11c0bf62f1b-7fe3_verapache__WS2db454920e96a9e51e63e3d11c0bf62f1b-7fe0_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf62f1b-7fe3_verapache__WS2db454920e96a9e51e63e3d11c0bf62f1b-7fe0_verapache"><!-- --></a><h4 class="sectiontitle">Sizing
+and positioning Form container children</h4>
+               
+               <p>
+                  The <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/containers/Form.html" target="_blank">Form</a> layout
+container arranges children in a vertical column. The area of the Form
+container that is designated for children does not encompass the
+entire Form container. Instead, it starts at the right of the area
+defined by any labels and the gap defined by the <samp class="codeph">indicatorGap</samp> property.
+For example, if the width of the Form container is 500 pixels, and
+the labels and <samp class="codeph">indicatorGap</samp> property allocate 100
+pixels of that width, the width of the child area is 400 pixels. </p>
+
+               <p>By
+default, Flex sizes the Form layout children vertically to their
+default height. Flex then determines the default width of each child,
+and stretches the child’s width to the next highest quarter of the
+child area—that is, to one-quarter, one-half, three-quarters, or
+full width of the child area.</p>
+
+               <p>For example, if a container
+has a child area 400 pixels wide, and the default width of a TextArea
+control is 125 pixels, Flex stretches the TextArea control horizontally to
+the next higher quarter of the child area, the 200-pixel boundary,
+which is one-half of the child area. This sizing algorithm applies
+only to components without an explicitly specified width. It prevents
+your containers from having ragged right edges caused by controls
+with different widths. </p>
+
+               <p>You can also explicitly set the height
+or width of any control in the form to either a pixel value or a
+percentage of the Form size by using the <samp class="codeph">height</samp> and <samp class="codeph">width</samp> properties
+of the child.</p>
+
+            </div>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf69084-7db1_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7db1_verapache"><!-- --></a>
+         <h3 class="topictitle3">Defining a default button</h3>
+
+         
+         <div>
+            <p>
+               You
+use the <samp class="codeph">defaultButton</samp> property of a container to
+define a default Button control. Pressing the Enter key while the
+focus is on any form control activates the Button control just as
+if it was explicitly selected. </p>
+
+            <p>For example, a login form displays user name and password inputs
+and a submit Button control. Typically, the user types a user name,
+tabs to the password field, types the password, and presses the
+Enter key to submit the login information without explicitly selecting
+the Button control. To define this type of interaction, set the <samp class="codeph">defaultButton</samp> to
+the <samp class="codeph">id</samp> of the submit Button control. In the following
+example, the event listener for the <samp class="codeph">click</samp> event
+of submit button displays an Alert control, to show that Flex triggers
+this event if the user presses the Enter key when any form field
+has the focus. The commented-out line in the example would perform
+the more realistic action of invoking a web service to let the user
+log in. </p>
+
+            <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- containers\layouts\FormDefButton.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark"&gt; 
+ 
+    &lt;fx:Script&gt; 
+        &lt;![CDATA[ 
+            import flash.events.MouseEvent; 
+            import mx.controls.Alert; 
+    
+            private function submitLogin(eventObj:MouseEvent):void { 
+                // Display an Alert to show the event happened. 
+                Alert.show("Login Requested"); 
+                // Commented out to work without a web service. 
+                //myWebService.Login.send(); 
+            }   
+        ]]&gt; 
+    &lt;/fx:Script&gt; 
+ 
+    &lt;mx:Form defaultButton="{mySubmitButton}"&gt; 
+        &lt;mx:FormItem label="Username"&gt; 
+            &lt;mx:TextInput id="username" 
+                width="100"/&gt; 
+        &lt;/mx:FormItem&gt; 
+        &lt;mx:FormItem label="Password"&gt; 
+            &lt;mx:TextInput id="password" 
+                width="100" 
+                displayAsPassword="true"/&gt; 
+        &lt;/mx:FormItem&gt; 
+        &lt;mx:FormItem&gt; 
+            &lt;mx:Button id="mySubmitButton" 
+                label="Login" 
+                click="submitLogin(event);"/&gt; 
+        &lt;/mx:FormItem&gt; 
+    &lt;/mx:Form&gt; 
+&lt;/s:Application&gt;</pre>
+
+            <div class="note"><span class="notetitle">Note:</span> When the drop-down list of a ComboBox control
+is open, pressing Enter selects the currently highlighted item in
+the ComboBox control; it does not activate the default button.</div>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf62f1b-7fde_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf62f1b-7fde_verapache"><!-- --></a>
+         <h3 class="topictitle3">Specifying required fields</h3>
+
+         
+         <div>
+            <p>
+               Flex
+includes support for defining required input fields of a form. To
+define a required field, you specify the <samp class="codeph">required</samp> property
+of the FormItem container. If this property is specified, all the
+children of the FormItem container are marked as required. </p>
+
+            <p>Flex inserts a red asterisk (*) character as a separator between
+the FormItem label and the FormItem child to indicate a required
+field. For example, the following example shows an optional ZIP
+code field and a required ZIP code field:</p>
+
+            <div class="figborder">
+               <img src="images/lo_zipcode_required.png" alt="A required ZIP code field"/>
+            </div>
+
+            <p>The following code example defines these fields:</p>
+
+            <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- containers\layouts\FormReqField.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark"&gt; 
+ 
+    &lt;mx:Form&gt; 
+        &lt;mx:FormItem label="ZIP Code"&gt; 
+            &lt;mx:TextInput id="zipOptional" 
+                width="100"/&gt; 
+        &lt;/mx:FormItem&gt; 
+ 
+        &lt;mx:FormItem label="ZIP Code" required="true"&gt; 
+            &lt;mx:TextInput id="zipRequired" 
+                width="100"/&gt; 
+        &lt;/mx:FormItem&gt; 
+    &lt;/mx:Form&gt; 
+&lt;/s:Application&gt;</pre>
+
+            <p>You can enable the required indicator of a FormItem child at
+run time. This could be useful when the user input in one form field
+makes another field required. For example, you might have a form
+with a CheckBox control that the user selects to subscribe to a
+newsletter. Checking the box could make the user e-mail field required,
+as the following example shows:</p>
+
+            <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- containers\layouts\FormReqFieldRuntime.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark"&gt; 
+ 
+    &lt;mx:Form&gt; 
+        &lt;mx:FormItem label="Subscribe"&gt; 
+            &lt;mx:CheckBox label="Subscribe?" 
+                click="emAddr.required=!emAddr.required;"/&gt; 
+        &lt;/mx:FormItem&gt; 
+ 
+        &lt;mx:FormItem id="emAddr" label="E-mail Address"&gt; 
+            &lt;mx:TextInput id="emailAddr"/&gt; 
+        &lt;/mx:FormItem&gt; 
+    &lt;/mx:Form&gt; 
+&lt;/s:Application&gt;</pre>
+
+            <p>Flex does not perform any automatic enforcement of a required
+field; it only marks fields as required. You must add validation
+logic to your form to enforce it. As part of your enforcement logic,
+you can use Flex validators. All Flex validators have a <samp class="codeph">required</samp> property,
+which is <samp class="codeph">true</samp> by default. You can use validators
+in several ways, depending on how you enforce required fields and
+validation. For details, see <a href="flx_validators_va.html#WS2db454920e96a9e51e63e3d11c0bf69084-7ff0_verapache">Validating
+Data</a>. </p>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf62f1b-7fdd_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf62f1b-7fdd_verapache"><!-- --></a>
+         <h3 class="topictitle3">Storing and validating form data</h3>
+
+         
+         <div>
+            <p>
+               As part
+of designing your form, you must consider how you want to store
+your form data. In Flex, you have the following choices. </p>
+
+            <ul>
+               <li>
+                  <p>Store the data within the form controls.</p>
+
+               </li>
+
+               <li>
+                  <p>Create a Flex data model to store your data.</p>
+
+               </li>
+
+            </ul>
+
+            <p>Your decision about how to represent your data also affects how
+you perform input error detection or <em>data validation</em>, one
+of the primary tasks of a robust and stable form. You typically
+validate user input before you submit the data to the server. You
+can validate the user input within a submit function, or when a
+user enters data into the form. </p>
+
+            <p>Flex provides a set of data validators for the most common types
+of data collected by a form. You can use Flex validators with the
+following types of data:</p>
+
+            <ul>
+               <li>
+                  <p>Credit card information</p>
+
+               </li>
+
+               <li>
+                  <p>Dates</p>
+
+               </li>
+
+               <li>
+                  <p>E-mail addresses</p>
+
+               </li>
+
+               <li>
+                  <p>Numbers</p>
+
+               </li>
+
+               <li>
+                  <p>Phone numbers </p>
+
+               </li>
+
+               <li>
+                  <p>Social Security Numbers</p>
+
+               </li>
+
+               <li>
+                  <p>Strings</p>
+
+               </li>
+
+               <li>
+                  <p>ZIP codes </p>
+
+               </li>
+
+            </ul>
+
+            <p>As part of building your form, you can perform data validation
+by using your own custom logic, take advantage of the Flex data
+validation mechanism, or use a combination of custom logic and Flex
+data validation. </p>
+
+            <p>The following sections include information on how to initiate
+validation in a form; for detailed information on how to use Flex
+data validation, see <a href="flx_validators_va.html#WS2db454920e96a9e51e63e3d11c0bf69084-7ff0_verapache">Validating Data</a>.</p>
+
+            <div class="section" id="WS2db454920e96a9e51e63e3d11c0bf62f1b-7fdd_verapache__WS2db454920e96a9e51e63e3d11c0bf62f1b-7fdc_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf62f1b-7fdd_verapache__WS2db454920e96a9e51e63e3d11c0bf62f1b-7fdc_verapache"><!-- --></a><h4 class="sectiontitle">Using
+Form controls to hold your form data</h4>
+               
+               <p>
+                  The following example uses Form
+controls to store the form data: </p>
+
+               <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- containers\layouts\FormData.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark"&gt; 
+ 
+    &lt;fx:Script&gt; 
+        &lt;![CDATA[ 
+            private function processValues(zip:String, pn:String):void { 
+                // Validate and process data. 
+            } 
+        ]]&gt; 
+    &lt;/fx:Script&gt; 
+ 
+    &lt;mx:Form id="myForm" defaultButton="{mySubmitButton}"&gt; 
+ 
+        &lt;mx:FormItem label="ZIP Code"&gt; 
+            &lt;mx:TextInput id="zipCode"/&gt; 
+        &lt;/mx:FormItem&gt; 
+        &lt;mx:FormItem label="Phone Number"&gt; 
+            &lt;mx:TextInput id="phoneNumber"/&gt; 
+        &lt;/mx:FormItem&gt; 
+    
+        &lt;mx:FormItem&gt; 
+            &lt;mx:Button label="Submit" id="mySubmitButton" 
+                click="processValues(zipCode.text, phoneNumber.text);"/&gt; 
+        &lt;/mx:FormItem&gt; 
+    
+    &lt;/mx:Form&gt; 
+&lt;/s:Application&gt;</pre>
+
+               <p>This example form defines two
+form controls: one for a ZIP code and one for a phone number. When
+you submit the form, you call a function that takes the two arguments
+that correspond to the data stored in each control. Your submit function
+can then perform any data validation on its inputs before processing
+the form data.</p>
+
+               <p>You don’t have to pass the data to the submit
+function. The submit function can access the form control data directly,
+as the following example shows:</p>
+
+               <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- containers\layouts\FormDataSubmitNoArg.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark"&gt; 
+ 
+    &lt;fx:Script&gt; 
+        &lt;![CDATA[ 
+            private function processValues():void { 
+                var inputZip:String = zipCode.text; 
+                var inputPhone:String = phoneNumber.text; 
+                // Check to see if pn is a number. 
+                // Check to see if zip is less than 4 digits. 
+                // Process data. 
+            } 
+        ]]&gt; 
+    &lt;/fx:Script&gt; 
+ 
+    &lt;mx:Form id="myForm" defaultButton="{mySubmitButton}"&gt; 
+ 
+        &lt;mx:FormItem label="ZIP Code"&gt; 
+            &lt;mx:TextInput id="zipCode"/&gt; 
+        &lt;/mx:FormItem&gt; 
+        &lt;mx:FormItem label="Phone Number"&gt; 
+            &lt;mx:TextInput id="phoneNumber"/&gt; 
+        &lt;/mx:FormItem&gt; 
+    
+        &lt;mx:FormItem&gt; 
+            &lt;mx:Button label="Submit" id="mySubmitButton" 
+                click="processValues();"/&gt; 
+        &lt;/mx:FormItem&gt; 
+    
+    &lt;/mx:Form&gt; 
+&lt;/s:Application&gt;</pre>
+
+               <p>The technique of using the
+form fields directly, however, has the problem that the function
+is specific to the form and cannot easily be used by other forms.</p>
+
+            </div>
+
+            <div class="section" id="WS2db454920e96a9e51e63e3d11c0bf62f1b-7fdd_verapache__WS2db454920e96a9e51e63e3d11c0bf62f1b-7fe8_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf62f1b-7fdd_verapache__WS2db454920e96a9e51e63e3d11c0bf62f1b-7fe8_verapache"><!-- --></a><h4 class="sectiontitle">Validating
+form control contents data on user entry</h4>
+               
+               <p>To validate form
+data upon user input, you can add Flex data validators to your application.
+The following example uses the ZipCodeValidator and PhoneNumberValidator
+to perform validation. </p>
+
+               <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- containers\layouts\FormDataValidate.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark"&gt; 
+ 
+    &lt;fx:Script&gt; 
+        &lt;![CDATA[ 
+            private function processValues():void { 
+                var inputZip:String = zipCode.text; 
+                var inputPhone:String = phoneNumber.text; 
+                // Perform any additional validation. 
+                // Process data. 
+            } 
+        ]]&gt; 
+    &lt;/fx:Script&gt; 
+ 
+    &lt;fx:Declarations&gt; 
+        &lt;mx:ZipCodeValidator id="zcVal" 
+            source="{zipCode}" property="text" 
+            domain="US or Canada"/&gt; 
+        &lt;mx:PhoneNumberValidator id="pnVal" 
+            source="{phoneNumber}" property="text"/&gt; 
+    &lt;/fx:Declarations&gt; 
+        
+    &lt;mx:Form id="myForm" defaultButton="{mySubmitButton}"&gt; 
+        &lt;mx:FormItem label="ZIP Code"&gt; 
+            &lt;mx:TextInput id="zipCode"/&gt; 
+        &lt;/mx:FormItem&gt; 
+        &lt;mx:FormItem label="Phone Number"&gt; 
+            &lt;mx:TextInput id="phoneNumber"/&gt; 
+        &lt;/mx:FormItem&gt; 
+    
+        &lt;mx:FormItem&gt; 
+            &lt;mx:Button label="Submit" id="mySubmitButton" 
+                click="processValues();"/&gt; 
+        &lt;/mx:FormItem&gt; 
+    &lt;/mx:Form&gt; 
+&lt;/s:Application&gt;</pre>
+
+               <p>If you validate the input data
+every time the user enters it, you might not have to do so again
+in your submit function. However, some validation in your submit function
+might still be necessary, especially if you want to ensure that
+two fields are valid when compared with each other. </p>
+
+               <p>For example,
+you can use Flex validators to validate a ZIP code field and state
+field individually. But you might want to validate that the ZIP
+code is valid for the specified state before submitting the form
+data. To do so, you perform a second validation in the submit function. </p>
+
+               <p>For
+detailed information on using validators, see <a href="flx_validators_va.html#WS2db454920e96a9e51e63e3d11c0bf69084-7ff0_verapache">Validating
+Data</a>.</p>
+
+            </div>
+
+            <div class="section" id="WS2db454920e96a9e51e63e3d11c0bf62f1b-7fdd_verapache__WS2db454920e96a9e51e63e3d11c0bf69084-7e32_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf62f1b-7fdd_verapache__WS2db454920e96a9e51e63e3d11c0bf69084-7e32_verapache"><!-- --></a><h4 class="sectiontitle">Using
+a Flex data model to store form data</h4>
+               
+               <p>
+                  You can use a Flex data model to structure
+and store your form data and provide a framework for data validation.
+A data model stores data in fields that represent each part of a
+specific data set. For example, a <em>person</em> model might store
+information such as a person’s name, age, and phone number. You
+can then validate the data in the model based on the type of data
+stored in each model field.</p>
+
+               <p>The following example defines
+a Flex data model that contains two values. The two values correspond
+to the two input fields of a form. </p>
+
+               <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- containers\layouts\FormDataModel.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark"&gt; 
+ 
+    &lt;!-- Define the submit function that validates and 
+        processes the data. --&gt; 
+    &lt;fx:Script&gt; 
+        &lt;![CDATA[ 
+            private function processValues():void { 
+                var inputZip:String = myFormModel.zipCodeModel; 
+                var inputPhone:String = myFormModel.phoneNumberModel; 
+                // Process data. 
+            } 
+        ]]&gt; 
+    &lt;/fx:Script&gt; 
+ 
+    &lt;fx:Declarations&gt; 
+        &lt;!-- Define data model. --&gt; 
+        &lt;fx:Model id="myFormModel"&gt; 
+            &lt;info&gt; 
+                &lt;zipCodeModel&gt;{zipCode.text}&lt;/zipCodeModel&gt; 
+                &lt;phoneNumberModel&gt;{phoneNumber.text}&lt;/phoneNumberModel&gt; 
+            &lt;/info&gt; 
+        &lt;/fx:Model&gt; 
+    &lt;/fx:Declarations&gt; 
+ 
+    &lt;!-- Define the form. --&gt; 
+    &lt;mx:Form borderStyle="solid"&gt; 
+        &lt;mx:FormItem label="ZIP Code"&gt; 
+            &lt;mx:TextInput id="zipCode"/&gt; 
+        &lt;/mx:FormItem&gt; 
+        &lt;mx:FormItem label="Phone Number"&gt; 
+            &lt;mx:TextInput id="phoneNumber"/&gt; 
+        &lt;/mx:FormItem&gt; 
+        &lt;mx:FormItem&gt; 
+            &lt;mx:Button id="b1" 
+                label="Submit" 
+                click="processValues();"/&gt; 
+        &lt;/mx:FormItem&gt; 
+    &lt;/mx:Form&gt; 
+&lt;/s:Application&gt;</pre>
+
+               <p>You use the <samp class="codeph">&lt;fx:Model&gt;</samp> tag
+to define the data model. Each child tag of the data model defines
+one field of the model. The tag body of each child tag in the model
+defines a <em>binding</em> to a form control. In this example, you
+bind the <samp class="codeph">zipCodeModel</samp> model field to the text value
+of the <samp class="codeph">zipCode</samp> TextInput control, and you bind
+the <samp class="codeph">phoneNumberModel</samp> field to the text value of
+the <samp class="codeph">phoneNumber</samp> TextInput control. For more information
+on data models, see <a href="flx_datamodels_dm.html#WS2db454920e96a9e51e63e3d11c0bf69084-7ff3_verapache">Storing
+data</a>. </p>
+
+               <p>When you bind a control to a data model, Flex
+automatically copies data from the control to the model upon user
+input. In this example, your submit function accesses the data from
+the model, not directly from the form controls. </p>
+
+            </div>
+
+            <div class="section" id="WS2db454920e96a9e51e63e3d11c0bf62f1b-7fdd_verapache__WS2db454920e96a9e51e63e3d11c0bf62f1b-7fd5_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf62f1b-7fdd_verapache__WS2db454920e96a9e51e63e3d11c0bf62f1b-7fd5_verapache"><!-- --></a><h4 class="sectiontitle">Using
+Flex validators with form models</h4>
+               
+               <p>The following example
+modifies the example in the previous section by inserting two data
+validators—one for the ZIP code field and one for the phone number field: </p>
+
+               <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- containers\layouts\FormDataModelVal.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark"&gt; 
+ 
+    &lt;!-- Define the submit function that validates and processes the data --&gt; 
+    &lt;fx:Script&gt; 
+        &lt;![CDATA[ 
+            private function processValues():void { 
+                var inputZip:String = myFormModel.zipCodeModel; 
+                var inputPhone:String = myFormModel.phoneNumberModel; 
+                // Process data. 
+            } 
+        ]]&gt; 
+    &lt;/fx:Script&gt; 
+ 
+    &lt;fx:Declarations&gt; 
+        &lt;!-- Define data model. --&gt; 
+        &lt;fx:Model id="myFormModel"&gt; 
+            &lt;info&gt; 
+                &lt;zipCodeModel&gt;{zipCode.text}&lt;/zipCodeModel&gt; 
+                &lt;phoneNumberModel&gt;{phoneNumber.text}&lt;/phoneNumberModel&gt; 
+            &lt;/info&gt; 
+        &lt;/fx:Model&gt; 
+ 
+        &lt;!-- Define validators. --&gt; 
+        &lt;mx:ZipCodeValidator 
+            source="{myFormModel}" property="zipCodeModel" 
+            trigger="{zipCode}" 
+            listener="{zipCode}"/&gt; 
+        &lt;mx:PhoneNumberValidator 
+            source="{myFormModel}" property="phoneNumberModel" 
+            trigger="{b1}" 
+            listener="{phoneNumber}" 
+            triggerEvent="click"/&gt; 
+    &lt;/fx:Declarations&gt; 
+ 
+    &lt;!-- Define the form. --&gt; 
+    &lt;mx:Form borderStyle="solid"&gt; 
+        &lt;mx:FormItem label="ZIP Code"&gt; 
+            &lt;mx:TextInput id="zipCode"/&gt; 
+        &lt;/mx:FormItem&gt; 
+        &lt;mx:FormItem label="Phone Number"&gt; 
+            &lt;mx:TextInput id="phoneNumber"/&gt; 
+        &lt;/mx:FormItem&gt; 
+        &lt;mx:FormItem&gt; 
+            &lt;mx:Button id="b1" 
+                label="Submit" 
+                click="processValues();"/&gt; 
+        &lt;/mx:FormItem&gt; 
+    &lt;/mx:Form&gt; 
+&lt;/s:Application&gt;</pre>
+
+               <p>When the user enters data into
+the <samp class="codeph">zipCode</samp> form field, Flex automatically copies
+that data to the data model. The <samp class="codeph">ZipCodeValidator</samp> validator
+gets invoked when the user exits the <samp class="codeph">zipCode</samp> form
+field, as specified by the validator’s <samp class="codeph">trigger</samp> property
+and the default value of the <samp class="codeph">triggerEvent</samp> property, <samp class="codeph">valueCommit</samp>.
+Flex then draws a red box around the <samp class="codeph">zipCode</samp> field, as
+specified by the <samp class="codeph">listener</samp> property.</p>
+
+               <p>When
+the user enters data into the <samp class="codeph">phoneNumber</samp> form
+field, Flex automatically copies that data to the data model. The <samp class="codeph">PhoneNumberValidator</samp> validator gets
+invoked when the user clicks the Button control, as specified by
+the validator’s <samp class="codeph">trigger</samp> and <samp class="codeph">triggerEvent</samp> properties.
+Flex then draws a red box around the <samp class="codeph">phoneNumber</samp> field,
+as specified by the <samp class="codeph">listener</samp> property.</p>
+
+               <p>For
+detailed information on using validators, see <a href="flx_validators_va.html#WS2db454920e96a9e51e63e3d11c0bf69084-7ff0_verapache">Validating
+Data</a>.</p>
+
+            </div>
+
+            <div class="section" id="WS2db454920e96a9e51e63e3d11c0bf62f1b-7fdd_verapache__WS2db454920e96a9e51e63e3d11c0bf62f1b-7fd2_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf62f1b-7fdd_verapache__WS2db454920e96a9e51e63e3d11c0bf62f1b-7fd2_verapache"><!-- --></a><h4 class="sectiontitle">Populating
+a Form control from a data model</h4>
+               
+               <p>
+                  Another use
+for data models is to include data in the model to populate form fields
+with values. The following example shows a form that reads static
+data from a data model to obtain the value for a form field: </p>
+
+               <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- containers\layouts\FormDataFromModel.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark"&gt; 
+ 
+    &lt;fx:Declarations&gt; 
+        &lt;!-- Define data model. --&gt; 
+        &lt;fx:Model id="myFormModel"&gt; 
+            &lt;info&gt; 
+                &lt;fName&gt;{firstName.text}&lt;/fName&gt; 
+                &lt;lName&gt;{lastName.text}&lt;/lName&gt; 
+                &lt;department&gt;Accounting&lt;/department&gt; 
+            &lt;/info&gt; 
+        &lt;/fx:Model&gt; 
+    &lt;/fx:Declarations&gt; 
+ 
+    &lt;mx:Form&gt; 
+        &lt;mx:FormItem label="First and Last Names"&gt; 
+            &lt;mx:TextInput id="firstName"/&gt; 
+            &lt;mx:TextInput id="lastName"/&gt; 
+        &lt;/mx:FormItem&gt; 
+        &lt;mx:FormItem label="Department"&gt; 
+            &lt;mx:TextInput id="dept" text="{myFormModel.department}"/&gt; 
+        &lt;/mx:FormItem&gt; 
+    &lt;/mx:Form&gt; 
+&lt;/s:Application&gt;</pre>
+
+               <p>This department data is considered
+static because the form always shows the same value in the field.
+You could also create a dynamic data model that takes the value
+of the department field from a web service, or calculates it based
+on user input. </p>
+
+               <p>For more information on data models, see <a href="flx_datamodels_dm.html#WS2db454920e96a9e51e63e3d11c0bf69084-7ff3_verapache">Storing
+data</a>. </p>
+
+            </div>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf62f1b-7fd0_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf62f1b-7fd0_verapache"><!-- --></a>
+         <h3 class="topictitle3">Submitting data to a server</h3>
+
+         
+         <div>
+            <p>
+               Form
+data is typically processed on a server, not locally on the client.
+Therefore, the submit event listener must have a mechanism for packing
+the form data for transfer to the server, and then handling any
+results returned from the server. In Flex, you typically use a web
+service, HTTP service, or remote Java object to pass data to the
+server. </p>
+
+            <p>You can also build logic into your submit function to control
+navigation of your application when the submit succeeds and when
+it fails. When the submit succeeds, you typically navigate to an
+area of your application that displays the results. If the submit
+fails, you can return control to the form so that the user can fix
+any errors. </p>
+
+            <p>The following example adds a web service to process form input
+data. In this example, the user enters a ZIP code, and then selects
+the Submit button. After performing any data validation, the submit
+event listener calls the web service to obtain the city name, current
+temperature, and forecast for the ZIP code. </p>
+
+            <pre class="noswf">&lt;?xml version="1.0"?&gt; 
+&lt;!-- containers\layouts\FormDataSubmitServer.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark"&gt; 
+    &lt;s:layout&gt; 
+        &lt;s:VerticalLayout/&gt; 
+    &lt;/s:layout&gt; 
+ 
+    &lt;fx:Script&gt; 
+        &lt;![CDATA[ 
+            private function processValues():void { 
+                // Check to see if ZIP code is valid. 
+                WeatherService.GetWeather.send(); 
+            } 
+        ]]&gt; 
+    &lt;/fx:Script&gt; 
+ 
+    &lt;fx:Declarations&gt; 
+        &lt;!-- Define the web service connection. 
+            The specified WSDL URI is not functional. --&gt; 
+        &lt;mx:WebService id="WeatherService" 
+            wsdl="/ws/WeatherService?wsdl"&gt;  
+            &lt;mx:operation name="GetWeather"&gt; 
+                &lt;mx:request&gt; 
+                    &lt;ZipCode&gt;{zipCode.text}&lt;/ZipCode&gt; 
+                &lt;/mx:request&gt; 
+            &lt;/mx:operation&gt; 
+        &lt;/mx:WebService&gt; 
+    &lt;/fx:Declarations&gt; 
+ 
+    &lt;mx:Form&gt; 
+        &lt;mx:FormItem label="ZIP Code"&gt; 
+            &lt;mx:TextInput id="zipCode" 
+                width="200" 
+                text="ZIP code please."/&gt; 
+            &lt;mx:Button 
+                width="60" 
+                label="Submit" 
+                click="processValues();"/&gt; 
+        &lt;/mx:FormItem&gt; 
+    &lt;/mx:Form&gt; 
+ 
+    &lt;mx:VBox&gt; 
+        &lt;mx:TextArea 
+            text= 
+              "{WeatherService.GetWeather.lastResult.CityShortName}"/&gt; 
+        &lt;mx:TextArea 
+            text= 
+              "{WeatherService.GetWeather.lastResult.CurrentTemp}"/&gt; 
+        &lt;mx:TextArea 
+            text= 
+          "{WeatherService.GetWeather.lastResult.DayForecast}"/&gt; 
+    &lt;/mx:VBox&gt; 
+&lt;/s:Application&gt;</pre>
+
+            <p>This example binds the form’s input <samp class="codeph">zipCode</samp> field
+directly to the <samp class="codeph">ZipCode</samp> field of the web service
+request. To display the results from the web service, you bind the
+results to controls in a VBox container.</p>
+
+            <p>You have a great deal of flexibility when passing data to a web
+service. For example, you might modify this example to bind the
+input form field to a data model, and then bind the data model to
+the web service request. </p>
+
+            <p>You can also add event listeners for the web service to handle
+both a successful call to the web service, by using the <samp class="codeph">result</samp> event,
+and a call that generates an error, by using the <samp class="codeph">fault</samp> event.
+An error condition might cause you to display a message to the user
+with a description of the error. For a successful result, you might
+navigate to another section of your application. </p>
+
+            <p>
+               The
+following example adds a <samp class="codeph">result</samp> event and a <samp class="codeph">fault</samp> event
+to the form. In this example, the form is defined as one child of
+a ViewStack container, and the form results are defined as a second
+child of the ViewStack container: </p>
+
+            <pre class="noswf">&lt;?xml version="1.0"?&gt; 
+&lt;!-- containers\layouts\FormDataSubmitServerEvents.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark"&gt; 
+ 
+    &lt;fx:Script&gt; 
+        &lt;![CDATA[ 
+            import mx.controls.Alert; 
+ 
+            private function processValues():void { 
+                // Check to see if ZIP code is valid. 
+                WeatherService.GetWeather.send(); 
+            } 
+    
+            private function successfulCall():void { 
+                vs1.selectedIndex=1; 
+            } 
+    
+            private function errorCall():void { 
+                Alert.show("Web service failed!", "Alert Box", Alert.OK); 
+            } 
+        ]]&gt; 
+    &lt;/fx:Script&gt; 
+ 
+    &lt;fx:Declarations&gt; 
+        &lt;!-- Define the web service connection. 
+            The specified WSDL URI is not functional. --&gt; 
+        &lt;mx:WebService id="WeatherService" 
+            wsdl="/ws/WeatherService?wsdl"  
+            result="successfulCall();" 
+            fault="errorCall();"&gt;   
+            &lt;mx:operation name="GetWeather"&gt; 
+                &lt;mx:request&gt; 
+                    &lt;ZipCode&gt;{zipCode.text}&lt;/ZipCode&gt; 
+                &lt;/mx:request&gt; 
+            &lt;/mx:operation&gt; 
+        &lt;/mx:WebService&gt; 
+    &lt;/fx:Declarations&gt; 
+ 
+    &lt;mx:ViewStack id="vs1"&gt; 
+        &lt;mx:Form&gt; 
+            &lt;mx:FormItem label="ZIP Code"&gt; 
+                &lt;mx:TextInput id="zipCode" 
+                    width="200" 
+                    text="ZIP code please."/&gt; 
+                &lt;mx:Button width="60" 
+                    label="Submit" 
+                    click="processValues();"/&gt; 
+            &lt;/mx:FormItem&gt; 
+        &lt;/mx:Form&gt; 
+    
+        &lt;mx:VBox&gt; 
+            &lt;mx:TextArea 
+                text= 
+                    "{WeatherService.GetWeather.lastResult.CityShortName}"/&gt; 
+            &lt;mx:TextArea 
+                text= 
+                    "{WeatherService.GetWeather.lastResult.CurrentTemp}"/&gt; 
+            &lt;mx:TextArea 
+                text= 
+                    "{WeatherService.GetWeather.lastResult.DayForecast}"/&gt; 
+        &lt;/mx:VBox&gt; 
+    &lt;/mx:ViewStack&gt; 
+&lt;/s:Application&gt;</pre>
+
+            <p>When a call to the web service succeeds, the <samp class="codeph">successfulCall()</samp> function switches
+the current ViewStack child to the VBox container to show the returned results.
+An error from the web service displays an Alert box, but does not
+change the current child of the ViewStack container; the form remains
+visible, which lets the user fix any input errors.</p>
+
+            <p>You have many options for handling navigation in your application
+based on the results of the submit function. The previous example
+used a ViewStack container to handle navigation. You might also
+choose to use a TabNavigator container or Accordion container for
+this same purpose.</p>
+
+            <p>In some applications, you might choose to embed the form in a
+TitleWindow container. A TitleWindow container is a pop-up window
+that appears above the Adobe Flash Player drawing surface. In this
+scenario, users enter form data and submit the form from the TitleWindow
+container. If a submit succeeds, the TitleWindow container closes
+and displays the results in another area of your application. If
+a submit fails, Flex displays an error message and leaves the TitleWindow
+container visible.</p>
+
+            <p>Another type of application might use a dashboard layout, where
+you have multiple panels open on the dashboard. Submitting the form
+could cause another area of the dashboard to update with results,
+while a failure could display an error message. </p>
+
+            <p>For more information on the TabNavigator, Accordion, and TitleWindow containers,
+see <a href="flx_navigators_na.html#WS2db454920e96a9e51e63e3d11c0bf69084-7fb9_verapache">MX
+navigator containers</a>.</p>
+
+         </div>
+
+      </div>
+
+   </div>
+
+   <div class="nested1" id="WS2db454920e96a9e51e63e3d11c0bf69084-7e52_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7e52_verapache"><!-- --></a>
+      <h2 class="topictitle2">MX Grid layout container</h2>
+
+      
+      <div>
+         <p>
+            
+            You
+use a <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/containers/Grid.html" target="_blank">Grid</a> layout
+container to arrange children as rows and columns of cells, much
+like an HTML table. The following example shows a Grid container
+that consists of nine cells arranged in a three-by-three pattern: </p>
+
+         <div class="figborder">
+            <img src="images/lo_grid_example_w_grid_only.png" alt="Grid container with 9 cells"/>
+         </div>
+
+         <p>
+            
+            You can put zero or one child
+in each cell of a Grid container. If you include multiple children
+in a cell, put a container in the cell, and then add children to
+the container. The height of all cells in a row is the same, but
+each row can have a different height. The width of all cells in
+a column is the same, but each column can have a different width. </p>
+
+         <p>You can define a different number of cells for each row or each
+column of the Grid container. In addition, a cell can span multiple
+columns and/or multiple rows of the container. </p>
+
+         <p>
+            If
+the default or explicit size of the child is larger than the size
+of an explicitly sized cell, the child is clipped at the cell boundaries. </p>
+
+         <p>If the child’s default width or default height is smaller than
+the cell, the default horizontal alignment of the child in the cell
+is <samp class="codeph">left</samp> and the default vertical alignment is <samp class="codeph">top</samp>.
+You can use the <samp class="codeph">horizontalAlign</samp> and <samp class="codeph">verticalAlign</samp> properties
+of the <samp class="codeph">&lt;mx:GridItem&gt;</samp> tag to control positioning
+of the child.</p>
+
+         <p>For complete reference information, see the <em>
+               <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/" target="_blank">ActionScript 3.0 Reference for the Adobe
+Flash Platform</a>
+            </em>. For information on the Tile container,
+which creates a layout where all cells have the same size, see <a href="flx_layouts_lo.html#WS2db454920e96a9e51e63e3d11c0bf69084-7e4f_verapache">MX
+Tile layout container </a>.</p>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf69084-7e2a_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7e2a_verapache"><!-- --></a>
+         <h3 class="topictitle3">Creating a Grid layout container</h3>
+
+         
+         <div>
+            <p>You create a Grid layout container as follows:</p>
+
+            <ul>
+               <li>
+                  <p>
+                     You
+use the <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/containers/Grid.html" target="_blank">&lt;mx:Grid&gt;</a> tag
+to define a Grid container; it can hold any number of <samp class="codeph">&lt;mx:GridRow&gt;</samp> child
+tags. </p>
+
+               </li>
+
+               <li>
+                  <p>
+                     You use
+the <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/containers/GridRow.html" target="_blank">&lt;mx:GridRow&gt;</a> tag
+to define each row. It must be a child of the <samp class="codeph">&lt;mx:Grid&gt;</samp> tag
+and can hold any number of <samp class="codeph">&lt;mx:GridItem&gt;</samp> child
+tags. </p>
+
+               </li>
+
+               <li>
+                  <p>You use the <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/containers/GridItem.html" target="_blank">&lt;mx:GridItem&gt;</a> tag
+to define each row cell; it must be a child of the <samp class="codeph">&lt;mx:GridRow&gt;</samp> tag. </p>
+
+               </li>
+
+            </ul>
+
+            <p>
+               The <samp class="codeph">&lt;mx:GridItem&gt;</samp> tag
+takes the following optional properties that control how the item
+is laid out: </p>
+
+            
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" frame="border" border="1" rules="all">
+                  
+                  
+                  
+                  
+                  <thead align="left">
+                     <tr>
+                        <th class="cellrowborder" valign="top" width="NaN%" id="d274487e2613">
+                           <p>Property</p>
+
+                        </th>
+
+                        <th class="cellrowborder" valign="top" width="NaN%" id="d274487e2619">
+                           <p>Type</p>
+
+                        </th>
+
+                        <th class="cellrowborder" valign="top" width="NaN%" id="d274487e2625">
+                           <p>Use</p>
+
+                        </th>
+
+                        <th class="cellrowborder" valign="top" width="NaN%" id="d274487e2631">
+                           <p>Descriptions</p>
+
+                        </th>
+
+                     </tr>
+
+                  </thead>
+
+                  <tbody>
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d274487e2613 ">
+                           <div class="p">
+                              <pre class="codeblock">rowSpan</pre>
+
+                           </div>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d274487e2619 ">
+                           <p>Number</p>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d274487e2625 ">
+                           <p>Property</p>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d274487e2631 ">
+                           <p>Specifies the number of rows of the Grid
+container spanned by the cell. The default value is 1. You cannot
+extend a cell past the number of rows in the Grid container. </p>
+
+                        </td>
+
+                     </tr>
+
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d274487e2613 ">
+                           <div class="p">
+                              <pre class="codeblock">colSpan</pre>
+
+                           </div>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d274487e2619 ">
+                           <p>Number</p>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d274487e2625 ">
+                           <p>Property</p>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d274487e2631 ">
+                           <p>Specifies the number of columns of the Grid
+container spanned by the cell. The default value is 1. You cannot
+extend a cell past the number of columns in the Grid container. </p>
+
+                        </td>
+
+                     </tr>
+
+                  </tbody>
+
+               </table>
+</div>
+
+            <p>
+               The following
+image shows a Grid container with three rows and three columns:</p>
+
+            <div class="figborder">
+               <img src="images/lo_grid_example_w_grid.png" alt="Grid container with three rows and three columns"/>
+            </div>
+
+            <p>On the left, you see how the Grid container appears in Flash
+Player. On the right, you see the Grid container with borders overlaying
+it to illustrate the configuration of the rows and columns. In this
+example, the buttons in the first (top) row each occupy a single
+cell. The button in the second row spans three columns, and the
+button in the third row spans the second and third columns. </p>
+
+            <p>You do not have to define the same number of cells for every
+row of a Grid container, as the following image shows. The Grid
+container defines five cells in row one; row two has one item that
+spans three cells; and row 3 has one empty cell, followed by an
+item that spans two cells.</p>
+
+            <div class="figborder">
+               <img src="images/lo_grid_example_wide_w_grid.png" alt="The Grid container defines five cells in row one; row two has one item that spans three cells; and row 3 has one empty cell, followed by an item that spans two cells"/>
+            </div>
+
+            <p>The following MXML code creates the Grid container with three
+rows and three columns shown in the first image in this section: </p>
+
+            <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- containers\layouts\GridSimple.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark"&gt; 
+ 
+    &lt;mx:Grid id="myGrid"&gt; 
+ 
+        &lt;!-- Define Row 1. --&gt; 
+        &lt;mx:GridRow id="row1"&gt; 
+            &lt;!-- Define the first cell of Row 1. --&gt; 
+            &lt;mx:GridItem&gt; 
+                &lt;mx:Button label="Button 1"/&gt; 
+            &lt;/mx:GridItem&gt; 
+            &lt;!-- Define the second cell of Row 1. --&gt; 
+            &lt;mx:GridItem&gt; 
+                &lt;mx:Button label="2"/&gt; 
+            &lt;/mx:GridItem&gt; 
+            &lt;!-- Define the third cell of Row 1. --&gt; 
+            &lt;mx:GridItem&gt; 
+                &lt;mx:Button label="Button 3"/&gt; 
+            &lt;/mx:GridItem&gt; 
+        &lt;/mx:GridRow&gt; 
+ 
+        &lt;!-- Define Row 2. --&gt; 
+        &lt;mx:GridRow id="row2"&gt; 
+            &lt;!-- Define a single cell to span three columns of Row 2. --&gt; 
+            &lt;mx:GridItem colSpan="3" horizontalAlign="center"&gt; 
+                &lt;mx:Button label="Long-Named Button 4"/&gt; 
+            &lt;/mx:GridItem&gt; 
+        &lt;/mx:GridRow&gt; 
+ 
+        &lt;!-- Define Row 3. --&gt; 
+        &lt;mx:GridRow id="row3"&gt; 
+            &lt;!-- Define an empty first cell of Row 3. --&gt; 
+            &lt;mx:GridItem/&gt; 
+            &lt;!-- Define a cell to span columns 2 and 3 of Row 3. --&gt; 
+            &lt;mx:GridItem colSpan="2" horizontalAlign="center"&gt; 
+                &lt;mx:Button label="Button 5"/&gt; 
+            &lt;/mx:GridItem&gt; 
+        &lt;/mx:GridRow&gt; 
+ 
+    &lt;/mx:Grid&gt; 
+&lt;/s:Application&gt;</pre>
+
+            <p>To modify the preceding example to include five buttons across
+the top row, you modify the first <samp class="codeph">&lt;mx:GridRow&gt;</samp> tag
+as follows: </p>
+
+            <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- containers\layouts\Grid5Button.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark"&gt; 
+ 
+    &lt;mx:Grid id="myGrid"&gt; 
+        &lt;!-- Define Row 1. --&gt; 
+        &lt;mx:GridRow id="row1"&gt; 
+            &lt;!-- Define the first cell of Row 1. --&gt; 
+            &lt;mx:GridItem&gt; 
+                &lt;mx:Button label="Button 1"/&gt; 
+            &lt;/mx:GridItem&gt; 
+            &lt;mx:GridItem&gt; 
+                &lt;mx:Button label="2"/&gt; 
+            &lt;/mx:GridItem&gt; 
+            &lt;mx:GridItem&gt; 
+                &lt;mx:Button label="Button 3"/&gt; 
+            &lt;/mx:GridItem&gt; 
+            &lt;mx:GridItem&gt; 
+                &lt;mx:Button label="Button 3a"/&gt; 
+            &lt;/mx:GridItem&gt; 
+            &lt;mx:GridItem&gt; 
+                &lt;mx:Button label="Button 3b"/&gt; 
+            &lt;/mx:GridItem&gt; 
+        &lt;/mx:GridRow&gt; 
+ 
+        &lt;!-- Define Row 2. --&gt; 
+        &lt;mx:GridRow id="row2"&gt; 
+            &lt;!-- Define a single cell to span three columns of Row 2. --&gt; 
+            &lt;mx:GridItem colSpan="3" horizontalAlign="center"&gt; 
+                &lt;mx:Button label="Long-Named Button 4"/&gt; 
+            &lt;/mx:GridItem&gt; 
+        &lt;/mx:GridRow&gt; 
+ 
+        &lt;!-- Define Row 3. --&gt; 
+        &lt;mx:GridRow id="row3"&gt; 
+            &lt;!-- Define an empty first cell of Row 3. --&gt; 
+            &lt;mx:GridItem/&gt; 
+            &lt;!-- Define a cell to span columns 2 and 3 of Row 3. --&gt; 
+            &lt;mx:GridItem colSpan="2" horizontalAlign="center"&gt; 
+                &lt;mx:Button label="Button 5"/&gt; 
+            &lt;/mx:GridItem&gt; 
+        &lt;/mx:GridRow&gt; 
+    &lt;/mx:Grid&gt; 
+&lt;/s:Application&gt;</pre>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf62f1b-7ffb_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf62f1b-7ffb_verapache"><!-- --></a>
+         <h3 class="topictitle3">Setting the row and column span </h3>
+
+         
+         <div>
+            <p>The <samp class="codeph">colSpan</samp> and <samp class="codeph">rowSpan</samp> properties
+of the <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/containers/GridItem.html" target="_blank">GridItem</a> container
+let you create grid items that occupy multiple grid rows and columns.
+Making an item span multiple rows or columns does not necessarily
+make its child control or container larger; you must size the child
+so it fits the space appropriately, as the following example shows.</p>
+
+            <p>
+               The
+following image shows a modification to the example in <a href="flx_layouts_lo.html#WS2db454920e96a9e51e63e3d11c0bf69084-7e2a_verapache">Creating a Grid layout container</a>,
+where Button 3a now spans two rows, Button 3b spans three rows,
+and Button 5 spans three columns:</p>
+
+            <div class="figborder">
+               <img src="images/lo_rowspan.png" alt="The Grid container where Button 3a spans two rows, Button 3b spans three rows, and Button 5 spans three column"/>
+            </div>
+
+            <p>The following code shows the changes that were made to produce
+these results: </p>
+
+            <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- containers\layouts\GridRowSpan.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark"&gt; 
+ 
+    &lt;mx:Grid id="myGrid"&gt; 
+        &lt;!-- Define Row 1. --&gt; 
+        &lt;mx:GridRow id="row1" height="33%"&gt; 
+            &lt;!-- Define the first cell of Row 1. --&gt; 
+            &lt;mx:GridItem&gt; 
+                &lt;mx:Button label="Button 1"/&gt; 
+            &lt;/mx:GridItem&gt; 
+            &lt;mx:GridItem&gt; 
+                &lt;mx:Button label="2"/&gt; 
+            &lt;/mx:GridItem&gt; 
+            &lt;mx:GridItem&gt; 
+                &lt;mx:Button label="Button 3"/&gt; 
+            &lt;/mx:GridItem&gt; 
+            &lt;mx:GridItem rowSpan="2"&gt; 
+                &lt;mx:Button label="Button 3a" height="100%"/&gt; 
+            &lt;/mx:GridItem&gt; 
+            &lt;mx:GridItem rowSpan="3"&gt; 
+                &lt;mx:Button label="Button 3b" height="100%"/&gt; 
+            &lt;/mx:GridItem&gt; 
+        &lt;/mx:GridRow&gt; 
+        
+        &lt;!-- Define Row 2. --&gt; 
+        &lt;mx:GridRow id="row2" height="33%"&gt; 
+            &lt;!-- Define a single cell to span three columns of Row 2. --&gt; 
+            &lt;mx:GridItem colSpan="3" horizontalAlign="center"&gt; 
+                &lt;mx:Button label="Long-Named Button 4"/&gt; 
+            &lt;/mx:GridItem&gt; 
+        &lt;/mx:GridRow&gt; 
+ 
+        &lt;!-- Define Row 3. --&gt; 
+        &lt;mx:GridRow id="row3" height="33%"&gt; 
+            &lt;!-- Define an empty first cell of Row 3. --&gt; 
+            &lt;mx:GridItem/&gt; 
+            &lt;!-- Define a cell to span columns 2 and 3 and 4 of Row 3. --&gt; 
+            &lt;mx:GridItem colSpan="3"&gt; 
+                &lt;mx:Button 
+                    label="Button 5 expands across 3 columns" 
+                    width="75%"/&gt; 
+            &lt;/mx:GridItem&gt; 
+        &lt;/mx:GridRow&gt; 
+    &lt;/mx:Grid&gt; 
+&lt;/s:Application&gt;</pre>
+
+            <p>This example makes several changes with the following effects:</p>
+
+            <ul>
+               <li>
+                  <p>It sets the height of each row to 33% of the grid, ensuring
+that the rows have equal heights. </p>
+
+               </li>
+
+               <li>
+                  <p>It sets the <samp class="codeph">rowSpan</samp> properties of the items
+with Buttons 3a and 3b to make them span two and three rows, respectively.</p>
+
+               </li>
+
+               <li>
+                  <p>It sets the <samp class="codeph">height</samp> properties of Buttons
+3a and 3b to 100% to make these buttons fill all rows that they
+span. If you omit this property on these buttons, Flex sets the
+buttons to their default height, so they do not appear to span the rows. </p>
+
+               </li>
+
+               <li>
+                  <p>It sets Button 5 to span three rows and sets a percentage-based
+width of 75%. In this example, the text requires the button to fill
+the available width of the three columns, so Flex sizes the button
+to the default size that fits the text, not the requested 75%. If
+you omit the <samp class="codeph">width</samp> property, the result is identical.
+To see the effect of the percentage width specification, keep the
+specification and shorten the label text; the button then spans
+three-quarters of the three columns, centered on the middle column. </p>
+
+                  <p>The
+resulting grid has the several additional characteristics. Although
+the second row definition specifies only a single <samp class="codeph">&lt;mx:GridItem&gt;</samp> tag
+that defines a cell spanning three columns, Flex automatically creates
+two additional cells to allow Buttons 3a and 3b to expand into the
+row. The third row also has five cells. The first cell is defined
+by the empty <samp class="codeph">&lt;mx:gridItem/&gt;</samp> tag. The second
+through fourth cells are defined by the <samp class="codeph">GridItem</samp> that
+contains Button 5, which spans three columns. The fifth column is
+created because the last item in the first row spans all three rows. </p>
+
+               </li>
+
+            </ul>
+
+         </div>
+
+      </div>
+
+   </div>
+
+   <div class="nested1" id="WS2db454920e96a9e51e63e3d11c0bf69084-7e51_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7e51_verapache"><!-- --></a>
+      <h2 class="topictitle2">MX Panel layout container </h2>
+
+      
+      <div>
+         <p>
+            A <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/containers/Panel.html" target="_blank">Panel</a> layout
+container includes a title bar, a title, a status message area (in
+the title bar), a border, and a content area for its children. Typically,
+you use Panel containers to wrap self-contained application modules.
+For example, you could define several Panel containers in your application
+where one Panel container holds a form, a second holds a shopping
+cart, and a third holds a catalog. </p>
+
+         <div class="note"><span class="notetitle">Note:</span> When possible, it’s best to use the Spark Panel container
+instead of the MX Panel container. For more information, see <a href="flx_groups_containers_gc.html#WS842193BB-33E4-4bdc-9FD8-D76515B11FAE_verapache">The
+Spark Panel container</a>.</div>
+
+         <p>The Panel container has a <samp class="codeph">layout</samp> property that
+lets you specify one of three types of layout: <samp class="codeph">horizontal</samp>, <samp class="codeph">vertical</samp> (default),
+or <samp class="codeph">absolute</samp> layout. Horizontal and vertical layout
+use the Flex automatic layout rules to lay out children horizontally
+or vertically. Absolute layout requires you to specify each child’s <em>x</em> and <em>y</em> position
+relative to the panel contents area, or to use constraint-based
+layout styles to anchor one or more sides or the container horizontal
+or vertical center relative to the panel content area. For examples
+of using absolute and constraint-based layout in a container, see <a href="flx_layouts_lo.html#WS2db454920e96a9e51e63e3d11c0bf69084-7e1b_verapache">Creating
+and using a Canvas control</a>. For detailed information on using
+these layout techniques, see <a href="flx_size_position_sp.html#WS2db454920e96a9e51e63e3d11c0bf69084-7e4c_verapache">Laying out
+components</a>.</p>
+
+         <p>The following example shows a Panel container with a Form container
+as its child:</p>
+
+         <div class="figborder">
+            <img src="images/lo_panel_ex.png" alt="Panel container"/>
+         </div>
+
+         <p>For complete reference information, see the <em>
+               <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/" target="_blank">ActionScript 3.0 Reference for the Adobe
+Flash Platform</a>
+            </em>.</p>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf62f1b-7ff0_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf62f1b-7ff0_verapache"><!-- --></a>
+         <h3 class="topictitle3">Creating a Panel layout container</h3>
+
+         
+         <div>
+            <p>
+               You
+define a <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/containers/Panel.html" target="_blank">Panel</a> container
+in MXML by using the <samp class="codeph">&lt;mx:Panel&gt;</samp> tag. Specify
+an <samp class="codeph">id</samp> value if you intend to refer to a component
+elsewhere in your MXML, either in another tag or in an ActionScript
+block. </p>
+
+            <p>The following example defines a Panel container that contains
+a form as the top-level container in your application. In this example,
+the Panel container provides you with a mechanism for including
+a title bar, as in a standard GUI window. </p>
+
+            <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- containers\layouts\PanelSimple.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark"&gt; 
+ 
+    &lt;mx:Panel id="myPanel" title="My Application"&gt; 
+        &lt;mx:Form width="300"&gt; 
+            &lt;mx:FormHeading label="Billing Information"/&gt; 
+            &lt;!-- Form contents goes here --&gt; 
+        &lt;/mx:Form&gt; 
+    &lt;/mx:Panel&gt; 
+&lt;/s:Application&gt;</pre>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf62f1b-7fcf_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf62f1b-7fcf_verapache"><!-- --></a>
+         <h3 class="topictitle3">Adding a ControlBar container to
+a Panel container</h3>
+
+         
+         <div>
+            <p>
+               You
+can use the ControlBar container with a Panel container to hold
+components that can be shared by the other children in the Panel
+container. The <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/controls/RichTextEditor.html" target="_blank">RichTextEditor</a> control,
+for example, consists of a Panel control with a TextArea control
+and a custom <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/containers/ControlBar.html" target="_blank">ControlBar </a>for
+the text formatting controls. For a product catalog, the ControlBar
+container can hold the Flex controls to specify quantity and to
+add an item to a shopping cart, as the following example shows:</p>
+
+            <div class="figborder">
+               <img src="images/lo_controlbar_ex.png" alt="Panel container with a ControlBar container"/>
+               <dl>
+                  
+                     <dt class="dlterm">
+                        <strong>A.</strong>
+                     </dt>
+
+                     <dd>Panel container</dd>
+
+                  
+                  
+                     <dt class="dlterm">
+                        <strong>B.</strong>
+                     </dt>
+
+                     <dd>ControlBar container</dd>
+
+                  
+               </dl>
+
+            </div>
+
+            <p>You specify the <samp class="codeph">&lt;mx:ControlBar&gt;</samp> tag as
+the last child tag of an <samp class="codeph">&lt;mx:Panel&gt;</samp> tag,
+as the following example shows: </p>
+
+            <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- containers\layouts\PanelCBar.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark"&gt; 
+ 
+    &lt;mx:Panel title="My Application" 
+        paddingTop="10" paddingBottom="10" 
+        paddingLeft="10" paddingRight="10" 
+        width="300"&gt; 
+    
+        &lt;fx:Script&gt; 
+            &lt;![CDATA[ 
+                private function addToCart():void { 
+                    // Handle event. 
+                } 
+            ]]&gt; 
+        &lt;/fx:Script&gt; 
+    
+        &lt;mx:HBox width="100%"&gt; 
+            &lt;!-- Area for your catalog. --&gt; 
+        &lt;/mx:HBox&gt; 
+        
+        &lt;mx:ControlBar width="100%"&gt; 
+            &lt;mx:Label text="Quantity"/&gt; 
+            &lt;mx:NumericStepper id="myNS"/&gt; 
+            &lt;!-- Use Spacer to push Button control to the right. --&gt; 
+            &lt;mx:Spacer width="100%"/&gt; 
+            &lt;mx:Button label="Add to Cart" click="addToCart();"/&gt; 
+        &lt;/mx:ControlBar&gt; 
+    &lt;/mx:Panel&gt; 
+&lt;/s:Application&gt;</pre>
+
+            <p>For more information on the ControlBar container, see <a href="flx_layouts_lo.html#WS2db454920e96a9e51e63e3d11c0bf69084-7e55_verapache">MX
+ControlBar layout container</a>.</p>
+
+            <p>You can also add the ControlBar container dynamically to a Panel
+container, as the following example shows:</p>
+
+            <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- containers\layouts\PanelCBarDynamicAdd.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark"&gt; 
+    
+    &lt;fx:Script&gt; 
+        &lt;![CDATA[        
+            import mx.containers.ControlBar; 
+            import mx.controls.*; 
+            import flash.events.MouseEvent; 
+            
+            private var myCB:ControlBar=new ControlBar(); 
+            private var myLabel:Label=new Label(); 
+            private var myNS:NumericStepper=new NumericStepper(); 
+            private var mySpacer:Spacer=new Spacer(); 
+            private var myButton:Button=new Button(); 
+        
+            private var canAddChild:Boolean = true; 
+        
+            private function addCBHandler():void { 
+                if (canAddChild) { 
+                    /* Create Controlbar control. */ 
+                    myLabel.text="Quantity"; 
+                    mySpacer.percentWidth=100; 
+                    myButton.label="Add to Cart"; 
+                    myButton.addEventListener('click', addToCart);                
+                    
+                    myCB.percentWidth=100; 
+                    myCB.addChild(myLabel); 
+                    myCB.addChild(myNS); 
+                    myCB.addChild(mySpacer); 
+                    myCB.addChild(myButton); 
+                    
+                    /* Add the ControlBar as the last child of the 
+                       Panel container. 
+                       The ControlBar appears in the normal content area 
+                       of the Panel container. */ 
+                    myPanel.addChildAt(myCB, myPanel.numChildren);              
+                    
+                    /* Call createComponentsFromDescriptors() to make the 
+                       ControlBar appear in the bottom border area 
+                       of the Panel container. The ControlBar must be the 
+                       last child in the Panel container. */ 
+                    myPanel.createComponentsFromDescriptors(); 
+    
+                    /* Prevents more than one ControlBar control from being added. */ 
+                    canAddChild = false;                
+                } 
+            } 
+ 
+            private function addToCart(event:MouseEvent):void { 
+                Alert.show("ControlBar Button clicked."); 
+            } 
+        ]]&gt; 
+    &lt;/fx:Script&gt; 
+ 
+    &lt;mx:Panel id="myPanel" 
+        title="My Application" 
+        paddingTop="10" paddingBottom="10" 
+        paddingLeft="10" paddingRight="10" 
+        width="300"&gt; 
+    
+        &lt;mx:HBox width="100%"&gt; 
+            &lt;!-- Area for your catalog. --&gt; 
+        &lt;/mx:HBox&gt; 
+ 
+        &lt;mx:Button label="Add ControlBar" 
+            click="addCBHandler();"/&gt; 
+    &lt;/mx:Panel&gt; 
+&lt;/s:Application&gt;</pre>
+
+         </div>
+
+      </div>
+
+   </div>
+
+   <div class="nested1" id="WS2db454920e96a9e51e63e3d11c0bf69084-7e4f_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7e4f_verapache"><!-- --></a>
+      <h2 class="topictitle2">MX Tile layout container </h2>
+
+      
+      <div>
+         <p>
+            
+            A <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/containers/Tile.html" target="_blank">Tile</a> layout
+container lays out its children in one or more vertical columns
+or horizontal rows, starting new rows or columns as necessary. The <samp class="codeph">direction</samp> property
+determines the layout. The valid values for the <samp class="codeph">direction</samp> property are <samp class="codeph">vertical</samp> for
+a column layout and <samp class="codeph">horizontal</samp> (default) for a
+row layout. </p>
+
+         <div class="note"><span class="notetitle">Note:</span> When possible, it’s best to use a Spark container with TileLayout
+instead of the MX Tile container. For more information, see <a href="flx_groups_containers_gc.html#WS0141D24B-6AEB-4721-BA04-9BF15F86350F_verapache">About
+Spark layouts</a>.</div>
+
+         <p>All Tile container cells have the same size, unlike the cells
+of a Grid layout container (see <a href="flx_layouts_lo.html#WS2db454920e96a9e51e63e3d11c0bf69084-7e52_verapache">MX
+Grid layout container</a>). Flex arranges the cells of a Tile container
+in a square grid, where each cell holds a single child component.
+For example, if you define 16 children in a Tile layout container,
+Flex lays it out four cells wide and four cells high. If you define
+13 children, Flex still lays it out four cells wide and four cells
+high, but leaves the last three cells in the fourth row empty. </p>
+
+         <p>
+            The
+following image shows examples of horizontal and vertical Tile containers:</p>
+
+         <div class="figborder">
+            <img src="images/lo_flow_example.png" alt="Horizontal and vertical Tile containers"/>
+            <dl>
+               
+                  <dt class="dlterm">
+                     <strong>A.</strong>
+                  </dt>
+
+                  <dd>Horizontal (default)</dd>
+
+               
+               
+                  <dt class="dlterm">
+                     <strong>B.</strong>
+                  </dt>
+
+                  <dd>Vertical</dd>
+
+               
+            </dl>
+
+         </div>
+
+         <p>For complete reference information, see <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/containers/Tile.html" target="_blank">Tile</a> in the <em>
+               <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/" target="_blank">ActionScript 3.0 Reference for the Adobe
+Flash Platform</a>
+            </em>.</p>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf69084-7e33_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7e33_verapache"><!-- --></a>
+         <h3 class="topictitle3">Creating a Tile layout container</h3>
+
+         
+         <div>
+            <p>You define a <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/containers/Tile.html" target="_blank">Tile</a> container
+in MXML by using the <samp class="codeph">&lt;mx:Tile&gt;</samp> tag. Specify
+an <samp class="codeph">id</samp> value if you intend to refer to a component
+elsewhere in your MXML, either in another tag or in an ActionScript
+block. You can use the <samp class="codeph">tileHeight</samp> and <samp class="codeph">tileWidth</samp> properties
+to specify explicit tile dimensions. </p>
+
+            <p>
+               The following
+example creates the horizontal Tile container shown in the image in <a href="flx_layouts_lo.html#WS2db454920e96a9e51e63e3d11c0bf69084-7e4f_verapache">MX
+Tile layout container </a>. All cells have the height and width
+of the largest child, 50 pixels high and 100 pixels wide.</p>
+
+            <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- containers\layouts\TileSimple.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark"&gt; 
+ 
+    &lt;mx:Tile id="myFlow" 
+        direction="horizontal" 
+        borderStyle="solid" 
+        paddingTop="10" paddingBottom="10" 
+        paddingRight="10" paddingLeft="10" 
+        verticalGap="15" horizontalGap="10"&gt; 
+        
+        &lt;mx:TextInput id="text1" text="1" height="50" width="75"/&gt; 
+        &lt;mx:TextInput id="text2" text="2" height="50" width="100"/&gt; 
+        &lt;mx:TextInput id="text3" text="3" height="50" width="75"/&gt; 
+        &lt;mx:TextInput id="text4" text="4" height="50" width="75"/&gt; 
+        &lt;mx:TextInput id="text5" text="5" height="50" width="75"/&gt; 
+    &lt;/mx:Tile&gt; 
+&lt;/s:Application&gt;</pre>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf62f1b-7fcb_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf62f1b-7fcb_verapache"><!-- --></a>
+         <h3 class="topictitle3">Sizing and positioning a child
+in a Tile container</h3>
+
+         
+         <div>
+            <p>
+               Flex
+sets the default size of each <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/containers/Tile.html" target="_blank">Tile</a> cell
+to the height of the tallest child and the width of the widest child.
+All cells have the same default size. If the default size of a child
+is larger than the cell because, for example, you used the <samp class="codeph">tileHeight</samp> and <samp class="codeph">tileWidth</samp> properties
+to explicitly size the cells, Flex automatically sizes the child
+to fit inside the cell boundaries. This, in turn, may clip the content
+inside the control; for instance, the label of a button might be
+clipped even though the button itself fits into the cell. If you
+specify an explicit child dimension that is greater than the <samp class="codeph">tileHeight</samp> or <samp class="codeph">tileWidth</samp> property,
+Flex clips the child.</p>
+
+            <p>If the child’s default width or default height is smaller than
+the cell, the default horizontal alignment of the child in the cell
+is <samp class="codeph">left</samp> and the default vertical alignment is <samp class="codeph">top</samp>.
+You can use the <samp class="codeph">horizontalAlign</samp> and <samp class="codeph">verticalAlign</samp> properties
+of the <samp class="codeph">&lt;mx:Tile&gt;</samp> tag to control the positioning
+of the child.</p>
+
+            <p>If the child uses percentage-based sizing, the child is enlarged
+or shrunk to the specified percentage of the cell. In the example
+in <a href="flx_layouts_lo.html#WS2db454920e96a9e51e63e3d11c0bf69084-7e33_verapache">Creating
+a Tile layout container</a>, the TextInput control named <samp class="codeph">text2</samp> has
+a width of 100 pixels; therefore, the default width of all Tile
+cells is 100 pixels, so most children are smaller than the cell
+size. If you want all child controls to increase in size to the
+full width of the cells, set the <samp class="codeph">width</samp> property
+of each child to 100%, as the following example shows. The example
+also shows how to use the Tile control’s <samp class="codeph">tileWidth</samp> property
+to specify the width of the tiles:</p>
+
+            <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- containers\layouts\TileSizing.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark"&gt; 
+ 
+    &lt;mx:Tile id="myFlow" 
+        direction="horizontal" 
+        borderStyle="solid" 
+        paddingTop="10" paddingBottom="10" 
+        paddingRight="10" paddingLeft="10" 
+        verticalGap="15" horizontalGap="10" 
+        tileWidth="100"&gt; 
+        
+        &lt;mx:TextInput id="fname" text="1" height="50" width="100%"/&gt; 
+        &lt;mx:TextInput id="lname" text="2" height="50" width="100%"/&gt; 
+        &lt;mx:TextInput id="addr1" text="3" height="50" width="100%"/&gt; 
+        &lt;mx:TextInput id="addr2" text="4" height="50" width="100%"/&gt; 
+        &lt;mx:TextInput id="addr3" text="5" height="50" width="100%"/&gt; 
+    &lt;/mx:Tile&gt; 
+&lt;/s:Application&gt;</pre>
+
+            <div class="note"><span class="notetitle">Note:</span> When you set the child’s <samp class="codeph">width</samp> and <samp class="codeph">height</samp> properties
+to percentages, the percentage is based on the size of the tile
+cell, not on the size of the Tile container itself. Even though
+it isn’t an explicitly defined container, the cell acts as the parent
+of the components in the Tile container.</div>
+
+         </div>
+
+      </div>
+
+   </div>
+
+   <div class="nested1" id="WS2db454920e96a9e51e63e3d11c0bf69084-7e4e_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7e4e_verapache"><!-- --></a>
+      <h2 class="topictitle2">MX TitleWindow layout container</h2>
+
+      
+      <div>
+         <p>A <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/containers/TitleWindow.html" target="_blank">TitleWindow</a> layout
+container is a Panel container that is optimized for use as a pop-up
+window. The container consists of a title bar, a caption and status
+area in the title bar, a border, and a content area for its children.
+Unlike the Panel container, it can display a Close button, and is
+designed to work as a pop-up window that users can drag around the
+screen the application window.</p>
+
+         <div class="note"><span class="notetitle">Note:</span> When possible, it’s best to use the Spark TitleWindow container
+instead of the MX TitleWindow container. For more information, see <a href="flx_groups_containers_gc.html#WS6c678f7b363d5da52e8f1ca1124a0430dcf-8000_verapache">The
+Spark TitleWindow container</a>.</div>
+
+         <p>A pop-up TitleWindow container can be <em>modal</em>, which means
+that it takes all keyboard and mouse input until it is closed, or <em>nonmodal</em>,
+which means other windows can accept input while the pop-up window
+is still open. </p>
+
+         <p>
+            
+            One
+typical use for a TitleWindow container is to hold a form. When
+the user completes the form, you can close the TitleWindow container
+programmatically, or let the user request the application to close
+it by using the close icon (a box with an <em>x</em> inside it) in
+the upper-right corner of the window. </p>
+
+         <p>
+            Because
+you pop up a Title window, you do not create it directly in MXML,
+as you do most controls; instead you use the <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/managers/PopUpManager.html" target="_blank">PopUpManager</a>.</p>
+
+         <p>The following example shows a TitleWindow container with a Form
+container as its child:</p>
+
+         <div class="figborder">
+            <img src="images/lo_window_example.png" alt="TitleWindow container"/>
+         </div>
+
+         <p>For complete reference information, see <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/containers/TitleWindow.html" target="_blank">TitleWindow</a> in
+the <em>
+               <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/" target="_blank">ActionScript 3.0 Reference for the Adobe
+Flash Platform</a>
+            </em>.</p>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf62f1b-8000_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf62f1b-8000_verapache"><!-- --></a>
+         <h3 class="topictitle3">Using the PopUpManager to create
+a TitleWindow container</h3>
+
+         
+         <div>
+            <p>To create and remove a pop-up TitleWindow container, you
+use methods of the PopUpManager. The PopUpManager is in the mx.managers
+package.</p>
+
+         </div>
+
+         <div class="nested3" id="WS19f279b149e7481c-2ca33c112c12feef45-8000_verapache"><a name="WS19f279b149e7481c-2ca33c112c12feef45-8000_verapache"><!-- --></a>
+            <h4 class="topictitle4">Creating a pop-up window</h4>
+
+            
+            <div>
+               <p>
+                  
+                  
+                  To create a pop-up window, use the <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/managers/PopUpManager.html" target="_blank">PopUpManager</a> 
+                  <samp class="codeph">createPopUp()</samp> method. The <samp class="codeph">createPopUp()</samp> method
+has the following signature:</p>
+
+               <pre class="codeblock"> public static createPopUp(<em>parent</em>:DisplayObject, <em>class</em>:Class, 
+ 	<em>modal</em>:Boolean = false):IFlexDisplayObject</pre>
+
+               <p>The method has the following arguments.</p>
+
+               
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" frame="border" border="1" rules="all">
+                     
+                     
+                     <thead align="left">
+                        <tr>
+                           <th class="cellrowborder" valign="top" width="NaN%" id="d274487e3445">
+                              <p>Argument</p>
+
+                           </th>
+
+                           <th class="cellrowborder" valign="top" width="NaN%" id="d274487e3451">
+                              <p>Description</p>
+
+                           </th>
+
+                        </tr>
+
+                     </thead>
+
+                     <tbody>
+                        <tr>
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d274487e3445 ">
+                              <p>
+                                 <samp class="codeph">
+                                    <em>parent</em>
+                                 </samp>
+                              </p>
+
+                           </td>
+
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d274487e3451 ">
+                              <p>A reference to a window to pop-up over.</p>
+
+                           </td>
+
+                        </tr>
+
+                        <tr>
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d274487e3445 ">
+                              <p>
+                                 <samp class="codeph">
+                                    <em>class</em>
+                                 </samp>
+                              </p>
+
+                           </td>
+
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d274487e3451 ">
+                              <p>A reference to the class of object you want
+to create, typically a custom MXML component that implements a TitleWindow
+container. </p>
+
+                           </td>
+
+                        </tr>
+
+                        <tr>
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d274487e3445 ">
+                              <p>
+                                 <samp class="codeph">
+                                    <em>modal</em>
+                                 </samp>
+                              </p>
+
+                           </td>
+
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d274487e3451 ">
+                              <p>(Optional) A Boolean value that indicates
+whether the window is modal, and takes all mouse input until it
+is closed (<samp class="codeph">true</samp>), or whether interaction is allowed
+with other controls while the window is displayed (<samp class="codeph">false</samp>).
+The default value is <samp class="codeph">false</samp>. </p>
+
+                           </td>
+
+                        </tr>
+
+                     </tbody>
+
+                  </table>
+</div>
+
+               <div class="note"><span class="notetitle">Note:</span> Flex continues executing code in the parent
+even after you create a modal pop-up window. </div>
+
+               <p>You can also create a pop-up window by passing an instance of
+a TitleWindow class or custom component to the PopUpManager <samp class="codeph">addPopUp()</samp> method.
+For more information, see <a href="flx_layouts_lo.html#WS2db454920e96a9e51e63e3d11c0bf69084-7e2e_verapache">Using
+the addPopUp() method</a>.</p>
+
+            </div>
+
+         </div>
+
+         <div class="nested3" id="WS19f279b149e7481c-2ca33c112c12feef45-7fff_verapache"><a name="WS19f279b149e7481c-2ca33c112c12feef45-7fff_verapache"><!-- --></a>
+            <h4 class="topictitle4">Defining a custom TitleWindow component</h4>
+
+            
+            <div>
+               <p>One of the most common ways of creating a TitleWindow container
+is to define it as a custom MXML component. </p>
+
+               <ul>
+                  <li>
+                     <p>You define the TitleWindow container, its event handlers,
+and all of its children in the custom component.</p>
+
+                  </li>
+
+                  <li>
+                     <p>You use the PopUpManager <samp class="codeph">createPopUp()</samp> and <samp class="codeph">removePopUp()</samp> methods
+to create and remove the TitleWindow container. </p>
+
+                  </li>
+
+               </ul>
+
+               <p>The following example code defines a custom MyLoginForm TitleWindow component
+that is used as a pop-up window:</p>
+
+               <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- containers\layouts\myComponents\MyLoginForm.mxml --&gt; 
+&lt;mx:TitleWindow xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark"&gt; 
+    
+    &lt;fx:Script&gt; 
+        &lt;![CDATA[ 
+            import mx.managers.PopUpManager; 
+            
+            private function processLogin():void { 
+                // Check credentials (not shown) then remove pop up. 
+                PopUpManager.removePopUp(this); 
+            } 
+        ]]&gt; 
+    &lt;/fx:Script&gt; 
+ 
+    &lt;mx:Form&gt; 
+        &lt;mx:FormItem label="User Name"&gt; 
+            &lt;mx:TextInput id="username" width="100%"/&gt; 
+        &lt;/mx:FormItem&gt; 
+        &lt;mx:FormItem label="Password"&gt; 
+            &lt;mx:TextInput id="password" 
+                displayAsPassword="true" 
+                width="100%"/&gt; 
+        &lt;/mx:FormItem&gt; 
+    &lt;/mx:Form&gt; 
+    &lt;mx:HBox&gt; 
+        &lt;mx:Button click="processLogin();" label="OK"/&gt; 
+        &lt;mx:Button 
+            label="Cancel" 
+            click="PopUpManager.removePopUp(this);"/&gt; 
+    &lt;/mx:HBox&gt; 
+&lt;/mx:TitleWindow&gt;</pre>
+
+               <p>This file, named MyLoginForm.mxml, defines a TitleWindow container
+by using the <samp class="codeph">&lt;mx:TitleWindow&gt;</samp> tag. The TitleWindow
+container defines two TextInput controls, for user name and password,
+and two Button controls, for submitting the form and for closing
+the TitleWindow container. This example does not include the code
+for verifying the user name and password in the <samp class="codeph">submitForm()</samp> event
+listener.</p>
+
+               <p>In this example, you process the form data in an event listener
+of the MyLoginForm.mxml component. To make this component more reusable,
+you can define the event listeners in your main application. This
+lets you create a generic form that leaves the data handling to
+the application that uses the form. For an example that defines
+the event listeners in the main application, see <a href="flx_layouts_lo.html#WS19f279b149e7481c-2ca33c112c12feef45-7ffb_verapache">Using TitleWindow
+and PopUpManager events</a>. </p>
+
+            </div>
+
+         </div>
+
+         <div class="nested3" id="WS19f279b149e7481c-2ca33c112c12feef45-7ffe_verapache"><a name="WS19f279b149e7481c-2ca33c112c12feef45-7ffe_verapache"><!-- --></a>
+            <h4 class="topictitle4">Using the PopUpManager to create
+the pop-up TitleWindow</h4>
+
+            
+            <div>
+               <p>To create a pop-up window, you call the PopUpManager <samp class="codeph">createPopUp()</samp> method
+and pass it the parent, the name of the class that creates the pop-up,
+and the modal Boolean value. The following main application code
+creates the TitleWindow container defined in <a href="flx_layouts_lo.html#WS19f279b149e7481c-2ca33c112c12feef45-7fff_verapache">Defining a custom TitleWindow component</a>:</p>
+
+               <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- containers\layouts\MainMyLoginForm.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark"&gt; 
+ 
+    &lt;fx:Script&gt; 
+        &lt;![CDATA[ 
+            import mx.managers.PopUpManager; 
+            import mx.core.IFlexDisplayObject; 
+            import myComponents.MyLoginForm; 
+ 
+            private function showLogin():void { 
+                // Create a non-modal TitleWindow container. 
+                var helpWindow:IFlexDisplayObject = 
+                    PopUpManager.createPopUp(this, MyLoginForm, false); 
+            } 
+        ]]&gt; 
+    &lt;/fx:Script&gt; 
+    
+    &lt;mx:VBox width="300" height="300"&gt;  
+        &lt;mx:Button click="showLogin();" label="Login"/&gt; 
+    &lt;/mx:VBox&gt; 
+&lt;/s:Application&gt;</pre>
+
+               <p>
+                  In
+this example, when the user selects the Login button, the event
+listener for the <samp class="codeph">click</samp> event uses the <samp class="codeph">createPopUp()</samp> method
+to create a TitleWindow container, passing to it the name of the
+MyLoginForm.mxml file as the class name. </p>
+
+               <p>Often, you cast the return value of the <samp class="codeph">createPopUp()</samp> method
+to TitleWindow so that you can manipulate the properties of the
+pop-up TitleWindow container, as the following version of the <samp class="codeph">showLogin()</samp> method from
+the preceding example shows:</p>
+
+               <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- containers\layouts\MainMyLoginFormCast.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark"&gt; 
+ 
+    &lt;fx:Script&gt; 
+        &lt;![CDATA[ 
+          import mx.managers.PopUpManager; 
+          import mx.core.IFlexDisplayObject; 
+          import myComponents.MyLoginForm; 
+ 
+          // Additional import statement to use the TitleWindow container. 
+          import mx.containers.TitleWindow; 
+ 
+          private function showLogin():void { 
+            // Create the TitleWindow container. 
+            var helpWindow:TitleWindow = 
+          TitleWindow(PopUpManager.createPopUp(this, MyLoginForm, false)); 
+ 
+            // Add title to the title bar. 
+            helpWindow.title="Enter Login Information"; 
+ 
+            // Make title bar slightly transparent. 
+            helpWindow.setStyle("borderAlpha", 0.9); 
+ 
+            // Add a close button. 
+            // To close the container, your must also handle the close event. 
+            helpWindow.showCloseButton=true; 
+          } 
+        ]]&gt; 
+    &lt;/fx:Script&gt; 
+    
+    &lt;mx:VBox width="300" height="300"&gt;  
+        &lt;mx:Button click="showLogin();" label="Login"/&gt; 
+    &lt;/mx:VBox&gt; 
+&lt;/s:Application&gt;</pre>
+
+            </div>
+
+         </div>
+
+         <div class="nested3" id="WS19f279b149e7481c-2ca33c112c12feef45-7ffd_verapache"><a name="WS19f279b149e7481c-2ca33c112c12feef45-7ffd_verapache"><!-- --></a>
+            <h4 class="topictitle4">Removing a pop-up window</h4>
+
+            
+            <div>
+               <p>To remove a pop-up TitleWindow, use the PopUpManager <samp class="codeph">removePopUp()</samp> method.
+You pass the object created with the <samp class="codeph">PopUpManager.createPopUp()</samp> method
+to the <samp class="codeph">removePopUp()</samp> method. The following modification
+to the example from <a href="flx_layouts_lo.html#WS19f279b149e7481c-2ca33c112c12feef45-7ffe_verapache">Using
+the PopUpManager to create the pop-up TitleWindow</a>removes
+the pop-up when the user clicks the Done button:</p>
+
+               <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- containers\layouts\MainMyLoginFormRemove.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark"&gt; 
+ 
+    &lt;fx:Script&gt; 
+        &lt;![CDATA[ 
+          import mx.managers.PopUpManager; 
+          import myComponents.MyLoginForm; 
+          import mx.core.IFlexDisplayObject; 
+ 
+          private var helpWindow:IFlexDisplayObject; 
+ 
+          private function showLogin():void { 
+            // Create the TitleWindow container. 
+            helpWindow = PopUpManager.createPopUp(this, MyLoginForm, false); 
+          } 
+ 
+          private function removeForm():void { 
+            PopUpManager.removePopUp(helpWindow); 
+          } 
+        ]]&gt; 
+    &lt;/fx:Script&gt; 
+    
+    &lt;mx:VBox width="300" height="300"&gt;  
+        &lt;mx:Button click="showLogin();" label="Login"/&gt; 
+        &lt;mx:Button id="b2" label="Remove Form" click="removeForm();"/&gt; 
+    &lt;/mx:VBox&gt; 
+&lt;/s:Application&gt;</pre>
+
+               <p>You commonly call the <samp class="codeph">removePopUp()</samp> method from
+a TitleWindow <samp class="codeph">close</samp> event and the PopUpManager <samp class="codeph">mouseDownOutside</samp> event. </p>
+
+            </div>
+
+         </div>
+
+         <div class="nested3" id="WS19f279b149e7481c-2ca33c112c12feef45-7ffc_verapache"><a name="WS19f279b149e7481c-2ca33c112c12feef45-7ffc_verapache"><!-- --></a>
+            <h4 class="topictitle4">Centering a pop-up window</h4>
+
+            
+            <div>
+               <p>Call the <samp class="codeph">centerPopUp()</samp> method of the PopUpManager
+to center the pop-up within another container. The following custom
+MXML component centers itself in its parent container:</p>
+
+               <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- containers\layouts\myComponents\MyLoginFormCenter.mxml --&gt; 
+&lt;mx:TitleWindow xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    creationComplete="handleCreationComplete();"&gt; 
+    
+    &lt;fx:Script&gt; 
+        &lt;![CDATA[ 
+            import mx.managers.PopUpManager; 
+            
+            private function handleCreationComplete():void { 
+                // Center the TitleWindow container 
+                // over the control that created it. 
+                PopUpManager.centerPopUp(this); 
+            } 
+            
+            private function processLogin():void { 
+                // Check credentials (not shown) then remove pop up. 
+                PopUpManager.removePopUp(this); 
+            } 
+        ]]&gt; 
+    &lt;/fx:Script&gt; 
+    &lt;mx:Form&gt; 
+        &lt;mx:FormItem label="User Name"&gt; 
+            &lt;mx:TextInput id="username" width="100%"/&gt; 
+        &lt;/mx:FormItem&gt; 
+        &lt;mx:FormItem label="Password"&gt; 
+            &lt;mx:TextInput id="password" 
+                width="100%" 
+                displayAsPassword="true"/&gt; 
+        &lt;/mx:FormItem&gt; 
+    &lt;/mx:Form&gt; 
+    &lt;mx:HBox&gt; 
+        &lt;mx:Button click="processLogin();" label="OK"/&gt; 
+        &lt;mx:Button 
+            label="Cancel" 
+            click="PopUpManager.removePopUp(this);"/&gt; 
+    &lt;/mx:HBox&gt; 
+&lt;/mx:TitleWindow&gt;</pre>
+
+            </div>
+
+         </div>
+
+         <div class="nested3" id="WS19f279b149e7481c-2ca33c112c12feef45-7ffb_verapache"><a name="WS19f279b149e7481c-2ca33c112c12feef45-7ffb_verapache"><!-- --></a>
+            <h4 class="topictitle4">Using TitleWindow and PopUpManager
+events</h4>
+
+            
+            <div>
+               <p>You can add a close icon (a small <em>x</em> in the upper-right
+corner of the TitleWindow title bar) to make it appear similar to
+dialog boxes in a GUI environment. You do this by setting the <samp class="codeph">showCloseButton</samp> property
+to <samp class="codeph">true</samp>, as the following example shows:</p>
+
+               <pre class="codeblock"> &lt;mx:TitleWindow xmlns:fx="http://ns.adobe.com/mxml/2009" 
+	xmlns:mx="library://ns.adobe.com/flex/mx" 
+	xmlns:s="library://ns.adobe.com/flex/spark" 
+	showCloseButton="true"&gt;</pre>
+
+               <p>The default value for <samp class="codeph">showCloseButton</samp> is <samp class="codeph">false</samp>.</p>
+
+               <p>The TitleWindow broadcasts a <samp class="codeph">close</samp> event when
+the user clicks the close icon. You must create a handler for that
+event and close the TitleWindow from within that event handler.
+Flex does not close the window automatically. </p>
+
+               <p>In the simplest case, you can call the PopUpManager <samp class="codeph">removePopUp()</samp> method directly
+in the TitleWindow <samp class="codeph">close</samp> event property specify,
+as the following line shows:</p>
+
+               <pre class="codeblock"> &lt;mx:TitleWindow xmlns:fx="http://ns.adobe.com/mxml/2009" 
+	xmlns:mx="library://ns.adobe.com/flex/mx" 
+	xmlns:s="library://ns.adobe.com/flex/spark" 
+	"showCloseButton="true"  
+ 	close="PopUpManager.removePopUp(this);"&gt;</pre>
+
+               <p>If you need to clean up, before closing the TitleWindow control,
+create an event listener function for the close event and close
+the TitleWindow from within that handler, as the following example
+shows:</p>
+
+               <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- containers\layouts\myComponents\MyLoginFormRemoveMe.mxml --&gt; 
+&lt;mx:TitleWindow xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    showCloseButton="true" 
+    close="removeMe();"&gt; 
+ 
+    &lt;fx:Script&gt; 
+        &lt;![CDATA[ 
+            import mx.managers.PopUpManager; 
+ 
+            private function removeMe():void { 
+                // Put any clean-up code here. 
+                PopUpManager.removePopUp(this); 
+            } 
+        ]]&gt; 
+    &lt;/fx:Script&gt; 
+ 
+&lt;/mx:TitleWindow&gt;</pre>
+
+               <p>You can also use the PopUpManager <samp class="codeph">mouseDownOutside</samp> event
+to close the pop-up window when a user clicks the mouse outside
+the TitleWindow. To do this, you add an event listener to the TitleWindow
+instance for the <samp class="codeph">mouseDownOutside</samp> event, as the
+following example shows:</p>
+
+               <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- containers\layouts\MainMyLoginFormMouseDown.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark"&gt; 
+ 
+    &lt;fx:Script&gt; 
+        &lt;![CDATA[ 
+            import mx.managers.PopUpManager; 
+            import mx.containers.TitleWindow; 
+            import myComponents.MyLoginForm; 
+            import mx.events.FlexMouseEvent; 
+ 
+            private var helpWindow:TitleWindow; 
+ 
+            private function showLogin():void { 
+                // Create the TitleWindow container. 
+                helpWindow = TitleWindow(PopUpManager.createPopUp(this, 
+                    MyLoginForm, false)); 
+                helpWindow.addEventListener("mouseDownOutside", removeForm); 
+            } 
+ 
+            private function removeForm(event:FlexMouseEvent):void { 
+                PopUpManager.removePopUp(helpWindow); 
+            } 
+        ]]&gt; 
+    &lt;/fx:Script&gt; 
+    
+    &lt;mx:VBox width="300" height="300"&gt;  
+        &lt;mx:Button click="showLogin();" label="Login"/&gt; 
+    &lt;/mx:VBox&gt; 
+&lt;/s:Application&gt;</pre>
+
+               <p>You define the event listener in the main application, and then
+assign it to the pop-up window when you create it. This technique
+lets you use a generic pop-up window, defined by the component MyLoginForm.mxml,
+and then modify the behavior of the component by assigning event
+listeners to it from the main application. </p>
+
+            </div>
+
+         </div>
+
+         <div class="nested3" id="WS19f279b149e7481c-2ca33c112c12feef45-7ffa_verapache"><a name="WS19f279b149e7481c-2ca33c112c12feef45-7ffa_verapache"><!-- --></a>
+            <h4 class="topictitle4">Creating a modal pop-up window</h4>
+
+            
+            <div>
+               <p>The <samp class="codeph">createPopUp()</samp> method takes an optional <em>modal</em> parameter.
+You can set this parameter to <samp class="codeph">true</samp> to make the
+window modal. When a TitleWindow is modal, you cannot select any
+other component while the window is open. The default value of <em>modal</em> is <samp class="codeph">false</samp>. </p>
+
+               <p>
+                  The
+following example creates a modal pop-up window:</p>
+
+               <pre class="codeblock"> var pop1:IFlexDisplayObject = PopUpManager.createPopUp(this, MyLoginForm, 
+ 	true);</pre>
+
+            </div>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf62f1b-7fe1_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf62f1b-7fe1_verapache"><!-- --></a>
+         <h3 class="topictitle3">Passing data to and from a pop-up
+window</h3>
+
+         
+         <div>
+            <p>To make your pop-up window more flexible, you might want
+to pass data to it or return data from it. To do this, use the following
+guidelines:</p>
+
+            <ul>
+               <li>
+                  <p>Create a custom component to be your pop-up. In most
+circumstances, this component is a TitleWindow container.</p>
+
+               </li>
+
+               <li>
+                  <p>Declare variables in your pop-up that you will set in the
+application that creates the pop-up.</p>
+
+               </li>
+
+               <li>
+                  <p>Cast the pop-up to be the same type as your custom component.</p>
+
+               </li>
+
+               <li>
+                  <p>Pass a reference to that component to the pop-up window,
+if the pop-up window is to set a value on the application or one
+of the application’s components.</p>
+
+               </li>
+
+            </ul>
+
+            <p>For example, the following application populates a ComboBox in
+the pop-up window with an Array defined in the main application. </p>
+
+            <p>When creating the pop-up, the application casts the pop-up to
+be of type ArrayEntryForm, which is the name of the custom component
+that defines the pop-up window. If you do not do this, the application
+cannot access the properties that you create.</p>
+
+            <p>The application passes a reference to the TextInput component
+in the Application container to the pop-up window so that the pop-up
+can write its results back to the container. The application also
+passes the Array of file extensions for the pop-up ComboBox control’s
+data provider, and sets the pop-up window’s title. By setting these
+in the application, you can reuse the pop-up window in other parts
+of the application without modification, because it does not have
+to know the name of the component it is writing back to or the data
+that it is displaying, only that its data is in an Array and it
+is writing to a TextArea.</p>
+
+            <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- containers\layouts\MainArrayEntryForm.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark"&gt; 
+    &lt;s:layout&gt; 
+        &lt;s:VerticalLayout/&gt; 
+    &lt;/s:layout&gt; 
+ 
+    &lt;fx:Script&gt; 
+        &lt;![CDATA[ 
+            import mx.managers.PopUpManager; 
+            import myComponents.ArrayEntryForm; 
+            
+            public var helpWindow:Object; 
+    
+            public function displayForm():void { 
+                /* Array with data for the custom control ComboBox control. */ 
+                var doctypes:Array = ["*.as", "*.mxml", "*.swc"] 
+                
+                /* Create the pop-up and cast the 
+                   return value of the createPopUp() 
+                   method to the ArrayEntryForm custom component. */ 
+                var pop1:ArrayEntryForm = ArrayEntryForm( 
+                    PopUpManager.createPopUp(this, ArrayEntryForm, true)); 
+                
+                /* Set TitleWindow properties. */ 
+                pop1.title="Select File Type"; 
+                pop1.showCloseButton=true; 
+    
+                /* Set properties of the ArrayEntryForm custom component. */ 
+                pop1.targetComponent = ti1; 
+                pop1.myArray = doctypes; 
+                PopUpManager.centerPopUp(pop1); 
+            } 
+        ]]&gt; 
+    &lt;/fx:Script&gt; 
+ 
+    &lt;mx:TextInput id="ti1" text=""/&gt; 
+    &lt;mx:Button id="b1" label="Select File Type" 
+        click="displayForm();"/&gt; 
+&lt;/s:Application&gt;</pre>
+
+            <p>The following custom component, ArrayEntryForm.mxml, declares
+two variables. The first one is for the Array that the parent application
+passes to the pop-up window. The second holds a reference to the
+parent application’s TextInput control. The component uses that
+reference to update the parent application:</p>
+
+            <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- containers\layouts\myComponents\ArrayEntryForm.mxml --&gt; 
+&lt;mx:TitleWindow xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+        showCloseButton="true" 
+        width="200" borderAlpha="1" 
+        close="removeMe();"&gt; 
+ 
+    &lt;fx:Script&gt; 
+        &lt;![CDATA[ 
+            import mx.controls.TextInput; 
+            import mx.managers.PopUpManager; 
+            
+            // Variables whose values are set by the main application. 
+            // Data provider array for the component's ComboBox control. 
+            [Bindable] 
+            public var myArray:Array; 
+            // A reference to the TextInput control 
+            // in which to put the result. 
+            public var targetComponent:TextInput; 
+ 
+            // OK button click event listener. 
+            // Sets the target component in the application to the 
+            // selected ComboBox item value. 
+            private function submitData():void { 
+                targetComponent.text = String(cb1.selectedItem); 
+                removeMe(); 
+            } 
+ 
+            // Cancel button click event listener. 
+            private function removeMe():void { 
+                PopUpManager.removePopUp(this); 
+            } 
+        ]]&gt; 
+    &lt;/fx:Script&gt; 
+ 
+    &lt;mx:ComboBox id="cb1" dataProvider="{myArray}"/&gt; 
+    &lt;mx:HBox&gt; 
+        &lt;mx:Button label="OK" click="submitData();"/&gt; 
+        &lt;mx:Button label="Cancel" click="removeMe();"/&gt; 
+    &lt;/mx:HBox&gt; 
+&lt;/mx:TitleWindow&gt; </pre>
+
+            <p>From within a pop-up custom component, you can also access properties
+of the parent application by using the <samp class="codeph">parentApplication</samp> property.
+For example, if the application has a Button control named b1, you
+can get the label of that Button control, as the following example
+shows:</p>
+
+            <pre class="codeblock"> myLabel = parentApplication.b1.label;</pre>
+
+            <p>This technique, however, uses a hard-coded value in the pop-up
+component for both the target component id in the parent and the
+property in the component.</p>
+
+            <div class="section" id="WS2db454920e96a9e51e63e3d11c0bf62f1b-7fe1_verapache__WS2db454920e96a9e51e63e3d11c0bf69084-7e16_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf62f1b-7fe1_verapache__WS2db454920e96a9e51e63e3d11c0bf69084-7e16_verapache"><!-- --></a><h4 class="sectiontitle">Passing
+data using events</h4>
+               
+               <p>The following example modifies the example
+from the previous section to use event listeners defined in the
+main application to handle the passing of data back from the pop-up
+window to the main application. This example shows the ArrayEntryFormEvents.mxml
+file with no event listeners defined within it.</p>
+
+               <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- containers\layouts\myComponents\ArrayEntryFormEvents.mxml --&gt; 
+&lt;mx:TitleWindow xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    showCloseButton="true" 
+    width="200" 
+    borderAlpha="1"&gt; 
+ 
+    &lt;fx:Script&gt; 
+        &lt;![CDATA[ 
+            import mx.managers.PopUpManager; 
+            
+            // Variables whose values are set by the main application. 
+            // Data provider array for the component's ComboBox control. 
+            [Bindable] 
+            public var myArray:Array; 
+ 
+        ]]&gt; 
+    &lt;/fx:Script&gt; 
+ 
+    &lt;mx:ComboBox id="cb1" dataProvider="{myArray}"/&gt; 
+    &lt;mx:HBox&gt; 
+        &lt;mx:Button id="okButton" label="OK"/&gt; 
+        &lt;mx:Button id="cancelButton" label="Cancel"/&gt; 
+    &lt;/mx:HBox&gt; 
+&lt;/mx:TitleWindow&gt;  </pre>
+
+               <p>The main application defines
+the event listeners and registers them with the controls defined
+within the pop-up window:</p>
+
+               <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- containers\layouts\MainArrayEntryFormEvents.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark"&gt; 
+    &lt;s:layout&gt; 
+        &lt;s:VerticalLayout/&gt; 
+    &lt;/s:layout&gt; 
+ 
+    &lt;fx:Script&gt; 
+        &lt;![CDATA[ 
+            import mx.managers.PopUpManager; 
+            import flash.events.Event; 
+            import myComponents.ArrayEntryFormEvents; 
+            
+            public var pop1:ArrayEntryFormEvents; 
+    
+            public function displayForm():void { 
+                // Array with data for the custom control ComboBox control. 
+                var doctypes:Array = ["*.as", "*.mxml", "*.swc"] 
+                
+                // Create the pop-up and cast the return value 
+                // of the createPopUp() 
+                // method to the ArrayEntryFormEvents custom component. 
+                pop1 = ArrayEntryFormEvents( 
+              PopUpManager.createPopUp(this, ArrayEntryFormEvents, true)); 
+                // Set TitleWindow properties. 
+                pop1.title="Select File Type"; 
+                pop1.showCloseButton=true; 
+    
+                // Set the event listeners for 
+                // the ArrayEntryFormEvents component. 
+                pop1.addEventListener("close", removeMe); 
+                pop1["cancelButton"].addEventListener("click", removeMe);   
+                pop1["okButton"].addEventListener("click", submitData); 
+    
+                // Set properties of the ArrayEntryFormEvents custom control. 
+                pop1.myArray = doctypes; 
+                PopUpManager.centerPopUp(pop1); 
+            } 
+            
+            // OK button click event listener. 
+            // Sets the target component in the application to the 
+            // selected ComboBox item value. 
+            private function submitData(event:Event):void { 
+                ti1.text = String(pop1.cb1.selectedItem); 
+                removeMe(event); 
+            } 
+ 
+            // Cancel button click event listener. 
+            private function removeMe(event:Event):void { 
+                PopUpManager.removePopUp(pop1); 
+            }           
+        ]]&gt; 
+    &lt;/fx:Script&gt; 
+ 
+    &lt;mx:VBox&gt; 
+        &lt;mx:TextInput id="ti1" text=""/&gt; 
+    &lt;/mx:VBox&gt; 
+    &lt;mx:Button id="b1" label="Select File Type" click="displayForm();"/&gt; 
+&lt;/s:Application&gt;</pre>
+
+            </div>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf69084-7e2e_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7e2e_verapache"><!-- --></a>
+         <h3 class="topictitle3">Using the addPopUp() method</h3>
+
+         
+         <div>
+            <p>You can use the <samp class="codeph">addPopUp()</samp> method of the
+PopUpManager to create a pop-up window without defining a custom
+component. This method takes an instance of any class that implements
+IFlexDisplayObject. Because it takes a class instance, not a class,
+you can use ActionScript code in an <samp class="codeph">&lt;fx:Script&gt;</samp> block
+to create the component instance to pop up, rather than as a separate
+custom component. </p>
+
+            <p>Using the <samp class="codeph">addPopUp()</samp> method may be preferable
+to using the <samp class="codeph">createPopUp()</samp> method if you have to
+pop up a simple dialog box that is never reused elsewhere. However,
+it is not the best coding practice if the pop-up is complex or cannot
+be reused elsewhere.</p>
+
+            <p>The following example creates a pop-up with <samp class="codeph">addPopUp()</samp> method
+and adds a Button control to that window that closes the window
+when you click it:</p>
+
+            <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- containers\layouts\MyPopUpButton.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    height="600" width="600" &gt; 
+ 
+    &lt;fx:Script&gt; 
+        &lt;![CDATA[ 
+            import mx.containers.TitleWindow; 
+            import flash.events.*; 
+            import mx.managers.PopUpManager; 
+            import mx.controls.Button; 
+            import mx.core.IFlexDisplayObject; 
+            
+            // The variable for the TitleWindow container 
+            public var myTitleWindow:TitleWindow = new TitleWindow(); 
+ 
+            // Method to instantiate and display a TitleWindow container. 
+            // This is the initial Button control's click event handler. 
+            public function openWindow(event:MouseEvent):void { 
+                // Set the TitleWindow container properties. 
+                myTitleWindow = new TitleWindow(); 
+                myTitleWindow.title = "My Window Title"; 
+                myTitleWindow.width= 220; 
+                myTitleWindow.height= 150; 
+                // Call the method to add the Button control to the 
+                // TitleWindow container. 
+                populateWindow(); 
+                // Use the PopUpManager to display the TitleWindow container. 
+                PopUpManager.addPopUp(myTitleWindow, this, true); 
+            } 
+        
+            // The method to create and add the Button child control to the 
+            // TitleWindow container. 
+            public function populateWindow():void { 
+                var btn1:Button = new Button(); 
+                btn1.label="close"; 
+                btn1.addEventListener(MouseEvent.CLICK, closeTitleWindow); 
+                myTitleWindow.addChild(btn1);   
+            } 
+            
+            // The method to close the TitleWindow container. 
+            public function closeTitleWindow(event:MouseEvent):void { 
+                PopUpManager.removePopUp(event.currentTarget.parent); 
+            } 
+        ]]&gt; 
+    &lt;/fx:Script&gt; 
+    &lt;mx:Button label="Open Window" click="openWindow(event);"/&gt; 
+&lt;/s:Application&gt;</pre>
+
+            <p>You can make any component pop up. The following example pops
+up a TextArea control. The example resizes the control, and listens
+for a Shift-click to determine when to close the TextArea. Whatever
+text you type in the TextArea is stored in a Label control in the
+application when the pop-up window is removed.</p>
+
+            <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- containers\layouts\MyPopUpTextArea.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark"&gt; 
+ 
+    &lt;fx:Script&gt; 
+        &lt;![CDATA[ 
+            import mx.managers.PopUpManager; 
+            import mx.controls.TextArea; 
+            import mx.core.IFlexDisplayObject; 
+ 
+            public var myPopUp:TextArea 
+            
+            public function openWindow(event:MouseEvent):void { 
+                myPopUp = new TextArea(); 
+                myPopUp.width= 220; 
+                myPopUp.height= 150; 
+                myPopUp.text = "Hold down the Shift key, and " + 
+                    "click in the TextArea to close it."; 
+                myPopUp.addEventListener(MouseEvent.CLICK, closeWindow); 
+                PopUpManager.addPopUp(myPopUp, this, true); 
+                PopUpManager.centerPopUp(myPopUp); 
+            } 
+    
+            public function closeWindow(event:MouseEvent):void { 
+                if (event.shiftKey) { 
+                    label1.text = myPopUp.text; 
+        PopUpManager.removePopUp(IFlexDisplayObject(event.currentTarget)); 
+                } 
+            } 
+        ]]&gt; 
+    &lt;/fx:Script&gt; 
+ 
+    &lt;mx:VBox&gt; 
+        &lt;mx:Button id="b1" label="Create TextArea Popup" 
+            click="openWindow(event);"/&gt; 
+        &lt;mx:Label id="label1"/&gt; 
+    &lt;/mx:VBox&gt; 
+&lt;/s:Application&gt;</pre>
+
+            <p/>
+
+         </div>
+
+      </div>
+
+         <p>Adobe and Adobe Flash are either registered trademarks or trademarks of Adobe Systems Incorporated in the United States and/or other countries and are used by permission from Adobe.  No other license to the Adobe trademarks are granted.</p>
+   </div>
+
+
+</body>
+</html>

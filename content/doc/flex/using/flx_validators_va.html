@@ -1,0 +1,3465 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Licensed to the Apache Software Foundation (ASF) under one or more
+  contributor license agreements.  See the NOTICE file distributed with
+  this work for additional information regarding copyright ownership.
+  The ASF licenses this file to You under the Apache License, Version 2.0
+  (the "License"); you may not use this file except in compliance with
+  the License.  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+-->
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en-us" xml:lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="topic"/>
+<meta name="DC.Title" content="Validating Data"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="WS2db454920e96a9e51e63e3d11c0bf69084-7ff0_verapache"/>
+<link rel="stylesheet" type="text/css" href="commonltr.css"/>
+<title>Validating Data</title>
+</head>
+<body id="WS2db454920e96a9e51e63e3d11c0bf69084-7ff0_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7ff0_verapache"><!-- --></a>
+
+
+   <h1 class="topictitle1">Validating Data</h1>
+
+   
+   <div>
+      <p>You use the Flex data validation
+mechanism to validate the data in an application. Flex provides
+predefined validators for many common types of user-supplied data,
+such as date, number, and currency values. </p>
+
+   </div>
+
+   <div class="nested1" id="WS2db454920e96a9e51e63e3d11c0bf60efb-7fee_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf60efb-7fee_verapache"><!-- --></a>
+      <h2 class="topictitle2">Validating data</h2>
+
+      
+      <div>
+         <p>The data that a user enters in a user interface might or
+might not be appropriate to the application. In Flex, you use a <em>validator</em> to
+ensure the values in the fields of an object meet certain criteria.
+For example, you can use a validator to ensure that a user enters
+a valid phone number value, to ensure that a String value is longer
+than a set minimum length, or ensure that a ZIP code field contains
+the correct number of digits.</p>
+
+         <p>In typical client-server environments, data validation occurs
+on the server after data is submitted to it from the client. One
+advantage of using Flex validators is that they execute on the client,
+which lets you validate input data before transmitting it to the
+server. By using Flex validators, you eliminate the need to transmit
+data to and receive error messages back from the server, which improves
+the overall responsiveness of your application. </p>
+
+         <div class="note"><span class="notetitle">Note:</span> Flex validators do not eliminate the need to
+perform data validation on the server, but provide a mechanism for
+improving performance by performing some data validation on the
+client.</div>
+
+         <p>Flex includes a set of validators for common types of user input
+data, including the following:</p>
+
+         <ul>
+            <li>
+               <p>
+                  <a href="flx_validators_va.html#WS2db454920e96a9e51e63e3d11c0bf69084-7f58_verapache">Validating credit card numbers</a>
+               </p>
+
+            </li>
+
+            <li>
+               <p>
+                  <a href="flx_validators_va.html#WS2db454920e96a9e51e63e3d11c0bf69084-7f59_verapache">Validating currency</a>
+               </p>
+
+            </li>
+
+            <li>
+               <p>
+                  <a href="flx_validators_va.html#WS2db454920e96a9e51e63e3d11c0bf69084-7f56_verapache">Validating dates</a>
+               </p>
+
+            </li>
+
+            <li>
+               <p>
+                  <a href="flx_validators_va.html#WS2db454920e96a9e51e63e3d11c0bf69084-7f55_verapache">Validating e-mail addresses</a>
+               </p>
+
+            </li>
+
+            <li>
+               <p>
+                  <a href="flx_validators_va.html#WS2db454920e96a9e51e63e3d11c0bf69084-7f4d_verapache">Validating numbers</a>
+               </p>
+
+            </li>
+
+            <li>
+               <p>
+                  <a href="flx_validators_va.html#WS2db454920e96a9e51e63e3d11c0bf69084-7f53_verapache">Validating phone numbers</a>
+               </p>
+
+            </li>
+
+            <li>
+               <p>
+                  <a href="flx_validators_va.html#WS2db454920e96a9e51e63e3d11c0bf69084-7f51_verapache">Validating using regular expressions</a>
+               </p>
+
+            </li>
+
+            <li>
+               <p>
+                  <a href="flx_validators_va.html#WS2db454920e96a9e51e63e3d11c0bf69084-7f48_verapache">Validating social security numbers</a>
+               </p>
+
+            </li>
+
+            <li>
+               <p>
+                  <a href="flx_validators_va.html#WS2db454920e96a9e51e63e3d11c0bf69084-7f47_verapache">Validating strings</a>
+               </p>
+
+            </li>
+
+            <li>
+               <p>
+                  <a href="flx_validators_va.html#WS2db454920e96a9e51e63e3d11c0bf69084-7f46_verapache">Validating ZIP codes</a>
+               </p>
+
+            </li>
+
+         </ul>
+
+         <p>
+            You often
+use Flex validators with data models. For more information about
+data models, see <a href="flx_datamodels_dm.html#WS2db454920e96a9e51e63e3d11c0bf69084-7ff3_verapache">Storing
+data</a>.</p>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf60efb-7ff4_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf60efb-7ff4_verapache"><!-- --></a>
+         <h3 class="topictitle3">About validators</h3>
+
+         
+         <div>
+            <p>You define validators by using MXML or ActionScript. In
+MXML, you declare a validator in an <samp class="codeph">&lt;fx:Declarations&gt;</samp> tag.
+You define validators in an <samp class="codeph">&lt;fx:Declarations&gt;</samp> tag
+because they are not visual components. </p>
+
+            <p>For example, to declare the standard <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/validators/PhoneNumberValidator.html" target="_blank">PhoneNumberValidator</a> validator,
+you use the <samp class="codeph">&lt;mx:PhoneNumberValidator&gt;</samp> tag,
+as the following example shows:</p>
+
+            <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- validators\PNValidator.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx"&gt; 
+    &lt;s:layout&gt; 
+        &lt;s:VerticalLayout/&gt; 
+    &lt;/s:layout&gt; 
+ 
+    &lt;fx:Declarations&gt; 
+        &lt;!-- Define the PhoneNumberValidator. --&gt; 
+        &lt;mx:PhoneNumberValidator id="pnV" 
+            source="{phoneInput}" property="text"/&gt; 
+    &lt;/fx:Declarations&gt; 
+ 
+    &lt;!-- Define the TextInput control for entering the phone number. --&gt; 
+    &lt;s:TextInput id="phoneInput"/&gt; 
+    &lt;s:TextInput id="zipCodeInput"/&gt; 
+&lt;/s:Application&gt;</pre>
+
+            <p>In the previous example, you enter a value into the <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/spark/components/TextInput.html" target="_blank">TextInput</a> control
+for the phone number. When you remove focus from the TextInput control
+by selecting the TextInput control for the ZIP code, the validator
+executes. </p>
+
+            <p>You use the <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/validators/Validator.html#source" target="_blank">source</a> property
+of the validator to specify an object, and the <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/validators/Validator.html#property" target="_blank">property</a> property
+to specify a field of the object to validate. For more information
+on the <samp class="codeph">source</samp> and <samp class="codeph">property</samp> properties,
+see <a href="flx_validators_va.html#WS2db454920e96a9e51e63e3d11c0bf69084-7f41_verapache">About
+the source and property properties</a>. </p>
+
+            <p>In the previous example, the validator ensures that the user
+enters a valid phone number in the TextInput control. A valid phone
+number contains at least 10 digits, plus additional formatting characters.
+For more information, see <a href="flx_validators_va.html#WS2db454920e96a9e51e63e3d11c0bf69084-7f53_verapache">Validating
+phone numbers</a>.</p>
+
+            <p>You declare validators in ActionScript either in a script block
+within an MXML file, or in an ActionScript file, as the following
+example shows: </p>
+
+            <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- validators\PNValidatorAS.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx"&gt; 
+    &lt;s:layout&gt; 
+        &lt;s:VerticalLayout/&gt; 
+    &lt;/s:layout&gt; 
+ 
+    &lt;fx:Script&gt; 
+        &lt;![CDATA[ 
+            // Import PhoneNumberValidator. 
+            import mx.validators.PhoneNumberValidator; 
+ 
+            // Create the validator. 
+            private var v:PhoneNumberValidator = new PhoneNumberValidator(); 
+ 
+            private function createValidator():void { 
+                // Configure the validator. 
+                v.source = phoneInput; 
+                v.property = "text"; 
+            } 
+        ]]&gt; 
+    &lt;/fx:Script&gt; 
+    &lt;!-- Define the TextInput control for entering the phone number. --&gt; 
+    &lt;s:TextInput id="phoneInput" creationComplete="createValidator();"/&gt; 
+    &lt;s:TextInput id="zipCodeInput"/&gt; 
+&lt;/s:Application&gt;</pre>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS8b1c39bd7e9fc364-211e3a6212d716d520b-8000_verapache"><a name="WS8b1c39bd7e9fc364-211e3a6212d716d520b-8000_verapache"><!-- --></a>
+         <h3 class="topictitle3">Spark and MX validators</h3>
+
+         
+         <div>
+            <p>Flex defines two sets of validators: Spark and MX. The
+Spark validators rely on the classes in the flash.globalization
+package. The flash.globalization classes use the locale data provided
+by the operating system. Therefore, Spark validators provide behavior
+that is consistent with the operating system and has access to all
+the locales supported by the operating system.</p>
+
+            <p>MX validators use the Flex ResourceManager to access locale-specific
+data from properties files that are included in the Flex SDK. The
+MX validators provide the same behavior across operating systems,
+but are limited to the locales provided by the Flex SDK or by the
+application developer.</p>
+
+            <p>The following table lists the Spark and MX validators. When possible,
+it’s best to use the Spark validators in your application: </p>
+
+            <div class="p">
+               
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" frame="border" border="1" rules="all">
+                     
+                     
+                     
+                     <thead align="left">
+                        <tr>
+                           <th class="cellrowborder" valign="top" width="NaN%" id="d932982e279">
+                              <p>Spark validator</p>
+
+                           </th>
+
+                           <th class="cellrowborder" valign="top" width="NaN%" id="d932982e285">
+                              <p>MX validator</p>
+
+                           </th>
+
+                           <th class="cellrowborder" valign="top" width="NaN%" id="d932982e291">
+                              <p>Description</p>
+
+                           </th>
+
+                        </tr>
+
+                     </thead>
+
+                     <tbody>
+                        <tr>
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d932982e279 ">
+                              <p/>
+
+                           </td>
+
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d932982e285 ">
+                              <p>CreditCardValidator</p>
+
+                           </td>
+
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d932982e291 ">
+                              <p>Validate a credit card number.</p>
+
+                           </td>
+
+                        </tr>
+
+                        <tr>
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d932982e279 ">
+                              <p>CurrencyValidator</p>
+
+                           </td>
+
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d932982e285 ">
+                              <p>CurrencyValidator</p>
+
+                           </td>
+
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d932982e291 ">
+                              <p>Validate a currency value.</p>
+
+                           </td>
+
+                        </tr>
+
+                        <tr>
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d932982e279 ">
+                              <p/>
+
+                           </td>
+
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d932982e285 ">
+                              <p>DateValidator</p>
+
+                           </td>
+
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d932982e291 ">
+                              <p>Validate a date and time value.</p>
+
+                           </td>
+
+                        </tr>
+
+                        <tr>
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d932982e279 ">
+                              <p/>
+
+                           </td>
+
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d932982e285 ">
+                              <p>EmailValidator</p>
+
+                           </td>
+
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d932982e291 ">
+                              <p>Validate an email address.</p>
+
+                           </td>
+
+                        </tr>
+
+                        <tr>
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d932982e279 ">
+                              <p>NumberValidator</p>
+
+                           </td>
+
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d932982e285 ">
+                              <p>NumberValidator</p>
+
+                           </td>
+
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d932982e291 ">
+                              <p>Validate a numeric value.</p>
+
+                           </td>
+
+                        </tr>
+
+                        <tr>
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d932982e279 ">
+                              <p/>
+
+                           </td>
+
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d932982e285 ">
+                              <p>PhoneNumberValidator</p>
+
+                           </td>
+
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d932982e291 ">
+                              <p>Validate a phone number.</p>
+
+                           </td>
+
+                        </tr>
+
+                        <tr>
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d932982e279 ">
+                              <p/>
+
+                           </td>
+
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d932982e285 ">
+                              <p>SocialSecurityValidator</p>
+
+                           </td>
+
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d932982e291 ">
+                              <p>Validate a social security number.</p>
+
+                           </td>
+
+                        </tr>
+
+                        <tr>
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d932982e279 ">
+                              <p/>
+
+                           </td>
+
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d932982e285 ">
+                              <p>StringValidator</p>
+
+                           </td>
+
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d932982e291 ">
+                              <p>Validate a String value. </p>
+
+                           </td>
+
+                        </tr>
+
+                        <tr>
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d932982e279 ">
+                              <p/>
+
+                           </td>
+
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d932982e285 ">
+                              <p>ZipCodeValidator</p>
+
+                           </td>
+
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d932982e291 ">
+                              <p>Validate a U.S. or Canadian postal code. </p>
+
+                           </td>
+
+                        </tr>
+
+                     </tbody>
+
+                  </table>
+</div>
+
+            </div>
+
+         </div>
+
+         <div class="nested3" id="WS4eebe7d8d95c122d784c988412d80a2f6f5-8000_verapache"><a name="WS4eebe7d8d95c122d784c988412d80a2f6f5-8000_verapache"><!-- --></a>
+            <h4 class="topictitle4">Benefits of Spark validators</h4>
+
+            
+            <div>
+               <p>The Spark validators provides the following functionality:</p>
+
+               <div class="p">
+                  <ul>
+                     <li>
+                        <p>Locale-specific parsing of numbers and currency amounts.</p>
+
+                     </li>
+
+                     <li>
+                        <p>Locale-specific string comparison. For more information,
+see <a href="flx_l10n_ln.html#WS19f279b149e7481c-2b2dfa9012bd01637f0-8000_verapache">Sorting
+and matching</a>.</p>
+
+                     </li>
+
+                     <li>
+                        <p>Locale-specific uppercase and lowercase string conversion.</p>
+
+                     </li>
+
+                     <li>
+                        <p>Support non-European digits in a validation</p>
+
+                     </li>
+
+                     <li>
+                        <p>Validation of negative and positive formats of all numbers
+and currencies.</p>
+
+                     </li>
+
+                     <li>
+                        <p>Consistency with other applications running on the system.</p>
+
+                     </li>
+
+                     <li>
+                        <p>Operating system updates that include new locales or changes
+to existing locales are automatically supported.</p>
+
+                     </li>
+
+                  </ul>
+
+               </div>
+
+               <p>The Spark validators use of the <samp class="codeph">locale</samp> style
+property to select a locale. The <samp class="codeph">locale</samp> style is
+an inheritable style that you can set for the entire application
+or specifically for a particular validator. Once set, the <samp class="codeph">locale</samp> governs
+the validation provided by these classes.</p>
+
+               <p>If a Spark validator does not explicitly set the <samp class="codeph">locale</samp> style,
+then it uses the value specified by the <samp class="codeph">locale</samp> style
+of the application container. If you do not set the <samp class="codeph">locale</samp> style
+property, the application uses the global default from the defaults.css
+style sheet, which defaults to <samp class="codeph">en</samp>. For more information,
+see <a href="flx_l10n_ln.html#WS19f279b149e7481c-99797f112bd080033f-8000_verapache">Setting the
+locale</a>. </p>
+
+               <p>You can explicitly configure the validator to use the default
+locale by setting the <samp class="codeph">locale</samp> style to the constant
+value <samp class="codeph">flash.globalization.LocaleID.DEFAULT</samp>. </p>
+
+            </div>
+
+            <div><div class="relinfo"><strong>Related information</strong><br/>
+<div><a href="flx_l10n_ln.html#WS19f279b149e7481c-99797f112bd080033f-8000_verapache">Setting the locale</a></div>
+<div><a href="flx_l10n_ln.html#WS19f279b149e7481c7370eb2d12bd013e888-7fff_verapache">Formatting dates, numbers, and currencies</a></div>
+</div>
+</div>
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf69084-7f41_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7f41_verapache"><!-- --></a>
+         <h3 class="topictitle3">About the source and property properties</h3>
+
+         
+         <div>
+            <p>Validators use the following two properties to specify
+the item to validate: </p>
+
+            <dl>
+               
+                  <dt class="dlterm">
+                     <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/validators/Validator.html#source" target="_blank">source</a>
+                  </dt>
+
+                  <dd>
+                     <p>Specifies the object containing the property to validate.
+Set this to an instance of a component or a data model. You use
+data binding syntax in MXML to specify the value for the <samp class="codeph">source</samp> property.
+This property supports dot-delimited Strings for specifying nested
+properties.</p>
+
+                  </dd>
+
+               
+               
+                  <dt class="dlterm">
+                     <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/validators/Validator.html#property" target="_blank">property</a>
+                  </dt>
+
+                  <dd>
+                     <p>A String that specifies the name of the property of <samp class="codeph">source</samp> that contains
+the value to validate. </p>
+
+                     <p>You can set these properties in any
+of the following ways:</p>
+
+                     <ul>
+                        <li>
+                           <p>In MXML when you use a validator
+tag.</p>
+
+                        </li>
+
+                        <li>
+                           <p>In ActionScript by assigning values to the properties.</p>
+
+                        </li>
+
+                        <li>
+                           <p>When you call the <samp class="codeph">validate()</samp> method to invoke
+a validator programmatically. For more information, see <a href="flx_validators_va.html#WS2db454920e96a9e51e63e3d11c0bf69084-7f50_verapache">Triggering
+validation programmatically </a>.</p>
+
+                        </li>
+
+                     </ul>
+
+                     <p>You often specify
+a Flex user-interface control as the value of the <samp class="codeph">source</samp> property,
+and a property of the control to validate as the value of the <samp class="codeph">property</samp> property,
+as the following example shows:</p>
+
+                     <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- validators\ZCValidator.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx"&gt; 
+    &lt;s:layout&gt; 
+        &lt;s:VerticalLayout/&gt; 
+    &lt;/s:layout&gt; 
+ 
+    &lt;fx:Declarations&gt; 
+        &lt;mx:ZipCodeValidator id="zipV" 
+            source="{myZip}" 
+            property="text"/&gt; 
+    &lt;/fx:Declarations&gt; 
+        
+    &lt;s:TextInput id="phoneInput"/&gt; 
+    &lt;s:TextInput id="myZip"/&gt; 
+&lt;/s:Application&gt;</pre>
+
+                     <p>In this example, you use the
+Flex <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/validators/ZipCodeValidator.html" target="_blank">ZipCodeValidator</a> to
+validate the data entered in a <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/spark/components/TextInput.html" target="_blank">TextInput</a> control.
+The TextInput control stores the input data in its <samp class="codeph">text</samp> property. </p>
+
+                  </dd>
+
+               
+            </dl>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf60efb-7fe7_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf60efb-7fe7_verapache"><!-- --></a>
+         <h3 class="topictitle3">About triggering validation</h3>
+
+         
+         <div>
+            <p>You trigger validation either automatically in response
+to an event, or programmatically by an explicit call to the <samp class="codeph">validate()</samp> method
+of a validator. </p>
+
+            <p>When you use events, you can cause the validator to execute automatically
+in response to a user action. For example, you can use the <samp class="codeph">click</samp> event
+of a <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/controls/Button.html" target="_blank">Button</a> control
+to trigger validation on the fields of a form, or the <samp class="codeph">valueCommit</samp> event of
+a <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/controls/TextInput.html" target="_blank">TextInput</a> control
+to trigger validation after a user enters information in the control.
+For more information, see <a href="flx_validators_va.html#WS2db454920e96a9e51e63e3d11c0bf69084-7f4b_verapache">Triggering
+validation by using events</a>.</p>
+
+            <p>You can also trigger a validation programmatically. For example,
+you might have to inspect multiple, related input fields to perform
+a single validation. Or you might have to perform conditional validation
+based on a user input. For example, you may allow a user to select
+the currency used for payment, such as U.S. dollars or Euros. Therefore,
+you want to make sure that you invoke a validator configured for
+the specified currency. In this case, you can make an explicit call
+to the <samp class="codeph">validate()</samp> method to trigger the correct
+validator for the input value. For more information, see <a href="flx_validators_va.html#WS2db454920e96a9e51e63e3d11c0bf69084-7f50_verapache">Triggering
+validation programmatically </a>.</p>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf60efb-7ff9_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf60efb-7ff9_verapache"><!-- --></a>
+         <h3 class="topictitle3">About validating required fields</h3>
+
+         
+         <div>
+            <p>Flex validators can determine when a user enters an incorrect
+value into a user-interface control. In addition, all validators
+support the <samp class="codeph">required</samp> property, which, if <samp class="codeph">true</samp>,
+specifies that a missing or empty value in a user-interface control causes
+a validation error. The default value is <samp class="codeph">true</samp>.
+Therefore, a validation error occurs by default if the user fails
+to enter any required data in a control associated with a validator.
+To disable this check, set the <samp class="codeph">required</samp> property
+to <samp class="codeph">false</samp>. For more information, see <a href="flx_validators_va.html#WS2db454920e96a9e51e63e3d11c0bf69084-7f4e_verapache">Validating
+required fields</a>.</p>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf60efb-7ffb_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf60efb-7ffb_verapache"><!-- --></a>
+         <h3 class="topictitle3">About validation errors</h3>
+
+         
+         <div>
+            <p>If a validation error occurs, by default Flex draws a red
+box around the component associated with the failure. If the user
+moves the pointer over the component, Flex displays the error message
+associated with the error. </p>
+
+            <div class="p">
+               <div class="note"><span class="notetitle">Note:</span> For the Spark Form container, the error message appears
+in the help area of the Form container without you having to move
+the pointer over the component.</div>
+
+            </div>
+
+            <p>You can customize the look of the component and the error message
+associated with the error. For more information on validation errors,
+see <a href="flx_validators_va.html#WS2db454920e96a9e51e63e3d11c0bf69084-7f52_verapache">Working
+with validation errors </a>. </p>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf60efb-7ffa_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf60efb-7ffa_verapache"><!-- --></a>
+         <h3 class="topictitle3">About validation events</h3>
+
+         
+         <div>
+            <p>Validation is event driven. You can use events to trigger
+validation, programmatically create and configure validators in
+response to events, and listen for events dispatched by validators. </p>
+
+            <p>For example, when a validation operation completes, a validator
+dispatches a <samp class="codeph">valid</samp> or <samp class="codeph">invalid</samp> event,
+depending on the results of the validation. You can listen for these
+events, and then perform any additional processing that your application
+requires. </p>
+
+            <p>Alternatively, Flex components dispatch <samp class="codeph">valid</samp> and <samp class="codeph">invalid</samp> events, depending
+on the results of the validation. This lets you listen for the events being
+dispatched from the component being validated, rather than listening
+for events dispatched by the validator.</p>
+
+            <p>You are not required to listen for validation events. By default,
+Flex handles a failed validation by drawing a red box around the
+control that is associated with the source of the data binding.
+For a successful validation, Flex clears any indicator of a previous
+failure. For more information, see <a href="flx_validators_va.html#WS2db454920e96a9e51e63e3d11c0bf69084-7f57_verapache">Working
+with validation events </a>.</p>
+
+         </div>
+
+      </div>
+
+   </div>
+
+   <div class="nested1" id="WS2db454920e96a9e51e63e3d11c0bf60efb-7fdd_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf60efb-7fdd_verapache"><!-- --></a>
+      <h2 class="topictitle2">Using validators</h2>
+
+      
+      <div>
+         <p/>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf69084-7f4b_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7f4b_verapache"><!-- --></a>
+         <h3 class="topictitle3">Triggering validation by using
+events</h3>
+
+         
+         <div>
+            <p>You can trigger validators automatically by associating
+them with an event. In the following example, the user enters a
+ZIP code in a TextInput control, and then triggers validation by
+clicking the <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/spark/components/Button.html" target="_blank">Button</a> control: </p>
+
+            <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- validators\ZCValidatorTriggerEvent.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx"&gt; 
+    &lt;s:layout&gt; 
+        &lt;s:VerticalLayout/&gt; 
+    &lt;/s:layout&gt; 
+ 
+    &lt;fx:Declarations&gt; 
+        &lt;mx:ZipCodeValidator id="zipV" 
+            source="{myZip}" 
+            property="text" 
+            trigger="{mySubmit}" 
+            triggerEvent="click"/&gt; 
+    &lt;/fx:Declarations&gt; 
+ 
+    &lt;s:TextInput id="myZip"/&gt; 
+    &lt;s:Button id="mySubmit" label="Submit"/&gt; 
+&lt;/s:Application&gt;</pre>
+
+            <p>This example uses the <samp class="codeph">trigger</samp> and <samp class="codeph">triggerEvent</samp> properties
+of the <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/validators/ZipCodeValidator.html" target="_blank">ZipCodeValidator</a> class
+to associate an event with the validator. These properties have
+the following values: </p>
+
+            <dl>
+               
+                  <dt class="dlterm">
+                     <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/validators/Validator.html#trigger" target="_blank">trigger</a>
+                  </dt>
+
+                  <dd>
+                     <p>Specifies the component generating the event that triggers
+the validator. If omitted, by default Flex uses the value of the <samp class="codeph">source</samp> property.</p>
+
+                  </dd>
+
+               
+               
+                  <dt class="dlterm">
+                     <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/validators/Validator.html#triggerEvent" target="_blank">triggerEvent</a>
+                  </dt>
+
+                  <dd>
+                     <p>Specifies the event that triggers the validation. If omitted,
+Flex uses the <samp class="codeph">valueCommit</samp> event. Flex dispatches
+the <samp class="codeph">valueCommit</samp> event whenever the value of a control
+changes. Usually this is when the user removes focus from the component,
+or when a property value is changed programmatically. If you want
+a validator to ignore all events, set <samp class="codeph">triggerEvent</samp> to
+an empty string (<samp class="codeph">""</samp>). </p>
+
+                     <p>For information on
+specific validator classes, see <a href="flx_validators_va.html#WS2db454920e96a9e51e63e3d11c0bf69084-7f4f_verapache">Using
+standard validators</a>.</p>
+
+                  </dd>
+
+               
+            </dl>
+
+            <div class="section" id="WS2db454920e96a9e51e63e3d11c0bf69084-7f4b_verapache__WS2db454920e96a9e51e63e3d11c0bf60efb-7fd9_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7f4b_verapache__WS2db454920e96a9e51e63e3d11c0bf60efb-7fd9_verapache"><!-- --></a><h4 class="sectiontitle">Triggering
+validation by using the default event </h4>
+               
+               <p>You can rewrite
+the example from the previous section to use default values for the <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/validators/Validator.html#ttrigger" target="_blank">trigger</a> and <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/validators/Validator.html#triggerEvent" target="_blank">triggerEvent</a> properties,
+as the following example shows:</p>
+
+               <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- validators\ZCValidatorDefEvent.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx"&gt; 
+    &lt;s:layout&gt; 
+        &lt;s:VerticalLayout/&gt; 
+    &lt;/s:layout&gt; 
+ 
+    &lt;fx:Declarations&gt; 
+        &lt;mx:ZipCodeValidator id="zipV" 
+            source="{myZip}" 
+            property="text"/&gt; 
+    &lt;/fx:Declarations&gt; 
+ 
+    &lt;s:TextInput id="myZip"/&gt; 
+    &lt;s:Button id="mySubmit" label="Submit"/&gt; 
+&lt;/s:Application&gt;</pre>
+
+               <p>By omitting the <samp class="codeph">trigger</samp> and <samp class="codeph">triggerEvent</samp> properties,
+Flex triggers the validator when the TextInput control dispatches
+the <samp class="codeph">valueCommit</samp> event. Flex controls dispatch the <samp class="codeph">valueCommit</samp> event
+when its values changes by user interaction or programmatically.</p>
+
+            </div>
+
+            <div class="section" id="WS2db454920e96a9e51e63e3d11c0bf69084-7f4b_verapache__WS2db454920e96a9e51e63e3d11c0bf60efb-7fdf_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7f4b_verapache__WS2db454920e96a9e51e63e3d11c0bf60efb-7fdf_verapache"><!-- --></a><h4 class="sectiontitle">Triggering
+validation for data bindings</h4>
+               
+               <p>Data binding provides a syntax
+for automatically copying the value of a property of one object
+to a property of another object at run time. With data binding,
+Flex copies the source value to the destination, typically in response
+to a modification to the source. The source and destination of data
+bindings are typically Flex components or data models. </p>
+
+               <p>In
+the next example, you bind data entered in a <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/spark/components/TextInput.html" target="_blank">TextInput</a> control
+to a data model so that the data in the TextInput control is automatically
+copied to the data model:</p>
+
+               <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- validators\ValWithDataBinding.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx"&gt; 
+    &lt;s:layout&gt; 
+        &lt;s:VerticalLayout/&gt; 
+    &lt;/s:layout&gt; 
+ 
+    &lt;fx:Declarations&gt; 
+        &lt;!-- Define a data model for storing the phone number. --&gt; 
+        &lt;fx:Model id="userInfo"&gt; 
+            &lt;phoneInfo&gt; 
+                &lt;phoneNum&gt;{phoneInput.text}&lt;/phoneNum&gt; 
+            &lt;/phoneInfo&gt; 
+        &lt;/fx:Model&gt; 
+    &lt;/fx:Declarations&gt; 
+ 
+    &lt;!-- Define the TextInput control for entering the phone number. --&gt; 
+    &lt;s:TextInput id="phoneInput"/&gt; 
+    &lt;s:TextInput id="zipCodeInput"/&gt; 
+&lt;/s:Application&gt;</pre>
+
+               <p>You can use a validator along
+with a data binding to validate either the source or destination
+of the data binding, as the following example shows: </p>
+
+               <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- validators\ValTriggerWithDataBinding.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx"&gt; 
+    &lt;s:layout&gt; 
+        &lt;s:VerticalLayout/&gt; 
+    &lt;/s:layout&gt; 
+ 
+    &lt;fx:Declarations&gt; 
+        &lt;!-- Define a data model for storing the phone number. --&gt; 
+        &lt;fx:Model id="userInfo"&gt; 
+            &lt;phoneInfo&gt; 
+                &lt;phoneNum&gt;{phoneInput.text}&lt;/phoneNum&gt; 
+            &lt;/phoneInfo&gt; 
+        &lt;/fx:Model&gt; 
+ 
+        &lt;!-- Define the PhoneNumberValidator. --&gt; 
+        &lt;mx:PhoneNumberValidator id="pnV" 
+            source="{phoneInput}" 
+            property="text"/&gt; 
+    &lt;/fx:Declarations&gt; 
+ 
+    &lt;!-- Define the TextInput control for entering the phone number. --&gt; 
+    &lt;s:TextInput id="phoneInput"/&gt; 
+    &lt;s:TextInput id="zipCodeInput"/&gt; 
+&lt;/s:Application&gt;</pre>
+
+               <p>This example uses a <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/validators/PhoneNumberValidator.html" target="_blank">PhoneNumberValidator</a> to
+validate the data entered in the TextInput control. In this example,
+the following occurs:</p>
+
+               <ul>
+                  <li>
+                     <p>You assign the validator to
+the source of the data binding.</p>
+
+                  </li>
+
+                  <li>
+                     <p>You use the default event, <samp class="codeph">valueCommit</samp>,
+on the TextInput control to trigger the validator. This means the
+validator executes when the user removes focus from the TextInput
+control by selecting the TextInput control for the ZIP code. </p>
+
+                  </li>
+
+                  <li>
+                     <p>Flex updates the destination of the data binding on every
+change to the source. This means that the <samp class="codeph">userInfo.phoneNum</samp> field
+updates on every change to the TextInput control, while the validator
+executes only when the user removes focus from the TextInput control
+to trigger the <samp class="codeph">valueCommit</samp> event. You can use the
+validator’s <samp class="codeph">triggerEvent</samp> property to specify a different
+event to trigger the validation. </p>
+
+                  </li>
+
+               </ul>
+
+               <p>In a model-view-controller
+(MVC) design pattern, you isolate the model from the view and controller
+portions of the application. In the previous example, the data model
+represents the model, and the TextInput control and validator represents the
+view. </p>
+
+               <p>The TextInput control is not aware that its data is
+bound to the data model, or that there is any binding on it at all.
+Since the validator is also assigned to the TextInput control, you
+have kept the model and view portions of your application separate
+and can modify one without affecting the other.</p>
+
+               <p>However, there
+is nothing in Flex to prohibit you from assigning a validator to
+the data model, as the following example shows:</p>
+
+               <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- validators\ValTriggerWithDataBindingOnModel.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx"&gt; 
+    &lt;s:layout&gt; 
+        &lt;s:VerticalLayout/&gt; 
+    &lt;/s:layout&gt; 
+ 
+    &lt;fx:Declarations&gt; 
+        &lt;!-- Define a data model for storing the phone number. --&gt; 
+        &lt;fx:Model id="userInfo"&gt; 
+            &lt;phoneInfo&gt; 
+                &lt;phoneNum&gt;{phoneInput.text}&lt;/phoneNum&gt; 
+            &lt;/phoneInfo&gt; 
+        &lt;/fx:Model&gt; 
+    
+        &lt;!-- Define the PhoneNumberValidator. --&gt; 
+        &lt;mx:PhoneNumberValidator id="pnV" 
+            source="{userInfo}" 
+            property="phoneNum" 
+            trigger="{phoneInput}" 
+            listener="{phoneInput}"/&gt; 
+    &lt;/fx:Declarations&gt; 
+ 
+    &lt;!-- Define the TextInput control for entering the phone number. --&gt; 
+    &lt;s:TextInput id="phoneInput"/&gt; 
+    &lt;s:TextInput id="zipCodeInput"/&gt; 
+&lt;/s:Application&gt;</pre>
+
+               <p>In this example, you trigger
+the data validator by using the <samp class="codeph">valueCommit</samp> event of
+the TextInput control, but assign the validator to a field of the
+data model, rather than to a property of the TextInput control. </p>
+
+               <p>This
+example also uses the <samp class="codeph">listener</samp> property of the
+validator. This property configures the validator to display validation
+error information on the specified object, rather than on the source
+of the validation. In this example, the source of the validation
+is a model, so you display the visual information on the TextInput control
+that provided the data to the model. For more information, see <a href="flx_validators_va.html#WS2db454920e96a9e51e63e3d11c0bf69084-7f43_verapache">Specifying
+a listener for validation</a>. </p>
+
+               <p>If the model has a nesting
+structure of elements, you use dot-delimited Strings with the <samp class="codeph">source</samp> property
+to specify the model element to validate, as the following example
+shows:</p>
+
+               <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- validators\ValTriggerWithDataBindingComplexModel.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx"&gt; 
+    &lt;s:layout&gt; 
+        &lt;s:VerticalLayout/&gt; 
+    &lt;/s:layout&gt; 
+ 
+    &lt;fx:Declarations&gt; 
+        &lt;!-- Define a data model for storing the phone number. --&gt; 
+        &lt;fx:Model id="userInfo"&gt; 
+            &lt;user&gt; 
+                &lt;phoneInfo&gt; 
+                    &lt;homePhoneNum&gt;{homePhoneInput.text}&lt;/homePhoneNum&gt; 
+                    &lt;cellPhoneNum&gt;{cellPhoneInput.text}&lt;/cellPhoneNum&gt; 
+                &lt;/phoneInfo&gt; 
+            &lt;/user&gt; 
+        &lt;/fx:Model&gt; 
+    
+        &lt;!-- Define the PhoneNumberValidator. --&gt; 
+        &lt;mx:PhoneNumberValidator id="hPNV" 
+            source="{userInfo.phoneInfo}" 
+            property="homePhoneNum" 
+            trigger="{homePhoneInput}" 
+            listener="{homePhoneInput}"/&gt; 
+    
+        &lt;!-- Define the PhoneNumberValidator. --&gt; 
+        &lt;mx:PhoneNumberValidator id="cPNV" 
+            source="{userInfo.phoneInfo}" 
+            property="cellPhoneNum" 
+            trigger="{cellPhoneInput}" 
+            listener="{cellPhoneInput}"/&gt; 
+    &lt;/fx:Declarations&gt; 
+ 
+    &lt;!-- Define the TextInput controls for entering the phone number. --&gt; 
+    &lt;s:Label text="Home Phone:"/&gt; 
+    &lt;s:TextInput id="homePhoneInput"/&gt; 
+ 
+    &lt;s:Label text="Cell Phone:"/&gt; 
+    &lt;s:TextInput id="cellPhoneInput"/&gt; 
+&lt;/s:Application&gt;</pre>
+
+            </div>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf69084-7f50_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7f50_verapache"><!-- --></a>
+         <h3 class="topictitle3">Triggering validation programmatically </h3>
+
+         
+         <div>
+            <p>All validators define a <samp class="codeph">validate()</samp> method
+that you can call to invoke a validator directly, rather than triggering
+the validator automatically by using an event. </p>
+
+            <p>The <samp class="codeph">validate()</samp> method has the following signature:</p>
+
+            <pre class="codeblock"> validate(<em>value</em>:Object = null, <em>supressEvents</em>:Boolean = false):ValidationResultEvent</pre>
+
+            <p>The arguments have the following values:</p>
+
+            <dl>
+               
+                  <dt class="dlterm">value</dt>
+
+                  <dd>
+                     <p>If <samp class="codeph">
+                           <em>value</em>
+                        </samp> is <samp class="codeph">null</samp>,
+use the <samp class="codeph">source</samp> and <samp class="codeph">property</samp> properties
+to specify the data to validate. If <samp class="codeph">value</samp> is non-null,
+it specifies a field of an object relative to the <samp class="codeph">this</samp> keyword,
+which means an object in the scope of the document. </p>
+
+                     <p>You should
+also set the <samp class="codeph">Validator.listener</samp> property when you
+specify the <samp class="codeph">value</samp> argument. When a validation occurs,
+Flex applies visual changes to the object specified by the <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/validators/Validator.html#tlistener" target="_blank">listener</a> property.
+By default, Flex sets the <samp class="codeph">listener</samp> property to
+the value of the <samp class="codeph">source</samp> property. However, because
+you do not specify the <samp class="codeph">source</samp> property when you
+pass the <samp class="codeph">value</samp> argument, you should set it explicitly.
+For more information, see <a href="flx_validators_va.html#WS2db454920e96a9e51e63e3d11c0bf69084-7f43_verapache">Specifying
+a listener for validation</a>. </p>
+
+                  </dd>
+
+               
+               
+                  <dt class="dlterm">supressEvents</dt>
+
+                  <dd>
+                     <p>If <samp class="codeph">false</samp>, dispatch either the <samp class="codeph">valid</samp> or <samp class="codeph">invalid</samp> event
+on completion. If <samp class="codeph">true</samp>, do not dispatch events. </p>
+
+                     <p>This
+method returns an event object containing the results of the validation
+that is an instance of the <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/events/ValidationResultEvent.html" target="_blank">ValidationResultEvent</a> class.
+For more information on using the return result, see <a href="flx_validators_va.html#WS8b1c39bd7e9fc3643d2290fb12c125bab8e-8000_verapache">Handling
+the return value of the validate() method</a>.</p>
+
+                     <p>In the following
+example, you create and invoke a validator programmatically in when
+a user clicks a <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/spark/components/Button.html" target="_blank">Button</a> control: </p>
+
+                     <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- validators\ValTriggerProg.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx"&gt; 
+    &lt;s:layout&gt; 
+        &lt;s:VerticalLayout/&gt; 
+    &lt;/s:layout&gt; 
+ 
+    &lt;fx:Script&gt; 
+        &lt;![CDATA[ 
+ 
+            // Import ZipCodeValidator. 
+            import mx.validators.ZipCodeValidator; 
+ 
+            private var v:ZipCodeValidator = new ZipCodeValidator(); 
+ 
+            private function performValidation():void { 
+                v.domain = "US or Canada"; 
+                // Set the listener property to the component 
+                // used to display validation errors. 
+                v.listener=myZip; 
+                v.validate(myZip.text); 
+            } 
+        ]]&gt; 
+    &lt;/fx:Script&gt; 
+ 
+    &lt;s:TextInput id="myZip"/&gt; 
+    &lt;s:Button label="Submit" click="performValidation();"/&gt; 
+&lt;/s:Application&gt;</pre>
+
+                     <p>Notice that you are still using
+an event to trigger the <samp class="codeph">performValidation()</samp> function
+that creates and invokes the validator, but the event itself does
+not automatically invoke the validator.</p>
+
+                     <p>Any errors in the
+validator are shown on the associated component, just as if you had
+triggered the validation directly by using an event. </p>
+
+                  </dd>
+
+               
+            </dl>
+
+         </div>
+
+         <div class="nested3" id="WS8b1c39bd7e9fc3643d2290fb12c125bab8e-8000_verapache"><a name="WS8b1c39bd7e9fc3643d2290fb12c125bab8e-8000_verapache"><!-- --></a>
+            <h4 class="topictitle4">Handling the return value of the
+validate() method</h4>
+
+            
+            <div>
+               <p>You may want to inspect the return value from the <samp class="codeph">validate()</samp> method
+to perform some action when the validation succeeds or fails. The <samp class="codeph">validate()</samp> method
+returns an event object with a type defined by the <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/events/ValidationResultEvent.html" target="_blank">ValidationResultEvent</a> class. </p>
+
+               <p>The ValidationResultEvent class defines several properties, including
+the <samp class="codeph">type</samp> property. The <samp class="codeph">type</samp> property
+of the event object contains either <samp class="codeph">ValidationResultEvent.VALID</samp> or <samp class="codeph">ValidationResultEvent.INVALID</samp>,
+based on the validation results. You can use this property as part
+of your validation logic, as the following example shows: </p>
+
+               <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- validators\ValTriggerProgProcessReturnResult.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx"&gt; 
+    &lt;s:layout&gt; 
+        &lt;s:VerticalLayout/&gt; 
+    &lt;/s:layout&gt; 
+ 
+    &lt;fx:Script&gt; 
+        &lt;![CDATA[ 
+ 
+            // Import the ValidationResultEvent class. 
+            import mx.events.ValidationResultEvent; 
+            import mx.validators.ZipCodeValidator; 
+ 
+            public var v:ZipCodeValidator = new ZipCodeValidator(); 
+ 
+            // Define variable for storing the validation event object. 
+            public var vResult:ValidationResultEvent; 
+ 
+            public function performValidation():void { 
+                v.domain = "US or Canada"; 
+                v.listener=myZip; 
+                vResult = v.validate(myZip.text); 
+        
+                if (vResult.type==ValidationResultEvent.VALID) { 
+                    // Validation succeeded. 
+                    myTA.text='OK'; 
+                } 
+                else { 
+                    // Validation failed. 
+                    myTA.text='Fail'; 
+                } 
+            } 
+        ]]&gt; 
+    &lt;/fx:Script&gt; 
+    
+    &lt;s:TextInput id="myZip"/&gt; 
+    &lt;s:Button label="Submit" click="performValidation();"/&gt; 
+    
+    &lt;s:TextArea id="myTA"/&gt; 
+&lt;/s:Application&gt;</pre>
+
+               <p>The ValidationResultEvent class has additional properties that
+you can use when processing validation events. For more information,
+see <a href="flx_validators_va.html#WS2db454920e96a9e51e63e3d11c0bf69084-7f57_verapache">Working
+with validation events </a>.</p>
+
+            </div>
+
+         </div>
+
+         <div class="nested3" id="WS8b1c39bd7e9fc3643d2290fb12c125bab8e-7fff_verapache"><a name="WS8b1c39bd7e9fc3643d2290fb12c125bab8e-7fff_verapache"><!-- --></a>
+            <h4 class="topictitle4">Triggering the DateValidator and
+CreditCardValidator</h4>
+
+            
+            <div>
+               <p>The <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/validators/DateValidator.html" target="_blank">DateValidator</a> and <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/validators/CreditCardValidator.html" target="_blank">CreditCardValidator</a> can
+validate multiple fields by using a single validator. A CreditCardValidator
+examines one field that contains the credit card number and a second
+field that contains the credit card type. The DateValidator can
+examine a single field that contains a date, or multiple fields
+that together make up a date. </p>
+
+               <p>When you validate an object that contains multiple properties
+that are set independently, you often cannot use events to automatically
+trigger the validator because no single field contains all of the
+information required to perform the validation. </p>
+
+               <p>One way to validate a complex object is to call the <samp class="codeph">validate()</samp> method
+of the validator based on some type of user interaction. For example,
+you might want to validate the multiple fields that make up a date
+in response to the <samp class="codeph">click</samp> event of a <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/spark/components/Button.html" target="_blank">Button</a> control,
+as the following example shows:</p>
+
+               <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- validators\DateAndCC.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx"&gt; 
+    &lt;s:layout&gt; 
+        &lt;s:VerticalLayout/&gt; 
+    &lt;/s:layout&gt; 
+ 
+    &lt;fx:Declarations&gt; 
+        &lt;!-- Define the data model. --&gt; 
+        &lt;fx:Model id="date"&gt; 
+            &lt;dateInfo&gt; 
+                &lt;month&gt;{monthInput.text}&lt;/month&gt; 
+                &lt;day&gt;{dayInput.text}&lt;/day&gt; 
+                &lt;year&gt;{yearInput.text}&lt;/year&gt; 
+            &lt;/dateInfo&gt; 
+        &lt;/fx:Model&gt; 
+    
+        &lt;!-- Define the validators. --&gt; 
+        &lt;mx:DateValidator id="dayV" 
+            triggerEvent="" 
+            daySource="{dayInput}" 
+            dayProperty="text" 
+            monthSource="{monthInput}" 
+            monthProperty="text" 
+            yearSource="{yearInput}" 
+            yearProperty="text"/&gt; 
+    &lt;/fx:Declarations&gt; 
+    
+    &lt;!-- Define the form to populate the model. --&gt; 
+    &lt;s:Form&gt; 
+        &lt;s:TextInput id="monthInput"/&gt; 
+        &lt;s:TextInput id="dayInput"/&gt; 
+        &lt;s:TextInput id="yearInput"/&gt; 
+    &lt;/s:Form&gt; 
+ 
+    &lt;!-- Define the button to trigger validation. --&gt; 
+    &lt;s:Button label="Submit" 
+        click="dayV.validate();"/&gt; 
+&lt;/s:Application&gt;</pre>
+
+               <p>The validator in this example examines all three input fields.
+If any field is invalid, validation fails. The validator highlights
+only the invalid fields that failed. For more information on how
+validators signal validation errors, see <a href="flx_validators_va.html#WS2db454920e96a9e51e63e3d11c0bf69084-7f52_verapache">Working
+with validation errors </a>. For more information on the DateValidator
+and CreditCardValidator, see <a href="flx_validators_va.html#WS2db454920e96a9e51e63e3d11c0bf69084-7f4f_verapache">Using
+standard validators</a>.</p>
+
+            </div>
+
+         </div>
+
+         <div class="nested3" id="WS8b1c39bd7e9fc3643d2290fb12c125bab8e-7ffe_verapache"><a name="WS8b1c39bd7e9fc3643d2290fb12c125bab8e-7ffe_verapache"><!-- --></a>
+            <h4 class="topictitle4">Invoking multiple validators in
+a function</h4>
+
+            
+            <div>
+               <p>You can invoke multiple validators programmatically from
+a single function. In this example, you use the <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/validators/ZipCodeValidator.html" target="_blank">ZipCodeValidator</a> and <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/validators/PhoneNumberValidator.html" target="_blank">PhoneNumberValidator</a> validators
+to validate the ZIP code and phone number input to a data model. </p>
+
+               <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- validators\ValidatorCustomFuncStaticVals.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx"&gt; 
+    &lt;s:layout&gt; 
+        &lt;s:VerticalLayout/&gt; 
+    &lt;/s:layout&gt; 
+ 
+    &lt;fx:Script&gt; 
+        &lt;![CDATA[ 
+    
+            // Import event class. 
+            import mx.events.ValidationResultEvent; 
+    
+            // Define variable for storing the validation event object. 
+            private var vResult:ValidationResultEvent; 
+    
+            private function validateZipPhone():void {       
+                // Validate the ZIP code. 
+                vResult = zipV.validate();                
+                // If the ZIP code is invalid, 
+                // do not move on to the next field. 
+                if (vResult.type==ValidationResultEvent.INVALID) 
+                    return; 
+            
+                // Validate the phone number. 
+                vResult = pnV.validate(); 
+                // If the phone number is invalid, 
+                // do not move on to the validation. 
+                if (vResult.type==ValidationResultEvent.INVALID) 
+                    return; 
+            } 
+        ]]&gt; 
+    &lt;/fx:Script&gt; 
+ 
+    &lt;fx:Declarations&gt; 
+        &lt;fx:Model id="person"&gt; 
+            &lt;userInfo&gt; 
+                &lt;zipCode&gt;{zipCodeInput.text}&lt;/zipCode&gt; 
+                &lt;phoneNumber&gt;{phoneNumberInput.text}&lt;/phoneNumber&gt; 
+            &lt;/userInfo&gt; 
+        &lt;/fx:Model&gt; 
+ 
+        &lt;!-- Define the validators. --&gt; 
+        &lt;mx:ZipCodeValidator id="zipV" 
+            source="{zipCodeInput}" 
+            property="text"/&gt; 
+        &lt;mx:PhoneNumberValidator id="pnV" 
+            source ="{phoneNumberInput}" 
+            property="text"/&gt; 
+    &lt;/fx:Declarations&gt; 
+    
+    &lt;s:Form&gt; 
+        &lt;s:FormItem&gt; 
+            &lt;s:TextInput id="zipCodeInput"/&gt; 
+        &lt;/s:FormItem&gt; 
+        &lt;s:FormItem&gt; 
+            &lt;s:TextInput id="phoneNumberInput"/&gt; 
+        &lt;/s:FormItem&gt; 
+    &lt;/s:Form&gt; 
+    
+    &lt;s:Button label="Validate" 
+        click="validateZipPhone();"/&gt; 
+&lt;/s:Application&gt;</pre>
+
+               <p>In this example, you use the predefined ZipCodeValidator and
+PhoneNumberValidator to validate user information as the user enters
+it. Then, when the user clicks the Submit button to submit the form,
+you validate that the ZIP code is actually within the specified
+area code of the phone number. </p>
+
+               <p>You can also use the static <samp class="codeph">validateAll()</samp> method
+to invoke all of the validators in an Array. This method returns
+an Array containing one <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/events/ValidationResultEvent.html" target="_blank">ValidationResultEvent</a> object
+for each validator that failed, and an empty Array if all validators succeed.
+The following example uses this method to invoke two validators
+in response to the <samp class="codeph">click</samp> event for the <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/spark/components/Button.html" target="_blank">Button</a> control: </p>
+
+               <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- validators\ValidatorMultipleValids.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    creationComplete="initValidatorArray();"&gt; 
+    &lt;s:layout&gt; 
+        &lt;s:VerticalLayout/&gt; 
+    &lt;/s:layout&gt; 
+ 
+    &lt;fx:Script&gt; 
+        &lt;![CDATA[ 
+            import mx.validators.Validator; 
+        
+            // Define the validator Array. 
+            private var myValidators:Array; 
+ 
+            private function initValidatorArray():void { 
+                myValidators=[zipV, pnV]; 
+            } 
+        ]]&gt; 
+    &lt;/fx:Script&gt; 
+ 
+    &lt;fx:Declarations&gt; 
+        &lt;fx:Model id="person"&gt; 
+            &lt;userInfo&gt; 
+                &lt;zipCode&gt;{zipCodeInput.text}&lt;/zipCode&gt; 
+                &lt;phoneNumber&gt;{phoneNumberInput.text}&lt;/phoneNumber&gt; 
+            &lt;/userInfo&gt; 
+        &lt;/fx:Model&gt; 
+ 
+        &lt;!-- Define the validators. --&gt; 
+        &lt;mx:ZipCodeValidator id="zipV" 
+            source="{zipCodeInput}" 
+            property="text"/&gt; 
+        &lt;mx:PhoneNumberValidator id="pnV" 
+            source ="{phoneNumberInput}" 
+            property="text"/&gt; 
+    &lt;/fx:Declarations&gt; 
+ 
+    &lt;s:Form&gt; 
+        &lt;s:FormItem&gt; 
+            &lt;s:TextInput id="zipCodeInput"/&gt; 
+        &lt;/s:FormItem&gt; 
+        &lt;s:FormItem&gt; 
+            &lt;s:TextInput id="phoneNumberInput"/&gt; 
+        &lt;/s:FormItem&gt; 
+    &lt;/s:Form&gt; 
+ 
+    &lt;s:Button label="Validate" 
+        click="Validator.validateAll(myValidators);"/&gt; 
+&lt;/s:Application&gt;</pre>
+
+            </div>
+
+         </div>
+
+         <div class="nested3" id="WS8b1c39bd7e9fc3643d2290fb12c125bab8e-7ffd_verapache"><a name="WS8b1c39bd7e9fc3643d2290fb12c125bab8e-7ffd_verapache"><!-- --></a>
+            <h4 class="topictitle4">Creating a reusable validator</h4>
+
+            
+            <div>
+               <p>You can define a reusable validator so that you can use
+it to validate multiple fields. To make it reusable, you programmatically
+set the <samp class="codeph">source</samp> and <samp class="codeph">property</samp> properties
+to specify the field to validate, or pass that information to the <samp class="codeph">validate()</samp> method,
+as the following example shows:</p>
+
+               <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- validators\ReusableVals.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx"&gt; 
+    &lt;s:layout&gt; 
+        &lt;s:VerticalLayout/&gt; 
+    &lt;/s:layout&gt; 
+ 
+    &lt;fx:Script&gt; 
+        &lt;![CDATA[ 
+ 
+            import flash.events.Event; 
+    
+            private function performValidation(eventObj:Event):void { 
+                zipV.listener=eventObj.currentTarget; 
+                zipV.validate(eventObj.currentTarget.text); 
+            } 
+        ]]&gt; 
+    &lt;/fx:Script&gt; 
+ 
+    &lt;fx:Declarations&gt; 
+        &lt;mx:ZipCodeValidator id="zipV" 
+            triggerEvent=""/&gt; 
+    &lt;/fx:Declarations&gt; 
+ 
+    &lt;s:TextInput id="shippingZip" 
+        focusOut="performValidation(event);"/&gt; 
+    &lt;s:TextInput id="billingZip" 
+        focusOut="performValidation(event);"/&gt; 
+&lt;/s:Application&gt;</pre>
+
+               <p>In this example, you have two address areas for a customer: one
+for a billing address and one for a shipping address. Both addresses
+have a ZIP code field, so you can reuse a single <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/validators/ZipCodeValidator.html" target="_blank">ZipCodeValidator</a> for
+both fields. The event listener for the <samp class="codeph">focusOut</samp> event
+passes the field to validate to the <samp class="codeph">validate()</samp> method.</p>
+
+               <p>Alternatively, you can write the <samp class="codeph">performValidation()</samp> function
+as the following example shows:</p>
+
+               <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- validators\ReusableValsSpecifySource.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx"&gt; 
+    &lt;s:layout&gt; 
+        &lt;s:VerticalLayout/&gt; 
+    &lt;/s:layout&gt; 
+ 
+    &lt;fx:Script&gt; 
+        &lt;![CDATA[ 
+ 
+            import flash.events.Event; 
+    
+            private function performValidation(eventObj:Event):void { 
+                zipV.source = eventObj.currentTarget; 
+                zipV.property = "text"; 
+                zipV.validate(); 
+            } 
+        ]]&gt; 
+    &lt;/fx:Script&gt; 
+ 
+    &lt;fx:Declarations&gt; 
+        &lt;mx:ZipCodeValidator id="zipV" 
+            triggerEvent=""/&gt; 
+    &lt;/fx:Declarations&gt; 
+ 
+    &lt;s:TextInput id="shippingZip" 
+        focusOut="performValidation(event);"/&gt; 
+    &lt;s:TextInput id="billingZip" 
+        focusOut="performValidation(event);"/&gt; 
+&lt;/s:Application&gt;</pre>
+
+            </div>
+
+         </div>
+
+         <div class="nested3" id="WS8b1c39bd7e9fc3643d2290fb12c125bab8e-7ffc_verapache"><a name="WS8b1c39bd7e9fc3643d2290fb12c125bab8e-7ffc_verapache"><!-- --></a>
+            <h4 class="topictitle4">Conditionalizing validator execution</h4>
+
+            
+            <div>
+               <p>By invoking a validator programmatically, you can use conditional
+logic in your application to determine which of several validators
+to invoke, set validator properties, or perform other preprocessing
+or postprocessing as part of the validation.</p>
+
+               <p>In the next example, you use a <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/controls/Button.html" target="_blank">Button</a> control
+to invoke a validator, but the application first determines which
+validator to execute, based on user input:</p>
+
+               <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- validators\ConditionalVal.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx"&gt; 
+    &lt;s:layout&gt; 
+        &lt;s:VerticalLayout/&gt; 
+    &lt;/s:layout&gt; 
+ 
+    &lt;fx:Script&gt; 
+        &lt;![CDATA[ 
+ 
+            import mx.events.ValidationResultEvent; 
+    
+            private var vEvent:ValidationResultEvent; 
+    
+            private function validateData():void { 
+                if (String(country.selectedValue) == "Canada") { 
+                    vEvent = zipCN.validate(zipInput.text); 
+                } 
+                else { 
+                    vEvent = zipUS.validate(zipInput.text); 
+                } 
+            } 
+        ]]&gt; 
+    &lt;/fx:Script&gt; 
+ 
+    &lt;fx:Declarations&gt; 
+        &lt;mx:ZipCodeValidator id="zipUS" 
+            domain="US Only" 
+            listener="{zipInput}"/&gt; 
+        &lt;mx:ZipCodeValidator id="zipCN" 
+            domain="Canada Only" 
+            listener="{zipInput}"/&gt; 
+            
+        &lt;s:RadioButtonGroup id="country"/&gt; 
+    &lt;/fx:Declarations&gt; 
+ 
+    &lt;s:RadioButton group="{country}" label="US"/&gt; 
+    &lt;s:RadioButton group="{country}" label="Canada"/&gt; 
+ 
+    &lt;s:TextInput id="zipInput"/&gt; 
+    &lt;s:Button label="Submit" click="validateData();"/&gt; 
+&lt;/s:Application&gt;</pre>
+
+               <p>In this example, you use a <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/validators/ZipCodeValidator.html" target="_blank">ZipCodeValidator</a> to
+validate a ZIP code entered into a <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/spark/components/TextInput.html" target="_blank">TextInput</a> control.
+However, the <samp class="codeph">validateData()</samp> function must first determine
+whether the ZIP code is for the U.S. or for Canada before performing the
+validation. In this example, the application uses the RadioButton
+controls to let the user specify the country as part of entering
+the ZIP code. </p>
+
+            </div>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf69084-7f4e_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7f4e_verapache"><!-- --></a>
+         <h3 class="topictitle3">Validating required fields</h3>
+
+         
+         <div>
+            <p>All Flex validators contain a <samp class="codeph">required</samp> property
+that, when set to <samp class="codeph">true</samp>, causes validation to fail
+when a field is empty. You use this property to configure the validator
+to fail when a user does not enter data in a required input field.</p>
+
+            <p>You typically call the <samp class="codeph">validate()</samp> method to
+invoke a validator on a required field. This is often necessary
+because you cannot guarantee that an event occurs to trigger the
+validation—an empty input field often means that the user never gave
+the input control focus. </p>
+
+            <p>The following example performs a validation on a required input
+field: </p>
+
+            <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- validators\RequiredVal.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx"&gt; 
+    &lt;s:layout&gt; 
+        &lt;s:VerticalLayout/&gt; 
+    &lt;/s:layout&gt; 
+ 
+    &lt;fx:Declarations&gt; 
+        &lt;mx:StringValidator id="reqV" 
+            source="{inputA}" 
+            property="text" 
+            required="true"/&gt; 
+    &lt;/fx:Declarations&gt; 
+ 
+    &lt;s:TextInput id="inputA"/&gt; 
+    &lt;s:Button label="Submit" 
+        click="reqV.validate();"/&gt; 
+&lt;/s:Application&gt;</pre>
+
+            <p>In this example, the StringValidator executes when the following
+occurs:</p>
+
+            <ul>
+               <li>
+                  <p>The <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/spark/components/TextInput.html" target="_blank">TextInput</a> control
+dispatches the <samp class="codeph">valueCommit</samp> event. However, to dispatch
+that event, the user must give the TextInput control focus, and
+then remove focus. If the user never gives the TextInput control
+focus, the validator does not trigger, and Flex does not recognize
+that the control is empty. Therefore, you must call the <samp class="codeph">validate()</samp> method
+to ensure that the validator checks for missing data. </p>
+
+               </li>
+
+               <li>
+                  <p>The user clicks the <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/controls/Button.html" target="_blank">Button</a> control.
+The validator issues a validation error when the user does not enter
+any data into the TextInput control. It also issues a validation
+error if the user enters an invalid String value. </p>
+
+               </li>
+
+            </ul>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf60efb-7ff8_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf60efb-7ff8_verapache"><!-- --></a>
+         <h3 class="topictitle3">Enabling and disabling a validator</h3>
+
+         
+         <div>
+            <p>The <samp class="codeph">enabled</samp> property of a validator lets
+you enable and disable a validator. When the value of the <samp class="codeph">enabled</samp> property
+is <samp class="codeph">true</samp>, the validator is enabled; when the value
+is <samp class="codeph">false</samp>, the validator is disabled. When a validator
+is disabled, it dispatches no events, and the <samp class="codeph">validate()</samp> method
+returns <samp class="codeph">null</samp>.</p>
+
+            <p>For example, you can set the <samp class="codeph">enabled</samp> property
+by using data binding, as the following code shows:</p>
+
+            <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- validators\EnableVal.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx"&gt; 
+    &lt;s:layout&gt; 
+        &lt;s:VerticalLayout/&gt; 
+    &lt;/s:layout&gt; 
+ 
+    &lt;fx:Declarations&gt; 
+        &lt;mx:ZipCodeValidator id="zcVal" 
+            source="{inputA}" 
+            property="text" 
+            required="true" 
+            enabled="{enableV.selected}"/&gt; 
+    &lt;/fx:Declarations&gt; 
+ 
+    &lt;s:TextInput id="inputA"/&gt; 
+    &lt;s:TextInput/&gt; 
+    &lt;s:CheckBox id="enableV" 
+        label="Validate input?"/&gt; 
+&lt;/s:Application&gt;</pre>
+
+            <p>In this example, you enable the validator only when the user
+selects the <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/spark/components/CheckBox.html" target="_blank">CheckBox</a> control. </p>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf60efb-7fde_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf60efb-7fde_verapache"><!-- --></a>
+         <h3 class="topictitle3">Using data binding to configure
+validators</h3>
+
+         
+         <div>
+            <p>You configure validators to match your application requirements.
+For example, the <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/validators/StringValidator.html" target="_blank">StringValidator</a> lets
+you specify a minimum and maximum length of a valid string. For
+a String to be considered valid, it must be at least the minimum number
+of characters long, and less than or equal to the maximum number
+of characters.</p>
+
+            <p>Often, you set validator properties statically, which means that
+they do not change as your application executes. For example, the
+following StringValidator defines that the input string must be
+at least one character long and no longer than 10 characters:</p>
+
+            <pre class="codeblock"> &lt;mx:StringValidator required="true" minlength="1" maxLength="10"/&gt;</pre>
+
+            <p>User input might also define the properties of the validator.
+In the following example, you let the user set the minimum and maximum
+values of a <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/validators/NumberValidator.html" target="_blank">NumberValidator</a>:</p>
+
+            <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- validators\ConfigWithBinding.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx"&gt; 
+    &lt;s:layout&gt; 
+        &lt;s:VerticalLayout/&gt; 
+    &lt;/s:layout&gt; 
+ 
+    &lt;fx:Declarations&gt; 
+        &lt;mx:NumberValidator 
+            source="{inputA}" 
+            property="text"  
+            minValue="{Number(inputMin.text)}" 
+            maxValue="{Number(inputMax.text)}"/&gt; 
+    &lt;/fx:Declarations&gt; 
+ 
+    &lt;s:TextInput id="inputA"/&gt; 
+    &lt;s:TextInput id="inputMin" text="1"/&gt; 
+    &lt;s:TextInput id="inputMax" text="10"/&gt; 
+&lt;/s:Application&gt;</pre>
+
+            <p>In this example, you use data binding to configure the properties
+of the validators. </p>
+
+         </div>
+
+      </div>
+
+   </div>
+
+   <div class="nested1" id="WS2db454920e96a9e51e63e3d11c0bf60efb-7fda_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf60efb-7fda_verapache"><!-- --></a>
+      <h2 class="topictitle2">General guidelines for validation</h2>
+
+      
+      <div>
+         <p>You should be aware of some guidelines when performing
+validation on forms. Typically, you associate forms with data models.
+That lets you trigger validation as part of binding an input user
+interface control to a field of the data model. You can also perform
+some of the following actions:</p>
+
+         <ul>
+            <li>
+               <p>If possible, assign validators to all the individual
+user-interface controls of the form. You can use a validator even
+if all that you want to do is to ensure that the user entered a
+value. </p>
+
+            </li>
+
+            <li>
+               <p>Assign validators to multiple fields when necessary. For
+example, use the CreditCardValidator or the <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/validators/DateValidator.html" target="_blank">DateValidator</a> with
+multiple fields. </p>
+
+            </li>
+
+            <li>
+               <p>If you have any required fields, ensure that you explicitly
+call the <samp class="codeph">validate()</samp> method on the validator. For
+more information, see <a href="flx_validators_va.html#WS2db454920e96a9e51e63e3d11c0bf69084-7f4e_verapache">Validating required
+fields</a>.</p>
+
+            </li>
+
+            <li>
+               <p>Define a Submit button to invoke any validators before submitting
+data to a server. Typically, you use the <samp class="codeph">click</samp> event
+of the <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/spark/components/Button.html" target="_blank">Button</a> control
+to invoke validators programmatically, and then submit the data
+if all validation succeeds.</p>
+
+            </li>
+
+         </ul>
+
+         <p>The following example uses many of these guidelines to validate
+a form made up of several <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/spark/components/TextInput.html" target="_blank">TextInput</a> controls:</p>
+
+         <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- validators\FullApp.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx"&gt; 
+    &lt;s:layout&gt; 
+        &lt;s:VerticalLayout/&gt; 
+    &lt;/s:layout&gt; 
+ 
+    &lt;fx:Script&gt; 
+        &lt;![CDATA[ 
+            import mx.events.ValidationResultEvent; 
+ 
+            private var vResult:ValidationResultEvent; 
+ 
+            // Function to validate data and submit it to the server. 
+            private function validateAndSubmit():void           { 
+                // Validate the required fields. 
+                vResult = fNameV.validate(); 
+                if (vResult.type==ValidationResultEvent.INVALID) 
+                    return; 
+        
+                vResult = lNameV.validate(); 
+                if (vResult.type==ValidationResultEvent.INVALID) 
+                    return; 
+ 
+                // Since the date requires 3 fields, perform the validation 
+                // when the Submit button is clicked. 
+                vResult = dayV.validate(); 
+                if (vResult.type==ValidationResultEvent.INVALID) 
+                    return; 
+    
+                // Invoke any other validators or validation logic to make 
+                // an additional check before submitting the data. 
+ 
+                // Submit data to server. 
+            } 
+        ]]&gt; 
+    &lt;/fx:Script&gt; 
+ 
+    &lt;fx:Declarations&gt; 
+        &lt;!-- Define the data model. --&gt; 
+        &lt;fx:Model id="formInfo"&gt; 
+            &lt;formData&gt; 
+                &lt;date&gt; 
+                    &lt;month&gt;{monthInput.text}&lt;/month&gt; 
+                    &lt;day&gt;{dayInput.text}&lt;/day&gt; 
+                    &lt;year&gt;{yearInput.text}&lt;/year&gt; 
+                &lt;/date&gt; 
+                &lt;name&gt; 
+                    &lt;firstName&gt;{fNameInput.text}&lt;/firstName&gt; 
+                    &lt;lastName&gt;{lNameInput.text}&lt;/lastName&gt; 
+                &lt;/name&gt; 
+                &lt;phoneNum&gt;{phoneInput.text}&lt;/phoneNum&gt; 
+            &lt;/formData&gt; 
+        &lt;/fx:Model&gt; 
+    
+        &lt;!-- Define the validators. --&gt; 
+        &lt;mx:StringValidator id="fNameV" 
+            required="true" 
+            source="{fNameInput}" 
+            property="text"/&gt; 
+        &lt;mx:StringValidator id="lNameV" 
+            required="true" 
+            source="{lNameInput}" 
+            property="text"/&gt; 
+        &lt;mx:PhoneNumberValidator id="pnV" 
+            source="{phoneInput}" 
+            property="text"/&gt; 
+ 
+        &lt;!-- Invoke the DataValidator programmatically. --&gt; 
+        &lt;mx:DateValidator id="dayV" 
+            triggerEvent="" 
+            daySource="{dayInput}" dayProperty="text" 
+            monthSource="{monthInput}" monthProperty="text" 
+            yearSource="{yearInput}" yearProperty="text"/&gt; 
+    &lt;/fx:Declarations&gt; 
+ 
+    &lt;!-- Define the form to populate the model. --&gt; 
+    &lt;s:Form&gt; 
+        &lt;s:FormItem label="Month"&gt; 
+            &lt;s:TextInput id="monthInput"/&gt; 
+        &lt;/s:FormItem&gt; 
+        &lt;s:FormItem label="Day"&gt; 
+            &lt;s:TextInput id="dayInput"/&gt; 
+        &lt;/s:FormItem&gt; 
+        &lt;s:FormItem label="Year"&gt; 
+            &lt;s:TextInput id="yearInput"/&gt; 
+        &lt;/s:FormItem&gt; 
+        &lt;s:FormItem label="First name"&gt; 
+            &lt;s:TextInput id="fNameInput"/&gt; 
+        &lt;/s:FormItem&gt; 
+        &lt;s:FormItem label="Last name"&gt; 
+            &lt;s:TextInput id="lNameInput"/&gt; 
+        &lt;/s:FormItem&gt; 
+        &lt;s:FormItem label="Phone"&gt; 
+            &lt;s:TextInput id="phoneInput"/&gt; 
+        &lt;/s:FormItem&gt; 
+    &lt;/s:Form&gt; 
+ 
+    &lt;!-- Define the button to trigger validation. --&gt; 
+    &lt;s:Button label="Submit" 
+        click="validateAndSubmit();"/&gt; 
+&lt;/s:Application&gt;</pre>
+
+         <p>In this example the following actions occur:</p>
+
+         <ul>
+            <li>
+               <p>The associated validator executes whenever the TextInput
+control dispatches a <samp class="codeph">valueCommit</samp> event.</p>
+
+            </li>
+
+            <li>
+               <p>The <samp class="codeph">click</samp> event for the Button control invokes
+the <samp class="codeph">validateAndSubmit()</samp> function to perform final
+validation before submitting data to the server. </p>
+
+            </li>
+
+            <li>
+               <p>The <samp class="codeph">validateAndSubmit()</samp> function invokes
+the validators for all required fields. </p>
+
+            </li>
+
+            <li>
+               <p>The <samp class="codeph">validateAndSubmit()</samp> function invokes
+the DateValidator because it requires three different input fields. </p>
+
+            </li>
+
+            <li>
+               <p>Upon detecting the first validation error, the <samp class="codeph">validateAndSubmit()</samp> function
+returns but does not submit the data.</p>
+
+            </li>
+
+            <li>
+               <p>When all validations succeed, the <samp class="codeph">validateAndSubmit()</samp> function submits
+the data to the server. </p>
+
+            </li>
+
+         </ul>
+
+      </div>
+
+   </div>
+
+   <div class="nested1" id="WS2db454920e96a9e51e63e3d11c0bf69084-7f52_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7f52_verapache"><!-- --></a>
+      <h2 class="topictitle2">Working with validation errors </h2>
+
+      
+      <div>
+         <p>Subclasses of the <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/core/UIComponent.html" target="_blank">UIComponent</a> base
+class, which include the Flex user-interface components, generally
+handle validation failures by changing their border color and displaying
+an error message. When validation succeeds, components hide any
+existing validation error message and remove any border. </p>
+
+         <p>You can configure the content of the error messages and the display
+characteristics of validation errors.</p>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf60efb-7fdc_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf60efb-7fdc_verapache"><!-- --></a>
+         <h3 class="topictitle3">Configuring error messages</h3>
+
+         
+         <div>
+            <p>All Flex validators define default error messages. In most
+cases, you can override these messages with your own. </p>
+
+            <p>The default error messages for all validators are defined by
+using resource bundles so that you can easily change them as part
+of localizing your application. You can override the default value
+of an error message for all validator objects created from a validator
+class by editing the resource bundles associated with that class. </p>
+
+            <p>You edit the error message for a specific validator object by
+writing a String value to a property of the validator. For example,
+the <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/validators/PhoneNumberValidator.html" target="_blank">PhoneNumberValidator</a> defines
+a default error message to indicate that an input phone number has
+the wrong number of digits. You can override the default error message
+for a specific PhoneNumberValidator object by assigning a new message
+string to the <samp class="codeph">wrongLengthError</samp> property, as the
+following example shows:</p>
+
+            <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- validators\PNValidatorErrMessage.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx"&gt; 
+    &lt;s:layout&gt; 
+        &lt;s:VerticalLayout/&gt; 
+    &lt;/s:layout&gt; 
+ 
+    &lt;fx:Declarations&gt; 
+        &lt;!-- Define the PhoneNumberValidator. --&gt; 
+        &lt;mx:PhoneNumberValidator id="pnV" 
+            source="{phoneInput}" property="text" 
+            wrongLengthError="Please enter a 10-digit number."/&gt; 
+    &lt;/fx:Declarations&gt; 
+ 
+    &lt;!-- Define the TextInput control for entering the phone number. --&gt; 
+    &lt;s:TextInput id="phoneInput"/&gt; 
+    &lt;s:TextInput id="zipCodeInput"/&gt; 
+&lt;/s:Application&gt;</pre>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf60efb-7ffd_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf60efb-7ffd_verapache"><!-- --></a>
+         <h3 class="topictitle3">Changing the display of the validation
+error and error message</h3>
+
+         
+         <div>
+            <p>By default, the validation error message that appears when
+you move the mouse pointer over a user-interface control has a red
+background. You can use the <samp class="codeph">errorTip</samp> style to change
+the color, as the following example shows:</p>
+
+            <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- validators\PNValidatorErrMessageStyle.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx"&gt; 
+    &lt;s:layout&gt; 
+        &lt;s:VerticalLayout/&gt; 
+    &lt;/s:layout&gt; 
+ 
+    &lt;!-- Use blue for the error message. --&gt; 
+    &lt;fx:Style&gt; 
+        .errorTip { borderColor: #0000FF} 
+    &lt;/fx:Style&gt; 
+ 
+    &lt;fx:Declarations&gt; 
+        &lt;!-- Define the PhoneNumberValidator. --&gt; 
+        &lt;mx:PhoneNumberValidator id="pnV" 
+            source="{phoneInput}" property="text" 
+            wrongLengthError="Please enter a 10-digit number."/&gt; 
+    &lt;/fx:Declarations&gt; 
+ 
+    &lt;!-- Define the TextInput control for entering the phone number. --&gt; 
+    &lt;s:TextInput id="phoneInput"/&gt; 
+    &lt;s:TextInput id="zipCodeInput"/&gt; 
+&lt;/s:Application&gt;</pre>
+
+            <p>In this example, the error message appears in blue.</p>
+
+            <p>For Spark components, when a validation error occurs, Flex uses
+the spark.skins.default.ErrorSkin skin class to draw a red box around
+the component associated with the failure. You can define a custom
+skin class to control the display of the validation error. If you
+define a custom skin class, set the <samp class="codeph">errorSkin</samp> style
+of the Spark component that you are validating to the skin class.</p>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf60efb-7feb_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf60efb-7feb_verapache"><!-- --></a>
+         <h3 class="topictitle3">Showing a validation error by using
+errorString</h3>
+
+         
+         <div>
+            <p>The <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/core/UIComponent.html" target="_blank">UIComponent</a> class
+defines the <samp class="codeph">errorString</samp> property that you can use
+to show a validation error for a component, without actually using
+a validator class. When you write a String value to the <samp class="codeph">UIComponent.errorString</samp> property, Flex
+draws a red border around the component to indicate the validation
+error, and the String appears in a ToolTip as the validation error
+message when you move the mouse over the component, just as if a
+validator detected a validation error.</p>
+
+            <p>To clear the validation error, write an empty String, " ", to
+the <samp class="codeph">UIComponent.errorString</samp> property.</p>
+
+            <div class="note"><span class="notetitle">Note:</span> Writing a value to the <samp class="codeph">UIComponent.errorString</samp> property
+does not trigger the <samp class="codeph">valid</samp> or <samp class="codeph">invalid</samp> events;
+it only changes the border color and displays the validation error
+message.</div>
+
+            <p>For information on writing custom <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/controls/ToolTip.html" target="_blank">ToolTip</a> controls,
+see <a href="flx_tooltips_tt.html#WS2db454920e96a9e51e63e3d11c0bf69084-7f3f_verapache">ToolTip
+controls</a>.</p>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf60efb-7fe0_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf60efb-7fe0_verapache"><!-- --></a>
+         <h3 class="topictitle3">Clearing a validation error</h3>
+
+         
+         <div>
+            <p>The <samp class="codeph">errorString</samp> property is useful when
+you want to reset a field that is a source for validation, and prevent
+a validation error from occurring when you reset the field. </p>
+
+            <p>
+               For
+example, you might provide a form to gather user input. Within your
+form, you might also provide a button, or other mechanism, that
+lets the user reset the form. However, clearing form fields that
+are tied to validators could trigger a validation error. The following
+example uses the <samp class="codeph">errorString</samp> property as part of
+resetting the <samp class="codeph">text</samp> property of a <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/spark/components/TextInput.html" target="_blank">TextInput</a> control
+to prevent validation errors when the form resets:</p>
+
+            <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- validators\ResetVal.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx"&gt; 
+    &lt;s:layout&gt; 
+        &lt;s:VerticalLayout/&gt; 
+    &lt;/s:layout&gt; 
+ 
+    &lt;fx:Script&gt; 
+        &lt;![CDATA[ 
+ 
+            import mx.events.ValidationResultEvent; 
+            private var vResult:ValidationResultEvent; 
+            
+            // Function to validate data and submit it to the server. 
+            private function validateAndSubmit():void { 
+                // Validate the required fields. 
+                vResult = zipV.validate(); 
+                if (vResult.type==ValidationResultEvent.INVALID) 
+                    return; 
+        
+                // Submit data to server. 
+            } 
+ 
+            // Clear the input controls and the errorString property 
+            // when resetting the form. 
+            private function resetForm():void { 
+                zipInput.text = ''; 
+                zipInput.errorString = ''; 
+            } 
+        ]]&gt; 
+    &lt;/fx:Script&gt; 
+ 
+    &lt;fx:Declarations&gt; 
+        &lt;mx:ZipCodeValidator id="zipV" 
+            source="{zipInput}" 
+            property="text"/&gt; 
+    &lt;/fx:Declarations&gt; 
+ 
+    &lt;s:Form&gt; 
+        &lt;s:FormItem label="Enter ZIP code"&gt; 
+            &lt;s:TextInput id="zipInput"/&gt; 
+        &lt;/s:FormItem&gt; 
+        &lt;s:FormItem label="Enter Country"&gt; 
+            &lt;s:TextInput id="cntryInput"/&gt; 
+        &lt;/s:FormItem&gt; 
+    &lt;/s:Form&gt; 
+ 
+    &lt;!-- Trigger submit. --&gt; 
+    &lt;s:Button label="Submit" click="validateAndSubmit();"/&gt; 
+    
+    &lt;!-- Trigger reset. --&gt; 
+    &lt;s:Button label="Reset" click="resetForm();"/&gt; 
+&lt;/s:Application&gt;</pre>
+
+            <p>In this example, the function that clears the form items also
+clears the <samp class="codeph">errorString</samp> property associated with
+each item, clearing any validation errors. </p>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf69084-7f43_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7f43_verapache"><!-- --></a>
+         <h3 class="topictitle3">Specifying a listener for validation</h3>
+
+         
+         <div>
+            <p>All validators support a <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/validators/Validator.html#listener" target="_blank">listener</a> property.
+When a validation occurs, Flex applies visual changes to the object
+specified by the <samp class="codeph">listener</samp> property. </p>
+
+            <p>By default, Flex sets the <samp class="codeph">listener</samp> property
+to the value of the <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/validators/Validator.html#source" target="_blank">source</a> property. That
+means that all visual changes that occur to reflect a validation
+event occur on the component being validated. However, you might
+want to validate one component but have validation results apply
+to a different component, as the following example shows:</p>
+
+            <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- validators\SetListener.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx"&gt; 
+    &lt;s:layout&gt; 
+        &lt;s:VerticalLayout/&gt; 
+    &lt;/s:layout&gt; 
+ 
+    &lt;fx:Declarations&gt; 
+        &lt;mx:ZipCodeValidator id="zipV" 
+            source="{zipCodeInput}" 
+            property="text" 
+            listener="{errorMsg}"/&gt; 
+    &lt;/fx:Declarations&gt; 
+ 
+    &lt;s:TextInput id="zipCodeInput"/&gt; 
+    &lt;s:TextArea id="errorMsg"/&gt; 
+&lt;/s:Application&gt;</pre>
+
+         </div>
+
+      </div>
+
+   </div>
+
+   <div class="nested1" id="WS2db454920e96a9e51e63e3d11c0bf69084-7f57_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7f57_verapache"><!-- --></a>
+      <h2 class="topictitle2">Working with validation events </h2>
+
+      
+      <div>
+         <p>Flex gives you two ways to listen for validation events:</p>
+
+         <ol>
+            <li>
+               <p>Listen for validation events dispatched by the component
+being validated.</p>
+
+               <p>Flex components dispatch <samp class="codeph">valid</samp> and <samp class="codeph">invalid</samp> events,
+depending on the results of the validation. This lets you listen
+for the events being dispatched from the component being validated,
+and perform any additional processing on the component based on
+its validation result.</p>
+
+               <p>The event object passed to the event
+listener is of type <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/flash/events/Event.html" target="_blank">Event</a>.
+For more information, including an example, see <a href="flx_validators_va.html#WS2db454920e96a9e51e63e3d11c0bf69084-7f54_verapache">Explicitly
+handling component validation events</a>.</p>
+
+            </li>
+
+            <li>
+               <p>Listen for validation events dispatched by validators.</p>
+
+               <p>All
+validators dispatch <samp class="codeph">valid</samp> or <samp class="codeph">invalid</samp> events,
+depending on the results of the validation. You can listen for these
+events, and then perform any additional processing as required by
+your validator. </p>
+
+               <p>The event object passed to the event listener
+is of type ValidationResultEvent. For more information, including
+an example, see <a href="flx_validators_va.html#WS2db454920e96a9e51e63e3d11c0bf69084-7f45_verapache">Explicitly
+handing validator validation events</a>.</p>
+
+            </li>
+
+         </ol>
+
+         <p>You are not required to listen for validation events. When these
+events occur, by default, Flex changes the appropriate border color
+of the target component, displays an error message for an <samp class="codeph">invalid</samp> event,
+or hides any previous error message for a <samp class="codeph">valid</samp> event. </p>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf69084-7f54_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7f54_verapache"><!-- --></a>
+         <h3 class="topictitle3">Explicitly handling component validation
+events</h3>
+
+         
+         <div>
+            <p>Sometimes you might want to perform some additional processing
+for a component if a validation fails or succeeds. In that case,
+you can handle the <samp class="codeph">valid</samp> and <samp class="codeph">invalid</samp> events
+yourself. The following example defines an event listener for the <samp class="codeph">invalid</samp> event
+to perform additional processing when a validation fails: </p>
+
+            <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- validators\ValCustomEventListener --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx"&gt; 
+    &lt;s:layout&gt; 
+        &lt;s:VerticalLayout/&gt; 
+    &lt;/s:layout&gt; 
+ 
+    &lt;fx:Script&gt; 
+        &lt;![CDATA[ 
+ 
+            // Import event class. 
+            import flash.events.Event; 
+            
+            // Define vars for storing text colors. 
+            private var errorTextColor:Object = "red"; 
+            private var currentTextColor:Object; 
+    
+            // Initialization event handler for getting default text color.  
+            private function myCreationComplete(eventObj:Event):void {           
+                currentTextColor = getStyle('color'); 
+            } 
+    
+            // For an invalid event, change the text color. 
+            private function handleInvalidVal(eventObject:Event):void { 
+                setStyle('color', errorTextColor); 
+            } 
+ 
+            // For a valid event, restore the text color.   
+            private function handleValidVal(eventObject:Event):void { 
+                setStyle('color', currentTextColor); 
+            } 
+        ]]&gt; 
+    &lt;/fx:Script&gt; 
+ 
+    &lt;fx:Declarations&gt; 
+        &lt;mx:PhoneNumberValidator source="{phoneInput}" property="text"/&gt; 
+    &lt;/fx:Declarations&gt; 
+ 
+    &lt;s:TextInput id="phoneInput" 
+        initialize="myCreationComplete(event);" 
+        invalid="handleInvalidVal(event);" 
+        valid="handleValidVal(event);"/&gt; 
+    &lt;s:TextInput id="zipInput"/&gt; 
+&lt;/s:Application&gt;</pre>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf69084-7f45_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7f45_verapache"><!-- --></a>
+         <h3 class="topictitle3">Explicitly handing validator validation
+events</h3>
+
+         
+         <div>
+            <p>To explicitly handle the <samp class="codeph">valid</samp> and <samp class="codeph">invalid</samp> events
+dispatched by validators, define an event listener, as the following
+example shows:</p>
+
+            <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- validators\ValEventListener.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx"&gt; 
+    &lt;s:layout&gt; 
+        &lt;s:VerticalLayout/&gt; 
+    &lt;/s:layout&gt; 
+ 
+    &lt;fx:Script&gt; 
+        &lt;![CDATA[ 
+ 
+            // Import event class 
+            import mx.events.ValidationResultEvent; 
+            
+            private function handleValid(event:ValidationResultEvent):void { 
+                if(event.type==ValidationResultEvent.VALID)  
+                    submitButton.enabled = true; 
+                else 
+                    submitButton.enabled = false; 
+            } 
+ 
+            // Submit form is everything is valid. 
+            private function submitForm():void { 
+                // Handle submit. 
+            } 
+ 
+        ]]&gt; 
+    &lt;/fx:Script&gt; 
+ 
+    &lt;fx:Declarations&gt; 
+        &lt;mx:ZipCodeValidator 
+            source="{inputZip}" property="text" 
+            valid="handleValid(event);" 
+            invalid="handleValid(event);"/&gt; 
+    &lt;/fx:Declarations&gt; 
+ 
+    &lt;s:TextInput id="inputZip"/&gt; 
+    &lt;s:TextInput id="inputPn"/&gt; 
+    &lt;s:Button id="submitButton" 
+        label="Submit"  
+        enabled="false" 
+        click="submitForm();"/&gt; 
+&lt;/s:Application&gt;</pre>
+
+            <p>In this example, the <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/spark/components/Button.html" target="_blank">Button</a> control
+is disabled until the <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/spark/components/TextInput.html" target="_blank">TextInput</a> field
+contains a valid ZIP code. The <samp class="codeph">type</samp> property of
+the event object is either <samp class="codeph">ValidationResultEvent.VALID</samp> or <samp class="codeph">ValidationResultEvent.INVALID</samp>,
+based on the result of the validation. </p>
+
+            <p>Within the event listener, you can use all the properties of
+the <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/events/ValidationResultEvent.html" target="_blank">ValidationResultEvent</a> class,
+including the following:</p>
+
+            <dl>
+               
+                  <dt class="dlterm">field</dt>
+
+                  <dd>
+                     <p>A String that contains the name of the field that failed
+validation and triggered the event.</p>
+
+                  </dd>
+
+               
+               
+                  <dt class="dlterm">message</dt>
+
+                  <dd>
+                     <p>A String that contains all the validator error messages created
+by the validation.</p>
+
+                  </dd>
+
+               
+               
+                  <dt class="dlterm">results</dt>
+
+                  <dd>
+                     <p>An Array of <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/validators/ValidationResult.html" target="_blank">ValidationResult</a> objects,
+one for each field examined by the validator. For a successful validation,
+the <samp class="codeph">ValidationResultEvent.results</samp> Array property
+is empty. For a validation failure, the <samp class="codeph">ValidationResultEvent.results</samp> Array
+property contains one ValidationResult object for each field checked
+by the validator, both for fields that failed the validation and
+for fields that passed. Examine the <samp class="codeph">ValidationResult.isError</samp> property
+to determine if the field passed or failed the validation. </p>
+
+                  </dd>
+
+               
+            </dl>
+
+         </div>
+
+      </div>
+
+   </div>
+
+   <div class="nested1" id="WS2db454920e96a9e51e63e3d11c0bf69084-7f4f_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7f4f_verapache"><!-- --></a>
+      <h2 class="topictitle2">Using standard validators</h2>
+
+      
+      <div>
+         <p>
+            Flex
+includes the <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/validators/Validator.html" target="_blank">Validator</a> subclasses.
+You use these validators for common types of data, including credit
+card numbers, dates, e-mail addresses, numbers, phone numbers, Social
+Security numbers, strings, and ZIP codes.</p>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf69084-7f58_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7f58_verapache"><!-- --></a>
+         <h3 class="topictitle3">Validating credit card numbers</h3>
+
+         
+         <div>
+            <p>The <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/validators/CreditCardValidator.html" target="_blank">CreditCardValidator</a> class
+validates that a credit card number is the correct length, has the
+correct prefix, and passes the Luhn mod10 algorithm for the specified
+card type. This validator does not check whether the credit card
+is an actual active credit card account.</p>
+
+            <p>You typically use the <samp class="codeph">cardNumberSource</samp> and <samp class="codeph">cardNumberProperty</samp> properties
+to specify the location of the credit card number, and the <samp class="codeph">cardTypeSource</samp> and <samp class="codeph">cardTypeProperty</samp> properties
+to specify the location of the credit card type to validate. </p>
+
+            <p>
+               
+               The CreditCardValidator class
+validates that a credit card number is the correct length for the
+specified card type, as follows:</p>
+
+            <ul>
+               <li>
+                  <p>Visa: 13 or 16 digits</p>
+
+               </li>
+
+               <li>
+                  <p>MasterCard: 16 digits</p>
+
+               </li>
+
+               <li>
+                  <p>Discover: 16 digits</p>
+
+               </li>
+
+               <li>
+                  <p>American Express: 15 digits</p>
+
+               </li>
+
+               <li>
+                  <p>DinersClub: 14 digits, or 16 digits if it also functions
+as a MasterCard</p>
+
+               </li>
+
+            </ul>
+
+            <p>You specify the type of credit card number to validate by assigning
+a constant to the <samp class="codeph">cardTypeProperty</samp> property. In
+MXML, valid constant values are:</p>
+
+            <ul>
+               <li>
+                  <p>
+                     <samp class="codeph">"American Express"</samp> 
+                  </p>
+
+               </li>
+
+               <li>
+                  <p>
+                     <samp class="codeph">"Diners Club"</samp> 
+                  </p>
+
+               </li>
+
+               <li>
+                  <p>
+                     <samp class="codeph">"Discover"</samp> 
+                  </p>
+
+               </li>
+
+               <li>
+                  <p>
+                     <samp class="codeph">"MasterCard"</samp> 
+                  </p>
+
+               </li>
+
+               <li>
+                  <p>
+                     <samp class="codeph">"Visa"</samp> 
+                  </p>
+
+               </li>
+
+            </ul>
+
+            <p>In ActionScript, you can use the following constants to set the <samp class="codeph">cardTypeProperty</samp> property:</p>
+
+            <ul>
+               <li>
+                  <p>
+                     <samp class="codeph">CreditCardValidatorCardType.AMERICAN_EXPRESS</samp>
+                  </p>
+
+               </li>
+
+               <li>
+                  <p>
+                     <samp class="codeph">CreditCardValidatorCardType.DINERS_CLUB</samp>
+                  </p>
+
+               </li>
+
+               <li>
+                  <p>
+                     <samp class="codeph">CreditCardValidatorCardType.DISCOVER</samp>
+                  </p>
+
+               </li>
+
+               <li>
+                  <p>
+                     <samp class="codeph">CreditCardValidatorCardType.MASTER_CARD</samp>
+                  </p>
+
+               </li>
+
+               <li>
+                  <p>
+                     <samp class="codeph">CreditCardValidatorCardType.VISA</samp>
+                  </p>
+
+               </li>
+
+            </ul>
+
+            <p>The following example validates a credit card number based on
+the card type that the users specifies. Any validation errors propagate
+to the <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/core/Application.html" target="_blank">Application</a> object and
+open an Alert window.</p>
+
+            <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- validators\CCExample.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx"&gt; 
+    &lt;fx:Declarations&gt; 
+        &lt;mx:CreditCardValidator id="ccV" 
+            cardTypeSource="{cardTypeCombo.selectedItem}"  
+            cardTypeProperty="data" 
+            cardNumberSource="{cardNumberInput}"  
+            cardNumberProperty="text"/&gt; 
+    &lt;/fx:Declarations&gt; 
+  
+    &lt;s:Form id="creditCardForm"&gt; 
+        &lt;s:FormItem label="Card Type"&gt;    
+            &lt;s:ComboBox id="cardTypeCombo"&gt; 
+                &lt;s:dataProvider&gt; 
+                    &lt;s:ArrayList&gt; 
+                        &lt;fx:Object label="American Express" 
+                            data="American Express"/&gt; 
+                        &lt;fx:Object label="Diners Club" 
+                            data="Diners Club"/&gt; 
+                        &lt;fx:Object label="Discover" 
+                            data="Discover"/&gt; 
+                        &lt;fx:Object label="MasterCard" 
+                            data="MasterCard"/&gt; 
+                        &lt;fx:Object label="Visa" 
+                            data="Visa"/&gt; 
+                    &lt;/s:ArrayList&gt; 
+                &lt;/s:dataProvider&gt; 
+            &lt;/s:ComboBox&gt; 
+        &lt;/s:FormItem&gt; 
+        &lt;s:FormItem label="Credit Card Number"&gt; 
+            &lt;s:TextInput id="cardNumberInput"/&gt; 
+        &lt;/s:FormItem&gt; 
+        &lt;s:FormItem&gt; 
+            &lt;s:Button label="Check Credit" click="ccV.validate();"/&gt; 
+        &lt;/s:FormItem&gt; 
+    &lt;/s:Form&gt;  
+&lt;/s:Application&gt;</pre>
+
+            <p>The following example performs a similar validation, but uses
+the <samp class="codeph">source</samp> and <samp class="codeph">property</samp> properties
+to specify an object that contains the credit card information.
+In this example, you use the <samp class="codeph">listener</samp> property
+to configure the validator to display validation error information
+on the TextInput control:</p>
+
+            <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- validators\CCExampleSource.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx"&gt; 
+    &lt;s:layout&gt; 
+        &lt;s:VerticalLayout/&gt; 
+    &lt;/s:layout&gt; 
+ 
+    &lt;fx:Script&gt; 
+        &lt;![CDATA[ 
+ 
+            [Bindable] 
+            public var ccObj:Object = {cardType:String, cardNumber:String}; 
+            
+            public function valCC():void 
+            {            
+                // Populate ccObj with the data from the form. 
+                ccObj.cardType = cardTypeCombo.selectedItem.data; 
+                ccObj.cardNumber = cardNumberInput.text; 
+                // Validate ccObj. 
+                ccV.validate();                
+            }    
+        ]]&gt;    
+    &lt;/fx:Script&gt; 
+ 
+    &lt;fx:Declarations&gt; 
+        &lt;mx:CreditCardValidator id="ccV" 
+            source="{this}"  
+            property="ccObj" 
+            listener="{cardNumberInput}"/&gt; 
+    &lt;/fx:Declarations&gt; 
+  
+    &lt;s:Form id="creditCardForm"&gt; 
+        &lt;s:FormItem label="Card Type"&gt;    
+            &lt;s:ComboBox id="cardTypeCombo"&gt; 
+                &lt;s:dataProvider&gt; 
+                    &lt;s:ArrayList&gt; 
+                        &lt;fx:Object label="American Express" 
+                            data="American Express"/&gt; 
+                        &lt;fx:Object label="Diners Club" 
+                            data="Diners Club"/&gt; 
+                        &lt;fx:Object label="Discover" 
+                            data="Discover"/&gt; 
+                        &lt;fx:Object label="MasterCard" 
+                            data="MasterCard"/&gt; 
+                        &lt;fx:Object label="Visa" 
+                            data="Visa"/&gt; 
+                    &lt;/s:ArrayList&gt; 
+                &lt;/s:dataProvider&gt; 
+            &lt;/s:ComboBox&gt; 
+        &lt;/s:FormItem&gt; 
+        &lt;s:FormItem label="Credit Card Number"&gt; 
+            &lt;s:TextInput id="cardNumberInput"/&gt; 
+        &lt;/s:FormItem&gt; 
+        &lt;s:FormItem&gt; 
+            &lt;s:Button label="Check Credit" click="valCC();"/&gt; 
+        &lt;/s:FormItem&gt; 
+    &lt;/s:Form&gt;  
+&lt;/s:Application&gt;</pre>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf69084-7f59_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7f59_verapache"><!-- --></a>
+         <h3 class="topictitle3">Validating currency</h3>
+
+         
+         <div>
+            <p>
+               The
+Spark <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/spark/validators/CurrencyValidator.html" target="_blank">CurrencyValidator</a> class
+checks that a string is a valid currency expression based on a set
+of parameters and the current <samp class="codeph">locale</samp>. The CurrencyValidator
+class defines the properties that let you specify the format of
+the currency value, whether to allow negative values, and the precision
+of the values, and other options. </p>
+
+            <p>The digits of the input String can use national digits defined
+in the <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/flash/globalization/NationalDigitsType.html" target="_blank">flash.globalization.NationalDigitsType</a> class.</p>
+
+            <p>The following example uses the CurrencyValidator class to validate
+a currency value entered in U.S. dollars and in Euros:</p>
+
+            <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- validators\SparkCurrencyExample.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx"&gt; 
+    &lt;s:layout&gt; 
+        &lt;s:VerticalLayout paddingTop="10" paddingLeft="10"/&gt; 
+    &lt;/s:layout&gt; 
+    
+    &lt;fx:Declarations&gt; 
+        &lt;!-- Example for US currency. --&gt; 
+        &lt;s:CurrencyValidator id="usV" 
+            locale="en-US" 
+            source="{priceUS}" property="text" 
+            trigger="{valButton}" 
+            triggerEvent="click"/&gt; 
+        
+        &lt;!-- Example for European currency. --&gt; 
+        &lt;s:CurrencyValidator id="eurV" 
+            locale="fr-FR" 
+            source="{priceEU}" property="text" 
+            trigger="{valButton}" 
+            triggerEvent="click"/&gt; 
+    &lt;/fx:Declarations&gt; 
+    
+    &lt;s:Label text="Enter a US-formatted price:"/&gt; 
+    &lt;s:TextInput id="priceUS"/&gt; 
+    
+    &lt;s:Label text="Enter a European-formatted price:"/&gt; 
+    &lt;s:TextInput id="priceEU"/&gt; 
+    
+    &lt;s:Button id="valButton" label="Validate Currencies"/&gt; 
+&lt;/s:Application&gt;</pre>
+
+            <p>In this example, you explicitly specify the <samp class="codeph">locale</samp> for
+the two validators, rather than relying on the default. Use the
+first validator to validate currency values for a U.S. locale. Acceptable
+values include: $23.00, USD 23.00, or 123,456.00. Invalid values
+include: 2,37 EUR and €2.37.</p>
+
+            <p>The second validator specifies the <samp class="codeph">locale</samp> as
+fr-FR for French currencies. Valid values include: 2,37, 2,37 EUR,
+and €2.37. Invalid values include: $23.00 and USD 23.00.</p>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf69084-7f56_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7f56_verapache"><!-- --></a>
+         <h3 class="topictitle3">Validating dates</h3>
+
+         
+         <div>
+            <p>The <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/validators/DateValidator.html" target="_blank">DateValidator</a> class
+validates that a String, Date, or Object contains a proper date
+and matches a specified format. Users can enter a single digit or
+two digits for month, day, and year. By default, the validator ensures
+that the following information is provided:</p>
+
+            <ul>
+               <li>
+                  <p>The month is between 1 and 12 (or 0-11 for Date objects)</p>
+
+               </li>
+
+               <li>
+                  <p>The day is between 1 and 31</p>
+
+               </li>
+
+               <li>
+                  <p>The year is a number</p>
+
+               </li>
+
+            </ul>
+
+            <p>If you specify a single String to validate, the String can contain
+digits and the formatting characters that the <samp class="codeph">allowedFormatChars</samp> property
+specifies, including the slash (/), backslash (\), dash (-), and
+period (.) characters. By default, the input format of the date
+in a String is “mm/dd/yyyy” where “mm” is the month, “dd” is the
+day, and “yyyy” is the year. You can use the <samp class="codeph">inputFormat</samp> property
+to specify a different format.</p>
+
+            <p>You can also specify to validate a date represented by a single
+Object, or by multiple fields of different objects. For example,
+you could use a data model that contains three fields that represent
+the day, month, and year portions of a date, or three TextInput
+controls that let a user enter a date as three separate fields. Even
+if you specify a date format that excludes a day, month, or year
+element, you must specify all three fields to the validator. </p>
+
+            <p>The following table describes how to specify the date to the
+DateValidator: </p>
+
+            
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" frame="border" border="1" rules="all">
+                  
+                  
+                  
+                  <thead align="left">
+                     <tr>
+                        <th class="cellrowborder" valign="top" width="NaN%" id="d932982e2651">
+                           <p>Validation source</p>
+
+                        </th>
+
+                        <th class="cellrowborder" valign="top" width="NaN%" id="d932982e2657">
+                           <p>Required properties</p>
+
+                        </th>
+
+                        <th class="cellrowborder" valign="top" width="NaN%" id="d932982e2663">
+                           <p>Default listener</p>
+
+                        </th>
+
+                     </tr>
+
+                  </thead>
+
+                  <tbody>
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d932982e2651 ">
+                           <p>String object containing the date</p>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d932982e2657 ">
+                           <p>Use the <samp class="codeph">source</samp> and <samp class="codeph">property</samp> properties
+to specify the String.</p>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d932982e2663 ">
+                           <p>Flex associates error messages with the
+field specified by the <samp class="codeph">property</samp> property. </p>
+
+                        </td>
+
+                     </tr>
+
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d932982e2651 ">
+                           <p>Date object containing the date</p>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d932982e2657 ">
+                           <p>Use the <samp class="codeph">source</samp> and <samp class="codeph">property</samp> properties
+to specify the Date.</p>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d932982e2663 ">
+                           <p>Flex associates error messages with the
+field specified by the <samp class="codeph">property</samp> property. </p>
+
+                        </td>
+
+                     </tr>
+
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d932982e2651 ">
+                           <p>Object or multiple fields containing the
+day, month, and year</p>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d932982e2657 ">
+                           <p>Use all of the following properties to specify
+the day, month, and year inputs: <samp class="codeph">daySource</samp>, <samp class="codeph">dayProperty</samp>, <samp class="codeph">monthSource</samp>, <samp class="codeph">monthProperty</samp>, <samp class="codeph">yearSource</samp>, and <samp class="codeph">yearProperty</samp>.</p>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d932982e2663 ">
+                           <p>Flex associates error messages with the
+field specified by the <samp class="codeph">daySource</samp>, <samp class="codeph">monthSource</samp>,
+and <samp class="codeph">yearSource</samp> properties, depending on the field
+that caused the validation error. </p>
+
+                        </td>
+
+                     </tr>
+
+                  </tbody>
+
+               </table>
+</div>
+
+            <p>The following example validates a date entered into a form:</p>
+
+            <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- validators\DateExample.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx"&gt; 
+    &lt;s:layout&gt; 
+        &lt;s:VerticalLayout/&gt; 
+    &lt;/s:layout&gt; 
+ 
+    &lt;fx:Declarations&gt; 
+        &lt;mx:DateValidator id="dateV" 
+            daySource="{dayInput}" dayProperty="text" 
+            monthSource="{monthInput}" monthProperty="text" 
+            yearSource="{yearInput}" yearProperty="text"/&gt; 
+            
+        &lt;!-- Alternate method for a single field containing the date. --&gt; 
+        &lt;fx:Model id="alternateDate"&gt; 
+            &lt;dateInfo&gt; 
+                &lt;date&gt;{dateInput.text}&lt;/date&gt; 
+            &lt;/dateInfo&gt; 
+        &lt;/fx:Model&gt; 
+    
+        &lt;mx:DateValidator id="stringDateV" 
+            source="{dateInput}" property="text" 
+            inputFormat="dd/mm/yyyy" 
+            allowedFormatChars="*#~/"/&gt; 
+    &lt;/fx:Declarations&gt;            
+    &lt;s:Form &gt; 
+        &lt;s:FormItem label="Month"&gt; 
+            &lt;s:TextInput id="monthInput"/&gt; 
+        &lt;/s:FormItem&gt; 
+        &lt;s:FormItem label="Day"&gt; 
+            &lt;s:TextInput id="dayInput"/&gt; 
+        &lt;/s:FormItem&gt; 
+        &lt;s:FormItem label="Year"&gt; 
+            &lt;s:TextInput id="yearInput"/&gt; 
+        &lt;/s:FormItem&gt; 
+        &lt;s:FormItem&gt; 
+            &lt;s:Button label="Check Date" click="dateV.validate();"/&gt;   
+        &lt;/s:FormItem&gt; 
+    &lt;/s:Form&gt; 
+ 
+    &lt;s:Form&gt; 
+        &lt;s:FormItem label="Date of Birth (dd/mm/yyyy)"&gt; 
+            &lt;s:TextInput id="dateInput"/&gt; 
+        &lt;/s:FormItem&gt; 
+        &lt;s:FormItem&gt; 
+            &lt;s:Button label="Check Date" click="stringDateV.validate();"/&gt;   
+        &lt;/s:FormItem&gt; 
+    &lt;/s:Form&gt; 
+&lt;/s:Application&gt;</pre>
+
+            <p>In the next example, you validate a Date object:</p>
+
+            <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- validators\DateObjectExample.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx"&gt; 
+    &lt;fx:Script&gt; 
+        &lt;![CDATA[        
+            import mx.controls.Alert; 
+ 
+            // myDate is set to the current date and time. 
+            [Bindable] 
+            public var myDate:Date = new Date();                       
+        ]]&gt; 
+    &lt;/fx:Script&gt; 
+ 
+    &lt;fx:Declarations&gt; 
+        &lt;mx:DateValidator id="dateV" 
+            source="{this}" property="myDate" 
+            valid="Alert.show('Validation Succeeded!');"/&gt; 
+    &lt;/fx:Declarations&gt; 
+ 
+    &lt;s:Button label="Check Date" click="dateV.validate();"/&gt;   
+&lt;/s:Application&gt;</pre>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf69084-7f55_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7f55_verapache"><!-- --></a>
+         <h3 class="topictitle3">Validating e-mail addresses</h3>
+
+         
+         <div>
+            <p>
+               
+               The <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/validators/EmailValidator.html" target="_blank">EmailValidator</a> class
+validates that a string has an at sign character (@) and a period
+character (.) in the domain. You can use IP domain names if they
+are enclosed in square brackets; for example, myname@[206.132.22.1].
+You can use individual IP numbers from 0 to 255. This validator
+does not check whether the domain and user name actually exist.</p>
+
+            <p>The following example validates an e-mail address to ensure that
+it is formatted correctly:</p>
+
+            <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- validators\EmailExample.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx"&gt; 
+    &lt;s:Form id="contactForm"&gt; 
+        &lt;s:FormItem id="homePhoneItem" label="Home Phone"&gt; 
+            &lt;s:TextInput id="homePhoneInput"/&gt; 
+        &lt;/s:FormItem&gt; 
+        &lt;s:FormItem id="cellPhoneItem" label="Cell Phone"&gt; 
+            &lt;s:TextInput id="cellPhoneInput"/&gt; 
+        &lt;/s:FormItem&gt; 
+        &lt;s:FormItem id="emailItem" label="Email"&gt; 
+            &lt;s:TextInput id="emailInput"/&gt; 
+        &lt;/s:FormItem&gt; 
+    &lt;/s:Form&gt; 
+ 
+    &lt;fx:Declarations&gt; 
+        &lt;mx:PhoneNumberValidator id="pnVHome" 
+            source="{homePhoneInput}" property="text"/&gt; 
+        &lt;mx:PhoneNumberValidator id="pnVCell" 
+            source="{cellPhoneInput}" property="text"/&gt; 
+        &lt;mx:EmailValidator id="emV" 
+            source="{emailInput}" property="text"/&gt; 
+    &lt;/fx:Declarations&gt; 
+&lt;/s:Application&gt;</pre>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf69084-7f4d_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7f4d_verapache"><!-- --></a>
+         <h3 class="topictitle3">Validating numbers</h3>
+
+         
+         <div>
+            <p>
+               The
+Spark <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/spark/validators/NumberValidator.html" target="_blank">NumberValidator</a> class
+ensures that a string represents a valid number for the current <samp class="codeph">locale</samp>.
+This validator can ensure that the input falls within a given range,
+is an integer, is non-negative, does not exceed a specified precision, and
+other options. The NumberValidator also correctly validates formatted numbers
+(for example, "12,345.67").</p>
+
+            <p>The digits of the input String can use national digits defined
+in the <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/flash/globalization/NationalDigitsType.html" target="_blank">flash.globalization.NationalDigitsType</a> class.</p>
+
+            <p>The following example uses the NumberValidator class to ensure
+that an integer is between 1 and 10:</p>
+
+            <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- validators\SparkNumberExample.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    width="700"&gt; 
+    
+    &lt;s:Form &gt; 
+        &lt;s:FormItem 
+            label="Number of Widgets (max 10 per customer)"&gt; 
+            &lt;s:TextInput id="quantityInput"/&gt; 
+        &lt;/s:FormItem&gt;   
+        &lt;s:FormItem &gt;  
+            &lt;s:Button label="Submit"/&gt; 
+        &lt;/s:FormItem&gt;   
+    &lt;/s:Form&gt; 
+    
+    &lt;fx:Declarations&gt; 
+        &lt;s:NumberValidator id="numV" 
+            source="{quantityInput}" property="text" 
+            minValue="1" maxValue="10" domain="int"/&gt; 
+    &lt;/fx:Declarations&gt; 
+&lt;/s:Application&gt;</pre>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf69084-7f53_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7f53_verapache"><!-- --></a>
+         <h3 class="topictitle3">Validating phone numbers</h3>
+
+         
+         <div>
+            <p>The <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/validators/PhoneNumberValidator.html" target="_blank">PhoneNumberValidator</a> class
+validates that a string is a valid phone number. A valid phone number
+contains at least 10 digits, plus additional formatting characters.
+This validator does not check if the phone number is an actual active phone
+number. </p>
+
+            <p>The following example uses two PhoneNumberValidator tags to ensure
+that the home and mobile phone numbers are entered correctly: </p>
+
+            <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- validators\PhoneExample.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx"&gt; 
+    &lt;s:Form id="contactForm"&gt; 
+        &lt;s:FormItem id="homePhoneItem" label="Home Phone"&gt; 
+            &lt;s:TextInput id="homePhoneInput"/&gt; 
+        &lt;/s:FormItem&gt; 
+        &lt;s:FormItem id="cellPhoneItem" label="Cell Phone"&gt; 
+            &lt;s:TextInput id="cellPhoneInput"/&gt; 
+        &lt;/s:FormItem&gt; 
+        &lt;s:FormItem id="emailItem" label="Email"&gt; 
+            &lt;s:TextInput id="emailInput"/&gt; 
+        &lt;/s:FormItem&gt; 
+    &lt;/s:Form&gt; 
+ 
+    &lt;fx:Declarations&gt; 
+        &lt;mx:PhoneNumberValidator id="pnVHome" 
+            source="{homePhoneInput}" property="text"/&gt; 
+        &lt;mx:PhoneNumberValidator id="pnVCell" 
+            source="{cellPhoneInput}" property="text"/&gt; 
+        &lt;mx:EmailValidator id="emV" 
+            source="{emailInput}" property="text"/&gt; 
+    &lt;/fx:Declarations&gt; 
+&lt;/s:Application&gt;</pre>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf69084-7f51_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7f51_verapache"><!-- --></a>
+         <h3 class="topictitle3">Validating using regular expressions</h3>
+
+         
+         <div>
+            <p>The <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/validators/RegExpValidator.html" target="_blank">RegExpValidator</a> class
+lets you use a regular expression to validate a field. You pass
+a regular expression to the validator by using the <samp class="codeph">expression</samp> property, and
+additional flags to control the regular expression pattern matching
+by using the <samp class="codeph">flags</samp> property. </p>
+
+            <p>The validation is successful if the validator can find a match
+of the regular expression in the field to validate. A validation
+error occurs when the validator finds no match. </p>
+
+            <p>You use regular expressions with the RegExpValidator. For information
+on writing regular expressions, see <a href="http://www.adobe.com/go/learn_flex_programmingAS3_en" target="_blank">ActionScript 3.0 Developer's Guide</a>.</p>
+
+            <p>The RegExpValidator class dispatches the <samp class="codeph">valid</samp> and <samp class="codeph">invalid</samp> events.
+For an <samp class="codeph">invalid</samp> event, the event object is an instance
+of the ValidationResultEvent class, and it contains an Array of
+ValidationResult objects.</p>
+
+            <p>However, for a <samp class="codeph">valid</samp> event, the ValidationResultEvent
+object contains an Array of <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/validators/RegExpValidationResult.html" target="_blank">RegExpValidationResult</a> objects.
+The RegExpValidationResult class is a child class of the <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/validators/ValidationResult.html" target="_blank">ValidationResult</a> class,
+and contains additional properties that you use with regular expressions,
+including the following:</p>
+
+            <dl>
+               
+                  <dt class="dlterm">matchedIndex</dt>
+
+                  <dd>
+                     <p>An integer that contains the starting index in the input
+String of the match.</p>
+
+                  </dd>
+
+               
+               
+                  <dt class="dlterm">matchedString</dt>
+
+                  <dd>
+                     <p>A String that contains the substring of the input String
+that matches the regular expression.</p>
+
+                  </dd>
+
+               
+               
+                  <dt class="dlterm">matchedSubStrings</dt>
+
+                  <dd>
+                     <p>An Array of Strings that contains parenthesized substring matches,
+if any. If no substring matches are found, this Array is of length
+0. Use <samp class="codeph">matchedSubStrings[0]</samp> to access the first
+substring match.</p>
+
+                     <p>The following example uses the regular expression
+ABC\d to cause the validator to match a pattern consisting of the
+letters A, B, and C in sequence followed by any digit:</p>
+
+                     <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- validators\RegExpExample.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx"&gt; 
+    &lt;fx:Script&gt; 
+        &lt;![CDATA[ 
+          import mx.events.ValidationResultEvent; 
+          import mx.validators.*; 
+    
+          private function handleResult(event:ValidationResultEvent):void { 
+              if (event.type == "valid") 
+              { 
+                  // For valid events, the results Array contains 
+                  // RegExpValidationResult objects. 
+                  var xResult:RegExpValidationResult; 
+                  myTA.text=""; 
+                  for (var i:uint = 0; i &lt; event.results.length; i++) 
+                  { 
+                      xResult = event.results[i]; 
+                      myTA.text=myTA.text + xResult.matchedIndex + " " + 
+                          xResult.matchedString + "\n"; 
+                  } 
+              } 
+              else 
+              { 
+                  // Not necessary, but if you needed to access it, 
+                  // the results array contains ValidationResult objects. 
+                  var result:ValidationResult; 
+                  myTA.text="";           
+              }       
+          } 
+        ]]&gt; 
+    &lt;/fx:Script&gt; 
+ 
+    &lt;fx:Declarations&gt; 
+        &lt;mx:RegExpValidator id="regExpV" 
+            source="{exp}" property="text" 
+            flags="g" 
+            expression="{source.text}" 
+            valid="handleResult(event);" 
+            invalid="handleResult(event);"/&gt; 
+    &lt;/fx:Declarations&gt; 
+    
+    &lt;s:Form&gt; 
+        &lt;s:FormItem label="Search string"&gt; 
+            &lt;s:TextInput id="exp"/&gt; 
+        &lt;/s:FormItem&gt; 
+        &lt;s:FormItem label="Regular expression"&gt; 
+            &lt;s:TextInput id="source" text="ABC\d"/&gt; 
+        &lt;/s:FormItem&gt; 
+        &lt;s:FormItem label="Results"&gt; 
+            &lt;s:TextArea id="myTA"/&gt; 
+        &lt;/s:FormItem&gt; 
+    &lt;/s:Form&gt; 
+&lt;/s:Application&gt;</pre>
+
+                     <p>In this example, you specify
+the regular expression in the TextInput control named source, and
+bind it to the <samp class="codeph">expression</samp> property of the validator.
+You can modify the regular expression by entering a new expression
+in the TextInput control. A value of <samp class="codeph">g</samp> for the <samp class="codeph">flags</samp> property
+specifies to find multiple matches in the input field.</p>
+
+                     <p>The
+event handler for the <samp class="codeph">valid</samp> event writes to the
+TextArea control the index in the input String and matching substring
+of all matches of the regular expression. The <samp class="codeph">invalid</samp> event
+handler clears the TextArea control.</p>
+
+                  </dd>
+
+               
+            </dl>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf69084-7f48_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7f48_verapache"><!-- --></a>
+         <h3 class="topictitle3">Validating social security numbers</h3>
+
+         
+         <div>
+            <p>The <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/validators/SocialSecurityValidator.html" target="_blank">SocialSecurityValidator</a> class
+validates that a string is a valid United States Social Security
+Number. This validator does not check if the number is an existing Social
+Security Number.</p>
+
+            <p>The following example validates a Social Security Number:</p>
+
+            <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- validators\SSExample.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx"&gt; 
+    &lt;s:Form id="identityForm"&gt; 
+        &lt;s:FormItem id="ssnItem" label="Social Security Number"&gt; 
+            &lt;s:TextInput id="ssnField"/&gt; 
+        &lt;/s:FormItem&gt; 
+        &lt;s:FormItem id="licenseItem" label="Driver's License Number"&gt; 
+            &lt;s:TextInput id="licenseInput"/&gt; &lt;!-- Not validated --&gt; 
+        &lt;/s:FormItem&gt; 
+    &lt;/s:Form&gt; 
+ 
+    &lt;fx:Declarations&gt; 
+        &lt;mx:SocialSecurityValidator id="ssV" 
+            source="{ssnField}" property="text"/&gt; 
+    &lt;/fx:Declarations&gt; 
+&lt;/s:Application&gt;</pre>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf69084-7f47_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7f47_verapache"><!-- --></a>
+         <h3 class="topictitle3">Validating strings</h3>
+
+         
+         <div>
+            <p>The <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/validators/StringValidator.html" target="_blank">StringValidator</a> class
+validates that a string length is within a specified range. The
+following example ensures that a string is between 6 and 12 characters
+long:</p>
+
+            <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- validators\StringExample.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx"&gt; 
+    &lt;s:Form id="membershipForm"&gt; 
+        &lt;s:FormItem id="fullNameItem" label="Full Name"&gt; 
+        &lt;!-- Not validated --&gt; 
+            &lt;s:TextInput id="fullNameInput"/&gt; 
+        &lt;/s:FormItem&gt; 
+        &lt;s:FormItem id="userNameItem" label="Username"&gt; 
+            &lt;s:TextInput id="userNameInput"/&gt; 
+        &lt;/s:FormItem&gt; 
+    &lt;/s:Form&gt; 
+ 
+    &lt;fx:Declarations&gt; 
+        &lt;mx:StringValidator source="{userNameInput}" property="text" 
+            minLength="6" maxLength="12"/&gt; 
+    &lt;/fx:Declarations&gt; 
+&lt;/s:Application&gt;</pre>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf69084-7f46_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7f46_verapache"><!-- --></a>
+         <h3 class="topictitle3">Validating ZIP codes</h3>
+
+         
+         <div>
+            <p>
+               The <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/validators/ZipCodeValidator.html" target="_blank">ZipCodeValidator</a> class
+validates that a string has the correct length for a five-digit
+ZIP code, a five-digit+four-digit United States ZIP code, or a Canadian
+postal code. </p>
+
+            <p>The following example validates either a United States ZIP code
+or a Canadian postal code:</p>
+
+            <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- validators\ZCExample.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx"&gt; 
+    &lt;s:layout&gt; 
+        &lt;s:VerticalLayout/&gt; 
+    &lt;/s:layout&gt; 
+ 
+    &lt;s:Form id="addressForm"&gt; 
+        &lt;s:FormItem id="zipCodeItem" label="Zip Code"&gt; 
+            &lt;s:TextInput id="zipInput"/&gt; 
+        &lt;/s:FormItem&gt; 
+        &lt;s:FormItem id="submitArea"&gt;  
+            &lt;s:Button label="Submit"/&gt; 
+        &lt;/s:FormItem&gt;   
+    &lt;/s:Form&gt; 
+ 
+    &lt;fx:Declarations&gt; 
+        &lt;mx:ZipCodeValidator id="zipV" 
+            source="{zipInput}" property="text" 
+            domain="US or Canada"/&gt; 
+    &lt;/fx:Declarations&gt; 
+&lt;/s:Application&gt;</pre>
+
+         </div>
+
+      </div>
+
+   </div>
+
+
+</body>
+</html>
