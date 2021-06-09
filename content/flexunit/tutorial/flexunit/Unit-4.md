@@ -45,7 +45,6 @@ Title:  Unit 4 - FlexUnit Basics
 
 <code><pre>public class TestSeams {
 	private var someMathObj:SomeMathClass = new SomeMathClass();
-
 	public function findDistance( a:Number, b:Number ):Number {
 		var difference:Number = ( b - a );
 		var distance:Number = someMathObj.abs( difference );
@@ -63,7 +62,6 @@ Title:  Unit 4 - FlexUnit Basics
 <code><pre>public function getPointOnCircle( t:Number ):Point {
 	var x:Number = origin.x + ( radius * Math.cos( t ) );
 	var y:Number = origin.y + ( radius * Math.sin( t ) );
-
 	return new Point( x, y );
 }</pre></code>
 
@@ -86,7 +84,6 @@ Title:  Unit 4 - FlexUnit Basics
 	var maxX:Number = (contentWidth/2)*.8;
 	var maxY:Number = (contentHeight/2)*.8;
 	var radius:Number = Math.min( maxX, maxY );
-
 	return Math.max( radius, 1 );
 }</pre></code>
 
@@ -138,162 +135,127 @@ public function shouldComputeCorrectDiameter():void {
 	<li>
 		<p>Add seven new public functions to the class right under the <code>shouldReturnProvidedRadius()</code> function. They should be named <code>shouldComputeCorrectDiameter()</code>, <code>shouldReturnProvidedOrigin()</code>, <code>shouldReturnTrueForEqualCircle()</code>, <code>shouldReturnFalseForUnequalOrigin()</code>, <code>shouldReturnFalseForUnequalRadius()</code>, <code>shouldGetPointsOnCircle()</code>, and <code>shouldThrowRangeError()</code>.</p>
 		<p>Mark each function with <code>[Test]</code> metadata.</p>
-		
 		<code><pre>[Test]
 public function shouldComputeCorrectDiameter():void {
 }
-
 [Test]
 public function shouldReturnProvidedOrigin():void {
 }
-
 [Test]
 public function shouldReturnTrueForEqualCircle():void {	
 }
-
 [Test]
 public function shouldReturnFalseForUnequalOrigin():void {
 }
-
 [Test]
 public function shouldReturnFalseForUnequalRadius():void {
 }
-
 [Test]
 public function shouldGetPointsOnCircle():void {	
 }
-
 [Test]
 public function shouldThrowRangeError():void {	
 }		</pre></code>
 	</li>
 	<li>
 		<p>Although you have written out seven methods, only the first five are going to be used in this walkthrough. Within <code>shouldComputeCorrectDiameter()</code>, <code>shouldReturnProvidedOrigin()</code>, <code>shouldReturnTrueForEqualCircle()</code>, <code>shouldReturnFalseForUnequalOrigin()</code>, and <code>shouldReturnFalseForUnequalRadius()</code> declare a local variable named <code>circle</code> of type <code>Circle</code>. Instantiate <code>circle</code> with an origin Point at <code>(0, 0)</code> and a radius of <code>5</code>.</p>
-		
 		<code><pre>[Test]
 public function shouldComputeCorrectDiameter():void {
 	var circle:Circle = new Circle( new Point( 0, 0 ), 5 ); 
 }
-
 [Test]
 public function shouldReturnProvidedOrigin():void {
 	var circle:Circle = new Circle( new Point( 0, 0 ), 5 ); 
 }
-
 [Test]
 public function shouldReturnTrueForEqualCircle():void {
 	var circle:Circle = new Circle( new Point( 0, 0 ), 5 );	
 }
-
 [Test]
 public function shouldReturnFalseForUnequalOrigin():void {
 	var circle:Circle = new Circle( new Point( 0, 0 ), 5 );	
 }
-
 [Test]
 public function shouldReturnFalseForUnequalRadius():void {
 	var circle:Circle = new Circle( new Point( 0, 0 ), 5 );	
 }		</pre></code>
-
 	</li>
 	<li>
 		<p>Just below the circle instantiation in the <code>shouldComputeCorrectDiameter()</code> method, add a line that calls to the <code>assertEquals()</code> method with arguments <code>10</code> and <code>circle.diameter</code>.</p> 
-		
 		<code><pre>[Test]
 public function shouldComputeCorrectDiameter ():void {
 	var circle:Circle = new Circle( new Point( 0, 0 ), 5 ); 
 	assertEquals( 10, circle.diameter );
 }		</pre></code>
-	
 	</li>
 	<li>
 		<p>Just below the circle instantiation in the <code>shouldReturnProvidedOrigin()</code> method, add two lines that each call the <code>assertEquals()</code> method. This test requires two assertion statements because it will check the x and y coordinates' equality to 0, each on a different line.</p>
-		
 		<code><pre>[Test]
 public function shouldReturnProvidedOrigin():void {
 	var circle:Circle = new Circle( new Point( 0, 0 ), 5 ); 
 	assertEquals( 0, circle.origin.x );
 	assertEquals( 0, circle.origin.y );
 }		</pre></code>
-
 	</li>
 	<li>
 		<p>Add a new local variable named <code>circle2</code> of type <code>Circle</code> to the <code>shouldReturnTrueForEqualCircle()</code> method. Instantiate <code>circle2</code> with an origin of <code>(0, 0)</code> and radius of <code>5</code>.</p>
-		
 		<code><pre>[Test]
 public function shouldReturnTrueForEqualCircle():void {
 	var circle:Circle = new Circle( new Point( 0, 0 ), 5 );
 	var circle2:Circle = new Circle( new Point( 0, 0 ), 5 );
 }		</pre></code>
-
 	</li>
 	<li>
 		<p>Add a new line to the <code>shouldReturnTrueForEqualCircle()</code> function that calls to the <code>assertTrue()</code> method with the argument <code>circle.equals( circle2 )</code>.</p>
-		
 		<code><pre>[Test]
 public function shouldReturnTrueForEqualCircle():void {
 	var circle:Circle = new Circle( new Point( 0, 0 ), 5 );
 	var circle2:Circle = new Circle( new Point( 0, 0 ), 5 );
-
 	assertTrue( circle.equals( circle2 ) );	
 }		</pre></code>
-		
 		<p>If you did not use code-completion, add the import for org.flexunit.asserts.assertTrue at this time.</p>	
 	</li>
 	<li>
 		<p>Add a variable named <code>circle2</code> of type <code>Circle</code> to the <code>shouldReturnFalseForUnequalOrigin()</code> method. Instantiate <code>circle2</code> with an origin of <code>(0, 5)</code> and a radius of <code>5</code>.</p>
-		
 		<code><pre>[Test]
 public function shouldReturnFalseForUnequalOrigin():void {
 	var circle:Circle = new Circle( new Point( 0, 0 ), 5 );
 	var circle2:Circle = new Circle( new Point( 0, 5 ), 5 );
 }		</pre></code>
-
 	</li>
 	<li>
 		<p>Add a call to the <code>assertFalse()</code> method. The statement <code>circle.equals( circle2 )</code> should be passed in as its argument.</p>
-		
 		<code><pre>[Test]
 public function shouldReturnFalseForUnequalOrigin():void {
 	var circle:Circle = new Circle( new Point( 0, 0 ), 5 );
 	var circle2:Circle = new Circle( new Point( 0, 5 ), 5);
-
 	assertFalse( circle.equals( circle2 ) );
 }		</pre></code>
-		
 		<p>If you did not use code-completion, add the import for org.flexunit.asserts.assertFalse at this point.</p>
 	</li>
 	<li>
 		<p>Add a variable named <code>circle2</code> of type <code>Circle</code> to the <code>shouldReturnFalseForUnequalRadius()</code> method. Instantiate <code>circle2</code> with an origin of <code>(0, 0)</code> and a radius of <code>7</code>.</p>
-		
 		<code><pre>[Test]
 public function shouldReturnFalseForUnequalRadius():void {
 	var circle:Circle = new Circle( new Point( 0, 0 ), 5 );
 	var circle2:Circle = new Circle( new Point( 0, 0 ), 7);
 }		</pre></code>
-
 	</li>
 	<li>
 		<p>Add a call to the <code>assertFalse()</code> method. The expression <code>circle.equals( circle2 )</code> should be passed in as its argument.</p>
-		
 		<code><pre>[Test]
 public function shouldReturnFalseForUnequalRadius():void {
 	var circle:Circle = new Circle( new Point( 0, 0 ), 5 );
 	var circle2:Circle = new Circle( new Point( 0, 0 ), 7);
-
 	assertFalse( circle.equals( circle2 ) );
 }		</pre></code>
-
 	</li>
 	<li>
 		<p>Save the BasicCircleTest.as file.</p>
 	</li>
 	<li>
-		<p>Re-Open the FlexUnit4Training.mxml file. Click the run button in the upper toolbar.</p> 
-		<p>If FlexUnit4Training.mxml ran successfully you should see the following output in your browser window:</p>
-		
+		<p>Re-Open the FlexUnit4Training.mxml file. Click the run button in the upper toolbar.</p>		<p>If FlexUnit4Training.mxml ran successfully you should see the following output in your browser window:</p>
 		<img alt='UnitsPassed' id='shift' src='../images/unit4/image1.png' />
-		
 		<p class='caption' id='shift'>Figure 1: FlexUnit tests passed.</p>
 	</li>
 </ol>
@@ -309,7 +271,6 @@ public function testAddition():void {
 	var num1:Number = 5;
 	var num2:Number = 3;
 	var total:Number = 8;
-
 	assertEquals( total, num1 + num2 );
 }</pre></code>
 
@@ -340,7 +301,6 @@ public function testAddition():void {
 	var num1:Number = 5;
 	var num2:Number = 3;
 	var total:Number = 1000;
-
 	assertEquals( total, num1 + num2 );
 }</pre></code>
 
@@ -361,7 +321,6 @@ public function testAddition():void {
 		var num1:Number = 5;
 		var num2:Number = 3;
 		var total:Number = 1000;
-
 		assertEquals( total, num1 + num2 );
 		assertEquals( num1 + num2, total );
 }</pre></code>
@@ -387,57 +346,45 @@ public function testAddition():void {
 	<li>
 		<p>Open the BasicCircleTest.as file from the previous exercise.</p>
 		<p>Alternatively, if you didn't complete the previous lesson or your code is not functioning properly, you can import the FlexUnit4Training_wt2.fxp project from the Unit 4/Start folder. Please refer to Unit 2: Walkthrough 1 for instructions on importing a Flash Builder project.</p>
-
 		<h3>Write multiple assertions for a test method</h3>
-		
 	</li>
 	<li>
 		<p>In the <code>shouldGetPointsOnCircle()</code> method, create a local variable named <code>circle</code> of type <code>Circle</code>. This Circle should be instantiated with an origin of <code>(0, 0)</code> and a radius of <code>5</code>.</p>
-		
 		<code><pre>[Test]
 public function shouldGetPointsOnCircle():void {
 	var circle:Circle = new Circle( new Point( 0, 0 ), 5 );
 }		</pre></code>
-
 	</li>
 	<li>
 		<p>Declare a variable named <code>point</code> of type <code>Point</code>.</p>
-		
 		<code><pre>[Test]
 public function shouldGetPointsOnCircle():void {
 	var circle:Circle = new Circle( new Point( 0, 0 ), 5 );
 	var point:Point;
 }		</pre></code>
-
 	</li>
 	<li>
 		<p>Set the point variable equal to the return value of <code>circle.getPointOnCircle( 0 )</code>. Above that line, it is useful to add a comment line specifying that this is the top-most point of circle.</p>
-		
 		<code><pre>[Test]
 public function shouldGetPointsOnCircle():void {
 	var circle:Circle = new Circle( new Point( 0, 0 ), 5 );
 	var point:Point;
-
 	//top-most point of circle
 	point = circle.getPointOnCircle( 0 );
 }		</pre></code>
-
 		<p>The <code>getPointOnCircle( t:Number )</code> returns a Circle object's point that corresponds to the radians passed in as the <code>t</code> parameter.</p>
 	</li>
 	<li>
 		<p>Add two new lines, each with a call to the <code>assertEquals()</code> method. The first takes the arguments <code>5</code> and <code>point.x</code>. The second takes the arguments <code>0</code> and <code>point.y</code>.</p>
-		
 		<code><pre>[Test]
 public function shouldGetPointsOnCircle():void {
 	var circle:Circle = new Circle( new Point( 0, 0 ), 5 );
 	var point:Point;
-
 	//top-most point of circle
 	point = circle.getPointOnCircle( 0 );
 	assertEquals( 5, point.x );
 	assertEquals( 0, point.y );
 }		</pre></code>
-
 	</li>
 	<li>
 		<p>Copy these four new lines of code and paste them into the bottom of the function.</p> 
@@ -449,23 +396,19 @@ public function shouldGetPointsOnCircle():void {
 	<li>
 		<p>Update the <code>assertEquals()</code> statements to <code>assertEquals( -5, point.x )</code> and <code>assertEquals( 0, point.y )</code>.</p>
 		<p>This should create a duplicate set of assertions for the bottom-most point on the circle.</p>
-		
 		<code><pre>[Test]
 public function shouldGetPointsOnCircle():void {
 	var circle:Circle = new Circle( new Point( 0, 0 ), 5 );
 	var point:Point;
-
 	//top-most point of circle
 	point = circle.getPointOnCircle( 0 );
 	assertEquals( 5, point.x );
 	assertEquals( 0, point.y );
-
 	//bottom-most point of circle
 	point = circle.getPointOnCircle( Math.PI );
 	assertEquals( -5, point.x );
 	assertEquals( 0, point.y );
 }		</pre></code>
-
 	</li>
 	<li>
 		<p>Save BasicCircleTest.as.</p>
@@ -473,14 +416,11 @@ public function shouldGetPointsOnCircle():void {
 	<li>
 		<p>Run the FlexUnit4Training.mxml file.</p>
 		<p>If FlexUnit4Training.mxml ran successfully you should see the following output in your browser window:</p>
-		
 		<img alt='SingleTestFailure' id='shift' src='../images/unit4/image2.png' />
 		<p class='caption' id='shift'>Figure 1: A single test failure</p>
-
 		<p>One of the tests in the case has failed. Further evaluation within the FlexUnit results tab will show that the newly populated <code>shouldGetPointsOnCircle()</code> method failed.</p>
 		<p>While you know that this test failed, you do not know the failure. Fewer assertions in a method provide you better context to understand the root cause quickly.</p>
 		<p>If you examine the failure in Flash Builder, you will see that the root cause actually has to do with the imprecision of floating point calculations. You will learn to adapt your code to these issues in future lessons.</p>
-		
 		<img alt='FailureStackTrace' id='shift' src='../images/unit4/image3.png' />
 		<p class='caption' id='shift'>Figure 2: The failure stack trace </p>
 	</li>
@@ -505,21 +445,16 @@ public function shouldGetPointsOnCircle():void {
 	<li>
 		<p>Open the BasicCircleTest.as file from the previous exercise.</p>
 		<p>Alternatively, if you didn't complete the previous lesson or your code is not functioning properly, you can import the FlexUnit4Training_wt3.fxp project from the Unit5/Start folder. Please refer to Unit 2: Walkthrough 1 for instructions on importing a Flash Builder project.</p>
-
 		<h3>Refactor point tests</h3>
-	
 	</li>
 	<li>
 		<p>Replace the <code>shouldGetPointsOnCircle()</code> function with two new public functions in the <code>BasicCircleTest</code> class. These functions will be named so that each clearly represents the point on the circle being tested.</p>
-		
 		<code><pre>[Test]
 public function shouldGetTopPointOnCircle():void {
 }
-
 [Test]
 public function shouldGetBottomPointOnCircle():void {
 }		</pre></code>
-
 		<p>Although the original <code>shouldGetPointsOnCircle()</code> method contained tests for only the top and bottom points of the Circle, in this Walkthrough you will add tests for the left and right points as well.</p>
 	</li>
 	<li>
@@ -527,67 +462,55 @@ public function shouldGetBottomPointOnCircle():void {
 	</li>
 	<li>
 		<p>Copy the instantiation of the circle, and declaration of the point from the <code>shouldgetPointsOnCircle()</code> method into each of the four new methods.</p>
-		
 		<code><pre>[Test]
 public function shouldGetTopPointOnCircle():void {
 	var circle:Circle = new Circle( new Point( 0, 0 ), 5 );
 	var point:Point;
 }
-
 [Test]
 public function shouldGetBottomPointOnCircle():void {
 	var circle:Circle = new Circle( new Point( 0, 0 ), 5 );
 	var point:Point;
 }
-
 [Test]
 public function shouldGetRightPointOnCircle():void {
 	var circle:Circle = new Circle( new Point( 0, 0 ), 5 );
 	var point:Point;
 }
-
 [Test]
 public function shouldGetLeftPointOnCircle():void {
 	var circle:Circle = new Circle( new Point( 0, 0 ), 5 );
 	var point:Point;
 }		</pre></code>
-
 	</li>
 	<li>
 		<p>Copy the block of code following <code>//top-most point of circle</code> comment into the <code>shouldGetTopPointOnCircle()</code> method.  Copy the block following the <code>//bottom-most point of circle</code> comment into the <code>shouldGetBottomPointOnCircle()</code> method.</p>
-		
 		<code><pre>[Test]
 public function shouldGetTopPointOnCircle():void {
 	var circle:Circle = new Circle( new Point( 0, 0 ), 5 );
 	var point:Point;
-
 	//top-most point of circle 
 	point = circle.getPointOnCircle( 0 );
 	assertEquals( 5, point.x );
 	assertEquals( 0, point.y );
 }
-
 [Test]
 public function shouldGetBottomPointOnCircle():void {
 	var circle:Circle = new Circle( new Point( 0, 0 ), 5 );
 	var point:Point;
-
 	//bottom-most point of circle
 	point = circle.getPointOnCircle( Math.PI );
 	assertEquals( -5, point.x );
 	assertEquals( 0, point.y );
 }		</pre></code>
-
 		<p>Because the methods each test specific points, the name is clear enough to distinguish one test from another. Remove the comment fields in each of the tests accordingly.</p>
 	</li>
 	<li>
 		<p>Modify the <code>shouldGetTopPointOnCircle()</code> and <code>shouldGetBottomPointOnCircle()</code> methods to save space by instantiating the point variable as it is declared in each function, much like the circle variable. The comments can be removed as well.</p>
-		
 		<code><pre>[Test]
 public function shouldGetTopPointOnCircle():void {
 	var circle:Circle = new Circle( new Point( 0, 0 ), 5 );
 	var point:Point = circle.getPointOnCircle( 0 );
-
 	assertEquals( 5, point.x );
 	assertEquals( 0, point.y );
 }
@@ -596,31 +519,25 @@ public function shouldGetTopPointOnCircle():void {
 public function shouldGetBottomPointOnCircle():void {
 	var circle:Circle = new Circle( new Point( 0, 0 ), 5 );
 	var point:Point = circle.getPointOnCircle( Math.PI );
-
 	assertEquals( -5, point.x );
 	assertEquals( 0, point.y );
 }		</pre></code>
-
 	</li>
 	<li>
 		<p>In the <code>shouldGetRightPointOnCircle()</code> method, set the <code>point</code> variable to <code>circle.getPointOnCircle( Math.PI/2 )</code>.</p>
-		
 		<code><pre>[Test]
 public function shouldGetRightPointOnCircle():void {
 	var circle:Circle = new Circle( new Point( 0, 0 ), 5 );
 	var point:Point = circle.getPointOnCircle( Math.PI/2 );
 }		</pre></code>
-
 	</li>
 	<li>
 		<p>In the <code>shouldGetLeftPointOnCircle()</code> method, set the <code>point</code> variable to <code>circle.getPointOnCircle( (3*Math.PI)/2 )</code>.</p>
-		
 		<code><pre>[Test]
 public function shouldGetLeftPointOnCircle():void {
 	var circle:Circle = new Circle( new Point( 0, 0 ), 5 );
 	var point:Point = circle.getPointOnCircle( (3*Math.PI)/2 );
 }		</pre></code>
-
 	</li>
 	<li>
 		<p>Add two calls to the <code>assertEquals()</code> method to <code>shouldGetRightPointOnCircle()</code>. One should assert that <code>point.x</code> is equal to <code>5</code>, and <code>point.y</code> is equal to <code>0</code>.</p>
@@ -629,24 +546,19 @@ public function shouldGetLeftPointOnCircle():void {
 public function shouldGetRightPointOnCircle():void {
 	var circle:Circle = new Circle( new Point( 0, 0 ), 5 );
 	var point:Point = circle.getPointOnCircle( Math.PI/2 );
-
 	assertEquals( 0, point.x );
 	assertEquals( 5, point.y );
 }		</pre></code>
-
 	</li>
 	<li>
 		<p>Add two calls to the <code>assertEquals()</code> method to <code>shouldGetLeftPointOnCircle()</code>. One should assert that <code>point.x</code> is equal to <code>0</code>, and <code>point.y</code> is equal to <code>-5</code>.</p>
-		
 		<code><pre>[Test]
 public function shouldGetLeftPointOnCircle():void {
 	var circle:Circle = new Circle( new Point( 0, 0 ), 5 );
 	var point:Point = circle.getPointOnCircle( (3*Math.PI)/2 );
-
 	assertEquals( 0, point.x );
 	assertEquals( -5, point.y );
 }		</pre></code>
-
 	</li>
 	<li>
 		<p>Delete the previously used <code>shouldGetPointsOnCircle()</code> method, because its tests have been replicated.</p>
@@ -657,10 +569,8 @@ public function shouldGetLeftPointOnCircle():void {
 	<li>
 		<p>Run the FlexUnit4Training.mxml file.</p>
 		<p>If FlexUnit4Training.mxml ran successfully you should see the following output in your browser window:</p>
-
 		<img alt='ThreeTestsFailed' id='shift' src='../images/unit4/image4.png' />
 		<p class='caption' id='shift'>Figure 1: Three tests failed.</p>
-		
 		<p>Previously, when all the point assertions were bundled into a single method, it was impossible to determine which assertions caused the failure. Refactoring these assertions into four different test methods makes it clear that three of the four conditions are failures.</p> 
 		<p>Further inspection will reveal that the <code>shouldGetTopPointOnCircle()</code> is the only of the four tests that is passing. It is also the only test with an integer value of 0 passed in for its radians argument. The root cause of the situation is the way in which Flash Player handles fractions and the precision of those comparisons. This will be explored further and a solution demonstrated later in this text.</p>
 	</li>

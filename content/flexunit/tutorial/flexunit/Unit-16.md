@@ -91,44 +91,34 @@ Title:  Unit 16 - Allowing Your Tests to Function with Continuous Integration
 	<li>
 		<p>Find and remove the <code>FlexUnitTestRunnerUI</code> component with id <code>testRunner</code> from the application file.</p>  
 		<p>You are removing this section of code as you will no longer be using the UIRunner.</p>
-
 		<s>&#60;flexui:FlexUnitTestRunnerUI id="testRunner"/&#62;</s>
-
 		<p>Continuous integration servers are autonomous. In addition to creating unnecessary overhead, a UIRunner prevents FlexUnit from running in a headless environment.</p>
 	</li>
 	<li>
 		<p>Within the <code>&#60;fx:Script&#62;</code> block, there is a method named <code>onCreationComplete()</code>. Remove the body of this method, leaving just the empty shell of the method.</p>
-
 <code><pre>private function onCreationComplete():void {
 }</pre></code>
-		
 	</li>
 	<li>
 		<p>Within the <code>&#60;fx:Script&#62;</code> block add a new public variable named <code>core</code> of type <code>FlexUnitCore</code>.</p>  
-
 		<code><pre>public var core:FlexUnitCore;</pre></code>
-
 		<p>If you did not use code-completion, add the import statement for and org.flexunit.runner.FlexUnitCore at this time.</p>
 		<p>The <code>core</code> acts as our runner; we will be adding the <code>CIListener</code> to the core listeners.</p>
 	</li>
 	<li>
 		<p>In the <code>onCreationComplete()</code> method instantiate the <code>core</code> variable to a new <code>FlexUnitCore()</code>. Call the <code>core.addListener()</code> method on the next line, passing it an argument of <code>new CIListener()</code>. On the next line call the <code>core.run( currentRunTestSuite() )</code>.</p> 
-
 <code><pre>private function onCreationComplete():void {
 	core = new FlexUnitCore();
 	core.addListener( new CIListener() );
 }</pre></code>
-		
 	</li>
 	<li>
 		<p>On the following line, call <code>core.run()</code> passing <code>currentRunTestSuite()</code> as its argument.</p> 
-
 <code><pre>private function onCreationComplete():void {
 	core = new FlexUnitCore();
 	core.addListener( new CIListener() );
 	core.run( currentRunTestSuite() );
 }</pre></code>
-		
 		<p>If you did not use code-completion, add the import statement for org.flexunit.listeners.CIListener at this time.</p>
 	</li>
 	<li>
@@ -258,9 +248,7 @@ Title:  Unit 16 - Allowing Your Tests to Function with Continuous Integration
 	<li>
 		<p>Import the FlexUnitTraining_wt2.fxp contained in Unit 16/Start folder.</p>
 		<p>Please refer to Unit 2: Walkthrough 1 for instructions on importing a Flash Builder project.</p>
-
 		<h3><br />Preparing the debug projector</h3>
-		
 	</li>
 	<li>
 		<p>Navigate to Unit 16/FlexUnitCI and find the file flashplayer_sa_win.exe (Windows users) or flashplayer_10_sa_debug.app.zip (Mac users). This is the debug version of the standalone FlashPlayer. Copy it to your local file system somewhere you will remember.</p>  
@@ -268,38 +256,27 @@ Title:  Unit 16 - Allowing Your Tests to Function with Continuous Integration
 	</li>
 	<li>
 		<p>Windows Users: Return to the FlexUnitCI folder. Right-click on the TestSwf.swf and select <b>Open with...</b>. If an expanding menu appears, instead click <b>choose program</b>. This should open the following screen:</p>
-
 		<img alt='WindowsOpenWith' id='shift' src='../images/unit16/image1.jpeg' />
-
 		<p>Depending on your version, the dialog may appear slightly different.  Click on <b>Browse...</b> and select the standalone player you saved earlier.  Click OK.  The file will attempt to open and throw a SecurityError. This is normal. Click Dismiss and close the player.</p>
 		<p>Mac Users: Return to the FlexUnitCI folder. Right-click, or if using a single mouse button control-click, on the file <b>TestSwf.swf</b> and select <b>Get Info</b>. In this dialogue you will see a section titled <b>Open With</b>.</p>
-
 		<img alt='MacOpenWith' id='shift' src='../images/unit16/image2.png' /> 
 		<p>Select the drop down menu and click <b>Other...</b> When the browser box opens, navigate to the location you saved the debug player and select that file.</p>
-		
 		<h3><br />Prepare the Ant build file</h3>
-		
 		<p>Continuous integration projects require a build file.  Since you will be using Ant along with Hudson, you need a build.xml file.</p>
 	</li>
 	<li>
 		<p>Open the build.xml.</p>  
 		<p>You will need to make some modifications to this file for it to work with your project build. You will see a heading that reads: <b>Setup paths for build</b>.</p>  
 		<p>If you changed the organization of your project, make sure these paths reflect those changes.</p>
-		
 		<img alt='BuildPath' id='shift' src='../images/unit16/image3.png' />
-		
 		<p>You will also see a heading <code>&#60;!--Setup Flex and FlexUnit ant tasks --&#62;</code>.  Here you will need to modify the path locations of your tasks as well as set the <code>FLEX_HOME</code>.</p>
 	</li>
 	<li>
 		<p>First, navigate to your Flex SDK. In most cases, your Flex SDK should be located at root/Program Files/Adobe/Adobe Flash Builder 4/sdks.</p> 
-
 		<code><pre>&#60;property name="FLEX_HOME" 
  location="rootpath:/Program Files/Adobe/Adobe Flash Builder 4/sdks/4.1.0/" /&#62;</pre></code>
-
 		<p>It is highly recommended you use Flex 4.1 SDK. Keep every directory in this walkthrough relative to the FLEX_HOME directory, this way the build file is guaranteed to reference these correctly.</p>
-
 		<h3><br />Install Ant and Hudson</h3>
-		
 	</li>
 	<li>
 		<p>Navigate to Unit 16/FlexUnitCI.  Copy this entire directory to the root drive.</p>  
@@ -311,9 +288,7 @@ Title:  Unit 16 - Allowing Your Tests to Function with Continuous Integration
 	<li>
 		<p>Choose to download and run the hudson.jnlp file.</p>
 		<p>After the Java Web Start has completed you should see a startup dialog:</p>
- 
 		<img alt='HudsonConsole' id='shift' src='../images/unit16/image4.jpeg' />
-		
 		<p>This is the Hudson test drive. For our purposes this is sufficient. However, if you are running Hudson through your CI machine you will want to install the windows service or console app depending on your OS.</p>
 	</li>
 	<li>
@@ -328,7 +303,6 @@ Title:  Unit 16 - Allowing Your Tests to Function with Continuous Integration
 	</li>
 	<li>
 		<p>In the <b>ANT_HOME</b> field, specify the install directory of your Ant installation. If you used the walkthroughs location, specify 'root/FlexUnitCI/Ant'.</p>
-		
 		<img alt='' id='shift' src='../images/unit16/image5.jpeg' />
 	</li>
 	<li>
@@ -339,14 +313,11 @@ Title:  Unit 16 - Allowing Your Tests to Function with Continuous Integration
 	</li>
 	<li>
 		<p>Give the job a name of FlexUnitCI Intro. Select <b>Build a free-style software project</b>. This version will allow you to build directly from an Ant script.</p>
-
 		<img alt='NewProjectPage' id='shift' src='../images/unit16/image6.jpeg' />
-		
 		<p>You will now see the new project page. You may at this time assign a description to the project. Take note of the Source Code Management settings.  The SCM is what will turn our build into a continually integrating project.  Normally we would specify our SCM and pass the location of the SCM. Hudson would then be pushed any changes to the repository and immediately execute a build. However, since we do not have any SCM for this project we will be executing manual builds.</p>
 	</li>
 	<li>
 		<p>Leave this option as <b>None</b>.</p>
-		
 		<img alt='None' id='shift' src='../images/unit16/image7.png' />
 	</li>
 	<li>
@@ -357,13 +328,9 @@ Title:  Unit 16 - Allowing Your Tests to Function with Continuous Integration
 	</li>
 	<li>
 		<p>You should now be taken to the project homepage. Right now this project will do nothing. You need to specify a workspace.  To do so, select <b>Workspace</b> from the main screen. This can also be accessed from the menu on the left.</p>
-
 		<img alt='Workspace' id='shift' src='../images/unit16/image8.png' /> 
-
 		<p>You will receive an error:</p>
-
 		<img alt='Error' id='shift' src='../images/unit16/image9.jpeg' />
-		 
 		<p>This is completely expected. Hudson needs to execute a new build to configure the workspace.</p>
 	</li>
 	<li>
@@ -373,7 +340,6 @@ Title:  Unit 16 - Allowing Your Tests to Function with Continuous Integration
 	<li>
 		<p>Click on the workspace link in the left-hand menu again.</p>
 		<p>You should now see:</p>
-
 		<img alt='NoFiles' id='shift' src='../images/unit16/image10.jpeg' /> 
 		<p>Hudson is expecting the base directory of your project which should also contain the build.xml. Unfortunately, since we are not using a SCM, this directory will not populate correctly. We need to add the files directly to the workspace.</p>
 	</li>
@@ -389,17 +355,13 @@ Title:  Unit 16 - Allowing Your Tests to Function with Continuous Integration
 	</li>
 	<li>
 		<p>Hudson should now show the current contents of your project.</p>
-
 		<img alt='CurrentContents' id='shift' src='../images/unit16/image11.jpeg' /> 
-
 		<p>The project is now ready to be built. Since we are running this from the Test Launch and do not have a SCM specified, we will need to run manual builds.</p>
 	</li>
 	<li>
 		<p>Select <b>Build Now</b> from the menu on the left.</p>  
 		<p>Build now will force an immediate build on any files currently in the workspace.  This should return a success (blue dot on the left under build history.)</p> 
-
 		<img alt='BuildHistory' id='shift' src='../images/unit16/image12.jpeg' />
-		 
 		<p>During test execution, you will see the standalone player load with a blank screen. This is normal and will close automatically. Do not close this manually or your build may fail.</p>
 	</li>
 	<li>

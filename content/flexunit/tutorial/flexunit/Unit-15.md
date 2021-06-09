@@ -29,15 +29,12 @@ Title:  Unit 15 - Creating Testable Code
 <code><pre>public class ContactDatabaseConnection {
 	public function ContactDatabaseConnection () {
 	}
-
 	public function connect():void {
 		//code to connect
 	}
-
 	public function getContact( itemName:String ):Contact {
 		//code to retrieve contact
 	}
-
 	public function formatContact( contact:Contact ):FormattedContact {
 		//code to format contact
 	}
@@ -47,7 +44,6 @@ Title:  Unit 15 - Creating Testable Code
 
 <code><pre>private var testContact:Contact;
 private var connection:ContactDatabaseConnection;
-	
 	[Before]
 	public function setup():void {
 		connection = new ContactDatabaseConnection();
@@ -62,11 +58,9 @@ private var connection:ContactDatabaseConnection;
 <code><pre>public class ContactDatabaseConnection {
 	public function ContactDatabaseConnection () {
 	}
-
 	public function connect():void {
 		//code to connect
 	}
-
 	public function getContact( itemName:String ):IContact {
 		//code to retrieve contact
 	}
@@ -76,7 +70,6 @@ private var connection:ContactDatabaseConnection;
 
 <code><pre>public class Contact implements IContact {
 	//contact code
-
 	public function formatContact():void {
 		//format code
 	}
@@ -89,7 +82,6 @@ private var connection:ContactDatabaseConnection;
 
 <code><pre>public class BoxOfCrayons() {
 	private var crayons:Array = new Array();
-
 	public function addCrayon( color:String ):void {
 		var crayon = new WaxCrayon();
 		crayon.color = color;
@@ -157,63 +149,47 @@ private var connection:ContactDatabaseConnection;
 	</li>
 	<li>
 		<p>Examine the <code>updateDisplayList()</code> method in this class.</p>
-
 <code><pre>override public function updateDisplayList( contentWidth:Number, contentHeight:Number ):void {
-
 	...							
 	super.updateDisplayList( contentWidth, contentHeight );
-		
 	var circle:Circle = new Circle( new Point( contentWidth/2, contentHeight/2 ),
 	 getLayoutRadius( contentWidth, contentHeight ) );
-	
 	for ( i = 0; i &#60; target.numElements; i++ ) {
 		element = target.getElementAt(i);
-					
 		elementLayoutPoint = circle.getPointOnCircle( elementAngleInRadians );
 		...			
 		//Used to be move()
 		element.setLayoutBoundsPosition( elementLayoutPoint.x-elementWidth,
 		 elementLayoutPoint.y-elementHeight );
-					
 	}
 }</pre></code>
-
 		<p>This method creates a <code>circle</code> object of type <code>Circle</code> with dimensions based on the <code>contentWidth</code> and <code>contentHeight</code> arguments. The elements of the layout are positioned to points on the circle.</p>
 		<p>Suppose you wanted to test the functionality of this method. It would be impossible to isolate because the method is dependent on the <code>Circle</code> class.</p>
 		<p>The circle object could be mocked if the <code>CircleLayout</code> class had its own <code>circle</code> property instead.</p>
 	</li>
 	<li>
 		<p>At the top of the class, create a private circle property.</p>
-
 		<code><pre>private var circle:Circle;</pre></code>
-		
 	</li>
 	<li>
 		<p>Generate a public getter and setter for the property. Right-click the property, select Source &#62; Generate Getter/Setter, and click OK.</p>
-
 <code><pre>public function get circle():Circle {
 	return _circle;
 }
-		
 public function set circle(value:Circle):void {
 	_circle = value;
 }</pre></code>
-		
 	</li>
 	<li>
 		<p>Add a call to the <code>invalidateDisplayList()</code> method on the <code>target</code> property within the setter of the <code>circle</code>.</p>
-
 <code><pre>public function set circle(value:Circle):void {
 	circle = value;
 	target.invalidateDisplayList();
 }</pre></code>
-		
 	</li>
 	<li>
 		<p>Remove the line that instantiates the <code>circle</code> object within the <code>updateDisplayList()</code> method.</p>
-
 		<code>var circle:Circle = new Circle( new Point( contentWidth/2, contentHeight/2 ), getLayoutRadius( contentWidth, contentHeight ) );</code>
-		
 	</li>
 	<li>
 		<p>Remove the <code>getLayoutRadius()</code> method from the class.</p>
@@ -222,13 +198,11 @@ public function set circle(value:Circle):void {
 		<p>Perform a null check for the <code>circle</code> within <code>updateDisplayList()</code> method.</p>
 
 <code><pre>super.updateDisplayList( contentWidth, contentHeight );
-
 if(circle) {
 	for ( i = 0; i &#60; target.numElements; i++ ) {
 		...
 	}
 }</pre></code>
-
 		<p>The <code>CircleLayout</code> class can now be better tested as it is not dependent on another class.</p>
 	</li>
 </ol>
@@ -247,20 +221,15 @@ if(circle) {
 	<li>
 		<p>Open the Circle.as file from the net.digitalprimates.math package.</p>
 		<p>Alternatively, if you didn't complete the previous lesson or your code is not functioning properly, you can import the FlexUnit4Training_wt2.fxp project from the Unit 15/Start folder. Please refer to Unit 2: Walkthrough 1 for instructions on importing a Flash Builder project.</p>
-
 		<h3><br />Add the distanceFrom() method</h3>
-		
 	</li>
 	<li>
 		<p>Just below the <code>equals()</code> method, add a new public method named <code>distanceFrom()</code>. It should return a value of data type <code>Number</code>. It should take a parameter named <code>circle</code> of type <code>Circle</code>.</p>
-
 <code><pre>public function distanceFrom( circle:Circle ):Number {
 }</pre></code>
-		
 	</li>
 	<li>
 		<p>The new method should return <code>Point.distance( this.origin, circle.origin )</code>, which calculates the distance between the <code>Circles</code>' origin points.</p>
-
 <code><pre>public function distanceFrom( circle:Circle ):Number {
 	return Point.distance( this.origin, circle.origin );
 }</pre></code>
@@ -271,14 +240,12 @@ if(circle) {
 
 <code><pre>public function equals( circle:Circle ):Boolean {
 	var equal:Boolean = false;
-
 	if ( ( circle ) &#38;&#38; ( this.radius == circle.radius ) &#38;&#38; ( this.origin ) &#38;&#38;
 	 ( circle.origin ) ) {
 		if ( ( this.origin.x == circle.origin.x ) &#38;&#38; ( this.origin.y == circle.origin.y ) ) {
 			equal = true;
 		}
 	}
-
 	return equal;
 }</pre></code>
 
@@ -291,36 +258,27 @@ if(circle) {
 ( this.origin.y == circle.origin.y ) ) {
 	equal = true;
 }</pre></code>
-
 		<p>Becomes:</p>
-
 <code><pre>if ( this.distanceFrom( circle ) == 0 ) {
 	equal = true;
 }</pre></code>
-
 		<p>The <code>Circle</code> class's new <code>equals()</code> method should read as follows:</p>
 
 <code><pre>public function equals( circle:Circle ):Boolean {
 	var equal:Boolean = false;
-
 	if ( ( circle ) &#38;&#38; ( this.radius == circle.radius ) &#38;&#38; 
 	( this.origin ) &#38;&#38; ( circle.origin ) ) 	{
 		if ( this.distanceFrom( circle ) == 0 ) {
 			equal = true;
 		}
 	}
-
 	return equal;
 }</pre></code>
-
 	<p>At this point, if you were to mock a <code>Circle</code>, you would only need to mock and create expectations for a <code>circle</code> object. A mock for the <code>Point</code> class is not needed here.</p>
-		
 	</li>
 	<li>
 		<p>Save the Circle.as file</p>
-		
 		<h3><br />Run the unit tests</h3>
-		
 		<p>This is a great example of why automated unit testing is so beneficial in the development life cycle. In your modifications of the Circle.as class, it's very possible that you could have broken some functionality in the class and elsewhere. Fortunately, there are a wealth of unit test cases, many of them dealing with the <code>Circle</code> class and even the <code>equals()</code> method.</p>
 	</li>
 	<li>

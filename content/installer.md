@@ -15,7 +15,7 @@ Note: the installer downloads other files besides the Apache Flex SDK. These fil
 <li>[SWFObject.js][8]</li>
 </ul>
 
-#Download Apache Flex® SDK Installer 3.3.2 (source)
+# Download Apache Flex® SDK Installer 3.3.2 (source)
 The Apache Flex team is pleased to offer this 3.3.2 release of the Apache Flex® SDK Installer, available as of 09 July 2018.
 
   - README : [README][5]
@@ -23,7 +23,7 @@ The Apache Flex team is pleased to offer this 3.3.2 release of the Apache Flex®
   - Linux Source : [apache-flex-sdk-installer-3.3.2-src.tar.gz][1] [[PGP](https://dist.apache.org/repos/dist/release/flex/installer/3.3.2/apache-flex-sdk-installer-3.3.2-src.tar.gz.asc)] [[SHA512](https://dist.apache.org/repos/dist/release/flex/installer/3.3.2/apache-flex-sdk-installer-3.3.2-src.tar.gz.sha512)]
   - Windows Source : [apache-flex-sdk-installer-3.3.2-src.zip][2] [[PGP](https://dist.apache.org/repos/dist/release/flex/installer/3.3.2/apache-flex-sdk-installer-3.3.2-src.zip.asc)] [[SHA512](https://dist.apache.org/repos/dist/release/flex/installer/3.3.2/apache-flex-sdk-installer-3.3.2-src.zip.sha512)]
 
-#Download Apache Flex SDK Installer 3.3.2 (binaries)
+# Download Apache Flex SDK Installer 3.3.2 (binaries)
 Binaries are provided as a convenience for those who do not wish to compile the installer themselves. The 3.3.2 binaries were published on 09 July 2018. There is no 3.3.2 convenience binary for Linux as all recent Flex and FlexJS SDK's support installation via Apache Ant and it was determined that Linux users preferred the Ant method over having to install Adobe AIR to install the SDK.
 
   - Mac OS X Convenience Binary : [apache-flex-sdk-installer-3.3.2-bin.dmg][3] [[PGP](https://dist.apache.org/repos/dist/release/flex/installer/3.3.2/binaries/apache-flex-sdk-installer-3.3.2-bin.dmg.asc)] [[SHA512](https://dist.apache.org/repos/dist/release/flex/installer/3.3.2/binaries/apache-flex-sdk-installer-3.3.2-bin.dmg.sha512)]

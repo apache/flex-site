@@ -337,11 +337,9 @@ On a more personal note.... Jeremy feels awkward writing about himself in the th
         <h5>Joseph Labrecque</h5> 
         <span><i class="icon-tag"></i>josephlabrecque (C)</span>
     </div>
-
     <div class="team-about">
         <p>Joseph Labrecque is primarily employed by the University of Denver as a senior interactive software engineer specializing in the creation of expressive desktop, web, and mobile solutions. He is also the proprietor of Fractured Vision Media, LLC. Joseph is an Adobe Education Leader and Adobe Community Professional.</p>
     </div>
-
     <!-- Social Icons -->
     <ul class="social-icons">
         <li class="twitter"><a href="http://twitter.com/josephlabrecque">Twitter</a></li>
@@ -364,11 +362,9 @@ On a more personal note.... Jeremy feels awkward writing about himself in the th
         <h5>Josh Tynjala</h5> 
         <span><i class="icon-tag"></i>joshtynjala (C+P)</span>
     </div>
-
     <div class="team-about">
         <p><a href="https://twitter.com/joshtynjala">Josh Tynjala</a> is the author of the open source <a href="http://feathersui.com/">Feathers</a> user interface components for Starling Framework. In addition to improving the Apache FlexJS compilers, Josh teaches developers how to transpile ActionScript on his website, <a href="http://nextgenactionscript.com/">NextGen ActionScript</a>.</p>
     </div>
-
     <!-- Social Icons -->
     <ul class="social-icons">
         <li class="twitter"><a href="https://twitter.com/joshtynjala">Twitter</a></li>

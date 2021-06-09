@@ -36,7 +36,8 @@ Title:  Unit 9 - External Data
 <p>Internal to this method, you are responsible for making any server calls and loading any data. Once the operation has been completed, in either a result or fault, you are responsible for notifying the framework that it is now safe to begin testing.</p>
 <p>Here is an example of the retreiveDependency function and the associated result and fault handlers that uses an HTTPService to retrieve data:</p>
 
-<code><pre>public function RadiiDataHelper( url:String ) {
+```
+public function RadiiDataHelper( url:String ) {
 	service = new HTTPService();
 	service.url = url;
 	service.resultFormat = "e4x";
@@ -67,7 +68,8 @@ public function result( data:Object ):void {
 
 public function fault(info:Object):void {
 	dToken.notifyFault( "Totally broken" );
-}</pre></code>
+}
+```
 
 <p>In this loader:</p>
 <ol>
@@ -107,33 +109,24 @@ public static var radii:Array;</pre></code>
 	</li>
 	<li>
 		<p>Add a public static variable named <code>radiiLoader</code> of type <code>RadiiDataHelper</code> to the CircleTheory class. It should instantiate a <code>RadiiDataHelper</code> object with the argument <code>"xml/radii.xml"</code>.</p>
-
 		<code><pre>public static var radiiLoader:RadiiDataHelper 
 	= new  RadiiDataHelper( "xml/radii.xml" );</pre></code>
-		
 		<p>If you did not use code-completion, add the import for helper.RadiiDataHelper at this time. RadiiDataHelper is the external loader and already has the logic for loading the data.</p>
-
 		<h3><br />Alter the array to use the external data</h3>
-		
 		<p>Now that you are loading the radii data from an external source the <code>radii</code> variable no longer requires the static values. The <code>radii</code> variable must also be marked with <code>[DataPoints(loader="radiiLoader")] metadata</code>.</p>
 	</li>
 	<li>
 		<p>Modify the radii array so that it has <code>[DataPoints(loader="radiiLoader")]</code> metadata.</p>
-
 		<code><pre>[DataPoints]
 [ArrayElementType("Number")]
 public static var radii:Array = [ -5, 1,2,3,4,5,6,7,8,9,10 ];</pre></code>
-		
 		<p>Becomes:</p>
-		
 		<code><pre>[DataPoints(loader="radiiLoader")]
 [ArrayElementType("Number")]
 public static var radii:Array;</pre></code>
-		
 	</li>
 	<li>
 		<p>Save CircleTheory.as.</p>
-		
 		<h3><br />Examing the loader class</h3>
 	</li>
 	<li>
@@ -142,45 +135,37 @@ public static var radii:Array;</pre></code>
 	</li>
 	<li>
 		<p>In Flash Builder add a breakpoint within the RadiiDataHelper constructor at the line that reads: <code>dToken = new ExternalDependencyToken();</code></p>
-
 		<img alt='AddingBreakpoint' id='shift' src='../images/unit9/image1.png' /> 
 		<p class='caption' id='shift'>Figure 1: Adding a breakpoint to the constructor</p>
 	</li>
 	<li>
 		<p>Add another breakpoint within the <code>retrieveDependency()</code> method at the line that reads <code>var asyncToken:AsyncToken = service.send();</code></p>
-
 		<img alt='AddingBreakpoint' id='shift' src='../images/unit9/image2.png' /> 
 		<p class='caption' id='shift'>Figure 2: Adding a breakpoint to the retrieveDependency() method</p>
 	</li>
 	<li>
 		<p>Add a breakpoint within the <code>fault()</code> method at the line that reads: <code>dToken.notifyFault( "Totally Broken" );</code></p>
-
 		<img alt='AddingBreakpoint' id='shift' src='../images/unit9/image3.png' />
 		<p class='caption' id='shift'>Figure 3: Adding a breakpoint to the fault() method,</p>
-
 		<p>Ideally, you shouldn't hit the breakpoint within the <code>fault()</code> method, but if the loader has a problem retrieving the data, you will know before the tests are even run.</p>
 	</li>
 	<li>
 		<p>Finally, add a breakpoint within the <code>result()</code> method at the line that reads: <code>dToken.notifyResult( ar );</code></p>
-
 		<img alt='AddingBreakpoint' id='shift' src='../images/unit9/image4.png' /> 
 		<p class='caption' id='shift'>Figure 4: Adding a breakpoint within the <code>result()</code> method</p>
 	</li>
 	<li>
 		<p>Switch Flash Builder over to debug view using the selector in the upper-right-hand corner.</p>
-
 		<img alt='FlashDegub' id='shift' src='../images/unit9/image5.png' />
 		<p class='caption' id='shift'>Figure 5: Flash Debug view</p>
 	</li>
 	<li>
 		<p>In the expressions tab, which should appear in the upper-right-hand corner by default, add a new watch expression by right-clicking on the whitespace.</p>
-
 		<img alt='WatchExpression' id='shift' src='../images/unit9/image6.png' />
 		<p class='caption' id='shift'>Figure 6: Adding a watch expression</p>
 	</li>
 	<li>
 		<p>The expression being watched should be list, which is the returned data converted to an XMLList object.</p>
-
 		<img alt='NewWatch' id='shift' src='../images/unit9/image7.png' />
 		<p class='caption' id='shift'>Figure 7: New watch expression</p>
 	</li>

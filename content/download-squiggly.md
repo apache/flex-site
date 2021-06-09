@@ -9,6 +9,7 @@ Squiggly has some compile-time and run-time dependencies.  Please make sure to r
 **Please review the release notes before installing or compiling this release.**
 
 <div class="headline"><h4>Current Release (1.1)</h4></div>
+
 The Apache Flex team is pleased to offer this release, available as of the 29th of October 2014.  This is the initial release of the Squiggly library under Apache.
 
 Binaries are provided as a convenience for those who do not wish to compile Squiggly themselves.  The 1.1 binaries were published on the 29th of October 2014.
@@ -23,18 +24,19 @@ Binaries are provided as a convenience for those who do not wish to compile Squi
 - Binaries (zip) : [apache-flex-squiggly-1.1-bin.zip][6] [[PGP](http://www.apache.org/dist/flex/squiggly/1.1/apache-flex-squiggly-1.1-bin.zip.asc)] [[MD5](http://www.apache.org/dist/flex/squiggly/1.1/apache-flex-squiggly-1.1-bin.zip.md5)]
 
 <div class="headline"><h4>Dependencies</h4></div>
+
 Apache Squiggly requires some build tools which must be installed prior to building Squiggly.  Some of these have different licenses.
-####General Requirements
+#### General Requirements
 To compile the source code you need:
 - Java SDK 1.6 or greater
 - ANT 1.7.1 or greater
 - Apache Flex 4.8 or greater
 
-####Software Dependencies
+#### Software Dependencies
 
 Apache Squiggly requires 3rd party dictionaries to in order to perform spell checking. These are not required to just compile Squiggly. See the [README][1] on where to obtain these dictionaries other than the British and American English directories contained in this release. Most of these dictionaries are not Apache licensed.
 
-####Verify the integrity of the files
+#### Verify the integrity of the files
 
 Apache relies on 3rd party mirrors to distribute their software.  Because these releases are hosted on servers that are not under our control, we strongly recommend that you verify the integrity of the binaries or source code before you install it using the PGP or MD5 signatures listed next to the downloads.  This involves a few extra steps, but it will verify that you are getting a true Apache release.
 

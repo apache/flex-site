@@ -9,6 +9,7 @@ The Apache Flex® SDK has some compile-time dependencies.  Please make sure to r
 **Please review the release notes before installing or compiling the SDK.**
 
 <div class="headline"><h4>Current Release (4.16.1)</h4></div>
+
 The Apache Flex team is pleased to offer this release, available as of the 14th of March 2016.  This is the latest version of the Apache Flex SDK and is designed to be compatible with previous versions of the Apache Flex SDK and Adobe Flex SDK.
 
 Binaries are provided as a convenience for those who do not wish to compile the SDK themselves, or [install without requiring Adobe AIR][16] such as on Linux.
@@ -23,11 +24,12 @@ Binaries are provided as a convenience for those who do not wish to compile the 
   - Documentation : [apache-flex-sdk-4.16.1-asdocs.zip][5]
 
 <div class="headline"><h4>Binary Dependencies</h4></div>
+
 There are some components that we depend on that we do not include in our convenience binary distribution.  We try our hardest to limit these dependencies, however for the 4.16.1 release we do depend on the following components.  Please review the [README][15] included in your download for more information on where to install these packages.
 
 - Open Source Media Framework (OSMF) [Download](http://sourceforge.net/projects/osmf.adobe/files/OSMF%201.0%20%28final%20source%2C%20ASDocs%2C%20PDF%20guides%2C%20and%20release%20notes%29/OSMF_1.0.zip/download) [MPL License](http://www.mozilla.org/MPL)
 
-####Optional Dependencies
+#### Optional Dependencies
 
 The following dependency is optional, and if available will provide additional features to the Flex Framework:
 
@@ -50,7 +52,7 @@ If you are planning on compiling the source code, you will need the following co
   - Adobe Flash Player Content Debugger / Adobe Flash Player
   - Adobe Pixel Bender Toolkit
 
-####Verify the integrity of the files
+#### Verify the integrity of the files
 
 Apache relies on 3rd party mirrors to distribute their software.  Because these releases are hosted on servers that are not under our control, we strongly recommend that you verify the integrity of the binaries or source code before you install it using the PGP or MD5 signatures listed next to the downloads.  This involves a few extra steps, but it will verify that you are getting a true Apache release.
 

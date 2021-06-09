@@ -116,23 +116,18 @@ assertEquals( 5, result );</pre></code>
 <code><pre>[Test]
 public function shouldAddTwoPosAndReturnPos() {
 }
-
 [Test]
 public function shouldAddPosAndNegAndReturnPos() {
 }
-
 [Test]
 public function shouldAddPosAndNegAndReturnNeg() {
 }
-
 [Test]
 public function shouldAddTwoNegReturnNeg() {
 }
-
 [Test]
 public function shouldReturnSamePosWhenAdd0() {
 }
-
 [Test]
 public function shouldReturnSameNegWhenAdd0() {
 }</pre></code>
@@ -143,7 +138,6 @@ public function shouldReturnSameNegWhenAdd0() {
 <code><pre>[Test(order=1)]
 public function shouldReturnSamePosWhenAdd0() {
 }
-
 [Test(order=2)]
 public function shouldReturnSameNegWhenAdd0() {
 }</pre></code>
@@ -159,7 +153,6 @@ public function shouldReturnSameNegWhenAdd0() {
 public function shouldBeBlueSky():void {
 	var sky:Sky = new Sky();
 	sky.color = "blue";
-
 	assertTrue( sky.color == "blue" );
 }</pre></code>
 
@@ -201,76 +194,56 @@ public function shouldBeBlueSky():void {
 
 		<p><b>If you have previously imported the FlexUnit4Training project:</b><br />
 		   Choose "Overwrite existing project" and select the FlexUnit4Training project from the dropdown (See Figure 2).</p>
-		
 		<img alt='ImportFlexProject' id='shift' src='../images/unit2/image1.png' />
 		<p class='caption' id='shift'>Figure 1: Importing a new project</p>
-		
 		<img alt='OverwriteFlexProject' id='shift' src='../images/unit2/image2.png' />
 		<p class='caption' id='shift'>Figure 2: Overwriting an existing project</p>
-		
 		<p>Once the project has been imported, it should appear in the Package Explorer on the left.</p>
 	</li>
 	<li>
 		<p>In the Package Explorer, expand the src folder's default package and double-click the FlexUnit4Training.mxml file to open it. The contents of this file will be explored in more detail in a future unit.</p>
-		
 		<img alt='PackageExplorer' id='shift' src='../images/unit2/image3.png' />
 		<p class='caption' id='shift'>Figure 3: Opening files in the Package Explorer</p>
 	</li>
 	<li>
 		<p>In the <code>&#60;fx:Script&#62;</code> block, you should see the following lines:</p>
-		
 		<code><pre>import math.testcases.BasicCircleTest;
-
 public function currentRunTestSuite():Array {
 	var testsToRun:Array = new Array();
 	testsToRun.push( BasicCircleTest );
 	return testsToRun;
 }
-
 private function onCreationComplete():void {
 	testRunner.runWithFlexUnit4Runner(currentRunTestSuite(),
 "FlexUnit4Training");
 }		</pre></code>
-
 	</li>
 	<li>
 		<p>To open the <code>BasicCircleTest</code> class, you can either browse to it in the Package Explorer (test/math.testcases.BasicCircleTest), or you can move your mouse over the <code>BasicCircleTest</code> text in the line that reads <code>testsToRun.push( BasicCircleTest )</code>. Press control, when you see the <code>BasicCircleTest</code> turn blue, click on <code>BasicCircleTest</code>. Either way, this will open the <code>BasicCircleTest</code> class in Flash Builder.</p>
-	
 		<img alt='ControlClick' id='shift' src='../images/unit2/image4.png' />
 		<p class='caption' id='shift'>Figure 4: Control Clicking BasicCircleTest</p>
-		
 		<p>The class should read as follows.</p>
-		
 		<code><pre>package math.testcases {	
 	public class BasicCircleTest {		
-		
 	}
 }		</pre></code>
-
 	</li>
 	<li>
 		<p>Add a new public function named <code>shouldReturnProvidedRadius()</code> to the class. The function needs to be marked with <code>[Test]</code> metadata, which is placed on the line just above the function.</p>
-
 		<code><pre>public class BasicCircleTest {		
 	[Test]
 	public function shouldReturnProvidedRadius():void {
-
 	}
 }		</pre></code>
-		
 		<p>This function is going to test a method of the <code>Circle</code> class. The <code>Circle</code> object is created by the <code>Circle</code> constructor which takes an origin argument of type <code>Point</code> and a radius argument of data type <code>Number</code>.</p>
-		
 		<code><pre>Circle( origin:Point, radius:Number );</pre></code>
-		
 	</li>
 	<li>
 		<p>Declare a variable named <code>circle</code> of type <code>Circle</code> in the <code>shouldReturnProvidedRadius()</code> function. This Circle should be instantiated with an origin of <code>(0, 0)</code> and a radius of <code>5</code>.</p>
-
 		<code><pre>[Test]
 public function shouldReturnProvidedRadius():void {
 	var circle:Circle = new Circle( new Point( 0, 0 ), 5 );
 }		</pre></code>
-		
 		<p>While you are typing <code>Circle</code>, Flash Builder will try to provide possible choices as you type. If you choose one of the items on the pop-up menu (or use the arrow keys and press Enter on the correct option), Flash Builder will complete the name for you and perform one other very important step: importing the class.</p>
 		<p>If you choose one of the options on the pop-up menu, Flash Builder adds an import line just above the class definition. This line is an import statement that lets Flash Builder know where the class you are referencing resides. You can think of import statements as more or less the ActionScript equivalent of the namespaces you used in MXML:</p> 
 		<code><pre>import net.digitalprimates.math.Circle;</pre></code>
@@ -280,13 +253,11 @@ public function shouldReturnProvidedRadius():void {
 	</li>
 	<li>
 		<p>Just below the circle instantiation, add a line that calls to the <code>assertEquals()</code> method with arguments <code>5</code> and <code>circle.radius</code>.</p>
-
 		<code><pre>[Test]
 public function shouldReturnProvidedRadius():void {
 	var circle:Circle = new Circle( new Point( 0, 0 ), 5 );
 	assertEquals( 5, circle.radius );
 } 		</pre></code>
- 		
 		<p>If you did not use code completion, add the import statement for <code>org.flexunit.asserts.assertEquals</code> at this time. While you may be used to importing classes, <code>assertEquals()</code> is actually a package level function. These are functions that can be addressed directly without an associated class. While this concept may be new to many of you, it is actually used extensively in Flash Player with methods such as <code>trace()</code>, <code>getDefinitionByName()</code> and <code>setInterval()</code>.</p>
 	</li>
 	<li>
@@ -297,12 +268,9 @@ public function shouldReturnProvidedRadius():void {
 	</li>
 	<li>
 		<p>Click on the run button in the upper toolbar as shown.</p>
-		
 		<img alt='RunButton' id='shift' src='../images/unit2/image5.png' />
 		<p class='caption' id='shift'>Figure 5: The Flash Builder "Run" Button</p>
-
 		<p>If FlexUnit4Training.mxml ran successfully you should see the following output in your browser window:</p>
-		
 		<img alt='TestPassed' id='shift' src='../images/unit2/image6.png' />
 		<p class='caption' id='shift'>Figure 6: FlexUnit test passed</p>
 	</li>		

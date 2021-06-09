@@ -7,6 +7,7 @@ the entire community involved.  All decisions are made on our mailing lists, and
 within our source control system.
 
 <div class="headline"><h4>Find out what is going on</h4></div>
+
 If you are interested in what is going on with the project, subscribe to our mailing lists.  Our [dev@flex.apache.org][1] mailing
 list is where additions and changes to the SDK are discussed.  The list is open to everybody and everybody is encouraged
 to give their opinions on anything discussed on the list.  This is a great place to introduce yourself and let us know
@@ -16,12 +17,14 @@ If you are interested in helping end-users of the SDK, we also host the [users@f
 is designed for end-users to talk about how to use the SDK and how to build applications that utilize the SDK.
 
 <div class="headline"><h4>Contributing Documentation</h4></div>
+
 If you are ready to help us document code, provide tips and tricks, or anything else that is not straight-up code, we
 have a [WIKI][2] that allows for community contribution.  Simply let us know on the dev@flex.apache.org mailing list
 that you wish to get write access to the WIKI.  If you would like to let us know about any blog entries, videos,
 screencasts, etc. that you have created, we would love to help publicize them!
 
 <div class="headline"><h4>Reporting Bugs</h4></div>
+
 All of the bugs that we are aware of are housed in the Apache Foundation's JIRA system.  You can take a look at everything
 we have in the system on [Flex JIRA][3].  To let us know about a bug, create an issue in the JIRA system.  The JIRA
 system automatically emails the dev mailing list and hopefully somebody will take a look at it.  It is really important
@@ -29,6 +32,7 @@ that you give us as much information on the bug as possible.  Even better, if yo
 a code sample that can help us reproduce it.  Feel free to contribute to the comments as the bug gets worked on.
 
 <div class="headline"><h4>Squashing Bugs</h4></div>
+
 Bugs happen, and you might know how to fix one!  Because we don't allow everybody write access to the official code repository
 (everybody has access to read, though!), there is an additional process that has to occur to get fixes in.  To help us
 squash bugs, do the following :
@@ -43,6 +47,7 @@ squash bugs, do the following :
 8. Sit back and bask in the glory that you helped make Flex better!
 
 <div class="headline"><h4>Contributing Code</h4></div>
+
 Due to legal reasons, only people who have been elected as committers have access to update or contribute code directly to the project.
 We at Apache take the legality of code seriously, and nothing would be worse than somebody contributing code that
 they don't own and a 3rd party having a legal claim to our framework.

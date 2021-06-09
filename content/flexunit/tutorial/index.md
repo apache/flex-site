@@ -1,6 +1,6 @@
 Title:  Apache FlexUnit Tutorial
 
-###Welcome to the Apache FlexUnit Tutorial!###
+### Welcome to the Apache FlexUnit Tutorial!
 
 This course is divided into units, most of which present new information and contain walkthroughs. At the end of each unit, you will find a summary of the unit’s content. The following are used throughout the guide:
 
@@ -16,7 +16,7 @@ To gain the most from this class, you should already:
    * Be comfortable [building applications](http://flex.apache.org/doc-getstarted.html) in Flex
    * Be familiar with both [AS3 and MXML](http://help.adobe.com/en_US/flex/using/index.html)
 
-###Tutorial Units:###
+### Tutorial Units:
 
    * [Introducing FlexUnit 4.2](flexunit/Unit-1.html)
    * [Overview of Testing Terms and Terminology](flexunit/Unit-2.html)

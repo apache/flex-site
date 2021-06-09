@@ -19,13 +19,14 @@ The Apache Flex team is pleased to offer this release, available as of the 31th 
 Convenience binary releases are not currently available for download from Apache.
 
 <div class="headline"><h4>Dependencies</h4></div>
+
 Apache Flex Blaze DS requires some build tools which must be installed prior to building BlazeDS.
 
-####General Requirements
+#### General Requirements
 - Java SDK 1.7 or greater
 - Maven 2.2.0 or greater 
 
-####Verify the integrity of the files
+#### Verify the integrity of the files
 
 Apache relies on 3rd party mirrors to distribute their software.  Because these releases are hosted on servers that are not under our control, we strongly recommend that you verify the integrity of the binaries or source code before you install it using the PGP or MD5 signatures listed next to the downloads.  This involves a few extra steps, but it will verify that you are getting a true Apache release.
 

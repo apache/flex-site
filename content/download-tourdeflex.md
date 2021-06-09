@@ -22,11 +22,11 @@ Due to their size convenience binary releases are not available but you can look
 <div class="headline"><h4>Dependencies</h4></div>
 Apache Flex Tour De Flex requires some build tools which must be installed prior to building Tour De Flex.
 
-####General Requirements
+#### General Requirements
 - ANT 1.7.1 or greater
 - Apache Flex 4.8 or greater (preferably the latest version otherwise not all examples may compile)
 
-####Verify the integrity of the files
+#### Verify the integrity of the files
 
 Apache relies on 3rd party mirrors to distribute their software.  Because these releases are hosted on servers that are not under our control, we strongly recommend that you verify the integrity of the binaries or source code before you install it using the PGP or MD5 signatures listed next to the downloads.  This involves a few extra steps, but it will verify that you are getting a true Apache release.
 

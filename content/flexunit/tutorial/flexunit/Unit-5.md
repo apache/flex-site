@@ -413,92 +413,73 @@ public function shouldGetLeftPointOnCircle():void {
 	<li>
 		<p>Open the BasicCircleTest.as file from the previous exercise.</p> 
 		<p>Alternatively, if you didn't complete the previous lesson or your code is not functioning properly, you can import the FlexUnit4Training_wt3.fxp project from the Unit 5/Start folder. Please refer to Unit 2: Walkthrough 1 for instructions on importing a Flash Builder project.</p>
-
 		<h3><br />Create the matcher package</h3>
 	</li>
 	<li>
 		<p>Within the tests directory, create another package named matcher.  Right click on the tests directory and choose New > Package.</p> 
-
 		<img alt='CreateNewPackage' id='shift' src='../images/unit5/image7.png' /> 
 		<p class='caption' id='shift'>Figure 1: Create a new package</p>
 	</li>
 	<li>
 		<p>The Name should be matcher.</p>
-
 		<img alt='NewPackageWindow' id='shift' src='../images/unit5/image8.png' />
 		<p class='caption' id='shift'>Figure 2: New package window</p>
-		
 		<h3><br />Create the matcher class</h3>
 	</li>
 	<li>
 		<p>You will now need to create a new class within the helper package. Right click on the package and choose New &#62; ActionScript Class.</p>
-
 		<img alt='NewHelperClass' id='shift' src='../images/unit5/image9.png' />
 		<p class='caption' id='shift'>Figure 3: Create a new class in the helper package</p>
 	</li>
 	<li>
 		<p>The class should be named CloseToPointMatcher and its Superclass should be org.hamcrest.TypeSafeMatcher. Modifiers should be set to public and the Generate constructor from superclass option should be checked. Click Finish.</p>
-
 		<img alt='NewCloseToPointMatcher' id='shift' src='../images/unit5/image10.png' /> 
 		<p class='caption' id='shift'>Figure 4: New ActionScript Class CloseToPointMatcher</p>
 	</li>
 	<li>
 		<p>Open the CloseToPointMatcher.as file from the matcher package.</p>
-
 		<img alt='PackageDirectoryStructure' id='shift' src='../images/unit5/image11.png' /> 
 		<p class='caption' id='shift'>Figure 5: Package directory structure</p>
 	</li>
 	<li>
 		<p>Add a private variable named <code>point</code> of type <code>Point</code> and another named <code>tolerance</code> of data type <code>Number</code> to the class.</p> 
-
 		<code><pre>	private var point:Point;
 	private var tolerance:Number;</pre></code>
-
 		<p>If you did not use code-completion, add the import for flash.geom.Point at this time.</p>
 	</li>
 	<li>
 		<p>Modify the automatically created <code>CloseToPointMatcher()</code> constructor. To accept point and tolerance parameters, instead of an <code>expectedType</code>.  Pass a reference of the Point class to the superclass's constructor, and populate the local circle and offset properties with the appropriate argument from the constructor.</p>
-		
 		<code><pre>public function CloseToPointMatcher( point:Point, tolerance:Number ) {
 	super(Point);
 	this.point = point;
 	this.tolerance = tolerance;
 }		</pre></code>
-		
 		<p>The <code>super(Point)</code> declaration is informing the classes the data types that the class will be dealing with is a Point class.</p>
 	</li>
 	<li>
 		<p>Override the <code>matchesSafely()</code> method of the class. It will take an argument named <code>item</code> of data type <code>Object</code>, and will return a Boolean.</p>
-		
 		<code><pre>override public function matchesSafely(item:Object):Boolean {
 }		</pre></code>
-		
 	</li>
 	<li>
 		<p>In the <code>matchesSafely()</code> method, declare a variable named <code>distance</code> of data type <code>Number</code>. Set it equal to <code>Point.distance( item as Point, point )</code>;</p>
-		
 		<code><pre>override public function matchesSafely(item:Object):Boolean {
 	var distance:Number = Point.distance( item as Point, point );
 }		</pre></code>
-		
 	</li>
 	<li>
 		<p>Add a return statement that checks if the <code>tolerance</code> subtracted from the absolute value of the <code>distance</code> is less than 0.</p>
-		
 		<code><pre>override public function matchesSafely(item:Object):Boolean {
 	var distance:Number = Point.distance( item as Point, point );
-
 	return( Math.abs( distance ) - tolerance &#60; 0 );
 }		</pre></code>
 		
 	</li>
 	<li>
 		<p>Add an override for the public function <code>describeTo()</code>. It will take an argument named <code>description</code> of type <code>Description</code>. Because there are two available <code>Description</code> classes, make sure to choose the <code>org.hamcrest.Description</code> class when you use code completion.</p>
-		
 		<code><pre>override public function describeTo(description:Description):void {
 	description.appendText( "point " ).appendText( point.toString() );
 }		</pre></code>
-		
 		<p>If you did not use code-completion, add the import for <code>org.hamcrest.Description</code>.</p>
 	</li>
 	<li>
@@ -509,53 +490,41 @@ public function shouldGetLeftPointOnCircle():void {
 	</li>
 	<li>
 		<p>Modify the <code>shouldGetTopPointOnCircle()</code> method so that it reads as follows.</p>
-		
 		<code><pre>[Test]
 public function shouldGetTopPointOnCircle():void {
 	var circle:Circle = new Circle( new Point( 0, 0 ), 5 );
 	var point:Point = circle.getPointOnCircle( 0 );
-
 	assertThat( point, new CloseToPointMatcher( new Point( 5, 0 ), TOLERANCE ) );
 }		</pre></code>
-		
 		<p>Be sure to either choose CloseToPointMatcher from the code-completion, or manually add the import:</p>
 		<code><pre>import matcher.CloseToPointMatcher;</pre></code>
 	</li>
 	<li>
 		<p>Each of the point testing functions should follow this format. Instantiate the circle, instantiate the expected point, and finish with the assertion.</p>
-		
 		<code><pre>[Test]
 public function shouldGetTopPointOnCircle():void {
 	var circle:Circle = new Circle( new Point( 0, 0 ), 5 );
 	var point:Point = circle.getPointOnCircle( 0 );
-
 	assertThat( point, new CloseToPointMatcher( new Point( 5, 0 ), TOLERANCE ) );
 }
-
 [Test]
 public function shouldGetBottomPointOnCircle():void {
 	var circle:Circle = new Circle( new Point( 0, 0 ), 5 );
 	var point:Point = circle.getPointOnCircle( Math.PI );
-
 	assertThat( point, new CloseToPointMatcher( new Point( -5, 0 ), TOLERANCE ) );
 }
-
 [Test]
 public function shouldGetRightPointOnCircle():void {
 	var circle:Circle = new Circle( new Point( 0, 0 ), 5 );
 	var point:Point = circle.getPointOnCircle( Math.PI/2 );
-
 	assertThat( point, new CloseToPointMatcher( new Point( 0, 5 ), TOLERANCE ) );
 }
-
 [Test]
 public function shouldGetLeftPointOnCircle():void {
 	var circle:Circle = new Circle( new Point( 0, 0 ), 5 );
 	var point:Point = circle.getPointOnCircle( (3*Math.PI)/2 );
-
 	assertThat( point, new CloseToPointMatcher( new Point( 0, -5 ), TOLERANCE ) );
 }		</pre></code>
-
 	</li>
 	<li>
 		<p>Save BasicCircleTest.as</p>
@@ -563,7 +532,6 @@ public function shouldGetLeftPointOnCircle():void {
 	<li>
 		<p>Run the FlexUnit4Training.mxml file.</p>
 		<p>If FlexUnit4Training.mxml ran successfully you should see the following output in your browser window:</p>
-
 		<img alt='PassedOneIgnored' id='shift' src='../images/unit5/image6.png' /> 
 		<p class='caption' id='shift'>Figure 6: FlexUnit tests passed, one test ignored</p>
 	</li>
@@ -576,12 +544,10 @@ public function shouldGetLeftPointOnCircle():void {
 <p>FlexUnit 4 simplifies this process by allowing an <i>expects</i> argument in the Test annotation for this purpose.</p>
 <ul>
 	<li>To use the <i>expects</i> annotation, simply provide the type of error expected.</li>
-	
 	<code><pre>
 [Test (expects="full.package.ThrownError")]
 public function testError():void {}						
 	</pre></code>
-	
 	<li>If the tested method throws the <code>ThrownError</code>, FlexUnit 4.x will recognize this method as a success and mark the test as passed.</li>
 	<li>If the error is not thrown, then the test is marked as a failure.</li> 
 	<li>If the method throws an error that is not of type <code>ThrownError</code> then FlexUnit 4 marks that test as a failure, since the expected error type did not match the error that was thrown, and something else is causing your method to fail.</li>
@@ -603,44 +569,34 @@ public function testError():void {}
 	<li>
 		<p>Open the BasicCircleTest.as file from the previous exercise.</p> 
 		<p>Alternatively, if you didn't complete the previous lesson or your code is not functioning properly, you can import the FlexUnit4Training_wt4.fxp project from the Unit5/Start folder. Please refer to Unit 2: Walkthrough 1 for instructions on importing a Flash Builder project.</p>
-
 		<h3><br />Run a new test</h3>
-		
 	</li>
 	<li>
 		<p>At the end of the <code>BasicCircleTest</code> class there is an ignored test method named <code>shouldThrowRangeError()</code>. Remove the <code>[Ignore]</code> metadata from this function and declare a variable named <code>someCircle</code> of type <code>Circle</code>. Instantiate the <code>Circle</code> with an origin of <code>(10, 10)</code> and a radius of <code>-5</code>.</p>
-		
 		<code><pre>[Test]
 public function shouldThrowRangeError():void {
 	var someCircle:Circle = new Circle( new Point( 10, 10 ), -5 );
 }		</pre></code>
-
 	</li>
 	<li>
 		<p>Save BasicCircleTest.as</p>
 	</li>
 	<li>
 		<p>Run FlexUnit4Training.mxml.</p>
-		
 		<p>If FlexUnit4Training.mxml ran successfully you should see the following output in your browser window:</p>
-
 		<img alt='SingleErrorThrown' id='shift' src='../images/unit5/image12.png' />
 		<p class='caption' id='shift'>Figure 1: A single test has thrown an error</p>
-
 		<p>The <code>shouldThrowRangeError()</code> test is throwing an error. The error comes from the test's attempt to instantiate a Circle object with a radius of -5. Even without looking at the code, one could conclude that a Circle with a negative radius has conceptual issues.</p> 
 		<p>Notice that FlexUnit is registering the error without any assertion statement present in the function. If a test method throws an error at any point, FlexUnit will register that method as an error.</p> 
 		<p>When a test fails due to a failed assertion, it is considered a failure. When it fails due to a run time exception, it is considered an error. While the result is the same, a test that does not pass, errors are generally considered more heinous as they indicate an unhandled exception.</p>
-	
 		<h3><br />Using "expects" metadata to deal with anticipated errors</h3>
 	</li>
 	<li>
 		<p>Return to the BasicCircleTest class. Modify the <code>[Test]</code> metadata tag on the line above the <code>shouldThrowRangeError()</code> function to indicate that it expects a <code>RangeError</code>.</p>
-
 		<code><pre>[Test(expects="RangeError")]
 public function shouldThrowRangeError():void {
 	var someCircle:Circle = new Circle( new Point( 10, 10 ), -5 );
 }		</pre></code>
-		
 		<p>RangeError exists in the default package, and hence appears to just be the class name. For your own custom errors or errors defined in the Flex framework, it is important you provide the full path.</p>
 	</li>
 	<li>
@@ -648,12 +604,9 @@ public function shouldThrowRangeError():void {
 	</li>
 	<li>
 		<p>Run the FlexUnit4Training.mxml file again.</p>
-		
 		<p>If FlexUnit4Training.mxml ran successfully you should see the following output in your browser window:</p>
-
 		<img alt='TestsPassed' id='shift' src='../images/unit5/image13.png' /> 
 		<p class='caption' id='shift'>Figure 2: FlexUnit tests passed</p>
-		
 		<p>The <code>shouldThrowRangeError()</code> method has still thrown an error. Because of the <code>expects="RangeError"</code> metadata, FlexUnit knows that this is the expected condition. If that particular error is not thrown, FlexUnit considers it a failure for the test.</p>
 	</li>
 </ol>

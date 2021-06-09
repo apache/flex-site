@@ -11,11 +11,13 @@ all of them.  Below we will outline the steps needed to use Apache Flex with [Ad
 Get started by setting up the Apache Flex SDK itself, then move on the specific section for your IDE.
 
 <div class="headline"><h4>Setting up the Apache Flex SDK</h4></div>
+
 1. **Download the SDK installer** Go to the [Download the SDK Installer][4] on the menu above and install the SDK installer.  Click on the Download link on the installer badge, which will download the proper installer for your computer.
 2. **Run the SDK installer**  The first question you will be asked is the installation directory.  If you are on a Mac, use /Applications/Adobe Flash Builder 4.7/sdks/4.14.0/.  If you are on a PC, use C:\Program Files(x86)\Adobe Flash Builder 4.7\sdks\4.14.0\.  You will need to create the 4.14.0 folders.  Press Next.
 3. **Accept SDK Licenses and Install**  Check the red boxes to accept each of the licenses.  Read the licenses, of course ;)  Click Install to download all the components into the new 4.14.0 directory.  This can take a few minutes.
 
 <div class="headline"><h4>IDE-specific instructions </h4></div>
+
 * <a href="#setupFlashBuilder">Flash Builder</a>
 * <a href="#setupIDEA">IntelliJ IDEA</a>
 * <a href="#setupFD">FlashDevelop</a>
@@ -31,6 +33,7 @@ Get started by setting up the Apache Flex SDK itself, then move on the specific 
 6. **Start Coding!**  Jump down below to make your first Hello World application.
 
 <div class="headline"><h6>Known Flash Builder Issues</h6></div>
+
 Adobe Flash Builder 4.7 and Adobe Flash Builder 4.6 both contain a bug where, 
 when generating the .mxml file for a new project that uses Apache Flex
 and Spark Application, Flash Builder will incorrectly insert the attribute:
@@ -44,6 +47,7 @@ A [wiki page][8] has been set up to contain the latest news on Adobe's
 attempt to correct this problem.
 
 <div class="headline"><h5 id="setupIDEA" name="setupIDEA">Setting up Apache Flex with Jetbrains IntelliJ IDEA</h4></div>
+
 1. **Download JetBrains IntelliJ IDEA**  IntelliJ IDEA is available from the [JetBrains Website][2]. They offer a 30-day trail and it retails for about $200.  It is available for both Windows and MacOS X
 2. **Install IntelliJ IDEA**  Follow the on-screen installation wizard.
 3. **Download the SDK installer** Go to the [Download the SDK Installer][4] on the menu above and install the SDK installer.  Click on the Download link on the installer badge, which will download the proper installer for your computer.
@@ -58,12 +62,14 @@ attempt to correct this problem.
 11. **Start Coding!**  Jump down below to make your first Hello World application.
 
 <div class="headline"><h5 id="setupFD" name="setupFD">Setting up Apache Flex with FlashDevelop</h4></div>
+
 You can follow along the steps described in this [wiki page] [10]
 
 <div class="headline"><h5 id="setupFDT" name="setupFDT">Setting up Apache Flex with FDT</h4></div>
 You can follow along the steps described in this [video] [12]
 
 <div class="headline"><h4>Creating your first Hello World application</h4></div>
+
 This is a very simple, generic hello world application.  You can learn a lot more by checking out some of our other resources below, or some of our [tutorial videos][5].
 
 1.  Set the height and width of your application.  Add the following tags to the Application tag (2nd line) :  `width="640" height="480"`
@@ -90,6 +96,7 @@ The complete code listing is (there may be some variations, depending on your ID
 
 
 <div class="headline"><h4>Additional Resources</h4></div>
+
 *  Make sure to check out our video and screencast library on the [videos page][5].
 *  There are a large variety of books available online.  One of our favorites is from Michael Labriola and Jeff Tapper (both Apache Flex Committers).  [Amazon Link to book][6]
 *  There are quite a few people that blog about Flex.  Check out the [official blog of Apache Flex][14], [FlashDaily.net][7] and [Adobe Feeds for Apache Flex][9]

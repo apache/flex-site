@@ -9,6 +9,7 @@ The Apache Flex® FlexUnit Testing Suite has some compile-time dependencies.  Pl
 **Please review the release notes before installing or compiling this testing suite.**
 
 <div class="headline"><h4>Current Release (4.2.0)</h4></div>
+
 The Apache Flex team is pleased to offer this release, available as of the 13th of April 2014.  This is the latest version of the Apache FlexUnit Testing Suite and is designed to be compatible with previous versions.
 
 Binaries are provided as a convenience for those who do not wish to compile FlexUnit themselves.  The 4.2.0 binaries were published on the 13th of April 2014.
@@ -23,14 +24,15 @@ Binaries are provided as a convenience for those who do not wish to compile Flex
 - Binaries (zip) : [apache-flex-flexunit-4.2.0-bin.zip][8] [[PGP](http://www.apache.org/dist/flex/flexunit/4.2.0/binaries/apache-flex-flexunit-4.2.0-4.12.0-bin.zip.asc)] [[MD5](http://www.apache.org/dist/flex/flexunit/4.2.0/binaries/apache-flex-flexunit-4.2.0-4.12.0-bin.zip.md5)]
 
 <div class="headline"><h4>Dependencies</h4></div>
+
 Apache Flex FlexUnit requires some build tools which must be installed prior to building FlexUnit and it depends on some external software which are downloaded as part of the build process.  Some of these have different licenses. See the Software [Dependencies section][15] within the [README][15] for more information on the external software dependencies.
 
-####General Requirements
+#### General Requirements
 - Java SDK 1.6 or greater
 - ANT 1.7.1 or greater
 - Apache Flex 4.8 or greater
 
-####Software Dependencies
+#### Software Dependencies
 
 Apache Flex FlexUnit uses third-party code that will be downloaded as part of the ApacheFlex FlexUnit build. The following dependencies have licenses which are, or are compatible with, the Apache
 Version 2.0 license.  These can be downloaded via the ANT script included in the download packages.
@@ -64,7 +66,7 @@ Version 2.0 license.  These can be downloaded via the ANT script included in the
     cd <flexunit.dir>
     ant thirdparty-downloads
 
-####Verify the integrity of the files
+#### Verify the integrity of the files
 
 Apache relies on 3rd party mirrors to distribute their software.  Because these releases are hosted on servers that are not under our control, we strongly recommend that you verify the integrity of the binaries or source code before you install it using the PGP or MD5 signatures listed next to the downloads.  This involves a few extra steps, but it will verify that you are getting a true Apache release.
 

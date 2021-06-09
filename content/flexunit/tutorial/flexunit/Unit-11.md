@@ -55,7 +55,6 @@ public function shouldConvertSuccessfully( date:Date ):void {
 <code><pre>[DataPoints]
 [ArrayElementType("String")]
 public static var dates:Array = [ "Trevor", "Joe", "Rob", "Steve" ];
-
 [Theory]
 public function traceNames( name1:String, name2:String ):void {
   trace( name1 + " - " + name2 );
@@ -94,7 +93,6 @@ Steve - Steve</pre></code>
 <code><pre>public static var names:Array = [ 
 	[ "Stevens", "Mary", "Mary Stevens" ], 
 	[ "Doe", "John", "John Doe" ] ];
-
 [Test]
 public function nameCombinerTest( lastName:String, firstName:String, 
 					expectedResult:String ):void {
@@ -119,7 +117,6 @@ public function nameCombinerTest( lastName:String, firstName:String,
 <p>Example</p>
 
 <code><pre>public static var data:Array = [ [ 0, 0 ], [ 1, 2 ], [ 2, 4 ] ];
-
 [Test( dataProvider="data")]
 public function doubleTest( value1:int, value2:int ):void {
 	assertEquals( value1, value2 * 2 );
@@ -139,15 +136,12 @@ public function doubleTest( value1:int, value2:int ):void {
 
 <code><pre>[Parameters]
 public static var data:Array = [ [ 0, 0 ], [ 1, 2 ], [ 2, 4 ] ];
-
 [Test]
 public function doubleTest():void {
 	assertEquals( value1, value2 * 2 );
 }
-
 private var _value1:int;
 private var _value2:int;
-
 public function JUnitStyleTest( value1:int, value2:int ) {
 	_value1 = value1;
 	_value2 = value2;
@@ -160,18 +154,15 @@ public function JUnitStyleTest( value1:int, value2:int ) {
 <code><pre>public static var data:Array = [ [ new DataGrid(), 50, 70 ],
 				[ new Label(), 40, 30 ],
 				[ new Button(), 80, 50 ] ];
-
 [Test(dataProvider="data")]
 public function positionTest( component:UIComponent, x:Number, y:Number ):void {
 	position( component );
 	assertEquals( x, component.x );
 	assertEquals( y, component.y );
 }
-
 public static var data:Array = [ [ new DollarFormatter(), 50, "$50" ],
 			[ new EuroFormatter(), 50, "&euro;50" ],
 			[ new PoundFormatter(), 50, "&pound;50" ] ];
-
 [Test(dataProvider="data")]
 public function positionTest( formatter:IFormatter, value:Number, result:String ):void {
 	assertEquals( result, formatter.format( value ) );
@@ -193,9 +184,7 @@ public function positionTest( formatter:IFormatter, value:Number, result:String 
 	</li>
 	<li>
 		<p>Create a new ActionScript class named GetPointsTest.as in the math.testcases package within the tests folder.</p>
-		 
 		<h3><br />Parameterized Testing Setup</h3>
-		
 	</li>
 	<li>
 		<p>Mark the GetPointsTest class definition with <code>[RunWith("org.flexunit.runners.Parameterized")]</code> metadata.</p>
@@ -204,56 +193,43 @@ public function positionTest( formatter:IFormatter, value:Number, result:String 
 public class GetPointsTest {
 ...
 }</pre></code>
-
 	</li>
 	<li>
 		<p>Add a private static constant named <code>TOLERANCE</code> of data type <code>Number</code> to the class. Set <code>TOLERANCE</code> to <code>.0001</code>.</p>
-
 		<code><pre>private static const TOLERANCE:Number = .0001;</pre></code>
-		
 	</li>
 	<li>
 		<p>Declare a public static array named data within the <code>GetPointsTest</code> class. The array should contain a sub array with point values as shown.</p>
-
 <code><pre>public static var data:Array = [
 		[ new Circle( new Point( 0, 0 ), 5 ), new Point( 5, 0 ), 0 ],
 		[ new Circle( new Point( 0, 0 ), 5 ), new Point( -5, 0 ), Math.PI ] 
 ];</pre></code>
-
 <p>If you did not use code-completion, add the import for net.digitalprimates.math.Circle and flash.geom.Point at this time.</p>
 <p>The data array contains two arrays. Each is passed as a set of parameters, and each represents one run cycle for the tests that take the data. Soon, you will write a method which takes 3 parameters, a circle, a point and a number of radians.  That test will run twice, one run using the first array and another using the second.</p>
 	</li>
 	<li>
 		<p>Add a public method named <code>shouldGetPointsOnCircle()</code> to the class. Mark the method with the <code>[Test(dataProvider="data")]</code> metadata.</p>
-
 <code><pre>[Test(dataProvider="data")]
 public function shouldGetPointsOnCircle():void {
 }</pre></code>
-
 		<p>Add a <code>circle</code> parameter of type <code>Circle</code>, a point parameter of type <code>Point</code>, and a <code>radians</code> parameter of type <code>Number</code> to the <code>shouldGetPointsOnCircle()</code> method.</p>
 		<p>The <code>[Test(dataProvider="data")]</code> metadata over the test method will ensure that the data array's values get passed in as the test method's arguments. This is known as TestNG style parameterized testing, because the data is passed into specific test methods via the metadata. TestNG is a testing framework for Java, it pioneered this annotations-based approach.</p>
-
 <code><pre>[Test(dataProvider="data")]
 public function shouldGetPointsOnCircle( circle:Circle, point:Point, radians:Number ):void {
 }</pre></code>
-
 	</li>
 	<li>
 		<p>Add a call to the <code>assertThat()</code> method. Pass <code>circle.getPointOnCircle( radians )</code> and <code>new CloseToPointMatcher( point, TOLERANCE )</code> as its arguments.</p>
-
 <code><pre>[Test(dataProvider="data")]
 public function shouldGetPointsOnCircle( circle:Circle, point:Point, radians:Number ):void {
 	assertThat( circle.getPointOnCircle( radians ), new CloseToPointMatcher( point, TOLERANCE ) );
 }</pre></code>
-
 		<p>If you did not use code-completion, add the imports for org.flexunit.assertThat and matcher.CloseToPointMatcher at this time.</p>
 		<p>The <code>shouldGetPointsOnCircle()</code> method uses the <code>assertThat()</code> statement with the <code>CloseToPointMatcher</code> to create the same kind of test coverage presented in BasicCircleTest class through the <code>shouldGetTopPointOnCircle()</code> and <code>shouldGetBottomPointOnCircle()</code> methods.</p>
 	</li>
 	<li>
 		<p>Save the GetPointsTest.as file.</p>
-
 		<h3><br />Add the new case to the CircleSuite</h3>
-		
 	</li>
 	<li>
 		<p>Open the CircleSuite.as file in the math.testcases package.</p>
@@ -271,7 +247,6 @@ public class CircleSuite{
 	public var test5:DistanceTest;
 	public var test6:GetPointsTest;
 }</pre></code>
-		
 	</li>
 	<li>
 		<p>Save CircleSuite.as.</p>
@@ -279,7 +254,6 @@ public class CircleSuite{
 	<li>
 		<p>Run the FlexUnit4Training.mxml file.</p>
 		<p>If FlexUnit4Training.mxml ran successfully you should see the following output in your browser window:</p>
-
 		<img alt='TestsPassed' id='shift' src='../images/unit11/image1.png' />
 		<p class='caption' id='shift'>Figure 1: FlexUnit tests passed</p>
 	</li>
@@ -299,9 +273,7 @@ public class CircleSuite{
 	<li>
 		<p>Open the GetPointsTest.as file located in the math.testcases package within the tests folder.</p>
 		<p>Alternatively, if you didn't complete the previous lesson or your code is not functioning properly, you can import the FlexUnit4Training_wt2.fxp project from the Unit11/ start folder. Please refer to Unit 2: Walkthrough 1 for instructions on importing a Flash Builder project.</p>
-
 		<h3><br />Add Instance variables</h3>
-		
 	</li>
 	<li>
 		<p>Add three private variables to the <code>GetPointsTest</code> class. One named <code>circle</code> of type <code>Circle</code>, another named <code>point</code> of type <code>Point</code>, and another named <code>radians</code> of type <code>Number</code>.</p>
@@ -309,7 +281,6 @@ public class CircleSuite{
 <code><pre>private var circle:Circle;
 private var point:Point;
 private var radians:Number;</pre></code>
-		
 	</li>
 	<li>
 		<p>Remove the <code>(dataProvider="data")</code> portion of the metadata from the <code>shouldGetPointsOnCircle()</code> test method. Also remove the parameters, as they will be replaced by the instance variables just created.</p> 
@@ -318,16 +289,12 @@ private var radians:Number;</pre></code>
 public function shouldGetPointsOnCircle( circle:Circle, point:Point, radians:Number ):void {
 ...
 }</pre></code>
-
 		<p>Becomes</p>
-		
 <code><pre>[Test]
 public function shouldGetPointsOnCircle():void {
 ...
 }</pre></code>
-
 		<h3><br />Add a method to test point distance</h3>
-		
 	</li>
 	<li>
 		<p>Add a public function named <code>shouldReturnDistanceEqualToRadius()</code> to the class.</p>
@@ -335,7 +302,6 @@ public function shouldGetPointsOnCircle():void {
 <code><pre>[Test]
 public function shouldReturnDistanceEqualToRadius():void {
 }</pre></code>
-		
 	</li>
 	<li>
 		<p>Within the new method, declare a variable named <code>distance</code> of data type <code>Number</code>. Set it equal to <code>Point.distance( circle.getPointOnCircle( radians ), circle.origin )</code>.</p>
@@ -344,7 +310,6 @@ public function shouldReturnDistanceEqualToRadius():void {
 public function shouldReturnDistanceEqualToRadius():void {
 	var distance:Number = Point.distance( circle.getPointOnCircle( radians ), circle.origin );
 }</pre></code>
-		
 	</li>
 	<li>
 		<p>Add a call to the <code>assertThat()</code> method. Pass in <code>distance</code> and <code>equalTo( circle.radius )</code> as its arguments.</p>
@@ -355,7 +320,6 @@ public function shouldReturnDistanceEqualToRadius():void {
 
 	assertThat( distance, equalTo( circle.radius ) );
 }</pre></code>
-
 		<p>If you did not use code-completion, add the import for org.hamcrest.object.equalTo at this time.</p>
 	</li>
 	<li>
@@ -366,7 +330,6 @@ public function shouldReturnDistanceEqualToRadius():void {
 	this.point = point;
 	this.radians = radians;
 }</pre></code>
-		
 	</li>
 	<li>
 		<p>Mark the data array with <code>[Parameters]</code> metadata.</p>
@@ -375,7 +338,6 @@ public function shouldReturnDistanceEqualToRadius():void {
 public static var data:Array = 
 [ [ new Circle( new Point( 0, 0 ), 5 ), new Point( 5, 0 ), 0 ],
   [ new Circle( new Point( 0, 0 ), 5 ), new Point( -5, 0 ), Math.PI ] ];</pre></code>
-
 		<p>In the previous walkthrough, parameters were passed in using the <code>dataProvider="data"</code> metadata. In this case, parameters are marked with <code>[Parameters]</code> metadata, which passes them into the constructor before each test method is run. This is the parameterized testing approach used in JUnit, a popular Java Unit testing framework on which FlexUnit bases much of its syntax.</p>
 	</li>
 	<li>
@@ -384,7 +346,6 @@ public static var data:Array =
 	<li>
 		<p>Run the FlexUnit4Training.mxml file.</p>
 		<p>If FlexUnit4Training.mxml ran successfully you should see the following output in your browser window:</p>
-
 		<img alt='TestsPassed' id='shift' src='../images/unit11/image2.png' /> 
 		<p class='caption' id='shift'>Figure 1: FlexUnit tests passed</p>
 	</li>
@@ -433,16 +394,12 @@ public static var data:Array;</pre></code>
 	<li>
 		<p>Open the GetPointsTest.as file you created in the previous exercise.</p> 
 		<p>Alternatively, if you didn't complete the previous lesson or your code is not functioning properly, you can import the FlexUnit4Training_wt3.fxp project from the Unit 11/Start folder. Please refer to Unit 2: Walkthrough 1Unit 2: Walkthrough 1 for instructions on importing a Flash Builder project.</p>
-
 		<h3><br />Add the external data loader</h3>
-		
 	</li>
 	<li>
 		<p>Add a public static variable named <code>getDataPointsLoader</code> of type <code>GetPointsDataHelper</code> to the <code>GetPointsTest</code> class. Instantiate the <code>GetPointsDataHelper</code> passing it a the argument <code>"xml/circlePoints.xml"</code></p>
-		
 		<code><pre>public static var getDataPointsLoader:GetPointsDataHelper =
  new GetPointsDataHelper( "xml/circlePoints.xml" );</pre></code>
-
 		<p>If you did not use code-completion, add the import for helper.GetPointsDataHelper at this time.</p>
 		<p>The GetPointsDataHelper class implements IExternalDependencyLoader and IResponder interfaces. It is able to send and receive a data request in test case preparation. The loader itself references a data provider. In a parameterized test case, a static array uses these test parameters.</p>
 	</li>
@@ -451,7 +408,6 @@ public static var data:Array;</pre></code>
 
 <code><pre>[Parameters(loader="getDataPointsLoader")]
 public static var data:Array</pre></code>
-		
 	</li>
 	<li>
 		<p>Save the GetPointsTest.as file.</p>
@@ -459,10 +415,8 @@ public static var data:Array</pre></code>
 	<li>
 		<p>Run the FlexUnit4Training.mxml file.</p>
 		<p>If FlexUnit4Training.mxml ran successfully you should see the following output in your browser window:</p>
-
 		<img alt='TestsPassed' id='shift' src='../images/unit11/image3.png' /> 
 		<p class='caption' id='shift'>Figure 1: FlexUnit tests passed</p>
-		
 		<p>The reason that the number of tests rose significantly in this Walkthrough is because FlexUnit logs a test for each parameter set being tested. As a result, four tests have been added to the reporting window, and each represents a parameter in the circlePoints.xml file</p>
 	</li>
 </ol>

@@ -134,9 +134,7 @@ public var mockRule:MockolateRule = new MockolateRule();</pre></code>
 	<li>
 		<p>Import the FlexUnit4Training_wt1.fxp project from the Unit 10/Start folder. If you completed the previous walkthrough, choose the option to overwrite your existing project. If this is your first walkthrough, import it as a new project.  Please refer to Unit 2: Walkthrough 1 for instructions on importing a Flash Builder project.</p>
 		<p>The new FlexUnit4Training project contains everything that all the walkthroughs up until this point have accomplished. Additionally, it includes several new files and additional dependencies to help you through the current walkthrough.</p>
-
 		<h3><br />Changing the Circle class</h3>
-		
 	</li>
 	<li>
 		<p>Open the Circle.as file in the src directory in the package net.digitalprimates.math.</p>
@@ -148,36 +146,28 @@ public var mockRule:MockolateRule = new MockolateRule();</pre></code>
 	</li>
 	<li>
 		<p>Comment out the range check for radius.</p>
-		
 		<code><pre>
 // if( ( radius &#60;= 0 || isNaN( radius ) ) {
 //	throw new RangeError( "Radius must be a positive Number" );
 // }</pre></code>
-		
 		<p>You are commenting this out for simplicity. The default radius of 0 will cause the range error to be thrown. This will prevent that from happening.</p>
 	</li>
 	<li>
 		<p>Immediately after the range check for radius, add a null check for origin. If origin is null, instantiate to a new <code>Point</code> with x and y of 0.</p>
-
 		<code><pre>if( origin == null ) {
 	origin = new Point( 0, 0 );
 }</pre></code>
-		
 		<p>Your <code>Circle</code> constructor should now appear as follows:</p>
-
 		<code><pre>public function Circle( origin:Point, radius:Number ) {
 	// if( ( radius &#60;= 0 || isNaN( radius ) ) {
 	// 	throw new RangeError( "Radius must be a positive Number" );
 	// }
-
 	if( origin == null ) {
 		origin = new Point( 0, 0 );
 	}
-
 	this._origin = origin;
 	this._radius = radius;
 }</pre></code>
-		
 		<h3><br />Declare the MockolateRule</h3>
 	</li>
 	<li>
@@ -188,41 +178,32 @@ public var mockRule:MockolateRule = new MockolateRule();</pre></code>
 	</li>
 	<li>
 		<p>Add and instantiate a public variable named <code>mockRule</code> of type <code>MockolateRule</code> to the CircleMockTest class. Mark the variable with <code>[Rule]</code> metadata.</p>
-
 		<code><pre>[Rule]
 public var mockRule:MockolateRule = new MockolateRule();</pre></code>
-		
 		<p>If you did not use code-completion, add the import for mockolate.runner.MockolateRule at this time.</p>
 	</li>
 	<li>
 		<p>Add a variable named <code>mockCircle</code> of type <code>Circle</code> to the class. Mark the variable with <code>[Mock]</code> metadata.</p>
-
 		<code><pre>
 [Mock]
 public var mockCircle:Circle;</pre></code>
-
 		<p><code>[Mock]</code> metadata marks a variable for mock creation and injection. Mock creation is the equivalent of object instantiation within the Mockolate framework. Variables marked with this metadata are prepared for use as Mocks. By using the MockolateRule, this mock will be instantiated with default values prior to any tests being run in the test case.</p>
 		<p>If you did not use code-completion, add the import for net.digitalprimates.math.Circle at this time.</p>
 	</li>
 	<li>
 		<p>Add a method named <code>shouldBeNotNull()</code>. It will assert that the <code>mockCircle</code> is not null.</p>
-
 		<code><pre>[Test]
 public function shouldBeNotNull():void {
 	assertThat(mockCircle, notNullValue() );
 }</pre></code>
-		
 		<p>If you did not use code-completion, add the import statements for org.flexunit.assertThat and org.hamcrest.object.notNullValue at this time.</p>
 	</li>
 	<li>
 		<p>Save CircleMockTest.as.</p>
-
 		<h3><br />Add the CircleMockTest to the CircleSuite</h3>
-		
 	</li>
 	<li>
 		<p>Open the CircleSuite.as file within the math.testcases package. Add a new public variable named <code>test4</code> with a type of <code>CircleMockTest</code></p>
-
 		<code><pre>[Suite]
 [RunWith("org.flexunit.runners.Suite")]
 public class CircleSuite {
@@ -231,7 +212,6 @@ public class CircleSuite {
 	public var test3:CircleTheory;
 	public var test4:CircleMockTest;
 }</pre></code>
-		
 	</li>
 	<li>
 		<p>Save the CircleSuite.as file.</p>
@@ -239,10 +219,8 @@ public class CircleSuite {
 	<li>
 		<p>Run the FlexUnit4Training.mxml file.</p>
 		<p>If FlexUnit4Training.mxml ran successfully you should see the following output in your browser window:</p>
-
 		<img alt='TestsPassed' id='shift' src='../images/unit10/image1.png' /> 
 		<p class='caption' id='shift'>Figure 1: FlexUnit tests passed</p>
-
 		<p>Notice the failure. This is because you commented out the range check in Circle. The CircleConstructorTest is expecting this error to be thrown. This is an unfortunate side effect of changing the Circle class. This will be corrected when you inject the mock later.</p>
 	</li>
 </ol>
@@ -314,17 +292,13 @@ public var myMock:MockableObject;</pre></code>
 	</li>
 	<li>
 		<p>Add a new method <code>shouldBeEqualCircleMock()</code> decorated with the test metadata.</p>
-
 		<code><pre>[Test]
 public function shouldBeEqualCircleMock():void {
 }</pre></code>
-
 	</li>
 	<li>
 		<p>Set an expectation that the <code>origin</code> getter will be called at least once. To set an expectation, you use the <code>mock()</code> method of the <code>MockolateRule</code>. You will also need to use the <code>getter()</code> method.</p>
-
 		<code><pre>mock( mockCircle ).getter( "origin" ).atLeast( 1 );</pre></code>
-		
 		<p>If you did not use code-completion, import mockolate.mock at this time.</p>
 	</li>
 	<li>
@@ -333,44 +307,32 @@ public function shouldBeEqualCircleMock():void {
 	<li>
 		<p>Run the FlexUnit4Training.mxml file.</p>
 		<p>If FlexUnit4Training.mxml ran successfully you should see the following output in your browser window:</p>
-
 		<img alt='TestsPassed' id='shift' src='../images/unit10/image2.png' /> 
 		<p class='caption' id='shift'>Figure 1: FlexUnit tests passed</p>
-
 		<p>You will notice an error. This is because the mock expects the origin getter would be called at least once. However, no call was ever made to the getter. You will need to add this call.</p>
 		<p>If you had made this call as a stub rather than a mock, this expectation would have been optional and thus fulfilled.</p>
-		
 		<h3><br />Fulfilling the expectation</h3>
-		
 		<p>You need to fulfill the expectation. You could make the call directly to origin, but this would defeat the purpose of creating the mock. Mocks require some internal workings of how an object operates. Inside the Circle class is a method called <code>equals()</code>. Equals checks if two circles have the same origin and radius.</p>
 	</li>
 	<li>
 		<p>In <code>shouldBeEqualCircleMock()</code>, but after the mock expectation, create a new <code>Circle</code> called <code>circle</code>. As arguments, pass a new origin at <code>Point( 0, 0 )</code> and a radius of <code>0</code>.</p>
-		
 		<code><pre>var circle:Circle = new Circle( new Point( 0, 0 ), 0 );</pre></code>
-		
 		<p>You are passing this circle because the default mock created an origin at 0, 0 with a radius of 0.</p>
 		<p>If you did not use code-completion, add the import for flash.geom.Point.</p>
 	</li>
 	<li>
 		<p>In <code>shouldBeEqualCircleMock()</code>, after the circle is instantiated, make a call to the <code>equals()</code> method of circle. Pass it the <code>mockCircle</code> as a parameter.</p>
-		
 		<code><pre>circle.equals( mockCircle );</pre></code>
-		
 	</li>
 	<li>
 		<p>Save the CircleMockTest.as file.</p>
 	</li>
 	<li>
 		<p>Run the FlexUnit4Training.mxml file.</p>
-
  		<img alt='TestsPassed' id='shift' src='../images/unit10/image4.png' />
 		<p class='caption' id='shift'>Figure 2: FlexUnit tests passed</p>
-		
 		<p>The expectation has now been fulfilled and the test is now passing. Next you will attempt to use a strict mock.</p>
-		
 		<h3><br />Using a strict mock</h3>
-		
 	</li>
 	<li>
 		<p>Add the <code>type="strict"</code> annotation to the Mock metadata of <code>mockCircle</code>.</p>
@@ -381,16 +343,12 @@ public function shouldBeEqualCircleMock():void {
 	</li>
 	<li>
 		<p>Run the FlexUnit4Training.mxml file.</p>
-
 		<img alt='TestsPassed' id='shift' src='../images/unit10/image2.png' /> 
 		<p class='caption' id='shift'>Figure 3: FlexUnit tests passed</p>
-		
 		<p>You will notice another error. Changing the mock to a strict mock requires you to set expectations on all methods and properties that are called as part of the method call.</p>
 		<p>If you look at the stack trace you will be able to see the error.</p>
-
 		<img alt='StackTrace' id='shift' src='../images/unit10/image5.png' />
 		<p class='caption' id='shift'>Figure 4: Stack Trace</p>
-		
 		<p>This error was thrown because no expectation was set for a getter named <code>radius</code>. You will need to add this expectation.</p>
 	</li>
 	<li>
@@ -402,7 +360,6 @@ public function shouldBeEqualCircleMock():void {
 	</li>
 	<li>
 		<p>Run the FlexUnit4Training.mxml file.</p>
-
 		<img alt='TestsPassed' id='shift' src='../images/unit10/image4.png' /> 
 		<p class='caption' id='shift'>Figure 5: FlexUnit tests passed</p>
 	</li>
@@ -440,76 +397,54 @@ public var mockPoint:Point;</pre></code>
 	<li>
 		<p>Open the CircleMockTest.as file from the previous walkthrough.</p>
 		<p>Alternatively, if you didn't complete the previous lesson or your code is not functioning properly, you can import the FlexUnit4Training_wt3.fxp project from the Unit 10/ Start folder. Please refer to Unit 2: Walkthrough 1 for instructions on importing a Flash Builder project.</p>
-
 		<h3><br />Injecting a mock manually</h3>
-		
 	</li>
 	<li>
 		<p>Modify the current mock <code>Circle</code> to create the mock but not inject. To do so, add the inject annotation to the Mock metadata decorating the <code>mockCircle</code> variable.</p>
 		<p>Replace:</p>
-		
 		<code><pre>[Mock( type="strict" )]
 Public var mockCircle:Circle;</pre></code>
-		
 		<p>With</p>
-
 		<code><pre>[Mock( inject="false", type="strict" )
 Public var mockCircle:Circle;</pre></code>
-		
 	</li>
 	<li>
 		<p>Create a new method named <code>setup()</code> decorated with the Before metadata.</p>
-
 		<code><pre>[Before]
 public function setup():void {
 }</pre></code>
-
 	</li>
 	<li>
 		<p>In the before method, inject a strict mock using the <code>strict()</code> method. Pass this method the <code>Circle</code> class, "<code>mockCircle</code>", and the array <code>[ new Point( 0, 0 ), 1  ]</code>. Assign the return for <code>strict()</code> to the <code>mockCircle</code> instance.</p>
-
 		<code><pre>[Before]
 public function setup():void {
 mockCircle = strict( Circle, "mockCircle", [ new Point( 0, 0 ), 1 ] );
 }</pre></code>
-		
 		<p>Since the constructor arguments are now being passed, the range test in the <code>Circle</code> constructor is now satisfied. However, the getters will still return default values. Mocks do not use any of the instance properties. You will need to mock the getters for <code>radius</code> and <code>origin</code> to return values.</p>
 		<p>If you did not use code-completion, add the import for mockolate.strict.</p>
 	</li>
 	<li>
 		<p>Replace the lines:</p>
-		
 		<code><pre>mock( mockCircle ).getter( "origin" ).atLeast( 1 );
 mock( mockCircle ).getter( "radius" ).atLeast( 1 );</pre></code>
-		
 		<p>with</p>
-
 		<code><pre>mock( mockCircle ).getter( "origin" ).returns( new Point( 0, 0 ) ).atLeast( 1 );
 mock( mockCircle ).getter( "radius" ).returns( 1 ).atLeast( 1 );</pre></code>
-
 		<p>This will force the getter and setter to return the required values.</p>
 		<p>If you were to run the test now, it would pass with no errors. However, this does not fulfill the test "shouldBeEqualCircleMock"</p>
 	</li>
 	<li>
 		<p>Change the radius of the circle you instantiate, from a value of 0, to a value of 1.</p>
-		
 		<code><pre>var circle:Circle = new Circle( new Point( 0, 0 ), 1 );</pre></code>
-		
 		<p>We want to compare that this circle is equal to our mock circle, so they should both have the same radius.</p>
 	</li>
 	<li>
 		<p>Replace the line:</p>
-		
 		<code><pre>circle.equals( mockCircle );</pre></code>
-		
 		<p>With</p>
-		
 		<code><pre>assertTrue( circle.equals( mockCircle ) );</pre></code>
-		
 		<p>If you did not use code-completion, add the import for org.flexUnit.asserts.assertTrue</p>
-		
 		<h3><br />Revert the changes to the Circle class.</h3>
-		
 	</li>
 	<li>
 		<p>Open the net.digitalprimates.math.Circle.as file in the src directory.</p>
@@ -517,31 +452,25 @@ mock( mockCircle ).getter( "radius" ).returns( 1 ).atLeast( 1 );</pre></code>
 	</li>
 	<li>
 		<p>Uncomment the following section:</p>
-
 		<code><pre>
 // if ( ( radius &#60;= 0 ) || isNaN( radius ) ) {
 //	throw new RangeError("Radius must be a positive Number");
 // }</pre></code>
-
 	</li>
 	<li>
 		<p>Remove the origin null check. This section is no longer required.</p>
 		<p>Remove:</p>
-
 		<code><pre>if( origin == null ) {
 	origin = new Point( 0, 0 );
 }</pre></code>
-		
 	</li>
 	<li>
 		<p>Save the Circle.as file.</p>
 	</li>
 	<li>
 		<p>Run the FlexUnit4Training.mxml file.</p>
-
 		<img alt='TestsPassed' id='shift' src='../images/unit10/image6.png' />
 		<p class='caption' id='shift'>Figure 1: FlexUnit tests passed</p>
-		
 		<p>The mock is now acting as a stand in of a Circle, accepting parameters and returning the values you have requested. In this way, any object can be mocked to operate exactly as expected, or to test that the expected behaviors are called on the object. In the next walkthrough, you will learn how to mock methods to accept parameters and return values.</p>	
 	</li>
 </ol>
@@ -560,9 +489,7 @@ mock( mockCircle ).getter( "radius" ).returns( 1 ).atLeast( 1 );</pre></code>
 	<li>
 		<p>Create a new ActionScript class named DistanceTest in the math.testcases package within the tests directory.</p>
 		<p>Alternatively, if you didn't complete the previous lesson or your code is not functioning properly, you can import the FlexUnit4Training_wt4.fxp project from the Unit 10/ Start folder. Please refer to Unit 2: Walkthrough 1 for instructions on importing a Flash Builder project.</p>
-
 		<h3><br />Create the test fixture</h3>
-		
 	</li>
 	<li>
 		<p>Remove the automatically created constructor from the test class.</p>
@@ -573,78 +500,55 @@ mock( mockCircle ).getter( "radius" ).returns( 1 ).atLeast( 1 );</pre></code>
 	</li>
 	<li>
 		<p>Add and instantiate a public variable named <code>mockRule</code> of type <code>MockolateRule</code> to the <code>LayoutTest</code> class. Mark the variable with <code>[Rule]</code> metadata.</p>
-
 		<code><pre>[Rule]
 public var mockRule:MockolateRule = new MockolateRule();</pre></code>
-		
 		<p>If you did not use code-completion, add the import for mockolate.runner.MockolateRule at this time.</p>
 	</li>
 	<li>
 		<p>Add a variable named <code>mockPoint</code> of type <code>Point</code> to the class. Mark the variable with <code>[Mock]</code> metadata.</p>
-
 		<code><pre>[Mock]
 public var mockPoint:Point;</pre></code>
-
 		<p>If you did not use code completion, add the import for flash.geom.Point at this time.</p>
-
 		<h3><br />Mocking a method</h3>
-		
 	</li>
 	<li>
 		<p>Create a new test method named <code>shouldBeEqualDistance()</code>. Decorate it with <code>[Test]</code> metadata.</p>
-
 		<code><pre>[Test]
 public function shouldBeEqualDistance():void {
 }</pre></code>
-		
 	</li>
 	<li>
 		<p>Create a new <code>Point</code> called <code>testPoint</code> with x and y values of 5 and 5, respectively.</p>
-		
 		<code><pre>var testPoint:Point = new Point( 5, 5 );</pre></code>
-		
 	</li>
 	<li>
 		<p>Create a new <code>Point</code> called <code>endPoint</code> with x and y values of 10 and 10, respectively.</p>
-		
 		<code><pre>var endPoint:Point = new Point( 10, 10 );</pre></code>
-		
 	</li>
 	<li>
 		<p>Create one last <code>Point</code> called <code>summedPoints</code>. Do not instantiate it at this time.</p>
-		
 		<code><pre>var summedPoints:Point;</pre></code>
-				
 	</li>
 	<li>
 		<p>Add an expectation for the <code>add()</code> method of <code>mockPoint</code> to take an argument, <code>testPoint</code>, and return a new <code>Point</code> with x and y values of 10 and 10.</p>
-		
 		<code><pre>mock( mockPoint ).method( "add" ).args( testPoint ).returns( new Point( 10, 10 ) );</pre></code>
-		
 		<p>The mock will now expect the <code>add()</code> method of <code>mockPoint</code> to be called with the <code>testPoint</code> parameter. When it does, it will return a <code>Point</code> with x and y values of 10 and 10.</p>
 	</li>
 	<li>
 		<p>Make a call to <code>mockPoint.add()</code> passing it the parameter <code>testPoint</code> and assigning the return to <code>summedPoints</code>.</p>
-		
 		<code><pre>summedPoints = mockPoint.add( testPoint );</pre></code>
-		
 	</li>
 	<li>
 		<p>Add a call to <code>assertThat()</code> passing it the parameters <code>endPoint</code> and a new <code>CloseToPointMather</code> with parameters <code>summedPoints</code> and <code>TOLERANCE</code>.</p>
-		
 		<code><pre>assertThat( endPoint, new CloseToPointMatcher( summedPoints, TOLERANCE ) );</pre></code>
-		
 		<p>If you did not use code completion, add the imports for org.flexunit.assertThat and matcher.CloseToPointMatcher at this time.</p>
 	</li>
 	<li>
 		<p>Save the DistanceTest.as file.</p>
-
 		<h3><br />Add DistanceTest to the test suite</h3>
-		
 	</li>
 	<li>
 		<p>Open the CircleSuite.as file within the math.testcases package. Add a new public variable named <code>test5</code> with a type of <code>DistanceTest</code></p>
-
 		<code><pre>[Suite]
 [RunWith("org.flexunit.runners.Suite")]
 public class CircleSuite {
@@ -654,14 +558,12 @@ public class CircleSuite {
 	public var test4:CircleMockTest;
 	public var test5:DistanceTest;
 }</pre></code>
-		
 	</li>
 	<li>
 		<p>Save the CircleSuite.as file.</p>
 	</li>
 	<li>
 		<p>Run the FlexUnit4Training.mxml file.</p>
-
 		<img alt='TestsPassed' id='shift' src='../images/unit10/image7.png' />
 		<p class='caption' id='shift'>Figure 1: FlexUnit tests passed</p>
 	</li>

@@ -89,146 +89,111 @@ public function runMeAfterEveryTest():void {
 	<li>
 		<p>Open the BasicCircleTest.as file from the previous exercise.</p>
 		<p>Alternatively, if you didn't complete the previous lesson or your code is not functioning properly, you can import the FlexUnit4Training_wt1.fxp project from the Unit 6/Start folder. Please refer to Unit 2: Walkthrough 1 for instructions on importing a Flash Builder project.</p>
-
 		<h3><br />[Before] &#38; [After] metadata</h3>
-	
 	</li>
 	<li>
 		<p>Add a private variable with the name of <code>circle</code> and a data type of <code>Circle</code> to the class.</p>
-
 		<code><pre>public class BasicCircleTest {		
 	private static const TOLERANCE:Number = .0001;
 	private var circle:Circle;
 	...
 }		</pre></code>
-
 	</li>
 	<li>
 		<p>Add a public function named <code>setMeUp()</code> to the class. Mark the function with a <code>[Before]</code> metadata tag. This function will set the <code>circle</code> property to a new <code>Circle</code> instance with arguments <code>new Point( 0, 0 )</code> and <code>5</code>.</p>
-
 		<code><pre>[Before]
 public function setMeUp():void {
 	circle = new Circle( new Point( 0, 0 ), 5 );
 }		</pre></code>
-		
 		<p>Note, the name of the function is unimportant. It is only the Before metadata that makes this a Before method.</p>
 	</li>
 	<li>
 		<p>Similarly, add another public function named <code>tearMeDown()</code>. In this case you are going to mark the function with an <code>[After]</code> metadata tag. This function will set the class <code>circle</code> variable to null.</p> 
-
 		<code><pre>[After]
 public function tearMeDown():void {
 	circle = null;
 }		</pre></code>
-
 	</li>
 	<li>
 		<p>Remove the <code>circle</code> variable instantiations from each of the test methods. Using the first test as a model:</p>
-
 		<code><pre>[Test]
 public function shouldReturnProvidedRadius():void {
 	var circle:Circle = new Circle( new Point( 0, 0 ), 5 );
 	assertEquals( 5, circle.radius );
 }		</pre></code>
-		
 		<p>Becomes:</p>
-		
 		<code><pre>[Test]
 public function shouldReturnProvidedRadius():void {
 	assertEquals( 5, circle.radius );
 }		</pre></code>
-		
 		<h3><br />Running the test case</h3>
-	
 	</li>
 	<li>
 		<p>After the instantiations have been removed, the test class should read as follows:</p>
-
 		<code><pre>public class BasicCircleTest {	
 	private static const TOLERANCE:Number = .0001;
 	private var circle:Circle;
-
 	[Before]
 	public function setMeUp():void {
 		circle = new Circle( new Point( 0, 0 ), 5 );
 	}
-
 	[After]
 	public function tearMeDown():void {
 		circle = null;
 	}
-
 	[Test]
 	public function shouldReturnProvidedRadius():void {
 		assertEquals( 5, circle.radius );
 	}
-
 	[Test]
 	public function shouldComputeCorrectDiameter():void {
 		assertEquals( 10, circle.diameter );
 	}
-
 	[Test]
 	public function shouldReturnProvidedOrigin():void {
 		assertEquals( 0, circle.origin.x );
 		assertEquals( 0, circle.origin.y );
 	}
-
 	[Test]
 	public function shouldReturnTrueForEqualCircle():void {
 		var circle2:Circle = new Circle( new Point( 0, 0 ), 5 );
-		
 		assertTrue( circle.equals( circle2 ) );
 	}
-
 	[Test]
 	public function shouldReturnFalseForUnequalOrigin():void {
 		var circle2:Circle = new Circle( new Point( 0, 5 ), 5);
-		
 		assertFalse( circle.equals( circle2 ) );
 	}
-
 	[Test]
 	public function shouldReturnFalseForUnequalRadius():void {
 		var circle2:Circle = new Circle( new Point( 0, 0 ), 7);
-		
 		assertFalse( circle.equals( circle2 ) );
 	}
-
 	[Test]
 	public function shouldGetTopPointOnCircle():void {
 		var point:Point = circle.getPointOnCircle( 0 );
-		
 		assertThat( point, new CloseToPointMatcher ( new Point( 5, 0 ), TOLERANCE ) );
 	}
-
 	[Test]
 	public function shouldGetBottomPointOnCircle():void {
 		var point:Point = circle.getPointOnCircle( Math.PI );
-		
 		assertThat( point, new CloseToPointMatcher ( new Point( -5, 0 ), TOLERANCE ) );
 	}
-
 	[Test]
 	public function shouldGetRightPointOnCircle():void {
 		var point:Point = circle.getPointOnCircle( Math.PI/2 );
-		
 		assertThat( point, new CloseToPointMatcher ( new Point( 0, 5 ), TOLERANCE ) );
 	}
-
 	[Test]
 	public function shouldGetLeftPointOnCircle():void {
 		var point:Point = circle.getPointOnCircle( (3*Math.PI)/2 );
-		
 		assertThat( point, new CloseToPointMatcher ( new Point( 0, -5 ), TOLERANCE ) );
 	}
-
 	[Test(expects="RangeError")]
 	public function shouldThrowRangeError():void {
 		var someCircle:Circle = new Circle( new Point( 10, 10 ), -5 );
 	}
 }		</pre></code>
-
 		<p>Other circles, such as <code>circle2</code> are still instantiated in its respective methods, because it is unique in each case.</p>
 	</li>
 	<li>
@@ -237,7 +202,6 @@ public function shouldReturnProvidedRadius():void {
 	<li>
 		<p>Run the FlexUnit4Training.mxml file.</p>
 		<p>If FlexUnit4Training.mxml ran successfully you should see the following output in your browser window:</p>
-
 		<img alt='TestsPassed' id='shift' src='../images/unit6/image1.png' />
 		<p class='caption' id='shift'>Figure 1: FlexUnit tests passed</p>
 	</li>
@@ -289,74 +253,59 @@ public function shouldReturnProvidedRadius():void {
 	<li>
 		<p>Open the BasicCircleTest.as file from the previous exercise.</p> 
 		<p>Alternatively, if you didn't complete the previous lesson or your code is not functioning properly, you can import the FlexUnit4Training_wt2.fxp project from the Unit 6/start folder. Please refer to Unit 2: Walkthrough 1 for instructions on importing a Flash Builder project.</p>
-
 		<h3><br />Using [BeforeClass] &#38; [AfterClass] metadata</h3>
-		
 	</li>
 	<li>
 		<p>Declare a public static function named <code>setUpClass()</code>, mark it with <code>[BeforeClass]</code> metadata. In the function body, add a trace statement that merely states "Before Class."</p>
-
 		<code><pre>[BeforeClass]
 public static function setUpClass():void {
 	trace( "Before Class" );
 }		</pre></code>
-
 	</li>
 	<li>
 		<p>Similarly, declare another public static function named <code>tearDownClass()</code>, mark it with <code>[AfterClass]</code> metadata.</p> 
-
 		<code><pre>[AfterClass]
 public static function tearDownClass():void {
 	trace( "After Class" );
 }		</pre></code>
-		
 		<h3><br />Visualizing test order</h3>
-		
 	</li>
 	<li>
 		<p>A similar trace statement should be added to the existing <code>setMeUp()</code> and <code>tearMeDown()</code> methods.</p>
-
 		<code><pre>[Before]
 public function setMeUp():void {
 	circle = new Circle( new Point( 0, 0 ), 5 );
 	trace( "Before Test" );
 }
-
 [After]
 public function tearMeDown():void {
 	circle = null;
 	trace( "After Test" );
 }		</pre></code>
-
 	</li>
 	<li>
 		<p>Finally, add a trace statement to every test method on the first line.</p>
-		
 		<code><pre>[Test]
 public function shouldReturnProvidedRadius():void {
 	trace( "Test" );
 	assertEquals( 5, circle.radius );
 }		</pre></code>
-		
 	</li>
 	<li>
 		<p>Save BasicCircleTest.as</p>
 	</li>
 	<li>
 		<p>Run FlexUnit4Training.mxml file in Debug Mode.</p> 
-
  		<img alt='DebugMode' id='shift' src='../images/unit6/image2.png' />
 		<p class='caption' id='shift'>Figure 1: Running in Debug Mode</p>
 	</li>
 	<li>
 		<p>Nothing is going to change about how the tests display in the browser, in this walkthrough we are interested in Flash Builder's Console View, which is usually located at the bottom of the screen.</p>
-
 		<img alt='ConsoleTab' id='shift' src='../images/unit6/image3.png' />
 		<p class='caption' id='shift'>Figure 2: Console in the tab navigator</p>
 	</li>
 	<li>
 		<p>Take a look at the console view; if all the functions ran to completion, you should see the following show up in order.</p>
-		
 		<code><pre>
 Before Class
 Before Test
@@ -394,7 +343,6 @@ Test
 After Test
 After Class
 		</pre></code>
-		
 	</li>
 	<li>
 		<p>Based on the exhibited call hierarchy, you should be able to tell that the <code>setUpClass()</code> and <code>tearDownClass()</code> functions are being called before the first test method and after the last. Meanwhile, the <code>setMeUp()</code> and <code>tearMeDown()</code> methods are being called respectively before and after every test.</p>

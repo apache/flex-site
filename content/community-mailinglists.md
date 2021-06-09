@@ -5,6 +5,7 @@ ideas about Apache Flex.
 
 
 <div class="headline"><h4>Participation Guidelines</h4></div>
+
 We ask all mailing list and forum participants to observe [these guidelines][1].
 
 <div class="headline"><h4>Users Mailing List</h4></div>
@@ -35,6 +36,7 @@ All posts to the forum are mailed to the mailing list, and all messages sent to 
   - [Register][26]
 
 <div class="headline"><h4>Development Mailing List</h4></div>
+
 This mailing list is geared towards users working on the SDK or related utilities. Everybody is welcome but
 the discussion is of a high-level.  If you want to ask the developers questions about the bugs, features, etc.,
 this is the mailing list to do so.  This is where the project community hangs out. This list is used to coordinate

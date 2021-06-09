@@ -127,7 +127,8 @@ testTheory( 4, 4 )</pre></code>
 <p>Marking data points with the <code>[ArrayElementType("Type")]</code> metadata ensures that only the desired input type is contained within the collection. Additionally, it makes sure that these values are passed in wherever a parameter of the specified type is used in a theory.</p>
 <p>The following theory takes two number inputs and a string, but there is only a single collection of numbers and a single collection of strings within the class.</p>
 
-<code><pre>[DataPoints]
+```
+[DataPoints]
 [ArrayElementType("Number")]
 public static var numbers:Array = [ 1, 2, 3, 4, 5 ];
 
@@ -142,7 +143,8 @@ public function testNamesAndNumbers( name:String, numberOne:Number, numberTwo:Nu
 	assertTrue( numberTwo > 0 );
 	assertTrue( numberOne + numberTwo > 0 );
 	assertTrue( numberOne + numberTwo + name.length > 0 );
-}</pre></code>
+}
+```
 
 <p>Numbers from the number array are used in the numberOne and numberTwo parameters, and the array of strings is used for the name parameter. The theory runs with all possible input combinations.</p>
 
@@ -169,77 +171,58 @@ testNamesAndNumbers( "Cindy", 5, 5 )</pre></code>
 	<li>
 		<p>Select the math.testcases package from the previous exercise. Create a new class in the math.testcases package named CircleTheory.as. This class has no superclass or interfaces.</p>
 		<p>Alternatively, if you didn't complete the previous lesson or your code is not functioning properly, you can import the FlexUnit4Training_wt1.fxp project from the Unit 8/Start folder. Please refer to Unit 2: Walkthrough 1 for instructions on importing a Flash Builder project.</p>
-
 		<h3><br />Create the CircleTheory class</h3>
-		
 		<p>After the class has been created, the package directory should appear as follows:</p>
-
 		<img alt='PackageDeliveryStructure' id='shift' src='../images/unit8/image1.png' />
 		<p class='caption' id='shift'>Figure 1: Package directory structure</p>
 	</li>
 	<li>
 		<p>Mark the new class with <code>[RunWith("org.flexunit.experimental.theories.Theories")]</code> metadata, which should be placed just above the class definition.</p>
-
 		<code><pre>[RunWith("org.flexunit.experimental.theories.Theories")]
 public class CircleTheory {
 ...
 }		</pre></code>
-		
 		<h3><br />Creating theories</h3>
-		
 	</li>
 	<li>
 		<p>Create a new public function named <code>shouldShowAllRadiiEqual()</code> with a parameter named <code>radius</code> of data type <code>Number</code>. Mark the function with <code>[Theory]</code> metadata:</p>
-
 		<code><pre>[Theory]
 public function shouldShowAllRadiiEqual( radius:Number ):void {
 }		</pre></code>
-		
 	</li>
 	<li>
 		<p>Add a variable named <code>circle</code> of type <code>Circle</code> to the <code>shouldShowAllRadiiEqual()</code> method. Instantiate circle with an origin at <code>(0, 0)</code> and the <code>radius</code> parameter passed in as its radius.</p>
-
 		<code><pre>[Theory]
 public function shouldShowAllRadiiEqual( radius:Number ):void {
 	var circle:Circle = new Circle( new Point( 0, 0 ), radius );
 }		</pre></code>
-		
 		<p>If you did not use code-completion, add the imports for net.digitalprimates.math.Circle and flash.geom.Point at this time.</p> 
 	</li>
 	<li>
 		<p>Add a call to the <code>assertEquals()</code> method. Assert that the <code>circle.radius</code> is equal to the <code>radius</code> parameter.</p>
-
 		<code><pre>[Theory]
 public function shouldShowAllRadiiEqual( radius:Number ):void {
 	var circle:Circle = new Circle( new Point( 0, 0 ), radius );
 	assertEquals( radius, circle.radius );
 }		</pre></code>
-		
 		<p>If you did not use code-completion, add an import for org.flexunit.asserts.assertEquals at this time.</p>
 	</li>
 	<li>
 		<p>Add a public static array to the class. Fill it with a variety of positive integer values. Here is an example:</p>
-
 		<code><pre>public static var radii:Array = [ 1,2,3,4,5,6,7,8,9,10 ];</pre></code>
-		
 	</li>
 	<li>
 		<p>Mark the array with two lines of metadata, <code>[DataPoints]</code> and <code>[ArrayElementType("Number")]</code>.</p>
-
 		<code><pre>[DataPoints]
 [ArrayElementType("Number")]
 public static var radii:Array = [ 1,2,3,4,5,6,7,8,9,10 ];</pre></code>
-
 	</li>
 	<li>
 		<p>Save CircleTheory.as.</p>
-		
 		<h3><br />Adding theories to your test suite</h3>
-			
 	</li>
 	<li>
 		<p>Open the CircleSuite.as file within the math.testcases package. Add a new public variable named <code>test3</code> with a type of <code>CircleTheory</code>.</p>
-
 		<code><pre>[Suite]
 [RunWith("org.flexunit.runners.Suite")]
 public class CircleSuite {
@@ -247,7 +230,6 @@ public class CircleSuite {
 	public var test2:CircleConstructorTest;
 	public var test3:CircleTheory;
 }		</pre></code>
-		
 		<p>If you did not use code-completion, add the import for math.testcases.CircleTheory at this time.</p>
 	</li>
 	<li>
@@ -256,7 +238,6 @@ public class CircleSuite {
 	<li>
 		<p>Run the FlexUnit4Training.mxml file.</p>
 		<p>If FlexUnit4Training.mxml ran successfully you should see the following output in your browser window:</p>
-
 		<img alt='12UnitsPassed' id='shift' src='../images/unit8/image2.png' /> 
 		<p class='caption' id='shift'>Figure 2: FlexUnit tests passed</p>
 	</li>
@@ -292,38 +273,28 @@ public class CircleSuite {
 	<li>
 		<p>Open the CircleTheory.as file from the previous exercise.</p>
 		<p>Alternatively, if you didn't complete the previous lesson or your code is not functioning properly, you can import the FlexUnit4Training_wt2.fxp project from the Unit8/Start folder. Please refer to Unit 2: Walkthrough 1 for instructions on importing a Flash Builder project.</p>
-
 		<h3><br />Adding invalid values to your data points</h3>	
-		
 	</li>
 	<li>
 		<p>Add a single negative value to the beginning of the class's radii array. Here is an example:</p>
-		
 		<code><pre>public static var radii:Array = [ -5,1,2,3,4,5,6,7,8,9,10 ];</pre></code>
-				
 	</li>
 	<li>
 		<p>Run the FlexUnit4Training.mxml file.</p>
 		<p>If FlexUnit4Training.mxml ran successfully you should see the following output in your browser window:</p>
-
 		<img alt='SingleFailure' id='shift' src='../images/unit8/image3.png' /> 
 		<p class='caption' id='shift'>Figure 1: A single test failure</p>
-		
 		<p>The theory failed because -5 is an invalid radius for a Circle object. If one of the theories assertions fails, the entire theory fails.</p> 
-
 		<h3><br />Adding an assumption</h3>
-		
 	</li>
 	<li>
 		<p>Add a new line to the <code>shouldShowAllRadiiEqual()</code> method. On the line, add an assumption indicating that this test only works for positive radii. The method should read as follows:</p>
-
 		<code><pre>[Theory]
 public function shouldShowAllRadiiEqual( radius:Number ):void {
 	assumeThat( radius, greaterThan( 0 ) );
 	var circle:Circle = new Circle( new Point( 0, 0 ), radius );
 	assertEquals( radius, circle.radius );
 }		</pre></code>
-		
 		<p>If you did not use code-completion, add the import statements for org.flexunit.assumeThat and org.hamcrest.number.greaterThan at this time.</p>
 	</li>
 	<li>
@@ -332,10 +303,8 @@ public function shouldShowAllRadiiEqual( radius:Number ):void {
 	<li>
 		<p>Run the FlexUnit4Training.mxml file.</p>
 		<p>If FlexUnit4Training.mxml ran successfully you should see the following output in your browser window:</p>
-
 		<img alt='TestsPassed' id='shift' src='../images/unit8/image4.png' />
 		<p class='caption' id='shift'>Figure 2: FlexUnit tests passed</p>
-		
 		<p>The <code>assumeThat( radius, greaterThan( 0 ) )</code> statement assures that the theory is only testing radii that are valid, or in this case, positive. The theory ignores the -5 input and all negative inputs thanks to this statement.</p>
 	</li>
 </ol>
@@ -358,7 +327,8 @@ Public static var points:Array = [ new Point( 0, 0 ) ];</pre></code>
 
 <p>Theory case constructors can be used like the constructors of many classes. In test cases and theories, constructors can be passed initial data for use by all or some of the methods within the class. For instance:</p>
 
-<code><pre>public class TestCase {
+```
+public class TestCase {
 
 	[DataPoints]
 	[ArrayElementType("flash.geom.Point")]
@@ -376,7 +346,8 @@ Public static var points:Array = [ new Point( 0, 0 ) ];</pre></code>
 		circle = new Circle( origin, radius );
 	}
 	...
-}</pre></code>
+}
+```
 
 <p>This method can help to reduce the complexity of the created complex objects, or it can serve to convert existing sets of data points into use within other complex objects.</p> 
 <p>If the complex objects are passed to the class constructor, they no longer need to be passed in as arguments to the theories. The constructor will be run before each test or theory in the case. Each test method can then use the newly instantiated class variables, which will be re-instantiated before each test is run.</p> 
@@ -396,7 +367,6 @@ Public static var points:Array = [ new Point( 0, 0 ) ];</pre></code>
 	<li>
 		<p>Open the CircleTheory.as file from the previous exercise.</p> 
 		<p>Alternatively, if you didn't complete the previous lesson or your code is not functioning properly, you can import the FlexUnit4Training_wt3.fxp project from the Unit8/Start folder. Please refer to Unit 2: Walkthrough 1 for instructions on importing a Flash Builder project.</p>
-
 		<h3><br />Create a method for testing points on the circle</h3>
 	</li>
 	<li>
@@ -405,70 +375,56 @@ Public static var points:Array = [ new Point( 0, 0 ) ];</pre></code>
 	</li>
 	<li>
 		<p>Add a new method named <code>shouldShowAllPointsEqual()</code> to the class.</p> 
-
 		<code><pre>[Theory]
 public function shouldShowAllPointsEqual(origin:Point):void {
 }		</pre></code>
-		
 	</li>
 	<li>
 		<p>Create a new circle with the function's origin argument and a radius of 10.</p> 
-
 		<code><pre>[Theory]
 public function shouldShowAllPointsEqual(origin:Point):void {
 	var circle:Circle = new Circle(origin, 10);
 }		</pre></code>
-		
 	</li>
 	<li>
 		<p>Call the <code>circle.getPointOnCircle()</code> method with argument <code>Math.PI</code>.</p>
-
 		<code><pre>[Theory]
 public function shouldShowAllPointsEqual( origin:Point ):void {
 	var circle:Circle = new Circle( origin, 10 );
 	var pointOnCircle:Point = circle.getPointOnCircle( Math.PI );
 }		</pre></code>
-	
 	</li>
 	<li>
 		<p>Declare a variable named <code>distance</code> of data type <code>Number</code> within the <code>shouldShowAllPointsEqual()</code> method. Instantiate it to <code>Point.distance( origin, pointOnCircle )</code>.</p>
-
 		<code><pre>[Theory]
 public function shouldShowAllPointsEqual( origin:Point ):void {
 	var circle:Circle = new Circle( origin, 10 );
 	var pointOnCircle:Point = circle.getPointOnCircle( Math.PI );
 	var distance:Number = Point.distance( origin, pointOnCircle );
 }		</pre></code>
-
 	</li>
 	<li>
 		<p>Add a call to the <code>assertThat()</code> method. It should assert that <code>distance</code> variable is <code>closeTo( circle.radius, TOLERANCE )</code>.</p>
-
 		<code><pre>[Theory]
 public function shouldShowAllPointsEqual( origin:Point ):void {
 	var circle:Circle = new Circle( origin, 10 );
 	var pointOnCircle:Point = circle.getPointOnCircle( Math.PI );
 	var distance:Number = Point.distance( origin, pointOnCircle );
-
 	assertThat( distance, closeTo( circle.radius, TOLERANCE ) );
 }		</pre></code>
-		
 		<p>If you did not use code-completion, add the imports for org.flexunit.assertThat and org.hamcrest.number.closeTo at this time.</p>
 	</li>
 	<li>
 		<p>Add a new public static array named <code>points</code> to the class. Initialize the array with six point values, representing a gamut of potential points.</p> 
-
 		<code><pre>public static var points:Array = [ new Point( 0, 0 ),
 					new Point( 10, 10 ),
 					new Point( -5, 5 ),
 					new Point( 20, -20 ),
 					new Point( -17, -16 ),
 					new Point( 5.2, -11.3 ) ];</pre></code>
-		
 	</li>
 	<li>
 		<p>Mark the array with <code>[DataPoints]</code> and <code>[ArrayElementType("flash.geom.Point")]</code> metadata. Place these tags on the two lines above the array:</p>
-
 		<code><pre>[DataPoints]
 [ArrayElementType("flash.geom.Point")]
 public static var points:Array = [ new Point( 0, 0 ),
@@ -477,7 +433,6 @@ public static var points:Array = [ new Point( 0, 0 ),
 					new Point( 20, -20 ),
 					new Point( -17, -16 ),
 					new Point( 5.2, -11.3 ) ];</pre></code>
-					
 	</li>
 	<li>
 		<p>Save CircleTheory.as</p>
@@ -485,27 +440,20 @@ public static var points:Array = [ new Point( 0, 0 ),
 	<li>
 		<p>Run the FlexUnit4Training.mxml file.</p>
 		<p>If FlexUnit4Training.mxml ran successfully you should see the following output in your browser window:</p>
-
 		<img alt='TestsPassed' id='shift' src='../images/unit8/image5.png' /> 
 		<p class='caption' id='shift'>Figure 1: FlexUnit tests passed</p>
-
 		<h3><br />Adding multiple parameters to a theory</h3>
-		
 	</li>
 	<li>
 		<p>Alter the <code>shouldShowAllPointsEqual()</code> method to accept a second parameter named <code>radius</code> of data type <code>Number</code>. The <code>radius</code> parameter will be passed to the circle constructor. You will need to add an <code>assumeThat( radius, greaterThan(0) );</code> statement to the first line of the <code>shouldShowAllPointsEqual()</code> method.</p>
-
 		<code><pre>[Theory]
 public function shouldShowAllPointsEqual( origin:Point, radius:Number ):void {
 	assumeThat( radius, greaterThan( 0 ) );
 	var circle:Circle = new Circle( origin, radius );
 	var pointOnCircle:Point = circle.getPointOnCircle( Math.PI );
-
 	var distance:Number = Point.distance( origin, pointOnCircle );
-
 	assertThat( distance, closeTo( circle.radius, TOLERANCE ) );
 }		</pre></code>
-
 	</li>
 	<li>
 		<p>Save CircleTheory.as</p>
@@ -513,13 +461,10 @@ public function shouldShowAllPointsEqual( origin:Point, radius:Number ):void {
 	<li>
 		<p>Run the FlexUnit4Training.mxml file.</p>
 		<p>If FlexUnit4Training.mxml ran successfully you should see the following output in your browser window:</p>
-
 		<img alt='TestsPassed' id='shift' src='../images/unit8/image5.png' />
 		<p class='caption' id='shift'>Figure 2: FlexUnit tests passed</p>
-		
 		<p>Because the <code>shouldShowAllRadiiEqual()</code> theory passes by constructing valid Circle objects with radius parameters from the radii array, it should be no surprise that the <code>shouldShowAllPointsEqual()</code> method passes using those data points.</p>
 		<p>Valid data points should be consistent for all theories.</p> 
-
 		<h3><br />Add a radians parameter to the test method</h3>
 	</li>
 	<li>
@@ -527,18 +472,14 @@ public function shouldShowAllPointsEqual( origin:Point, radius:Number ):void {
 	</li>
 	<li>
 		<p>Add a parameter to the <code>shouldShowAllPointsEqual()</code> method named <code>radians</code> of data type <code>Number</code>. Alter the <code>circle.getPointOnCircle()</code> method so that it takes <code>radians</code> as its arguments.</p>
-
 		<code><pre>[Theory]
 public function shouldShowAllPointsEqual( origin:Point, radius:Number, radians:Number ):void {
 	assumeThat( radius, greaterThan( 0 ) );
 	var circle:Circle = new Circle( origin, radius );
 	var pointOnCircle:Point = circle.getPointOnCircle( radians );
-
 	var distance:Number = Point.distance( origin, pointOnCircle );
-
 	assertThat( distance, closeTo( circle.radius, TOLERANCE ) );
 }		</pre></code>
-
 	</li>
 	<li>
 		<p>Save CircleTheory.as</p>
@@ -548,10 +489,8 @@ public function shouldShowAllPointsEqual( origin:Point, radius:Number, radians:N
 	</li>
 	<li>
 		<p>If FlexUnit4Training.mxml ran successfully you should see the following output in your browser window:</p>
-
 		<img alt='TestsPassed' id='shift' src='../images/unit8/image5.png' />
 		<p class='caption' id='shift'>Figure 3: FlexUnit tests passed</p>
-		
 		<p>The <code>circle.getPointOnCircle()</code> method should return a valid point on the circle regardless of the value of the radians field. Any number within the radii array should be a valid radians argument, and therefore the theory passes with these data points.</p> 
 	</li>
 </ol>

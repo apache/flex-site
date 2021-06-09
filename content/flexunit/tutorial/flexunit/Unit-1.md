@@ -4,7 +4,7 @@ Title:  Unit 1 - Introducing FlexUnit 4.2.0
 
 FlexUnit 4.2 is an extensible testing framework for ActionScript 3.0 classes and provides extensions for working with the Flex 2, 3, and 4 Framework, and Adobe AIR projects.  The FlexUnit framework is used to automate unit and integration testing.
 
-###Objectives:###
+### Objectives:
 
 After completing this lesson, you should be able to:
 
@@ -13,7 +13,7 @@ After completing this lesson, you should be able to:
   - Understand Fluint 1.x
   - Understand FlexUnit version 4.x
 
-###Topics###
+### Topics
 
 In this unit, you will learn about the following topics:
 
@@ -24,7 +24,7 @@ In this unit, you will learn about the following topics:
   - Understanding the integration between Flash Builder and FlexUnit
   - Getting Help
 
-##Understanding why we test automatically##
+## Understanding why we test automatically
 
 <p>Automated testing is designed to solve several problems:</p>
 <ul> 
@@ -141,46 +141,35 @@ In this unit, you will learn about the following topics:
 	</li>
 	<li>	
 		<p>The screen will change to show new Import method options with either "Import new copy of project" or "Overwrite existing project." Choose "Import new copy of project" and extract the project to your Flash Builder workspace, making sure to replace "LocationContainingFXPFile" and "YourFlexWorkplace" with the location of the FXP file on your machine and your preferred directory for Flex projects.</p>
-		
 		<img alt='ImportingANewProject' id='shift' src='../images/unit1/image3.png' />
 		<p class='caption' id='shift'>Figure 1: Importing a new Flex project</p>
-		
 		<p>In future sections, you will select "Overwrite existing project" instead.</p>
 		<p>Once the project has been imported, it should appear in the Package Explorer on the left.</p>
 	</li>
-	
 	<h3><br />Run the application</h3>
-	
 	<li>
 		<p>In the Package Explorer, expand the src folder's default package double-click the SampleCircleLayout.mxml file to open it.</p>
 	</li>
 	<li>
 		<p>Click on the run button's dropdown arrow to reveal the run menu, choose the SampleCircleLayout option.</p>
-		
 		<img alt='runApplicationButton' id='shift' src='../images/unit1/image4.png' />
 		<p class='caption' id='shift'>Figure 2: Running SampleCircleLayout.mxml</p>
-		
 		<p>If the SampleCircleLayout.mxml ran successfully, you should see the following in your browser window:</p>
-		
 		<img alt='sampleCircleLayout' id='shift' src='../images/unit1/image5.png' />
 		<p class='caption' id='shift'>Figure 3: SampleCircleLayout in the browser</p>
 	</li>
-	
 	<h3><br />Run the tests</h3>
-	
 	<li>
 		<p>In the Package Explorer, expand the src folder's default package and double-click the FlexUnit4Training.mxml file to open it. The contents of this file will be explored in more details in a future unit.</p>
 	</li>
 	<li>	
 		<p>Click on the run button's dropdown arrow to reveal the run menu. Choose the FlexUnit Tests option.</p>
-		
 		<img alt='FlexUnitTests' id='shift' src='../images/unit1/image6.png' />
 		<p class='caption' id='shift'>Figure 4: Running FlexUnit Tests in Flash Builder</p>
 	</li>		 
 	<li>
 		<p>In the FlexUnit Results tab in Flash Builder, click on the plus sign at the start of the math.testcases.BasicCircleTest line, this will expand the test file and show each individual test that passed.</p>
 		<p>If the FlexUnit tests ran successfully, you should see the following output in your FlexUnit Results tab:</p>
-		
 		<img alt='TestsPassed' id='shift' src='../images/unit1/image7.png' />
 		<p class='caption' id='shift'>Figure 5: Five FlexUnit Tests passed</p>
 	</li>		

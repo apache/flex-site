@@ -9,6 +9,7 @@ The Apache FlexJS SDK has some compile-time and run-time dependencies.  Please m
 **Please review the release notes before installing or compiling this release.**
 
 <div class="headline"><h4>Current Release (0.8.0)</h4></div>
+
 The Apache Flex team is pleased to offer this release, available as of 27 June 2017.  Expect lots of bugs and missing features.
 
 Binaries are provided as a convenience for those who do not wish to compile FlexJS themselves.  The 0.8.0 binaries were published on 27 June 2017.
@@ -25,7 +26,7 @@ Binaries are provided as a convenience for those who do not wish to compile Flex
 <div class="headline"><h4>Dependencies</h4></div>
 Apache FlexJS requires some build tools which must be installed prior to building FlexJS.  Some of these have different licenses. See the Software [Dependencies section][15] within the [README][15] for more information on the external software dependencies.  If you plan to compile the sources, it is best to follow the instructions for downloading (and building) [Apache Flex FlexUnit][16] and [Apache Flex FalconJX][17] first.  Click on the links to access instructions for those dependencies.
 
-####General Requirements
+#### General Requirements
 - Java SDK 1.6 or greater
 - ANT 1.7.1 or greater
 - Google Closure Library
@@ -34,11 +35,11 @@ Apache FlexJS requires some build tools which must be installed prior to buildin
 - Apache Flex FlexUnit 4.2 or greater
 - Apache Flex 4.8 or greater
 
-####Software Dependencies
+#### Software Dependencies
 
 The Apache FlexJS framework does not have direct dependencies on third-party software.  Applications built with Apache FlexJS need the Google Closure Library.
 
-####Verify the integrity of the files
+#### Verify the integrity of the files
 
 Apache relies on 3rd party mirrors to distribute their software.  Because these releases are hosted on servers that are not under our control, we strongly recommend that you verify the integrity of the binaries or source code before you install it using the PGP or MD5 signatures listed next to the downloads.  This involves a few extra steps, but it will verify that you are getting a true Apache release.
 
