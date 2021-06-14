@@ -16,7 +16,7 @@ Regular size (302 x 302)
 
 Use this code to embed the regular size badge on your website/blog:
 
-    <iframe name="afSDKInstallBadgeRegular" src="http://flex.apache.org/installerbadge/index.html"
+    <iframe name="afSDKInstallBadgeRegular" src="https://flex.apache.org/installerbadge/index.html"
     frameborder="0" height="302" marginheight="0" marginwidth="0" scrolling="no" width="302"></iframe>
 
 Small size (402 x 84)
@@ -25,7 +25,7 @@ Small size (402 x 84)
 
 Use this code to embed the small size badge on your website/blog:
 
-    <iframe name="afSDKInstallBadgeSmall" src="http://flex.apache.org/installerbadge/index.html"
+    <iframe name="afSDKInstallBadgeSmall" src="https://flex.apache.org/installerbadge/index.html"
     frameborder="0" height="84" marginheight="0" marginwidth="0" scrolling="no" width="402"></iframe>
 
 
