@@ -65,9 +65,11 @@ Title:  Unit 2 - Overview of Testing Terms and Terminology
 <p>To create a test using FlexUnit .9 or Fluint 1, you must extend a specific class and then name each method with the prefix <i>test</i>, such as <i>testMyFunction()</i>. Following this convention formed the basis of using these frameworks.</p>
 <p>Unlike its predecessors, FlexUnit 4 is a metadata driven framework. Rather than using a special naming convention for tests, FlexUnit 4 allows you to decorate a test using metadata.</p>
 
-<code><pre>[Test]
+```
+[Test]
 public function shouldDoThis():void {
-}</pre></code>
+}
+```
 
 <p>This use of metadata removes the need to extend a specific class, or name your methods in a specific way. It provides more flexibility and opportunity.</p>
 <p>There are many metadata tags such as [Test], [Suite] and [Theory] used to mark classes, methods or properties when using FlexUnit 4.</p>
@@ -82,17 +84,27 @@ public function shouldDoThis():void {
 <h2>Assertions</h2>
 
 <p>Assertions are a tool used to reveal whether or not a piece of code is working as expected. They take the form of a strong statement indicating an expected result. For example, if you add the numbers 2 and 3.</p>
-<code><pre>result = 2 + 3;</pre></code>
+
+```
+result = 2 + 3;
+```
+
 <p>You can assert that the result is 5. You do so as you are sure that no other answer is satisfactory and that a different answer is just plain wrong.</p> 
-<code><pre>assertEquals( 5, result );</pre></code>
+
+```
+assertEquals( 5, result );
+```
+
 <p>If this assertion fails, meaning that <code>result</code> is not equal to <code>5</code>, then you can conclude that the plus operator no longer works correctly in all cases. This is the basis of testing.</p>
 
 <h2>Tests</h2>
 
 <p>Ultimately, assertions are the atom of a test. However, an assertion is only applicable to a given condition. The assertion made in the previous section only applies because the numbers 2 and 3 were added.</p> 
 
-<code><pre>result = 2 + 3;
-assertEquals( 5, result );</pre></code>
+```
+result = 2 + 3;
+assertEquals( 5, result );
+```
 
 <p>If instead, the numbers 6 and 7 were added, a different assertion is needed, and this is the point of a test. A test sets up the necessary preconditions in order to make an assertion. Ideally, you will have one test for every possible branch in your class.</p>
 <p>Continuing with the addition example, you would likely have tests to:</p>
@@ -113,7 +125,8 @@ assertEquals( 5, result );</pre></code>
 <p>A test case is a collection of tests contained within one class that is designed to test related functionality. Often, a single test case tests a single class.</p>
 <p>Continuing with the mathematics example, a test case might contain the following collection of test methods:</p>
 
-<code><pre>[Test]
+```
+[Test]
 public function shouldAddTwoPosAndReturnPos() {
 }
 [Test]
@@ -130,17 +143,20 @@ public function shouldReturnSamePosWhenAdd0() {
 }
 [Test]
 public function shouldReturnSameNegWhenAdd0() {
-}</pre></code>
+}
+```
 
 <p>Again, all tests in a given case should be related, either by the fact that they test the same class or the same concept across multiple classes.</p>
 <p>The test case may also specify the order of every test in a test case as well as exclude certain tests from running in specific circumstances. While unit tests may be ordered they should <b>never</b> depend on an order. In other words, if Test A <b>must</b> run before Test B, as Test A does some setup or precondition, you are no longer writing unit tests. Unit tests are isolated, and relationships are not a component of isolation.</p>
 
-<code><pre>[Test(order=1)]
+```
+[Test(order=1)]
 public function shouldReturnSamePosWhenAdd0() {
 }
 [Test(order=2)]
 public function shouldReturnSameNegWhenAdd0() {
-}</pre></code>
+}
+```
 
 <p>As FlexUnit 4.x only executes methods marked with the [Test] metadata as tests, you can also add support methods for doing additional work in your class. This will become clearer as the course continues.</p>
 
@@ -149,12 +165,14 @@ public function shouldReturnSameNegWhenAdd0() {
 <p>The term <i>test fixture</i> refers to a well-known and fixed environment required to run a repeatable test. This environment, also referred to as a <i>test context</i>, is recreated before each test.</p>
 <p>For example, if a given object must exist before your test can run, then that object is part of the test fixture.  A fixture contains everything that must be in a known state before the tests in the test case can be executed.</p>
 
-<code><pre>[Test]
+```
+[Test]
 public function shouldBeBlueSky():void {
 	var sky:Sky = new Sky();
 	sky.color = "blue";
 	assertTrue( sky.color == "blue" );
-}</pre></code>
+}
+```
 
 <p>In the example, the <code>assertTrue()</code> statement checks if the sky's color is blue. Notice that you must first have a Sky object before the value of its color can be tested. It is effectively a precondition to the test.</p>
 <p>A fixture can create objects, set initial values, or perhaps even create substitute (you will learn to call these fake or mock) objects for use during testing. A well-formed test fixture can greatly decrease the time for adding new tests to a test case by factoring out code performed in each test to a common location.</p>
@@ -191,7 +209,6 @@ public function shouldBeBlueSky():void {
 	<li>
 		<p><b>If this is your first time opening the project:</b><br />
 		   Choose "Import new copy of Project" and extract the project to your Flash Builder workspace. Making sure to replace "LocationContainingFXPFile" and "YourFlexWorkspace" with the location of the FXP file on your machine and your preferred directory for Flex projects (See Figure 1).</p>
-
 		<p><b>If you have previously imported the FlexUnit4Training project:</b><br />
 		   Choose "Overwrite existing project" and select the FlexUnit4Training project from the dropdown (See Figure 2).</p>
 		<img alt='ImportFlexProject' id='shift' src='../images/unit2/image1.png' />
@@ -207,7 +224,9 @@ public function shouldBeBlueSky():void {
 	</li>
 	<li>
 		<p>In the <code>&#60;fx:Script&#62;</code> block, you should see the following lines:</p>
-		<code><pre>import math.testcases.BasicCircleTest;
+
+```
+import math.testcases.BasicCircleTest;
 public function currentRunTestSuite():Array {
 	var testsToRun:Array = new Array();
 	testsToRun.push( BasicCircleTest );
@@ -216,49 +235,78 @@ public function currentRunTestSuite():Array {
 private function onCreationComplete():void {
 	testRunner.runWithFlexUnit4Runner(currentRunTestSuite(),
 "FlexUnit4Training");
-}		</pre></code>
-	</li>
+}
+```
+
+</li>
 	<li>
 		<p>To open the <code>BasicCircleTest</code> class, you can either browse to it in the Package Explorer (test/math.testcases.BasicCircleTest), or you can move your mouse over the <code>BasicCircleTest</code> text in the line that reads <code>testsToRun.push( BasicCircleTest )</code>. Press control, when you see the <code>BasicCircleTest</code> turn blue, click on <code>BasicCircleTest</code>. Either way, this will open the <code>BasicCircleTest</code> class in Flash Builder.</p>
 		<img alt='ControlClick' id='shift' src='../images/unit2/image4.png' />
 		<p class='caption' id='shift'>Figure 4: Control Clicking BasicCircleTest</p>
 		<p>The class should read as follows.</p>
-		<code><pre>package math.testcases {	
+
+```
+package math.testcases {	
 	public class BasicCircleTest {		
 	}
-}		</pre></code>
-	</li>
+}
+```
+
+</li>
 	<li>
 		<p>Add a new public function named <code>shouldReturnProvidedRadius()</code> to the class. The function needs to be marked with <code>[Test]</code> metadata, which is placed on the line just above the function.</p>
-		<code><pre>public class BasicCircleTest {		
+
+```
+public class BasicCircleTest {		
 	[Test]
 	public function shouldReturnProvidedRadius():void {
 	}
-}		</pre></code>
-		<p>This function is going to test a method of the <code>Circle</code> class. The <code>Circle</code> object is created by the <code>Circle</code> constructor which takes an origin argument of type <code>Point</code> and a radius argument of data type <code>Number</code>.</p>
-		<code><pre>Circle( origin:Point, radius:Number );</pre></code>
-	</li>
+}
+```
+
+<p>This function is going to test a method of the <code>Circle</code> class. The <code>Circle</code> object is created by the <code>Circle</code> constructor which takes an origin argument of type <code>Point</code> and a radius argument of data type <code>Number</code>.</p>
+
+```
+Circle( origin:Point, radius:Number );
+```
+
+</li>
 	<li>
 		<p>Declare a variable named <code>circle</code> of type <code>Circle</code> in the <code>shouldReturnProvidedRadius()</code> function. This Circle should be instantiated with an origin of <code>(0, 0)</code> and a radius of <code>5</code>.</p>
-		<code><pre>[Test]
+
+```[Test]
 public function shouldReturnProvidedRadius():void {
 	var circle:Circle = new Circle( new Point( 0, 0 ), 5 );
-}		</pre></code>
-		<p>While you are typing <code>Circle</code>, Flash Builder will try to provide possible choices as you type. If you choose one of the items on the pop-up menu (or use the arrow keys and press Enter on the correct option), Flash Builder will complete the name for you and perform one other very important step: importing the class.</p>
+}
+```
+
+<p>While you are typing <code>Circle</code>, Flash Builder will try to provide possible choices as you type. If you choose one of the items on the pop-up menu (or use the arrow keys and press Enter on the correct option), Flash Builder will complete the name for you and perform one other very important step: importing the class.</p>
 		<p>If you choose one of the options on the pop-up menu, Flash Builder adds an import line just above the class definition. This line is an import statement that lets Flash Builder know where the class you are referencing resides. You can think of import statements as more or less the ActionScript equivalent of the namespaces you used in MXML:</p> 
-		<code><pre>import net.digitalprimates.math.Circle;</pre></code>
-		<p>and</p>
-		<code><pre>import flash.geom.Point;</pre></code>
-		<p>If you do not have these lines in your file, you have two options: You can place your cursor right after the closing e in Circle and t in Point and press Ctrl+Spacebar. This will cause Flash Builder to open the code-completion pop-up again. If there is only one matching option, Flash Builder automatically selects it and adds the import for you. Alternatively, you can just type the import statements just inside the package, outside of the class definition.</p>
+
+```
+import net.digitalprimates.math.Circle;
+```
+
+<p>and</p>
+
+```
+import flash.geom.Point;
+```
+
+<p>If you do not have these lines in your file, you have two options: You can place your cursor right after the closing e in Circle and t in Point and press Ctrl+Spacebar. This will cause Flash Builder to open the code-completion pop-up again. If there is only one matching option, Flash Builder automatically selects it and adds the import for you. Alternatively, you can just type the import statements just inside the package, outside of the class definition.</p>
 	</li>
 	<li>
 		<p>Just below the circle instantiation, add a line that calls to the <code>assertEquals()</code> method with arguments <code>5</code> and <code>circle.radius</code>.</p>
-		<code><pre>[Test]
+
+```
+[Test]
 public function shouldReturnProvidedRadius():void {
 	var circle:Circle = new Circle( new Point( 0, 0 ), 5 );
 	assertEquals( 5, circle.radius );
-} 		</pre></code>
-		<p>If you did not use code completion, add the import statement for <code>org.flexunit.asserts.assertEquals</code> at this time. While you may be used to importing classes, <code>assertEquals()</code> is actually a package level function. These are functions that can be addressed directly without an associated class. While this concept may be new to many of you, it is actually used extensively in Flash Player with methods such as <code>trace()</code>, <code>getDefinitionByName()</code> and <code>setInterval()</code>.</p>
+}
+```
+
+<p>If you did not use code completion, add the import statement for <code>org.flexunit.asserts.assertEquals</code> at this time. While you may be used to importing classes, <code>assertEquals()</code> is actually a package level function. These are functions that can be addressed directly without an associated class. While this concept may be new to many of you, it is actually used extensively in Flash Player with methods such as <code>trace()</code>, <code>getDefinitionByName()</code> and <code>setInterval()</code>.</p>
 	</li>
 	<li>
 		<p>Save the BasicCircleTest.as file.</p>
