@@ -1,3 +1,4 @@
+title:  Home Page
 homepage:    true
 
 <!-- Learn Flex Start -->
