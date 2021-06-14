@@ -275,7 +275,7 @@ public function distanceFrom( circle:Circle ):Number {
 ```
 public function equals( circle:Circle ):Boolean {
 	var equal:Boolean = false;
-	if ( ( circle ) && ( this.radius == circle.radius ) && ( this.origin ) &#38;&#38;
+	if ( ( circle ) && ( this.radius == circle.radius ) && ( this.origin ) &&
 	 ( circle.origin ) ) {
 		if ( ( this.origin.x == circle.origin.x ) && ( this.origin.y == circle.origin.y ) ) {
 			equal = true;

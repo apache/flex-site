@@ -878,7 +878,6 @@ package async.testcases {
 	<li>
 		<p>Run the FlexUnit4Training.mxml file.</p>
 		<p>If FlexUnit4Training.mxml ran successfully you should see the following output in your browser window:</p>
-
 		<img alt='TestsPassed' id='shift' src='../images/unit13/image4.png' />
 		<p class='caption' id='shift'>Figure 1: FlexUnit tests passed.</p>
 	</li>
