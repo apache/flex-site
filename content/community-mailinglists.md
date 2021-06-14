@@ -85,43 +85,43 @@ This is where JIRA posts issues and bug reports about Apache Flex.
     - [Markmail][33]
     - [Apache][34]
   
-  [1]:  http://www.apache.org/dev/contrib-email-tips.html
+  [1]:  https://www.apache.org/dev/contrib-email-tips.html
   [2]:  mailto:dev-subscribe@flex.apache.org
   [3]:  mailto:dev@flex.apache.org
   [4]:  mailto:dev-unsubscribe@flex.apache.org
   [18]: mailto:dev-digest-subscribe@flex.apache.org
   [19]: mailto:dev-digest-unsubscribe@flex.apache.org 
-  [5]:  http://markmail.org/search/+list:org.apache.incubator.flex-dev
-  [6]:  http://mail-archives.apache.org/mod_mbox/incubator-flex-dev/
+  [5]:  https://markmail.org/search/+list:org.apache.incubator.flex-dev
+  [6]:  https://mail-archives.apache.org/mod_mbox/incubator-flex-dev/
 
   [7]:  mailto:commits-subscribe@flex.apache.org
   [8]:  mailto:commits-unsubscribe@flex.apache.org
   [20]: mailto:commits-digest-subscribe@flex.apache.org
   [21]: mailto:commits-digest-unsubscribe@flex.apache.org
-  [9]:  http://markmail.org/search/+list:org.apache.incubator.flex-commits
-  [10]: http://mail-archives.apache.org/mod_mbox/incubator-flex-commits/
+  [9]:  https://markmail.org/search/+list:org.apache.incubator.flex-commits
+  [10]: https://mail-archives.apache.org/mod_mbox/incubator-flex-commits/
   
   [11]: mailto:users-subscribe@flex.apache.org
   [12]: mailto:users-unsubscribe@flex.apache.org
   [16]: mailto:users-digest-subscribe@flex.apache.org
   [17]: mailto:users-digest-unsubscribe@flex.apache.org
-  [13]: http://markmail.org/search/+list:org.apache.incubator.flex-users
-  [14]: http://mail-archives.apache.org/mod_mbox/incubator-flex-users/
+  [13]: https://markmail.org/search/+list:org.apache.incubator.flex-users
+  [14]: https://mail-archives.apache.org/mod_mbox/incubator-flex-users/
   [15]: mailto:users@flex.apache.org
 
-  [22]: http://mail-archives.apache.org/mod_mbox/flex-commits/
-  [23]: http://mail-archives.apache.org/mod_mbox/flex-dev/
-  [24]: http://mail-archives.apache.org/mod_mbox/flex-users/
+  [22]: https://mail-archives.apache.org/mod_mbox/flex-commits/
+  [23]: https://mail-archives.apache.org/mod_mbox/flex-dev/
+  [24]: https://mail-archives.apache.org/mod_mbox/flex-users/
   
-  [25]: http://s.apache.org/flex-users-forum
-  [26]: http://apache-flex-users.2333346.n4.nabble.com/template/NamlServlet.jtp?macro=start_registration_page&nextUrl=http%3A%2F%2Fapache-flex-users.2333346.n4.nabble.com%2F
-  [27]: http://s.apache.org/flex-dev-forum
-  [28]: http://apache-flex-development.2333347.n4.nabble.com/template/NamlServlet.jtp?macro=start_registration_page&nextUrl=http%3A%2F%2Fapache-flex-development.2333347.n4.nabble.com%2F
+  [25]: https://s.apache.org/flex-users-forum
+  [26]: https://apache-flex-users.2333346.n4.nabble.com/template/NamlServlet.jtp?macro=start_registration_page&nextUrl=http%3A%2F%2Fapache-flex-users.2333346.n4.nabble.com%2F
+  [27]: https://s.apache.org/flex-dev-forum
+  [28]: https://apache-flex-development.2333347.n4.nabble.com/template/NamlServlet.jtp?macro=start_registration_page&nextUrl=http%3A%2F%2Fapache-flex-development.2333347.n4.nabble.com%2F
   
   [31]: mailto:issues-subscribe@flex.apache.org
   [32]: mailto:issues-unsubscribe@flex.apache.org
   [36]: mailto:issues-digest-subscribe@flex.apache.org
   [37]: mailto:issues-digest-unsubscribe@flex.apache.org
-  [33]: http://markmail.org/search/+list:org.apache.flex-issues
-  [34]: http://mail-archives.apache.org/mod_mbox/flex-issues/
+  [33]: https://markmail.org/search/+list:org.apache.flex-issues
+  [34]: https://mail-archives.apache.org/mod_mbox/flex-issues/
   [35]: mailto:issues@flex.apache.org

@@ -237,7 +237,7 @@ public function shouldGetPointsOnCircle():void
 <p>which is many, many times more useful than the <code>assertTrue()</code> statement's failure message in this same situation:</p>
 <code><pre>"Expected &#60;true&#62; but was &#60;false&#62;."</pre></code>
 <p>This particular assertion uses the <code>is()</code> and <code>between()</code> matchers to create a more readable assertion. These are just two of the many types of matchers offered by Hamcrest. Further, as each matcher is simply a class that implements a specific interface, you are encouraged to create your own matchers to make even the most difficult matching clear inside of your test cases.</p>
-<p>For more information on Hamcrest and extensible matchers, check out the Hamcrest-as3 page on github available at <a class='contentlink' href='http://github.com/drewbourne/hamcrest-as3' target='_blank'>http://github.com/drewbourne/hamcrest-as3</a>.</p>
+<p>For more information on Hamcrest and extensible matchers, check out the Hamcrest-as3 page on github available at <a class='contentlink' href='https://github.com/drewbourne/hamcrest-as3' target='_blank'>https://github.com/drewbourne/hamcrest-as3</a>.</p>
 
 <h2>Understanding the Floating Point Issue</h2>
 

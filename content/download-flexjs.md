@@ -18,10 +18,10 @@ Binaries are provided as a convenience for those who do not wish to compile Flex
 
 - Release Notes : [RELEASE_NOTES][2]
 - README : [README][15]
-- Source (tar.gz) : [apache-flex-flexjs-0.8.0-src.tar.gz][3] [[PGP](http://www.apache.org/dist/flex/flexjs/0.8.0/apache-flex-flexjs-0.8.0-src.tar.gz.asc)] [[MD5](http://www.apache.org/dist/flex/flexjs/0.8.0/apache-flex-flexjs-0.8.0-src.tar.gz.md5)]
-- Source (zip) : [apache-flex-flexjs-0.8.0-src.zip][4] [[PGP](http://www.apache.org/dist/flex/flexjs/0.8.0/apache-flex-flexjs-0.8.0-src.zip.asc)] [[MD5](http://www.apache.org/dist/flex/flexjs/0.8.0/apache-flex-flexjs-0.8.0-src.zip.md5)]
-- Binaries (tar.gz) : [apache-flex-flexjs-0.8.0-bin.tar.gz][7] [[PGP](http://www.apache.org/dist/flex/flexjs/0.8.0/binaries/apache-flex-flexjs-0.8.0-bin.tar.gz.asc)] [[MD5](http://www.apache.org/dist/flex/flexjs/0.8.0/binaries/apache-flex-flexjs-0.8.0-bin.tar.gz.md5)]
-- Binaries (zip) : [apache-flex-flexjs-0.8.0-bin.zip][8] [[PGP](http://www.apache.org/dist/flex/flexjs/0.8.0/binaries/apache-flex-flexjs-0.8.0-bin.zip.asc)] [[MD5](http://www.apache.org/dist/flex/flexjs/0.8.0/binaries/apache-flex-flexjs-0.8.0-bin.zip.md5)]
+- Source (tar.gz) : [apache-flex-flexjs-0.8.0-src.tar.gz][3] [[PGP](https://www.apache.org/dist/flex/flexjs/0.8.0/apache-flex-flexjs-0.8.0-src.tar.gz.asc)] [[MD5](https://www.apache.org/dist/flex/flexjs/0.8.0/apache-flex-flexjs-0.8.0-src.tar.gz.md5)]
+- Source (zip) : [apache-flex-flexjs-0.8.0-src.zip][4] [[PGP](https://www.apache.org/dist/flex/flexjs/0.8.0/apache-flex-flexjs-0.8.0-src.zip.asc)] [[MD5](https://www.apache.org/dist/flex/flexjs/0.8.0/apache-flex-flexjs-0.8.0-src.zip.md5)]
+- Binaries (tar.gz) : [apache-flex-flexjs-0.8.0-bin.tar.gz][7] [[PGP](https://www.apache.org/dist/flex/flexjs/0.8.0/binaries/apache-flex-flexjs-0.8.0-bin.tar.gz.asc)] [[MD5](https://www.apache.org/dist/flex/flexjs/0.8.0/binaries/apache-flex-flexjs-0.8.0-bin.tar.gz.md5)]
+- Binaries (zip) : [apache-flex-flexjs-0.8.0-bin.zip][8] [[PGP](https://www.apache.org/dist/flex/flexjs/0.8.0/binaries/apache-flex-flexjs-0.8.0-bin.zip.asc)] [[MD5](https://www.apache.org/dist/flex/flexjs/0.8.0/binaries/apache-flex-flexjs-0.8.0-bin.zip.md5)]
 
 <div class="headline"><h4>Dependencies</h4></div>
 Apache FlexJS requires some build tools which must be installed prior to building FlexJS.  Some of these have different licenses. See the Software [Dependencies section][15] within the [README][15] for more information on the external software dependencies.  If you plan to compile the sources, it is best to follow the instructions for downloading (and building) [Apache Flex FlexUnit][16] and [Apache Flex FalconJX][17] first.  Click on the links to access instructions for those dependencies.
@@ -65,16 +65,16 @@ The PGP signatures can be verified using PGP or GPG. First download the [KEYS][1
 Alternatively, you can verify the MD5 signature on the files. A unix/Mac program called `md5` or `md5sum` is included in many unix distributions. It is also available as part of [GNU Textutils][11]. Windows users can get binary md5 programs from [here][12] , [here][13] , or [here][14]. An MD5 signature consists of 32 hex characters, and a SHA1 signature consists of 40 hex characters. Ensure your generated signature string matches the signature string published in the files above.
 
 
-[2]: http://www.apache.org/dyn/closer.lua/flex/flexjs/0.8.0/RELEASE_NOTES
-[3]: http://www.apache.org/dyn/closer.lua/flex/flexjs/0.8.0/apache-flex-flexjs-0.8.0-src.tar.gz
-[4]: http://www.apache.org/dyn/closer.lua/flex/flexjs/0.8.0/apache-flex-flexjs-0.8.0-src.zip
-[7]: http://www.apache.org/dyn/closer.lua/flex/flexjs/0.8.0/binaries/apache-flex-flexjs-0.8.0-bin.tar.gz
-[8]: http://www.apache.org/dyn/closer.lua/flex/flexjs/0.8.0/binaries/apache-flex-flexjs-0.8.0-bin.zip
-[10]: http://www.apache.org/dist/flex/KEYS
-[11]: http://www.gnu.org/software/textutils/textutils.html
-[12]: http://www.fourmilab.ch/md5/
-[13]: http://www.pc-tools.net/win32/freeware/console/
-[14]: http://www.slavasoft.com/fsum/
-[15]: http://www.apache.org/dyn/closer.lua/flex/flexjs/0.8.0/READme
-[16]: http://flex.apache.org/download-flexunit.html
-[17]: http://flex.apache.org/download-falconjx.html
+[2]: https://www.apache.org/dyn/closer.lua/flex/flexjs/0.8.0/RELEASE_NOTES
+[3]: https://www.apache.org/dyn/closer.lua/flex/flexjs/0.8.0/apache-flex-flexjs-0.8.0-src.tar.gz
+[4]: https://www.apache.org/dyn/closer.lua/flex/flexjs/0.8.0/apache-flex-flexjs-0.8.0-src.zip
+[7]: https://www.apache.org/dyn/closer.lua/flex/flexjs/0.8.0/binaries/apache-flex-flexjs-0.8.0-bin.tar.gz
+[8]: https://www.apache.org/dyn/closer.lua/flex/flexjs/0.8.0/binaries/apache-flex-flexjs-0.8.0-bin.zip
+[10]: https://www.apache.org/dist/flex/KEYS
+[11]: https://www.gnu.org/software/textutils/textutils.html
+[12]: https://www.fourmilab.ch/md5/
+[13]: https://www.pc-tools.net/win32/freeware/console/
+[14]: https://www.slavasoft.com/fsum/
+[15]: https://www.apache.org/dyn/closer.lua/flex/flexjs/0.8.0/READme
+[16]: /download-flexunit.html
+[17]: /download-falconjx.html

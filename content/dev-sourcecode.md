@@ -70,15 +70,15 @@ If you would like to browse the project progress before downloading the source c
 * [BlazeDS][17]
 
 
-[1]: http://git-scm.com/
+[1]: https://git-scm.com/
 [2]: https://git-wip-us.apache.org/repos/asf/flex-sdk/repo?p=flex-sdk.git;a=summary
-[3]: http://www.atlassian.com/git/tutorial/git-basics
-[4]: http://flex.apache.org/flexunit/tutorial/
-[5]: http://mockolate.org/
+[3]: https://www.atlassian.com/git/tutorial/git-basics
+[4]: /flexunit/tutorial/
+[5]: https://mockolate.org/
 [6]: https://cwiki.apache.org/confluence/display/FLEX/Mustella+Overview
 [7]: https://git-wip-us.apache.org/
 [8]: https://git-wip-us.apache.org/docs/committer-practices.html
-[9]: http://nvie.com/posts/a-successful-git-branching-model/
+[9]: https://nvie.com/posts/a-successful-git-branching-model/
 [10]: https://fisheye6.atlassian.com/
 [11]: https://fisheye6.atlassian.com/graph/flex-sdk
 [12]: https://fisheye6.atlassian.com/graph/flex-tlf

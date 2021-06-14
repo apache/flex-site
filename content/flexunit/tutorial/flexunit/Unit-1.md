@@ -183,7 +183,7 @@ In this unit, you will learn about the following topics:
 <p>The Download page includes links for the FlexUnit project code on GitHub.</p>
 
 <ul>
-	<li><a class='contentlink' href='http://flex.apache.org' target='_blank'>Apache Flex / FlexUnit Website</a></li>
+	<li><a class='contentlink' href='/' target='_blank'>Apache Flex / FlexUnit Website</a></li>
 </ul>
 
 <h3 id="mailingList">Mailing List</h3>
@@ -201,15 +201,15 @@ In this unit, you will learn about the following topics:
 <p>The Flex users forum is a mirror of the Flex users mailing list and contains topics including FlexUnit. All posts to the forum are mailed to the mailing list, and all messages sent to the mailing list are posted on the forum.</p>
 
 <ul>
-<li><a href="http://s.apache.org/flex-users-forum">Users Forum</a></li>
-<li><a href="http://apache-flex-users.2333346.n4.nabble.com/template/NamlServlet.jtp?macro=start_registration_page&nextUrl=http%3A%2F%2Fapache-flex-users.2333346.n4.nabble.com%2F">Register</a> </li>
+<li><a href="https://s.apache.org/flex-users-forum">Users Forum</a></li>
+<li><a href="https://apache-flex-users.2333346.n4.nabble.com/template/NamlServlet.jtp?macro=start_registration_page&nextUrl=http%3A%2F%2Fapache-flex-users.2333346.n4.nabble.com%2F">Register</a> </li>
 </ul>
 
 <h3>Tender</h3>
 
 <p>The Tenderapp aggregates questions and concerns we have seen over years of supporting and developing FlexUnit 4.x.  This is a great place for historical information and information on previous releases.  New questions should be posted on the Flex Users Mailing list.</p>
 <ul>
-	<li><a class='contentlink' href='http://flexunit.tenderapp.com/' target='_blank'>Historical FlexUnit Support via Tenderapp</a></li>
+	<li><a class='contentlink' href='https://flexunit.tenderapp.com/' target='_blank'>Historical FlexUnit Support via Tenderapp</a></li>
 </ul>
 
 <h2>Summary</h2>
@@ -219,9 +219,9 @@ In this unit, you will learn about the following topics:
 	<li>FlexUnit 4.x is an open source unit testing framework for Flex and ActionScript 3.0. It is integrated into the Flash Builder 4 IDE and was built on the strengths of its predecessors, FlexUnit .9 and Fluint.</li>
 	<li>For help and additional information on FlexUnit 4.x:</li>
 	<ul>
-		<li><a class='contentlink' href='http://flex.apache.org' target='_blank'>http://flex.apache.org</a></li>
+		<li><a class='contentlink' href='/' target='_blank'>https://flex.apache.org</a></li>
         <li><a href="#mailingList">Join the mailing list</a></li>
-		<li><a class='contentlink' href='http://flexunit.tenderapp.com' target='_blank'>http://flexunit.tenderapp.com</a></li>
+		<li><a class='contentlink' href='https://flexunit.tenderapp.com' target='_blank'>https://flexunit.tenderapp.com</a></li>
 	</ul>
 </ul>	
 

@@ -18,10 +18,10 @@ Binaries are provided as a convenience for those who do not wish to compile Flex
 
 - Release Notes : [RELEASE_NOTES][2]
 - README : [README][15]
-- Source (tar.gz) : [apache-flex-flexunit-4.2.0-4.12.0-src.tar.gz][3] [[PGP](http://www.apache.org/dist/flex/flexunit/4.2.0/apache-flex-flexunit-4.2.0-4.12.0-src.tar.gz.asc)] [[MD5](http://www.apache.org/dist/flex/flexunit/4.2.0/apache-flex-flexunit-4.2.0-4.12.0-src.tar.gz.md5)]
-- Source (zip) : [apache-flex-flexunit-4.2.0-4.12.0-src.zip][4] [[PGP](http://www.apache.org/dist/flex/flexunit/4.2.0/apache-flex-flexunit-4.2.0-4.12.0-src.zip.asc)] [[MD5](http://www.apache.org/dist/flex/flexunit/4.2.0/apache-flex-flexunit-4.2.0-4.12.0-src.zip.md5)]
-- Binaries (tar.gz) : [apache-flex-flexunit-4.2.0-4.12.0-bin.tar.gz][7] [[PGP](http://www.apache.org/dist/flex/flexunit/4.2.0/binaries/apache-flex-flexunit-4.2.0-4.12.0-bin.tar.gz.asc)] [[MD5](http://www.apache.org/dist/flex/flexunit/4.2.0/binaries/apache-flex-flexunit-4.2.0-4.12.0-bin.tar.gz.md5)]
-- Binaries (zip) : [apache-flex-flexunit-4.2.0-bin.zip][8] [[PGP](http://www.apache.org/dist/flex/flexunit/4.2.0/binaries/apache-flex-flexunit-4.2.0-4.12.0-bin.zip.asc)] [[MD5](http://www.apache.org/dist/flex/flexunit/4.2.0/binaries/apache-flex-flexunit-4.2.0-4.12.0-bin.zip.md5)]
+- Source (tar.gz) : [apache-flex-flexunit-4.2.0-4.12.0-src.tar.gz][3] [[PGP](https://www.apache.org/dist/flex/flexunit/4.2.0/apache-flex-flexunit-4.2.0-4.12.0-src.tar.gz.asc)] [[MD5](https://www.apache.org/dist/flex/flexunit/4.2.0/apache-flex-flexunit-4.2.0-4.12.0-src.tar.gz.md5)]
+- Source (zip) : [apache-flex-flexunit-4.2.0-4.12.0-src.zip][4] [[PGP](https://www.apache.org/dist/flex/flexunit/4.2.0/apache-flex-flexunit-4.2.0-4.12.0-src.zip.asc)] [[MD5](https://www.apache.org/dist/flex/flexunit/4.2.0/apache-flex-flexunit-4.2.0-4.12.0-src.zip.md5)]
+- Binaries (tar.gz) : [apache-flex-flexunit-4.2.0-4.12.0-bin.tar.gz][7] [[PGP](https://www.apache.org/dist/flex/flexunit/4.2.0/binaries/apache-flex-flexunit-4.2.0-4.12.0-bin.tar.gz.asc)] [[MD5](https://www.apache.org/dist/flex/flexunit/4.2.0/binaries/apache-flex-flexunit-4.2.0-4.12.0-bin.tar.gz.md5)]
+- Binaries (zip) : [apache-flex-flexunit-4.2.0-bin.zip][8] [[PGP](https://www.apache.org/dist/flex/flexunit/4.2.0/binaries/apache-flex-flexunit-4.2.0-4.12.0-bin.zip.asc)] [[MD5](https://www.apache.org/dist/flex/flexunit/4.2.0/binaries/apache-flex-flexunit-4.2.0-4.12.0-bin.zip.md5)]
 
 <div class="headline"><h4>Dependencies</h4></div>
 
@@ -39,13 +39,13 @@ Version 2.0 license.  These can be downloaded via the ANT script included in the
 
 (jars)
 
-- ant -  [Download](http://search.maven.org/remotecontent?filepath=org/apache/ant/ant/1.7.1/ant-1.7.1.jar) (Apache 2.0 License)
-- ant-contrib - [Download](http://search.maven.org/remotecontent?filepath=ant-contrib/ant-contrib/1.0b3/ant-contrib-1.0b3.jar) (Apache 2.0 License)
-- ant-launcher -  [Download](http://search.maven.org/remotecontent?filepath=org/apache/ant/ant-launcher/1.7.1/ant-launcher-1.7.1.jar) (Apache 2.0 License)
-- ant-testutil -  [Download](http://search.maven.org/remotecontent?filepath=org/apache/ant/ant-testutil/1.7.1/ant-testutil-1.7.1.jar)	(Apache 2.0 License)
-- maven-ant-tasks  - [Download](http://search.maven.org/remotecontent?filepath=org/apache/maven/maven-ant-tasks/2.1.3/maven-ant-tasks-2.1.3.jar) (Apache 2.0 License)
-- dom4j - [Download](http://search.maven.org/remotecontent?filepath=dom4j/dom4j/1.6.1/dom4j-1.6.1.jar) (BSD License)
-- jaxen - [Download](http://search.maven.org/remotecontent?filepath=jaxen/jaxen/1.1-beta-6/jaxen-1.1-beta-6.jar) (BSD License)
+- ant -  [Download](https://search.maven.org/remotecontent?filepath=org/apache/ant/ant/1.7.1/ant-1.7.1.jar) (Apache 2.0 License)
+- ant-contrib - [Download](https://search.maven.org/remotecontent?filepath=ant-contrib/ant-contrib/1.0b3/ant-contrib-1.0b3.jar) (Apache 2.0 License)
+- ant-launcher -  [Download](https://search.maven.org/remotecontent?filepath=org/apache/ant/ant-launcher/1.7.1/ant-launcher-1.7.1.jar) (Apache 2.0 License)
+- ant-testutil -  [Download](https://search.maven.org/remotecontent?filepath=org/apache/ant/ant-testutil/1.7.1/ant-testutil-1.7.1.jar)	(Apache 2.0 License)
+- maven-ant-tasks  - [Download](https://search.maven.org/remotecontent?filepath=org/apache/maven/maven-ant-tasks/2.1.3/maven-ant-tasks-2.1.3.jar) (Apache 2.0 License)
+- dom4j - [Download](https://search.maven.org/remotecontent?filepath=dom4j/dom4j/1.6.1/dom4j-1.6.1.jar) (BSD License)
+- jaxen - [Download](https://search.maven.org/remotecontent?filepath=jaxen/jaxen/1.1-beta-6/jaxen-1.1-beta-6.jar) (BSD License)
 
 <br/ >(swcs)
 
@@ -53,13 +53,13 @@ Version 2.0 license.  These can be downloaded via the ANT script included in the
 - fluint - [Download](https://github.com/flexunit/flexunit/raw/master/FlexUnit4Test/libs/fluint-1_2.swc) (MIT License)
 - mockolate - [Download](https://github.com/downloads/drewbourne/mockolate/mockolate-0.9.5.zip) (MIT License)
 - mock-as - [Download](https://github.com/flexunit/flexunit/raw/master/FlexUnit4Test/libs/mock-as3.swc) (BSD License)
-- hamcrest - [Download](http://cloud.github.com/downloads/drewbourne/hamcrest-as3/hamcrest-as3-flex-1.1.3.zip) (BSD License)
+- hamcrest - [Download](https://cloud.github.com/downloads/drewbourne/hamcrest-as3/hamcrest-as3-flex-1.1.3.zip) (BSD License)
 - flexunit1lib - [Download](https://github.com/flexunit/flexunit/raw/master/FlexUnit4Test/libs/FlexUnit1Lib.swc) (BSD License)
 
 <br/ >The following dependencies have licenses which Apache considers to be reciprocal licenses so you will be prompted to acknowledge the license before the software is downloaded to your system.
 
-- junit - [Download](http://search.maven.org/remotecontent?filepath=junit/junit/3.8.1/junit-3.8.1.jar) (License - CPL 1.0)
-- saxon9he - [Download](http://search.maven.org/remotecontent?filepath=net/sf/saxon/Saxon-HE/9.4/Saxon-HE-9.4.jar) (License - MPL 1.1)
+- junit - [Download](https://search.maven.org/remotecontent?filepath=junit/junit/3.8.1/junit-3.8.1.jar) (License - CPL 1.0)
+- saxon9he - [Download](https://search.maven.org/remotecontent?filepath=net/sf/saxon/Saxon-HE/9.4/Saxon-HE-9.4.jar) (License - MPL 1.1)
 
 <br/ >All of the above dependencies can automatically be downloaded via the following ANT command :
 
@@ -92,14 +92,14 @@ The PGP signatures can be verified using PGP or GPG. First download the [KEYS][1
 Alternatively, you can verify the MD5 signature on the files. A unix/Mac program called `md5` or `md5sum` is included in many unix distributions. It is also available as part of [GNU Textutils][11]. Windows users can get binary md5 programs from [here][12] , [here][13] , or [here][14]. An MD5 signature consists of 32 hex characters, and a SHA1 signature consists of 40 hex characters. Ensure your generated signature string matches the signature string published in the files above.
 
 
-[2]: http://www.apache.org/dyn/closer.lua/flex/flexunit/4.2.0/RELEASE_NOTES
-[3]: http://www.apache.org/dyn/closer.lua/flex/flexunit/4.2.0/apache-flex-flexunit-4.2.0-4.12.0-src.tar.gz
-[4]: http://www.apache.org/dyn/closer.lua/flex/flexunit/4.2.0/apache-flex-flexunit-4.2.0-4.12.0-src.zip
-[7]: http://www.apache.org/dyn/closer.lua/flex/flexunit/4.2.0/binaries/apache-flex-flexunit-4.2.0-4.12.0-bin.tar.gz
-[8]: http://www.apache.org/dyn/closer.lua/flex/flexunit/4.2.0/binaries/apache-flex-flexunit-4.2.0-4.12.0-bin.zip
-[10]: http://www.apache.org/dist/flex/KEYS
-[11]: http://www.gnu.org/software/textutils/textutils.html
-[12]: http://www.fourmilab.ch/md5/
-[13]: http://www.pc-tools.net/win32/freeware/console/
-[14]: http://www.slavasoft.com/fsum/
-[15]: http://www.apache.org/dyn/closer.lua/flex/flexunit/4.2.0/README
+[2]: https://www.apache.org/dyn/closer.lua/flex/flexunit/4.2.0/RELEASE_NOTES
+[3]: https://www.apache.org/dyn/closer.lua/flex/flexunit/4.2.0/apache-flex-flexunit-4.2.0-4.12.0-src.tar.gz
+[4]: https://www.apache.org/dyn/closer.lua/flex/flexunit/4.2.0/apache-flex-flexunit-4.2.0-4.12.0-src.zip
+[7]: https://www.apache.org/dyn/closer.lua/flex/flexunit/4.2.0/binaries/apache-flex-flexunit-4.2.0-4.12.0-bin.tar.gz
+[8]: https://www.apache.org/dyn/closer.lua/flex/flexunit/4.2.0/binaries/apache-flex-flexunit-4.2.0-4.12.0-bin.zip
+[10]: https://www.apache.org/dist/flex/KEYS
+[11]: https://www.gnu.org/software/textutils/textutils.html
+[12]: https://www.fourmilab.ch/md5/
+[13]: https://www.pc-tools.net/win32/freeware/console/
+[14]: https://www.slavasoft.com/fsum/
+[15]: https://www.apache.org/dyn/closer.lua/flex/flexunit/4.2.0/README

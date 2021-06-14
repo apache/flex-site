@@ -82,7 +82,7 @@ This is a very simple, generic hello world application.  You can learn a lot mor
 The complete code listing is (there may be some variations, depending on your IDE template. Just make sure what we talked about above match) :
 
     <?xml version="1.0" encoding="utf-8"?>
-    <s:Application xmlns:fx="http://ns.adobe.com/mxml/2009"
+    <s:Application xmlns:fx="https://ns.adobe.com/mxml/2009"
                    xmlns:s="library://ns.adobe.com/flex/spark"
                    xmlns:mx="library://ns.adobe.com/flex/mx" width="640" height="480">
 
@@ -101,17 +101,17 @@ The complete code listing is (there may be some variations, depending on your ID
 *  There are a large variety of books available online.  One of our favorites is from Michael Labriola and Jeff Tapper (both Apache Flex Committers).  [Amazon Link to book][6]
 *  There are quite a few people that blog about Flex.  Check out the [official blog of Apache Flex][14], [FlashDaily.net][7] and [Adobe Feeds for Apache Flex][9]
 
- [1]:  http://www.adobe.com/products/flash-builder-family.html
- [2]:  http://www.jetbrains.com/idea/
+ [1]:  https://www.adobe.com/products/flash-builder-family.html
+ [2]:  https://www.jetbrains.com/idea/
  [3]:  community-mailinglists.html
  [4]:  installer.html
  [5]:  doc-videos.html
- [6]:  http://www.amazon.com/Adobe-Flex-4-5-Fundamentals-ebook/dp/B005EFKGCS/
- [7]:  http://flashdaily.net/tagged/apacheflex
+ [6]:  https://www.amazon.com/Adobe-Flex-4-5-Fundamentals-ebook/dp/B005EFKGCS/
+ [7]:  https://flashdaily.net/tagged/apacheflex
  [8]:  https://cwiki.apache.org/confluence/display/FLEX/Adobe+Flash+Builder+'New+Project'+Bug
- [9]:  http://feeds.adobe.com/index.cfm?query=bySmartCategory&smartCategoryId=5
+ [9]:  https://feeds.adobe.com/index.cfm?query=bySmartCategory&smartCategoryId=5
  [10]: https://cwiki.apache.org/confluence/display/FLEX/2.3+FlashDevelop
- [11]: http://www.flashdevelop.org/
- [12]: http://vimeo.com/46898669
- [13]: http://fdt.powerflasher.com/
+ [11]: https://www.flashdevelop.org/
+ [12]: https://vimeo.com/46898669
+ [13]: https://fdt.powerflasher.com/
  [14]: https://blogs.apache.org/flex/

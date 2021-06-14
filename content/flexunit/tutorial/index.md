@@ -13,8 +13,8 @@ This course is divided into units, most of which present new information and con
 
 To gain the most from this class, you should already:
 
-   * Be comfortable [building applications](http://flex.apache.org/doc-getstarted.html) in Flex
-   * Be familiar with both [AS3 and MXML](http://help.adobe.com/en_US/flex/using/index.html)
+   * Be comfortable [building applications](/doc-getstarted.html) in Flex
+   * Be familiar with both [AS3 and MXML](https://help.adobe.com/en_US/flex/using/index.html)
 
 ### Tutorial Units:
 

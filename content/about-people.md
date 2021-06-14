@@ -3,7 +3,7 @@ Title: Community Faces
 <!-- Standard Structure -->
 <div class="span8">
 <div class="headline"><h4>Community Faces</h4></div>
-<p>Apache Flex® is updated and maintained by a large group of individuals, including you.  Your contributions, whether just using Flex, or reporting bugs or proposing patches to code and documentation are a welcome part of making Flex better.  Certain individuals can earn committer rights and eventually earn membership in the Project Management Committee.  Here are some of the committers and PMC members.  Find them on the mailing lists and elsewhere talking about Flex.  If you are looking for support, please contact us on the <a href="http://flex.staging.apache.org/community-mailinglists.html">mailing lists</a> or open a ticket in our bug tracking system (<a href="https://issues.apache.org/jira/browse/FLEX">JIRA</a>).
+<p>Apache Flex® is updated and maintained by a large group of individuals, including you.  Your contributions, whether just using Flex, or reporting bugs or proposing patches to code and documentation are a welcome part of making Flex better.  Certain individuals can earn committer rights and eventually earn membership in the Project Management Committee.  Here are some of the committers and PMC members.  Find them on the mailing lists and elsewhere talking about Flex.  If you are looking for support, please contact us on the <a href="/community-mailinglists.html">mailing lists</a> or open a ticket in our bug tracking system (<a href="https://issues.apache.org/jira/browse/FLEX">JIRA</a>).
 </div>
 
 <div class="span4">
@@ -52,11 +52,11 @@ run without Flash and AIR.</p></div>
 
 <!-- Social Icons -->
 <ul class="social-icons">
-<li class="twitter"><a href="http://www.twitter.com/carlosrovira">Twitter</a></li>
-<li class="github"><a href="http://www.github.com/carlosrovira">Github</a></li>
-<li class="linkedin"><a href="http://es.linkedin.com/in/carlosrovira/">LinkedIn</a></li>
+<li class="twitter"><a href="https://www.twitter.com/carlosrovira">Twitter</a></li>
+<li class="github"><a href="https://www.github.com/carlosrovira">Github</a></li>
+<li class="linkedin"><a href="https://es.linkedin.com/in/carlosrovira/">LinkedIn</a></li>
 <li class="googleplus"><a href="https://plus.google.com/115670167046758349523">Google Plus</a></li>
-<li class="rss"><a href="http://www.carlosrovira.com/blog/feed/">RSS</a></li>
+<li class="rss"><a href="https://www.carlosrovira.com/blog/feed/">RSS</a></li>
 </ul>
 
 </div>
@@ -70,7 +70,7 @@ run without Flash and AIR.</p></div>
 
 <!-- Social Icons -->
 <ul class="social-icons">
-<li class="linkedin"><a href="http://www.linkedin.com/in/carolframpton">LinkedIn</a></li>
+<li class="linkedin"><a href="https://www.linkedin.com/in/carolframpton">LinkedIn</a></li>
 </ul>
 
 </div>
@@ -83,9 +83,9 @@ run without Flash and AIR.</p></div>
 
 <!-- Social Icons -->
 <ul class="social-icons">
-<li class="twitter"><a href="http://www.twitter.com/jbalsas">Twitter</a></li>
-<li class="github"><a href="http://www.github.com/jbalsas">Github</a></li>
-<li class="linkedin"><a href="http://www.linkedin.com/in/jbalsas">LinkedIn</a></li>
+<li class="twitter"><a href="https://www.twitter.com/jbalsas">Twitter</a></li>
+<li class="github"><a href="https://www.github.com/jbalsas">Github</a></li>
+<li class="linkedin"><a href="https://www.linkedin.com/in/jbalsas">LinkedIn</a></li>
 <li class="googleplus"><a href="https://plus.google.com/109872083963647761639">Google Plus</a></li>
 </ul>
 
@@ -106,9 +106,9 @@ run without Flash and AIR.</p></div>
 
 <!-- Social Icons -->
 <ul class="social-icons">
-<li class="twitter"><a href="http://de.twitter.com/ChristoferDutz">Twitter</a></li>
-<li class="github"><a href="http://github.com/chrisdutz">Github</a></li>
-<li class="linkedin"><a href="http://www.linkedin.com/pub/christofer-dutz/49/9b6/424">LinkedIn</a></li>
+<li class="twitter"><a href="https://de.twitter.com/ChristoferDutz">Twitter</a></li>
+<li class="github"><a href="https://github.com/chrisdutz">Github</a></li>
+<li class="linkedin"><a href="https://www.linkedin.com/pub/christofer-dutz/49/9b6/424">LinkedIn</a></li>
 </ul>
 
 </div>
@@ -119,11 +119,11 @@ run without Flash and AIR.</p></div>
 <div class="team-about"><p>Chris has been doing Flex UI development since Flex 2 and is very excited to be apart of the Apache Flex Team. With the Apache Flex Team, he feels that the Flex SDK has a bright future. He looks to help with the flex sdk bug verification and patching.</p></div>
  <!-- Social Icons -->
 <ul class="social-icons">
-<li class="twitter"><a href="http://www.twitter.com/chrsmrtn">Twitter</a></li>
-<li class="github"><a href="http://www.github.com/chrsmrtn-">Github</a></li>
-<li class="linkedin"><a href="http://es.linkedin.com/in/chrsmrtn/">LinkedIn</a></li>
+<li class="twitter"><a href="https://www.twitter.com/chrsmrtn">Twitter</a></li>
+<li class="github"><a href="https://www.github.com/chrsmrtn-">Github</a></li>
+<li class="linkedin"><a href="https://es.linkedin.com/in/chrsmrtn/">LinkedIn</a></li>
 <li class="googleplus"><a href="https://plus.google.com/+chrismartinplus">Google Plus</a></li>
-<li class="wordpress"><a href="http://chrsmrtn.azurewebsites.net">Blog</a></li>
+<li class="wordpress"><a href="https://chrsmrtn.azurewebsites.net">Blog</a></li>
 </ul>
 </div>
 <!-- About DarkStone -->
@@ -167,7 +167,7 @@ run without Flash and AIR.</p></div>
 
 <!-- Social Icons -->
 <ul class="social-icons">
-<li class="linkedin"><a href="http://www.linkedin.com/pub/erik-de-bruin/1/281/176">LinkedIn</a></li>
+<li class="linkedin"><a href="https://www.linkedin.com/pub/erik-de-bruin/1/281/176">LinkedIn</a></li>
 </ul>
 
 </div>
@@ -179,7 +179,7 @@ run without Flash and AIR.</p></div>
 
 <!-- Social Icons -->
 <ul class="social-icons">
-<li class="linkedin"><a href="http://uk.linkedin.com/in/espenskogen">LinkedIn</a></li>
+<li class="linkedin"><a href="https://uk.linkedin.com/in/espenskogen">LinkedIn</a></li>
 </ul>
 
 </div>
@@ -192,7 +192,7 @@ run without Flash and AIR.</p></div>
 
 <!-- Social Icons -->
 <ul class="social-icons">
-<li class="twitter"><a href="http://www.twitter.com/webdoublefx">Twitter</a></li>
+<li class="twitter"><a href="https://www.twitter.com/webdoublefx">Twitter</a></li>
 <li class="googleplus"><a href="https://plus.google.com/116545614452242070442/posts">Google Plus</a></li>
 </ul>
 
@@ -240,7 +240,7 @@ Since 2010 he has been part of the compiler team at Adobe.
 <div class="staff"><h5>Harbs</h5> <span><i class="icon-tag"></i> harbs (C+P)</span></div>
 <div class="team-about"><p>
 Harbs comes from a print background and his primary interest is in publishing. He keeps himself busy with his multiple technology businesses: 
-<a href="http://in-tools.com">In-Tools</a>, <a href="http://printui.com">PrintUI</a> and <a href="http://unhurdle.com/">UnHurdle</a>. 
+<a href="https://in-tools.com">In-Tools</a>, <a href="https://printui.com">PrintUI</a> and <a href="https://unhurdle.com/">UnHurdle</a>. 
 All three businesses rely heavily on Flex as one of the active technologies, so Harbs has a strong interest in Flex.
 <br/><br/>
 Harbs also spends his time studying Talmud, and with his wife and kids. If there's any time left, he gets a bit of sleep.
@@ -248,10 +248,10 @@ Harbs also spends his time studying Talmud, and with his wife and kids. If there
 
 <!-- Social Icons -->
 <ul class="social-icons">
-<li class="facebook"><a href="http://www.facebook.com/gharbs">Facebook</a></li>
-<li class="linkedin"><a href="http://www.linkedin.com/profile/view?id=46698545">LinkedIn</a></li>
+<li class="facebook"><a href="https://www.facebook.com/gharbs">Facebook</a></li>
+<li class="linkedin"><a href="https://www.linkedin.com/profile/view?id=46698545">LinkedIn</a></li>
 <li class="github"><a href="https://github.com/Harbs">GitHub</a></li>
-<li class="twitter"><a href="http://www.twitter.com/intools">Twitter</a></li>
+<li class="twitter"><a href="https://www.twitter.com/intools">Twitter</a></li>
 </ul>
 
 </div>
@@ -261,25 +261,25 @@ Harbs also spends his time studying Talmud, and with his wife and kids. If there
 <img src="images/headshots/jhouser.jpg" alt="" class="img-circle" />
 <div class="staff"><h5>Jeffry Houser</h5> <span><i class="icon-tag"></i> jhouser (C+P)</span></div>
 <div class="team-about"><p>
-<a href="http://www.jeffryhouser.com">Jeffry Houser</a> is a technical entrepreneur that likes to share cool stuff with other people. 
-Jeffry is the Brains behind <a href="http://www.flextras.com">Flextras</a>, a library of Open Source Flex Components 
+<a href="https://www.jeffryhouser.com">Jeffry Houser</a> is a technical entrepreneur that likes to share cool stuff with other people. 
+Jeffry is the Brains behind <a href="https://www.flextras.com">Flextras</a>, a library of Open Source Flex Components 
 including a Calendar, AutoComplete, and a Mobile DropDownList.  
 <br/><br/>
 Jeffry is one of the initial contributors to Apache Flex and his primary interest lies in  
 expanding the component library, especially for use in mobile applications.  
 <br/><br/>
-In his spare time, Jeffry runs <a href="http://www.dot-com-it.com.">DotComIt</a>, a consulting firm developing Rich Internet Applications. He has spoken 
+In his spare time, Jeffry runs <a href="https://www.dot-com-it.com.">DotComIt</a>, a consulting firm developing Rich Internet Applications. He has spoken 
 all over the US, is author of three books, over 30 articles, and hundreds of podcasts.
 </p></div>
 
 <!-- Social Icons -->
 <ul class="social-icons">
-<li class="facebook"><a href="http://www.facebook.com/reboog711">Facebook</a></li>
-<li class="linkedin"><a href="http://www.linkedin.com/in/jeffryhouser">LinkedIn</a></li>
+<li class="facebook"><a href="https://www.facebook.com/reboog711">Facebook</a></li>
+<li class="linkedin"><a href="https://www.linkedin.com/in/jeffryhouser">LinkedIn</a></li>
 <li class="github"><a href="https://github.com/Flextras/FlextrasComponents/">GitHub</a></li>
-<li class="rss"><a href="http://www.jeffryhouser.com/rss.cfm?mode=full">RSS</a></li>
+<li class="rss"><a href="https://www.jeffryhouser.com/rss.cfm?mode=full">RSS</a></li>
 <li class="rss"><a href="https://www.flextras.com/blog/rss.cfm?mode=full">RSS</a></li>
-<li class="twitter"><a href="http://www.twitter.com/reboog711">Twitter</a></li>
+<li class="twitter"><a href="https://www.twitter.com/reboog711">Twitter</a></li>
 </ul>
 
 </div>
@@ -290,17 +290,17 @@ all over the US, is author of three books, over 30 articles, and hundreds of pod
 <div class="team-about">
 <p>Macromedia/Adobe Technology evangelist, architect, engineer, Jeremy has implemented a slew of Flash, Flex, & AIR based solutions for startups to fortune 100 companies over the past 15 years.
 <br/><br/>
-Jeremy works as a consultant at <a href="http://www.actieve.com" target="_blank">Actieve</a> for Rich Mobile, Desktop & Web Based projects in which Flex is at the top of his preferred technology stack.
+Jeremy works as a consultant at <a href="https://www.actieve.com" target="_blank">Actieve</a> for Rich Mobile, Desktop & Web Based projects in which Flex is at the top of his preferred technology stack.
 <br/><br/>
 On a more personal note.... Jeremy feels awkward writing about himself in the third person.</p>
 </div>
 
 <!-- Social Icons -->
 <ul class="social-icons">
-	<li class="facebook"><a href="http://www.facebook.com/JeremyTellier">Facebook</a></li>
-	<li class="linkedin"><a href="http://www.linkedin.com/in/jeremytellier/">LinkedIn</a></li>
+	<li class="facebook"><a href="https://www.facebook.com/JeremyTellier">Facebook</a></li>
+	<li class="linkedin"><a href="https://www.linkedin.com/in/jeremytellier/">LinkedIn</a></li>
 	<li class="googleplus"><a href="https://plus.google.com/115560858703396246574">Google+</a></li>
-	<li class="twitter"><a href="http://www.twitter.com/jtellier">Skype</a></li>
+	<li class="twitter"><a href="https://www.twitter.com/jtellier">Skype</a></li>
 	<li class="skype"><a href="skype:JeremyTellier?chat">Skype</a></li>
 </ul>
 
@@ -311,14 +311,14 @@ On a more personal note.... Jeremy feels awkward writing about himself in the th
 <a id="josebarragan"><img src="images/headshots/josebarragan.jpg" alt="" class="img-circle"/></a>
 <div class="staff"><h5>Jose Barragan</h5> <span><i class="icon-tag"></i><a href="#josebarragan">josebarragan (C)</a></span></div>
 <div class="team-about">
-<p>Jose Barragan is a Software Architect, with over 10 years experience in the enterprise sector. Has a big experience in design, development and implementation of high performance software in corporate environments. Has an extensive knowledge of Flex, Java, Spring, Hibernate, Maven, Git, being the technical co-leader behind the <a href="http://www.codeoscopic.com/tecnologia/riality/">Riality</a> Flex/JEE Platform and other successful insurance software products like <a href="http://www.directwriter.es">Direct Writer</a> and <a href="http://www.avant2.es">Avant 2</a>. Restless mind and enthusiast of new technologies. Always learning from everything and everyone.</p>
+<p>Jose Barragan is a Software Architect, with over 10 years experience in the enterprise sector. Has a big experience in design, development and implementation of high performance software in corporate environments. Has an extensive knowledge of Flex, Java, Spring, Hibernate, Maven, Git, being the technical co-leader behind the <a href="https://www.codeoscopic.com/tecnologia/riality/">Riality</a> Flex/JEE Platform and other successful insurance software products like <a href="https://www.directwriter.es">Direct Writer</a> and <a href="https://www.avant2.es">Avant 2</a>. Restless mind and enthusiast of new technologies. Always learning from everything and everyone.</p>
 </div>
 
 <!-- Social Icons -->
 <ul class="social-icons">
-<li class="twitter"><a href="http://www.twitter.com/morphx">Twitter</a></li>
-<li class="github"><a href="http://github.com/pepebarragan">Github</a></li>
-<li class="linkedin"><a href="http://es.linkedin.com/in/pepebarragan/">LinkedIn</a></li>
+<li class="twitter"><a href="https://www.twitter.com/morphx">Twitter</a></li>
+<li class="github"><a href="https://github.com/pepebarragan">Github</a></li>
+<li class="linkedin"><a href="https://es.linkedin.com/in/pepebarragan/">LinkedIn</a></li>
 </ul>
 
 </div>
@@ -342,16 +342,16 @@ On a more personal note.... Jeremy feels awkward writing about himself in the th
     </div>
     <!-- Social Icons -->
     <ul class="social-icons">
-        <li class="twitter"><a href="http://twitter.com/josephlabrecque">Twitter</a></li>
-        <li class="linkedin"><a href="http://www.linkedin.com/in/josephlabrecque">LinkedIn</a></li>
-        <li class="rss"><a href="http://www.lynda.com/JosephLabrecque">Lynda.com</a></li>
-        <li class="amazon"><a href="http://www.amazon.com/-/e/B0057R7UO0">Amazon</a></li>
+        <li class="twitter"><a href="https://twitter.com/josephlabrecque">Twitter</a></li>
+        <li class="linkedin"><a href="https://www.linkedin.com/in/josephlabrecque">LinkedIn</a></li>
+        <li class="rss"><a href="https://www.lynda.com/JosephLabrecque">Lynda.com</a></li>
+        <li class="amazon"><a href="https://www.amazon.com/-/e/B0057R7UO0">Amazon</a></li>
         <li class="behance"><a href="https://www.behance.net/JosephLabrecque">Behance</a></li>
         <li class="facebook"><a href="https://www.facebook.com/joseph.labrecque">Facebook</a></li>
         <li class="googleplus"><a href="https://google.com/+JosephLabrecque/">Google+</a></li>
         <li class="github"><a href="https://github.com/josephlabrecque/">Github</a></li>
         <li class="youtube"><a href="https://www.youtube.com/channel/UCOznZ0dg3BwfhxwO2p90ejQ">YouTube</a></li>
-        <li class="rss"><a href="http://inflagrantedelicto.memoryspiral.com/feed/">In Flagrante Delicto!</a></li>
+        <li class="rss"><a href="https://inflagrantedelicto.memoryspiral.com/feed/">In Flagrante Delicto!</a></li>
     </ul>
 </div>
 
@@ -363,7 +363,7 @@ On a more personal note.... Jeremy feels awkward writing about himself in the th
         <span><i class="icon-tag"></i>joshtynjala (C+P)</span>
     </div>
     <div class="team-about">
-        <p><a href="https://twitter.com/joshtynjala">Josh Tynjala</a> is the author of the open source <a href="http://feathersui.com/">Feathers</a> user interface components for Starling Framework. In addition to improving the Apache FlexJS compilers, Josh teaches developers how to transpile ActionScript on his website, <a href="http://nextgenactionscript.com/">NextGen ActionScript</a>.</p>
+        <p><a href="https://twitter.com/joshtynjala">Josh Tynjala</a> is the author of the open source <a href="https://feathersui.com/">Feathers</a> user interface components for Starling Framework. In addition to improving the Apache FlexJS compilers, Josh teaches developers how to transpile ActionScript on his website, <a href="https://nextgenactionscript.com/">NextGen ActionScript</a>.</p>
     </div>
     <!-- Social Icons -->
     <ul class="social-icons">
@@ -386,8 +386,8 @@ On a more personal note.... Jeremy feels awkward writing about himself in the th
 
 <!-- Social Icons -->
 <ul class="social-icons">
-<li class="twitter"><a href="http://twitter.com/coderjun">Twitter</a></li>
-<li class="linkedin"><a href="http://www.linkedin.com/in/junheider">LinkedIn</a></li>
+<li class="twitter"><a href="https://twitter.com/coderjun">Twitter</a></li>
+<li class="linkedin"><a href="https://www.linkedin.com/in/junheider">LinkedIn</a></li>
 </ul>
 </div>
 
@@ -399,9 +399,9 @@ On a more personal note.... Jeremy feels awkward writing about himself in the th
 
 <!-- Social Icons -->
 <ul class="social-icons">
-<li class="twitter"><a href="http://twitter.com/JustinMclean">Twitter</a></li>
-<li class="linkedin"><a href="http://www.linkedin.com/in/justinmclean">LinkedIn</a></li>
-<li class="github"><a href="http://www.github.com/justinmclean">GitHub</a></li>
+<li class="twitter"><a href="https://twitter.com/JustinMclean">Twitter</a></li>
+<li class="linkedin"><a href="https://www.linkedin.com/in/justinmclean">LinkedIn</a></li>
+<li class="github"><a href="https://www.github.com/justinmclean">GitHub</a></li>
 </ul>
 
 </div>
@@ -423,11 +423,11 @@ On a more personal note.... Jeremy feels awkward writing about himself in the th
 
  <!-- Social Icons -->
  <ul class="social-icons">
-  <li class="linkedin"><a href="http://www.linkedin.com/in/akamud/en">LinkedIn</a></li>
+  <li class="linkedin"><a href="https://www.linkedin.com/in/akamud/en">LinkedIn</a></li>
   <li class="github"><a href="https://github.com/akamud">GitHub</a></li>
-  <li class="twitter"><a href="http://twitter.com/akamud">Twitter</a></li>
-  <li class="wordpress"><a href="http://www.akamud.com.br/">Blog</a></li>
-  <li class="rss"><a href="http://www.akamud.com.br/feed">RSS</a></li>
+  <li class="twitter"><a href="https://twitter.com/akamud">Twitter</a></li>
+  <li class="wordpress"><a href="https://www.akamud.com.br/">Blog</a></li>
+  <li class="rss"><a href="https://www.akamud.com.br/feed">RSS</a></li>
  </ul>
 </div>
 
@@ -437,7 +437,7 @@ On a more personal note.... Jeremy feels awkward writing about himself in the th
  <img src="images/headshots/mamsellem.jpg" alt="" class="img-circle" />
  <div class="staff"><h5>Maurice Amsellem</h5> <span><i class="icon-tag"></i> mamsellem (C+P)</span></div>
  <div class="team-about">
-  <p>Maurice has been working for <a href="http://www.systar.com">Systar</a> since 1996 in various positions, 
+  <p>Maurice has been working for <a href="https://www.systar.com">Systar</a> since 1996 in various positions, 
   and since 2009 as a software engineer on a Flex-based BAM application development framework.</p>
   <p>Maurice is professionally interested in GUI design in general, and personally in clay modeling.<br/>
   He is based in Paris area, France.</p>
@@ -445,7 +445,7 @@ On a more personal note.... Jeremy feels awkward writing about himself in the th
 
  <!-- Social Icons -->
  <ul class="social-icons">
-  <li class="linkedin"><a href="http://www.linkedin.com/pub/maurice-amsellem/1/50a/b64">LinkedIn</a></li>
+  <li class="linkedin"><a href="https://www.linkedin.com/pub/maurice-amsellem/1/50a/b64">LinkedIn</a></li>
  </ul>
 </div>
 
@@ -463,9 +463,9 @@ I don't claim to be anything I'm not, the thrid person scares me.</p></div>
 <!-- Social Icons -->
 <ul class="social-icons">
 <li class="github"><a href="https://github.com/teotigraphix">GitHub</a></li>
-<li class="linkedin"><a href="http://www.linkedin.com/pub/michael-schmalle/4/409/980/">LinkedIn</a></li>
-<li class="rss"><a href="http://blog.teotigraphix.com/feed">RSS</a></li>
-<li class="twitter"><a href="http://www.twitter.com/teotigraphix">Twitter</a></li>
+<li class="linkedin"><a href="https://www.linkedin.com/pub/michael-schmalle/4/409/980/">LinkedIn</a></li>
+<li class="rss"><a href="https://blog.teotigraphix.com/feed">RSS</a></li>
+<li class="twitter"><a href="https://www.twitter.com/teotigraphix">Twitter</a></li>
 </ul>
 
 </div>
@@ -478,11 +478,11 @@ I don't claim to be anything I'm not, the thrid person scares me.</p></div>
 
 <!-- Social Icons -->
 <ul class="social-icons">
-<li class="facebook"><a href="http://www.facebook.com/quetwo">Facebook</a></li>
-<li class="twitter"><a href="http://www.twitter.com/quetwo">Twitter</a></li>
-<li class="blogger"><a href="http://www.quetwo.com">Blogger</a></li>
+<li class="facebook"><a href="https://www.facebook.com/quetwo">Facebook</a></li>
+<li class="twitter"><a href="https://www.twitter.com/quetwo">Twitter</a></li>
+<li class="blogger"><a href="https://www.quetwo.com">Blogger</a></li>
 <li class="googleplus"><a href="https://plus.google.com/106376488955804514674/">Google Plus</a></li>
-<li class="deviantart"><a href="http://quetwo.deviantart.com">DeviantART</a> </li>
+<li class="deviantart"><a href="https://quetwo.deviantart.com">DeviantART</a> </li>
 </ul>
 
 </div>
@@ -496,13 +496,13 @@ I don't claim to be anything I'm not, the thrid person scares me.</p></div>
 <div class="span3">
 <img src="images/headshots/s9tpepper.jpg" alt="" class="img-circle"/>
 <div class="staff"><h5>Omar Gonzalez</h5> <span><i class="icon-tag"></i> s9tpepper (C+P)</span></div>
-<div class="team-about"><p>Apache Flex committer and PMC member. Test driven development enthusiast. Wrestles code all day. Developing Flash since 2000, Flex since version 2 beta. Senior Architect for <a href="http://almerblank.com" target="_blank">almer/blank</a> developing front-ends and back-ends in HTML5, JavaScript, Flash, Flex, Node.js, PHP, MySQL and MongoDB, just to name a few. Interested in expanding Apache Flex beyond the Flash Player plugin as well as other random experiments.</p></div>
+<div class="team-about"><p>Apache Flex committer and PMC member. Test driven development enthusiast. Wrestles code all day. Developing Flash since 2000, Flex since version 2 beta. Senior Architect for <a href="https://almerblank.com" target="_blank">almer/blank</a> developing front-ends and back-ends in HTML5, JavaScript, Flash, Flex, Node.js, PHP, MySQL and MongoDB, just to name a few. Interested in expanding Apache Flex beyond the Flash Player plugin as well as other random experiments.</p></div>
 
 <!-- Social Icons -->
 <ul class="social-icons">
-<li class="twitter"><a href="http://www.twitter.com/s9tpepper">Twitter</a></li>
+<li class="twitter"><a href="https://www.twitter.com/s9tpepper">Twitter</a></li>
 <li class="github"><a href="https://github.com/s9tpepper">GitHub</a></li>
-<li class="rss"><a href="http://omar.gy/rss">RSS</a></li>
+<li class="rss"><a href="https://omar.gy/rss">RSS</a></li>
 <li class="googleplus"><a href="https://plus.google.com/109288512951904372418">Google Plus</a></li>
 </ul>
 
@@ -516,8 +516,8 @@ I don't claim to be anything I'm not, the thrid person scares me.</p></div>
 <div class="team-about"><p>Om 'bigosmallm' Muppirala is a UI architect with years of experience building Flex and Flash based applications. He has been working on various tools and utilities aimed at making life easier for Apache Flex developers and users(SDK Installer, OneClick Mustella, etc.)  Also interested in contributing more web and mobile Flex components.</p></div>
 <!-- Social Icons -->
 <ul class="social-icons">
-<li class="twitter"><a href="http://twitter.com/bigosmallm">Twitter</a></li>
-<li class="linkedin"><a href="http://www.linkedin.com/in/omprakashm/">LinkedIn</a></li>
+<li class="twitter"><a href="https://twitter.com/bigosmallm">Twitter</a></li>
+<li class="linkedin"><a href="https://www.linkedin.com/in/omprakashm/">LinkedIn</a></li>
 </ul>
 </div>
 
@@ -526,12 +526,12 @@ I don't claim to be anything I'm not, the thrid person scares me.</p></div>
 <div class="clear"></div>
 <img src="images/headshots/peterelst.jpg" alt="" class="img-circle" />
 <div class="staff"><h5>Peter Elst</h5> <span><i class="icon-tag"></i> peterelst (C + P)</span></div>
-<div class="team-about"><p>Peter is a Web Solutions Engineer at Google, an author of multiple ActionScript books, speaker at various industry events and longtime supporter of Flex as a platform.</p><p>In his spare time, you can find him blogging at <a href="http://www.peterelst.com">www.peterelst.com</a>.</p></div>
+<div class="team-about"><p>Peter is a Web Solutions Engineer at Google, an author of multiple ActionScript books, speaker at various industry events and longtime supporter of Flex as a platform.</p><p>In his spare time, you can find him blogging at <a href="https://www.peterelst.com">www.peterelst.com</a>.</p></div>
  <!-- Social Icons -->
 <ul class="social-icons">
-<li class="twitter"><a href="http://www.twitter.com/peterelst">Twitter</a></li>
+<li class="twitter"><a href="https://www.twitter.com/peterelst">Twitter</a></li>
 <li class="googleplus"><a href="https://www.google.com/+peterelst">Google Plus</a></li>
-<li class="linkedin"><a href="http://www.linkedin.com/in/peterelst">Linkedin</a></li>
+<li class="linkedin"><a href="https://www.linkedin.com/in/peterelst">Linkedin</a></li>
 </ul>
 </div>
 
@@ -543,7 +543,7 @@ I don't claim to be anything I'm not, the thrid person scares me.</p></div>
 <div class="team-about"><p>Piotr has been working with Flex since 2008 in various project. He always stays open for self-development opportunity.</p><p>He currently lives in Cracow, Poland.</p></div>
  <!-- Social Icons -->
 <ul class="social-icons">
-<li class="linkedin"><a href="http://pl.linkedin.com/pub/piotr-zarzycki/52/535/92a/">Linkedin</a></li>
+<li class="linkedin"><a href="https://pl.linkedin.com/pub/piotr-zarzycki/52/535/92a/">Linkedin</a></li>
 <li class="skype"><a href="skype:zarzycki10?call">Skype</a></li>
 </ul>
 </div>
@@ -561,7 +561,7 @@ I don't claim to be anything I'm not, the thrid person scares me.</p></div>
 <div class="staff"><h5>Stephan Plath</h5> <span><i class="icon-tag"></i> splath (C)</span></div>
 <!-- Social Icons -->
 <ul class="social-icons">
-<li class="twitter"><a href="http://www.twitter.com/xplath">Twitter</a></li>
+<li class="twitter"><a href="https://www.twitter.com/xplath">Twitter</a></li>
 </ul>
 </div>
 
@@ -572,7 +572,7 @@ I don't claim to be anything I'm not, the thrid person scares me.</p></div>
 <div class="team-about"><p>Tom has been building internet applications since before the term RIA, and was part of the community contributing to Flex while it was looked after by Adobe.</p><p>Within Apache Flex his focus is on making sure the experience on Linux is on par with the other supported platforms, as well as pitching in keeping the Jenkins servers running.</p><p>He currently lives in Manchester, UK.</p></div>
 <!-- Social Icons -->
 <ul class="social-icons">
-<li class="twitter"><a href="http://www.twitter.com/thefalken">Twitter</a></li>
+<li class="twitter"><a href="https://www.twitter.com/thefalken">Twitter</a></li>
 </ul>
 
 </div>
@@ -584,7 +584,7 @@ I don't claim to be anything I'm not, the thrid person scares me.</p></div>
 <!-- Social Icons -->
 <ul class="social-icons">
 <li class="github"><a href="https://github.com/solomax">GitHub</a></li>
-<li class="twitter"><a href="http://www.twitter.com/solomax666">Twitter</a></li>
+<li class="twitter"><a href="https://www.twitter.com/solomax666">Twitter</a></li>
 <li class="googleplus"><a href="https://www.google.com/+MaximSolodovnik">Google Plus</a></li>
 <li class="linkedin"><a href="https://www.linkedin.com/in/maximsolodovnik">Linkedin</a></li>
 </ul>
@@ -598,7 +598,7 @@ I don't claim to be anything I'm not, the thrid person scares me.</p></div>
 <div class="team-about"><p>Olaf believes in the power and beauty of simplicity in all respects.</p><p>Employed at a leading automotive supplier for hinge systems he creates software for internal use. For many years and still with great passion.</p><p>Olaf would like to help to bring the Material Design to Flex/FlexJS</div>
 <!-- Social Icons -->
 <ul class="social-icons">
-<li class="twitter"><a href="http://www.twitter.com/openoli">Twitter</a></li>
+<li class="twitter"><a href="https://www.twitter.com/openoli">Twitter</a></li>
 </ul>
 
 </div><!--end of row-->

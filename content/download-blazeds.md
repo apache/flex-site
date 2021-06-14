@@ -13,7 +13,7 @@ The Apache Flex team is pleased to offer this release, available as of the 31th 
 
 - Release Notes : [RELEASE_NOTES][2]
 - README : [README][15]
-- Source (zip) : [blazeds-4.7.3-source-release.zip][4] [[PGP](http://www.apache.org/dist/flex/BlazeDS/4.7.3/blazeds-4.7.3-source-release.zip.asc)] [[MD5](http://www.apache.org/dist/flex/BlazeDS/4.7.3/blazeds-4.7.3-source-release.zip.md5)]
+- Source (zip) : [blazeds-4.7.3-source-release.zip][4] [[PGP](https://www.apache.org/dist/flex/BlazeDS/4.7.3/blazeds-4.7.3-source-release.zip.asc)] [[MD5](https://www.apache.org/dist/flex/BlazeDS/4.7.3/blazeds-4.7.3-source-release.zip.md5)]
 
 
 Convenience binary releases are not currently available for download from Apache.
@@ -52,11 +52,11 @@ The PGP signatures can be verified using PGP or GPG. First download the [KEYS][1
 Alternatively, you can verify the MD5 signature on the files. A unix/Mac program called `md5` or `md5sum` is included in many unix distributions. It is also available as part of [GNU Textutils][11]. Windows users can get binary md5 programs from [here][12] , [here][13] , or [here][14]. An MD5 signature consists of 32 hex characters, and a SHA1 signature consists of 40 hex characters. Ensure your generated signature string matches the signature string published in the files above.
 
 
-[2]: http://www.apache.org/dist/flex/BlazeDS/4.7.3/RELEASE_NOTES
-[4]: http://www.apache.org/dyn/closer.lua/flex/BlazeDS/4.7.3/blazeds-4.7.3-source-release.zip
-[10]: http://www.apache.org/dist/flex/KEYS
-[11]: http://www.gnu.org/software/textutils/textutils.html
-[12]: http://www.fourmilab.ch/md5/
-[13]: http://www.pc-tools.net/win32/freeware/console/
-[14]: http://www.slavasoft.com/fsum/
-[15]: http://www.apache.org/dyn/closer.lua/flex/BlazeDS/4.7.3/README
+[2]: https://www.apache.org/dist/flex/BlazeDS/4.7.3/RELEASE_NOTES
+[4]: https://www.apache.org/dyn/closer.lua/flex/BlazeDS/4.7.3/blazeds-4.7.3-source-release.zip
+[10]: https://www.apache.org/dist/flex/KEYS
+[11]: https://www.gnu.org/software/textutils/textutils.html
+[12]: https://www.fourmilab.ch/md5/
+[13]: https://www.pc-tools.net/win32/freeware/console/
+[14]: https://www.slavasoft.com/fsum/
+[15]: https://www.apache.org/dyn/closer.lua/flex/BlazeDS/4.7.3/README

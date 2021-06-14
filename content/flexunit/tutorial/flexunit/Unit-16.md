@@ -212,7 +212,7 @@ Title:  Unit 16 - Allowing Your Tests to Function with Continuous Integration
 <p>In order to use Hudson, it requires that Ant and/or Maven be installed on the CI system. It may be deployed through the .war file to an Apache, Tomcat, Glassfish or other HTTP server project. Hudson may also be used by way of the Windows service on a Windows machine, or integrated directly with many Linux distributions.</p>
 <p>For more information about Hudson and its capabilities, visit:</p>
 
-<a class='contentlink' href='http://hudson-ci.org' target='blank'>http://hudson-ci.org</a>
+<a class='contentlink' href='https://hudson-ci.org' target='blank'>https://hudson-ci.org</a>
 
 <h2>Failure and Success reporting options</h2>
 

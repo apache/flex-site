@@ -3,7 +3,7 @@ Title:   Licensing and Trademarks
 <div class="headline"><h4>Licensing</h4></div>
 
 Apache License<br/>Version 2.0, January 2004<br/>
-[http://www.apache.org/licenses/](http://www.apache.org/licenses/)
+[https://www.apache.org/licenses/](https://www.apache.org/licenses/)
 
 TERMS AND CONDITIONS FOR USE, REPRODUCTION, AND DISTRIBUTION
 
@@ -189,7 +189,7 @@ identification within third-party archives.
         you may not use this file except in compliance with the License.
         You may obtain a copy of the License at
 
-        http://www.apache.org/licenses/LICENSE-2.0
+        https://www.apache.org/licenses/LICENSE-2.0
 
         Unless required by applicable law or agreed to in writing, software
         distributed under the License is distributed on an "AS IS" BASIS,
@@ -236,5 +236,5 @@ To request such permission, follow these steps:
     <li>We will then notify you of the outcome.</li>
 </ul>
 
-[1]: http://www.apache.org/foundation/marks/
+[1]: https://www.apache.org/foundation/marks/
 [2]: mailto:private@flex.apache.org?subject=Trademark

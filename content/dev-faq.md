@@ -100,8 +100,8 @@ any outputs of the SDK for personal and commercial use with virtually no restric
 and toolsets.
 
 [1]: community-getinvolved.html
-[2]: http://www.spoon.as
-[3]: http://blogs.apache.org/flex/
+[2]: https://www.spoon.as
+[3]: https://blogs.apache.org/flex/
 [4]: installer.html
-[5]: http://www.adobe.com/devnet/flashplatform/whitepapers/roadmap.html
+[5]: https://www.adobe.com/devnet/flashplatform/whitepapers/roadmap.html
 [6]: about-licensing.html

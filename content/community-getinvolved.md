@@ -63,4 +63,4 @@ for your work as a committer.
  [3]: https://issues.apache.org/jira/browse/FLEX
  [4]: dev-sourcecode.html
  [5]: https://cwiki.apache.org/FLEX/mustella-overview.html
- [6]: http://www.sourcetreeapp.com/
+ [6]: https://www.sourcetreeapp.com/

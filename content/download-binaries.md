@@ -18,26 +18,26 @@ Binaries are provided as a convenience for those who do not wish to compile the 
 
   - Release Notes : [RELEASE_NOTES][2]
   - README : [README][15]
-  - Mac OS X Binaries : [apache-flex-sdk-4.16.1-bin.tar.gz][7] [[PGP](http://www.apache.org/dist/flex/4.16.1/binaries/apache-flex-sdk-4.16.1-bin.tar.gz.asc)] [[MD5](http://www.apache.org/dist/flex/4.16.1/binaries/apache-flex-sdk-4.16.1-bin.tar.gz.md5)]
-  - Linux Binaries : [apache-flex-sdk-4.16.1-bin.tar.gz][7] [[PGP](http://www.apache.org/dist/flex/4.16.1/binaries/apache-flex-sdk-4.16.1-bin.tar.gz.asc)] [[MD5](http://www.apache.org/dist/flex/4.16.1/binaries/apache-flex-sdk-4.16.1-bin.tar.gz.md5)]
-  - Windows Binaries : [apache-flex-sdk-4.16.1-bin.zip][8] [[PGP](http://www.apache.org/dist/flex/4.16.1/binaries/apache-flex-sdk-4.16.1-bin.zip.asc)] [[MD5](http://www.apache.org/dist/flex/4.16.1/binaries/apache-flex-sdk-4.16.1-bin.zip.md5)]
+  - Mac OS X Binaries : [apache-flex-sdk-4.16.1-bin.tar.gz][7] [[PGP](https://www.apache.org/dist/flex/4.16.1/binaries/apache-flex-sdk-4.16.1-bin.tar.gz.asc)] [[MD5](https://www.apache.org/dist/flex/4.16.1/binaries/apache-flex-sdk-4.16.1-bin.tar.gz.md5)]
+  - Linux Binaries : [apache-flex-sdk-4.16.1-bin.tar.gz][7] [[PGP](https://www.apache.org/dist/flex/4.16.1/binaries/apache-flex-sdk-4.16.1-bin.tar.gz.asc)] [[MD5](https://www.apache.org/dist/flex/4.16.1/binaries/apache-flex-sdk-4.16.1-bin.tar.gz.md5)]
+  - Windows Binaries : [apache-flex-sdk-4.16.1-bin.zip][8] [[PGP](https://www.apache.org/dist/flex/4.16.1/binaries/apache-flex-sdk-4.16.1-bin.zip.asc)] [[MD5](https://www.apache.org/dist/flex/4.16.1/binaries/apache-flex-sdk-4.16.1-bin.zip.md5)]
   - Documentation : [apache-flex-sdk-4.16.1-asdocs.zip][5]
 
 <div class="headline"><h4>Binary Dependencies</h4></div>
 
 There are some components that we depend on that we do not include in our convenience binary distribution.  We try our hardest to limit these dependencies, however for the 4.16.1 release we do depend on the following components.  Please review the [README][15] included in your download for more information on where to install these packages.
 
-- Open Source Media Framework (OSMF) [Download](http://sourceforge.net/projects/osmf.adobe/files/OSMF%201.0%20%28final%20source%2C%20ASDocs%2C%20PDF%20guides%2C%20and%20release%20notes%29/OSMF_1.0.zip/download) [MPL License](http://www.mozilla.org/MPL)
+- Open Source Media Framework (OSMF) [Download](https://sourceforge.net/projects/osmf.adobe/files/OSMF%201.0%20%28final%20source%2C%20ASDocs%2C%20PDF%20guides%2C%20and%20release%20notes%29/OSMF_1.0.zip/download) [MPL License](https://www.mozilla.org/MPL)
 
 #### Optional Dependencies
 
 The following dependency is optional, and if available will provide additional features to the Flex Framework:
 
   - Embedded Font Support:
-    - flex-fontkit.jar [Download from older SDK](http://fpdownload.adobe.com/pub/flex/sdk/builds/flex4.6/flex_sdk_4.6.0.23201B.zip) [License](http://www.adobe.com/products/eulas/pdfs/adobe_flex_software_development_kit-combined-20110916_0930.pdf)
-    - afe.jar [Download from older SDK](http://fpdownload.adobe.com/pub/flex/sdk/builds/flex4.6/flex_sdk_4.6.0.23201B.zip) [License](http://www.adobe.com/products/eulas/pdfs/adobe_flex_software_development_kit-combined-20110916_0930.pdf)
-    - adt.jar [Download from older SDK](http://fpdownload.adobe.com/pub/flex/sdk/builds/flex4.6/flex_sdk_4.6.0.23201B.zip) [License](http://www.adobe.com/products/eulas/pdfs/adobe_flex_software_development_kit-combined-20110916_0930.pdf)
-    - rideau.jar [Download from older SDK](http://fpdownload.adobe.com/pub/flex/sdk/builds/flex4.6/flex_sdk_4.6.0.23201B.zip) [License](http://www.adobe.com/products/eulas/pdfs/adobe_flex_software_development_kit-combined-20110916_0930.pdf)
+    - flex-fontkit.jar [Download from older SDK](https://fpdownload.adobe.com/pub/flex/sdk/builds/flex4.6/flex_sdk_4.6.0.23201B.zip) [License](https://www.adobe.com/products/eulas/pdfs/adobe_flex_software_development_kit-combined-20110916_0930.pdf)
+    - afe.jar [Download from older SDK](https://fpdownload.adobe.com/pub/flex/sdk/builds/flex4.6/flex_sdk_4.6.0.23201B.zip) [License](https://www.adobe.com/products/eulas/pdfs/adobe_flex_software_development_kit-combined-20110916_0930.pdf)
+    - adt.jar [Download from older SDK](https://fpdownload.adobe.com/pub/flex/sdk/builds/flex4.6/flex_sdk_4.6.0.23201B.zip) [License](https://www.adobe.com/products/eulas/pdfs/adobe_flex_software_development_kit-combined-20110916_0930.pdf)
+    - rideau.jar [Download from older SDK](https://fpdownload.adobe.com/pub/flex/sdk/builds/flex4.6/flex_sdk_4.6.0.23201B.zip) [License](https://www.adobe.com/products/eulas/pdfs/adobe_flex_software_development_kit-combined-20110916_0930.pdf)
 
 All of the above dependencies can automatically be downloaded via the following ANT command :
 
@@ -77,19 +77,19 @@ The PGP signatures can be verified using PGP or GPG. First download the [KEYS][1
 
 Alternatively, you can verify the MD5 signature on the files. A unix/Mac program called `md5` or `md5sum` is included in many unix distributions. It is also available as part of [GNU Textutils][11]. Windows users can get binary md5 programs from [here][12] , [here][13] , or [here][14]. An MD5 signature consists of 32 hex characters, and a SHA1 signature consists of 40 hex characters. Ensure your generated signature string matches the signature string published in the files above.
 
-[1]: http://sourceforge.net/adobe/flexsdk/wiki/About/
-[2]: http://www.apache.org/dyn/closer.lua/flex/4.16.1/RELEASE_NOTES
-[3]: http://www.apache.org/dyn/closer.lua/flex/4.16.1/apache-flex-sdk-4.16.1-src.tar.gz
-[4]: http://www.apache.org/dyn/closer.lua/flex/4.16.1/apache-flex-sdk-4.16.1-src.zip
-[5]: http://www.apache.org/dyn/closer.lua/flex/4.16.1/docs/apache-flex-sdk-4.16.1-asdocs.zip
-[6]: http://www.apache.org/dyn/closer.lua/flex/4.16.1/RELEASE_NOTES
-[7]: http://www.apache.org/dyn/closer.lua/flex/4.16.1/binaries/apache-flex-sdk-4.16.1-bin.tar.gz
-[8]: http://www.apache.org/dyn/closer.lua/flex/4.16.1/binaries/apache-flex-sdk-4.16.1-bin.zip
-[9]: http://www.apache.org/dyn/closer.lua/flex/4.16.1/docs/apache-flex-sdk-4.16.1-asdocs.zip
-[10]: http://www.apache.org/dist/flex/KEYS
-[11]: http://www.gnu.org/software/textutils/textutils.html
-[12]: http://www.fourmilab.ch/md5/
-[13]: http://www.pc-tools.net/win32/freeware/console/
-[14]: http://www.slavasoft.com/fsum/
-[15]: http://www.apache.org/dyn/closer.lua/flex/4.16.1/README
+[1]: https://sourceforge.net/adobe/flexsdk/wiki/About/
+[2]: https://www.apache.org/dyn/closer.lua/flex/4.16.1/RELEASE_NOTES
+[3]: https://www.apache.org/dyn/closer.lua/flex/4.16.1/apache-flex-sdk-4.16.1-src.tar.gz
+[4]: https://www.apache.org/dyn/closer.lua/flex/4.16.1/apache-flex-sdk-4.16.1-src.zip
+[5]: https://www.apache.org/dyn/closer.lua/flex/4.16.1/docs/apache-flex-sdk-4.16.1-asdocs.zip
+[6]: https://www.apache.org/dyn/closer.lua/flex/4.16.1/RELEASE_NOTES
+[7]: https://www.apache.org/dyn/closer.lua/flex/4.16.1/binaries/apache-flex-sdk-4.16.1-bin.tar.gz
+[8]: https://www.apache.org/dyn/closer.lua/flex/4.16.1/binaries/apache-flex-sdk-4.16.1-bin.zip
+[9]: https://www.apache.org/dyn/closer.lua/flex/4.16.1/docs/apache-flex-sdk-4.16.1-asdocs.zip
+[10]: https://www.apache.org/dist/flex/KEYS
+[11]: https://www.gnu.org/software/textutils/textutils.html
+[12]: https://www.fourmilab.ch/md5/
+[13]: https://www.pc-tools.net/win32/freeware/console/
+[14]: https://www.slavasoft.com/fsum/
+[15]: https://www.apache.org/dyn/closer.lua/flex/4.16.1/README
 [16]: https://cwiki.apache.org/confluence/display/FLEX/Installation+help#Installationhelp-Ant-basedinstaller

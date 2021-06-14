@@ -18,10 +18,10 @@ Binaries are provided as a convenience for those who do not wish to compile Falc
 
 - Release Notes : [RELEASE_NOTES][2]
 - README : [README][15]
-- Source (tar.gz) : [apache-flex-falconjx-0.7.0-src.tar.gz][3] [[PGP](http://www.apache.org/dist/flex/falcon/0.7.0/apache-flex-falconjx-0.7.0-src.tar.gz.asc)] [[MD5](http://www.apache.org/dist/flex/falcon/0.7.0/apache-flex-falconjx-0.7.0-src.tar.gz.md5)]
-- Source (zip) : [apache-flex-falconjx-0.7.0-src.zip][4] [[PGP](http://www.apache.org/dist/flex/falcon/0.7.0/apache-flex-falconjx-0.7.0-src.zip.asc)] [[MD5](http://www.apache.org/dist/flex/falcon/0.7.0/apache-flex-falconjx-0.7.0-src.zip.md5)]
-- Binaries (tar.gz) : [apache-flex-falconjx-0.7.0-bin.tar.gz][7] [[PGP](http://www.apache.org/dist/flex/falcon/0.7.0/binaries/apache-flex-falconjx-0.7.0-bin.tar.gz.asc)] [[MD5](http://www.apache.org/dist/flex/falcon/0.7.0/binaries/apache-flex-falconjx-0.7.0-bin.tar.gz.md5)]
-- Binaries (zip) : [apache-flex-falconjx-0.7.0-bin.zip][8] [[PGP](http://www.apache.org/dist/flex/falcon/0.7.0/binaries/apache-flex-falconjx-0.7.0-bin.zip.asc)] [[MD5](http://www.apache.org/dist/flex/falcon/0.7.0/binaries/apache-flex-falconjx-0.7.0-bin.zip.md5)]
+- Source (tar.gz) : [apache-flex-falconjx-0.7.0-src.tar.gz][3] [[PGP](https://www.apache.org/dist/flex/falcon/0.7.0/apache-flex-falconjx-0.7.0-src.tar.gz.asc)] [[MD5](https://www.apache.org/dist/flex/falcon/0.7.0/apache-flex-falconjx-0.7.0-src.tar.gz.md5)]
+- Source (zip) : [apache-flex-falconjx-0.7.0-src.zip][4] [[PGP](https://www.apache.org/dist/flex/falcon/0.7.0/apache-flex-falconjx-0.7.0-src.zip.asc)] [[MD5](https://www.apache.org/dist/flex/falcon/0.7.0/apache-flex-falconjx-0.7.0-src.zip.md5)]
+- Binaries (tar.gz) : [apache-flex-falconjx-0.7.0-bin.tar.gz][7] [[PGP](https://www.apache.org/dist/flex/falcon/0.7.0/binaries/apache-flex-falconjx-0.7.0-bin.tar.gz.asc)] [[MD5](https://www.apache.org/dist/flex/falcon/0.7.0/binaries/apache-flex-falconjx-0.7.0-bin.tar.gz.md5)]
+- Binaries (zip) : [apache-flex-falconjx-0.7.0-bin.zip][8] [[PGP](https://www.apache.org/dist/flex/falcon/0.7.0/binaries/apache-flex-falconjx-0.7.0-bin.zip.asc)] [[MD5](https://www.apache.org/dist/flex/falcon/0.7.0/binaries/apache-flex-falconjx-0.7.0-bin.zip.md5)]
 
 <div class="headline"><h4>Dependencies</h4></div>
 
@@ -43,9 +43,9 @@ Version 2.0 license.  These can be downloaded via the ANT script included in the
 
 (jars)
 
-- ant -  [Download](http://search.maven.org/remotecontent?filepath=org/apache/ant/ant/1.7.1/ant-1.7.1.jar) (Apache 2.0 License)
+- ant -  [Download](https://search.maven.org/remotecontent?filepath=org/apache/ant/ant/1.7.1/ant-1.7.1.jar) (Apache 2.0 License)
 - antlr - [Download](https://repo1.maven.org/maven2/org/antlr/antlr-complete/3.5.2/antlr-3.5.2-complete.jar) (BSD License)
-- args4j - [Download](http://search.maven.org/remotecontent?filepath=args4j/args4j/2.0.28/args4j-2.0.28.jar) (MIT License)
+- args4j - [Download](https://search.maven.org/remotecontent?filepath=args4j/args4j/2.0.28/args4j-2.0.28.jar) (MIT License)
 - commons-cli - [Download](https://repo1.maven.org/maven2/commons-cli/commons-cli/1.2/commons-cli-1.2-bin.tar.gz) (Apache 2.0 License)
 - commons-io - [Download](https://repo1.maven.org/maven2/commons-io/commons-io/2.4/commons-io-2.4.tar.gz) (Apache 2.0 License)
 - commons-lang - [Download](https://repo1.maven.org/maven2/commons-lang/commons-lang/2.6/commons-lang-2.6.tar.gz) (Apache 2.0 License)
@@ -53,10 +53,10 @@ Version 2.0 license.  These can be downloaded via the ANT script included in the
 - commons-compress - [Download](https://repo1.maven.org/maven2/org/apache/commons/commons-compress/1.10/commons-compress-1.10.jar) (Apache 2.0 License)
 - guava - [Download](https://repo1.maven.org/maven2/com/google/guava/guava/17.0/guava-17.0.jar) (Apache 2.0 License)
 - jburg - [Download](https://repo1.maven.org/maven2/net/sourceforge/jburg/jburg/1.10.2/jburg-1.10.2.jar)  (CPL)
-- jflex - [Download](http://jflex.de/jflex-1.6.0.tar.gz) (BSD License)
-- lzma - [Download](http://www.java2s.com/Code/JarDownload/lzma/lzma-9.20.jar.zip)  (Public Domain)
-- Google Closure Compiler - [Download](http://github.com/google/closure-compiler/archive/v20151015.zip) (Apache 2.0 License)
-- org.json - [Download](http://search.maven.org/remotecontent?filepath=org/codeartisans/org.json/20131017/org.json-20131017.jar) (MIT License)
+- jflex - [Download](https://jflex.de/jflex-1.6.0.tar.gz) (BSD License)
+- lzma - [Download](https://www.java2s.com/Code/JarDownload/lzma/lzma-9.20.jar.zip)  (Public Domain)
+- Google Closure Compiler - [Download](https://github.com/google/closure-compiler/archive/v20151015.zip) (Apache 2.0 License)
+- org.json - [Download](https://search.maven.org/remotecontent?filepath=org/codeartisans/org.json/20131017/org.json-20131017.jar) (MIT License)
 
 <br/ >All of the above dependencies can automatically be downloaded via the following ANT commands :
 
@@ -91,14 +91,14 @@ The PGP signatures can be verified using PGP or GPG. First download the [KEYS][1
 Alternatively, you can verify the MD5 signature on the files. A unix/Mac program called `md5` or `md5sum` is included in many unix distributions. It is also available as part of [GNU Textutils][11]. Windows users can get binary md5 programs from [here][12] , [here][13] , or [here][14]. An MD5 signature consists of 32 hex characters, and a SHA1 signature consists of 40 hex characters. Ensure your generated signature string matches the signature string published in the files above.
 
 
-[2]: http://www.apache.org/dyn/closer.lua/flex/falcon/0.7.0/RELEASE_NOTES
-[3]: http://www.apache.org/dyn/closer.lua/flex/falcon/0.7.0/apache-flex-falconjx-0.7.0-src.tar.gz
-[4]: http://www.apache.org/dyn/closer.lua/flex/falcon/0.7.0/apache-flex-falconjx-0.7.0-src.zip
-[7]: http://www.apache.org/dyn/closer.lua/flex/falcon/0.7.0/binaries/apache-flex-falconjx-0.7.0-bin.tar.gz
-[8]: http://www.apache.org/dyn/closer.lua/flex/falcon/0.7.0/binaries/apache-flex-falconjx-0.7.0-bin.zip
-[10]: http://www.apache.org/dist/flex/KEYS
-[11]: http://www.gnu.org/software/textutils/textutils.html
-[12]: http://www.fourmilab.ch/md5/
-[13]: http://www.pc-tools.net/win32/freeware/console/
-[14]: http://www.slavasoft.com/fsum/
-[15]: http://www.apache.org/dyn/closer.lua/flex/falcon/0.7.0/READme
+[2]: https://www.apache.org/dyn/closer.lua/flex/falcon/0.7.0/RELEASE_NOTES
+[3]: https://www.apache.org/dyn/closer.lua/flex/falcon/0.7.0/apache-flex-falconjx-0.7.0-src.tar.gz
+[4]: https://www.apache.org/dyn/closer.lua/flex/falcon/0.7.0/apache-flex-falconjx-0.7.0-src.zip
+[7]: https://www.apache.org/dyn/closer.lua/flex/falcon/0.7.0/binaries/apache-flex-falconjx-0.7.0-bin.tar.gz
+[8]: https://www.apache.org/dyn/closer.lua/flex/falcon/0.7.0/binaries/apache-flex-falconjx-0.7.0-bin.zip
+[10]: https://www.apache.org/dist/flex/KEYS
+[11]: https://www.gnu.org/software/textutils/textutils.html
+[12]: https://www.fourmilab.ch/md5/
+[13]: https://www.pc-tools.net/win32/freeware/console/
+[14]: https://www.slavasoft.com/fsum/
+[15]: https://www.apache.org/dyn/closer.lua/flex/falcon/0.7.0/READme
