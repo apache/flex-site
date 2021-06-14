@@ -165,7 +165,7 @@ override public function updateDisplayList( contentWidth:Number, contentHeight:N
 	super.updateDisplayList( contentWidth, contentHeight );
 	var circle:Circle = new Circle( new Point( contentWidth/2, contentHeight/2 ),
 	 getLayoutRadius( contentWidth, contentHeight ) );
-	for ( i = 0; i &#60; target.numElements; i++ ) {
+	for ( i = 0; i < target.numElements; i++ ) {
 		element = target.getElementAt(i);
 		elementLayoutPoint = circle.getPointOnCircle( elementAngleInRadians );
 		...			
@@ -224,7 +224,7 @@ public function set circle(value:Circle):void {
 ```
 super.updateDisplayList( contentWidth, contentHeight );
 if(circle) {
-	for ( i = 0; i &#60; target.numElements; i++ ) {
+	for ( i = 0; i < target.numElements; i++ ) {
 		...
 	}
 }
@@ -275,9 +275,9 @@ public function distanceFrom( circle:Circle ):Number {
 ```
 public function equals( circle:Circle ):Boolean {
 	var equal:Boolean = false;
-	if ( ( circle ) &#38;&#38; ( this.radius == circle.radius ) &#38;&#38; ( this.origin ) &#38;&#38;
+	if ( ( circle ) && ( this.radius == circle.radius ) && ( this.origin ) &#38;&#38;
 	 ( circle.origin ) ) {
-		if ( ( this.origin.x == circle.origin.x ) &#38;&#38; ( this.origin.y == circle.origin.y ) ) {
+		if ( ( this.origin.x == circle.origin.x ) && ( this.origin.y == circle.origin.y ) ) {
 			equal = true;
 		}
 	}
@@ -291,7 +291,7 @@ public function equals( circle:Circle ):Boolean {
 		<p>In the <code>equals()</code> method, replace the line of the second if statement, which checks the equality of this and the comparison circle's origin's x and y values, with a line that checks that <code>this.distanceFrom( circle )</code> is equal to <code>0</code>.</p> 
 
 ```
-if ( ( this.origin.x == circle.origin.x ) &#38;&#38;
+if ( ( this.origin.x == circle.origin.x ) &&
 ( this.origin.y == circle.origin.y ) ) {
 	equal = true;
 }
@@ -310,8 +310,8 @@ if ( this.distanceFrom( circle ) == 0 ) {
 ```
 public function equals( circle:Circle ):Boolean {
 	var equal:Boolean = false;
-	if ( ( circle ) &#38;&#38; ( this.radius == circle.radius ) &#38;&#38; 
-	( this.origin ) &#38;&#38; ( circle.origin ) ) 	{
+	if ( ( circle ) && ( this.radius == circle.radius ) &&
+	( this.origin ) && ( circle.origin ) ) 	{
 		if ( this.distanceFrom( circle ) == 0 ) {
 			equal = true;
 		}

@@ -39,7 +39,7 @@ Title:  Unit 8 - FlexUnit Theories
 
 ```
 public function absoluteValue( value:int ):int {
-	if ( value &#60; 0 ) {
+	if ( value < 0 ) {
 		return value * -1;
 	} else {
 		return value;

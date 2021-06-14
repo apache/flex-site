@@ -355,7 +355,7 @@ public function testAddition():void {
 <p>FlexUnit 4.x catches the <code>AssertionError</code> that is thrown when this test fails, and the following result is displayed within the FlexUnit Results window in Flash Builder:</p>
 
 ```
-"expected: &#60;1000&#62; but was: &#60;8&#62;"
+"expected: <1000> but was: <8>"
 
 ```
 
@@ -375,7 +375,7 @@ public function testAddition():void {
 <p>For example, both of these assertions would fail given the opportunity.  However, as soon as FlexUnit catches the first failed assertion it stops the test.  The second assert will never be called.  The error message would read:</p>
 
 ```
-"expected: &#60;1000&#62; but was: &#60;8&#62;"
+"expected: <1000> but was: <8>"
 
 ```
 

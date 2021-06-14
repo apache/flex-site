@@ -133,10 +133,8 @@ public function ignoreTest() :void
 	<li>
 		<p>Run the FlexUnit4Training.mxml file again.</p>
 		<p>If FlexUnit4Training.mxml ran successfully you should see the following output in your browser window. Note that there is one less test than previously results:</p>
-
 		<img alt='TwoTestFailures' id='shift' src='../images/unit5/image2.png' />
 		<p class='caption' id='shift'>Figure 2: Two test failures</p>	
-		
 		<h3><br />Using Ignore metadata</h3>
 	</li>
 	<li>
@@ -160,7 +158,6 @@ public function shouldGetBottomPointOnCircle():void {
 	<li>
 		<p>Run the FlexUnit4Training.mxml file again.</p>
 		<p>If FlexUnit4Training.mxml ran successfully you should see the following output in your browser window:</p>
- 
  		<img alt='TwoTestsOneIgnore' id='shift' src='../images/unit5/image3.png' />
 		<p class='caption' id='shift'>Figure 3: Two test failures and one has been ignored</p>
 	</li>
@@ -181,7 +178,6 @@ public function shouldThrowRangeError():void {
 	<li>
 		<p>Run the FlexUnit4Training.mxml file again.</p>
 		<p>If FlexUnit4Training.mxml ran successfully you should see the following output in your browser window:</p>
-
 		<img alt='FourIgnores' id='shift' src='../images/unit5/image4.png' /> 
 		<p class='caption' id='shift'>Figure 4: Four tests have been ignored</p>
 	</li>
@@ -226,13 +222,13 @@ public function shouldGetPointsOnCircle():void
 <p>Additionally, the simplistic nature of the assertions you have learned so far, also means they provide simplistic error messages. Take the case of this slightly more complicated assertion that determines if a number is between two other numbers:</p>
 
 ```
-assertTrue( num1 &#62; num2 &#38;&#38; num1 &#60; num3 );
+assertTrue( num1 > num2 && num1 < num3 );
 ```
 
 <p>If this test fails, it would yield the basic and uninformative failure message:</p>
 
 ```
-"Expected &#60;true&#62; but was &#60;false&#62;."
+"Expected <true> but was <false>."
 ```
 
 <p>This information, while true, is not all that useful for instant problem identification. This lack of information forces the developer back to the original test to understand what was being tested and helps defeat one of the key advantages of having tests.</p>
@@ -251,7 +247,7 @@ public function assertThat( value, matcher );
 <p>Referring back to the example from above, if you wished to know if num1 was between num2 and num3 using standard assert syntax, you would write:</p>
 
 ```
-assertTrue( num2 &#60; num1 &#38;&#38; num1 &#60; num3);
+assertTrue( num2 < num1 && num1 < num3);
 ```
 
 <p>Using Hamcrest, this same assertion would read:</p>
@@ -264,13 +260,13 @@ assertThat( num1, is( between( num2, num3 ) ) );
 <p>Second, if the <code>assertThat()</code> statement above fails it would yield the following result:</p>
 
 ```
-"Expected a number between &#60;num2&#62; and &#60;num3&#62; but was &#60;num1&#62;."
+"Expected a number between <num2> and <num3> but was <num1>."
 ```
 
 <p>which is many, many times more useful than the <code>assertTrue()</code> statement's failure message in this same situation:</p>
 
 ```
-"Expected &#60;true&#62; but was &#60;false&#62;."
+"Expected <true> but was <false>."
 ```
 
 <p>This particular assertion uses the <code>is()</code> and <code>between()</code> matchers to create a more readable assertion. These are just two of the many types of matchers offered by Hamcrest. Further, as each matcher is simply a class that implements a specific interface, you are encouraged to create your own matchers to make even the most difficult matching clear inside of your test cases.</p>
@@ -419,7 +415,6 @@ public function shouldGetLeftPointOnCircle():void {
 	</li>
 	<li>
 		<p>Run the FlexUnit4Training.mxml file. If the tests ran successfully, you should see the following output.</p>
-
 		<img alt='PassedOneIgnore' id='shift' src='../images/unit5/image6.png' /> 
 		<p class='caption' id='shift'>Figure 1: FlexUnit tests passed, one ignored</p>
 	</li>
@@ -548,7 +543,7 @@ override public function matchesSafely(item:Object):Boolean {
 ```
 override public function matchesSafely(item:Object):Boolean {
 	var distance:Number = Point.distance( item as Point, point );
-	return( Math.abs( distance ) - tolerance &#60; 0 );
+	return( Math.abs( distance ) - tolerance < 0 );
 }
 ```
 

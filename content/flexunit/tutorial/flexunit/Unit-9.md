@@ -58,7 +58,7 @@ public function result( data:Object ):void {
 	var list:XMLList = data.result..node;
 	var node:XML;
 			
-	for ( var i:int = 0; i &#60; list.length(); i++ ) {
+	for ( var i:int = 0; i < list.length(); i++ ) {
 		node = list[ i ][ 0 ];
 		ar.push( Number( node.text() ) );
 	}

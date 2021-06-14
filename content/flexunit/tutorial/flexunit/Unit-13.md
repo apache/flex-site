@@ -107,7 +107,7 @@ public function setUp():void {
 }
 [After]
 public function tearDown():void {
-	if( timer &#38;&#38; timer.running ) {
+	if( timer && timer.running ) {
 		timer.stop();
 	}
 	timer = null;

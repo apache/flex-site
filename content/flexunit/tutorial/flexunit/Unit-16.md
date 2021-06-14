@@ -158,7 +158,7 @@ private function onCreationComplete():void {
 </ul>
 
 ```
-&#60;project name=<i>"project_name"</i> basedir=<i>"project_base"</i> default=<i>"default_target"</i> &#62;
+<project name=<i>"project_name"</i> basedir=<i>"project_base"</i> default=<i>"default_target"</i> >
 ```
 
 <h3>Property tag</h3>
@@ -170,7 +170,7 @@ private function onCreationComplete():void {
 </ul>
 
 ```
-&#60;property name=<i>"property_name"</i> location=<i>"property_location"</i> /&#62;
+<property name=<i>"property_name"</i> location=<i>"property_location"</i> />
 ```
 
 <h3>Taskdef tag</h3>
@@ -183,7 +183,7 @@ private function onCreationComplete():void {
 </ul>
 
 ```
-&#60;taskdef resource=<i>"task_location_within_jar"</i> classpath=<i>"task_jar_location"</i> /&#62;
+<taskdef resource=<i>"task_location_within_jar"</i> classpath=<i>"task_jar_location"</i> />
 ```
 
 <h3>Target tag</h3>
@@ -198,7 +198,7 @@ private function onCreationComplete():void {
 </ul>
 
 ```
-&#60;target name=<i>"target_name"</i> depends=<i>"target_dependencies"</i>&#62;
+<target name=<i>"target_name"</i> depends=<i>"target_dependencies"</i>>
 ```
 
 <h3>Task</h3>
@@ -213,7 +213,7 @@ private function onCreationComplete():void {
 </ul>
 
 ```
-&#60;taskname id=<i>"task_id"</i> attribute1=<i>"..."</i> attribute2=<i>"..."</i> ... /&#62;
+<taskname id=<i>"task_id"</i> attribute1=<i>"..."</i> attribute2=<i>"..."</i> ... />
 ```
 
 <ul>
@@ -301,8 +301,8 @@ private function onCreationComplete():void {
 		<p>First, navigate to your Flex SDK. In most cases, your Flex SDK should be located at root/Program Files/Adobe/Adobe Flash Builder 4/sdks.</p> 
 
 ```
-&#60;property name="FLEX_HOME" 
- location="rootpath:/Program Files/Adobe/Adobe Flash Builder 4/sdks/4.1.0/" /&#62;
+<property name="FLEX_HOME" 
+ location="rootpath:/Program Files/Adobe/Adobe Flash Builder 4/sdks/4.1.0/" />
  ```
 
 <p>It is highly recommended you use Flex 4.1 SDK. Keep every directory in this walkthrough relative to the FLEX_HOME directory, this way the build file is guaranteed to reference these correctly.</p>

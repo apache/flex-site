@@ -156,7 +156,7 @@ public function Circle( origin:Point, radius:Number )
 		<p>Comment out the range check for radius.</p>
 
 ```
-// if( ( radius &#60;= 0 || isNaN( radius ) ) {
+// if( ( radius <= 0 || isNaN( radius ) ) {
 //	throw new RangeError( "Radius must be a positive Number" );
 // }
 ```
@@ -176,7 +176,7 @@ if( origin == null ) {
 
 ```
 public function Circle( origin:Point, radius:Number ) {
-	// if( ( radius &#60;= 0 || isNaN( radius ) ) {
+	// if( ( radius <= 0 || isNaN( radius ) ) {
 	// 	throw new RangeError( "Radius must be a positive Number" );
 	// }
 	if( origin == null ) {
@@ -572,7 +572,7 @@ assertTrue( circle.equals( mockCircle ) );
 		<p>Uncomment the following section:</p>
 
 ```
-// if ( ( radius &#60;= 0 ) || isNaN( radius ) ) {
+// if ( ( radius <= 0 ) || isNaN( radius ) ) {
 //	throw new RangeError("Radius must be a positive Number");
 // }
 ```
