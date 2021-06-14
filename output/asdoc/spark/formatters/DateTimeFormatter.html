@@ -1,0 +1,458 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd"><!-- saved from url=(0014)about:internet --><html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><link rel="stylesheet" href="../../style.css" type="text/css" media="screen"><link rel="stylesheet" href="../../print.css" type="text/css" media="print"><link rel="stylesheet" href="../../override.css" type="text/css"><meta name="keywords" content="DateTimeFormatter,spark.formatters.DateTimeFormatter,actualLocaleIDName,actualLocaleIDName,actualLocaleIDName,currencyISOCode,currencySymbol,dateStyle,dateTimePattern,errorText,lastOperationStatus,negativeCurrencyFormat,negativeNumberFormat,positiveCurrencyFormat,timeStyle,useCurrencySymbol,useUTC,format,format,format,formattingWithCurrencySymbolIsSafe,getAvailableLocaleIDNames,getAvailableLocaleIDNames,getAvailableLocaleIDNames,getFirstWeekday,getMonthNames,getWeekdayNames,parse,parse,parseNumber"><title>spark.formatters.DateTimeFormatter</title><script src="../../AC_OETags.js" type="text/javascript"></script></head><body><script language="javascript" type="text/javascript" src="../../asdoc.js"></script><script language="javascript" type="text/javascript" src="../../help.js"></script><script language="javascript" type="text/javascript" src="../../cookies.js"></script><script language="javascript" type="text/javascript"><!--
+				asdocTitle = 'DateTimeFormatter - ApacheFlex API Reference';
+				var baseRef = '../../';
+				window.onload = configPage;
+			--></script>
+<script type="text/javascript">
+			scrollToNameAnchor();
+		</script><table class="titleTable" cellpadding="0" cellspacing="0" id="titleTable" style="display:none"><tr><td class="titleTableTitle" align="left">Apache Flex 4.16.1 API Reference </td><td class="titleTableTopNav" align="right"><a href="../../package-summary.html" onclick="loadClassListFrame('../../all-classes.html')">All Packages</a>&nbsp;|&nbsp;<a href="../../class-summary.html" onclick="loadClassListFrame('../../all-classes.html')">All Classes</a>&nbsp;|&nbsp;<a href="../../all-index-A.html" onclick="loadClassListFrame('../../index-list.html')">Index</a>&nbsp;|&nbsp;<a id="framesLink1" href="../../index.html?spark/formatters/DateTimeFormatter.html&amp;spark/formatters/class-list.html">Frames</a><a id="noFramesLink1" style="display:none" href="" onclick="parent.location=document.location"> No Frames </a></td><td class="titleTableLogo" align="right" rowspan="3"><img src="../../images/logo.jpg" class="logoImage" alt="AdobeLogo" title="AdobeLogo"></td></tr><tr class="titleTableRow2"><td class="titleTableSubTitle" id="subTitle" align="left">DateTimeFormatter</td><td class="titleTableSubNav" id="subNav" align="right"><a href="#propertySummary">Properties</a>&nbsp;| <a href="#methodSummary">Methods</a>&nbsp;| <a href="#eventSummary">Events</a>&nbsp;| <a href="#styleSummary">Styles</a>&nbsp;| <a href="#includeExamplesSummary">Examples</a></td></tr><tr class="titleTableRow3"><td colspan="3">&nbsp;</td></tr></table><script language="javascript" type="text/javascript" xml:space="preserve">
+				<!--
+				
+					if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("DateTimeFormatter"); titleBar_setSubNav(false,true,true,false,false,false,true,false,true,true,false	,false,false,false,false,false);}	
+				-->
+			</script><div xmlns:fn="http://www.w3.org/2005/xpath-functions" class="MainContent"><table class="classHeaderTable" cellpadding="0" cellspacing="0"><tr><td class="classHeaderTableLabel">Package</td><td><a href="package-detail.html" onclick="javascript:loadClassListFrame('class-list.html')">spark.formatters</a></td></tr><tr><td class="classHeaderTableLabel">Class</td><td class="classSignature">public  class  DateTimeFormatter</td></tr><tr><td class="classHeaderTableLabel">Inheritance</td><td class="inheritanceList">DateTimeFormatter  <img src="../../images/inherit-arrow.gif" title="Inheritance" alt="Inheritance" class="inheritArrow"> <a href="../../spark/globalization/supportClasses/GlobalizationBase.html">GlobalizationBase</a> <img src="../../images/inherit-arrow.gif" title="Inheritance" alt="Inheritance" class="inheritArrow"> <a href="../../mx/styles/AdvancedStyleClient.html">AdvancedStyleClient</a> <img src="../../images/inherit-arrow.gif" title="Inheritance" alt="Inheritance" class="inheritArrow"> flash.events.EventDispatcher</td></tr><tr><td class="classHeaderTableLabel">Implements</td><td> <a href="../../mx/formatters/IFormatter.html">IFormatter</a></td></tr></table><p></p><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Language Version :&nbsp;</b></td><td>ActionScript 3.0</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Product Version :&nbsp;</b></td><td>Flex 4.5</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Runtime Versions :&nbsp;</b></td><td>Flash Player  10.1, AIR 2.5</td></tr></table><p></p><p></p><p></p><p></p>
+  The DateTimeFormatter class provides locale-sensitve
+  formatting for a <code>Date</code> object.
+   <p>This class is a wrapper class around the
+  flash.globalization.DateTimeFormatter class.
+  Therefore, the locale-specific formatting functionality and the month
+  names, day names and the first day of the week are provided by the
+  flash.globalization.DateTimeFormatter.
+  However, this DateTimeFormatter class can be used in MXML declarations,
+  uses the locale style for the requested Locale ID name, and has methods
+  and properties that are bindable.</p>
+               <p>The flash.globalization.DateTimeFormatter class uses the
+  underlying operating system for the formatting functionality and to
+  supply the locale-specific data.
+  On some operating systems, the flash.globalization classes
+  are unsupported, on these systems, this wrapper class provides 
+  fallback functionality.</p>
+            <p></p><a name="mxmlSyntaxSummary"></a><span class="classHeaderTableLabel">MXML Syntax</span><span id="showMxmlLink" style="display:none"><a href="#mxmlSyntaxSummary" onclick="toggleMXMLOnly();"><img src="../../images/collapsed.gif" title="collapsed" alt="collapsed" class="collapsedImage">Show MXML Syntax</a><br/></span><span id="hideMxmlLink"><a href="#mxmlSyntaxSummary" onclick="toggleMXMLOnly();"><img src="../../images/expanded.gif" title="expanded" alt="expanded" class="expandedImage">Hide MXML Syntax</a></span><div id="mxmlSyntax" class="mxmlSyntax"><p>The <code>&lt;s:DateTimeFormatter&gt;</code> tag inherits all of the tag 
+  attributes of its superclass and adds the following tag attributes:</p>
+   <pre>
+  &lt;s:DateTimeFormatter
+    <strong>Properties</strong>
+    dateStyle="long"
+    dateTimePattern="EEEE, MMMM dd, yyyy h:mm:ss a"
+    errorText="null"
+    timeStyle="long"
+    useUTC="false"
+  /&gt;
+  </pre>
+   </div><script language="javascript" type="text/javascript"><!--
+								setMXMLOnly();
+								--></script><p><a href="#includeExamplesSummary">View the examples</a></p><p><span class="classHeaderTableLabel">See also</span></p><div class="seeAlso">flash.globalization.DateTimeFormatter</div><br/><hr></div><a name="propertySummary"></a><div class="summarySection"><div class="summaryTableTitle">Public Properties</div><div class="showHideLinks"><div id="hideInheritedProperty" class="hideInheritedProperty"><a class="showHideLink" href="#propertySummary" onclick="javascript:setInheritedVisible(false,'Property');"><img class="showHideLinkImage" src="../../images/expanded.gif"> Hide Inherited Public Properties</a></div><div id="showInheritedProperty" class="showInheritedProperty"><a class="showHideLink" href="#propertySummary" onclick="javascript:setInheritedVisible(true,'Property');"><img class="showHideLinkImage" src="../../images/collapsed.gif"> Show Inherited Public Properties</a></div></div><table cellspacing="0" cellpadding="3" class="summaryTable " id="summaryTableProperty"><tr><th>&nbsp;</th><th colspan="2">Property</th><th class="summaryTableOwnerCol">Defined By</th></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a href="#actualLocaleIDName" class="signatureLink">actualLocaleIDName</a> : String<div class="summaryTableDescription">[override] [read-only] 
+      
+      The name of the actual locale ID used by this class object.</div></td><td class="summaryTableOwnerCol">DateTimeFormatter</td></tr><tr class="hideInheritedProperty"><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img src="../../images/inheritedSummary.gif" alt="Inherited" title="Inherited" class="inheritedSummaryImage"></td><td class="summaryTableSignatureCol"><a href="../../mx/styles/AdvancedStyleClient.html#className" class="signatureLink">className</a> : String<div class="summaryTableDescription">[read-only] 
+      The name of the component class.</div></td><td class="summaryTableOwnerCol"><a href="../../mx/styles/AdvancedStyleClient.html">AdvancedStyleClient</a></td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a href="#dateStyle" class="signatureLink">dateStyle</a> : String<div class="summaryTableDescription">
+      The date style for this instance of the DateTimeFormatter.</div></td><td class="summaryTableOwnerCol">DateTimeFormatter</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a href="#dateTimePattern" class="signatureLink">dateTimePattern</a> : String<div class="summaryTableDescription">
+      The pattern string used by the DateTimeFormatter object to format
+      dates and times.</div></td><td class="summaryTableOwnerCol">DateTimeFormatter</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a href="#errorText" class="signatureLink">errorText</a> : String<div class="summaryTableDescription">
+      String returned by the format() method
+      when an error occurs.</div></td><td class="summaryTableOwnerCol">DateTimeFormatter</td></tr><tr class="hideInheritedProperty"><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img src="../../images/inheritedSummary.gif" alt="Inherited" title="Inherited" class="inheritedSummaryImage"></td><td class="summaryTableSignatureCol"><a href="../../mx/styles/AdvancedStyleClient.html#id" class="signatureLink">id</a> : String<div class="summaryTableDescription">
+      
+      The identity of the component.</div></td><td class="summaryTableOwnerCol"><a href="../../mx/styles/AdvancedStyleClient.html">AdvancedStyleClient</a></td></tr><tr class="hideInheritedProperty"><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img src="../../images/inheritedSummary.gif" alt="Inherited" title="Inherited" class="inheritedSummaryImage"></td><td class="summaryTableSignatureCol"><a href="../../mx/styles/AdvancedStyleClient.html#inheritingStyles" class="signatureLink">inheritingStyles</a> : Object<div class="summaryTableDescription">
+      An object containing the inheritable styles for this non-visual
+      style client instance.</div></td><td class="summaryTableOwnerCol"><a href="../../mx/styles/AdvancedStyleClient.html">AdvancedStyleClient</a></td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a href="#lastOperationStatus" class="signatureLink">lastOperationStatus</a> : String<div class="summaryTableDescription">[override] [read-only] 
+      
+      The status of the most recent operation that this class object
+      performed.</div></td><td class="summaryTableOwnerCol">DateTimeFormatter</td></tr><tr class="hideInheritedProperty"><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img src="../../images/inheritedSummary.gif" alt="Inherited" title="Inherited" class="inheritedSummaryImage"></td><td class="summaryTableSignatureCol"><a href="../../mx/styles/AdvancedStyleClient.html#moduleFactory" class="signatureLink">moduleFactory</a> : <a href="../../mx/core/IFlexModuleFactory.html">IFlexModuleFactory</a><div class="summaryTableDescription">
+      A module factory is used as context for
+      finding the style manager that controls the styles for this
+      non-visual style client instance.</div></td><td class="summaryTableOwnerCol"><a href="../../mx/styles/AdvancedStyleClient.html">AdvancedStyleClient</a></td></tr><tr class="hideInheritedProperty"><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img src="../../images/inheritedSummary.gif" alt="Inherited" title="Inherited" class="inheritedSummaryImage"></td><td class="summaryTableSignatureCol"><a href="../../mx/styles/AdvancedStyleClient.html#nonInheritingStyles" class="signatureLink">nonInheritingStyles</a> : Object<div class="summaryTableDescription">
+      The beginning of this component's chain of non-inheriting styles.</div></td><td class="summaryTableOwnerCol"><a href="../../mx/styles/AdvancedStyleClient.html">AdvancedStyleClient</a></td></tr><tr class="hideInheritedProperty"><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img src="../../images/inheritedSummary.gif" alt="Inherited" title="Inherited" class="inheritedSummaryImage"></td><td class="summaryTableSignatureCol"><a href="../../mx/styles/AdvancedStyleClient.html#styleDeclaration" class="signatureLink">styleDeclaration</a> : <a href="../../mx/styles/CSSStyleDeclaration.html">CSSStyleDeclaration</a><div class="summaryTableDescription">
+      The style declaration that holds the inline styles declared by this
+      object.</div></td><td class="summaryTableOwnerCol"><a href="../../mx/styles/AdvancedStyleClient.html">AdvancedStyleClient</a></td></tr><tr class="hideInheritedProperty"><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img src="../../images/inheritedSummary.gif" alt="Inherited" title="Inherited" class="inheritedSummaryImage"></td><td class="summaryTableSignatureCol"><a href="../../mx/styles/AdvancedStyleClient.html#styleManager" class="signatureLink">styleManager</a> : <a href="../../mx/styles/IStyleManager2.html">IStyleManager2</a><div class="summaryTableDescription">[read-only] 
+      Returns the StyleManager instance used by this component.</div></td><td class="summaryTableOwnerCol"><a href="../../mx/styles/AdvancedStyleClient.html">AdvancedStyleClient</a></td></tr><tr class="hideInheritedProperty"><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img src="../../images/inheritedSummary.gif" alt="Inherited" title="Inherited" class="inheritedSummaryImage"></td><td class="summaryTableSignatureCol"><a href="../../mx/styles/AdvancedStyleClient.html#styleName" class="signatureLink">styleName</a> : Object<div class="summaryTableDescription">
+      
+      The source of this object's style values.</div></td><td class="summaryTableOwnerCol"><a href="../../mx/styles/AdvancedStyleClient.html">AdvancedStyleClient</a></td></tr><tr class="hideInheritedProperty"><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img src="../../images/inheritedSummary.gif" alt="Inherited" title="Inherited" class="inheritedSummaryImage"></td><td class="summaryTableSignatureCol"><a href="../../mx/styles/AdvancedStyleClient.html#styleParent" class="signatureLink">styleParent</a> : <a href="../../mx/styles/IAdvancedStyleClient.html">IAdvancedStyleClient</a><div class="summaryTableDescription">
+      A component's parent is used to evaluate descendant selectors.</div></td><td class="summaryTableOwnerCol"><a href="../../mx/styles/AdvancedStyleClient.html">AdvancedStyleClient</a></td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a href="#timeStyle" class="signatureLink">timeStyle</a> : String<div class="summaryTableDescription">
+      The time style for this instance of the DateTimeFormatter.</div></td><td class="summaryTableOwnerCol">DateTimeFormatter</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a href="#useUTC" class="signatureLink">useUTC</a> : Boolean<div class="summaryTableDescription">
+      A boolean flag to control whether the local or the UTC date and time
+      values are used when the formatting a date.</div></td><td class="summaryTableOwnerCol">DateTimeFormatter</td></tr></table></div><a name="methodSummary"></a><div class="summarySection"><div class="summaryTableTitle">Public Methods </div><div class="showHideLinks"><div id="hideInheritedMethod" class="hideInheritedMethod"><a class="showHideLink" href="#methodSummary" onclick="javascript:setInheritedVisible(false,'Method');"><img class="showHideLinkImage" src="../../images/expanded.gif"> Hide Inherited Public Methods</a></div><div id="showInheritedMethod" class="showInheritedMethod"><a class="showHideLink" href="#methodSummary" onclick="javascript:setInheritedVisible(true,'Method');"><img class="showHideLinkImage" src="../../images/collapsed.gif"> Show Inherited Public Methods</a></div></div><table cellspacing="0" cellpadding="3" class="summaryTable " id="summaryTableMethod"><tr><th>&nbsp;</th><th colspan="2">Method</th><th class="summaryTableOwnerCol">Defined By</th></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#DateTimeFormatter()" class="signatureLink">DateTimeFormatter</a>()</div><div class="summaryTableDescription">
+      Constructs a new DateTimeFormatter object to format
+      dates and times according to the conventions of the specified locale
+      and the provided date and time formatting styles.</div></td><td class="summaryTableOwnerCol">DateTimeFormatter</td></tr><tr class="hideInheritedMethod"><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img src="../../images/inheritedSummary.gif" alt="Inherited" title="Inherited" class="inheritedSummaryImage"></td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="../../mx/styles/AdvancedStyleClient.html#clearStyle()" class="signatureLink">clearStyle</a>(styleProp:String):void</div><div class="summaryTableDescription">
+      
+      Deletes a style property from this component instance.</div></td><td class="summaryTableOwnerCol"><a href="../../mx/styles/AdvancedStyleClient.html">AdvancedStyleClient</a></td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#format()" class="signatureLink">format</a>(value:Object):String</div><div class="summaryTableDescription">
+     Formats a display string for an object that specifies a date in either 
+     the user's local time or UTC time.</div></td><td class="summaryTableOwnerCol">DateTimeFormatter</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#getAvailableLocaleIDNames()" class="signatureLink">getAvailableLocaleIDNames</a>():Vector.&lt;String&gt;</div><div class="summaryTableDescription">[static] 
+      Lists all of the locale ID names supported by this class.</div></td><td class="summaryTableOwnerCol">DateTimeFormatter</td></tr><tr class="hideInheritedMethod"><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img src="../../images/inheritedSummary.gif" alt="Inherited" title="Inherited" class="inheritedSummaryImage"></td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="../../mx/styles/AdvancedStyleClient.html#getClassStyleDeclarations()" class="signatureLink">getClassStyleDeclarations</a>():Array</div><div class="summaryTableDescription">
+      
+      Returns an Array of CSSStyleDeclaration objects for the type selector
+      that applies to this component, or null if none exist.</div></td><td class="summaryTableOwnerCol"><a href="../../mx/styles/AdvancedStyleClient.html">AdvancedStyleClient</a></td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#getFirstWeekday()" class="signatureLink">getFirstWeekday</a>():int</div><div class="summaryTableDescription">
+      Returns an integer corresponding to the first day of the week for
+      this locale and calendar system.</div></td><td class="summaryTableOwnerCol">DateTimeFormatter</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#getMonthNames()" class="signatureLink">getMonthNames</a>(nameStyle:String = full, context:String = standalone):Vector.&lt;String&gt;</div><div class="summaryTableDescription">
+      Retrieves a list of localized strings containing the month names for
+      the current calendar system.</div></td><td class="summaryTableOwnerCol">DateTimeFormatter</td></tr><tr class="hideInheritedMethod"><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img src="../../images/inheritedSummary.gif" alt="Inherited" title="Inherited" class="inheritedSummaryImage"></td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="../../spark/globalization/supportClasses/GlobalizationBase.html#getStyle()" class="signatureLink">getStyle</a>(styleProp:String):*</div><div class="summaryTableDescription">[override] 
+      Gets a style property that has been set anywhere in this
+      component's style lookup chain.</div></td><td class="summaryTableOwnerCol"><a href="../../spark/globalization/supportClasses/GlobalizationBase.html">GlobalizationBase</a></td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#getWeekdayNames()" class="signatureLink">getWeekdayNames</a>(nameStyle:String = full, context:String = standalone):Vector.&lt;String&gt;</div><div class="summaryTableDescription">
+      Retrieves a list of localized strings containing the names of
+      weekdays for the current calendar system.</div></td><td class="summaryTableOwnerCol">DateTimeFormatter</td></tr><tr class="hideInheritedMethod"><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img src="../../images/inheritedSummary.gif" alt="Inherited" title="Inherited" class="inheritedSummaryImage"></td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="../../mx/styles/AdvancedStyleClient.html#hasCSSState()" class="signatureLink">hasCSSState</a>():Boolean</div><div class="summaryTableDescription">
+      
+      Returns true if currentCSSState is not null.</div></td><td class="summaryTableOwnerCol"><a href="../../mx/styles/AdvancedStyleClient.html">AdvancedStyleClient</a></td></tr><tr class="hideInheritedMethod"><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img src="../../images/inheritedSummary.gif" alt="Inherited" title="Inherited" class="inheritedSummaryImage"></td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="../../mx/styles/AdvancedStyleClient.html#initialized()" class="signatureLink">initialized</a>(document:Object, id:String):void</div><div class="summaryTableDescription">
+      The initialized method is called when this class or a class that
+      extends this class is used in an MXML declaration.</div></td><td class="summaryTableOwnerCol"><a href="../../mx/styles/AdvancedStyleClient.html">AdvancedStyleClient</a></td></tr><tr class="hideInheritedMethod"><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img src="../../images/inheritedSummary.gif" alt="Inherited" title="Inherited" class="inheritedSummaryImage"></td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="../../mx/styles/AdvancedStyleClient.html#matchesCSSState()" class="signatureLink">matchesCSSState</a>(cssState:String):Boolean</div><div class="summaryTableDescription">
+      
+      Returns true if cssState matches currentCSSState.</div></td><td class="summaryTableOwnerCol"><a href="../../mx/styles/AdvancedStyleClient.html">AdvancedStyleClient</a></td></tr><tr class="hideInheritedMethod"><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img src="../../images/inheritedSummary.gif" alt="Inherited" title="Inherited" class="inheritedSummaryImage"></td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="../../mx/styles/AdvancedStyleClient.html#matchesCSSType()" class="signatureLink">matchesCSSType</a>(cssType:String):Boolean</div><div class="summaryTableDescription">
+      
+      Determines whether this instance is the same as, or is a subclass of,
+      the given type.</div></td><td class="summaryTableOwnerCol"><a href="../../mx/styles/AdvancedStyleClient.html">AdvancedStyleClient</a></td></tr><tr class="hideInheritedMethod"><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img src="../../images/inheritedSummary.gif" alt="Inherited" title="Inherited" class="inheritedSummaryImage"></td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="../../mx/styles/AdvancedStyleClient.html#notifyStyleChangeInChildren()" class="signatureLink">notifyStyleChangeInChildren</a>(styleProp:String, recursive:Boolean):void</div><div class="summaryTableDescription">
+      Propagates style changes to the children of this style client
+      instance.</div></td><td class="summaryTableOwnerCol"><a href="../../mx/styles/AdvancedStyleClient.html">AdvancedStyleClient</a></td></tr><tr class="hideInheritedMethod"><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img src="../../images/inheritedSummary.gif" alt="Inherited" title="Inherited" class="inheritedSummaryImage"></td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="../../mx/styles/AdvancedStyleClient.html#regenerateStyleCache()" class="signatureLink">regenerateStyleCache</a>(recursive:Boolean):void</div><div class="summaryTableDescription">
+      Sets up the internal style cache values so that the
+      getStyle()
+      method functions.</div></td><td class="summaryTableOwnerCol"><a href="../../mx/styles/AdvancedStyleClient.html">AdvancedStyleClient</a></td></tr><tr class="hideInheritedMethod"><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img src="../../images/inheritedSummary.gif" alt="Inherited" title="Inherited" class="inheritedSummaryImage"></td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="../../mx/styles/AdvancedStyleClient.html#registerEffects()" class="signatureLink">registerEffects</a>(effects:Array):void</div><div class="summaryTableDescription">
+      Registers the EffectManager as one of the event listeners
+      for each effect event.</div></td><td class="summaryTableOwnerCol"><a href="../../mx/styles/AdvancedStyleClient.html">AdvancedStyleClient</a></td></tr><tr class="hideInheritedMethod"><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img src="../../images/inheritedSummary.gif" alt="Inherited" title="Inherited" class="inheritedSummaryImage"></td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="../../mx/styles/AdvancedStyleClient.html#setStyle()" class="signatureLink">setStyle</a>(styleProp:String, newValue:*):void</div><div class="summaryTableDescription">
+      
+      Sets a style property on this component instance.</div></td><td class="summaryTableOwnerCol"><a href="../../mx/styles/AdvancedStyleClient.html">AdvancedStyleClient</a></td></tr><tr class="hideInheritedMethod"><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img src="../../images/inheritedSummary.gif" alt="Inherited" title="Inherited" class="inheritedSummaryImage"></td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="../../mx/styles/AdvancedStyleClient.html#styleChanged()" class="signatureLink">styleChanged</a>(styleProp:String):void</div><div class="summaryTableDescription">
+      Detects changes to style properties.</div></td><td class="summaryTableOwnerCol"><a href="../../mx/styles/AdvancedStyleClient.html">AdvancedStyleClient</a></td></tr><tr class="hideInheritedMethod"><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img src="../../images/inheritedSummary.gif" alt="Inherited" title="Inherited" class="inheritedSummaryImage"></td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="../../mx/styles/AdvancedStyleClient.html#stylesInitialized()" class="signatureLink">stylesInitialized</a>():void</div><div class="summaryTableDescription">
+      
+      Flex calls the stylesInitialized() method when
+      the styles for a component are first initialized.</div></td><td class="summaryTableOwnerCol"><a href="../../mx/styles/AdvancedStyleClient.html">AdvancedStyleClient</a></td></tr></table></div><a name="protectedMethodSummary"></a><div class="summarySection"><div class="summaryTableTitle">Protected Methods </div><div class="showHideLinks"><div id="hideInheritedProtectedMethod" class="hideInheritedProtectedMethod"><a class="showHideLink" href="#protectedMethodSummary" onclick="javascript:setInheritedVisible(false,'ProtectedMethod');"><img class="showHideLinkImage" src="../../images/expanded.gif"> Show Inherited Protected Methods</a></div><div id="showInheritedProtectedMethod" class="showInheritedProtectedMethod"><a class="showHideLink" href="#protectedMethodSummary" onclick="javascript:setInheritedVisible(true,'ProtectedMethod');"><img class="showHideLinkImage" src="../../images/collapsed.gif"> Show Inherited Protected Methods</a></div></div><table cellspacing="0" cellpadding="3" class="summaryTable hideInheritedProtectedMethod" id="summaryTableProtectedMethod"><tr><th>&nbsp;</th><th colspan="2">Method</th><th class="summaryTableOwnerCol">Defined By</th></tr><tr class="hideInheritedProtectedMethod"><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img src="../../images/inheritedSummary.gif" alt="Inherited" title="Inherited" class="inheritedSummaryImage"></td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="../../mx/styles/AdvancedStyleClient.html#setDeferredStyles()" class="signatureLink">setDeferredStyles</a>():void</div><div class="summaryTableDescription"></div></td><td class="summaryTableOwnerCol"><a href="../../mx/styles/AdvancedStyleClient.html">AdvancedStyleClient</a></td></tr></table></div><a name="eventSummary"></a><div class="summarySection"><div class="summaryTableTitle">Events</div><div class="showHideLinks"><div id="hideInheritedEvent" class="hideInheritedEvent"><a class="showHideLink" href="#eventSummary" onclick="javascript:setInheritedVisible(false,'Event');"><img class="showHideLinkImage" src="../../images/expanded.gif"> Hide Inherited Events</a></div><div id="showInheritedEvent" class="showInheritedEvent"><a class="showHideLink" href="#eventSummary" onclick="javascript:setInheritedVisible(true,'Event');"><img class="showHideLinkImage" src="../../images/collapsed.gif"> Show Inherited Events</a></div></div><table cellspacing="0" cellpadding="3" class="summaryTable hideInheritedEvent" id="summaryTableEvent"><tr><th>&nbsp;</th><th colspan="2">Event</th><th> Summary </th><th class="summaryTableOwnerCol">Defined By</th></tr><tr class="hideInheritedEvent"><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img src="../../images/inheritedSummary.gif" alt="Inherited" title="Inherited" class="inheritedSummaryImage"></td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="../../spark/globalization/supportClasses/GlobalizationBase.html#event:change" class="signatureLink">change</a></div></td><td class="summaryTableDescription summaryTableCol">The change event is generated whenever the locale style is changed or another property is set that would cause the format of a number to change or cause updates to the other values available through this class.</td><td class="summaryTableOwnerCol"><a href="../../spark/globalization/supportClasses/GlobalizationBase.html">GlobalizationBase</a></td></tr></table></div><a name="styleSummary"></a><div class="summarySection"><div class="summaryTableTitle">Styles</div><div class="showHideLinks"><div id="hideInheritedStyle" class="hideInheritedStyle"><a class="showHideLink" href="#styleSummary" onclick="javascript:setInheritedVisible(false,'Style');"><img class="showHideLinkImage" src="../../images/expanded.gif"> Hide Inherited Styles</a></div><div id="showInheritedStyle" class="showInheritedStyle"><a class="showHideLink" href="#styleSummary" onclick="javascript:setInheritedVisible(true,'Style');"><img class="showHideLinkImage" src="../../images/collapsed.gif"> Show Inherited Styles</a></div></div><table cellspacing="0" cellpadding="3" class="summaryTable hideInheritedStyle" id="summaryTableStyle"><tr><th>&nbsp;</th><th colspan="2">Style</th><th> Description </th><th class="summaryTableOwnerCol">Defined By</th></tr><tr class="hideInheritedStyle"><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img src="../../images/inheritedSummary.gif" alt="Inherited" title="Inherited" class="inheritedSummaryImage"></td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="../../spark/globalization/supportClasses/GlobalizationBase.html#style:locale" class="signatureLink">locale</a></div></td><td class="summaryTableDescription"><span class="label">Type: </span>String&nbsp;<span class="label">CSS Inheritance: </span>yes<br/>The locale identifier that specifies the language, region, script and optionally other related tags and keys.<p><span class="label">See also</span></p><div class="seeAlso"><a href="http://www.unicode.org/reports/tr35/" target="mm_external">http://www.unicode.org/reports/tr35/</a></div></td><td class="summaryTableOwnerCol"><a href="../../spark/globalization/supportClasses/GlobalizationBase.html">GlobalizationBase</a></td></tr></table></div><script language="javascript" type="text/javascript"><!--
+										showHideInherited();
+										--></script><div class="MainContent"><div class="detailSectionHeader">Property Detail</div><a name="propertyDetail"></a><a name="actualLocaleIDName"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">actualLocaleIDName</td><td class="detailHeaderType">property</td></tr></table><div class="detailBody"><code>actualLocaleIDName:String</code>&nbsp;&nbsp;[read-only] [override] <p></p><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Language Version :&nbsp;</b></td><td>ActionScript 3.0</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Product Version :&nbsp;</b></td><td>Flex 4.5</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Runtime Versions :&nbsp;</b></td><td>Flash Player  10.1, AIR 2.5</td></tr></table><p></p><p></p><p>
+      
+      The name of the actual locale ID used by this class object.
+           This is the locale that is used to access the formatting data and
+      functionality from the operating system.
+           <p>If the locale that was set by the <code>locale</code> style is not available,
+      then the value of the <code>actualLocaleIDName</code> is different
+      from the value of the <code>locale</code> style.
+      It indicates the fallback locale that is being used.
+      If the locale style was set to <code>LocaleID.DEFAULT</code> the
+      name of the locale specified by the user's operating system is 
+      used.</p>
+           </p><p>This property can be used as the source for data binding.</p><br/><span class="label"> Implementation </span><br/><code>&nbsp;&nbsp;&nbsp;&nbsp;public function get actualLocaleIDName():String</code><br/><p><span class="label">See also</span></p><div class="seeAlso">flash.globalization.DateTimeFormatter.actualLocaleIDName<br/><a href="DateTimeFormatter.html#DateTimeFormatter()" target="">DateTimeFormatter()</a></div></div><a name="propertyDetail"></a><a name="dateStyle"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">dateStyle</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code>dateStyle:String</code><p></p><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Language Version :&nbsp;</b></td><td>ActionScript 3.0</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Product Version :&nbsp;</b></td><td>Flex 4.5</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Runtime Versions :&nbsp;</b></td><td>Flash Player  10.1, AIR 2.5</td></tr></table><p></p><p></p><p>
+      The date style for this instance of the DateTimeFormatter.
+           The date style is used to retrieve a predefined time and locale
+      specific formatting pattern from the operating system.
+      When formatting a date, the <code>locale</code> style, the
+      <code>timeStyle</code> and the <code>dateStyle</code> properties
+      determine the format of the date.
+           The date style value can be set in the following two ways:
+      assigning a value to either the <code>dateStyle</code> property or
+      the <code>dateTimePattern</code> property. 
+           <p>The possible for this property are defined by 
+      the flash.globalization.DateTimeStyle class. 
+      Possible values for the <code>dateStyle</code> property are:</p>
+           <ul>
+      <li><code>DateTimeStyle.LONG</code> </li>
+      <li><code>DateTimeStyle.MEDIUM</code> </li>
+      <li><code>DateTimeStyle.SHORT </code></li>
+      <li><code>DateTimeStyle.NONE </code></li>
+      <li><code>DateTimeStyle.CUSTOM </code></li>
+      </ul>
+     
+     <p>If the <code>dateTimePattern</code>
+      property is assigned a value, as a side effect, the <code>dateStyle</code> property 
+      is set to <code>DateTimeStyle.CUSTOM </code></p>
+           </p><p> The default value is <code><code>DateTimeStyle.LONG</code></code>.</p><p>This property can be used as the source for data binding.</p><br/><span class="label"> Implementation </span><br/><code>&nbsp;&nbsp;&nbsp;&nbsp;public function get dateStyle():String</code><br/><code>&nbsp;&nbsp;&nbsp;&nbsp;public function set dateStyle(value:String):void</code><br/><br/><span class="label"> Throws </span><br/><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code>ArgumentError </code> &mdash; if the assigned value is not a valid
+              <code>DateTimeStyle</code> constant or is
+              <code>DateTimeStyle.CUSTOM</code>.
+      </td></tr><tr><td class="paramSpacer">&nbsp;</td></tr><tr><td width="20"></td><td><code>TypeError </code> &mdash; if the <code>dateStyle</code> or
+              is set to <code>null</code>.
+           </td></tr></table><p><span class="label">See also</span></p><div class="seeAlso"><a href="DateTimeFormatter.html#dateStyle" target="">dateStyle</a><br/><a href="DateTimeFormatter.html#dateTimePattern" target="">dateTimePattern</a><br/><a href="DateTimeFormatter.html#lastOperationStatus" target="">lastOperationStatus</a><br/>flash.globalization.DateTimeStyle<br/><a href="DateTimeFormatter.html#DateTimeFormatter()" target="">DateTimeFormatter()</a></div></div><a name="propertyDetail"></a><a name="dateTimePattern"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">dateTimePattern</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code>dateTimePattern:String</code><p></p><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Language Version :&nbsp;</b></td><td>ActionScript 3.0</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Product Version :&nbsp;</b></td><td>Flex 4.5</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Runtime Versions :&nbsp;</b></td><td>Flash Player  10.1, AIR 2.5</td></tr></table><p></p><p></p><p>
+      The pattern string used by the DateTimeFormatter object to format
+      dates and times.
+           <p>This pattern can be set in one of two ways:</p>
+           <ol>
+         <li>By setting the <code>dateStyle</code> and <code>timeStyle</code>
+         properties. </li>
+         <li>By setting the <code>dateTimePattern</code> property.</li>
+      </ol>
+           <p>If this property is assigned a value directly, as a side effect,
+      the current time and date styles are overridden and
+      set to the value <code>DateTimeStyle.CUSTOM</code>.</p>
+           <p>For a description of the pattern syntax, please see the
+      <a href="..\..\flash\globalization\DateTimeFormatter.html#setDateTimePattern()" target="">
+      <code>flash.globalization.DateTimeFormatter.setDateTimePattern()
+      </code></a> method.</p>
+           </p><p> The default value is <code>"EEEE, MMMM dd, yyyy h:mm:ss a"</code>.</p><p>This property can be used as the source for data binding.</p><br/><span class="label"> Implementation </span><br/><code>&nbsp;&nbsp;&nbsp;&nbsp;public function get dateTimePattern():String</code><br/><code>&nbsp;&nbsp;&nbsp;&nbsp;public function set dateTimePattern(value:String):void</code><br/><p><span class="label">See also</span></p><div class="seeAlso"><a href="DateTimeFormatter.html#dateStyle" target="">dateStyle</a><br/><a href="DateTimeFormatter.html#timeStyle" target="">timeStyle</a></div></div><a name="propertyDetail"></a><a name="errorText"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">errorText</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code>errorText:String</code><p></p><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Language Version :&nbsp;</b></td><td>ActionScript 3.0</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Product Version :&nbsp;</b></td><td>Flex 4.5</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Runtime Versions :&nbsp;</b></td><td>Flash Player  10.1, AIR 2.5</td></tr></table><p></p><p></p><p>
+      String returned by the <code>format()</code> method
+      when an error occurs.
+           <p>If <code>errorText</code> is non-null and an error occurs
+      while formatting a date, the format method
+      will return the string assigned to this property.</p>
+           For example:
+      <div class="listing" version="3.0"><pre>
+      var dtf:DateTimeFormatter = new DateTimeFormatter();
+      dtf.setStyle("locale", "en-US");
+      dtf.errorText = "----"
+      trace(dtf.format("abc"));  // ----
+      </pre></div>
+           </p><p> The default value is <code>null</code>.</p><p>This property can be used as the source for data binding.</p><br/><span class="label"> Implementation </span><br/><code>&nbsp;&nbsp;&nbsp;&nbsp;public function get errorText():String</code><br/><code>&nbsp;&nbsp;&nbsp;&nbsp;public function set errorText(value:String):void</code><br/><p><span class="label">See also</span></p><div class="seeAlso"><a href="../../spark/globalization/LastOperationStatus.html" target="">spark.globalization.LastOperationStatus</a></div></div><a name="propertyDetail"></a><a name="lastOperationStatus"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">lastOperationStatus</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code>lastOperationStatus:String</code>&nbsp;&nbsp;[read-only] [override] <p></p><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Language Version :&nbsp;</b></td><td>ActionScript 3.0</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Product Version :&nbsp;</b></td><td>Flex 4.5</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Runtime Versions :&nbsp;</b></td><td>Flash Player  10.1, AIR 2.5</td></tr></table><p></p><p></p><p>
+      
+      The status of the most recent operation that this class object
+      performed.
+           The <code>lastOperationStatus</code> is set whenever the constructor
+      or a method of this class is called, or when a property is set.
+      For the possible values see the description under each method.
+          </p><p>This property can be used as the source for data binding.</p><br/><span class="label"> Implementation </span><br/><code>&nbsp;&nbsp;&nbsp;&nbsp;public function get lastOperationStatus():String</code><br/></div><a name="propertyDetail"></a><a name="timeStyle"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">timeStyle</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code>timeStyle:String</code><p></p><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Language Version :&nbsp;</b></td><td>ActionScript 3.0</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Product Version :&nbsp;</b></td><td>Flex 4.5</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Runtime Versions :&nbsp;</b></td><td>Flash Player  10.1, AIR 2.5</td></tr></table><p></p><p></p><p>
+      The time style for this instance of the DateTimeFormatter.
+           The time style is used to retrieve a predefined time and locale
+      specific formatting pattern from the operating system.
+      When formatting a date, the <code>locale</code> style, the
+      <code>timeStyle</code> and the <code>dateStyle</code> properties
+      determine the format of the date.
+           The time style value can be set in the following two ways:
+      assigning a value to either the <code>timeStyle</code> property or
+      the <code>dateTimePattern</code> property.
+           <p>The value of the property are defined by the 
+      flash.globalization.DateTimeStyle class. 
+      Possible values for the <code>timeStyle</code> property are:</p>
+           <ul>
+      <li><code>DateTimeStyle.LONG</code></li>
+      <li><code>DateTimeStyle.MEDIUM</code></li>
+      <li><code>DateTimeStyle.SHORT</code></li>
+      <li><code>DateTimeStyle.NONE</code></li>
+      <li><code>DateTimeStyle.CUSTOM</code></li>
+      </ul>
+     
+     <p>If the <code>dateTimePattern</code>
+      property is assigned a value, as a side effect, the dateStyle property 
+      is set to <code>DateTimeStyle.CUSTOM </code></p>
+           </p><p> The default value is <code><code>DateTimeStyle.LONG</code></code>.</p><p>This property can be used as the source for data binding.</p><br/><span class="label"> Implementation </span><br/><code>&nbsp;&nbsp;&nbsp;&nbsp;public function get timeStyle():String</code><br/><code>&nbsp;&nbsp;&nbsp;&nbsp;public function set timeStyle(value:String):void</code><br/><br/><span class="label"> Throws </span><br/><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code>ArgumentError </code> &mdash; if the assigned value is not a valid 
+              <code>DateTimeStyle</code>
+              constant or is <code>DateTimeStyle.CUSTOM </code>.
+           </td></tr><tr><td class="paramSpacer">&nbsp;</td></tr><tr><td width="20"></td><td><code>TypeError </code> &mdash; if the <code>dateStyle</code> or
+              <code>timeStyle</code> parameter is null.
+           </td></tr></table><p><span class="label">See also</span></p><div class="seeAlso"><a href="DateTimeFormatter.html#dateStyle" target="">dateStyle</a><br/><a href="DateTimeFormatter.html#dateTimePattern" target="">dateTimePattern</a><br/>flash.globalization.DateTimeStyle<br/><a href="DateTimeFormatter.html#DateTimeFormatter()" target="">DateTimeFormatter()</a></div></div><a name="propertyDetail"></a><a name="useUTC"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">useUTC</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code>useUTC:Boolean</code><p></p><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Language Version :&nbsp;</b></td><td>ActionScript 3.0</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Product Version :&nbsp;</b></td><td>Flex 4.5</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Runtime Versions :&nbsp;</b></td><td>Flash Player  10.1, AIR 2.5</td></tr></table><p></p><p></p><p>
+      A boolean flag to control whether the local or the UTC date and time
+      values are used when the formatting a date.
+           If <code>useUTC</code> is set to <code>true</code> then the UTC values 
+      are used. If the value is set to <code>false</code>, then the 
+      date time values of the operating system's current time zone is used.
+           </p><p> The default value is <code>false</code>.</p><p>This property can be used as the source for data binding.</p><br/><span class="label"> Implementation </span><br/><code>&nbsp;&nbsp;&nbsp;&nbsp;public function get useUTC():Boolean</code><br/><code>&nbsp;&nbsp;&nbsp;&nbsp;public function set useUTC(value:Boolean):void</code><br/><p><span class="label">See also</span></p><div class="seeAlso"><a href="DateTimeFormatter.html#format()" target="">format()</a></div></div><a name="constructorDetail"></a><div class="detailSectionHeader">Constructor Detail</div><a name="DateTimeFormatter()"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">DateTimeFormatter</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">Constructor</td></tr></table><div class="detailBody"><code>public function DateTimeFormatter()</code><p></p><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Language Version :&nbsp;</b></td><td>ActionScript 3.0</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Product Version :&nbsp;</b></td><td>Flex 4.5</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Runtime Versions :&nbsp;</b></td><td>Flash Player  10.1, AIR 2.5</td></tr></table><p></p><p>
+      Constructs a new <code>DateTimeFormatter</code> object to format
+      dates and times according to the conventions of the specified locale
+      and the provided date and time formatting styles.
+           <p>The locale for this class is supplied by the locale style. The
+      locale style can be set in several ways:
+      </p>
+      <ul>
+      <li>
+      By using the class in an MXML declaration and inheriting the
+      locale from the document that contains the declaration.
+      </li>
+      Example:<pre>
+      &lt;fx:Declarations> 
+             &lt;s:DateTimeFormatter id="df" />
+      &lt;/fx:Declarations></pre>
+      <li>
+      By using an MXML declaration and specifying the locale value
+      in the list of assignments.
+      </li>
+      Example:<pre>
+      &lt;fx:Declarations> 
+          &lt;s:DateTimeFormatter id="df_Japanese" locale="ja-JP" />
+      &lt;/fx:Declarations></pre>
+      <li>
+      Calling the setStyle method. For example: <pre>
+      df.setStyle("locale", "ja-JP")</pre>
+      </li>
+      <li> 
+      Inheriting the style from a <code>UIComponent</code> by calling the
+      UIComponent's <code>addStyleClient()</code> method.
+      </li>
+      </ul>
+      <p>
+      If the <code>locale</code> style is not set by one of the above 
+      techniques, the instance of this class will be added as a 
+      <code>StyleClient</code> to the <code>topLevelApplication</code> and 
+      will therefore inherit the <code>locale</code> style from the 
+      <code>topLevelApplication</code> object when the <code>locale</code> 
+      dependent property getter or <code>locale</code> dependent method is 
+      called.
+      </p>    
+     
+      <p>Most of the properties of 
+      this class are automatically set based on the locale style. If the
+      locale style is changed, any properties that have not been explicitly
+      set will also be updated based on the new locale. Note that the 
+      actual locale that is used is specified by the actualLocaleIDName
+      property.</p>
+      
+      
+      </p><p><span class="label">See also</span></p><div class="seeAlso"><a href="DateTimeFormatter.html#actualLocaleIDName" target="">actualLocaleIDName</a><br/><a href="DateTimeFormatter.html#lastOperationsStatus" target="">lastOperationsStatus</a></div></div><a name="methodDetail"></a><div class="detailSectionHeader">Method Detail</div><a name="format()"></a><a name="format(Object)"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">format</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td></tr></table><div class="detailBody"><code> public function format(value:Object):String</code><p></p><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Language Version :&nbsp;</b></td><td>ActionScript 3.0</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Product Version :&nbsp;</b></td><td>Flex 4.5</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Runtime Versions :&nbsp;</b></td><td>Flash Player  10.1, AIR 2.5</td></tr></table><p></p><p></p><p>
+     Formats a display string for an object that specifies a date in either 
+     the user's local time or UTC time.
+     
+           <p>A <code>Date</code> object has two sets of date and time values,
+      those in the user's local time (<code>date, day, fullYear, hours, 
+      minutes, month,</code> and <code>seconds</code>) and those in UTC 
+      time (<code>dateUTC, dayUTC,
+      fullYearUTC, hoursUTC, minutesUTC, monthUTC,</code> and 
+      <code>secondsUTC</code>).
+      The boolean property <code>useUTC</code> controls which set of
+      date and time components are used when formatting the date.
+      The formatting will be done using the conventions of the locale as
+      set by the <code>locale</code> style property and the
+      <code>dateStyle</code> and <code>timeStyle</code> properties, or the
+      <code>dateTimePattern</code>, specified for this
+      <code>DateTimeFormatter</code> instance.
+      </p>
+     
+      <p>If there is an error when formatting, due to an illegal input value 
+      or other error, by default the <code>format()</code> method will 
+      return <code>null</code>. However if the <code>errorText</code> property
+      is non-null, then the value of the <code>errorText</code> property will
+      be returned. The <code>lastOperationStatus</code> property will be
+      set to indicate the error that occurred.</p>
+     
+      </p><p><span class="label"> Parameters </span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20px"></td><td><code><span class="label">value</span>:Object</code> &mdash; A <code>Date</code> value to be formatted. If the 
+      object is not a <code>Date</code> then it will be converted
+      to a date using the <code>Date()</code> constructor.
+     
+      </td></tr></table></p><p></p><span class="label">Returns</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code>String</code> &mdash; A formatted string representing the date or time value.
+           </td></tr></table><p><span class="label">See also</span></p><div class="seeAlso"><a href="DateTimeFormatter.html#dateStyle" target="">dateStyle</a><br/><a href="DateTimeFormatter.html#timeStyle" target="">timeStyle</a><br/>Date<br/><a href="DateTimeFormatter.html#dateTimePattern" target="">dateTimePattern</a><br/><a href="DateTimeFormatter.html" target="">DateTimeFormatter</a></div></div><a name="getAvailableLocaleIDNames()"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">getAvailableLocaleIDNames</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code> public static function getAvailableLocaleIDNames():Vector.&lt;String&gt;</code><p></p><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Language Version :&nbsp;</b></td><td>ActionScript 3.0</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Product Version :&nbsp;</b></td><td>Flex 4.5</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Runtime Versions :&nbsp;</b></td><td>Flash Player  10.1, AIR 2.5</td></tr></table><p></p><p></p><p>
+      Lists all of the locale ID names supported by this class. This is a list of locales supported by 
+      the operating system, not a list of locales that the ResourceManager has resources for.
+           </p><p></p><span class="label">Returns</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code>Vector.&lt;String&gt;</code> &mdash; A vector of strings containing all of the locale ID names
+             supported by this class and operating system.
+           </td></tr></table></div><a name="getFirstWeekday()"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">getFirstWeekday</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code> public function getFirstWeekday():int</code><p></p><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Language Version :&nbsp;</b></td><td>ActionScript 3.0</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Product Version :&nbsp;</b></td><td>Flex 4.5</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Runtime Versions :&nbsp;</b></td><td>Flash Player  10.1, AIR 2.5</td></tr></table><p></p><p></p><p>
+      Returns an integer corresponding to the first day of the week for
+      this locale and calendar system.
+           A value of 0 corresponds to Sunday, 1 corresponds to Monday and so
+      on, with 6 corresponding to Saturday.
+           </p><p></p><span class="label">Returns</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code>int</code> &mdash; An integer corresponding to the first day of the week for
+      this locale and calendar system.
+           </td></tr></table></div><a name="getMonthNames()"></a><a name="getMonthNames(String,String)"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">getMonthNames</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code> public function getMonthNames(nameStyle:String = full, context:String = standalone):Vector.&lt;String&gt;</code><p></p><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Language Version :&nbsp;</b></td><td>ActionScript 3.0</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Product Version :&nbsp;</b></td><td>Flex 4.5</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Runtime Versions :&nbsp;</b></td><td>Flash Player  10.1, AIR 2.5</td></tr></table><p></p><p></p><p>
+      Retrieves a list of localized strings containing the month names for
+      the current calendar system.
+           The first element in the list is the name for the first month of the
+      year.
+           </p><p><span class="label"> Parameters </span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20px"></td><td><code><span class="label">nameStyle</span>:String</code> (default = <code>full</code>)<code></code> &mdash; Indicates the style of name string to be used.
+              Valid values are:
+              <ul>
+                  <li><code>DateTimeNameStyle.FULL</code></li>
+                  <li><code>DateTimeNameStyle.LONG_ABBREVIATION</code>
+                      </li>
+                  <li><code>DateTimeNameStyle.SHORT_ABBREVIATION</code>
+                      </li>
+              </ul>
+      </td></tr><tr><td class="paramSpacer">&nbsp;</td></tr><tr><td width="20px"></td><td><code><span class="label">context</span>:String</code> (default = <code>standalone</code>)<code></code> &mdash; A code indicating the context in which the formatted
+              string will be used.
+              This context will only make a difference for certain
+              locales.
+              Valid values are:
+              <ul>
+                  <li><code>DateTimeNameContext.FORMAT</code></li>
+                  <li><code>DateTimeNameContext.STANDALONE</code></li>
+              </ul>
+           </td></tr></table></p><p></p><span class="label">Returns</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code>Vector.&lt;String&gt;</code> &mdash; A vector of localized strings containing the month names for
+              the current locale (specified by the locale style), 
+              name style and context.
+              The first element in the vector, at index 0, is the name for
+              the first month of the year; the next element is the name
+              for the second month of the year; and so forth.
+      </td></tr></table><br/><span class="label">Throws</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code>TypeError </code> &mdash; if the <code>nameStyle</code> or
+              <code>context</code> parameter is null.
+           </td></tr></table><p><span class="label">See also</span></p><div class="seeAlso">flash.globalization.DateTimeNameContext<br/>flash.globalization.DateTimeNameStyle</div></div><a name="getWeekdayNames()"></a><a name="getWeekdayNames(String,String)"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">getWeekdayNames</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code> public function getWeekdayNames(nameStyle:String = full, context:String = standalone):Vector.&lt;String&gt;</code><p></p><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Language Version :&nbsp;</b></td><td>ActionScript 3.0</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Product Version :&nbsp;</b></td><td>Flex 4.5</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Runtime Versions :&nbsp;</b></td><td>Flash Player  10.1, AIR 2.5</td></tr></table><p></p><p></p><p>
+      Retrieves a list of localized strings containing the names of
+      weekdays for the current calendar system.
+           The first element in the list represents the name for Sunday.
+           </p><p><span class="label"> Parameters </span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20px"></td><td><code><span class="label">nameStyle</span>:String</code> (default = <code>full</code>)<code></code> &mdash; Indicates the style of name string to be used.
+              Valid values are:
+              <ul>
+                  <li><code>DateTimeNameStyle.FULL</code></li>
+                  <li><code>DateTimeNameStyle.LONG_ABBREVIATION</code>
+                      </li>
+                  <li><code>DateTimeNameStyle.SHORT_ABBREVIATION</code>
+                      </li>
+              </ul>
+      </td></tr><tr><td class="paramSpacer">&nbsp;</td></tr><tr><td width="20px"></td><td><code><span class="label">context</span>:String</code> (default = <code>standalone</code>)<code></code> &mdash; A code indicating the context in which the formatted
+              string will be used.
+              This context only applies for certain locales where the name
+              of a month changes depending on the context.
+              For example, in Greek the month names are different if they
+              are displayed alone versus displayed along with a day.
+              Valid values are:
+              <ul>
+                  <li><code>DateTimeNameContext.FORMAT</code></li>
+                  <li><code>DateTimeNameContext.STANDALONE</code></li>
+              </ul>
+           </td></tr></table></p><p></p><span class="label">Returns</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code>Vector.&lt;String&gt;</code> &mdash; A vector of localized strings containing the month names for
+              the current locale (specified by the locale style), 
+              name style and context.
+              The first element in the vector, at index 0, is the name for
+              Sunday; the next element is the name for Monday; and so
+              forth.
+      </td></tr></table><br/><span class="label">Throws</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code>TypeError </code> &mdash; if the <code>nameStyle</code> or
+              <code>context</code> parameter is null.
+           </td></tr></table><p><span class="label">See also</span></p><div class="seeAlso">flash.globalization.DateTimeNameContext<br/>flash.globalization.DateTimeNameStyle</div></div><a name="includeExamplesSummary"></a><div class="detailSectionHeader">Examples</div><div class="exampleHeader">DateTimeFormatterExample.mxml</div><div class="detailBody"><div class="listing"><pre>&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;!--
+
+  Licensed to the Apache Software Foundation (ASF) under one or more
+  contributor license agreements.  See the NOTICE file distributed with
+  this work for additional information regarding copyright ownership.
+  The ASF licenses this file to You under the Apache License, Version 2.0
+  (the "License"); you may not use this file except in compliance with
+  the License.  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+
+--&gt;
+&lt;!--  Sample program for spark.formatters.DateTimeFormatter --&gt;
+&lt;s:Application
+    xmlns:fx="http://ns.adobe.com/mxml/2009"
+    xmlns:s="library://ns.adobe.com/flex/spark"
+    xmlns:mx="library://ns.adobe.com/flex/mx"&gt;
+    
+    &lt;fx:Declarations&gt;
+        &lt;s:DateTimeFormatter id="dateTimeFormatter"/&gt;
+    &lt;/fx:Declarations&gt;
+    
+    &lt;fx:Script&gt;
+        &lt;![CDATA[
+            import mx.collections.ArrayCollection;
+            
+            private static const dateTimeStyleMenuItems:ArrayCollection
+            = new ArrayCollection(["long", "medium", "short", "none"]);
+        ]]&gt;
+    &lt;/fx:Script&gt;
+    
+    &lt;s:Form&gt;
+        &lt;s:FormItem label="Input Locale ID Name"&gt;
+            &lt;s:HGroup&gt;
+                &lt;s:TextInput id="inputLocaleIDName"/&gt;
+                &lt;!-- Upon button click, sets the locale style on the document
+                UI component. The formatter will inherit this style. --&gt;
+                &lt;s:Button click="setStyle('locale', inputLocaleIDName.text);"
+                          label="Apply"/&gt;
+            &lt;/s:HGroup&gt;
+            &lt;s:Label text="Example: 'en-US', 'fr-FR', 'ja-JP', 'ar-SA'"/&gt;
+        &lt;/s:FormItem&gt;
+        &lt;s:FormItem label="Date Style"&gt;
+            &lt;s:DropDownList id="dateStyle" requireSelection="true"
+                            change="dateTimeFormatter.dateStyle = dateTimeStyleMenuItems[dateStyle.selectedIndex]"
+                            dataProvider="{dateTimeStyleMenuItems}"/&gt;
+        &lt;/s:FormItem&gt;
+        &lt;s:FormItem label="Time Style"&gt;
+            &lt;s:DropDownList id="timeStyle" requireSelection="true"
+                            change="dateTimeFormatter.timeStyle = dateTimeStyleMenuItems[timeStyle.selectedIndex]"
+                            dataProvider="{dateTimeStyleMenuItems}"/&gt;
+        &lt;/s:FormItem&gt;
+        &lt;s:FormItem label="Input Date"&gt;
+            &lt;s:TextInput id="inputDate" text="{new Date().toString()}"/&gt;
+        &lt;/s:FormItem&gt;
+        &lt;s:FormItem label="Actual Locale ID Name"&gt;
+            &lt;s:Label text="{dateTimeFormatter.actualLocaleIDName}"/&gt;
+        &lt;/s:FormItem&gt;
+        &lt;s:FormItem label="Formatted Result"&gt;
+            &lt;s:Label id="uiFormattedDate"
+                     text="{dateTimeFormatter.format(inputDate.text)}"/&gt;
+        &lt;/s:FormItem&gt;
+    &lt;/s:Form&gt;
+&lt;/s:Application&gt;
+</pre></div><script language="javascript" type="text/javascript"><!-- AC_FL_RunContent( "src", "examples/DateTimeFormatterExample", "width", "100%",
+					"height","400px", "salign", "TL", "id", "example1", "quality", "high", "bgcolor", "", "name",
+						"example1", "flashvars","", "allowScriptAccess","sameDomain", "type",
+					"application/x-shockwave-flash","pluginspage", "http://www.macromedia.com/go/getflashplayer" ); --></script></div><br/><br/><hr><br/><p></p><center class="copyright"><footer>The Apache Software Foundation</footer><br/>Wed Nov 15 2017, 09:50 AM +01:00  </center></div></body></html><!--The Apache Software Foundation<br/>Wed Nov 15 2017, 09:50 AM +01:00  -->

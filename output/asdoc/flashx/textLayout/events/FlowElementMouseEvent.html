@@ -1,0 +1,134 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd"><!-- saved from url=(0014)about:internet --><html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><link rel="stylesheet" href="../../../style.css" type="text/css" media="screen"><link rel="stylesheet" href="../../../print.css" type="text/css" media="print"><link rel="stylesheet" href="../../../override.css" type="text/css"><meta name="keywords" content="FlowElementMouseEvent,flashx.textLayout.events.FlowElementMouseEvent,CLICK,COMPOSITION_COMPLETE,DAMAGE,FLOW_OPERATION_BEGIN,FLOW_OPERATION_COMPLETE,FLOW_OPERATION_END,HORIZONTAL,INLINE_GRAPHIC_STATUS_CHANGE,MOUSE_DOWN,MOUSE_MOVE,MOUSE_UP,ROLL_OUT,ROLL_OVER,SCROLL,SELECTION_CHANGE,UPDATE_COMPLETE,VERTICAL,compositionLength,compositionStart,controller,damageAbsoluteStart,damageLength,delta,direction,element,error,errorEvent,flowElement,level,operation,originalEvent,selectionState,status,textFlow,textFlow,textFlow"><title>flashx.textLayout.events.FlowElementMouseEvent</title></head><body><script language="javascript" type="text/javascript" src="../../../asdoc.js"></script><script language="javascript" type="text/javascript" src="../../../help.js"></script><script language="javascript" type="text/javascript" src="../../../cookies.js"></script><script language="javascript" type="text/javascript"><!--
+				asdocTitle = 'FlowElementMouseEvent - ApacheFlex API Reference';
+				var baseRef = '../../../';
+				window.onload = configPage;
+			--></script>
+<script type="text/javascript">
+			scrollToNameAnchor();
+		</script><table class="titleTable" cellpadding="0" cellspacing="0" id="titleTable" style="display:none"><tr><td class="titleTableTitle" align="left">Apache Flex 4.16.1 API Reference </td><td class="titleTableTopNav" align="right"><a href="../../../package-summary.html" onclick="loadClassListFrame('../../../all-classes.html')">All Packages</a>&nbsp;|&nbsp;<a href="../../../class-summary.html" onclick="loadClassListFrame('../../../all-classes.html')">All Classes</a>&nbsp;|&nbsp;<a href="../../../all-index-A.html" onclick="loadClassListFrame('../../../index-list.html')">Index</a>&nbsp;|&nbsp;<a id="framesLink1" href="../../../index.html?flashx/textLayout/events/FlowElementMouseEvent.html&amp;flashx/textLayout/events/class-list.html">Frames</a><a id="noFramesLink1" style="display:none" href="" onclick="parent.location=document.location"> No Frames </a></td><td class="titleTableLogo" align="right" rowspan="3"><img src="../../../images/logo.jpg" class="logoImage" alt="AdobeLogo" title="AdobeLogo"></td></tr><tr class="titleTableRow2"><td class="titleTableSubTitle" id="subTitle" align="left">FlowElementMouseEvent</td><td class="titleTableSubNav" id="subNav" align="right"><a href="#propertySummary">Properties</a>&nbsp;| <a href="#methodSummary">Methods</a>&nbsp;| <a href="#constantSummary">Constants</a></td></tr><tr class="titleTableRow3"><td colspan="3">&nbsp;</td></tr></table><script language="javascript" type="text/javascript" xml:space="preserve">
+				<!--
+				
+					if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("FlowElementMouseEvent"); titleBar_setSubNav(true,true,false,false,false,false,false,false,true,false,false	,false,false,false,false,false);}	
+				-->
+			</script><div xmlns:fn="http://www.w3.org/2005/xpath-functions" class="MainContent"><table class="classHeaderTable" cellpadding="0" cellspacing="0"><tr><td class="classHeaderTableLabel">Package</td><td><a href="package-detail.html" onclick="javascript:loadClassListFrame('class-list.html')">flashx.textLayout.events</a></td></tr><tr><td class="classHeaderTableLabel">Class</td><td class="classSignature">public  class  FlowElementMouseEvent</td></tr><tr><td class="classHeaderTableLabel">Inheritance</td><td class="inheritanceList">FlowElementMouseEvent  <img src="../../../images/inherit-arrow.gif" title="Inheritance" alt="Inheritance" class="inheritArrow"> flash.events.Event</td></tr></table><p></p><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Language Version :&nbsp;</b></td><td>ActionScript 3.0</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Runtime Versions :&nbsp;</b></td><td>Flash Player  10, AIR 1.5</td></tr></table><p></p><p></p><p></p><p></p> A link element dispatches this event when it detects mouse activity.
+	 The Text Layout Framework includes this special version of mouse events
+	 because mouse events are generally unwanted when a flow element is
+	 embedded in an editable text flow, and because link elements are not in
+	 the display list (they are not DisplayObjects).
+	 <p>You can add an event listener to a link element to listen for this
+	 type of event. If you choose to cancel the event by calling
+	 <code>Event.preventDefault()</code>, the default behavior associated
+	 with the event will not occur.
+	 </p>
+	              <p>If you choose not to add an event listener to the link element, or
+	 your event listener function does not cancel the behavior, the 
+	 event is again dispatched, but this time by the link element's
+	 associated TextFlow instance rather than by the link element itself. 
+	 This provides a second opportunity to listen for this event with
+	 an event listener attached to the TextFlow. 
+	 </p>
+	              <p>FlowElementMouseEvents are
+	 dispatched only when the text cannot be edited or when the control key 
+	 is pressed concurrently with the mouse activity.</p>
+	              <p>
+	 The following six event types are dispatched only when the text
+	 cannot be edited or when the control key is pressed:
+	 <ul>
+	                    <li>
+                        <code>FlowElementMouseEvent.CLICK</code>
+                     </li>
+	                    <li>
+                        <code>FlowElementMouseEvent.MOUSE_DOWN</code>
+                     </li>
+	                    <li>
+                        <code>FlowElementMouseEvent.MOUSE_UP</code>
+                     </li>
+	                    <li>
+                        <code>FlowElementMouseEvent.MOUSE_MOVE</code>
+                     </li>
+	                    <li>
+                        <code>FlowElementMouseEvent.ROLL_OVER</code>
+                     </li>
+	                    <li>
+                        <code>FlowElementMouseEvent.ROLL_OUT</code>
+                     </li>
+	                 </ul>
+	              </p>
+	 
+	           <p></p><p><span class="classHeaderTableLabel">See also</span></p><div class="seeAlso"><a href="../../../flashx/textLayout/elements/LinkElement.html" target="">flashx.textLayout.elements.LinkElement</a><br/>flash.events.MouseEvent</div><br/><hr></div><a name="propertySummary"></a><div class="summarySection"><div class="summaryTableTitle">Public Properties</div><table cellspacing="0" cellpadding="3" class="summaryTable " id="summaryTableProperty"><tr><th>&nbsp;</th><th colspan="2">Property</th><th class="summaryTableOwnerCol">Defined By</th></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a href="#flowElement" class="signatureLink">flowElement</a> : <a href="../../../flashx/textLayout/elements/FlowElement.html">FlowElement</a><div class="summaryTableDescription"> 
+		 The FlowElement that dispatched the event.</div></td><td class="summaryTableOwnerCol">FlowElementMouseEvent</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a href="#originalEvent" class="signatureLink">originalEvent</a> : MouseEvent<div class="summaryTableDescription"> 
+		 The original mouse event generated by the mouse activity.</div></td><td class="summaryTableOwnerCol">FlowElementMouseEvent</td></tr></table></div><a name="methodSummary"></a><div class="summarySection"><div class="summaryTableTitle">Public Methods </div><table cellspacing="0" cellpadding="3" class="summaryTable " id="summaryTableMethod"><tr><th>&nbsp;</th><th colspan="2">Method</th><th class="summaryTableOwnerCol">Defined By</th></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#FlowElementMouseEvent()" class="signatureLink">FlowElementMouseEvent</a>(type:String, bubbles:Boolean = false, cancelable:Boolean = true, flowElement:<a href="../../../flashx/textLayout/elements/FlowElement.html">FlowElement</a> = null, originalEvent:MouseEvent = null)</div><div class="summaryTableDescription"> 
+		 Creates an event object that contains information about mouse activity.</div></td><td class="summaryTableOwnerCol">FlowElementMouseEvent</td></tr></table></div><a name="constantSummary"></a><div class="summarySection"><div class="summaryTableTitle">Public Constants</div><table cellspacing="0" cellpadding="3" class="summaryTable " id="summaryTableConstant"><tr><th>&nbsp;</th><th colspan="2">Constant</th><th class="summaryTableOwnerCol">Defined By</th></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a href="#CLICK" class="signatureLink">CLICK</a> : String = click<div class="summaryTableDescription">[static] 
+		 Defines the value of the type property of a click event object.</div></td><td class="summaryTableOwnerCol">FlowElementMouseEvent</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a href="#MOUSE_DOWN" class="signatureLink">MOUSE_DOWN</a> : String = mouseDown<div class="summaryTableDescription">[static] 
+		 Defines the value of the type property of a mouseDown event object.</div></td><td class="summaryTableOwnerCol">FlowElementMouseEvent</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a href="#MOUSE_MOVE" class="signatureLink">MOUSE_MOVE</a> : String = mouseMove<div class="summaryTableDescription">[static] 
+		 Defines the value of the type property of a mouseMove event object.</div></td><td class="summaryTableOwnerCol">FlowElementMouseEvent</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a href="#MOUSE_UP" class="signatureLink">MOUSE_UP</a> : String = mouseUp<div class="summaryTableDescription">[static] 
+		 Defines the value of the type property of a mouseUp event object.</div></td><td class="summaryTableOwnerCol">FlowElementMouseEvent</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a href="#ROLL_OUT" class="signatureLink">ROLL_OUT</a> : String = rollOut<div class="summaryTableDescription">[static] 
+		 Defines the value of the type property of a rollOut event object.</div></td><td class="summaryTableOwnerCol">FlowElementMouseEvent</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a href="#ROLL_OVER" class="signatureLink">ROLL_OVER</a> : String = rollOver<div class="summaryTableDescription">[static] 
+		 Defines the value of the type property of a rollOver event object.</div></td><td class="summaryTableOwnerCol">FlowElementMouseEvent</td></tr></table></div><script language="javascript" type="text/javascript"><!--
+										showHideInherited();
+										--></script><div class="MainContent"><div class="detailSectionHeader">Property Detail</div><a name="propertyDetail"></a><a name="flowElement"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">flowElement</td><td class="detailHeaderType">property</td></tr></table><div class="detailBody"><code>flowElement:<a href="../../../flashx/textLayout/elements/FlowElement.html">FlowElement</a></code><p></p><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Language Version :&nbsp;</b></td><td>ActionScript 3.0</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Runtime Versions :&nbsp;</b></td><td>Flash Player  10, AIR 1.5</td></tr></table><p></p><p></p><p> 
+		 The FlowElement that dispatched the event.
+		 
+		 </p><br/><span class="label"> Implementation </span><br/><code>&nbsp;&nbsp;&nbsp;&nbsp;public function get flowElement():<a href="../../../flashx/textLayout/elements/FlowElement.html">FlowElement</a></code><br/><code>&nbsp;&nbsp;&nbsp;&nbsp;public function set flowElement(value:<a href="../../../flashx/textLayout/elements/FlowElement.html">FlowElement</a>):void</code><br/><p><span class="label">See also</span></p><div class="seeAlso"><a href="../../../flashx/textLayout/elements/FlowElement.html" target="">flashx.textLayout.elements.FlowElement</a></div></div><a name="propertyDetail"></a><a name="originalEvent"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">originalEvent</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code>originalEvent:MouseEvent</code><p></p><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Language Version :&nbsp;</b></td><td>ActionScript 3.0</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Runtime Versions :&nbsp;</b></td><td>Flash Player  10, AIR 1.5</td></tr></table><p></p><p></p><p> 
+		 The original mouse event generated by the mouse activity. 
+		 This property can contain any of the following values:
+		 <ul>
+		   <li><code>MouseEvent.CLICK</code></li>
+		   <li><code>MouseEvent.MOUSE_DOWN</code></li>
+		   <li><code>MouseEvent.MOUSE_UP</code></li>
+		   <li><code>MouseEvent.MOUSE_MOVE</code></li>
+		   <li><code>MouseEvent.MOUSE_OVER</code></li>
+		   <li><code>MouseEvent.MOUSE_OUT</code></li>
+		 </ul>
+		 <p>
+		 In most cases the original event matches the event that the
+		 link element dispatches. The events match for the <code>click</code>,
+		 <code>mouseDown</code>, <code>mouseOut</code>, and <code>mouseOver</code>
+		 events. There are two cases, however, in which the original event
+		 is converted by the link element to a related event. 
+		 If a link element detects a <code>mouseOver</code> event, it dispatches
+		 a <code>rollOver</code> event. Likewise, if a link element detects
+		 a <code>mouseOut</code> event, it dispatches a <code>rollOut</code> event.
+		 Usually, the event target and the mouse coordinates are related to
+		 the TextLine instance containing the link element.
+		 </p>
+		 </p><br/><span class="label"> Implementation </span><br/><code>&nbsp;&nbsp;&nbsp;&nbsp;public function get originalEvent():MouseEvent</code><br/><code>&nbsp;&nbsp;&nbsp;&nbsp;public function set originalEvent(value:MouseEvent):void</code><br/><p><span class="label">See also</span></p><div class="seeAlso">flash.events.MouseEvent</div></div><a name="constructorDetail"></a><div class="detailSectionHeader">Constructor Detail</div><a name="FlowElementMouseEvent()"></a><a name="FlowElementMouseEvent(String,Boolean,Boolean,flashx.textLayout.elements.FlowElement,flash.events.MouseEvent)"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">FlowElementMouseEvent</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">Constructor</td></tr></table><div class="detailBody"><code>public function FlowElementMouseEvent(type:String, bubbles:Boolean = false, cancelable:Boolean = true, flowElement:<a href="../../../flashx/textLayout/elements/FlowElement.html">FlowElement</a> = null, originalEvent:MouseEvent = null)</code><p></p><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Language Version :&nbsp;</b></td><td>ActionScript 3.0</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Runtime Versions :&nbsp;</b></td><td>Flash Player  10, AIR 1.5</td></tr></table><p></p><p> 
+		 Creates an event object that contains information about mouse activity.
+		 Event objects are passed as parameters to event listeners. Use the
+		 constructor if you plan to manually dispatch an event. You do not need
+		 to use the constructor to listen for FlowElementMouseEvent objects
+		 generated by a FlowElement.
+		 </p><span class="label"> Parameters </span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20px"></td><td><code><span class="label">type</span>:String</code> &mdash;  The type of the event. Event listeners can access this information through the
+		 inherited <code>type</code> property. There are six types:
+		 <code>FlowElementMouseEvent.CLICK</code>; <code>FlowElementMouseEvent.MOUSE_DOWN</code>; <code>FlowElementMouseEvent.MOUSE_MOVE</code>;
+		 <code>FlowElementMouseEvent.MOUSE_UP</code>; <code>FlowElementMouseEvent.ROLL_OVER</code>; and <code>FlowElementMouseEvent.ROLL_OUT</code>.
+		 </td></tr><tr><td class="paramSpacer">&nbsp;</td></tr><tr><td width="20px"></td><td><code><span class="label">bubbles</span>:Boolean</code> (default = <code>false</code>)<code></code> &mdash; Determines whether the Event object participates in the bubbling phase of the
+		 event flow. FlowElementMouseEvent objects do not bubble.
+		 </td></tr><tr><td class="paramSpacer">&nbsp;</td></tr><tr><td width="20px"></td><td><code><span class="label">cancelable</span>:Boolean</code> (default = <code>true</code>)<code></code> &mdash; Determines whether the Event object can be canceled. Event listeners can
+		 access this information through the inherited <code>cancelable</code> property. FlowElementMouseEvent
+		 objects can be cancelled. You can cancel the default behavior associated with this event
+		 by calling the <code>preventDefault()</code> method in your event listener.
+		 </td></tr><tr><td class="paramSpacer">&nbsp;</td></tr><tr><td width="20px"></td><td><code><span class="label">flowElement</span>:<a href="../../../flashx/textLayout/elements/FlowElement.html">FlowElement</a></code> (default = <code>null</code>)<code></code> &mdash; The instance of FlowElement, currently a LinkElement, associated with this
+		 event. Event listeners can access this information through the <code>flowElement</code> property.
+		 </td></tr><tr><td class="paramSpacer">&nbsp;</td></tr><tr><td width="20px"></td><td><code><span class="label">originalEvent</span>:MouseEvent</code> (default = <code>null</code>)<code></code> &mdash; The original mouse event that occurred on the flowElement. Event listeners can 
+		 access this information through the <code>originalEvent</code> property.
+
+		 </td></tr></table></div><div class="detailSectionHeader">Constant Detail</div><a name="constantDetail"></a><a name="CLICK"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">CLICK</td><td class="detailHeaderType">Constant</td></tr></table><div class="detailBody"><code>public static const CLICK:String = click</code><p></p><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Language Version :&nbsp;</b></td><td>ActionScript 3.0</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Runtime Versions :&nbsp;</b></td><td>Flash Player  10, AIR 1.5</td></tr></table><p></p><p></p><p>
+		 Defines the value of the <code>type</code> property of a <code>click</code> event object. 
+		 
+		 </p><p><span class="label">See also</span></p><div class="seeAlso">flash.events.MouseEvent.CLICK</div></div><a name="constantDetail"></a><a name="MOUSE_DOWN"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">MOUSE_DOWN</td><td class="detailHeaderType">Constant</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code>public static const MOUSE_DOWN:String = mouseDown</code><p></p><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Language Version :&nbsp;</b></td><td>ActionScript 3.0</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Runtime Versions :&nbsp;</b></td><td>Flash Player  10, AIR 1.5</td></tr></table><p></p><p></p><p>
+		 Defines the value of the <code>type</code> property of a <code>mouseDown</code> event object. 
+		 
+		 </p><p><span class="label">See also</span></p><div class="seeAlso">flash.events.MouseEvent.MOUSE_DOWN</div></div><a name="constantDetail"></a><a name="MOUSE_MOVE"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">MOUSE_MOVE</td><td class="detailHeaderType">Constant</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code>public static const MOUSE_MOVE:String = mouseMove</code><p></p><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Language Version :&nbsp;</b></td><td>ActionScript 3.0</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Runtime Versions :&nbsp;</b></td><td>Flash Player  10, AIR 1.5</td></tr></table><p></p><p></p><p>
+		 Defines the value of the <code>type</code> property of a <code>mouseMove</code> event object. 
+		 
+		 </p><p><span class="label">See also</span></p><div class="seeAlso">flash.events.MouseEvent.MOUSE_MOVE</div></div><a name="constantDetail"></a><a name="MOUSE_UP"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">MOUSE_UP</td><td class="detailHeaderType">Constant</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code>public static const MOUSE_UP:String = mouseUp</code><p></p><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Language Version :&nbsp;</b></td><td>ActionScript 3.0</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Runtime Versions :&nbsp;</b></td><td>Flash Player  10, AIR 1.5</td></tr></table><p></p><p></p><p>
+		 Defines the value of the <code>type</code> property of a <code>mouseUp</code> event object. 
+		 
+		 </p><p><span class="label">See also</span></p><div class="seeAlso">flash.events.MouseEvent.MOUSE_UP</div></div><a name="constantDetail"></a><a name="ROLL_OUT"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">ROLL_OUT</td><td class="detailHeaderType">Constant</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code>public static const ROLL_OUT:String = rollOut</code><p></p><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Language Version :&nbsp;</b></td><td>ActionScript 3.0</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Runtime Versions :&nbsp;</b></td><td>Flash Player  10, AIR 1.5</td></tr></table><p></p><p></p><p>
+		 Defines the value of the <code>type</code> property of a <code>rollOut</code> event object. 
+		 
+		 </p><p><span class="label">See also</span></p><div class="seeAlso">flash.events.MouseEvent.ROLL_OUT</div></div><a name="constantDetail"></a><a name="ROLL_OVER"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">ROLL_OVER</td><td class="detailHeaderType">Constant</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code>public static const ROLL_OVER:String = rollOver</code><p></p><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Language Version :&nbsp;</b></td><td>ActionScript 3.0</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Runtime Versions :&nbsp;</b></td><td>Flash Player  10, AIR 1.5</td></tr></table><p></p><p></p><p>
+		 Defines the value of the <code>type</code> property of a <code>rollOver</code> event object. 
+		 
+		 </p><p><span class="label">See also</span></p><div class="seeAlso">flash.events.MouseEvent.ROLL_OVER</div></div><br/><br/><hr><br/><p></p><center class="copyright"><footer>The Apache Software Foundation</footer><br/>Wed Nov 15 2017, 09:50 AM +01:00  </center></div></body></html><!--The Apache Software Foundation<br/>Wed Nov 15 2017, 09:50 AM +01:00  -->

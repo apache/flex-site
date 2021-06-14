@@ -1,0 +1,135 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd"><!-- saved from url=(0014)about:internet --><html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><link rel="stylesheet" href="../../../style.css" type="text/css" media="screen"><link rel="stylesheet" href="../../../print.css" type="text/css" media="print"><link rel="stylesheet" href="../../../override.css" type="text/css"><meta name="keywords" content="SerializationFilter,mx.rpc.http.SerializationFilter,cancel,clearResult,deserializeResult,disconnect,getHeaders,getRequestContentType,getSerializationFilter,logout,registerFilterForResultFormat,send,send,sendBody,serializeBody,serializeParameters,serializeURL,setCredentials,setRemoteCredentials"><title>mx.rpc.http.SerializationFilter</title></head><body><script language="javascript" type="text/javascript" src="../../../asdoc.js"></script><script language="javascript" type="text/javascript" src="../../../help.js"></script><script language="javascript" type="text/javascript" src="../../../cookies.js"></script><script language="javascript" type="text/javascript"><!--
+				asdocTitle = 'SerializationFilter - ApacheFlex API Reference';
+				var baseRef = '../../../';
+				window.onload = configPage;
+			--></script>
+<script type="text/javascript">
+			scrollToNameAnchor();
+		</script><table class="titleTable" cellpadding="0" cellspacing="0" id="titleTable" style="display:none"><tr><td class="titleTableTitle" align="left">Apache Flex 4.16.1 API Reference </td><td class="titleTableTopNav" align="right"><a href="../../../package-summary.html" onclick="loadClassListFrame('../../../all-classes.html')">All Packages</a>&nbsp;|&nbsp;<a href="../../../class-summary.html" onclick="loadClassListFrame('../../../all-classes.html')">All Classes</a>&nbsp;|&nbsp;<a href="../../../all-index-A.html" onclick="loadClassListFrame('../../../index-list.html')">Index</a>&nbsp;|&nbsp;<a id="framesLink1" href="../../../index.html?mx/rpc/http/SerializationFilter.html&amp;mx/rpc/http/class-list.html">Frames</a><a id="noFramesLink1" style="display:none" href="" onclick="parent.location=document.location"> No Frames </a></td><td class="titleTableLogo" align="right" rowspan="3"><img src="../../../images/logo.jpg" class="logoImage" alt="AdobeLogo" title="AdobeLogo"></td></tr><tr class="titleTableRow2"><td class="titleTableSubTitle" id="subTitle" align="left">SerializationFilter</td><td class="titleTableSubNav" id="subNav" align="right"><a href="#methodSummary">Methods</a></td></tr><tr class="titleTableRow3"><td colspan="3">&nbsp;</td></tr></table><script language="javascript" type="text/javascript" xml:space="preserve">
+				<!--
+				
+					if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("SerializationFilter"); titleBar_setSubNav(false,false,false,false,false,false,false,false,true,false,false	,false,false,false,false,false);}	
+				-->
+			</script><div xmlns:fn="http://www.w3.org/2005/xpath-functions" class="MainContent"><table class="classHeaderTable" cellpadding="0" cellspacing="0"><tr><td class="classHeaderTableLabel">Package</td><td><a href="package-detail.html" onclick="javascript:loadClassListFrame('class-list.html')">mx.rpc.http</a></td></tr><tr><td class="classHeaderTableLabel">Class</td><td class="classSignature">public  class  SerializationFilter</td></tr><tr><td class="classHeaderTableLabel">Inheritance</td><td class="inheritanceList">SerializationFilter  <img src="../../../images/inherit-arrow.gif" title="Inheritance" alt="Inheritance" class="inheritArrow"> Object</td></tr></table><p></p><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Language Version :&nbsp;</b></td><td>ActionScript 3.0</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Product Version :&nbsp;</b></td><td>Flex 3</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Runtime Versions :&nbsp;</b></td><td>Flash Player  9, AIR 1.1</td></tr></table><p></p><p></p><p></p><p></p>
+ This class is useful for framework developers wishing to plug in or modify the
+ HTTP services to use a new serialization format.  This allows you to invoke
+ methods on the service object and control how parameters are mapped to a specific
+ serialiation format such as XML, JSON, etc.  The SerializationFilter mechanism
+ allows you to add a new resultFormat as well.
+ 
+ <p> An instance of this class can manage formatting HTTP requests, responses, and
+ converting their parameters.  When you use HTTPService or HTTPMultiService, you 
+ are usually talking to a server which expects the data to be provided in a specific
+ format - for example, URL encoded values for a type HTML form, XML values or another
+ serialization format such as JSON.  SerializationFilter 
+ allows you to customize how HTTPService and HTTPMultiService convert an operation's
+ parameters into the body of the HTTP request and how the response is converted into
+ the return value of the operation.  Framework developers can introduce a new serialization
+ format to the system by providing a new implementation of the SerializationFilter and
+ use these components and all of the frameworks and tools built on these components
+ without having to know the details of the format itself. </p>
+ 
+               <p>The first thing you do is to extend the SerializationFilter and override one or more
+ of the conversion methods.   The filter allows you to turn the ordered list of parameters
+ into a request body, modify the request body, modify the content type used in the
+ request, modify the actual URL used in the request, and convert the response data into
+ the result object returned in the result event of the service.</p>
+ 
+               <p>There are two ways to specify the SerializationFilter for a particular HTTPService,
+ or HTTPMultiService.  You can either set the serializationFilter property on the service
+ or you can statically register a SerializationFilter for a new result format.  If you
+ use this approach, simply by specifying the resultFormat you can use a pre-registered
+ SerializationFilter.  So for example, you might register a SerializationFilter for the
+ "json" type and can then use that filter by setting resultFormat="json".</p>
+               <p>
+ Note that HTTPService only provides methods which directly take the request body
+ and so does not use the "serializeParameters" method.
+ </p>
+  
+            <p></p><br/><hr></div><a name="methodSummary"></a><div class="summarySection"><div class="summaryTableTitle">Public Methods </div><table cellspacing="0" cellpadding="3" class="summaryTable " id="summaryTableMethod"><tr><th>&nbsp;</th><th colspan="2">Method</th><th class="summaryTableOwnerCol">Defined By</th></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#deserializeResult()" class="signatureLink">deserializeResult</a>(operation:<a href="../../../mx/rpc/http/AbstractOperation.html">AbstractOperation</a>, result:Object):Object</div><div class="summaryTableDescription">
+     This method takes the result from the HTTP request in a raw format.</div></td><td class="summaryTableOwnerCol">SerializationFilter</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#getRequestContentType()" class="signatureLink">getRequestContentType</a>(operation:<a href="../../../mx/rpc/http/AbstractOperation.html">AbstractOperation</a>, obj:Object, contentType:String):String</div><div class="summaryTableDescription">
+     This method is called by the HTTP service just before a call is made.</div></td><td class="summaryTableOwnerCol">SerializationFilter</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#registerFilterForResultFormat()" class="signatureLink">registerFilterForResultFormat</a>(resultFormat:String, filter:<a href="../../../mx/rpc/http/SerializationFilter.html">SerializationFilter</a>):<a href="../../../mx/rpc/http/SerializationFilter.html">SerializationFilter</a></div><div class="summaryTableDescription">[static] 
+     This static function is used to register a new SerializationFilter for a 
+     particular resultFormat value.</div></td><td class="summaryTableOwnerCol">SerializationFilter</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#serializeBody()" class="signatureLink">serializeBody</a>(operation:<a href="../../../mx/rpc/http/AbstractOperation.html">AbstractOperation</a>, obj:Object):Object</div><div class="summaryTableDescription">
+     This method is called for all invocations of the HTTP service.</div></td><td class="summaryTableOwnerCol">SerializationFilter</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#serializeParameters()" class="signatureLink">serializeParameters</a>(operation:<a href="../../../mx/rpc/http/AbstractOperation.html">AbstractOperation</a>, params:Array):Object</div><div class="summaryTableDescription">
+     This method is called from the "send" method of the HTTP service invocation to convert the
+     parameters into a request body.</div></td><td class="summaryTableOwnerCol">SerializationFilter</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#serializeURL()" class="signatureLink">serializeURL</a>(operation:<a href="../../../mx/rpc/http/AbstractOperation.html">AbstractOperation</a>, obj:Object, url:String):String</div><div class="summaryTableDescription">
+     This method is used if you need to take data from the request body object and encode
+     it into the URL string.</div></td><td class="summaryTableOwnerCol">SerializationFilter</td></tr></table></div><script language="javascript" type="text/javascript"><!--
+										showHideInherited();
+										--></script><div class="MainContent"><a name="methodDetail"></a><div class="detailSectionHeader">Method Detail</div><a name="deserializeResult()"></a><a name="deserializeResult(mx.rpc.http.AbstractOperation,Object)"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">deserializeResult</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td></tr></table><div class="detailBody"><code> public function deserializeResult(operation:<a href="../../../mx/rpc/http/AbstractOperation.html">AbstractOperation</a>, result:Object):Object</code><p></p><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Language Version :&nbsp;</b></td><td>ActionScript 3.0</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Product Version :&nbsp;</b></td><td>Flex 3</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Runtime Versions :&nbsp;</b></td><td>Flash Player  9, AIR 1.1</td></tr></table><p></p><p></p><p>
+     This method takes the result from the HTTP request in a raw format.  It 
+     can convert it to a more fully typed ActionScript object if desired.  
+     To make the SerializationFilter more general, you can use the resultType or 
+     resultElementType properties of the AbstractOperation provided so your code can 
+     dynamically map the incoming request to the type configured in ActionScript as
+     the return type.
+     <p>
+     Note also that AbstractOperation has a "properties" map which you
+     can use to store additional properties as part of the service invocation
+     in ActionScript to handle the deserialization of a particular type.
+     </p>
+     
+     </p><p><span class="label"> Parameters </span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20px"></td><td><code><span class="label">operation</span>:<a href="../../../mx/rpc/http/AbstractOperation.html">AbstractOperation</a></code> &mdash; The AbstractOperation which is being invoked.  
+     </td></tr><tr><td class="paramSpacer">&nbsp;</td></tr><tr><td width="20px"></td><td><code><span class="label">result</span>:Object</code> &mdash; the raw result as returned from the server.  
+     </td></tr></table></p><p></p><span class="label">Returns</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code>Object</code> &mdash; the converted result which will then be supplied in the result event
+     for the service.
+      
+      </td></tr></table></div><a name="getRequestContentType()"></a><a name="getRequestContentType(mx.rpc.http.AbstractOperation,Object,String)"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">getRequestContentType</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code> public function getRequestContentType(operation:<a href="../../../mx/rpc/http/AbstractOperation.html">AbstractOperation</a>, obj:Object, contentType:String):String</code><p></p><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Language Version :&nbsp;</b></td><td>ActionScript 3.0</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Product Version :&nbsp;</b></td><td>Flex 3</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Runtime Versions :&nbsp;</b></td><td>Flash Player  9, AIR 1.1</td></tr></table><p></p><p></p><p>
+     This method is called by the HTTP service just before a call is made.  Its role
+     is to choose the contentType used for this request.  For many serialization
+     formats, there is a single fixed content type so you might just return that content
+     type here.  Since the HTTPService is itself configured with a content type, that
+     value is passed in here and returned by the default implementation.  The request
+     body being serialized is also provided with the obj parameter just in case the 
+     content type depends on the type of object being sent to the server.
+          </p><p><span class="label"> Parameters </span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20px"></td><td><code><span class="label">operation</span>:<a href="../../../mx/rpc/http/AbstractOperation.html">AbstractOperation</a></code> &mdash; The AbstractionOperation being invoked.
+     </td></tr><tr><td class="paramSpacer">&nbsp;</td></tr><tr><td width="20px"></td><td><code><span class="label">obj</span>:Object</code> &mdash; the body of the HTTP request being serialized
+     </td></tr><tr><td class="paramSpacer">&nbsp;</td></tr><tr><td width="20px"></td><td><code><span class="label">contentType</span>:String</code> &mdash; the contentType configured for the operation
+     </td></tr></table></p><p></p><span class="label">Returns</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code>String</code> &mdash; the content type to use for this HTTP request.
+      
+      </td></tr></table></div><a name="registerFilterForResultFormat()"></a><a name="registerFilterForResultFormat(String,mx.rpc.http.SerializationFilter)"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">registerFilterForResultFormat</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code> public static function registerFilterForResultFormat(resultFormat:String, filter:<a href="../../../mx/rpc/http/SerializationFilter.html">SerializationFilter</a>):<a href="../../../mx/rpc/http/SerializationFilter.html">SerializationFilter</a></code><p></p><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Language Version :&nbsp;</b></td><td>ActionScript 3.0</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Product Version :&nbsp;</b></td><td>Flex 3</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Runtime Versions :&nbsp;</b></td><td>Flash Player  9, AIR 1.1</td></tr></table><p></p><p></p><p>
+     This static function is used to register a new SerializationFilter for a 
+     particular resultFormat value.  If you call this method once at startup,
+     you can then just specify the resultFormat property of an HTTPService or HTTPMultiService
+     to use that serialization filter to make it easier for developers to specify a
+     format.
+          </p><p><span class="label"> Parameters </span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20px"></td><td><code><span class="label">resultFormat</span>:String</code> &mdash; A custom resultFormat name to be associated with the supplied
+     SerializationFilter.  
+     </td></tr><tr><td class="paramSpacer">&nbsp;</td></tr><tr><td width="20px"></td><td><code><span class="label">filter</span>:<a href="../../../mx/rpc/http/SerializationFilter.html">SerializationFilter</a></code> &mdash; The SerializationFilter to register.
+      
+      </td></tr></table></p><p></p><span class="label">Returns</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code><a href="../../../mx/rpc/http/SerializationFilter.html">SerializationFilter</a></code></td></tr></table></div><a name="serializeBody()"></a><a name="serializeBody(mx.rpc.http.AbstractOperation,Object)"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">serializeBody</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code> public function serializeBody(operation:<a href="../../../mx/rpc/http/AbstractOperation.html">AbstractOperation</a>, obj:Object):Object</code><p></p><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Language Version :&nbsp;</b></td><td>ActionScript 3.0</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Product Version :&nbsp;</b></td><td>Flex 3</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Runtime Versions :&nbsp;</b></td><td>Flash Player  9, AIR 1.1</td></tr></table><p></p><p></p><p>
+     This method is called for all invocations of the HTTP service.  It is able to convert
+     the supplied object into a form suitable for placing directly in the HTTP's request
+     body.  The default implementation just returns the object passed in as the body without
+     any conversion.
+          </p><p><span class="label"> Parameters </span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20px"></td><td><code><span class="label">operation</span>:<a href="../../../mx/rpc/http/AbstractOperation.html">AbstractOperation</a></code> &mdash; The AbstractOperation being invoked
+     </td></tr><tr><td class="paramSpacer">&nbsp;</td></tr><tr><td width="20px"></td><td><code><span class="label">obj</span>:Object</code> &mdash; the initial body of the HTTP request, either the return value of serializeParameters or the parameter to the sendBody method
+     or the send method of HTTPService.
+     </td></tr></table></p><p></p><span class="label">Returns</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code>Object</code> &mdash; the potentially converted body to use in the request.
+      
+      </td></tr></table></div><a name="serializeParameters()"></a><a name="serializeParameters(mx.rpc.http.AbstractOperation,Array)"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">serializeParameters</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code> public function serializeParameters(operation:<a href="../../../mx/rpc/http/AbstractOperation.html">AbstractOperation</a>, params:Array):Object</code><p></p><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Language Version :&nbsp;</b></td><td>ActionScript 3.0</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Product Version :&nbsp;</b></td><td>Flex 3</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Runtime Versions :&nbsp;</b></td><td>Flash Player  9, AIR 1.1</td></tr></table><p></p><p></p><p>
+     This method is called from the "send" method of the HTTP service invocation to convert the
+     parameters into a request body.  The parameters of the original send call are put into the
+     params array.  This method converts this set of parameters into to a single object which is used as the 
+     data for the HTTP request body.  The default implementation produces an object where the 
+     keys are the values in the Operation's argumentNames array and the values are the values of the parameters.
+     When using the default implementation, you must set argumentNames to have the same number
+     of elements as the parameters array.
+     
+     <p>Note that this method is not used if you invoke the HTTP operation using the sendBody
+     method which just takes a single object.  In that case, this step is skipped and only
+     the serializeBody method is called.</p>
+          </p><p><span class="label"> Parameters </span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20px"></td><td><code><span class="label">operation</span>:<a href="../../../mx/rpc/http/AbstractOperation.html">AbstractOperation</a></code> &mdash; The AbstractOperation being invoked.
+     </td></tr><tr><td class="paramSpacer">&nbsp;</td></tr><tr><td width="20px"></td><td><code><span class="label">params</span>:Array</code> &mdash; the list of parameters passed to the send method
+     </td></tr></table></p><p></p><span class="label">Returns</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code>Object</code> &mdash; the body to be used in the HTTP request
+      
+      </td></tr></table></div><a name="serializeURL()"></a><a name="serializeURL(mx.rpc.http.AbstractOperation,Object,String)"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">serializeURL</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code> public function serializeURL(operation:<a href="../../../mx/rpc/http/AbstractOperation.html">AbstractOperation</a>, obj:Object, url:String):String</code><p></p><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Language Version :&nbsp;</b></td><td>ActionScript 3.0</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Product Version :&nbsp;</b></td><td>Flex 3</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Runtime Versions :&nbsp;</b></td><td>Flash Player  9, AIR 1.1</td></tr></table><p></p><p></p><p>
+     This method is used if you need to take data from the request body object and encode
+     it into the URL string.  It is given the incoming URL as configured on the operation
+     or service.  This implementation just returns the incoming URL without any conversion.
+          </p><p><span class="label"> Parameters </span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20px"></td><td><code><span class="label">operation</span>:<a href="../../../mx/rpc/http/AbstractOperation.html">AbstractOperation</a></code> &mdash; The AbstractOperation being invoked
+     </td></tr><tr><td class="paramSpacer">&nbsp;</td></tr><tr><td width="20px"></td><td><code><span class="label">obj</span>:Object</code> &mdash; the URL set on the service or operation
+     </td></tr><tr><td class="paramSpacer">&nbsp;</td></tr><tr><td width="20px"></td><td><code><span class="label">url</span>:String</code></td></tr></table></p><p></p><span class="label">Returns</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code>String</code> &mdash; the potentially modified URL to use for this request.
+      
+      </td></tr></table></div><br/><br/><hr><br/><p></p><center class="copyright"><footer>The Apache Software Foundation</footer><br/>Wed Nov 15 2017, 09:50 AM +01:00  </center></div></body></html><!--The Apache Software Foundation<br/>Wed Nov 15 2017, 09:50 AM +01:00  -->

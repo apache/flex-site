@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<!--[if IE 7 ]><html class="ie ie7" lang="en"><![endif]-->
+<!--[if IE 8 ]><html class="ie ie8" lang="en"><![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!--><html lang="en"><!--<![endif]-->
+
+<head>
+
+    <meta charset="utf-8">
+    <title>Apache Flex® - Unit 12 - Running Tests from Different Versions</title>
+
+    <!-- For Mobiles  -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link href='https://fonts.googleapis.com/css?family=Carrois+Gothic' rel='stylesheet' type='text/css'>
+    <!-- CSS -->
+    <link rel="stylesheet" type="text/css" href="/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="/css/fixed-width.css" id="layout">
+    <link rel="stylesheet" type="text/css" href="/css/style.css">
+    <!-- favicon -->
+    <link rel="icon" type="image/x-icon" href="/images/favicon.ico"/>
+    <link rel="apple-touch-icon-precomposed" href="/images/apple-touch-icon-60.png">
+    <link rel="apple-touch-icon-precomposed" sizes="76x76" href="/images/apple-touch-icon-76.png">
+    <link rel="apple-touch-icon-precomposed" sizes="120x120" href="/images/apple-touch-icon-120.png">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="/images/apple-touch-icon-152.png">
+
+    <!-- Java Script  -->
+    <script src="/js/jquery.js"></script>
+    <script src="/js/custom.js"></script>
+    <script src="/js/selectnav.js"></script>
+    <script src="/js/flexslider.js"></script>
+    <script src="/js/twitter.js"></script>
+    <script src="/js/fancybox.js"></script>
+    <script src="/js/isotope.js"></script>
+    <script src="/js/bootstrap.js"></script>
+    <script src="/js/showcase.js"></script>
+
+    <!-- Google Analytics -->
+    <script type="text/javascript">
+
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-37926454-1']);
+        _gaq.push(['_trackPageview']);
+
+        (function() {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        })();
+
+    </script>
+
+
+</head>
+<body>
+
+<!-- Wrapper Start -->
+<div id="wrapper" class="container-fluid">
+
+
+    <!-- Header -->
+
+
+    <div class="ie-dropdown-fix" >
+
+        <!-- Header -->
+        <div class="row-fluid" id="header">
+
+            <!-- Logo -->
+            <div class="span5">
+
+                <a href="#"><img src="/images/logo_01_fullcolor-sm.png" alt="Apache Flex®" title="Apache Flex®" /></a>
+
+            </div>
+
+            <!-- Social / Contact -->
+            <div class="span3 pull-right">
+
+                <!-- Social Icons -->
+                <ul class="social-icons">
+                    <li class="facebook"><a href="https://www.facebook.com/pages/Apache-Flex/174249699342648">Facebook</a></li>
+                    <li class="twitter"><a href="http://twitter.com/ApacheFlex">Twitter</a></li>
+                    <li class="linkedin"><a href="http://www.linkedin.com/groups/Apache-Flex-Developers-4296888">LinkedIn</a></li>
+                </ul>
+
+                <!-- Apache Logo -->
+                <a href="http://www.apache.org" id="contact-top"><img src="http://www.apache.org/images/feather-small.gif" title="An Apache Project" alt="An Apache Project" /> </a>
+            </div>
+
+        </div>
+        <!-- Header / End -->
+
+        <!-- Navigation -->
+        <div id="navigation" class="margintop">
+            <ul id="nav">
+
+                <li><a href="/index.html">Home</a></li>
+
+                <li><a href="#">About Flex</a>
+                    <ul>
+
+                        <li><a href="/about-whatis.html">What is Flex?</a></li>
+                        <li><a href="/about-features.html">Features</a></li>
+						<li><a href="/tourdeflex/explorer.html">Tour de Flex</a></li>
+                        <li><a href="/about-licensing.html">License &amp; Trademarks</a></li>
+                        <li><a href="/about-people.html">The Team</a></li>
+                        <li><a href="/about-history.html">Project History</a></li>
+                        <li><a href="/about-assets.html">Logo and Assets</a></li>
+                    </ul>
+                </li>
+                <li><a href="#">Community</a>
+                    <ul>
+
+                        <li><a href="/community-getinvolved.html">How to get involved</a></li>
+                        <li><a href="/community-mailinglists.html">Mailing Lists</a></li>
+                        <li><a href="/community-showcase.html">Flex Showcase</a></li>
+						<li><a href="/community-3rdparty.html">Third-Party</a></li>
+                        <li><a href="https://cwiki.apache.org/confluence/display/FLEX/Apache+Flex+Wiki">Wiki <i class="icon-share icon-white"></i></a></li>
+                        <li><a href="http://blogs.apache.org/flex/">Blog <i class="icon-share icon-white"></i></a></li>
+                    </ul>
+                </li>
+
+                <li><a href="#">Development</a>
+                    <ul>
+                        <li><a href="/dev-faq.html">Developer FAQ</a></li>
+                        <li><a href="/dev-sourcecode.html">Source Code</a></li>
+                        <li><a href="https://issues.apache.org/jira/browse/FLEX">Bug-Tracker <i class="icon-share icon-white"></i></a></li>
+                    </ul>
+                </li>
+
+                <li><a href="#">Documentation</a>
+                    <ul>
+
+                        <li><a href="/doc-getstarted.html">Getting Started</a></li>
+                        <li><a href="/doc-videos.html">Videos</a></li>
+                        <li><a href="/asdoc/">Flex ASDocs</a></li>
+                        <li><a href="http://apacheflexbuild.cloudapp.net:8080/job/FlexJS_ASDoc_Example/lastSuccessfulBuild/artifact/examples/flexjs/ASDoc/bin/js-debug/index.html">FlexJS ASDocs</a></li>
+                        <li><a href="http://help.adobe.com/en_US/flex/using/index.html">Documentation Reference (Old) <i class="icon-share icon-white"></i></a></li>
+                        <li><a href="/flexunit/tutorial/">FlexUnit Tutorials</a></li>
+                        <li><a href="/flexunit/asdoc/">FlexUnit ASDocs</a></li>
+
+                    </ul>
+                </li>
+
+                <li><a href="#">About Apache</a>
+                    <ul>
+
+                        <li><a href="http://www.apache.org">The Apache Software Foundation Website <i class="icon-share icon-white"></i></a></li>
+                        <li><a href="http://www.apache.org/foundation/contributing.html">Donations <i class="icon-share icon-white"></i></a></li>
+                        <li><a href="http://www.apache.org/foundation/sponsorship.html">Sponsorship <i class="icon-share icon-white"></i></a></li>
+                        <li><a href="http://www.apache.org/foundation/thanks.html">Thanks <i class="icon-share icon-white"></i></a></li>
+                    </ul>
+                </li>
+
+                <li><a href="#" class="download">Download Flex</a>
+                    <ul>
+
+                       <li><a href="/installer.html">SDK Installer (For Application Developers)</a></li>
+                       <li><a href="/download-source.html">SDK Source Code (For SDK Developers)</a></li>
+                       <li><a href="/download-binaries.html">SDK Binaries (For SDK Developers)</a></li>
+                       <li><a href="/download-flexjs.html">FlexJS 'beta' (For Application Developers)</a> </li>
+                       <li><a href="/download-flexunit.html">FlexUnit (For Application Developers)</a> </li>
+                       <li><a href="/download-blazeds.html">Blaze DS Source Code</a></li>
+                       <li><a href="/download-tourdeflex.html">Tour De Flex Source Code</a></li>
+                       <li><a href="/download-squiggly.html">Squiggly Spell Checker</a></li>
+                       <li><a href="/download-utilities.html">Flex Utilities</a></li>
+                       <li><a href="/download-archive.html">Previous Versions</a></li>`
+                    </ul>
+                </li>
+            </ul>
+
+        </div>
+        <div class="clear"></div>
+
+    </div>
+    <!-- Navigation / End -->
+
+
+    <!-- Content -->
+
+    <div class="row-fluid">
+
+
+        <!-- Page Title -->
+        <div id="page-title">
+            <h2>Unit 12 - Running Tests from Different Versions</h2>
+        </div>
+        <!-- Page Title / End -->
+
+
+    </div>
+
+    <div class="row-fluid">
+
+<!-- Home Page Exception -->
+
+    <p><a href="../code/Unit12.zip"><img alt="Download" src="../images/DownloadIcon.png"/> Download Unit Project Files</a></p>
+<p>Throughout this course you have been introduced to new types of runners for FlexUnit 4. The first runner you used ran basic FlexUnit tests. The proper name for that runner is the BlockFlexUnit4Runner. Next you learned about the Suite runner and more recently the Theories and Parameterized runner.</p>
+<p>This lesson introduces two additional runners, the runner for FlexUnit .9 tests and the runner for Fluint 1.x tests.</p>
+<h3>Objectives:</h3>
+<p>After completing this lesson, you should be able to:</p>
+<ul>
+<li>Create a mixed suite of FlexUnit .9 tests, Fluint 1 tests, and FlexUnit 4.x tests</li>
+</ul>
+<h3>Topics</h3>
+<p>In this unit, you will learn about the following topics:</p>
+<ul>
+<li>Running a FlexUnit .9 test</li>
+<li>Running a Fluint 1 test</li>
+<li>Understanding a runner</li>
+<li>Understanding how FlexUnit 4.x can work with multiple runners</li>
+</ul>
+<h2>Running a FlexUnit .9 test</h2>
+<ul>
+<li>FlexUnit 4 includes the entire FlexUnit .9 framework</li>
+<li>You may not mix FlexUnit .9 and FlexUnit 4 style tests in the same test case,</li>
+<li>FlexUnit .9 and FlexUnit 4 tests can exist in the same FlexUnit 4 suite</li>
+</ul>
+<h2>Running a Fluint 1 test</h2>
+<ul>
+<li>FlexUnit 4 also includes the entire Fluint 1 framework</li>
+<li>Like FlexUnit .9, you may not mix Fluint 1 tests with FlexUnit 4 tests in the same test case</li>
+<li>Fluint 1 and FlexUnit 4 tests can exist in the same FlexUnit 4 suite</li>
+</ul>
+<h2>Understanding a runner</h2>
+<p>Runners are a major component of the extensibility layer of FlexUnit 4. They facilitate creating entirely new test types that can gain the benefit of FlexUnit 4.x integration without rewriting the entire code base.</p>
+<p>A runner is just a class that implements an interface that FlexUnit 4 can understand.  FlexUnit 4 includes runners for FlexUnit .9, Fluint 1, FlexUnit 4, Suites, Theories, and Parameterized tests.</p>
+<p>Runners operate through a token system. At the start of a test run, a runner is provided a token. To simplify things a bit, you can think of the token like the silver baton used in a relay race.  The system asks each runner in turn if it can handle the tests contained within an individual class. If the runner can, it passes a token to that runner which now becomes the active runner.</p>
+<p>That runner in turn hands the token to any sub-runners as needed (think Suite which just contains classes to be run by other runners). Once the test completes it passes the token and result back to whomever provided it with the token. In this way, tests are recursively executed until the token makes it all the way back to the framework itself.</p>
+<h2>Understanding how FlexUnit 4.x can work with multiple runners</h2>
+<p>The token system within FlexUnit 4 allows the framework to understand different runners without knowing the actual implementation of the runners. As long a runner notifies FlexUnit 4 through the token that a test finished and what the result was the framework does not care how the runner made that decision.</p>
+<p>The metadata decoration "RunWith" notifies FlexUnit 4 which runner to use for the tests contained in the class.  If no runner is specified FlexUnit 4 will attempt to derive the correct runner from a series of possibilities.</p>
+<p>You can create new runners from scratch or extend existing runners to add functionality. The parameterized runner is an excellent example of adding additional functionality to the base runners used by FlexUnit.</p>
+<h2>Walkthrough 1: Creating a mixed Suite of Tests</h2>
+<p>In this walkthrough you will perform the following tasks:</p>
+<ul>
+<li>Run a FlexUnit 1 test case alongside FlexUnit 4 test cases and suites.</li>
+</ul>
+<h3>Import a new test</h3>
+<ol>
+<li>
+<p>Import the FlexUnit4Training_wt1.fxp project from the Unit 12/Start folder. Please refer to Unit 2: Walkthrough 1 for instructions on importing a Flash Builder project.</p>
+<h3><br/>Examining the FlexUnit .9 tests</h3>
+</li>
+<li>
+<p>Open the TestAssert.as file in the fu1 package in the tests folder.</p>
+<p>As you examine the class file you will notice a few differences about these test methods. The <code>TestAssert</code> class extends from the <code>TestCase</code> class.  The TestCase class was the base class for all tests in FlexUnit .9.</p>
+<pre><code>public class TestAssert extends TestCase {      
+      public function TestAssert( name : String = null ) {
+         super( name );
+      }
+      ...
+}
+</code></pre>
+<p>The class constructor in FlexUnit .9 can be used to provide a name for this test in certain circumstances. In this test it does nothing more than call its <code>super()</code> method. FlexUnit 4.x tests do not descend from any particular class.</p>
+<p>Metadata is not used to distinguish tests and fixture from normal methods. Every method in this case prefixes the word <i>test</i> to its name. Take a look at the <code>testMatch()</code> method:</p>
+<pre><code>public function testMatch() : void {
+	Assert.assertMatch(
+	     /fr.*gt/,
+	     "feeefrbgbgbggt" );
+	Assert.assertMatch(
+	     /.*@adobe\.com/,
+	     "xagnetti@adobe.com" );
+	Assert.assertMatch(
+	     /.*@adobe.?com/,
+	     "xagnetti@adobevcom" );
+	try {
+	   Assert.assertMatch(
+	     /.*@adobe\.com/,
+	     "xagnetti@adobevcom" );             
+	}
+	catch ( e : AssertionFailedError ) {
+	   assertAssertionsHaveBeenMade( 4 );
+	   return;
+	}
+	fail();
+}
+</code></pre>
+<p>There are separate Assert classes in FlexUnit 4 and FlexUnit .9.  Both have static methods for making assertions. When running tests in FlexUnit 4 you can use either of these classes, to help maintain backwards compatibility.</p>
+<p>FlexUnit 4.x Assert: <code>org.flexunit.Assert</code></p>
+<p>FlexUnit 1 Assert: <code>flexunit.framework.Assert</code></p>
+<p>For catching errors, FlexUnit 1 uses <code>try, catch</code> statements. FlexUnit 4.x uses <code>expects=""</code> metadata for the same kind of test.</p>
+<h3><br/>Run FlexUnit 1 tests</h3>
+</li>
+<li>
+<p>Open the FlexUnit4Training.mxml file.</p>
+</li>
+<li>
+<p>Within the <code>&lt;fx:Script&gt;</code> block there is a function named <code>currentRunTestSuite()</code>. Add a line that calls the <code>testsToRun.push()</code> method with the argument <code>TestAssert</code>.</p>
+<pre><code>import fu1.TestAssert;
+import math.testcases.CircleSuite;
+public function currentRunTestSuite():Array {
+	var testsToRun:Array = new Array();
+	testsToRun.push( CircleSuite );
+	testsToRun.push( TestAssert );
+	return testsToRun;
+}
+</code></pre>
+<p>If you did not use code-completion, add the import statement for fu1.TestAssert at this point.</p>
+</li>
+<li>
+<p>Save and Run the FlexUnit4Training.mxml file.</p>
+<p>If FlexUnit4Training.mxml ran successfully you should see the following output in your browser window:</p>
+<img alt="TestsPassed" id="shift" src="../images/unit12/image1.png"/>
+<p class="caption" id="shift">Figure 1: FlexUnit tests passed</p>
+<p>And in the FlexUnit Results tab, you will see the results of all tests:</p>
+<img alt="ResultsWindow" id="shift" src="../images/unit12/image2.png"/>
+<p class="caption" id="shift">Figure 2: FlexUnit results window</p>
+</li>
+</ol>
+<h2>Summary</h2>
+<ul>
+<li><p>FlexUnit 4.x can run test cases from FlexUnit .9 and Fluint 1.x.</p></li>
+<li><p>Tests from legacy frameworks must be isolated to their own cases, because they must be run with their own runner.</p></li>
+<li><p>The results of tests from all cases are available in the Flash Builder FlexUnit Results tab.</p></li>
+</ul>
+<h2>Navigation</h2>
+<ul>
+<li><a href="Unit-11.html">Unit 11 - Parameterized Tests</a></li>
+<li><a href="Unit-13.html">Unit 13 - Working with Asynchronous Operations</a></li>
+<li><a href="../index.html">Table of Contents / Introduction</a></li>
+</ul>
+
+
+<!-- Home Page Exception -->
+
+</div></div>
+<!-- Wrapper / End -->
+
+
+<!-- Footer -->
+
+<!-- Footer Top -->
+<div id="footer" class="container-fluid paddingbottom" >
+
+
+    <div class="row-fluid">
+
+        <!-- About -->
+        <div class="span3">
+            <div class="footer-headline"><h4>About Us</h4></div>
+            <p>Apache Flex® is a highly productive, open source application framework for building and maintaining expressive web applications that deploy consistently on all major browsers, desktops and devices (including smartphones, tablets and tv). It provides a modern, standards-based language and programming model that supports common design patterns suitable for developers from many backgrounds. Flex applications can be deployed to the ubiquitous Adobe® Flash® Player in the browser, Adobe® AIR™ on desktop and mobile or to native Android™, IOS™, QNX®, Windows® or Mac® applications.</p>
+        </div>
+
+        <!-- Subscribe  -->
+        <div class="span3">
+            <div class="footer-headline"><h4>Subscribe</h4></div>
+            <p>We have two mailing lists, one for SDK developers, and one for SDK users.</p>
+            <p>Developers, send an email to <br>
+                <a href="mailto:dev-subscribe@flex.apache.org">dev-subscribe@flex.apache.org</a>
+            </p>
+            <p>Users, send an email to <br>
+                <a href="mailto:users-subscribe@flex.apache.org">users-subscribe@flex.apache.org</a>
+            </p>
+        </div>
+
+        <!-- Latest Releases -->
+        <div class="span3">
+            <div class="footer-headline"><h4>Latest Releases</h4></div>
+            <p>
+            	Apache Flex SDK : <a href="/download-binaries.html">4.16.0 (March 2017)</a><br />
+                Apache FlexJS SDK : <a href="/download-flexjs.html">0.8.0 (June 2017)</a><br />
+                Blaze DS : <a href="/download-blazeds.html">4.7.0 (Mar 2015)</a><br />
+                Flex Mavenizer : <a href="http://svn.apache.org/viewvc/flex/utilities/trunk/mavenizer/"> 4.8.0 (Jan 2013)</a><br />
+                FlexUnit : <a href="/download-flexunit.html">4.2.0 (Apr 2014)</a><br />
+                SDK Installer : <a href="/installer.html">3.2.0 (June 2015)</a><br />
+                Squiggly : <a href="/download-squiggly.html">1.1 (Oct 2014)</a><br />
+                Tour De Flex : <a href="/download-tourdeflex.html">1.2 (Nov 2014)</a><br />
+            </p>
+        </div>
+
+        <!-- Latest Tweets -->
+        <div class="span3">
+            <div class="footer-headline"><h4>Latest Tweets</h4></div>
+            <a class="twitter-timeline" href="https://twitter.com/ApacheFlex" data-chrome="noheader nofooter noborders noscrollbar" data-widget-id="364567612920852480">Tweets by Apache Flex</a>
+            <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+            <div class="clear"></div>
+        </div>
+
+    </div>
+
+</div>
+<!-- Footer / Bottom -->
+<div id="footer" class="container-fluid" style="background: #111;">
+    <div class="row-fluid">
+        <div class="span12">
+            <div id="footer-bottom">
+                Copyright © 2021 The Apache Software Foundation, Licensed under the Apache License, Version 2.0 <br>
+                Apache Flex, Apache and the Apache feather logo are trademarks of The Apache Software Foundation. All other marks mentioned may be trademarks or registered trademarks of their respective owners.
+                Read more about our privacy policy on our <a href="about-privacy.html">Privacy Policy</a> page.
+                <div id="scroll-top-top"><a href="#" title="Go to Top"></a></div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<!-- Footer / End -->
+
+</body>
+
+</html>

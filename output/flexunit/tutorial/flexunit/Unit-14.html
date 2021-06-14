@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<!--[if IE 7 ]><html class="ie ie7" lang="en"><![endif]-->
+<!--[if IE 8 ]><html class="ie ie8" lang="en"><![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!--><html lang="en"><!--<![endif]-->
+
+<head>
+
+    <meta charset="utf-8">
+    <title>Apache Flex® - Unit 14 - UIComponents</title>
+
+    <!-- For Mobiles  -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link href='https://fonts.googleapis.com/css?family=Carrois+Gothic' rel='stylesheet' type='text/css'>
+    <!-- CSS -->
+    <link rel="stylesheet" type="text/css" href="/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="/css/fixed-width.css" id="layout">
+    <link rel="stylesheet" type="text/css" href="/css/style.css">
+    <!-- favicon -->
+    <link rel="icon" type="image/x-icon" href="/images/favicon.ico"/>
+    <link rel="apple-touch-icon-precomposed" href="/images/apple-touch-icon-60.png">
+    <link rel="apple-touch-icon-precomposed" sizes="76x76" href="/images/apple-touch-icon-76.png">
+    <link rel="apple-touch-icon-precomposed" sizes="120x120" href="/images/apple-touch-icon-120.png">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="/images/apple-touch-icon-152.png">
+
+    <!-- Java Script  -->
+    <script src="/js/jquery.js"></script>
+    <script src="/js/custom.js"></script>
+    <script src="/js/selectnav.js"></script>
+    <script src="/js/flexslider.js"></script>
+    <script src="/js/twitter.js"></script>
+    <script src="/js/fancybox.js"></script>
+    <script src="/js/isotope.js"></script>
+    <script src="/js/bootstrap.js"></script>
+    <script src="/js/showcase.js"></script>
+
+    <!-- Google Analytics -->
+    <script type="text/javascript">
+
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-37926454-1']);
+        _gaq.push(['_trackPageview']);
+
+        (function() {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        })();
+
+    </script>
+
+
+</head>
+<body>
+
+<!-- Wrapper Start -->
+<div id="wrapper" class="container-fluid">
+
+
+    <!-- Header -->
+
+
+    <div class="ie-dropdown-fix" >
+
+        <!-- Header -->
+        <div class="row-fluid" id="header">
+
+            <!-- Logo -->
+            <div class="span5">
+
+                <a href="#"><img src="/images/logo_01_fullcolor-sm.png" alt="Apache Flex®" title="Apache Flex®" /></a>
+
+            </div>
+
+            <!-- Social / Contact -->
+            <div class="span3 pull-right">
+
+                <!-- Social Icons -->
+                <ul class="social-icons">
+                    <li class="facebook"><a href="https://www.facebook.com/pages/Apache-Flex/174249699342648">Facebook</a></li>
+                    <li class="twitter"><a href="http://twitter.com/ApacheFlex">Twitter</a></li>
+                    <li class="linkedin"><a href="http://www.linkedin.com/groups/Apache-Flex-Developers-4296888">LinkedIn</a></li>
+                </ul>
+
+                <!-- Apache Logo -->
+                <a href="http://www.apache.org" id="contact-top"><img src="http://www.apache.org/images/feather-small.gif" title="An Apache Project" alt="An Apache Project" /> </a>
+            </div>
+
+        </div>
+        <!-- Header / End -->
+
+        <!-- Navigation -->
+        <div id="navigation" class="margintop">
+            <ul id="nav">
+
+                <li><a href="/index.html">Home</a></li>
+
+                <li><a href="#">About Flex</a>
+                    <ul>
+
+                        <li><a href="/about-whatis.html">What is Flex?</a></li>
+                        <li><a href="/about-features.html">Features</a></li>
+						<li><a href="/tourdeflex/explorer.html">Tour de Flex</a></li>
+                        <li><a href="/about-licensing.html">License &amp; Trademarks</a></li>
+                        <li><a href="/about-people.html">The Team</a></li>
+                        <li><a href="/about-history.html">Project History</a></li>
+                        <li><a href="/about-assets.html">Logo and Assets</a></li>
+                    </ul>
+                </li>
+                <li><a href="#">Community</a>
+                    <ul>
+
+                        <li><a href="/community-getinvolved.html">How to get involved</a></li>
+                        <li><a href="/community-mailinglists.html">Mailing Lists</a></li>
+                        <li><a href="/community-showcase.html">Flex Showcase</a></li>
+						<li><a href="/community-3rdparty.html">Third-Party</a></li>
+                        <li><a href="https://cwiki.apache.org/confluence/display/FLEX/Apache+Flex+Wiki">Wiki <i class="icon-share icon-white"></i></a></li>
+                        <li><a href="http://blogs.apache.org/flex/">Blog <i class="icon-share icon-white"></i></a></li>
+                    </ul>
+                </li>
+
+                <li><a href="#">Development</a>
+                    <ul>
+                        <li><a href="/dev-faq.html">Developer FAQ</a></li>
+                        <li><a href="/dev-sourcecode.html">Source Code</a></li>
+                        <li><a href="https://issues.apache.org/jira/browse/FLEX">Bug-Tracker <i class="icon-share icon-white"></i></a></li>
+                    </ul>
+                </li>
+
+                <li><a href="#">Documentation</a>
+                    <ul>
+
+                        <li><a href="/doc-getstarted.html">Getting Started</a></li>
+                        <li><a href="/doc-videos.html">Videos</a></li>
+                        <li><a href="/asdoc/">Flex ASDocs</a></li>
+                        <li><a href="http://apacheflexbuild.cloudapp.net:8080/job/FlexJS_ASDoc_Example/lastSuccessfulBuild/artifact/examples/flexjs/ASDoc/bin/js-debug/index.html">FlexJS ASDocs</a></li>
+                        <li><a href="http://help.adobe.com/en_US/flex/using/index.html">Documentation Reference (Old) <i class="icon-share icon-white"></i></a></li>
+                        <li><a href="/flexunit/tutorial/">FlexUnit Tutorials</a></li>
+                        <li><a href="/flexunit/asdoc/">FlexUnit ASDocs</a></li>
+
+                    </ul>
+                </li>
+
+                <li><a href="#">About Apache</a>
+                    <ul>
+
+                        <li><a href="http://www.apache.org">The Apache Software Foundation Website <i class="icon-share icon-white"></i></a></li>
+                        <li><a href="http://www.apache.org/foundation/contributing.html">Donations <i class="icon-share icon-white"></i></a></li>
+                        <li><a href="http://www.apache.org/foundation/sponsorship.html">Sponsorship <i class="icon-share icon-white"></i></a></li>
+                        <li><a href="http://www.apache.org/foundation/thanks.html">Thanks <i class="icon-share icon-white"></i></a></li>
+                    </ul>
+                </li>
+
+                <li><a href="#" class="download">Download Flex</a>
+                    <ul>
+
+                       <li><a href="/installer.html">SDK Installer (For Application Developers)</a></li>
+                       <li><a href="/download-source.html">SDK Source Code (For SDK Developers)</a></li>
+                       <li><a href="/download-binaries.html">SDK Binaries (For SDK Developers)</a></li>
+                       <li><a href="/download-flexjs.html">FlexJS 'beta' (For Application Developers)</a> </li>
+                       <li><a href="/download-flexunit.html">FlexUnit (For Application Developers)</a> </li>
+                       <li><a href="/download-blazeds.html">Blaze DS Source Code</a></li>
+                       <li><a href="/download-tourdeflex.html">Tour De Flex Source Code</a></li>
+                       <li><a href="/download-squiggly.html">Squiggly Spell Checker</a></li>
+                       <li><a href="/download-utilities.html">Flex Utilities</a></li>
+                       <li><a href="/download-archive.html">Previous Versions</a></li>`
+                    </ul>
+                </li>
+            </ul>
+
+        </div>
+        <div class="clear"></div>
+
+    </div>
+    <!-- Navigation / End -->
+
+
+    <!-- Content -->
+
+    <div class="row-fluid">
+
+
+        <!-- Page Title -->
+        <div id="page-title">
+            <h2>Unit 14 - UIComponents</h2>
+        </div>
+        <!-- Page Title / End -->
+
+
+    </div>
+
+    <div class="row-fluid">
+
+<!-- Home Page Exception -->
+
+    <p><a href="../code/Unit14.zip"><img alt="Download" src="../images/DownloadIcon.png"/> Download Unit Project Files</a></p>
+<p>All user interface components in Flex extend the UIComponet class. When a UIComponent is added to the display list, the component must go through a complicated process before it appears on the screen and is ready to be tested. User interaction must also be simulated. Because of this, testing UIComponents is an inherently asynchronous process.</p>
+<h3>Objectives:</h3>
+<p>After completing this lesson, you should be able to:</p>
+<ul>
+<li>Handle the asynchronous functionality of component creation in the UI</li>
+<li>Test a component off the display list</li>
+<li>Create integration tests for components</li>
+</ul>
+<h3>Topics</h3>
+<p>In this unit, you will learn about the following topics:</p>
+<ul>
+<li>Understanding how the display list interacts with UIComponents</li>
+<li>Understanding inherent asynchronous behavior</li>
+<li>Understanding the UI Facade</li>
+<li>Waiting for a component to reach its ready state before testing</li>
+</ul>
+<h2>Walkthrough 1: Trying to Test a Component Off DisplayList</h2>
+<p>In this walkthrough you will perform the following tasks:</p>
+<ul>
+<li>Use the UIImpersonator to test UI components.</li>
+<li>Create an Async handler to test a component after its addition to the UIComponent.</li>
+</ul>
+<h3>Steps</h3>
+<ol>
+<li>
+<p>In the tests directory, create a new package named login.testcases.</p>
+<p>Alternatively, if you didn't complete the previous lesson or your code is not functioning properly, you can import the FlexUnit4Training.fxp project from the Unit14/Start folder. Please refer to Unit 2: Walkthrough 1 for instructions on importing a Flash Builder project.</p>
+<h3><br/>Create the LoginStartupTest class</h3>
+</li>
+<li>
+<p>In the package <code>login.testcases</code>, create a new ActionScript class file named LoginStartupTest.as.</p>
+<p>Do not delete the automatically generated constructor. You will need it in the next section.</p>
+</li>
+<li>
+<p>Add a private static constant named <code>LONG_TIME</code> of data type <code>int</code>. Set the constant to <code>500</code>.</p>
+<pre><code>private static const LONG_TIME:int = 500;
+</code></pre>
+</li>
+<li>
+<p>Just below add a private variable named <code>loginComponent</code> of type <code>LoginComponent</code>.</p>
+<pre><code>private var loginComponent:LoginComponent;
+</code></pre>
+<p>If you did not use code-completion, add the import for net.digitalprimates.components.login.LoginComponent at this time.</p>
+</li>
+<li>
+<p>Create a new public method named <code>setup()</code> and a new public method named <code>teardown()</code>. Decorate them with <code>[Before(async, ui)]</code> and <code>[After(async, ui)]</code>.</p>
+<pre><code>[Before(async, ui)]
+public function setup():void {
+}
+[After(async, ui)]
+public function teardown() {
+}
+</code></pre>
+</li>
+<li>
+<p>In the <code>setup()</code> method, create a new instance of <code>loginComponent</code>. On the line immediately following, add a call to <code>Async.proceedOnEvent()</code> passing it the values <code>this</code>, <code>loginComponent</code>, and <code>FlexEvent.CREATION_COMPLETE</code>.</p>
+<pre><code>[Before(async, ui)]
+public function setup():void {
+	loginComponent = new LoginComponent();
+	Async.proceedOnEvent( this, loginComponent, FlexEvent.CREATION_COMPLETE );
+}
+</code></pre>
+<p>If you did not use code completion, add the imports for org.flexunit.async.Async.</p>
+</li>
+<li>
+<p>Immediately after the async handler add the loginComponent to the UIImpersonator</p>
+<pre><code>UIImpersonator.addChild( loginComponent )
+</code></pre>
+<p>If you did not use code completion, add the import for org.fluint.uiImpersonation.UIImpersonator.</p>
+<p>The UIImpersonator acts as a facade for the UI allowing visual components to be created without being added to the display list. You will learn more about the UIImpersonator and UI facades in the next section.</p>
+</li>
+<li>
+<p>In the <code>teardown()</code> method, remove the loginComponent from the UIImpersonator and cleanup the instance of loginComponent.</p>
+<pre><code>[After(async, ui)]
+public function teardown():void {
+	UIImpersonator.removeChild( loginComponent );
+	loginComponent = null;
+}
+</code></pre>
+</li>
+<li>
+<p>Add a public function named <code>shouldReturnEmptyFieldsOnStartup()</code>, mark it with <code>[Test(ui)]</code> metadata.</p>
+<pre><code>[Test(ui)]
+public function shouldReturnEmptyFieldsOnStartup():void {
+}
+</code></pre>
+</li>
+<li>
+<p>Add two calls to the <code>assertThat()</code> method in the <code>shouldReturnEmptyFieldsOnStartup()</code> function. The first should check that <code>loginComponent.usernameTI.text</code> is empty and the other should check that <code>loginComponent.passwordTI.text</code> is empty.</p>
+<pre><code>[Test(ui)]
+public function shouldReturnEmptyFieldsOnStartup():void {
+	assertThat( loginComponent.usernameTI.text == '' );
+	assertThat( loginComponent.passwordTI.text == '' ); 
+}
+</code></pre>
+</li>
+<li>
+<p>Save LoginStartupTest.as.</p>
+<h3><br/>Add LoginStartupTest to the Suite</h3>
+</li>
+<li>
+<p>Add a new ActionScript class named LoginSuite to the login.testcases package within the tests directory. It should have no Superclass or interfaces.</p>
+</li>
+<li>
+<p>Remove the automatically created constructor from the class.</p>
+</li>
+<li>
+<p>Mark the class with <code>[Suite]</code> and <code>[RunWith("org.flexunit.runners.Suite")]</code> metadata.</p>
+<pre><code>package login {
+	[Suite]
+	[RunWith("org.flexunit.runners.Suite")]
+	public class LoginSuite {
+	}
+}
+</code></pre>
+</li>
+<li>
+<p>Add a public variable named <code>test1</code> of type <code>LoginStartupTest</code> to the class.</p>
+<pre><code>[Suite]
+[RunWith("org.flexunit.runners.Suite")]
+public class LoginSuite {
+	public var test1:LoginStartupTest;
+}
+</code></pre>
+<p>If you did not use code-completion, add the imports for login.testcases.LoginSequenceTest at this time.</p>
+</li>
+<li>
+<p>Save the LoginSuite.as file.</p>
+</li>
+<li>
+<p>Open the AllSuites.as file in the testcases package within the tests directory.</p>
+</li>
+<li>
+<p>Remove the loginSequenceTest variable.</p>
+</li>
+<li>
+<p>Add a public variable named <code>loginSuite</code> of type <code>LoginSuite</code> to the class.</p>
+<pre><code>[Suite]
+[RunWith("org.flexunit.runners.Suite")]
+public class AllSuites {
+	public var circleSuite:CircleSuite;
+	public var layoutTest:LayoutTest;
+	public var loginSuite:LoginSuite;
+}
+</code></pre>
+</li>
+<li>
+<p>Save the AllSuites.as file.</p>
+</li>
+<li>
+<p>Run the FlexUnit4Training.mxml file.</p>
+<p>If your MXML file ran successfully you should see the following output in your browser window:</p>
+<img alt="TestsPassed" id="shift" src="../images/unit14/image1.png"/>
+<p class="caption" id="shift">Figure 1: FlexUnit tests passed</p>
+</li>
+</ol>
+<h2>Understanding how the display list interacts with UIComponents</h2>
+<p>In AS3, UIComponents may be instantiated off the display list. When a component is instantiated, basic setup of the component is performed. However, styles, size, and children are not set or created. This means that when testing a component, merely instantiating the component is not enough to put it in a testable state. Creation of the component has only just begun.</p>
+<p>When the component is added to the display list, the component creation continues. Once this cycle is complete, the component is in a testable state. Due to the asynchronous nature of all UIComponents, these components require a special way of testing.</p>
+<h2>Understanding inherent asynchronous behavior</h2>
+<p>UIComponent creation is broken down into a series of four stages: construction, configuration, attachment and initialization. The time it takes to fully create a component depends on the nature of the component and any children it may have.</p>
+<h3>Construction Stage</h3>
+<p>During this stage the component constructor is called. Frequently we add listeners to the component, set properties or initialize other non-display objects.</p>
+<h3>Configuration Stage</h3>
+<p>In this stage, properties set by setters are set internally for later configuration.</p>
+<h3>Attachment Stage</h3>
+<p>This stage is triggered by a UIComponent being added to the display list.  During this stage the parent property is set on the component. Once complete, the component begins initialization.</p>
+<h3>Initialization Stage</h3>
+<p>This stage comprises the largest portion of the components creation. During this stage children are created, the component is sized, and styles are set. A component with many children has to wait for each child component to complete creation before its initialization can be considered complete. If those children have children they will in turn need to wait for their children's creation complete event, and so on. During this stage the component goes through the following steps:</p>
+<ol>
+<li>The <i>preinitialize</i> event is dispatched.</li>
+<li>The children of the component are created in the <code>createChildren()</code> method.</li>
+<li>The <i>initialize</i> event is dispatched.</li>
+<li>The state of the component is invalidated.</li>
+<li>The <code>commitProperties()</code>,  <code>measure()</code> and <code>updateDisplayList()</code> methods are called.</li>
+<li>The <i>creationComplete</i> event is dispatched.</li>
+</ol>
+<h2>Understanding the UI Facade</h2>
+<p>The UI facade acts as a buffer between the actual UI and the main application. Through the use of a facade the UI can change without affecting the way the rest of the system interacts. In this way, the application needs to know only how to interact with the facade. As long as both the UI and business logic follow the facade's interface, both can change at will without a change from one requiring a change in the other.</p>
+<p>The UI facade allows the testing of UIComponents without the display list. However, adding components to the facade will still cause them to go through their entire creation process. There is no need for a component to be visible for it to be tested.</p>
+<p>In FlexUnit 4, the UIImpersonator acts as a facade for UI based components. The UIImpersonator contains addChild, removeChild, getChildAt and can be interacted with in the same way as the display list without the extra overhead.</p>
+<h2>Waiting for a component to reach its ready state before testing</h2>
+<p>Attempting to test a UIComponent before it reaches its ready state may cause the test to fail. The component may not be properly measured, sized, or positioned and its children may not be fully created. Its properties may have unexpected values.</p>
+<p>Fortunately, UIComponents notify us when they have reached their ready state by dispatching the <i>creationComplete</i> event. At this point, we can be reasonably sure all children are created and the component is ready for testing.</p>
+<h3>Asynchronous Startup</h3>
+<p>To use asynchronous startup, decorate the <code>Before</code> method with the <code>async</code> annotation. If the startup is due to UI, you will also want to decorate it with <code>ui</code>, as in:</p>
+<pre><code>[Before(async, ui)]
+public function setup():void {}
+</code></pre>
+<p>The main body of the setup method has to instantiate the component, add the async handler and add it to the facade. The UIImpersonator is a static class that mimics a component on the display list. It contains several static functions that may be used in place of the real functions. To add a UIComponent to the facade, use the UIImpersonator's <code>addChild()</code> method, passing the component as the parameter:</p>
+<pre><code>component = new UIComponent();
+Async.proceedOnEvent( this, component, "creationComplete", TIMEOUT, timeoutHandler );
+UIImpersonator.addChild( component );
+</code></pre>
+<p>Once the <i>creationComplete</i> is dispatched, tests will continue. Be sure to remove the component from the UIImpersonator at the end of the test. Otherwise, the component will remain in memory.</p>
+<h3>Using async startup chains</h3>
+<p>In some cases, such as when using the ParameterizedRunner, async startup may not be possible. In this case, we will have to create an async startup chain at the beginning of the test. In this instance we create the component as we would in the setup of the asynchronous startup; however we do it at the beginning of the test. We then wait for the creationComplete call before proceeding with the test.</p>
+<pre><code>[Test(async, ui)]
+public function componentShouldDoSomething():void {
+	Component = new UIComponent();
+	Async.proceedOnEvent( this, component, "creationComplete", TIMEOUT, timeoutHandler );
+	UIImpersonator.addChild( component );
+	// rest of the test
+}
+</code></pre>
+<p>With this type of test, you will need to clean up the test by removing the component from the UIImpersonator in all async handlers.</p>
+<h2>Walkthrough 2: Creating integration tests for a component</h2>
+<p>In this walkthrough you will perform the following tasks:</p>
+<ul>
+<li>Test that a login component dispatches an event with the entered login information when the user attempts to log in.</li>
+</ul>
+<h3>Steps</h3>
+<ol>
+<li>
+<p>Open the file LoginIntegrationTest.as in the login.testcases package within the tests directory.</p>
+<p>Alternatively, if you didn't complete the previous lesson or your code is not functioning properly, you can import the FlexUnit4Training_wt2.fxp project from the Unit 14/Start folder. Please refer to Unit 2: Walkthrough 1 for instructions on importing a Flash Builder project.</p>
+<h3><br/>Setup the Parameterized Test</h3>
+</li>
+<li>
+<p>Immediately before the class declaration, add the <code>RunWith</code> metadata for the Parameterized runner.</p>
+<pre><code>[RunWith("org.flexunit.runners.Parameterized")]
+</code></pre>
+<p>Declare two private variables of type <code>String</code> named <code>username</code> and <code>password</code>. Also, declare a protected variable named <code>loginComponent</code> of type <code>LoginComponent</code>.</p>
+<pre><code>private var username:String;
+private var password:String; 
+protected var loginComponent:LoginComponent;
+</code></pre>
+<p>If you did not use code-completion, add the import for net.digitalprimates.components.login at this time.</p>
+</li>
+<li>
+<p>Add the data loader for the login data points.</p>
+<pre><code>public static var userAndPasswordDataLoader:UserAndPasswordDataHelper = 
+	new UserAndPasswordDataHelper("xml/usersAndPasswords.xml" );
+</code></pre>
+<p>If you did not use code-completion, add the import for helper.UserAndPasswordDataHelper at this time.</p>
+<h3><br/>Create the login sequence test</h3>
+</li>
+<li>
+<p>Create a new test named <code>shouldLoginWithProvidedCredentials</code> that takes two arguments, a username of type <code>String</code> and a password of type <code>String</code>. Decorate it with the metadata <code>[Test( async, ui, id="userAndPasswordDataLoader" )]</code>.</p>
+<pre><code>[Test(async, ui, id="userAndPasswordDataLoader")]
+public function shouldLoginWithProvidedCredentials( username:String, password:String ):void {
+}
+</code></pre>
+</li>
+<li>
+<p>Add a variable named <code>sequence</code> of type <code>SequenceRunner</code> to the <code>shouldLoginWithProvidedCredentials()</code> method. Instantiate it with <code>this</code> as its argument.</p>
+<pre><code>protected function handleComponentReady(event:FlexEvent, passThroughData:Object ):void {
+	var sequence:SequenceRunner = new SequenceRunner( this );
+}
+</code></pre>
+<p>If you did not use auto complete, add the import for org.fluint.sequence.SequenceRunner.</p>
+</li>
+<li>
+<p>Create a new Object called <code>passThroughData</code>. Assign it the <code>username</code> and <code>password</code> constructor arguments.</p>
+<pre><code>var passThroughData:Object = new Object();
+passThroughData.username = username;
+passThroughData.password = password;
+</code></pre>
+</li>
+<li>
+<p>Add a call to the <code>sequence.addStep()</code> method, pass in <code>new SequenceSetter( loginComponent.usernameTI, {text:username} )</code> as its argument.</p>
+<pre><code>sequence.addStep( new SequenceSetter( loginComponent.usernameTI, {text:username} ) );
+</code></pre>
+<p>SequenceSetter simulates a call to the setter during sequence execution.</p>
+<p>If you did not use auto complete, add the import for org.fluint.sequence.SequenceSetter.</p>
+</li>
+<li>
+<p>Add another call to the <code>sequence.addStep()</code> method just below the last; pass in <code>new SequenceWaiter( loginComponent.usernameTI, FlexEvent.VALUE_COMMIT, LONG_TIME )</code> as its argument.</p>
+<pre><code>sequence.addStep( new SequenceSetter( loginComponent.usernameTI, {text:username} ) );
+sequence.addStep( new SequenceWaiter( loginComponent.usernameTI, FlexEvent.VALUE_COMMIT,
+ LONG_TIME ) );
+</code></pre>
+<p>If you did not use code-completion, add the imports for org.fluint.sequence.SequenceSetter and org.fluint.sequence.SequenceWaiter at this time.</p>
+</li>
+<li>
+<p>Add a call to the <code>sequence.addStep()</code> method; pass in <code>new SequenceSetter(  loginComponent.passwordTI, {text:password} )</code> as its argument.</p>
+</li>
+<li>
+<p>Add another call to the <code>sequence.addStep()</code> method just below the last; pass in  <code>new SequenceWaiter( loginComponent.passwordTI, FlexEvent.VALUE_COMMIT, LONG_TIME )</code> as its argument.</p>
+<pre><code>sequence.addStep( new SequenceSetter( loginComponent.passwordTI, {text:password} ) );
+sequence.addStep( new SequenceWaiter( loginComponent.passwordTI, FlexEvent.VALUE_COMMIT,
+ LONG_TIME ) );
+</code></pre>
+</li>
+<li>
+<p>Add a call to the <code>sequence.addStep()</code> method, pass in <code>new SequenceEventDispatcher( loginComponent.loginBtn, new MouseEvent( MouseEvent.CLICK, true, false ) )</code> as its argument.</p>
+</li>
+<li>
+<p>Add another call to the <code>sequence.addStep()</code> method, pass in <code>new SequenceWaiter( loginComponent, 'loginSuccess', LONG_TIME, handleSuccessTimeout ) )</code> as its argument.</p>
+<pre><code>sequence.addStep( new SequenceEventDispatcher( loginComponent.loginBtn,
+ new MouseEvent( MouseEvent.CLICK, true, false ) ) );
+sequence.addStep( new SequenceWaiter( loginComponent, 'loginRequested', LONG_TIME,
+ handleSuccessTimeout ) );
+</code></pre>
+<p>If you did not use code-completion, add the imports for org.fluint.sequence.SequenceEventDispatcher and flash.events.MouseEvent at this time.</p>
+</li>
+<li>
+<p>Add a call to the <code>sequence.addAssertHandler()</code> method, pass in <code>handleLoginSuccess</code> and <code>passThroughData</code> as its arguments.</p>
+</li>
+<li>
+<p>Add a call to the run() method, which is required for the sequence to run.</p>
+<pre><code>sequence.addAssertHandler( handleLoginRequested, passThroughData );	
+sequence.run();
+</code></pre>
+<p>With this setup, if the login is requested the event will be handled. If the login request is not fired, control will pass to the timeout handler.  The completed method should read as:</p>
+<pre><code>[Test(async, ui, dataProver="userData")]
+public function shouldLoginWithProvidedCredentials( username:String, password:String ):void {
+	var sequence:SequenceRunner = new SequenceRunner( this );
+	var passThroughData:Object = new Object();
+	passThroughData.username = username;
+	passThroughData.password = password;
+	sequence.addStep( new SequenceSetter( loginComponent.usernameTI, {text:username} ) );
+	sequence.addStep( new SequenceWaiter( loginComponent.usernameTI, FlexEvent.VALUE_COMMIT,
+	 LONG_TIME ) );
+	sequence.addStep( new SequenceSetter( loginComponent.passwordTI, {text:password} ) );
+	sequence.addStep( new SequenceWaiter( loginComponent.passwordTI, FlexEvent.VALUE_COMMIT,
+	 LONG_TIME ) );
+	sequence.addStep( new SequenceEventDispatcher( loginComponent.loginBtn,
+	 new MouseEvent( MouseEvent.CLICK, true, false ) ) );
+	sequence.addStep( new SequenceWaiter( loginComponent, 'loginRequested', LONG_TIME,
+	 handleSuccessTimeout ) );
+	sequence.addAssertHandler( handleLoginRequested, passThroughData );	
+	sequence.run();
+}
+</code></pre>
+</li>
+<li>
+<p>Add a protected function named <code>handleLoginRequested()</code>. It should take a parameter named <code>event</code> of type <code>Event</code> and a parameter named <code>passThroughData</code> of data type <code>Object</code>.</p>
+<pre><code>protected function handleLoginRequested( event:Event, passThroughData:Object ):void {
+}
+</code></pre>
+</li>
+<li>
+<p>Add a call to the <code>assertThat()</code>. It should assert that the <code>passThroughData.username</code> variable is <code>equalTo( loginComponent.usernameTI.text.)</code>.</p>
+</li>
+<li>
+<p>Add a call to the <code>assertThat()</code>. It should assert that the <code>passThroughData.password</code> instance variable is equalTo( loginComponent.passwordTI.text ).</p>
+<pre><code>protected function handleLoginRequested( event:Event, passThroughData:Object ):void {
+	assertThat( passThroughData.username, equalTo( loginComponent.usernameTI.text ) );
+	assertThat( passThroughData.password, equalTo( loginComponent.passwordTI.text ) );
+}
+</code></pre>
+<p>If you did not use code-completion, add the imports for org.flexunit.assertThat and org.hamcrest.object.equalTo.</p>
+</li>
+<li>
+<p>Add a protected function named <code>handleSuccessTimeout()</code> in the class. It should take a parameter named <code>passThroughData</code> of type <code>Object</code>.</p>
+<pre><code>protected function handleSuccessTimeout(passThroughData:Object):void{
+}
+</code></pre>
+</li>
+<li>
+<p>In the timeout handler, add a call to <code>fail()</code>, passing it the message "Login request was not received as expected".</p>
+</li>
+<li>
+<p>Add another call to the <code>assertThat()</code> method. It should assert that the instance variable <code>password</code> is <code>not( equalTo( LoginComponent.PASSWORD ) )</code>.</p>
+<pre><code>protected function handleSuccessTimeout(passThroughData:Object):void {
+	fail( "Login request was not received as expected" );
+}
+</code></pre>
+</li>
+<li>
+<p>Save LoginStartupTest.as.</p>
+<p>Run the FlexUnit4Training.mxml file.</p>
+<p>If your mxml file ran successfully you should see the following output in your browser window:</p>
+<img alt="TestsPassed" id="shift" src="../images/unit14/image2.png"/>
+<p class="caption" id="shift">Figure 1: FlexUnit tests passed</p>
+</li>
+</ol>
+<h2>Summary</h2>
+<ul>
+<li><p>Adding components to the display list is an inherently asynchronous process.</p></li>
+<li><p>UIImpersonator</p></li>
+<ul>
+<li><p>UI facade for testing components UI components off the display list.</p></li>
+<li><p>Uses the addChild() method to add components.</p></li>
+</ul>
+<li><p>Uses the removeChild() method to remove components. UI components must reach a ready state before testing.</p></li>
+<li><p>UI integration testing</p></li>
+<ul>
+<li><p>Tests properties and methods of components present in the UI.</p></li>
+<li><p>May require sequential operation</p></li>
+</ul>
+</ul>
+<h2>Navigation</h2>
+<ul>
+<li><a href="Unit-13.html">Unit 13 - Working with Asynchronous Operations</a></li>
+<li><a href="Unit-15.html">Unit 15 - Creating Testable Code</a></li>
+<li><a href="../index.html">Table of Contents / Introduction</a></li>
+</ul>
+
+
+<!-- Home Page Exception -->
+
+</div></div>
+<!-- Wrapper / End -->
+
+
+<!-- Footer -->
+
+<!-- Footer Top -->
+<div id="footer" class="container-fluid paddingbottom" >
+
+
+    <div class="row-fluid">
+
+        <!-- About -->
+        <div class="span3">
+            <div class="footer-headline"><h4>About Us</h4></div>
+            <p>Apache Flex® is a highly productive, open source application framework for building and maintaining expressive web applications that deploy consistently on all major browsers, desktops and devices (including smartphones, tablets and tv). It provides a modern, standards-based language and programming model that supports common design patterns suitable for developers from many backgrounds. Flex applications can be deployed to the ubiquitous Adobe® Flash® Player in the browser, Adobe® AIR™ on desktop and mobile or to native Android™, IOS™, QNX®, Windows® or Mac® applications.</p>
+        </div>
+
+        <!-- Subscribe  -->
+        <div class="span3">
+            <div class="footer-headline"><h4>Subscribe</h4></div>
+            <p>We have two mailing lists, one for SDK developers, and one for SDK users.</p>
+            <p>Developers, send an email to <br>
+                <a href="mailto:dev-subscribe@flex.apache.org">dev-subscribe@flex.apache.org</a>
+            </p>
+            <p>Users, send an email to <br>
+                <a href="mailto:users-subscribe@flex.apache.org">users-subscribe@flex.apache.org</a>
+            </p>
+        </div>
+
+        <!-- Latest Releases -->
+        <div class="span3">
+            <div class="footer-headline"><h4>Latest Releases</h4></div>
+            <p>
+            	Apache Flex SDK : <a href="/download-binaries.html">4.16.0 (March 2017)</a><br />
+                Apache FlexJS SDK : <a href="/download-flexjs.html">0.8.0 (June 2017)</a><br />
+                Blaze DS : <a href="/download-blazeds.html">4.7.0 (Mar 2015)</a><br />
+                Flex Mavenizer : <a href="http://svn.apache.org/viewvc/flex/utilities/trunk/mavenizer/"> 4.8.0 (Jan 2013)</a><br />
+                FlexUnit : <a href="/download-flexunit.html">4.2.0 (Apr 2014)</a><br />
+                SDK Installer : <a href="/installer.html">3.2.0 (June 2015)</a><br />
+                Squiggly : <a href="/download-squiggly.html">1.1 (Oct 2014)</a><br />
+                Tour De Flex : <a href="/download-tourdeflex.html">1.2 (Nov 2014)</a><br />
+            </p>
+        </div>
+
+        <!-- Latest Tweets -->
+        <div class="span3">
+            <div class="footer-headline"><h4>Latest Tweets</h4></div>
+            <a class="twitter-timeline" href="https://twitter.com/ApacheFlex" data-chrome="noheader nofooter noborders noscrollbar" data-widget-id="364567612920852480">Tweets by Apache Flex</a>
+            <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+            <div class="clear"></div>
+        </div>
+
+    </div>
+
+</div>
+<!-- Footer / Bottom -->
+<div id="footer" class="container-fluid" style="background: #111;">
+    <div class="row-fluid">
+        <div class="span12">
+            <div id="footer-bottom">
+                Copyright © 2021 The Apache Software Foundation, Licensed under the Apache License, Version 2.0 <br>
+                Apache Flex, Apache and the Apache feather logo are trademarks of The Apache Software Foundation. All other marks mentioned may be trademarks or registered trademarks of their respective owners.
+                Read more about our privacy policy on our <a href="about-privacy.html">Privacy Policy</a> page.
+                <div id="scroll-top-top"><a href="#" title="Go to Top"></a></div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<!-- Footer / End -->
+
+</body>
+
+</html>

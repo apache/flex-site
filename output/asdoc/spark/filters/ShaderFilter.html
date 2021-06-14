@@ -1,0 +1,120 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd"><!-- saved from url=(0014)about:internet --><html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><link rel="stylesheet" href="../../style.css" type="text/css" media="screen"><link rel="stylesheet" href="../../print.css" type="text/css" media="print"><link rel="stylesheet" href="../../override.css" type="text/css"><meta name="keywords" content="ShaderFilter,spark.filters.ShaderFilter,alpha,alpha,alpha,alpha,angle,angle,angle,bias,blurX,blurY,bottomExtension,clamp,color,color,color,color,componentX,componentY,distance,distance,distance,divisor,entries,hideObject,highlightAlpha,highlightColor,inner,inner,leftExtension,mapBitmap,mapPoint,matrix,matrix,matrixX,matrixY,mode,precisionHint,preserveAlpha,quality,rightExtension,scaleX,scaleY,shader,shadowAlpha,shadowColor,topExtension,type,type"><title>spark.filters.ShaderFilter</title><script src="../../AC_OETags.js" type="text/javascript"></script></head><body><script language="javascript" type="text/javascript" src="../../asdoc.js"></script><script language="javascript" type="text/javascript" src="../../help.js"></script><script language="javascript" type="text/javascript" src="../../cookies.js"></script><script language="javascript" type="text/javascript"><!--
+				asdocTitle = 'ShaderFilter - ApacheFlex API Reference';
+				var baseRef = '../../';
+				window.onload = configPage;
+			--></script>
+<script type="text/javascript">
+			scrollToNameAnchor();
+		</script><table class="titleTable" cellpadding="0" cellspacing="0" id="titleTable" style="display:none"><tr><td class="titleTableTitle" align="left">Apache Flex 4.16.1 API Reference </td><td class="titleTableTopNav" align="right"><a href="../../package-summary.html" onclick="loadClassListFrame('../../all-classes.html')">All Packages</a>&nbsp;|&nbsp;<a href="../../class-summary.html" onclick="loadClassListFrame('../../all-classes.html')">All Classes</a>&nbsp;|&nbsp;<a href="../../all-index-A.html" onclick="loadClassListFrame('../../index-list.html')">Index</a>&nbsp;|&nbsp;<a id="framesLink1" href="../../index.html?spark/filters/ShaderFilter.html&amp;spark/filters/class-list.html">Frames</a><a id="noFramesLink1" style="display:none" href="" onclick="parent.location=document.location"> No Frames </a></td><td class="titleTableLogo" align="right" rowspan="3"><img src="../../images/logo.jpg" class="logoImage" alt="AdobeLogo" title="AdobeLogo"></td></tr><tr class="titleTableRow2"><td class="titleTableSubTitle" id="subTitle" align="left">ShaderFilter</td><td class="titleTableSubNav" id="subNav" align="right"><a href="#propertySummary">Properties</a>&nbsp;| <a href="#methodSummary">Methods</a>&nbsp;| <a href="#includeExamplesSummary">Examples</a></td></tr><tr class="titleTableRow3"><td colspan="3">&nbsp;</td></tr></table><script language="javascript" type="text/javascript" xml:space="preserve">
+				<!--
+				
+					if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("ShaderFilter"); titleBar_setSubNav(false,true,false,false,false,false,false,false,true,true,false	,false,false,false,false,false);}	
+				-->
+			</script><div xmlns:fn="http://www.w3.org/2005/xpath-functions" class="MainContent"><table class="classHeaderTable" cellpadding="0" cellspacing="0"><tr><td class="classHeaderTableLabel">Package</td><td><a href="package-detail.html" onclick="javascript:loadClassListFrame('class-list.html')">spark.filters</a></td></tr><tr><td class="classHeaderTableLabel">Class</td><td class="classSignature">public dynamic   class  ShaderFilter</td></tr><tr><td class="classHeaderTableLabel">Inheritance</td><td class="inheritanceList">ShaderFilter  <img src="../../images/inherit-arrow.gif" title="Inheritance" alt="Inheritance" class="inheritArrow"> flash.utils.Proxy</td></tr><tr><td class="classHeaderTableLabel">Implements</td><td> <a href="../../mx/filters/IBitmapFilter.html">IBitmapFilter</a>,  flash.events.IEventDispatcher</td></tr></table><p></p><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Language Version :&nbsp;</b></td><td>ActionScript 3.0</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Product Version :&nbsp;</b></td><td>Flex 4</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Runtime Versions :&nbsp;</b></td><td>Flash Player  10, AIR 1.5</td></tr></table><p></p><p></p><p></p><p></p>
+ The Flex ShaderFilter class abstracts away many of the details of using
+ the Flash ShaderFilter, Shader, and ShaderData classes to apply a
+ Pixel Bender shader as a filter.
+  <p>The ShaderFilter class must be initialized with either an instance of a Shader 
+ object or Class representative of a Shader (such as from an Embed). The ShaderFilter 
+ class then serves as a proxy to the underlying Shader, providing a convenience 
+ mechanism for accessing both scalar and multi-dimensional shader input parameters 
+ directly as simple named properties.</p>
+               <p>To set a simple scalar shader input parameter, such as of type FLOAT or INT, you can 
+ refer to the property directly, for example, <code>myFilter.radius</code>.</p>
+               <p>To set or animate an individual component of a multidimensional shader input parameter, such as 
+ FLOAT2, you can use a property suffix convention to access the individual value directly.  
+ The following code shows two ways to set the first and second components of the FLOAT2
+ property <code>center</code>:
+ <code>
+                     <pre>
+     // 'center' is an input parameter of type FLOAT2.
+     shader.center = [10,20];
+ </pre>
+                  </code>
+                  <code>
+                     <pre>
+     // Use property suffix convention to access the first and second component of 'center'. 
+     shader.center_x = 10;
+     shader.center_y = 20;
+ </pre>
+                  </code>
+               </p>
+               <p>The full set of supported property suffixes that you can use are as follows: </p>
+               <ul>
+                  <li>For shader input parameters of type BOOL2, BOOL3, BOOL4, FLOAT2, FLOAT3, FLOAT4, INT2, 
+ INT3, or INT4, you can use "r g b a", "x y z w", or "s t p q"  
+ to access the 1st, 2nd, 3rd and 4th component, respectively.</li>
+                  <li>For shader input parameters of type MATRIX2x2, MATRIX3x3, or MATRIX4x4, you can use 
+ "a b c d e f g h i j k l m n o p" to access the 
+ 1st - 16th component of a given matrix, respectively.</li>
+               </ul>
+               <p>As properties on the ShaderFilter change (such as during animation), the
+ ShaderFilter automatically reapplies itself to the filters array of the visual
+ component it is applied to.</p>
+ 
+            <p></p><a name="mxmlSyntaxSummary"></a><span class="classHeaderTableLabel">MXML Syntax</span><span id="showMxmlLink" style="display:none"><a href="#mxmlSyntaxSummary" onclick="toggleMXMLOnly();"><img src="../../images/collapsed.gif" title="collapsed" alt="collapsed" class="collapsedImage">Show MXML Syntax</a><br/></span><span id="hideMxmlLink"><a href="#mxmlSyntaxSummary" onclick="toggleMXMLOnly();"><img src="../../images/expanded.gif" title="expanded" alt="expanded" class="expandedImage">Hide MXML Syntax</a></span><div id="mxmlSyntax" class="mxmlSyntax">
+  <p>The <code>&lt;s:ShaderFilter&gt;</code> tag inherits all of the tag 
+  attributes of its superclass and adds the following tag attributes:</p>
+   <pre>
+  &lt;s:ShaderFilter
+    <strong>Properties</strong>
+    bottomExtension="0"
+    leftExtension="0"
+    precisionHint="full"
+    rightExtension="0"
+    shader="[]"
+    topExtension="0"
+  /&gt;
+  </pre>
+  </div><script language="javascript" type="text/javascript"><!--
+								setMXMLOnly();
+								--></script><p><a href="#includeExamplesSummary">View the examples</a></p><p><span class="classHeaderTableLabel">See also</span></p><div class="seeAlso"><a href="../../spark/effects/AnimateFilter.html" target="">spark.effects.AnimateFilter</a></div><br/><hr></div><a name="propertySummary"></a><div class="summarySection"><div class="summaryTableTitle">Public Properties</div><table cellspacing="0" cellpadding="3" class="summaryTable " id="summaryTableProperty"><tr><th>&nbsp;</th><th colspan="2">Property</th><th class="summaryTableOwnerCol">Defined By</th></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a href="#bottomExtension" class="signatureLink">bottomExtension</a> : int<div class="summaryTableDescription"></div></td><td class="summaryTableOwnerCol">ShaderFilter</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a href="#leftExtension" class="signatureLink">leftExtension</a> : int<div class="summaryTableDescription"></div></td><td class="summaryTableOwnerCol">ShaderFilter</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a href="#precisionHint" class="signatureLink">precisionHint</a> : String<div class="summaryTableDescription">
+      The precision of math operations performed by the underlying shader.</div></td><td class="summaryTableOwnerCol">ShaderFilter</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a href="#rightExtension" class="signatureLink">rightExtension</a> : int<div class="summaryTableDescription"></div></td><td class="summaryTableOwnerCol">ShaderFilter</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a href="#shader" class="signatureLink">shader</a> : Shader<div class="summaryTableDescription">
+     A flash.display.Shader instance.</div></td><td class="summaryTableOwnerCol">ShaderFilter</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a href="#topExtension" class="signatureLink">topExtension</a> : int<div class="summaryTableDescription"></div></td><td class="summaryTableOwnerCol">ShaderFilter</td></tr></table></div><a name="methodSummary"></a><div class="summarySection"><div class="summaryTableTitle">Public Methods </div><table cellspacing="0" cellpadding="3" class="summaryTable " id="summaryTableMethod"><tr><th>&nbsp;</th><th colspan="2">Method</th><th class="summaryTableOwnerCol">Defined By</th></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#ShaderFilter()" class="signatureLink">ShaderFilter</a>(shader:Object = null)</div><div class="summaryTableDescription">
+      Constructor.</div></td><td class="summaryTableOwnerCol">ShaderFilter</td></tr></table></div><script language="javascript" type="text/javascript"><!--
+										showHideInherited();
+										--></script><div class="MainContent"><div class="detailSectionHeader">Property Detail</div><a name="propertyDetail"></a><a name="bottomExtension"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">bottomExtension</td><td class="detailHeaderType">property</td></tr></table><div class="detailBody"><code>bottomExtension:int</code><p></p><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Language Version :&nbsp;</b></td><td>ActionScript 3.0</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Product Version :&nbsp;</b></td><td>Flex 4</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Runtime Versions :&nbsp;</b></td><td>Flash Player  10, AIR 1.5</td></tr></table><p></p><p></p><p> The default value is <code>0</code>.</p><br/><span class="label"> Implementation </span><br/><code>&nbsp;&nbsp;&nbsp;&nbsp;public function get bottomExtension():int</code><br/><code>&nbsp;&nbsp;&nbsp;&nbsp;public function set bottomExtension(value:int):void</code><br/></div><a name="propertyDetail"></a><a name="leftExtension"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">leftExtension</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code>leftExtension:int</code><p></p><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Language Version :&nbsp;</b></td><td>ActionScript 3.0</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Product Version :&nbsp;</b></td><td>Flex 4</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Runtime Versions :&nbsp;</b></td><td>Flash Player  10, AIR 1.5</td></tr></table><p></p><p></p><p> The default value is <code>0</code>.</p><br/><span class="label"> Implementation </span><br/><code>&nbsp;&nbsp;&nbsp;&nbsp;public function get leftExtension():int</code><br/><code>&nbsp;&nbsp;&nbsp;&nbsp;public function set leftExtension(value:int):void</code><br/></div><a name="propertyDetail"></a><a name="precisionHint"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">precisionHint</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code>precisionHint:String</code><p></p><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Language Version :&nbsp;</b></td><td>ActionScript 3.0</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Product Version :&nbsp;</b></td><td>Flex 4</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Runtime Versions :&nbsp;</b></td><td>Flash Player  10, AIR 1.5</td></tr></table><p></p><p></p><p>
+      The precision of math operations performed by the underlying shader.
+      The set of possible values for the precisionHint property is defined 
+      by the constants in the ShaderPrecision class.
+           </p><p> The default value is <code>ShaderPrecision.FULL</code>.</p><br/><span class="label"> Implementation </span><br/><code>&nbsp;&nbsp;&nbsp;&nbsp;public function get precisionHint():String</code><br/><code>&nbsp;&nbsp;&nbsp;&nbsp;public function set precisionHint(value:String):void</code><br/><p><span class="label">See also</span></p><div class="seeAlso">flash.display.Shader<br/>flash.display.ShaderPrecision</div></div><a name="propertyDetail"></a><a name="rightExtension"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">rightExtension</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code>rightExtension:int</code><p></p><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Language Version :&nbsp;</b></td><td>ActionScript 3.0</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Product Version :&nbsp;</b></td><td>Flex 4</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Runtime Versions :&nbsp;</b></td><td>Flash Player  10, AIR 1.5</td></tr></table><p></p><p></p><p> The default value is <code>0</code>.</p><br/><span class="label"> Implementation </span><br/><code>&nbsp;&nbsp;&nbsp;&nbsp;public function get rightExtension():int</code><br/><code>&nbsp;&nbsp;&nbsp;&nbsp;public function set rightExtension(value:int):void</code><br/></div><a name="propertyDetail"></a><a name="shader"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">shader</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code>shader:Shader</code><p></p><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Language Version :&nbsp;</b></td><td>ActionScript 3.0</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Product Version :&nbsp;</b></td><td>Flex 4</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Runtime Versions :&nbsp;</b></td><td>Flash Player  10, AIR 1.5</td></tr></table><p></p><p></p><p>
+     A flash.display.Shader instance.
+           </p><br/><span class="label"> Implementation </span><br/><code>&nbsp;&nbsp;&nbsp;&nbsp;public function get shader():Shader</code><br/><code>&nbsp;&nbsp;&nbsp;&nbsp;public function set shader(value:Shader):void</code><br/><p><span class="label">See also</span></p><div class="seeAlso">flash.display.Shader</div></div><a name="propertyDetail"></a><a name="topExtension"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">topExtension</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code>topExtension:int</code><p></p><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Language Version :&nbsp;</b></td><td>ActionScript 3.0</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Product Version :&nbsp;</b></td><td>Flex 4</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Runtime Versions :&nbsp;</b></td><td>Flash Player  10, AIR 1.5</td></tr></table><p></p><p></p><p> The default value is <code>0</code>.</p><br/><span class="label"> Implementation </span><br/><code>&nbsp;&nbsp;&nbsp;&nbsp;public function get topExtension():int</code><br/><code>&nbsp;&nbsp;&nbsp;&nbsp;public function set topExtension(value:int):void</code><br/></div><a name="constructorDetail"></a><div class="detailSectionHeader">Constructor Detail</div><a name="ShaderFilter()"></a><a name="ShaderFilter(Object)"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">ShaderFilter</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">Constructor</td></tr></table><div class="detailBody"><code>public function ShaderFilter(shader:Object = null)</code><p></p><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Language Version :&nbsp;</b></td><td>ActionScript 3.0</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Product Version :&nbsp;</b></td><td>Flex 4</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Runtime Versions :&nbsp;</b></td><td>Flash Player  10, AIR 1.5</td></tr></table><p></p><p>
+      Constructor.
+      </p><span class="label"> Parameters </span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20px"></td><td><code><span class="label">shader</span>:Object</code> (default = <code>null</code>)<code></code> &mdash; Fully realized flash.display.Shader instance, or
+      Class representing a Shader (such as from an Embed).
+      
+      </td></tr></table></div><a name="includeExamplesSummary"></a><div class="detailSectionHeader">Examples</div><div class="detailBody">Simple ShaderFilter example:
+ <div class="listing" version="3.0"><pre>
+ &lt;?xml version="1.0"?&gt;
+ &lt;s:Application 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:fx="http://ns.adobe.com/mxml/2009"&gt;
+      &lt;!-- The hypothetical 'spherize' shader applied below has two input parameters, 'center' and 'radius'
+          with the following attributes:
+           parameter 'center' ==&lt;
+              type: float2
+              minValue: float2(-200,-200)
+              maxValue: float2(800,500)
+              defaultValue: float2(400,250)
+              description: "displacement center"
+  
+          parameter 'radius' ==&lt;
+              type: float
+              minValue: float(.1)
+              maxValue: float(400)
+              defaultValue: float(200)
+              description: "radius"
+     --&gt;
+  
+     &lt;s:Label text="ABCDEF"&gt;
+         &lt;s:filters&gt;
+             &lt;s:ShaderFilter shader="@Embed(source='shaders/spherize.pbj')"
+                 radius="25" center_x="50" center_y="15" /&gt;
+        &lt;/s:filters&gt;
+     &lt;/s:Label&gt;
+   
+ &lt;/s:Application&gt; 
+ </pre></div>
+  
+  </div><br/><br/><hr><br/><p></p><center class="copyright"><footer>The Apache Software Foundation</footer><br/>Wed Nov 15 2017, 09:50 AM +01:00  </center></div></body></html><!--The Apache Software Foundation<br/>Wed Nov 15 2017, 09:50 AM +01:00  -->

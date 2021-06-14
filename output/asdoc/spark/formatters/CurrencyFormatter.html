@@ -1,0 +1,611 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd"><!-- saved from url=(0014)about:internet --><html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><link rel="stylesheet" href="../../style.css" type="text/css" media="screen"><link rel="stylesheet" href="../../print.css" type="text/css" media="print"><link rel="stylesheet" href="../../override.css" type="text/css"><meta name="keywords" content="CurrencyFormatter,spark.formatters.CurrencyFormatter,actualLocaleIDName,actualLocaleIDName,actualLocaleIDName,currencyISOCode,currencySymbol,dateStyle,dateTimePattern,errorText,lastOperationStatus,negativeCurrencyFormat,negativeNumberFormat,positiveCurrencyFormat,timeStyle,useCurrencySymbol,useUTC,format,format,format,formattingWithCurrencySymbolIsSafe,getAvailableLocaleIDNames,getAvailableLocaleIDNames,getAvailableLocaleIDNames,getFirstWeekday,getMonthNames,getWeekdayNames,parse,parse,parseNumber"><title>spark.formatters.CurrencyFormatter</title><script src="../../AC_OETags.js" type="text/javascript"></script></head><body><script language="javascript" type="text/javascript" src="../../asdoc.js"></script><script language="javascript" type="text/javascript" src="../../help.js"></script><script language="javascript" type="text/javascript" src="../../cookies.js"></script><script language="javascript" type="text/javascript"><!--
+				asdocTitle = 'CurrencyFormatter - ApacheFlex API Reference';
+				var baseRef = '../../';
+				window.onload = configPage;
+			--></script>
+<script type="text/javascript">
+			scrollToNameAnchor();
+		</script><table class="titleTable" cellpadding="0" cellspacing="0" id="titleTable" style="display:none"><tr><td class="titleTableTitle" align="left">Apache Flex 4.16.1 API Reference </td><td class="titleTableTopNav" align="right"><a href="../../package-summary.html" onclick="loadClassListFrame('../../all-classes.html')">All Packages</a>&nbsp;|&nbsp;<a href="../../class-summary.html" onclick="loadClassListFrame('../../all-classes.html')">All Classes</a>&nbsp;|&nbsp;<a href="../../all-index-A.html" onclick="loadClassListFrame('../../index-list.html')">Index</a>&nbsp;|&nbsp;<a id="framesLink1" href="../../index.html?spark/formatters/CurrencyFormatter.html&amp;spark/formatters/class-list.html">Frames</a><a id="noFramesLink1" style="display:none" href="" onclick="parent.location=document.location"> No Frames </a></td><td class="titleTableLogo" align="right" rowspan="3"><img src="../../images/logo.jpg" class="logoImage" alt="AdobeLogo" title="AdobeLogo"></td></tr><tr class="titleTableRow2"><td class="titleTableSubTitle" id="subTitle" align="left">CurrencyFormatter</td><td class="titleTableSubNav" id="subNav" align="right"><a href="#propertySummary">Properties</a>&nbsp;| <a href="#methodSummary">Methods</a>&nbsp;| <a href="#eventSummary">Events</a>&nbsp;| <a href="#styleSummary">Styles</a>&nbsp;| <a href="#includeExamplesSummary">Examples</a></td></tr><tr class="titleTableRow3"><td colspan="3">&nbsp;</td></tr></table><script language="javascript" type="text/javascript" xml:space="preserve">
+				<!--
+				
+					if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("CurrencyFormatter"); titleBar_setSubNav(false,true,true,false,false,false,true,false,true,true,false	,false,false,false,false,false);}	
+				-->
+			</script><div xmlns:fn="http://www.w3.org/2005/xpath-functions" class="MainContent"><table class="classHeaderTable" cellpadding="0" cellspacing="0"><tr><td class="classHeaderTableLabel">Package</td><td><a href="package-detail.html" onclick="javascript:loadClassListFrame('class-list.html')">spark.formatters</a></td></tr><tr><td class="classHeaderTableLabel">Class</td><td class="classSignature">public  class  CurrencyFormatter</td></tr><tr><td class="classHeaderTableLabel">Inheritance</td><td class="inheritanceList">CurrencyFormatter  <img src="../../images/inherit-arrow.gif" title="Inheritance" alt="Inheritance" class="inheritArrow"> <a href="../../spark/formatters/supportClasses/NumberFormatterBase.html">NumberFormatterBase</a> <img src="../../images/inherit-arrow.gif" title="Inheritance" alt="Inheritance" class="inheritArrow"> <a href="../../spark/globalization/supportClasses/GlobalizationBase.html">GlobalizationBase</a> <img src="../../images/inherit-arrow.gif" title="Inheritance" alt="Inheritance" class="inheritArrow"> <a href="../../mx/styles/AdvancedStyleClient.html">AdvancedStyleClient</a> <img src="../../images/inherit-arrow.gif" title="Inheritance" alt="Inheritance" class="inheritArrow"> flash.events.EventDispatcher</td></tr><tr><td class="classHeaderTableLabel">Implements</td><td> <a href="../../mx/formatters/IFormatter.html">IFormatter</a></td></tr></table><p></p><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Language Version :&nbsp;</b></td><td>ActionScript 3.0</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Product Version :&nbsp;</b></td><td>Flex 4.5</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Runtime Versions :&nbsp;</b></td><td>Flash Player  10.1, AIR 2.5</td></tr></table><p></p><p></p><p></p><p></p>
+  The CurrencyFormatter class provides locale-sensitive formatting
+  and parsing of currency values. 
+   <p>This class is a wrapper class around the
+  <code>flash.globalization.CurrencyFormatter</code>. Therefore,
+  the locale-specific formatting
+  is provided by the <code>flash.globalization.CurrencyFormatter</code>.
+  However, this CurrencyFormatter class can be used in MXML declarations,
+  uses the locale style for the requested Locale ID name, and has
+  methods and properties that are bindable.
+  </p>
+               <p>
+  The flash.globalization.CurrencyFormatter class uses the underlying
+  operating system for the formatting functionality and
+  to supply the locale specific data. On some operating systems,
+  the flash.globalization classes are unsupported, on these systems this
+  wrapper class provides fallback functionality.
+  </p>
+            <p></p><a name="mxmlSyntaxSummary"></a><span class="classHeaderTableLabel">MXML Syntax</span><span id="showMxmlLink" style="display:none"><a href="#mxmlSyntaxSummary" onclick="toggleMXMLOnly();"><img src="../../images/collapsed.gif" title="collapsed" alt="collapsed" class="collapsedImage">Show MXML Syntax</a><br/></span><span id="hideMxmlLink"><a href="#mxmlSyntaxSummary" onclick="toggleMXMLOnly();"><img src="../../images/expanded.gif" title="expanded" alt="expanded" class="expandedImage">Hide MXML Syntax</a></span><div id="mxmlSyntax" class="mxmlSyntax"><p>The <code>&lt;s:CurrencyFormatter&gt;</code> tag inherits all of the tag 
+  attributes of its superclass and adds the following tag attributes:</p>
+   <pre>
+  &lt;s:CurrencyFormatter 
+    <strong>Properties</strong>
+    currencyISOCode="<i>locale and OS dependent</i>"
+    currencySymbol="<i>locale and OS dependent</i>"
+    negativeCurrencyFormat="<i>locale and OS dependent</i>"
+    positiveCurrencyFormat="<i>locale and OS dependent</i>"
+    useCurrencySymbol="false"
+  /&gt;
+  </pre>
+   </div><script language="javascript" type="text/javascript"><!--
+								setMXMLOnly();
+								--></script><p><a href="#includeExamplesSummary">View the examples</a></p><p><span class="classHeaderTableLabel">See also</span></p><div class="seeAlso">flash.globalization.CurrencyFormatter<br/><a href="NumberFormatter.html" target="">NumberFormatter</a></div><br/><hr></div><a name="propertySummary"></a><div class="summarySection"><div class="summaryTableTitle">Public Properties</div><div class="showHideLinks"><div id="hideInheritedProperty" class="hideInheritedProperty"><a class="showHideLink" href="#propertySummary" onclick="javascript:setInheritedVisible(false,'Property');"><img class="showHideLinkImage" src="../../images/expanded.gif"> Hide Inherited Public Properties</a></div><div id="showInheritedProperty" class="showInheritedProperty"><a class="showHideLink" href="#propertySummary" onclick="javascript:setInheritedVisible(true,'Property');"><img class="showHideLinkImage" src="../../images/collapsed.gif"> Show Inherited Public Properties</a></div></div><table cellspacing="0" cellpadding="3" class="summaryTable " id="summaryTableProperty"><tr><th>&nbsp;</th><th colspan="2">Property</th><th class="summaryTableOwnerCol">Defined By</th></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a href="#actualLocaleIDName" class="signatureLink">actualLocaleIDName</a> : String<div class="summaryTableDescription">[override] [read-only] 
+      
+      The name of the actual locale ID used by this class object.</div></td><td class="summaryTableOwnerCol">CurrencyFormatter</td></tr><tr class="hideInheritedProperty"><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img src="../../images/inheritedSummary.gif" alt="Inherited" title="Inherited" class="inheritedSummaryImage"></td><td class="summaryTableSignatureCol"><a href="../../mx/styles/AdvancedStyleClient.html#className" class="signatureLink">className</a> : String<div class="summaryTableDescription">[read-only] 
+      The name of the component class.</div></td><td class="summaryTableOwnerCol"><a href="../../mx/styles/AdvancedStyleClient.html">AdvancedStyleClient</a></td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a href="#currencyISOCode" class="signatureLink">currencyISOCode</a> : String<div class="summaryTableDescription">
+      The three letter ISO 4217 currency code for the actual locale
+      being used (e.g.</div></td><td class="summaryTableOwnerCol">CurrencyFormatter</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a href="#currencySymbol" class="signatureLink">currencySymbol</a> : String<div class="summaryTableDescription">
+      The currency symbol or string for the actual locale being used.</div></td><td class="summaryTableOwnerCol">CurrencyFormatter</td></tr><tr class="hideInheritedProperty"><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img src="../../images/inheritedSummary.gif" alt="Inherited" title="Inherited" class="inheritedSummaryImage"></td><td class="summaryTableSignatureCol"><a href="../../spark/formatters/supportClasses/NumberFormatterBase.html#decimalSeparator" class="signatureLink">decimalSeparator</a> : String<div class="summaryTableDescription">
+      The decimal separator character used for formatting or parsing
+      numbers that have a decimal part.</div></td><td class="summaryTableOwnerCol"><a href="../../spark/formatters/supportClasses/NumberFormatterBase.html">NumberFormatterBase</a></td></tr><tr class="hideInheritedProperty"><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img src="../../images/inheritedSummary.gif" alt="Inherited" title="Inherited" class="inheritedSummaryImage"></td><td class="summaryTableSignatureCol"><a href="../../spark/formatters/supportClasses/NumberFormatterBase.html#digitsType" class="signatureLink">digitsType</a> : uint<div class="summaryTableDescription">
+      Defines the set of digit characters to be used when
+      formatting numbers.</div></td><td class="summaryTableOwnerCol"><a href="../../spark/formatters/supportClasses/NumberFormatterBase.html">NumberFormatterBase</a></td></tr><tr class="hideInheritedProperty"><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img src="../../images/inheritedSummary.gif" alt="Inherited" title="Inherited" class="inheritedSummaryImage"></td><td class="summaryTableSignatureCol"><a href="../../spark/formatters/supportClasses/NumberFormatterBase.html#errorText" class="signatureLink">errorText</a> : String<div class="summaryTableDescription">
+      Replacement string returned by the format() method
+      when an error occurs.</div></td><td class="summaryTableOwnerCol"><a href="../../spark/formatters/supportClasses/NumberFormatterBase.html">NumberFormatterBase</a></td></tr><tr class="hideInheritedProperty"><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img src="../../images/inheritedSummary.gif" alt="Inherited" title="Inherited" class="inheritedSummaryImage"></td><td class="summaryTableSignatureCol"><a href="../../spark/formatters/supportClasses/NumberFormatterBase.html#fractionalDigits" class="signatureLink">fractionalDigits</a> : int<div class="summaryTableDescription">
+      The maximum number of digits that can appear after the decimal
+      separator.</div></td><td class="summaryTableOwnerCol"><a href="../../spark/formatters/supportClasses/NumberFormatterBase.html">NumberFormatterBase</a></td></tr><tr class="hideInheritedProperty"><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img src="../../images/inheritedSummary.gif" alt="Inherited" title="Inherited" class="inheritedSummaryImage"></td><td class="summaryTableSignatureCol"><a href="../../spark/formatters/supportClasses/NumberFormatterBase.html#groupingPattern" class="signatureLink">groupingPattern</a> : String<div class="summaryTableDescription">
+      Describes the placement of grouping separators within the
+      formatted number string.</div></td><td class="summaryTableOwnerCol"><a href="../../spark/formatters/supportClasses/NumberFormatterBase.html">NumberFormatterBase</a></td></tr><tr class="hideInheritedProperty"><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img src="../../images/inheritedSummary.gif" alt="Inherited" title="Inherited" class="inheritedSummaryImage"></td><td class="summaryTableSignatureCol"><a href="../../spark/formatters/supportClasses/NumberFormatterBase.html#groupingSeparator" class="signatureLink">groupingSeparator</a> : String<div class="summaryTableDescription">
+      The character or string used for the grouping separator.</div></td><td class="summaryTableOwnerCol"><a href="../../spark/formatters/supportClasses/NumberFormatterBase.html">NumberFormatterBase</a></td></tr><tr class="hideInheritedProperty"><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img src="../../images/inheritedSummary.gif" alt="Inherited" title="Inherited" class="inheritedSummaryImage"></td><td class="summaryTableSignatureCol"><a href="../../mx/styles/AdvancedStyleClient.html#id" class="signatureLink">id</a> : String<div class="summaryTableDescription">
+      
+      The identity of the component.</div></td><td class="summaryTableOwnerCol"><a href="../../mx/styles/AdvancedStyleClient.html">AdvancedStyleClient</a></td></tr><tr class="hideInheritedProperty"><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img src="../../images/inheritedSummary.gif" alt="Inherited" title="Inherited" class="inheritedSummaryImage"></td><td class="summaryTableSignatureCol"><a href="../../mx/styles/AdvancedStyleClient.html#inheritingStyles" class="signatureLink">inheritingStyles</a> : Object<div class="summaryTableDescription">
+      An object containing the inheritable styles for this non-visual
+      style client instance.</div></td><td class="summaryTableOwnerCol"><a href="../../mx/styles/AdvancedStyleClient.html">AdvancedStyleClient</a></td></tr><tr class="hideInheritedProperty"><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img src="../../images/inheritedSummary.gif" alt="Inherited" title="Inherited" class="inheritedSummaryImage"></td><td class="summaryTableSignatureCol"><a href="../../spark/formatters/supportClasses/NumberFormatterBase.html#lastOperationStatus" class="signatureLink">lastOperationStatus</a> : String<div class="summaryTableDescription">[override] [read-only] 
+      
+      The status of the most recent operation that this class object
+      performed.</div></td><td class="summaryTableOwnerCol"><a href="../../spark/formatters/supportClasses/NumberFormatterBase.html">NumberFormatterBase</a></td></tr><tr class="hideInheritedProperty"><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img src="../../images/inheritedSummary.gif" alt="Inherited" title="Inherited" class="inheritedSummaryImage"></td><td class="summaryTableSignatureCol"><a href="../../spark/formatters/supportClasses/NumberFormatterBase.html#leadingZero" class="signatureLink">leadingZero</a> : Boolean<div class="summaryTableDescription">
+      Specifies whether a leading zero is included in a formatted
+      number when there are no integer digits to the left of the decimal
+      separator.</div></td><td class="summaryTableOwnerCol"><a href="../../spark/formatters/supportClasses/NumberFormatterBase.html">NumberFormatterBase</a></td></tr><tr class="hideInheritedProperty"><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img src="../../images/inheritedSummary.gif" alt="Inherited" title="Inherited" class="inheritedSummaryImage"></td><td class="summaryTableSignatureCol"><a href="../../mx/styles/AdvancedStyleClient.html#moduleFactory" class="signatureLink">moduleFactory</a> : <a href="../../mx/core/IFlexModuleFactory.html">IFlexModuleFactory</a><div class="summaryTableDescription">
+      A module factory is used as context for
+      finding the style manager that controls the styles for this
+      non-visual style client instance.</div></td><td class="summaryTableOwnerCol"><a href="../../mx/styles/AdvancedStyleClient.html">AdvancedStyleClient</a></td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a href="#negativeCurrencyFormat" class="signatureLink">negativeCurrencyFormat</a> : uint<div class="summaryTableDescription">
+      A numeric value that indicates a formatting pattern for negative
+      currency amounts.</div></td><td class="summaryTableOwnerCol">CurrencyFormatter</td></tr><tr class="hideInheritedProperty"><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img src="../../images/inheritedSummary.gif" alt="Inherited" title="Inherited" class="inheritedSummaryImage"></td><td class="summaryTableSignatureCol"><a href="../../spark/formatters/supportClasses/NumberFormatterBase.html#negativeSymbol" class="signatureLink">negativeSymbol</a> : String<div class="summaryTableDescription">
+      The negative symbol to be used when formatting negative values.</div></td><td class="summaryTableOwnerCol"><a href="../../spark/formatters/supportClasses/NumberFormatterBase.html">NumberFormatterBase</a></td></tr><tr class="hideInheritedProperty"><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img src="../../images/inheritedSummary.gif" alt="Inherited" title="Inherited" class="inheritedSummaryImage"></td><td class="summaryTableSignatureCol"><a href="../../mx/styles/AdvancedStyleClient.html#nonInheritingStyles" class="signatureLink">nonInheritingStyles</a> : Object<div class="summaryTableDescription">
+      The beginning of this component's chain of non-inheriting styles.</div></td><td class="summaryTableOwnerCol"><a href="../../mx/styles/AdvancedStyleClient.html">AdvancedStyleClient</a></td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a href="#positiveCurrencyFormat" class="signatureLink">positiveCurrencyFormat</a> : uint<div class="summaryTableDescription">
+      A numeric value that indicates a formatting pattern for positive
+      currency amounts.</div></td><td class="summaryTableOwnerCol">CurrencyFormatter</td></tr><tr class="hideInheritedProperty"><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img src="../../images/inheritedSummary.gif" alt="Inherited" title="Inherited" class="inheritedSummaryImage"></td><td class="summaryTableSignatureCol"><a href="../../mx/styles/AdvancedStyleClient.html#styleDeclaration" class="signatureLink">styleDeclaration</a> : <a href="../../mx/styles/CSSStyleDeclaration.html">CSSStyleDeclaration</a><div class="summaryTableDescription">
+      The style declaration that holds the inline styles declared by this
+      object.</div></td><td class="summaryTableOwnerCol"><a href="../../mx/styles/AdvancedStyleClient.html">AdvancedStyleClient</a></td></tr><tr class="hideInheritedProperty"><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img src="../../images/inheritedSummary.gif" alt="Inherited" title="Inherited" class="inheritedSummaryImage"></td><td class="summaryTableSignatureCol"><a href="../../mx/styles/AdvancedStyleClient.html#styleManager" class="signatureLink">styleManager</a> : <a href="../../mx/styles/IStyleManager2.html">IStyleManager2</a><div class="summaryTableDescription">[read-only] 
+      Returns the StyleManager instance used by this component.</div></td><td class="summaryTableOwnerCol"><a href="../../mx/styles/AdvancedStyleClient.html">AdvancedStyleClient</a></td></tr><tr class="hideInheritedProperty"><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img src="../../images/inheritedSummary.gif" alt="Inherited" title="Inherited" class="inheritedSummaryImage"></td><td class="summaryTableSignatureCol"><a href="../../mx/styles/AdvancedStyleClient.html#styleName" class="signatureLink">styleName</a> : Object<div class="summaryTableDescription">
+      
+      The source of this object's style values.</div></td><td class="summaryTableOwnerCol"><a href="../../mx/styles/AdvancedStyleClient.html">AdvancedStyleClient</a></td></tr><tr class="hideInheritedProperty"><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img src="../../images/inheritedSummary.gif" alt="Inherited" title="Inherited" class="inheritedSummaryImage"></td><td class="summaryTableSignatureCol"><a href="../../mx/styles/AdvancedStyleClient.html#styleParent" class="signatureLink">styleParent</a> : <a href="../../mx/styles/IAdvancedStyleClient.html">IAdvancedStyleClient</a><div class="summaryTableDescription">
+      A component's parent is used to evaluate descendant selectors.</div></td><td class="summaryTableOwnerCol"><a href="../../mx/styles/AdvancedStyleClient.html">AdvancedStyleClient</a></td></tr><tr class="hideInheritedProperty"><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img src="../../images/inheritedSummary.gif" alt="Inherited" title="Inherited" class="inheritedSummaryImage"></td><td class="summaryTableSignatureCol"><a href="../../spark/formatters/supportClasses/NumberFormatterBase.html#trailingZeros" class="signatureLink">trailingZeros</a> : Boolean<div class="summaryTableDescription">
+      Specifies whether trailing zeros are included in a formatted number.</div></td><td class="summaryTableOwnerCol"><a href="../../spark/formatters/supportClasses/NumberFormatterBase.html">NumberFormatterBase</a></td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a href="#useCurrencySymbol" class="signatureLink">useCurrencySymbol</a> : Boolean<div class="summaryTableDescription">
+      Enables the use of the currencySymbol property 
+      when formatting currency amounts.</div></td><td class="summaryTableOwnerCol">CurrencyFormatter</td></tr><tr class="hideInheritedProperty"><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img src="../../images/inheritedSummary.gif" alt="Inherited" title="Inherited" class="inheritedSummaryImage"></td><td class="summaryTableSignatureCol"><a href="../../spark/formatters/supportClasses/NumberFormatterBase.html#useGrouping" class="signatureLink">useGrouping</a> : Boolean<div class="summaryTableDescription">
+      Enables the use of the grouping separator when formatting numbers.</div></td><td class="summaryTableOwnerCol"><a href="../../spark/formatters/supportClasses/NumberFormatterBase.html">NumberFormatterBase</a></td></tr></table></div><a name="methodSummary"></a><div class="summarySection"><div class="summaryTableTitle">Public Methods </div><div class="showHideLinks"><div id="hideInheritedMethod" class="hideInheritedMethod"><a class="showHideLink" href="#methodSummary" onclick="javascript:setInheritedVisible(false,'Method');"><img class="showHideLinkImage" src="../../images/expanded.gif"> Hide Inherited Public Methods</a></div><div id="showInheritedMethod" class="showInheritedMethod"><a class="showHideLink" href="#methodSummary" onclick="javascript:setInheritedVisible(true,'Method');"><img class="showHideLinkImage" src="../../images/collapsed.gif"> Show Inherited Public Methods</a></div></div><table cellspacing="0" cellpadding="3" class="summaryTable " id="summaryTableMethod"><tr><th>&nbsp;</th><th colspan="2">Method</th><th class="summaryTableOwnerCol">Defined By</th></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#CurrencyFormatter()" class="signatureLink">CurrencyFormatter</a>()</div><div class="summaryTableDescription">
+      Constructs a new CurrencyFormatter object to format numbers
+      representing currency amounts according to
+      the conventions of a given locale.</div></td><td class="summaryTableOwnerCol">CurrencyFormatter</td></tr><tr class="hideInheritedMethod"><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img src="../../images/inheritedSummary.gif" alt="Inherited" title="Inherited" class="inheritedSummaryImage"></td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="../../mx/styles/AdvancedStyleClient.html#clearStyle()" class="signatureLink">clearStyle</a>(styleProp:String):void</div><div class="summaryTableDescription">
+      
+      Deletes a style property from this component instance.</div></td><td class="summaryTableOwnerCol"><a href="../../mx/styles/AdvancedStyleClient.html">AdvancedStyleClient</a></td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#format()" class="signatureLink">format</a>(value:Object):String</div><div class="summaryTableDescription">
+      Creates a string representing a currency amount formatted
+      according to the current properties of this CurrencyFormatter object,
+      including the locale, useCurrencySymbol, 
+      the currencySymbol, or 
+      the currencyISOCode properties.</div></td><td class="summaryTableOwnerCol">CurrencyFormatter</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#formattingWithCurrencySymbolIsSafe()" class="signatureLink">formattingWithCurrencySymbolIsSafe</a>(requestedISOCode:String):Boolean</div><div class="summaryTableDescription">
+      Determines whether the currently specified currency symbol can
+      be used when formatting currency amounts.</div></td><td class="summaryTableOwnerCol">CurrencyFormatter</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#getAvailableLocaleIDNames()" class="signatureLink">getAvailableLocaleIDNames</a>():Vector.&lt;String&gt;</div><div class="summaryTableDescription">[static] 
+      Lists all of the locale ID names supported by this class.</div></td><td class="summaryTableOwnerCol">CurrencyFormatter</td></tr><tr class="hideInheritedMethod"><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img src="../../images/inheritedSummary.gif" alt="Inherited" title="Inherited" class="inheritedSummaryImage"></td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="../../mx/styles/AdvancedStyleClient.html#getClassStyleDeclarations()" class="signatureLink">getClassStyleDeclarations</a>():Array</div><div class="summaryTableDescription">
+      
+      Returns an Array of CSSStyleDeclaration objects for the type selector
+      that applies to this component, or null if none exist.</div></td><td class="summaryTableOwnerCol"><a href="../../mx/styles/AdvancedStyleClient.html">AdvancedStyleClient</a></td></tr><tr class="hideInheritedMethod"><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img src="../../images/inheritedSummary.gif" alt="Inherited" title="Inherited" class="inheritedSummaryImage"></td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="../../spark/globalization/supportClasses/GlobalizationBase.html#getStyle()" class="signatureLink">getStyle</a>(styleProp:String):*</div><div class="summaryTableDescription">[override] 
+      Gets a style property that has been set anywhere in this
+      component's style lookup chain.</div></td><td class="summaryTableOwnerCol"><a href="../../spark/globalization/supportClasses/GlobalizationBase.html">GlobalizationBase</a></td></tr><tr class="hideInheritedMethod"><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img src="../../images/inheritedSummary.gif" alt="Inherited" title="Inherited" class="inheritedSummaryImage"></td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="../../mx/styles/AdvancedStyleClient.html#hasCSSState()" class="signatureLink">hasCSSState</a>():Boolean</div><div class="summaryTableDescription">
+      
+      Returns true if currentCSSState is not null.</div></td><td class="summaryTableOwnerCol"><a href="../../mx/styles/AdvancedStyleClient.html">AdvancedStyleClient</a></td></tr><tr class="hideInheritedMethod"><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img src="../../images/inheritedSummary.gif" alt="Inherited" title="Inherited" class="inheritedSummaryImage"></td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="../../mx/styles/AdvancedStyleClient.html#initialized()" class="signatureLink">initialized</a>(document:Object, id:String):void</div><div class="summaryTableDescription">
+      The initialized method is called when this class or a class that
+      extends this class is used in an MXML declaration.</div></td><td class="summaryTableOwnerCol"><a href="../../mx/styles/AdvancedStyleClient.html">AdvancedStyleClient</a></td></tr><tr class="hideInheritedMethod"><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img src="../../images/inheritedSummary.gif" alt="Inherited" title="Inherited" class="inheritedSummaryImage"></td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="../../mx/styles/AdvancedStyleClient.html#matchesCSSState()" class="signatureLink">matchesCSSState</a>(cssState:String):Boolean</div><div class="summaryTableDescription">
+      
+      Returns true if cssState matches currentCSSState.</div></td><td class="summaryTableOwnerCol"><a href="../../mx/styles/AdvancedStyleClient.html">AdvancedStyleClient</a></td></tr><tr class="hideInheritedMethod"><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img src="../../images/inheritedSummary.gif" alt="Inherited" title="Inherited" class="inheritedSummaryImage"></td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="../../mx/styles/AdvancedStyleClient.html#matchesCSSType()" class="signatureLink">matchesCSSType</a>(cssType:String):Boolean</div><div class="summaryTableDescription">
+      
+      Determines whether this instance is the same as, or is a subclass of,
+      the given type.</div></td><td class="summaryTableOwnerCol"><a href="../../mx/styles/AdvancedStyleClient.html">AdvancedStyleClient</a></td></tr><tr class="hideInheritedMethod"><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img src="../../images/inheritedSummary.gif" alt="Inherited" title="Inherited" class="inheritedSummaryImage"></td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="../../mx/styles/AdvancedStyleClient.html#notifyStyleChangeInChildren()" class="signatureLink">notifyStyleChangeInChildren</a>(styleProp:String, recursive:Boolean):void</div><div class="summaryTableDescription">
+      Propagates style changes to the children of this style client
+      instance.</div></td><td class="summaryTableOwnerCol"><a href="../../mx/styles/AdvancedStyleClient.html">AdvancedStyleClient</a></td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#parse()" class="signatureLink">parse</a>(inputString:String):CurrencyParseResult</div><div class="summaryTableDescription">
+      Parses a string into a currency amount and a currency symbol.</div></td><td class="summaryTableOwnerCol">CurrencyFormatter</td></tr><tr class="hideInheritedMethod"><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img src="../../images/inheritedSummary.gif" alt="Inherited" title="Inherited" class="inheritedSummaryImage"></td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="../../mx/styles/AdvancedStyleClient.html#regenerateStyleCache()" class="signatureLink">regenerateStyleCache</a>(recursive:Boolean):void</div><div class="summaryTableDescription">
+      Sets up the internal style cache values so that the
+      getStyle()
+      method functions.</div></td><td class="summaryTableOwnerCol"><a href="../../mx/styles/AdvancedStyleClient.html">AdvancedStyleClient</a></td></tr><tr class="hideInheritedMethod"><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img src="../../images/inheritedSummary.gif" alt="Inherited" title="Inherited" class="inheritedSummaryImage"></td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="../../mx/styles/AdvancedStyleClient.html#registerEffects()" class="signatureLink">registerEffects</a>(effects:Array):void</div><div class="summaryTableDescription">
+      Registers the EffectManager as one of the event listeners
+      for each effect event.</div></td><td class="summaryTableOwnerCol"><a href="../../mx/styles/AdvancedStyleClient.html">AdvancedStyleClient</a></td></tr><tr class="hideInheritedMethod"><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img src="../../images/inheritedSummary.gif" alt="Inherited" title="Inherited" class="inheritedSummaryImage"></td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="../../mx/styles/AdvancedStyleClient.html#setStyle()" class="signatureLink">setStyle</a>(styleProp:String, newValue:*):void</div><div class="summaryTableDescription">
+      
+      Sets a style property on this component instance.</div></td><td class="summaryTableOwnerCol"><a href="../../mx/styles/AdvancedStyleClient.html">AdvancedStyleClient</a></td></tr><tr class="hideInheritedMethod"><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img src="../../images/inheritedSummary.gif" alt="Inherited" title="Inherited" class="inheritedSummaryImage"></td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="../../mx/styles/AdvancedStyleClient.html#styleChanged()" class="signatureLink">styleChanged</a>(styleProp:String):void</div><div class="summaryTableDescription">
+      Detects changes to style properties.</div></td><td class="summaryTableOwnerCol"><a href="../../mx/styles/AdvancedStyleClient.html">AdvancedStyleClient</a></td></tr><tr class="hideInheritedMethod"><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img src="../../images/inheritedSummary.gif" alt="Inherited" title="Inherited" class="inheritedSummaryImage"></td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="../../mx/styles/AdvancedStyleClient.html#stylesInitialized()" class="signatureLink">stylesInitialized</a>():void</div><div class="summaryTableDescription">
+      
+      Flex calls the stylesInitialized() method when
+      the styles for a component are first initialized.</div></td><td class="summaryTableOwnerCol"><a href="../../mx/styles/AdvancedStyleClient.html">AdvancedStyleClient</a></td></tr></table></div><a name="protectedMethodSummary"></a><div class="summarySection"><div class="summaryTableTitle">Protected Methods </div><div class="showHideLinks"><div id="hideInheritedProtectedMethod" class="hideInheritedProtectedMethod"><a class="showHideLink" href="#protectedMethodSummary" onclick="javascript:setInheritedVisible(false,'ProtectedMethod');"><img class="showHideLinkImage" src="../../images/expanded.gif"> Show Inherited Protected Methods</a></div><div id="showInheritedProtectedMethod" class="showInheritedProtectedMethod"><a class="showHideLink" href="#protectedMethodSummary" onclick="javascript:setInheritedVisible(true,'ProtectedMethod');"><img class="showHideLinkImage" src="../../images/collapsed.gif"> Show Inherited Protected Methods</a></div></div><table cellspacing="0" cellpadding="3" class="summaryTable hideInheritedProtectedMethod" id="summaryTableProtectedMethod"><tr><th>&nbsp;</th><th colspan="2">Method</th><th class="summaryTableOwnerCol">Defined By</th></tr><tr class="hideInheritedProtectedMethod"><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img src="../../images/inheritedSummary.gif" alt="Inherited" title="Inherited" class="inheritedSummaryImage"></td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="../../mx/styles/AdvancedStyleClient.html#setDeferredStyles()" class="signatureLink">setDeferredStyles</a>():void</div><div class="summaryTableDescription"></div></td><td class="summaryTableOwnerCol"><a href="../../mx/styles/AdvancedStyleClient.html">AdvancedStyleClient</a></td></tr></table></div><a name="eventSummary"></a><div class="summarySection"><div class="summaryTableTitle">Events</div><div class="showHideLinks"><div id="hideInheritedEvent" class="hideInheritedEvent"><a class="showHideLink" href="#eventSummary" onclick="javascript:setInheritedVisible(false,'Event');"><img class="showHideLinkImage" src="../../images/expanded.gif"> Hide Inherited Events</a></div><div id="showInheritedEvent" class="showInheritedEvent"><a class="showHideLink" href="#eventSummary" onclick="javascript:setInheritedVisible(true,'Event');"><img class="showHideLinkImage" src="../../images/collapsed.gif"> Show Inherited Events</a></div></div><table cellspacing="0" cellpadding="3" class="summaryTable hideInheritedEvent" id="summaryTableEvent"><tr><th>&nbsp;</th><th colspan="2">Event</th><th> Summary </th><th class="summaryTableOwnerCol">Defined By</th></tr><tr class="hideInheritedEvent"><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img src="../../images/inheritedSummary.gif" alt="Inherited" title="Inherited" class="inheritedSummaryImage"></td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="../../spark/globalization/supportClasses/GlobalizationBase.html#event:change" class="signatureLink">change</a></div></td><td class="summaryTableDescription summaryTableCol">The change event is generated whenever the locale style is changed or another property is set that would cause the format of a number to change or cause updates to the other values available through this class.</td><td class="summaryTableOwnerCol"><a href="../../spark/globalization/supportClasses/GlobalizationBase.html">GlobalizationBase</a></td></tr></table></div><a name="styleSummary"></a><div class="summarySection"><div class="summaryTableTitle">Styles</div><div class="showHideLinks"><div id="hideInheritedStyle" class="hideInheritedStyle"><a class="showHideLink" href="#styleSummary" onclick="javascript:setInheritedVisible(false,'Style');"><img class="showHideLinkImage" src="../../images/expanded.gif"> Hide Inherited Styles</a></div><div id="showInheritedStyle" class="showInheritedStyle"><a class="showHideLink" href="#styleSummary" onclick="javascript:setInheritedVisible(true,'Style');"><img class="showHideLinkImage" src="../../images/collapsed.gif"> Show Inherited Styles</a></div></div><table cellspacing="0" cellpadding="3" class="summaryTable hideInheritedStyle" id="summaryTableStyle"><tr><th>&nbsp;</th><th colspan="2">Style</th><th> Description </th><th class="summaryTableOwnerCol">Defined By</th></tr><tr class="hideInheritedStyle"><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img src="../../images/inheritedSummary.gif" alt="Inherited" title="Inherited" class="inheritedSummaryImage"></td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="../../spark/globalization/supportClasses/GlobalizationBase.html#style:locale" class="signatureLink">locale</a></div></td><td class="summaryTableDescription"><span class="label">Type: </span>String&nbsp;<span class="label">CSS Inheritance: </span>yes<br/>The locale identifier that specifies the language, region, script and optionally other related tags and keys.<p><span class="label">See also</span></p><div class="seeAlso"><a href="http://www.unicode.org/reports/tr35/" target="mm_external">http://www.unicode.org/reports/tr35/</a></div></td><td class="summaryTableOwnerCol"><a href="../../spark/globalization/supportClasses/GlobalizationBase.html">GlobalizationBase</a></td></tr></table></div><script language="javascript" type="text/javascript"><!--
+										showHideInherited();
+										--></script><div class="MainContent"><div class="detailSectionHeader">Property Detail</div><a name="propertyDetail"></a><a name="actualLocaleIDName"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">actualLocaleIDName</td><td class="detailHeaderType">property</td></tr></table><div class="detailBody"><code>actualLocaleIDName:String</code>&nbsp;&nbsp;[read-only] [override] <p></p><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Language Version :&nbsp;</b></td><td>ActionScript 3.0</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Product Version :&nbsp;</b></td><td>Flex 4.5</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Runtime Versions :&nbsp;</b></td><td>Flash Player  10.1, AIR 2.5</td></tr></table><p></p><p></p><p>
+      
+      The name of the actual locale ID used by this class object.
+           This is the locale that is used to access the formatting data and
+      functionality from the operating system.
+           <p>If the locale that was set by the <code>locale</code> style is not available,
+      then the value of the <code>actualLocaleIDName</code> is different
+      from the value of the <code>locale</code> style.
+      It indicates the fallback locale that is being used.
+      If the locale style was set to <code>LocaleID.DEFAULT</code> the
+      name of the locale specified by the user's operating system is 
+      used.</p>
+           </p><p>This property can be used as the source for data binding.</p><br/><span class="label"> Implementation </span><br/><code>&nbsp;&nbsp;&nbsp;&nbsp;public function get actualLocaleIDName():String</code><br/><p><span class="label">See also</span></p><div class="seeAlso">flash.globalization.CurrencyFormatter.actualLocaleIDName<br/><a href="CurrencyFormatter.html#CurrencyFormatter()" target="">CurrencyFormatter()</a></div></div><a name="propertyDetail"></a><a name="currencyISOCode"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">currencyISOCode</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code>currencyISOCode:String</code><p></p><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Language Version :&nbsp;</b></td><td>ActionScript 3.0</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Product Version :&nbsp;</b></td><td>Flex 4.5</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Runtime Versions :&nbsp;</b></td><td>Flash Player  10.1, AIR 2.5</td></tr></table><p></p><p></p><p>
+      The three letter ISO 4217 currency code for the actual locale
+      being used (e.g. USD, EUR, JPY, CNY).
+           <p>When the <code>useCurrencySymbol</code> property is set to
+      <code>false</code>, this code is used to indicate the currency
+      type when formatting currency amounts
+      using the <code>format()</code> method. </p>
+           <p>This property is initialized when the locale style is set
+      based on the actual locale that is used. When a fallback
+      locale is used, this property reflects the preferred/default
+      currency code for the fallback locale.</p>
+     
+      <p>The default value is dependent on the actual locale and operating 
+      system.</p>
+           </p><p>This property can be used as the source for data binding.</p><br/><span class="label"> Implementation </span><br/><code>&nbsp;&nbsp;&nbsp;&nbsp;public function get currencyISOCode():String</code><br/><code>&nbsp;&nbsp;&nbsp;&nbsp;public function set currencyISOCode(value:String):void</code><br/><br/><span class="label"> Throws </span><br/><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code>TypeError </code> &mdash; if this property is assigned a null value. 
+           </td></tr></table><p><span class="label">See also</span></p><div class="seeAlso"><a href="CurrencyFormatter.html#actualLocaleIDName" target="">actualLocaleIDName</a><br/><a href="CurrencyFormatter.html#format()" target="">format()</a><br/><a href="CurrencyFormatter.html#currencySymbol" target="">currencySymbol</a><br/><a href="CurrencyFormatter.html#formattingWithCurrencySymbolIsSafe()" target="">formattingWithCurrencySymbolIsSafe()</a></div></div><a name="propertyDetail"></a><a name="currencySymbol"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">currencySymbol</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code>currencySymbol:String</code><p></p><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Language Version :&nbsp;</b></td><td>ActionScript 3.0</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Product Version :&nbsp;</b></td><td>Flex 4.5</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Runtime Versions :&nbsp;</b></td><td>Flash Player  10.1, AIR 2.5</td></tr></table><p></p><p></p><p>
+      The currency symbol or string for the actual locale being used.
+           <p>This property is used as the currency symbol when formatting
+      currency amounts using the <code>format()</code> method with
+      the <code>withCurrencySymbol</code> parameter set to
+      <code>true</code>.</p>
+           <p>This property is initialized when the locale style is set based on
+      the actual locale that is used. When a fallback
+      locale is used, this property reflects the preferred/default
+      currency symbol for the fallback locale which may be different
+      then the locale style.</p>
+     
+      <p>The default value is dependent on the actual locale and operating 
+      system.</p>
+           </p><p>This property can be used as the source for data binding.</p><br/><span class="label"> Implementation </span><br/><code>&nbsp;&nbsp;&nbsp;&nbsp;public function get currencySymbol():String</code><br/><code>&nbsp;&nbsp;&nbsp;&nbsp;public function set currencySymbol(value:String):void</code><br/><br/><span class="label"> Throws </span><br/><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code>TypeError </code> &mdash; if this property is assigned a null value. 
+           </td></tr></table><p><span class="label">See also</span></p><div class="seeAlso"><a href="CurrencyFormatter.html#actualLocaleIDName" target="">actualLocaleIDName</a><br/><a href="CurrencyFormatter.html#format()" target="">format()</a><br/><a href="CurrencyFormatter.html#formattingWithCurrencySymbolIsSafe()" target="">formattingWithCurrencySymbolIsSafe()</a><br/><a href="CurrencyFormatter.html#currencyISOCode" target="">currencyISOCode</a></div></div><a name="propertyDetail"></a><a name="negativeCurrencyFormat"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">negativeCurrencyFormat</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code>negativeCurrencyFormat:uint</code><p></p><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Language Version :&nbsp;</b></td><td>ActionScript 3.0</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Product Version :&nbsp;</b></td><td>Flex 4.5</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Runtime Versions :&nbsp;</b></td><td>Flash Player  10.1, AIR 2.5</td></tr></table><p></p><p></p><p>
+      A numeric value that indicates a formatting pattern for negative
+      currency amounts. This pattern defines the location of the
+      currency symbol and the negative symbol or parentheses in
+      relation to the numeric portion of the currency
+      amount.
+            <p>The value of this property must be one of the constants
+      defined in the table below.
+      </p>
+           <p>The table below summarizes the possible formatting patterns
+      for negative currency amounts. When a currency amount is formatted
+      with the <code>format()</code> method:</p>
+           <ul>
+       <li>The '¤' symbol is replaced with the value of the
+           <code>currencyISOCode</code> or
+           the <code>currencySymbol</code> property, depending on
+           the value of the <code>withCurrencySymbol</code> parameter
+           passed to the <code>format()</code> method;</li>
+       <li>The '-' character is replaced with the value of the
+           <code>negativeNumberSymbol</code> property;</li>
+       <li>The 'n' character is replaced with the currency amount
+           value that is passed to the <code>format()</code> method.</li>
+      </ul>
+             <table class="innertable" ><tr><td>Negative currency format type</td><td>Formatting pattern</td></tr><tr><td>0</td><td>(¤n)</td></tr><tr><td>1</td><td>-¤n</td></tr><tr><td>2</td><td>¤-n</td></tr><tr><td>3</td><td>¤n-</td></tr><tr><td>4</td><td>(n¤)</td></tr><tr><td>5</td><td>-n¤</td></tr><tr><td>6</td><td>n-¤</td></tr><tr><td>7</td><td>n¤-</td></tr><tr><td>8</td><td>-n ¤</td></tr><tr><td>9</td><td>-¤ n</td></tr><tr><td>10</td><td>n ¤-</td></tr><tr><td>11</td><td>¤ n-</td></tr><tr><td>12</td><td>¤ -n</td></tr><tr><td>13</td><td>n- ¤</td></tr><tr><td>14</td><td>(¤ n)</td></tr><tr><td>15</td><td>(n ¤)</td></tr></table>
+     
+      <p>The default value is dependent on the actual locale and operating 
+      system.</p>
+           </p><p>This property can be used as the source for data binding.</p><br/><span class="label"> Implementation </span><br/><code>&nbsp;&nbsp;&nbsp;&nbsp;public function get negativeCurrencyFormat():uint</code><br/><code>&nbsp;&nbsp;&nbsp;&nbsp;public function set negativeCurrencyFormat(value:uint):void</code><br/><br/><span class="label"> Throws </span><br/><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code>ArgumentError </code> &mdash; if the assigned value is not between 0 and 15.
+     
+      </td></tr></table><p><span class="label">See also</span></p><div class="seeAlso"><a href="CurrencyFormatter.html#format()" target="">format()</a><br/><a href="CurrencyFormatter.html#currencySymbol" target="">currencySymbol</a><br/><a href="CurrencyFormatter.html#negativeSymbol" target="">negativeSymbol</a></div></div><a name="propertyDetail"></a><a name="positiveCurrencyFormat"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">positiveCurrencyFormat</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code>positiveCurrencyFormat:uint</code><p></p><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Language Version :&nbsp;</b></td><td>ActionScript 3.0</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Product Version :&nbsp;</b></td><td>Flex 4.5</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Runtime Versions :&nbsp;</b></td><td>Flash Player  10.1, AIR 2.5</td></tr></table><p></p><p></p><p>
+      A numeric value that indicates a formatting pattern for positive
+      currency amounts. This format defines the location of the currency
+      symbol relative to the numeric portion of the currency amount.
+           <p>The value of this property must be one of the constants
+      defined in the table below.
+      </p>
+           <p>The table below summarizes the possible formatting patterns
+      for positive currency amounts.
+      When a currency amount is formatted with the <code>format()</code>
+      method:</p>
+           <ul>
+       <li>The '¤' symbol is replaced with the value of the
+           <code>currencyISOCode</code> or
+           the <code>currencySymbol</code> property, depending on the
+           value of the <code>withCurrencySymbol</code> parameter
+           passed to the <code>format()</code> method;</li>
+       <li>The 'n' character is replaced with the currency amount value
+           that is passed to the <code>format()</code> method.</li>
+      </ul>
+             <table class="innertable" ><tr><td>Positive currency format type</td><td>Formatting pattern</td></tr><tr><td>0</td><td>¤n</td></tr><tr><td>1</td><td>n¤</td></tr><tr><td>2</td><td>¤ n</td></tr><tr><td>3</td><td>n ¤</td></tr></table>
+           <p>The default value is dependent on the actual locale and operating 
+      system.</p>
+           </p><p>This property can be used as the source for data binding.</p><br/><span class="label"> Implementation </span><br/><code>&nbsp;&nbsp;&nbsp;&nbsp;public function get positiveCurrencyFormat():uint</code><br/><code>&nbsp;&nbsp;&nbsp;&nbsp;public function set positiveCurrencyFormat(value:uint):void</code><br/><br/><span class="label"> Throws </span><br/><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code>ArgumentError </code> &mdash; if the assigned value is not between 0 and 3.
+           </td></tr></table><p><span class="label">See also</span></p><div class="seeAlso"><a href="CurrencyFormatter.html#currencySymbol" target="">currencySymbol</a><br/><a href="CurrencyFormatter.html#format()" target="">format()</a></div></div><a name="propertyDetail"></a><a name="useCurrencySymbol"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">useCurrencySymbol</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code>useCurrencySymbol:Boolean</code><p></p><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Language Version :&nbsp;</b></td><td>ActionScript 3.0</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Product Version :&nbsp;</b></td><td>Flex 4.5</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Runtime Versions :&nbsp;</b></td><td>Flash Player  10.1, AIR 2.5</td></tr></table><p></p><p></p><p>
+      Enables the use of the <code>currencySymbol</code> property 
+      when formatting currency amounts.
+           <p>When the <code>useCurrencySymbol</code> property is
+      set to <code>true</code>, the value of the
+      <code>currencySymbol</code> property is used
+      in the string returned by the format method.
+      For example: <code>$123,456,789.22</code></p>
+           <p>When the <code>useCurrencySymbol</code> property is set to
+      <code>false</code>, the value of the <code>currencyISOCode</code>
+      property is used in the string returned by the <code>format</code>
+      method. For example: <code>USD123,456,789.22</code></p>
+           </p><p> The default value is <code>false</code>.</p><p>This property can be used as the source for data binding.</p><br/><span class="label"> Implementation </span><br/><code>&nbsp;&nbsp;&nbsp;&nbsp;public function get useCurrencySymbol():Boolean</code><br/><code>&nbsp;&nbsp;&nbsp;&nbsp;public function set useCurrencySymbol(value:Boolean):void</code><br/><p><span class="label">See also</span></p><div class="seeAlso"><a href="CurrencyFormatter.html#formattingWithCurrencySymbolIsSafe()" target="">formattingWithCurrencySymbolIsSafe()</a><br/><a href="CurrencyFormatter.html#format()" target="">format()</a></div></div><a name="constructorDetail"></a><div class="detailSectionHeader">Constructor Detail</div><a name="CurrencyFormatter()"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">CurrencyFormatter</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">Constructor</td></tr></table><div class="detailBody"><code>public function CurrencyFormatter()</code><p></p><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Language Version :&nbsp;</b></td><td>ActionScript 3.0</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Product Version :&nbsp;</b></td><td>Flex 4.5</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Runtime Versions :&nbsp;</b></td><td>Flash Player  10.1, AIR 2.5</td></tr></table><p></p><p>
+      Constructs a new <code>CurrencyFormatter</code> object to format numbers
+      representing currency amounts according to
+      the conventions of a given locale.
+      <p>
+      The locale for this class is supplied by the <code>locale</code> style. The
+      <code>locale</code> style can be set in several ways:
+      </p>
+      <ul>
+      <li>
+      By using the class in an MXML declaration and inheriting the
+      locale from the document that contains the declaration.
+      </li>
+      Example:
+      <pre>
+      &lt;fx:Declarations> 
+             &lt;s:CurrencyFormatter id="cf" /> 
+      &lt;/fx:Declarations>
+      </pre>
+      <li>
+      By using an MXML declaration and specifying the locale value
+      in the list of assignments.
+      </li>
+      Example:
+      <pre>
+      &lt;fx:Declarations> 
+          &lt;s:CurrencyFormatter id="cf_Japanese" locale="ja-JP" /> 
+      &lt;/fx:Declarations>
+      </pre>
+      <li>
+      Calling the <code>setStyle()</code> method,
+      e.g. <code>cf.setStyle("locale", "ja-JP")</code>
+      </li>
+      <li> 
+      Inheriting the style from a <code>UIComponent</code> by calling the
+      UIComponent's <code>addStyleClient()</code> method.
+      </li>
+      </ul>
+      <p>
+      If the <code>locale</code> style is not set by one of the above 
+      techniques, the instance of this class will be added as a 
+      <code>StyleClient</code> to the <code>topLevelApplication</code> and 
+      will therefore inherit the <code>locale</code> style from the 
+      <code>topLevelApplication</code> object when the <code>locale</code> 
+      dependent property getter or <code>locale</code> dependent method is 
+      called.
+      </p>   
+     
+      <p>Most of the properties of 
+      this class are automatically set based on the <code>locale</code> style.
+      If the <code>locale</code> style is changed, any properties that have 
+      not been explicitly set will also be updated based on the new locale. 
+      Note that the actual locale that is used is specified by the 
+      <code>actualLocaleIDName</code> property.</p>
+           <p><b>NOTE:</b> When a fallback locale is used, the currency
+      properties are set to default values,
+      and therefore the <code>currencySymbol</code> or
+      <code>currencyISOCode</code> properties might be given unexpected
+      values. It is a good idea to examine the
+      <code>currencySymbol</code> and <code>currencyISOCode</code>
+      property values before formatting a currency amount.
+      </p>
+           </p><p><span class="label">See also</span></p><div class="seeAlso"><a href="CurrencyFormatter.html#actualLocaleIDName" target="">actualLocaleIDName</a><br/><a href="CurrencyFormatter.html#lastOperationsStatus" target="">lastOperationsStatus</a></div></div><a name="methodDetail"></a><div class="detailSectionHeader">Method Detail</div><a name="format()"></a><a name="format(Object)"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">format</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td></tr></table><div class="detailBody"><code> public function format(value:Object):String</code><p></p><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Language Version :&nbsp;</b></td><td>ActionScript 3.0</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Product Version :&nbsp;</b></td><td>Flex 4.5</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Runtime Versions :&nbsp;</b></td><td>Flash Player  10.1, AIR 2.5</td></tr></table><p></p><p></p><p>
+      Creates a string representing a currency amount formatted
+      according to the current properties of this CurrencyFormatter object,
+      including the <code>locale</code>, <code>useCurrencySymbol</code>, 
+      the <code>currencySymbol</code>, or 
+      the <code>currencyISOCode</code> properties.
+           <p>The <code>useCurrencySymbol</code> property determines whether the
+      format method uses the <code>currencySymbol</code> or the 
+      <code>currencyISOCode</code> in the
+      formatted currency amount. The default value for 
+      <code>useCurrencySymobl</code> is <code>false</code>
+      and thus by default currency amounts will be formatted with the 
+      <code>currencyISOCode</code></p>
+           <p>Many countries and regions use the same currency symbols for
+      different currencies.
+      For example, the United States, Australia, New Zealand, Canada,
+      and Mexico all use the same dollar sign symbol ($) for local
+      currency values. When the formatting currency differs
+      from the user's local currency it is best to use the ISO code as
+      the currency string.
+      You can use the <code>formattingWithCurrencySymbolIsSafe()</code>
+      method to test whether or the ISO code of the
+      currency to be formatted matches the  default currency ISO code
+      for the actual local used by the formatter.
+      </p>
+           <p>This method can format numbers of very large and very small
+      magnitudes. However, the number of significant digits is
+      limited to the precision provided by the Number data type.
+      </p>
+     
+      <p>If there is an error when formatting, due to an illegal input value 
+      or other error, by default the <code>format()</code> method  
+      returns <code>null</code>. However if the <code>errorText</code> property
+      is non-null, then the value of the <code>errorText</code> property is
+      returned. The <code>lastOperationStatus</code> property is
+      set to indicate the error that occurred.</p>
+           </p><p><span class="label"> Parameters </span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20px"></td><td><code><span class="label">value</span>:Object</code> &mdash; An object that contains the numeric value to be formatted
+      into a currency string. If the 
+      object is not a <code>Number</code> then it will be converted
+      to a number using the <code>Number()</code> conversion function.
+           </td></tr></table></p><p></p><span class="label">Returns</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code>String</code> &mdash; A string containing the formatted currency value.
+           </td></tr></table><p><span class="label">See also</span></p><div class="seeAlso"><a href="CurrencyFormatter.html#currencySymbol" target="">currencySymbol</a><br/><a href="CurrencyFormatter.html#currencyISOCode" target="">currencyISOCode</a><br/><a href="CurrencyFormatter.html#formattingWithCurrencySymbolIsSafe()" target="">formattingWithCurrencySymbolIsSafe()</a><br/><a href="CurrencyFormatter.html#lastOperationStatus" target="">lastOperationStatus</a><br/><a href="CurrencyFormatter.html#useCurrencySymbol" target="">useCurrencySymbol</a><br/><a href="../../spark/formatters/supportClasses/NumberFormatterBase.html#errorText" target="">spark.formatters.supportClasses.NumberFormatterBase.errorText</a><br/><a href="../../spark/globalization/LastOperationStatus.html" target="">spark.globalization.LastOperationStatus</a></div><br/><span class="label"> Example </span><br/><div class="detailBody">In this example the <code>locale</code> style is set to
+      fr-CA [French (Canada)]. The example assumes that this locale
+      is supported in the user's operating system and therefore
+      no fallback locale is used.
+      For fr-CA, the default currency is Canadian dollars with an
+      ISO code of CAD. Therefore when formatting a currency
+      with the default values, CAD is used as the currency symbol. However
+      when the <code>useCurrencySymbol</code> property is set to
+      <code>true</code>, the <code>currencySymbol</code>
+      property is used to format the currency amount.
+           <div class="listing" version="3.0"><pre>
+      &lt;fx:Declarations&gt;
+        &lt;s:CurrencyFormatter id="cf_use_ISOCode" locale="fr-CA" /&gt;
+        &lt;s:CurrencyFormatter id="cf_use_Symbol" locale="fr-CA" 
+                           useCurrencySymbol="true" /&gt;
+      &lt;/fx:Declarations&gt;
+      
+      &lt;s:VGroup&gt;
+        &lt;!-- label will use ISO code: 1,234,567.89 CAD --&gt;
+        &lt;s:Label text="{cf_use_ISOCode.format(1234567.89)}" /&gt; 
+        &lt;!-- label will use currency symbol: 1,234,567.89 $ --&gt;
+        &lt;s:Label text="{cf_use_Symbol.format(1234567.89)}" /&gt; 
+      &lt;/s:VGroup&gt;
+           </pre></div>
+           <p>The second example shows a method of formatting a currency
+      amount in Canadian dollars using the default user's locale.
+      The <code>formattingWithCurrencySymbolIsSafe()</code> method
+      is used to set the value of <code>useCurrencySymbol</code> 
+      property. If the user's default locale is Canada (for example 
+      fr-CA or en-CA), then the default currency symbol for Canada
+      is used. If there is some locale is the default, then the
+      <code>currencyISOCode</code> of CAD will be used in the formatted currency
+      amount.</p>
+           <div class="listing" version="3.0"><pre>
+      &lt;fx:Declarations&gt;
+       &lt;s:CurrencyFormatter id="cf_CAD" locale="{LocaleID.DEFAULT}"
+        currencyISOCode="CAD"
+        useCurrencySymbol="{cf_CAD.formattingWithCurrencySymbolIsSafe('CAD')}"
+       /&gt;
+      &lt;/fx:Declarations&gt;
+      
+      &lt;fx:Script&gt;
+      &lt;![CDATA[
+          import flash.globalization.LocaleID;
+      ]]&gt;
+      &lt;/fx:Script&gt;
+      
+      &lt;!-- label will use ISO code or currency symbol depending on
+              user's default locale --&gt;
+      &lt;s:Label text="{cf_CAD.format(1234567.89)}" /&gt;
+      </pre></div>
+           </div></div><a name="formattingWithCurrencySymbolIsSafe()"></a><a name="formattingWithCurrencySymbolIsSafe(String)"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">formattingWithCurrencySymbolIsSafe</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code> public function formattingWithCurrencySymbolIsSafe(requestedISOCode:String):Boolean</code><p></p><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Language Version :&nbsp;</b></td><td>ActionScript 3.0</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Product Version :&nbsp;</b></td><td>Flex 4.5</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Runtime Versions :&nbsp;</b></td><td>Flash Player  10.1, AIR 2.5</td></tr></table><p></p><p></p><p>
+      Determines whether the currently specified currency symbol can
+      be used when formatting currency amounts.
+           <p>Many regions and countries use the same currency symbols.
+      This method can be used to
+      safeguard against the use of an ambiguous currency symbol, or
+      a currency symbol or ISO code that
+      is different than expected due to the use of a fallback locale.</p>
+           <p>A common use case for this method is to determine whether
+      to show a local currency symbol (if the amount is formatted in
+      the user's default currency), or a more specific ISO code
+      string (if the amount is formatted in a currency
+      different from the user's default).</p>
+           <p>This method compares the <code>requestedISOCode</code>
+      parameter against the actual locale's default 
+      <code>currencyISOCode</code>,
+      returning <code>true</code> if the strings are
+      equal and <code>false</code> if they are not.
+      When the strings are equal, using the <code>format()</code>
+      method with the
+      <code>useCurrencySymbol</code> property set to <code>true</code>
+      results in a formatted currency value string
+      with a currency symbol that is used in the current locale.
+      If this method returns <code>false</code>, 
+      then using the <code>format()</code>
+      method with the <code>useCurrencySymbol</code>
+      property set to <code>true</code> could result in the use of an ambiguous
+      or incorrect currency symbol.
+      </p>
+           </p><p><span class="label"> Parameters </span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20px"></td><td><code><span class="label">requestedISOCode</span>:String</code> &mdash; A three letter ISO 4217 currency code
+      (for example, USD for US dollars, EUR for Euros).
+      Must contain three uppercase letters from A to Z.
+           </td></tr></table></p><p></p><span class="label">Returns</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code>Boolean</code> &mdash; <code>true</code> if the default <code>currencyISOCode</code>
+      for the locale corresponding to the <code>actualLocaleIDName</code>
+      matches the <code>requestedISOCode</code> parameter;
+      otherwise <code>false</code>.
+           </td></tr></table><br/><span class="label">Throws</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code>TypeError </code> &mdash; if the <code>requestedISOCode</code> parameter
+      is null.
+           </td></tr></table><p><span class="label">See also</span></p><div class="seeAlso"><a href="CurrencyFormatter.html#actualLocaleIDName" target="">actualLocaleIDName</a><br/><a href="CurrencyFormatter.html#currencySymbol" target="">currencySymbol</a><br/><a href="CurrencyFormatter.html#currencyISOCode" target="">currencyISOCode</a><br/><a href="CurrencyFormatter.html#useCurrencySymbol" target="">useCurrencySymbol</a></div></div><a name="getAvailableLocaleIDNames()"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">getAvailableLocaleIDNames</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code> public static function getAvailableLocaleIDNames():Vector.&lt;String&gt;</code><p></p><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Language Version :&nbsp;</b></td><td>ActionScript 3.0</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Product Version :&nbsp;</b></td><td>Flex 4.5</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Runtime Versions :&nbsp;</b></td><td>Flash Player  10.1, AIR 2.5</td></tr></table><p></p><p></p><p>
+      Lists all of the locale ID names supported by this class. This is a list of locales supported by 
+      the operating system, not a list of locales that the ResourceManager has resources for.
+           </p><p></p><span class="label">Returns</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code>Vector.&lt;String&gt;</code> &mdash; A vector of strings containing all of the locale ID names
+             supported by this class and operating system.
+           </td></tr></table></div><a name="parse()"></a><a name="parse(String)"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">parse</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code> public function parse(inputString:String):CurrencyParseResult</code><p></p><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Language Version :&nbsp;</b></td><td>ActionScript 3.0</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Product Version :&nbsp;</b></td><td>Flex 4.5</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Runtime Versions :&nbsp;</b></td><td>Flash Player  10.1, AIR 2.5</td></tr></table><p></p><p></p><p>
+      Parses a string into a currency amount and a currency symbol.
+           <p>The parsing algorithm uses the value of the
+      <code>decimalSeparator</code> property to determine the
+      integral and fractional portion of the number. It uses the
+      values of the <code>negativeCurrencyFormat</code> and
+      <code>positiveCurrencyFormat</code> properties to determine
+      the location of the currency symbol or string relative to the
+      currency amount. For negative amounts the value of the
+      <code>negativeCurrencyFormat</code> property determines the
+      location of the negative symbol and whether parentheses are used.</p>
+           <p>If the order of the currency symbol, minus sign, and number in
+      the input string does not match the pattern identified by the
+      <code>negativeCurrencyFormat</code> and
+      <code>positiveCurrencyFormat</code> properties, then:</p>
+           <ol>
+       <li>The <code>value</code> property of the returned
+           <code>CurrencyParseResult</code> object is set to
+           <code>NaN</code>.</li>
+       <li>The <code>currencyString</code> property of the returned
+           CurrencyParseResult object is set to <code>null</code>.</li>
+       <li>The <code>lastOperationStatus</code> property is set to 
+       <code>LastOperationStatus.PARSE_ERROR</code>
+           indicate that parsing failed.</li>
+      </ol>
+           <p>The input string may include space characters, which are
+      ignored during the parsing.</p>
+           <p>Parsing can succeed even if there is no currency symbol.
+      No validation is done of the portion of the string
+      corresponding to the currency symbol. If there is no currency
+      symbol or string, the <code>currencyString</code> property
+      in the returned CurrencyParseResult object is set to an
+      empty string.</p>
+                </p><p><span class="label"> Parameters </span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20px"></td><td><code><span class="label">inputString</span>:String</code> &mdash; The input string to parse.
+           </td></tr></table></p><p></p><span class="label">Returns</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code>CurrencyParseResult</code> &mdash; A CurrencyParseResult object containing the numeric
+      value and the currency symbol or string.
+           </td></tr></table><br/><span class="label">Throws</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code>TypeError </code> &mdash; if the <code>inputString</code> parameter is null.
+           </td></tr></table><p><span class="label">See also</span></p><div class="seeAlso"><a href="../../spark/formatters/supportClasses/NumberFormatterBase.html#decimalSeparator" target="">spark.formatters.supportClasses.NumberFormatterBase.decimalSeparator</a><br/><a href="CurrencyFormatter.html#negativeCurrencyFormat" target="">negativeCurrencyFormat</a><br/><a href="CurrencyFormatter.html#positiveCurrencyFormat" target="">positiveCurrencyFormat</a><br/>flash.globalization.CurrencyParseResult</div></div><a name="includeExamplesSummary"></a><div class="detailSectionHeader">Examples</div><div class="exampleHeader">CurrencyFormatterExample1.mxml</div><div class="detailBody"><div class="listing"><pre>&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;!--
+
+  Licensed to the Apache Software Foundation (ASF) under one or more
+  contributor license agreements.  See the NOTICE file distributed with
+  this work for additional information regarding copyright ownership.
+  The ASF licenses this file to You under the Apache License, Version 2.0
+  (the "License"); you may not use this file except in compliance with
+  the License.  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+
+--&gt;
+&lt;!-- Sample program for spark.formatters.CurrencyFormatter --&gt;
+&lt;s:Application
+    xmlns:fx="http://ns.adobe.com/mxml/2009"
+    xmlns:s="library://ns.adobe.com/flex/spark"
+    xmlns:mx="library://ns.adobe.com/flex/mx"&gt;
+    
+    &lt;fx:Declarations&gt;
+        &lt;s:CurrencyFormatter id="currencyFormatter"/&gt;
+    &lt;/fx:Declarations&gt;
+    
+    &lt;fx:Script&gt;
+        &lt;![CDATA[
+            import flash.globalization.CurrencyParseResult;
+            
+            private function localeChange():void
+            {
+                // Sets the locale style on the document UI component.
+                // The formatter will inherit this style.
+                setStyle('locale', inputLocaleIDName.text);
+                inputCurrencyChange();
+            }
+            
+            private function inputCurrencyChange():void
+            {
+                const cpr:CurrencyParseResult
+                = currencyFormatter.parse(inputCurrency.text);
+                parsedResult.text = "Currency String: [" + cpr.currencyString
+                    + "], Amount: [" + cpr.value.toString() + "]";
+            }
+        ]]&gt;
+    &lt;/fx:Script&gt;
+    
+    &lt;s:Form&gt;
+        &lt;s:FormItem label="Input Locale ID Name"&gt;
+            &lt;s:HGroup&gt;
+                &lt;s:TextInput id="inputLocaleIDName"/&gt;
+                &lt;s:Button click="localeChange()" label="Apply"/&gt;
+            &lt;/s:HGroup&gt;
+            &lt;s:Label text="Example: 'en-US', 'fr-FR', 'ja-JP', 'ar-SA'"/&gt;
+        &lt;/s:FormItem&gt;
+        &lt;s:FormItem label="Input Currency Amount"&gt;
+            &lt;s:TextInput id="inputCurrency" change="inputCurrencyChange()"/&gt;
+            &lt;s:Label text="Example: {currencyFormatter.format(123456789.123)}"/&gt;
+        &lt;/s:FormItem&gt;
+        &lt;s:FormItem label="Actual Locale ID Name"&gt;
+            &lt;s:Label text="{currencyFormatter.actualLocaleIDName}"/&gt;
+        &lt;/s:FormItem&gt;
+        &lt;s:FormItem label="Parsed Result"&gt;
+            &lt;s:Label id="parsedResult"/&gt;
+        &lt;/s:FormItem&gt;
+    &lt;/s:Form&gt;
+&lt;/s:Application&gt;
+</pre></div><script language="javascript" type="text/javascript"><!-- AC_FL_RunContent( "src", "examples/CurrencyFormatterExample1", "width", "100%",
+					"height","400px", "salign", "TL", "id", "example1", "quality", "high", "bgcolor", "", "name",
+						"example1", "flashvars","", "allowScriptAccess","sameDomain", "type",
+					"application/x-shockwave-flash","pluginspage", "http://www.macromedia.com/go/getflashplayer" ); --></script></div><div class="exampleHeader">CurrencyFormatterExample2.mxml</div><div class="detailBody"><div class="listing"><pre>&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;!--
+
+  Licensed to the Apache Software Foundation (ASF) under one or more
+  contributor license agreements.  See the NOTICE file distributed with
+  this work for additional information regarding copyright ownership.
+  The ASF licenses this file to You under the Apache License, Version 2.0
+  (the "License"); you may not use this file except in compliance with
+  the License.  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+
+--&gt;
+&lt;!-- Simple example to demonstrate the Spark CurrencyFormatter. --&gt;
+&lt;s:Application
+    xmlns:fx="http://ns.adobe.com/mxml/2009"
+    xmlns:s="library://ns.adobe.com/flex/spark"
+    xmlns:mx="library://ns.adobe.com/flex/mx"&gt;
+    
+    &lt;fx:Declarations&gt;
+        &lt;s:CurrencyFormatter id="currencyFormatter"/&gt;
+    &lt;/fx:Declarations&gt;
+    
+    &lt;fx:Script&gt;
+        &lt;![CDATA[
+            [Bindable]
+            private var currencyAmount:Number = 123456.789;
+        ]]&gt;
+    &lt;/fx:Script&gt;
+    
+    &lt;s:Form&gt;
+        &lt;s:FormItem label="Input Locale ID Name"&gt;
+            &lt;s:HGroup&gt;
+                &lt;s:TextInput id="inputLocaleIDName"/&gt;
+                &lt;!-- Upon button click, sets the locale style on the document
+                UI component. The formatter will inherit this style. --&gt;
+                &lt;s:Button click="setStyle('locale', inputLocaleIDName.text);"
+                          label="Apply"/&gt;
+            &lt;/s:HGroup&gt;
+            &lt;s:Label text="Example: 'en-US', 'fr-FR', 'ja-JP', 'ar-SA'"/&gt;
+        &lt;/s:FormItem&gt;
+        &lt;s:FormItem label="Use Currency Symbol"&gt;
+            &lt;s:CheckBox id="useSymbol"
+                        click="currencyFormatter.useCurrencySymbol = useSymbol.selected"/&gt;
+        &lt;/s:FormItem&gt;
+        &lt;s:FormItem label="Actual Locale ID Name"&gt;
+            &lt;s:Label text="{currencyFormatter.actualLocaleIDName}"/&gt;
+        &lt;/s:FormItem&gt;
+        &lt;s:FormItem label="Formatted Result"&gt;
+            &lt;s:Label text="{currencyFormatter.format(currencyAmount)}"/&gt;
+        &lt;/s:FormItem&gt;
+    &lt;/s:Form&gt;
+&lt;/s:Application&gt;
+</pre></div><script language="javascript" type="text/javascript"><!-- AC_FL_RunContent( "src", "examples/CurrencyFormatterExample2", "width", "100%",
+					"height","400px", "salign", "TL", "id", "example2", "quality", "high", "bgcolor", "", "name",
+						"example2", "flashvars","", "allowScriptAccess","sameDomain", "type",
+					"application/x-shockwave-flash","pluginspage", "http://www.macromedia.com/go/getflashplayer" ); --></script></div><br/><br/><hr><br/><p></p><center class="copyright"><footer>The Apache Software Foundation</footer><br/>Wed Nov 15 2017, 09:50 AM +01:00  </center></div></body></html><!--The Apache Software Foundation<br/>Wed Nov 15 2017, 09:50 AM +01:00  -->

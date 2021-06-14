@@ -1,0 +1,259 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd"><!-- saved from url=(0014)about:internet --><html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><link rel="stylesheet" href="../../style.css" type="text/css" media="screen"><link rel="stylesheet" href="../../print.css" type="text/css" media="print"><link rel="stylesheet" href="../../override.css" type="text/css"><meta name="keywords" content="DateFormatter,mx.formatters.DateFormatter,DOWN,NEAREST,NONE,UP,alignSymbol,areaCode,areaCodeFormat,currencySymbol,dayNamesLong,dayNamesShort,decimalSeparatorFrom,decimalSeparatorFrom,decimalSeparatorFrom,decimalSeparatorTo,decimalSeparatorTo,decimalSeparatorTo,defaultInvalidFormatError,defaultInvalidValueError,error,formatString,formatString,formatString,isValid,monthNamesLong,monthNamesShort,precision,precision,resourceManager,rounding,rounding,thousandsSeparatorFrom,thousandsSeparatorFrom,thousandsSeparatorFrom,thousandsSeparatorTo,thousandsSeparatorTo,thousandsSeparatorTo,timeOfDay,timezoneHourMinuteSeperator,timezoneName,useNegativeSign,useNegativeSign,useThousandsSeparator,useThousandsSeparator,validPatternChars,expandExponents,format,format,format,format,format,format,format,formatDecimal,formatNegative,formatPrecision,formatRounding,formatRoundingWithPrecision,formatThousands,formatValue,parseDateString,parseNumberString,resourcesChanged"><title>mx.formatters.DateFormatter</title><script src="../../AC_OETags.js" type="text/javascript"></script></head><body><script language="javascript" type="text/javascript" src="../../asdoc.js"></script><script language="javascript" type="text/javascript" src="../../help.js"></script><script language="javascript" type="text/javascript" src="../../cookies.js"></script><script language="javascript" type="text/javascript"><!--
+				asdocTitle = 'DateFormatter - ApacheFlex API Reference';
+				var baseRef = '../../';
+				window.onload = configPage;
+			--></script>
+<script type="text/javascript">
+			scrollToNameAnchor();
+		</script><table class="titleTable" cellpadding="0" cellspacing="0" id="titleTable" style="display:none"><tr><td class="titleTableTitle" align="left">Apache Flex 4.16.1 API Reference </td><td class="titleTableTopNav" align="right"><a href="../../package-summary.html" onclick="loadClassListFrame('../../all-classes.html')">All Packages</a>&nbsp;|&nbsp;<a href="../../class-summary.html" onclick="loadClassListFrame('../../all-classes.html')">All Classes</a>&nbsp;|&nbsp;<a href="../../all-index-A.html" onclick="loadClassListFrame('../../index-list.html')">Index</a>&nbsp;|&nbsp;<a id="framesLink1" href="../../index.html?mx/formatters/DateFormatter.html&amp;mx/formatters/class-list.html">Frames</a><a id="noFramesLink1" style="display:none" href="" onclick="parent.location=document.location"> No Frames </a></td><td class="titleTableLogo" align="right" rowspan="3"><img src="../../images/logo.jpg" class="logoImage" alt="AdobeLogo" title="AdobeLogo"></td></tr><tr class="titleTableRow2"><td class="titleTableSubTitle" id="subTitle" align="left">DateFormatter</td><td class="titleTableSubNav" id="subNav" align="right"><a href="#propertySummary">Properties</a>&nbsp;| <a href="#methodSummary">Methods</a>&nbsp;| <a href="#includeExamplesSummary">Examples</a></td></tr><tr class="titleTableRow3"><td colspan="3">&nbsp;</td></tr></table><script language="javascript" type="text/javascript" xml:space="preserve">
+				<!--
+				
+					if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("DateFormatter"); titleBar_setSubNav(false,true,false,false,false,false,false,false,true,true,false	,false,false,false,false,false);}	
+				-->
+			</script><div xmlns:fn="http://www.w3.org/2005/xpath-functions" class="MainContent"><table class="classHeaderTable" cellpadding="0" cellspacing="0"><tr><td class="classHeaderTableLabel">Package</td><td><a href="package-detail.html" onclick="javascript:loadClassListFrame('class-list.html')">mx.formatters</a></td></tr><tr><td class="classHeaderTableLabel">Class</td><td class="classSignature">public  class  DateFormatter</td></tr><tr><td class="classHeaderTableLabel">Inheritance</td><td class="inheritanceList">DateFormatter  <img src="../../images/inherit-arrow.gif" title="Inheritance" alt="Inheritance" class="inheritArrow"> <a href="../../mx/formatters/Formatter.html">Formatter</a> <img src="../../images/inherit-arrow.gif" title="Inheritance" alt="Inheritance" class="inheritArrow"> Object</td></tr></table><p></p><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Language Version :&nbsp;</b></td><td>ActionScript 3.0</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Product Version :&nbsp;</b></td><td>Flex 3</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Runtime Versions :&nbsp;</b></td><td>Flash Player  9, AIR 1.1</td></tr></table><p></p><p></p><p></p><br/><table width="100%" class="innertable"><tr><td bgcolor="#FFFFCC"><img src="../../images/P_AlternativeMetadataIndicator_30x28_N.png"></td><td bgcolor="#FFFFCC">Starting with Flex 4.5, Apache recommends that you use the <a href="../../spark/formatters/DateTimeFormatter.html">spark.formatters.DateTimeFormatter</a> class as an alternative to this class.</td></tr></table><br/><p></p>
+  The DateFormatter class uses a format String to return a formatted date and time String
+  from an input String or a Date object.
+  You can create many variations easily, including international formats.
+   <p>If an error occurs, an empty String is returned and a String describing 
+  the error is saved to the <code>error</code> property. The <code>error</code> 
+  property can have one of the following values:</p>
+               <ul>
+                  <li>
+                     <code>"Invalid value"</code> means a value that is not a Date object or a 
+    is not a recognized String representation of a date is
+    passed to the <code>format()</code> method. (An empty argument is allowed.)</li>
+                  <li> 
+                     <code>"Invalid format"</code> means either the <code>formatString</code> 
+    property is set to empty (""), or there is less than one pattern letter 
+    in the <code>formatString</code> property.</li>
+               </ul>
+               <p>The <code>parseDateString()</code> method uses the mx.formatters.DateBase class
+  to define the localized string information required to convert 
+  a date that is formatted as a String into a Date object.</p>
+  
+            <p></p><a name="mxmlSyntaxSummary"></a><span class="classHeaderTableLabel">MXML Syntax</span><span id="showMxmlLink" style="display:none"><a href="#mxmlSyntaxSummary" onclick="toggleMXMLOnly();"><img src="../../images/collapsed.gif" title="collapsed" alt="collapsed" class="collapsedImage">Show MXML Syntax</a><br/></span><span id="hideMxmlLink"><a href="#mxmlSyntaxSummary" onclick="toggleMXMLOnly();"><img src="../../images/expanded.gif" title="expanded" alt="expanded" class="expandedImage">Hide MXML Syntax</a></span><div id="mxmlSyntax" class="mxmlSyntax"> 
+  <p>You use the <code>&lt;mx:DateFormatter&gt;</code> tag
+  to render date and time Strings from a Date object.</p>
+   <p>The <code>&lt;mx:DateFormatter&gt;</code> tag
+  inherits all of the tag attributes  of its superclass,
+  and adds the following tag attributes:</p>
+  
+  <pre>
+  &lt;mx:DateFormatter
+    formatString="Y|M|D|A|E|H|J|K|L|N|S|Q|O|Z"
+   /> 
+  </pre>
+  
+  </div><script language="javascript" type="text/javascript"><!--
+								setMXMLOnly();
+								--></script><p><a href="#includeExamplesSummary">View the examples</a></p><p><span class="classHeaderTableLabel">See also</span></p><div class="seeAlso"><a href="DateBase.html" target="">mx.formatters.DateBase</a></div><br/><hr></div><a name="propertySummary"></a><div class="summarySection"><div class="summaryTableTitle">Public Properties</div><div class="showHideLinks"><div id="hideInheritedProperty" class="hideInheritedProperty"><a class="showHideLink" href="#propertySummary" onclick="javascript:setInheritedVisible(false,'Property');"><img class="showHideLinkImage" src="../../images/expanded.gif"> Hide Inherited Public Properties</a></div><div id="showInheritedProperty" class="showInheritedProperty"><a class="showHideLink" href="#propertySummary" onclick="javascript:setInheritedVisible(true,'Property');"><img class="showHideLinkImage" src="../../images/collapsed.gif"> Show Inherited Public Properties</a></div></div><table cellspacing="0" cellpadding="3" class="summaryTable " id="summaryTableProperty"><tr><th>&nbsp;</th><th colspan="2">Property</th><th class="summaryTableOwnerCol">Defined By</th></tr><tr class="hideInheritedProperty"><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img src="../../images/inheritedSummary.gif" alt="Inherited" title="Inherited" class="inheritedSummaryImage"></td><td class="summaryTableSignatureCol"><a href="../../mx/formatters/Formatter.html#defaultInvalidFormatError" class="signatureLink">defaultInvalidFormatError</a> : String<div class="summaryTableDescription">[static] 
+	  Error message for an invalid format string specified to the formatter.</div></td><td class="summaryTableOwnerCol"><a href="../../mx/formatters/Formatter.html">Formatter</a></td></tr><tr class="hideInheritedProperty"><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img src="../../images/inheritedSummary.gif" alt="Inherited" title="Inherited" class="inheritedSummaryImage"></td><td class="summaryTableSignatureCol"><a href="../../mx/formatters/Formatter.html#defaultInvalidValueError" class="signatureLink">defaultInvalidValueError</a> : String<div class="summaryTableDescription">[static] 
+	  Error messages for an invalid value specified to the formatter.</div></td><td class="summaryTableOwnerCol"><a href="../../mx/formatters/Formatter.html">Formatter</a></td></tr><tr class="hideInheritedProperty"><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img src="../../images/inheritedSummary.gif" alt="Inherited" title="Inherited" class="inheritedSummaryImage"></td><td class="summaryTableSignatureCol"><a href="../../mx/formatters/Formatter.html#error" class="signatureLink">error</a> : String<div class="summaryTableDescription">
+	  Description saved by the formatter when an error occurs.</div></td><td class="summaryTableOwnerCol"><a href="../../mx/formatters/Formatter.html">Formatter</a></td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a href="#formatString" class="signatureLink">formatString</a> : String<div class="summaryTableDescription">
+      The mask pattern.</div></td><td class="summaryTableOwnerCol">DateFormatter</td></tr></table></div><a name="protectedPropertySummary"></a><div class="summarySection"><div class="summaryTableTitle">Protected Properties</div><div class="showHideLinks"><div id="hideInheritedProtectedProperty" class="hideInheritedProtectedProperty"><a class="showHideLink" href="#protectedPropertySummary" onclick="javascript:setInheritedVisible(false,'ProtectedProperty');"><img class="showHideLinkImage" src="../../images/expanded.gif"> Hide Inherited Protected Properties</a></div><div id="showInheritedProtectedProperty" class="showInheritedProtectedProperty"><a class="showHideLink" href="#protectedPropertySummary" onclick="javascript:setInheritedVisible(true,'ProtectedProperty');"><img class="showHideLinkImage" src="../../images/collapsed.gif"> Show Inherited Protected Properties</a></div></div><table cellspacing="0" cellpadding="3" class="summaryTable hideInheritedProtectedProperty" id="summaryTableProtectedProperty"><tr><th>&nbsp;</th><th colspan="2">Property</th><th class="summaryTableOwnerCol">Defined By</th></tr><tr class="hideInheritedProtectedProperty"><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img src="../../images/inheritedSummary.gif" alt="Inherited" title="Inherited" class="inheritedSummaryImage"></td><td class="summaryTableSignatureCol"><a href="../../mx/formatters/Formatter.html#resourceManager" class="signatureLink">resourceManager</a> : <a href="../../mx/resources/IResourceManager.html">IResourceManager</a><div class="summaryTableDescription">[read-only] 
+      A reference to the object which manages
+      all of the application's localized resources.</div></td><td class="summaryTableOwnerCol"><a href="../../mx/formatters/Formatter.html">Formatter</a></td></tr></table></div><a name="methodSummary"></a><div class="summarySection"><div class="summaryTableTitle">Public Methods </div><table cellspacing="0" cellpadding="3" class="summaryTable " id="summaryTableMethod"><tr><th>&nbsp;</th><th colspan="2">Method</th><th class="summaryTableOwnerCol">Defined By</th></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#DateFormatter()" class="signatureLink">DateFormatter</a>(formatString:String = null)</div><div class="summaryTableDescription">
+      Constructor.</div></td><td class="summaryTableOwnerCol">DateFormatter</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#format()" class="signatureLink">format</a>(value:Object):String</div><div class="summaryTableDescription">[override] 
+      Generates a date-formatted String from either a date-formatted String or a Date object.</div></td><td class="summaryTableOwnerCol">DateFormatter</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#parseDateString()" class="signatureLink">parseDateString</a>(str:String, format:String = null):Date</div><div class="summaryTableDescription">[static] 
+      Converts a date that is formatted as a String into a Date object.</div></td><td class="summaryTableOwnerCol">DateFormatter</td></tr></table></div><a name="protectedMethodSummary"></a><div class="summarySection"><div class="summaryTableTitle">Protected Methods </div><div class="showHideLinks"><div id="hideInheritedProtectedMethod" class="hideInheritedProtectedMethod"><a class="showHideLink" href="#protectedMethodSummary" onclick="javascript:setInheritedVisible(false,'ProtectedMethod');"><img class="showHideLinkImage" src="../../images/expanded.gif"> Show Inherited Protected Methods</a></div><div id="showInheritedProtectedMethod" class="showInheritedProtectedMethod"><a class="showHideLink" href="#protectedMethodSummary" onclick="javascript:setInheritedVisible(true,'ProtectedMethod');"><img class="showHideLinkImage" src="../../images/collapsed.gif"> Show Inherited Protected Methods</a></div></div><table cellspacing="0" cellpadding="3" class="summaryTable hideInheritedProtectedMethod" id="summaryTableProtectedMethod"><tr><th>&nbsp;</th><th colspan="2">Method</th><th class="summaryTableOwnerCol">Defined By</th></tr><tr class="hideInheritedProtectedMethod"><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img src="../../images/inheritedSummary.gif" alt="Inherited" title="Inherited" class="inheritedSummaryImage"></td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="../../mx/formatters/Formatter.html#resourcesChanged()" class="signatureLink">resourcesChanged</a>():void</div><div class="summaryTableDescription">
+	  This method is called when a Formatter is constructed,
+	  and again whenever the ResourceManager dispatches
+	  a "change" Event to indicate
+	  that the localized resources have changed in some way.</div></td><td class="summaryTableOwnerCol"><a href="../../mx/formatters/Formatter.html">Formatter</a></td></tr></table></div><script language="javascript" type="text/javascript"><!--
+										showHideInherited();
+										--></script><div class="MainContent"><div class="detailSectionHeader">Property Detail</div><a name="propertyDetail"></a><a name="formatString"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">formatString</td><td class="detailHeaderType">property</td></tr></table><div class="detailBody"><code>formatString:String</code><p></p><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Language Version :&nbsp;</b></td><td>ActionScript 3.0</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Product Version :&nbsp;</b></td><td>Flex 3</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Runtime Versions :&nbsp;</b></td><td>Flash Player  9, AIR 1.1</td></tr></table><p></p><p></p><p>
+      The mask pattern.
+      
+      <p>You compose a pattern String using specific uppercase letters,
+      for example: YYYY/MM.</p>
+           <p>The DateFormatter pattern String can contain other text
+      in addition to pattern letters.
+      To form a valid pattern String, you only need one pattern letter.</p>
+          
+      <p>The following table describes the valid pattern letters:</p>
+           <table class="innertable" ><tr><th>Pattern letter</th><th>Description</th></tr><tr><td>Y</td><td> Year. If the number of pattern letters is two, the year is 
+            truncated to two digits; otherwise, it appears as four digits. 
+            The year can be zero-padded, as the third example shows in the 
+            following set of examples: 
+            <ul>
+              <li>YY = 05</li>
+              <li>YYYY = 2005</li>
+              <li>YYYYY = 02005</li>
+            </ul></td></tr><tr><td>M</td><td> Month in year. The format depends on the following criteria:
+            <ul>
+              <li>If the number of pattern letters is one, the format is 
+                interpreted as numeric in one or two digits. </li>
+              <li>If the number of pattern letters is two, the format 
+                is interpreted as numeric in two digits.</li>
+              <li>If the number of pattern letters is three, 
+                the format is interpreted as short text.</li>
+              <li>If the number of pattern letters is four, the format 
+               is interpreted as full text. </li>
+            </ul>
+              Examples:
+            <ul>
+              <li>M = 7</li>
+              <li>MM= 07</li>
+              <li>MMM=Jul</li>
+              <li>MMMM= July</li>
+            </ul></td></tr><tr><td>D</td><td>Day in month. While a single-letter pattern string for day is valid, 
+            you typically use a two-letter pattern string.
+     
+            <p>Examples:</p>
+            <ul>
+              <li>D=4</li>
+              <li>DD=04</li>
+              <li>DD=10</li>
+            </ul></td></tr><tr><td>E</td><td>Day in week. The format depends on the following criteria:
+            <ul>
+              <li>If the number of pattern letters is one, the format is 
+                interpreted as numeric in one or two digits.</li>
+              <li>If the number of pattern letters is two, the format is interpreted 
+               as numeric in two digits.</li>
+              <li>If the number of pattern letters is three, the format is interpreted 
+                as short text. </li>
+              <li>If the number of pattern letters is four, the format is interpreted 
+               as full text. </li>
+            </ul>
+              Examples:
+            <ul>
+              <li>E = 1</li>
+              <li>EE = 01</li>
+              <li>EEE = Mon</li>
+              <li>EEEE = Monday</li>
+            </ul></td></tr><tr><td>A</td><td> am/pm indicator.</td></tr><tr><td>J</td><td>Hour in day (0-23).</td></tr><tr><td>H</td><td>Hour in day (1-24).</td></tr><tr><td>K</td><td>Hour in am/pm (0-11).</td></tr><tr><td>L</td><td>Hour in am/pm (1-12).</td></tr><tr><td>N</td><td>Minute in hour.
+     
+            <p>Examples:</p>
+            <ul>
+              <li>N = 3</li>
+              <li>NN = 03</li>
+            </ul></td></tr><tr><td>S</td><td>Second in minute. 
+     
+            <p>Example:</p>
+            <ul>
+              <li>SS = 30</li>
+            </ul></td></tr><tr><td>Q</td><td>Millisecond in second
+     
+            <p>Example:</p>
+            <ul>
+              <li>QQ = 78</li>
+              <li>QQQ = 078</li>
+            </ul></td></tr><tr><td>O</td><td>Timezone offset
+     
+            <p>Example:</p>
+            <ul>
+              <li>O = +7</li>
+              <li>OO = -08</li>
+	          <li>OOO = +4:30</li>
+	          <li>OOOO = -08:30</li>
+            </ul></td></tr><tr><td>Z</td><td>Timezone name
+     
+            <p>Example:</p>
+            <ul>
+              <li>Z = GMT</li>
+            </ul></td></tr><tr><td>Other text</td><td>You can add other text into the pattern string to further 
+            format the string. You can use punctuation, numbers, 
+            and all lowercase letters. You should avoid uppercase letters 
+            because they may be interpreted as pattern letters.
+     
+            <p>Example:</p>
+            <ul>
+              <li>EEEE, MMM. D, YYYY at L:NN:QQQ A = Tuesday, Sept. 8, 2005 at 1:26:012 PM</li>
+            </ul></td></tr></table>
+           </p><p> The default value is <code>"MM/DD/YYYY"</code>.</p><br/><span class="label"> Implementation </span><br/><code>&nbsp;&nbsp;&nbsp;&nbsp;public function get formatString():String</code><br/><code>&nbsp;&nbsp;&nbsp;&nbsp;public function set formatString(value:String):void</code><br/></div><a name="constructorDetail"></a><div class="detailSectionHeader">Constructor Detail</div><a name="DateFormatter()"></a><a name="DateFormatter(String)"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">DateFormatter</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">Constructor</td></tr></table><div class="detailBody"><code>public function DateFormatter(formatString:String = null)</code><p></p><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Language Version :&nbsp;</b></td><td>ActionScript 3.0</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Product Version :&nbsp;</b></td><td>Flex 3</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Runtime Versions :&nbsp;</b></td><td>Flash Player  9, AIR 1.1</td></tr></table><p></p><p>
+      Constructor.
+  	 	</p><span class="label"> Parameters </span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20px"></td><td><code><span class="label">formatString</span>:String</code> (default = <code>null</code>)<code></code> &mdash; Date format pattern is set to this DateFormatter.
+      
+      </td></tr></table></div><a name="methodDetail"></a><div class="detailSectionHeader">Method Detail</div><a name="format()"></a><a name="format(Object)"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">format</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td></tr></table><div class="detailBody"><code>override public function format(value:Object):String</code><p></p><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Language Version :&nbsp;</b></td><td>ActionScript 3.0</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Product Version :&nbsp;</b></td><td>Flex 3</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Runtime Versions :&nbsp;</b></td><td>Flash Player  9, AIR 1.1</td></tr></table><p></p><p></p><p>
+      Generates a date-formatted String from either a date-formatted String or a Date object. 
+      The <code>formatString</code> property
+      determines the format of the output String.
+      If <code>value</code> cannot be formatted, return an empty String 
+      and write a description of the error to the <code>error</code> property.
+           </p><p><span class="label"> Parameters </span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20px"></td><td><code><span class="label">value</span>:Object</code> &mdash; Date to format. This can be a Date object,
+      or a date-formatted String such as "Thursday, April 22, 2004".
+           </td></tr></table></p><p></p><span class="label">Returns</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code>String</code> &mdash; Formatted String. Empty if an error occurs. A description 
+      of the error condition is written to the <code>error</code> property.
+      
+      </td></tr></table></div><a name="parseDateString()"></a><a name="parseDateString(String,String)"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">parseDateString</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code> public static function parseDateString(str:String, format:String = null):Date</code><p></p><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Language Version :&nbsp;</b></td><td>ActionScript 3.0</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Product Version :&nbsp;</b></td><td>Flex 3</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Runtime Versions :&nbsp;</b></td><td>Flash Player  9, AIR 1.1</td></tr></table><p></p><p></p><p>
+      Converts a date that is formatted as a String into a Date object.
+      Month and day names must match the names in mx.formatters.DateBase.
+           The hour value in the String must be between 0 and 23, inclusive. 
+      The minutes and seconds value must be between 0 and 59, inclusive.
+      The following example uses this method to create a Date object:
+           <pre>
+      var myDate:Date = DateFormatter.parseDateString("2009-12-02 23:45:30"); </pre>
+	 
+	  The optional format property is use to work out which is likly to be encountered
+	  first a month or a date of the month for date where it may not be obvious which
+	  comes first.
+      
+      </p><p><span class="label"> Parameters </span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20px"></td><td><code><span class="label">str</span>:String</code> &mdash; Date that is formatted as a String. 
+           </td></tr><tr><td class="paramSpacer">&nbsp;</td></tr><tr><td width="20px"></td><td><code><span class="label">format</span>:String</code> (default = <code>null</code>)<code></code></td></tr></table></p><p></p><span class="label">Returns</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code>Date</code> &mdash; Date object.
+      
+      </td></tr></table><p><span class="label">See also</span></p><div class="seeAlso"><a href="DateBase.html" target="">mx.formatters.DateBase</a></div></div><a name="includeExamplesSummary"></a><div class="detailSectionHeader">Examples</div><div class="exampleHeader">DateFormatterExample.mxml</div><div class="detailBody"><div class="listing"><pre>&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;!--
+
+  Licensed to the Apache Software Foundation (ASF) under one or more
+  contributor license agreements.  See the NOTICE file distributed with
+  this work for additional information regarding copyright ownership.
+  The ASF licenses this file to You under the Apache License, Version 2.0
+  (the "License"); you may not use this file except in compliance with
+  the License.  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+
+--&gt;
+&lt;!-- Simple example to demonstrate the DateFormatter. --&gt;
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009"
+        xmlns:s="library://ns.adobe.com/flex/spark"
+        xmlns:mx="library://ns.adobe.com/flex/mx"&gt;
+
+    &lt;fx:Script&gt;
+        &lt;![CDATA[
+            import mx.events.ValidationResultEvent;
+
+            private var vResult:ValidationResultEvent;
+
+            // Event handler to validate and format input.
+            private function Format():void {
+                vResult = dateVal.validate();
+                if (vResult.type == ValidationResultEvent.VALID) {
+                    formattedDate.text = dateFormatter.format(dob.text);
+                } else {
+                    formattedDate.text = "";
+                }
+            }
+        ]]&gt;
+    &lt;/fx:Script&gt;
+
+    &lt;fx:Declarations&gt;
+        &lt;mx:DateFormatter id="dateFormatter" formatString="month: MM, day: DD, year: YYYY"/&gt;
+        &lt;mx:DateValidator id="dateVal" source="{dob}" property="text" inputFormat="mm/dd/yyyy"/&gt;
+    &lt;/fx:Declarations&gt;
+
+    &lt;s:Panel title="DateFormatter Example" width="75%" height="75%" horizontalCenter="0" verticalCenter="0"&gt;
+        &lt;mx:Form left="10" right="10" top="10" bottom="10"&gt;
+            &lt;mx:FormItem label="Enter date (mm/dd/yyyy):" width="100%"&gt;
+                &lt;s:TextInput id="dob" text=""/&gt;
+            &lt;/mx:FormItem&gt;
+            &lt;mx:FormItem label="Formatted date: " width="100%"&gt;
+                &lt;s:TextInput id="formattedDate" text="" editable="false"/&gt;
+            &lt;/mx:FormItem&gt;
+            &lt;mx:FormItem&gt;
+                &lt;s:Button label="Validate and Format" click="Format();"/&gt;
+            &lt;/mx:FormItem&gt;
+        &lt;/mx:Form&gt;
+    &lt;/s:Panel&gt;
+
+&lt;/s:Application&gt;
+</pre></div><script language="javascript" type="text/javascript"><!-- AC_FL_RunContent( "src", "examples/DateFormatterExample", "width", "100%",
+					"height","400px", "salign", "TL", "id", "example1", "quality", "high", "bgcolor", "", "name",
+						"example1", "flashvars","", "allowScriptAccess","sameDomain", "type",
+					"application/x-shockwave-flash","pluginspage", "http://www.macromedia.com/go/getflashplayer" ); --></script></div><br/><br/><hr><br/><p></p><center class="copyright"><footer>The Apache Software Foundation</footer><br/>Wed Nov 15 2017, 09:50 AM +01:00  </center></div></body></html><!--The Apache Software Foundation<br/>Wed Nov 15 2017, 09:50 AM +01:00  -->

@@ -1,0 +1,319 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd"><!-- saved from url=(0014)about:internet --><html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><link rel="stylesheet" href="../../style.css" type="text/css" media="screen"><link rel="stylesheet" href="../../print.css" type="text/css" media="print"><link rel="stylesheet" href="../../override.css" type="text/css"><meta name="keywords" content="ViewTransitionBase,spark.transitions.ViewTransitionBase,COVER,DOWN,LEFT,PUSH,RIGHT,UNCOVER,UP,direction,direction,duration,easer,endView,minimumScale,mode,mode,mode,navigator,startView,suspendBackgroundProcessing,transitionControlsWithContent,canTransitionControlBarContent,captureEndValues,captureStartValues,cleanUp,createActionBarEffect,createConsolidatedEffect,createTabBarEffect,createViewEffect,getSnapshot,play,prepareForPlay,transitionComplete"><title>spark.transitions.ViewTransitionBase</title></head><body><script language="javascript" type="text/javascript" src="../../asdoc.js"></script><script language="javascript" type="text/javascript" src="../../help.js"></script><script language="javascript" type="text/javascript" src="../../cookies.js"></script><script language="javascript" type="text/javascript"><!--
+				asdocTitle = 'ViewTransitionBase - ApacheFlex API Reference';
+				var baseRef = '../../';
+				window.onload = configPage;
+			--></script>
+<script type="text/javascript">
+			scrollToNameAnchor();
+		</script><table class="titleTable" cellpadding="0" cellspacing="0" id="titleTable" style="display:none"><tr><td class="titleTableTitle" align="left">Apache Flex 4.16.1 API Reference </td><td class="titleTableTopNav" align="right"><a href="../../package-summary.html" onclick="loadClassListFrame('../../all-classes.html')">All Packages</a>&nbsp;|&nbsp;<a href="../../class-summary.html" onclick="loadClassListFrame('../../all-classes.html')">All Classes</a>&nbsp;|&nbsp;<a href="../../all-index-A.html" onclick="loadClassListFrame('../../index-list.html')">Index</a>&nbsp;|&nbsp;<a id="framesLink1" href="../../index.html?spark/transitions/ViewTransitionBase.html&amp;spark/transitions/class-list.html">Frames</a><a id="noFramesLink1" style="display:none" href="" onclick="parent.location=document.location"> No Frames </a></td><td class="titleTableLogo" align="right" rowspan="3"><img src="../../images/logo.jpg" class="logoImage" alt="AdobeLogo" title="AdobeLogo"></td></tr><tr class="titleTableRow2"><td class="titleTableSubTitle" id="subTitle" align="left">ViewTransitionBase</td><td class="titleTableSubNav" id="subNav" align="right"><a href="#propertySummary">Properties</a>&nbsp;| <a href="#methodSummary">Methods</a>&nbsp;| <a href="#eventSummary">Events</a></td></tr><tr class="titleTableRow3"><td colspan="3">&nbsp;</td></tr></table><script language="javascript" type="text/javascript" xml:space="preserve">
+				<!--
+				
+					if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("ViewTransitionBase"); titleBar_setSubNav(false,true,false,false,false,false,true,false,true,false,false	,false,false,false,false,false);}	
+				-->
+			</script><div xmlns:fn="http://www.w3.org/2005/xpath-functions" class="MainContent"><table class="classHeaderTable" cellpadding="0" cellspacing="0"><tr><td class="classHeaderTableLabel">Package</td><td><a href="package-detail.html" onclick="javascript:loadClassListFrame('class-list.html')">spark.transitions</a></td></tr><tr><td class="classHeaderTableLabel">Class</td><td class="classSignature">public  class  ViewTransitionBase</td></tr><tr><td class="classHeaderTableLabel">Inheritance</td><td class="inheritanceList">ViewTransitionBase  <img src="../../images/inherit-arrow.gif" title="Inheritance" alt="Inheritance" class="inheritArrow"> flash.events.EventDispatcher</td></tr><tr><td class="classHeaderTableLabel">Subclasses</td><td> <a href="../../spark/transitions/CrossFadeViewTransition.html">CrossFadeViewTransition</a>,  <a href="../../spark/transitions/FlipViewTransition.html">FlipViewTransition</a>,  <a href="../../spark/transitions/SlideViewTransition.html">SlideViewTransition</a>,  <a href="../../spark/transitions/ZoomViewTransition.html">ZoomViewTransition</a></td></tr></table><p></p><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Language Version :&nbsp;</b></td><td>ActionScript 3.0</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Product Version :&nbsp;</b></td><td>Flex 4.5</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Runtime Versions :&nbsp;</b></td><td>AIR 2.5</td></tr></table><p></p><p></p><p></p><p></p>
+  The ViewTransitionBase class is the base class for all view transitions.  
+  It is not intended to be used as a transition on its own.
+  In addition to providing common convenience and helper methods used by 
+  view transitions, this class provides a default action bar transition 
+  sequence.
+ 
+  <p>When a view transition is initialized, the owning view navigator 
+  sets the <code>startView</code> and <code>endView</code> properties 
+  to the views the transition animates. 
+  The <code>navigator</code> property is 
+  set to the view navigator.</p>
+ 
+               <p>The lifecycle of a transition is as follows:</p>
+               <ul>
+                  <li>The transition starts with 
+        the <code>captureStartValues()</code> method.  
+        When this method is called, the navigator is currently in the 
+        start state.  
+        At this time, the transition should capture any start values 
+        or bitmaps that it requires. </li>
+                  <li>A validation pass is performed on the pending 
+        view, and the <code>captureEndValues()</code> method is called. 
+        At this time, the transition captures any properties or 
+        bitmaps representations from the pending view.</li>
+                  <li>The <code>prepareForPlay()</code> method is then called, 
+        which allows the transition to perform any further preparations,
+        such as preparing a Spark effects sequence, 
+        or positioning transient elements on the display list.</li>
+                  <li>After a final validation pass, if necessary, 
+        the <code>play()</code> method is called by the navigator 
+        to perform the actual transition.</li>
+                  <li>Prior to any animation starting, the <code>start</code> 
+        event is dispatched.</li>
+                  <li>When a transition completes, it dispatches an 
+        <code>end</code> event.</li>
+               </ul>
+               <p>
+                  <b>Note:</b>Create and configure view transitions in ActionScript;
+  you cannot create them in MXML.</p>
+  
+            <p></p><br/><hr></div><a name="propertySummary"></a><div class="summarySection"><div class="summaryTableTitle">Public Properties</div><table cellspacing="0" cellpadding="3" class="summaryTable " id="summaryTableProperty"><tr><th>&nbsp;</th><th colspan="2">Property</th><th class="summaryTableOwnerCol">Defined By</th></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><img src="../../images/AirIcon12x12.gif" width="12" height="12" hspace="0" vspace="0" alt="AIR-only" title="Only available in the AIR runtime">&nbsp;<a href="#duration" class="signatureLink">duration</a> : Number<div class="summaryTableDescription">
+      Duration of the transition, in milliseconds.</div></td><td class="summaryTableOwnerCol">ViewTransitionBase</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><img src="../../images/AirIcon12x12.gif" width="12" height="12" hspace="0" vspace="0" alt="AIR-only" title="Only available in the AIR runtime">&nbsp;<a href="#easer" class="signatureLink">easer</a> : <a href="../../spark/effects/easing/IEaser.html">IEaser</a><div class="summaryTableDescription">
+      The easing behavior for this transition.</div></td><td class="summaryTableOwnerCol">ViewTransitionBase</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><img src="../../images/AirIcon12x12.gif" width="12" height="12" hspace="0" vspace="0" alt="AIR-only" title="Only available in the AIR runtime">&nbsp;<a href="#endView" class="signatureLink">endView</a> : <a href="../../spark/components/View.html">View</a><div class="summaryTableDescription">
+      The view that the navigator is transitioning
+      to, as set by the owning ViewNavigator object.</div></td><td class="summaryTableOwnerCol">ViewTransitionBase</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><img src="../../images/AirIcon12x12.gif" width="12" height="12" hspace="0" vspace="0" alt="AIR-only" title="Only available in the AIR runtime">&nbsp;<a href="#navigator" class="signatureLink">navigator</a> : <a href="../../spark/components/ViewNavigator.html">ViewNavigator</a><div class="summaryTableDescription">
+      Reference to the owning ViewNavigator instance set by the owning
+      ViewNavigator.</div></td><td class="summaryTableOwnerCol">ViewTransitionBase</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><img src="../../images/AirIcon12x12.gif" width="12" height="12" hspace="0" vspace="0" alt="AIR-only" title="Only available in the AIR runtime">&nbsp;<a href="#startView" class="signatureLink">startView</a> : <a href="../../spark/components/View.html">View</a><div class="summaryTableDescription">
+      The currently active view of the view navigator, 
+      as set by the owning view navigator.</div></td><td class="summaryTableOwnerCol">ViewTransitionBase</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><img src="../../images/AirIcon12x12.gif" width="12" height="12" hspace="0" vspace="0" alt="AIR-only" title="Only available in the AIR runtime">&nbsp;<a href="#suspendBackgroundProcessing" class="signatureLink">suspendBackgroundProcessing</a> : Boolean<div class="summaryTableDescription">
+      When set to true, the UIComponent.suspendBackgroundProcessing()
+      method is invoked prior to the transition playing.</div></td><td class="summaryTableOwnerCol">ViewTransitionBase</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><img src="../../images/AirIcon12x12.gif" width="12" height="12" hspace="0" vspace="0" alt="AIR-only" title="Only available in the AIR runtime">&nbsp;<a href="#transitionControlsWithContent" class="signatureLink">transitionControlsWithContent</a> : Boolean<div class="summaryTableDescription">
+      When set to true, the primary view transition
+      is used to transition the view navigator in its entirety, 
+      including the action bar.</div></td><td class="summaryTableOwnerCol">ViewTransitionBase</td></tr></table></div><a name="methodSummary"></a><div class="summarySection"><div class="summaryTableTitle">Public Methods </div><table cellspacing="0" cellpadding="3" class="summaryTable " id="summaryTableMethod"><tr><th>&nbsp;</th><th colspan="2">Method</th><th class="summaryTableOwnerCol">Defined By</th></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><img src="../../images/AirIcon12x12.gif" width="12" height="12" hspace="0" vspace="0" alt="AIR-only" title="Only available in the AIR runtime">&nbsp;<a href="#ViewTransitionBase()" class="signatureLink">ViewTransitionBase</a>()</div><div class="summaryTableDescription">
+      Constructor.</div></td><td class="summaryTableOwnerCol">ViewTransitionBase</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><img src="../../images/AirIcon12x12.gif" width="12" height="12" hspace="0" vspace="0" alt="AIR-only" title="Only available in the AIR runtime">&nbsp;<a href="#captureEndValues()" class="signatureLink">captureEndValues</a>():void</div><div class="summaryTableDescription">
+      Called by the ViewNavigator during the preparation phase of a transition.</div></td><td class="summaryTableOwnerCol">ViewTransitionBase</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><img src="../../images/AirIcon12x12.gif" width="12" height="12" hspace="0" vspace="0" alt="AIR-only" title="Only available in the AIR runtime">&nbsp;<a href="#captureStartValues()" class="signatureLink">captureStartValues</a>():void</div><div class="summaryTableDescription">
+      Called by the ViewNavigator during the preparation phase of a transition.</div></td><td class="summaryTableOwnerCol">ViewTransitionBase</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><img src="../../images/AirIcon12x12.gif" width="12" height="12" hspace="0" vspace="0" alt="AIR-only" title="Only available in the AIR runtime">&nbsp;<a href="#play()" class="signatureLink">play</a>():void</div><div class="summaryTableDescription">
+      Called by the ViewNavigator when the transition 
+      should begin animating.</div></td><td class="summaryTableOwnerCol">ViewTransitionBase</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><img src="../../images/AirIcon12x12.gif" width="12" height="12" hspace="0" vspace="0" alt="AIR-only" title="Only available in the AIR runtime">&nbsp;<a href="#prepareForPlay()" class="signatureLink">prepareForPlay</a>():void</div><div class="summaryTableDescription">
+      Called by the ViewNavigator during the preparation phase 
+      of a transition.</div></td><td class="summaryTableOwnerCol">ViewTransitionBase</td></tr></table></div><a name="protectedMethodSummary"></a><div class="summarySection"><div class="summaryTableTitle">Protected Methods </div><table cellspacing="0" cellpadding="3" class="summaryTable " id="summaryTableProtectedMethod"><tr><th>&nbsp;</th><th colspan="2">Method</th><th class="summaryTableOwnerCol">Defined By</th></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><img src="../../images/AirIcon12x12.gif" width="12" height="12" hspace="0" vspace="0" alt="AIR-only" title="Only available in the AIR runtime">&nbsp;<a href="#canTransitionControlBarContent()" class="signatureLink">canTransitionControlBarContent</a>():Boolean</div><div class="summaryTableDescription">
+      Determine if Flex can perform a transition on 
+      action bar or tab bar content independently of the views.</div></td><td class="summaryTableOwnerCol">ViewTransitionBase</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><img src="../../images/AirIcon12x12.gif" width="12" height="12" hspace="0" vspace="0" alt="AIR-only" title="Only available in the AIR runtime">&nbsp;<a href="#cleanUp()" class="signatureLink">cleanUp</a>():void</div><div class="summaryTableDescription">
+      Called after the transition completes.</div></td><td class="summaryTableOwnerCol">ViewTransitionBase</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><img src="../../images/AirIcon12x12.gif" width="12" height="12" hspace="0" vspace="0" alt="AIR-only" title="Only available in the AIR runtime">&nbsp;<a href="#createActionBarEffect()" class="signatureLink">createActionBarEffect</a>():<a href="../../mx/effects/IEffect.html">IEffect</a></div><div class="summaryTableDescription">
+      Called by the default prepareForPlay() implementation, 
+      this method is responsible for creating the Spark effect 
+      played on the action bar when the transition starts.</div></td><td class="summaryTableOwnerCol">ViewTransitionBase</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><img src="../../images/AirIcon12x12.gif" width="12" height="12" hspace="0" vspace="0" alt="AIR-only" title="Only available in the AIR runtime">&nbsp;<a href="#createConsolidatedEffect()" class="signatureLink">createConsolidatedEffect</a>():<a href="../../mx/effects/IEffect.html">IEffect</a></div><div class="summaryTableDescription">
+      Called by the default prepareForPlay() implementation, 
+      this method is responsible for creating the Spark effect played to
+      transition the entire navigator, inclusive of the control bar content, 
+      when necessary.</div></td><td class="summaryTableOwnerCol">ViewTransitionBase</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><img src="../../images/AirIcon12x12.gif" width="12" height="12" hspace="0" vspace="0" alt="AIR-only" title="Only available in the AIR runtime">&nbsp;<a href="#createTabBarEffect()" class="signatureLink">createTabBarEffect</a>():<a href="../../mx/effects/IEffect.html">IEffect</a></div><div class="summaryTableDescription">
+      Called by the default prepareForPlay() implementation, 
+      this method is responsible for creating the Spark effect played 
+      on the tab bar when the transition starts.</div></td><td class="summaryTableOwnerCol">ViewTransitionBase</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><img src="../../images/AirIcon12x12.gif" width="12" height="12" hspace="0" vspace="0" alt="AIR-only" title="Only available in the AIR runtime">&nbsp;<a href="#createViewEffect()" class="signatureLink">createViewEffect</a>():<a href="../../mx/effects/IEffect.html">IEffect</a></div><div class="summaryTableDescription">
+      Called by the default prepareForPlay() implementation, 
+      this method is responsible for creating the Spark effect played 
+      on the current and next view when the transition starts.</div></td><td class="summaryTableOwnerCol">ViewTransitionBase</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><img src="../../images/AirIcon12x12.gif" width="12" height="12" hspace="0" vspace="0" alt="AIR-only" title="Only available in the AIR runtime">&nbsp;<a href="#getSnapshot()" class="signatureLink">getSnapshot</a>(target:<a href="../../mx/core/UIComponent.html">UIComponent</a>, padding:int = 4, globalPosition:Point = null):<a href="../../spark/primitives/BitmapImage.html">BitmapImage</a></div><div class="summaryTableDescription">
+      Used to render snap shots of screen elements in 
+      preparation for transitioning.</div></td><td class="summaryTableOwnerCol">ViewTransitionBase</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><img src="../../images/AirIcon12x12.gif" width="12" height="12" hspace="0" vspace="0" alt="AIR-only" title="Only available in the AIR runtime">&nbsp;<a href="#transitionComplete()" class="signatureLink">transitionComplete</a>():void</div><div class="summaryTableDescription">
+      Called by the transition to indicate that the transition
+      has completed.</div></td><td class="summaryTableOwnerCol">ViewTransitionBase</td></tr></table></div><a name="eventSummary"></a><div class="summarySection"><div class="summaryTableTitle">Events</div><table cellspacing="0" cellpadding="3" class="summaryTable " id="summaryTableEvent"><tr><th>&nbsp;</th><th colspan="2">Event</th><th> Summary </th><th class="summaryTableOwnerCol">Defined By</th></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><img src="../../images/AirIcon12x12.gif" width="12" height="12" hspace="0" vspace="0" alt="AIR-only" title="Only available in the AIR runtime">&nbsp;<a href="#event:transitionEnd" class="signatureLink">transitionEnd</a></div></td><td class="summaryTableDescription summaryTableCol">Dispatched when the transition completes.</td><td class="summaryTableOwnerCol">ViewTransitionBase</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><img src="../../images/AirIcon12x12.gif" width="12" height="12" hspace="0" vspace="0" alt="AIR-only" title="Only available in the AIR runtime">&nbsp;<a href="#event:transitionStart" class="signatureLink">transitionStart</a></div></td><td class="summaryTableDescription summaryTableCol">Dispatched when the transition starts.</td><td class="summaryTableOwnerCol">ViewTransitionBase</td></tr></table></div><script language="javascript" type="text/javascript"><!--
+										showHideInherited();
+										--></script><div class="MainContent"><div class="detailSectionHeader">Property Detail</div><a name="propertyDetail"></a><a name="duration"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName"><img src="../../images/AirIcon12x12.gif" width="12" height="12" hspace="0" vspace="0" alt="AIR-only" title="Only available in the AIR runtime">&nbsp;duration</td><td class="detailHeaderType">property</td></tr></table><div class="detailBody"><code>duration:Number</code><p></p><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Language Version :&nbsp;</b></td><td>ActionScript 3.0</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Product Version :&nbsp;</b></td><td>Flex 4.5</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Runtime Versions :&nbsp;</b></td><td>AIR 2.5</td></tr></table><p></p><p></p><p>
+      Duration of the transition, in milliseconds. 
+      The default may vary depending on the transition
+      but is defined in ViewTransitionBase as 250 ms.
+     
+      </p><br/><span class="label"> Implementation </span><br/><code>&nbsp;&nbsp;&nbsp;&nbsp;public function get duration():Number</code><br/><code>&nbsp;&nbsp;&nbsp;&nbsp;public function set duration(value:Number):void</code><br/></div><a name="propertyDetail"></a><a name="easer"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName"><img src="../../images/AirIcon12x12.gif" width="12" height="12" hspace="0" vspace="0" alt="AIR-only" title="Only available in the AIR runtime">&nbsp;easer</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code>easer:<a href="../../spark/effects/easing/IEaser.html">IEaser</a></code><p></p><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Language Version :&nbsp;</b></td><td>ActionScript 3.0</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Product Version :&nbsp;</b></td><td>Flex 4.5</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Runtime Versions :&nbsp;</b></td><td>AIR 2.5</td></tr></table><p></p><p></p><p>
+      The easing behavior for this transition. The IEaser object is
+      generally propagated to the IEffect instance managing the actual
+      transition animation.
+     
+      </p><p> The default value is <code>Sine(.5);</code>.</p><br/><span class="label"> Implementation </span><br/><code>&nbsp;&nbsp;&nbsp;&nbsp;public function get easer():<a href="../../spark/effects/easing/IEaser.html">IEaser</a></code><br/><code>&nbsp;&nbsp;&nbsp;&nbsp;public function set easer(value:<a href="../../spark/effects/easing/IEaser.html">IEaser</a>):void</code><br/><p><span class="label">See also</span></p><div class="seeAlso"><a href="../../spark/effects/easing/package-detail.html" target="">spark.effects.easing</a></div></div><a name="propertyDetail"></a><a name="endView"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName"><img src="../../images/AirIcon12x12.gif" width="12" height="12" hspace="0" vspace="0" alt="AIR-only" title="Only available in the AIR runtime">&nbsp;endView</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code>endView:<a href="../../spark/components/View.html">View</a></code><p></p><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Language Version :&nbsp;</b></td><td>ActionScript 3.0</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Product Version :&nbsp;</b></td><td>Flex 4.5</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Runtime Versions :&nbsp;</b></td><td>AIR 2.5</td></tr></table><p></p><p></p><p>
+      The view that the navigator is transitioning
+      to, as set by the owning ViewNavigator object.  
+      This property can be null.
+           </p><p> The default value is <code>null</code>.</p><br/><span class="label"> Implementation </span><br/><code>&nbsp;&nbsp;&nbsp;&nbsp;public function get endView():<a href="../../spark/components/View.html">View</a></code><br/><code>&nbsp;&nbsp;&nbsp;&nbsp;public function set endView(value:<a href="../../spark/components/View.html">View</a>):void</code><br/></div><a name="propertyDetail"></a><a name="navigator"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName"><img src="../../images/AirIcon12x12.gif" width="12" height="12" hspace="0" vspace="0" alt="AIR-only" title="Only available in the AIR runtime">&nbsp;navigator</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code>navigator:<a href="../../spark/components/ViewNavigator.html">ViewNavigator</a></code><p></p><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Language Version :&nbsp;</b></td><td>ActionScript 3.0</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Product Version :&nbsp;</b></td><td>Flex 4.5</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Runtime Versions :&nbsp;</b></td><td>AIR 2.5</td></tr></table><p></p><p></p><p>
+      Reference to the owning ViewNavigator instance set by the owning
+      ViewNavigator.
+     
+      </p><p> The default value is <code>null</code>.</p><br/><span class="label"> Implementation </span><br/><code>&nbsp;&nbsp;&nbsp;&nbsp;public function get navigator():<a href="../../spark/components/ViewNavigator.html">ViewNavigator</a></code><br/><code>&nbsp;&nbsp;&nbsp;&nbsp;public function set navigator(value:<a href="../../spark/components/ViewNavigator.html">ViewNavigator</a>):void</code><br/></div><a name="propertyDetail"></a><a name="startView"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName"><img src="../../images/AirIcon12x12.gif" width="12" height="12" hspace="0" vspace="0" alt="AIR-only" title="Only available in the AIR runtime">&nbsp;startView</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code>startView:<a href="../../spark/components/View.html">View</a></code><p></p><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Language Version :&nbsp;</b></td><td>ActionScript 3.0</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Product Version :&nbsp;</b></td><td>Flex 4.5</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Runtime Versions :&nbsp;</b></td><td>AIR 2.5</td></tr></table><p></p><p></p><p>
+      The currently active view of the view navigator, 
+      as set by the owning view navigator. 
+      This property can be null.
+     
+      </p><br/><span class="label"> Implementation </span><br/><code>&nbsp;&nbsp;&nbsp;&nbsp;public function get startView():<a href="../../spark/components/View.html">View</a></code><br/><code>&nbsp;&nbsp;&nbsp;&nbsp;public function set startView(value:<a href="../../spark/components/View.html">View</a>):void</code><br/></div><a name="propertyDetail"></a><a name="suspendBackgroundProcessing"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName"><img src="../../images/AirIcon12x12.gif" width="12" height="12" hspace="0" vspace="0" alt="AIR-only" title="Only available in the AIR runtime">&nbsp;suspendBackgroundProcessing</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code>suspendBackgroundProcessing:Boolean</code><p></p><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Language Version :&nbsp;</b></td><td>ActionScript 3.0</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Product Version :&nbsp;</b></td><td>Flex 4.5</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Runtime Versions :&nbsp;</b></td><td>AIR 2.5</td></tr></table><p></p><p></p><p>
+      When set to <code>true</code>, the <code>UIComponent.suspendBackgroundProcessing()</code>
+      method is invoked prior to the transition playing. 
+      This disables Flex's layout manager and improving performance. 
+      Upon completion of the transition,
+      the layout manager function is restored by a call to the 
+      <code>UIComponent.resumeBackgroundProcessing()</code> method. 
+           </p><p> The default value is <code>false</code>.</p><br/><span class="label"> Implementation </span><br/><code>&nbsp;&nbsp;&nbsp;&nbsp;public function get suspendBackgroundProcessing():Boolean</code><br/><code>&nbsp;&nbsp;&nbsp;&nbsp;public function set suspendBackgroundProcessing(value:Boolean):void</code><br/><p><span class="label">See also</span></p><div class="seeAlso"><a href="../../mx/core/UIComponent.html#suspendBackgroundProcessing()" target="">mx.core.UIComponent.suspendBackgroundProcessing()</a><br/><a href="../../mx/core/UIComponent.html#resumeBackgroundProcessing()" target="">mx.core.UIComponent.resumeBackgroundProcessing()</a></div></div><a name="propertyDetail"></a><a name="transitionControlsWithContent"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName"><img src="../../images/AirIcon12x12.gif" width="12" height="12" hspace="0" vspace="0" alt="AIR-only" title="Only available in the AIR runtime">&nbsp;transitionControlsWithContent</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code>transitionControlsWithContent:Boolean</code><p></p><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Language Version :&nbsp;</b></td><td>ActionScript 3.0</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Product Version :&nbsp;</b></td><td>Flex 4.5</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Runtime Versions :&nbsp;</b></td><td>AIR 2.5</td></tr></table><p></p><p></p><p>
+      When set to <code>true</code>, the primary view transition
+      is used to transition the view navigator in its entirety, 
+      including the action bar.
+      Specific transitions for the action bar are not performed.
+      Because the tab bar is associated with the entire application, 
+      and not a view, view transitions do not affect it.
+           <p>Note that even when set to <code>false</code>, there are cases
+      where its not feasible to transition the action bar. 
+      For example, when the action bar does not exist in one of 
+      the two views, or if the action bar changes size.</p>
+           </p><p> The default value is <code>false</code>.</p><br/><span class="label"> Implementation </span><br/><code>&nbsp;&nbsp;&nbsp;&nbsp;public function get transitionControlsWithContent():Boolean</code><br/><code>&nbsp;&nbsp;&nbsp;&nbsp;public function set transitionControlsWithContent(value:Boolean):void</code><br/></div><a name="constructorDetail"></a><div class="detailSectionHeader">Constructor Detail</div><a name="ViewTransitionBase()"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName"><img src="../../images/AirIcon12x12.gif" width="12" height="12" hspace="0" vspace="0" alt="AIR-only" title="Only available in the AIR runtime">&nbsp;ViewTransitionBase</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">Constructor</td></tr></table><div class="detailBody"><code>public function ViewTransitionBase()</code><p></p><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Language Version :&nbsp;</b></td><td>ActionScript 3.0</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Product Version :&nbsp;</b></td><td>Flex 4.5</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Runtime Versions :&nbsp;</b></td><td>AIR 2.5</td></tr></table><p></p><p>
+      Constructor.
+      
+      </p></div><a name="methodDetail"></a><div class="detailSectionHeader">Method Detail</div><a name="canTransitionControlBarContent()"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName"><img src="../../images/AirIcon12x12.gif" width="12" height="12" hspace="0" vspace="0" alt="AIR-only" title="Only available in the AIR runtime">&nbsp;canTransitionControlBarContent</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td></tr></table><div class="detailBody"><code> protected function canTransitionControlBarContent():Boolean</code><p></p><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Language Version :&nbsp;</b></td><td>ActionScript 3.0</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Product Version :&nbsp;</b></td><td>Flex 4.5</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Runtime Versions :&nbsp;</b></td><td>AIR 2.5</td></tr></table><p></p><p></p><p>
+      Determine if Flex can perform a transition on 
+      action bar or tab bar content independently of the views.
+     
+      <p>Flex cannot perform a transition on the control bars independently:</p>
+      <ul>
+          <li>If the containing view navigator is a TabbedViewNavigator 
+            and its tab bar's visibility changes between views.</li>
+          <li>If the value of the view navigator's <code>overlayControls</code>
+            property changes between views.</li>
+          <li>If the size or visibility of the action bar changes 
+            between views.</li>
+      </ul>
+     
+      </p><p></p><span class="label">Returns</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code>Boolean</code> &mdash; <code>false</code> if Flex determines controls bars between views are 
+      incompatible in some way.
+     
+      </td></tr></table></div><a name="captureEndValues()"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName"><img src="../../images/AirIcon12x12.gif" width="12" height="12" hspace="0" vspace="0" alt="AIR-only" title="Only available in the AIR runtime">&nbsp;captureEndValues</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code> public function captureEndValues():void</code><p></p><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Language Version :&nbsp;</b></td><td>ActionScript 3.0</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Product Version :&nbsp;</b></td><td>Flex 4.5</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Runtime Versions :&nbsp;</b></td><td>AIR 2.5</td></tr></table><p></p><p></p><p>
+      Called by the ViewNavigator during the preparation phase of a transition.
+      It is invoked when the new view has been fully realized and validated and the 
+      action bar and tab bar content reflect the state of the new view. 
+      It is at this point that the transition can capture any values it requires from the 
+      pending view. 
+      In addition any bitmaps reflecting the state of the new view, tab bar, 
+      or action bar should be captured, if required for animation.
+     
+      </p></div><a name="captureStartValues()"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName"><img src="../../images/AirIcon12x12.gif" width="12" height="12" hspace="0" vspace="0" alt="AIR-only" title="Only available in the AIR runtime">&nbsp;captureStartValues</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code> public function captureStartValues():void</code><p></p><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Language Version :&nbsp;</b></td><td>ActionScript 3.0</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Product Version :&nbsp;</b></td><td>Flex 4.5</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Runtime Versions :&nbsp;</b></td><td>AIR 2.5</td></tr></table><p></p><p></p><p>
+      Called by the ViewNavigator during the preparation phase of a transition.
+      It is invoked when the new view has been fully realized and validated and the 
+      action bar and tab bar content reflect the state of the new view. 
+      The transition can use this method capture any values it requires from the 
+      pending view. 
+      Any bitmaps reflecting the state of the new view, tab bar, 
+      or action bar should be captured if required for animation.
+     
+      </p></div><a name="cleanUp()"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName"><img src="../../images/AirIcon12x12.gif" width="12" height="12" hspace="0" vspace="0" alt="AIR-only" title="Only available in the AIR runtime">&nbsp;cleanUp</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code> protected function cleanUp():void</code><p></p><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Language Version :&nbsp;</b></td><td>ActionScript 3.0</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Product Version :&nbsp;</b></td><td>Flex 4.5</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Runtime Versions :&nbsp;</b></td><td>AIR 2.5</td></tr></table><p></p><p></p><p>
+      Called after the transition completes.
+      This method is responsible for  releasing any references 
+      and temporary constructs used by the transition.
+     
+      </p></div><a name="createActionBarEffect()"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName"><img src="../../images/AirIcon12x12.gif" width="12" height="12" hspace="0" vspace="0" alt="AIR-only" title="Only available in the AIR runtime">&nbsp;createActionBarEffect</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code> protected function createActionBarEffect():<a href="../../mx/effects/IEffect.html">IEffect</a></code><p></p><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Language Version :&nbsp;</b></td><td>ActionScript 3.0</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Product Version :&nbsp;</b></td><td>Flex 4.5</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Runtime Versions :&nbsp;</b></td><td>AIR 2.5</td></tr></table><p></p><p></p><p>
+      Called by the default <code>prepareForPlay()</code> implementation, 
+      this method is responsible for creating the Spark effect 
+      played on the action bar when the transition starts.  
+      This method should be overridden by subclasses if a custom action bar 
+      effect is required.  
+      By default, this method returns a basic action bar effect.
+     
+      </p><p></p><span class="label">Returns</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code><a href="../../mx/effects/IEffect.html">IEffect</a></code> &mdash; An IEffect instance serving as the action bar effect. 
+      This effect is played by the default <code>play()</code> method implementation.
+     
+      </td></tr></table></div><a name="createConsolidatedEffect()"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName"><img src="../../images/AirIcon12x12.gif" width="12" height="12" hspace="0" vspace="0" alt="AIR-only" title="Only available in the AIR runtime">&nbsp;createConsolidatedEffect</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code> protected function createConsolidatedEffect():<a href="../../mx/effects/IEffect.html">IEffect</a></code><p></p><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Language Version :&nbsp;</b></td><td>ActionScript 3.0</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Product Version :&nbsp;</b></td><td>Flex 4.5</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Runtime Versions :&nbsp;</b></td><td>AIR 2.5</td></tr></table><p></p><p></p><p>
+      Called by the default <code>prepareForPlay()</code> implementation, 
+      this method is responsible for creating the Spark effect played to
+      transition the entire navigator, inclusive of the control bar content, 
+      when necessary.  
+      This method should be overridden by subclasses.  
+      By default, this method returns null.
+     
+      </p><p></p><span class="label">Returns</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code><a href="../../mx/effects/IEffect.html">IEffect</a></code> &mdash; An IEffect instance serving as the view transition. 
+      This effect is played by the default <code>play()</code> method implementation.
+     
+      </td></tr></table></div><a name="createTabBarEffect()"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName"><img src="../../images/AirIcon12x12.gif" width="12" height="12" hspace="0" vspace="0" alt="AIR-only" title="Only available in the AIR runtime">&nbsp;createTabBarEffect</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code> protected function createTabBarEffect():<a href="../../mx/effects/IEffect.html">IEffect</a></code><p></p><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Language Version :&nbsp;</b></td><td>ActionScript 3.0</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Product Version :&nbsp;</b></td><td>Flex 4.5</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Runtime Versions :&nbsp;</b></td><td>AIR 2.5</td></tr></table><p></p><p></p><p>
+      Called by the default <code>prepareForPlay()</code> implementation, 
+      this method is responsible for creating the Spark effect played 
+      on the tab bar when the transition starts.  
+      This method should be overridden by subclasses.  
+      By default, this returns null.
+     
+      </p><p></p><span class="label">Returns</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code><a href="../../mx/effects/IEffect.html">IEffect</a></code> &mdash; An IEffect instance serving as the tab bar transition. 
+      This effect is played by the default <code>play()</code> method implementation.
+     
+      </td></tr></table></div><a name="createViewEffect()"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName"><img src="../../images/AirIcon12x12.gif" width="12" height="12" hspace="0" vspace="0" alt="AIR-only" title="Only available in the AIR runtime">&nbsp;createViewEffect</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code> protected function createViewEffect():<a href="../../mx/effects/IEffect.html">IEffect</a></code><p></p><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Language Version :&nbsp;</b></td><td>ActionScript 3.0</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Product Version :&nbsp;</b></td><td>Flex 4.5</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Runtime Versions :&nbsp;</b></td><td>AIR 2.5</td></tr></table><p></p><p></p><p>
+      Called by the default <code>prepareForPlay()</code> implementation, 
+      this method is responsible for creating the Spark effect played 
+      on the current and next view when the transition starts.  
+      This method should be overridden by subclasses.  
+      By default, this method returns null.
+     
+      </p><p></p><span class="label">Returns</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code><a href="../../mx/effects/IEffect.html">IEffect</a></code> &mdash; An IEffect instance serving as the view transition. 
+      This effect is played by the default <code>play()</code> method implementation.
+     
+      </td></tr></table></div><a name="getSnapshot()"></a><a name="getSnapshot(mx.core.UIComponent,int,flash.geom.Point)"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName"><img src="../../images/AirIcon12x12.gif" width="12" height="12" hspace="0" vspace="0" alt="AIR-only" title="Only available in the AIR runtime">&nbsp;getSnapshot</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code> protected function getSnapshot(target:<a href="../../mx/core/UIComponent.html">UIComponent</a>, padding:int = 4, globalPosition:Point = null):<a href="../../spark/primitives/BitmapImage.html">BitmapImage</a></code><p></p><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Language Version :&nbsp;</b></td><td>ActionScript 3.0</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Product Version :&nbsp;</b></td><td>Flex 4.5</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Runtime Versions :&nbsp;</b></td><td>AIR 2.5</td></tr></table><p></p><p></p><p>
+      Used to render snap shots of screen elements in 
+      preparation for transitioning.  
+      The bitmap is returned in the form of a BitmapImage object.
+       
+      <p>The BitmapImage is in target's parent coordiantes space - 
+      it overlaps the target precisely if paranted to the same parent.
+     
+      When moving to a different parent, make sure to adjust the 
+      transformation of the BitmapImage to correctly account for the
+      change in coordinate spaces.
+     
+      The updated value of the <code>globalPosition</code> parameter
+      can be used for that.</p> 
+     
+      </p><p><span class="label"> Parameters </span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20px"></td><td><code><span class="label">target</span>:<a href="../../mx/core/UIComponent.html">UIComponent</a></code> &mdash; Display object to capture.
+      
+      </td></tr><tr><td class="paramSpacer">&nbsp;</td></tr><tr><td width="20px"></td><td><code><span class="label">padding</span>:int</code> (default = <code>4</code>)<code></code> &mdash; Padding around the object to be included in 
+      the BitmapImage object.
+     
+      </td></tr><tr><td class="paramSpacer">&nbsp;</td></tr><tr><td width="20px"></td><td><code><span class="label">globalPosition</span>:Point</code> (default = <code>null</code>)<code></code> &mdash; When non-null, <code>globalPosition</code>
+      will be updated with the origin of the BitmapImage in global 
+      coordiantes. When moving to a different coordinate space, this
+      value can be used to adjust the snapshot's position so its
+      global position on screen doesn't change. 
+     
+      </td></tr></table></p><p></p><span class="label">Returns</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code><a href="../../spark/primitives/BitmapImage.html">BitmapImage</a></code> &mdash; BitmapImage object representing the target.
+     
+      </td></tr></table></div><a name="play()"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName"><img src="../../images/AirIcon12x12.gif" width="12" height="12" hspace="0" vspace="0" alt="AIR-only" title="Only available in the AIR runtime">&nbsp;play</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code> public function play():void</code><p></p><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Language Version :&nbsp;</b></td><td>ActionScript 3.0</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Product Version :&nbsp;</b></td><td>Flex 4.5</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Runtime Versions :&nbsp;</b></td><td>AIR 2.5</td></tr></table><p></p><p></p><p>
+      Called by the ViewNavigator when the transition 
+      should begin animating.  
+      At this time, the transition should dispatch a
+      <code>start</code> event.
+     
+      </p></div><a name="prepareForPlay()"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName"><img src="../../images/AirIcon12x12.gif" width="12" height="12" hspace="0" vspace="0" alt="AIR-only" title="Only available in the AIR runtime">&nbsp;prepareForPlay</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code> public function prepareForPlay():void</code><p></p><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Language Version :&nbsp;</b></td><td>ActionScript 3.0</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Product Version :&nbsp;</b></td><td>Flex 4.5</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Runtime Versions :&nbsp;</b></td><td>AIR 2.5</td></tr></table><p></p><p></p><p>
+      Called by the ViewNavigator during the preparation phase 
+      of a transition.  
+      This method gives the transition the chance to create and
+      configure the underlying IEffect instance, or to add any transient
+      elements to the display list. 
+      Example transient elements include  bitmap placeholders, temporary
+      containers required during the transition,  and other elements. 
+      If required, a final validation pass occurs prior to  the invocation 
+      of the <code>play()</code> method.
+     
+      <p>If it is determined that a standard transition can be initiated, 
+      meaning one that transitions the control bars separately from the views, 
+      the default implementation of this method constructs 
+      a single Parallel effect which wraps the individual effect sequences 
+      for the view transition, the action bar transition, and the tab bar transition.  
+      This method uses the  methods, <code>createActionBarEffect()</code>, 
+      <code>createTabBarEffect()</code>, and <code>createViewEffect()</code>.</p>
+     
+      <p>If <code>transitionControlsWithContent</code> is set to <code>true</code>, 
+      or if it is determined that the control bars cannot be transitioned independently, 
+      a single effect is created to transition the navigator in its entirety.
+      In this case, only <code>createConsolidatedEffect()</code> is invoked.</p>
+     
+      </p></div><a name="transitionComplete()"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName"><img src="../../images/AirIcon12x12.gif" width="12" height="12" hspace="0" vspace="0" alt="AIR-only" title="Only available in the AIR runtime">&nbsp;transitionComplete</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code> protected function transitionComplete():void</code><p></p><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Language Version :&nbsp;</b></td><td>ActionScript 3.0</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Product Version :&nbsp;</b></td><td>Flex 4.5</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Runtime Versions :&nbsp;</b></td><td>AIR 2.5</td></tr></table><p></p><p></p><p>
+      Called by the transition to indicate that the transition
+      has completed.
+      This method dispatches the <code>end</code> event.
+     
+      </p></div><div class="detailSectionHeader"> Event Detail </div><a name="event:transitionEnd"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName"><img src="../../images/AirIcon12x12.gif" width="12" height="12" hspace="0" vspace="0" alt="AIR-only" title="Only available in the AIR runtime">&nbsp;transitionEnd</td><td class="detailHeaderType"> Event </td></tr></table><div class="detailBody"><span class="label">Event Object Type: </span><a href="../../mx/events/FlexEvent.html"><code>mx.events.FlexEvent</code></a><br/><span class="label">FlexEvent.type property = </span><a href="../../mx/events/FlexEvent.html#TRANSITION_START"><code>mx.events.FlexEvent.TRANSITION_START</code></a><br/><p></p><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Language Version :&nbsp;</b></td><td>ActionScript 3.0</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Product Version :&nbsp;</b></td><td>Flex 4.5</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Runtime Versions :&nbsp;</b></td><td>AIR 2.5</td></tr></table><p></p><p></p><p>
+  Dispatched when the transition completes.
+ 
+  </p>
+      The <code>FlexEvent.TRANSITION_START</code> constant defines the value of the
+      <code>type</code> property of the event object for a <code>transitionStart</code> event.
+           <p>This event will only be dispatched when there are one or more relevant listeners 
+      attached to the dispatching object.</p>
+     
+      <p>The properties of the event object have the following values:</p>
+      <table class="innertable" ><tr><th>Property</th><th>Value</th></tr><tr><td><code>bubbles</code></td><td>false</td></tr><tr><td><code>cancelable</code></td><td>false</td></tr><tr><td><code>currentTarget</code></td><td>The Object that defines the
+           event listener that handles the event. For example, if you use
+           <code>myButton.addEventListener()</code> to register an event listener,
+           myButton is the value of the <code>currentTarget</code>. </td></tr><tr><td><code>target</code></td><td>The Object that dispatched the event;
+           it is not always the Object listening for the event.
+           Use the <code>currentTarget</code> property to always access the
+           Object listening for the event.</td></tr></table>
+           </div><a name="event:transitionStart"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName"><img src="../../images/AirIcon12x12.gif" width="12" height="12" hspace="0" vspace="0" alt="AIR-only" title="Only available in the AIR runtime">&nbsp;transitionStart</td><td class="detailHeaderType"> Event </td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><span class="label">Event Object Type: </span><a href="../../mx/events/FlexEvent.html"><code>mx.events.FlexEvent</code></a><br/><span class="label">FlexEvent.type property = </span><a href="../../mx/events/FlexEvent.html#TRANSITION_START"><code>mx.events.FlexEvent.TRANSITION_START</code></a><br/><p></p><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Language Version :&nbsp;</b></td><td>ActionScript 3.0</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Product Version :&nbsp;</b></td><td>Flex 4.5</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Runtime Versions :&nbsp;</b></td><td>AIR 2.5</td></tr></table><p></p><p></p><p>
+  Dispatched when the transition starts.
+ 
+  </p>
+      The <code>FlexEvent.TRANSITION_START</code> constant defines the value of the
+      <code>type</code> property of the event object for a <code>transitionStart</code> event.
+           <p>This event will only be dispatched when there are one or more relevant listeners 
+      attached to the dispatching object.</p>
+     
+      <p>The properties of the event object have the following values:</p>
+      <table class="innertable" ><tr><th>Property</th><th>Value</th></tr><tr><td><code>bubbles</code></td><td>false</td></tr><tr><td><code>cancelable</code></td><td>false</td></tr><tr><td><code>currentTarget</code></td><td>The Object that defines the
+           event listener that handles the event. For example, if you use
+           <code>myButton.addEventListener()</code> to register an event listener,
+           myButton is the value of the <code>currentTarget</code>. </td></tr><tr><td><code>target</code></td><td>The Object that dispatched the event;
+           it is not always the Object listening for the event.
+           Use the <code>currentTarget</code> property to always access the
+           Object listening for the event.</td></tr></table>
+           </div><br/><br/><hr><br/><p></p><center class="copyright"><footer>The Apache Software Foundation</footer><br/>Wed Nov 15 2017, 09:50 AM +01:00  </center></div></body></html><!--The Apache Software Foundation<br/>Wed Nov 15 2017, 09:50 AM +01:00  -->

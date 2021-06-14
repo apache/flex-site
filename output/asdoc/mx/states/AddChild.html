@@ -1,0 +1,175 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd"><!-- saved from url=(0014)about:internet --><html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><link rel="stylesheet" href="../../style.css" type="text/css" media="screen"><link rel="stylesheet" href="../../print.css" type="text/css" media="print"><link rel="stylesheet" href="../../override.css" type="text/css"><meta name="keywords" content="AddChild,mx.states.AddChild,AFTER,BEFORE,END,FIRST,LAST,STOP,autoReverse,basedOn,creationPolicy,creationPolicy,destination,destructionPolicy,effect,fromState,handlerFunction,interruptionBehavior,isArray,isStyle,items,itemsDescriptor,itemsFactory,name,name,name,name,originalHandlerFunction,overrides,position,position,propertyName,relativeTo,relativeTo,stateGroups,target,target,target,target,target,targetFactory,toState,value,value,valueFactory,valueFactory,vectorClass,apply,apply,apply,apply,apply,apply,apply,apply,createInstance,createInstance,generateMXMLArray,generateMXMLObject,generateMXMLVector,initialize,initialize,initialize,initialize,initialized,remove,remove,remove,remove,remove,remove,remove,remove"><title>mx.states.AddChild</title></head><body><script language="javascript" type="text/javascript" src="../../asdoc.js"></script><script language="javascript" type="text/javascript" src="../../help.js"></script><script language="javascript" type="text/javascript" src="../../cookies.js"></script><script language="javascript" type="text/javascript"><!--
+				asdocTitle = 'AddChild - ApacheFlex API Reference';
+				var baseRef = '../../';
+				window.onload = configPage;
+			--></script>
+<script type="text/javascript">
+			scrollToNameAnchor();
+		</script><table class="titleTable" cellpadding="0" cellspacing="0" id="titleTable" style="display:none"><tr><td class="titleTableTitle" align="left">Apache Flex 4.16.1 API Reference </td><td class="titleTableTopNav" align="right"><a href="../../package-summary.html" onclick="loadClassListFrame('../../all-classes.html')">All Packages</a>&nbsp;|&nbsp;<a href="../../class-summary.html" onclick="loadClassListFrame('../../all-classes.html')">All Classes</a>&nbsp;|&nbsp;<a href="../../all-index-A.html" onclick="loadClassListFrame('../../index-list.html')">Index</a>&nbsp;|&nbsp;<a id="framesLink1" href="../../index.html?mx/states/AddChild.html&amp;mx/states/class-list.html">Frames</a><a id="noFramesLink1" style="display:none" href="" onclick="parent.location=document.location"> No Frames </a></td><td class="titleTableLogo" align="right" rowspan="3"><img src="../../images/logo.jpg" class="logoImage" alt="AdobeLogo" title="AdobeLogo"></td></tr><tr class="titleTableRow2"><td class="titleTableSubTitle" id="subTitle" align="left">AddChild</td><td class="titleTableSubNav" id="subNav" align="right"><a href="#propertySummary">Properties</a>&nbsp;| <a href="#methodSummary">Methods</a></td></tr><tr class="titleTableRow3"><td colspan="3">&nbsp;</td></tr></table><script language="javascript" type="text/javascript" xml:space="preserve">
+				<!--
+				
+					if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("AddChild"); titleBar_setSubNav(false,true,false,false,false,false,false,false,true,false,false	,false,false,false,false,false);}	
+				-->
+			</script><div xmlns:fn="http://www.w3.org/2005/xpath-functions" class="MainContent"><table class="classHeaderTable" cellpadding="0" cellspacing="0"><tr><td class="classHeaderTableLabel">Package</td><td><a href="package-detail.html" onclick="javascript:loadClassListFrame('class-list.html')">mx.states</a></td></tr><tr><td class="classHeaderTableLabel">Class</td><td class="classSignature">public  class  AddChild</td></tr><tr><td class="classHeaderTableLabel">Inheritance</td><td class="inheritanceList">AddChild  <img src="../../images/inherit-arrow.gif" title="Inheritance" alt="Inheritance" class="inheritArrow"> <a href="../../mx/states/OverrideBase.html">OverrideBase</a> <img src="../../images/inherit-arrow.gif" title="Inheritance" alt="Inheritance" class="inheritArrow"> <a href="../../mx/utils/OnDemandEventDispatcher.html">OnDemandEventDispatcher</a> <img src="../../images/inherit-arrow.gif" title="Inheritance" alt="Inheritance" class="inheritArrow"> Object</td></tr></table><p></p><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Language Version :&nbsp;</b></td><td>ActionScript 3.0</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Product Version :&nbsp;</b></td><td>Flex 3</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Runtime Versions :&nbsp;</b></td><td>Flash Player  9, AIR 1.1</td></tr></table><p></p><p></p><p></p><p></p>
+  The AddChild class adds a child display object, such as a component, 
+  to a container as part of a view state. 
+  You use this class in the <code>overrides</code> property of the State class.
+  Use the <code>creationPolicy</code> property to specify to create the child 
+  at application startup or when you change to a view state. 
+  
+  <p>The child does not dispatch the <code>creationComplete</code> event until 
+  it is added to a container. For example, the following code adds a 
+  Button control as part of a view state change:</p>
+ 
+               <pre>
+  &lt;mx:AddChild relativeTo="{v1}">
+      &lt;mx:Button id="b0" label="New Button"/>
+  &lt;/mx:AddChild> </pre>
+               <p>In the previous example, the Button control does not dispatch 
+  the <code>creationComplete</code> event until you change state and the 
+  Button control is added to a container. 
+  If the AddChild class defines both the Button and a container, such as a Canvas container, 
+  then the Button control dispatches the creationComplete event when it is created. 
+  For example, if the <code>creationPolicy</code> property is set to <code>all</code>, 
+  the Button control dispatches the event at application startup. 
+  If the <code>creationPolicy</code> property is set to <code>auto</code>,
+  the Button control dispatches the event when you change to the view state. </p>
+            <p></p><a name="mxmlSyntaxSummary"></a><span class="classHeaderTableLabel">MXML Syntax</span><span id="showMxmlLink" style="display:none"><a href="#mxmlSyntaxSummary" onclick="toggleMXMLOnly();"><img src="../../images/collapsed.gif" title="collapsed" alt="collapsed" class="collapsedImage">Show MXML Syntax</a><br/></span><span id="hideMxmlLink"><a href="#mxmlSyntaxSummary" onclick="toggleMXMLOnly();"><img src="../../images/expanded.gif" title="expanded" alt="expanded" class="expandedImage">Hide MXML Syntax</a></span><div id="mxmlSyntax" class="mxmlSyntax">  <p>The <code>&lt;mx:AddChild&gt;</code> tag
+  has the following attributes:</p>
+  
+  <pre>
+  &lt;mx:AddChild
+  <b>Properties</b>
+  target="null"
+  targetFactory="null"
+  creationPolicy="auto"
+  position="lastChild"
+  relativeTo="<i>parent of the State object</i>"
+  /&gt;
+  </pre>
+   </div><script language="javascript" type="text/javascript"><!--
+								setMXMLOnly();
+								--></script><p><span class="classHeaderTableLabel">Default MXML Property</span><code>targetFactory</code></p><p><span class="classHeaderTableLabel">See also</span></p><div class="seeAlso"><a href="State.html" target="">mx.states.State</a><br/><a href="RemoveChild.html" target="">mx.states.RemoveChild</a><br/><a href="Transition.html" target="">mx.states.Transition</a><br/><a href="../../mx/effects/AddChildAction.html" target="">mx.effects.AddChildAction</a></div><br/><hr></div><a name="propertySummary"></a><div class="summarySection"><div class="summaryTableTitle">Public Properties</div><table cellspacing="0" cellpadding="3" class="summaryTable " id="summaryTableProperty"><tr><th>&nbsp;</th><th colspan="2">Property</th><th class="summaryTableOwnerCol">Defined By</th></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a href="#creationPolicy" class="signatureLink">creationPolicy</a> : String<div class="summaryTableDescription">
+      The creation policy for this child.</div></td><td class="summaryTableOwnerCol">AddChild</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a href="#position" class="signatureLink">position</a> : String<div class="summaryTableDescription">
+      The position of the child in the display list, relative to the
+      object specified by the relativeTo property.</div></td><td class="summaryTableOwnerCol">AddChild</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a href="#relativeTo" class="signatureLink">relativeTo</a> : Object<div class="summaryTableDescription">
+      The object relative to which the child is added.</div></td><td class="summaryTableOwnerCol">AddChild</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a href="#target" class="signatureLink">target</a> : DisplayObject<div class="summaryTableDescription">
+           The child to be added.</div></td><td class="summaryTableOwnerCol">AddChild</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a href="#targetFactory" class="signatureLink">targetFactory</a> : <a href="../../mx/core/IDeferredInstance.html">IDeferredInstance</a><div class="summaryTableDescription">
+          The factory that creates the child.</div></td><td class="summaryTableOwnerCol">AddChild</td></tr></table></div><a name="methodSummary"></a><div class="summarySection"><div class="summaryTableTitle">Public Methods </div><div class="showHideLinks"><div id="hideInheritedMethod" class="hideInheritedMethod"><a class="showHideLink" href="#methodSummary" onclick="javascript:setInheritedVisible(false,'Method');"><img class="showHideLinkImage" src="../../images/expanded.gif"> Hide Inherited Public Methods</a></div><div id="showInheritedMethod" class="showInheritedMethod"><a class="showHideLink" href="#methodSummary" onclick="javascript:setInheritedVisible(true,'Method');"><img class="showHideLinkImage" src="../../images/collapsed.gif"> Show Inherited Public Methods</a></div></div><table cellspacing="0" cellpadding="3" class="summaryTable " id="summaryTableMethod"><tr><th>&nbsp;</th><th colspan="2">Method</th><th class="summaryTableOwnerCol">Defined By</th></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#AddChild()" class="signatureLink">AddChild</a>(relativeTo:<a href="../../mx/core/UIComponent.html">UIComponent</a> = null, target:DisplayObject = null, position:String = lastChild)</div><div class="summaryTableDescription">
+      Constructor.</div></td><td class="summaryTableOwnerCol">AddChild</td></tr><tr class="hideInheritedMethod"><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img src="../../images/inheritedSummary.gif" alt="Inherited" title="Inherited" class="inheritedSummaryImage"></td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="../../mx/utils/OnDemandEventDispatcher.html#addEventListener()" class="signatureLink">addEventListener</a>(type:String, listener:Function, useCapture:Boolean = false, priority:int = 0, useWeakReference:Boolean = false):void</div><div class="summaryTableDescription">
+          </div></td><td class="summaryTableOwnerCol"><a href="../../mx/utils/OnDemandEventDispatcher.html">OnDemandEventDispatcher</a></td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#apply()" class="signatureLink">apply</a>(parent:<a href="../../mx/core/UIComponent.html">UIComponent</a>):void</div><div class="summaryTableDescription">[override] 
+      
+      
+	  Applies the override.</div></td><td class="summaryTableOwnerCol">AddChild</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#createInstance()" class="signatureLink">createInstance</a>():void</div><div class="summaryTableDescription">
+      Creates the child instance from the factory.</div></td><td class="summaryTableOwnerCol">AddChild</td></tr><tr class="hideInheritedMethod"><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img src="../../images/inheritedSummary.gif" alt="Inherited" title="Inherited" class="inheritedSummaryImage"></td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="../../mx/utils/OnDemandEventDispatcher.html#dispatchEvent()" class="signatureLink">dispatchEvent</a>(event:Event):Boolean</div><div class="summaryTableDescription">
+          </div></td><td class="summaryTableOwnerCol"><a href="../../mx/utils/OnDemandEventDispatcher.html">OnDemandEventDispatcher</a></td></tr><tr class="hideInheritedMethod"><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img src="../../images/inheritedSummary.gif" alt="Inherited" title="Inherited" class="inheritedSummaryImage"></td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="../../mx/utils/OnDemandEventDispatcher.html#hasEventListener()" class="signatureLink">hasEventListener</a>(type:String):Boolean</div><div class="summaryTableDescription">
+          </div></td><td class="summaryTableOwnerCol"><a href="../../mx/utils/OnDemandEventDispatcher.html">OnDemandEventDispatcher</a></td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#initialize()" class="signatureLink">initialize</a>():void</div><div class="summaryTableDescription">[override] 
+      
+      IOverride interface method; this class implements it as an empty method.</div></td><td class="summaryTableOwnerCol">AddChild</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#remove()" class="signatureLink">remove</a>(parent:<a href="../../mx/core/UIComponent.html">UIComponent</a>):void</div><div class="summaryTableDescription">[override] 
+      
+      
+	  Removes the override.</div></td><td class="summaryTableOwnerCol">AddChild</td></tr><tr class="hideInheritedMethod"><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img src="../../images/inheritedSummary.gif" alt="Inherited" title="Inherited" class="inheritedSummaryImage"></td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="../../mx/utils/OnDemandEventDispatcher.html#removeEventListener()" class="signatureLink">removeEventListener</a>(type:String, listener:Function, useCapture:Boolean = false):void</div><div class="summaryTableDescription">
+          </div></td><td class="summaryTableOwnerCol"><a href="../../mx/utils/OnDemandEventDispatcher.html">OnDemandEventDispatcher</a></td></tr><tr class="hideInheritedMethod"><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img src="../../images/inheritedSummary.gif" alt="Inherited" title="Inherited" class="inheritedSummaryImage"></td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="../../mx/utils/OnDemandEventDispatcher.html#willTrigger()" class="signatureLink">willTrigger</a>(type:String):Boolean</div><div class="summaryTableDescription">
+          </div></td><td class="summaryTableOwnerCol"><a href="../../mx/utils/OnDemandEventDispatcher.html">OnDemandEventDispatcher</a></td></tr></table></div><script language="javascript" type="text/javascript"><!--
+										showHideInherited();
+										--></script><div class="MainContent"><div class="detailSectionHeader">Property Detail</div><a name="propertyDetail"></a><a name="creationPolicy"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">creationPolicy</td><td class="detailHeaderType">property</td></tr></table><div class="detailBody"><code>creationPolicy:String</code><p></p><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Language Version :&nbsp;</b></td><td>ActionScript 3.0</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Product Version :&nbsp;</b></td><td>Flex 3</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Runtime Versions :&nbsp;</b></td><td>Flash Player  9, AIR 1.1</td></tr></table><p></p><p></p><p>
+      The creation policy for this child.
+      This property determines when the <code>targetFactory</code> will create 
+      the instance of the child.
+      Flex uses this properthy only if you specify a <code>targetFactory</code> property.
+      The following values are valid:
+     
+      <p></p>
+     <table class="innertable" ><tr><th>Value</th><th>Meaning</th></tr><tr><td><code>auto</code></td><td>(default)Create the instance the 
+             first time it is needed.</td></tr><tr><td><code>all</code></td><td>Create the instance when the 
+             application started up.</td></tr><tr><td><code>none</code></td><td>Do not automatically create the instance. 
+             You must call the <code>createInstance()</code> method to create 
+             the instance.</td></tr></table>
+           </p><p> The default value is <code>"auto"</code>.</p><br/><span class="label"> Implementation </span><br/><code>&nbsp;&nbsp;&nbsp;&nbsp;public function get creationPolicy():String</code><br/><code>&nbsp;&nbsp;&nbsp;&nbsp;public function set creationPolicy(value:String):void</code><br/></div><a name="propertyDetail"></a><a name="position"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">position</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code>public var position:String</code><p></p><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Language Version :&nbsp;</b></td><td>ActionScript 3.0</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Product Version :&nbsp;</b></td><td>Flex 3</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Runtime Versions :&nbsp;</b></td><td>Flash Player  9, AIR 1.1</td></tr></table><p></p><p></p><p>
+      The position of the child in the display list, relative to the
+      object specified by the <code>relativeTo</code> property.
+      Valid values are <code>"before"</code>, <code>"after"</code>, 
+      <code>"firstChild"</code>, and <code>"lastChild"</code>.
+           </p><p> The default value is <code>"lastChild"</code>.</p></div><a name="propertyDetail"></a><a name="relativeTo"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">relativeTo</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code>public var relativeTo:Object</code><p></p><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Language Version :&nbsp;</b></td><td>ActionScript 3.0</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Product Version :&nbsp;</b></td><td>Flex 3</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Runtime Versions :&nbsp;</b></td><td>Flash Player  9, AIR 1.1</td></tr></table><p></p><p></p><p>
+      The object relative to which the child is added. This property is used
+      in conjunction with the <code>position</code> property. 
+      This property is optional; if
+      you omit it, Flex uses the immediate parent of the <code>State</code>
+      object, that is, the component that has the <code>states</code>
+      property, or <code>&lt;mx:states&gt;</code>tag that specifies the State
+      object.
+      
+      </p></div><a name="propertyDetail"></a><a name="target"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">target</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code>target:DisplayObject</code><p></p><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Language Version :&nbsp;</b></td><td>ActionScript 3.0</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Product Version :&nbsp;</b></td><td>Flex 3</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Runtime Versions :&nbsp;</b></td><td>Flash Player  9, AIR 1.1</td></tr></table><p></p><p></p><p>
+           The child to be added.
+      If you set this property, the child instance is created at app startup.
+      Setting this property is equivalent to setting a <code>targetFactory</code>
+      property with a <code>creationPolicy</code> of <code>"all"</code>.
+           <p>Do not set this property if you set the <code>targetFactory</code>
+      property.</p>
+      
+      </p><br/><span class="label"> Implementation </span><br/><code>&nbsp;&nbsp;&nbsp;&nbsp;public function get target():DisplayObject</code><br/><code>&nbsp;&nbsp;&nbsp;&nbsp;public function set target(value:DisplayObject):void</code><br/></div><a name="propertyDetail"></a><a name="targetFactory"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">targetFactory</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code>targetFactory:<a href="../../mx/core/IDeferredInstance.html">IDeferredInstance</a></code><p></p><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Language Version :&nbsp;</b></td><td>ActionScript 3.0</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Product Version :&nbsp;</b></td><td>Flex 3</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Runtime Versions :&nbsp;</b></td><td>Flash Player  9, AIR 1.1</td></tr></table><p></p><p></p><p>
+          The factory that creates the child. You can specify either of the following items:
+      <ul>
+          <li>A factory class that implements the IDeferredInstance
+              interface and creates the child instance or instances.
+          </li>
+          <li>A Flex component, (that is, any class that is a subclass
+              of the UIComponent class), such as the Button contol.
+              If you use a Flex component, the Flex compiler automatically
+              wraps the component in a factory class.
+          </li>
+      </ul>
+           <p>If you set this property, the child is instantiated at the time
+      determined by the <code>creationPolicy</code> property.</p>
+      
+      <p>Do not set this property if you set the <code>target</code>
+      property.
+      This propety is the <code>AddChild</code> class default property.
+      Setting this property with a <code>creationPolicy</code> of "all"
+      is equivalent to setting a <code>target</code> property.</p>
+      
+      </p><br/><span class="label"> Implementation </span><br/><code>&nbsp;&nbsp;&nbsp;&nbsp;public function get targetFactory():<a href="../../mx/core/IDeferredInstance.html">IDeferredInstance</a></code><br/><code>&nbsp;&nbsp;&nbsp;&nbsp;public function set targetFactory(value:<a href="../../mx/core/IDeferredInstance.html">IDeferredInstance</a>):void</code><br/></div><a name="constructorDetail"></a><div class="detailSectionHeader">Constructor Detail</div><a name="AddChild()"></a><a name="AddChild(mx.core.UIComponent,flash.display.DisplayObject,String)"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">AddChild</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">Constructor</td></tr></table><div class="detailBody"><code>public function AddChild(relativeTo:<a href="../../mx/core/UIComponent.html">UIComponent</a> = null, target:DisplayObject = null, position:String = lastChild)</code><p></p><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Language Version :&nbsp;</b></td><td>ActionScript 3.0</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Product Version :&nbsp;</b></td><td>Flex 3</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Runtime Versions :&nbsp;</b></td><td>Flash Player  9, AIR 1.1</td></tr></table><p></p><p>
+      Constructor.
+           </p><span class="label"> Parameters </span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20px"></td><td><code><span class="label">relativeTo</span>:<a href="../../mx/core/UIComponent.html">UIComponent</a></code> (default = <code>null</code>)<code></code> &mdash; The component relative to which child is added.
+           </td></tr><tr><td class="paramSpacer">&nbsp;</td></tr><tr><td width="20px"></td><td><code><span class="label">target</span>:DisplayObject</code> (default = <code>null</code>)<code></code> &mdash; The child object.
+      All Flex components are subclasses of the DisplayObject class.
+           </td></tr><tr><td class="paramSpacer">&nbsp;</td></tr><tr><td width="20px"></td><td><code><span class="label">position</span>:String</code> (default = <code>lastChild</code>)<code></code> &mdash; the location in the display list of the <code>target</code>
+      relative to the <code>relativeTo</code> component. Must be one of the following:
+      "firstChild", "lastChild", "before" or "after".
+      
+      </td></tr></table></div><a name="methodDetail"></a><div class="detailSectionHeader">Method Detail</div><a name="apply()"></a><a name="apply(mx.core.UIComponent)"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">apply</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td></tr></table><div class="detailBody"><code>override public function apply(parent:<a href="../../mx/core/UIComponent.html">UIComponent</a>):void</code><p></p><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Language Version :&nbsp;</b></td><td>ActionScript 3.0</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Product Version :&nbsp;</b></td><td>Flex 3</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Runtime Versions :&nbsp;</b></td><td>Flash Player  9, AIR 1.1</td></tr></table><p></p><p></p><p>
+      
+      
+	  Applies the override. Flex retains the original value, so that it can 
+	  restore the value later in the <code>remove()</code> method.
+	 	  <p>This method is called automatically when the state is entered.
+	  It should not be called directly.</p>
+	 	  </p><p><span class="label"> Parameters </span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20px"></td><td><code><span class="label">parent</span>:<a href="../../mx/core/UIComponent.html">UIComponent</a></code> &mdash; The parent of the state object containing this override.
+	  The override should use this as its target if an explicit target was
+	  not specified.
+	  
+	  </td></tr></table></p></div><a name="createInstance()"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">createInstance</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code> public function createInstance():void</code><p></p><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Language Version :&nbsp;</b></td><td>ActionScript 3.0</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Product Version :&nbsp;</b></td><td>Flex 3</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Runtime Versions :&nbsp;</b></td><td>Flash Player  9, AIR 1.1</td></tr></table><p></p><p></p><p>
+      Creates the child instance from the factory.
+      You must use this method only if you specify a <code>targetFactory</code>
+      property and a <code>creationPolicy</code> value of <code>"none"</code>.
+      Flex automatically calls this method if the <code>creationPolicy</code>
+      property value is <code>"auto"</code> or <code>"all"</code>.
+      If you call this method multiple times, the child instance is
+      created only on the first call.
+      
+      </p></div><a name="initialize()"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">initialize</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code>override public function initialize():void</code><p></p><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Language Version :&nbsp;</b></td><td>ActionScript 3.0</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Product Version :&nbsp;</b></td><td>Flex 3</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Runtime Versions :&nbsp;</b></td><td>Flash Player  9, AIR 1.1</td></tr></table><p></p><p></p><p>
+      
+      IOverride interface method; this class implements it as an empty method.
+     
+      </p></div><a name="remove()"></a><a name="remove(mx.core.UIComponent)"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">remove</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code>override public function remove(parent:<a href="../../mx/core/UIComponent.html">UIComponent</a>):void</code><p></p><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Language Version :&nbsp;</b></td><td>ActionScript 3.0</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Product Version :&nbsp;</b></td><td>Flex 3</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Runtime Versions :&nbsp;</b></td><td>Flash Player  9, AIR 1.1</td></tr></table><p></p><p></p><p>
+      
+      
+	  Removes the override. The value remembered in the <code>apply()</code>
+	  method is restored.
+	 	  <p>This method is called automatically when the state is entered.
+	  It should not be called directly.</p>
+	 	  </p><p><span class="label"> Parameters </span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20px"></td><td><code><span class="label">parent</span>:<a href="../../mx/core/UIComponent.html">UIComponent</a></code> &mdash; The parent of the state object containing this override.
+	  The override should use this as its target if an explicit target was
+	  not specified.
+	  
+	  </td></tr></table></p></div><br/><br/><hr><br/><p></p><center class="copyright"><footer>The Apache Software Foundation</footer><br/>Wed Nov 15 2017, 09:50 AM +01:00  </center></div></body></html><!--The Apache Software Foundation<br/>Wed Nov 15 2017, 09:50 AM +01:00  -->

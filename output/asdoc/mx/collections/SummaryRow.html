@@ -1,0 +1,123 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd"><!-- saved from url=(0014)about:internet --><html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><link rel="stylesheet" href="../../style.css" type="text/css" media="screen"><link rel="stylesheet" href="../../print.css" type="text/css" media="print"><link rel="stylesheet" href="../../override.css" type="text/css"><meta name="keywords" content="SummaryRow,mx.collections.SummaryRow,ANY_INDEX_MODE,CURRENT,DATE,FIRST,FIRST_INDEX_MODE,LAST,LAST_INDEX_MODE,NULL,NUMERIC,STRING,XML,afterLast,afterLast,arraySortOnOptions,arraySortOnOptions,beforeFirst,beforeFirst,bookmark,bookmark,caseInsensitive,caseInsensitive,childrenField,compareFunction,compareFunction,compareFunction,compareFunction,compareFunction,compareFunction,complexFieldWatcher,createFailedItemFunction,createPendingItemFunction,current,current,currentDepth,currentDepth,dataField,dataField,descending,descending,descending,fields,fields,fields,fields,filterFunction,filterFunction,grouping,grouping,grouping,grouping,groupingFunction,groupingObjectFunction,groupingObjectFunction,hasRoot,hasRoot,label,label,label,length,length,length,length,length,length,list,list,list,localIndex,name,name,name,nameParts,numeric,numeric,numeric,openNodes,openNodes,operation,showRoot,showRoot,sort,sort,sortCompareType,sortCompareType,source,source,source,source,source,source,source,source,summaries,summaries,summaries,summaryFunction,summaryObjectFunction,summaryOperation,summaryPlacement,timer,timer,uid,unique,unique,usingCustomCompareFunction,usingCustomCompareFunction,value,view,view"><title>mx.collections.SummaryRow</title></head><body><script language="javascript" type="text/javascript" src="../../asdoc.js"></script><script language="javascript" type="text/javascript" src="../../help.js"></script><script language="javascript" type="text/javascript" src="../../cookies.js"></script><script language="javascript" type="text/javascript"><!--
+				asdocTitle = 'SummaryRow - ApacheFlex API Reference';
+				var baseRef = '../../';
+				window.onload = configPage;
+			--></script>
+<script type="text/javascript">
+			scrollToNameAnchor();
+		</script><table class="titleTable" cellpadding="0" cellspacing="0" id="titleTable" style="display:none"><tr><td class="titleTableTitle" align="left">Apache Flex 4.16.1 API Reference </td><td class="titleTableTopNav" align="right"><a href="../../package-summary.html" onclick="loadClassListFrame('../../all-classes.html')">All Packages</a>&nbsp;|&nbsp;<a href="../../class-summary.html" onclick="loadClassListFrame('../../all-classes.html')">All Classes</a>&nbsp;|&nbsp;<a href="../../all-index-A.html" onclick="loadClassListFrame('../../index-list.html')">Index</a>&nbsp;|&nbsp;<a id="framesLink1" href="../../index.html?mx/collections/SummaryRow.html&amp;mx/collections/class-list.html">Frames</a><a id="noFramesLink1" style="display:none" href="" onclick="parent.location=document.location"> No Frames </a></td><td class="titleTableLogo" align="right" rowspan="3"><img src="../../images/logo.jpg" class="logoImage" alt="AdobeLogo" title="AdobeLogo"></td></tr><tr class="titleTableRow2"><td class="titleTableSubTitle" id="subTitle" align="left">SummaryRow</td><td class="titleTableSubNav" id="subNav" align="right"><a href="#propertySummary">Properties</a>&nbsp;| <a href="#methodSummary">Methods</a></td></tr><tr class="titleTableRow3"><td colspan="3">&nbsp;</td></tr></table><script language="javascript" type="text/javascript" xml:space="preserve">
+				<!--
+				
+					if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("SummaryRow"); titleBar_setSubNav(false,true,false,false,false,false,false,false,true,false,false	,false,false,false,false,false);}	
+				-->
+			</script><div xmlns:fn="http://www.w3.org/2005/xpath-functions" class="MainContent"><table class="classHeaderTable" cellpadding="0" cellspacing="0"><tr><td class="classHeaderTableLabel">Package</td><td><a href="package-detail.html" onclick="javascript:loadClassListFrame('class-list.html')">mx.collections</a></td></tr><tr><td class="classHeaderTableLabel">Class</td><td class="classSignature">public  class  SummaryRow</td></tr><tr><td class="classHeaderTableLabel">Inheritance</td><td class="inheritanceList">SummaryRow  <img src="../../images/inherit-arrow.gif" title="Inheritance" alt="Inheritance" class="inheritArrow"> Object</td></tr></table><p></p><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Language Version :&nbsp;</b></td><td>ActionScript 3.0</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Product Version :&nbsp;</b></td><td>Flex 3</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Runtime Versions :&nbsp;</b></td><td>Flash Player  9, AIR 1.1</td></tr></table><p></p><p></p><p></p><p></p>
+  The SummaryRow class represents a summary row of the AdvancedDataGrid. 
+  You create summary data about your data groups by using the <code>summaries</code> property 
+  of the GroupingField or GroupingCollection class. 
+  You display the summary data in an existing row of the AdvancedDataGrid control, 
+  or display it in a separate row.
+   <p>The <code>summaries</code> property of the GroupingField or GroupingCollection class takes an 
+  instance of the SummaryRow class. You then use the <code>fields</code> property 
+  of the SummaryRow class to specify an Array of one or more SummaryField/SummaryField2 instances
+  that define the fields of the data used to create the summary.
+  <code>SummaryField2</code> needs to be used when using <code>GroupingCollection2</code>.</p>
+               <p>The following example creates summary rows based on two fields of the data provider
+  of the AdvancedDataGrid control:</p>
+               <pre>
+  &lt;mx:AdvancedDataGrid id="myADG" 
+    initialize="gc.refresh();"> 
+    &lt;mx:dataProvider>
+      &lt;mx:GroupingCollection id="gc" source="{dpFlat}">
+        &lt;mx:Grouping>
+          &lt;mx:GroupingField name="Region">
+            &lt;mx:summaries>
+              &lt;mx:SummaryRow summaryPlacement="group">
+                &lt;mx:fields>
+                  &lt;mx:SummaryField dataField="Actual" 
+                    label="Min Actual" operation="MIN"/>
+                  &lt;mx:SummaryField dataField="Actual" 
+                    label="Max Actual" operation="MAX"/>
+                &lt;/mx:fields>
+              &lt;/mx:SummaryRow>
+            &lt;/mx:summaries>
+          &lt;/mx:GroupingField>
+          &lt;mx:GroupingField name="Territory">
+            &lt;mx:summaries>
+              &lt;mx:SummaryRow summaryPlacement="group">
+                &lt;mx:fields>
+                  &lt;mx:SummaryField dataField="Actual" 
+                    label="Min Actual" operation="MIN"/>
+                  &lt;mx:SummaryField dataField="Actual" 
+                    label="Max Actual" operation="MAX"/>
+                &lt;/mx:fields>
+              &lt;/mx:SummaryRow>
+            &lt;/mx:summaries>
+          &lt;/mx:GroupingField>
+        &lt;/mx:Grouping>
+      &lt;/mx:GroupingCollection>
+    &lt;/mx:dataProvider> 
+ 
+    &lt;mx:columns>
+      &lt;mx:AdvancedDataGridColumn dataField="Region"/>
+      &lt;mx:AdvancedDataGridColumn dataField="Territory_Rep"
+        headerText="Territory Rep"/>
+      &lt;mx:AdvancedDataGridColumn dataField="Actual"/>
+      &lt;mx:AdvancedDataGridColumn dataField="Estimate"/>
+      &lt;mx:AdvancedDataGridColumn dataField="Min Actual"/>
+      &lt;mx:AdvancedDataGridColumn dataField="Max Actual"/>
+    &lt;/mx:columns>
+  &lt;/mx:AdvancedDataGrid>
+  </pre>
+            <p></p><a name="mxmlSyntaxSummary"></a><span class="classHeaderTableLabel">MXML Syntax</span><span id="showMxmlLink" style="display:none"><a href="#mxmlSyntaxSummary" onclick="toggleMXMLOnly();"><img src="../../images/collapsed.gif" title="collapsed" alt="collapsed" class="collapsedImage">Show MXML Syntax</a><br/></span><span id="hideMxmlLink"><a href="#mxmlSyntaxSummary" onclick="toggleMXMLOnly();"><img src="../../images/expanded.gif" title="expanded" alt="expanded" class="expandedImage">Hide MXML Syntax</a></span><div id="mxmlSyntax" class="mxmlSyntax">  The <code>&lt;mx.SummaryRow&gt;</code> tag defines the following tag attributes:</p>
+   <pre>
+  &lt;mx:SummaryRow
+  <b>Properties </b>
+    fields="<i>No default</i>"
+    summaryObjectFunction="<i>No default</i>"
+    summaryPlacement="<i>last</i>"
+  /&gt;
+  </pre>
+   </div><script language="javascript" type="text/javascript"><!--
+								setMXMLOnly();
+								--></script><p><span class="classHeaderTableLabel">Default MXML Property</span><code>fields</code></p><p><span class="classHeaderTableLabel">See also</span></p><div class="seeAlso"><a href="../../mx/controls/AdvancedDataGrid.html" target="">mx.controls.AdvancedDataGrid</a><br/><a href="GroupingField.html" target="">mx.collections.GroupingField</a><br/><a href="SummaryField.html" target="">mx.collections.SummaryField</a><br/><a href="SummaryField2.html" target="">mx.collections.SummaryField2</a></div><br/><hr></div><a name="propertySummary"></a><div class="summarySection"><div class="summaryTableTitle">Public Properties</div><table cellspacing="0" cellpadding="3" class="summaryTable " id="summaryTableProperty"><tr><th>&nbsp;</th><th colspan="2">Property</th><th class="summaryTableOwnerCol">Defined By</th></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a href="#fields" class="signatureLink">fields</a> : Array<div class="summaryTableDescription">
+      Array of SummaryField/SummaryField2 instances that define the characteristics of the
+      data fields used to create the summary.</div></td><td class="summaryTableOwnerCol">SummaryRow</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a href="#summaryObjectFunction" class="signatureLink">summaryObjectFunction</a> : Function<div class="summaryTableDescription">
+      Specifies a callback function that defines the summary object, 
+      which is an instance of the SummaryObject class.</div></td><td class="summaryTableOwnerCol">SummaryRow</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a href="#summaryPlacement" class="signatureLink">summaryPlacement</a> : String = last<div class="summaryTableDescription"> 
+      Specifies where the summary row appears in the AdvancedDataGrid control.</div></td><td class="summaryTableOwnerCol">SummaryRow</td></tr></table></div><a name="methodSummary"></a><div class="summarySection"><div class="summaryTableTitle">Public Methods </div><table cellspacing="0" cellpadding="3" class="summaryTable " id="summaryTableMethod"><tr><th>&nbsp;</th><th colspan="2">Method</th><th class="summaryTableOwnerCol">Defined By</th></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#SummaryRow()" class="signatureLink">SummaryRow</a>()</div><div class="summaryTableDescription">
+      Constructor.</div></td><td class="summaryTableOwnerCol">SummaryRow</td></tr></table></div><script language="javascript" type="text/javascript"><!--
+										showHideInherited();
+										--></script><div class="MainContent"><div class="detailSectionHeader">Property Detail</div><a name="propertyDetail"></a><a name="fields"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">fields</td><td class="detailHeaderType">property</td></tr></table><div class="detailBody"><code>public var fields:Array</code><p></p><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Language Version :&nbsp;</b></td><td>ActionScript 3.0</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Product Version :&nbsp;</b></td><td>Flex 3</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Runtime Versions :&nbsp;</b></td><td>Flash Player  9, AIR 1.1</td></tr></table><p></p><p></p><p>
+      Array of SummaryField/SummaryField2 instances that define the characteristics of the
+      data fields used to create the summary.
+           </p><p><span class="label">See also</span></p><div class="seeAlso"><a href="SummaryField.html" target="">mx.collections.SummaryField</a><br/><a href="SummaryField2.html" target="">mx.collections.SummaryField2</a></div></div><a name="propertyDetail"></a><a name="summaryObjectFunction"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">summaryObjectFunction</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code>public var summaryObjectFunction:Function</code><p></p><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Language Version :&nbsp;</b></td><td>ActionScript 3.0</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Product Version :&nbsp;</b></td><td>Flex 3</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Runtime Versions :&nbsp;</b></td><td>Flash Player  9, AIR 1.1</td></tr></table><p></p><p></p><p>
+      Specifies a callback function that defines the summary object, 
+      which is an instance of the SummaryObject class. 
+      The SummaryObject instance collects summary data for display in the 
+      AdvancedDataGrid control. 
+      The AdvancedDataGrid control adds the SummaryObject instance to the 
+      data provider to display the summary data in the control. 
+      Therefore, define within the SummaryObject instance the properties that you want to display.
+           <p>You use this property with the <code>SummaryField.summaryFunction</code> property, 
+      which defines a callback function to perform the summary calculation.</p>
+     
+      <p>The GroupingCollection class adds a property called <code>children</code> to the Object.</p>
+           <p>The callback function must have the following signature:</p>
+           <pre>function mySumObjFunc():SummaryObject {}</pre>
+           </p><p><span class="label">See also</span></p><div class="seeAlso"><a href="SummaryObject.html" target="">mx.collections.SummaryObject</a><br/><a href="SummaryField.html#summaryFunction" target="">mx.collections.SummaryField.summaryFunction</a></div></div><a name="propertyDetail"></a><a name="summaryPlacement"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">summaryPlacement</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code>public var summaryPlacement:String = last</code><p></p><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Language Version :&nbsp;</b></td><td>ActionScript 3.0</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Product Version :&nbsp;</b></td><td>Flex 3</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Runtime Versions :&nbsp;</b></td><td>Flash Player  9, AIR 1.1</td></tr></table><p></p><p></p><p> 
+      Specifies where the summary row appears in the AdvancedDataGrid control.
+      Possible values are:
+           <ul>
+        <li><code>"first"</code> - Create a summary row as the first row in the group.</li>
+        <li><code>"last"</code> - Create a summary row as the last row in the group.</li>
+        <li><code>"group"</code> - Add the summary data to the row corresponding to the group.</li>
+      </ul>
+           <p>You can specify multiple values, separated by a space. 
+      For example, a value of <code>"last group"</code>  shows the same summary row
+      at the group level and in the last row of the children.</p>
+     
+      
+      </p></div><a name="constructorDetail"></a><div class="detailSectionHeader">Constructor Detail</div><a name="SummaryRow()"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">SummaryRow</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">Constructor</td></tr></table><div class="detailBody"><code>public function SummaryRow()</code><p></p><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Language Version :&nbsp;</b></td><td>ActionScript 3.0</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Product Version :&nbsp;</b></td><td>Flex 3</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Runtime Versions :&nbsp;</b></td><td>Flash Player  9, AIR 1.1</td></tr></table><p></p><p>
+      Constructor.
+      
+      </p></div><br/><br/><hr><br/><p></p><center class="copyright"><footer>The Apache Software Foundation</footer><br/>Wed Nov 15 2017, 09:50 AM +01:00  </center></div></body></html><!--The Apache Software Foundation<br/>Wed Nov 15 2017, 09:50 AM +01:00  -->

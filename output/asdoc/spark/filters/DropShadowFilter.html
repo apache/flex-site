@@ -1,0 +1,206 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd"><!-- saved from url=(0014)about:internet --><html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><link rel="stylesheet" href="../../style.css" type="text/css" media="screen"><link rel="stylesheet" href="../../print.css" type="text/css" media="print"><link rel="stylesheet" href="../../override.css" type="text/css"><meta name="keywords" content="DropShadowFilter,spark.filters.DropShadowFilter,alpha,alpha,alpha,alpha,angle,angle,angle,bias,blurX,blurY,bottomExtension,clamp,color,color,color,color,componentX,componentY,distance,distance,distance,divisor,entries,hideObject,highlightAlpha,highlightColor,inner,inner,leftExtension,mapBitmap,mapPoint,matrix,matrix,matrixX,matrixY,mode,precisionHint,preserveAlpha,quality,rightExtension,scaleX,scaleY,shader,shadowAlpha,shadowColor,topExtension,type,type,clone,clone,clone,clone,clone,clone,clone,clone,clone"><title>spark.filters.DropShadowFilter</title><script src="../../AC_OETags.js" type="text/javascript"></script></head><body><script language="javascript" type="text/javascript" src="../../asdoc.js"></script><script language="javascript" type="text/javascript" src="../../help.js"></script><script language="javascript" type="text/javascript" src="../../cookies.js"></script><script language="javascript" type="text/javascript"><!--
+				asdocTitle = 'DropShadowFilter - ApacheFlex API Reference';
+				var baseRef = '../../';
+				window.onload = configPage;
+			--></script>
+<script type="text/javascript">
+			scrollToNameAnchor();
+		</script><table class="titleTable" cellpadding="0" cellspacing="0" id="titleTable" style="display:none"><tr><td class="titleTableTitle" align="left">Apache Flex 4.16.1 API Reference </td><td class="titleTableTopNav" align="right"><a href="../../package-summary.html" onclick="loadClassListFrame('../../all-classes.html')">All Packages</a>&nbsp;|&nbsp;<a href="../../class-summary.html" onclick="loadClassListFrame('../../all-classes.html')">All Classes</a>&nbsp;|&nbsp;<a href="../../all-index-A.html" onclick="loadClassListFrame('../../index-list.html')">Index</a>&nbsp;|&nbsp;<a id="framesLink1" href="../../index.html?spark/filters/DropShadowFilter.html&amp;spark/filters/class-list.html">Frames</a><a id="noFramesLink1" style="display:none" href="" onclick="parent.location=document.location"> No Frames </a></td><td class="titleTableLogo" align="right" rowspan="3"><img src="../../images/logo.jpg" class="logoImage" alt="AdobeLogo" title="AdobeLogo"></td></tr><tr class="titleTableRow2"><td class="titleTableSubTitle" id="subTitle" align="left">DropShadowFilter</td><td class="titleTableSubNav" id="subNav" align="right"><a href="#propertySummary">Properties</a>&nbsp;| <a href="#methodSummary">Methods</a>&nbsp;| <a href="#constantSummary">Constants</a>&nbsp;| <a href="#includeExamplesSummary">Examples</a></td></tr><tr class="titleTableRow3"><td colspan="3">&nbsp;</td></tr></table><script language="javascript" type="text/javascript" xml:space="preserve">
+				<!--
+				
+					if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("DropShadowFilter"); titleBar_setSubNav(true,true,false,false,false,false,false,false,true,true,false	,false,false,false,false,false);}	
+				-->
+			</script><div xmlns:fn="http://www.w3.org/2005/xpath-functions" class="MainContent"><table class="classHeaderTable" cellpadding="0" cellspacing="0"><tr><td class="classHeaderTableLabel">Package</td><td><a href="package-detail.html" onclick="javascript:loadClassListFrame('class-list.html')">spark.filters</a></td></tr><tr><td class="classHeaderTableLabel">Class</td><td class="classSignature">public  class  DropShadowFilter</td></tr><tr><td class="classHeaderTableLabel">Inheritance</td><td class="inheritanceList">DropShadowFilter  <img src="../../images/inherit-arrow.gif" title="Inheritance" alt="Inheritance" class="inheritArrow"> <a href="../../mx/filters/BaseDimensionFilter.html">BaseDimensionFilter</a> <img src="../../images/inherit-arrow.gif" title="Inheritance" alt="Inheritance" class="inheritArrow"> <a href="../../mx/filters/BaseFilter.html">BaseFilter</a> <img src="../../images/inherit-arrow.gif" title="Inheritance" alt="Inheritance" class="inheritArrow"> flash.events.EventDispatcher</td></tr><tr><td class="classHeaderTableLabel">Implements</td><td> <a href="../../mx/filters/IBitmapFilter.html">IBitmapFilter</a></td></tr></table><p></p><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Language Version :&nbsp;</b></td><td>ActionScript 3.0</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Product Version :&nbsp;</b></td><td>Flex 4</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Runtime Versions :&nbsp;</b></td><td>Flash Player  10, AIR 1.5</td></tr></table><p></p><p></p><p></p><p></p>
+ The DropShadowFilter class lets you add a drop shadow to display objects.
+ The shadow algorithm is based on the same box filter that the blur filter uses. You have 
+ several options for the style of the drop shadow, including inner or outer shadow and knockout mode.
+ You can apply the filter to any display object (that is, objects that inherit from the DisplayObject class), 
+ such as MovieClip, SimpleButton, TextField, and Video objects, as well as to BitmapData objects.
+ 
+ <p>The use of filters depends on the object to which you apply the filter:</p>
+               <ul>
+                  <li>To apply filters to display objects use the
+ <code>filters</code> property (inherited from DisplayObject). Setting the <code>filters</code> 
+ property of an object does not modify the object, and you can remove the filter by clearing the
+ <code>filters</code> property. </li>
+ 
+                  <li>To apply filters to BitmapData objects, use the <code>BitmapData.applyFilter()</code> method.
+ Calling <code>applyFilter()</code> on a BitmapData object takes the source BitmapData object 
+ and the filter object and generates a filtered image as a result.</li>
+               </ul>
+ 
+               <p>If you apply a filter to a display object, the value of the <code>cacheAsBitmap</code> property of the 
+ display object is set to <code>true</code>. If you clear all filters, the original value of 
+ <code>cacheAsBitmap</code> is restored.</p>
+               <p>This filter supports Stage scaling. However, it does not support general scaling, rotation, and 
+ skewing. If the object itself is scaled (if <code>scaleX</code> and <code>scaleY</code> are 
+ set to a value other than 1.0), the filter is not scaled. It is scaled only when 
+ the user zooms in on the Stage.</p>
+ 
+               <p>A filter is not applied if the resulting image exceeds the maximum dimensions.
+ In  AIR 1.5 and Flash Player 10, the maximum is 8,191 pixels in width or height, 
+ and the total number of pixels cannot exceed 16,777,215 pixels. (So, if an image is 8,191 pixels 
+ wide, it can only be 2,048 pixels high.) 
+ If, for example, you zoom in on a large movie clip with a filter applied, the filter is 
+ turned off if the resulting image exceeds the maximum dimensions.</p>
+            <p></p><a name="mxmlSyntaxSummary"></a><span class="classHeaderTableLabel">MXML Syntax</span><span id="showMxmlLink" style="display:none"><a href="#mxmlSyntaxSummary" onclick="toggleMXMLOnly();"><img src="../../images/collapsed.gif" title="collapsed" alt="collapsed" class="collapsedImage">Show MXML Syntax</a><br/></span><span id="hideMxmlLink"><a href="#mxmlSyntaxSummary" onclick="toggleMXMLOnly();"><img src="../../images/expanded.gif" title="expanded" alt="expanded" class="expandedImage">Hide MXML Syntax</a></span><div id="mxmlSyntax" class="mxmlSyntax">
+  <p>The <code>&lt;s:DropShadowFilter&gt;</code> tag inherits all of the tag 
+  attributes of its superclass and adds the following tag attributes:</p>
+   <pre>
+  &lt;s:DropShadowFilter 
+    <strong>Properties</strong>
+    alpha="1"
+    angle="45"
+    color="0xFF0000"
+    distance="4"
+    hideObject="false"
+    inner="false"
+  /&gt;
+  </pre>
+  </div><script language="javascript" type="text/javascript"><!--
+								setMXMLOnly();
+								--></script><p><a href="#includeExamplesSummary">View the examples</a></p><p><span class="classHeaderTableLabel">See also</span></p><div class="seeAlso">flash.filters.DropShadowFilter</div><br/><hr></div><a name="propertySummary"></a><div class="summarySection"><div class="summaryTableTitle">Public Properties</div><div class="showHideLinks"><div id="hideInheritedProperty" class="hideInheritedProperty"><a class="showHideLink" href="#propertySummary" onclick="javascript:setInheritedVisible(false,'Property');"><img class="showHideLinkImage" src="../../images/expanded.gif"> Hide Inherited Public Properties</a></div><div id="showInheritedProperty" class="showInheritedProperty"><a class="showHideLink" href="#propertySummary" onclick="javascript:setInheritedVisible(true,'Property');"><img class="showHideLinkImage" src="../../images/collapsed.gif"> Show Inherited Public Properties</a></div></div><table cellspacing="0" cellpadding="3" class="summaryTable " id="summaryTableProperty"><tr><th>&nbsp;</th><th colspan="2">Property</th><th class="summaryTableOwnerCol">Defined By</th></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a href="#alpha" class="signatureLink">alpha</a> : Number<div class="summaryTableDescription">
+      The alpha transparency value for the color.</div></td><td class="summaryTableOwnerCol">DropShadowFilter</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a href="#angle" class="signatureLink">angle</a> : Number<div class="summaryTableDescription">
+       The angle of the bevel.</div></td><td class="summaryTableOwnerCol">DropShadowFilter</td></tr><tr class="hideInheritedProperty"><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img src="../../images/inheritedSummary.gif" alt="Inherited" title="Inherited" class="inheritedSummaryImage"></td><td class="summaryTableSignatureCol"><a href="../../mx/filters/BaseDimensionFilter.html#blurX" class="signatureLink">blurX</a> : Number<div class="summaryTableDescription">
+      The amount of horizontal blur.</div></td><td class="summaryTableOwnerCol"><a href="../../mx/filters/BaseDimensionFilter.html">BaseDimensionFilter</a></td></tr><tr class="hideInheritedProperty"><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img src="../../images/inheritedSummary.gif" alt="Inherited" title="Inherited" class="inheritedSummaryImage"></td><td class="summaryTableSignatureCol"><a href="../../mx/filters/BaseDimensionFilter.html#blurY" class="signatureLink">blurY</a> : Number<div class="summaryTableDescription">
+      The amount of vertical blur.</div></td><td class="summaryTableOwnerCol"><a href="../../mx/filters/BaseDimensionFilter.html">BaseDimensionFilter</a></td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a href="#color" class="signatureLink">color</a> : uint<div class="summaryTableDescription">
+      The color of the glow.</div></td><td class="summaryTableOwnerCol">DropShadowFilter</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a href="#distance" class="signatureLink">distance</a> : Number<div class="summaryTableDescription">
+      The offset distance of the bevel.</div></td><td class="summaryTableOwnerCol">DropShadowFilter</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a href="#hideObject" class="signatureLink">hideObject</a> : Boolean<div class="summaryTableDescription">
+      Indicates whether or not the object is hidden.</div></td><td class="summaryTableOwnerCol">DropShadowFilter</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a href="#inner" class="signatureLink">inner</a> : Boolean<div class="summaryTableDescription">
+      Specifies whether the glow is an inner glow.</div></td><td class="summaryTableOwnerCol">DropShadowFilter</td></tr><tr class="hideInheritedProperty"><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img src="../../images/inheritedSummary.gif" alt="Inherited" title="Inherited" class="inheritedSummaryImage"></td><td class="summaryTableSignatureCol"><a href="../../mx/filters/BaseDimensionFilter.html#knockout" class="signatureLink">knockout</a> : Boolean<div class="summaryTableDescription">
+      Specifies whether the object has a knockout effect.</div></td><td class="summaryTableOwnerCol"><a href="../../mx/filters/BaseDimensionFilter.html">BaseDimensionFilter</a></td></tr><tr class="hideInheritedProperty"><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img src="../../images/inheritedSummary.gif" alt="Inherited" title="Inherited" class="inheritedSummaryImage"></td><td class="summaryTableSignatureCol"><a href="../../mx/filters/BaseDimensionFilter.html#quality" class="signatureLink">quality</a> : int<div class="summaryTableDescription">
+      The number of times to apply the filter.</div></td><td class="summaryTableOwnerCol"><a href="../../mx/filters/BaseDimensionFilter.html">BaseDimensionFilter</a></td></tr><tr class="hideInheritedProperty"><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img src="../../images/inheritedSummary.gif" alt="Inherited" title="Inherited" class="inheritedSummaryImage"></td><td class="summaryTableSignatureCol"><a href="../../mx/filters/BaseDimensionFilter.html#strength" class="signatureLink">strength</a> : Number<div class="summaryTableDescription">
+      The strength of the imprint or spread.</div></td><td class="summaryTableOwnerCol"><a href="../../mx/filters/BaseDimensionFilter.html">BaseDimensionFilter</a></td></tr></table></div><a name="methodSummary"></a><div class="summarySection"><div class="summaryTableTitle">Public Methods </div><div class="showHideLinks"><div id="hideInheritedMethod" class="hideInheritedMethod"><a class="showHideLink" href="#methodSummary" onclick="javascript:setInheritedVisible(false,'Method');"><img class="showHideLinkImage" src="../../images/expanded.gif"> Hide Inherited Public Methods</a></div><div id="showInheritedMethod" class="showInheritedMethod"><a class="showHideLink" href="#methodSummary" onclick="javascript:setInheritedVisible(true,'Method');"><img class="showHideLinkImage" src="../../images/collapsed.gif"> Show Inherited Public Methods</a></div></div><table cellspacing="0" cellpadding="3" class="summaryTable " id="summaryTableMethod"><tr><th>&nbsp;</th><th colspan="2">Method</th><th class="summaryTableOwnerCol">Defined By</th></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#DropShadowFilter()" class="signatureLink">DropShadowFilter</a>(distance:Number = 4.0, angle:Number = 45, color:uint = 0, alpha:Number = 1.0, blurX:Number = 4.0, blurY:Number = 4.0, strength:Number = 1.0, quality:int = 1, inner:Boolean = false, knockout:Boolean = false, hideObject:Boolean = false)</div><div class="summaryTableDescription">
+     Constructor.</div></td><td class="summaryTableOwnerCol">DropShadowFilter</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#clone()" class="signatureLink">clone</a>():BitmapFilter</div><div class="summaryTableDescription">
+     Returns a copy of this filter object.</div></td><td class="summaryTableOwnerCol">DropShadowFilter</td></tr><tr class="hideInheritedMethod"><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img src="../../images/inheritedSummary.gif" alt="Inherited" title="Inherited" class="inheritedSummaryImage"></td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="../../mx/filters/BaseFilter.html#notifyFilterChanged()" class="signatureLink">notifyFilterChanged</a>():void</div><div class="summaryTableDescription">
+         Propagates a change event when the filter has changed.</div></td><td class="summaryTableOwnerCol"><a href="../../mx/filters/BaseFilter.html">BaseFilter</a></td></tr></table></div><a name="constantSummary"></a><div class="summarySection"><div class="summaryTableTitle">Public Constants</div><div class="showHideLinks"><div id="hideInheritedConstant" class="hideInheritedConstant"><a class="showHideLink" href="#constantSummary" onclick="javascript:setInheritedVisible(false,'Constant');"><img class="showHideLinkImage" src="../../images/expanded.gif"> Hide Inherited Public Constants</a></div><div id="showInheritedConstant" class="showInheritedConstant"><a class="showHideLink" href="#constantSummary" onclick="javascript:setInheritedVisible(true,'Constant');"><img class="showHideLinkImage" src="../../images/collapsed.gif"> Show Inherited Public Constants</a></div></div><table cellspacing="0" cellpadding="3" class="summaryTable hideInheritedConstant" id="summaryTableConstant"><tr><th>&nbsp;</th><th colspan="2">Constant</th><th class="summaryTableOwnerCol">Defined By</th></tr><tr class="hideInheritedConstant"><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img src="../../images/inheritedSummary.gif" alt="Inherited" title="Inherited" class="inheritedSummaryImage"></td><td class="summaryTableSignatureCol"><a href="../../mx/filters/BaseFilter.html#CHANGE" class="signatureLink">CHANGE</a> : String = change<div class="summaryTableDescription">[static] 
+         The string "change".</div></td><td class="summaryTableOwnerCol"><a href="../../mx/filters/BaseFilter.html">BaseFilter</a></td></tr></table></div><script language="javascript" type="text/javascript"><!--
+										showHideInherited();
+										--></script><div class="MainContent"><div class="detailSectionHeader">Property Detail</div><a name="propertyDetail"></a><a name="alpha"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">alpha</td><td class="detailHeaderType">property</td></tr></table><div class="detailBody"><code>alpha:Number</code><p></p><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Language Version :&nbsp;</b></td><td>ActionScript 3.0</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Product Version :&nbsp;</b></td><td>Flex 4</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Runtime Versions :&nbsp;</b></td><td>Flash Player  10, AIR 1.5</td></tr></table><p></p><p></p><p>
+      The alpha transparency value for the color. Valid values are 0 to 1. 
+      For example, .25 sets a transparency value of 25%.
+     
+      </p><p> The default value is <code>1</code>.</p><br/><span class="label"> Implementation </span><br/><code>&nbsp;&nbsp;&nbsp;&nbsp;public function get alpha():Number</code><br/><code>&nbsp;&nbsp;&nbsp;&nbsp;public function set alpha(value:Number):void</code><br/></div><a name="propertyDetail"></a><a name="angle"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">angle</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code>angle:Number</code><p></p><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Language Version :&nbsp;</b></td><td>ActionScript 3.0</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Product Version :&nbsp;</b></td><td>Flex 4</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Runtime Versions :&nbsp;</b></td><td>Flash Player  10, AIR 1.5</td></tr></table><p></p><p></p><p>
+       The angle of the bevel. Valid values are from 0 to 360&deg;. 
+       The angle value represents the angle of the theoretical light source falling on the 
+       object and determines the placement of the effect relative to the object. 
+       If the distance property is set to 0, the effect is not offset from the object and, 
+       therefore, the angle property has no effect.
+     
+       </p><p> The default value is <code>45</code>.</p><br/><span class="label"> Implementation </span><br/><code>&nbsp;&nbsp;&nbsp;&nbsp;public function get angle():Number</code><br/><code>&nbsp;&nbsp;&nbsp;&nbsp;public function set angle(value:Number):void</code><br/></div><a name="propertyDetail"></a><a name="color"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">color</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code>color:uint</code><p></p><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Language Version :&nbsp;</b></td><td>ActionScript 3.0</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Product Version :&nbsp;</b></td><td>Flex 4</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Runtime Versions :&nbsp;</b></td><td>Flash Player  10, AIR 1.5</td></tr></table><p></p><p></p><p>
+      The color of the glow. Valid values are in the hexadecimal format 
+      0xRRGGBB. 
+      </p><p> The default value is <code>0xFF0000</code>.</p><br/><span class="label"> Implementation </span><br/><code>&nbsp;&nbsp;&nbsp;&nbsp;public function get color():uint</code><br/><code>&nbsp;&nbsp;&nbsp;&nbsp;public function set color(value:uint):void</code><br/></div><a name="propertyDetail"></a><a name="distance"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">distance</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code>distance:Number</code><p></p><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Language Version :&nbsp;</b></td><td>ActionScript 3.0</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Product Version :&nbsp;</b></td><td>Flex 4</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Runtime Versions :&nbsp;</b></td><td>Flash Player  10, AIR 1.5</td></tr></table><p></p><p></p><p>
+      The offset distance of the bevel. Valid values are in pixels (floating point). 
+      </p><p> The default value is <code>4</code>.</p><br/><span class="label"> Implementation </span><br/><code>&nbsp;&nbsp;&nbsp;&nbsp;public function get distance():Number</code><br/><code>&nbsp;&nbsp;&nbsp;&nbsp;public function set distance(value:Number):void</code><br/></div><a name="propertyDetail"></a><a name="hideObject"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">hideObject</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code>hideObject:Boolean</code><p></p><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Language Version :&nbsp;</b></td><td>ActionScript 3.0</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Product Version :&nbsp;</b></td><td>Flex 4</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Runtime Versions :&nbsp;</b></td><td>Flash Player  10, AIR 1.5</td></tr></table><p></p><p></p><p>
+      Indicates whether or not the object is hidden. 
+      The value <code>true</code> indicates that the 
+      object itself is not drawn; only the shadow is visible. 
+      The default is <code>false</code>, meaning that the object is shown.
+           </p><p> The default value is <code>false</code>.</p><br/><span class="label"> Implementation </span><br/><code>&nbsp;&nbsp;&nbsp;&nbsp;public function get hideObject():Boolean</code><br/><code>&nbsp;&nbsp;&nbsp;&nbsp;public function set hideObject(value:Boolean):void</code><br/></div><a name="propertyDetail"></a><a name="inner"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">inner</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code>inner:Boolean</code><p></p><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Language Version :&nbsp;</b></td><td>ActionScript 3.0</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Product Version :&nbsp;</b></td><td>Flex 4</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Runtime Versions :&nbsp;</b></td><td>Flash Player  10, AIR 1.5</td></tr></table><p></p><p></p><p>
+      Specifies whether the glow is an inner glow. 
+      The value <code>true</code> indicates an inner glow. 
+      The default is <code>false</code> that creates an outer glow 
+      (a glow around the outer edges of the object).
+           </p><p> The default value is <code>false</code>.</p><br/><span class="label"> Implementation </span><br/><code>&nbsp;&nbsp;&nbsp;&nbsp;public function get inner():Boolean</code><br/><code>&nbsp;&nbsp;&nbsp;&nbsp;public function set inner(value:Boolean):void</code><br/></div><a name="constructorDetail"></a><div class="detailSectionHeader">Constructor Detail</div><a name="DropShadowFilter()"></a><a name="DropShadowFilter(Number,Number,uint,Number,Number,Number,Number,int,Boolean,Boolean,Boolean)"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">DropShadowFilter</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">Constructor</td></tr></table><div class="detailBody"><code>public function DropShadowFilter(distance:Number = 4.0, angle:Number = 45, color:uint = 0, alpha:Number = 1.0, blurX:Number = 4.0, blurY:Number = 4.0, strength:Number = 1.0, quality:int = 1, inner:Boolean = false, knockout:Boolean = false, hideObject:Boolean = false)</code><p></p><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Language Version :&nbsp;</b></td><td>ActionScript 3.0</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Product Version :&nbsp;</b></td><td>Flex 4</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Runtime Versions :&nbsp;</b></td><td>Flash Player  10, AIR 1.5</td></tr></table><p></p><p>
+     Constructor.
+     
+     </p><span class="label"> Parameters </span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20px"></td><td><code><span class="label">distance</span>:Number</code> (default = <code>4.0</code>)<code></code> &mdash; Offset distance for the shadow, in pixels. 
+     </td></tr><tr><td class="paramSpacer">&nbsp;</td></tr><tr><td width="20px"></td><td><code><span class="label">angle</span>:Number</code> (default = <code>45</code>)<code></code> &mdash; Angle of the shadow, 0 to 360 degrees (floating point). 
+     </td></tr><tr><td class="paramSpacer">&nbsp;</td></tr><tr><td width="20px"></td><td><code><span class="label">color</span>:uint</code> (default = <code>0</code>)<code></code> &mdash; Color of the shadow, in hexadecimal format 
+     <i>0xRRGGBB</i>. The default value is 0x000000.
+     </td></tr><tr><td class="paramSpacer">&nbsp;</td></tr><tr><td width="20px"></td><td><code><span class="label">alpha</span>:Number</code> (default = <code>1.0</code>)<code></code> &mdash; Alpha transparency value for the shadow color. Valid values are 0.0 to 1.0. 
+     For example, .25 sets a transparency value of 25%. 
+     </td></tr><tr><td class="paramSpacer">&nbsp;</td></tr><tr><td width="20px"></td><td><code><span class="label">blurX</span>:Number</code> (default = <code>4.0</code>)<code></code> &mdash; Amount of horizontal blur. Valid values are 0 to 255.0 (floating point). 
+     </td></tr><tr><td class="paramSpacer">&nbsp;</td></tr><tr><td width="20px"></td><td><code><span class="label">blurY</span>:Number</code> (default = <code>4.0</code>)<code></code> &mdash; Amount of vertical blur. Valid values are 0 to 255.0 (floating point). 
+     </td></tr><tr><td class="paramSpacer">&nbsp;</td></tr><tr><td width="20px"></td><td><code><span class="label">strength</span>:Number</code> (default = <code>1.0</code>)<code></code> &mdash; The strength of the imprint or spread. The higher the value, 
+     the more color is imprinted and the stronger the contrast between the shadow and the background. 
+     Valid values are 0 to 255.0. 
+     </td></tr><tr><td class="paramSpacer">&nbsp;</td></tr><tr><td width="20px"></td><td><code><span class="label">quality</span>:int</code> (default = <code>1</code>)<code></code> &mdash; The number of times to apply the filter. Use the BitmapFilterQuality constants:
+     <ul>
+     <li><code>BitmapFilterQuality.LOW</code></li>
+     <li><code>BitmapFilterQuality.MEDIUM</code></li>
+     <li><code>BitmapFilterQuality.HIGH</code></li>
+     </ul>
+     <p>For more information about these values, see the <code>quality</code> property description.</p>
+          </td></tr><tr><td class="paramSpacer">&nbsp;</td></tr><tr><td width="20px"></td><td><code><span class="label">inner</span>:Boolean</code> (default = <code>false</code>)<code></code> &mdash; Indicates whether or not the shadow is an inner shadow. A value of <code>true</code> specifies
+     an inner shadow. A value of <code>false</code> specifies an outer shadow (a
+     shadow around the outer edges of the object).
+     </td></tr><tr><td class="paramSpacer">&nbsp;</td></tr><tr><td width="20px"></td><td><code><span class="label">knockout</span>:Boolean</code> (default = <code>false</code>)<code></code> &mdash; Applies a knockout effect (<code>true</code>), which effectively 
+     makes the object's fill transparent and reveals the background color of the document. 
+     </td></tr><tr><td class="paramSpacer">&nbsp;</td></tr><tr><td width="20px"></td><td><code><span class="label">hideObject</span>:Boolean</code> (default = <code>false</code>)<code></code> &mdash; Indicates whether or not the object is hidden. A value of <code>true</code> 
+     indicates that the object itself is not drawn; only the shadow is visible. 
+     
+     </td></tr></table><p><span class="label">See also</span></p><div class="seeAlso">flash.filters.BitmapFilterQuality</div></div><a name="methodDetail"></a><div class="detailSectionHeader">Method Detail</div><a name="clone()"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">clone</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td></tr></table><div class="detailBody"><code> public function clone():BitmapFilter</code><p></p><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Language Version :&nbsp;</b></td><td>ActionScript 3.0</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Product Version :&nbsp;</b></td><td>Flex 4</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Runtime Versions :&nbsp;</b></td><td>Flash Player  10, AIR 1.5</td></tr></table><p></p><p></p><p>
+     Returns a copy of this filter object.
+     </p><p></p><span class="label">Returns</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code>BitmapFilter</code> &mdash; A new DropShadowFilter instance with all the
+     properties of the original DropShadowFilter instance.
+           </td></tr></table></div><a name="includeExamplesSummary"></a><div class="detailSectionHeader">Examples</div><div class="exampleHeader">DropShadowFilterExample.mxml</div><div class="detailBody"><div class="listing"><pre>&lt;?xml version="1.0"?&gt;
+&lt;!--
+
+  Licensed to the Apache Software Foundation (ASF) under one or more
+  contributor license agreements.  See the NOTICE file distributed with
+  this work for additional information regarding copyright ownership.
+  The ASF licenses this file to You under the Apache License, Version 2.0
+  (the "License"); you may not use this file except in compliance with
+  the License.  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+
+--&gt;
+&lt;!-- filters/examples/DropShadowFilterExample.mxml --&gt;
+&lt;s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    creationComplete="createFilters()"&gt;
+    
+  &lt;fx:Script&gt;&lt;![CDATA[ 
+     import spark.filters.*;
+     import flash.filters.BitmapFilterQuality;
+     import flash.filters.BitmapFilterType;
+  
+     private var myDropShadowFilter:DropShadowFilter;  
+     private var color:Number = 0xFF33FF;
+  
+     public function createFilters():void {        
+        myDropShadowFilter = new DropShadowFilter(15, 45, 
+            color, 0.8, 8, 8, 0.65, BitmapFilterQuality.MEDIUM, false, false);
+        b1.filters = [myDropShadowFilter];
+     }
+  
+  ]]&gt;&lt;/fx:Script&gt;
+
+    &lt;s:VGroup&gt;
+        &lt;!-- This button has a filter applied in ActionScript. --&gt;
+        &lt;s:Button id="b1" label="Click me"/&gt;
+        
+        &lt;!-- This button has a filter applied in MXML. --&gt;
+        &lt;s:Button id="b2" label="Click me"&gt;
+            &lt;s:filters&gt;
+                &lt;s:DropShadowFilter 
+                    distance="15" 
+                    angle="45" 
+                    color="0xFF33FF" 
+                    alpha=".8" 
+                    blurX="8" 
+                    blurY="8" 
+                    strength=".65" 
+                    quality="{BitmapFilterQuality.MEDIUM}"
+                    inner="false" 
+                    knockout="false"/&gt;
+            &lt;/s:filters&gt;
+        &lt;/s:Button&gt;
+        
+    &lt;/s:VGroup&gt;        
+&lt;/s:Application&gt;
+</pre></div><script language="javascript" type="text/javascript"><!-- AC_FL_RunContent( "src", "examples/DropShadowFilterExample", "width", "100%",
+					"height","400px", "salign", "TL", "id", "example1", "quality", "high", "bgcolor", "", "name",
+						"example1", "flashvars","", "allowScriptAccess","sameDomain", "type",
+					"application/x-shockwave-flash","pluginspage", "http://www.macromedia.com/go/getflashplayer" ); --></script></div><br/><br/><hr><br/><p></p><center class="copyright"><footer>The Apache Software Foundation</footer><br/>Wed Nov 15 2017, 09:50 AM +01:00  </center></div></body></html><!--The Apache Software Foundation<br/>Wed Nov 15 2017, 09:50 AM +01:00  -->

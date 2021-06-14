@@ -1,0 +1,182 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd"><!-- saved from url=(0014)about:internet --><html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><link rel="stylesheet" href="../../style.css" type="text/css" media="screen"><link rel="stylesheet" href="../../print.css" type="text/css" media="print"><link rel="stylesheet" href="../../override.css" type="text/css"><meta name="keywords" content="Grouping,mx.collections.Grouping,ANY_INDEX_MODE,CURRENT,DATE,FIRST,FIRST_INDEX_MODE,LAST,LAST_INDEX_MODE,NULL,NUMERIC,STRING,XML,afterLast,afterLast,arraySortOnOptions,arraySortOnOptions,beforeFirst,beforeFirst,bookmark,bookmark,caseInsensitive,caseInsensitive,childrenField,compareFunction,compareFunction,compareFunction,compareFunction,compareFunction,compareFunction,complexFieldWatcher,createFailedItemFunction,createPendingItemFunction,current,current,currentDepth,currentDepth,dataField,dataField,descending,descending,descending,fields,fields,fields,fields,filterFunction,filterFunction,grouping,grouping,grouping,grouping,groupingFunction,groupingObjectFunction,groupingObjectFunction,hasRoot,hasRoot,label,label,label,length,length,length,length,length,length,list,list,list,localIndex,name,name,name,nameParts,numeric,numeric,numeric,openNodes,openNodes,operation,showRoot,showRoot,sort,sort,sortCompareType,sortCompareType,source,source,source,source,source,source,source,source,summaries,summaries,summaries,summaryFunction,summaryObjectFunction,summaryOperation,summaryPlacement,timer,timer,uid,unique,unique,usingCustomCompareFunction,usingCustomCompareFunction,value,view,view"><title>mx.collections.Grouping</title></head><body><script language="javascript" type="text/javascript" src="../../asdoc.js"></script><script language="javascript" type="text/javascript" src="../../help.js"></script><script language="javascript" type="text/javascript" src="../../cookies.js"></script><script language="javascript" type="text/javascript"><!--
+				asdocTitle = 'Grouping - ApacheFlex API Reference';
+				var baseRef = '../../';
+				window.onload = configPage;
+			--></script>
+<script type="text/javascript">
+			scrollToNameAnchor();
+		</script><table class="titleTable" cellpadding="0" cellspacing="0" id="titleTable" style="display:none"><tr><td class="titleTableTitle" align="left">Apache Flex 4.16.1 API Reference </td><td class="titleTableTopNav" align="right"><a href="../../package-summary.html" onclick="loadClassListFrame('../../all-classes.html')">All Packages</a>&nbsp;|&nbsp;<a href="../../class-summary.html" onclick="loadClassListFrame('../../all-classes.html')">All Classes</a>&nbsp;|&nbsp;<a href="../../all-index-A.html" onclick="loadClassListFrame('../../index-list.html')">Index</a>&nbsp;|&nbsp;<a id="framesLink1" href="../../index.html?mx/collections/Grouping.html&amp;mx/collections/class-list.html">Frames</a><a id="noFramesLink1" style="display:none" href="" onclick="parent.location=document.location"> No Frames </a></td><td class="titleTableLogo" align="right" rowspan="3"><img src="../../images/logo.jpg" class="logoImage" alt="AdobeLogo" title="AdobeLogo"></td></tr><tr class="titleTableRow2"><td class="titleTableSubTitle" id="subTitle" align="left">Grouping</td><td class="titleTableSubNav" id="subNav" align="right"><a href="#propertySummary">Properties</a>&nbsp;| <a href="#methodSummary">Methods</a></td></tr><tr class="titleTableRow3"><td colspan="3">&nbsp;</td></tr></table><script language="javascript" type="text/javascript" xml:space="preserve">
+				<!--
+				
+					if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Grouping"); titleBar_setSubNav(false,true,false,false,false,false,false,false,true,false,false	,false,false,false,false,false);}	
+				-->
+			</script><div xmlns:fn="http://www.w3.org/2005/xpath-functions" class="MainContent"><table class="classHeaderTable" cellpadding="0" cellspacing="0"><tr><td class="classHeaderTableLabel">Package</td><td><a href="package-detail.html" onclick="javascript:loadClassListFrame('class-list.html')">mx.collections</a></td></tr><tr><td class="classHeaderTableLabel">Class</td><td class="classSignature">public  class  Grouping</td></tr><tr><td class="classHeaderTableLabel">Inheritance</td><td class="inheritanceList">Grouping  <img src="../../images/inherit-arrow.gif" title="Inheritance" alt="Inheritance" class="inheritArrow"> Object</td></tr></table><p></p><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Language Version :&nbsp;</b></td><td>ActionScript 3.0</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Product Version :&nbsp;</b></td><td>Flex 3</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Runtime Versions :&nbsp;</b></td><td>Flash Player  9, AIR 1.1</td></tr></table><p></p><p></p><p></p><p></p>
+  The Grouping class defines the fields in the data provider of 
+  the AdvancedDataGrid control used to group data. You use this 
+  class to create groups when the input data to the AdvancedDataGrid control 
+  has a flat structure.
+   <p>To populate the AdvancedDataGrid control with grouped data, 
+  you create an instance of the GroupingCollection class from your flat data, 
+  and then pass that GroupingCollection instance to the data provider 
+  of the AdvancedDataGrid control. 
+  To specify the grouping fields of your flat data, 
+  you pass a Grouping instance to 
+  the <code>GroupingCollection.grouping</code> property. 
+  The Grouping instance contains an Array of GroupingField instances, 
+  one per grouping field. </p>
+               <p>The following example uses the Grouping class to define
+  two grouping fields: Region and Territory.</p>
+               <pre>
+  &lt;mx:AdvancedDataGrid id="myADG"    
+    &lt;mx:dataProvider> 
+      &lt;mx:GroupingCollection id="gc" source="{dpFlat}"> 
+        &lt;mx:grouping> 
+          &lt;mx:Grouping> 
+            &lt;mx:GroupingField name="Region"/> 
+            &lt;mx:GroupingField name="Territory"/> 
+          &lt;/mx:Grouping> 
+        &lt;/mx:grouping> 
+      &lt;/mx:GroupingCollection> 
+    &lt;/mx:dataProvider>  
+     
+    &lt;mx:columns> 
+      &lt;mx:AdvancedDataGridColumn dataField="Region"/> 
+      &lt;mx:AdvancedDataGridColumn dataField="Territory"/> 
+      &lt;mx:AdvancedDataGridColumn dataField="Territory_Rep"/> 
+      &lt;mx:AdvancedDataGridColumn dataField="Actual"/> 
+      &lt;mx:AdvancedDataGridColumn dataField="Estimate"/> 
+    &lt;/mx:columns> 
+  &lt;/mx:AdvancedDataGrid>
+  </pre>
+            <p></p><a name="mxmlSyntaxSummary"></a><span class="classHeaderTableLabel">MXML Syntax</span><span id="showMxmlLink" style="display:none"><a href="#mxmlSyntaxSummary" onclick="toggleMXMLOnly();"><img src="../../images/collapsed.gif" title="collapsed" alt="collapsed" class="collapsedImage">Show MXML Syntax</a><br/></span><span id="hideMxmlLink"><a href="#mxmlSyntaxSummary" onclick="toggleMXMLOnly();"><img src="../../images/expanded.gif" title="expanded" alt="expanded" class="expandedImage">Hide MXML Syntax</a></span><div id="mxmlSyntax" class="mxmlSyntax">  The <code>&lt;mx.Grouping&gt;</code> tag defines the following tag attributes:</p>
+   <pre>
+  &lt;mx:Grouping
+  <b>Properties </b>
+    compareFunction="<i>No default</i>"
+    fields="null"
+    groupingObjectFunction="<i>No default</i>"
+    label="GroupLabel"
+  /&gt;
+  </pre>
+   </div><script language="javascript" type="text/javascript"><!--
+								setMXMLOnly();
+								--></script><p><span class="classHeaderTableLabel">Default MXML Property</span><code>fields</code></p><p><span class="classHeaderTableLabel">See also</span></p><div class="seeAlso"><a href="../../mx/controls/AdvancedDataGrid.html" target="">mx.controls.AdvancedDataGrid</a><br/><a href="GroupingCollection.html" target="">mx.collections.GroupingCollection</a><br/><a href="GroupingField.html" target="">mx.collections.GroupingField</a></div><br/><hr></div><a name="propertySummary"></a><div class="summarySection"><div class="summaryTableTitle">Public Properties</div><table cellspacing="0" cellpadding="3" class="summaryTable " id="summaryTableProperty"><tr><th>&nbsp;</th><th colspan="2">Property</th><th class="summaryTableOwnerCol">Defined By</th></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a href="#compareFunction" class="signatureLink">compareFunction</a> : Function<div class="summaryTableDescription">
+      The method used to compare items when sorting.</div></td><td class="summaryTableOwnerCol">Grouping</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a href="#fields" class="signatureLink">fields</a> : Array<div class="summaryTableDescription">
+      An Array of GroupingField objects that specifies the fields 
+      used to group the data.</div></td><td class="summaryTableOwnerCol">Grouping</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a href="#groupingObjectFunction" class="signatureLink">groupingObjectFunction</a> : Function<div class="summaryTableDescription">
+      A callback function to run on each group node to determine the 
+      grouping object.</div></td><td class="summaryTableOwnerCol">Grouping</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a href="#label" class="signatureLink">label</a> : String = GroupLabel<div class="summaryTableDescription">
+      The name of the field added to the flat data 
+      to create the hierarchy.</div></td><td class="summaryTableOwnerCol">Grouping</td></tr></table></div><a name="methodSummary"></a><div class="summarySection"><div class="summaryTableTitle">Public Methods </div><table cellspacing="0" cellpadding="3" class="summaryTable " id="summaryTableMethod"><tr><th>&nbsp;</th><th colspan="2">Method</th><th class="summaryTableOwnerCol">Defined By</th></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#Grouping()" class="signatureLink">Grouping</a>()</div><div class="summaryTableDescription">
+      Constructor.</div></td><td class="summaryTableOwnerCol">Grouping</td></tr></table></div><script language="javascript" type="text/javascript"><!--
+										showHideInherited();
+										--></script><div class="MainContent"><div class="detailSectionHeader">Property Detail</div><a name="propertyDetail"></a><a name="compareFunction"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">compareFunction</td><td class="detailHeaderType">property</td></tr></table><div class="detailBody"><code>compareFunction:Function</code><p></p><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Language Version :&nbsp;</b></td><td>ActionScript 3.0</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Product Version :&nbsp;</b></td><td>Flex 3</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Runtime Versions :&nbsp;</b></td><td>Flash Player  9, AIR 1.1</td></tr></table><p></p><p></p><p>
+      The method used to compare items when sorting.
+      If you specify this property, Flex ignores any <code>compareFunction</code> 
+      properties that you specify in the SortField objects that you
+      use in this class.
+     
+      <p>The compare function must have the following signature:</p>
+      <pre>
+         function [name](a:Object, b:Object, fields:Array=null):int</pre>
+     
+      <p>This function must return the following:</p>
+      <ul>
+            <li>-1, if <code>a</code> should appear before <code>b</code> in
+            the sorted sequence.</li>
+            <li>0, if <code>a</code> equals <code>b</code>.</li>
+            <li>1, if <code>a</code> should appear after <code>b</code> in the
+            sorted sequence.</li>
+      </ul>
+     
+      <p>To return to the internal comparison function, set this value to
+      <code>null</code>.</p>
+          <p>The <code>fields</code> Array specifies the object fields
+      to compare.
+      Typically, the algorithm will compare properties until the field list is
+      exhausted or a non-zero value can be returned.
+      For example:</p>
+     
+      <pre>
+        function myCompare(a:Object, b:Object, fields:Array=null):int
+        {
+            var result:int = 0;
+            var i:int = 0;
+            var propList:Array = fields ? fields : internalPropList;
+            var len:int = propList.length;
+            var propName:String;
+            while (result == 0 && (i &lt; len))
+            {
+                propName = propList[i];
+                result = compareValues(a[propName], b[propName]);
+                i++;
+            }
+            return result;
+        }
+             function compareValues(a:Object, b:Object):int
+        {
+            if (a == null && b == null)
+                return 0;
+                 if (a == null)
+              return 1;
+                 if (b == null)
+               return -1;
+                 if (a &lt; b)
+                return -1;
+                 if (a > b)
+                return 1;
+                 return 0;
+        }</pre>
+           <p>The default value is an internal compare function that can perform 
+      a string, numeric, or date comparison in ascending or descending order, 
+      with case-sensitive or case-insensitive string comparisons.
+      Specify your own function only if you need a custom comparison algorithm.
+      This is normally only the case if a calculated field is used in a display.</p>
+     
+      <p>Alternatively, you can specify separate compare functions for each sort
+      field by using the SortField class <code>compare</code> property.
+      This way you can use the default comparison for some fields and a custom
+      comparison for others.</p>
+      
+      </p><br/><span class="label"> Implementation </span><br/><code>&nbsp;&nbsp;&nbsp;&nbsp;public function get compareFunction():Function</code><br/><code>&nbsp;&nbsp;&nbsp;&nbsp;public function set compareFunction(value:Function):void</code><br/></div><a name="propertyDetail"></a><a name="fields"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">fields</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code>fields:Array</code><p></p><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Language Version :&nbsp;</b></td><td>ActionScript 3.0</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Product Version :&nbsp;</b></td><td>Flex 3</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Runtime Versions :&nbsp;</b></td><td>Flash Player  9, AIR 1.1</td></tr></table><p></p><p></p><p>
+      An Array of GroupingField objects that specifies the fields 
+      used to group the data.
+      The order of the GroupingField objects in the Array determines
+      field priority order when sorting.
+           </p><p> The default value is <code>null</code>.</p><br/><span class="label"> Implementation </span><br/><code>&nbsp;&nbsp;&nbsp;&nbsp;public function get fields():Array</code><br/><code>&nbsp;&nbsp;&nbsp;&nbsp;public function set fields(value:Array):void</code><br/><p><span class="label">See also</span></p><div class="seeAlso"><a href="GroupingField.html" target="">GroupingField</a></div></div><a name="propertyDetail"></a><a name="groupingObjectFunction"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">groupingObjectFunction</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code>public var groupingObjectFunction:Function</code><p></p><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Language Version :&nbsp;</b></td><td>ActionScript 3.0</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Product Version :&nbsp;</b></td><td>Flex 3</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Runtime Versions :&nbsp;</b></td><td>Flash Player  9, AIR 1.1</td></tr></table><p></p><p></p><p>
+      A callback function to run on each group node to determine the 
+      grouping object.  
+      By default, a new Object will be created for group nodes.
+           <p>You can supply a <code>groupingObjectFunction</code> that provides the 
+      appropriate Object for group nodes.</p>
+           <p>The method signature is:</p>
+      <pre>
+      myGroupObjectFunction(label:String):Object</pre>
+     
+      <p>Where <code>label</code> contains the value that will be
+      shown for that group node. 
+      The function returns an Object which will be used for group nodes. </p>
+           For example, a <code>groupingObjectFunction</code> which returns an Object
+      containing a "name" property with value as "Bob" can be written as - 
+      <pre>
+      private function groupObjFunction(label:String):Object
+      {
+          var obj:Object = {};
+          obj.name = "Bob";
+               return obj;
+      }
+      </pre>
+     
+      
+      </p></div><a name="propertyDetail"></a><a name="label"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">label</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code>public var label:String = GroupLabel</code><p></p><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Language Version :&nbsp;</b></td><td>ActionScript 3.0</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Product Version :&nbsp;</b></td><td>Flex 3</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Runtime Versions :&nbsp;</b></td><td>Flash Player  9, AIR 1.1</td></tr></table><p></p><p></p><p>
+      The name of the field added to the flat data 
+      to create the hierarchy.
+      The value of the top nodes (nodes representing the group fields)
+      in every group will be represented 
+      by this property.
+      Use this property to specify a different name.
+     
+      </p><p> The default value is <code>GroupLabel</code>.</p></div><a name="constructorDetail"></a><div class="detailSectionHeader">Constructor Detail</div><a name="Grouping()"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">Grouping</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">Constructor</td></tr></table><div class="detailBody"><code>public function Grouping()</code><p></p><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Language Version :&nbsp;</b></td><td>ActionScript 3.0</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Product Version :&nbsp;</b></td><td>Flex 3</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Runtime Versions :&nbsp;</b></td><td>Flash Player  9, AIR 1.1</td></tr></table><p></p><p>
+      Constructor.
+      
+      </p></div><br/><br/><hr><br/><p></p><center class="copyright"><footer>The Apache Software Foundation</footer><br/>Wed Nov 15 2017, 09:50 AM +01:00  </center></div></body></html><!--The Apache Software Foundation<br/>Wed Nov 15 2017, 09:50 AM +01:00  -->

@@ -1,0 +1,176 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd"><!-- saved from url=(0014)about:internet --><html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><link rel="stylesheet" href="../../style.css" type="text/css" media="screen"><link rel="stylesheet" href="../../print.css" type="text/css" media="print"><link rel="stylesheet" href="../../override.css" type="text/css"><meta name="keywords" content="PhoneFormatter,mx.formatters.PhoneFormatter,DOWN,NEAREST,NONE,UP,alignSymbol,areaCode,areaCodeFormat,currencySymbol,dayNamesLong,dayNamesShort,decimalSeparatorFrom,decimalSeparatorFrom,decimalSeparatorFrom,decimalSeparatorTo,decimalSeparatorTo,decimalSeparatorTo,defaultInvalidFormatError,defaultInvalidValueError,error,formatString,formatString,formatString,isValid,monthNamesLong,monthNamesShort,precision,precision,resourceManager,rounding,rounding,thousandsSeparatorFrom,thousandsSeparatorFrom,thousandsSeparatorFrom,thousandsSeparatorTo,thousandsSeparatorTo,thousandsSeparatorTo,timeOfDay,timezoneHourMinuteSeperator,timezoneName,useNegativeSign,useNegativeSign,useThousandsSeparator,useThousandsSeparator,validPatternChars,expandExponents,format,format,format,format,format,format,format,formatDecimal,formatNegative,formatPrecision,formatRounding,formatRoundingWithPrecision,formatThousands,formatValue,parseDateString,parseNumberString,resourcesChanged"><title>mx.formatters.PhoneFormatter</title><script src="../../AC_OETags.js" type="text/javascript"></script></head><body><script language="javascript" type="text/javascript" src="../../asdoc.js"></script><script language="javascript" type="text/javascript" src="../../help.js"></script><script language="javascript" type="text/javascript" src="../../cookies.js"></script><script language="javascript" type="text/javascript"><!--
+				asdocTitle = 'PhoneFormatter - ApacheFlex API Reference';
+				var baseRef = '../../';
+				window.onload = configPage;
+			--></script>
+<script type="text/javascript">
+			scrollToNameAnchor();
+		</script><table class="titleTable" cellpadding="0" cellspacing="0" id="titleTable" style="display:none"><tr><td class="titleTableTitle" align="left">Apache Flex 4.16.1 API Reference </td><td class="titleTableTopNav" align="right"><a href="../../package-summary.html" onclick="loadClassListFrame('../../all-classes.html')">All Packages</a>&nbsp;|&nbsp;<a href="../../class-summary.html" onclick="loadClassListFrame('../../all-classes.html')">All Classes</a>&nbsp;|&nbsp;<a href="../../all-index-A.html" onclick="loadClassListFrame('../../index-list.html')">Index</a>&nbsp;|&nbsp;<a id="framesLink1" href="../../index.html?mx/formatters/PhoneFormatter.html&amp;mx/formatters/class-list.html">Frames</a><a id="noFramesLink1" style="display:none" href="" onclick="parent.location=document.location"> No Frames </a></td><td class="titleTableLogo" align="right" rowspan="3"><img src="../../images/logo.jpg" class="logoImage" alt="AdobeLogo" title="AdobeLogo"></td></tr><tr class="titleTableRow2"><td class="titleTableSubTitle" id="subTitle" align="left">PhoneFormatter</td><td class="titleTableSubNav" id="subNav" align="right"><a href="#propertySummary">Properties</a>&nbsp;| <a href="#methodSummary">Methods</a>&nbsp;| <a href="#includeExamplesSummary">Examples</a></td></tr><tr class="titleTableRow3"><td colspan="3">&nbsp;</td></tr></table><script language="javascript" type="text/javascript" xml:space="preserve">
+				<!--
+				
+					if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("PhoneFormatter"); titleBar_setSubNav(false,true,false,false,false,false,false,false,true,true,false	,false,false,false,false,false);}	
+				-->
+			</script><div xmlns:fn="http://www.w3.org/2005/xpath-functions" class="MainContent"><table class="classHeaderTable" cellpadding="0" cellspacing="0"><tr><td class="classHeaderTableLabel">Package</td><td><a href="package-detail.html" onclick="javascript:loadClassListFrame('class-list.html')">mx.formatters</a></td></tr><tr><td class="classHeaderTableLabel">Class</td><td class="classSignature">public  class  PhoneFormatter</td></tr><tr><td class="classHeaderTableLabel">Inheritance</td><td class="inheritanceList">PhoneFormatter  <img src="../../images/inherit-arrow.gif" title="Inheritance" alt="Inheritance" class="inheritArrow"> <a href="../../mx/formatters/Formatter.html">Formatter</a> <img src="../../images/inherit-arrow.gif" title="Inheritance" alt="Inheritance" class="inheritArrow"> Object</td></tr></table><p></p><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Language Version :&nbsp;</b></td><td>ActionScript 3.0</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Product Version :&nbsp;</b></td><td>Flex 3</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Runtime Versions :&nbsp;</b></td><td>Flash Player  9, AIR 1.1</td></tr></table><p></p><p></p><p></p><p></p>
+  The PhoneFormatter class formats a valid number into a phone number format,
+  including international configurations.
+   <p>A shortcut is provided for the United States seven-digit format.
+  If the <code>areaCode</code> property contains a value
+  and you use the seven-digit format string, (###-####),
+  a seven-digit value to format automatically adds the area code
+  to the returned String.
+  The default format for the area code is (###). 
+  You can change this using the <code>areaCodeFormat</code> property. 
+  You can format the area code any way you want as long as it contains 
+  three number placeholders.</p>
+               <p>If an error occurs, an empty String is returned and a String
+  that describes the error is saved to the <code>error</code> property.
+  The <code>error</code> property can have one of the following values:</p>
+               <ul>
+                  <li>
+                     <code>"Invalid value"</code> means an invalid numeric value is passed 
+    to the <code>format()</code> method. The value should be a valid number 
+    in the form of a Number or a String, or the value contains a different 
+    number of digits than what is specified in the format String.</li>
+                  <li> 
+                     <code>"Invalid format"</code> means any of the characters in the 
+    <code>formatString</code> property do not match the allowed characters 
+    specified in the <code>validPatternChars</code> property, 
+    or the <code>areaCodeFormat</code> property is specified but does not
+    contain exactly three numeric placeholders.</li>
+               </ul>
+  
+            <p></p><a name="mxmlSyntaxSummary"></a><span class="classHeaderTableLabel">MXML Syntax</span><span id="showMxmlLink" style="display:none"><a href="#mxmlSyntaxSummary" onclick="toggleMXMLOnly();"><img src="../../images/collapsed.gif" title="collapsed" alt="collapsed" class="collapsedImage">Show MXML Syntax</a><br/></span><span id="hideMxmlLink"><a href="#mxmlSyntaxSummary" onclick="toggleMXMLOnly();"><img src="../../images/expanded.gif" title="expanded" alt="expanded" class="expandedImage">Hide MXML Syntax</a></span><div id="mxmlSyntax" class="mxmlSyntax"> 
+  <p>The <code>&lt;mx:PhoneFormatter&gt;</code> tag
+  inherits all of the tag attributes of its superclass,
+  and adds the following tag attributes:</p>
+  
+  <pre>
+  &lt;mx:PhoneFormatter
+    areaCode="-1"
+    areaCodeFormat="(###)"
+    formatString="(###) ###-####"
+    validPatternChars="+()#-. "
+  />
+  </pre>
+  
+  </div><script language="javascript" type="text/javascript"><!--
+								setMXMLOnly();
+								--></script><p><a href="#includeExamplesSummary">View the examples</a></p><p><span class="classHeaderTableLabel">See also</span></p><div class="seeAlso"><a href="SwitchSymbolFormatter.html" target="">mx.formatters.SwitchSymbolFormatter</a></div><br/><hr></div><a name="propertySummary"></a><div class="summarySection"><div class="summaryTableTitle">Public Properties</div><div class="showHideLinks"><div id="hideInheritedProperty" class="hideInheritedProperty"><a class="showHideLink" href="#propertySummary" onclick="javascript:setInheritedVisible(false,'Property');"><img class="showHideLinkImage" src="../../images/expanded.gif"> Hide Inherited Public Properties</a></div><div id="showInheritedProperty" class="showInheritedProperty"><a class="showHideLink" href="#propertySummary" onclick="javascript:setInheritedVisible(true,'Property');"><img class="showHideLinkImage" src="../../images/collapsed.gif"> Show Inherited Public Properties</a></div></div><table cellspacing="0" cellpadding="3" class="summaryTable " id="summaryTableProperty"><tr><th>&nbsp;</th><th colspan="2">Property</th><th class="summaryTableOwnerCol">Defined By</th></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a href="#areaCode" class="signatureLink">areaCode</a> : Object<div class="summaryTableDescription">
+      Area code number added to a seven-digit United States
+      format phone number to form a 10-digit phone number.</div></td><td class="summaryTableOwnerCol">PhoneFormatter</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a href="#areaCodeFormat" class="signatureLink">areaCodeFormat</a> : String<div class="summaryTableDescription">
+      Default format for the area code when the areacode
+      property is rendered by a seven-digit format.</div></td><td class="summaryTableOwnerCol">PhoneFormatter</td></tr><tr class="hideInheritedProperty"><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img src="../../images/inheritedSummary.gif" alt="Inherited" title="Inherited" class="inheritedSummaryImage"></td><td class="summaryTableSignatureCol"><a href="../../mx/formatters/Formatter.html#defaultInvalidFormatError" class="signatureLink">defaultInvalidFormatError</a> : String<div class="summaryTableDescription">[static] 
+	  Error message for an invalid format string specified to the formatter.</div></td><td class="summaryTableOwnerCol"><a href="../../mx/formatters/Formatter.html">Formatter</a></td></tr><tr class="hideInheritedProperty"><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img src="../../images/inheritedSummary.gif" alt="Inherited" title="Inherited" class="inheritedSummaryImage"></td><td class="summaryTableSignatureCol"><a href="../../mx/formatters/Formatter.html#defaultInvalidValueError" class="signatureLink">defaultInvalidValueError</a> : String<div class="summaryTableDescription">[static] 
+	  Error messages for an invalid value specified to the formatter.</div></td><td class="summaryTableOwnerCol"><a href="../../mx/formatters/Formatter.html">Formatter</a></td></tr><tr class="hideInheritedProperty"><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img src="../../images/inheritedSummary.gif" alt="Inherited" title="Inherited" class="inheritedSummaryImage"></td><td class="summaryTableSignatureCol"><a href="../../mx/formatters/Formatter.html#error" class="signatureLink">error</a> : String<div class="summaryTableDescription">
+	  Description saved by the formatter when an error occurs.</div></td><td class="summaryTableOwnerCol"><a href="../../mx/formatters/Formatter.html">Formatter</a></td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a href="#formatString" class="signatureLink">formatString</a> : String<div class="summaryTableDescription">
+      String that contains mask characters
+      that represent a specified phone number format.</div></td><td class="summaryTableOwnerCol">PhoneFormatter</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a href="#validPatternChars" class="signatureLink">validPatternChars</a> : String<div class="summaryTableDescription">
+      List of valid characters that can be used
+      in the formatString property.</div></td><td class="summaryTableOwnerCol">PhoneFormatter</td></tr></table></div><a name="protectedPropertySummary"></a><div class="summarySection"><div class="summaryTableTitle">Protected Properties</div><div class="showHideLinks"><div id="hideInheritedProtectedProperty" class="hideInheritedProtectedProperty"><a class="showHideLink" href="#protectedPropertySummary" onclick="javascript:setInheritedVisible(false,'ProtectedProperty');"><img class="showHideLinkImage" src="../../images/expanded.gif"> Hide Inherited Protected Properties</a></div><div id="showInheritedProtectedProperty" class="showInheritedProtectedProperty"><a class="showHideLink" href="#protectedPropertySummary" onclick="javascript:setInheritedVisible(true,'ProtectedProperty');"><img class="showHideLinkImage" src="../../images/collapsed.gif"> Show Inherited Protected Properties</a></div></div><table cellspacing="0" cellpadding="3" class="summaryTable hideInheritedProtectedProperty" id="summaryTableProtectedProperty"><tr><th>&nbsp;</th><th colspan="2">Property</th><th class="summaryTableOwnerCol">Defined By</th></tr><tr class="hideInheritedProtectedProperty"><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img src="../../images/inheritedSummary.gif" alt="Inherited" title="Inherited" class="inheritedSummaryImage"></td><td class="summaryTableSignatureCol"><a href="../../mx/formatters/Formatter.html#resourceManager" class="signatureLink">resourceManager</a> : <a href="../../mx/resources/IResourceManager.html">IResourceManager</a><div class="summaryTableDescription">[read-only] 
+      A reference to the object which manages
+      all of the application's localized resources.</div></td><td class="summaryTableOwnerCol"><a href="../../mx/formatters/Formatter.html">Formatter</a></td></tr></table></div><a name="methodSummary"></a><div class="summarySection"><div class="summaryTableTitle">Public Methods </div><table cellspacing="0" cellpadding="3" class="summaryTable " id="summaryTableMethod"><tr><th>&nbsp;</th><th colspan="2">Method</th><th class="summaryTableOwnerCol">Defined By</th></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#PhoneFormatter()" class="signatureLink">PhoneFormatter</a>()</div><div class="summaryTableDescription">
+      Constructor.</div></td><td class="summaryTableOwnerCol">PhoneFormatter</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#format()" class="signatureLink">format</a>(value:Object):String</div><div class="summaryTableDescription">[override] 
+      Formats the String as a phone number.</div></td><td class="summaryTableOwnerCol">PhoneFormatter</td></tr></table></div><a name="protectedMethodSummary"></a><div class="summarySection"><div class="summaryTableTitle">Protected Methods </div><div class="showHideLinks"><div id="hideInheritedProtectedMethod" class="hideInheritedProtectedMethod"><a class="showHideLink" href="#protectedMethodSummary" onclick="javascript:setInheritedVisible(false,'ProtectedMethod');"><img class="showHideLinkImage" src="../../images/expanded.gif"> Show Inherited Protected Methods</a></div><div id="showInheritedProtectedMethod" class="showInheritedProtectedMethod"><a class="showHideLink" href="#protectedMethodSummary" onclick="javascript:setInheritedVisible(true,'ProtectedMethod');"><img class="showHideLinkImage" src="../../images/collapsed.gif"> Show Inherited Protected Methods</a></div></div><table cellspacing="0" cellpadding="3" class="summaryTable hideInheritedProtectedMethod" id="summaryTableProtectedMethod"><tr><th>&nbsp;</th><th colspan="2">Method</th><th class="summaryTableOwnerCol">Defined By</th></tr><tr class="hideInheritedProtectedMethod"><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img src="../../images/inheritedSummary.gif" alt="Inherited" title="Inherited" class="inheritedSummaryImage"></td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="../../mx/formatters/Formatter.html#resourcesChanged()" class="signatureLink">resourcesChanged</a>():void</div><div class="summaryTableDescription">
+	  This method is called when a Formatter is constructed,
+	  and again whenever the ResourceManager dispatches
+	  a "change" Event to indicate
+	  that the localized resources have changed in some way.</div></td><td class="summaryTableOwnerCol"><a href="../../mx/formatters/Formatter.html">Formatter</a></td></tr></table></div><script language="javascript" type="text/javascript"><!--
+										showHideInherited();
+										--></script><div class="MainContent"><div class="detailSectionHeader">Property Detail</div><a name="propertyDetail"></a><a name="areaCode"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">areaCode</td><td class="detailHeaderType">property</td></tr></table><div class="detailBody"><code>areaCode:Object</code><p></p><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Language Version :&nbsp;</b></td><td>ActionScript 3.0</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Product Version :&nbsp;</b></td><td>Flex 3</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Runtime Versions :&nbsp;</b></td><td>Flash Player  9, AIR 1.1</td></tr></table><p></p><p></p><p>
+      Area code number added to a seven-digit United States
+      format phone number to form a 10-digit phone number.
+      A value of <code>-1</code> means do not  
+      prepend the area code.
+           </p><p> The default value is <code>-1</code>.</p><br/><span class="label"> Implementation </span><br/><code>&nbsp;&nbsp;&nbsp;&nbsp;public function get areaCode():Object</code><br/><code>&nbsp;&nbsp;&nbsp;&nbsp;public function set areaCode(value:Object):void</code><br/></div><a name="propertyDetail"></a><a name="areaCodeFormat"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">areaCodeFormat</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code>areaCodeFormat:String</code><p></p><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Language Version :&nbsp;</b></td><td>ActionScript 3.0</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Product Version :&nbsp;</b></td><td>Flex 3</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Runtime Versions :&nbsp;</b></td><td>Flash Player  9, AIR 1.1</td></tr></table><p></p><p></p><p>
+      Default format for the area code when the <code>areacode</code>
+      property is rendered by a seven-digit format.
+           </p><p> The default value is <code>"(###) "</code>.</p><br/><span class="label"> Implementation </span><br/><code>&nbsp;&nbsp;&nbsp;&nbsp;public function get areaCodeFormat():String</code><br/><code>&nbsp;&nbsp;&nbsp;&nbsp;public function set areaCodeFormat(value:String):void</code><br/></div><a name="propertyDetail"></a><a name="formatString"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">formatString</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code>formatString:String</code><p></p><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Language Version :&nbsp;</b></td><td>ActionScript 3.0</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Product Version :&nbsp;</b></td><td>Flex 3</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Runtime Versions :&nbsp;</b></td><td>Flash Player  9, AIR 1.1</td></tr></table><p></p><p></p><p>
+      String that contains mask characters
+      that represent a specified phone number format.
+           </p><p> The default value is <code>"(###) ###-####"</code>.</p><br/><span class="label"> Implementation </span><br/><code>&nbsp;&nbsp;&nbsp;&nbsp;public function get formatString():String</code><br/><code>&nbsp;&nbsp;&nbsp;&nbsp;public function set formatString(value:String):void</code><br/></div><a name="propertyDetail"></a><a name="validPatternChars"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">validPatternChars</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code>validPatternChars:String</code><p></p><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Language Version :&nbsp;</b></td><td>ActionScript 3.0</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Product Version :&nbsp;</b></td><td>Flex 3</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Runtime Versions :&nbsp;</b></td><td>Flash Player  9, AIR 1.1</td></tr></table><p></p><p></p><p>
+      List of valid characters that can be used
+      in the <code>formatString</code> property.
+      This property is used during validation
+      of the <code>formatString</code> property.
+           </p><p> The default value is <code>"+()#- ."</code>.</p><br/><span class="label"> Implementation </span><br/><code>&nbsp;&nbsp;&nbsp;&nbsp;public function get validPatternChars():String</code><br/><code>&nbsp;&nbsp;&nbsp;&nbsp;public function set validPatternChars(value:String):void</code><br/></div><a name="constructorDetail"></a><div class="detailSectionHeader">Constructor Detail</div><a name="PhoneFormatter()"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">PhoneFormatter</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">Constructor</td></tr></table><div class="detailBody"><code>public function PhoneFormatter()</code><p></p><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Language Version :&nbsp;</b></td><td>ActionScript 3.0</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Product Version :&nbsp;</b></td><td>Flex 3</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Runtime Versions :&nbsp;</b></td><td>Flash Player  9, AIR 1.1</td></tr></table><p></p><p>
+      Constructor.
+      
+      </p></div><a name="methodDetail"></a><div class="detailSectionHeader">Method Detail</div><a name="format()"></a><a name="format(Object)"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">format</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td></tr></table><div class="detailBody"><code>override public function format(value:Object):String</code><p></p><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Language Version :&nbsp;</b></td><td>ActionScript 3.0</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Product Version :&nbsp;</b></td><td>Flex 3</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Runtime Versions :&nbsp;</b></td><td>Flash Player  9, AIR 1.1</td></tr></table><p></p><p></p><p>
+      Formats the String as a phone number.
+      If the value cannot be formatted, return an empty String 
+      and write a description of the error to the <code>error</code> property.
+           </p><p><span class="label"> Parameters </span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20px"></td><td><code><span class="label">value</span>:Object</code> &mdash; Value to format.
+           </td></tr></table></p><p></p><span class="label">Returns</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code>String</code> &mdash; Formatted String. Empty if an error occurs. A description 
+      of the error condition is written to the <code>error</code> property.
+      
+      </td></tr></table></div><a name="includeExamplesSummary"></a><div class="detailSectionHeader">Examples</div><div class="exampleHeader">PhoneFormatterExample.mxml</div><div class="detailBody"><div class="listing"><pre>&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;!--
+
+  Licensed to the Apache Software Foundation (ASF) under one or more
+  contributor license agreements.  See the NOTICE file distributed with
+  this work for additional information regarding copyright ownership.
+  The ASF licenses this file to You under the Apache License, Version 2.0
+  (the "License"); you may not use this file except in compliance with
+  the License.  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+
+--&gt;
+&lt;!-- Simple example to demonstrate PhoneFormatter. --&gt;
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009"
+        xmlns:s="library://ns.adobe.com/flex/spark"
+        xmlns:mx="library://ns.adobe.com/flex/mx"&gt;
+
+    &lt;fx:Script&gt;
+        &lt;![CDATA[
+            import mx.events.ValidationResultEvent;
+
+            private var vResult:ValidationResultEvent;
+
+            // Event handler to validate and format input.
+            private function Format():void {
+                vResult = pnVal.validate();
+                if (vResult.type == ValidationResultEvent.VALID) {
+                    formattedPhone.text = phoneFormatter.format(phone.text);
+                } else {
+                    formattedPhone.text = "";
+                }
+            }
+        ]]&gt;
+    &lt;/fx:Script&gt;
+
+    &lt;fx:Declarations&gt;
+        &lt;mx:PhoneFormatter id="phoneFormatter" 
+                formatString="(###) ###-####" validPatternChars="#-() "/&gt;
+
+        &lt;mx:PhoneNumberValidator id="pnVal" source="{phone}" property="text" 
+                allowedFormatChars=""/&gt;
+    &lt;/fx:Declarations&gt;
+
+    &lt;s:Panel title="PhoneFormatter Example"
+            width="75%" height="75%"
+            horizontalCenter="0" verticalCenter="0"&gt;
+        &lt;mx:Form left="10" right="10" top="10" bottom="10"&gt;
+            &lt;mx:FormItem label="Enter a 10-digit phone number:"&gt;
+                &lt;s:TextInput id="phone" text="" width="75%"/&gt;
+            &lt;/mx:FormItem&gt;
+            &lt;mx:FormItem label="Formatted phone number: "&gt;
+                &lt;s:TextInput id="formattedPhone" text="" width="75%" editable="false"/&gt;
+            &lt;/mx:FormItem&gt;
+            &lt;mx:FormItem&gt;
+                &lt;s:Button label="Validate and Format" click="Format();"/&gt;
+            &lt;/mx:FormItem&gt;
+        &lt;/mx:Form&gt;
+    &lt;/s:Panel&gt;
+
+&lt;/s:Application&gt;
+</pre></div><script language="javascript" type="text/javascript"><!-- AC_FL_RunContent( "src", "examples/PhoneFormatterExample", "width", "100%",
+					"height","400px", "salign", "TL", "id", "example1", "quality", "high", "bgcolor", "", "name",
+						"example1", "flashvars","", "allowScriptAccess","sameDomain", "type",
+					"application/x-shockwave-flash","pluginspage", "http://www.macromedia.com/go/getflashplayer" ); --></script></div><br/><br/><hr><br/><p></p><center class="copyright"><footer>The Apache Software Foundation</footer><br/>Wed Nov 15 2017, 09:50 AM +01:00  </center></div></body></html><!--The Apache Software Foundation<br/>Wed Nov 15 2017, 09:50 AM +01:00  -->

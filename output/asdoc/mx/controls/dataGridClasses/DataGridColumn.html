@@ -1,0 +1,660 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd"><!-- saved from url=(0014)about:internet --><html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><link rel="stylesheet" href="../../../style.css" type="text/css" media="screen"><link rel="stylesheet" href="../../../print.css" type="text/css" media="print"><link rel="stylesheet" href="../../../override.css" type="text/css"><meta name="keywords" content="DataGridColumn,mx.controls.dataGridClasses.DataGridColumn,bottomOffset,cachedHeaderHeight,cachedPaddingBottom,cachedPaddingTop,columnCaretIndicator,columnHighlightIndicator,columnMap,data,data,dataField,dataField,dataGrid,dataGridListData,dataTipField,dataTipFunction,draggable,editable,editorDataField,editorHeightOffset,editorUsesEnterKey,editorWidthOffset,editorXOffset,editorYOffset,enableIME,enabled,fontContext,freeItemRenderersTable,header,headerHeight,headerItems,headerMask,headerRenderer,headerText,headerWordWrap,imeMode,itemEditor,itemRenderer,labelFunction,leftOffset,listData,listData,lockedColumnAndRowContent,lockedColumnContent,lockedColumnCount,lockedColumnHeader,lockedRowContent,lockedRowCount,measuredHeight,minWidth,needRightSeparator,needRightSeparatorEvents,nullItemRenderer,rendererIsEditor,resizable,rightOffset,showDataTips,showHeaders,sortCompareFunction,sortCompareType,sortDescending,sortable,styleDeclaration,styleDeclaration,topOffset,visible,width,wordWrap,adjustRow,calculateRowHeight,clearRow,clearSeparators,clearStyle,clearStyle,createChildren,createColumnItemRenderer,drawColumnDragOverlay,drawHeaderBackground,drawHeaderIndicator,drawSelectionIndicator,drawSeparators,drawVisibleItem,finishKeySelection,getClassStyleDeclarations,getClassStyleDeclarations,getItemRendererFactory,getStyle,getStyle,initProtoChain,initProtoChain,itemRendererToIndices,itemToDataTip,itemToLabel,layoutColumnItemRenderer,makeListData,makeRow,measure,moveSelectionVertically,notifyStyleChangeInChildren,notifyStyleChangeInChildren,placeSortArrow,prepareRowArray,regenerateStyleCache,regenerateStyleCache,registerEffects,registerEffects,removeExtraRow,setRowInfo,setStyle,setStyle,setupColumnItemRenderer,toolTipShowHandler,toolTipShowHandler,updateDisplayList,updateRendererDisplayList,validateDisplayList,validateDisplayList,validateProperties,validateProperties,validateSize,validateSize"><title>mx.controls.dataGridClasses.DataGridColumn</title></head><body><script language="javascript" type="text/javascript" src="../../../asdoc.js"></script><script language="javascript" type="text/javascript" src="../../../help.js"></script><script language="javascript" type="text/javascript" src="../../../cookies.js"></script><script language="javascript" type="text/javascript"><!--
+				asdocTitle = 'DataGridColumn - ApacheFlex API Reference';
+				var baseRef = '../../../';
+				window.onload = configPage;
+			--></script>
+<script type="text/javascript">
+			scrollToNameAnchor();
+		</script><table class="titleTable" cellpadding="0" cellspacing="0" id="titleTable" style="display:none"><tr><td class="titleTableTitle" align="left">Apache Flex 4.16.1 API Reference </td><td class="titleTableTopNav" align="right"><a href="../../../package-summary.html" onclick="loadClassListFrame('../../../all-classes.html')">All Packages</a>&nbsp;|&nbsp;<a href="../../../class-summary.html" onclick="loadClassListFrame('../../../all-classes.html')">All Classes</a>&nbsp;|&nbsp;<a href="../../../all-index-A.html" onclick="loadClassListFrame('../../../index-list.html')">Index</a>&nbsp;|&nbsp;<a id="framesLink1" href="../../../index.html?mx/controls/dataGridClasses/DataGridColumn.html&amp;mx/controls/dataGridClasses/class-list.html">Frames</a><a id="noFramesLink1" style="display:none" href="" onclick="parent.location=document.location"> No Frames </a></td><td class="titleTableLogo" align="right" rowspan="3"><img src="../../../images/logo.jpg" class="logoImage" alt="AdobeLogo" title="AdobeLogo"></td></tr><tr class="titleTableRow2"><td class="titleTableSubTitle" id="subTitle" align="left">DataGridColumn</td><td class="titleTableSubNav" id="subNav" align="right"><a href="#propertySummary">Properties</a>&nbsp;| <a href="#methodSummary">Methods</a>&nbsp;| <a href="#styleSummary">Styles</a></td></tr><tr class="titleTableRow3"><td colspan="3">&nbsp;</td></tr></table><script language="javascript" type="text/javascript" xml:space="preserve">
+				<!--
+				
+					if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("DataGridColumn"); titleBar_setSubNav(false,true,true,false,false,false,false,false,true,false,false	,false,false,false,false,false);}	
+				-->
+			</script><div xmlns:fn="http://www.w3.org/2005/xpath-functions" class="MainContent"><table class="classHeaderTable" cellpadding="0" cellspacing="0"><tr><td class="classHeaderTableLabel">Package</td><td><a href="package-detail.html" onclick="javascript:loadClassListFrame('class-list.html')">mx.controls.dataGridClasses</a></td></tr><tr><td class="classHeaderTableLabel">Class</td><td class="classSignature">public  class  DataGridColumn</td></tr><tr><td class="classHeaderTableLabel">Inheritance</td><td class="inheritanceList">DataGridColumn  <img src="../../../images/inherit-arrow.gif" title="Inheritance" alt="Inheritance" class="inheritArrow"> <a href="../../../mx/styles/CSSStyleDeclaration.html">CSSStyleDeclaration</a> <img src="../../../images/inherit-arrow.gif" title="Inheritance" alt="Inheritance" class="inheritArrow"> flash.events.EventDispatcher</td></tr><tr><td class="classHeaderTableLabel">Implements</td><td> <a href="../../../mx/core/IIMESupport.html">IIMESupport</a></td></tr></table><p></p><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Language Version :&nbsp;</b></td><td>ActionScript 3.0</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Product Version :&nbsp;</b></td><td>Flex 3</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Runtime Versions :&nbsp;</b></td><td>Flash Player  9, AIR 1.1</td></tr></table><p></p><p></p><p></p><p></p>
+  The DataGridColumn class describes a column in a DataGrid control.
+  There is one DataGridColumn per displayable column, even if a column
+  is hidden or off-screen.
+  The data provider items of a DataGrid control 
+  can contain properties that are not displayed
+  and, therefore, do not need a DataGridColumn.
+  A DataGridColumn allows specification of the color and font of the text
+  in a column; what kind of component displays the data for the column;
+  whether the column is editable, sortable, or resizable;
+  and the text for the column header.
+   <p>
+                  <b>Notes:</b>
+                  <ul>
+                     <li>A DataGridColumn only holds information about a column;
+  it is not the parent of the item renderers in the column.</li>
+                     <li>If you specify a DataGridColumn class without a <code>dataField</code>
+  property, you must specify a <code>sortCompareFunction</code>
+  property. Otherwise, sort operations may cause run-time errors.</li>
+                  </ul> 
+               </p>
+            <p></p><a name="mxmlSyntaxSummary"></a><span class="classHeaderTableLabel">MXML Syntax</span><span id="showMxmlLink" style="display:none"><a href="#mxmlSyntaxSummary" onclick="toggleMXMLOnly();"><img src="../../../images/collapsed.gif" title="collapsed" alt="collapsed" class="collapsedImage">Show MXML Syntax</a><br/></span><span id="hideMxmlLink"><a href="#mxmlSyntaxSummary" onclick="toggleMXMLOnly();"><img src="../../../images/expanded.gif" title="expanded" alt="expanded" class="expandedImage">Hide MXML Syntax</a></span><div id="mxmlSyntax" class="mxmlSyntax">  <p>You use the <code>&lt;mx.DataGridColumn&gt;</code> tag to configure a column
+  of a DataGrid control.
+  You specify the <code>&lt;mx.DataGridColumn&gt;</code> tag as a child
+  of the columns property in MXML.
+  The <code>&lt;mx.DataGridColumn&gt;</code> tag inherits all of the 
+  tag attributes of its superclass, and adds the following tag attributes:</p>
+   <pre>
+  &lt;mx:DataGridColumn
+  <b>Properties </b>
+    dataField="<i>No default</i>"
+    dataTipField="<i>No default</i>"
+    dataTipFunction="<i>No default</i>"
+    editable="true|false"
+    editorDataField="text"
+    editorHeightOffset="0"
+    editorUsesEnterKey="false|true"
+    editorWidthOffset="0"
+    editorXOffset="0"
+    editorYOffset="0"
+    headerRenderer="DataGridItemRenderer"
+    headerText="<i>No default</i>"
+    headerWordWrap="undefined"
+    imeMode="null"
+    itemEditor="TextInput"
+    itemRenderer="DataGridItemRenderer"
+    labelFunction="<i>No default</i>"
+    minWidth="20"
+    rendererIsEditor="false|true"
+    resizable="true|false"
+    showDataTips="false|true"
+    sortable="true|false"
+    sortCompareFunction="<i>No default</i>"
+    sortDescending="false|true"
+    visible="true|false"
+    width="100"
+    wordWrap="false|true"
+ 
+  <b>Styles</b>
+    backgroundColor="0xFFFFFF"
+    color="<i>No default.</i>"
+    disabledColor="0xAAB3B3"
+    fontAntiAliasType="advanced"
+    fontFamily="<i>No default</i>"
+    fontGridFitType="pixel"
+    fontSharpness="0"
+    fontSize="<i>No default</i>"
+    fontStyle="normal|italic"
+    fontThickness="0"
+    fontWeight="normal|bold"
+    headerStyleName="<i>No default</i>"
+    paddingLeft="0"
+    paddingRight="0"
+    textAlign="right|center|left"
+    textDecoration="none|underline"
+    textIndent="0"
+  /&gt;
+  </pre>
+  </p>
+   </div><script language="javascript" type="text/javascript"><!--
+								setMXMLOnly();
+								--></script><p><span class="classHeaderTableLabel">See also</span></p><div class="seeAlso"><a href="../../../mx/controls/DataGrid.html" target="">mx.controls.DataGrid</a><br/><a href="../../../mx/styles/CSSStyleDeclaration.html" target="">mx.styles.CSSStyleDeclaration</a></div><br/><hr></div><a name="propertySummary"></a><div class="summarySection"><div class="summaryTableTitle">Public Properties</div><div class="showHideLinks"><div id="hideInheritedProperty" class="hideInheritedProperty"><a class="showHideLink" href="#propertySummary" onclick="javascript:setInheritedVisible(false,'Property');"><img class="showHideLinkImage" src="../../../images/expanded.gif"> Hide Inherited Public Properties</a></div><div id="showInheritedProperty" class="showInheritedProperty"><a class="showHideLink" href="#propertySummary" onclick="javascript:setInheritedVisible(true,'Property');"><img class="showHideLinkImage" src="../../../images/collapsed.gif"> Show Inherited Public Properties</a></div></div><table cellspacing="0" cellpadding="3" class="summaryTable " id="summaryTableProperty"><tr><th>&nbsp;</th><th colspan="2">Property</th><th class="summaryTableOwnerCol">Defined By</th></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a href="#dataField" class="signatureLink">dataField</a> : String<div class="summaryTableDescription">
+      The name of the field or property in the data provider item associated 
+      with the column.</div></td><td class="summaryTableOwnerCol">DataGridColumn</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a href="#dataTipField" class="signatureLink">dataTipField</a> : String<div class="summaryTableDescription">
+      The name of the field in the data provider to display as the datatip.</div></td><td class="summaryTableOwnerCol">DataGridColumn</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a href="#dataTipFunction" class="signatureLink">dataTipFunction</a> : Function<div class="summaryTableDescription">
+      Specifies a callback function to run on each item of the data provider 
+      to determine its dataTip.</div></td><td class="summaryTableOwnerCol">DataGridColumn</td></tr><tr class="hideInheritedProperty"><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img src="../../../images/inheritedSummary.gif" alt="Inherited" title="Inherited" class="inheritedSummaryImage"></td><td class="summaryTableSignatureCol"><a href="../../../mx/styles/CSSStyleDeclaration.html#defaultFactory" class="signatureLink">defaultFactory</a> : Function<div class="summaryTableDescription">
+      This function, if it isn't null,
+      is usually autogenerated by the MXML compiler.</div></td><td class="summaryTableOwnerCol"><a href="../../../mx/styles/CSSStyleDeclaration.html">CSSStyleDeclaration</a></td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a href="#draggable" class="signatureLink">draggable</a> : Boolean = true<div class="summaryTableDescription">
+      A flag that indicates whether the user is allowed to drag
+      the column to a new position
+      If true, the user can drag the 
+      the column headers to a new position
+           </div></td><td class="summaryTableOwnerCol">DataGridColumn</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a href="#editable" class="signatureLink">editable</a> : Boolean<div class="summaryTableDescription">
+      A flag that indicates whether the items in the column are editable.</div></td><td class="summaryTableOwnerCol">DataGridColumn</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a href="#editorDataField" class="signatureLink">editorDataField</a> : String = text<div class="summaryTableDescription">
+      The name of the property of the item editor that contains the new
+      data for the list item.</div></td><td class="summaryTableOwnerCol">DataGridColumn</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a href="#editorHeightOffset" class="signatureLink">editorHeightOffset</a> : Number = 0<div class="summaryTableDescription">
+      The height of the item editor, in pixels, relative to the size of the 
+      item renderer.</div></td><td class="summaryTableOwnerCol">DataGridColumn</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a href="#editorUsesEnterKey" class="signatureLink">editorUsesEnterKey</a> : Boolean = false<div class="summaryTableDescription">
+      A flag that indicates whether the item editor uses Enter key.</div></td><td class="summaryTableOwnerCol">DataGridColumn</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a href="#editorWidthOffset" class="signatureLink">editorWidthOffset</a> : Number = 0<div class="summaryTableDescription">
+      The width of the item editor, in pixels, relative to the size of the 
+      item renderer.</div></td><td class="summaryTableOwnerCol">DataGridColumn</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a href="#editorXOffset" class="signatureLink">editorXOffset</a> : Number = 0<div class="summaryTableDescription">
+      The x location of the upper-left corner of the item editor,
+      in pixels, relative to the upper-left corner of the item.</div></td><td class="summaryTableOwnerCol">DataGridColumn</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a href="#editorYOffset" class="signatureLink">editorYOffset</a> : Number = 0<div class="summaryTableDescription">
+      The y location of the upper-left corner of the item editor,
+      in pixels, relative to the upper-left corner of the item.</div></td><td class="summaryTableOwnerCol">DataGridColumn</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a href="#enableIME" class="signatureLink">enableIME</a> : Boolean<div class="summaryTableDescription">[read-only] 
+      A flag that indicates whether the IME should
+      be enabled when the component receives focus.</div></td><td class="summaryTableOwnerCol">DataGridColumn</td></tr><tr class="hideInheritedProperty"><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img src="../../../images/inheritedSummary.gif" alt="Inherited" title="Inherited" class="inheritedSummaryImage"></td><td class="summaryTableSignatureCol"><a href="../../../mx/styles/CSSStyleDeclaration.html#factory" class="signatureLink">factory</a> : Function<div class="summaryTableDescription">
+      This function, if it isn't null,
+      is usually autogenerated by the MXML compiler.</div></td><td class="summaryTableOwnerCol"><a href="../../../mx/styles/CSSStyleDeclaration.html">CSSStyleDeclaration</a></td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a href="#headerRenderer" class="signatureLink">headerRenderer</a> : <a href="../../../mx/core/IFactory.html">IFactory</a><div class="summaryTableDescription">
+      The class factory for item renderer instances that display the 
+      column header for the column.</div></td><td class="summaryTableOwnerCol">DataGridColumn</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a href="#headerText" class="signatureLink">headerText</a> : String<div class="summaryTableDescription">
+      Text for the header of this column.</div></td><td class="summaryTableOwnerCol">DataGridColumn</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a href="#headerWordWrap" class="signatureLink">headerWordWrap</a> : *<div class="summaryTableDescription">
+      A flag that indicates whether text in the header will be
+      word wrapped if it doesn't fit on one line.</div></td><td class="summaryTableOwnerCol">DataGridColumn</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a href="#imeMode" class="signatureLink">imeMode</a> : String<div class="summaryTableDescription">
+      Specifies the IME (input method editor) mode.</div></td><td class="summaryTableOwnerCol">DataGridColumn</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a href="#itemEditor" class="signatureLink">itemEditor</a> : <a href="../../../mx/core/IFactory.html">IFactory</a><div class="summaryTableDescription">
+      A class factory for the instances of the item editor to use for the 
+      column, when it is editable.</div></td><td class="summaryTableOwnerCol">DataGridColumn</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a href="#itemRenderer" class="signatureLink">itemRenderer</a> : <a href="../../../mx/core/IFactory.html">IFactory</a><div class="summaryTableDescription">
+      The class factory for item renderer instances that display the 
+      data for each item in the column.</div></td><td class="summaryTableOwnerCol">DataGridColumn</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a href="#labelFunction" class="signatureLink">labelFunction</a> : Function<div class="summaryTableDescription">
+      A function that determines the text to display in this column.</div></td><td class="summaryTableOwnerCol">DataGridColumn</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a href="#minWidth" class="signatureLink">minWidth</a> : Number<div class="summaryTableDescription">
+      The minimum width of the column.</div></td><td class="summaryTableOwnerCol">DataGridColumn</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a href="#nullItemRenderer" class="signatureLink">nullItemRenderer</a> : <a href="../../../mx/core/IFactory.html">IFactory</a><div class="summaryTableDescription">
+      The class factory for item renderer instances that display the 
+      data for each item in the column.</div></td><td class="summaryTableOwnerCol">DataGridColumn</td></tr><tr class="hideInheritedProperty"><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img src="../../../images/inheritedSummary.gif" alt="Inherited" title="Inherited" class="inheritedSummaryImage"></td><td class="summaryTableSignatureCol"><a href="../../../mx/styles/CSSStyleDeclaration.html#overrides" class="signatureLink">overrides</a> : Object<div class="summaryTableDescription">
+      If the setStyle() method is called on a UIComponent or CSSStyleDeclaration
+      at run time, this object stores the name/value pairs that were set;
+      they override the name/value pairs in the objects produced by
+      the  methods specified by the defaultFactory and 
+      factory properties.</div></td><td class="summaryTableOwnerCol"><a href="../../../mx/styles/CSSStyleDeclaration.html">CSSStyleDeclaration</a></td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a href="#rendererIsEditor" class="signatureLink">rendererIsEditor</a> : Boolean = false<div class="summaryTableDescription">
+      A flag that indicates that the item renderer is also an item editor.</div></td><td class="summaryTableOwnerCol">DataGridColumn</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a href="#resizable" class="signatureLink">resizable</a> : Boolean = true<div class="summaryTableDescription">
+      A flag that indicates whether the user is allowed to resize
+      the width of the column.</div></td><td class="summaryTableOwnerCol">DataGridColumn</td></tr><tr class="hideInheritedProperty"><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img src="../../../images/inheritedSummary.gif" alt="Inherited" title="Inherited" class="inheritedSummaryImage"></td><td class="summaryTableSignatureCol"><a href="../../../mx/styles/CSSStyleDeclaration.html#selector" class="signatureLink">selector</a> : <a href="../../../mx/styles/CSSSelector.html">CSSSelector</a><div class="summaryTableDescription">
+      This property is the base selector of a potential chain of selectors
+      and conditions that are used to match CSS style declarations to
+      components.</div></td><td class="summaryTableOwnerCol"><a href="../../../mx/styles/CSSStyleDeclaration.html">CSSStyleDeclaration</a></td></tr><tr class="hideInheritedProperty"><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img src="../../../images/inheritedSummary.gif" alt="Inherited" title="Inherited" class="inheritedSummaryImage"></td><td class="summaryTableSignatureCol"><a href="../../../mx/styles/CSSStyleDeclaration.html#selectorIndex" class="signatureLink">selectorIndex</a> : int = 0<div class="summaryTableDescription">
+      The order this CSSStyleDeclaration was added to its StyleManager.</div></td><td class="summaryTableOwnerCol"><a href="../../../mx/styles/CSSStyleDeclaration.html">CSSStyleDeclaration</a></td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a href="#showDataTips" class="signatureLink">showDataTips</a> : *<div class="summaryTableDescription">
+      A flag that indicates whether the datatips are shown in the column.</div></td><td class="summaryTableOwnerCol">DataGridColumn</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a href="#sortable" class="signatureLink">sortable</a> : Boolean = true<div class="summaryTableDescription">
+      A flag that indicates whether the user can click on the
+      header of this column to sort the data provider.</div></td><td class="summaryTableOwnerCol">DataGridColumn</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a href="#sortCompareFunction" class="signatureLink">sortCompareFunction</a> : Function<div class="summaryTableDescription">
+           A callback function that gets called when sorting the data in
+      the column.</div></td><td class="summaryTableOwnerCol">DataGridColumn</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a href="#sortCompareType" class="signatureLink">sortCompareType</a> : String<div class="summaryTableDescription">
+      </div></td><td class="summaryTableOwnerCol">DataGridColumn</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a href="#sortDescending" class="signatureLink">sortDescending</a> : Boolean = false<div class="summaryTableDescription">
+      Indicates whether the column sort is
+      in ascending order, false, 
+      or descending order, true.</div></td><td class="summaryTableOwnerCol">DataGridColumn</td></tr><tr class="hideInheritedProperty"><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img src="../../../images/inheritedSummary.gif" alt="Inherited" title="Inherited" class="inheritedSummaryImage"></td><td class="summaryTableSignatureCol"><a href="../../../mx/styles/CSSStyleDeclaration.html#specificity" class="signatureLink">specificity</a> : int<div class="summaryTableDescription">[read-only] 
+      Determines the order of precedence when applying multiple style
+      declarations to a component.</div></td><td class="summaryTableOwnerCol"><a href="../../../mx/styles/CSSStyleDeclaration.html">CSSStyleDeclaration</a></td></tr><tr class="hideInheritedProperty"><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img src="../../../images/inheritedSummary.gif" alt="Inherited" title="Inherited" class="inheritedSummaryImage"></td><td class="summaryTableSignatureCol"><a href="../../../mx/styles/CSSStyleDeclaration.html#subject" class="signatureLink">subject</a> : String<div class="summaryTableDescription">[read-only] 
+      The subject describes the name of a component that may be a potential
+      match for this style declaration.</div></td><td class="summaryTableOwnerCol"><a href="../../../mx/styles/CSSStyleDeclaration.html">CSSStyleDeclaration</a></td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a href="#visible" class="signatureLink">visible</a> : Boolean<div class="summaryTableDescription">
+      A flag that indicates whethe the column is visible.</div></td><td class="summaryTableOwnerCol">DataGridColumn</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a href="#width" class="signatureLink">width</a> : Number<div class="summaryTableDescription">
+      The width of the column, in pixels.</div></td><td class="summaryTableOwnerCol">DataGridColumn</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a href="#wordWrap" class="signatureLink">wordWrap</a> : *<div class="summaryTableDescription">
+      A flag that indicates whether the text in a row of this column
+      is word wrapped if it doesn't fit on one line.</div></td><td class="summaryTableOwnerCol">DataGridColumn</td></tr></table></div><a name="methodSummary"></a><div class="summarySection"><div class="summaryTableTitle">Public Methods </div><div class="showHideLinks"><div id="hideInheritedMethod" class="hideInheritedMethod"><a class="showHideLink" href="#methodSummary" onclick="javascript:setInheritedVisible(false,'Method');"><img class="showHideLinkImage" src="../../../images/expanded.gif"> Hide Inherited Public Methods</a></div><div id="showInheritedMethod" class="showInheritedMethod"><a class="showHideLink" href="#methodSummary" onclick="javascript:setInheritedVisible(true,'Method');"><img class="showHideLinkImage" src="../../../images/collapsed.gif"> Show Inherited Public Methods</a></div></div><table cellspacing="0" cellpadding="3" class="summaryTable " id="summaryTableMethod"><tr><th>&nbsp;</th><th colspan="2">Method</th><th class="summaryTableOwnerCol">Defined By</th></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#DataGridColumn()" class="signatureLink">DataGridColumn</a>(columnName:String = null)</div><div class="summaryTableDescription">
+      Constructor.</div></td><td class="summaryTableOwnerCol">DataGridColumn</td></tr><tr class="hideInheritedMethod"><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img src="../../../images/inheritedSummary.gif" alt="Inherited" title="Inherited" class="inheritedSummaryImage"></td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="../../../mx/styles/CSSStyleDeclaration.html#clearStyle()" class="signatureLink">clearStyle</a>(styleProp:String):void</div><div class="summaryTableDescription">
+      Clears a style property on this CSSStyleDeclaration.</div></td><td class="summaryTableOwnerCol"><a href="../../../mx/styles/CSSStyleDeclaration.html">CSSStyleDeclaration</a></td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#getItemRendererFactory()" class="signatureLink">getItemRendererFactory</a>(forHeader:Boolean, data:Object):<a href="../../../mx/core/IFactory.html">IFactory</a></div><div class="summaryTableDescription">
+      Return the appropriate factory, using the default factory if none specified.</div></td><td class="summaryTableOwnerCol">DataGridColumn</td></tr><tr class="hideInheritedMethod"><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img src="../../../images/inheritedSummary.gif" alt="Inherited" title="Inherited" class="inheritedSummaryImage"></td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="../../../mx/styles/CSSStyleDeclaration.html#getStyle()" class="signatureLink">getStyle</a>(styleProp:String):*</div><div class="summaryTableDescription">
+      Gets the value for a specified style property,
+      as determined solely by this CSSStyleDeclaration.</div></td><td class="summaryTableOwnerCol"><a href="../../../mx/styles/CSSStyleDeclaration.html">CSSStyleDeclaration</a></td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#itemToDataTip()" class="signatureLink">itemToDataTip</a>(data:Object):String</div><div class="summaryTableDescription">
+      Returns a String that the item renderer displays as the datatip for the given data object,
+      based on the dataTipField and dataTipFunction properties.</div></td><td class="summaryTableOwnerCol">DataGridColumn</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#itemToLabel()" class="signatureLink">itemToLabel</a>(data:Object):String</div><div class="summaryTableDescription">
+      Returns the String that the item renderer displays for the given data object.</div></td><td class="summaryTableOwnerCol">DataGridColumn</td></tr><tr class="hideInheritedMethod"><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img src="../../../images/inheritedSummary.gif" alt="Inherited" title="Inherited" class="inheritedSummaryImage"></td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="../../../mx/styles/CSSStyleDeclaration.html#matchesStyleClient()" class="signatureLink">matchesStyleClient</a>(object:<a href="../../../mx/styles/IAdvancedStyleClient.html">IAdvancedStyleClient</a>):Boolean</div><div class="summaryTableDescription">
+      Determines whether this style declaration applies to the given component
+      based on a match of the selector chain.</div></td><td class="summaryTableOwnerCol"><a href="../../../mx/styles/CSSStyleDeclaration.html">CSSStyleDeclaration</a></td></tr><tr class="hideInheritedMethod"><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img src="../../../images/inheritedSummary.gif" alt="Inherited" title="Inherited" class="inheritedSummaryImage"></td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="../../../mx/styles/CSSStyleDeclaration.html#setStyle()" class="signatureLink">setStyle</a>(styleProp:String, newValue:*):void</div><div class="summaryTableDescription">
+      Sets a style property on this CSSStyleDeclaration.</div></td><td class="summaryTableOwnerCol"><a href="../../../mx/styles/CSSStyleDeclaration.html">CSSStyleDeclaration</a></td></tr></table></div><a name="styleSummary"></a><div class="summarySection"><div class="summaryTableTitle">Styles</div><table cellspacing="0" cellpadding="3" class="summaryTable " id="summaryTableStyle"><tr><th>&nbsp;</th><th colspan="2">Style</th><th> Description </th><th class="summaryTableOwnerCol">Defined By</th></tr><tr class=""><td class="summaryTablePaddingCol"><a name="style:backgroundColor"></a>&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><span class="signatureLink">backgroundColor</span></div></td><td class="summaryTableDescription"><span class="label">Type: </span>uint&nbsp;<span class="label">Format: </span>Color&nbsp;<span class="label">CSS Inheritance: </span>no<br/>
+  The Background color of the column.
+  The default value is <code>undefined</code>, which means it uses the value of the 
+  <code>backgroundColor</code> style of the associated DataGrid control.
+  The default value for the DataGrid control is <code>0xFFFFFF</code>.
+  
+  </td><td class="summaryTableOwnerCol">DataGridColumn</td></tr><tr class=""><td class="summaryTablePaddingCol"><a name="style:color"></a>&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><span class="signatureLink">color</span></div></td><td class="summaryTableDescription"><span class="label">Type: </span>uint&nbsp;<span class="label">Format: </span>Color&nbsp;<span class="label">CSS Inheritance: </span>yes<br/>
+  Color of text in the component, including the component label.
+   The default value for the Halo theme is <code>0x0B333C</code>.
+  The default value for the Spark theme is <code>0x000000</code>.
+  
+  </td><td class="summaryTableOwnerCol">DataGridColumn</td></tr><tr class=""><td class="summaryTablePaddingCol"><a name="style:direction"></a>&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><span class="signatureLink">direction</span></div></td><td class="summaryTableDescription"><span class="label">Type: </span>String&nbsp;<span class="label">CSS Inheritance: </span>yes<br/>
+  The directionality of the text displayed by the component.
+   <p>The allowed values are <code>"ltr"</code> for left-to-right text,
+  as in Latin-style scripts,
+  and <code>"rtl"</code> for right-to-left text,
+  as in Arabic and Hebrew.</p>
+                        <p>FTE and TLF use this value in their bidirectional text layout algorithm,
+  which maps Unicode character order to glyph order.</p>
+ 
+                        <p>Note: This style only applies when an MX component
+  specifies UIFTETextField as its <code>textFieldClass</code>.</p>
+                        <p>The <code>direction</code> also affects the alignment
+  of the text within the bounds of the TLFTextField.
+  It does not, however, affect the the placement
+  of the TLFTextField within the component.</p>
+                      The default value is<code> "ltr"</code>.</td><td class="summaryTableOwnerCol">DataGridColumn</td></tr><tr class=""><td class="summaryTablePaddingCol"><a name="style:disabledColor"></a>&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><span class="signatureLink">disabledColor</span></div></td><td class="summaryTableDescription"><span class="label">Type: </span>uint&nbsp;<span class="label">Format: </span>Color&nbsp;<span class="label">CSS Inheritance: </span>yes<br/>
+  Color of text in the component if it is disabled.
+    The default value is<code> 0xAAB3B3</code>.</td><td class="summaryTableOwnerCol">DataGridColumn</td></tr><tr class=""><td class="summaryTablePaddingCol"><a name="style:fontAntiAliasType"></a>&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><span class="signatureLink">fontAntiAliasType</span></div></td><td class="summaryTableDescription"><span class="label">Type: </span>String&nbsp;<span class="label">CSS Inheritance: </span>yes<br/>
+  Sets the <code>antiAliasType</code> property of internal TextFields. The possible values are 
+  <code>"normal"</code> (<code>flash.text.AntiAliasType.NORMAL</code>) 
+  and <code>"advanced"</code> (<code>flash.text.AntiAliasType.ADVANCED</code>). 
+  
+  <p>The default value is <code>"advanced"</code>, which enables advanced anti-aliasing for the font.
+  Set to <code>"normal"</code> to disable the advanced anti-aliasing.</p>
+  
+                        <p>This style has no effect for system fonts.</p>
+  
+                        <p>This style applies to all the text in a TextField subcontrol; 
+  you cannot apply it to some characters and not others.</p>
+                      The default value is<code> "advanced"</code>.<p><span class="label">See also</span></p><div class="seeAlso">flash.text.TextField<br/>flash.text.AntiAliasType</div></td><td class="summaryTableOwnerCol">DataGridColumn</td></tr><tr class=""><td class="summaryTablePaddingCol"><a name="style:fontFamily"></a>&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><span class="signatureLink">fontFamily</span></div></td><td class="summaryTableDescription"><span class="label">Type: </span>String&nbsp;<span class="label">CSS Inheritance: </span>yes<br/>
+  Name of the font to use.
+  Unlike in a full CSS implementation,
+  comma-separated lists are not supported.
+  You can use any font family name.
+  If you specify a generic font name,
+  it is converted to an appropriate device font.
+ 
+  The default font for the Halo theme is <code>"Verdana"</code>.
+  The default font for the Spark theme is <code>"Arial"</code>.
+  
+  </td><td class="summaryTableOwnerCol">DataGridColumn</td></tr><tr class=""><td class="summaryTablePaddingCol"><a name="style:fontGridFitType"></a>&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><span class="signatureLink">fontGridFitType</span></div></td><td class="summaryTableDescription"><span class="label">Type: </span>String&nbsp;<span class="label">CSS Inheritance: </span>yes<br/>
+  Sets the <code>gridFitType</code> property of internal TextFields that represent text in Flex controls.
+  The possible values are <code>"none"</code> (<code>flash.text.GridFitType.NONE</code>), 
+  <code>"pixel"</code> (<code>flash.text.GridFitType.PIXEL</code>),
+  and <code>"subpixel"</code> (<code>flash.text.GridFitType.SUBPIXEL</code>). 
+  
+  <p>This property only applies when you are using an embedded font 
+  and the <code>fontAntiAliasType</code> property 
+  is set to <code>"advanced"</code>.</p>
+  
+                        <p>This style has no effect for system fonts.</p>
+ 
+                        <p>This style applies to all the text in a TextField subcontrol; 
+  you can't apply it to some characters and not others.</p>
+ 
+                      The default value is<code> "pixel"</code>.<p><span class="label">See also</span></p><div class="seeAlso">flash.text.TextField<br/>flash.text.GridFitType</div></td><td class="summaryTableOwnerCol">DataGridColumn</td></tr><tr class=""><td class="summaryTablePaddingCol"><a name="style:fontSharpness"></a>&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><span class="signatureLink">fontSharpness</span></div></td><td class="summaryTableDescription"><span class="label">Type: </span>Number&nbsp;<span class="label">CSS Inheritance: </span>yes<br/>
+  Sets the <code>sharpness</code> property of internal TextFields that represent text in Flex controls.
+  This property specifies the sharpness of the glyph edges. The possible values are Numbers 
+  from -400 through 400. 
+  
+  <p>This property only applies when you are using an embedded font 
+  and the <code>fontAntiAliasType</code> property 
+  is set to <code>"advanced"</code>.</p>
+  
+                        <p>This style has no effect for system fonts.</p>
+ 
+                        <p>This style applies to all the text in a TextField subcontrol; 
+  you can't apply it to some characters and not others.</p>
+  
+                      The default value is<code> 0</code>.<p><span class="label">See also</span></p><div class="seeAlso">flash.text.TextField</div></td><td class="summaryTableOwnerCol">DataGridColumn</td></tr><tr class=""><td class="summaryTablePaddingCol"><a name="style:fontSize"></a>&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><span class="signatureLink">fontSize</span></div></td><td class="summaryTableDescription"><span class="label">Type: </span>Number&nbsp;<span class="label">Format: </span>Length&nbsp;<span class="label">CSS Inheritance: </span>yes<br/>
+  Height of the text, in pixels.
+   In the Halo theme, the default value is 10 for all controls except
+  the ColorPicker control. For the Halo themed ColorPicker control,
+  the default value is 11. In the Spark theme, the default value is
+  12 for all controls except the ColorPicker control. For the Spark 
+  themed ColorPicker control, the default value is 11.
+  
+  </td><td class="summaryTableOwnerCol">DataGridColumn</td></tr><tr class=""><td class="summaryTablePaddingCol"><a name="style:fontStyle"></a>&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><span class="signatureLink">fontStyle</span></div></td><td class="summaryTableDescription"><span class="label">Type: </span>String&nbsp;<span class="label">CSS Inheritance: </span>yes<br/>
+  Determines whether the text is italic font.
+  Recognized values are <code>"normal"</code> and <code>"italic"</code>.
+ 
+   The default value is<code> "normal"</code>.</td><td class="summaryTableOwnerCol">DataGridColumn</td></tr><tr class=""><td class="summaryTablePaddingCol"><a name="style:fontThickness"></a>&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><span class="signatureLink">fontThickness</span></div></td><td class="summaryTableDescription"><span class="label">Type: </span>Number&nbsp;<span class="label">CSS Inheritance: </span>yes<br/>
+  Sets the <code>thickness</code> property of internal TextFields that represent text in Flex controls.
+  This property specifies the thickness of the glyph edges.
+  The possible values are Numbers from -200 to 200. 
+  
+  <p>This property only applies when you are using an embedded font 
+  and the <code>fontAntiAliasType</code> property 
+  is set to <code>"advanced"</code>.</p>
+  
+                        <p>This style has no effect on system fonts.</p>
+ 
+                        <p>This style applies to all the text in a TextField subcontrol; 
+  you can't apply it to some characters and not others.</p>
+  
+                      The default value is<code> 0</code>.<p><span class="label">See also</span></p><div class="seeAlso">flash.text.TextField</div></td><td class="summaryTableOwnerCol">DataGridColumn</td></tr><tr class=""><td class="summaryTablePaddingCol"><a name="style:fontWeight"></a>&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><span class="signatureLink">fontWeight</span></div></td><td class="summaryTableDescription"><span class="label">Type: </span>String&nbsp;<span class="label">CSS Inheritance: </span>yes<br/>
+  Determines whether the text is boldface.
+  Recognized values are <code>normal</code> and <code>bold</code>.
+  The default value for Button controls is <code>bold</code>. 
+  The default value for all other controls is <code>normal</code>.
+  
+  </td><td class="summaryTableOwnerCol">DataGridColumn</td></tr><tr class=""><td class="summaryTablePaddingCol"><a name="style:headerStyleName"></a>&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><span class="signatureLink">headerStyleName</span></div></td><td class="summaryTableDescription"><span class="label">Type: </span>String&nbsp;<span class="label">CSS Inheritance: </span>no<br/>
+  The name of a CSS style declaration for controlling other aspects of
+  the appearance of the column headers.
+  The default value is <code>undefined</code>, which means it uses the value of the 
+  <code>headerStyleName</code> style of the associated DataGrid control.
+  The default value for the DataGrid control is 
+  <code>".dataGridStyles"</code>.
+  
+  </td><td class="summaryTableOwnerCol">DataGridColumn</td></tr><tr class=""><td class="summaryTablePaddingCol"><a name="style:kerning"></a>&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><span class="signatureLink">kerning</span></div></td><td class="summaryTableDescription"><span class="label">Type: </span>Boolean&nbsp;<span class="label">CSS Inheritance: </span>yes<br/>
+  A Boolean value that indicates whether kerning
+  is enabled (<code>true</code>) or disabled (<code>false</code>).
+  Kerning adjusts the gap between certain character pairs
+  to improve readability, and should be used only when necessary,
+  such as with headings in large fonts.
+  Kerning is supported for embedded fonts only. 
+  Certain fonts, such as Verdana, and monospaced fonts,
+  such as Courier New, do not support kerning.
+    The default value is<code> false</code>.</td><td class="summaryTableOwnerCol">DataGridColumn</td></tr><tr class=""><td class="summaryTablePaddingCol"><a name="style:letterSpacing"></a>&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><span class="signatureLink">letterSpacing</span></div></td><td class="summaryTableDescription"><span class="label">Type: </span>Number&nbsp;<span class="label">CSS Inheritance: </span>yes<br/>
+  The number of additional pixels to appear between each character.
+  A positive value increases the character spacing beyond the normal spacing,
+  while a negative value decreases it.
+ 
+   The default value is<code> 0</code>.</td><td class="summaryTableOwnerCol">DataGridColumn</td></tr><tr class=""><td class="summaryTablePaddingCol"><a name="style:locale"></a>&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><span class="signatureLink">locale</span></div></td><td class="summaryTableDescription"><span class="label">Type: </span>String&nbsp;<span class="label">CSS Inheritance: </span>yes<br/>
+  The locale of the text displayed by this component.
+ 
+  <p>FTE and TLF use this locale to map Unicode characters
+  to font glyphs and to find fallback fonts.</p>
+                        <p>Note: This style only applies when an MX component
+  specifies UIFTETextField as its <code>textFieldClass</code>.</p>
+                      The default value is<code> "en"</code>.</td><td class="summaryTableOwnerCol">DataGridColumn</td></tr><tr class=""><td class="summaryTablePaddingCol"><a name="style:paddingLeft"></a>&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><span class="signatureLink">paddingLeft</span></div></td><td class="summaryTableDescription"><span class="label">Type: </span>Number&nbsp;<span class="label">Format: </span>Length&nbsp;<span class="label">CSS Inheritance: </span>no<br/>
+  The number of pixels between the container's left border and its content 
+  area.
+   The default value is<code> 0</code>.</td><td class="summaryTableOwnerCol">DataGridColumn</td></tr><tr class=""><td class="summaryTablePaddingCol"><a name="style:paddingRight"></a>&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><span class="signatureLink">paddingRight</span></div></td><td class="summaryTableDescription"><span class="label">Type: </span>Number&nbsp;<span class="label">Format: </span>Length&nbsp;<span class="label">CSS Inheritance: </span>no<br/>
+  The number of pixels between the container's right border and its content 
+  area.
+   The default value is<code> 0</code>.</td><td class="summaryTableOwnerCol">DataGridColumn</td></tr><tr class=""><td class="summaryTablePaddingCol"><a name="style:textAlign"></a>&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><span class="signatureLink">textAlign</span></div></td><td class="summaryTableDescription"><span class="label">Type: </span>String&nbsp;<span class="label">CSS Inheritance: </span>yes<br/>
+  Alignment of text within a container.
+  Possible values are <code>"left"</code>, <code>"right"</code>,
+  or <code>"center"</code>.
+ 
+  <p>The default value for most components is <code>"left"</code>.
+  For the FormItem component,
+  the default value is <code>"right"</code>.
+  For the Button, LinkButton, and AccordionHeader components,
+  the default value is <code>"center"</code>, and
+  this property is only recognized when the
+  <code>labelPlacement</code> property is set to <code>"left"</code> or
+  <code>"right"</code>.
+  If <code>labelPlacement</code> is set to <code>"top"</code> or
+  <code>"bottom"</code>, the text and any icon are centered.</p>
+  
+                     </td><td class="summaryTableOwnerCol">DataGridColumn</td></tr><tr class=""><td class="summaryTablePaddingCol"><a name="style:textDecoration"></a>&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><span class="signatureLink">textDecoration</span></div></td><td class="summaryTableDescription"><span class="label">Type: </span>String&nbsp;<span class="label">CSS Inheritance: </span>yes<br/>
+  Determines whether the text is underlined.
+  Possible values are <code>"none"</code> and <code>"underline"</code>.
+ 
+   The default value is<code> "none"</code>.</td><td class="summaryTableOwnerCol">DataGridColumn</td></tr><tr class=""><td class="summaryTablePaddingCol"><a name="style:textFieldClass"></a>&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><span class="signatureLink">textFieldClass</span></div></td><td class="summaryTableDescription"><span class="label">Type: </span>Class&nbsp;<span class="label">CSS Inheritance: </span>no<br/>
+  The class implementing IUITextField that is used by this component
+  to render text.
+   <p>It can be set to either the mx.core.UITextField class
+  (to use the classic TextField class built into Flash Player)
+  or the mx.core.UIFTETextField class
+  (to use the Text Layout Framework to get improved text rendering,
+  including bidirectional layout).</p>
+                      The default value is<code> mx.core.UITextField</code>.</td><td class="summaryTableOwnerCol">DataGridColumn</td></tr><tr class=""><td class="summaryTablePaddingCol"><a name="style:textIndent"></a>&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><span class="signatureLink">textIndent</span></div></td><td class="summaryTableDescription"><span class="label">Type: </span>Number&nbsp;<span class="label">Format: </span>Length&nbsp;<span class="label">CSS Inheritance: </span>yes<br/>
+  Offset of first line of text from the left side of the container, in pixels.
+ 
+   The default value is<code> 0</code>.</td><td class="summaryTableOwnerCol">DataGridColumn</td></tr></table></div><script language="javascript" type="text/javascript"><!--
+										showHideInherited();
+										--></script><div class="MainContent"><div class="detailSectionHeader">Property Detail</div><a name="propertyDetail"></a><a name="dataField"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">dataField</td><td class="detailHeaderType">property</td></tr></table><div class="detailBody"><code>dataField:String</code><p></p><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Language Version :&nbsp;</b></td><td>ActionScript 3.0</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Product Version :&nbsp;</b></td><td>Flex 3</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Runtime Versions :&nbsp;</b></td><td>Flash Player  9, AIR 1.1</td></tr></table><p></p><p></p><p>
+      The name of the field or property in the data provider item associated 
+      with the column. 
+      Each DataGridColumn control
+      requires this property and/or the <code>labelFunction</code> property 
+      to be set in order to calculate the displayable text for the item
+      renderer.
+      If the <code>dataField</code>
+      and <code>labelFunction</code> properties are set, 
+      the data is displayed using the <code>labelFunction</code> and sorted
+      using the <code>dataField</code>.  If the property named in the
+      <code>dataField</code> does not exist, the 
+      <code>sortCompareFunction</code> must be set for the sort to work
+      correctly.
+           <p>This value of this property is not necessarily the String that 
+      is displayed in the column header.  This property is
+      used only to access the data in the data provider. 
+      For more information, see the <code>headerText</code> property.</p>
+           </p><br/><span class="label"> Implementation </span><br/><code>&nbsp;&nbsp;&nbsp;&nbsp;public function get dataField():String</code><br/><code>&nbsp;&nbsp;&nbsp;&nbsp;public function set dataField(value:String):void</code><br/><p><span class="label">See also</span></p><div class="seeAlso"><a href="DataGridColumn.html#headerText" target="">headerText</a></div></div><a name="propertyDetail"></a><a name="dataTipField"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">dataTipField</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code>dataTipField:String</code><p></p><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Language Version :&nbsp;</b></td><td>ActionScript 3.0</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Product Version :&nbsp;</b></td><td>Flex 3</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Runtime Versions :&nbsp;</b></td><td>Flash Player  9, AIR 1.1</td></tr></table><p></p><p></p><p>
+      The name of the field in the data provider to display as the datatip. 
+      By default, the DataGrid control looks for a property named 
+      <code>label</code> on each data provider item and displays it.
+      However, if the data provider does not contain a <code>label</code>
+      property, you can set the <code>dataTipField</code> property to
+      specify a different property.  
+      For example, you could set the value to "FullName" when a user views a
+      set of people's names included from a database.
+      
+      </p><p>This property can be used as the source for data binding.</p><br/><span class="label"> Implementation </span><br/><code>&nbsp;&nbsp;&nbsp;&nbsp;public function get dataTipField():String</code><br/><code>&nbsp;&nbsp;&nbsp;&nbsp;public function set dataTipField(value:String):void</code><br/></div><a name="propertyDetail"></a><a name="dataTipFunction"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">dataTipFunction</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code>dataTipFunction:Function</code><p></p><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Language Version :&nbsp;</b></td><td>ActionScript 3.0</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Product Version :&nbsp;</b></td><td>Flex 3</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Runtime Versions :&nbsp;</b></td><td>Flash Player  9, AIR 1.1</td></tr></table><p></p><p></p><p>
+      Specifies a callback function to run on each item of the data provider 
+      to determine its dataTip.
+      This property is used by the <code>itemToDataTip</code> method.
+     
+      <p>By default the control looks for a property named <code>label</code>
+      on each data provider item and displays it as its dataTip.
+      However, some data providers do not have a <code>label</code> property 
+      nor do they have another property that you can use for displaying data 
+      in the rows.
+      For example, you might have a data provider that contains a lastName 
+      and firstName fields, but you want to display full names as the dataTip.
+      You can specify a function to the <code>dataTipFunction</code> property 
+      that returns a single String containing the value of both fields. You 
+      can also use the <code>dataTipFunction</code> property for handling 
+      formatting and localization.</p>
+     
+      <p>The function must take a single Object parameter, containing the
+      data provider element, and return a String.</p>
+      
+      </p><p>This property can be used as the source for data binding.</p><br/><span class="label"> Implementation </span><br/><code>&nbsp;&nbsp;&nbsp;&nbsp;public function get dataTipFunction():Function</code><br/><code>&nbsp;&nbsp;&nbsp;&nbsp;public function set dataTipFunction(value:Function):void</code><br/></div><a name="propertyDetail"></a><a name="draggable"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">draggable</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code>public var draggable:Boolean = true</code><p></p><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Language Version :&nbsp;</b></td><td>ActionScript 3.0</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Product Version :&nbsp;</b></td><td>Flex 3</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Runtime Versions :&nbsp;</b></td><td>Flash Player  9, AIR 1.1</td></tr></table><p></p><p></p><p>
+      A flag that indicates whether the user is allowed to drag
+      the column to a new position
+      If <code>true</code>, the user can drag the 
+      the column headers to a new position
+           </p><p> The default value is <code>true</code>.</p></div><a name="propertyDetail"></a><a name="editable"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">editable</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code>editable:Boolean</code><p></p><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Language Version :&nbsp;</b></td><td>ActionScript 3.0</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Product Version :&nbsp;</b></td><td>Flex 3</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Runtime Versions :&nbsp;</b></td><td>Flash Player  9, AIR 1.1</td></tr></table><p></p><p></p><p>
+      A flag that indicates whether the items in the column are editable.
+      If <code>true</code>, and the DataGrid's <code>editable</code>
+      property is also <code>true</code>, the items in a column are 
+      editable and can be individually edited
+      by clicking on an item or by navigating to the item by using the 
+      Tab and Arrow keys.
+           </p><p> The default value is <code>true</code>.</p><br/><span class="label"> Implementation </span><br/><code>&nbsp;&nbsp;&nbsp;&nbsp;public function get editable():Boolean</code><br/><code>&nbsp;&nbsp;&nbsp;&nbsp;public function set editable(value:Boolean):void</code><br/></div><a name="propertyDetail"></a><a name="editorDataField"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">editorDataField</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code>public var editorDataField:String = text</code><p></p><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Language Version :&nbsp;</b></td><td>ActionScript 3.0</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Product Version :&nbsp;</b></td><td>Flex 3</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Runtime Versions :&nbsp;</b></td><td>Flash Player  9, AIR 1.1</td></tr></table><p></p><p></p><p>
+      The name of the property of the item editor that contains the new
+      data for the list item.
+      For example, the default <code>itemEditor</code> is
+      TextInput, so the default value of the <code>editorDataField</code> 
+      property is <code>"text"</code>, which specifies the 
+      <code>text</code> property of the TextInput control.
+           </p><p> The default value is <code>"text"</code>.</p></div><a name="propertyDetail"></a><a name="editorHeightOffset"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">editorHeightOffset</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code>public var editorHeightOffset:Number = 0</code><p></p><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Language Version :&nbsp;</b></td><td>ActionScript 3.0</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Product Version :&nbsp;</b></td><td>Flex 3</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Runtime Versions :&nbsp;</b></td><td>Flash Player  9, AIR 1.1</td></tr></table><p></p><p></p><p>
+      The height of the item editor, in pixels, relative to the size of the 
+      item renderer.  This property can be used to make the editor overlap
+      the item renderer by a few pixels to compensate for a border around the
+      editor.  
+      Note that changing these values while the editor is displayed
+      will have no effect on the current editor, but will affect the next
+      item renderer that opens an editor.
+           </p><p> The default value is <code>0</code>.</p></div><a name="propertyDetail"></a><a name="editorUsesEnterKey"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">editorUsesEnterKey</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code>public var editorUsesEnterKey:Boolean = false</code><p></p><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Language Version :&nbsp;</b></td><td>ActionScript 3.0</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Product Version :&nbsp;</b></td><td>Flex 3</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Runtime Versions :&nbsp;</b></td><td>Flash Player  9, AIR 1.1</td></tr></table><p></p><p></p><p>
+      A flag that indicates whether the item editor uses Enter key.
+      If <code>true</code> the item editor uses the Enter key and the
+      DataGrid will not look for the Enter key and move the editor in
+      response.
+      Note that changing this value while the editor is displayed
+      will have no effect on the current editor, but will affect the next
+      item renderer that opens an editor.
+           </p><p> The default value is <code>false.</code>.</p></div><a name="propertyDetail"></a><a name="editorWidthOffset"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">editorWidthOffset</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code>public var editorWidthOffset:Number = 0</code><p></p><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Language Version :&nbsp;</b></td><td>ActionScript 3.0</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Product Version :&nbsp;</b></td><td>Flex 3</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Runtime Versions :&nbsp;</b></td><td>Flash Player  9, AIR 1.1</td></tr></table><p></p><p></p><p>
+      The width of the item editor, in pixels, relative to the size of the 
+      item renderer.  This property can be used to make the editor overlap
+      the item renderer by a few pixels to compensate for a border around the
+      editor.
+      Note that changing these values while the editor is displayed
+      will have no effect on the current editor, but will affect the next
+      item renderer that opens an editor.
+           </p><p> The default value is <code>0</code>.</p></div><a name="propertyDetail"></a><a name="editorXOffset"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">editorXOffset</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code>public var editorXOffset:Number = 0</code><p></p><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Language Version :&nbsp;</b></td><td>ActionScript 3.0</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Product Version :&nbsp;</b></td><td>Flex 3</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Runtime Versions :&nbsp;</b></td><td>Flash Player  9, AIR 1.1</td></tr></table><p></p><p></p><p>
+      The x location of the upper-left corner of the item editor,
+      in pixels, relative to the upper-left corner of the item.
+      This property can be used to make the editor overlap
+      the item renderer by a few pixels to compensate for a border around the
+      editor.
+      Note that changing these values while the editor is displayed
+      will have no effect on the current editor, but will affect the next
+      item renderer that opens an editor.
+     
+      </p><p> The default value is <code>0</code>.</p></div><a name="propertyDetail"></a><a name="editorYOffset"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">editorYOffset</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code>public var editorYOffset:Number = 0</code><p></p><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Language Version :&nbsp;</b></td><td>ActionScript 3.0</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Product Version :&nbsp;</b></td><td>Flex 3</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Runtime Versions :&nbsp;</b></td><td>Flash Player  9, AIR 1.1</td></tr></table><p></p><p></p><p>
+      The y location of the upper-left corner of the item editor,
+      in pixels, relative to the upper-left corner of the item.
+      This property can be used to make the editor overlap
+      the item renderer by a few pixels to compensate for a border around the
+      editor.
+      Note that changing these values while the editor is displayed
+      will have no effect on the current editor, but will affect the next
+      item renderer that opens an editor.
+           </p><p> The default value is <code>0</code>.</p></div><a name="propertyDetail"></a><a name="enableIME"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">enableIME</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code>enableIME:Boolean</code>&nbsp;&nbsp;[read-only] <p></p><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Language Version :&nbsp;</b></td><td>ActionScript 3.0</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Product Version :&nbsp;</b></td><td>Flex 4</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Runtime Versions :&nbsp;</b></td><td>Flash Player  10, AIR 1.5</td></tr></table><p></p><p></p><p>
+      A flag that indicates whether the IME should
+      be enabled when the component receives focus.
+           If an editor is up, it will set enableIME
+      accordingly.
+           </p><br/><span class="label"> Implementation </span><br/><code>&nbsp;&nbsp;&nbsp;&nbsp;public function get enableIME():Boolean</code><br/></div><a name="propertyDetail"></a><a name="headerRenderer"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">headerRenderer</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code>headerRenderer:<a href="../../../mx/core/IFactory.html">IFactory</a></code><p></p><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Language Version :&nbsp;</b></td><td>ActionScript 3.0</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Product Version :&nbsp;</b></td><td>Flex 3</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Runtime Versions :&nbsp;</b></td><td>Flash Player  9, AIR 1.1</td></tr></table><p></p><p></p><p>
+      The class factory for item renderer instances that display the 
+      column header for the column.
+      You can specify a drop-in item renderer,
+      an inline item renderer, or a custom item renderer component as the 
+      value of this property.
+           <p>The default item renderer is the DataGridItemRenderer class,
+      which displays the item data as text. </p>
+      
+      </p><p>This property can be used as the source for data binding.</p><br/><span class="label"> Implementation </span><br/><code>&nbsp;&nbsp;&nbsp;&nbsp;public function get headerRenderer():<a href="../../../mx/core/IFactory.html">IFactory</a></code><br/><code>&nbsp;&nbsp;&nbsp;&nbsp;public function set headerRenderer(value:<a href="../../../mx/core/IFactory.html">IFactory</a>):void</code><br/></div><a name="propertyDetail"></a><a name="headerText"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">headerText</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code>headerText:String</code><p></p><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Language Version :&nbsp;</b></td><td>ActionScript 3.0</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Product Version :&nbsp;</b></td><td>Flex 3</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Runtime Versions :&nbsp;</b></td><td>Flash Player  9, AIR 1.1</td></tr></table><p></p><p></p><p>
+      Text for the header of this column. By default, the DataGrid
+      control uses the value of the <code>dataField</code> property 
+      as the header text.
+      
+      </p><p>This property can be used as the source for data binding.</p><br/><span class="label"> Implementation </span><br/><code>&nbsp;&nbsp;&nbsp;&nbsp;public function get headerText():String</code><br/><code>&nbsp;&nbsp;&nbsp;&nbsp;public function set headerText(value:String):void</code><br/></div><a name="propertyDetail"></a><a name="headerWordWrap"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">headerWordWrap</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code>headerWordWrap:*</code><p></p><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Language Version :&nbsp;</b></td><td>ActionScript 3.0</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Product Version :&nbsp;</b></td><td>Flex 3</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Runtime Versions :&nbsp;</b></td><td>Flash Player  9, AIR 1.1</td></tr></table><p></p><p></p><p>
+      A flag that indicates whether text in the header will be
+      word wrapped if it doesn't fit on one line.
+      If <code>undefined</code>, the DataGrid control's <code>wordWrap</code> property 
+      is used.
+           </p><p> The default value is <code>undefined</code>.</p><br/><span class="label"> Implementation </span><br/><code>&nbsp;&nbsp;&nbsp;&nbsp;public function get headerWordWrap():*</code><br/><code>&nbsp;&nbsp;&nbsp;&nbsp;public function set headerWordWrap(value:any):void</code><br/></div><a name="propertyDetail"></a><a name="imeMode"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">imeMode</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code>imeMode:String</code><p></p><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Language Version :&nbsp;</b></td><td>ActionScript 3.0</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Product Version :&nbsp;</b></td><td>Flex 3</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Runtime Versions :&nbsp;</b></td><td>Flash Player  9, AIR 1.1</td></tr></table><p></p><p></p><p>
+      Specifies the IME (input method editor) mode. 
+      The IME enables users to enter text in Chinese, Japanese, and Korean.  
+      Flex sets the IME mode when the <code>itemFocusIn</code> event occurs, 
+      and sets it back
+      to the previous value when the <code>itemFocusOut</code> event occurs. 
+      The flash.system.IMEConversionMode class defines constants for 
+      the valid values for this property.  
+           <p>The default value is null, in which case it uses the value of the 
+      DataGrid control's <code>imeMode</code> property.</p>
+           </p><br/><span class="label"> Implementation </span><br/><code>&nbsp;&nbsp;&nbsp;&nbsp;public function get imeMode():String</code><br/><code>&nbsp;&nbsp;&nbsp;&nbsp;public function set imeMode(value:String):void</code><br/><p><span class="label">See also</span></p><div class="seeAlso">flash.system.IMEConversionMode</div></div><a name="propertyDetail"></a><a name="itemEditor"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">itemEditor</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code>public var itemEditor:<a href="../../../mx/core/IFactory.html">IFactory</a></code><p></p><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Language Version :&nbsp;</b></td><td>ActionScript 3.0</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Product Version :&nbsp;</b></td><td>Flex 3</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Runtime Versions :&nbsp;</b></td><td>Flash Player  9, AIR 1.1</td></tr></table><p></p><p></p><p>
+      A class factory for the instances of the item editor to use for the 
+      column, when it is editable.
+           </p><p> The default value is <code>new ClassFactory(mx.controls.TextInput)</code>.</p></div><a name="propertyDetail"></a><a name="itemRenderer"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">itemRenderer</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code>itemRenderer:<a href="../../../mx/core/IFactory.html">IFactory</a></code><p></p><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Language Version :&nbsp;</b></td><td>ActionScript 3.0</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Product Version :&nbsp;</b></td><td>Flex 3</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Runtime Versions :&nbsp;</b></td><td>Flash Player  9, AIR 1.1</td></tr></table><p></p><p></p><p>
+      The class factory for item renderer instances that display the 
+      data for each item in the column.
+      You can specify a drop-in item renderer,
+      an inline item renderer, or a custom item renderer component as the 
+      value of this property.
+           <p>The default item renderer is the DataGridItemRenderer class,
+      which displays the item data as text. </p>
+      
+      </p><p>This property can be used as the source for data binding.</p><br/><span class="label"> Implementation </span><br/><code>&nbsp;&nbsp;&nbsp;&nbsp;public function get itemRenderer():<a href="../../../mx/core/IFactory.html">IFactory</a></code><br/><code>&nbsp;&nbsp;&nbsp;&nbsp;public function set itemRenderer(value:<a href="../../../mx/core/IFactory.html">IFactory</a>):void</code><br/></div><a name="propertyDetail"></a><a name="labelFunction"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">labelFunction</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code>labelFunction:Function</code><p></p><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Language Version :&nbsp;</b></td><td>ActionScript 3.0</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Product Version :&nbsp;</b></td><td>Flex 3</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Runtime Versions :&nbsp;</b></td><td>Flash Player  9, AIR 1.1</td></tr></table><p></p><p></p><p>
+      A function that determines the text to display in this column.  By default
+      the column displays the text for the field in the data that matches the
+      column name.  However, sometimes you want to display text based on
+      more than one field in the data, or display something that does not
+      have the format that you want.
+      In such a case you specify a callback function using <code>labelFunction</code>.
+           <p>For the DataGrid control, the method signature has the following form:</p>
+           <pre>labelFunction(item:Object, column:DataGridColumn):String</pre>
+           <p>Where <code>item</code> contains the DataGrid item object, and
+      <code>column</code> specifies the DataGrid column.</p>
+           <p>A callback function might concatenate the firstName and
+      lastName fields in the data, or do some custom formatting on a Date,
+      or convert a number for the month into the string for the month.</p>
+      
+      </p><p>This property can be used as the source for data binding.</p><br/><span class="label"> Implementation </span><br/><code>&nbsp;&nbsp;&nbsp;&nbsp;public function get labelFunction():Function</code><br/><code>&nbsp;&nbsp;&nbsp;&nbsp;public function set labelFunction(value:Function):void</code><br/></div><a name="propertyDetail"></a><a name="minWidth"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">minWidth</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code>minWidth:Number</code><p></p><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Language Version :&nbsp;</b></td><td>ActionScript 3.0</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Product Version :&nbsp;</b></td><td>Flex 3</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Runtime Versions :&nbsp;</b></td><td>Flash Player  9, AIR 1.1</td></tr></table><p></p><p></p><p>
+      The minimum width of the column.
+      </p><p> The default value is <code>20</code>.</p><p>This property can be used as the source for data binding.</p><br/><span class="label"> Implementation </span><br/><code>&nbsp;&nbsp;&nbsp;&nbsp;public function get minWidth():Number</code><br/><code>&nbsp;&nbsp;&nbsp;&nbsp;public function set minWidth(value:Number):void</code><br/></div><a name="propertyDetail"></a><a name="nullItemRenderer"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">nullItemRenderer</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code>nullItemRenderer:<a href="../../../mx/core/IFactory.html">IFactory</a></code><p></p><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Language Version :&nbsp;</b></td><td>ActionScript 3.0</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Product Version :&nbsp;</b></td><td>Flex 3</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Runtime Versions :&nbsp;</b></td><td>Flash Player  9, AIR 1.1</td></tr></table><p></p><p></p><p>
+      The class factory for item renderer instances that display the 
+      data for each item in the column.
+      You can specify a drop-in item renderer,
+      an inline item renderer, or a custom item renderer component as the 
+      value of this property.
+           <p>The default item renderer is the DataGridItemRenderer class,
+      which displays the item data as text. </p>
+      
+      </p><p>This property can be used as the source for data binding.</p><br/><span class="label"> Implementation </span><br/><code>&nbsp;&nbsp;&nbsp;&nbsp;public function get nullItemRenderer():<a href="../../../mx/core/IFactory.html">IFactory</a></code><br/><code>&nbsp;&nbsp;&nbsp;&nbsp;public function set nullItemRenderer(value:<a href="../../../mx/core/IFactory.html">IFactory</a>):void</code><br/></div><a name="propertyDetail"></a><a name="rendererIsEditor"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">rendererIsEditor</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code>public var rendererIsEditor:Boolean = false</code><p></p><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Language Version :&nbsp;</b></td><td>ActionScript 3.0</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Product Version :&nbsp;</b></td><td>Flex 3</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Runtime Versions :&nbsp;</b></td><td>Flash Player  9, AIR 1.1</td></tr></table><p></p><p></p><p>
+      A flag that indicates that the item renderer is also an item editor.
+      If this property is <code>true</code>, Flex
+      ignores the <code>itemEditor</code> property and uses the item
+      renderer for that item as the editor.
+           </p><p> The default value is <code>false</code>.</p></div><a name="propertyDetail"></a><a name="resizable"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">resizable</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code>public var resizable:Boolean = true</code><p></p><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Language Version :&nbsp;</b></td><td>ActionScript 3.0</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Product Version :&nbsp;</b></td><td>Flex 3</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Runtime Versions :&nbsp;</b></td><td>Flash Player  9, AIR 1.1</td></tr></table><p></p><p></p><p>
+      A flag that indicates whether the user is allowed to resize
+      the width of the column.
+      If <code>true</code>, the user can drag the grid lines between 
+      the column headers to resize
+      the column. 
+           </p><p> The default value is <code>true</code>.</p></div><a name="propertyDetail"></a><a name="showDataTips"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">showDataTips</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code>showDataTips:*</code><p></p><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Language Version :&nbsp;</b></td><td>ActionScript 3.0</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Product Version :&nbsp;</b></td><td>Flex 3</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Runtime Versions :&nbsp;</b></td><td>Flash Player  9, AIR 1.1</td></tr></table><p></p><p></p><p>
+      A flag that indicates whether the datatips are shown in the column.
+      If <code>true</code>, datatips are displayed for text in the rows. Datatips
+      are tooltips designed to show the text that is too long for the row.
+           </p><p> The default value is <code>false</code>.</p><br/><span class="label"> Implementation </span><br/><code>&nbsp;&nbsp;&nbsp;&nbsp;public function get showDataTips():*</code><br/><code>&nbsp;&nbsp;&nbsp;&nbsp;public function set showDataTips(value:any):void</code><br/></div><a name="propertyDetail"></a><a name="sortable"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">sortable</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code>public var sortable:Boolean = true</code><p></p><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Language Version :&nbsp;</b></td><td>ActionScript 3.0</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Product Version :&nbsp;</b></td><td>Flex 3</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Runtime Versions :&nbsp;</b></td><td>Flash Player  9, AIR 1.1</td></tr></table><p></p><p></p><p>
+      A flag that indicates whether the user can click on the
+      header of this column to sort the data provider.
+      If this property and the DataGrid <code>sortableColumns</code> property 
+      are both <code>true</code>, the DataGrid control dispatches a 
+      <code>headerRelease</code> event when a user releases the mouse button 
+      on this column's header. 
+      If no other handler calls the <code>preventDefault()</code> method on
+      the <code>headerRelease</code> event, the <code>dataField</code>
+      property or <code>sortCompareFunction</code> in the column is used 
+      to reorder the items in the dataProvider.
+     
+      </p><p> The default value is <code>true</code>.</p></div><a name="propertyDetail"></a><a name="sortCompareFunction"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">sortCompareFunction</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code>sortCompareFunction:Function</code><p></p><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Language Version :&nbsp;</b></td><td>ActionScript 3.0</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Product Version :&nbsp;</b></td><td>Flex 3</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Runtime Versions :&nbsp;</b></td><td>Flash Player  9, AIR 1.1</td></tr></table><p></p><p></p><p>
+           A callback function that gets called when sorting the data in
+      the column.  If this property is not specified, the sort tries
+      to use a basic string or number sort on the data.
+      If the data is not a string or number or if the <code>dataField</code>
+      property is not a valid property of the data provider, the sort does
+      not work or will generate an exception.
+      If you specify a value of the <code>labelFunction</code> property,
+      you typically also provide a function to the <code>sortCompareFunction</code> property,
+      unless sorting is not allowed on this column. 
+      That means you specify a function when the value from the column's <code>dataField</code> 
+      does not sort in the same way as the computed value from the <code>labelFunction</code> property.
+           <p>The DataGrid control uses this function to sort the elements of the data
+      provider collection. The function signature of
+      the callback function takes two parameters and have the following form:</p>
+           <pre>mySortCompareFunction(obj1:Object, obj2:Object):int </pre>
+           <p><code>obj1</code> &mdash; A data element to compare.</p>
+     
+      <p><code>obj2</code> &mdash; Another data element to compare with obj1.</p>
+     
+      <p>The function should return a value based on the comparison
+      of the objects: </p>
+      <ul>
+        <li>-1 if obj1 should appear before obj2 in ascending order. </li>
+        <li>0 if obj1 = obj2. </li>
+        <li>1 if obj1 should appear after obj2 in ascending order.</li>
+      </ul>
+     
+      <p><b>Note:</b> The <code>obj1</code> and
+      <code>obj2</code> parameters are entire data provider elements and not
+      just the data for the item.</p>
+           </p><p> The default value is <code>null</code>.</p><p>This property can be used as the source for data binding.</p><br/><span class="label"> Implementation </span><br/><code>&nbsp;&nbsp;&nbsp;&nbsp;public function get sortCompareFunction():Function</code><br/><code>&nbsp;&nbsp;&nbsp;&nbsp;public function set sortCompareFunction(value:Function):void</code><br/></div><a name="propertyDetail"></a><a name="sortCompareType"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">sortCompareType</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code>sortCompareType:String</code><p></p><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Language Version :&nbsp;</b></td><td>ActionScript 3.0</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Product Version :&nbsp;</b></td><td>Flex 4.11</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Runtime Versions :&nbsp;</b></td><td>Flash Player  11.8, AIR 3.8</td></tr></table><p></p><p></p><p>
+      </p><p>This property can be used as the source for data binding.</p><br/><span class="label"> Implementation </span><br/><code>&nbsp;&nbsp;&nbsp;&nbsp;public function get sortCompareType():String</code><br/><code>&nbsp;&nbsp;&nbsp;&nbsp;public function set sortCompareType(value:String):void</code><br/></div><a name="propertyDetail"></a><a name="sortDescending"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">sortDescending</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code>public var sortDescending:Boolean = false</code><p></p><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Language Version :&nbsp;</b></td><td>ActionScript 3.0</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Product Version :&nbsp;</b></td><td>Flex 3</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Runtime Versions :&nbsp;</b></td><td>Flash Player  9, AIR 1.1</td></tr></table><p></p><p></p><p>
+      Indicates whether the column sort is
+      in ascending order, <code>false</code>, 
+      or <code>descending</code> order, true.
+           <p>Setting this property does not start a sort; it only sets the sort direction.
+      Click on the column header to perform the sort.</p>
+      
+      </p><p> The default value is <code>false;</code>.</p></div><a name="propertyDetail"></a><a name="visible"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">visible</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code>visible:Boolean</code><p></p><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Language Version :&nbsp;</b></td><td>ActionScript 3.0</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Product Version :&nbsp;</b></td><td>Flex 3</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Runtime Versions :&nbsp;</b></td><td>Flash Player  9, AIR 1.1</td></tr></table><p></p><p></p><p>
+      A flag that indicates whethe the column is visible.
+      If <code>true</code>, the column is visible.
+           </p><p> The default value is <code>true</code>.</p><br/><span class="label"> Implementation </span><br/><code>&nbsp;&nbsp;&nbsp;&nbsp;public function get visible():Boolean</code><br/><code>&nbsp;&nbsp;&nbsp;&nbsp;public function set visible(value:Boolean):void</code><br/></div><a name="propertyDetail"></a><a name="width"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">width</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code>width:Number</code><p></p><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Language Version :&nbsp;</b></td><td>ActionScript 3.0</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Product Version :&nbsp;</b></td><td>Flex 3</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Runtime Versions :&nbsp;</b></td><td>Flash Player  9, AIR 1.1</td></tr></table><p></p><p></p><p>
+      The width of the column, in pixels. 
+      If the DataGrid's <code>horizontalScrollPolicy</code> property 
+      is <code>false</code>, all visible columns must fit in the displayable 
+      area, and the DataGrid will not always honor the width of
+      the columns if the total width of the columns is too
+      small or too large for the displayable area.
+           </p><p> The default value is <code>100</code>.</p><p>This property can be used as the source for data binding.</p><br/><span class="label"> Implementation </span><br/><code>&nbsp;&nbsp;&nbsp;&nbsp;public function get width():Number</code><br/><code>&nbsp;&nbsp;&nbsp;&nbsp;public function set width(value:Number):void</code><br/></div><a name="propertyDetail"></a><a name="wordWrap"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">wordWrap</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code>wordWrap:*</code><p></p><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Language Version :&nbsp;</b></td><td>ActionScript 3.0</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Product Version :&nbsp;</b></td><td>Flex 3</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Runtime Versions :&nbsp;</b></td><td>Flash Player  9, AIR 1.1</td></tr></table><p></p><p></p><p>
+      A flag that indicates whether the text in a row of this column
+      is word wrapped if it doesn't fit on one line.
+      If <code>undefined</code>, the DataGrid control's <code>wordWrap</code> property 
+      is used.
+           <p>Only takes effect if the <code>DataGrid.variableRowHeight</code> property is also 
+      <code>true</code>.</p>
+           </p><p> The default value is <code>undefined</code>.</p><br/><span class="label"> Implementation </span><br/><code>&nbsp;&nbsp;&nbsp;&nbsp;public function get wordWrap():*</code><br/><code>&nbsp;&nbsp;&nbsp;&nbsp;public function set wordWrap(value:any):void</code><br/></div><a name="constructorDetail"></a><div class="detailSectionHeader">Constructor Detail</div><a name="DataGridColumn()"></a><a name="DataGridColumn(String)"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">DataGridColumn</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">Constructor</td></tr></table><div class="detailBody"><code>public function DataGridColumn(columnName:String = null)</code><p></p><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Language Version :&nbsp;</b></td><td>ActionScript 3.0</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Product Version :&nbsp;</b></td><td>Flex 3</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Runtime Versions :&nbsp;</b></td><td>Flash Player  9, AIR 1.1</td></tr></table><p></p><p>
+      Constructor.
+           </p><span class="label"> Parameters </span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20px"></td><td><code><span class="label">columnName</span>:String</code> (default = <code>null</code>)<code></code> &mdash; The name of the field in the data provider 
+      associated with the column, and the text for the header cell of this 
+      column.  This is equivalent to setting the <code>dataField</code>
+      and <code>headerText</code> properties.
+      
+      </td></tr></table></div><a name="methodDetail"></a><div class="detailSectionHeader">Method Detail</div><a name="getItemRendererFactory()"></a><a name="getItemRendererFactory(Boolean,Object)"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">getItemRendererFactory</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td></tr></table><div class="detailBody"><code> public function getItemRendererFactory(forHeader:Boolean, data:Object):<a href="../../../mx/core/IFactory.html">IFactory</a></code><p></p><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Language Version :&nbsp;</b></td><td>ActionScript 3.0</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Product Version :&nbsp;</b></td><td>Flex 3</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Runtime Versions :&nbsp;</b></td><td>Flash Player  9, AIR 1.1</td></tr></table><p></p><p></p><p>
+      Return the appropriate factory, using the default factory if none specified.
+           </p><p><span class="label"> Parameters </span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20px"></td><td><code><span class="label">forHeader</span>:Boolean</code> &mdash; <code>true</code> if this is a header renderer.
+           </td></tr><tr><td class="paramSpacer">&nbsp;</td></tr><tr><td width="20px"></td><td><code><span class="label">data</span>:Object</code> &mdash; The data to be presented by the item renderer.
+           </td></tr></table></p><p></p><span class="label">Returns</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code><a href="../../../mx/core/IFactory.html">IFactory</a></code> &mdash; if <code>data</code> is null, the default item renderer, 
+      otherwis it returns the custom item renderer.
+      
+      </td></tr></table></div><a name="itemToDataTip()"></a><a name="itemToDataTip(Object)"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">itemToDataTip</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code> public function itemToDataTip(data:Object):String</code><p></p><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Language Version :&nbsp;</b></td><td>ActionScript 3.0</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Product Version :&nbsp;</b></td><td>Flex 3</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Runtime Versions :&nbsp;</b></td><td>Flash Player  9, AIR 1.1</td></tr></table><p></p><p></p><p>
+      Returns a String that the item renderer displays as the datatip for the given data object,
+      based on the <code>dataTipField</code> and <code>dataTipFunction</code> properties.
+      If the method cannot convert the parameter to a String, it returns a
+      single space.
+     
+      <p>This method is for use by developers who are creating subclasses 
+      of the DataGridColumn class.
+      It is not for use by application developers.</p>
+           </p><p><span class="label"> Parameters </span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20px"></td><td><code><span class="label">data</span>:Object</code> &mdash; Object to be rendered.
+           </td></tr></table></p><p></p><span class="label">Returns</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code>String</code> &mdash; Displayable String based on the data.
+      
+      </td></tr></table></div><a name="itemToLabel()"></a><a name="itemToLabel(Object)"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">itemToLabel</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code> public function itemToLabel(data:Object):String</code><p></p><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Language Version :&nbsp;</b></td><td>ActionScript 3.0</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Product Version :&nbsp;</b></td><td>Flex 3</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Runtime Versions :&nbsp;</b></td><td>Flash Player  9, AIR 1.1</td></tr></table><p></p><p></p><p>
+      Returns the String that the item renderer displays for the given data object.
+      If the DataGridColumn or its DataGrid control 
+      has a non-null <code>labelFunction</code> 
+      property, it applies the function to the data object. 
+      Otherwise, the method extracts the contents of the field specified by the 
+      <code>dataField</code> property, or gets the string value of the data object.
+      If the method cannot convert the parameter to a String, it returns a
+      single space.
+           </p><p><span class="label"> Parameters </span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20px"></td><td><code><span class="label">data</span>:Object</code> &mdash; Object to be rendered.
+     
+      </td></tr></table></p><p></p><span class="label">Returns</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code>String</code> &mdash; Displayable String based on the data.
+      
+      </td></tr></table></div><br/><br/><hr><br/><p></p><center class="copyright"><footer>The Apache Software Foundation</footer><br/>Wed Nov 15 2017, 09:50 AM +01:00  </center></div></body></html><!--The Apache Software Foundation<br/>Wed Nov 15 2017, 09:50 AM +01:00  -->

@@ -1,0 +1,131 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd"><!-- saved from url=(0014)about:internet --><html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><link rel="stylesheet" href="../../style.css" type="text/css" media="screen"><link rel="stylesheet" href="../../print.css" type="text/css" media="print"><link rel="stylesheet" href="../../override.css" type="text/css"><meta name="keywords" content="TitleWindowAccImpl,spark.accessibility.TitleWindowAccImpl,enableAccessibility,enableAccessibility,enableAccessibility,enableAccessibility,enableAccessibility,enableAccessibility,enableAccessibility,enableAccessibility,enableAccessibility,enableAccessibility,enableAccessibility,enableAccessibility,enableAccessibility,enableAccessibility,enableAccessibility,enableAccessibility,enableAccessibility,enableAccessibility,enableAccessibility"><title>spark.accessibility.TitleWindowAccImpl</title></head><body><script language="javascript" type="text/javascript" src="../../asdoc.js"></script><script language="javascript" type="text/javascript" src="../../help.js"></script><script language="javascript" type="text/javascript" src="../../cookies.js"></script><script language="javascript" type="text/javascript"><!--
+				asdocTitle = 'TitleWindowAccImpl - ApacheFlex API Reference';
+				var baseRef = '../../';
+				window.onload = configPage;
+			--></script>
+<script type="text/javascript">
+			scrollToNameAnchor();
+		</script><table class="titleTable" cellpadding="0" cellspacing="0" id="titleTable" style="display:none"><tr><td class="titleTableTitle" align="left">Apache Flex 4.16.1 API Reference </td><td class="titleTableTopNav" align="right"><a href="../../package-summary.html" onclick="loadClassListFrame('../../all-classes.html')">All Packages</a>&nbsp;|&nbsp;<a href="../../class-summary.html" onclick="loadClassListFrame('../../all-classes.html')">All Classes</a>&nbsp;|&nbsp;<a href="../../all-index-A.html" onclick="loadClassListFrame('../../index-list.html')">Index</a>&nbsp;|&nbsp;<a id="framesLink1" href="../../index.html?spark/accessibility/TitleWindowAccImpl.html&amp;spark/accessibility/class-list.html">Frames</a><a id="noFramesLink1" style="display:none" href="" onclick="parent.location=document.location"> No Frames </a></td><td class="titleTableLogo" align="right" rowspan="3"><img src="../../images/logo.jpg" class="logoImage" alt="AdobeLogo" title="AdobeLogo"></td></tr><tr class="titleTableRow2"><td class="titleTableSubTitle" id="subTitle" align="left">TitleWindowAccImpl</td><td class="titleTableSubNav" id="subNav" align="right"><a href="#methodSummary">Methods</a></td></tr><tr class="titleTableRow3"><td colspan="3">&nbsp;</td></tr></table><script language="javascript" type="text/javascript" xml:space="preserve">
+				<!--
+				
+					if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("TitleWindowAccImpl"); titleBar_setSubNav(false,false,false,false,false,false,false,false,true,false,false	,false,false,false,false,false);}	
+				-->
+			</script><div xmlns:fn="http://www.w3.org/2005/xpath-functions" class="MainContent"><table class="classHeaderTable" cellpadding="0" cellspacing="0"><tr><td class="classHeaderTableLabel">Package</td><td><a href="package-detail.html" onclick="javascript:loadClassListFrame('class-list.html')">spark.accessibility</a></td></tr><tr><td class="classHeaderTableLabel">Class</td><td class="classSignature">public  class  TitleWindowAccImpl</td></tr><tr><td class="classHeaderTableLabel">Inheritance</td><td class="inheritanceList">TitleWindowAccImpl  <img src="../../images/inherit-arrow.gif" title="Inheritance" alt="Inheritance" class="inheritArrow"> <a href="../../spark/accessibility/PanelAccImpl.html">PanelAccImpl</a> <img src="../../images/inherit-arrow.gif" title="Inheritance" alt="Inheritance" class="inheritArrow"> <a href="../../mx/accessibility/AccImpl.html">AccImpl</a> <img src="../../images/inherit-arrow.gif" title="Inheritance" alt="Inheritance" class="inheritArrow"> flash.accessibility.AccessibilityImplementation</td></tr></table><p></p><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Language Version :&nbsp;</b></td><td>ActionScript 3.0</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Product Version :&nbsp;</b></td><td>Flex 4</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Runtime Versions :&nbsp;</b></td><td>Flash Player  10, AIR 1.5</td></tr></table><p></p><p></p><p></p><p></p>
+  TitleWindowAccImpl is the accessibility implementation class
+  for spark.components.TitleWindow.
+   <p>When a Spark TitleWindow is created,
+  the <code>accessibilityImplementation</code> property
+  of a special child Sprite is set to an instance of this class.
+  The Flash Player then uses this class to allow MSAA clients
+  such as screen readers to see this component.
+  See the mx.accessibility.AccImpl and
+  flash.accessibility.AccessibilityImplementation classes
+  for background information about accessibility implementation
+  classes and MSAA.</p>
+               <p>
+                  <b>Children</b>
+               </p>
+               <p>A TitleWindow has no MSAA children.
+  All children of the actual TitleWindow are siblings of the TitleWindow
+  in the FlashPlayer's MSAA tree, because Flash Player
+  does not support objects with accessibility implementations
+  having children with their own accessibility implementations.</p>
+               <p>The TitleWindowAcImpl is set as the
+  <code>accessibilityImplementation</code> of the <code>titleDisplay</code>
+   because setting it on the TitleWindow itself would not allow the
+  TitleWindows's children to be exposed in MSAA.
+  Because of this an invisible rectangle is drawn in the
+  <code>titleDisplay</code> making it the same size as the TitleWindow
+  as a whole so that the MSAA Location is the bounding rectangle
+  of the entire TitleWindow.
+  Screen readers like JAWS rely on the MSAA Location to announce whether
+  some component is in the TitleWindow since the MSAA structure is flat.</p>
+               <p>
+                  <b>Role</b>
+               </p>
+               <p>The MSAA Role of a TitleWindow is ROLE_SYSTEM_PANE.</p>
+               <p>
+                  <b>Name</b>
+               </p>
+               <p>The MSAA Name of a TitleWindow is, by default,
+  the title that it displays.
+  To override this behavior,
+  set the TitleWindow's <code>accessibilityName</code> property.</p>
+               <p>When the Name changes,
+  a TitleWindow dispatches the MSAA event EVENT_OBJECT_NAMECHANGE.</p>
+               <p>
+                  <b>Description</b>
+               </p>
+               <p>The MSAA Description of a TitleWindow is, by default,
+  the empty string, but you can set the TitleWindows's
+  <code>accessibilityDescription</code> property.</p>
+               <p>
+                  <b>State</b>
+               </p>
+               <p>The MSAA State of a TitleWindow is always STATE_SYSTEM_MOVEABLE.</p>
+               <p>Since the State does not change,
+  a TitleWindow does not dispatch the MSAA event EVENT_OBJECT_STATECHANGE.</p>
+               <p>
+                  <b>Value</b>
+               </p>
+               <p>The MSAA Value of a TitleWindow is always the empty string.</p>
+               <p>
+                  <b>Location</b>
+               </p>
+               <p>The MSAA Location of a TitleWindow is its bounding rectangle.</p>
+               <p>
+                  <b>Default Action</b>
+               </p>
+               <p>A TitleWindow does not have an MSAA DefaultAction.</p>
+               <p>
+                  <b>Focus</b>
+               </p>
+               <p>A TitleWindow does not accept focus.</p>
+               <p>
+                  <b>Selection</b>
+               </p>
+               <p>A TitleWindow does not support selection in the MSAA sense.</p>
+               <p>
+                  <b>Other</b>
+               </p>
+               <p>A TitleWindow also dispatches the following MSAA events:
+  <ul>
+                     <li>EVENT_OBJECT_CREATE, when it is created</li>
+                     <li>EVENT_OBJECT_DESTROY, when it is closed</li>
+                     <li>EVENT_OBJECT_LOCATIONCHANGE, when it is moved</li>
+                  </ul>
+               </p>
+  
+            <p></p><br/><hr></div><a name="protectedPropertySummary"></a><div class="summarySection"><div class="summaryTableTitle">Protected Properties</div><div class="showHideLinks"><div id="hideInheritedProtectedProperty" class="hideInheritedProtectedProperty"><a class="showHideLink" href="#protectedPropertySummary" onclick="javascript:setInheritedVisible(false,'ProtectedProperty');"><img class="showHideLinkImage" src="../../images/expanded.gif"> Hide Inherited Protected Properties</a></div><div id="showInheritedProtectedProperty" class="showInheritedProtectedProperty"><a class="showHideLink" href="#protectedPropertySummary" onclick="javascript:setInheritedVisible(true,'ProtectedProperty');"><img class="showHideLinkImage" src="../../images/collapsed.gif"> Show Inherited Protected Properties</a></div></div><table cellspacing="0" cellpadding="3" class="summaryTable hideInheritedProtectedProperty" id="summaryTableProtectedProperty"><tr><th>&nbsp;</th><th colspan="2">Property</th><th class="summaryTableOwnerCol">Defined By</th></tr><tr class="hideInheritedProtectedProperty"><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img src="../../images/inheritedSummary.gif" alt="Inherited" title="Inherited" class="inheritedSummaryImage"></td><td class="summaryTableSignatureCol"><a href="../../mx/accessibility/AccImpl.html#eventsToHandle" class="signatureLink">eventsToHandle</a> : Array<div class="summaryTableDescription">[read-only] 
+      All subclasses must override this function by returning an array
+      of strings of the events to listen for.</div></td><td class="summaryTableOwnerCol"><a href="../../mx/accessibility/AccImpl.html">AccImpl</a></td></tr><tr class="hideInheritedProtectedProperty"><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img src="../../images/inheritedSummary.gif" alt="Inherited" title="Inherited" class="inheritedSummaryImage"></td><td class="summaryTableSignatureCol"><a href="../../mx/accessibility/AccImpl.html#master" class="signatureLink">master</a> : <a href="../../mx/core/UIComponent.html">UIComponent</a><div class="summaryTableDescription">
+      A reference to the UIComponent instance that this AccImpl instance
+      is making accessible.</div></td><td class="summaryTableOwnerCol"><a href="../../mx/accessibility/AccImpl.html">AccImpl</a></td></tr><tr class="hideInheritedProtectedProperty"><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img src="../../images/inheritedSummary.gif" alt="Inherited" title="Inherited" class="inheritedSummaryImage"></td><td class="summaryTableSignatureCol"><a href="../../mx/accessibility/AccImpl.html#role" class="signatureLink">role</a> : uint<div class="summaryTableDescription">
+      Accessibility role of the component being made accessible.</div></td><td class="summaryTableOwnerCol"><a href="../../mx/accessibility/AccImpl.html">AccImpl</a></td></tr></table></div><a name="methodSummary"></a><div class="summarySection"><div class="summaryTableTitle">Public Methods </div><div class="showHideLinks"><div id="hideInheritedMethod" class="hideInheritedMethod"><a class="showHideLink" href="#methodSummary" onclick="javascript:setInheritedVisible(false,'Method');"><img class="showHideLinkImage" src="../../images/expanded.gif"> Hide Inherited Public Methods</a></div><div id="showInheritedMethod" class="showInheritedMethod"><a class="showHideLink" href="#methodSummary" onclick="javascript:setInheritedVisible(true,'Method');"><img class="showHideLinkImage" src="../../images/collapsed.gif"> Show Inherited Public Methods</a></div></div><table cellspacing="0" cellpadding="3" class="summaryTable " id="summaryTableMethod"><tr><th>&nbsp;</th><th colspan="2">Method</th><th class="summaryTableOwnerCol">Defined By</th></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#TitleWindowAccImpl()" class="signatureLink">TitleWindowAccImpl</a>(master:<a href="../../mx/core/UIComponent.html">UIComponent</a>)</div><div class="summaryTableDescription">
+      Constructor.</div></td><td class="summaryTableOwnerCol">TitleWindowAccImpl</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#enableAccessibility()" class="signatureLink">enableAccessibility</a>():void</div><div class="summaryTableDescription">[static] 
+      Enables accessibility in the TitleWindow class.</div></td><td class="summaryTableOwnerCol">TitleWindowAccImpl</td></tr><tr class="hideInheritedMethod"><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img src="../../images/inheritedSummary.gif" alt="Inherited" title="Inherited" class="inheritedSummaryImage"></td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="../../mx/accessibility/AccImpl.html#getFormName()" class="signatureLink">getFormName</a>(component:<a href="../../mx/core/UIComponent.html">UIComponent</a>):String</div><div class="summaryTableDescription">[static] 
+      Method for supporting Form Accessibility.</div></td><td class="summaryTableOwnerCol"><a href="../../mx/accessibility/AccImpl.html">AccImpl</a></td></tr><tr class="hideInheritedMethod"><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img src="../../images/inheritedSummary.gif" alt="Inherited" title="Inherited" class="inheritedSummaryImage"></td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="../../mx/accessibility/AccImpl.html#isAncestorDisabled()" class="signatureLink">isAncestorDisabled</a>(component:<a href="../../mx/core/UIComponent.html">UIComponent</a>):Boolean</div><div class="summaryTableDescription">[static] 
+      Returns true if an ancestor of the component has enabled set to false.</div></td><td class="summaryTableOwnerCol"><a href="../../mx/accessibility/AccImpl.html">AccImpl</a></td></tr></table></div><a name="protectedMethodSummary"></a><div class="summarySection"><div class="summaryTableTitle">Protected Methods </div><div class="showHideLinks"><div id="hideInheritedProtectedMethod" class="hideInheritedProtectedMethod"><a class="showHideLink" href="#protectedMethodSummary" onclick="javascript:setInheritedVisible(false,'ProtectedMethod');"><img class="showHideLinkImage" src="../../images/expanded.gif"> Show Inherited Protected Methods</a></div><div id="showInheritedProtectedMethod" class="showInheritedProtectedMethod"><a class="showHideLink" href="#protectedMethodSummary" onclick="javascript:setInheritedVisible(true,'ProtectedMethod');"><img class="showHideLinkImage" src="../../images/collapsed.gif"> Show Inherited Protected Methods</a></div></div><table cellspacing="0" cellpadding="3" class="summaryTable hideInheritedProtectedMethod" id="summaryTableProtectedMethod"><tr><th>&nbsp;</th><th colspan="2">Method</th><th class="summaryTableOwnerCol">Defined By</th></tr><tr class="hideInheritedProtectedMethod"><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img src="../../images/inheritedSummary.gif" alt="Inherited" title="Inherited" class="inheritedSummaryImage"></td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="../../mx/accessibility/AccImpl.html#eventHandler()" class="signatureLink">eventHandler</a>(event:Event):void</div><div class="summaryTableDescription">
+      Generic event handler.</div></td><td class="summaryTableOwnerCol"><a href="../../mx/accessibility/AccImpl.html">AccImpl</a></td></tr><tr class="hideInheritedProtectedMethod"><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img src="../../images/inheritedSummary.gif" alt="Inherited" title="Inherited" class="inheritedSummaryImage"></td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="../../mx/accessibility/AccImpl.html#getName()" class="signatureLink">getName</a>(childID:uint):String</div><div class="summaryTableDescription">
+      Returns the name of the accessible component.</div></td><td class="summaryTableOwnerCol"><a href="../../mx/accessibility/AccImpl.html">AccImpl</a></td></tr><tr class="hideInheritedProtectedMethod"><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img src="../../images/inheritedSummary.gif" alt="Inherited" title="Inherited" class="inheritedSummaryImage"></td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="../../mx/accessibility/AccImpl.html#getState()" class="signatureLink">getState</a>(childID:uint):uint</div><div class="summaryTableDescription">
+      Utility method to determine state of the accessible component.</div></td><td class="summaryTableOwnerCol"><a href="../../mx/accessibility/AccImpl.html">AccImpl</a></td></tr></table></div><script language="javascript" type="text/javascript"><!--
+										showHideInherited();
+										--></script><div class="MainContent"><a name="constructorDetail"></a><div class="detailSectionHeader">Constructor Detail</div><a name="TitleWindowAccImpl()"></a><a name="TitleWindowAccImpl(mx.core.UIComponent)"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">TitleWindowAccImpl</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">Constructor</td></tr></table><div class="detailBody"><code>public function TitleWindowAccImpl(master:<a href="../../mx/core/UIComponent.html">UIComponent</a>)</code><p></p><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Language Version :&nbsp;</b></td><td>ActionScript 3.0</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Product Version :&nbsp;</b></td><td>Flex 4</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Runtime Versions :&nbsp;</b></td><td>Flash Player  10, AIR 1.5</td></tr></table><p></p><p>
+      Constructor.
+           </p><span class="label"> Parameters </span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20px"></td><td><code><span class="label">master</span>:<a href="../../mx/core/UIComponent.html">UIComponent</a></code> &mdash; The UIComponent instance that this AccImpl instance
+      is making accessible.
+      
+      </td></tr></table></div><a name="methodDetail"></a><div class="detailSectionHeader">Method Detail</div><a name="enableAccessibility()"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">enableAccessibility</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td></tr></table><div class="detailBody"><code> public static function enableAccessibility():void</code><p></p><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Language Version :&nbsp;</b></td><td>ActionScript 3.0</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Product Version :&nbsp;</b></td><td>Flex 4</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Runtime Versions :&nbsp;</b></td><td>Flash Player  10, AIR 1.5</td></tr></table><p></p><p></p><p>
+      Enables accessibility in the TitleWindow class.
+     
+      <p>This method is called by application startup code
+      that is autogenerated by the MXML compiler.
+      Afterwards, when instances of TitleWindow are initialized,
+      the <code>accessibilityImplementation</code> property
+      of a special first child Sprite will be set to an instance
+      of this class.
+      If the TitleWindowAccImpl were attached to the TitleWindow itself
+      the accessibility implementations of the TitleWindow's children
+      would be ignored.</p>
+      
+      </p></div><br/><br/><hr><br/><p></p><center class="copyright"><footer>The Apache Software Foundation</footer><br/>Wed Nov 15 2017, 09:50 AM +01:00  </center></div></body></html><!--The Apache Software Foundation<br/>Wed Nov 15 2017, 09:50 AM +01:00  -->
