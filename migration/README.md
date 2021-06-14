@@ -3,9 +3,12 @@
 1. Markdown conversions
 
    - Rename from cmsPage to md
-   - HTML blocks must be contiguous and blank lines will become code blocks
+   - All md files need a title
+   - Prefer https protocol
+   - Prefer internal links for flex.apache.org
+   - HTML blocks must be contiguous. blank lines will move html into code blocks
    - Headings should not use trailing ##
-   - Fenced code blocks differ
+   - Fenced code blocks differ and charactoer entities must not be used
 
    See [changes.txt](changes.txt)
 
