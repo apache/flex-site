@@ -36,9 +36,11 @@ Title:  Unit 6 - Working with the Test Fixture
 	<li>To use, simply decorate the method with <code>[Before]</code> metadata.</li>
 </ul>
 
-<code><pre>[Before]
+```
+[Before]
 public function runMeBeforeEveryTest():void {
-}</pre></code>
+}
+```
 
 <h3>After methods</h3>
 
@@ -50,23 +52,27 @@ public function runMeBeforeEveryTest():void {
 	<li>To use, simply decorate the method with <code>[After]</code> metadata.</li>
 </ul>
 
-<code><pre>[After]
+```
+[After]
 public function runMeAfterEveryTest():void {
-}</pre></code>
+}
+```
 
 <h3>Order of Execution</h3>
 
 <p>As indicated above Before and After methods run before and after every test. Therefore, the execution of a method with three tests is indicated below:</p>
 
-<code><pre>	[Before]
-		[Test1]
-	[After] 
-	[Before]
-		[Test2]
-	[After] 
-	[Before]
-		[Test3]
-	[After]</pre></code>
+```
+[Before]
+	[Test1]
+[After] 
+[Before]
+	[Test2]
+[After] 
+[Before]
+	[Test3]
+[After]
+```
 
 <p>The setup of your test fixture occurs before each test to ensure the test runs in isolation from others in the test case.</p>
 
@@ -93,44 +99,66 @@ public function runMeAfterEveryTest():void {
 	</li>
 	<li>
 		<p>Add a private variable with the name of <code>circle</code> and a data type of <code>Circle</code> to the class.</p>
-		<code><pre>public class BasicCircleTest {		
-	private static const TOLERANCE:Number = .0001;
-	private var circle:Circle;
-	...
-}		</pre></code>
-	</li>
+
+```
+public class BasicCircleTest {		
+       private static const TOLERANCE:Number = .0001;
+       private var circle:Circle;
+       ...
+}
+```
+
+</li>
 	<li>
 		<p>Add a public function named <code>setMeUp()</code> to the class. Mark the function with a <code>[Before]</code> metadata tag. This function will set the <code>circle</code> property to a new <code>Circle</code> instance with arguments <code>new Point( 0, 0 )</code> and <code>5</code>.</p>
-		<code><pre>[Before]
+
+```
+[Before]
 public function setMeUp():void {
 	circle = new Circle( new Point( 0, 0 ), 5 );
-}		</pre></code>
-		<p>Note, the name of the function is unimportant. It is only the Before metadata that makes this a Before method.</p>
+}
+```
+
+<p>Note, the name of the function is unimportant. It is only the Before metadata that makes this a Before method.</p>
 	</li>
 	<li>
 		<p>Similarly, add another public function named <code>tearMeDown()</code>. In this case you are going to mark the function with an <code>[After]</code> metadata tag. This function will set the class <code>circle</code> variable to null.</p> 
-		<code><pre>[After]
+
+```
+[After]
 public function tearMeDown():void {
 	circle = null;
-}		</pre></code>
-	</li>
+}
+```
+
+</li>
 	<li>
 		<p>Remove the <code>circle</code> variable instantiations from each of the test methods. Using the first test as a model:</p>
-		<code><pre>[Test]
+
+```
+[Test]
 public function shouldReturnProvidedRadius():void {
 	var circle:Circle = new Circle( new Point( 0, 0 ), 5 );
 	assertEquals( 5, circle.radius );
-}		</pre></code>
-		<p>Becomes:</p>
-		<code><pre>[Test]
+}
+```
+
+<p>Becomes:</p>
+
+```
+[Test]
 public function shouldReturnProvidedRadius():void {
 	assertEquals( 5, circle.radius );
-}		</pre></code>
-		<h3><br />Running the test case</h3>
+}
+```
+
+<h3><br />Running the test case</h3>
 	</li>
 	<li>
 		<p>After the instantiations have been removed, the test class should read as follows:</p>
-		<code><pre>public class BasicCircleTest {	
+
+```
+public class BasicCircleTest {	
 	private static const TOLERANCE:Number = .0001;
 	private var circle:Circle;
 	[Before]
@@ -193,8 +221,10 @@ public function shouldReturnProvidedRadius():void {
 	public function shouldThrowRangeError():void {
 		var someCircle:Circle = new Circle( new Point( 10, 10 ), -5 );
 	}
-}		</pre></code>
-		<p>Other circles, such as <code>circle2</code> are still instantiated in its respective methods, because it is unique in each case.</p>
+}
+```
+
+<p>Other circles, such as <code>circle2</code> are still instantiated in its respective methods, because it is unique in each case.</p>
 	</li>
 	<li>
 		<p>Save BasicCircleTest.as.</p>
@@ -228,7 +258,8 @@ public function shouldReturnProvidedRadius():void {
 <p>As items created in BeforeClass are created before the test case constructor is called, they must be static. Unlike items created in Before which have the possibility of being garbage collected, these static items will not. Therefore, the cleanup performed by the AfterClass methods is extremely important.</p>
 <p>Static functions marked with [BeforeClass] and [AfterClass] can exist on a test case or a test suite and are run once per execution. The method execution of a three-test hierarchy is illustrated below:</p>
 
-<code><pre>[BeforeClass]
+```
+[BeforeClass]
 	[Before]
 		[Test]
 	[After] 
@@ -238,7 +269,8 @@ public function shouldReturnProvidedRadius():void {
 	[Before]
 		[Test]
 	[After] 
-[AfterClass]</pre></code>
+[AfterClass]
+```
 
 <h2>Walkthrough 2: Using BeforeClass and AfterClass</h2>
 
@@ -257,22 +289,32 @@ public function shouldReturnProvidedRadius():void {
 	</li>
 	<li>
 		<p>Declare a public static function named <code>setUpClass()</code>, mark it with <code>[BeforeClass]</code> metadata. In the function body, add a trace statement that merely states "Before Class."</p>
-		<code><pre>[BeforeClass]
+
+```
+[BeforeClass]
 public static function setUpClass():void {
 	trace( "Before Class" );
-}		</pre></code>
-	</li>
+}
+```
+
+</li>
 	<li>
 		<p>Similarly, declare another public static function named <code>tearDownClass()</code>, mark it with <code>[AfterClass]</code> metadata.</p> 
-		<code><pre>[AfterClass]
+
+```
+[AfterClass]
 public static function tearDownClass():void {
 	trace( "After Class" );
-}		</pre></code>
-		<h3><br />Visualizing test order</h3>
+}
+```
+
+<h3><br />Visualizing test order</h3>
 	</li>
 	<li>
 		<p>A similar trace statement should be added to the existing <code>setMeUp()</code> and <code>tearMeDown()</code> methods.</p>
-		<code><pre>[Before]
+
+```
+[Before]
 public function setMeUp():void {
 	circle = new Circle( new Point( 0, 0 ), 5 );
 	trace( "Before Test" );
@@ -281,16 +323,22 @@ public function setMeUp():void {
 public function tearMeDown():void {
 	circle = null;
 	trace( "After Test" );
-}		</pre></code>
-	</li>
+}
+```
+
+</li>
 	<li>
 		<p>Finally, add a trace statement to every test method on the first line.</p>
-		<code><pre>[Test]
+
+```
+[Test]
 public function shouldReturnProvidedRadius():void {
 	trace( "Test" );
 	assertEquals( 5, circle.radius );
-}		</pre></code>
-	</li>
+}
+```
+
+</li>
 	<li>
 		<p>Save BasicCircleTest.as</p>
 	</li>
@@ -306,7 +354,8 @@ public function shouldReturnProvidedRadius():void {
 	</li>
 	<li>
 		<p>Take a look at the console view; if all the functions ran to completion, you should see the following show up in order.</p>
-		<code><pre>
+
+```
 Before Class
 Before Test
 Test
@@ -342,8 +391,10 @@ Before Test
 Test
 After Test
 After Class
-		</pre></code>
-	</li>
+
+```
+
+</li>
 	<li>
 		<p>Based on the exhibited call hierarchy, you should be able to tell that the <code>setUpClass()</code> and <code>tearDownClass()</code> functions are being called before the first test method and after the last. Meanwhile, the <code>setMeUp()</code> and <code>tearMeDown()</code> methods are being called respectively before and after every test.</p>
 	</li>

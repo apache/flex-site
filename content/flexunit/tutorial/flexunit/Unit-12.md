@@ -68,15 +68,21 @@ Title:  Unit 12 - Running Tests from Different Versions
 	<li>
 		<p>Open the TestAssert.as file in the fu1 package in the tests folder.</p>
 		<p>As you examine the class file you will notice a few differences about these test methods. The <code>TestAssert</code> class extends from the <code>TestCase</code> class.  The TestCase class was the base class for all tests in FlexUnit .9.</p>
-<code><pre>public class TestAssert extends TestCase {      
+
+```
+public class TestAssert extends TestCase {      
       public function TestAssert( name : String = null ) {
          super( name );
       }
       ...
-}</pre></code>
+}
+```
+
 <p>The class constructor in FlexUnit .9 can be used to provide a name for this test in certain circumstances. In this test it does nothing more than call its <code>super()</code> method. FlexUnit 4.x tests do not descend from any particular class.</p> 
 <p>Metadata is not used to distinguish tests and fixture from normal methods. Every method in this case prefixes the word <i>test</i> to its name. Take a look at the <code>testMatch()</code> method:</p>
-<code><pre>public function testMatch() : void {
+
+```
+public function testMatch() : void {
 	Assert.assertMatch(
 	     /fr.*gt/,
 	     "feeefrbgbgbggt" );
@@ -96,8 +102,10 @@ Title:  Unit 12 - Running Tests from Different Versions
 	   return;
 	}
 	fail();
-}</pre></code>
-		<p>There are separate Assert classes in FlexUnit 4 and FlexUnit .9.  Both have static methods for making assertions. When running tests in FlexUnit 4 you can use either of these classes, to help maintain backwards compatibility.</p> 
+}
+```
+
+<p>There are separate Assert classes in FlexUnit 4 and FlexUnit .9.  Both have static methods for making assertions. When running tests in FlexUnit 4 you can use either of these classes, to help maintain backwards compatibility.</p> 
 		<p>FlexUnit 4.x Assert: <code>org.flexunit.Assert</code></p>
 		<p>FlexUnit 1 Assert: <code>flexunit.framework.Assert</code></p>
 		<p>For catching errors, FlexUnit 1 uses <code>try, catch</code> statements. FlexUnit 4.x uses <code>expects=""</code> metadata for the same kind of test.</p>
@@ -109,15 +117,18 @@ Title:  Unit 12 - Running Tests from Different Versions
 	<li>
 		<p>Within the <code>&#60;fx:Script&#62;</code> block there is a function named <code>currentRunTestSuite()</code>. Add a line that calls the <code>testsToRun.push()</code> method with the argument <code>TestAssert</code>.</p> 
 
-<code><pre>import fu1.TestAssert;
+```
+import fu1.TestAssert;
 import math.testcases.CircleSuite;
 public function currentRunTestSuite():Array {
 	var testsToRun:Array = new Array();
 	testsToRun.push( CircleSuite );
 	testsToRun.push( TestAssert );
 	return testsToRun;
-}</pre></code>
-		<p>If you did not use code-completion, add the import statement for fu1.TestAssert at this point.</p>
+}
+```
+
+<p>If you did not use code-completion, add the import statement for fu1.TestAssert at this point.</p>
 	</li>
 	<li>
 		<p>Save and Run the FlexUnit4Training.mxml file.</p>

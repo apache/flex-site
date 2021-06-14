@@ -106,16 +106,20 @@ Title:  Unit 10 - Mock Classes
 <p>Rules are objects that implement a specific interface to allow developer extension of the main test runner provided with FlexUnit 4. Using rules, a developer may create reusable test fixtures, evaluate a test differently or add steps into the test evaluation process. You will examine rules in more detail later; however, they are being briefly introduced at this time as the primary way of using Mockolate is through a Rule.</p>
 <p>To use a rule, instantiate a public property in a test case, and decorate the property with the [Rule] metadata:</p>
 
-<code><pre>[Rule]
-public var myRuleThatDoesSomethingCool:MyRule = new MyRule();</pre></code>
+```
+[Rule]
+public var myRuleThatDoesSomethingCool:MyRule = new MyRule();
+```
 
 <h2>Using the MockolateRule</h2>
 <p>Included in the Mockolate library is a rule named MockolateRule. It is specifically for use with FlexUnit 4. The Mockolate rule saves many manual steps required to create mocks.</p>
 <p>Different mocking frameworks work in different ways. Mockolate works by creating compiled ActionScript code for the required mock object in memory at runtime. This is an extremely effective and useful technique; however, Flash Player does not allow this operation to occur synchronously. Therefore, setting up a Mockolate mock is an asynchronous process. The Mockolate rule manages these details without your intervention.</p>
 <p>To use the rule, include the following:</p>
 
-<code><pre>[Rule]
-public var mockRule:MockolateRule = new MockolateRule();</pre></code>
+```
+[Rule]
+public var mockRule:MockolateRule = new MockolateRule();
+```
 
 <p>Once the rule is included, you may use a special piece of metadata named [Mock] to create and inject Mockolate mocks.  You will do this in the following walkthrough.</p>
 
@@ -141,24 +145,37 @@ public var mockRule:MockolateRule = new MockolateRule();</pre></code>
 	</li>
 	<li>
 		<p>Take a look at the constructor for the class:</p>
-		<code><pre>public function Circle( origin:Point, radius:Number )</pre></code>
-		<p>Currently, the constructor takes two arguments, a <code>Point</code> and a <code>Number</code>. In this walkthrough, you will be mocking this object. Mock automatically passes default parameters for all arguments. This means origin will be <code>null</code> and the radius will be <code>0</code>. A circle cannot have a <code>null</code> origin or a radius of <code>0</code>, you will need to handle these cases. Later, you will be shown how to pass actual values to the mock.</p>
+
+```
+public function Circle( origin:Point, radius:Number )
+```
+
+<p>Currently, the constructor takes two arguments, a <code>Point</code> and a <code>Number</code>. In this walkthrough, you will be mocking this object. Mock automatically passes default parameters for all arguments. This means origin will be <code>null</code> and the radius will be <code>0</code>. A circle cannot have a <code>null</code> origin or a radius of <code>0</code>, you will need to handle these cases. Later, you will be shown how to pass actual values to the mock.</p>
 	</li>
 	<li>
 		<p>Comment out the range check for radius.</p>
-		<code><pre>
+
+```
 // if( ( radius &#60;= 0 || isNaN( radius ) ) {
 //	throw new RangeError( "Radius must be a positive Number" );
-// }</pre></code>
-		<p>You are commenting this out for simplicity. The default radius of 0 will cause the range error to be thrown. This will prevent that from happening.</p>
+// }
+```
+
+<p>You are commenting this out for simplicity. The default radius of 0 will cause the range error to be thrown. This will prevent that from happening.</p>
 	</li>
 	<li>
 		<p>Immediately after the range check for radius, add a null check for origin. If origin is null, instantiate to a new <code>Point</code> with x and y of 0.</p>
-		<code><pre>if( origin == null ) {
+
+```
+if( origin == null ) {
 	origin = new Point( 0, 0 );
-}</pre></code>
-		<p>Your <code>Circle</code> constructor should now appear as follows:</p>
-		<code><pre>public function Circle( origin:Point, radius:Number ) {
+}
+```
+
+<p>Your <code>Circle</code> constructor should now appear as follows:</p>
+
+```
+public function Circle( origin:Point, radius:Number ) {
 	// if( ( radius &#60;= 0 || isNaN( radius ) ) {
 	// 	throw new RangeError( "Radius must be a positive Number" );
 	// }
@@ -167,8 +184,10 @@ public var mockRule:MockolateRule = new MockolateRule();</pre></code>
 	}
 	this._origin = origin;
 	this._radius = radius;
-}</pre></code>
-		<h3><br />Declare the MockolateRule</h3>
+}
+```
+
+<h3><br />Declare the MockolateRule</h3>
 	</li>
 	<li>
 		<p>Create a new ActionScript class named CircleMockTest in the math.testcases package within the tests directory.</p>
@@ -178,25 +197,36 @@ public var mockRule:MockolateRule = new MockolateRule();</pre></code>
 	</li>
 	<li>
 		<p>Add and instantiate a public variable named <code>mockRule</code> of type <code>MockolateRule</code> to the CircleMockTest class. Mark the variable with <code>[Rule]</code> metadata.</p>
-		<code><pre>[Rule]
-public var mockRule:MockolateRule = new MockolateRule();</pre></code>
-		<p>If you did not use code-completion, add the import for mockolate.runner.MockolateRule at this time.</p>
+
+```
+[Rule]
+public var mockRule:MockolateRule = new MockolateRule();
+```
+
+<p>If you did not use code-completion, add the import for mockolate.runner.MockolateRule at this time.</p>
 	</li>
 	<li>
 		<p>Add a variable named <code>mockCircle</code> of type <code>Circle</code> to the class. Mark the variable with <code>[Mock]</code> metadata.</p>
-		<code><pre>
+
+```
 [Mock]
-public var mockCircle:Circle;</pre></code>
-		<p><code>[Mock]</code> metadata marks a variable for mock creation and injection. Mock creation is the equivalent of object instantiation within the Mockolate framework. Variables marked with this metadata are prepared for use as Mocks. By using the MockolateRule, this mock will be instantiated with default values prior to any tests being run in the test case.</p>
+public var mockCircle:Circle;
+```
+
+<p><code>[Mock]</code> metadata marks a variable for mock creation and injection. Mock creation is the equivalent of object instantiation within the Mockolate framework. Variables marked with this metadata are prepared for use as Mocks. By using the MockolateRule, this mock will be instantiated with default values prior to any tests being run in the test case.</p>
 		<p>If you did not use code-completion, add the import for net.digitalprimates.math.Circle at this time.</p>
 	</li>
 	<li>
 		<p>Add a method named <code>shouldBeNotNull()</code>. It will assert that the <code>mockCircle</code> is not null.</p>
-		<code><pre>[Test]
+
+```
+[Test]
 public function shouldBeNotNull():void {
 	assertThat(mockCircle, notNullValue() );
-}</pre></code>
-		<p>If you did not use code-completion, add the import statements for org.flexunit.assertThat and org.hamcrest.object.notNullValue at this time.</p>
+}
+```
+
+<p>If you did not use code-completion, add the import statements for org.flexunit.assertThat and org.hamcrest.object.notNullValue at this time.</p>
 	</li>
 	<li>
 		<p>Save CircleMockTest.as.</p>
@@ -204,15 +234,19 @@ public function shouldBeNotNull():void {
 	</li>
 	<li>
 		<p>Open the CircleSuite.as file within the math.testcases package. Add a new public variable named <code>test4</code> with a type of <code>CircleMockTest</code></p>
-		<code><pre>[Suite]
+
+```
+[Suite]
 [RunWith("org.flexunit.runners.Suite")]
 public class CircleSuite {
 	public var test1:BasicCircleTest;
 	public var test2:CircleConstructorTest;
 	public var test3:CircleTheory;
 	public var test4:CircleMockTest;
-}</pre></code>
-	</li>
+}
+```
+
+</li>
 	<li>
 		<p>Save the CircleSuite.as file.</p>
 	</li>
@@ -235,8 +269,10 @@ public class CircleSuite {
 <p>By default, Mockolate creates nice, injected mocks.</p>
 <p>To create a mock, create the variable as normal and decorate it with the [Mock] metadata.</p>
 
-<code><pre>[Mock]
-public var myMock:MockableObject;</pre></code>
+```
+[Mock]
+public var myMock:MockableObject;
+```
 
 <p>The [Mock] metadata accepts two possible arguments: <code>type</code> and <code>inject</code></p>
 <ul>
@@ -246,8 +282,10 @@ public var myMock:MockableObject;</pre></code>
 <p>By default, Mockolate creates a nice, injected mock.</p>
 <p>A strict, non-injected mock would appear as:</p>
 
-<code><pre>[Mock(type="strict",inject="false")]
-public var myMock:MockableObject;</pre></code>
+```
+[Mock(type="strict",inject="false")]
+public var myMock:MockableObject;
+```
 
 <p>Once the mock is created, it can be used in tests.  To use the mock you must <i>stub</i> or <i>mock</i> all methods or properties under test.</p>
 <ul>
@@ -258,19 +296,35 @@ public var myMock:MockableObject;</pre></code>
 <p>A method or property can be stubbed to:</p>
 <ul>
 	<li>Return a getter</li>
-	<code><pre>stub(myMock).getter("name").returns("Useful Mock");</pre></code>
+
+```
+stub(myMock).getter("name").returns("Useful Mock");
+```
+
 </ul>
 <ul>
 	<li>A method without arguments</li>
-	<code><pre>stub(myMock).method("toString").returns("Useful Mock");</pre></code>
+
+```
+stub(myMock).method("toString").returns("Useful Mock");
+```
+
 </ul>
 <ul>
 	<li>With args</li>
-	<code><pre>stub(myMock).method("add").args(3, 5).returns(8);</pre></code>
+
+```
+stub(myMock).method("add").args(3, 5).returns(8);
+```
+
 </ul>
 <ul>
 	<li>With Hamcrest</li>
-	<code><pre>stub(myMock).method("repeatIt").args(instanceOf(String)).returns(instanceOf(String));</pre></code>
+
+```
+stub(myMock).method("repeatIt").args(instanceOf(String)).returns(instanceOf(String));
+```
+
 </ul>
 <p>This list is not exhaustive.  If the real object can do it, the mock can likely simulate the behavior.  All of these approaches can be used with mocks as well to set required behaviors.</p>
 <p>Mocks are used to stand-in as complex objects for a given class or methods under test. Furthermore, they are used to isolate the system under test, so extraneous dependencies are not interfering with test execution or expectations.</p>
@@ -292,14 +346,22 @@ public var myMock:MockableObject;</pre></code>
 	</li>
 	<li>
 		<p>Add a new method <code>shouldBeEqualCircleMock()</code> decorated with the test metadata.</p>
-		<code><pre>[Test]
+
+```
+[Test]
 public function shouldBeEqualCircleMock():void {
-}</pre></code>
-	</li>
+}
+```
+
+</li>
 	<li>
 		<p>Set an expectation that the <code>origin</code> getter will be called at least once. To set an expectation, you use the <code>mock()</code> method of the <code>MockolateRule</code>. You will also need to use the <code>getter()</code> method.</p>
-		<code><pre>mock( mockCircle ).getter( "origin" ).atLeast( 1 );</pre></code>
-		<p>If you did not use code-completion, import mockolate.mock at this time.</p>
+
+```
+mock( mockCircle ).getter( "origin" ).atLeast( 1 );
+```
+
+<p>If you did not use code-completion, import mockolate.mock at this time.</p>
 	</li>
 	<li>
 		<p>Save the CircleMockTest.as file.</p>
@@ -316,14 +378,22 @@ public function shouldBeEqualCircleMock():void {
 	</li>
 	<li>
 		<p>In <code>shouldBeEqualCircleMock()</code>, but after the mock expectation, create a new <code>Circle</code> called <code>circle</code>. As arguments, pass a new origin at <code>Point( 0, 0 )</code> and a radius of <code>0</code>.</p>
-		<code><pre>var circle:Circle = new Circle( new Point( 0, 0 ), 0 );</pre></code>
-		<p>You are passing this circle because the default mock created an origin at 0, 0 with a radius of 0.</p>
+
+```
+var circle:Circle = new Circle( new Point( 0, 0 ), 0 );
+```
+
+<p>You are passing this circle because the default mock created an origin at 0, 0 with a radius of 0.</p>
 		<p>If you did not use code-completion, add the import for flash.geom.Point.</p>
 	</li>
 	<li>
 		<p>In <code>shouldBeEqualCircleMock()</code>, after the circle is instantiated, make a call to the <code>equals()</code> method of circle. Pass it the <code>mockCircle</code> as a parameter.</p>
-		<code><pre>circle.equals( mockCircle );</pre></code>
-	</li>
+
+```
+circle.equals( mockCircle );
+```
+
+</li>
 	<li>
 		<p>Save the CircleMockTest.as file.</p>
 	</li>
@@ -336,8 +406,12 @@ public function shouldBeEqualCircleMock():void {
 	</li>
 	<li>
 		<p>Add the <code>type="strict"</code> annotation to the Mock metadata of <code>mockCircle</code>.</p>
-		<code><pre>[Mock( type="strict" )]</pre></code>		
-	</li>
+
+```
+[Mock( type="strict" )]
+```
+
+</li>
 	<li>
 		<p>Save the CircleMockTest.as file.</p>
 	</li>
@@ -353,8 +427,12 @@ public function shouldBeEqualCircleMock():void {
 	</li>
 	<li>
 		<p>At the top of the <code>shouldBeEqualCircleMock()</code>, add the expectation for <code>radius</code> to be called at least once.</p>
-		<code><pre>mock( mockCircle ).getter( "radius" ).atLeast( 1 );</pre></code>		
-	</li>
+
+```
+mock( mockCircle ).getter( "radius" ).atLeast( 1 );
+```
+
+</li>
 	<li>
 		<p>Save the CircleMockTest.as file.</p>
 	</li>
@@ -374,13 +452,17 @@ public function shouldBeEqualCircleMock():void {
 
 <p>When injected automatically, mocks pass default parameters to any constructor args, 0 for Number, the empty string for Strings, and null for most other objects. In order to set these constructor arguments to anything else you need to inject the mock manually. Mockolate has a special [Mock] annotation called <code>inject</code> that may be applied to modify mock creation. <code>Inject</code> has two values: <code>true</code> or <code>false</code>. A non-injected mock would appear as:</p>
 
-<code><pre>[Mock( inject="false" )]
-public var mockPoint:Point;</pre></code>
+```
+[Mock( inject="false" )]
+public var mockPoint:Point;
+```
 
 <p>There are two methods to inject a mock, depending on the type, <code>nice()</code> or <code>strict()</code>. The method used must match the mock or an error will be thrown. Both of these take three parameters: the mock, an optional name and optional arguments. Arguments must be specified as an ordered array.</p>
 <p>For Point:</p>
 
-<code><pre>mockPoint = nice( Point, "myPoint", [ 0, 0 ] );</pre></code>
+```
+mockPoint = nice( Point, "myPoint", [ 0, 0 ] );
+```
 
 <h2>Walkthrough 3: Injecting mocks</h2>
 
@@ -402,48 +484,84 @@ public var mockPoint:Point;</pre></code>
 	<li>
 		<p>Modify the current mock <code>Circle</code> to create the mock but not inject. To do so, add the inject annotation to the Mock metadata decorating the <code>mockCircle</code> variable.</p>
 		<p>Replace:</p>
-		<code><pre>[Mock( type="strict" )]
-Public var mockCircle:Circle;</pre></code>
-		<p>With</p>
-		<code><pre>[Mock( inject="false", type="strict" )
-Public var mockCircle:Circle;</pre></code>
-	</li>
+
+```
+[Mock( type="strict" )]
+Public var mockCircle:Circle;
+```
+
+<p>With</p>
+
+```
+[Mock( inject="false", type="strict" )
+Public var mockCircle:Circle;
+```
+
+</li>
 	<li>
 		<p>Create a new method named <code>setup()</code> decorated with the Before metadata.</p>
-		<code><pre>[Before]
+
+```
+[Before]
 public function setup():void {
-}</pre></code>
-	</li>
+}
+```
+
+</li>
 	<li>
 		<p>In the before method, inject a strict mock using the <code>strict()</code> method. Pass this method the <code>Circle</code> class, "<code>mockCircle</code>", and the array <code>[ new Point( 0, 0 ), 1  ]</code>. Assign the return for <code>strict()</code> to the <code>mockCircle</code> instance.</p>
-		<code><pre>[Before]
+
+```
+[Before]
 public function setup():void {
 mockCircle = strict( Circle, "mockCircle", [ new Point( 0, 0 ), 1 ] );
-}</pre></code>
-		<p>Since the constructor arguments are now being passed, the range test in the <code>Circle</code> constructor is now satisfied. However, the getters will still return default values. Mocks do not use any of the instance properties. You will need to mock the getters for <code>radius</code> and <code>origin</code> to return values.</p>
+}
+```
+
+<p>Since the constructor arguments are now being passed, the range test in the <code>Circle</code> constructor is now satisfied. However, the getters will still return default values. Mocks do not use any of the instance properties. You will need to mock the getters for <code>radius</code> and <code>origin</code> to return values.</p>
 		<p>If you did not use code-completion, add the import for mockolate.strict.</p>
 	</li>
 	<li>
 		<p>Replace the lines:</p>
-		<code><pre>mock( mockCircle ).getter( "origin" ).atLeast( 1 );
-mock( mockCircle ).getter( "radius" ).atLeast( 1 );</pre></code>
-		<p>with</p>
-		<code><pre>mock( mockCircle ).getter( "origin" ).returns( new Point( 0, 0 ) ).atLeast( 1 );
-mock( mockCircle ).getter( "radius" ).returns( 1 ).atLeast( 1 );</pre></code>
-		<p>This will force the getter and setter to return the required values.</p>
+
+```
+mock( mockCircle ).getter( "origin" ).atLeast( 1 );
+mock( mockCircle ).getter( "radius" ).atLeast( 1 );
+```
+
+<p>with</p>
+
+```
+mock( mockCircle ).getter( "origin" ).returns( new Point( 0, 0 ) ).atLeast( 1 );
+mock( mockCircle ).getter( "radius" ).returns( 1 ).atLeast( 1 );
+```
+
+<p>This will force the getter and setter to return the required values.</p>
 		<p>If you were to run the test now, it would pass with no errors. However, this does not fulfill the test "shouldBeEqualCircleMock"</p>
 	</li>
 	<li>
 		<p>Change the radius of the circle you instantiate, from a value of 0, to a value of 1.</p>
-		<code><pre>var circle:Circle = new Circle( new Point( 0, 0 ), 1 );</pre></code>
-		<p>We want to compare that this circle is equal to our mock circle, so they should both have the same radius.</p>
+
+```
+var circle:Circle = new Circle( new Point( 0, 0 ), 1 );
+```
+
+<p>We want to compare that this circle is equal to our mock circle, so they should both have the same radius.</p>
 	</li>
 	<li>
 		<p>Replace the line:</p>
-		<code><pre>circle.equals( mockCircle );</pre></code>
-		<p>With</p>
-		<code><pre>assertTrue( circle.equals( mockCircle ) );</pre></code>
-		<p>If you did not use code-completion, add the import for org.flexUnit.asserts.assertTrue</p>
+
+```
+circle.equals( mockCircle );
+```
+
+<p>With</p>
+
+```
+assertTrue( circle.equals( mockCircle ) );
+```
+
+<p>If you did not use code-completion, add the import for org.flexUnit.asserts.assertTrue</p>
 		<h3><br />Revert the changes to the Circle class.</h3>
 	</li>
 	<li>
@@ -452,18 +570,25 @@ mock( mockCircle ).getter( "radius" ).returns( 1 ).atLeast( 1 );</pre></code>
 	</li>
 	<li>
 		<p>Uncomment the following section:</p>
-		<code><pre>
+
+```
 // if ( ( radius &#60;= 0 ) || isNaN( radius ) ) {
 //	throw new RangeError("Radius must be a positive Number");
-// }</pre></code>
-	</li>
+// }
+```
+
+</li>
 	<li>
 		<p>Remove the origin null check. This section is no longer required.</p>
 		<p>Remove:</p>
-		<code><pre>if( origin == null ) {
+
+```
+if( origin == null ) {
 	origin = new Point( 0, 0 );
-}</pre></code>
-	</li>
+}
+```
+
+</li>
 	<li>
 		<p>Save the Circle.as file.</p>
 	</li>
@@ -496,52 +621,92 @@ mock( mockCircle ).getter( "radius" ).returns( 1 ).atLeast( 1 );</pre></code>
 	</li>
 	<li>
 		<p>Create a private static constant named <code>TOLERANCE</code> as a <code>Number</code>, with a value of <code>.01</code>.</p>
-		<code><pre>private static const TOLERANCE:Number = .01;</pre></code>
-	</li>
+
+```
+private static const TOLERANCE:Number = .01;
+```
+
+</li>
 	<li>
 		<p>Add and instantiate a public variable named <code>mockRule</code> of type <code>MockolateRule</code> to the <code>LayoutTest</code> class. Mark the variable with <code>[Rule]</code> metadata.</p>
-		<code><pre>[Rule]
-public var mockRule:MockolateRule = new MockolateRule();</pre></code>
-		<p>If you did not use code-completion, add the import for mockolate.runner.MockolateRule at this time.</p>
+
+```
+[Rule]
+public var mockRule:MockolateRule = new MockolateRule();
+```
+
+<p>If you did not use code-completion, add the import for mockolate.runner.MockolateRule at this time.</p>
 	</li>
 	<li>
 		<p>Add a variable named <code>mockPoint</code> of type <code>Point</code> to the class. Mark the variable with <code>[Mock]</code> metadata.</p>
-		<code><pre>[Mock]
-public var mockPoint:Point;</pre></code>
-		<p>If you did not use code completion, add the import for flash.geom.Point at this time.</p>
+
+```
+[Mock]
+public var mockPoint:Point;
+```
+
+<p>If you did not use code completion, add the import for flash.geom.Point at this time.</p>
 		<h3><br />Mocking a method</h3>
 	</li>
 	<li>
 		<p>Create a new test method named <code>shouldBeEqualDistance()</code>. Decorate it with <code>[Test]</code> metadata.</p>
-		<code><pre>[Test]
+
+```
+[Test]
 public function shouldBeEqualDistance():void {
-}</pre></code>
-	</li>
+}
+```
+
+</li>
 	<li>
 		<p>Create a new <code>Point</code> called <code>testPoint</code> with x and y values of 5 and 5, respectively.</p>
-		<code><pre>var testPoint:Point = new Point( 5, 5 );</pre></code>
-	</li>
+
+```
+var testPoint:Point = new Point( 5, 5 );
+```
+
+</li>
 	<li>
 		<p>Create a new <code>Point</code> called <code>endPoint</code> with x and y values of 10 and 10, respectively.</p>
-		<code><pre>var endPoint:Point = new Point( 10, 10 );</pre></code>
-	</li>
+
+```
+var endPoint:Point = new Point( 10, 10 );
+```
+
+</li>
 	<li>
 		<p>Create one last <code>Point</code> called <code>summedPoints</code>. Do not instantiate it at this time.</p>
-		<code><pre>var summedPoints:Point;</pre></code>
-	</li>
+
+```
+var summedPoints:Point;
+```
+
+</li>
 	<li>
 		<p>Add an expectation for the <code>add()</code> method of <code>mockPoint</code> to take an argument, <code>testPoint</code>, and return a new <code>Point</code> with x and y values of 10 and 10.</p>
-		<code><pre>mock( mockPoint ).method( "add" ).args( testPoint ).returns( new Point( 10, 10 ) );</pre></code>
-		<p>The mock will now expect the <code>add()</code> method of <code>mockPoint</code> to be called with the <code>testPoint</code> parameter. When it does, it will return a <code>Point</code> with x and y values of 10 and 10.</p>
+
+```
+mock( mockPoint ).method( "add" ).args( testPoint ).returns( new Point( 10, 10 ) );
+```
+
+<p>The mock will now expect the <code>add()</code> method of <code>mockPoint</code> to be called with the <code>testPoint</code> parameter. When it does, it will return a <code>Point</code> with x and y values of 10 and 10.</p>
 	</li>
 	<li>
 		<p>Make a call to <code>mockPoint.add()</code> passing it the parameter <code>testPoint</code> and assigning the return to <code>summedPoints</code>.</p>
-		<code><pre>summedPoints = mockPoint.add( testPoint );</pre></code>
-	</li>
+
+```
+summedPoints = mockPoint.add( testPoint );
+```
+
+</li>
 	<li>
 		<p>Add a call to <code>assertThat()</code> passing it the parameters <code>endPoint</code> and a new <code>CloseToPointMather</code> with parameters <code>summedPoints</code> and <code>TOLERANCE</code>.</p>
-		<code><pre>assertThat( endPoint, new CloseToPointMatcher( summedPoints, TOLERANCE ) );</pre></code>
-		<p>If you did not use code completion, add the imports for org.flexunit.assertThat and matcher.CloseToPointMatcher at this time.</p>
+
+```
+assertThat( endPoint, new CloseToPointMatcher( summedPoints, TOLERANCE ) );
+```
+
+<p>If you did not use code completion, add the imports for org.flexunit.assertThat and matcher.CloseToPointMatcher at this time.</p>
 	</li>
 	<li>
 		<p>Save the DistanceTest.as file.</p>
@@ -549,7 +714,9 @@ public function shouldBeEqualDistance():void {
 	</li>
 	<li>
 		<p>Open the CircleSuite.as file within the math.testcases package. Add a new public variable named <code>test5</code> with a type of <code>DistanceTest</code></p>
-		<code><pre>[Suite]
+
+```
+[Suite]
 [RunWith("org.flexunit.runners.Suite")]
 public class CircleSuite {
 	public var test1:BasicCircleTest;
@@ -557,8 +724,10 @@ public class CircleSuite {
 	public var test3:CircleTheory;
 	public var test4:CircleMockTest;
 	public var test5:DistanceTest;
-}</pre></code>
-	</li>
+}
+```
+
+</li>
 	<li>
 		<p>Save the CircleSuite.as file.</p>
 	</li>

@@ -26,7 +26,8 @@ Title:  Unit 15 - Creating Testable Code
 <p>Highly cohesive code creates strong test fixtures and short, simple tests. A class with low cohesion will frequently have us begging the question, "does this belong in the fixture?" If there is a section of code that <i>should</i> be in the fixture but doing so will create unnecessary overhead for some of the tests we are likely looking at a case of low cohesion. Always remember that a class with high cohesion tends to create tests with high cohesion.</p>  
 <p>Consider the following database example:</p>
 
-<code><pre>public class ContactDatabaseConnection {
+```
+public class ContactDatabaseConnection {
 	public function ContactDatabaseConnection () {
 	}
 	public function connect():void {
@@ -38,24 +39,28 @@ Title:  Unit 15 - Creating Testable Code
 	public function formatContact( contact:Contact ):FormattedContact {
 		//code to format contact
 	}
-}</pre></code>
+}
+```
 
 <p>Try to imagine the fixture for this interface. The test fixture would need to create a new database connection. It would also need to create a new contact for testing.</p> 
 
-<code><pre>private var testContact:Contact;
+```
+private var testContact:Contact;
 private var connection:ContactDatabaseConnection;
 	[Before]
 	public function setup():void {
 		connection = new ContactDatabaseConnection();
 		connection.connect();
 		testContact = new Contact();
-}</pre></code>
+}
+```
 
 <p>However, the <code>formatContact()</code> method does not need a database connection. In fact, what does formatting a contact have to do with a <code>ContactDatabaseConnection</code>? These methods do not have a unified test fixture. In one section we would be testing the connect and retrieval functions. The other requires a contact be ready made. Clearly, <code>formatContact()</code> does not belong.</p>
 <p>If you find yourself needing a unique fixture for each test in a class it is highly likely you are dealing with a class that contains low cohesion or only temporal cohesion at best. In this situation, you might want to return to the code and find a way to split the class to increase the cohesion.</p> 
 <p>Here is an improved version of the <code>ContactDatabaseConnection</code> class that should be much easier to test and maintain:</p>
 
-<code><pre>public class ContactDatabaseConnection {
+```
+public class ContactDatabaseConnection {
 	public function ContactDatabaseConnection () {
 	}
 	public function connect():void {
@@ -64,30 +69,35 @@ private var connection:ContactDatabaseConnection;
 	public function getContact( itemName:String ):IContact {
 		//code to retrieve contact
 	}
-}</pre></code>
+}
+```
 
 <p>And moving the <code>formatContact</code> method into the specific <code>Contact</code> implementation:</p>
 
-<code><pre>public class Contact implements IContact {
+```
+public class Contact implements IContact {
 	//contact code
 	public function formatContact():void {
 		//format code
 	}
-}</pre></code>
+}
+```
 
 <h2>Why loosely coupled code can be tested less painfully</h2>
 
 <p>By creating loosely coupled code, we create classes that can more easily be tested in isolation. Tightly coupled code creates a dependency on outside resources that frequently do not belong in the class with which they are coupled.</p>
 <p>Consider the following:</p>
 
-<code><pre>public class BoxOfCrayons() {
+```
+public class BoxOfCrayons() {
 	private var crayons:Array = new Array();
 	public function addCrayon( color:String ):void {
 		var crayon = new WaxCrayon();
 		crayon.color = color;
 		crayon.wrapper.color = color;
 	}
-}</pre></code>
+}
+```
 
 <p>Think of the tests you would need to write for the <code>addCrayon()</code> method:</p>
 <ul>
@@ -149,7 +159,8 @@ private var connection:ContactDatabaseConnection;
 	</li>
 	<li>
 		<p>Examine the <code>updateDisplayList()</code> method in this class.</p>
-<code><pre>override public function updateDisplayList( contentWidth:Number, contentHeight:Number ):void {
+```
+override public function updateDisplayList( contentWidth:Number, contentHeight:Number ):void {
 	...							
 	super.updateDisplayList( contentWidth, contentHeight );
 	var circle:Circle = new Circle( new Point( contentWidth/2, contentHeight/2 ),
@@ -162,31 +173,44 @@ private var connection:ContactDatabaseConnection;
 		element.setLayoutBoundsPosition( elementLayoutPoint.x-elementWidth,
 		 elementLayoutPoint.y-elementHeight );
 	}
-}</pre></code>
+}
+```
 		<p>This method creates a <code>circle</code> object of type <code>Circle</code> with dimensions based on the <code>contentWidth</code> and <code>contentHeight</code> arguments. The elements of the layout are positioned to points on the circle.</p>
 		<p>Suppose you wanted to test the functionality of this method. It would be impossible to isolate because the method is dependent on the <code>Circle</code> class.</p>
 		<p>The circle object could be mocked if the <code>CircleLayout</code> class had its own <code>circle</code> property instead.</p>
 	</li>
 	<li>
 		<p>At the top of the class, create a private circle property.</p>
-		<code><pre>private var circle:Circle;</pre></code>
-	</li>
+
+```
+private var circle:Circle;
+```
+
+</li>
 	<li>
 		<p>Generate a public getter and setter for the property. Right-click the property, select Source &#62; Generate Getter/Setter, and click OK.</p>
-<code><pre>public function get circle():Circle {
+
+```
+public function get circle():Circle {
 	return _circle;
 }
 public function set circle(value:Circle):void {
 	_circle = value;
-}</pre></code>
-	</li>
+}
+```
+
+</li>
 	<li>
 		<p>Add a call to the <code>invalidateDisplayList()</code> method on the <code>target</code> property within the setter of the <code>circle</code>.</p>
-<code><pre>public function set circle(value:Circle):void {
+
+```
+public function set circle(value:Circle):void {
 	circle = value;
 	target.invalidateDisplayList();
-}</pre></code>
-	</li>
+}
+```
+
+</li>
 	<li>
 		<p>Remove the line that instantiates the <code>circle</code> object within the <code>updateDisplayList()</code> method.</p>
 		<code>var circle:Circle = new Circle( new Point( contentWidth/2, contentHeight/2 ), getLayoutRadius( contentWidth, contentHeight ) );</code>
@@ -197,13 +221,16 @@ public function set circle(value:Circle):void {
 	<li>
 		<p>Perform a null check for the <code>circle</code> within <code>updateDisplayList()</code> method.</p>
 
-<code><pre>super.updateDisplayList( contentWidth, contentHeight );
+```
+super.updateDisplayList( contentWidth, contentHeight );
 if(circle) {
 	for ( i = 0; i &#60; target.numElements; i++ ) {
 		...
 	}
-}</pre></code>
-		<p>The <code>CircleLayout</code> class can now be better tested as it is not dependent on another class.</p>
+}
+```
+
+<p>The <code>CircleLayout</code> class can now be better tested as it is not dependent on another class.</p>
 	</li>
 </ol>
 
@@ -225,20 +252,28 @@ if(circle) {
 	</li>
 	<li>
 		<p>Just below the <code>equals()</code> method, add a new public method named <code>distanceFrom()</code>. It should return a value of data type <code>Number</code>. It should take a parameter named <code>circle</code> of type <code>Circle</code>.</p>
-<code><pre>public function distanceFrom( circle:Circle ):Number {
-}</pre></code>
-	</li>
+
+```
+public function distanceFrom( circle:Circle ):Number {
+}
+```
+
+</li>
 	<li>
 		<p>The new method should return <code>Point.distance( this.origin, circle.origin )</code>, which calculates the distance between the <code>Circles</code>' origin points.</p>
-<code><pre>public function distanceFrom( circle:Circle ):Number {
+
+```
+public function distanceFrom( circle:Circle ):Number {
 	return Point.distance( this.origin, circle.origin );
-}</pre></code>
+}
+```
 
 <h3><br />Modify the equals() method</h3>
 
 <p>The <code>equals()</code> method in <code>Circle</code> may appear simple enough, but can be difficult to test. This comparison is based on radius and origin. Although the radius comparison is about as simple as it could be, the point comparison is based on the accessing the <code>origin.x</code> and <code>origin.y</code> and asserting their equality separately. If you were to isolate and mock the circle for testing, you would have to mock the <code>Point</code> object as well.</p> 
 
-<code><pre>public function equals( circle:Circle ):Boolean {
+```
+public function equals( circle:Circle ):Boolean {
 	var equal:Boolean = false;
 	if ( ( circle ) &#38;&#38; ( this.radius == circle.radius ) &#38;&#38; ( this.origin ) &#38;&#38;
 	 ( circle.origin ) ) {
@@ -247,24 +282,33 @@ if(circle) {
 		}
 	}
 	return equal;
-}</pre></code>
+}
+```
 
 <p>Creating an isolated object for testing will ultimately reduce these interdependencies. Mocks should be able to work without the required input of additional mocks. Creating code of this kind will add seams, loosen coupling, and improve quality over all.</p>
 	</li>
 	<li>
 		<p>In the <code>equals()</code> method, replace the line of the second if statement, which checks the equality of this and the comparison circle's origin's x and y values, with a line that checks that <code>this.distanceFrom( circle )</code> is equal to <code>0</code>.</p> 
 
-<code><pre>if ( ( this.origin.x == circle.origin.x ) &#38;&#38;
+```
+if ( ( this.origin.x == circle.origin.x ) &#38;&#38;
 ( this.origin.y == circle.origin.y ) ) {
 	equal = true;
-}</pre></code>
-		<p>Becomes:</p>
-<code><pre>if ( this.distanceFrom( circle ) == 0 ) {
-	equal = true;
-}</pre></code>
-		<p>The <code>Circle</code> class's new <code>equals()</code> method should read as follows:</p>
+}
+```
 
-<code><pre>public function equals( circle:Circle ):Boolean {
+<p>Becomes:</p>
+
+```
+if ( this.distanceFrom( circle ) == 0 ) {
+	equal = true;
+}
+```
+
+<p>The <code>Circle</code> class's new <code>equals()</code> method should read as follows:</p>
+
+```
+public function equals( circle:Circle ):Boolean {
 	var equal:Boolean = false;
 	if ( ( circle ) &#38;&#38; ( this.radius == circle.radius ) &#38;&#38; 
 	( this.origin ) &#38;&#38; ( circle.origin ) ) 	{
@@ -273,8 +317,10 @@ if(circle) {
 		}
 	}
 	return equal;
-}</pre></code>
-	<p>At this point, if you were to mock a <code>Circle</code>, you would only need to mock and create expectations for a <code>circle</code> object. A mock for the <code>Point</code> class is not needed here.</p>
+}
+```
+
+<p>At this point, if you were to mock a <code>Circle</code>, you would only need to mock and create expectations for a <code>circle</code> object. A mock for the <code>Point</code> class is not needed here.</p>
 	</li>
 	<li>
 		<p>Save the Circle.as file</p>

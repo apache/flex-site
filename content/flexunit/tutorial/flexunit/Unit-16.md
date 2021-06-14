@@ -96,30 +96,46 @@ Title:  Unit 16 - Allowing Your Tests to Function with Continuous Integration
 	</li>
 	<li>
 		<p>Within the <code>&#60;fx:Script&#62;</code> block, there is a method named <code>onCreationComplete()</code>. Remove the body of this method, leaving just the empty shell of the method.</p>
-<code><pre>private function onCreationComplete():void {
-}</pre></code>
-	</li>
+
+```
+private function onCreationComplete():void {
+}
+```
+
+</li>
 	<li>
 		<p>Within the <code>&#60;fx:Script&#62;</code> block add a new public variable named <code>core</code> of type <code>FlexUnitCore</code>.</p>  
-		<code><pre>public var core:FlexUnitCore;</pre></code>
-		<p>If you did not use code-completion, add the import statement for and org.flexunit.runner.FlexUnitCore at this time.</p>
+
+```
+public var core:FlexUnitCore;
+```
+
+<p>If you did not use code-completion, add the import statement for and org.flexunit.runner.FlexUnitCore at this time.</p>
 		<p>The <code>core</code> acts as our runner; we will be adding the <code>CIListener</code> to the core listeners.</p>
 	</li>
 	<li>
 		<p>In the <code>onCreationComplete()</code> method instantiate the <code>core</code> variable to a new <code>FlexUnitCore()</code>. Call the <code>core.addListener()</code> method on the next line, passing it an argument of <code>new CIListener()</code>. On the next line call the <code>core.run( currentRunTestSuite() )</code>.</p> 
-<code><pre>private function onCreationComplete():void {
+
+```
+private function onCreationComplete():void {
 	core = new FlexUnitCore();
 	core.addListener( new CIListener() );
-}</pre></code>
-	</li>
+}
+```
+
+</li>
 	<li>
 		<p>On the following line, call <code>core.run()</code> passing <code>currentRunTestSuite()</code> as its argument.</p> 
-<code><pre>private function onCreationComplete():void {
+
+```
+private function onCreationComplete():void {
 	core = new FlexUnitCore();
 	core.addListener( new CIListener() );
 	core.run( currentRunTestSuite() );
-}</pre></code>
-		<p>If you did not use code-completion, add the import statement for org.flexunit.listeners.CIListener at this time.</p>
+}
+```
+
+<p>If you did not use code-completion, add the import statement for org.flexunit.listeners.CIListener at this time.</p>
 	</li>
 	<li>
 		<p>Save this mxml file. Do not run it at this time.</p>
@@ -141,7 +157,9 @@ Title:  Unit 16 - Allowing Your Tests to Function with Continuous Integration
 	<li>Project tag structure</li>
 </ul>
 
-<code><pre>&#60;project name=<i>"project_name"</i> basedir=<i>"project_base"</i> default=<i>"default_target"</i> &#62;</pre></code>
+```
+&#60;project name=<i>"project_name"</i> basedir=<i>"project_base"</i> default=<i>"default_target"</i> &#62;
+```
 
 <h3>Property tag</h3>
 
@@ -151,7 +169,9 @@ Title:  Unit 16 - Allowing Your Tests to Function with Continuous Integration
 	<li>Property tag structure</li>
 </ul>
 
-<code><pre>&#60;property name=<i>"property_name"</i> location=<i>"property_location"</i> /&#62;</pre></code>
+```
+&#60;property name=<i>"property_name"</i> location=<i>"property_location"</i> /&#62;
+```
 
 <h3>Taskdef tag</h3>
 
@@ -162,7 +182,9 @@ Title:  Unit 16 - Allowing Your Tests to Function with Continuous Integration
 	<li>Task definition tag structure</li>
 </ul>
 
-<code><pre>&#60;taskdef resource=<i>"task_location_within_jar"</i> classpath=<i>"task_jar_location"</i> /&#62;</pre></code>
+```
+&#60;taskdef resource=<i>"task_location_within_jar"</i> classpath=<i>"task_jar_location"</i> /&#62;
+```
 
 <h3>Target tag</h3>
 
@@ -175,7 +197,9 @@ Title:  Unit 16 - Allowing Your Tests to Function with Continuous Integration
 	<li>Target tag structure</li>
 </ul>
 
-<code><pre>&#60;target name=<i>"target_name"</i> depends=<i>"target_dependencies"</i>&#62;</pre></code>
+```
+&#60;target name=<i>"target_name"</i> depends=<i>"target_dependencies"</i>&#62;
+```
 
 <h3>Task</h3>
 
@@ -188,7 +212,9 @@ Title:  Unit 16 - Allowing Your Tests to Function with Continuous Integration
 	<li>Common task tag structure</li>
 </ul>
 
-<code><pre>&#60;taskname id=<i>"task_id"</i> attribute1=<i>"..."</i> attribute2=<i>"..."</i> ... /&#62;</pre></code> 
+```
+&#60;taskname id=<i>"task_id"</i> attribute1=<i>"..."</i> attribute2=<i>"..."</i> ... /&#62;
+```
 
 <ul>
 	<li>For building projects with Hudson we will be using 6 tasks, Flex Ant task, FlexUnit task, JUnit report task, copy task, zip task and delete task</li>
@@ -273,9 +299,13 @@ Title:  Unit 16 - Allowing Your Tests to Function with Continuous Integration
 	</li>
 	<li>
 		<p>First, navigate to your Flex SDK. In most cases, your Flex SDK should be located at root/Program Files/Adobe/Adobe Flash Builder 4/sdks.</p> 
-		<code><pre>&#60;property name="FLEX_HOME" 
- location="rootpath:/Program Files/Adobe/Adobe Flash Builder 4/sdks/4.1.0/" /&#62;</pre></code>
-		<p>It is highly recommended you use Flex 4.1 SDK. Keep every directory in this walkthrough relative to the FLEX_HOME directory, this way the build file is guaranteed to reference these correctly.</p>
+
+```
+&#60;property name="FLEX_HOME" 
+ location="rootpath:/Program Files/Adobe/Adobe Flash Builder 4/sdks/4.1.0/" /&#62;
+ ```
+
+<p>It is highly recommended you use Flex 4.1 SDK. Keep every directory in this walkthrough relative to the FLEX_HOME directory, this way the build file is guaranteed to reference these correctly.</p>
 		<h3><br />Install Ant and Hudson</h3>
 	</li>
 	<li>

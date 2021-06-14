@@ -37,9 +37,7 @@ Title:  Unit 14 - UIComponents
 	<li>
 		<p>In the tests directory, create a new package named login.testcases.</p>
 		<p>Alternatively, if you didn't complete the previous lesson or your code is not functioning properly, you can import the FlexUnit4Training.fxp project from the Unit14/Start folder. Please refer to Unit 2: Walkthrough 1 for instructions on importing a Flash Builder project.</p>
-
 		<h3><br />Create the LoginStartupTest class</h3>
-		
 	</li>
 	<li>
 		<p>In the package <code>login.testcases</code>, create a new ActionScript class file named LoginStartupTest.as.</p>
@@ -47,59 +45,91 @@ Title:  Unit 14 - UIComponents
 	</li>
 	<li>
 		<p>Add a private static constant named <code>LONG_TIME</code> of data type <code>int</code>. Set the constant to <code>500</code>.</p>
-		<code><pre>private static const LONG_TIME:int = 500;</pre></code>
-	</li>
+
+```
+private static const LONG_TIME:int = 500;
+```
+
+</li>
 	<li>
 		<p>Just below add a private variable named <code>loginComponent</code> of type <code>LoginComponent</code>.</p>
-		<code><pre>private var loginComponent:LoginComponent;</pre></code>
-		<p>If you did not use code-completion, add the import for net.digitalprimates.components.login.LoginComponent at this time.</p>
+
+```
+private var loginComponent:LoginComponent;
+```
+
+<p>If you did not use code-completion, add the import for net.digitalprimates.components.login.LoginComponent at this time.</p>
 	</li>
 	<li>
 		<p>Create a new public method named <code>setup()</code> and a new public method named <code>teardown()</code>. Decorate them with <code>[Before(async, ui)]</code> and <code>[After(async, ui)]</code>.</p>
-<code><pre>[Before(async, ui)]
+
+```
+[Before(async, ui)]
 public function setup():void {
 }
 [After(async, ui)]
 public function teardown() {
-}</pre></code>
-	</li>
+}
+```
+
+</li>
 	<li>
 		<p>In the <code>setup()</code> method, create a new instance of <code>loginComponent</code>. On the line immediately following, add a call to <code>Async.proceedOnEvent()</code> passing it the values <code>this</code>, <code>loginComponent</code>, and <code>FlexEvent.CREATION_COMPLETE</code>.</p>
-<code><pre>[Before(async, ui)]
+
+```
+[Before(async, ui)]
 public function setup():void {
 	loginComponent = new LoginComponent();
 	Async.proceedOnEvent( this, loginComponent, FlexEvent.CREATION_COMPLETE );
-}</pre></code>
-		<p>If you did not use code completion, add the imports for org.flexunit.async.Async.</p>
+}
+```
+
+<p>If you did not use code completion, add the imports for org.flexunit.async.Async.</p>
 	</li>
 	<li>
 		<p>Immediately after the async handler add the loginComponent to the UIImpersonator</p>
-		<code><pre>UIImpersonator.addChild( loginComponent )</pre></code>
-		<p>If you did not use code completion, add the import for org.fluint.uiImpersonation.UIImpersonator.</p>
+
+```
+UIImpersonator.addChild( loginComponent )
+```
+
+<p>If you did not use code completion, add the import for org.fluint.uiImpersonation.UIImpersonator.</p>
 		<p>The UIImpersonator acts as a facade for the UI allowing visual components to be created without being added to the display list. You will learn more about the UIImpersonator and UI facades in the next section.</p>
 	</li>
 	<li>
 		<p>In the <code>teardown()</code> method, remove the loginComponent from the UIImpersonator and cleanup the instance of loginComponent.</p>
-<code><pre>[After(async, ui)]
+
+```
+[After(async, ui)]
 public function teardown():void {
 	UIImpersonator.removeChild( loginComponent );
 	loginComponent = null;
-}</pre></code>
-	</li>
+}
+```
+
+</li>
 	<li>
 		<p>Add a public function named <code>shouldReturnEmptyFieldsOnStartup()</code>, mark it with <code>[Test(ui)]</code> metadata.</p>  
-<code><pre>[Test(ui)]
+
+```
+[Test(ui)]
 public function shouldReturnEmptyFieldsOnStartup():void {
-}</pre></code>
-	</li>
+}
+```
+
+</li>
 	<li>
 		<p>Add two calls to the <code>assertThat()</code> method in the <code>shouldReturnEmptyFieldsOnStartup()</code> function. The first should check that <code>loginComponent.usernameTI.text</code> is empty and the other should check that <code>loginComponent.passwordTI.text</code> is empty.</p>
-<code><pre>[Test(ui)]
+
+```
+[Test(ui)]
 public function shouldReturnEmptyFieldsOnStartup():void {
 	assertThat( loginComponent.usernameTI.text == '' );
 	assertThat( loginComponent.passwordTI.text == '' ); 
-}</pre></code>
-	</li>
+}
+```
+
+</li>
 	<li>
 		<p>Save LoginStartupTest.as.</p>
 		<h3><br />Add LoginStartupTest to the Suite</h3>
@@ -112,21 +142,29 @@ public function shouldReturnEmptyFieldsOnStartup():void {
 	</li>
 	<li>
 		<p>Mark the class with <code>[Suite]</code> and <code>[RunWith("org.flexunit.runners.Suite")]</code> metadata.</p>
-		<code><pre>package login {
+
+```
+package login {
 	[Suite]
 	[RunWith("org.flexunit.runners.Suite")]
 	public class LoginSuite {
 	}
-}</pre></code>
-	</li>
+}
+```
+
+</li>
 	<li>
 		<p>Add a public variable named <code>test1</code> of type <code>LoginStartupTest</code> to the class.</p>
-		<code><pre>[Suite]
+
+```
+[Suite]
 [RunWith("org.flexunit.runners.Suite")]
 public class LoginSuite {
 	public var test1:LoginStartupTest;
-}</pre></code>
-		<p>If you did not use code-completion, add the imports for login.testcases.LoginSequenceTest at this time.</p>
+}
+```
+
+<p>If you did not use code-completion, add the imports for login.testcases.LoginSequenceTest at this time.</p>
 	</li>
 	<li>
 		<p>Save the LoginSuite.as file.</p>
@@ -139,14 +177,18 @@ public class LoginSuite {
 	</li>
 	<li>
 		<p>Add a public variable named <code>loginSuite</code> of type <code>LoginSuite</code> to the class.</p>
-		<code><pre>[Suite]
+
+```
+[Suite]
 [RunWith("org.flexunit.runners.Suite")]
 public class AllSuites {
 	public var circleSuite:CircleSuite;
 	public var layoutTest:LayoutTest;
 	public var loginSuite:LoginSuite;
-}</pre></code>
-	</li>
+}
+```
+
+</li>
 	<li>
 		<p>Save the AllSuites.as file.</p>
 	</li>
@@ -206,14 +248,18 @@ public class AllSuites {
 
 <p>To use asynchronous startup, decorate the <code>Before</code> method with the <code>async</code> annotation. If the startup is due to UI, you will also want to decorate it with <code>ui</code>, as in:</p>
 
-<code><pre>[Before(async, ui)]
-public function setup():void {}</pre></code>
+```
+[Before(async, ui)]
+public function setup():void {}
+```
 
 <p>The main body of the setup method has to instantiate the component, add the async handler and add it to the facade. The UIImpersonator is a static class that mimics a component on the display list. It contains several static functions that may be used in place of the real functions. To add a UIComponent to the facade, use the UIImpersonator's <code>addChild()</code> method, passing the component as the parameter:</p>
 
-<code><pre>component = new UIComponent();
+```
+component = new UIComponent();
 Async.proceedOnEvent( this, component, "creationComplete", TIMEOUT, timeoutHandler );
-UIImpersonator.addChild( component );</pre></code>
+UIImpersonator.addChild( component );
+```
 
 <p>Once the <i>creationComplete</i> is dispatched, tests will continue. Be sure to remove the component from the UIImpersonator at the end of the test. Otherwise, the component will remain in memory.</p>
 
@@ -221,13 +267,15 @@ UIImpersonator.addChild( component );</pre></code>
 
 <p>In some cases, such as when using the ParameterizedRunner, async startup may not be possible. In this case, we will have to create an async startup chain at the beginning of the test. In this instance we create the component as we would in the setup of the asynchronous startup; however we do it at the beginning of the test. We then wait for the creationComplete call before proceeding with the test.</p>
 
-<code><pre>[Test(async, ui)]
+```
+[Test(async, ui)]
 public function componentShouldDoSomething():void {
 	Component = new UIComponent();
 	Async.proceedOnEvent( this, component, "creationComplete", TIMEOUT, timeoutHandler );
 	UIImpersonator.addChild( component );
 	// rest of the test
-}</pre></code>
+}
+```
 
 <p>With this type of test, you will need to clean up the test by removing the component from the UIImpersonator in all async handlers.</p>
 
@@ -248,81 +296,127 @@ public function componentShouldDoSomething():void {
 	</li>
 	<li>
 		<p>Immediately before the class declaration, add the <code>RunWith</code> metadata for the Parameterized runner.</p>
-		<code><pre>[RunWith("org.flexunit.runners.Parameterized")]</pre></code>
-		<p>Declare two private variables of type <code>String</code> named <code>username</code> and <code>password</code>. Also, declare a protected variable named <code>loginComponent</code> of type <code>LoginComponent</code>.</p>
-<code><pre>private var username:String;
+
+```
+[RunWith("org.flexunit.runners.Parameterized")]
+```
+
+<p>Declare two private variables of type <code>String</code> named <code>username</code> and <code>password</code>. Also, declare a protected variable named <code>loginComponent</code> of type <code>LoginComponent</code>.</p>
+
+```
+private var username:String;
 private var password:String; 
-protected var loginComponent:LoginComponent;</pre></code>
-		<p>If you did not use code-completion, add the import for net.digitalprimates.components.login at this time.</p>
+protected var loginComponent:LoginComponent;
+```
+
+<p>If you did not use code-completion, add the import for net.digitalprimates.components.login at this time.</p>
 	</li>
 	<li>
 		<p>Add the data loader for the login data points.</p>
-<code><pre>public static var userAndPasswordDataLoader:UserAndPasswordDataHelper = 
-	new UserAndPasswordDataHelper("xml/usersAndPasswords.xml" );</pre></code>
-		<p>If you did not use code-completion, add the import for helper.UserAndPasswordDataHelper at this time.</p>
+
+```
+public static var userAndPasswordDataLoader:UserAndPasswordDataHelper = 
+	new UserAndPasswordDataHelper("xml/usersAndPasswords.xml" );
+```
+
+<p>If you did not use code-completion, add the import for helper.UserAndPasswordDataHelper at this time.</p>
 		<h3><br />Create the login sequence test</h3>
 	</li>
 	<li>
 		<p>Create a new test named <code>shouldLoginWithProvidedCredentials</code> that takes two arguments, a username of type <code>String</code> and a password of type <code>String</code>. Decorate it with the metadata <code>[Test( async, ui, id="userAndPasswordDataLoader" )]</code>.</p>
-<code><pre>[Test(async, ui, id="userAndPasswordDataLoader")]
+
+```
+[Test(async, ui, id="userAndPasswordDataLoader")]
 public function shouldLoginWithProvidedCredentials( username:String, password:String ):void {
-}</pre></code>
-	</li>
+}
+```
+
+</li>
 	<li>
 		<p>Add a variable named <code>sequence</code> of type <code>SequenceRunner</code> to the <code>shouldLoginWithProvidedCredentials()</code> method. Instantiate it with <code>this</code> as its argument.</p>
-<code><pre>protected function handleComponentReady(event:FlexEvent, passThroughData:Object ):void {
+
+```
+protected function handleComponentReady(event:FlexEvent, passThroughData:Object ):void {
 	var sequence:SequenceRunner = new SequenceRunner( this );
-}</pre></code>
-		<p>If you did not use auto complete, add the import for org.fluint.sequence.SequenceRunner.</p>
+}
+```
+
+<p>If you did not use auto complete, add the import for org.fluint.sequence.SequenceRunner.</p>
 	</li>
 	<li>
 		<p>Create a new Object called <code>passThroughData</code>. Assign it the <code>username</code> and <code>password</code> constructor arguments.</p>
-<code><pre>var passThroughData:Object = new Object();
+
+```
+var passThroughData:Object = new Object();
 passThroughData.username = username;
-passThroughData.password = password;</pre></code>
-	</li>
+passThroughData.password = password;
+```
+
+</li>
 	<li>
 		<p>Add a call to the <code>sequence.addStep()</code> method, pass in <code>new SequenceSetter( loginComponent.usernameTI, {text:username} )</code> as its argument.</p>
-		<code><pre>sequence.addStep( new SequenceSetter( loginComponent.usernameTI, {text:username} ) );</pre></code>
-		<p>SequenceSetter simulates a call to the setter during sequence execution.</p>
+
+```
+sequence.addStep( new SequenceSetter( loginComponent.usernameTI, {text:username} ) );
+```
+
+<p>SequenceSetter simulates a call to the setter during sequence execution.</p>
 		<p>If you did not use auto complete, add the import for org.fluint.sequence.SequenceSetter.</p>
 	</li>
 	<li>
 		<p>Add another call to the <code>sequence.addStep()</code> method just below the last; pass in <code>new SequenceWaiter( loginComponent.usernameTI, FlexEvent.VALUE_COMMIT, LONG_TIME )</code> as its argument.</p>
-<code><pre>sequence.addStep( new SequenceSetter( loginComponent.usernameTI, {text:username} ) );
+
+```
+sequence.addStep( new SequenceSetter( loginComponent.usernameTI, {text:username} ) );
 sequence.addStep( new SequenceWaiter( loginComponent.usernameTI, FlexEvent.VALUE_COMMIT,
- LONG_TIME ) );</pre></code>
-		<p>If you did not use code-completion, add the imports for org.fluint.sequence.SequenceSetter and org.fluint.sequence.SequenceWaiter at this time.</p>
+ LONG_TIME ) );
+ ```
+
+<p>If you did not use code-completion, add the imports for org.fluint.sequence.SequenceSetter and org.fluint.sequence.SequenceWaiter at this time.</p>
 	</li>
 	<li>
 		<p>Add a call to the <code>sequence.addStep()</code> method; pass in <code>new SequenceSetter(  loginComponent.passwordTI, {text:password} )</code> as its argument.</p>
 	</li>
 	<li>
 		<p>Add another call to the <code>sequence.addStep()</code> method just below the last; pass in  <code>new SequenceWaiter( loginComponent.passwordTI, FlexEvent.VALUE_COMMIT, LONG_TIME )</code> as its argument.</p>
-<code><pre>sequence.addStep( new SequenceSetter( loginComponent.passwordTI, {text:password} ) );
+
+```
+sequence.addStep( new SequenceSetter( loginComponent.passwordTI, {text:password} ) );
 sequence.addStep( new SequenceWaiter( loginComponent.passwordTI, FlexEvent.VALUE_COMMIT,
- LONG_TIME ) );</pre></code>
-	</li>
+ LONG_TIME ) );
+ ```
+
+</li>
 	<li>
 		<p>Add a call to the <code>sequence.addStep()</code> method, pass in <code>new SequenceEventDispatcher( loginComponent.loginBtn, new MouseEvent( MouseEvent.CLICK, true, false ) )</code> as its argument.</p>
 	</li>
 	<li>
 		<p>Add another call to the <code>sequence.addStep()</code> method, pass in <code>new SequenceWaiter( loginComponent, 'loginSuccess', LONG_TIME, handleSuccessTimeout ) )</code> as its argument.</p>
-<code><pre>sequence.addStep( new SequenceEventDispatcher( loginComponent.loginBtn,
+
+```
+sequence.addStep( new SequenceEventDispatcher( loginComponent.loginBtn,
  new MouseEvent( MouseEvent.CLICK, true, false ) ) );
 sequence.addStep( new SequenceWaiter( loginComponent, 'loginRequested', LONG_TIME,
- handleSuccessTimeout ) );</pre></code>
-		<p>If you did not use code-completion, add the imports for org.fluint.sequence.SequenceEventDispatcher and flash.events.MouseEvent at this time.</p>
+ handleSuccessTimeout ) );
+ ```
+
+<p>If you did not use code-completion, add the imports for org.fluint.sequence.SequenceEventDispatcher and flash.events.MouseEvent at this time.</p>
 	</li>
 	<li>
 		<p>Add a call to the <code>sequence.addAssertHandler()</code> method, pass in <code>handleLoginSuccess</code> and <code>passThroughData</code> as its arguments.</p>
 	</li>
 	<li>
 		<p>Add a call to the run() method, which is required for the sequence to run.</p>
-		<code><pre>sequence.addAssertHandler( handleLoginRequested, passThroughData );	
-sequence.run();</pre></code>
-		<p>With this setup, if the login is requested the event will be handled. If the login request is not fired, control will pass to the timeout handler.  The completed method should read as:</p>
-<code><pre>[Test(async, ui, dataProver="userData")]
+
+```
+sequence.addAssertHandler( handleLoginRequested, passThroughData );	
+sequence.run();
+```
+
+<p>With this setup, if the login is requested the event will be handled. If the login request is not fired, control will pass to the timeout handler.  The completed method should read as:</p>
+
+```
+[Test(async, ui, dataProver="userData")]
 public function shouldLoginWithProvidedCredentials( username:String, password:String ):void {
 	var sequence:SequenceRunner = new SequenceRunner( this );
 	var passThroughData:Object = new Object();
@@ -340,38 +434,56 @@ public function shouldLoginWithProvidedCredentials( username:String, password:St
 	 handleSuccessTimeout ) );
 	sequence.addAssertHandler( handleLoginRequested, passThroughData );	
 	sequence.run();
-}</pre></code>
-	</li>
+}
+```
+
+</li>
 	<li>
 		<p>Add a protected function named <code>handleLoginRequested()</code>. It should take a parameter named <code>event</code> of type <code>Event</code> and a parameter named <code>passThroughData</code> of data type <code>Object</code>.</p>  
-<code><pre>protected function handleLoginRequested( event:Event, passThroughData:Object ):void {
-}</pre></code>
-	</li>
+
+```
+protected function handleLoginRequested( event:Event, passThroughData:Object ):void {
+}
+```
+
+</li>
 	<li>
 		<p>Add a call to the <code>assertThat()</code>. It should assert that the <code>passThroughData.username</code> variable is <code>equalTo( loginComponent.usernameTI.text.)</code>.</p>
 	</li>
 	<li>
 		<p>Add a call to the <code>assertThat()</code>. It should assert that the <code>passThroughData.password</code> instance variable is equalTo( loginComponent.passwordTI.text ).</p>
-<code><pre>protected function handleLoginRequested( event:Event, passThroughData:Object ):void {
+
+```
+protected function handleLoginRequested( event:Event, passThroughData:Object ):void {
 	assertThat( passThroughData.username, equalTo( loginComponent.usernameTI.text ) );
 	assertThat( passThroughData.password, equalTo( loginComponent.passwordTI.text ) );
-}</pre></code>
-		<p>If you did not use code-completion, add the imports for org.flexunit.assertThat and org.hamcrest.object.equalTo.</p>
+}
+```
+
+<p>If you did not use code-completion, add the imports for org.flexunit.assertThat and org.hamcrest.object.equalTo.</p>
 	</li>
 	<li>
 		<p>Add a protected function named <code>handleSuccessTimeout()</code> in the class. It should take a parameter named <code>passThroughData</code> of type <code>Object</code>.</p>
-<code><pre>protected function handleSuccessTimeout(passThroughData:Object):void{
-}</pre></code>
-	</li>
+
+```
+protected function handleSuccessTimeout(passThroughData:Object):void{
+}
+```
+
+</li>
 	<li>
 		<p>In the timeout handler, add a call to <code>fail()</code>, passing it the message "Login request was not received as expected".</p>
 	</li>
 	<li>
 		<p>Add another call to the <code>assertThat()</code> method. It should assert that the instance variable <code>password</code> is <code>not( equalTo( LoginComponent.PASSWORD ) )</code>.</p>
-<code><pre>protected function handleSuccessTimeout(passThroughData:Object):void {
+
+```
+protected function handleSuccessTimeout(passThroughData:Object):void {
 	fail( "Login request was not received as expected" );
-}</pre></code>
-	</li>
+}
+```
+
+</li>
 	<li>
 		<p>Save LoginStartupTest.as.</p>
 		<p>Run the FlexUnit4Training.mxml file.</p>

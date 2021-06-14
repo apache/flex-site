@@ -42,7 +42,8 @@ Title:  Unit 5 - Developing Static Tests
 </ul>
 <p>You probably notice several things that need to be tested right away.  Minimally, you need to test that the box has 12 crayons. You would need to test that each crayon is of type wax, has a color and a wrapper.  You would need to test that the wrapper has a color name and that the color name is the same as the color of the crayon it wraps. Finally, you would need to test that each crayon color is unique.</p>
 
-<code><pre>public class BoxOfCrayonsCase {
+```
+public class BoxOfCrayonsCase {
 	[Test]
 	public function shouldHaveTwelveCrayons():void {}
 	[Test]
@@ -63,7 +64,8 @@ public class WrapperCase {
 	public function shouldHaveColorName():void {}
 	[Test]
 	public function shouldMatchWrappedCrayon():void {}
-}</pre></code>
+}
+```
 
 <p>You now have a road map for testing.  Currently none of these tests actually verify functionality. As noted previously, the lack of a failing assertion is a success so all of these tests would pass.  Excellent, testing complete!</p>  
 <p>If only the world were so easy.  In reality, these tests are far from complete, the fact that all these <i>incomplete</i> tests will pass is a problem that needs to be addressed.</p>
@@ -98,9 +100,11 @@ public class WrapperCase {
 	<li>Are easily identified and ignored through the <code>[Ignore]</code> decoration</li>
 </ul>
 
-<code><pre>[Ignore]
+```
+[Ignore]
 [Test]
-public function ignoreTest() :void</pre></code>
+public function ignoreTest() :void
+```
 
 <h2>Walkthrough 1: Commenting out and Ignoring Tests</h2>
 
@@ -120,7 +124,6 @@ public function ignoreTest() :void</pre></code>
 	</li>
 	<li>
 		<p>Highlight the text that comprises the <code>shouldGetBottomPointOnCircle()</code> function. Press Shift+Control+c (Shift+Command+C on MacOS) and the comment markers (/* and */) should be added as shown.</p>
-		
 		<img alt='CommentingCode' id='shift' src='../images/unit5/image1.png' />
 		<p class='caption' id='shift'>Figure 1: Commenting code</p>
 	</li>
@@ -141,14 +144,16 @@ public function ignoreTest() :void</pre></code>
 	</li>
 	<li>
 		<p>Add a line with <code>[Ignore]</code> metadata above the <code>[Test]</code> metadata of the <code>shouldGetBottomPointOnCircle()</code> function.</p>
-		
-		<code><pre>[Ignore]
+
+```
+[Ignore]
 [Test]
 public function shouldGetBottomPointOnCircle():void {
 ...
-}		</pre></code>
+}
+```
 
-	</li>
+</li>
 	<li>
 		<p>Save BasicCircleTest.as.</p>
 	</li>
@@ -162,12 +167,14 @@ public function shouldGetBottomPointOnCircle():void {
 	<li>
 		<p>Similarly, mark the <code>shouldGetRightPointOnCircle</code>, <code>shouldGetLeftPointOnCircle()</code> and <code>shouldThrowRangeError()</code> test method with ignore metadata.</p>
 		
-		<code><pre>[Ignore]
+```
+[Ignore]
 [Test]
 public function shouldThrowRangeError():void {
-}		</pre></code>
+}
+```
 
-	</li>
+</li>
 	<li>
 		<p>Save BasicCircleTest.as</p>
 	</li>
@@ -186,12 +193,14 @@ public function shouldThrowRangeError():void {
 <p>The [Ignore] metadata provides a few additional benefits over commenting. First, the [Ignore] metadata can accept additional system and user defined arguments.</p> 
 <p>For example:</p>
 
-<code><pre>[Ignore(description="Phase II Requirement",category="Required"]
+```
+[Ignore(description="Phase II Requirement",category="Required"]
 [Test]
 public function shouldGetPointsOnCircle():void 
 {
 ...
-}</pre></code>
+}
+```
 
 <p>This additional information can be used for filtering, sorting and reporting on some test systems. Unfortunately, at this time, Flash Builder does not display this extra information to its users. However, it does provide one useful function when using [Ignore]: Flash Builder Premium will display the ignored tests in the case hierarchy. This means you can easily find and click on an ignored method to quickly find it in a large project.</p>
 
@@ -215,9 +224,17 @@ public function shouldGetPointsOnCircle():void
 <p>Standard assertions work well for many cases. However, as the complexity of your tests increases, you may find yourself with long, complicated compound assertions. For example: what if you needed to ensure that the result of a method call was an array that contained at least two specific values?</p> 
 <p>Ideally, tests not only verify functionality but are also a portion of the documentation for the system. This is only possible if the tests are clear, concise and legible.  Further, in cases like the array examples above, you would end up with significant logic in your tests. Any place where logic exists needs to be considered suspect unless there are tests to verify that functionality, and we simply can't recommend writing tests for your tests.</p>
 <p>Additionally, the simplistic nature of the assertions you have learned so far, also means they provide simplistic error messages. Take the case of this slightly more complicated assertion that determines if a number is between two other numbers:</p>
-<code><pre>assertTrue( num1 &#62; num2 &#38;&#38; num1 &#60; num3 );</pre></code>
+
+```
+assertTrue( num1 &#62; num2 &#38;&#38; num1 &#60; num3 );
+```
+
 <p>If this test fails, it would yield the basic and uninformative failure message:</p>
-<code><pre>"Expected &#60;true&#62; but was &#60;false&#62;."</pre></code>
+
+```
+"Expected &#60;true&#62; but was &#60;false&#62;."
+```
+
 <p>This information, while true, is not all that useful for instant problem identification. This lack of information forces the developer back to the original test to understand what was being tested and helps defeat one of the key advantages of having tests.</p>
 
 <h2>Hamcrest</h2>
@@ -225,17 +242,37 @@ public function shouldGetPointsOnCircle():void
 <p>Hamcrest is an open source library of matchers, which are simple classes that perform comparisons. These matchers, along with encompassing logic, allow Hamcrest to perform complicated matching with a simple and extensible syntax.</p>
 <p>Hamcrest itself is neither a unit testing library, nor specifically made to work with unit tests, but the matchers it exposes are used by FlexUnit to provide a powerful and flexible way to move beyond basic assertions.</p>
 <p>When using Hamcrest assertions in FlexUnit, you use a special function named <code>assertThat()</code>.</p> 
-<code><pre>public function assertThat( value, matcher );</pre></code>
+
+```
+public function assertThat( value, matcher );
+```
+
 <p>Unlike the assertions used so far, the <code>assertThat()</code> method does not inherently prescribe any specific type of comparison or evaluation. Instead, you provide a value and a matcher. It is the matcher that dictates the type of comparison.</p>
 <p>Referring back to the example from above, if you wished to know if num1 was between num2 and num3 using standard assert syntax, you would write:</p>
-<code><pre>assertTrue( num2 &#60; num1 &#38;&#38; num1 &#60; num3);</pre></code>
+
+```
+assertTrue( num2 &#60; num1 &#38;&#38; num1 &#60; num3);
+```
+
 <p>Using Hamcrest, this same assertion would read:</p>
-<code><pre>assertThat( num1, is( between( num2, num3 ) ) );</pre></code>
+
+```
+assertThat( num1, is( between( num2, num3 ) ) );
+```
+
 <p>There are several advantages to the Hamcrest assertion. First, this statement could be read by someone with little testing or development experience and would still be understandable.</p>
 <p>Second, if the <code>assertThat()</code> statement above fails it would yield the following result:</p>
-<code><pre>"Expected a number between &#60;num2&#62; and &#60;num3&#62; but was &#60;num1&#62;."</pre></code>
+
+```
+"Expected a number between &#60;num2&#62; and &#60;num3&#62; but was &#60;num1&#62;."
+```
+
 <p>which is many, many times more useful than the <code>assertTrue()</code> statement's failure message in this same situation:</p>
-<code><pre>"Expected &#60;true&#62; but was &#60;false&#62;."</pre></code>
+
+```
+"Expected &#60;true&#62; but was &#60;false&#62;."
+```
+
 <p>This particular assertion uses the <code>is()</code> and <code>between()</code> matchers to create a more readable assertion. These are just two of the many types of matchers offered by Hamcrest. Further, as each matcher is simply a class that implements a specific interface, you are encouraged to create your own matchers to make even the most difficult matching clear inside of your test cases.</p>
 <p>For more information on Hamcrest and extensible matchers, check out the Hamcrest-as3 page on github available at <a class='contentlink' href='https://github.com/drewbourne/hamcrest-as3' target='_blank'>https://github.com/drewbourne/hamcrest-as3</a>.</p>
 
@@ -244,26 +281,30 @@ public function shouldGetPointsOnCircle():void
 <p>There were three test failures in Unit 4: Walkthrough 3 because the <code>assertEquals()</code> statement is used to judge equality, which seems logical on the surface. However, there are many times when a computer's concept of equal and our concept of 'equal enough' are not the same.</p> 
 <p>The <code>shouldGetTopPointOnCircle()</code> method was the only one of the four point tests that passed:</p>
 
-<code><pre>[Test]
+```
+[Test]
 public function shouldGetTopPointOnCircle():void {
 	var circle:Circle = new Circle( new Point( 0, 0 ), 5 );
 	var point:Point = circle.getPointOnCircle( 0 );
 
 	assertEquals( 5, point.x );
 	assertEquals( 0, point.y );
-}</pre></code>
+}
+```
 
 <p>This was the only of the four new point tests that called <code>circle.getPointOnCircle()</code> with an argument of 0. The other three point tests called <code>circle.getPointOnCircle()</code> with <code>Math.PI/2</code>, <code>Math.PI</code>, and <code>(3*Math.PI)/2</code>.</p> 
 <p>Pi is an irrational number that cannot be expressed exactly. Further, Flash Player itself can only store large numbers to a certain precision. This means that calculations involving any floating point value, and especially an irrational one like Pi, will always have a margin of error.</p>
 
-<code><pre>[Test]
+```
+[Test]
 public function shouldGetBottomPointOnCircle():void {
 	var circle:Circle = new Circle( new Point( 0, 0 ), 5 );
 	var point:Point = circle.getPointOnCircle( Math.PI );
 
 	assertEquals( -5, point.x );
 	assertEquals( 0, point.y );
-}</pre></code>
+}
+```
 
 <img alt='FailureStackTrace' src='../images/unit5/image5.png' />
 <p class='caption'>Figure 1: Failure Stack Trace</p>
@@ -288,37 +329,50 @@ public function shouldGetBottomPointOnCircle():void {
 	<li>
 		<p>Open the FlexUnit4Training.mxml file from the previous exercise.</p>
 		<p>Alternatively, if you didn't complete the previous lesson or your code is not functioning properly, you can import the FlexUnit4Training_wt2.fxp project from the Unit 5/Start folder. Please refer to Unit 2: Walkthrough 1 for instructions on importing a Flash Builder project.</p>
-		
 		<h3><br />Using the assertThat() method with extensible assertions</h3>
-	
 	</li>
 	<li>
 		<p>At the top of the <code>BasicCircleTest</code> class declare a private, static constant with the name of <code>TOLERANCE</code> and a data type of <code>Number</code>. Set the constant equal to <code>.0001</code>.</p> 
-		
-		<code><pre>public class BasicCircleTest {
+
+```
+public class BasicCircleTest {
 	private static const TOLERANCE:Number = .0001;
 	...
-}		</pre></code>
+}
+```
 
-		<p>We will use this value to determine "close enough."  If the result is between our expected value plus or minus the tolerance, we are willing to consider the value to be close enough.</p>
+<p>We will use this value to determine "close enough."  If the result is between our expected value plus or minus the tolerance, we are willing to consider the value to be close enough.</p>
 	</li>
 	<li>
 		<p>Replace the first <code>assertEquals()</code> assertion of the <code>shouldgetTopPointOnCircle()</code> function with the <code>assertThat()</code> statement as shown.</p>
 		<p>Replace this statement:</p>
-		<code><pre>assertEquals( 5, point.x );</pre></code>
-		<p>With this statement:</p>
-		<code><pre>assertThat( point.x, closeTo( 5, TOLERANCE ) );</pre></code>
-		<p>Be sure to either use the code complete with assertThat and closeTo, or manually add their imports.</p>
-		<code><pre>import org.flexunit.assertThat;<br />import org.hamcrest.number.closeTo;</pre></code>	
-	</li>
+
+```
+assertEquals( 5, point.x );
+```
+
+<p>With this statement:</p>
+
+```
+assertThat( point.x, closeTo( 5, TOLERANCE ) );
+```
+
+<p>Be sure to either use the code complete with assertThat and closeTo, or manually add their imports.</p>
+
+```
+import org.flexunit.assertThat;<br />import org.hamcrest.number.closeTo;
+```
+
+</li>
 	<li>
 		<p>Remove [Ignore] metadata from the <code>shouldGetBottomPointOnCircle()</code>, <code>shouldGetLeftPointOnCircle()</code> and <code>shouldGetRightPointOnCircle()</code> methods.</p>
 		<p>Unlike <code>assertEquals()</code>, the <code>closeTo()</code> Hamcrest matcher specifies that we need to look for numerical equivalence within a specific margin of error.</p>
 	</li>
 	<li>
 		<p>Change all the point tests so that each uses the <code>assertThat()</code> statement in place of <code>assertEquals()</code>.</p> 
-		
-		<code><pre>[Test]
+
+```
+[Test]
 public function shouldGetTopPointOnCircle():void {
 	var circle:Circle = new Circle( new Point( 0, 0 ), 5 );
 	var point:Point;
@@ -356,9 +410,10 @@ public function shouldGetLeftPointOnCircle():void {
 	point = circle.getPointOnCircle( (3*Math.PI)/2 );
 	assertThat( point.x, closeTo( 0, TOLERANCE ) );
 	assertThat( point.y, closeTo( -5, TOLERANCE ) );
-}		</pre></code>
+}
+```
 
-	</li>
+</li>
 	<li>
 		<p>Save the BasicCircleTest.as file.</p>
 	</li>
@@ -375,12 +430,16 @@ public function shouldGetLeftPointOnCircle():void {
 <p>The Hamcrest library includes base matchers to cover a wide variety of potential situations. You are encouraged to create your own custom matchers when encountering a situation that can be handled more easily, or more clearly, with a new matcher.</p> 
 <p>One of the goals behind Hamcrest is to create highly readable matching. If you examine your unit tests, they are still legible but becoming less so as the complexity of testing increases. For example:</p>
 
-<code><pre>	assertThat( point.x, closeTo( -5, TOLERANCE ) );
-	assertThat( point.y, closeTo( 0, TOLERANCE ) );</pre></code>
+```
+assertThat( point.x, closeTo( -5, TOLERANCE ) );
+assertThat( point.y, closeTo( 0, TOLERANCE ) );
+```
 
 <p>Neither you, nor another individual that may read this code later, really cares that the point's x and y properties are within a tolerance. What you really care about is that one Point is close to another Point within a given tolerance.</p>
 
-<code><pre>	assertThat( point, closeToPoint( otherPoint, TOLERANCE ) );</pre></code>
+```
+assertThat( point, closeToPoint( otherPoint, TOLERANCE ) );
+```
 
 <p>While this is a simple example, custom matchers continue to become more effective as the complexity of your tests grows.</p>
 <p>Custom matcher classes extend the <code>TypeSafeMatcher</code> class. Basic custom matchers are written with three methods.</p>
@@ -443,44 +502,67 @@ public function shouldGetLeftPointOnCircle():void {
 	</li>
 	<li>
 		<p>Add a private variable named <code>point</code> of type <code>Point</code> and another named <code>tolerance</code> of data type <code>Number</code> to the class.</p> 
-		<code><pre>	private var point:Point;
-	private var tolerance:Number;</pre></code>
-		<p>If you did not use code-completion, add the import for flash.geom.Point at this time.</p>
+
+```
+private var point:Point;
+private var tolerance:Number;
+```
+
+<p>If you did not use code-completion, add the import for flash.geom.Point at this time.</p>
 	</li>
 	<li>
 		<p>Modify the automatically created <code>CloseToPointMatcher()</code> constructor. To accept point and tolerance parameters, instead of an <code>expectedType</code>.  Pass a reference of the Point class to the superclass's constructor, and populate the local circle and offset properties with the appropriate argument from the constructor.</p>
-		<code><pre>public function CloseToPointMatcher( point:Point, tolerance:Number ) {
+
+```
+public function CloseToPointMatcher( point:Point, tolerance:Number ) {
 	super(Point);
 	this.point = point;
 	this.tolerance = tolerance;
-}		</pre></code>
-		<p>The <code>super(Point)</code> declaration is informing the classes the data types that the class will be dealing with is a Point class.</p>
+}
+```
+
+<p>The <code>super(Point)</code> declaration is informing the classes the data types that the class will be dealing with is a Point class.</p>
 	</li>
 	<li>
 		<p>Override the <code>matchesSafely()</code> method of the class. It will take an argument named <code>item</code> of data type <code>Object</code>, and will return a Boolean.</p>
-		<code><pre>override public function matchesSafely(item:Object):Boolean {
-}		</pre></code>
-	</li>
+
+```
+override public function matchesSafely(item:Object):Boolean {
+}
+```
+
+</li>
 	<li>
 		<p>In the <code>matchesSafely()</code> method, declare a variable named <code>distance</code> of data type <code>Number</code>. Set it equal to <code>Point.distance( item as Point, point )</code>;</p>
-		<code><pre>override public function matchesSafely(item:Object):Boolean {
+
+```
+override public function matchesSafely(item:Object):Boolean {
 	var distance:Number = Point.distance( item as Point, point );
-}		</pre></code>
-	</li>
+}
+```
+
+</li>
 	<li>
 		<p>Add a return statement that checks if the <code>tolerance</code> subtracted from the absolute value of the <code>distance</code> is less than 0.</p>
-		<code><pre>override public function matchesSafely(item:Object):Boolean {
+
+```
+override public function matchesSafely(item:Object):Boolean {
 	var distance:Number = Point.distance( item as Point, point );
 	return( Math.abs( distance ) - tolerance &#60; 0 );
-}		</pre></code>
-		
-	</li>
+}
+```
+
+</li>
 	<li>
 		<p>Add an override for the public function <code>describeTo()</code>. It will take an argument named <code>description</code> of type <code>Description</code>. Because there are two available <code>Description</code> classes, make sure to choose the <code>org.hamcrest.Description</code> class when you use code completion.</p>
-		<code><pre>override public function describeTo(description:Description):void {
+
+```
+override public function describeTo(description:Description):void {
 	description.appendText( "point " ).appendText( point.toString() );
-}		</pre></code>
-		<p>If you did not use code-completion, add the import for <code>org.hamcrest.Description</code>.</p>
+}
+```
+
+<p>If you did not use code-completion, add the import for <code>org.hamcrest.Description</code>.</p>
 	</li>
 	<li>
 		<p>Save CloseToPointMatcher.as.</p>
@@ -490,18 +572,28 @@ public function shouldGetLeftPointOnCircle():void {
 	</li>
 	<li>
 		<p>Modify the <code>shouldGetTopPointOnCircle()</code> method so that it reads as follows.</p>
-		<code><pre>[Test]
+
+```
+[Test]
 public function shouldGetTopPointOnCircle():void {
 	var circle:Circle = new Circle( new Point( 0, 0 ), 5 );
 	var point:Point = circle.getPointOnCircle( 0 );
 	assertThat( point, new CloseToPointMatcher( new Point( 5, 0 ), TOLERANCE ) );
-}		</pre></code>
-		<p>Be sure to either choose CloseToPointMatcher from the code-completion, or manually add the import:</p>
-		<code><pre>import matcher.CloseToPointMatcher;</pre></code>
-	</li>
+}
+```
+
+<p>Be sure to either choose CloseToPointMatcher from the code-completion, or manually add the import:</p>
+
+```
+import matcher.CloseToPointMatcher;
+```
+
+</li>
 	<li>
 		<p>Each of the point testing functions should follow this format. Instantiate the circle, instantiate the expected point, and finish with the assertion.</p>
-		<code><pre>[Test]
+
+```
+[Test]
 public function shouldGetTopPointOnCircle():void {
 	var circle:Circle = new Circle( new Point( 0, 0 ), 5 );
 	var point:Point = circle.getPointOnCircle( 0 );
@@ -524,8 +616,10 @@ public function shouldGetLeftPointOnCircle():void {
 	var circle:Circle = new Circle( new Point( 0, 0 ), 5 );
 	var point:Point = circle.getPointOnCircle( (3*Math.PI)/2 );
 	assertThat( point, new CloseToPointMatcher( new Point( 0, -5 ), TOLERANCE ) );
-}		</pre></code>
-	</li>
+}
+```
+
+</li>
 	<li>
 		<p>Save BasicCircleTest.as</p>
 	</li>
@@ -544,11 +638,14 @@ public function shouldGetLeftPointOnCircle():void {
 <p>FlexUnit 4 simplifies this process by allowing an <i>expects</i> argument in the Test annotation for this purpose.</p>
 <ul>
 	<li>To use the <i>expects</i> annotation, simply provide the type of error expected.</li>
-	<code><pre>
+
+```	
 [Test (expects="full.package.ThrownError")]
 public function testError():void {}						
-	</pre></code>
-	<li>If the tested method throws the <code>ThrownError</code>, FlexUnit 4.x will recognize this method as a success and mark the test as passed.</li>
+
+```
+
+<li>If the tested method throws the <code>ThrownError</code>, FlexUnit 4.x will recognize this method as a success and mark the test as passed.</li>
 	<li>If the error is not thrown, then the test is marked as a failure.</li> 
 	<li>If the method throws an error that is not of type <code>ThrownError</code> then FlexUnit 4 marks that test as a failure, since the expected error type did not match the error that was thrown, and something else is causing your method to fail.</li>
 </ul>	
@@ -573,11 +670,15 @@ public function testError():void {}
 	</li>
 	<li>
 		<p>At the end of the <code>BasicCircleTest</code> class there is an ignored test method named <code>shouldThrowRangeError()</code>. Remove the <code>[Ignore]</code> metadata from this function and declare a variable named <code>someCircle</code> of type <code>Circle</code>. Instantiate the <code>Circle</code> with an origin of <code>(10, 10)</code> and a radius of <code>-5</code>.</p>
-		<code><pre>[Test]
+
+```
+[Test]
 public function shouldThrowRangeError():void {
 	var someCircle:Circle = new Circle( new Point( 10, 10 ), -5 );
-}		</pre></code>
-	</li>
+}
+```
+
+</li>
 	<li>
 		<p>Save BasicCircleTest.as</p>
 	</li>
@@ -593,11 +694,15 @@ public function shouldThrowRangeError():void {
 	</li>
 	<li>
 		<p>Return to the BasicCircleTest class. Modify the <code>[Test]</code> metadata tag on the line above the <code>shouldThrowRangeError()</code> function to indicate that it expects a <code>RangeError</code>.</p>
-		<code><pre>[Test(expects="RangeError")]
+
+```
+[Test(expects="RangeError")]
 public function shouldThrowRangeError():void {
 	var someCircle:Circle = new Circle( new Point( 10, 10 ), -5 );
-}		</pre></code>
-		<p>RangeError exists in the default package, and hence appears to just be the class name. For your own custom errors or errors defined in the Flex framework, it is important you provide the full path.</p>
+}
+```
+
+<p>RangeError exists in the default package, and hence appears to just be the class name. For your own custom errors or errors defined in the Flex framework, it is important you provide the full path.</p>
 	</li>
 	<li>
 		<p>Save BasicCircleTest.as</p>

@@ -81,12 +81,18 @@ public function fault(info:Object):void {
 </ol>
 
 <p>To use an external loader you must instantiate the loader and assign it to a public static variable in the test case. Constructor args are used to provide any additional configuration information to the loader.</p>
-<code><pre>public static var testLoader:IExternalDependencyLoader = new MyLoader(" myData.xml" );</pre></code>
+
+```
+public static var testLoader:IExternalDependencyLoader = new MyLoader(" myData.xml" );
+```
+
 <p>You then need to create the datapoints array. However, instead of instantiating the array, as you had in previous lessons, you will specify a loader argument on the DataPoints metadata tag. The runner knows how to handle this attribute and ensure your loader is invoked.</p>
 
-<code><pre>[DataPoints(loader="testLoader")]
+```
+[DataPoints(loader="testLoader")]
 [ArrayElementType("Number")]
-public static var radii:Array;</pre></code>
+public static var radii:Array;
+```
 
 <p>Once the data points are loaded, your test case will use them as if they were statically coded into the test case.</p>
 
@@ -109,22 +115,34 @@ public static var radii:Array;</pre></code>
 	</li>
 	<li>
 		<p>Add a public static variable named <code>radiiLoader</code> of type <code>RadiiDataHelper</code> to the CircleTheory class. It should instantiate a <code>RadiiDataHelper</code> object with the argument <code>"xml/radii.xml"</code>.</p>
-		<code><pre>public static var radiiLoader:RadiiDataHelper 
-	= new  RadiiDataHelper( "xml/radii.xml" );</pre></code>
-		<p>If you did not use code-completion, add the import for helper.RadiiDataHelper at this time. RadiiDataHelper is the external loader and already has the logic for loading the data.</p>
+
+```
+public static var radiiLoader:RadiiDataHelper 
+	= new  RadiiDataHelper( "xml/radii.xml" );
+```
+
+<p>If you did not use code-completion, add the import for helper.RadiiDataHelper at this time. RadiiDataHelper is the external loader and already has the logic for loading the data.</p>
 		<h3><br />Alter the array to use the external data</h3>
 		<p>Now that you are loading the radii data from an external source the <code>radii</code> variable no longer requires the static values. The <code>radii</code> variable must also be marked with <code>[DataPoints(loader="radiiLoader")] metadata</code>.</p>
 	</li>
 	<li>
 		<p>Modify the radii array so that it has <code>[DataPoints(loader="radiiLoader")]</code> metadata.</p>
-		<code><pre>[DataPoints]
+
+```
+[DataPoints]
 [ArrayElementType("Number")]
-public static var radii:Array = [ -5, 1,2,3,4,5,6,7,8,9,10 ];</pre></code>
-		<p>Becomes:</p>
-		<code><pre>[DataPoints(loader="radiiLoader")]
+public static var radii:Array = [ -5, 1,2,3,4,5,6,7,8,9,10 ];
+```
+
+<p>Becomes:</p>
+
+```
+[DataPoints(loader="radiiLoader")]
 [ArrayElementType("Number")]
-public static var radii:Array;</pre></code>
-	</li>
+public static var radii:Array;
+```
+
+</li>
 	<li>
 		<p>Save CircleTheory.as.</p>
 		<h3><br />Examing the loader class</h3>

@@ -33,14 +33,16 @@ Title:  Unit 7 - Using Suites
 <p>The suite runner is org.flexunit.runners.Suite. This runner interrogates a class looking for each public variable. It determines the type (Class) of the variable and attempts to run that class.</p>
 <p>While it is possible to sort the order of suites and test cases, by default the order in which they execute is indeterminate and not governed by the order of their definition in the suite class.</p>
 
-<code><pre>[Suite]
+```
+[Suite]
 [RunWith("org.flexunit.runners.Suite")]
 public class SampleSuite {
 	public var testCase:TestCase;
 	public var anotherTestCase:AnotherTestCase;
 	public var yetAnotherTestCase:YetAnotherTestCase;
 	public var anotherSuite:AnotherSuite;
-}</pre></code>
+}
+```
 
 <h2>Walkthrough 1: Creating a new case for the Constructor Test</h2>
 
@@ -72,14 +74,20 @@ public class SampleSuite {
 	</li>
 	<li>
 		<p>Remove the automatically created constructor from the new ActionScript class, so that it reads as shown.</p>
-		<code><pre>package math.testcases {
+
+```
+package math.testcases {
 	public class CircleConstructorTest {		
 	}
-}		</pre></code>
-	</li>
+}
+```
+
+</li>
 	<li>
 		<p>Highlight and cut the <code>shouldThrowRangeError()</code> method from the BasicCircleTest.as file and paste it into the CircleConstructorTest class.</p>
-		<code><pre>public class CircleConstructorTest {		
+
+```
+public class CircleConstructorTest {		
 	[Test(expects="RangeError")]
 	public function shouldThrowRangeError():void {
 		trace("Test");
@@ -87,8 +95,10 @@ public class SampleSuite {
 			new Circle( new Point( 10, 10 ), -5 );
 	}
 }
-		</pre></code>
-		<p>Because you cut and pasted the above function into a new class you will need to manually add the appropriate import statements.</p>
+
+```
+
+<p>Because you cut and pasted the above function into a new class you will need to manually add the appropriate import statements.</p>
 	</li>
 	<li>
 		<p>Add the import statements for <code>flash.geom.Point</code> and <code>net.digitalprimates.math.Circle</code> to the class.</p>
@@ -98,7 +108,9 @@ public class SampleSuite {
 	</li>
 	<li>
 		<p>Save the CircleConstructorTest.as and the BasicCircleTest.as files.</p>
-		<code><pre>package flexUnitTests.cases {
+
+```
+package flexUnitTests.cases {
 	import flash.geom.Point;
 	import net.digitalprimates.math.Circle;
 	public class CircleConstructorTest {
@@ -108,8 +120,10 @@ public class SampleSuite {
                           new Circle( new Point( 10, 10 ), -5 );
 		}
 	}
-}		</pre></code>
-	</li>
+}
+```
+
+</li>
 	<li>
 		<p>Run the FlexUnit4Training.mxml file.</p>
 		<p>If FlexUnit4Training.mxml ran successfully you should see the following output in your browser window:</p>
@@ -125,22 +139,26 @@ public class SampleSuite {
 <p>Suites are simply ActionScript class files with public properties. The class is decorated with two very important pieces of metadata. First, the [Suite] tag, which tells Flash Builder and FlexUnit that this class is intended to be a test suite.</p> 
 <p>Second, the [RunWith] metadata tells FlexUnit to use the org.flexunit.runners.Suite class to execute this class. You will learn more about extensibility and the [RunWith] metadata later in this unit.</p>
 
-<code><pre>[Suite]
+```
+[Suite]
 [RunWith("org.flexunit.runners.Suite")]
-public class mySuite</pre></code>
+public class mySuite
+```
 
 <h3>Test cases within suites</h3>
 
 <p>Within a test suite, all the test cases and other suites are represented by public properties within the class. The sample suite below includes three test cases and additional suite.</p>
 
-<code><pre>[Suite]
+```
+[Suite]
 [RunWith("org.flexunit.runners.Suite")]
 public class MySuite {
 	public var testCase:TestCase;
 	public var anotherTestCase:AnotherTestCase;
 	public var yetAnotherTestCase:YetAnotherTestCase;
 	public var anotherSuite:AnotherSuite;
-}</pre></code>
+}
+```
 
 <p>The <code>anotherSuite</code> variable is another suite that can contain any number of tests and suites. There is no limit to the hierarchy of test suites and each level of suite is only aware of its immediate children</p>	
 <p>An empty suite (one with no tests or no public tests or suites) will throw an <code>InitializationError</code>.</p>
@@ -177,31 +195,47 @@ public class MySuite {
 	</li>
 	<li>
 		<p>Remove the automatically created constructor from the new ActionScript class. Mark the class with <code>[Suite]</code> and <code>[RunWith(" org.flexunit.runners.Suite")]</code> metadata tags, which should be placed above the class declaration.</p>
-		<code><pre>[Suite]
+
+```
+[Suite]
 [RunWith("org.flexunit.runners.Suite")]
 public class CircleSuite {
 ...
-}		</pre></code>
-	</li>
+}
+```
+
+</li>
 	<li>
 		<p>Add a public variable named <code>test1</code> of type <code>BasicCircleTest</code> and another public variable named <code>test2</code> of type <code>CircleConstructorTest</code> to the class.</p>
-		<code><pre>[Suite]
+
+```
+[Suite]
 [RunWith("org.flexunit.runners.Suite")]
 public class CircleSuite {
 	public var test1:BasicCircleTest;
 	public var test2:CircleConstructorTest;
-}		</pre></code>
-	</li>
+}
+```
+
+</li>
 	<li>
 		<p>Open the FlexUnit4Training.mxml file.</p>
 	</li>
 	<li>
 		<p>Look under the <code>&#60;fx:Script&#62;</code> block.</p>
 		<p>Replace this line:</p>
-		<code><pre>testsToRun.push( BasicCircleTest );</pre></code>
-		<p>with this line:</p>
-		<code><pre>testsToRun.push( CircleSuite );</pre></code>
-		<p>If you did not use code completion, add the import for testcases.CircleSuite at this time.</p>
+
+```
+testsToRun.push( BasicCircleTest );
+```
+
+<p>with this line:</p>
+
+```
+testsToRun.push( CircleSuite );
+```
+
+<p>If you did not use code completion, add the import for testcases.CircleSuite at this time.</p>
 	</li>
 	<li>
 		<p>Save FlexUnit4Training.mxml.</p>
@@ -239,7 +273,8 @@ public class CircleSuite {
 <img alt='TestStructure' src='../images/unit7/image7.png' />
 <p>The test structure creates test for a nuclear family. The top level package is testcases, which contains the FamilySuite.as file. Because this application objectifies the nuclear family, the FamilySuite.as file can be arranged accordingly.</p>
 
-<code><pre>import tests.children.ChildrenSuite;
+```
+import tests.children.ChildrenSuite;
 import tests.father.FatherSuite;
 import tests.mother.MotherSuite;
 [Suite]
@@ -248,7 +283,8 @@ public class FamilySuite {
 	public var fatherSuite:FatherSuite;
 	public var motherSuite:MotherSuite;
 	public var childrenSuite:ChildrenSuite;
-}</pre></code>
+}
+```
 
 <p>This is a valid suite despite the fact that it only contains other suites and does not directly contain any test cases.</p>
 <ul> 
