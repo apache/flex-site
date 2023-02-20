@@ -32,12 +32,10 @@ Use this code to embed the small size badge on your website/blog:
     frameborder="0" height="84" marginheight="0" marginwidth="0" scrolling="no" width="402"></iframe>
 ```
 
-<div class="headline"><h4 class="title">Apache Flex SDK Mavenizer</h4></div>
+<div class="headline"><h4 class="title">Apache Flex SDK Maven Converter</h4></div>
 
-In order to be able to use Flex with a maven build, it is crucial to be able to have access to a mavenized form of FDK. The Apache Flex SDK Mavenizer tool is used to convert the Apache and Adobe Flex SDKs and Air SDKs into Maven artifacts. Automatically creating the Directories, pom-files, copying and moving the resources to the correct destinations.
+In order to be able to use Flex with a [Maven](https://maven.apache.org/) build, it is crucial to be able to have access to a _Mavenized_ form of FDK. The Apache Flex SDK Converter tool is used to convert the Apache and Adobe Flex SDKs and AIR SDKs into Maven artifacts. Automatically creating the directories, pom-files, copying and moving the resources to the correct destinations.
 
-These artifacts can be used in Maven builds using the Flexmojos plugin (Starting with version 6.x).
+The Apache Flex SDK Converter is part of the Apache Flex Utilities Git repository that can be found here:
 
-The mavenizer is part of the Apache Utilities Git repository that can be found here:
-
-    https://git-wip-us.apache.org/repos/asf/flex-utilities.git
+    https://github.com/apache/flex-utilities/tree/develop/flex-maven-tools/flex-sdk-converter

@@ -37,7 +37,7 @@ If you are looking for BlazeDS:
 
     git clone https://git-wip-us.apache.org/repos/asf/flex-blazeds.git flex-blazeds
 
-If you are looking for the Apache Flex SDK Installer or the Apache Flex SDK Mavenizer Project:
+If you are looking for the Apache Flex SDK Installer or the Apache Flex SDK Maven Converter Project:
 
     git clone https://git-wip-us.apache.org/repos/asf/flex-utilities.git flex-utilities
 
