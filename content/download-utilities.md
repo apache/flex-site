@@ -17,8 +17,8 @@ Regular size (302 x 302)
 Use this code to embed the regular size badge on your website/blog:
 
 ```html
-<iframe name="afSDKInstallBadgeRegular" src="https://flex.apache.org/installerbadge/index.html"
-    frameborder="0" height="302" marginheight="0" marginwidth="0" scrolling="no" width="302"></iframe>
+&lt;iframe name="afSDKInstallBadgeRegular" src="https://flex.apache.org/installerbadge/index.html"
+    frameborder="0" height="302" marginheight="0" marginwidth="0" scrolling="no" width="302">&lt;/iframe&gt;
 ```
 
 Small size (402 x 84)
@@ -28,8 +28,8 @@ Small size (402 x 84)
 Use this code to embed the small size badge on your website/blog:
 
 ```html
-<iframe name="afSDKInstallBadgeSmall" src="https://flex.apache.org/installerbadge/index.html"
-    frameborder="0" height="84" marginheight="0" marginwidth="0" scrolling="no" width="402"></iframe>
+&lt;iframe name="afSDKInstallBadgeSmall" src="https://flex.apache.org/installerbadge/index.html"
+    frameborder="0" height="84" marginheight="0" marginwidth="0" scrolling="no" width="402"&gt;&lt;/iframe&gt;
 ```
 
 <div class="headline"><h4 class="title">Apache Flex SDK Maven Converter</h4></div>
