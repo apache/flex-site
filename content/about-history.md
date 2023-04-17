@@ -172,3 +172,5 @@ This version allows to track the number of downloads.
 <div class="headline"><h4> November, 2017: Apache Flex SDK 4.16.1 released </h4></div>
 
 <div class="headline"><h4> February, 2023: Apache Flex flex-sdk-converter 1.1.0 released </h4></div>
+
+<div class="headline"><h4> April, 2023: Apache Flex BlazeDS 4.8.0 released </h4></div>
