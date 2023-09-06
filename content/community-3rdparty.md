@@ -27,6 +27,10 @@ programming with haXe. Create your applications in FDT and efficiently target mu
 <blockquote>IntelliJ IDEA is ideal for ActionScript, MXML and CSS development, with on-the-fly code analysis, completion,
 navigation, advanced refactorings, code generation, UML diagrams, UI designer, interactive debugger and profiler.</blockquote>
 
+* <a target="_blank" href="https://marketplace.visualstudio.com/items?itemName=bowlerhatllc.vscode-nextgenas">AS3, MXML, and SWF extension pack for Visual Studio Code</a>:
+
+<blockquote>An extension pack for Visual Studio Code that adds support for ActionScript 3.0 and MXML development for Apache Flex, Apache Royale, the Feathers SDK, Starling Framework, and more. Includes a SWF debugging extension that works with Adobe AIR and the standalone Flash Player projector.</blockquote>
+
 
 <div class="headline"><h4>Flex Frameworks</h4></div>
 
