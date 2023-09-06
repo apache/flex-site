@@ -45,7 +45,7 @@ is handling those events, whether data needs to be retrieved from the server, or
 In addition, Mate provides a mechanism for dependency injection to make it easy for the different parts of your
 application to get the data and objects they need.</blockquote>
 
-* <a target="_blank" href="https://www.spicefactory.org/parsley/">Parsley (Spice Factory)</a>:
+* <a target="_blank" href="https://spicefactory.github.io/">Parsley (Spice Factory)</a>:
 
 <blockquote>Parsley is an open-source application framework for Flex/Flash/AIR applications written in AS3.
 Parsley features a flexible IOC container, dependency injection, decoupled bindings, messaging framework, 
@@ -66,12 +66,12 @@ PureMVC programming syntax that helps accelerate development. Fabrication is foc
 Flex and Flash implementations of the PureMVC framework. Also Fabrication is built largely to support 
 multi-modular application and uses only the multicore version of PureMVC.</blockquote>
 
-* <a target="_blank" href="https://www.robotlegs.org/">Robotlegs</a>:
+* <a target="_blank" href="https://github.com/robotlegs/robotlegs-framework">Robotlegs</a>:
 
 <blockquote>Robotlegs is an ActionScript Application Framework. It offers: Dependency, Module, Command and View
 management.</blockquote>
 
-* <a target="_blank" href="https://www.springactionscript.org/">Spring Actionscript</a>:
+* <a target="_blank" href="https://github.com/spring-attic/spring-actionscript">Spring Actionscript</a>:
 
 <blockquote>Spring ActionScript is an offshoot of the Java-based Spring Framework written in ActionScript 3. It is
 targeted for the Flash, Flex and AIR platforms. The framework contains a versatile Inversion of Control Container,
@@ -90,25 +90,25 @@ close to the Flex framework concepts and traditional usage.</blockquote>
 
 <div class="headline"><h4>Server Solutions</h4></div>
 
-* <a target="_blank" href="https://www.silexlabs.org/amfphp/">Amfphp</a>:
+* <a target="_blank" href="https://github.com/silexlabs/amfphp-2.0">Amfphp</a>:
 
 <blockquote>Amfphp is free and open source software, and an essential brick for the development of Applications that
 need to communicate with the Internet. Amfphp is used in projects that cover a wide spectrum, from games to business
 applications. The role of Amfphp is to provide a really simple way of connecting a client with a server.</blockquote>
 
-* <a target="_blank" href="https://sourceforge.net/adobe/blazeds/wiki/Home/">BlazeDS</a>:
+* <a target="_blank" href="https://flex.apache.org/download-blazeds.html">BlazeDS</a>:
 
 <blockquote>BlazeDS is the server-based Java remoting and web messaging technology that enables developers to easily
 connect to back-end distributed data and push data in real-time to Adobe® Flex® and Adobe AIR® applications for more
 responsive rich Internet application (RIA) experiences.</blockquote>
 
-* <a target="_blank" href="https://www.fluorinefx.com/">FluorineFx</a>:
+* <a target="_blank" href="https://code.google.com/archive/p/fluorinefx/">FluorineFx</a>:
 
 <blockquote>FluorineFx is the free and open source Flash/Flex remoting gateway, high-performance, scalable framework,
 streaming server that connects RIAs using Adobe software (Adobe Flash®, Adobe Flex®, Adobe AIR® runtime) and Microsoft
 .NET®.</blockquote>
 
-* <a target="_blank" href="https://www.granitedataservices.com/community/">GraniteDS (Granite Data Services)</a>:
+* <a target="_blank" href="https://github.com/graniteds/graniteds">GraniteDS (Granite Data Services)</a>:
 
 <blockquote>GraniteDS brings the power of your Java EE server to the Flex side. An easy to use
 client-side API helps you leveraging advanced features such as authentication and secured access, dependency injection, 
@@ -122,7 +122,7 @@ and process information, deliver personalized communications, and protect and tr
 ES4 extends business processes to your mobile workforce and clients, increasing productivity while broadening service
 access to any user equipped with a desktop, smartphone, or tablet.</blockquote>
 
-* <a target="_blank" href="https://www.red5.org/">Red5 Media Server</a>:
+* <a target="_blank" href="https://github.com/Red5/red5-server">Red5 Media Server</a>:
 
 <blockquote>Red5 Media Server 1.0 delivers a powerful video streaming and multi-user solution to the Adobe® Flash®
 Player® and other exciting client technologies. Based on Java and some of the most powerful open source frameworks,
