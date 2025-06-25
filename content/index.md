@@ -7,6 +7,9 @@ homepage:    true
 <div class="span8">
 
 <div class="headline marginbottom"><h4>Learn Flex®:</h4></div>
+
+<!-- start row -->
+
 <div class="row-fluid">
 
 <!-- Project -->
@@ -29,12 +32,27 @@ homepage:    true
 
 <!-- Project -->
 <div class="span3">
+    <div class="picture"><a href="https://flex.apache.org/doc-videos.html"><img src="images/training/video-tutorials.png" alt=""><div class="image-overlay-link"></div></a></div>
+    <div class="item-description">
+        <h5><a href="https://flex.apache.org/doc-videos.html">Video Tutorials</a></h5>
+        <p>Learn to create Flex applications and components with helpful video tutorials that walk you through the process. Discover a variety of videos created both by contributors to the project and by developers using Flex for real-world projects.</p>
+    </div>
+</div>
+
+<!-- Project -->
+<div class="span3">
     <div class="picture"><a href="https://flex.apache.org/flexunit/tutorial/"><img src="images/training/flexunit-tutorial.png" alt=""><div class="image-overlay-link"></div></a></div>
     <div class="item-description">
         <h5><a href="https://flex.apache.org/flexunit/tutorial/">Apache FlexUnit Tutorial</a></h5>
         <p>Learn to write unit tests with Apache FlexUnit. Includes an overview of key FlexUnit and unit testing concepts, demonstrations and walkthroughs that illustrate and guide you through the process of writing tests and running them, and a summaries and reviews of all concepts covered in the tutorial.</p>
     </div>
 </div>
+
+</div>
+
+<!-- start row -->
+
+<div class="row-fluid">
 
 <!-- Project -->
 <div class="span3">
@@ -56,6 +74,8 @@ homepage:    true
 </div>
 
 </div>
+
+<!-- start row -->
 
 </div>
 <!-- Learn Flex End -->
