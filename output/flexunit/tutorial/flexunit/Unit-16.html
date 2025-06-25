@@ -254,33 +254,33 @@
 </li>
 <li>
 <p>Within the <code>&lt;fx:Script&gt;</code> block, there is a method named <code>onCreationComplete()</code>. Remove the body of this method, leaving just the empty shell of the method.</p>
-<div class="highlight"><pre><span></span><code><span class="err">private function onCreationComplete():void {</span>
-<span class="err">}</span>
-</code></pre></div>
+<pre><code>private function onCreationComplete():void {
+}
+</code></pre>
 </li>
 <li>
 <p>Within the <code>&lt;fx:Script&gt;</code> block add a new public variable named <code>core</code> of type <code>FlexUnitCore</code>.</p>
-<div class="highlight"><pre><span></span><code><span class="err">public var core:FlexUnitCore;</span>
-</code></pre></div>
+<pre><code>public var core:FlexUnitCore;
+</code></pre>
 <p>If you did not use code-completion, add the import statement for and org.flexunit.runner.FlexUnitCore at this time.</p>
 <p>The <code>core</code> acts as our runner; we will be adding the <code>CIListener</code> to the core listeners.</p>
 </li>
 <li>
 <p>In the <code>onCreationComplete()</code> method instantiate the <code>core</code> variable to a new <code>FlexUnitCore()</code>. Call the <code>core.addListener()</code> method on the next line, passing it an argument of <code>new CIListener()</code>. On the next line call the <code>core.run( currentRunTestSuite() )</code>.</p>
-<div class="highlight"><pre><span></span><code><span class="err">private function onCreationComplete():void {</span>
-<span class="err">    core = new FlexUnitCore();</span>
-<span class="err">    core.addListener( new CIListener() );</span>
-<span class="err">}</span>
-</code></pre></div>
+<pre><code>private function onCreationComplete():void {
+	core = new FlexUnitCore();
+	core.addListener( new CIListener() );
+}
+</code></pre>
 </li>
 <li>
 <p>On the following line, call <code>core.run()</code> passing <code>currentRunTestSuite()</code> as its argument.</p>
-<div class="highlight"><pre><span></span><code><span class="err">private function onCreationComplete():void {</span>
-<span class="err">    core = new FlexUnitCore();</span>
-<span class="err">    core.addListener( new CIListener() );</span>
-<span class="err">    core.run( currentRunTestSuite() );</span>
-<span class="err">}</span>
-</code></pre></div>
+<pre><code>private function onCreationComplete():void {
+	core = new FlexUnitCore();
+	core.addListener( new CIListener() );
+	core.run( currentRunTestSuite() );
+}
+</code></pre>
 <p>If you did not use code-completion, add the import statement for org.flexunit.listeners.CIListener at this time.</p>
 </li>
 <li>
@@ -298,16 +298,16 @@
 <li>basedir - Base directory for all work. If none is specified, Ant uses the build file directory as base directory</li>
 <li>Project tag structure</li>
 </ul>
-<div class="highlight"><pre><span></span><code><span class="nt">&lt;project</span> <span class="na">name=</span><span class="s">&lt;i</span><span class="nt">&gt;</span>"project_name"<span class="nt">&lt;/i&gt;</span> basedir=<span class="nt">&lt;i&gt;</span>"project_base"<span class="nt">&lt;/i&gt;</span> default=<span class="nt">&lt;i&gt;</span>"default_target"<span class="nt">&lt;/i&gt;</span> &gt;
-</code></pre></div>
+<pre><code>&lt;project name=&lt;i&gt;"project_name"&lt;/i&gt; basedir=&lt;i&gt;"project_base"&lt;/i&gt; default=&lt;i&gt;"default_target"&lt;/i&gt; &gt;
+</code></pre>
 <h3>Property tag</h3>
 <ul>
 <li>Frequently used to create shorthand variables for directory locations</li>
 <li>Also used to specify directories of task targets</li>
 <li>Property tag structure</li>
 </ul>
-<div class="highlight"><pre><span></span><code><span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&lt;i</span><span class="nt">&gt;</span>"property_name"<span class="nt">&lt;/i&gt;</span> location=<span class="nt">&lt;i&gt;</span>"property_location"<span class="nt">&lt;/i&gt;</span> /&gt;
-</code></pre></div>
+<pre><code>&lt;property name=&lt;i&gt;"property_name"&lt;/i&gt; location=&lt;i&gt;"property_location"&lt;/i&gt; /&gt;
+</code></pre>
 <h3>Taskdef tag</h3>
 <ul>
 <li>Tasks define the custom behavior to be used with the build</li>
@@ -315,8 +315,8 @@
 <li>The taskdef tag defines the location of a task within the jar</li>
 <li>Task definition tag structure</li>
 </ul>
-<div class="highlight"><pre><span></span><code><span class="nt">&lt;taskdef</span> <span class="na">resource=</span><span class="s">&lt;i</span><span class="nt">&gt;</span>"task_location_within_jar"<span class="nt">&lt;/i&gt;</span> classpath=<span class="nt">&lt;i&gt;</span>"task_jar_location"<span class="nt">&lt;/i&gt;</span> /&gt;
-</code></pre></div>
+<pre><code>&lt;taskdef resource=&lt;i&gt;"task_location_within_jar"&lt;/i&gt; classpath=&lt;i&gt;"task_jar_location"&lt;/i&gt; /&gt;
+</code></pre>
 <h3>Target tag</h3>
 <ul>
 <li>Creates possible start points for where the build should begin</li>
@@ -326,8 +326,8 @@
 <li>If a target has dependencies, the dependencies will be run when the target is run</li>
 <li>Target tag structure</li>
 </ul>
-<div class="highlight"><pre><span></span><code><span class="nt">&lt;target</span> <span class="na">name=</span><span class="s">&lt;i</span><span class="nt">&gt;</span>"target_name"<span class="nt">&lt;/i&gt;</span> depends=<span class="nt">&lt;i&gt;</span>"target_dependencies"<span class="nt">&lt;/i&gt;</span>&gt;
-</code></pre></div>
+<pre><code>&lt;target name=&lt;i&gt;"target_name"&lt;/i&gt; depends=&lt;i&gt;"target_dependencies"&lt;/i&gt;&gt;
+</code></pre>
 <h3>Task</h3>
 <ul>
 <li>Each task is a job or file to be run as part of the build</li>
@@ -337,8 +337,8 @@
 <li>Each task may have its own unique properties</li>
 <li>Common task tag structure</li>
 </ul>
-<div class="highlight"><pre><span></span><code><span class="nt">&lt;taskname</span> <span class="na">id=</span><span class="s">&lt;i</span><span class="nt">&gt;</span>"task_id"<span class="nt">&lt;/i&gt;</span> attribute1=<span class="nt">&lt;i&gt;</span>"..."<span class="nt">&lt;/i&gt;</span> attribute2=<span class="nt">&lt;i&gt;</span>"..."<span class="nt">&lt;/i&gt;</span> ... /&gt;
-</code></pre></div>
+<pre><code>&lt;taskname id=&lt;i&gt;"task_id"&lt;/i&gt; attribute1=&lt;i&gt;"..."&lt;/i&gt; attribute2=&lt;i&gt;"..."&lt;/i&gt; ... /&gt;
+</code></pre>
 <ul>
 <li>For building projects with Hudson we will be using 6 tasks, Flex Ant task, FlexUnit task, JUnit report task, copy task, zip task and delete task</li>
 <li>The flex ant task consists of the following tasks</li>
@@ -358,7 +358,7 @@
 <p>A popular, open-source, continuous integration server, Hudson is simple to set up, configure and use. It can monitor multiple jobs, and through use of the FlexUnitAntTask, can make automating testing virtually a painless process.</p>
 <p>In order to use Hudson, it requires that Ant and/or Maven be installed on the CI system. It may be deployed through the .war file to an Apache, Tomcat, Glassfish or other HTTP server project. Hudson may also be used by way of the Windows service on a Windows machine, or integrated directly with many Linux distributions.</p>
 <p>For more information about Hudson and its capabilities, visit:</p>
-<p><a class="contentlink" href="https://hudson-ci.org" target="blank">https://hudson-ci.org</a></p>
+<p><a class="contentlink" href="https://hudson-ci.org" target="blank"><a href="https://hudson-ci.org">https://hudson-ci.org</a></a></p>
 <h2>Failure and Success reporting options</h2>
 <p>The FlexUnit Ant Task allows several options for test reporting</p>
 <ul>
@@ -412,12 +412,10 @@
 <p>You will also see a heading <code>&lt;!--Setup Flex and FlexUnit ant tasks --&gt;</code>.  Here you will need to modify the path locations of your tasks as well as set the <code>FLEX_HOME</code>.</p>
 </li>
 <li>
-<p>First, navigate to your Flex SDK. In most cases, your Flex SDK should be located at root/Program Files/Adobe/Adobe Flash Builder 4/sdks.</p> 
-
-```
-<property location="rootpath:/Program Files/Adobe/Adobe Flash Builder 4/sdks/4.1.0/" name="FLEX_HOME"></property>
- ```
-
+<p>First, navigate to your Flex SDK. In most cases, your Flex SDK should be located at root/Program Files/Adobe/Adobe Flash Builder 4/sdks.</p>
+<pre><code>&lt;property name="FLEX_HOME" 
+ location="rootpath:/Program Files/Adobe/Adobe Flash Builder 4/sdks/4.1.0/" /&gt;
+</code></pre>
 <p>It is highly recommended you use Flex 4.1 SDK. Keep every directory in this walkthrough relative to the FLEX_HOME directory, this way the build file is guaranteed to reference these correctly.</p>
 <h3><br/>Install Ant and Hudson</h3>
 </li>
@@ -528,6 +526,7 @@
 <li><a href="Unit-15.html">Unit 15 - Creating Testable Code</a></li>
 <li><a href="../index.html">Table of Contents / Introduction</a></li>
 </ul>
+
 
 <!-- Home Page Exception -->
 
