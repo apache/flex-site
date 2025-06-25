@@ -209,25 +209,25 @@
 <h3>The Need for Seams</h3>
 <p>We call the point where objects can be separated from each other seams. Continuing with the lamp example, the light bulb socket and wall plug are both seams. Seams allow us to isolate an object and ensure that we are only testing one object at a time.</p>
 <p>Let's examine the following piece of code:</p>
-<pre><code>public class TestSeams {
-	private var someMathObj:SomeMathClass = new SomeMathClass();
-	public function findDistance( a:Number, b:Number ):Number {
-		var difference:Number = ( b - a );
-		var distance:Number = someMathObj.abs( difference );
-		return distance;
-	}
-}
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="err">public class TestSeams {</span>
+<span class="err">    private var someMathObj:SomeMathClass = new SomeMathClass();</span>
+<span class="err">    public function findDistance( a:Number, b:Number ):Number {</span>
+<span class="err">        var difference:Number = ( b - a );</span>
+<span class="err">        var distance:Number = someMathObj.abs( difference );</span>
+<span class="err">        return distance;</span>
+<span class="err">    }</span>
+<span class="err">}</span>
+</code></pre></div>
 <p>Unfortunately, you cannot test the <code>findDistance()</code> method alone. That method depends upon <code>SomeMathClass</code> and its <code>abs()</code> function. Therefore, it cannot be isolated. Any attempt to test this method results in testing the code in the TestSeams class, an unknown amount in the SomeMathClass, and the integration between the classes.</p>
 <p>When creating new code you must keep the need for seams in mind. Not only does it facilitate testable code, it also has the side effect of creating loosely coupled code with a minimum of interwoven dependencies.</p>
 <h3>Examining the Circle Class and the Circle Layout</h3>
 <p>Let's take a look at the Circle class and the <code>getPointOnCircle()</code> method.</p>
-<pre><code>public function getPointOnCircle( t:Number ):Point {
-	var x:Number = origin.x + ( radius * Math.cos( t ) );
-	var y:Number = origin.y + ( radius * Math.sin( t ) );
-	return new Point( x, y );
-}
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="err">public function getPointOnCircle( t:Number ):Point {</span>
+<span class="err">    var x:Number = origin.x + ( radius * Math.cos( t ) );</span>
+<span class="err">    var y:Number = origin.y + ( radius * Math.sin( t ) );</span>
+<span class="err">    return new Point( x, y );</span>
+<span class="err">}</span>
+</code></pre></div>
 <p>In this unit of code:</p>
 <ul>
 <li>The method takes a single argument, <code>t</code>.</li>
@@ -242,13 +242,13 @@
 </ul>
 <p>As you can see, most units will need more than one test to fully validate the unit's function.</p>
 <p>Here is a unit from the CircleLayout class:</p>
-<pre><code>public function getLayoutRadius( contentWidth:Number, contentHeight:Number ):Number {
-	var maxX:Number = (contentWidth/2)*.8;
-	var maxY:Number = (contentHeight/2)*.8;
-	var radius:Number = Math.min( maxX, maxY );
-	return Math.max( radius, 1 );
-}
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="err">public function getLayoutRadius( contentWidth:Number, contentHeight:Number ):Number {</span>
+<span class="err">    var maxX:Number = (contentWidth/2)*.8;</span>
+<span class="err">    var maxY:Number = (contentHeight/2)*.8;</span>
+<span class="err">    var radius:Number = Math.min( maxX, maxY );</span>
+<span class="err">    return Math.max( radius, 1 );</span>
+<span class="err">}</span>
+</code></pre></div>
 <p>While not perfect, this unit has a couple testing advantages over the previous method:</p>
 <ul>
 <li>All the required values for the computation are passed as arguments.</li>
@@ -261,18 +261,18 @@
 </ul>
 <h3>Examining a Test Case</h3>
 <p>As you learned in the previous unit, a test case is merely a collection of individual test methods that test related behaviors. Each of the methods of a test case is decorated with [Test] metadata to signal to the FlexUnit framework that a method is a test. The [Test] metadata tag can also accept user defined attributes for descriptive and organizational purposes</p>
-<pre><code>[Test(description="Test is supposed to fail",issueID="0012443")]
+<div class="highlight"><pre><span></span><code><span class="k">[Test(description="Test is supposed to fail",issueID="0012443")]</span>
 
-public function thisTestFails():void {}
-</code></pre>
+<span class="na">public function thisTestFails():void {}</span>
+</code></pre></div>
 <p>or system-defined attributes that provide further instructions to FlexUnit when it runs the test.</p>
 <p>A test fixture comprises all of the state required to evaluate your test methods. For example, in the following test:</p>
-<pre><code>[Test]
-public function shouldComputeCorrectDiameter():void {
-	var circle:Circle = new Circle( new Point( 0, 0 ), 5 ); 
-	assertEquals( 10, circle.diameter );
-}
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="k">[Test]</span>
+<span class="na">public function shouldComputeCorrectDiameter():void {</span>
+    <span class="na">var circle:Circle</span> <span class="o">=</span> <span class="s">new Circle( new Point( 0, 0 ), 5 ); </span>
+<span class="s">    assertEquals( 10, circle.diameter );</span>
+<span class="na">}</span>
+</code></pre></div>
 <p>The existence of the Circle is necessary for the assertion and can therefore be considered part of your test fixture.</p>
 <h2>Walkthrough 1: Adding Tests to a Case</h2>
 <p>In this walkthrough you will perform the following tasks:</p>
@@ -289,15 +289,15 @@ public function shouldComputeCorrectDiameter():void {
 <li>
 <p>Add seven new public functions to the class right under the <code>shouldReturnProvidedRadius()</code> function. They should be named <code>shouldComputeCorrectDiameter()</code>, <code>shouldReturnProvidedOrigin()</code>, <code>shouldReturnTrueForEqualCircle()</code>, <code>shouldReturnFalseForUnequalOrigin()</code>, <code>shouldReturnFalseForUnequalRadius()</code>, <code>shouldGetPointsOnCircle()</code>, and <code>shouldThrowRangeError()</code>.</p>
 <p>Mark each function with <code>[Test]</code> metadata.</p>
-		```
-		[Test]
+        ```
+        [Test]
 public function shouldComputeCorrectDiameter():void {
 }
 [Test]
 public function shouldReturnProvidedOrigin():void {
 }
 [Test]
-public function shouldReturnTrueForEqualCircle():void {	
+public function shouldReturnTrueForEqualCircle():void { 
 }
 [Test]
 public function shouldReturnFalseForUnequalOrigin():void {
@@ -306,123 +306,123 @@ public function shouldReturnFalseForUnequalOrigin():void {
 public function shouldReturnFalseForUnequalRadius():void {
 }
 [Test]
-public function shouldGetPointsOnCircle():void {	
+public function shouldGetPointsOnCircle():void {    
 }
 [Test]
-public function shouldThrowRangeError():void {	
+public function shouldThrowRangeError():void {  
 }
-```
-</li>
-<li>
-<p>Although you have written out seven methods, only the first five are going to be used in this walkthrough. Within <code>shouldComputeCorrectDiameter()</code>, <code>shouldReturnProvidedOrigin()</code>, <code>shouldReturnTrueForEqualCircle()</code>, <code>shouldReturnFalseForUnequalOrigin()</code>, and <code>shouldReturnFalseForUnequalRadius()</code> declare a local variable named <code>circle</code> of type <code>Circle</code>. Instantiate <code>circle</code> with an origin Point at <code>(0, 0)</code> and a radius of <code>5</code>.</p>
-		```
-		[Test]
-public function shouldComputeCorrectDiameter():void {
-	var circle:Circle = new Circle( new Point( 0, 0 ), 5 ); 
-}
-[Test]
-public function shouldReturnProvidedOrigin():void {
-	var circle:Circle = new Circle( new Point( 0, 0 ), 5 ); 
-}
-[Test]
-public function shouldReturnTrueForEqualCircle():void {
-	var circle:Circle = new Circle( new Point( 0, 0 ), 5 );	
-}
-[Test]
-public function shouldReturnFalseForUnequalOrigin():void {
-	var circle:Circle = new Circle( new Point( 0, 0 ), 5 );	
-}
-[Test]
-public function shouldReturnFalseForUnequalRadius():void {
-	var circle:Circle = new Circle( new Point( 0, 0 ), 5 );	
-}
-```
+
+<div class="highlight"><pre><span></span><code><span class="o">&lt;/</span><span class="n">li</span><span class="o">&gt;</span><span class="w"></span>
+<span class="w">    </span><span class="o">&lt;</span><span class="n">li</span><span class="o">&gt;</span><span class="w"></span>
+<span class="w">        </span><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="n">Although</span><span class="w"> </span><span class="n">you</span><span class="w"> </span><span class="n">have</span><span class="w"> </span><span class="n">written</span><span class="w"> </span><span class="k">out</span><span class="w"> </span><span class="n">seven</span><span class="w"> </span><span class="n">methods</span><span class="p">,</span><span class="w"> </span><span class="k">only</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="k">first</span><span class="w"> </span><span class="n">five</span><span class="w"> </span><span class="k">are</span><span class="w"> </span><span class="n">going</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="n">be</span><span class="w"> </span><span class="n">used</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">this</span><span class="w"> </span><span class="n">walkthrough</span><span class="p">.</span><span class="w"> </span><span class="k">Within</span><span class="w"> </span><span class="o">&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="n">shouldComputeCorrectDiameter</span><span class="p">()</span><span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;</span><span class="p">,</span><span class="w"> </span><span class="o">&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="n">shouldReturnProvidedOrigin</span><span class="p">()</span><span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;</span><span class="p">,</span><span class="w"> </span><span class="o">&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="n">shouldReturnTrueForEqualCircle</span><span class="p">()</span><span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;</span><span class="p">,</span><span class="w"> </span><span class="o">&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="n">shouldReturnFalseForUnequalOrigin</span><span class="p">()</span><span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;</span><span class="p">,</span><span class="w"> </span><span class="ow">and</span><span class="w"> </span><span class="o">&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="n">shouldReturnFalseForUnequalRadius</span><span class="p">()</span><span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;</span><span class="w"> </span><span class="k">declare</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="k">local</span><span class="w"> </span><span class="k">variable</span><span class="w"> </span><span class="n">named</span><span class="w"> </span><span class="o">&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="n">circle</span><span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="n">type</span><span class="w"> </span><span class="o">&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="n">Circle</span><span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;</span><span class="p">.</span><span class="w"> </span><span class="n">Instantiate</span><span class="w"> </span><span class="o">&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="n">circle</span><span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;</span><span class="w"> </span><span class="k">with</span><span class="w"> </span><span class="n">an</span><span class="w"> </span><span class="n">origin</span><span class="w"> </span><span class="n">Point</span><span class="w"> </span><span class="k">at</span><span class="w"> </span><span class="o">&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;</span><span class="w"> </span><span class="ow">and</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">radius</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="o">&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="mi">5</span><span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;</span><span class="p">.</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span><span class="w"></span>
+<span class="w">        </span><span class="err">```</span><span class="w"></span>
+<span class="w">        </span><span class="o">[</span><span class="n">Test</span><span class="o">]</span><span class="w"></span>
+<span class="k">public</span><span class="w"> </span><span class="k">function</span><span class="w"> </span><span class="n">shouldComputeCorrectDiameter</span><span class="p">()</span><span class="err">:</span><span class="n">void</span><span class="w"> </span><span class="err">{</span><span class="w"></span>
+<span class="w">    </span><span class="nf">var</span><span class="w"> </span><span class="nl">circle</span><span class="p">:</span><span class="n">Circle</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Circle</span><span class="p">(</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Point</span><span class="p">(</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="p">),</span><span class="w"> </span><span class="mi">5</span><span class="w"> </span><span class="p">);</span><span class="w"> </span>
+<span class="err">}</span><span class="w"></span>
+<span class="o">[</span><span class="n">Test</span><span class="o">]</span><span class="w"></span>
+<span class="k">public</span><span class="w"> </span><span class="k">function</span><span class="w"> </span><span class="n">shouldReturnProvidedOrigin</span><span class="p">()</span><span class="err">:</span><span class="n">void</span><span class="w"> </span><span class="err">{</span><span class="w"></span>
+<span class="w">    </span><span class="nf">var</span><span class="w"> </span><span class="nl">circle</span><span class="p">:</span><span class="n">Circle</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Circle</span><span class="p">(</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Point</span><span class="p">(</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="p">),</span><span class="w"> </span><span class="mi">5</span><span class="w"> </span><span class="p">);</span><span class="w"> </span>
+<span class="err">}</span><span class="w"></span>
+<span class="o">[</span><span class="n">Test</span><span class="o">]</span><span class="w"></span>
+<span class="k">public</span><span class="w"> </span><span class="k">function</span><span class="w"> </span><span class="n">shouldReturnTrueForEqualCircle</span><span class="p">()</span><span class="err">:</span><span class="n">void</span><span class="w"> </span><span class="err">{</span><span class="w"></span>
+<span class="w">    </span><span class="nf">var</span><span class="w"> </span><span class="nl">circle</span><span class="p">:</span><span class="n">Circle</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Circle</span><span class="p">(</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Point</span><span class="p">(</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="p">),</span><span class="w"> </span><span class="mi">5</span><span class="w"> </span><span class="p">);</span><span class="w"> </span>
+<span class="err">}</span><span class="w"></span>
+<span class="o">[</span><span class="n">Test</span><span class="o">]</span><span class="w"></span>
+<span class="k">public</span><span class="w"> </span><span class="k">function</span><span class="w"> </span><span class="n">shouldReturnFalseForUnequalOrigin</span><span class="p">()</span><span class="err">:</span><span class="n">void</span><span class="w"> </span><span class="err">{</span><span class="w"></span>
+<span class="w">    </span><span class="nf">var</span><span class="w"> </span><span class="nl">circle</span><span class="p">:</span><span class="n">Circle</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Circle</span><span class="p">(</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Point</span><span class="p">(</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="p">),</span><span class="w"> </span><span class="mi">5</span><span class="w"> </span><span class="p">);</span><span class="w"> </span>
+<span class="err">}</span><span class="w"></span>
+<span class="o">[</span><span class="n">Test</span><span class="o">]</span><span class="w"></span>
+<span class="k">public</span><span class="w"> </span><span class="k">function</span><span class="w"> </span><span class="n">shouldReturnFalseForUnequalRadius</span><span class="p">()</span><span class="err">:</span><span class="n">void</span><span class="w"> </span><span class="err">{</span><span class="w"></span>
+<span class="w">    </span><span class="nf">var</span><span class="w"> </span><span class="nl">circle</span><span class="p">:</span><span class="n">Circle</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Circle</span><span class="p">(</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Point</span><span class="p">(</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="p">),</span><span class="w"> </span><span class="mi">5</span><span class="w"> </span><span class="p">);</span><span class="w"> </span>
+<span class="err">}</span><span class="w"></span>
+</code></pre></div>
 </li>
 <li>
 <p>Just below the circle instantiation in the <code>shouldComputeCorrectDiameter()</code> method, add a line that calls to the <code>assertEquals()</code> method with arguments <code>10</code> and <code>circle.diameter</code>.</p> 
-		```
-		[Test]
+        ```
+        [Test]
 public function shouldComputeCorrectDiameter ():void {
-	var circle:Circle = new Circle( new Point( 0, 0 ), 5 ); 
-	assertEquals( 10, circle.diameter );
+    var circle:Circle = new Circle( new Point( 0, 0 ), 5 ); 
+    assertEquals( 10, circle.diameter );
 }
-```
-</li>
-<li>
-<p>Just below the circle instantiation in the <code>shouldReturnProvidedOrigin()</code> method, add two lines that each call the <code>assertEquals()</code> method. This test requires two assertion statements because it will check the x and y coordinates' equality to 0, each on a different line.</p>
-		```
-		[Test]
-public function shouldReturnProvidedOrigin():void {
-	var circle:Circle = new Circle( new Point( 0, 0 ), 5 ); 
-	assertEquals( 0, circle.origin.x );
-	assertEquals( 0, circle.origin.y );
-}
-```
+
+<div class="highlight"><pre><span></span><code><span class="o">&lt;/</span><span class="n">li</span><span class="o">&gt;</span><span class="w"></span>
+<span class="w">    </span><span class="o">&lt;</span><span class="n">li</span><span class="o">&gt;</span><span class="w"></span>
+<span class="w">        </span><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="n">Just</span><span class="w"> </span><span class="n">below</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">circle</span><span class="w"> </span><span class="n">instantiation</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="o">&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="n">shouldReturnProvidedOrigin</span><span class="p">()</span><span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;</span><span class="w"> </span><span class="k">method</span><span class="p">,</span><span class="w"> </span><span class="k">add</span><span class="w"> </span><span class="n">two</span><span class="w"> </span><span class="n">lines</span><span class="w"> </span><span class="n">that</span><span class="w"> </span><span class="k">each</span><span class="w"> </span><span class="k">call</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="o">&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="n">assertEquals</span><span class="p">()</span><span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;</span><span class="w"> </span><span class="k">method</span><span class="p">.</span><span class="w"> </span><span class="n">This</span><span class="w"> </span><span class="n">test</span><span class="w"> </span><span class="n">requires</span><span class="w"> </span><span class="n">two</span><span class="w"> </span><span class="k">assertion</span><span class="w"> </span><span class="n">statements</span><span class="w"> </span><span class="n">because</span><span class="w"> </span><span class="n">it</span><span class="w"> </span><span class="n">will</span><span class="w"> </span><span class="k">check</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="ow">and</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="n">coordinates</span><span class="err">'</span><span class="w"> </span><span class="n">equality</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="k">each</span><span class="w"> </span><span class="k">on</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">different</span><span class="w"> </span><span class="n">line</span><span class="p">.</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span><span class="w"></span>
+<span class="w">        </span><span class="err">```</span><span class="w"></span>
+<span class="w">        </span><span class="o">[</span><span class="n">Test</span><span class="o">]</span><span class="w"></span>
+<span class="k">public</span><span class="w"> </span><span class="k">function</span><span class="w"> </span><span class="n">shouldReturnProvidedOrigin</span><span class="p">()</span><span class="err">:</span><span class="n">void</span><span class="w"> </span><span class="err">{</span><span class="w"></span>
+<span class="w">    </span><span class="nf">var</span><span class="w"> </span><span class="nl">circle</span><span class="p">:</span><span class="n">Circle</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Circle</span><span class="p">(</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Point</span><span class="p">(</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="p">),</span><span class="w"> </span><span class="mi">5</span><span class="w"> </span><span class="p">);</span><span class="w"> </span>
+<span class="w">    </span><span class="n">assertEquals</span><span class="p">(</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">circle</span><span class="p">.</span><span class="n">origin</span><span class="p">.</span><span class="n">x</span><span class="w"> </span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">assertEquals</span><span class="p">(</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">circle</span><span class="p">.</span><span class="n">origin</span><span class="p">.</span><span class="n">y</span><span class="w"> </span><span class="p">);</span><span class="w"></span>
+<span class="err">}</span><span class="w"></span>
+</code></pre></div>
 </li>
 <li>
 <p>Add a new local variable named <code>circle2</code> of type <code>Circle</code> to the <code>shouldReturnTrueForEqualCircle()</code> method. Instantiate <code>circle2</code> with an origin of <code>(0, 0)</code> and radius of <code>5</code>.</p>
-		```
-		[Test]
+        ```
+        [Test]
 public function shouldReturnTrueForEqualCircle():void {
-	var circle:Circle = new Circle( new Point( 0, 0 ), 5 );
-	var circle2:Circle = new Circle( new Point( 0, 0 ), 5 );
+    var circle:Circle = new Circle( new Point( 0, 0 ), 5 );
+    var circle2:Circle = new Circle( new Point( 0, 0 ), 5 );
 }
-```
-</li>
-<li>
-<p>Add a new line to the <code>shouldReturnTrueForEqualCircle()</code> function that calls to the <code>assertTrue()</code> method with the argument <code>circle.equals( circle2 )</code>.</p>
-		```
-		[Test]
-public function shouldReturnTrueForEqualCircle():void {
-	var circle:Circle = new Circle( new Point( 0, 0 ), 5 );
-	var circle2:Circle = new Circle( new Point( 0, 0 ), 5 );
-	assertTrue( circle.equals( circle2 ) );	
-}
-```
+
+<div class="highlight"><pre><span></span><code><span class="o">&lt;/</span><span class="n">li</span><span class="o">&gt;</span><span class="w"></span>
+<span class="w">    </span><span class="o">&lt;</span><span class="n">li</span><span class="o">&gt;</span><span class="w"></span>
+<span class="w">        </span><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="k">Add</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">line</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="o">&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="n">shouldReturnTrueForEqualCircle</span><span class="p">()</span><span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;</span><span class="w"> </span><span class="k">function</span><span class="w"> </span><span class="n">that</span><span class="w"> </span><span class="n">calls</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="o">&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="n">assertTrue</span><span class="p">()</span><span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;</span><span class="w"> </span><span class="k">method</span><span class="w"> </span><span class="k">with</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">argument</span><span class="w"> </span><span class="o">&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="n">circle</span><span class="p">.</span><span class="k">equals</span><span class="p">(</span><span class="w"> </span><span class="n">circle2</span><span class="w"> </span><span class="p">)</span><span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;</span><span class="p">.</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span><span class="w"></span>
+<span class="w">        </span><span class="err">```</span><span class="w"></span>
+<span class="w">        </span><span class="o">[</span><span class="n">Test</span><span class="o">]</span><span class="w"></span>
+<span class="k">public</span><span class="w"> </span><span class="k">function</span><span class="w"> </span><span class="n">shouldReturnTrueForEqualCircle</span><span class="p">()</span><span class="err">:</span><span class="n">void</span><span class="w"> </span><span class="err">{</span><span class="w"></span>
+<span class="w">    </span><span class="nf">var</span><span class="w"> </span><span class="nl">circle</span><span class="p">:</span><span class="n">Circle</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Circle</span><span class="p">(</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Point</span><span class="p">(</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="p">),</span><span class="w"> </span><span class="mi">5</span><span class="w"> </span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="nf">var</span><span class="w"> </span><span class="nl">circle2</span><span class="p">:</span><span class="n">Circle</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Circle</span><span class="p">(</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Point</span><span class="p">(</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="p">),</span><span class="w"> </span><span class="mi">5</span><span class="w"> </span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">assertTrue</span><span class="p">(</span><span class="w"> </span><span class="n">circle</span><span class="p">.</span><span class="k">equals</span><span class="p">(</span><span class="w"> </span><span class="n">circle2</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="p">);</span><span class="w"> </span>
+<span class="err">}</span><span class="w"></span>
+</code></pre></div>
 <p>If you did not use code-completion, add the import for org.flexunit.asserts.assertTrue at this time.</p>
 </li>
 <li>
 <p>Add a variable named <code>circle2</code> of type <code>Circle</code> to the <code>shouldReturnFalseForUnequalOrigin()</code> method. Instantiate <code>circle2</code> with an origin of <code>(0, 5)</code> and a radius of <code>5</code>.</p>
-		```
-		[Test]
+        ```
+        [Test]
 public function shouldReturnFalseForUnequalOrigin():void {
-	var circle:Circle = new Circle( new Point( 0, 0 ), 5 );
-	var circle2:Circle = new Circle( new Point( 0, 5 ), 5 );
+    var circle:Circle = new Circle( new Point( 0, 0 ), 5 );
+    var circle2:Circle = new Circle( new Point( 0, 5 ), 5 );
 }
-```
-</li>
-<li>
-<p>Add a call to the <code>assertFalse()</code> method. The statement <code>circle.equals( circle2 )</code> should be passed in as its argument.</p>
-		```
-		[Test]
-public function shouldReturnFalseForUnequalOrigin():void {
-	var circle:Circle = new Circle( new Point( 0, 0 ), 5 );
-	var circle2:Circle = new Circle( new Point( 0, 5 ), 5);
-	assertFalse( circle.equals( circle2 ) );
-}
-```
+
+<div class="highlight"><pre><span></span><code><span class="o">&lt;/</span><span class="n">li</span><span class="o">&gt;</span><span class="w"></span>
+<span class="w">    </span><span class="o">&lt;</span><span class="n">li</span><span class="o">&gt;</span><span class="w"></span>
+<span class="w">        </span><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="k">Add</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="k">call</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="o">&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="n">assertFalse</span><span class="p">()</span><span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;</span><span class="w"> </span><span class="k">method</span><span class="p">.</span><span class="w"> </span><span class="n">The</span><span class="w"> </span><span class="k">statement</span><span class="w"> </span><span class="o">&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="n">circle</span><span class="p">.</span><span class="k">equals</span><span class="p">(</span><span class="w"> </span><span class="n">circle2</span><span class="w"> </span><span class="p">)</span><span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;</span><span class="w"> </span><span class="n">should</span><span class="w"> </span><span class="n">be</span><span class="w"> </span><span class="n">passed</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">its</span><span class="w"> </span><span class="n">argument</span><span class="p">.</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span><span class="w"></span>
+<span class="w">        </span><span class="err">```</span><span class="w"></span>
+<span class="w">        </span><span class="o">[</span><span class="n">Test</span><span class="o">]</span><span class="w"></span>
+<span class="k">public</span><span class="w"> </span><span class="k">function</span><span class="w"> </span><span class="n">shouldReturnFalseForUnequalOrigin</span><span class="p">()</span><span class="err">:</span><span class="n">void</span><span class="w"> </span><span class="err">{</span><span class="w"></span>
+<span class="w">    </span><span class="nf">var</span><span class="w"> </span><span class="nl">circle</span><span class="p">:</span><span class="n">Circle</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Circle</span><span class="p">(</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Point</span><span class="p">(</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="p">),</span><span class="w"> </span><span class="mi">5</span><span class="w"> </span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="nf">var</span><span class="w"> </span><span class="nl">circle2</span><span class="p">:</span><span class="n">Circle</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Circle</span><span class="p">(</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Point</span><span class="p">(</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="w"> </span><span class="p">),</span><span class="w"> </span><span class="mi">5</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">assertFalse</span><span class="p">(</span><span class="w"> </span><span class="n">circle</span><span class="p">.</span><span class="k">equals</span><span class="p">(</span><span class="w"> </span><span class="n">circle2</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="p">);</span><span class="w"></span>
+<span class="err">}</span><span class="w"></span>
+</code></pre></div>
 <p>If you did not use code-completion, add the import for org.flexunit.asserts.assertFalse at this point.</p>
 </li>
 <li>
 <p>Add a variable named <code>circle2</code> of type <code>Circle</code> to the <code>shouldReturnFalseForUnequalRadius()</code> method. Instantiate <code>circle2</code> with an origin of <code>(0, 0)</code> and a radius of <code>7</code>.</p>
-		```
-		[Test]
+        ```
+        [Test]
 public function shouldReturnFalseForUnequalRadius():void {
-	var circle:Circle = new Circle( new Point( 0, 0 ), 5 );
-	var circle2:Circle = new Circle( new Point( 0, 0 ), 7);
+    var circle:Circle = new Circle( new Point( 0, 0 ), 5 );
+    var circle2:Circle = new Circle( new Point( 0, 0 ), 7);
 }
-```
-</li>
-<li>
-<p>Add a call to the <code>assertFalse()</code> method. The expression <code>circle.equals( circle2 )</code> should be passed in as its argument.</p>
-		```
-		[Test]
-public function shouldReturnFalseForUnequalRadius():void {
-	var circle:Circle = new Circle( new Point( 0, 0 ), 5 );
-	var circle2:Circle = new Circle( new Point( 0, 0 ), 7);
-	assertFalse( circle.equals( circle2 ) );
-}
-```
+
+<div class="highlight"><pre><span></span><code><span class="o">&lt;/</span><span class="n">li</span><span class="o">&gt;</span><span class="w"></span>
+<span class="w">    </span><span class="o">&lt;</span><span class="n">li</span><span class="o">&gt;</span><span class="w"></span>
+<span class="w">        </span><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="k">Add</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="k">call</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="o">&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="n">assertFalse</span><span class="p">()</span><span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;</span><span class="w"> </span><span class="k">method</span><span class="p">.</span><span class="w"> </span><span class="n">The</span><span class="w"> </span><span class="n">expression</span><span class="w"> </span><span class="o">&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="n">circle</span><span class="p">.</span><span class="k">equals</span><span class="p">(</span><span class="w"> </span><span class="n">circle2</span><span class="w"> </span><span class="p">)</span><span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;</span><span class="w"> </span><span class="n">should</span><span class="w"> </span><span class="n">be</span><span class="w"> </span><span class="n">passed</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">its</span><span class="w"> </span><span class="n">argument</span><span class="p">.</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span><span class="w"></span>
+<span class="w">        </span><span class="err">```</span><span class="w"></span>
+<span class="w">        </span><span class="o">[</span><span class="n">Test</span><span class="o">]</span><span class="w"></span>
+<span class="k">public</span><span class="w"> </span><span class="k">function</span><span class="w"> </span><span class="n">shouldReturnFalseForUnequalRadius</span><span class="p">()</span><span class="err">:</span><span class="n">void</span><span class="w"> </span><span class="err">{</span><span class="w"></span>
+<span class="w">    </span><span class="nf">var</span><span class="w"> </span><span class="nl">circle</span><span class="p">:</span><span class="n">Circle</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Circle</span><span class="p">(</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Point</span><span class="p">(</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="p">),</span><span class="w"> </span><span class="mi">5</span><span class="w"> </span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="nf">var</span><span class="w"> </span><span class="nl">circle2</span><span class="p">:</span><span class="n">Circle</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Circle</span><span class="p">(</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Point</span><span class="p">(</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="p">),</span><span class="w"> </span><span class="mi">7</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">assertFalse</span><span class="p">(</span><span class="w"> </span><span class="n">circle</span><span class="p">.</span><span class="k">equals</span><span class="p">(</span><span class="w"> </span><span class="n">circle2</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="p">);</span><span class="w"></span>
+<span class="err">}</span><span class="w"></span>
+</code></pre></div>
 </li>
 <li>
 <p>Save the BasicCircleTest.as file.</p>
@@ -436,14 +436,14 @@ public function shouldReturnFalseForUnequalRadius():void {
 <h2>Creating tests</h2>
 <h3>Examining a passing test</h3>
 <p>In the section above you used assertions to establish several passing tests. Many took the same form as this simple math example:</p>
-<pre><code>[Test]
-public function testAddition():void {
-	var num1:Number = 5;
-	var num2:Number = 3;
-	var total:Number = 8;
-	assertEquals( total, num1 + num2 );
-}
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="k">[Test]</span>
+<span class="na">public function testAddition():void {</span>
+    <span class="na">var num1:Number</span> <span class="o">=</span> <span class="s">5;</span>
+<span class="s">    var num2:Number = 3;</span>
+<span class="s">    var total:Number = 8;</span>
+<span class="s">    assertEquals( total, num1 + num2 );</span>
+<span class="na">}</span>
+</code></pre></div>
 <ul>
 <li>5 and 3 are expected to add up to 8.</li>
 <li>The tests <b>assert</b> this expectation using the <code>assertEquals()</code> method</li>
@@ -461,36 +461,34 @@ public function testAddition():void {
 <p>If all of the assertion in a test evaluate correctly, that test is added to the list of passed tests. If any assertion fails, it throws an <code>AssertionError</code>. FlexUnit handles the error and adds the test to a list of failed tests.</p>
 <h3>Examining a failed test</h3>
 <p>Consider this slightly modified <code>testAddition()</code> method:</p>
-<pre><code>[Test]
-public function testAddition():void {
-	var num1:Number = 5;
-	var num2:Number = 3;
-	var total:Number = 1000;
-	assertEquals( total, num1 + num2 );
-}
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="k">[Test]</span>
+<span class="na">public function testAddition():void {</span>
+    <span class="na">var num1:Number</span> <span class="o">=</span> <span class="s">5;</span>
+<span class="s">    var num2:Number = 3;</span>
+<span class="s">    var total:Number = 1000;</span>
+<span class="s">    assertEquals( total, num1 + num2 );</span>
+<span class="na">}</span>
+</code></pre></div>
 <ul>
 <li>The test asserts that 5 + 3 == 1000.</li>
 <li>This test will fail as your assertion is false.</li>
 </ul>
 <p>FlexUnit 4.x catches the <code>AssertionError</code> that is thrown when this test fails, and the following result is displayed within the FlexUnit Results window in Flash Builder:</p>
-<pre><code>"expected: &lt;1000&gt; but was: &lt;8&gt;"
-
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="err">"expected: &lt;1000&gt; but was: &lt;8&gt;"</span>
+</code></pre></div>
 <p>A test will be registered as a failure after the <i>first</i> instance of a failed assertion.  FlexUnit will not continue to evaluate the other assertions in the method. This means that if multiple assertions are written in a single test you will only receive notification of the first failure and the others will be in an unknown state.</p>
-<pre><code>[Test]
-public function testAddition():void {
-		var num1:Number = 5;
-		var num2:Number = 3;
-		var total:Number = 1000;
-		assertEquals( total, num1 + num2 );
-		assertEquals( num1 + num2, total );
-}
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="k">[Test]</span>
+<span class="na">public function testAddition():void {</span>
+        <span class="na">var num1:Number</span> <span class="o">=</span> <span class="s">5;</span>
+<span class="s">        var num2:Number = 3;</span>
+<span class="s">        var total:Number = 1000;</span>
+<span class="s">        assertEquals( total, num1 + num2 );</span>
+<span class="s">        assertEquals( num1 + num2, total );</span>
+<span class="na">}</span>
+</code></pre></div>
 <p>For example, both of these assertions would fail given the opportunity.  However, as soon as FlexUnit catches the first failed assertion it stops the test.  The second assert will never be called.  The error message would read:</p>
-<pre><code>"expected: &lt;1000&gt; but was: &lt;8&gt;"
-
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="err">"expected: &lt;1000&gt; but was: &lt;8&gt;"</span>
+</code></pre></div>
 <p>With multiple assertions in a test, a test can fail for one of several reasons. In diagnosis, it is not immediately clear what caused the test to fail.</p>
 <h2>Walkthrough 2: Failing and Passing Assertions</h2>
 <p>In this walkthrough you will perform the following tasks:</p>
@@ -507,45 +505,45 @@ public function testAddition():void {
 </li>
 <li>
 <p>In the <code>shouldGetPointsOnCircle()</code> method, create a local variable named <code>circle</code> of type <code>Circle</code>. This Circle should be instantiated with an origin of <code>(0, 0)</code> and a radius of <code>5</code>.</p>
-<pre><code>[Test]
-public function shouldGetPointsOnCircle():void {
-	var circle:Circle = new Circle( new Point( 0, 0 ), 5 );
-}
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="k">[Test]</span>
+<span class="na">public function shouldGetPointsOnCircle():void {</span>
+    <span class="na">var circle:Circle</span> <span class="o">=</span> <span class="s">new Circle( new Point( 0, 0 ), 5 );</span>
+<span class="na">}</span>
+</code></pre></div>
 </li>
 <li>
 <p>Declare a variable named <code>point</code> of type <code>Point</code>.</p>
-<pre><code>[Test]
-public function shouldGetPointsOnCircle():void {
-	var circle:Circle = new Circle( new Point( 0, 0 ), 5 );
-	var point:Point;
-}
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="k">[Test]</span>
+<span class="na">public function shouldGetPointsOnCircle():void {</span>
+    <span class="na">var circle:Circle</span> <span class="o">=</span> <span class="s">new Circle( new Point( 0, 0 ), 5 );</span>
+<span class="s">    var point:Point;</span>
+<span class="na">}</span>
+</code></pre></div>
 </li>
 <li>
 <p>Set the point variable equal to the return value of <code>circle.getPointOnCircle( 0 )</code>. Above that line, it is useful to add a comment line specifying that this is the top-most point of circle.</p>
-<pre><code>[Test]
-public function shouldGetPointsOnCircle():void {
-	var circle:Circle = new Circle( new Point( 0, 0 ), 5 );
-	var point:Point;
-	//top-most point of circle
-	point = circle.getPointOnCircle( 0 );
-}
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="k">[Test]</span>
+<span class="na">public function shouldGetPointsOnCircle():void {</span>
+    <span class="na">var circle:Circle</span> <span class="o">=</span> <span class="s">new Circle( new Point( 0, 0 ), 5 );</span>
+<span class="s">    var point:Point;</span>
+<span class="s">    //top-most point of circle</span>
+<span class="s">    point = circle.getPointOnCircle( 0 );</span>
+<span class="na">}</span>
+</code></pre></div>
 <p>The <code>getPointOnCircle( t:Number )</code> returns a Circle object's point that corresponds to the radians passed in as the <code>t</code> parameter.</p>
 </li>
 <li>
 <p>Add two new lines, each with a call to the <code>assertEquals()</code> method. The first takes the arguments <code>5</code> and <code>point.x</code>. The second takes the arguments <code>0</code> and <code>point.y</code>.</p>
-<pre><code>[Test]
-public function shouldGetPointsOnCircle():void {
-	var circle:Circle = new Circle( new Point( 0, 0 ), 5 );
-	var point:Point;
-	//top-most point of circle
-	point = circle.getPointOnCircle( 0 );
-	assertEquals( 5, point.x );
-	assertEquals( 0, point.y );
-}
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="k">[Test]</span>
+<span class="na">public function shouldGetPointsOnCircle():void {</span>
+    <span class="na">var circle:Circle</span> <span class="o">=</span> <span class="s">new Circle( new Point( 0, 0 ), 5 );</span>
+<span class="s">    var point:Point;</span>
+<span class="s">    //top-most point of circle</span>
+<span class="s">    point = circle.getPointOnCircle( 0 );</span>
+<span class="s">    assertEquals( 5, point.x );</span>
+<span class="s">    assertEquals( 0, point.y );</span>
+<span class="na">}</span>
+</code></pre></div>
 </li>
 <li>
 <p>Copy these four new lines of code and paste them into the bottom of the function.</p>
@@ -557,20 +555,20 @@ public function shouldGetPointsOnCircle():void {
 <li>
 <p>Update the <code>assertEquals()</code> statements to <code>assertEquals( -5, point.x )</code> and <code>assertEquals( 0, point.y )</code>.</p>
 <p>This should create a duplicate set of assertions for the bottom-most point on the circle.</p>
-<pre><code>[Test]
-public function shouldGetPointsOnCircle():void {
-	var circle:Circle = new Circle( new Point( 0, 0 ), 5 );
-	var point:Point;
-	//top-most point of circle
-	point = circle.getPointOnCircle( 0 );
-	assertEquals( 5, point.x );
-	assertEquals( 0, point.y );
-	//bottom-most point of circle
-	point = circle.getPointOnCircle( Math.PI );
-	assertEquals( -5, point.x );
-	assertEquals( 0, point.y );
-}
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="k">[Test]</span>
+<span class="na">public function shouldGetPointsOnCircle():void {</span>
+    <span class="na">var circle:Circle</span> <span class="o">=</span> <span class="s">new Circle( new Point( 0, 0 ), 5 );</span>
+<span class="s">    var point:Point;</span>
+<span class="s">    //top-most point of circle</span>
+<span class="s">    point = circle.getPointOnCircle( 0 );</span>
+<span class="s">    assertEquals( 5, point.x );</span>
+<span class="s">    assertEquals( 0, point.y );</span>
+<span class="s">    //bottom-most point of circle</span>
+<span class="s">    point = circle.getPointOnCircle( Math.PI );</span>
+<span class="s">    assertEquals( -5, point.x );</span>
+<span class="s">    assertEquals( 0, point.y );</span>
+<span class="na">}</span>
+</code></pre></div>
 </li>
 <li>
 <p>Save BasicCircleTest.as.</p>
@@ -605,13 +603,13 @@ public function shouldGetPointsOnCircle():void {
 </li>
 <li>
 <p>Replace the <code>shouldGetPointsOnCircle()</code> function with two new public functions in the <code>BasicCircleTest</code> class. These functions will be named so that each clearly represents the point on the circle being tested.</p>
-<pre><code>[Test]
-public function shouldGetTopPointOnCircle():void {
-}
-[Test]
-public function shouldGetBottomPointOnCircle():void {
-}
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="k">[Test]</span>
+<span class="na">public function shouldGetTopPointOnCircle():void {</span>
+<span class="na">}</span>
+<span class="k">[Test]</span>
+<span class="na">public function shouldGetBottomPointOnCircle():void {</span>
+<span class="na">}</span>
+</code></pre></div>
 <p>Although the original <code>shouldGetPointsOnCircle()</code> method contained tests for only the top and bottom points of the Circle, in this Walkthrough you will add tests for the left and right points as well.</p>
 </li>
 <li>
@@ -619,109 +617,109 @@ public function shouldGetBottomPointOnCircle():void {
 </li>
 <li>
 <p>Copy the instantiation of the circle, and declaration of the point from the <code>shouldgetPointsOnCircle()</code> method into each of the four new methods.</p>
-<pre><code>[Test]
-public function shouldGetTopPointOnCircle():void {
-	var circle:Circle = new Circle( new Point( 0, 0 ), 5 );
-	var point:Point;
-}
-[Test]
-public function shouldGetBottomPointOnCircle():void {
-	var circle:Circle = new Circle( new Point( 0, 0 ), 5 );
-	var point:Point;
-}
-[Test]
-public function shouldGetRightPointOnCircle():void {
-	var circle:Circle = new Circle( new Point( 0, 0 ), 5 );
-	var point:Point;
-}
-[Test]
-public function shouldGetLeftPointOnCircle():void {
-	var circle:Circle = new Circle( new Point( 0, 0 ), 5 );
-	var point:Point;
-}
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="k">[Test]</span>
+<span class="na">public function shouldGetTopPointOnCircle():void {</span>
+    <span class="na">var circle:Circle</span> <span class="o">=</span> <span class="s">new Circle( new Point( 0, 0 ), 5 );</span>
+<span class="s">    var point:Point;</span>
+<span class="na">}</span>
+<span class="k">[Test]</span>
+<span class="na">public function shouldGetBottomPointOnCircle():void {</span>
+    <span class="na">var circle:Circle</span> <span class="o">=</span> <span class="s">new Circle( new Point( 0, 0 ), 5 );</span>
+<span class="s">    var point:Point;</span>
+<span class="na">}</span>
+<span class="k">[Test]</span>
+<span class="na">public function shouldGetRightPointOnCircle():void {</span>
+    <span class="na">var circle:Circle</span> <span class="o">=</span> <span class="s">new Circle( new Point( 0, 0 ), 5 );</span>
+<span class="s">    var point:Point;</span>
+<span class="na">}</span>
+<span class="k">[Test]</span>
+<span class="na">public function shouldGetLeftPointOnCircle():void {</span>
+    <span class="na">var circle:Circle</span> <span class="o">=</span> <span class="s">new Circle( new Point( 0, 0 ), 5 );</span>
+<span class="s">    var point:Point;</span>
+<span class="na">}</span>
+</code></pre></div>
 </li>
 <li>
 <p>Copy the block of code following <code>//top-most point of circle</code> comment into the <code>shouldGetTopPointOnCircle()</code> method.  Copy the block following the <code>//bottom-most point of circle</code> comment into the <code>shouldGetBottomPointOnCircle()</code> method.</p>
-<pre><code>[Test]
-public function shouldGetTopPointOnCircle():void {
-	var circle:Circle = new Circle( new Point( 0, 0 ), 5 );
-	var point:Point;
-	//top-most point of circle 
-	point = circle.getPointOnCircle( 0 );
-	assertEquals( 5, point.x );
-	assertEquals( 0, point.y );
-}
-[Test]
-public function shouldGetBottomPointOnCircle():void {
-	var circle:Circle = new Circle( new Point( 0, 0 ), 5 );
-	var point:Point;
-	//bottom-most point of circle
-	point = circle.getPointOnCircle( Math.PI );
-	assertEquals( -5, point.x );
-	assertEquals( 0, point.y );
-}
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="k">[Test]</span>
+<span class="na">public function shouldGetTopPointOnCircle():void {</span>
+    <span class="na">var circle:Circle</span> <span class="o">=</span> <span class="s">new Circle( new Point( 0, 0 ), 5 );</span>
+<span class="s">    var point:Point;</span>
+<span class="s">    //top-most point of circle </span>
+<span class="s">    point = circle.getPointOnCircle( 0 );</span>
+<span class="s">    assertEquals( 5, point.x );</span>
+<span class="s">    assertEquals( 0, point.y );</span>
+<span class="na">}</span>
+<span class="k">[Test]</span>
+<span class="na">public function shouldGetBottomPointOnCircle():void {</span>
+    <span class="na">var circle:Circle</span> <span class="o">=</span> <span class="s">new Circle( new Point( 0, 0 ), 5 );</span>
+<span class="s">    var point:Point;</span>
+<span class="s">    //bottom-most point of circle</span>
+<span class="s">    point = circle.getPointOnCircle( Math.PI );</span>
+<span class="s">    assertEquals( -5, point.x );</span>
+<span class="s">    assertEquals( 0, point.y );</span>
+<span class="na">}</span>
+</code></pre></div>
 <p>Because the methods each test specific points, the name is clear enough to distinguish one test from another. Remove the comment fields in each of the tests accordingly.</p>
 </li>
 <li>
 <p>Modify the <code>shouldGetTopPointOnCircle()</code> and <code>shouldGetBottomPointOnCircle()</code> methods to save space by instantiating the point variable as it is declared in each function, much like the circle variable. The comments can be removed as well.</p>
-<pre><code>[Test]
-public function shouldGetTopPointOnCircle():void {
-	var circle:Circle = new Circle( new Point( 0, 0 ), 5 );
-	var point:Point = circle.getPointOnCircle( 0 );
-	assertEquals( 5, point.x );
-	assertEquals( 0, point.y );
-}
+<div class="highlight"><pre><span></span><code><span class="k">[Test]</span>
+<span class="na">public function shouldGetTopPointOnCircle():void {</span>
+    <span class="na">var circle:Circle</span> <span class="o">=</span> <span class="s">new Circle( new Point( 0, 0 ), 5 );</span>
+<span class="s">    var point:Point = circle.getPointOnCircle( 0 );</span>
+<span class="s">    assertEquals( 5, point.x );</span>
+<span class="s">    assertEquals( 0, point.y );</span>
+<span class="na">}</span>
 
-[Test]
-public function shouldGetBottomPointOnCircle():void {
-	var circle:Circle = new Circle( new Point( 0, 0 ), 5 );
-	var point:Point = circle.getPointOnCircle( Math.PI );
-	assertEquals( -5, point.x );
-	assertEquals( 0, point.y );
-}
-</code></pre>
+<span class="k">[Test]</span>
+<span class="na">public function shouldGetBottomPointOnCircle():void {</span>
+    <span class="na">var circle:Circle</span> <span class="o">=</span> <span class="s">new Circle( new Point( 0, 0 ), 5 );</span>
+<span class="s">    var point:Point = circle.getPointOnCircle( Math.PI );</span>
+<span class="s">    assertEquals( -5, point.x );</span>
+<span class="s">    assertEquals( 0, point.y );</span>
+<span class="na">}</span>
+</code></pre></div>
 </li>
 <li>
 <p>In the <code>shouldGetRightPointOnCircle()</code> method, set the <code>point</code> variable to <code>circle.getPointOnCircle( Math.PI/2 )</code>.</p>
-<pre><code>[Test]
-public function shouldGetRightPointOnCircle():void {
-	var circle:Circle = new Circle( new Point( 0, 0 ), 5 );
-	var point:Point = circle.getPointOnCircle( Math.PI/2 );
-}
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="k">[Test]</span>
+<span class="na">public function shouldGetRightPointOnCircle():void {</span>
+    <span class="na">var circle:Circle</span> <span class="o">=</span> <span class="s">new Circle( new Point( 0, 0 ), 5 );</span>
+<span class="s">    var point:Point = circle.getPointOnCircle( Math.PI/2 );</span>
+<span class="na">}</span>
+</code></pre></div>
 </li>
 <li>
 <p>In the <code>shouldGetLeftPointOnCircle()</code> method, set the <code>point</code> variable to <code>circle.getPointOnCircle( (3*Math.PI)/2 )</code>.</p>
-<pre><code>[Test]
-public function shouldGetLeftPointOnCircle():void {
-	var circle:Circle = new Circle( new Point( 0, 0 ), 5 );
-	var point:Point = circle.getPointOnCircle( (3*Math.PI)/2 );
-}
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="k">[Test]</span>
+<span class="na">public function shouldGetLeftPointOnCircle():void {</span>
+    <span class="na">var circle:Circle</span> <span class="o">=</span> <span class="s">new Circle( new Point( 0, 0 ), 5 );</span>
+<span class="s">    var point:Point = circle.getPointOnCircle( (3*Math.PI)/2 );</span>
+<span class="na">}</span>
+</code></pre></div>
 </li>
 <li>
 <p>Add two calls to the <code>assertEquals()</code> method to <code>shouldGetRightPointOnCircle()</code>. One should assert that <code>point.x</code> is equal to <code>5</code>, and <code>point.y</code> is equal to <code>0</code>.</p>
-<pre><code>[Test]
-public function shouldGetRightPointOnCircle():void {
-	var circle:Circle = new Circle( new Point( 0, 0 ), 5 );
-	var point:Point = circle.getPointOnCircle( Math.PI/2 );
-	assertEquals( 0, point.x );
-	assertEquals( 5, point.y );
-}
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="k">[Test]</span>
+<span class="na">public function shouldGetRightPointOnCircle():void {</span>
+    <span class="na">var circle:Circle</span> <span class="o">=</span> <span class="s">new Circle( new Point( 0, 0 ), 5 );</span>
+<span class="s">    var point:Point = circle.getPointOnCircle( Math.PI/2 );</span>
+<span class="s">    assertEquals( 0, point.x );</span>
+<span class="s">    assertEquals( 5, point.y );</span>
+<span class="na">}</span>
+</code></pre></div>
 </li>
 <li>
 <p>Add two calls to the <code>assertEquals()</code> method to <code>shouldGetLeftPointOnCircle()</code>. One should assert that <code>point.x</code> is equal to <code>0</code>, and <code>point.y</code> is equal to <code>-5</code>.</p>
-<pre><code>[Test]
-public function shouldGetLeftPointOnCircle():void {
-	var circle:Circle = new Circle( new Point( 0, 0 ), 5 );
-	var point:Point = circle.getPointOnCircle( (3*Math.PI)/2 );
-	assertEquals( 0, point.x );
-	assertEquals( -5, point.y );
-}
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="k">[Test]</span>
+<span class="na">public function shouldGetLeftPointOnCircle():void {</span>
+    <span class="na">var circle:Circle</span> <span class="o">=</span> <span class="s">new Circle( new Point( 0, 0 ), 5 );</span>
+<span class="s">    var point:Point = circle.getPointOnCircle( (3*Math.PI)/2 );</span>
+<span class="s">    assertEquals( 0, point.x );</span>
+<span class="s">    assertEquals( -5, point.y );</span>
+<span class="na">}</span>
+</code></pre></div>
 </li>
 <li>
 <p>Delete the previously used <code>shouldGetPointsOnCircle()</code> method, because its tests have been replicated.</p>
@@ -767,7 +765,6 @@ public function shouldGetLeftPointOnCircle():void {
 <li><a href="Unit-5.html">Unit 5 - Developing Static Tests</a></li>
 <li><a href="../index.html">Table of Contents / Introduction</a></li>
 </ul>
-
 
 <!-- Home Page Exception -->
 
