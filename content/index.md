@@ -52,31 +52,6 @@ homepage:    true
 
 <!-- start row -->
 
-<div class="row-fluid">
-
-<!-- Project -->
-<div class="span3">
-    <div class="picture"><a href="https://www.slideshare.net/bigosmallm/flexjs-an-introduction"><img src="images/training/FlexJSAnIntroduction.png" alt=""/><div class="image-overlay-link"></div></a></div>
-    <div class="item-description">
-        <h5><a href="https://www.slideshare.net/bigosmallm/flexjs-an-introduction">FlexJS - An Introduction</a></h5>
-        <p>FlexJS™ is a new application development framework that cross compiles MXML and ActionScript into HTML and JavaScript. It runs in web, desktop and mobile(app) in swf format and 
-		runs in browser based environments as HTML/JS/CSS files without the need for the Flash Player plugin. It brings the advantages of Flex to the JavaScript world.</p>
-    </div>
-</div>
-
-<!-- Project -->
-<div class="span3">
-    <div class="picture"><a href="https://www.adobe.com/devnet/flex/articles/interactive_maps.html"><img src="images/training/1296459538876.jpg" alt=""/><div class="image-overlay-link"></div></a></div>
-    <div class="item-description">
-        <h5><a href="https://web.archive.org/web/20160314204607/https://www.adobe.com/devnet/flex/articles/interactive_maps.html">Building interactive maps with Flex</a></h5>
-        <p>It has never been easier to build interactive online maps with Flex. There is a wide range of APIs now available. The focus of this article is building a simple map application using the open-source Modest Maps Flex API. Modest Maps offers a number of advantages over other Flex mapping APIs including the ability to point at multiple basemap providers and direct access to the source code. </p>
-    </div>
-</div>
-
-</div>
-
-<!-- start row -->
-
 </div>
 <!-- Learn Flex End -->
 <!-- News Start -->
