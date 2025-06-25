@@ -47,7 +47,7 @@ Version 2.0 license.  These can be downloaded via the ANT script included in the
 - dom4j - [Download](https://search.maven.org/remotecontent?filepath=dom4j/dom4j/1.6.1/dom4j-1.6.1.jar) (BSD License)
 - jaxen - [Download](https://search.maven.org/remotecontent?filepath=jaxen/jaxen/1.1-beta-6/jaxen-1.1-beta-6.jar) (BSD License)
 
-<br/ >(swcs)
+(swcs)
 
 - coverageagent - [Download](https://flexcover.googlecode.com/files/flexcover-0.90.zip) (MIT License)
 - fluint - [Download](https://github.com/flexunit/flexunit/raw/master/FlexUnit4Test/libs/fluint-1_2.swc) (MIT License)
@@ -56,12 +56,12 @@ Version 2.0 license.  These can be downloaded via the ANT script included in the
 - hamcrest - [Download](https://github.com/flexunit/flexunit/raw/master/FlexUnit4/libs/hamcrest-as3-flex-1.1.3.swc) (BSD License)
 - flexunit1lib - [Download](https://github.com/flexunit/flexunit/raw/master/FlexUnit4Test/libs/FlexUnit1Lib.swc) (BSD License)
 
-<br/ >The following dependencies have licenses which Apache considers to be reciprocal licenses so you will be prompted to acknowledge the license before the software is downloaded to your system.
+The following dependencies have licenses which Apache considers to be reciprocal licenses so you will be prompted to acknowledge the license before the software is downloaded to your system.
 
 - junit - [Download](https://search.maven.org/remotecontent?filepath=junit/junit/3.8.1/junit-3.8.1.jar) (License - CPL 1.0)
 - saxon9he - [Download](https://search.maven.org/remotecontent?filepath=net/sf/saxon/Saxon-HE/9.4/Saxon-HE-9.4.jar) (License - MPL 1.1)
 
-<br/ >All of the above dependencies can automatically be downloaded via the following ANT command :
+All of the above dependencies can automatically be downloaded via the following ANT command:
 
     cd <flexunit.dir>
     ant thirdparty-downloads
