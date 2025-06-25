@@ -46,7 +46,7 @@ PAGE_PATHS = ['.']
 BASE = '/'
 
 # Path with no extension
-PATH_METADATA = '(?P<path_no_ext>.*)\..*'
+PATH_METADATA = '(?P<path_no_ext>.*)\\..*'
 
 # We are not slugifying any pages
 ARTICLE_URL = ARTICLE_SAVE_AS = PAGE_URL = PAGE_SAVE_AS = '{path_no_ext}.html'
