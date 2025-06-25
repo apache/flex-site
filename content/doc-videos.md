@@ -48,5 +48,18 @@ Some of these videos were created for Adobe Flex, the predecessor to Apache Flex
 
 <!-- start row -->
 
+<div class="row-fluid">
+
+<div class="span3">
+<div class="featuresbox">
+<div class="picture"><img src="images/videos/flex-tutorials-mike-lively.jpg"></div>
+<h4>Adobe Flex Tutorials</h4>
+<p>Adobe Flex can be daunting. Luckily for you, Mike Lively and his team of NKU students are here to make things a bit easier for you.</p>
+<a href="https://www.youtube.com/playlist?list=PL7BA9C6B84482B980" class="btn">Watch</a>
+</div>
+</div>
+
+</div>
+
  [1]:  doc-getstarted.html
  [2]:  community-mailinglists.html
