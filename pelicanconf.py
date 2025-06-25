@@ -100,7 +100,7 @@ THEME = './theme/apache'
 PLUGIN_PATHS = ['./theme/plugins']
 # PLUGINS = ['asfgenid', 'asfdata', 'pelican-gfm', 'asfreader']
 # We are using the default plugin - 'pelican-gfm' which is installed by the build
-PLUGINS = ['asfgenid', 'pelican-gfm']
+PLUGINS = ['asfgenid', 'gfm']
 
 # Lifecycle and plugins:
 # (1) Initialization:
