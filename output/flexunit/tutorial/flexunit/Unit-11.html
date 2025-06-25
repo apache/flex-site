@@ -199,67 +199,67 @@
 <p>Theories are best used for reversible operations that must succeed in every single situation. For example, a great use of a Theory might be testing a date conversion utility. Perhaps you have a class that converts dates from Gregorian calendar dates to dates on the Buddhist calendar.</p>
 <p>Using a theory, you would supply hundreds or thousands of Gregorian dates as data points. For each data point, you might convert the date to the equivalent Buddhist date. You would then convert each Buddhist date back to the Gregorian date and ensure it matched the original.</p>
 <p>With the following pseudocode:</p>
-<div class="highlight"><pre><span></span><code><span class="k">[DataPoints]</span>
-<span class="k">[ArrayElementType("Date")]</span>
-<span class="na">public static var dates:Array</span> <span class="o">=</span> <span class="s">[ 1/1/2009, </span>
-<span class="s">            2/2/2010, </span>
-<span class="s">            3/3/2011, </span>
-<span class="s">            1/8/1970,</span>
-<span class="s">            11/12/2090 ];</span>
-</code></pre></div>
+<pre><code>[DataPoints]
+[ArrayElementType("Date")]
+public static var dates:Array = [ 1/1/2009, 
+			2/2/2010, 
+			3/3/2011, 
+			1/8/1970,
+			11/12/2090 ];
+</code></pre>
 <p>Tested under this situation</p>
-<div class="highlight"><pre><span></span><code><span class="k">[Theory]</span>
-<span class="na">public function shouldConvertSuccessfully( date:Date ):void {</span>
-    <span class="na">var convert:Converter</span> <span class="o">=</span> <span class="s">new Converter();</span>
-<span class="s">    var bDate:BDate = converter.convertToBuddhistDate( date );</span>
-<span class="s">    var gDate:Date = converter.convertToGregorianDate( bDate );</span>
-<span class="s">    assertEquals( date, gDate );</span>
-<span class="na">}</span>
-</code></pre></div>
+<pre><code>[Theory]
+public function shouldConvertSuccessfully( date:Date ):void {
+	var convert:Converter = new Converter();
+	var bDate:BDate = converter.convertToBuddhistDate( date );
+	var gDate:Date = converter.convertToGregorianDate( bDate );
+	assertEquals( date, gDate );
+}
+</code></pre>
 <p>This type of reversibility is the hallmark of a good theory case.</p>
 <p>Also, remember that Theories are about using combinations of data. Given the following pseudocode:</p>
-<div class="highlight"><pre><span></span><code><span class="k">[DataPoints]</span>
-<span class="k">[ArrayElementType("String")]</span>
-<span class="na">public static var dates:Array</span> <span class="o">=</span> <span class="s">[ "Trevor", "Joe", "Rob", "Steve" ];</span>
-<span class="k">[Theory]</span>
-<span class="na">public function traceNames( name1:String, name2:String ):void {</span>
-  <span class="na">trace( name1 + " - " + name2 );</span>
-<span class="na">}</span>
-</code></pre></div>
+<pre><code>[DataPoints]
+[ArrayElementType("String")]
+public static var dates:Array = [ "Trevor", "Joe", "Rob", "Steve" ];
+[Theory]
+public function traceNames( name1:String, name2:String ):void {
+  trace( name1 + " - " + name2 );
+}
+</code></pre>
 <p>The expected output is:</p>
-<div class="highlight"><pre><span></span><code><span class="err">Trevor - Trevor</span>
-<span class="err">Trevor - Joe</span>
-<span class="err">Trevor - Rob</span>
-<span class="err">Trevor - Steve</span>
-<span class="err">Joe - Trevor</span>
-<span class="err">Joe - Joe</span>
-<span class="err">Joe - Rob</span>
-<span class="err">Joe - Steve</span>
-<span class="err">Rob - Trevor</span>
-<span class="err">Rob - Joe</span>
-<span class="err">Rob - Rob</span>
-<span class="err">Rob - Steve</span>
-<span class="err">Steve - Trevor</span>
-<span class="err">Steve - Joe</span>
-<span class="err">Steve - Rob</span>
-<span class="err">Steve - Steve</span>
-</code></pre></div>
+<pre><code>Trevor - Trevor
+Trevor - Joe
+Trevor - Rob
+Trevor - Steve
+Joe - Trevor
+Joe - Joe
+Joe - Rob
+Joe - Steve
+Rob - Trevor
+Rob - Joe
+Rob - Rob
+Rob - Steve
+Steve - Trevor
+Steve - Joe
+Steve - Rob
+Steve - Steve
+</code></pre>
 <p>This use of data point combinations starkly contrasts the use case for Parameterized testing that you will learn in the remainder of the lesson.</p>
 <h2>Declaring simple data for parameterization</h2>
 <p>Parameterized test cases, like Theories, have methods that accept parameters. However, that is where the comparison ends. Parameterized testing gives us a way to create tests that will use a multitude of known parameters and results.  The intention of the Parameterized test is to eliminate the need to copy and paste the same test multiple times, simply changing the input values.</p>
 <p>Parameterized tests require the Parameterized runner included with FlexUnit 4.1 and later.  To use the parameterized test runner, add the RunWith metadata to the class definition.</p>
-<div class="highlight"><pre><span></span><code><span class="err">[RunWith("org.flexunit.runners.Parameterized")]</span>
-</code></pre></div>
+<pre><code>[RunWith("org.flexunit.runners.Parameterized")]
+</code></pre>
 <p>Parameter data is provided as an array. Inside of the array, there is an array for each argument set to be passed for each test case.  For example:</p>
-<div class="highlight"><pre><span></span><code><span class="k">public</span><span class="w"> </span><span class="k">static</span><span class="w"> </span><span class="nf">var</span><span class="w"> </span><span class="k">names</span><span class="err">:</span><span class="k">Array</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">[</span><span class="n"> </span>
-<span class="n">    [ "Stevens", "Mary", "Mary Stevens" </span><span class="o">]</span><span class="p">,</span><span class="w"> </span>
-<span class="w">    </span><span class="o">[</span><span class="n"> "Doe", "John", "John Doe" </span><span class="o">]</span><span class="w"> </span><span class="err">]</span><span class="p">;</span><span class="w"></span>
-<span class="o">[</span><span class="n">Test</span><span class="o">]</span><span class="w"></span>
-<span class="k">public</span><span class="w"> </span><span class="k">function</span><span class="w"> </span><span class="n">nameCombinerTest</span><span class="p">(</span><span class="w"> </span><span class="nl">lastName</span><span class="p">:</span><span class="n">String</span><span class="p">,</span><span class="w"> </span><span class="nl">firstName</span><span class="p">:</span><span class="n">String</span><span class="p">,</span><span class="w"> </span>
-<span class="w">                    </span><span class="nl">expectedResult</span><span class="p">:</span><span class="n">String</span><span class="w"> </span><span class="p">)</span><span class="err">:</span><span class="n">void</span><span class="w"> </span><span class="err">{</span><span class="w"></span>
-<span class="w">    </span><span class="n">assertEquals</span><span class="p">(</span><span class="w"> </span><span class="n">expectedResult</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="n">firstName</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="ss">" "</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">lastName</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="p">);</span><span class="w"></span>
-<span class="err">}</span><span class="w"></span>
-</code></pre></div>
+<pre><code>public static var names:Array = [ 
+	[ "Stevens", "Mary", "Mary Stevens" ], 
+	[ "Doe", "John", "John Doe" ] ];
+[Test]
+public function nameCombinerTest( lastName:String, firstName:String, 
+					expectedResult:String ):void {
+	assertEquals( expectedResult, ( firstName + " " + lastName ) );
+}
+</code></pre>
 <p>There are actually two types of Parameterized tests supported by FlexUnit 4.x, which you will learn to use next.</p>
 <h2>Types of parameterized test</h2>
 <p>To use any form of parameterized tests requires a custom runner.  FlexUnit 4.1 includes the ParameterizedRunner which can run TestNG and JUnit style parameterized tests.</p>
@@ -272,12 +272,12 @@
 <li>Each test can take only one data provider</li>
 </ul>
 <p>Example</p>
-<div class="highlight"><pre><span></span><code><span class="err">public static var data:Array = [ [ 0, 0 ], [ 1, 2 ], [ 2, 4 ] ];</span>
-<span class="err">[Test( dataProvider="data")]</span>
-<span class="err">public function doubleTest( value1:int, value2:int ):void {</span>
-<span class="err">    assertEquals( value1, value2 * 2 );</span>
-<span class="err">}</span>
-</code></pre></div>
+<pre><code>public static var data:Array = [ [ 0, 0 ], [ 1, 2 ], [ 2, 4 ] ];
+[Test( dataProvider="data")]
+public function doubleTest( value1:int, value2:int ):void {
+	assertEquals( value1, value2 * 2 );
+}
+</code></pre>
 <h3>JUnit</h3>
 <ul>
 <li>Best for data that is needed by multiple test methods</li>
@@ -288,38 +288,38 @@
 <li>Test methods take no arguments</li>
 </ul>
 <p>Example</p>
-<div class="highlight"><pre><span></span><code><span class="k">[Parameters]</span>
-<span class="na">public static var data:Array</span> <span class="o">=</span> <span class="s">[ [ 0, 0 ], [ 1, 2 ], [ 2, 4 ] ];</span>
-<span class="k">[Test]</span>
-<span class="na">public function doubleTest():void {</span>
-    <span class="na">assertEquals( value1, value2 * 2 );</span>
-<span class="na">}</span>
-<span class="na">private var _value1:int;</span>
-<span class="na">private var _value2:int;</span>
-<span class="na">public function JUnitStyleTest( value1:int, value2:int ) {</span>
-    <span class="na">_value1</span> <span class="o">=</span> <span class="s">value1;</span>
-<span class="s">    _value2 = value2;</span>
-<span class="na">}</span>
-</code></pre></div>
+<pre><code>[Parameters]
+public static var data:Array = [ [ 0, 0 ], [ 1, 2 ], [ 2, 4 ] ];
+[Test]
+public function doubleTest():void {
+	assertEquals( value1, value2 * 2 );
+}
+private var _value1:int;
+private var _value2:int;
+public function JUnitStyleTest( value1:int, value2:int ) {
+	_value1 = value1;
+	_value2 = value2;
+}
+</code></pre>
 <h2>Working with complex objects</h2>
 <p>Any type of data can be used in parameterized testing. In fact, some of the most effective testing can occur when you begin using entire objects as the parameters to methods. The following examples are all valid and intended to make you consider how polymorphism and complex types can enhance your testing capabilities.</p>
-<div class="highlight"><pre><span></span><code><span class="err">public static var data:Array = [ [ new DataGrid(), 50, 70 ],</span>
-<span class="err">                [ new Label(), 40, 30 ],</span>
-<span class="err">                [ new Button(), 80, 50 ] ];</span>
-<span class="err">[Test(dataProvider="data")]</span>
-<span class="err">public function positionTest( component:UIComponent, x:Number, y:Number ):void {</span>
-<span class="err">    position( component );</span>
-<span class="err">    assertEquals( x, component.x );</span>
-<span class="err">    assertEquals( y, component.y );</span>
-<span class="err">}</span>
-<span class="err">public static var data:Array = [ [ new DollarFormatter(), 50, "$50" ],</span>
-<span class="err">            [ new EuroFormatter(), 50, "&amp;euro;50" ],</span>
-<span class="err">            [ new PoundFormatter(), 50, "&amp;pound;50" ] ];</span>
-<span class="err">[Test(dataProvider="data")]</span>
-<span class="err">public function positionTest( formatter:IFormatter, value:Number, result:String ):void {</span>
-<span class="err">    assertEquals( result, formatter.format( value ) );</span>
-<span class="err">}</span>
-</code></pre></div>
+<pre><code>public static var data:Array = [ [ new DataGrid(), 50, 70 ],
+				[ new Label(), 40, 30 ],
+				[ new Button(), 80, 50 ] ];
+[Test(dataProvider="data")]
+public function positionTest( component:UIComponent, x:Number, y:Number ):void {
+	position( component );
+	assertEquals( x, component.x );
+	assertEquals( y, component.y );
+}
+public static var data:Array = [ [ new DollarFormatter(), 50, "$50" ],
+			[ new EuroFormatter(), 50, "&amp;euro;50" ],
+			[ new PoundFormatter(), 50, "&amp;pound;50" ] ];
+[Test(dataProvider="data")]
+public function positionTest( formatter:IFormatter, value:Number, result:String ):void {
+	assertEquals( result, formatter.format( value ) );
+}
+</code></pre>
 <h2>Walkthrough 1: Creating a TestNG Style Parameterized Test</h2>
 <p>In this walkthrough you will perform the following tasks:</p>
 <ul>
@@ -337,47 +337,47 @@
 </li>
 <li>
 <p>Mark the GetPointsTest class definition with <code>[RunWith("org.flexunit.runners.Parameterized")]</code> metadata.</p>
-<div class="highlight"><pre><span></span><code><span class="k">[RunWith("org.flexunit.runners.Parameterized")]</span>
-<span class="na">public class GetPointsTest {</span>
-<span class="na">...</span>
-<span class="na">}</span>
-</code></pre></div>
+<pre><code>[RunWith("org.flexunit.runners.Parameterized")]
+public class GetPointsTest {
+...
+}
+</code></pre>
 </li>
 <li>
 <p>Add a private static constant named <code>TOLERANCE</code> of data type <code>Number</code> to the class. Set <code>TOLERANCE</code> to <code>.0001</code>.</p>
-<div class="highlight"><pre><span></span><code><span class="err">private static const TOLERANCE:Number = .0001;</span>
-</code></pre></div>
+<pre><code>private static const TOLERANCE:Number = .0001;
+</code></pre>
 </li>
 <li>
 <p>Declare a public static array named data within the <code>GetPointsTest</code> class. The array should contain a sub array with point values as shown.</p>
-<div class="highlight"><pre><span></span><code><span class="err">public static var data:Array = [</span>
-<span class="err">        [ new Circle( new Point( 0, 0 ), 5 ), new Point( 5, 0 ), 0 ],</span>
-<span class="err">        [ new Circle( new Point( 0, 0 ), 5 ), new Point( -5, 0 ), Math.PI ] </span>
-<span class="err">];</span>
-</code></pre></div>
+<pre><code>public static var data:Array = [
+		[ new Circle( new Point( 0, 0 ), 5 ), new Point( 5, 0 ), 0 ],
+		[ new Circle( new Point( 0, 0 ), 5 ), new Point( -5, 0 ), Math.PI ] 
+];
+</code></pre>
 <p>If you did not use code-completion, add the import for net.digitalprimates.math.Circle and flash.geom.Point at this time.</p>
 <p>The data array contains two arrays. Each is passed as a set of parameters, and each represents one run cycle for the tests that take the data. Soon, you will write a method which takes 3 parameters, a circle, a point and a number of radians.  That test will run twice, one run using the first array and another using the second.</p>
 </li>
 <li>
 <p>Add a public method named <code>shouldGetPointsOnCircle()</code> to the class. Mark the method with the <code>[Test(dataProvider="data")]</code> metadata.</p>
-<div class="highlight"><pre><span></span><code><span class="k">[Test(dataProvider="data")]</span>
-<span class="na">public function shouldGetPointsOnCircle():void {</span>
-<span class="na">}</span>
-</code></pre></div>
+<pre><code>[Test(dataProvider="data")]
+public function shouldGetPointsOnCircle():void {
+}
+</code></pre>
 <p>Add a <code>circle</code> parameter of type <code>Circle</code>, a point parameter of type <code>Point</code>, and a <code>radians</code> parameter of type <code>Number</code> to the <code>shouldGetPointsOnCircle()</code> method.</p>
 <p>The <code>[Test(dataProvider="data")]</code> metadata over the test method will ensure that the data array's values get passed in as the test method's arguments. This is known as TestNG style parameterized testing, because the data is passed into specific test methods via the metadata. TestNG is a testing framework for Java, it pioneered this annotations-based approach.</p>
-<div class="highlight"><pre><span></span><code><span class="k">[Test(dataProvider="data")]</span>
-<span class="na">public function shouldGetPointsOnCircle( circle:Circle, point:Point, radians:Number ):void {</span>
-<span class="na">}</span>
-</code></pre></div>
+<pre><code>[Test(dataProvider="data")]
+public function shouldGetPointsOnCircle( circle:Circle, point:Point, radians:Number ):void {
+}
+</code></pre>
 </li>
 <li>
 <p>Add a call to the <code>assertThat()</code> method. Pass <code>circle.getPointOnCircle( radians )</code> and <code>new CloseToPointMatcher( point, TOLERANCE )</code> as its arguments.</p>
-<div class="highlight"><pre><span></span><code><span class="k">[Test(dataProvider="data")]</span>
-<span class="na">public function shouldGetPointsOnCircle( circle:Circle, point:Point, radians:Number ):void {</span>
-    <span class="na">assertThat( circle.getPointOnCircle( radians ), new CloseToPointMatcher( point, TOLERANCE ) );</span>
-<span class="na">}</span>
-</code></pre></div>
+<pre><code>[Test(dataProvider="data")]
+public function shouldGetPointsOnCircle( circle:Circle, point:Point, radians:Number ):void {
+	assertThat( circle.getPointOnCircle( radians ), new CloseToPointMatcher( point, TOLERANCE ) );
+}
+</code></pre>
 <p>If you did not use code-completion, add the imports for org.flexunit.assertThat and matcher.CloseToPointMatcher at this time.</p>
 <p>The <code>shouldGetPointsOnCircle()</code> method uses the <code>assertThat()</code> statement with the <code>CloseToPointMatcher</code> to create the same kind of test coverage presented in BasicCircleTest class through the <code>shouldGetTopPointOnCircle()</code> and <code>shouldGetBottomPointOnCircle()</code> methods.</p>
 </li>
@@ -390,17 +390,17 @@
 </li>
 <li>
 <p>Add a public variable named <code>test6</code> of type <code>GetPointsTest</code>.</p>
-<div class="highlight"><pre><span></span><code><span class="k">[Suite]</span>
-<span class="k">[RunWith("org.flexunit.runners.Suite")]</span>
-<span class="na">public class CircleSuite{</span>
-    <span class="na">public var test1:BasicCircleTest;</span>
-    <span class="na">public var test2:CircleConstructorTest;</span>
-    <span class="na">public var test3:CircleTheory;</span>
-    <span class="na">public var test4:CircleMockTest;</span>
-    <span class="na">public var test5:DistanceTest;</span>
-    <span class="na">public var test6:GetPointsTest;</span>
-<span class="na">}</span>
-</code></pre></div>
+<pre><code>[Suite]
+[RunWith("org.flexunit.runners.Suite")]
+public class CircleSuite{
+	public var test1:BasicCircleTest;
+	public var test2:CircleConstructorTest;
+	public var test3:CircleTheory;
+	public var test4:CircleMockTest;
+	public var test5:DistanceTest;
+	public var test6:GetPointsTest;
+}
+</code></pre>
 </li>
 <li>
 <p>Save CircleSuite.as.</p>
@@ -427,68 +427,68 @@
 </li>
 <li>
 <p>Add three private variables to the <code>GetPointsTest</code> class. One named <code>circle</code> of type <code>Circle</code>, another named <code>point</code> of type <code>Point</code>, and another named <code>radians</code> of type <code>Number</code>.</p>
-<div class="highlight"><pre><span></span><code><span class="err">private var circle:Circle;</span>
-<span class="err">private var point:Point;</span>
-<span class="err">private var radians:Number;</span>
-</code></pre></div>
+<pre><code>private var circle:Circle;
+private var point:Point;
+private var radians:Number;
+</code></pre>
 </li>
 <li>
 <p>Remove the <code>(dataProvider="data")</code> portion of the metadata from the <code>shouldGetPointsOnCircle()</code> test method. Also remove the parameters, as they will be replaced by the instance variables just created.</p>
-<div class="highlight"><pre><span></span><code><span class="k">[Test(dataProvider="data")]</span>
-<span class="na">public function shouldGetPointsOnCircle( circle:Circle, point:Point, radians:Number ):void {</span>
-<span class="na">...</span>
-<span class="na">}</span>
-</code></pre></div>
+<pre><code>[Test(dataProvider="data")]
+public function shouldGetPointsOnCircle( circle:Circle, point:Point, radians:Number ):void {
+...
+}
+</code></pre>
 <p>Becomes</p>
-<div class="highlight"><pre><span></span><code><span class="k">[Test]</span>
-<span class="na">public function shouldGetPointsOnCircle():void {</span>
-<span class="na">...</span>
-<span class="na">}</span>
-</code></pre></div>
+<pre><code>[Test]
+public function shouldGetPointsOnCircle():void {
+...
+}
+</code></pre>
 <h3><br/>Add a method to test point distance</h3>
 </li>
 <li>
 <p>Add a public function named <code>shouldReturnDistanceEqualToRadius()</code> to the class.</p>
-<div class="highlight"><pre><span></span><code><span class="k">[Test]</span>
-<span class="na">public function shouldReturnDistanceEqualToRadius():void {</span>
-<span class="na">}</span>
-</code></pre></div>
+<pre><code>[Test]
+public function shouldReturnDistanceEqualToRadius():void {
+}
+</code></pre>
 </li>
 <li>
 <p>Within the new method, declare a variable named <code>distance</code> of data type <code>Number</code>. Set it equal to <code>Point.distance( circle.getPointOnCircle( radians ), circle.origin )</code>.</p>
-<div class="highlight"><pre><span></span><code><span class="k">[Test]</span>
-<span class="na">public function shouldReturnDistanceEqualToRadius():void {</span>
-    <span class="na">var distance:Number</span> <span class="o">=</span> <span class="s">Point.distance( circle.getPointOnCircle( radians ), circle.origin );</span>
-<span class="na">}</span>
-</code></pre></div>
+<pre><code>[Test]
+public function shouldReturnDistanceEqualToRadius():void {
+	var distance:Number = Point.distance( circle.getPointOnCircle( radians ), circle.origin );
+}
+</code></pre>
 </li>
 <li>
 <p>Add a call to the <code>assertThat()</code> method. Pass in <code>distance</code> and <code>equalTo( circle.radius )</code> as its arguments.</p>
-<div class="highlight"><pre><span></span><code><span class="k">[Test]</span>
-<span class="na">public function shouldReturnDistanceEqualToRadius():void {</span>
-    <span class="na">var distance:Number</span> <span class="o">=</span> <span class="s">Point.distance( circle.getPointOnCircle( radians ), circle.origin );</span>
+<pre><code>[Test]
+public function shouldReturnDistanceEqualToRadius():void {
+	var distance:Number = Point.distance( circle.getPointOnCircle( radians ), circle.origin );
 
-    <span class="na">assertThat( distance, equalTo( circle.radius ) );</span>
-<span class="na">}</span>
-</code></pre></div>
+	assertThat( distance, equalTo( circle.radius ) );
+}
+</code></pre>
 <p>If you did not use code-completion, add the import for org.hamcrest.object.equalTo at this time.</p>
 </li>
 <li>
 <p>Now you will need to create a class constructor function that assigns the parameters to the variables declared above. It will take in a circle , point, and radians parameters and assign it to the instance variable for each.</p>
-<div class="highlight"><pre><span></span><code><span class="err">public function GetPointsTest( circle:Circle, point:Point, radians:Number ) {</span>
-<span class="err">    this.circle = circle;</span>
-<span class="err">    this.point = point;</span>
-<span class="err">    this.radians = radians;</span>
-<span class="err">}</span>
-</code></pre></div>
+<pre><code>public function GetPointsTest( circle:Circle, point:Point, radians:Number ) {
+	this.circle = circle;
+	this.point = point;
+	this.radians = radians;
+}
+</code></pre>
 </li>
 <li>
 <p>Mark the data array with <code>[Parameters]</code> metadata.</p>
-<div class="highlight"><pre><span></span><code><span class="k">[Parameters]</span>
-<span class="na">public static var data:Array</span> <span class="o">=</span> 
-<span class="na">[ [ new Circle( new Point( 0, 0 ), 5 ), new Point( 5, 0 ), 0 ],</span>
-  <span class="na">[ new Circle( new Point( 0, 0 ), 5 ), new Point( -5, 0 ), Math.PI ] ];</span>
-</code></pre></div>
+<pre><code>[Parameters]
+public static var data:Array = 
+[ [ new Circle( new Point( 0, 0 ), 5 ), new Point( 5, 0 ), 0 ],
+  [ new Circle( new Point( 0, 0 ), 5 ), new Point( -5, 0 ), Math.PI ] ];
+</code></pre>
 <p>In the previous walkthrough, parameters were passed in using the <code>dataProvider="data"</code> metadata. In this case, parameters are marked with <code>[Parameters]</code> metadata, which passes them into the constructor before each test method is run. This is the parameterized testing approach used in JUnit, a popular Java Unit testing framework on which FlexUnit bases much of its syntax.</p>
 </li>
 <li>
@@ -503,24 +503,24 @@
 </ol>
 <h2>Using external data</h2>
 <p>External data for parameterized testing is similar to external data in theories. All external data sources use a dataloader, which must implement the IExternalDependancyLoader interface.</p>
-<div class="highlight"><pre><span></span><code><span class="err">public static var dataRetriever:IExternalDependencyLoader = new ParamDataHelper( "myUrl" );</span>
-</code></pre></div>
+<pre><code>public static var dataRetriever:IExternalDependencyLoader = new ParamDataHelper( "myUrl" );
+</code></pre>
 <p>Depending on the style, the loading method for data is different:</p>
 <h3>TestNG</h3>
 <ul>
 <li>Similar to theories</li>
 <li>Set a DataPoints variable and annotate it with the loader property</li>
 </ul>
-<div class="highlight"><pre><span></span><code><span class="k">[DataPoints(loader="dataRetriever")]</span>
-<span class="na">public static var data:Array;</span>
-</code></pre></div>
+<pre><code>[DataPoints(loader="dataRetriever")]
+public static var data:Array;
+</code></pre>
 <h3>JUnit</h3>
 <ul>
 <li>Loader is added as an annotation to the [Parameters]</li>
 </ul>
-<div class="highlight"><pre><span></span><code><span class="k">[Parameters(loader="dataRetriever")]</span>
-<span class="na">public static var data:Array;</span>
-</code></pre></div>
+<pre><code>[Parameters(loader="dataRetriever")]
+public static var data:Array;
+</code></pre>
 <p>For more info on loading external data, see Unit 9: External Data.</p>
 <h2>Walkthrough 3: Loading External Parameters</h2>
 <p>In this walkthrough you will perform the following tasks:</p>
@@ -537,17 +537,17 @@
 </li>
 <li>
 <p>Add a public static variable named <code>getDataPointsLoader</code> of type <code>GetPointsDataHelper</code> to the <code>GetPointsTest</code> class. Instantiate the <code>GetPointsDataHelper</code> passing it a the argument <code>"xml/circlePoints.xml"</code></p>
-<div class="highlight"><pre><span></span><code><span class="err">public static var getDataPointsLoader:GetPointsDataHelper =</span>
-<span class="err"> new GetPointsDataHelper( "xml/circlePoints.xml" );</span>
-</code></pre></div>
+<pre><code>public static var getDataPointsLoader:GetPointsDataHelper =
+ new GetPointsDataHelper( "xml/circlePoints.xml" );
+</code></pre>
 <p>If you did not use code-completion, add the import for helper.GetPointsDataHelper at this time.</p>
 <p>The GetPointsDataHelper class implements IExternalDependencyLoader and IResponder interfaces. It is able to send and receive a data request in test case preparation. The loader itself references a data provider. In a parameterized test case, a static array uses these test parameters.</p>
 </li>
 <li>
 <p>Remove the static values from the data Array and modify the <code>[Parameters]</code> metadata to include a loader <code>[Parameters(loader="getDataPointsLoader")]</code> metadata. It should read as follows:</p>
-<div class="highlight"><pre><span></span><code><span class="k">[Parameters(loader="getDataPointsLoader")]</span>
-<span class="na">public static var data:Array</span>
-</code></pre></div>
+<pre><code>[Parameters(loader="getDataPointsLoader")]
+public static var data:Array
+</code></pre>
 </li>
 <li>
 <p>Save the GetPointsTest.as file.</p>
@@ -581,6 +581,7 @@
 <li><a href="Unit-12.html">Unit 12 - Running Tests from Different Versions</a></li>
 <li><a href="../index.html">Table of Contents / Introduction</a></li>
 </ul>
+
 
 <!-- Home Page Exception -->
 

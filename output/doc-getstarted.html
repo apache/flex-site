@@ -180,7 +180,7 @@
 You technically don't need one, but it is <strong>HIGHLY</strong> encouraged for you to use one.  We won't cover the workflows in this document on how to create and compile applications with Notepad or vi,
 just know that you can.</p>
 <p>There are four major IDEs available that work with Apache Flex.  There are other, lesser-used IDEs and plugins for other IDEs out there as well.  For the most part, the workflow is the same for
-all of them.  Below we will outline the steps needed to use Apache Flex with <a href="https://www.adobe.com/products/flash-builder-family.html">Adobe Flash Builder 4.7</a>, <a href="https://www.jetbrains.com/idea/">JetBrains IntelliJ IDEA 13.1</a>, <a href="https://www.flashdevelop.org/">FlashDevelop</a> and 
+all of them.  Below we will outline the steps needed to use Apache Flex with <a href="https://www.adobe.com/products/flash-builder-family.html">Adobe Flash Builder 4.7</a>, <a href="https://www.jetbrains.com/idea/">JetBrains IntelliJ IDEA 13.1</a>, <a href="https://www.flashdevelop.org/">FlashDevelop</a> and
 <a href="https://fdt.powerflasher.com/">FDT</a>.  If you use another IDE and want to help us add to this document please contact us on the <a href="community-mailinglists.html">mailing list</a>.</p>
 <p>Get started by setting up the Apache Flex SDK itself, then move on the specific section for your IDE.</p>
 <div class="headline"><h4>Setting up the Apache Flex SDK</h4></div>
@@ -206,11 +206,11 @@ all of them.  Below we will outline the steps needed to use Apache Flex with <a 
 <li><strong>Start Coding!</strong>  Jump down below to make your first Hello World application.</li>
 </ol>
 <div class="headline"><h6>Known Flash Builder Issues</h6></div>
-<p>Adobe Flash Builder 4.7 and Adobe Flash Builder 4.6 both contain a bug where, 
+<p>Adobe Flash Builder 4.7 and Adobe Flash Builder 4.6 both contain a bug where,
 when generating the .mxml file for a new project that uses Apache Flex
 and Spark Application, Flash Builder will incorrectly insert the attribute:</p>
-<div class="highlight"><pre><span></span><code><span class="err">layout="absolute"</span>
-</code></pre></div>
+<pre><code>layout="absolute"
+</code></pre>
 <p>This results in a compile error in the new project. The remedy is to simply
 remove the errant attribute.</p>
 <p>A <a href="https://cwiki.apache.org/confluence/display/FLEX/Adobe+Flash+Builder+'New+Project'+Bug">wiki page</a> has been set up to contain the latest news on Adobe's
@@ -231,9 +231,9 @@ attempt to correct this problem.</p>
 <li><strong>Start Coding!</strong>  Jump down below to make your first Hello World application.</li>
 </ol>
 <div class="headline"><h5 id="setupFD" name="setupFD">Setting up Apache Flex with FlashDevelop</h5></div>
-<p>You can follow along the steps described in this <a href="https://cwiki.apache.org/confluence/display/FLEX/2.3+FlashDevelop">wiki page</a></p>
+<p>You can follow along the steps described in this [wiki page] <a href="https://cwiki.apache.org/confluence/display/FLEX/2.3+FlashDevelop">10</a></p>
 <div class="headline"><h5 id="setupFDT" name="setupFDT">Setting up Apache Flex with FDT</h5></div>
-<p>You can follow along the steps described in this <a href="https://vimeo.com/46898669">video</a></p>
+You can follow along the steps described in this [video] [12]
 <div class="headline"><h4>Creating your first Hello World application</h4></div>
 <p>This is a very simple, generic hello world application.  You can learn a lot more by checking out some of our other resources below, or some of our <a href="doc-videos.html">tutorial videos</a>.</p>
 <ol>
@@ -244,25 +244,26 @@ attempt to correct this problem.</p>
 <li>Find the Debug toolbar icon and click it.  Your application should be launched in your default web browser and you should see the words Hello World! in the middle of the screen.</li>
 </ol>
 <p>The complete code listing is (there may be some variations, depending on your IDE template. Just make sure what we talked about above match) :</p>
-<div class="highlight"><pre><span></span><code><span class="cp">&lt;?xml version="1.0" encoding="utf-8"?&gt;</span>
-<span class="nt">&lt;s:Application</span> <span class="na">xmlns:fx=</span><span class="s">"https://ns.adobe.com/mxml/2009"</span>
-               <span class="na">xmlns:s=</span><span class="s">"library://ns.adobe.com/flex/spark"</span>
-               <span class="na">xmlns:mx=</span><span class="s">"library://ns.adobe.com/flex/mx"</span> <span class="na">width=</span><span class="s">"640"</span> <span class="na">height=</span><span class="s">"480"</span><span class="nt">&gt;</span>
+<pre><code>&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;s:Application xmlns:fx="https://ns.adobe.com/mxml/2009"
+               xmlns:s="library://ns.adobe.com/flex/spark"
+               xmlns:mx="library://ns.adobe.com/flex/mx" width="640" height="480"&gt;
 
-    <span class="nt">&lt;s:layout&gt;</span>
-        <span class="nt">&lt;s:BasicLayout</span> <span class="nt">/&gt;</span>
-    <span class="nt">&lt;/s:layout&gt;</span>
+    &lt;s:layout&gt;
+        &lt;s:BasicLayout /&gt;
+    &lt;/s:layout&gt;
 
-    <span class="nt">&lt;s:Label</span> <span class="na">text=</span><span class="s">"Hello World!"</span> <span class="na">horizontalCenter=</span><span class="s">"0"</span> <span class="na">verticalCenter=</span><span class="s">"0"</span> <span class="nt">/&gt;</span>
+    &lt;s:Label text="Hello World!" horizontalCenter="0" verticalCenter="0" /&gt;
 
-<span class="nt">&lt;/s:Application&gt;</span>
-</code></pre></div>
+&lt;/s:Application&gt;
+</code></pre>
 <div class="headline"><h4>Additional Resources</h4></div>
 <ul>
 <li>Make sure to check out our video and screencast library on the <a href="doc-videos.html">videos page</a>.</li>
 <li>There are a large variety of books available online.  One of our favorites is from Michael Labriola and Jeff Tapper (both Apache Flex Committers).  <a href="https://www.amazon.com/Adobe-Flex-4-5-Fundamentals-ebook/dp/B005EFKGCS/">Amazon Link to book</a></li>
 <li>There are quite a few people that blog about Flex.  Check out the <a href="https://blogs.apache.org/flex/">official blog of Apache Flex</a>, <a href="https://flashdaily.net/tagged/apacheflex">FlashDaily.net</a> and <a href="https://feeds.adobe.com/index.cfm?query=bySmartCategory&amp;smartCategoryId=5">Adobe Feeds for Apache Flex</a></li>
 </ul>
+
 
 <!-- Home Page Exception -->
 
