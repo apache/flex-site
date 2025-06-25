@@ -32,8 +32,8 @@ TIMEZONE = 'UTC'
 DEFAULT_LANG = 'en'
 
 # Website specific settings
-SITEURL = 'https://bval.apache.org'
-SITEREPOSITORY = 'https://github.com/apache/bval-site/blob/main/content/'
+SITEURL = 'https://flex.apache.org'
+SITEREPOSITORY = 'https://github.com/apache/flex-site/blob/main/content/'
 CURRENTYEAR = date.today().year
 
 # ASF Data specification
