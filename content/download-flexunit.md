@@ -51,9 +51,9 @@ Version 2.0 license.  These can be downloaded via the ANT script included in the
 
 - coverageagent - [Download](https://flexcover.googlecode.com/files/flexcover-0.90.zip) (MIT License)
 - fluint - [Download](https://github.com/flexunit/flexunit/raw/master/FlexUnit4Test/libs/fluint-1_2.swc) (MIT License)
-- mockolate - [Download](https://github.com/downloads/drewbourne/mockolate/mockolate-0.9.5.zip) (MIT License)
+- mockolate - [Download](https://github.com/flexunit/flexunit/raw/master/FlexUnit4Test/libs/mockolate-0.9.5.swc) (MIT License)
 - mock-as - [Download](https://github.com/flexunit/flexunit/raw/master/FlexUnit4Test/libs/mock-as3.swc) (BSD License)
-- hamcrest - [Download](https://cloud.github.com/downloads/drewbourne/hamcrest-as3/hamcrest-as3-flex-1.1.3.zip) (BSD License)
+- hamcrest - [Download](https://github.com/flexunit/flexunit/raw/master/FlexUnit4/libs/hamcrest-as3-flex-1.1.3.swc) (BSD License)
 - flexunit1lib - [Download](https://github.com/flexunit/flexunit/raw/master/FlexUnit4Test/libs/FlexUnit1Lib.swc) (BSD License)
 
 <br/ >The following dependencies have licenses which Apache considers to be reciprocal licenses so you will be prompted to acknowledge the license before the software is downloaded to your system.
