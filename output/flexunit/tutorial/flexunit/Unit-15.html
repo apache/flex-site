@@ -194,64 +194,64 @@
 <h2>Why highly cohesive code tends to test more easily</h2>
 <p>Highly cohesive code creates strong test fixtures and short, simple tests. A class with low cohesion will frequently have us begging the question, "does this belong in the fixture?" If there is a section of code that <i>should</i> be in the fixture but doing so will create unnecessary overhead for some of the tests we are likely looking at a case of low cohesion. Always remember that a class with high cohesion tends to create tests with high cohesion.</p>
 <p>Consider the following database example:</p>
-<div class="highlight"><pre><span></span><code><span class="err">public class ContactDatabaseConnection {</span>
-<span class="err">    public function ContactDatabaseConnection () {</span>
-<span class="err">    }</span>
-<span class="err">    public function connect():void {</span>
-<span class="err">        //code to connect</span>
-<span class="err">    }</span>
-<span class="err">    public function getContact( itemName:String ):Contact {</span>
-<span class="err">        //code to retrieve contact</span>
-<span class="err">    }</span>
-<span class="err">    public function formatContact( contact:Contact ):FormattedContact {</span>
-<span class="err">        //code to format contact</span>
-<span class="err">    }</span>
-<span class="err">}</span>
-</code></pre></div>
+<pre><code>public class ContactDatabaseConnection {
+	public function ContactDatabaseConnection () {
+	}
+	public function connect():void {
+		//code to connect
+	}
+	public function getContact( itemName:String ):Contact {
+		//code to retrieve contact
+	}
+	public function formatContact( contact:Contact ):FormattedContact {
+		//code to format contact
+	}
+}
+</code></pre>
 <p>Try to imagine the fixture for this interface. The test fixture would need to create a new database connection. It would also need to create a new contact for testing.</p>
-<div class="highlight"><pre><span></span><code><span class="n">private</span><span class="w"> </span><span class="nf">var</span><span class="w"> </span><span class="nl">testContact</span><span class="p">:</span><span class="n">Contact</span><span class="p">;</span><span class="w"></span>
-<span class="n">private</span><span class="w"> </span><span class="nf">var</span><span class="w"> </span><span class="k">connection</span><span class="err">:</span><span class="n">ContactDatabaseConnection</span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="o">[</span><span class="n">Before</span><span class="o">]</span><span class="w"></span>
-<span class="w">    </span><span class="k">public</span><span class="w"> </span><span class="k">function</span><span class="w"> </span><span class="n">setup</span><span class="p">()</span><span class="err">:</span><span class="n">void</span><span class="w"> </span><span class="err">{</span><span class="w"></span>
-<span class="w">        </span><span class="k">connection</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">ContactDatabaseConnection</span><span class="p">();</span><span class="w"></span>
-<span class="w">        </span><span class="k">connection</span><span class="p">.</span><span class="k">connect</span><span class="p">();</span><span class="w"></span>
-<span class="w">        </span><span class="n">testContact</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Contact</span><span class="p">();</span><span class="w"></span>
-<span class="err">}</span><span class="w"></span>
-</code></pre></div>
+<pre><code>private var testContact:Contact;
+private var connection:ContactDatabaseConnection;
+	[Before]
+	public function setup():void {
+		connection = new ContactDatabaseConnection();
+		connection.connect();
+		testContact = new Contact();
+}
+</code></pre>
 <p>However, the <code>formatContact()</code> method does not need a database connection. In fact, what does formatting a contact have to do with a <code>ContactDatabaseConnection</code>? These methods do not have a unified test fixture. In one section we would be testing the connect and retrieval functions. The other requires a contact be ready made. Clearly, <code>formatContact()</code> does not belong.</p>
 <p>If you find yourself needing a unique fixture for each test in a class it is highly likely you are dealing with a class that contains low cohesion or only temporal cohesion at best. In this situation, you might want to return to the code and find a way to split the class to increase the cohesion.</p>
 <p>Here is an improved version of the <code>ContactDatabaseConnection</code> class that should be much easier to test and maintain:</p>
-<div class="highlight"><pre><span></span><code><span class="err">public class ContactDatabaseConnection {</span>
-<span class="err">    public function ContactDatabaseConnection () {</span>
-<span class="err">    }</span>
-<span class="err">    public function connect():void {</span>
-<span class="err">        //code to connect</span>
-<span class="err">    }</span>
-<span class="err">    public function getContact( itemName:String ):IContact {</span>
-<span class="err">        //code to retrieve contact</span>
-<span class="err">    }</span>
-<span class="err">}</span>
-</code></pre></div>
+<pre><code>public class ContactDatabaseConnection {
+	public function ContactDatabaseConnection () {
+	}
+	public function connect():void {
+		//code to connect
+	}
+	public function getContact( itemName:String ):IContact {
+		//code to retrieve contact
+	}
+}
+</code></pre>
 <p>And moving the <code>formatContact</code> method into the specific <code>Contact</code> implementation:</p>
-<div class="highlight"><pre><span></span><code><span class="err">public class Contact implements IContact {</span>
-<span class="err">    //contact code</span>
-<span class="err">    public function formatContact():void {</span>
-<span class="err">        //format code</span>
-<span class="err">    }</span>
-<span class="err">}</span>
-</code></pre></div>
+<pre><code>public class Contact implements IContact {
+	//contact code
+	public function formatContact():void {
+		//format code
+	}
+}
+</code></pre>
 <h2>Why loosely coupled code can be tested less painfully</h2>
 <p>By creating loosely coupled code, we create classes that can more easily be tested in isolation. Tightly coupled code creates a dependency on outside resources that frequently do not belong in the class with which they are coupled.</p>
 <p>Consider the following:</p>
-<div class="highlight"><pre><span></span><code><span class="err">public class BoxOfCrayons() {</span>
-<span class="err">    private var crayons:Array = new Array();</span>
-<span class="err">    public function addCrayon( color:String ):void {</span>
-<span class="err">        var crayon = new WaxCrayon();</span>
-<span class="err">        crayon.color = color;</span>
-<span class="err">        crayon.wrapper.color = color;</span>
-<span class="err">    }</span>
-<span class="err">}</span>
-</code></pre></div>
+<pre><code>public class BoxOfCrayons() {
+	private var crayons:Array = new Array();
+	public function addCrayon( color:String ):void {
+		var crayon = new WaxCrayon();
+		crayon.color = color;
+		crayon.wrapper.color = color;
+	}
+}
+</code></pre>
 <p>Think of the tests you would need to write for the <code>addCrayon()</code> method:</p>
 <ul>
 <li>Test that a crayon is added to the box of crayons</li>
@@ -304,47 +304,48 @@
 </li>
 <li>
 <p>Examine the <code>updateDisplayList()</code> method in this class.</p>
-<div class="highlight"><pre><span></span><code><span class="err">override public function updateDisplayList( contentWidth:Number, contentHeight:Number ):void {</span>
-<span class="err">    ...                         </span>
-<span class="err">    super.updateDisplayList( contentWidth, contentHeight );</span>
-<span class="err">    var circle:Circle = new Circle( new Point( contentWidth/2, contentHeight/2 ),</span>
-<span class="err">     getLayoutRadius( contentWidth, contentHeight ) );</span>
-<span class="err">    for ( i = 0; i &lt; target.numElements; i++ ) {</span>
-<span class="err">        element = target.getElementAt(i);</span>
-<span class="err">        elementLayoutPoint = circle.getPointOnCircle( elementAngleInRadians );</span>
-<span class="err">        ...         </span>
-<span class="err">        //Used to be move()</span>
-<span class="err">        element.setLayoutBoundsPosition( elementLayoutPoint.x-elementWidth,</span>
-<span class="err">         elementLayoutPoint.y-elementHeight );</span>
-<span class="err">    }</span>
-<span class="err">}</span>
-</code></pre></div>
-<p>This method creates a <code>circle</code> object of type <code>Circle</code> with dimensions based on the <code>contentWidth</code> and <code>contentHeight</code> arguments. The elements of the layout are positioned to points on the circle.</p>
+```
+override public function updateDisplayList( contentWidth:Number, contentHeight:Number ):void {
+	...							
+	super.updateDisplayList( contentWidth, contentHeight );
+	var circle:Circle = new Circle( new Point( contentWidth/2, contentHeight/2 ),
+	 getLayoutRadius( contentWidth, contentHeight ) );
+	for ( i = 0; i &lt; target.numElements; i++ ) {
+		element = target.getElementAt(i);
+		elementLayoutPoint = circle.getPointOnCircle( elementAngleInRadians );
+		...			
+		//Used to be move()
+		element.setLayoutBoundsPosition( elementLayoutPoint.x-elementWidth,
+		 elementLayoutPoint.y-elementHeight );
+	}
+}
+```
+		<p>This method creates a <code>circle</code> object of type <code>Circle</code> with dimensions based on the <code>contentWidth</code> and <code>contentHeight</code> arguments. The elements of the layout are positioned to points on the circle.</p>
 <p>Suppose you wanted to test the functionality of this method. It would be impossible to isolate because the method is dependent on the <code>Circle</code> class.</p>
 <p>The circle object could be mocked if the <code>CircleLayout</code> class had its own <code>circle</code> property instead.</p>
 </li>
 <li>
 <p>At the top of the class, create a private circle property.</p>
-<div class="highlight"><pre><span></span><code><span class="err">private var circle:Circle;</span>
-</code></pre></div>
+<pre><code>private var circle:Circle;
+</code></pre>
 </li>
 <li>
 <p>Generate a public getter and setter for the property. Right-click the property, select Source &gt; Generate Getter/Setter, and click OK.</p>
-<div class="highlight"><pre><span></span><code><span class="err">public function get circle():Circle {</span>
-<span class="err">    return _circle;</span>
-<span class="err">}</span>
-<span class="err">public function set circle(value:Circle):void {</span>
-<span class="err">    _circle = value;</span>
-<span class="err">}</span>
-</code></pre></div>
+<pre><code>public function get circle():Circle {
+	return _circle;
+}
+public function set circle(value:Circle):void {
+	_circle = value;
+}
+</code></pre>
 </li>
 <li>
 <p>Add a call to the <code>invalidateDisplayList()</code> method on the <code>target</code> property within the setter of the <code>circle</code>.</p>
-<div class="highlight"><pre><span></span><code><span class="err">public function set circle(value:Circle):void {</span>
-<span class="err">    circle = value;</span>
-<span class="err">    target.invalidateDisplayList();</span>
-<span class="err">}</span>
-</code></pre></div>
+<pre><code>public function set circle(value:Circle):void {
+	circle = value;
+	target.invalidateDisplayList();
+}
+</code></pre>
 </li>
 <li>
 <p>Remove the line that instantiates the <code>circle</code> object within the <code>updateDisplayList()</code> method.</p>
@@ -355,13 +356,13 @@
 </li>
 <li>
 <p>Perform a null check for the <code>circle</code> within <code>updateDisplayList()</code> method.</p>
-<div class="highlight"><pre><span></span><code><span class="err">super.updateDisplayList( contentWidth, contentHeight );</span>
-<span class="err">if(circle) {</span>
-<span class="err">    for ( i = 0; i &lt; target.numElements; i++ ) {</span>
-<span class="err">        ...</span>
-<span class="err">    }</span>
-<span class="err">}</span>
-</code></pre></div>
+<pre><code>super.updateDisplayList( contentWidth, contentHeight );
+if(circle) {
+	for ( i = 0; i &lt; target.numElements; i++ ) {
+		...
+	}
+}
+</code></pre>
 <p>The <code>CircleLayout</code> class can now be better tested as it is not dependent on another class.</p>
 </li>
 </ol>
@@ -380,55 +381,55 @@
 </li>
 <li>
 <p>Just below the <code>equals()</code> method, add a new public method named <code>distanceFrom()</code>. It should return a value of data type <code>Number</code>. It should take a parameter named <code>circle</code> of type <code>Circle</code>.</p>
-<div class="highlight"><pre><span></span><code><span class="err">public function distanceFrom( circle:Circle ):Number {</span>
-<span class="err">}</span>
-</code></pre></div>
+<pre><code>public function distanceFrom( circle:Circle ):Number {
+}
+</code></pre>
 </li>
 <li>
 <p>The new method should return <code>Point.distance( this.origin, circle.origin )</code>, which calculates the distance between the <code>Circles</code>' origin points.</p>
-<div class="highlight"><pre><span></span><code><span class="err">public function distanceFrom( circle:Circle ):Number {</span>
-<span class="err">    return Point.distance( this.origin, circle.origin );</span>
-<span class="err">}</span>
-</code></pre></div>
+<pre><code>public function distanceFrom( circle:Circle ):Number {
+	return Point.distance( this.origin, circle.origin );
+}
+</code></pre>
 <h3><br/>Modify the equals() method</h3>
 <p>The <code>equals()</code> method in <code>Circle</code> may appear simple enough, but can be difficult to test. This comparison is based on radius and origin. Although the radius comparison is about as simple as it could be, the point comparison is based on the accessing the <code>origin.x</code> and <code>origin.y</code> and asserting their equality separately. If you were to isolate and mock the circle for testing, you would have to mock the <code>Point</code> object as well.</p>
-<div class="highlight"><pre><span></span><code><span class="err">public function equals( circle:Circle ):Boolean {</span>
-<span class="err">    var equal:Boolean = false;</span>
-<span class="err">    if ( ( circle ) &amp;&amp; ( this.radius == circle.radius ) &amp;&amp; ( this.origin ) &amp;&amp;</span>
-<span class="err">     ( circle.origin ) ) {</span>
-<span class="err">        if ( ( this.origin.x == circle.origin.x ) &amp;&amp; ( this.origin.y == circle.origin.y ) ) {</span>
-<span class="err">            equal = true;</span>
-<span class="err">        }</span>
-<span class="err">    }</span>
-<span class="err">    return equal;</span>
-<span class="err">}</span>
-</code></pre></div>
+<pre><code>public function equals( circle:Circle ):Boolean {
+	var equal:Boolean = false;
+	if ( ( circle ) &amp;&amp; ( this.radius == circle.radius ) &amp;&amp; ( this.origin ) &amp;&amp;
+	 ( circle.origin ) ) {
+		if ( ( this.origin.x == circle.origin.x ) &amp;&amp; ( this.origin.y == circle.origin.y ) ) {
+			equal = true;
+		}
+	}
+	return equal;
+}
+</code></pre>
 <p>Creating an isolated object for testing will ultimately reduce these interdependencies. Mocks should be able to work without the required input of additional mocks. Creating code of this kind will add seams, loosen coupling, and improve quality over all.</p>
 </li>
 <li>
 <p>In the <code>equals()</code> method, replace the line of the second if statement, which checks the equality of this and the comparison circle's origin's x and y values, with a line that checks that <code>this.distanceFrom( circle )</code> is equal to <code>0</code>.</p>
-<div class="highlight"><pre><span></span><code><span class="err">if ( ( this.origin.x == circle.origin.x ) &amp;&amp;</span>
-<span class="err">( this.origin.y == circle.origin.y ) ) {</span>
-<span class="err">    equal = true;</span>
-<span class="err">}</span>
-</code></pre></div>
+<pre><code>if ( ( this.origin.x == circle.origin.x ) &amp;&amp;
+( this.origin.y == circle.origin.y ) ) {
+	equal = true;
+}
+</code></pre>
 <p>Becomes:</p>
-<div class="highlight"><pre><span></span><code><span class="err">if ( this.distanceFrom( circle ) == 0 ) {</span>
-<span class="err">    equal = true;</span>
-<span class="err">}</span>
-</code></pre></div>
+<pre><code>if ( this.distanceFrom( circle ) == 0 ) {
+	equal = true;
+}
+</code></pre>
 <p>The <code>Circle</code> class's new <code>equals()</code> method should read as follows:</p>
-<div class="highlight"><pre><span></span><code><span class="err">public function equals( circle:Circle ):Boolean {</span>
-<span class="err">    var equal:Boolean = false;</span>
-<span class="err">    if ( ( circle ) &amp;&amp; ( this.radius == circle.radius ) &amp;&amp;</span>
-<span class="err">    ( this.origin ) &amp;&amp; ( circle.origin ) )  {</span>
-<span class="err">        if ( this.distanceFrom( circle ) == 0 ) {</span>
-<span class="err">            equal = true;</span>
-<span class="err">        }</span>
-<span class="err">    }</span>
-<span class="err">    return equal;</span>
-<span class="err">}</span>
-</code></pre></div>
+<pre><code>public function equals( circle:Circle ):Boolean {
+	var equal:Boolean = false;
+	if ( ( circle ) &amp;&amp; ( this.radius == circle.radius ) &amp;&amp;
+	( this.origin ) &amp;&amp; ( circle.origin ) ) 	{
+		if ( this.distanceFrom( circle ) == 0 ) {
+			equal = true;
+		}
+	}
+	return equal;
+}
+</code></pre>
 <p>At this point, if you were to mock a <code>Circle</code>, you would only need to mock and create expectations for a <code>circle</code> object. A mock for the <code>Point</code> class is not needed here.</p>
 </li>
 <li>
@@ -472,6 +473,7 @@
 <li><a href="Unit-16.html">Unit 16 - Allowing Your Tests to Function with Continuous Integration</a></li>
 <li><a href="../index.html">Table of Contents / Introduction</a></li>
 </ul>
+
 
 <!-- Home Page Exception -->
 
