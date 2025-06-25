@@ -202,39 +202,39 @@
 <p>This interface has one required method: retrieveDependency(). This method returns an ExternalDependencyToken. During startup of the testing process, FlexUnit looks for IExternalDependencyLoaders and invokes this method.</p>
 <p>Internal to this method, you are responsible for making any server calls and loading any data. Once the operation has been completed, in either a result or fault, you are responsible for notifying the framework that it is now safe to begin testing.</p>
 <p>Here is an example of the retreiveDependency function and the associated result and fault handlers that uses an HTTPService to retrieve data:</p>
-<div class="highlight"><pre><span></span><code><span class="nt">public</span> <span class="nt">function</span> <span class="nt">RadiiDataHelper</span><span class="o">(</span> <span class="nt">url</span><span class="p">:</span><span class="nd">String</span> <span class="o">)</span> <span class="p">{</span>
-    <span class="err">service</span> <span class="err">=</span> <span class="err">new</span> <span class="err">HTTPService()</span><span class="p">;</span>
-    <span class="err">service.url</span> <span class="err">=</span> <span class="err">url</span><span class="p">;</span>
-    <span class="err">service.resultFormat</span> <span class="err">=</span> <span class="err">"e4x"</span><span class="p">;</span>
+<pre><code>public function RadiiDataHelper( url:String ) {
+	service = new HTTPService();
+	service.url = url;
+	service.resultFormat = "e4x";
 
-    <span class="err">dToken</span> <span class="err">=</span> <span class="err">new</span> <span class="err">ExternalDependencyToken()</span><span class="p">;</span>
-<span class="p">}</span>
+	dToken = new ExternalDependencyToken();
+}
 
-<span class="nt">public</span> <span class="nt">function</span> <span class="nt">retrieveDependency</span><span class="o">(</span> <span class="nt">testClass</span><span class="p">:</span><span class="nd">Class</span> <span class="o">)</span><span class="p">:</span><span class="nd">ExternalDependencyToken</span> <span class="p">{</span>
-    <span class="err">var</span> <span class="n">asyncToken</span><span class="p">:</span><span class="n">AsyncToken</span> <span class="o">=</span> <span class="n">service</span><span class="o">.</span><span class="nf">send</span><span class="p">();</span>
-    <span class="err">asyncToken.addResponder(</span> <span class="err">this</span> <span class="err">)</span><span class="p">;</span>
+public function retrieveDependency( testClass:Class ):ExternalDependencyToken {
+	var asyncToken:AsyncToken = service.send();
+	asyncToken.addResponder( this );
 
-    <span class="err">return</span> <span class="err">dToken</span><span class="p">;</span>
-<span class="p">}</span>
+	return dToken;
+}
 
-<span class="nt">public</span> <span class="nt">function</span> <span class="nt">result</span><span class="o">(</span> <span class="nt">data</span><span class="p">:</span><span class="nd">Object</span> <span class="o">)</span><span class="p">:</span><span class="nd">void</span> <span class="p">{</span>
-    <span class="err">var</span> <span class="n">ar</span><span class="p">:</span><span class="n">Array</span> <span class="o">=</span> <span class="n">new</span> <span class="nf">Array</span><span class="p">();</span>
+public function result( data:Object ):void {
+	var ar:Array = new Array();
+			
+	var list:XMLList = data.result..node;
+	var node:XML;
+			
+	for ( var i:int = 0; i &lt; list.length(); i++ ) {
+		node = list[ i ][ 0 ];
+		ar.push( Number( node.text() ) );
+	}
+			
+	dToken.notifyResult( ar );
+}
 
-    <span class="err">var</span> <span class="n">list</span><span class="p">:</span><span class="n">XMLList</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">result</span><span class="o">..</span><span class="n">node</span><span class="p">;</span>
-    <span class="err">var</span> <span class="n">node</span><span class="p">:</span><span class="n">XML</span><span class="p">;</span>
-
-    <span class="err">for</span> <span class="err">(</span> <span class="err">var</span> <span class="n">i</span><span class="p">:</span><span class="n">int</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="err">i</span> <span class="err">&lt;</span> <span class="err">list.length()</span><span class="p">;</span> <span class="err">i++</span> <span class="err">)</span> <span class="err">{</span>
-        <span class="err">node</span> <span class="err">=</span> <span class="err">list</span><span class="cp">[</span> <span class="nx">i</span> <span class="cp">][</span> <span class="mi">0</span> <span class="cp">]</span><span class="p">;</span>
-        <span class="err">ar.push(</span> <span class="err">Number(</span> <span class="err">node.text()</span> <span class="err">)</span> <span class="err">)</span><span class="p">;</span>
-    <span class="p">}</span>
-
-    <span class="nt">dToken</span><span class="p">.</span><span class="nc">notifyResult</span><span class="o">(</span> <span class="nt">ar</span> <span class="o">);</span>
-<span class="err">}</span>
-
-<span class="nt">public</span> <span class="nt">function</span> <span class="nt">fault</span><span class="o">(</span><span class="nt">info</span><span class="p">:</span><span class="nd">Object</span><span class="o">)</span><span class="p">:</span><span class="nd">void</span> <span class="p">{</span>
-    <span class="err">dToken.notifyFault(</span> <span class="err">"Totally</span> <span class="err">broken"</span> <span class="err">)</span><span class="p">;</span>
-<span class="p">}</span>
-</code></pre></div>
+public function fault(info:Object):void {
+	dToken.notifyFault( "Totally broken" );
+}
+</code></pre>
 <p>In this loader:</p>
 <ol>
 <li><p>Loader is instantiated with a new HTTPService.</p></li>
@@ -244,13 +244,13 @@
 <li><p>If neither notifyResult() nor notifyFault() are called on the token the runner will stall indefinitely as it is impossible for the testing framework to identify a reasonable delay for your situation. This makes it extremely important to handle both cases.</p></li>
 </ol>
 <p>To use an external loader you must instantiate the loader and assign it to a public static variable in the test case. Constructor args are used to provide any additional configuration information to the loader.</p>
-<div class="highlight"><pre><span></span><code><span class="err">public static var testLoader:IExternalDependencyLoader = new MyLoader(" myData.xml" );</span>
-</code></pre></div>
+<pre><code>public static var testLoader:IExternalDependencyLoader = new MyLoader(" myData.xml" );
+</code></pre>
 <p>You then need to create the datapoints array. However, instead of instantiating the array, as you had in previous lessons, you will specify a loader argument on the DataPoints metadata tag. The runner knows how to handle this attribute and ensure your loader is invoked.</p>
-<div class="highlight"><pre><span></span><code><span class="k">[DataPoints(loader="testLoader")]</span>
-<span class="k">[ArrayElementType("Number")]</span>
-<span class="na">public static var radii:Array;</span>
-</code></pre></div>
+<pre><code>[DataPoints(loader="testLoader")]
+[ArrayElementType("Number")]
+public static var radii:Array;
+</code></pre>
 <p>Once the data points are loaded, your test case will use them as if they were statically coded into the test case.</p>
 <h2>Walkthrough 1: Moving Theory Data to an External Source</h2>
 <p>In this walkthrough you will perform the following tasks:</p>
@@ -268,24 +268,24 @@
 </li>
 <li>
 <p>Add a public static variable named <code>radiiLoader</code> of type <code>RadiiDataHelper</code> to the CircleTheory class. It should instantiate a <code>RadiiDataHelper</code> object with the argument <code>"xml/radii.xml"</code>.</p>
-<div class="highlight"><pre><span></span><code><span class="err">public static var radiiLoader:RadiiDataHelper </span>
-<span class="err">    = new  RadiiDataHelper( "xml/radii.xml" );</span>
-</code></pre></div>
+<pre><code>public static var radiiLoader:RadiiDataHelper 
+	= new  RadiiDataHelper( "xml/radii.xml" );
+</code></pre>
 <p>If you did not use code-completion, add the import for helper.RadiiDataHelper at this time. RadiiDataHelper is the external loader and already has the logic for loading the data.</p>
 <h3><br/>Alter the array to use the external data</h3>
 <p>Now that you are loading the radii data from an external source the <code>radii</code> variable no longer requires the static values. The <code>radii</code> variable must also be marked with <code>[DataPoints(loader="radiiLoader")] metadata</code>.</p>
 </li>
 <li>
 <p>Modify the radii array so that it has <code>[DataPoints(loader="radiiLoader")]</code> metadata.</p>
-<div class="highlight"><pre><span></span><code><span class="k">[DataPoints]</span>
-<span class="k">[ArrayElementType("Number")]</span>
-<span class="na">public static var radii:Array</span> <span class="o">=</span> <span class="s">[ -5, 1,2,3,4,5,6,7,8,9,10 ];</span>
-</code></pre></div>
+<pre><code>[DataPoints]
+[ArrayElementType("Number")]
+public static var radii:Array = [ -5, 1,2,3,4,5,6,7,8,9,10 ];
+</code></pre>
 <p>Becomes:</p>
-<div class="highlight"><pre><span></span><code><span class="k">[DataPoints(loader="radiiLoader")]</span>
-<span class="k">[ArrayElementType("Number")]</span>
-<span class="na">public static var radii:Array;</span>
-</code></pre></div>
+<pre><code>[DataPoints(loader="radiiLoader")]
+[ArrayElementType("Number")]
+public static var radii:Array;
+</code></pre>
 </li>
 <li>
 <p>Save CircleTheory.as.</p>
@@ -343,13 +343,13 @@
 <p>The first breakpoint illustrates the instantiation of the ExternalDependencyToken, which is responsible for notifying FlexUnit whether the data is return or there is a fault.</p>
 <p>The next breakpoint illustrates the sending of the HTTPService.</p>
 <p>When you reach the third breakpoint, on the <code>dToken.notifyResult( ar );</code> line, the list watch expression should show that list is equal to an XMLList whose values can be expanded and evaluated in the Expressions tab.</p>
-<p><img alt="ExpressionList" src="../images/unit9/image8.png"/></p>
+<img alt="ExpressionList" src="../images/unit9/image8.png"/>
 <p class="caption">Figure 8: The list expression in the Expressions tab</p>
 <p>The ar expression is the parsed array created in the <code>result()</code> method from the <code>XMLList</code>.</p>
-<p><img alt="ArExpression" src="../images/unit9/image9.png"/></p>
+<img alt="ArExpression" src="../images/unit9/image9.png"/>
 <p class="caption">Figure 9: The ar expression in the Expressions tab</p>
 <p>After running through the last breakpoint, you should see the following in your browser window.</p>
-<p><img alt="TestsPassed" src="../images/unit9/image10.png"/> </p>
+<img alt="TestsPassed" src="../images/unit9/image10.png"/>
 <p class="caption">Figure 10: FlexUnit tests passed</p>
 <p>The radii.xml file contains the same values previously declared within the radii array. There is no change in operation, because the externally loaded values are interacting with the test in the same way, but having the data externalized makes it easy to modify the tests to run with different values, without having to re-compile the tests.</p>
 <h2>Summary</h2>
@@ -364,6 +364,7 @@
 <li><a href="Unit-10.html">Unit 10 - Mock Classes</a></li>
 <li><a href="../index.html">Table of Contents / Introduction</a></li>
 </ul>
+
 
 <!-- Home Page Exception -->
 
