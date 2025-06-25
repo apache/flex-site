@@ -6,8 +6,36 @@ homepage:    true
 
 <div class="span8">
 
-<div class="headline marginbottom"><h4>Learn Flex® :</h4></div>
+<div class="headline marginbottom"><h4>Learn Flex®:</h4></div>
 <div class="row-fluid">
+
+<!-- Project -->
+<div class="span3">
+    <div class="picture"><a href="https://flex.apache.org/doc-getstarted.html"><img src="images/training/getting-started.png" alt=""/><div class="image-overlay-link"></div></a></div>
+    <div class="item-description">
+        <h5><a href="https://flex.apache.org/doc-getstarted.html">Getting Started With Flex</a></h5>
+        <p>A quick introduction to Apache Flex that teaches you how to download the SDK, set up your IDE or editor, and create your first "Hello World" application.</p>
+    </div>
+</div>
+
+<!-- Project -->
+<div class="span3">
+    <div class="picture"><a href="https://flex.apache.org/asdoc/"><img src="images/training/flex-api-asdoc.png" alt=""><div class="image-overlay-link"></div></a></div>
+    <div class="item-description">
+        <h5><a href="https://flex.apache.org/asdoc/">Flex API ASDoc Reference</a></h5>
+        <p>A full listing of all classes, interfaces, methods, properties, events, styles, and effects available in Apache Flex. Includes user interface components, skins, networking services, formatters and validators, and other utilities.</p>
+    </div>
+</div>
+
+<!-- Project -->
+<div class="span3">
+    <div class="picture"><a href="https://flex.apache.org/flexunit/tutorial/"><img src="images/training/flexunit-tutorial.png" alt=""><div class="image-overlay-link"></div></a></div>
+    <div class="item-description">
+        <h5><a href="https://flex.apache.org/flexunit/tutorial/">Apache FlexUnit Tutorial</a></h5>
+        <p>Learn to write unit tests with Apache FlexUnit. Includes an overview of key FlexUnit and unit testing concepts, demonstrations and walkthroughs that illustrate and guide you through the process of writing tests and running them, and a summaries and reviews of all concepts covered in the tutorial.</p>
+    </div>
+</div>
+
 <!-- Project -->
 <div class="span3">
     <div class="picture"><a href="https://www.slideshare.net/bigosmallm/flexjs-an-introduction"><img src="images/training/FlexJSAnIntroduction.png" alt=""/><div class="image-overlay-link"></div></a></div>
@@ -20,29 +48,9 @@ homepage:    true
 
 <!-- Project -->
 <div class="span3">
-    <div class="picture"><a href="https://www.adobe.com/devnet/flex/videotraining/exercises/ex1_01.html"><img src="images/training/FlexInAWeek.png" alt=""/><div class="image-overlay-link"></div></a></div>
-    <div class="item-description">
-        <h5><a href="https://www.adobe.com/devnet/flex/videotraining/exercises/ex1_01.html">The Flex in a Week Series</a></h5>
-        <p>The Flex in a Week training series consists of videos and exercises to teach experienced programmers how to program using the Flex 4.5 framework and Flash Builder 4.5. To gain the most from this series, watch the videos and complete the exercises in the order in which they are listed.</p>
-    </div>
-</div>
-
-
-
-<!-- Project -->
-<div class="span3">
-    <div class="picture"><a href="https://www.adobe.com/devnet/flex/videotraining.html"><img src="images/training/FlexInAWeekVideo.png" alt=""/><div class="image-overlay-link"></div></a></div>
-    <div class="item-description">
-        <h5><a href="https://www.adobe.com/devnet/flex/videotraining.html">Flex In A Week Video Series</a></h5>
-        <p>The Flex in a Week video training course will help you understand how you can leverage the open source Flex framework to build RIAs. To make it easier for you to learn Flex, you will use the Eclipse-based Flash Builder 4.5 development tool, which includes the Flex framework and provides features such as intelligent coding, interactive step-through debugging, and visual design of the user layout.</p>
-    </div>
-</div>
-
-<!-- Project -->
-<div class="span3">
     <div class="picture"><a href="https://www.adobe.com/devnet/flex/articles/interactive_maps.html"><img src="images/training/1296459538876.jpg" alt=""/><div class="image-overlay-link"></div></a></div>
     <div class="item-description">
-        <h5><a href="https://www.adobe.com/devnet/flex/articles/interactive_maps.html">Building interactive maps with Flex</a></h5>
+        <h5><a href="https://web.archive.org/web/20160314204607/https://www.adobe.com/devnet/flex/articles/interactive_maps.html">Building interactive maps with Flex</a></h5>
         <p>It has never been easier to build interactive online maps with Flex. There is a wide range of APIs now available. The focus of this article is building a simple map application using the open-source Modest Maps Flex API. Modest Maps offers a number of advantages over other Flex mapping APIs including the ability to point at multiple basemap providers and direct access to the source code. </p>
     </div>
 </div>
