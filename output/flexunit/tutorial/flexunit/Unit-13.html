@@ -199,11 +199,11 @@
 <p>Without asynchronous support, a large portion of systems would remain untested creating an easy location for bugs to hide. Race conditions can potentially be the origin of huge bugs that, without asynchronous testing, can cause countless hours of debugging.</p>
 <h2>Introduction to the available async methods</h2>
 <p>FlexUnit 4 contains extensive support for asynchronous tests. All asynchronous tests are decorated with the annotation <code>async</code> which notifies the runner this test is not complete once the method has reached the closing brace.</p>
-<pre><code>[Test( async )]
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="err">[Test( async )]</span>
+</code></pre></div>
 <p>Decorating a test with async causes the runner to hold that test in memory. The test runner relies on an async handler to notify when the test is complete. Omitting an async handler will cause the test to hang indefinitely. To prevent the test from hanging, we may also decorate the test with the timeout annotation.</p>
-<pre><code>[Test( async, timeout="1000" )]
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="err">[Test( async, timeout="1000" )]</span>
+</code></pre></div>
 <p>The Async class in FlexUnit 4 contains numerous static methods for handling async testing.</p>
 <ul>
 <li><p><code>Async.asyncHandler</code> - Most common asynchronous test. Returns a handler when the async test succeeds or fails from which additional testing can occur.</p></li>
@@ -234,64 +234,64 @@
 </li>
 <li>
 <p>Remove the automatically created constructor from the class.</p>
-<pre><code>package async.testcases {
-	public class BasicTimerTest {
-	}
-}
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="err">package async.testcases {</span>
+<span class="err">    public class BasicTimerTest {</span>
+<span class="err">    }</span>
+<span class="err">}</span>
+</code></pre></div>
 <h3><br/>Create an async test case</h3>
 </li>
 <li>
 <p>Declare a new private property named <code>timer</code> of type <code>Timer</code> within the class.</p>
-<pre><code>private var timer:Timer;
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="err">private var timer:Timer;</span>
+</code></pre></div>
 <p>If you did not use code-completion, add the import for flash.utils.Timer at this time.</p>
 </li>
 <li>
 <p>Declare setup and teardown methods for the class, each marked with <code>[Before]</code> and <code>[After]</code> metadata. The setup method will instantiate <code>timer</code> with a delay of <code>100</code> and a repeat count of <code>1</code>. The teardown method will check if <code>timer</code> is running, stop it if necessary, and destroy the instance.</p>
-<pre><code>[Before]
-public function setUp():void {
-	timer = new Timer( 100, 1 );
-}
-[After]
-public function tearDown():void {
-	if( timer &amp;&amp; timer.running ) {
-		timer.stop();
-	}
-	timer = null;
-}
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="k">[Before]</span>
+<span class="na">public function setUp():void {</span>
+    <span class="na">timer</span> <span class="o">=</span> <span class="s">new Timer( 100, 1 );</span>
+<span class="na">}</span>
+<span class="k">[After]</span>
+<span class="na">public function tearDown():void {</span>
+    <span class="na">if( timer &amp;&amp; timer.running ) {</span>
+        <span class="na">timer.stop();</span>
+    <span class="na">}</span>
+    <span class="na">timer</span> <span class="o">=</span> <span class="s">null;</span>
+<span class="na">}</span>
+</code></pre></div>
 </li>
 <li>
 <p>Write a test method named <code>shouldCompleteTimer()</code>. It will add an event listener for the <code>TimerEvent.TIMER_COMPLETE</code> event which will call an <code>AsyncHandler()</code> method. This asynchronous test must be marked with <code>[Test( async )]</code> metadata in order to be run asynchronously.</p>
-<pre><code>[Test( async )]
-public function shouldCompleteTimer():void {
-	timer.addEventListener( TimerEvent.TIMER_COMPLETE,
-		Async.asyncHandler( this, handleWin, 100, timer, handleTimeout ),
-		false, 0, true );
-}
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="k">[Test( async )]</span>
+<span class="na">public function shouldCompleteTimer():void {</span>
+    <span class="na">timer.addEventListener( TimerEvent.TIMER_COMPLETE,</span>
+        <span class="na">Async.asyncHandler( this, handleWin, 100, timer, handleTimeout ),</span>
+        <span class="na">false, 0, true );</span>
+<span class="na">}</span>
+</code></pre></div>
 <p><code>asyncHandler()</code> calls a success handler or timeout handler depending on whether the <code>TimerEvent.TIMER_COMPLETE</code> event is dispatched before the <code>timeOut</code> limit.</p>
 <p>If you did not use code-completion, add the import statements for org.flexunit.async.Async and flash.events.TimerEvent at this time.</p>
 <p>Take a look at the <code>Async.asyncHandler()</code> method used within the <code>addEventListener()</code> method in the <code>testTimerComplete()</code> test.</p>
-<pre><code>Async.asyncHandler( this, handleWin, 100, timer, handleTimeout )
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="err">Async.asyncHandler( this, handleWin, 100, timer, handleTimeout )</span>
+</code></pre></div>
 <p>The prototype of this method is:</p>
-<pre><code>Async.asyncHandler(testCase:Object, eventHandler:Function, timeout:int, passThroughData:Object=null,
- timeoutHandler:Function=null):Function
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="err">Async.asyncHandler(testCase:Object, eventHandler:Function, timeout:int, passThroughData:Object=null,</span>
+<span class="err"> timeoutHandler:Function=null):Function</span>
+</code></pre></div>
 <p>This method references two functions: <code>handleWin()</code> and <code>handleTimeout()</code>. The method <code>handleWin()</code> is called if the <code>TimerEvent.TIMER_COMPLETE</code> occurs before the <code>timeout</code>, which is set at 100.  <code>handleTimeout()</code> is the function called if the event is not dispatched before the timeout. <code>handleWin()</code> will receive both the <code>event</code> and <code>passThroughData</code> objects as arguments. The method <code>handleTimeout()</code> will only receives the <code>passThroughData</code>.</p>
 </li>
 <li>
 <p>Add a call to the <code>timer.start()</code> method on the last line of the <code>shouldCompleteTimer()</code> test method.</p>
-<pre><code>[Test( async )]
-public function shouldCompleteTimer():void {
-	timer.addEventListener( TimerEvent.TIMER_COMPLETE,
-		Async.asyncHandler( this, handleWin, 100, timer, handleTimeout ),
-		false, 0, true );
-	timer.start();
-}
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="k">[Test( async )]</span>
+<span class="na">public function shouldCompleteTimer():void {</span>
+    <span class="na">timer.addEventListener( TimerEvent.TIMER_COMPLETE,</span>
+        <span class="na">Async.asyncHandler( this, handleWin, 100, timer, handleTimeout ),</span>
+        <span class="na">false, 0, true );</span>
+    <span class="na">timer.start();</span>
+<span class="na">}</span>
+</code></pre></div>
 <p>You will need to declare both the <code>handleWin()</code> and <code>handleTimeout()</code> functions. They can be specified as protected because they are only run within the specific test case and not by the runner itself.</p>
 </li>
 <li>
@@ -299,25 +299,25 @@ public function shouldCompleteTimer():void {
 </li>
 <li>
 <p>The <code>handleTimeout()</code> method should also be declared as protected and accept a single parameter named <code>passThroughData</code> of type <code>Object</code>.</p>
-<pre><code>protected function handleWin( event:Event, passThroughData:Object ):void {
-}
-protected function handleTimeout( passThroughData:Object ):void {
-}
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="err">protected function handleWin( event:Event, passThroughData:Object ):void {</span>
+<span class="err">}</span>
+<span class="err">protected function handleTimeout( passThroughData:Object ):void {</span>
+<span class="err">}</span>
+</code></pre></div>
 </li>
 <li>
 <p>Add a call to the <code>Assert.assertEquals()</code> method in the <code>handleWin()</code> method. It should take <code>( event.target as Timer ).currentCount</code> and <code>passThroughData.repeatCount</code> as its arguments.</p>
-<pre><code>protected function handleWin( event:Event, passThroughData:Object ):void {
-	Assert.assertEquals( ( event.target as Timer ).currentCount, passThroughData.repeatCount );
-}
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="err">protected function handleWin( event:Event, passThroughData:Object ):void {</span>
+<span class="err">    Assert.assertEquals( ( event.target as Timer ).currentCount, passThroughData.repeatCount );</span>
+<span class="err">}</span>
+</code></pre></div>
 </li>
 <li>
 <p>Add a call to the <code>Assert.fail()</code> method in the <code>handleTimeout()</code> method. It should take the string <code>"Pending event timed out"</code> as its argument.</p>
-<pre><code>protected function handleTimeout( passThroughData:Object ):void {
-	Assert.fail("Pending event timed out");
-}
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="err">protected function handleTimeout( passThroughData:Object ):void {</span>
+<span class="err">    Assert.fail("Pending event timed out");</span>
+<span class="err">}</span>
+</code></pre></div>
 <p>If you did not use code-completion, add the import statements for flash.events.Event and org.flexunit.Assert at this time.</p>
 </li>
 <li>
@@ -332,26 +332,26 @@ protected function handleTimeout( passThroughData:Object ):void {
 </li>
 <li>
 <p>Remove the automatically created constructor from AsyncSuite.as.</p>
-<pre><code>package async.testcases {
-	public class AsyncSuite {	
-	}
-}
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="err">package async.testcases {</span>
+<span class="err">    public class AsyncSuite {   </span>
+<span class="err">    }</span>
+<span class="err">}</span>
+</code></pre></div>
 </li>
 <li>
 <p>Mark the AsyncSuite class definition with <code>[Suite]</code> and <code>[RunWith("org.flexunit.runners.Suite")]</code> metadata.</p>
-<pre><code>package async.testcases {
-	[Suite]
-	[RunWith("org.flexunit.runners.Suite")]
-	public class AsyncSuite {
-	}
-}
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="n">package</span><span class="w"> </span><span class="n">async</span><span class="p">.</span><span class="n">testcases</span><span class="w"> </span><span class="err">{</span><span class="w"></span>
+<span class="w">    </span><span class="o">[</span><span class="n">Suite</span><span class="o">]</span><span class="w"></span>
+<span class="w">    </span><span class="o">[</span><span class="n">RunWith("org.flexunit.runners.Suite")</span><span class="o">]</span><span class="w"></span>
+<span class="w">    </span><span class="k">public</span><span class="w"> </span><span class="k">class</span><span class="w"> </span><span class="n">AsyncSuite</span><span class="w"> </span><span class="err">{</span><span class="w"></span>
+<span class="w">    </span><span class="err">}</span><span class="w"></span>
+<span class="err">}</span><span class="w"></span>
+</code></pre></div>
 </li>
 <li>
 <p>Add a public variable named <code>test1</code> of type <code>BasicTimerTest</code>.</p>
-<pre><code>public var test1:BasicTimerTest;
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="err">public var test1:BasicTimerTest;</span>
+</code></pre></div>
 </li>
 <li>
 <p>Save AsyncSuite.as.</p>
@@ -367,26 +367,26 @@ protected function handleTimeout( passThroughData:Object ):void {
 </li>
 <li>
 <p>Remove the automatically created constructor from the new class and mark it with <code>[Suite]</code> and <code>[RunWith("org.flexunit.runners.Suite")]</code> metadata.</p>
-<pre><code>package testcases {
-	[Suite]
-	[RunWith("org.flexunit.runners.Suite")]
-	public class AllSuites {
-	}
-}
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="n">package</span><span class="w"> </span><span class="n">testcases</span><span class="w"> </span><span class="err">{</span><span class="w"></span>
+<span class="w">    </span><span class="o">[</span><span class="n">Suite</span><span class="o">]</span><span class="w"></span>
+<span class="w">    </span><span class="o">[</span><span class="n">RunWith("org.flexunit.runners.Suite")</span><span class="o">]</span><span class="w"></span>
+<span class="w">    </span><span class="k">public</span><span class="w"> </span><span class="k">class</span><span class="w"> </span><span class="n">AllSuites</span><span class="w"> </span><span class="err">{</span><span class="w"></span>
+<span class="w">    </span><span class="err">}</span><span class="w"></span>
+<span class="err">}</span><span class="w"></span>
+</code></pre></div>
 </li>
 <li>
 <p>Add a public variable named <code>circleSuite</code> of type <code>CircleSuite</code> to the new class.</p>
 </li>
 <li>
 <p>Add another public varibale named <code>asyncSuite</code> of type <code>AsyncSuite</code> to the class.</p>
-<pre><code>[Suite]
-[RunWith("org.flexunit.runners.Suite")]
-public class AllSuites {
-	public var circleSuite:CircleSuite;
-	public var asyncSuite:AsyncSuite;	
-}
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="k">[Suite]</span>
+<span class="k">[RunWith("org.flexunit.runners.Suite")]</span>
+<span class="na">public class AllSuites {</span>
+    <span class="na">public var circleSuite:CircleSuite;</span>
+    <span class="na">public var asyncSuite:AsyncSuite;   </span>
+<span class="na">}</span>
+</code></pre></div>
 <p>If you did not use code-completion, add the imports for math.testcases.CircleSuite and async.testcases.AsynSuite at this time.</p>
 </li>
 <li>
@@ -398,11 +398,11 @@ public class AllSuites {
 </li>
 <li>
 <p>Replace <code>CircleSuite</code> with <code>AllSuites</code> in the <code>testsToRun.push()</code> statement.</p>
-<pre><code>testsToRun.push( CircleSuite );
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="err">testsToRun.push( CircleSuite );</span>
+</code></pre></div>
 <p>Becomes:</p>
-<pre><code>testsToRun.push( AllSuites );
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="err">testsToRun.push( AllSuites );</span>
+</code></pre></div>
 <p>If you did not use code-completion, add the import for the testcases.AllSuites at this time.</p>
 </li>
 <li>
@@ -420,52 +420,52 @@ public class AllSuites {
 </ol>
 <h2>Understanding error handling with async</h2>
 <p>In Unit 5 you learned how to handle errors using the <code>[Test(expects="ErrorType")]</code> metadata. Asynchronous methods can handle errors in the same way. Errors thrown in the handler are still dealt with in the test method.</p>
-<pre><code>[Test( async, expects="Error" )]
-public function testTimerComplete():void {
-	timer.addEventListener( TimerEvent.TIMER_COMPLETE,
-		Async.asyncHandler( this, handleWin, 100, timer, handleTimeout ),
-		false, 0, true );
-	timer.start();
-}
-protected function handleWin( event:Event, passThroughData:Object ):void {
-	throw new Error();
-}
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="k">[Test( async, expects="Error" )]</span>
+<span class="na">public function testTimerComplete():void {</span>
+    <span class="na">timer.addEventListener( TimerEvent.TIMER_COMPLETE,</span>
+        <span class="na">Async.asyncHandler( this, handleWin, 100, timer, handleTimeout ),</span>
+        <span class="na">false, 0, true );</span>
+    <span class="na">timer.start();</span>
+<span class="na">}</span>
+<span class="na">protected function handleWin( event:Event, passThroughData:Object ):void {</span>
+    <span class="na">throw new Error();</span>
+<span class="na">}</span>
+</code></pre></div>
 <p>As you can see, the <code>Async.asyncHandler</code> is called upon the <code>TIMER_COMPLETE</code> event, just as in the previous walkthrough. The resulting handler is simplistic, but clearly illustrates how the error is then handled through the test, where the metadata reads <code>[Test( async, expects="Error" )]</code>. There are several situations in which you need the message or the resulting handler to utilize <code>passThroughData</code> or additional custom information within the error thrown. In these cases, the <code>expects</code> annotation is insufficient. Here, the handler can be outfitted with a <code>try-catch</code> statement that handles a specific error and data potentially carried with that error.</p>
-<pre><code>[Test( async )]
-public function testTimerComplete():void {
-	timer.addEventListener( TimerEvent.TIMER_COMPLETE,
-		Async.asyncHandler( this, handleWin, 100, timer, handleTimeout ),
-		false, 0, true );
-	timer.start();
-}
-protected function handleWin( event:Event, passThroughData:Object ):void {
-	try {
-		throw new TypeError();
-	}
-	catch ( e:TypeError ) {
-		assertThat( passThroughData, equalTo( timer ) );
-		return;
-	}
-	Assert.fail( "Incorrect error thrown" );
-}
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="k">[Test( async )]</span>
+<span class="na">public function testTimerComplete():void {</span>
+    <span class="na">timer.addEventListener( TimerEvent.TIMER_COMPLETE,</span>
+        <span class="na">Async.asyncHandler( this, handleWin, 100, timer, handleTimeout ),</span>
+        <span class="na">false, 0, true );</span>
+    <span class="na">timer.start();</span>
+<span class="na">}</span>
+<span class="na">protected function handleWin( event:Event, passThroughData:Object ):void {</span>
+    <span class="na">try {</span>
+        <span class="na">throw new TypeError();</span>
+    <span class="na">}</span>
+    <span class="na">catch ( e:TypeError ) {</span>
+        <span class="na">assertThat( passThroughData, equalTo( timer ) );</span>
+        <span class="na">return;</span>
+    <span class="na">}</span>
+    <span class="na">Assert.fail( "Incorrect error thrown" );</span>
+<span class="na">}</span>
+</code></pre></div>
 <p>The <code>try-catch</code> statement is looking for a <code>typeError</code>, and then it continues to evaluate with an <code>assertThat</code> statement, expecting the equality of the <code>timer</code> and <code>passThroughData</code>. In these cases, the <code>expects</code> annotation will weaken the test. The test will only expect the kind of error specified, and it will not assert equality, such as is shown through the <code>catch</code> above.</p>
 <h2>Event based synchronous versus asynchronous</h2>
 <p>FlexUnit testing is based on the idea of synchronous tests occurring in order. These tests can throw events, errors, and deliver results, but they don't wait around for anything to happen, they just run.</p>
 <p>Asynchronous tests are set apart through their metadata, and the asynchronous handlers are the only thing that can bring the test to completion. There are three primary kinds:</p>
 <h3>Normal asynchronous completion</h3>
 <p>When the test dispatches the expected event within the time limit, the <code>eventHandler</code> method is then called. Even though the desired event has been dispatched, the test does not automatically pass.</p>
-<pre><code>Async.asyncHandler(testCase:Object, &lt;b&gt;eventHandler:Function&lt;/b&gt;, timeout:int, passThroughData:Object=null,
+<div class="highlight"><pre><span></span><code>Async.asyncHandler(testCase:Object, <span class="nt">&lt;b&gt;</span>eventHandler:Function<span class="nt">&lt;/b&gt;</span>, timeout:int, passThroughData:Object=null,
  timeoutHandler:Function=null)
-</code></pre>
+</code></pre></div>
 <h3>Asynchronous timeout</h3>
 <p>Most Async methods are created with timeout variables. If the desired event is not dispatched within the time limit, the <code>timeoutHandler</code> is called.</p>
 <p>When a <code>timeoutHandler</code> is specified, a timeout does not mark a test as a failure. If a timeout indicates failure you need to assert as such in the timeout method.</p>
 <p>If a <code>timeoutHandler</code> is not passed in, the test merely completes with a generic timeout failure.</p>
-<pre><code>Async.asyncHandler(testCase:Object, eventHandler:Function, timeout:int, passThroughData:Object=null,
- &lt;b&gt;timeoutHandler:Function=null&lt;/b&gt;)
-</code></pre>
+<div class="highlight"><pre><span></span><code>Async.asyncHandler(testCase:Object, eventHandler:Function, timeout:int, passThroughData:Object=null,
+ <span class="nt">&lt;b&gt;</span>timeoutHandler:Function=null<span class="nt">&lt;/b&gt;</span>)
+</code></pre></div>
 <h3>Failure events</h3>
 <p>When using the Async.failOnEvent or Async.registerFailureOnEvent methods, specific events can be registered as an instantaneous failure.</p>
 <h2>Walkthrough 2: Handling an Event</h2>
@@ -484,139 +484,139 @@ protected function handleWin( event:Event, passThroughData:Object ):void {
 </li>
 <li>
 <p>Mark the <code>PrimeNumberGeneratorTest</code> class with <code>[RunWith("org.flexunit.runners.Parameterized")]</code> metadata.</p>
-<pre><code>[RunWith("org.flexunit.runners.Parameterized")]
-public class PrimeNumberGeneratorTest {
-	public function PrimeNumberGeneratorTest() {
-	}
-}
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="k">[RunWith("org.flexunit.runners.Parameterized")]</span>
+<span class="na">public class PrimeNumberGeneratorTest {</span>
+    <span class="na">public function PrimeNumberGeneratorTest() {</span>
+    <span class="na">}</span>
+<span class="na">}</span>
+</code></pre></div>
 <p>You will be using JUnit style paramterized loading for this test. Because this style requires parameters to be set in the constructor, leave the constructor in place.</p>
 </li>
 <li>
 <p>Add a private variable named <code>primeGenerator</code> of type <code>PrimeNumberGenerator</code> to the class.</p>
-<pre><code>private var primeNumberGenerator:PrimeNumberGenerator;
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="err">private var primeNumberGenerator:PrimeNumberGenerator;</span>
+</code></pre></div>
 <p>If you did not use code-completion, add the import for net.digitalprimates.math.PrimeNumberGenerator at this time.</p>
 </li>
 <li>
 <p>Add a private static constant named <code>TIMEOUT</code> of data type <code>int</code> and set it to <code>500</code>.</p>
-<pre><code>private static const TIMEOUT:int = 500;
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="err">private static const TIMEOUT:int = 500;</span>
+</code></pre></div>
 </li>
 <li>
 <p>Add another public static variable named <code>numberLoader</code> of type <code>NumberDataHelper</code>. Instantiate the variable with a URL string: "<code>xml/numberList.xml</code>"</p>
-<pre><code>public static var numberLoader:NumberDataHelper = new NumberDataHelper( "xml/numberList.xml" );
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="err">public static var numberLoader:NumberDataHelper = new NumberDataHelper( "xml/numberList.xml" );</span>
+</code></pre></div>
 <p>If you did not use code-completion, add the import for helper.NumberDataHelper at this time.</p>
 </li>
 <li>
 <p>Create a new static variable named <code>data</code>. Decorate it with the <code>Parameters</code> metadata and pass it a <code>loader</code> of <code>numberLoader</code></p>
-<pre><code>[Parameters(loader="numberLoader")]
-public static var data:Array;
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="k">[Parameters(loader="numberLoader")]</span>
+<span class="na">public static var data:Array;</span>
+</code></pre></div>
 </li>
 <li>
 <p>Add two private instance variables of type <code>Number</code> named <code>value</code> and <code>length</code>. In typical JUnit style, make the constructor take values for each as arguments, and set the instance variables when the constructor is run.</p>
-<pre><code>private var value:Number;
-private var length:Number;
-public function PrimeNumberGeneratorTest( value:Number, length:Number ) {
-	this.value = value;
-	this.length = length;
-}
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="err">private var value:Number;</span>
+<span class="err">private var length:Number;</span>
+<span class="err">public function PrimeNumberGeneratorTest( value:Number, length:Number ) {</span>
+<span class="err">    this.value = value;</span>
+<span class="err">    this.length = length;</span>
+<span class="err">}</span>
+</code></pre></div>
 <p>All instance variables for the class should now be declared.</p>
 </li>
 <li>
 <p>Create a new method named <code>setup()</code> and a method named <code>teardown()</code>. Decorate them with the <code>[Before( async )]</code> and <code>[After( async )]</code> metadata, respectively.</p>
-<pre><code>[Before( async )]
-public function setup():void {
-}
-[After( async )]
-public function teardown():void {
-}
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="k">[Before( async )]</span>
+<span class="na">public function setup():void {</span>
+<span class="na">}</span>
+<span class="k">[After( async )]</span>
+<span class="na">public function teardown():void {</span>
+<span class="na">}</span>
+</code></pre></div>
 <p>The <code>async</code> annotation notifies the test runner the <code>setup()</code> and <code>teardown()</code> methods are not complete when the end brace is reached. The <code>PrimeNumberGenerator</code> simulates this event through the use of a timer. You will need to specify a complete condition just as you would for an asynchronous test or the startup will hang indefinitely.</p>
 </li>
 <li>
 <p>Within the <code>setup()</code> method, create a new instance of <code>primeNumberGenerator</code>.  On the next line, add a call to the method <code>Async.proceedOnEvent()</code> passing the arguments <code>this</code>, <code>primeNumberGenerator</code> and <code>TIMEOUT</code>.</p>
-<pre><code>[Before( async )]
-public function setup():void {
-	primeNumberGenerator = new PrimeNumberGenerator();
-	Async.proceedOnEvent( this, primeNumberGenerator, PrimeGeneratorEvent.GENERATOR_READY,
-	 TIMEOUT );
-}
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="k">[Before( async )]</span>
+<span class="na">public function setup():void {</span>
+    <span class="na">primeNumberGenerator</span> <span class="o">=</span> <span class="s">new PrimeNumberGenerator();</span>
+<span class="s">    Async.proceedOnEvent( this, primeNumberGenerator, PrimeGeneratorEvent.GENERATOR_READY,</span>
+<span class="s">     TIMEOUT );</span>
+<span class="na">}</span>
+</code></pre></div>
 <p><code>Async.proceedOnEvent()</code> causes the test runner to wait for the parameter <code>IEventDispatcher</code> to dispatch an event before proceeding.  In this case the event is named: <code>PrimeGeneratorEvent.GENERATOR_READY</code>.</p>
 <p>If you did not use code completion, add the imports for org.flexunit.async.Async and net.digitalprimates.event.PrimeGeneratorEvent at this time.</p>
 </li>
 <li>
 <p>In the <code>teardown()</code> method, remove the instance of <code>primeNumberGenerator</code>.</p>
-<pre><code>[After( async )]
-public function tearDown():void {
-	primeNumberGenerator = null;
-}
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="k">[After( async )]</span>
+<span class="na">public function tearDown():void {</span>
+    <span class="na">primeNumberGenerator</span> <span class="o">=</span> <span class="s">null;</span>
+<span class="na">}</span>
+</code></pre></div>
 </li>
 <li>
 <p>Your completed asynchrounous startup should now appear as:</p>
-<pre><code>[RunWith("org.flexunit.runners.Parameterized")]
-public class PrimeNumberGeneratorTest {
-	private var primeNumberGenerator:PrimeNumberGenerator;
-	public static const TIMEOUT : int = 500;
-	public static var numberLoader:NumberDataHelper =
-	 new NumberDataHelper( "xml/numberList.xml" );
-	[Before( async )]
-	public function setup():void {
-		primeNumberGenerator = new PrimeNumberGenerator();
-		Async.proceedOnEvent( this, primeNumberGenerator, PrimeGeneratorEvent.GENERATOR_READY,
-		 TIMEOUT );
-	}
-	[After( async )]
-	public function teardown():void {
-		primeNumberGenerator = null;
-	}
-	private var value:Number;
-	private var length:Number;
-	public function PrimeNumberGeneratorTest( value:Number, length:Number ) {
-		this.value = value;
-		this.length = length;
-	}
-}
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="k">[RunWith("org.flexunit.runners.Parameterized")]</span>
+<span class="na">public class PrimeNumberGeneratorTest {</span>
+    <span class="na">private var primeNumberGenerator:PrimeNumberGenerator;</span>
+    <span class="na">public static const TIMEOUT : int</span> <span class="o">=</span> <span class="s">500;</span>
+<span class="s">    public static var numberLoader:NumberDataHelper =</span>
+<span class="s">     new NumberDataHelper( "xml/numberList.xml" );</span>
+<span class="s">    [Before( async )]</span>
+<span class="s">    public function setup():void {</span>
+<span class="s">        primeNumberGenerator = new PrimeNumberGenerator();</span>
+<span class="s">        Async.proceedOnEvent( this, primeNumberGenerator, PrimeGeneratorEvent.GENERATOR_READY,</span>
+<span class="s">         TIMEOUT );</span>
+<span class="s">    }</span>
+<span class="s">    [After( async )]</span>
+<span class="s">    public function teardown():void {</span>
+<span class="s">        primeNumberGenerator = null;</span>
+<span class="s">    }</span>
+<span class="s">    private var value:Number;</span>
+<span class="s">    private var length:Number;</span>
+<span class="s">    public function PrimeNumberGeneratorTest( value:Number, length:Number ) {</span>
+<span class="s">        this.value = value;</span>
+<span class="s">        this.length = length;</span>
+<span class="s">    }</span>
+<span class="na">}</span>
+</code></pre></div>
 <h3><br/>Create the generator test</h3>
 </li>
 <li>
 <p>Add a new test method named <code>shouldCreatePrimeArray()</code> to the class, mark it with <code>[Test(async)]</code> metadata.  This method creates a new async handler to the <code>handleEvent()</code> method, passing in the arguments <code>this</code>, <code>primeNumberGenerator</code>, <code>PrimeNumberGenerator.GENERATION_COMPLETE</code>, <code>handleComplete</code> and <code>TIMEOUT</code>.</p>
-<pre><code>[Test(async)]
-public function shouldCreatePrimeArray():void {
-	Async.handleEvent( this, primeNumberGenerator, PrimeGeneratorEvent.GENERATION_COMPLETE,
-	 handleComplete, TIMEOUT );
-}
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="k">[Test(async)]</span>
+<span class="na">public function shouldCreatePrimeArray():void {</span>
+    <span class="na">Async.handleEvent( this, primeNumberGenerator, PrimeGeneratorEvent.GENERATION_COMPLETE,</span>
+     <span class="na">handleComplete, TIMEOUT );</span>
+<span class="na">}</span>
+</code></pre></div>
 </li>
 <li>
 <p>Add a call to <code>primeNumberGenerator.generatePrimes()</code> method, passing in the instance variable <code>value</code> as its argument.</p>
-<pre><code>[Test(async)]
-public function shouldCreatePrimeArray():void {
-	Async.handleEvent( this, primeNumberGenerator, PrimeGeneratorEvent.GENERATION_COMPLETE,
-	 handleComplete, TIMEOUT );
-	primeNumberGenerator.generatePrimes( value );
-}
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="k">[Test(async)]</span>
+<span class="na">public function shouldCreatePrimeArray():void {</span>
+    <span class="na">Async.handleEvent( this, primeNumberGenerator, PrimeGeneratorEvent.GENERATION_COMPLETE,</span>
+     <span class="na">handleComplete, TIMEOUT );</span>
+    <span class="na">primeNumberGenerator.generatePrimes( value );</span>
+<span class="na">}</span>
+</code></pre></div>
 </li>
 <li>
 <p>Create the <code>handleComplete()</code> method referenced in the <code>Async.handleEvent()</code> method from the previous step. It needs to accept two parameters, one named <code>event</code> of type <code>PrimeGeneratorEvent</code>, and another named <code>passThroughData</code> of type Object.</p>
-<pre><code>protected function handleComplete( event:PrimeGeneratorEvent, passThroughData:Object ):void {
-}
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="err">protected function handleComplete( event:PrimeGeneratorEvent, passThroughData:Object ):void {</span>
+<span class="err">}</span>
+</code></pre></div>
 <p>The <code>Async.handleEvent()</code> method above declares no <code>timeoutHandler()</code>, so it will just use the default message. This will suffice for this walkthrough, however it can be added as the last argument of the <code>Async.handleEvent()</code> method if necessary.</p>
 </li>
 <li>
 <p>Add a call to the <code>assertThat()</code> method within the <code>handleComplete</code> method. It should assert that <code>event.primeList.length</code> is equal to <code>length</code>.</p>
-<pre><code>protected function handleComplete( event:PrimeGeneratorEvent, passThroughData:Object ):void {
-	assertThat( event.primeList.length, equalTo( length ) );
-}
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="err">protected function handleComplete( event:PrimeGeneratorEvent, passThroughData:Object ):void {</span>
+<span class="err">    assertThat( event.primeList.length, equalTo( length ) );</span>
+<span class="err">}</span>
+</code></pre></div>
 <p>If you did not use code-completion, add the imports for org.flexunit.assertThat and org.hamcrest.object.equalTo at this time.</p>
 </li>
 <li>
@@ -625,15 +625,15 @@ public function shouldCreatePrimeArray():void {
 </li>
 <li>
 <p>Open AsyncSuite.as in the async.testcases package. Add a public variable named <code>test2</code> of type <code>PrimeNumberGeneratorTest</code>.</p>
-<pre><code>package async.testcases {
-	[Suite]
-	[RunWith("org.flexunit.runners.Suite")]
-	public class AsyncSuite {
-		public var test1:BasicTimerTest;
-		public var test2:PrimeNumberGeneratorTest;
-	}
-}
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="n">package</span><span class="w"> </span><span class="n">async</span><span class="p">.</span><span class="n">testcases</span><span class="w"> </span><span class="err">{</span><span class="w"></span>
+<span class="w">    </span><span class="o">[</span><span class="n">Suite</span><span class="o">]</span><span class="w"></span>
+<span class="w">    </span><span class="o">[</span><span class="n">RunWith("org.flexunit.runners.Suite")</span><span class="o">]</span><span class="w"></span>
+<span class="w">    </span><span class="k">public</span><span class="w"> </span><span class="k">class</span><span class="w"> </span><span class="n">AsyncSuite</span><span class="w"> </span><span class="err">{</span><span class="w"></span>
+<span class="w">        </span><span class="k">public</span><span class="w"> </span><span class="nf">var</span><span class="w"> </span><span class="nl">test1</span><span class="p">:</span><span class="n">BasicTimerTest</span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="k">public</span><span class="w"> </span><span class="nf">var</span><span class="w"> </span><span class="nl">test2</span><span class="p">:</span><span class="n">PrimeNumberGeneratorTest</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="err">}</span><span class="w"></span>
+<span class="err">}</span><span class="w"></span>
+</code></pre></div>
 </li>
 <li>
 <p>Run the FlexUnit4Training.mxml file.</p>
@@ -659,20 +659,20 @@ public function shouldCreatePrimeArray():void {
 <li>The test would have to wait for the system to complete displaying all the pictures.</li>
 </ol>
 <p>This is a testable use case. The testing concern is whether the component fires the events and system displays all the pictures. You could use a chain of async handlers.</p>
-<pre><code>[Test( async, ui )]
-public void shouldSubmitForm():void {
-	//Create a new alarm clock
-	//Set an alarm time
-	//Proceed on event: "alarmExpired"
-	//Wait for the picture
-	//Proceed on event: "pictureLoaded"
-	//Display the picture
-	//Proceed on event: "pictureDisplayExpired"
-	//Load and display other pictures
-	//Proceed on event: "allPicturesDisplayed"
-	//Verify expected number of pictures displayed
-}
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="k">[Test( async, ui )]</span>
+<span class="na">public void shouldSubmitForm():void {</span>
+    <span class="na">//Create a new alarm clock</span>
+    <span class="na">//Set an alarm time</span>
+    <span class="na">//Proceed on event: "alarmExpired"</span>
+    <span class="na">//Wait for the picture</span>
+    <span class="na">//Proceed on event: "pictureLoaded"</span>
+    <span class="na">//Display the picture</span>
+    <span class="na">//Proceed on event: "pictureDisplayExpired"</span>
+    <span class="na">//Load and display other pictures</span>
+    <span class="na">//Proceed on event: "allPicturesDisplayed"</span>
+    <span class="na">//Verify expected number of pictures displayed</span>
+<span class="na">}</span>
+</code></pre></div>
 <p>As you can see, this can rapidly become very complex as we wait for event after event. Each of these asynchronous operations could require its own async handler leading to a very large test class. This is a simple example, but many UI components, which we will cover in the next unit, can rapidly devolve into a massive integration test. In addition, some components, especially higher level components, require user interaction that cannot be easily simulated through the use of async chains.</p>
 <p>FlexUnit 4 contains a special tool for handling these types of use cases called sequences.</p>
 <h2>Understanding sequences</h2>
@@ -687,19 +687,19 @@ public void shouldSubmitForm():void {
 </ol>
 <p>Sequences require the test case to use the custom runner named SequenceRunner. Each sequence is created by instantiating a sequence with the current test case, adding a series of tests, adding an optional assert handler and finally running the sequence.</p>
 <p>A simple sequence for a timer would appear as follows:</p>
-<pre><code>[Test( async )]
-public function shouldCompleteTimerSequence():void {
-	var timer:Timer = new Timer( TIMEOUT );
-	var sequence:SequenceRunner = new SequenceRunner( this );
-	sequence.addStep( new SequenceCaller( timer, timer.start ) );
-	sequence.addStep( new SequenceWaiter( timer, TimerEvent.TIMER, TIMEOUT2 ) );
-	sequence.addStep( new SequenceWaiter( timer, TimerEvent.TIMER, TIMEOUT2 ) );
-	sequence.addStep( new SequenceWaiter( timer, TimerEvent.TIMER, TIMEOUT2 ) );
-	sequence.addStep( new SequenceCaller( timer, timer.stop );
-	sequence.addAssertHandler( handleSequenceComplete, null );
-	sequence.run();
-}
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="k">[Test( async )]</span>
+<span class="na">public function shouldCompleteTimerSequence():void {</span>
+    <span class="na">var timer:Timer</span> <span class="o">=</span> <span class="s">new Timer( TIMEOUT );</span>
+<span class="s">    var sequence:SequenceRunner = new SequenceRunner( this );</span>
+<span class="s">    sequence.addStep( new SequenceCaller( timer, timer.start ) );</span>
+<span class="s">    sequence.addStep( new SequenceWaiter( timer, TimerEvent.TIMER, TIMEOUT2 ) );</span>
+<span class="s">    sequence.addStep( new SequenceWaiter( timer, TimerEvent.TIMER, TIMEOUT2 ) );</span>
+<span class="s">    sequence.addStep( new SequenceWaiter( timer, TimerEvent.TIMER, TIMEOUT2 ) );</span>
+<span class="s">    sequence.addStep( new SequenceCaller( timer, timer.stop );</span>
+<span class="s">    sequence.addAssertHandler( handleSequenceComplete, null );</span>
+<span class="s">    sequence.run();</span>
+<span class="na">}</span>
+</code></pre></div>
 <p>In this example, the sequence will: start a timer, wait for the timer to cycle three times, stop the timer and make an assertion. The advantage to this setup is if the timer needed to cycle two more times you would just need to add two more sequence waiters.</p>
 <p>In the next walkthrough, you will create your own sequence.</p>
 <h2>Walkthrough 3: Creating a chain of events with Sequences</h2>
@@ -719,42 +719,42 @@ public function shouldCompleteTimerSequence():void {
 </li>
 <li>
 <p>Add a new private static const named <code>TIMEOUT</code> of type <code>Number</code> and set it to the value <code>500</code>.</p>
-<pre><code>private static const TIMEOUT:Number = 500;
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="err">private static const TIMEOUT:Number = 500;</span>
+</code></pre></div>
 </li>
 <li>
 <p>Add a private variable named <code>service</code> of type <code>ServiceStub</code> to the class.</p>
-<pre><code>private var service:ServiceStub;
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="err">private var service:ServiceStub;</span>
+</code></pre></div>
 <p>If you did not use code-completion, add the import for net.digitalprimates.stub.ServiceStub at this time.</p>
 </li>
 <li>
 <p>Create the methods <code>setup()</code> and <code>teardown()</code> and decorate them with the <code>[Before]</code> and <code>[After]</code> metadata respectively. Inside the <code>setup()</code> method create a new instance of <code>service</code> variable. In the <code>teardown()</code> method, set it to null so that it may be garbage collected.</p>
-<pre><code>[Before]
-public function setup():void {
-	service = new ServiceStub();
-[After]
-public function teardown():void {
-	service = null;
-}
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="k">[Before]</span>
+<span class="na">public function setup():void {</span>
+    <span class="na">service</span> <span class="o">=</span> <span class="s">new ServiceStub();</span>
+<span class="k">[After]</span>
+<span class="na">public function teardown():void {</span>
+    <span class="na">service</span> <span class="o">=</span> <span class="s">null;</span>
+<span class="na">}</span>
+</code></pre></div>
 <h3><br/>Prepare the test case</h3>
 </li>
 <li>
 <p>Create a new test called <code>shouldCompleteRequest()</code>. Mark it with <code>[Test(async)]</code> metadata.</p>
-<pre><code>[Test( async )]
-public function shouldCompleteRequest():void {
-}
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="k">[Test( async )]</span>
+<span class="na">public function shouldCompleteRequest():void {</span>
+<span class="na">}</span>
+</code></pre></div>
 <p>A request is considered complete when a call to the service instance's <code>shouldCompleteRequest()</code> method has created a connection, sent the request and shutdown the connection. To create a test that listens for all of these events you may either create an asynchrounous chain of handlers or use a sequence. For this test, you will be using a sequence.</p>
 </li>
 <li>
 <p>Inside the body of <code>shouldCompleteRequest()</code>, declare a new variable <code>sequence</code> of the type <code>org.fluint.sequence.SequenceRunner</code>. Make sure you are using the correct <code>SequenceRunner</code> class.</p>
-<pre><code>[Test( async )]
-public function shouldCompleteRequest():void {
-	var sequence:SequenceRunner = new SequenceRunner( this );
-}
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="k">[Test( async )]</span>
+<span class="na">public function shouldCompleteRequest():void {</span>
+    <span class="na">var sequence:SequenceRunner</span> <span class="o">=</span> <span class="s">new SequenceRunner( this );</span>
+<span class="na">}</span>
+</code></pre></div>
 <p>If you did not use code-completion, add the import for org.fluint.sequence.SequenceRunner at this time.</p>
 <h3><br/>Create the Sequence</h3>
 <p>The next block will setup all the <code>SequenceCallers</code> and <code>SequenceWaiters</code> for the <code>SequenceRunner</code>. In this step you will want to test that when <code>sendRefreshRequest()</code> is called service creates a connection to the server, sends a refresh request and closes the connection.  It is phrased politely because the server may take longer to complete this request depending on various factors such as connection speed, number of requests, etc.</p>
@@ -762,69 +762,69 @@ public function shouldCompleteRequest():void {
 </li>
 <li>
 <p>Add a call to <code>sequence.addStep()</code> passing as an argument <code>new SequenceCaller()</code>. Pass the <code>SequenceCaller</code> constructor the arguments <code>service</code> and <code>service.sendRefreshRequest</code>.</p>
-<pre><code>sequence.addStep( new SequenceCaller( service, service.sendRefreshRequest ) );
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="err">sequence.addStep( new SequenceCaller( service, service.sendRefreshRequest ) );</span>
+</code></pre></div>
 <p>If you did not use code-completion, add the import for org.fluint.sequence.SequenceCaller at this time.</p>
 <p><code>SequenceCaller</code> sets up an asynchronous delay for the method call. Instead of calling it now, the method will be called when the sequence runs.</p>
 </li>
 <li>
 <p>Next, add a step to the sequence passing as an argument a new instance of the <code>SequenceWaiter</code> class. Pass it <code>service</code>, <code>StubServiceEvent.CONNECTION_CREATED</code>, and <code>TIMEOUT</code> as its arguments.</p>
-<pre><code>sequence.addStep( new SequenceWaiter( service, StubServiceEvent.CONNECTION_CREATED, TIMEOUT ) );
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="err">sequence.addStep( new SequenceWaiter( service, StubServiceEvent.CONNECTION_CREATED, TIMEOUT ) );</span>
+</code></pre></div>
 <p>If you did not use code-completion, add the imports for org.fluint.sequence.SequenceWaiter and net.digitalprimates.event.StubServiceEvent at this time.</p>
 <p>A <code>SequenceWaiter</code> creates an asynchronous handler for the parameter event. When this event is dispatched, the sequence will continue. If the event is not dispatched before the timeout, the timeout handler is called. In this case you are using the default timeout handler which will throw an error. When dealing with a long sequence it is generally best practice to create a custom handler for each <code>SequenceWaiter</code> to avoid confusion.</p>
 </li>
 <li>
 <p>On the next line add a call to the <code>addStep()</code> method that instantiates a <code>new SequenceWaiter</code> with arguments <code>service</code>, <code>StubServiceEvent.RECEIVED_REQUEST</code>, and <code>TIMEOUT</code>.</p>
-<pre><code>sequence.addStep( new SequenceWaiter( service, StubServiceEvent.RECEIVED_REQUEST, TIMEOUT ) );
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="err">sequence.addStep( new SequenceWaiter( service, StubServiceEvent.RECEIVED_REQUEST, TIMEOUT ) );</span>
+</code></pre></div>
 </li>
 <li>
 <p>Add a final SequenceWaiter with arguments <code>service</code>, <code>StubServiceEvent.SHUTDOWN_RECEIVED</code>, and <code>TIMEOUT</code>.</p>
-<pre><code>sequence.addStep( new SequenceWaiter( service, StubServiceEvent.SHUTDOWN_RECEIVED, TIMEOUT ) );
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="err">sequence.addStep( new SequenceWaiter( service, StubServiceEvent.SHUTDOWN_RECEIVED, TIMEOUT ) );</span>
+</code></pre></div>
 <p>The expected sequence is now set. However, there is no assert set for the completion of the sequence. Currently, as long as all the events are received in order the test is a success. If any of the events are not received within the specified timeout limit, the test fails.</p>
 </li>
 <li>
 <p>Add a call to <code>service.addAssertHandler()</code> passing <code>handleCompleteRequest</code> and <code>null</code>.</p>
-<pre><code>sequence.addAssertHandler( handleCompleteRequest, null );
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="err">sequence.addAssertHandler( handleCompleteRequest, null );</span>
+</code></pre></div>
 <p>The <code>addAssertHandler</code> adds an async handler for when the sequence completes successfully and will call the method specified. In this case, it will call <code>handleCompleteRequest()</code>.</p>
 </li>
 <li>
 <p>To complete the sequence, call <code>sequence.run()</code> within the <code>shouldCompleteRequest()</code> method.</p>
-<pre><code>sequence.run();
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="err">sequence.run();</span>
+</code></pre></div>
 <p>Your complete <code>shouldCompleteRequest()</code> method should now appear as follows:</p>
-<pre><code>[Test( async )]
-public function shouldCompleteRequest():void {
-	var sequence:SequenceRunner = new SequenceRunner( this );
-	sequence.addStep( new SequenceCaller( service, service.sendRefreshRequest ) );
-	sequence.addStep( new SequenceWaiter( service, StubServiceEvent.CONNECTION_CREATED,
-	 TIMEOUT ) );
-	sequence.addStep( new SequenceWaiter( service, StubServiceEvent.RECEIVED_REQUEST,
-	 TIMEOUT ) );
-	sequence.addStep( new SequenceWaiter( service, StubServiceEvent.SHUTDOWN_RECEIVED,
-	 TIMEOUT ) );
-	sequence.addAssertHandler( handleCompleteRequest, null );
-	sequence.run();
-}
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="k">[Test( async )]</span>
+<span class="na">public function shouldCompleteRequest():void {</span>
+    <span class="na">var sequence:SequenceRunner</span> <span class="o">=</span> <span class="s">new SequenceRunner( this );</span>
+<span class="s">    sequence.addStep( new SequenceCaller( service, service.sendRefreshRequest ) );</span>
+<span class="s">    sequence.addStep( new SequenceWaiter( service, StubServiceEvent.CONNECTION_CREATED,</span>
+<span class="s">     TIMEOUT ) );</span>
+<span class="s">    sequence.addStep( new SequenceWaiter( service, StubServiceEvent.RECEIVED_REQUEST,</span>
+<span class="s">     TIMEOUT ) );</span>
+<span class="s">    sequence.addStep( new SequenceWaiter( service, StubServiceEvent.SHUTDOWN_RECEIVED,</span>
+<span class="s">     TIMEOUT ) );</span>
+<span class="s">    sequence.addAssertHandler( handleCompleteRequest, null );</span>
+<span class="s">    sequence.run();</span>
+<span class="na">}</span>
+</code></pre></div>
 <p>If you did not use code-completion, add import statements for, org.fluint.sequence package.SequenceCaller and org.fluint.sequence package .SequenceWaiter at this time.</p>
 </li>
 <li>
 <p>Create the <code>handleCompleteRequest()</code> function.  This function takes two paramters; one named <code>event</code> of type <code>Event</code> and another named <code>passThroughData</code> of type <code>Object</code>.</p>
-<pre><code>protected function handleCompleteRequest( event:Event, passThroughData:Object ):void {
-}
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="err">protected function handleCompleteRequest( event:Event, passThroughData:Object ):void {</span>
+<span class="err">}</span>
+</code></pre></div>
 <p>If you did not use code-completion, add the import for flash.events.Event at this time.</p>
 </li>
 <li>
 <p>Add a call to <code>assertFalse()</code> within the <code>handleCompleteRequest()</code> method, asserting that service connection has been terminated.</p>
-<pre><code>protected function handleCompleteRequest( event:Event, passThroughData:Object ):void {
-	assertFalse( service.connected );
-}
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="err">protected function handleCompleteRequest( event:Event, passThroughData:Object ):void {</span>
+<span class="err">    assertFalse( service.connected );</span>
+<span class="err">}</span>
+</code></pre></div>
 <p>If you did not use code-completion, add the imports for org.flexunit.assertThat at this time.</p>
 </li>
 <li>
@@ -836,16 +836,16 @@ public function shouldCompleteRequest():void {
 </li>
 <li>
 <p>Add a new public variable named <code>test3</code> of type <code>ServiceSequenceTest</code> to the class.</p>
-<pre><code>package async.testcases {
-	[Suite]
-	[RunWith("org.flexunit.runners.Suite")]
-	public class AsyncSuite {
-		public var test1:BasicTimerTest;
-		public var test2:PrimeNumberGeneratorTest;
-		public var test3:ServiceSequenceTest;
-	}
-}
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="n">package</span><span class="w"> </span><span class="n">async</span><span class="p">.</span><span class="n">testcases</span><span class="w"> </span><span class="err">{</span><span class="w"></span>
+<span class="w">    </span><span class="o">[</span><span class="n">Suite</span><span class="o">]</span><span class="w"></span>
+<span class="w">    </span><span class="o">[</span><span class="n">RunWith("org.flexunit.runners.Suite")</span><span class="o">]</span><span class="w"></span>
+<span class="w">    </span><span class="k">public</span><span class="w"> </span><span class="k">class</span><span class="w"> </span><span class="n">AsyncSuite</span><span class="w"> </span><span class="err">{</span><span class="w"></span>
+<span class="w">        </span><span class="k">public</span><span class="w"> </span><span class="nf">var</span><span class="w"> </span><span class="nl">test1</span><span class="p">:</span><span class="n">BasicTimerTest</span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="k">public</span><span class="w"> </span><span class="nf">var</span><span class="w"> </span><span class="nl">test2</span><span class="p">:</span><span class="n">PrimeNumberGeneratorTest</span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="k">public</span><span class="w"> </span><span class="nf">var</span><span class="w"> </span><span class="nl">test3</span><span class="p">:</span><span class="n">ServiceSequenceTest</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="err">}</span><span class="w"></span>
+<span class="err">}</span><span class="w"></span>
+</code></pre></div>
 </li>
 <li>
 <p>Save the AsyncSuite.as file.</p>
@@ -872,7 +872,6 @@ public function shouldCompleteRequest():void {
 <li><a href="../index.html">Table of Contents / Introduction</a></li>
 </ul>
 
-
 <!-- Home Page Exception -->
 
 </div></div>
@@ -898,12 +897,12 @@ public function shouldCompleteRequest():void {
             <div class="footer-headline"><h4>Subscribe</h4></div>
             <p>We have two mailing lists, one for SDK developers, and one for SDK users.</p>
             <ul>
-            <li><p><strong>Users</strong>, send an email to <br>
-                <a href="mailto:users-subscribe@flex.apache.org">users-subscribe@flex.apache.org</a>
-            </p></li>
-            <li><p><strong>Contributors</strong>, send an email to <br>
-                <a href="mailto:dev-subscribe@flex.apache.org">dev-subscribe@flex.apache.org</a>
-            </p></li>
+                <li><strong>Users</strong>, send an email to <br>
+                    <a href="mailto:users-subscribe@flex.apache.org">users-subscribe@flex.apache.org</a>
+                </li>
+                <li><strong>Contributors</strong>, send an email to <br>
+                    <a href="mailto:dev-subscribe@flex.apache.org">dev-subscribe@flex.apache.org</a>
+                </li>
             </ul>
         </div>
 

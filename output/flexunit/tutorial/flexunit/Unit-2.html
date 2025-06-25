@@ -224,10 +224,10 @@
 <p>Examples of metadata used in Flex include [Bindable], [Inspectable] and [Event]. [Bindable] instructs the pre-compiler to add additional code to a class to facilitate automated view updates when data changes. [Inspectable] and [Event] instruct the Flash Builder IDE in expected and available configuration options. This additional information allows the IDE to assist you with code completion and compile time type checking.</p>
 <p>To create a test using FlexUnit .9 or Fluint 1, you must extend a specific class and then name each method with the prefix <i>test</i>, such as <i>testMyFunction()</i>. Following this convention formed the basis of using these frameworks.</p>
 <p>Unlike its predecessors, FlexUnit 4 is a metadata driven framework. Rather than using a special naming convention for tests, FlexUnit 4 allows you to decorate a test using metadata.</p>
-<pre><code>[Test]
-public function shouldDoThis():void {
-}
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="k">[Test]</span>
+<span class="na">public function shouldDoThis():void {</span>
+<span class="na">}</span>
+</code></pre></div>
 <p>This use of metadata removes the need to extend a specific class, or name your methods in a specific way. It provides more flexibility and opportunity.</p>
 <p>There are many metadata tags such as [Test], [Suite] and [Theory] used to mark classes, methods or properties when using FlexUnit 4.</p>
 <h2>Testing Frameworks</h2>
@@ -237,17 +237,17 @@ public function shouldDoThis():void {
 <p>FlexUnit.9, Fluint and FlexUnit 4.x are properly referred to as testing frameworks. The same is true for ASUnit, or the JUnit and TestNG frameworks written for Java.</p>
 <h2>Assertions</h2>
 <p>Assertions are a tool used to reveal whether or not a piece of code is working as expected. They take the form of a strong statement indicating an expected result. For example, if you add the numbers 2 and 3.</p>
-<pre><code>result = 2 + 3;
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="err">result = 2 + 3;</span>
+</code></pre></div>
 <p>You can assert that the result is 5. You do so as you are sure that no other answer is satisfactory and that a different answer is just plain wrong.</p>
-<pre><code>assertEquals( 5, result );
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="err">assertEquals( 5, result );</span>
+</code></pre></div>
 <p>If this assertion fails, meaning that <code>result</code> is not equal to <code>5</code>, then you can conclude that the plus operator no longer works correctly in all cases. This is the basis of testing.</p>
 <h2>Tests</h2>
 <p>Ultimately, assertions are the atom of a test. However, an assertion is only applicable to a given condition. The assertion made in the previous section only applies because the numbers 2 and 3 were added.</p>
-<pre><code>result = 2 + 3;
-assertEquals( 5, result );
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="err">result = 2 + 3;</span>
+<span class="err">assertEquals( 5, result );</span>
+</code></pre></div>
 <p>If instead, the numbers 6 and 7 were added, a different assertion is needed, and this is the point of a test. A test sets up the necessary preconditions in order to make an assertion. Ideally, you will have one test for every possible branch in your class.</p>
 <p>Continuing with the addition example, you would likely have tests to:</p>
 <ol>
@@ -264,45 +264,45 @@ assertEquals( 5, result );
 <h2>Test Cases</h2>
 <p>A test case is a collection of tests contained within one class that is designed to test related functionality. Often, a single test case tests a single class.</p>
 <p>Continuing with the mathematics example, a test case might contain the following collection of test methods:</p>
-<pre><code>[Test]
-public function shouldAddTwoPosAndReturnPos() {
-}
-[Test]
-public function shouldAddPosAndNegAndReturnPos() {
-}
-[Test]
-public function shouldAddPosAndNegAndReturnNeg() {
-}
-[Test]
-public function shouldAddTwoNegReturnNeg() {
-}
-[Test]
-public function shouldReturnSamePosWhenAdd0() {
-}
-[Test]
-public function shouldReturnSameNegWhenAdd0() {
-}
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="k">[Test]</span>
+<span class="na">public function shouldAddTwoPosAndReturnPos() {</span>
+<span class="na">}</span>
+<span class="k">[Test]</span>
+<span class="na">public function shouldAddPosAndNegAndReturnPos() {</span>
+<span class="na">}</span>
+<span class="k">[Test]</span>
+<span class="na">public function shouldAddPosAndNegAndReturnNeg() {</span>
+<span class="na">}</span>
+<span class="k">[Test]</span>
+<span class="na">public function shouldAddTwoNegReturnNeg() {</span>
+<span class="na">}</span>
+<span class="k">[Test]</span>
+<span class="na">public function shouldReturnSamePosWhenAdd0() {</span>
+<span class="na">}</span>
+<span class="k">[Test]</span>
+<span class="na">public function shouldReturnSameNegWhenAdd0() {</span>
+<span class="na">}</span>
+</code></pre></div>
 <p>Again, all tests in a given case should be related, either by the fact that they test the same class or the same concept across multiple classes.</p>
 <p>The test case may also specify the order of every test in a test case as well as exclude certain tests from running in specific circumstances. While unit tests may be ordered they should <b>never</b> depend on an order. In other words, if Test A <b>must</b> run before Test B, as Test A does some setup or precondition, you are no longer writing unit tests. Unit tests are isolated, and relationships are not a component of isolation.</p>
-<pre><code>[Test(order=1)]
-public function shouldReturnSamePosWhenAdd0() {
-}
-[Test(order=2)]
-public function shouldReturnSameNegWhenAdd0() {
-}
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="k">[Test(order=1)]</span>
+<span class="na">public function shouldReturnSamePosWhenAdd0() {</span>
+<span class="na">}</span>
+<span class="k">[Test(order=2)]</span>
+<span class="na">public function shouldReturnSameNegWhenAdd0() {</span>
+<span class="na">}</span>
+</code></pre></div>
 <p>As FlexUnit 4.x only executes methods marked with the [Test] metadata as tests, you can also add support methods for doing additional work in your class. This will become clearer as the course continues.</p>
 <h2>Test Fixture</h2>
 <p>The term <i>test fixture</i> refers to a well-known and fixed environment required to run a repeatable test. This environment, also referred to as a <i>test context</i>, is recreated before each test.</p>
 <p>For example, if a given object must exist before your test can run, then that object is part of the test fixture.  A fixture contains everything that must be in a known state before the tests in the test case can be executed.</p>
-<pre><code>[Test]
-public function shouldBeBlueSky():void {
-	var sky:Sky = new Sky();
-	sky.color = "blue";
-	assertTrue( sky.color == "blue" );
-}
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="k">[Test]</span>
+<span class="na">public function shouldBeBlueSky():void {</span>
+    <span class="na">var sky:Sky</span> <span class="o">=</span> <span class="s">new Sky();</span>
+<span class="s">    sky.color = "blue";</span>
+<span class="s">    assertTrue( sky.color == "blue" );</span>
+<span class="na">}</span>
+</code></pre></div>
 <p>In the example, the <code>assertTrue()</code> statement checks if the sky's color is blue. Notice that you must first have a Sky object before the value of its color can be tested. It is effectively a precondition to the test.</p>
 <p>A fixture can create objects, set initial values, or perhaps even create substitute (you will learn to call these fake or mock) objects for use during testing. A well-formed test fixture can greatly decrease the time for adding new tests to a test case by factoring out code performed in each test to a common location.</p>
 <p>Test cases should create all the elements required to create the fixture. No test case should ever reach outside of its class for objects instantiated elsewhere for use in its tests.</p>
@@ -331,9 +331,9 @@ public function shouldBeBlueSky():void {
 </li>
 <li>
 <p><b>If this is your first time opening the project:</b><br/>
-		   Choose "Import new copy of Project" and extract the project to your Flash Builder workspace. Making sure to replace "LocationContainingFXPFile" and "YourFlexWorkspace" with the location of the FXP file on your machine and your preferred directory for Flex projects (See Figure 1).</p>
+           Choose "Import new copy of Project" and extract the project to your Flash Builder workspace. Making sure to replace "LocationContainingFXPFile" and "YourFlexWorkspace" with the location of the FXP file on your machine and your preferred directory for Flex projects (See Figure 1).</p>
 <p><b>If you have previously imported the FlexUnit4Training project:</b><br/>
-		   Choose "Overwrite existing project" and select the FlexUnit4Training project from the dropdown (See Figure 2).</p>
+           Choose "Overwrite existing project" and select the FlexUnit4Training project from the dropdown (See Figure 2).</p>
 <img alt="ImportFlexProject" id="shift" src="../images/unit2/image1.png"/>
 <p class="caption" id="shift">Figure 1: Importing a new project</p>
 <img alt="OverwriteFlexProject" id="shift" src="../images/unit2/image2.png"/>
@@ -347,64 +347,76 @@ public function shouldBeBlueSky():void {
 </li>
 <li>
 <p>In the <code>&lt;fx:Script&gt;</code> block, you should see the following lines:</p>
-<pre><code>import math.testcases.BasicCircleTest;
-public function currentRunTestSuite():Array {
-	var testsToRun:Array = new Array();
-	testsToRun.push( BasicCircleTest );
-	return testsToRun;
-}
-private function onCreationComplete():void {
-	testRunner.runWithFlexUnit4Runner(currentRunTestSuite(),
-"FlexUnit4Training");
-}
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">math.testcases.BasicCircleTest</span><span class="p">;</span>
+<span class="n">public</span> <span class="n">function</span> <span class="n">currentRunTestSuite</span><span class="p">():</span><span class="n">Array</span> <span class="p">{</span>
+    <span class="n">var</span> <span class="n">testsToRun</span><span class="p">:</span><span class="n">Array</span> <span class="o">=</span> <span class="n">new</span> <span class="n">Array</span><span class="p">();</span>
+    <span class="n">testsToRun</span><span class="o">.</span><span class="n">push</span><span class="p">(</span> <span class="n">BasicCircleTest</span> <span class="p">);</span>
+    <span class="k">return</span> <span class="n">testsToRun</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="n">private</span> <span class="n">function</span> <span class="n">onCreationComplete</span><span class="p">():</span><span class="n">void</span> <span class="p">{</span>
+    <span class="n">testRunner</span><span class="o">.</span><span class="n">runWithFlexUnit4Runner</span><span class="p">(</span><span class="n">currentRunTestSuite</span><span class="p">(),</span>
+<span class="s2">"FlexUnit4Training"</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div>
 </li>
 <li>
 <p>To open the <code>BasicCircleTest</code> class, you can either browse to it in the Package Explorer (test/math.testcases.BasicCircleTest), or you can move your mouse over the <code>BasicCircleTest</code> text in the line that reads <code>testsToRun.push( BasicCircleTest )</code>. Press control, when you see the <code>BasicCircleTest</code> turn blue, click on <code>BasicCircleTest</code>. Either way, this will open the <code>BasicCircleTest</code> class in Flash Builder.</p>
 <img alt="ControlClick" id="shift" src="../images/unit2/image4.png"/>
 <p class="caption" id="shift">Figure 4: Control Clicking BasicCircleTest</p>
 <p>The class should read as follows.</p>
-<pre><code>package math.testcases {	
-	public class BasicCircleTest {		
-	}
-}
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="err">package math.testcases {    </span>
+<span class="err">    public class BasicCircleTest {      </span>
+<span class="err">    }</span>
+<span class="err">}</span>
+</code></pre></div>
 </li>
 <li>
 <p>Add a new public function named <code>shouldReturnProvidedRadius()</code> to the class. The function needs to be marked with <code>[Test]</code> metadata, which is placed on the line just above the function.</p>
-<pre><code>public class BasicCircleTest {		
-	[Test]
-	public function shouldReturnProvidedRadius():void {
-	}
-}
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="k">public</span><span class="w"> </span><span class="k">class</span><span class="w"> </span><span class="n">BasicCircleTest</span><span class="w"> </span><span class="err">{</span><span class="w">      </span>
+<span class="w">    </span><span class="o">[</span><span class="n">Test</span><span class="o">]</span><span class="w"></span>
+<span class="w">    </span><span class="k">public</span><span class="w"> </span><span class="k">function</span><span class="w"> </span><span class="n">shouldReturnProvidedRadius</span><span class="p">()</span><span class="err">:</span><span class="n">void</span><span class="w"> </span><span class="err">{</span><span class="w"></span>
+<span class="w">    </span><span class="err">}</span><span class="w"></span>
+<span class="err">}</span><span class="w"></span>
+</code></pre></div>
 <p>This function is going to test a method of the <code>Circle</code> class. The <code>Circle</code> object is created by the <code>Circle</code> constructor which takes an origin argument of type <code>Point</code> and a radius argument of data type <code>Number</code>.</p>
-<pre><code>Circle( origin:Point, radius:Number );
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="err">Circle( origin:Point, radius:Number );</span>
+</code></pre></div>
 </li>
 <li>
 <p>Declare a variable named <code>circle</code> of type <code>Circle</code> in the <code>shouldReturnProvidedRadius()</code> function. This Circle should be instantiated with an origin of <code>(0, 0)</code> and a radius of <code>5</code>.</p>
-<pre><code class="language-[Test]">public function shouldReturnProvidedRadius():void {
-	var circle:Circle = new Circle( new Point( 0, 0 ), 5 );
-}
-</code></pre>
-<p>While you are typing <code>Circle</code>, Flash Builder will try to provide possible choices as you type. If you choose one of the items on the pop-up menu (or use the arrow keys and press Enter on the correct option), Flash Builder will complete the name for you and perform one other very important step: importing the class.</p>
-<p>If you choose one of the options on the pop-up menu, Flash Builder adds an import line just above the class definition. This line is an import statement that lets Flash Builder know where the class you are referencing resides. You can think of import statements as more or less the ActionScript equivalent of the namespaces you used in MXML:</p>
-<pre><code>import net.digitalprimates.math.Circle;
-</code></pre>
-<p>and</p>
-<pre><code>import flash.geom.Point;
-</code></pre>
-<p>If you do not have these lines in your file, you have two options: You can place your cursor right after the closing e in Circle and t in Point and press Ctrl+Spacebar. This will cause Flash Builder to open the code-completion pop-up again. If there is only one matching option, Flash Builder automatically selects it and adds the import for you. Alternatively, you can just type the import statements just inside the package, outside of the class definition.</p>
-</li>
-<li>
-<p>Just below the circle instantiation, add a line that calls to the <code>assertEquals()</code> method with arguments <code>5</code> and <code>circle.radius</code>.</p>
-<pre><code>[Test]
+
+```[Test]
 public function shouldReturnProvidedRadius():void {
-	var circle:Circle = new Circle( new Point( 0, 0 ), 5 );
-	assertEquals( 5, circle.radius );
+    var circle:Circle = new Circle( new Point( 0, 0 ), 5 );
 }
-</code></pre>
+
+<div class="highlight"><pre><span></span><code><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="n">While</span> <span class="n">you</span> <span class="n">are</span> <span class="n">typing</span> <span class="o">&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="n">Circle</span><span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;</span><span class="p">,</span> <span class="n">Flash</span> <span class="n">Builder</span> <span class="n">will</span> <span class="k">try</span> <span class="n">to</span> <span class="n">provide</span> <span class="n">possible</span> <span class="n">choices</span> <span class="k">as</span> <span class="n">you</span> <span class="nb">type</span><span class="o">.</span> <span class="n">If</span> <span class="n">you</span> <span class="n">choose</span> <span class="n">one</span> <span class="n">of</span> <span class="n">the</span> <span class="n">items</span> <span class="n">on</span> <span class="n">the</span> <span class="n">pop</span><span class="o">-</span><span class="n">up</span> <span class="n">menu</span> <span class="p">(</span><span class="ow">or</span> <span class="n">use</span> <span class="n">the</span> <span class="n">arrow</span> <span class="n">keys</span> <span class="ow">and</span> <span class="n">press</span> <span class="n">Enter</span> <span class="n">on</span> <span class="n">the</span> <span class="n">correct</span> <span class="n">option</span><span class="p">),</span> <span class="n">Flash</span> <span class="n">Builder</span> <span class="n">will</span> <span class="n">complete</span> <span class="n">the</span> <span class="n">name</span> <span class="k">for</span> <span class="n">you</span> <span class="ow">and</span> <span class="n">perform</span> <span class="n">one</span> <span class="n">other</span> <span class="n">very</span> <span class="n">important</span> <span class="n">step</span><span class="p">:</span> <span class="n">importing</span> <span class="n">the</span> <span class="n">class</span><span class="o">.&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+        <span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="n">If</span> <span class="n">you</span> <span class="n">choose</span> <span class="n">one</span> <span class="n">of</span> <span class="n">the</span> <span class="n">options</span> <span class="n">on</span> <span class="n">the</span> <span class="n">pop</span><span class="o">-</span><span class="n">up</span> <span class="n">menu</span><span class="p">,</span> <span class="n">Flash</span> <span class="n">Builder</span> <span class="n">adds</span> <span class="n">an</span> <span class="kn">import</span> <span class="nn">line</span> <span class="nn">just</span> <span class="nn">above</span> <span class="nn">the</span> <span class="nn">class</span> <span class="nn">definition.</span> <span class="nn">This</span> <span class="nn">line</span> <span class="nn">is</span> <span class="nn">an</span> <span class="nn">import</span> <span class="nn">statement</span> <span class="nn">that</span> <span class="nn">lets</span> <span class="nn">Flash</span> <span class="nn">Builder</span> <span class="nn">know</span> <span class="nn">where</span> <span class="nn">the</span> <span class="nn">class</span> <span class="nn">you</span> <span class="nn">are</span> <span class="nn">referencing</span> <span class="nn">resides.</span> <span class="nn">You</span> <span class="nn">can</span> <span class="nn">think</span> <span class="nn">of</span> <span class="nn">import</span> <span class="nn">statements</span> <span class="kn">as</span> <span class="nn">more</span> <span class="nn">or</span> <span class="nn">less</span> <span class="nn">the</span> <span class="nn">ActionScript</span> <span class="nn">equivalent</span> <span class="nn">of</span> <span class="nn">the</span> <span class="nn">namespaces</span> <span class="nn">you</span> <span class="nn">used</span> <span class="nn">in</span> <span class="nn">MXML</span><span class="p">:</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span> 
+</code></pre></div>
+
+
+import net.digitalprimates.math.Circle;
+
+<div class="highlight"><pre><span></span><code><span class="nt">&lt;p&gt;</span>and<span class="nt">&lt;/p&gt;</span>
+</code></pre></div>
+
+
+import flash.geom.Point;
+
+<div class="highlight"><pre><span></span><code><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="n">If</span> <span class="n">you</span> <span class="n">do</span> <span class="ow">not</span> <span class="n">have</span> <span class="n">these</span> <span class="n">lines</span> <span class="ow">in</span> <span class="n">your</span> <span class="nb">file</span><span class="p">,</span> <span class="n">you</span> <span class="n">have</span> <span class="n">two</span> <span class="n">options</span><span class="p">:</span> <span class="n">You</span> <span class="n">can</span> <span class="n">place</span> <span class="n">your</span> <span class="n">cursor</span> <span class="n">right</span> <span class="n">after</span> <span class="n">the</span> <span class="n">closing</span> <span class="n">e</span> <span class="ow">in</span> <span class="n">Circle</span> <span class="ow">and</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">Point</span> <span class="ow">and</span> <span class="n">press</span> <span class="n">Ctrl</span><span class="o">+</span><span class="n">Spacebar</span><span class="o">.</span> <span class="n">This</span> <span class="n">will</span> <span class="n">cause</span> <span class="n">Flash</span> <span class="n">Builder</span> <span class="n">to</span> <span class="nb">open</span> <span class="n">the</span> <span class="n">code</span><span class="o">-</span><span class="n">completion</span> <span class="n">pop</span><span class="o">-</span><span class="n">up</span> <span class="n">again</span><span class="o">.</span> <span class="n">If</span> <span class="n">there</span> <span class="ow">is</span> <span class="n">only</span> <span class="n">one</span> <span class="n">matching</span> <span class="n">option</span><span class="p">,</span> <span class="n">Flash</span> <span class="n">Builder</span> <span class="n">automatically</span> <span class="n">selects</span> <span class="n">it</span> <span class="ow">and</span> <span class="n">adds</span> <span class="n">the</span> <span class="kn">import</span> <span class="nn">for</span> <span class="nn">you.</span> <span class="nn">Alternatively</span><span class="o">,</span> <span class="nn">you</span> <span class="nn">can</span> <span class="nn">just</span> <span class="nn">type</span> <span class="nn">the</span> <span class="nn">import</span> <span class="nn">statements</span> <span class="nn">just</span> <span class="nn">inside</span> <span class="nn">the</span> <span class="nn">package</span><span class="o">,</span> <span class="nn">outside</span> <span class="nn">of</span> <span class="nn">the</span> <span class="nn">class</span> <span class="nn">definition.</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+    <span class="o">&lt;/</span><span class="n">li</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="n">li</span><span class="o">&gt;</span>
+        <span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="n">Just</span> <span class="n">below</span> <span class="n">the</span> <span class="n">circle</span> <span class="n">instantiation</span><span class="p">,</span> <span class="n">add</span> <span class="n">a</span> <span class="n">line</span> <span class="n">that</span> <span class="n">calls</span> <span class="n">to</span> <span class="n">the</span> <span class="o">&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="n">assertEquals</span><span class="p">()</span><span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;</span> <span class="n">method</span> <span class="k">with</span> <span class="n">arguments</span> <span class="o">&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="mi">5</span><span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;</span> <span class="ow">and</span> <span class="o">&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="n">circle</span><span class="o">.</span><span class="n">radius</span><span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;.&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+</code></pre></div>
+
+
+[Test]
+public function shouldReturnProvidedRadius():void {
+    var circle:Circle = new Circle( new Point( 0, 0 ), 5 );
+    assertEquals( 5, circle.radius );
+}
+```
+
 <p>If you did not use code completion, add the import statement for <code>org.flexunit.asserts.assertEquals</code> at this time. While you may be used to importing classes, <code>assertEquals()</code> is actually a package level function. These are functions that can be addressed directly without an associated class. While this concept may be new to many of you, it is actually used extensively in Flash Player with methods such as <code>trace()</code>, <code>getDefinitionByName()</code> and <code>setInterval()</code>.</p>
 </li>
 <li>
@@ -445,7 +457,6 @@ public function shouldReturnProvidedRadius():void {
 <li><a href="../index.html">Table of Contents / Introduction</a></li>
 </ul>
 
-
 <!-- Home Page Exception -->
 
 </div></div>
@@ -471,12 +482,12 @@ public function shouldReturnProvidedRadius():void {
             <div class="footer-headline"><h4>Subscribe</h4></div>
             <p>We have two mailing lists, one for SDK developers, and one for SDK users.</p>
             <ul>
-            <li><p><strong>Users</strong>, send an email to <br>
-                <a href="mailto:users-subscribe@flex.apache.org">users-subscribe@flex.apache.org</a>
-            </p></li>
-            <li><p><strong>Contributors</strong>, send an email to <br>
-                <a href="mailto:dev-subscribe@flex.apache.org">dev-subscribe@flex.apache.org</a>
-            </p></li>
+                <li><strong>Users</strong>, send an email to <br>
+                    <a href="mailto:users-subscribe@flex.apache.org">users-subscribe@flex.apache.org</a>
+                </li>
+                <li><strong>Contributors</strong>, send an email to <br>
+                    <a href="mailto:dev-subscribe@flex.apache.org">dev-subscribe@flex.apache.org</a>
+                </li>
             </ul>
         </div>
 
