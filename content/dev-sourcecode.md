@@ -17,13 +17,13 @@ If you are looking for the cutting edge development branch of the Flex SDK:
 	
 	See the README at the root of the sdk for further details on how to set it up.
 
-If you are looking for the FlexJS™ SDK:
+If you are looking for the FlexJS™ SDK, it has now become the [Royale](https://royale.apache.org/) SDK:
 
-    git clone https://git-wip-us.apache.org/repos/asf/flex-asjs.git flex-asjs
+    git clone https://github.com/apache/royale-asjs.git royale-asjs
 
-If you are looking for the Flex "Falcon" Compiler:
+If you are looking for the Flex "Falcon" Compiler, it has become the [Royale](https://royale.apache.org/) Compiler:
 
-    git clone https://git-wip-us.apache.org/repos/asf/flex-falcon.git flex-falcon
+    git clone https://github.com/apache/royale-compiler.git royale-compiler
 
 If you are looking for the TLF Project:
 

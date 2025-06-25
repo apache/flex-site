@@ -1,4 +1,6 @@
-Title:  Download Apache FlexJS
+Title:  Download Apache 
+
+> **NOTE:** Apache FlexJS has taken things to the next level, and it has now become its own separate ASF project under a new name: [**Apache Royale**](https://royale.apache.org/). Please visit [royale.apache.org](https://royale.apache.org/) to download the latest version of our next generation framework and compiler for ActionScript and MXML that can build rich, single-page applications for JavaScript in web browsers without requiring the Flash Player plug-in.
 
 Use the links below to download the Apache FlexJS™ 0.8.0 ‘beta’ release from one of our mirrors. You must verify the integrity of the downloaded files using signatures downloaded from this page.
 
