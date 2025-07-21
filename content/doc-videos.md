@@ -59,6 +59,108 @@ Some of these videos were created for Adobe Flex, the predecessor to Apache Flex
 </div>
 </div>
 
+<div class="span3">
+<div class="featuresbox">
+<div class="picture"><a href="https://www.youtube.com/watch?v=WmKra-8srAg"><img src="images/videos/adc-custom-skins-for-mobile-apps.jpg"></a></div>
+<h4>Create Custom Skins for Mobile Apps</h4>
+<p>Piotr Walczyszyn walks you through how to create a custom SkinnableContainer Component for mobile applications using Flex and Flash Builder.</p>
+<a href="https://www.youtube.com/watch?v=WmKra-8srAg" class="btn">Watch</a>
+</div>
+</div>
+
+<div class="span3">
+<div class="featuresbox">
+<div class="picture"><a href="https://www.youtube.com/watch?v=EOpsDZaQrOI"><img src="images/videos/adc-item-renderers-mobile.jpg"></a></div>
+<h4>Create ItemRenderers for Flex Mobile Projects</h4>
+<p>Piotr Walczyszyn explains the process of creating custom ItemRenderers in ActionScript3 for Flex mobile applications, as well as the functionality they add to your projects.</p>
+<a href="https://www.youtube.com/watch?v=EOpsDZaQrOI" class="btn">Watch</a>
+</div>
+</div>
+
+<div class="span3">
+<div class="featuresbox">
+<div class="picture"><a href="https://www.youtube.com/watch?v=pP4hxje6Sug"><img src="images/videos/adc-spark-formatters.jpg"></a></div>
+<h4>Overview of Spark Formatters in Flex 4.5</h4>
+<p>In his continuing series on the new Spark components in Flex 4.5, James Ward demonstrates how the new Formatters simplify the process of displaying common data types as localized/internationalized and human friendly strings.</p>
+<a href="https://www.youtube.com/watch?v=pP4hxje6Sug" class="btn">Watch</a>
+</div>
+</div>
+
+</div>
+
+<!-- start row -->
+
+<div class="row-fluid">
+
+<div class="span3">
+<div class="featuresbox">
+<div class="picture"><a href="https://www.youtube.com/watch?v=vj6o0ToBkGA"><img src="images/videos/adc-spark-datagrid.jpg"></a></div>
+<h4>Overview of Spark DataGrid in Flex 4.5</h4>
+<p>James Ward showcases the new DataGrid component in Flex 4.5, and explains how the new Spark architecture makes it easier than ever to customize and skin these components.</p>
+<a href="https://www.youtube.com/watch?v=vj6o0ToBkGA" class="btn">Watch</a>
+</div>
+</div>
+
+<div class="span3">
+<div class="featuresbox">
+<div class="picture"><a href="https://www.youtube.com/watch?v=TIcnvanEIJ0"><img src="images/videos/adc-spark-forms.jpg"></a></div>
+<h4>Overview of Spark Forms in Flex 4.5</h4>
+<p>Join James Ward as he overviews the new Spark Form components in Flex 4.5, allowing you to provide dynamic, skinned data entry components in your Flex applications with very little work.</p>
+<a href="https://www.youtube.com/watch?v=TIcnvanEIJ0" class="btn">Watch</a>
+</div>
+</div>
+
+<div class="span3">
+<div class="featuresbox">
+<div class="picture"><a href="https://www.youtube.com/watch?v=qo0yPIAJmvk"><img src="images/videos/adc-custom-mobile-layouts.jpg"></a></div>
+<h4>Overview of Spark DataGrid in Flex 4.5 </h4>
+<p>Michael Chaize demonstrates how new features in Flex 4.5 make it easy to create multiple layouts for applications to run on mobile devices.</p>
+<a href="https://www.youtube.com/watch?v=qo0yPIAJmvk" class="btn">Watch</a>
+</div>
+</div>
+
+<div class="span3">
+<div class="featuresbox">
+<div class="picture"><a href="https://www.youtube.com/watch?v=qo0yPIAJmvk"><img src="images/videos/adc-custom-mobile-layouts.jpg"></a></div>
+<h4>Overview of Spark DataGrid in Flex 4.5</h4>
+<p>Michael Chaize demonstrates how new features in Flex 4.5 make it easy to create multiple layouts for applications to run on mobile devices.</p>
+<a href="https://www.youtube.com/watch?v=qo0yPIAJmvk" class="btn">Watch</a>
+</div>
+</div>
+
+</div>
+
+<!-- start row -->
+
+<div class="row-fluid">
+
+<div class="span3">
+<div class="featuresbox">
+<div class="picture"><a href="https://www.youtube.com/watch?v=e2_MyfmiUpM"><img src="images/videos/adc-flex-ios-apps.jpg"></a></div>
+<h4>Build iOS Applications using Flex and Flash Builder 4.5</h4>
+<p>Serge Jespers explains how you can build iOS applications using new capabilities in Flex and Flash Builder 4.5.</p>
+<a href="https://www.youtube.com/watch?v=e2_MyfmiUpM" class="btn">Watch</a>
+</div>
+</div>
+
+<div class="span3">
+<div class="featuresbox">
+<div class="picture"><a href="https://www.youtube.com/watch?v=Cksp7IyVNk4"><img src="images/videos/adc-flex-remote-xml-services.jpg"></a></div>
+<h4>Remote XML Services in Flex Mobile Applications</h4>
+<p>Join Duane Nickull as he builds a mobile application that binds to an XML Service using Flash Builder 4.5. Included are best architectural practices for manipulating and displaying the data.</p>
+<a href="https://www.youtube.com/watch?v=Cksp7IyVNk4" class="btn">Watch</a>
+</div>
+</div>
+
+<div class="span3">
+<div class="featuresbox">
+<div class="picture"><a href="https://www.youtube.com/watch?v=-_QXL5k4cUw"><img src="images/videos/adc-flex-layout-mirroring.jpg"></a></div>
+<h4>Layout Mirroring with Flex</h4>
+<p>Michael Chaize explains how layout mirroring helps minimize interface redesigns when porting a Flex application to languages with right-to-left text orientations.</p>
+<a href="https://www.youtube.com/watch?v=-_QXL5k4cUw" class="btn">Watch</a>
+</div>
+</div>
+
 </div>
 
  [1]:  doc-getstarted.html
