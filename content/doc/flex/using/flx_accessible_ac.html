@@ -577,7 +577,7 @@ the IAccessible interface exposed by the Flash Player for that component
 instance. The request is passed through to the <samp class="codeph">get_accDefaultAction()</samp> method
 of the mx.accessibility.ButtonAccImpl accessibility implementation
 class instance, which returns the appropriate default action String
-for a button control, which is “Press.” The article Custom Accessibility
+for a button control, which is "Press." The article Custom Accessibility
 Implementations explains in more detail how to build custom accessibility
 implementations for Flex components.</p>
 
@@ -1424,8 +1424,8 @@ a screen reader in Forms mode, use the same keystrokes as for keyboard
 navigation.</p>
 
                            <p>When a screen reader encounters a DateChooser
-control in Forms mode, it announces the control as “DropDown Calendar <em>currentDate</em>,
-to open press Control Down, ComboBox,” where <em>currentDate</em> is
+control in Forms mode, it announces the control as "DropDown Calendar <em>currentDate</em>,
+to open press Control Down, ComboBox," where <em>currentDate</em> is
 the currently selected date. </p>
 
                            <p>For more information on keyboard
@@ -2524,7 +2524,7 @@ test it with the latest versions of screen readers.</p>
          <p>This article explains how to define a custom accessibility implementation
 for a component. For this example, we'll add an accessibility implementation
 to the mx.controls.PopUpButton and, by extension, the mx.controls.PopUpMenuButton
-class. First, create a new Flex project named “PopUpMenuButton.”
+class. First, create a new Flex project named "PopUpMenuButton."
 Be sure to enable accessibility in the project using one of the
 methods explained in <a href="flx_accessible_ac.html#WS2db454920e96a9e51e63e3d11c0bf69084-7da1_verapache">Configuring
 Flex applications for accessibility</a>. Follow along with the
@@ -2774,7 +2774,7 @@ Ancestors:	none [false] : tool bar : normal
 the role <samp class="codeph">split button</samp> and one child named <samp class="codeph">Open</samp> with
 the role <samp class="codeph">drop down button</samp>. When you mouse over
 the control or give it keyboard focus, the control’s state is <samp class="codeph">hot tracked</samp>.
-In Flash terminology, “hot tracked” is a mouseover, or the button “over”
+In Flash terminology, "hot tracked" is a mouseover, or the button "over"
 state. A search on http://msdn.microsoft.com/ for "SplitButton accessibility"
 returns a more detailed and useful description of the SplitButton
 control's accessibiliy implementation: Working with Active Accessibility
@@ -3069,8 +3069,8 @@ which represents the PopUpButton's child drop‑down button element.Update
 the <samp class="codeph">get_accDefaultAction()</samp> method at line 410 to
 return the appropriate default action for the master component or
 for one of its children. For the PopUpButton component itself, the
-method returns “Press”. For the component's child drop‑down button,
-the method returns “Open.”</p>
+method returns "Press". For the component's child drop‑down button,
+the method returns "Open."</p>
 
             <div class="p">
                <pre class="codeblock">... 
@@ -3192,8 +3192,8 @@ to read as follows:</p>
 name for the master component or for one of its children. For the
 PopUpButton component itself, the method should return its label
 property as its name. The component's child drop‑down button returns
-either “Open” or “Close”, depending on whether or not the popUp
-is showing. For the PopUpButton, this method also adds “Context”
+either "Open" or "Close", depending on whether or not the popUp
+is showing. For the PopUpButton, this method also adds "Context"
 as the name of the popUp menu if no other name has been defined.Add
 the following <samp class="codeph">accLocation()</samp> method at line 498: </p>
 
@@ -3408,14 +3408,14 @@ Ancestors:	none [mnfd] : client : focusable
             </div>
 
             <p>Inspect32 reveals how the PopUpButton Accessibility Implementation
-exposes itself to MSAA, as an object with the role “split button,”,
-with name and value equal to “Paste,” having the default action
-“Press.”</p>
+exposes itself to MSAA, as an object with the role "split button,",
+with name and value equal to "Paste," having the default action
+"Press."</p>
 
-            <p>The object's state includes “focused” and “hot tracked”. It contains
-a single child with the role “drop down button,” that has the name
-“Open.” The child object's state includes “hot tracked” and “has
-popup.” Inspect32 also allows you to test navigation and interaction
+            <p>The object's state includes "focused" and "hot tracked". It contains
+a single child with the role "drop down button," that has the name
+"Open." The child object's state includes "hot tracked" and "has
+popup." Inspect32 also allows you to test navigation and interaction
 programmatically.</p>
 
             <p>For example, with the application in focus, type Ctrl+Shift+F12
@@ -3424,8 +3424,8 @@ to the previous item in the MSAA hierarchy. Use Ctrl+Shift+F12 and/or
 Ctrl+Shift+F11 to set focus on the PopUpMenuButton instance's child
 drop down button. Type Ctrl+Shift+F2 to execute the default action
 for the drop down button. This action should open the popUp menu.
-The drop down button name should change to “Close,” and its state should
-indicate “pressed.” Type Ctrl+Shift+F2 again to close the menu. </p>
+The drop down button name should change to "Close," and its state should
+indicate "pressed." Type Ctrl+Shift+F2 again to close the menu. </p>
 
             <p>Once you're fairly confident that your accessibility implementation
 is returning appropriate values for its IAccessible methods, you
@@ -3493,8 +3493,8 @@ Flex project to read:</p>
             </div>
 
             <p>Another peculiarity of JAWS is that it announces the role of
-the PopUpMenuButton component as a “button” as opposed to a “split
-button.” Even if you are providing a correct accessibility implementation
+the PopUpMenuButton component as a "button" as opposed to a "split
+button." Even if you are providing a correct accessibility implementation
 to MSAA, if it is of a system role that does not have a precedent
 in Flex or Flash, like the PopUpButton, the screen reader may not
 have been scripted to understand how to interpret an object with that
