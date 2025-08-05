@@ -316,7 +316,7 @@ run-time loading</a>. </p>
                   <li>
                      <p>To compile an application that includes the automation classes,
 you include the needed automation libraries at compile time. Compile
-the application with the automation SWC files by using the compiler’s <samp class="codeph">include-libraries</samp> option.
+the application with the automation SWC files by using the compiler's <samp class="codeph">include-libraries</samp> option.
 For information on the compilation process, see <a href="flx_functest_components2_fc.html#WS2db454920e96a9e51e63e3d11c0bf69084-7a4d_verapache">Using compile-time
 loading</a>.</p>
 
@@ -342,7 +342,7 @@ the wrapper</a>.</p>
             </li>
 
             <li>
-               <p>Deploy the application’s assets to a web server. Assets can
+               <p>Deploy the application's assets to a web server. Assets can
 include the SWF file; HTML wrapper and related files; external assets
 such as theme files, graphics, and video files; module SWF files;
 resource modules; CSS SWF files; and run-time shared libraries (RSLs).
@@ -376,7 +376,7 @@ option. Typically, this includes the automation.swc and automation_spark.swc
 files. If your application uses charts or the AdvancedDataGrid classes,
 you must also add the automation_dmv.swc file. You might also be
 required to add automation tool-specific SWC files; for example,
-for QTP, you must also add the qtp.swc file to your application’s
+for QTP, you must also add the qtp.swc file to your application's
 library path. For a complete list of automation SWC files, see <a href="flx_functest_components2_fc.html#WS2db454920e96a9e51e63e3d11c0bf67b82-7ffb_verapache">About automating
 applications with Flex</a>.</p>
 
@@ -388,7 +388,7 @@ applications with Flex</a>.</p>
          
          <div>
             <p>To include the SWC file in your application, you can add
-them to the compiler’s configuration file or as a command-line option.
+them to the compiler's configuration file or as a command-line option.
 For the SDK, the configuration file is located at <em>sdk_install_dir</em>/frameworks/flex-config.xml.
 To add the automation.swc and automation_spark.swc libraries, for
 example, add the following lines to the configuration file:</p>
@@ -452,7 +452,7 @@ the automation libraries into your applications. This lets you test
 SWF files that have already been compiled without automated testing
 support. It also helps keep the SWF file size small. To do this,
 you use a SWF file that <em>does</em> include the automated testing libraries.
-In that SWF file, the SWFLoader class loads your application’s SWF
+In that SWF file, the SWFLoader class loads your application's SWF
 file which does not include the testing libraries. The result is
 that you can test the target SWF file in a testing tool such as
 QTP, even though the application SWF file was not compiled with
@@ -498,7 +498,7 @@ SWC files to this file, depending on what features your application uses.</p>
 
             <li>
                <p>Deploy the runtimeloading.swf, RunTimeLoading.html, and your
-application’s SWF file to a web server. </p>
+application's SWF file to a web server. </p>
 
             </li>
 
@@ -541,7 +541,7 @@ command line compiler or write your own batch file.</p>
          <p>As a Flex developer, there are some techniques that you
 can employ to make applications as "test friendly" as possible.
 One of the most important tasks that you can perform is to make
-sure that objects are identifiable in the testing tool’s scripts.
+sure that objects are identifiable in the testing tool's scripts.
 This means that you should explicitly set the value of the <samp class="codeph">id</samp> property
 or whatever property the testing tool uses to identify the object.
 Also be sure to use a meaningful string for that property so that
@@ -559,7 +559,7 @@ of objects</h3>
             <p>When working with testing tools such as QTP, a QC professional
 only sees the visual representation of objects in your application.
 A QC professional generally does not have access to the underlying
-code. When a QC professional records a script, it’s very helpful
+code. When a QC professional records a script, it's very helpful
 to see IDs that help the tester identify the object clearly. You
 should take some time to understand how testing tools interpret
 applications and determine what names to use for the test objects
@@ -573,7 +573,7 @@ is no value for the <samp class="codeph">id</samp> property, testing tools
 use other properties, such as the <samp class="codeph">childIndex</samp> property.
 In addition, the automation APIs provide an <samp class="codeph">automationName</samp> property
 that you can use to explicitly set the ID of an object as it appears
-in the tool’s scripts.</p>
+in the tool's scripts.</p>
 
             <p>You should give all testable MXML components an ID to ensure
 that the test script has a unique identifier to use when referring
@@ -589,7 +589,7 @@ or confusion. For more information about how QTP identifies Flex
 objects, see <em>Testing Adobe Flex Applications with HP QuickTest Professional</em>.</p>
 
             <p>You should also set the value of the <samp class="codeph">automationName</samp> property
-for all objects that are part of the application’s test. The value
+for all objects that are part of the application's test. The value
 of this property appears in the testing scripts. Providing a meaningful
 name makes it easier for QC professionals to identify that object.
 For more information about using the <samp class="codeph">automationName</samp> property,
@@ -605,7 +605,7 @@ the automationName property</a>. </p>
 
          
          <div>
-            <p>Automation agents rely on the fact that some object’s properties
+            <p>Automation agents rely on the fact that some object's properties
 should not be changed during run time. If you change the application
 property that is used by the agent as the object name at run time,
 unexpected results can occur. </p>
@@ -653,9 +653,9 @@ are used exclusively for layout, such as the <a href="http://help.adobe.com/en_U
 
                <div class="p">The
 following image shows the layout for a simple form-based application.
-The components with gray backgrounds appear in the automation tool’s
+The components with gray backgrounds appear in the automation tool's
 scripts because they can be interacted with by the user. Components
-with white backgrounds do not appear in the tool’s scripts because
+with white backgrounds do not appear in the tool's scripts because
 they only provide layout logic.<div class="figborder"><span class="figdesc">Automation flowchart</span>
                      
                      <img src="images/fc_automation_flowchart.png"/>
@@ -679,7 +679,7 @@ from being tested, the test scripts are shorter and more readable.</p>
 
                <p>To
 exclude a container from being recorded (but not exclude its children),
-set the container’s <samp class="codeph">showInAutomationHierarchy</samp> property
+set the container's <samp class="codeph">showInAutomationHierarchy</samp> property
 to <samp class="codeph">false</samp>. This property is defined by the <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/core/UIComponent.html" target="_blank">UIComponent</a> class,
 so all containers that subclass UIComponent have this property.
 Children of containers that are not visible in the hierarchy appear
@@ -697,7 +697,7 @@ and FormItem, the default value is <samp class="codeph">false</samp>.</p>
 
                <p>The
 following example forces the VGroup containers to be included in
-the test script’s hierarchy:</p>
+the test script's hierarchy:</p>
 
                <pre class="noswf">&lt;?xml version="1.0"?&gt; 
 &lt;!-- agent/NestedButton.mxml --&gt; 
@@ -805,7 +805,7 @@ automation manager, and delegates. In other words, compile the application
 against the automation libraries.</p>
 
          <div class="p">When recording an application that loads sub-applications, the
-tool typically uses the <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/automation/IAutomationManager2.html" target="_blank">IAutomationManager2</a>’s <samp class="codeph">getUniqueApplicationId()</samp> method. This
+tool typically uses the <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/automation/IAutomationManager2.html" target="_blank">IAutomationManager2</a>'s <samp class="codeph">getUniqueApplicationId()</samp> method. This
 method returns a unique ID for each application. The resulting scripts contain
 longer strings to identify objects, but you can see the heirarchy
 of the applications in them. For example, a Spark Button control
@@ -863,7 +863,7 @@ that browsers interpret. You can request the SWF file directly in
 the testing tool by using the file protocol, but then you must ensure that
 the SWF file is trusted.</p>
 
-         <p>When you careate a custom wrapper, your wrapper’s <samp class="codeph">&lt;object&gt;</samp> tag
+         <p>When you careate a custom wrapper, your wrapper's <samp class="codeph">&lt;object&gt;</samp> tag
 must have an <samp class="codeph">id</samp> attribute, and the value of the <samp class="codeph">id</samp> attribute
 can not contain any periods or hyphens. The convention is to set
 the <samp class="codeph">id</samp> to match the name of the root MXML file
@@ -879,7 +879,7 @@ feature. The <samp class="codeph">&lt;object&gt;</samp>
             <em> tag is used by Microsoft Internet Explorer.</em>
          </div>
 
-         <p>Ensure that the object tag’s <samp class="codeph">id</samp> attribute is
+         <p>Ensure that the object tag's <samp class="codeph">id</samp> attribute is
 the same in the <samp class="codeph">&lt;script&gt;</samp> and the <samp class="codeph">&lt;noscript&gt;</samp> blocks
 of the wrapper.</p>
 
@@ -1093,7 +1093,7 @@ provide their content information in a tabular form.</p>
 </div>
 
             <p>For more information about each of these interfaces, see the
-class’s description in the <a href="http://www.adobe.com/go/learn_flex4_apiref_en" target="_blank">ActionScript 3.0 Reference for the Adobe<sup>®</sup>
+class's description in the <a href="http://www.adobe.com/go/learn_flex4_apiref_en" target="_blank">ActionScript 3.0 Reference for the Adobe<sup>®</sup>
 Flash<sup>®</sup> Platform</a>.</p>
 
          </div>
@@ -1142,7 +1142,7 @@ in a sequence. Because it takes time for the drop-down list to open
 and initialize, it is not possible to run the select operation immediately. You
 can place a wait request during the open operation execution. The
 wait request should provide a function for automation, which can
-be invoked to check the ComboBox control’s readiness before invoking
+be invoked to check the ComboBox control's readiness before invoking
 the next operation.</p>
 
             </div>
@@ -1158,9 +1158,9 @@ the QTP automation tool</h3>
          
          <div>
             <p>Before you automate custom components, you might find it
-helpful to see the order of events during which Flex’s automation
+helpful to see the order of events during which Flex's automation
 framework initializes, records, and plays back events with a tool
-such as QTP. You should keep in mind that the QTP adapter class’
+such as QTP. You should keep in mind that the QTP adapter class'
 implementation is only one way to use the automation API for automated
 testing.</p>
 
@@ -1401,10 +1401,10 @@ is invoked to verify the values. </p>
       
       <div>
          <p>When you extend components that are already instrumented,
-you do not have to change anything to ensure that those components’
+you do not have to change anything to ensure that those components'
 events can be recorded by a testing tool. For example, if you extend
 a Button class, the class still dispatches the automation events
-when the Button is clicked, unless you override the Button control’s
+when the Button is clicked, unless you override the Button control's
 default event dispatching behavior.</p>
 
          <p>Automation events (sometimes known in automation tools such as
@@ -1419,7 +1419,7 @@ additional events by using the instructions in <a href="flx_functest_components2
 existing events</a>.</p>
 
          <p>If you change the instrumentation of a component, you might also
-be required to edit that component’s entry in the class definitions
+be required to edit that component's entry in the class definitions
 file. This is described in <a href="flx_functest_components2_fc.html#WS2db454920e96a9e51e63e3d11c0bf69084-7a53_verapache">Using
 the class definitions file</a>.</p>
 
@@ -1441,8 +1441,8 @@ play back the <samp class="codeph">click</samp> event for the Button control
 and not the other, lower-level events.</p>
 
             <p>There are some circumstances where you would want to record events
-that are normally ignored by the testing tool. But the testing tool’s
-object model only records events that represent the end-user’s gesture
+that are normally ignored by the testing tool. But the testing tool's
+object model only records events that represent the end-user's gesture
 (such as a click or a drag and drop). This makes a script more readable
 and it also makes the script robust enough so that it does not fail
 if you change the application slightly. So, you should carefully
@@ -1521,7 +1521,7 @@ rather than the generic Event object.</p>
 overrides the <samp class="codeph">replayAutomatableEvent()</samp> method.
 This method checks for the <samp class="codeph">mouseMove</samp> event and
 calls the <samp class="codeph">replayMouseEvent()</samp> method if it finds
-that event. Otherwise, it calls its superclass’ <samp class="codeph">replayAutomatableEvent()</samp> method.</p>
+that event. Otherwise, it calls its superclass' <samp class="codeph">replayAutomatableEvent()</samp> method.</p>
 
             <pre class="noswf">&lt;?xml version="1.0" encoding="utf-8"?&gt; 
 &lt;!-- agent/CustomButton.mxml --&gt; 
@@ -1552,7 +1552,7 @@ that event. Otherwise, it calls its superclass’ <samp class="codeph">replayAut
     &lt;/fx:Script&gt; 
 &lt;/s:Button&gt;</pre>
 
-            <p>In the application, you call the <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/automation/AutomationManager.html" target="_blank">AutomationManager</a>’s <samp class="codeph">recordAutomatableEvent()</samp> method
+            <p>In the application, you call the <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/automation/AutomationManager.html" target="_blank">AutomationManager</a>'s <samp class="codeph">recordAutomatableEvent()</samp> method
 when the user moves the mouse over the button. The following application
 uses this custom class:</p>
 
@@ -1591,7 +1591,7 @@ tools can use files like this to define the events, properties,
 and arguments for each class of test object. For more information,
 see <a href="flx_functest_components2_fc.html#WS2db454920e96a9e51e63e3d11c0bf69084-7a47_verapache">Instrumenting events</a>.
 If you wanted to add support for the <samp class="codeph">mouseOver</samp> event
-in QTP, for example, you add the following to the SparkButton object’s
+in QTP, for example, you add the following to the SparkButton object's
 entry in the TEAFlex.xml file:</p>
 
             <pre class="codeblock"> &lt;Operation Name="MouseOver" PropertyType="Method" ExposureLevel="CommonUsed"&gt; 
@@ -1604,7 +1604,7 @@ entry in the TEAFlex.xml file:</p>
  &lt;/Operation&gt;</pre>
 
             <p>In the preceding example, however, the <samp class="codeph">mouseMove</samp> event
-is already in the SparkButton object’s entry in that file, so no
+is already in the SparkButton object's entry in that file, so no
 editing is necessary. The difference now is that the QC professional
 does not have to explicitly add the event to their script. After
 you compile this application and deploy the new TEAFlex.xml file
@@ -1626,7 +1626,7 @@ the class definitions file</a>.</p>
             <p>When you extend components, you often add events that are
 triggered by new functionality of that component. You can instrument
 custom events by adding a call to the Automation.automationManager2
-class’s <samp class="codeph">recordCustomAutomationEvent()</samp> method. You
+class's <samp class="codeph">recordCustomAutomationEvent()</samp> method. You
 usually do this in the same place that you call the <samp class="codeph">dispatchEvent()</samp> method.
 You do not replace the call to the <samp class="codeph">dispatchEvent()</samp> method.</p>
 
@@ -1647,7 +1647,7 @@ private function myHandler(event:MyComponentEvent) {
             </div>
 
             <p>For a tool such as QTP to recognize the event as a recordable
-operation, you must also add the event to the control’s entry in
+operation, you must also add the event to the control's entry in
 the class definitions file (TEAFlex.xml).</p>
 
             <div class="p">To replay the custom event, you listen for the AutomationCustomReplayEvent, get
@@ -1689,13 +1689,13 @@ but rather, you want to record the <samp class="codeph">itemClick</samp> event. 
 
             <p>The result is that automation scripts can break due to changes
 in the custom component. To get around this, you can block the events
-and dispatch a higher-level event that corresponds to the user’s
+and dispatch a higher-level event that corresponds to the user's
 gesture rather than the specific event.</p>
 
             <div class="p">To block the recording of the default events, create an event
 listener that listens for all <samp class="codeph">AutomationRecordEvent.RECORD</samp> events.
 Set its priority to be higher than other listeners. In the handler,
-call the event’s <samp class="codeph">preventDefault()</samp> method, as the
+call the event's <samp class="codeph">preventDefault()</samp> method, as the
 following example shows:<pre class="codeblock">Automation.automationManager2.addEventListener(AutomationRecordEvent.RECORD, 
 	blockEvents,false, EventPriority.DEFAULT+1); 
 private function blockEvent(event:AutomationRecordEvent):void { 
@@ -1708,7 +1708,7 @@ private function blockEvent(event:AutomationRecordEvent):void {
             </div>
 
             <p>You can then dispatch the more generic event that resembles the
-user’s gesture as shown in <a href="flx_functest_components2_fc.html#WS2db454920e96a9e51e63e3d11c0bf69084-7a45_verapache">Instrumenting
+user's gesture as shown in <a href="flx_functest_components2_fc.html#WS2db454920e96a9e51e63e3d11c0bf69084-7a45_verapache">Instrumenting
 custom events</a>. </p>
 
          </div>
@@ -1729,7 +1729,7 @@ at run time. The <em>delegate class</em> defines the methods and properties
 required to perform instrumentation. </p>
 
          <p>If you extend an existing component that is instrumented, such
-as a Button control, you inherit its parent’s instrumentation, and
+as a Button control, you inherit its parent's instrumentation, and
 are not required to do anything else to make that component testable.
 If you create a component that inherits from UIComponent, you must
 instrument that class in one of the following ways:</p>
@@ -1757,7 +1757,7 @@ SWF file.</p>
 
          <p>In both methods of instrumenting a component, you must specify
 any new events to the agent. With QTP, for example, you must add
-your new component’s information to the class definitions file so
+your new component's information to the class definitions file so
 that QTP recognizes that component. For more information about this
 file, see <a href="flx_functest_components2_fc.html#WS2db454920e96a9e51e63e3d11c0bf69084-7a53_verapache">Using
 the class definitions file</a>.</p>
@@ -1863,12 +1863,12 @@ The delegate class for the MX Button control is mx.automation.delegates.controls
             <p>All subclasses of <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/core/UIComponent.html" target="_blank">UIComponent</a> store
 a reference to their delegate in the <samp class="codeph">automationDelegate</samp> property.
 This behavior is defined in the UIComponent initializer, which calls
-the delegate’s <samp class="codeph">enableAutomation()</samp> method. If you
+the delegate's <samp class="codeph">enableAutomation()</samp> method. If you
 create a custom component that does not subclass UIComponent, then you
-must manually call the delegate’s <samp class="codeph">enableAutomation()</samp> method
-in your custom component’s initilization code.</p>
+must manually call the delegate's <samp class="codeph">enableAutomation()</samp> method
+in your custom component's initilization code.</p>
 
-            <p>You map the delegate’s unique name and value properties to the <samp class="codeph">automationName</samp> and <samp class="codeph">automationValue</samp> properties. </p>
+            <p>You map the delegate's unique name and value properties to the <samp class="codeph">automationName</samp> and <samp class="codeph">automationValue</samp> properties. </p>
 
             <div class="section" id="WS2db454920e96a9e51e63e3d11c0bf67b82-7ff3_verapache__WS2db454920e96a9e51e63e3d11c0bf67b82-7ff2_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf67b82-7ff3_verapache__WS2db454920e96a9e51e63e3d11c0bf67b82-7ff2_verapache"><!-- --></a><h4 class="sectiontitle">Instrument
 with a delegate class</h4>
@@ -1978,7 +1978,7 @@ with other developers.</p>
                   <li>
                      <p>After you compile your application with the new delegate
 class, you must define the new interaction for the agent and the
-automation tool. For QTP, you must add the new component to QTP’s
+automation tool. For QTP, you must add the new component to QTP's
 custom class definition XML file. For more information, see <a href="flx_functest_components2_fc.html#WS2db454920e96a9e51e63e3d11c0bf69084-7a53_verapache">Using
 the class definitions file</a>.</p>
 
@@ -2158,7 +2158,7 @@ by using an <samp class="codeph">&lt;Argument&gt;</samp> child tag.</p>
                         <td class="cellrowborder" valign="top" width="NaN%" headers="d225074e2388 ">
                            <p>Defines properties of the class. Each property
 is defined in a <samp class="codeph">&lt;Property&gt;</samp> child tag. Inside
-this tag, you define the property’s type, name, and description.</p>
+this tag, you define the property's type, name, and description.</p>
 
                            <p>For
 each <samp class="codeph">Property</samp>, if the <samp class="codeph">ForDescription</samp> attribute
@@ -2227,7 +2227,7 @@ class definition file. This component has one instrumented event, <samp class="c
 
             <p>You can edit the class definitions file to add a new recordable
 event to an existing component. To do this, you insert a new <samp class="codeph">&lt;Operation&gt;</samp> in
-the control’s <samp class="codeph">&lt;TypeInfo&gt;</samp> block. This includes
+the control's <samp class="codeph">&lt;TypeInfo&gt;</samp> block. This includes
 the implementation class of the event, and any arguments that the
 event might take. </p>
 
@@ -2271,9 +2271,9 @@ the class definitions file in the QTP environment, you must restart QTP.</p>
             <p>The <samp class="codeph">automationName</samp> property defines the
 name of a component as it appears in testing scripts. The default
 value of this property varies depending on the type of component.
-For example, a Button control’s <samp class="codeph">automationName</samp> is the
+For example, a Button control's <samp class="codeph">automationName</samp> is the
 label of the Button control. Sometimes, the <samp class="codeph">automationName</samp> is
-the same as the control’s <samp class="codeph">id</samp> property, but this
+the same as the control's <samp class="codeph">id</samp> property, but this
 is not always the case.</p>
 
             <p>For some components, Flex sets the value of the <samp class="codeph">automationName</samp> property
@@ -2284,7 +2284,7 @@ Form Now" appears in the testing scripts as <samp class="codeph">SparkButton("Pr
             <p>If you implement a new component, or subclass an existing component,
 you might want to override the default value of the <samp class="codeph">automationName</samp> property.
 For example, UIComponent sets the value of the <samp class="codeph">automationName</samp> to
-the component’s <samp class="codeph">id</samp> property by default, but some
+the component's <samp class="codeph">id</samp> property by default, but some
 components use their own methods of setting its value.</p>
 
             <p>The following example sets the <samp class="codeph">automationName</samp> property
@@ -2333,7 +2333,7 @@ the name of an object that appears in a testing tool is sometimes
 a property that can change while the application runs. If you set
 the value of the <samp class="codeph">automationName</samp> property, testing
 scripts use that value rather than the default value. For example, by
-default, QTP uses a Button control’s <samp class="codeph">label</samp> property
+default, QTP uses a Button control's <samp class="codeph">label</samp> property
 as the name of the Button in the script. If the label changes, the
 script can break. You can prevent this from happening by explicitly
 setting the value of the <samp class="codeph">automationName</samp> property.</p>
@@ -2347,7 +2347,7 @@ of the Button because some tools such as QTP use that value if there
 is no label.</p>
 
             <p>After the value of the <samp class="codeph">automationName</samp> property
-is set, you should not change the value during the component’s life
+is set, you should not change the value during the component's life
 cycle.</p>
 
             <p>For item renderers, use the <samp class="codeph">automationValue</samp> property
@@ -2430,9 +2430,9 @@ It consists of a VGroup container with three buttons (OK, Cancel,
 and Help). You cannot record the operations of the Help button.
 You can record the operations of the other Button controls, OK and
 Cancel. The following example sets the values of the OK and Cancel
-buttons’ <samp class="codeph">automationName</samp> properties. This makes
+buttons' <samp class="codeph">automationName</samp> properties. This makes
 those button controls easier to recognize in the automated testing
-tool’s scripts.<pre class="noswf">// agent/MyVGroup.as 
+tool's scripts.<pre class="noswf">// agent/MyVGroup.as 
 package { // Empty package 
     import mx.core.UIComponent; 
     import spark.components.VGroup; 
@@ -2837,7 +2837,7 @@ components. The delegate classes are in the spark.automation.delegates.*
 and mx.automation.delegates.* packages. They extend the UIComponentAutomationImpl
 class. The delegates for the Spark components are named Spark<em>ControlName</em>AutomationImpl.
 The delegates for the MX components are named <em>ControlName</em>AutomationImpl.
-For example, the Spark Button control’s delegate class is SparkButtonAutomationImpl.</p>
+For example, the Spark Button control's delegate class is SparkButtonAutomationImpl.</p>
 
                <p>The delegate classes register themselves with their associated
 Automation class by providing the component class and their own
@@ -2871,7 +2871,7 @@ example:</p>
 
                </ol>
 
-               <p>These event handlers call the AutomationManager class’s <samp class="codeph">recordAutomatableEvent()</samp> method,
+               <p>These event handlers call the AutomationManager class's <samp class="codeph">recordAutomatableEvent()</samp> method,
 which in turn dispatches the <samp class="codeph">AutomationRecordEvent.RECORD</samp> events
 that the automation agent listens for.</p>
 
@@ -3006,7 +3006,7 @@ handles events during record and play-back sequences.</p>
 
                   <p>The
 delegate is now considered <em>registered</em> with the component.
-It adds event listeners for the component’s events and calls the
+It adds event listeners for the component's events and calls the
 AutomationManager when the component triggers those events.</p>
 
                </li>
@@ -3041,9 +3041,9 @@ The SystemManager dispatches a <samp class="codeph">MouseEvent.CLICK</samp> even
                   </li>
 
                   <li>
-                     <p>The SparkButtonAutomationImpl class, the Button control’s
+                     <p>The SparkButtonAutomationImpl class, the Button control's
 automation delegate, listens for <samp class="codeph">click</samp> events.
-In the delegate’s <samp class="codeph">click</samp> event handler, the delegate
+In the delegate's <samp class="codeph">click</samp> event handler, the delegate
 calls the AutomationManager <samp class="codeph">recordAutomationEvent()</samp> method.
 (It is likely that the button also defines a <samp class="codeph">click</samp> event
 handler to respond to the user action, but that is not shown.) </p>
@@ -3051,7 +3051,7 @@ handler to respond to the user action, but that is not shown.) </p>
                   </li>
 
                   <li>
-                     <p>The AutomationManager’s <samp class="codeph">recordAutomationEvent()</samp> method dispatches
+                     <p>The AutomationManager's <samp class="codeph">recordAutomationEvent()</samp> method dispatches
 an <samp class="codeph">AutomationRecordEvent.RECORD</samp> event. In that
 event, the <samp class="codeph">replayableEvent</samp> property points to the
 original <samp class="codeph">click</samp> event.</p>

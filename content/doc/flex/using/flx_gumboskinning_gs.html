@@ -116,7 +116,7 @@ shows:</p>
 }</pre>
 
             <p>When applying skins with MXML, you specify the name of the skin
-as the value of the component’s <samp class="codeph">skinClass</samp> property,
+as the value of the component's <samp class="codeph">skinClass</samp> property,
 as the following example shows:</p>
 
             <pre class="codeblock">&lt;s:Button skinClass="com.mycompany.skins.MyButtonSkin" /&gt;</pre>
@@ -205,7 +205,7 @@ on the root tag of the skin class.</p>
                <p>If you create a custom
 theme for your application, or if you do not need support for global
 Spark styles in your custom skin class, you can use Skin rather
-than SparkSkin as your custom skin’s root tag. The SparkSkin class
+than SparkSkin as your custom skin's root tag. The SparkSkin class
 adds support for the colorization styles (such as <samp class="codeph">chromeColor</samp> and <samp class="codeph">symbolColor</samp>)
 and supports excluding specific skin parts from colorization, or
 for specifying symbols to colorize.</p>
@@ -253,7 +253,7 @@ when the skin is loaded.</p>
                
                <p>Skin states are skin elements
 that are associated with component states. They are not the same
-as component states. For example, when a Button is down, the Button’s
+as component states. For example, when a Button is down, the Button's
 skin displays elements that are associated with the <samp class="codeph">down</samp> skin
 state. When the button is up, the button displays elements that
 are associated with the <samp class="codeph">up</samp> skin state.</p>
@@ -678,18 +678,18 @@ tag with the following syntax:</p>
 
                <p>When a skin defines this metadata, Flex creates the typed property <samp class="codeph">hostComponent</samp> on
 the skin class. You can then use this property to access members
-of the skin’s host component instance from within the skin. For example,
-in a Button skin, you can access the Button’s style properties or
+of the skin's host component instance from within the skin. For example,
+in a Button skin, you can access the Button's style properties or
 its data (such as the label). </p>
 
-               <div class="p">You can access public properties of the skin’s host component
+               <div class="p">You can access public properties of the skin's host component
 by using the strongly typed <samp class="codeph">hostComponent</samp> property
 as a reference to the component. <pre class="codeblock">&lt;s:SolidColor color="{hostComponent.someColor as uint}" /&gt;</pre>
 
                </div>
 
                <p>This only works with public properties that are declared directly
-on the host component. You cannot use this to access the host component’s
+on the host component. You cannot use this to access the host component's
 private or protected properties.</p>
 
                <div class="p">To access the values of style properties on a host component
@@ -699,7 +699,7 @@ example shows:<pre class="codeblock">&lt;s:SolidColorStroke color="{getStyle('co
 
                </div>
 
-               <p>You can also access the root application’s properties and methods
+               <p>You can also access the root application's properties and methods
 by using the <samp class="codeph">FlexGlobals.topLevelApplication</samp> property.
 For more information, see <a href="flx_gumboskinning_gs.html#WS46970071-A39D-49de-B881-66F639787305_verapache">Accessing
 application properties</a>.</p>
@@ -714,14 +714,14 @@ application properties</a>.</p>
             
             <div>
                <p>Each skinnable component has a set of visual skin states.
-For example, when a Button is down, the Button’s skin displays elements
+For example, when a Button is down, the Button's skin displays elements
 that are associated with the <samp class="codeph">down</samp> skin state. When
 the button is up, the button displays elements that are associated
 with the <samp class="codeph">up</samp> skin state. </p>
 
                <p>To have a valid contract between a skinnable Spark component
 and its skin, you identify the skin states in the component. Then,
-define the state’s appearance in the component’s skin class. </p>
+define the state's appearance in the component's skin class. </p>
 
                <p>Skin states are declared in the skin class and identify the different
 states that the component can assume visually. You can define how
@@ -744,7 +744,7 @@ to those states defined by the Button control.</p>
                <div>
                   <p>Part of the contract between a Spark skin and its host
 component is that the host component must identify the skin states
-that it supports. To identify a skin state in the component’s class,
+that it supports. To identify a skin state in the component's class,
 you use the <samp class="codeph">[SkinState]</samp> metadata tag. This tag
 has the following syntax:</p>
 
@@ -784,7 +784,7 @@ skin state in a <samp class="codeph">&lt;states&gt;</samp> tag.</p>
 
                         <li>
                            <p>Set the value of properties based on the state of the component.
-This step is optional, but if you don’t define the skin state’s
+This step is optional, but if you don't define the skin state's
 appearance, then the skin does not change when the component enters
 that state.</p>
 
@@ -829,7 +829,7 @@ the <samp class="codeph">includeIn</samp> and <samp class="codeph">excludeFrom</
 
                   <p>Most commonly, you specify values of style properties based on
 the state. Flex applies the style based on the current state of
-the component. The skin is notified when the component’s <samp class="codeph">currentState</samp> property
+the component. The skin is notified when the component's <samp class="codeph">currentState</samp> property
 changes, so the skin can update the appearance at the right time.</p>
 
                   <div class="p">A common use of this in the Spark skins is to set the <samp class="codeph">alpha</samp> property
@@ -843,8 +843,8 @@ following example from the ButtonSkin class shows:<pre class="codeblock">&lt;s:S
 
                   </div>
 
-                  <div class="p">Another example is when a Button label’s <samp class="codeph">alpha</samp> property
-changes based on other states. The skin sets the value of the labelDisplay’s <samp class="codeph">alpha</samp> property.
+                  <div class="p">Another example is when a Button label's <samp class="codeph">alpha</samp> property
+changes based on other states. The skin sets the value of the labelDisplay's <samp class="codeph">alpha</samp> property.
 When the button is in its <samp class="codeph">up</samp> state, the label has
 an <samp class="codeph">alpha</samp> of 1. When the button is in its <samp class="codeph">over</samp> state,
 the label has an <samp class="codeph">alpha</samp> of .25, as the following
@@ -960,13 +960,13 @@ state in the skin class, but you are required to declare it in the
 skin class in this case.</p>
 
                   <p>If you try to set the value of a style property in a skin class
-on a state that is not identified by the host component’s class,
+on a state that is not identified by the host component's class,
 Flex throws a compiler error. This error checking helps to enforce
 the contract between the component and the skin.</p>
 
                   <p>In addition to conditionalizing the values of properties, you
 can also include or exclude graphic elements from the skin based
-on the component’s state. To do this, you use the <samp class="codeph">includeIn</samp> and <samp class="codeph">excludeFrom</samp> properties
+on the component's state. To do this, you use the <samp class="codeph">includeIn</samp> and <samp class="codeph">excludeFrom</samp> properties
 to define which states a graphic element applies to.</p>
 
                   <div class="p">The following example displays a partially transparent gray box
@@ -1026,7 +1026,7 @@ when the Button control is in the <samp class="codeph">down</samp> state:<pre cl
                   </div>
 
                   <p>When you exclude a graphic element with the <samp class="codeph">excludeFrom</samp> property,
-Flex removes it from its parent’s child list. The element can no
+Flex removes it from its parent's child list. The element can no
 longer be referenced.</p>
 
                   <p>If you do not specify either the <samp class="codeph">includeIn</samp> or <samp class="codeph">excludeFrom</samp> property
@@ -1036,7 +1036,7 @@ in all states of the control by default.</p>
                   <p>You can specify multiple states to be included or excluded by
 using a comma-separated list of states for the <samp class="codeph">includeIn</samp> or <samp class="codeph">excludeFrom</samp> properties.
 The following example excludes the Rect graphic element from the
-host component’s <samp class="codeph">over</samp> and <samp class="codeph">down</samp> states:</p>
+host component's <samp class="codeph">over</samp> and <samp class="codeph">down</samp> states:</p>
 
                   <pre class="codeblock">&lt;s:Rect left="0" right="0" top="0" bottom="0" width="69" height="20" excludeFrom="over, down"&gt;</pre>
 
@@ -1072,7 +1072,7 @@ use of the <samp class="codeph">includeIn</samp> property:<pre class="codeblock"
                   <div class="p">If you exclude some graphic elements from a skin, the component
 sometimes resizes itself or its appearance fluctuates as it cycles
 through its states. For example, if you set the value of the <samp class="codeph">excludeFrom</samp> property
-to <samp class="codeph">down</samp> on a button skin’s labelDisplay, the label
+to <samp class="codeph">down</samp> on a button skin's labelDisplay, the label
 disappears when the user clicks the button. As a result, the button
 resizes itself in the <samp class="codeph">down</samp> state. This behavior
 is expected and is shown in the following example:<pre class="codeblock">&lt;?xml version="1.0" encoding="utf-8"?&gt; 
@@ -1240,7 +1240,7 @@ The default value for the <samp class="codeph">required</samp> property is <samp
 The contract between the Button class and its skin dictates that
 when you set the <samp class="codeph">label</samp> property on a button, the
 value is pushed down into the skin and modifies the value of the
-labelDisplay skin part’s text, if the <samp class="codeph">labelDisplay</samp> skin part
+labelDisplay skin part's text, if the <samp class="codeph">labelDisplay</samp> skin part
 exists.</p>
 
                <p>Parts are identified by their <samp class="codeph">id</samp> attributes.
@@ -1268,7 +1268,7 @@ one static part: label.</p>
 be more than one instance of a dynamic part. Dynamic parts are defined
 in the Declarations block of a skin so that one or more instances
 of the part can be instantiated and used by the skin. The Slider
-class’s DataTip, for example, is a dynamic skin part. In the VSliderSkin
+class's DataTip, for example, is a dynamic skin part. In the VSliderSkin
 and HSliderSkin, the dataTip skin part is defined in a Declarations block.</p>
 
                <div class="p">In your host component, you specify the type for a dynamic skin
@@ -1430,7 +1430,7 @@ can use the class in your application.</p>
 
                <div class="p">As with CSS, you can use ActionScript to apply a skin class to
 all instances of a particular component type. Call the <samp class="codeph">setStyle()</samp> method
-on the component’s style declaration. The following example applies
+on the component's style declaration. The following example applies
 the custom Button skin to all buttons in the application:<pre class="codeblock">&lt;?xml version="1.0" encoding="utf-8"?&gt; 
 &lt;!-- SparkSkinning/ASTypeSelectorLoadExample.mxml --&gt; 
 &lt;s:Application 
@@ -1477,7 +1477,7 @@ parts</h3>
 tags. </p>
 
             <p>You can document the <samp class="codeph">[SkinState]</samp> metadata tag
-by adding comments above the tag in the component’s class file,
+by adding comments above the tag in the component's class file,
 as the following example shows:</p>
 
             <pre class="codeblock">/** 
@@ -1486,7 +1486,7 @@ as the following example shows:</p>
 [SkinState("up")]</pre>
 
             <p>To document a <samp class="codeph">[SkinPart]</samp> metadata tag, the ASDoc
-utility uses the description of the variable from the component’s
+utility uses the description of the variable from the component's
 class file. You do not add a comment on the actual metadata tag,
 as the following example shows:</p>
 
@@ -1497,8 +1497,8 @@ as the following example shows:</p>
 public var labelDisplay:TextGraphicElement;</pre>
 
             <p>The ASDoc utility adds skin state documentation to the "Skin
-States" section of the class’s documentation. It adds skin part
-documentation to the "Skin Parts" section of the class’s documentation.</p>
+States" section of the class's documentation. It adds skin part
+documentation to the "Skin Parts" section of the class's documentation.</p>
 
             <p>For more information about the ASDoc utility, see <a href="flx_asdoc_asd.html#WSd0ded3821e0d52fe1e63e3d11c2f44bb7b-7fe7_verapache">ASDoc</a>.</p>
 
@@ -1578,7 +1578,7 @@ adding borders, drop shadows, and transitions to a skin class.</p>
 sizes of the skin. This causes the Flex layout to not reduce the
 size of a component below a pre-defined width or height. You do
 this with the <samp class="codeph">minWidth</samp> and <samp class="codeph">minHeight</samp> properties
-on the skin class’s top-level element. </p>
+on the skin class's top-level element. </p>
 
             <p>In general, you should not change the values of the minimum height
 and minimum width properties once they are set.</p>
@@ -1681,7 +1681,7 @@ minimum width of 100 pixels and a minimum height of 100 pixels. <pre class="code
 
             </div>
 
-            <div class="p">The default Button skin’s minimum size is 21 pixels wide by 21
+            <div class="p">The default Button skin's minimum size is 21 pixels wide by 21
 pixels high. These minimums are set on the root tag of the skin
 class, as the following example shows:<pre class="codeblock">&lt;s:SparkSkin 
 	xmlns:fx="http://ns.adobe.com/mxml/2009" 
@@ -1693,7 +1693,7 @@ class, as the following example shows:<pre class="codeblock">&lt;s:SparkSkin
 
             </div>
 
-            <div class="p">You might notice that in the default button skin’s class, though,
+            <div class="p">You might notice that in the default button skin's class, though,
 the Rect border sets its width to a value that is larger than the
 minimum width on the skin:<pre class="codeblock"> &lt;s:Rect id="border" left="0" right="0" top="0" bottom="0" width="69" height="20" radiusX="2"&gt;</pre>
 
@@ -1702,7 +1702,7 @@ minimum width on the skin:<pre class="codeblock"> &lt;s:Rect id="border" left="0
             <p>The <samp class="codeph">width</samp> property on the Rect border is used
 for buttons whose size is unset. The <samp class="codeph">minWidth</samp> property
 on the <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/spark/skins/SparkSkin.html" target="_blank">SparkSkin</a> is
-used when the button’s width is variable, meaning that it hasn’t
+used when the button's width is variable, meaning that it hasn't
 been explicitly set. The previous example sets a default width and
 height of 69 and 20.  However, it is pinned to (left=0, right=0, top=0,
 bottom=0) so that if the label is too large or the button is explicitly
@@ -1717,7 +1717,7 @@ sized, then this rectangle will resize.</p>
 
          
          <div>
-            <p>In addition to accessing the host component’s properties,
+            <p>In addition to accessing the host component's properties,
 you can access properties of the application. This is useful if
 there are global settings that you want to access, or runtime information
 that is passed into the application that you want available in the
@@ -1808,7 +1808,7 @@ that extend the <a href="http://help.adobe.com/en_US/FlashPlatform/reference/act
 On other skins, such as container skins, you can set the <samp class="codeph">backgroundColor</samp>. </p>
 
             <div class="p">The following example sets the color of the border inside the
-skin to the same value as the Button’s <samp class="codeph">color</samp> style
+skin to the same value as the Button's <samp class="codeph">color</samp> style
 property:<pre class="codeblock">&lt;?xml version="1.0" encoding="utf-8"?&gt; 
 &lt;!-- SparkSkinning/BorderColorButtonExample.mxml --&gt; 
 &lt;s:Application 
@@ -1875,8 +1875,8 @@ property:<pre class="codeblock">&lt;?xml version="1.0" encoding="utf-8"?&gt;
 
             <div class="p">You can use a binding expression to set properties in the skin
 based on values in the host component. The following example binds
-the value of the stroke’s <samp class="codeph">color</samp> property to the
-host component’s <samp class="codeph">color</samp> style property:<pre class="codeblock">&lt;?xml version="1.0" encoding="utf-8"?&gt; 
+the value of the stroke's <samp class="codeph">color</samp> property to the
+host component's <samp class="codeph">color</samp> style property:<pre class="codeblock">&lt;?xml version="1.0" encoding="utf-8"?&gt; 
 &lt;!-- SparkSkinning/StyleWatcherExample.mxml --&gt; 
 &lt;s:Application    
     xmlns:fx="http://ns.adobe.com/mxml/2009"     
@@ -1939,7 +1939,7 @@ the component itself so that inline MXML styling will work.</p>
             <p>To expose a property as a style, you can also define a getter
 and setter for the property. You then override the <samp class="codeph">styleChanged()</samp> method
 to dispatch the binding change event. In the application, you call
-the <samp class="codeph">setStyle()</samp> method on the instance’s <samp class="codeph">skin</samp> property,
+the <samp class="codeph">setStyle()</samp> method on the instance's <samp class="codeph">skin</samp> property,
 which sets the value of the style property on the skin. </p>
 
             <div class="p">The following example exposes a custom style property called <samp class="codeph">borderColor</samp> on
@@ -1992,7 +1992,7 @@ the custom skin:<pre class="noswf">&lt;?xml version="1.0" encoding="utf-8"?&gt;
 
             <div class="p">In the following application, you set the color of the border
 by using the ColorPicker control. This control uses the <samp class="codeph">setStyle()</samp> method
-to change the color of the container’s border. <pre class="codeblock">&lt;?xml version="1.0" encoding="utf-8"?&gt; 
+to change the color of the container's border. <pre class="codeblock">&lt;?xml version="1.0" encoding="utf-8"?&gt; 
 &lt;!-- SparkSkinning/StyleableBorderExample.mxml --&gt; 
 &lt;s:Application 
     xmlns:fx="http://ns.adobe.com/mxml/2009" 
@@ -2022,10 +2022,10 @@ to change the color of the container’s border. <pre class="codeblock">&lt;?xml
 
             <div class="p">Another way to expose style properties to the skin is to add
 code to the <samp class="codeph">updateDisplayList()</samp> method to manually
-push style values into the skin’s graphics. This is the more efficient
+push style values into the skin's graphics. This is the more efficient
 method of pushing style properties to skins because it does not
 rely on binding. The following example overrides the <samp class="codeph">updateDisplayList()</samp> method
-to push the background color’s style property:<pre class="codeblock">&lt;fx:Script&gt; 
+to push the background color's style property:<pre class="codeblock">&lt;fx:Script&gt; 
 	override protected function updateDisplayList(unscaleWidth:Number, unscaledHeight:Number):void { 
 		// Push style values into the graphics properties before calling super.updateDisplayList 
 		backgroundFill.color = getStyle("backgroundColor"); 
@@ -2051,7 +2051,7 @@ to push the background color’s style property:<pre class="codeblock">&lt;fx:Sc
             <p>In general, you should use states to react to user interaction.
 If a skin part is removed from display list whenever the mouse hovers
 over a control, then that part cannot receive mouseDown events.
-Some skins, such as the Button control’s skin, block user interaction
+Some skins, such as the Button control's skin, block user interaction
 to the skin so that the underlying control only can dispatch events.
 This means that you cannot trigger events defined on InteractiveObject
 on the skin. These include user interaction events such as <samp class="codeph">mouseDown</samp>, <samp class="codeph">mouseOut</samp>,
@@ -2061,7 +2061,7 @@ and <samp class="codeph">click</samp>. </p>
 the skin, however. These events include <samp class="codeph">creationComplete</samp> and
 other lifecycle events.</p>
 
-            <p>A Button control’s default skin defines several Rect elements
+            <p>A Button control's default skin defines several Rect elements
 and a Label control. These simple classes do not support any events.
 To add lifecycle event listeners, you can wrap a simple element
 or series of elements in a Group tag. This lets you register lifecycle
@@ -2165,7 +2165,7 @@ They define a group that defines where the content children are
 laid out. This element has an ID of <samp class="codeph">contentGroup</samp>.
 All skinnable containers have a content group. All visual children
 of a container are pushed into the content group and laid out using
-that group’s layout rules.</p>
+that group's layout rules.</p>
 
          <p>For a list of which containers are skinnable and/or scrollable,
 see <a href="flx_groups_containers_gc.html#WSDBFD90D1-A0A5-40e2-BEEE-14ECBE82F83B_verapache">About
@@ -2216,7 +2216,7 @@ to 5.</p>
 set the <samp class="codeph">left</samp> and <samp class="codeph">right</samp> properties.
 To specify their default size, they also set the <samp class="codeph">width</samp> property. As
 a result, if the component size is not set in the application, the
-element’s width sets the default size of the skin and the component. </p>
+element's width sets the default size of the skin and the component. </p>
 
             <div class="p">The following example from the ButtonSkin.mxml class shows that
 the default size of the Button control is the default size of its
@@ -2250,7 +2250,7 @@ to a container. Borders can be simple boxes around the perimeter
 of a container, or they can define drop shadows, line styles, corner
 radii, and other properties of a border.</p>
 
-            <p>To add a simple rectangular border to a container’s skin, you
+            <p>To add a simple rectangular border to a container's skin, you
 add a <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/spark/primitives/Rect.html" target="_blank">Rect</a> object. You
 can set the height and width of the Rect to 100% so that the skin
 sizes itself to the size of the container automatically, or you
@@ -2309,7 +2309,7 @@ as follows:<pre class="noswf">&lt;?xml version="1.0" encoding="utf-8"?&gt;
 
             </div>
 
-            <p>The container’s skin sets its constraint properties (<samp class="codeph">top</samp>, <samp class="codeph">bottom</samp>, <samp class="codeph">left</samp>,
+            <p>The container's skin sets its constraint properties (<samp class="codeph">top</samp>, <samp class="codeph">bottom</samp>, <samp class="codeph">left</samp>,
 and <samp class="codeph">right</samp>) to 0, so the Rect object is set to the
 same size as the container.</p>
 
@@ -2318,7 +2318,7 @@ values of the <samp class="codeph">radiusX</samp> and <samp class="codeph">radiu
 of the Rect object. These properties define the number of pixels
 for the corners on the x and y axes of the Rect. The following example
 sets the <samp class="codeph">radiusX</samp> and <samp class="codeph">radiusY</samp> properties
-to 10 to round the corners of the container’s skin:<pre class="codeblock">&lt;?xml version="1.0" encoding="utf-8"?&gt; 
+to 10 to round the corners of the container's skin:<pre class="codeblock">&lt;?xml version="1.0" encoding="utf-8"?&gt; 
 &lt;!-- SparkSkinning/RoundedContainerBorderExample.mxml --&gt; 
 &lt;s:Application 
     xmlns:fx="http://ns.adobe.com/mxml/2009" 
@@ -2497,14 +2497,14 @@ Button controls without using a custom skin class:<pre class="codeblock">&lt;?xm
          
          <div>
             <p>To add a drop shadow to a Spark container, you use the <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/spark/filters/DropShadowFilter.html" target="_blank">DropShadowFilter</a> class. You
-add the filter to one of the graphic elements defined on that container’s
+add the filter to one of the graphic elements defined on that container's
 skin class. The DropShadowFilter class supports the <samp class="codeph">alpha</samp>, <samp class="codeph">angle</samp>, <samp class="codeph">distance</samp>,
 and other properties that let you customize the appearance of the
 drop shadow. In addition, you add a fill to the graphic element.
 The fill defines the color of the drop shadow. These settings are
 all in the custom skin class and not in the main application.</p>
 
-            <div class="p">The following example defines a drop shadow on the container’s
+            <div class="p">The following example defines a drop shadow on the container's
 skin:<pre class="codeblock">&lt;?xml version="1.0" encoding="utf-8"?&gt; 
 &lt;!-- SparkSkinning/DropShadowBorderExample.mxml --&gt; 
 &lt;s:Application 
@@ -2603,7 +2603,7 @@ of abstraction that skins provide.</p>
             <p>Another common use of Spark skins is modify the padding
 of Spark containers. </p>
 
-            <p>To add padding, you can set the offset properties of the container’s
+            <p>To add padding, you can set the offset properties of the container's
 content group. These properties are <samp class="codeph">top</samp>, <samp class="codeph">bottom</samp>, <samp class="codeph">left</samp>,
 and <samp class="codeph">right</samp>. </p>
 
@@ -2684,7 +2684,7 @@ itself to override the default layout that you set in the skin.</p>
             <p>Spark containers do not have scroll bars by default. To
 add scroll bars to a Spark container, use the <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/spark/components/Scroller.html" target="_blank">Scroller</a> class.</p>
 
-            <p>To add scroll bars to a container’s skin class, you wrap the
+            <p>To add scroll bars to a container's skin class, you wrap the
 content group or other element in a Scroller tag. The child of a
 Scroller tag must implement the IViewport interface. This interface
 is implemented by Group and DataGroup, and some components such
@@ -2747,7 +2747,7 @@ of its parent, Flex displays scroll bars.<pre class="codeblock">&lt;?xml version
             <p>The Scroller layout does not support the left/right/top/bottom
 constraints on the content group of the container. And in general,
 you should not explicitly set the <samp class="codeph">height</samp> and <samp class="codeph">width</samp> properties
-of the Scroller’s content group. Instead, you should let the content
+of the Scroller's content group. Instead, you should let the content
 group size naturally.</p>
 
             <p>You can use the <samp class="codeph">minViewportInset</samp> property on
@@ -2774,7 +2774,7 @@ to Spark containers</h3>
          
          <div>
             <p>To add background fills and background images to a Spark
-container’s skin, you add a Rect or other graphic element and add
+container's skin, you add a Rect or other graphic element and add
 the fill to that element.</p>
 
             <p>To add a color fill, you add a graphic element that is a subclass
@@ -3038,8 +3038,8 @@ clipping. For more information, see the BitmapFill class in the <em>
 Flash Platform</a>
                </em>.</p>
 
-            <p>The content group of the container’s skin is typically the last
-element defined in the skin class. This is because the skin’s layers
+            <p>The content group of the container's skin is typically the last
+element defined in the skin class. This is because the skin's layers
 are applied in the order in which they appear in the skin class.
 When a skin class has a background fill in a skin class, you add
 the content layer after it so that the content is not covered by
@@ -3047,7 +3047,7 @@ the fill.</p>
 
             <p>You can use the <samp class="codeph">depth</samp> property, which gives
 you more control over the z-index. This lets you rearrange the appearance
-of the skin’s elements so that it is not determined by the child
+of the skin's elements so that it is not determined by the child
 order.</p>
 
          </div>
@@ -3066,12 +3066,12 @@ component without specifying another skin to take its place. Otherwise,
 the component would have no definition of its visual parts (and
 would therefore break the skinning contract). </p>
 
-         <p>To swap a skin, you set the component’s <samp class="codeph">skinClass</samp> property
+         <p>To swap a skin, you set the component's <samp class="codeph">skinClass</samp> property
 to another skin class. </p>
 
          <div class="p">The following example applies a custom skin to the button when
 the application starts up. It then toggles the custom skin with
-the Button control’s default skin class when you click the button:<pre class="codeblock">&lt;?xml version="1.0" encoding="utf-8"?&gt; 
+the Button control's default skin class when you click the button:<pre class="codeblock">&lt;?xml version="1.0" encoding="utf-8"?&gt; 
 &lt;!-- SparkSkinning/SimpleUnloadExample.mxml --&gt; 
 &lt;s:Application 
     xmlns:fx="http://ns.adobe.com/mxml/2009" 
@@ -3120,7 +3120,7 @@ should be defined in the skin class and not on the component.</p>
 
          <p>You can use transitions in Spark skins in the same way you would
 use them in your application. You add a <samp class="codeph">&lt;s:transitions&gt;</samp> tag
-as a child tag of the skin’s root tag. You then define the transitions
+as a child tag of the skin's root tag. You then define the transitions
 and which states they apply to with the <samp class="codeph">toState</samp> and <samp class="codeph">fromState</samp> on
 the <samp class="codeph">&lt;s:Transition&gt;</samp> child tags. Because the skin
 is notified of state changes from the host component, you do not
@@ -3130,7 +3130,7 @@ have to add any logic to support state changes to the skin.</p>
 not in the effect itself.</p>
 
          <div class="p">The following example uses the <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/spark/effects/Resize.html" target="_blank">Resize</a> transition
-to grow and shrink the Button control’s label and border. The transitions
+to grow and shrink the Button control's label and border. The transitions
 are triggered when the user rolls the pointer over the Button control
 and when the user rolls the pointer off of the Button control.<pre class="codeblock">&lt;?xml version="1.0" encoding="utf-8"?&gt; 
 &lt;!-- SparkSkinning/ButtonTransitionExample.mxml --&gt; 
@@ -3205,7 +3205,7 @@ an ID, you cannot target a specific element.</p>
 
          <div class="p">As with standard Flex controls, you can use transitions with
 multiple effects that are playing in parallel on a Spark skin. The
-following example resizes and changes the color of the button’s
+following example resizes and changes the color of the button's
 label when the user moves their mouse over or out of the Button:<pre class="codeblock">&lt;?xml version="1.0" encoding="utf-8"?&gt; 
 &lt;!-- SparkSkinning/ButtonParallelTransitionExample.mxml --&gt; 
 &lt;s:Application 
@@ -3513,7 +3513,7 @@ use other components as part of their user interface. For example,
 a <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/spark/components/NumericStepper.html" target="_blank">NumericStepper</a> consists
 of a Button control with a down arrow, a Button control with an
 up arrow, and a TextInput control that displays the current value.
-The components that make up a composite component’s user interface
+The components that make up a composite component's user interface
 are known as subcomponents.</p>
 
          <p>To skin Spark subcomponents you edit the skin parts in the skin

@@ -46,7 +46,7 @@
             
             
             One
-way to reduce the size of your applications’ SWF files is by externalizing shared
+way to reduce the size of your applications' SWF files is by externalizing shared
 assets into stand-alone files that can be separately downloaded
 and cached on the client. These shared assets can be loaded and
 used by any number of applications at run time, but are transferred
@@ -76,7 +76,7 @@ the framework RSLs</a>.</p>
             <li>
                <p>Standard RSLs — A library of custom classes created by you
 to use across applications that are in the same domain. Standard
-RSLs are stored in the browser’s cache. For more information, see <a href="flx_rsl_rsl.html#WS2db454920e96a9e51e63e3d11c0bf69084-7adf_verapache">About
+RSLs are stored in the browser's cache. For more information, see <a href="flx_rsl_rsl.html#WS2db454920e96a9e51e63e3d11c0bf69084-7adf_verapache">About
 standard RSLs</a>. </p>
 
             </li>
@@ -85,7 +85,7 @@ standard RSLs</a>. </p>
                <p>Cross-domain RSLs — A library of custom classes, like standard
 RSLs, with the difference being that they can be loaded by applications
 in different domains and sub-domains. Cross-domain RSLs are stored
-in the browser’s cache. For more information, see <a href="flx_rsl_rsl.html#WS2db454920e96a9e51e63e3d11c0bf69084-7ae0_verapache">About
+in the browser's cache. For more information, see <a href="flx_rsl_rsl.html#WS2db454920e96a9e51e63e3d11c0bf69084-7ae0_verapache">About
 cross-domain RSLs</a>.</p>
 
             </li>
@@ -119,7 +119,7 @@ in the application SWF file. The end result is a larger file that
 takes longer to download than a dynamically-linked application,
 but loads and runs quickly because all the code is in the SWF file. </p>
 
-            <p>To statically link a library’s definitions into your application,
+            <p>To statically link a library's definitions into your application,
 you use the <samp class="codeph">library-path</samp> and <samp class="codeph">include-libraries</samp> compiler
 options to specify locations of SWC files. </p>
 
@@ -147,7 +147,7 @@ loaded at run time. Dynamic linking is used by modules, runtime
 stylesheets, and RSLs.</p>
 
             <p>When you want to use a dynamically-linked library, you instruct
-the compiler to exclude that library’s contents from the application
+the compiler to exclude that library's contents from the application
 SWF file when you compile the application. You must provide link-checking
 at compile time even though the classes are not going to be included
 in the final SWF file. At run time, the application loads the entire
@@ -196,8 +196,8 @@ compilers</a>.</p>
             <p>
                The following
 example shows the possible benefit of separating shared components
-into an RSL. In this example, the library’s size is 150 KB (kilobytes)
-and the compiled application’s size is 100 KB. Without RSLs, you
+into an RSL. In this example, the library's size is 150 KB (kilobytes)
+and the compiled application's size is 100 KB. Without RSLs, you
 merge the library into both applications for an aggregate download
 size of 500 KB. If you add a third or fourth application, the aggregate
 download size increases by 250 KB for each additional application.</p>
@@ -295,7 +295,7 @@ them anyway.</p>
 synchronize the versions so that the wrong class is never loaded.</p>
 
             <p>You cannot use RSLs in ActionScript-only projects if the base
-class is Sprite or MovieClip. RSLs require that the application’s
+class is Sprite or MovieClip. RSLs require that the application's
 base class, such as Application or SimpleApplication, understand
 RSL loading.</p>
 
@@ -319,10 +319,10 @@ rather than across the network. Caching is one of the benefits of
 RSLs, because disk access is much faster than network access.</p>
 
             <p>The type of caching used by an RSL is based on the type of RSL.
-Standard or cross-domain RSLs are stored in the browser’s cache.
+Standard or cross-domain RSLs are stored in the browser's cache.
 If the user clears their cache, the RSLs are removed and must be
 downloaded again the next time they are needed. Unsigned framework
-RSLs are also stored in the browser’s cache.</p>
+RSLs are also stored in the browser's cache.</p>
 
             <p>Signed framework RSLs are stored in the Player cache. This is
 a special cache that is maintained by Flash Player. To clear this
@@ -410,7 +410,7 @@ in the flex-config.xml file, as the following example shows:<pre class="codebloc
             
             <div>
                <p>By default the compiler outputs a list of RSLs that an
-application uses. This is viewable in the command line compiler’s
+application uses. This is viewable in the command line compiler's
 output. </p>
 
                <div class="p">The following is an example of the output from an application
@@ -425,7 +425,7 @@ RSLs:<pre class="codeblock">Required RSLs:
 
                <p>The list of required RSLs displays the expected location of the
 RSLs at runtime. In this case, the expected location is the signed
-SWFs available on Adobe’s website. The output also notes that there
+SWFs available on Adobe's website. The output also notes that there
 is a failover location in case the Adobe RSLs are unavailable. You
 can see this location in the flex-config.xml file.</p>
 
@@ -538,7 +538,7 @@ the following syntax:<pre class="codeblock">runtime-shared-library-settings.appl
                </div>
 
                <p>The <samp class="codeph">path-element</samp> option specifies the location
-of the RSL’s SWC library file. This RSL must also be defined by
+of the RSL's SWC library file. This RSL must also be defined by
 the <samp class="codeph">runtime-shared-library-path</samp> option.</p>
 
                <div class="p">The <samp class="codeph">application-domain-target</samp> option takes one
@@ -555,7 +555,7 @@ domain. </p>
                      <li>
                         <p>
                            <samp class="codeph">current</samp> — Loads the RSL into the module
-or sub-application’s current application domain. Modules and sub-applications
+or sub-application's current application domain. Modules and sub-applications
 will not be able to share this RSL with anything other than child
 modules or sub-applications.</p>
 
@@ -615,7 +615,7 @@ is unloaded, the RSL is not unloaded.</p>
 
                   <p>To prevent a framework
 RSL from being loaded into the main application, you can specify <samp class="codeph">"current"</samp> for
-the application domain. This loads the RSL into the module or sub-application’s
+the application domain. This loads the RSL into the module or sub-application's
 application domain. When the module or sub-application is unloaded,
 so is the RSL. Other modules or sub-applications will not have access
 to it. You should not specify <samp class="codeph">"current"</samp> for the
@@ -627,7 +627,7 @@ are always loaded into the root application.</p>
                <div class="section"><h5 class="sectiontitle">Sharing custom RSLs among modules and sub-applications</h5>
                   
                   <p>For
-custom RSLs, the default is to load the RSL into the module or sub-application’s
+custom RSLs, the default is to load the RSL into the module or sub-application's
 current application domain. The result is that the module or sub-application
 does not share the RSL with sibling modules or sub-applications,
 but only with child sub-applications or modules that it loads.</p>
@@ -682,8 +682,8 @@ are precompiled libraries of framework classes and components.</p>
                   <p>
                      <em>Signed framework RSLs</em> are cached in a special Player
 cache and in the browser cache. They can be accessed by any application
-regardless of that application’s originating domain. They only need
-to be downloaded to the client once. When the browser’s cache is
+regardless of that application's originating domain. They only need
+to be downloaded to the client once. When the browser's cache is
 cleared, signed framework RSLs persist in the special Player cache.</p>
 
                </li>
@@ -692,7 +692,7 @@ cleared, signed framework RSLs persist in the special Player cache.</p>
                   <p>
                      <em>Unsigned framework RSLs</em> are cached in the browser
 cache and can only be used by applications that have access to the
-RSL’s source domain. When the browser’s cache is cleared, unsigned
+RSL's source domain. When the browser's cache is cleared, unsigned
 framework RSLs are removed just like any other file in the cache.</p>
 
                </li>
@@ -703,7 +703,7 @@ framework RSLs are removed just like any other file in the cache.</p>
 
          <p>By default, framework RSLs are dynamically linked into your applications.
 When an application loads on the client, the client attempts to
-load the framework RSLs if they are not already in the client’s
+load the framework RSLs if they are not already in the client's
 cache. Typically, they attempt to load the signed framework RSL
 that is hosted by Adobe first. The location and order of RSLs loaded
 is defined in the flex-config.xml file. You can override these values
@@ -730,7 +730,7 @@ framework RSLs</h3>
             
             <p>If your application uses framework RSLs,
 the client attempts to load them from Adobe first. If the Adobe
-site is unavailable, or the client’s network access is restricted,
+site is unavailable, or the client's network access is restricted,
 you can instruct the client to use the included framework RSLs instead.</p>
 
             <div class="p">The
@@ -1008,7 +1008,7 @@ Player 10.0 or later, so this might not be an issue for you.)</p>
 you use locally-hosted signed framework RSLs when you deploy your
 application, you must deploy the SWZ file to the location that you
 specified on the command line. You must also be sure that the crossdomain.xml
-file is in place at the RSL’s domain. To ensure that your application
+file is in place at the RSL's domain. To ensure that your application
 can support older versions of Flash Player, you should also deploy
 the unsigned framework RSL SWF file (in addition to the signed SWZ
 file), and specify that file as a failover RSL.</p>
@@ -1166,7 +1166,7 @@ to specify that only some of them are used, reorder the failover
 options, or customize some other aspect of the framework RSLs.</p>
 
             <p>Create an application with a single Button control. After you
-create the application, determine the size of the application’s
+create the application, determine the size of the application's
 compiled SWF file before you use the framework RSL. This will give
 you an idea of how much memory you are saving by using the framework
 RSL. </p>
@@ -1176,7 +1176,7 @@ Add the <samp class="codeph">static-link-runtime-shared-libraries=true</samp> op
 this ensures that you are not using the framework RSL when compiling
 the application, regardless of the settings in your configuration
 files. Instead, you are compiling the framework classes into your
-application’s SWF file.</p>
+application's SWF file.</p>
 
             <p>With the mxmlc command-line compiler, use the following command
 to compile the application:</p>
@@ -1217,7 +1217,7 @@ into the same directory. </p>
 includes an unsigned failover RSL as its final parameter. This is
 a standard framework RSL SWF file that is provided to support older
 versions of Flash Player that do not support signed RSLs. It is
-not cross domain, and if used by the client, it is stored in the browser’s
+not cross domain, and if used by the client, it is stored in the browser's
 cache, not the framework cache.</p>
 
             <p>Deploy the application and the framework RSLs to a server. You
@@ -1246,7 +1246,7 @@ Player cache</a>.</p>
             <p>After the client downloads the signed framework RSL, they will
 not have to download that RSL again for any application that uses
 signed framework RSLs, unless a new version of the framework is
-released or the RSL’s SWZ file is purged from the Player cache.</p>
+released or the RSL's SWZ file is purged from the Player cache.</p>
 
          </div>
 
@@ -1263,7 +1263,7 @@ RSLs</h2>
          <p>Standard and cross-domain RSLs are RSLs that you create
 from your custom component libraries. These RSLs are different from
 signed framework RSLs in that they are unsigned and can only be
-stored in the browser’s cache. They are never stored in the Player
+stored in the browser's cache. They are never stored in the Player
 cache.</p>
 
          <p>To use standard or cross-domain RSLs, you perform the following
@@ -1292,7 +1292,7 @@ libraries</a>.</p>
 from your application that are defined in the RSL. They can then
 be linked at run time rather than at compile time. You do this when you
 compile the application by passing the compile-time location of
-the library SWC file as well as the run-time location of the library’s
+the library SWC file as well as the run-time location of the library's
 SWF file. For more information, see <a href="flx_rsl_rsl.html#WS2db454920e96a9e51e63e3d11c0bf69084-7ad7_verapache">Compiling
 applications with standard and cross-domain RSLs</a>.</p>
 
@@ -1304,7 +1304,7 @@ applications with standard and cross-domain RSLs</a>.</p>
 
                <dd>
                   <p>After you generate a library and compile your application against
-it, you should run the optimizer against the library’s SWF file.
+it, you should run the optimizer against the library's SWF file.
 The optimizer reduces the SWF file by removing debugging code and
 unneeded metadata from it. While this step is optional, it is best
 practice to optimize a library SWF file before deploying it. For
@@ -1421,8 +1421,8 @@ same RSL in multiple applications that are in different domains.</p>
 
             <p>To use a cross-domain RSL that is located on a remote server,
 the remote server must have a crossdomain.xml file that allows access
-from the application’s domain. The easiest way to do this is to
-add a crossdomain.xml file to the server’s root. To ensure that
+from the application's domain. The easiest way to do this is to
+add a crossdomain.xml file to the server's root. To ensure that
 applications from any domain can access the RSL SWF file, you can
 use an open crossdomain.xml file such as the following:</p>
 
@@ -1445,7 +1445,7 @@ server. When you compile a cross-domain RSL, you can specify the
 location of the crossdomain.xml file, and the application will look
 to that location to get permission to load the RSL. If you do not
 specify the location of the crossdomain.xml file when you compile
-your application, the application looks in the server’s root directory
+your application, the application looks in the server's root directory
 by default.</p>
 
             <p>Cross-domain RSLs can fail to load into an application under
@@ -1469,7 +1469,7 @@ not match the digest of the RSL when it is loaded</p>
                </li>
 
                <li>
-                  <p>The policy file is absent from the RSL’s server, or that
+                  <p>The policy file is absent from the RSL's server, or that
 server has a restrictive meta-policy</p>
 
                </li>
@@ -1492,7 +1492,7 @@ RSL whose location you specify when you compile the application.</p>
 trusted party, Flash Player reads the bytes of the incoming RSL
 and computes a one-way hash, or <em>digest</em>. The digest must match
 the digest that was stored in the application at compile time when
-the application was linked to the cross-domain RSL. If the RSL’s
+the application was linked to the cross-domain RSL. If the RSL's
 digest matches the known digest, then Flash Player loads the cross-domain RSL.
 If the digests do not match, Flash Player displays an error message
 and does not load the RSL.</p>
@@ -1511,7 +1511,7 @@ file, as the following example shows:</p>
 is <samp class="codeph">true</samp>. </p>
 
                <p>The compiler writes the digest inside the <samp class="codeph">swc/libraries/library/digests</samp> element
-of the RSL’s catalog.xml file. The following example shows the structure
+of the RSL's catalog.xml file. The following example shows the structure
 of <samp class="codeph">digest</samp> elements, which are optional children
 of the <samp class="codeph">digests</samp> element in the catalog.xml file: </p>
 
@@ -2022,8 +2022,8 @@ command line tool.</p>
                   </li>
 
                   <li>
-                     <p>Extract the library.swf file from your RSL’s SWC file, if
-you haven’t done so already.</p>
+                     <p>Extract the library.swf file from your RSL's SWC file, if
+you haven't done so already.</p>
 
                   </li>
 
@@ -2282,7 +2282,7 @@ option to <samp class="codeph">false</samp>. The default value is <samp class="c
 compc, which means that the compiler, by default, includes extra
 information in the SWC file to make it debuggable. You should avoid
 creating a debuggable library that you intend to use in production
-so that the RSL’s files are as small as possible. If you set the
+so that the RSL's files are as small as possible. If you set the
 value of the <samp class="codeph">debug</samp> option to <samp class="codeph">false</samp>,
 however, you will not be able to debug against the RSL for testing. </p>
 
@@ -2339,7 +2339,7 @@ cross-domain RSLs</a>.</p>
 
             <p>After you create the library, you
 then compile your application against the SWC file and specify the
-library’s SWF file’s location for use at run time. For more information,
+library's SWF file's location for use at run time. For more information,
 see <a href="flx_rsl_rsl.html#WS2db454920e96a9e51e63e3d11c0bf69084-7ad7_verapache">Compiling
 applications with standard and cross-domain RSLs</a>.</p>
 
@@ -2397,10 +2397,10 @@ them:</p>
 a library does not match the RSL SWF file. When you compile an application
 that uses an RSL, you specify the library SWC file that the application
 uses for link checking at compile time and an RSL SWF file that
-the application loads at run time. The digest in the library’s catalog.xml
+the application loads at run time. The digest in the library's catalog.xml
 file must match the digest of the RSL SWF file or you will get this
 error. If this error persists, recompile the application against
-the library SWC file again and redeploy the application’s SWF file.</p>
+the library SWC file again and redeploy the application's SWF file.</p>
 
                         <p>If
 you are using framework RSLs, then the SWZ file is a different version
@@ -2445,7 +2445,7 @@ to the <samp class="codeph">runtime-shared-library-path</samp> option, but
 the SWF file is actually in a sub-directory such as /rsls, then
 you must either recompile your application and update the value
 of the <samp class="codeph">rsl-url</samp> parameter to "rsls/mylib.swf", or
-move mylib.swf to the same directory as the application’s SWF file.</p>
+move mylib.swf to the same directory as the application's SWF file.</p>
 
                      </td>
 
@@ -2462,7 +2462,7 @@ move mylib.swf to the same directory as the application’s SWF file.</p>
 
                      <td class="cellrowborder" valign="top" width="NaN%" headers="d840925e2565 ">
                         <p>This error indicates that the loaded RSL
-was not signed properly. In the case of framework RSLs, the framework’s
+was not signed properly. In the case of framework RSLs, the framework's
 SWZ file that the application attempted to load at run time was
 not a properly signed SWZ file. You must ensure that you deploy
 an Adobe-signed RSL, or be sure to use the signed framework RSLs
@@ -2492,22 +2492,22 @@ cross-domain policy files</a>.</p>
 framework RSLs from the Adobe web site, you should not get this
 error.</p>
 
-                        <p>If you put the crossdomain.xml file at the server’s
+                        <p>If you put the crossdomain.xml file at the server's
 root, you do not have to recompile your application. This is because
-the application will look for that file at the server’s root by
+the application will look for that file at the server's root by
 default, so there is no need to explicitly define its location. </p>
 
                         <p>If
-you cannot store a crossdomain.xml file at the remote server’s root,
+you cannot store a crossdomain.xml file at the remote server's root,
 but can put it in another location on that server, you must specify
-the file’s location when you compile the application. On the command
+the file's location when you compile the application. On the command
 line, you do this by setting the value of the <samp class="codeph">policy-file-url</samp> argument
 of the <samp class="codeph">runtime-shared-library-path</samp> option.</p>
 
                         <p>In
 the following example, the RSL SWF file is located in the /rsls
 directory on www.domain.com. The crossdomain.xml file is located
-in the same directory, which is not the server’s root, so it must
+in the same directory, which is not the server's root, so it must
 therefore be explicitly specified:</p>
 
                         <div class="p">

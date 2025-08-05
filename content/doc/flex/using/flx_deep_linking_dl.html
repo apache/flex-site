@@ -83,7 +83,7 @@ following:</p>
          <ul>
             <li>
                <p>Update the URL when the application state changes. This
-also generates a new entry in the browser’s history.</p>
+also generates a new entry in the browser's history.</p>
 
             </li>
 
@@ -95,7 +95,7 @@ state.</p>
             </li>
 
             <li>
-               <p>Recognize when the URL in the browser’s address bar has changed.
+               <p>Recognize when the URL in the browser's address bar has changed.
 If the user clicks the Forward or Back button, or changes the URL
 in the address bar, the application is notified and can react to
 the change.</p>
@@ -145,8 +145,8 @@ and the application. The communication is bidirectional: if a change
 occurs in the application, the browser must be notified, and if
 a change in the browser occurs, then the application must be notified.
 This communication is handled by the <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/managers/BrowserManager.html" target="_blank">BrowserManager</a> class.
-This class uses methods in the HTML wrapper’s JavaScript to handle
-events, update the browser’s address bar, and call other methods.
+This class uses methods in the HTML wrapper's JavaScript to handle
+events, update the browser's address bar, and call other methods.
 Another class, <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/utils/URLUtil.html" target="_blank">URLUtil</a>, is provided to make
 it easier to parse the URL as you read it in your application and
 write it back to the browser.</p>
@@ -161,8 +161,8 @@ the fragment:</p>
 
             <p>If the user navigates to a new view in your application, you
 update the URL and set <samp class="codeph">view=2</samp> in the URL fragment.
-If the user then clicks the browser’s Back button, the BrowserManager
-is notified of the event, and gives you a chance to change the application’s
+If the user then clicks the browser's Back button, the BrowserManager
+is notified of the event, and gives you a chance to change the application's
 state in respond to the URL fragment changing back to <samp class="codeph">view=1</samp>.</p>
 
             <p>You typically use the methods of the URLUtil class to parse the
@@ -171,7 +171,7 @@ port number, and protocol of a URL. In addition, you can use the <samp class="co
 to convert an ActionScript object to a String that you then append
 to the end of a URL. Alternatively, you can convert any number of
 name/value pairs on a query string into an object by using the URLUtil
-class’s <samp class="codeph">stringToObject()</samp> method. This lets you
+class's <samp class="codeph">stringToObject()</samp> method. This lets you
 then manipulate the fragment more easily in your application logic.</p>
 
          </div>
@@ -215,7 +215,7 @@ wrapper. The following example imports the JS and CSS files:</p>
 
             <p>You must also deploy the historyFrame.html file with your application.
 This file must be located in the /history sub-directory; its location
-is relative to your deployed application SWF file’s location. </p>
+is relative to your deployed application SWF file's location. </p>
 
             <p>For the SDK, the files are located in the <em>sdk_install</em>/templates/swfobject/history directory.</p>
 
@@ -247,7 +247,7 @@ in <a href="flx_deep_linking_dl.html#WS2db454920e96a9e51e63e3d11c0bf69084-7cbd_v
 BrowserManager events</a>.</p>
 
          <p>You can also access properties of the manager. These properties
-store the browser’s current title, plus the full URL and its sub-parts, <samp class="codeph">fragment</samp> and <samp class="codeph">base</samp>. The
+store the browser's current title, plus the full URL and its sub-parts, <samp class="codeph">fragment</samp> and <samp class="codeph">base</samp>. The
 properties are read-only, but you can use methods of the manager,
 such as <samp class="codeph">setTitle()</samp> and <samp class="codeph">setFragment()</samp>,
 to set the values of some of them.</p>
@@ -265,7 +265,7 @@ for the current page.</p>
          <p>The following example instantiates the BrowserManager, registers
 the <samp class="codeph">parseURL()</samp> method to listen for <samp class="codeph">browserURLChange</samp> events,
 and calls the <samp class="codeph">init()</samp> method with a blank fragment
-as the default fragment. It sets the value of the page’s title to
+as the default fragment. It sets the value of the page's title to
 "Test Deep Linking":</p>
 
          <pre class="codeblock"> private function initApp():void { 
@@ -274,13 +274,13 @@ as the default fragment. It sets the value of the page’s title to
  	browserManager.init("", "Test Deep Linking"); 
  }</pre>
 
-         <p>Calling the BrowserManager class’s <samp class="codeph">init()</samp> method
+         <p>Calling the BrowserManager class's <samp class="codeph">init()</samp> method
 also gets the current URL as a property in the BrowserManager.</p>
 
          <p>If you set a value for the default fragment in the <samp class="codeph">init()</samp> method,
 when the URL changes, the URL with the default fragment will be
-entered in the browser’s history. This way, if the user clicks the
-Back button or in some other way accesses this page from the browser’s
+entered in the browser's history. This way, if the user clicks the
+Back button or in some other way accesses this page from the browser's
 history, this fragment will be used. Also, the BrowserManager returns
 the default fragment if there is nothing after the pound sign ("#")
 in the URL.</p>
@@ -292,8 +292,8 @@ in the URL.</p>
 
          
          <div>
-            <p>You use the BrowserManager’s <samp class="codeph">setFragment()</samp> method
-to update the URL in the browser’s address bar. You can only change
+            <p>You use the BrowserManager's <samp class="codeph">setFragment()</samp> method
+to update the URL in the browser's address bar. You can only change
 the fragments in the URL. You cannot change the base of the URL,
 including the server, protocol, or port numbers.</p>
 
@@ -389,8 +389,8 @@ triggered.</p>
             <p>When you click on the second panel, you trigger a <samp class="codeph">change</samp> event,
 which causes Flash Player to call the <samp class="codeph">updateURL()</samp> method.
 This method calls the <samp class="codeph">setFragment()</samp> method that
-changes the URL in the browser’s address bar. If you cycle through
-the panels, the URL in the browser’s address bar will change from
+changes the URL in the browser's address bar. If you cycle through
+the panels, the URL in the browser's address bar will change from
 this:</p>
 
             <pre class="codeblock"> http://localhost:8100/devapps/code/deeplinking/FragmentExample.html#panel=1</pre>
@@ -403,7 +403,7 @@ this:</p>
 
             <pre class="codeblock"> http://localhost:8100/devapps/code/deeplinking/FragmentExample.html#panel=0</pre>
 
-            <p>Each time the application changes the URL in the browser’s address
+            <p>Each time the application changes the URL in the browser's address
 bar, Flash Player dispatches an <samp class="codeph">applicationURLChange</samp> event.
 This example logs the previous and current URLs, which are properties
 of this event object.</p>
@@ -417,11 +417,11 @@ of this event object.</p>
 
          
          <div>
-            <p>Changing the URL in the browser’s address bar does not
+            <p>Changing the URL in the browser's address bar does not
 necessarily provide you with deep linking functionality. For example,
 loading a bookmarked URL that specifies the panel would not start
 the application on that panel. You must add code to the application
-that parses the URL so that the application’s state reflects the
+that parses the URL so that the application's state reflects the
 URL. </p>
 
             <p>In this case, you add a listener for the <samp class="codeph">browserURLChange</samp> event.
@@ -432,12 +432,12 @@ the current panel with the selected index of 2.</p>
 
             <p>The <samp class="codeph">browserURLChange</samp> event is not triggered
 when the application first loads. As a result, you must also check
-the URL on startup with the application’s <samp class="codeph">creationComplete</samp> event,
+the URL on startup with the application's <samp class="codeph">creationComplete</samp> event,
 and trigger the parsing before the application finishes being rendered
 on the screen. </p>
 
             <p>The following is a simple example that sets the value of the
-Accordion’s <samp class="codeph">selectedIndex</samp> property to the value
+Accordion's <samp class="codeph">selectedIndex</samp> property to the value
 of the <samp class="codeph">index</samp> fragment in the URL. You request this
 application by setting the value of the <samp class="codeph">index</samp> fragment
 on the URL, as the following example shows:</p>
@@ -633,7 +633,7 @@ deep linking with navigator containers</a>.</p>
 
             <ul>
                <li>
-                  <p>URL is changed programmatically, such as with the BrowserManager’s <samp class="codeph">setFragment()</samp> method
+                  <p>URL is changed programmatically, such as with the BrowserManager's <samp class="codeph">setFragment()</samp> method
 (<samp class="codeph">applicationURLChange</samp>)</p>
 
                </li>
@@ -713,7 +713,7 @@ Back buttons in your browser. In both cases, you also trigger a <samp class="cod
         height="500"/&gt; 
 &lt;/s:Application&gt;</pre>
 
-            <p>Changing the URL fragments in the browser’s address bar triggers
+            <p>Changing the URL fragments in the browser's address bar triggers
 a <samp class="codeph">browserURLChange</samp> event but does not trigger a
 page reload in FireFox or Internet Explorer 7. In Internet Explorer
 version 6 and earlier, changing the part of the address that is
@@ -730,7 +730,7 @@ to the right of the pound sign ("#") <em>does</em> trigger a page reload.</p>
 
       
       <div>
-         <p>You can use the BrowserManager’s <samp class="codeph">setTitle()</samp> method
+         <p>You can use the BrowserManager's <samp class="codeph">setTitle()</samp> method
 to set the title in your HTML wrapper. This shows up as the name
 of the web page in the title bar of the browser. When you first
 initialize the BrowserManager, you set the value of the title in
@@ -794,7 +794,7 @@ that you enter in the TextInput fields.</p>
          <p>In applications, there are several ways to pass values
 to an application with the URL. You can convert query string parameters
 to <samp class="codeph">flashVars</samp> variables or you can append them to
-the SWF file’s URL (for example, MyApp.swf?value1=x&amp;value2=y).
+the SWF file's URL (for example, MyApp.swf?value1=x&amp;value2=y).
 You do both of these things in the HTML wrapper that embeds the
 application. To access the values in your application, you then
 use the <samp class="codeph">FlexGlobals.topLevelApplication.application</samp> object.
@@ -813,7 +813,7 @@ once you convert the fragment to an object:</p>
          <pre class="codeblock"> http://www.mydomain.com/MyApp.html#firstName=Nick;lastName=Danger</pre>
 
          <p>To convert these parameters to an object, you get the URL and
-then use the URLUtil class’s <samp class="codeph">stringToObject()</samp> method.
+then use the URLUtil class's <samp class="codeph">stringToObject()</samp> method.
 You then access <samp class="codeph">firstName</samp> and <samp class="codeph">lastName</samp> as
 properties on that new object.</p>
 
@@ -892,7 +892,7 @@ and Accordion containers. </p>
 to read properties on controls that are in views that have not yet
 been viewed (and therefore, the controls have not yet been instantiated).
 One possible solution is to disable deferred instantiation, and
-set the value of the container’s <samp class="codeph">creationPolicy</samp> property
+set the value of the container's <samp class="codeph">creationPolicy</samp> property
 to <samp class="codeph">all</samp>. This instructs Flex to instantiate all
 controls in all views at application startup, regardless of whether
 they can be viewed initially or not. This is not a recommended solution
@@ -909,17 +909,17 @@ the creationPolicy property</a>.</p>
 bind the values of the properties you want to maintain state on
 to the values in the URL. Controls that have not yet been created
 apply these values when they are created. This has the benefit of
-keeping the URL and the application’s state in sync with each other, without
-requiring that a view’s controls are first created. </p>
+keeping the URL and the application's state in sync with each other, without
+requiring that a view's controls are first created. </p>
 
-         <p>You do this by setting up variables that are mapped to the URL’s
+         <p>You do this by setting up variables that are mapped to the URL's
 values at start up and then kept in sync with the application as
 the user interacts with it. When the application starts up, you
 set the value of the bound property to the value taken from the
-URL (if there is one). Then, whenever the application’s state changes (such
+URL (if there is one). Then, whenever the application's state changes (such
 as when the user navigates to a new panel or clicks on a check box),
 you update the bound property to the new value. You also update
-the value of the property’s fragment in the URL.</p>
+the value of the property's fragment in the URL.</p>
 
          <p>By doing this, though, you must wrap your variable assignments
 with try/catch blocks because you will attempt to set the values
@@ -1097,7 +1097,7 @@ handlers to set the value of the <samp class="codeph">hometownFromURL</samp> pro
  	enter="hometownFromURL=hometown.text;updateURL()" /&gt;</pre>
 
          <p>In this example, the controls in the view update the model when
-the controls’ properties change. This helps enforce a cleaner separation
+the controls' properties change. This helps enforce a cleaner separation
 between the model and the view.</p>
 
       </div>
@@ -1112,7 +1112,7 @@ current URL</h2>
       <div>
          <p>In some cases, it is important to get information about
 the current URL, such as the server name or the protocol that was
-used to return the SWF’s wrapper. You do this by using the BrowserManager
+used to return the SWF's wrapper. You do this by using the BrowserManager
 and the URLUtil class.</p>
 
          <p>You use the BrowserManager to get the URL, using either the <samp class="codeph">url</samp>, <samp class="codeph">fragment</samp>, or <samp class="codeph">base</samp> properties.

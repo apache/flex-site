@@ -252,7 +252,7 @@ new set of functionality. </p>
 a subset of the screens. By refactoring the screens into small groups
 of modules that are loaded on demand, you can improve the perceived
 performance of the main application and reduce the memory use. Also,
-when the application is separated into modules, developers’ productivity
+when the application is separated into modules, developers' productivity
 may increase due to better encapsulation of design. When rebuilding
 the application, the developers also have to recompile only the
 single module instead of the entire application. </p>
@@ -290,7 +290,7 @@ and enforces an abstraction layer without adding significantly to
 the SWF file size.</p>
 
             <p>The following image shows the relationship between the shell
-and the module’s interfaces:</p>
+and the module's interfaces:</p>
 
             <div class="figborder">
                <img src="images/md_ModuleDiagram.png" alt="The relationship between the shell and the module\xd5 s interface."/>
@@ -302,7 +302,7 @@ that are indexed by the module URL. Loading a module triggers a
 series of events that let clients monitor the status of the module. Modules
 are only ever loaded once, but subsequent reloads also dispatch
 events so that client code can be simplified and rely on using the <samp class="codeph">READY</samp> event
-to know that the module’s class factory is available for use.</p>
+to know that the module's class factory is available for use.</p>
 
             <p>The <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/spark/modules/ModuleLoader.html" target="_blank">ModuleLoader</a> class
 is a thin layer on top of the ModuleManager API that is intended
@@ -336,7 +336,7 @@ domain by using the <samp class="codeph">applicationDomain</samp> property
 of the ModuleLoader class. </p>
 
             <p>Because a module is loaded into a child domain, it owns class
-definitions that are not in the main application’s domain. For example,
+definitions that are not in the main application's domain. For example,
 the first module to load the PopUpManager class becomes the owner
 of the PopUpManager class for the entire application because it
 registers the manager with the SingletonManager. If another module
@@ -352,7 +352,7 @@ RSLs with modules</a>.</p>
 
             <p>If you do not use RSLs, the solution is to ensure that managers
 such as PopUpManager and DragManager and any other shared services
-are defined by the main application (or loaded late into the shell’s
+are defined by the main application (or loaded late into the shell's
 application domain). When you promote one of those classes to the
 main application, the class can then be used by all modules. Typically,
 this is done by adding the following to a script block in the main
@@ -376,7 +376,7 @@ the EmbeddedFontRegistry class in your main application if one or
 more of your modules uses embedded fonts.</p>
 
             <p>This technique also applies to components. The module that first
-uses the component owns that component’s class definition in its
+uses the component owns that component's class definition in its
 domain. As a result, if another module tries to use a component
 that has already been used by another module, its definition will
 not match the existing definition. </p>
@@ -386,19 +386,19 @@ of the component in the main application. The result is that the
 definition of the component is owned by the main application and
 can be used by modules in any child domain.</p>
 
-            <p>By default, modules do not share the main application’s StyleManager,
+            <p>By default, modules do not share the main application's StyleManager,
 however. They have their own instances of the IStyleManager2 class.
 As a result, modules can define their own styles. For example, style
 properties set on a Button control in one module are not applied
 to the Button control in another module or to the main application.</p>
 
             <p>Because a module must be in the same security domain as the application
-(SWF) that loads it, when you’re using modules in an AIR application,
+(SWF) that loads it, when you're using modules in an AIR application,
 any module SWF must be located in the same directory as the main
 application SWF or one of its subdirectories, which ensures that,
 like the main application SWF, the module SWF is in the AIR application
 security sandbox. One way to verify this is to ensure that a relative
-URL for the module’s location doesn’t require "../" ("up one level") notation
+URL for the module's location doesn't require "../" ("up one level") notation
 to navigate outside the application directory or one of its subdirectories.</p>
 
             <p>For more information about application domains, see <a href="flx_loading_applications_la.html#WS2db454920e96a9e51e63e3d11c0bf69084-7d14_verapache">Developing
@@ -416,7 +416,7 @@ for each module, and an application that loads the modules. </p>
 
                <ol>
                   <li>
-                     <p>Create any number of modules. An MXML-based module file’s
+                     <p>Create any number of modules. An MXML-based module file's
 root tag is <samp class="codeph">&lt;s:Module&gt;</samp>. ActionScript-based
 modules extend either the Module or ModuleBase class.</p>
 
@@ -462,8 +462,8 @@ of the IStyleManager2 class. This means that each module can load
 its own set of styles, and its styles do not necessarily affect
 the styles of other modules.</p>
 
-            <p>After an application finishes loading a module, the module’s
-styles are merged with the styles of the application. The module’s
+            <p>After an application finishes loading a module, the module's
+styles are merged with the styles of the application. The module's
 StyleManager walks the chain of parent modules and applications,
 up to the top-level StyleManager, and merges its styles with those
 set on the StyleManagers above it.</p>
@@ -562,14 +562,14 @@ merges work.<pre class="noswf">&lt;?xml version="1.0"?&gt;
 argument to <samp class="codeph">false</samp>. By doing this, you might trigger
 type coercion errors when loading skins. Modules also might not
 be properly garbage collected when they are unloaded. This is because
-the main application’s StyleManager will maintain references to the
+the main application's StyleManager will maintain references to the
 module even after is is unloaded. When you set <samp class="codeph">isolate-styes</samp> to <samp class="codeph">false</samp>, if
 more than one module loads a style, the first one loaded wins. In
 this case, styles set on modules can be overridden by those set
 on other modules.</p>
 
             <p>In the previous example, if you set the <samp class="codeph">isolate-styles</samp> compiler
-argument to <samp class="codeph">false</samp>, the color of the Button controls’
+argument to <samp class="codeph">false</samp>, the color of the Button controls'
 labels in both modules would be red, because that is definition
 that is first loaded.</p>
 
@@ -587,7 +587,7 @@ basis, starting with the closest StyleManager and working upwards
 to the top-level StyleManager.</p>
 
             <div class="p">Even when using merged styles, child modules still inherit their
-parent module or application’s inheritable style properties when
+parent module or application's inheritable style properties when
 those settings are applied at runtime. Their StyleManager is not
 changed, but the values of the properties are inherited and applied
 where applicable. If you set a property at run time on the main
@@ -641,7 +641,7 @@ see <a href="flx_styles_st.html#WS2db454920e96a9e51e63e3d11c0bf69084-7e6d_verapa
 run-time style sheets with modules and sub-applications</a>.</p>
 
             <p>If you use run-time resource bundles with loaded modules, you
-should consider setting the <samp class="codeph">addResourceBundle()</samp> method’s <samp class="codeph">useWeakReferences</samp> parameter
+should consider setting the <samp class="codeph">addResourceBundle()</samp> method's <samp class="codeph">useWeakReferences</samp> parameter
 to <samp class="codeph">true</samp>. For more information, see <a href="flx_resourcebundles_rb.html#WS19f279b149e7481c-6f660f0612ca9140b8f-8000_verapache">Preventing
 memory leaks in modules and sub-applications</a>.</p>
 
@@ -888,7 +888,7 @@ that are used in the module. By default, a module externalizes all
 framework code that its components depend on by using RSLs. However,
 other custom classes and libraries are not externalized by default,
 which can cause modules to be larger than necessary by linking classes
-that overlap with the application’s classes.</p>
+that overlap with the application's classes.</p>
 
             <p>To reduce the size of the modules, you can optimize the module
 by instructing the compiler to externalize classes that are included
@@ -912,7 +912,7 @@ with the command-line compiler</h4>
             <div>
                <p>To externalize framework classes with the command-line
 compiler, you generate a linker report from the application that
-loads the modules. You then use this report as input to the module’s <samp class="codeph">load-externs</samp> compiler
+loads the modules. You then use this report as input to the module's <samp class="codeph">load-externs</samp> compiler
 option. The compiler externalizes all classes from the module for
 which the application contains definitions. </p>
 
@@ -964,7 +964,7 @@ loads it, you must recompile the module separately.</p>
 or common code, you should recompile both the application and the
 modules.</p>
 
-            <div class="note"><span class="notetitle">Note:</span> If you externalize the module’s dependencies
+            <div class="note"><span class="notetitle">Note:</span> If you externalize the module's dependencies
 by using the <samp class="codeph">load-externs</samp> or <samp class="codeph">
                   <em>optimize</em>
                </samp> option,
@@ -1035,7 +1035,7 @@ the ModuleManager class to load modules</a>.</p>
 
          </ul>
 
-         <p>When you’re using modules in an AIR application, the module SWF
+         <p>When you're using modules in an AIR application, the module SWF
 file must be located in the same directory as the main application
 SWF file or one of its subdirectories.</p>
 
@@ -1051,7 +1051,7 @@ load modules</h3>
 to load a module in an application or other module. The easiest
 way to do this in an MXML application is to use the <samp class="codeph">&lt;s:ModuleLoader&gt;</samp> tag.
 You set the value of the <samp class="codeph">url</samp> property to point
-to the location of the module’s SWF file. The following example
+to the location of the module's SWF file. The following example
 loads the module when the application first starts:</p>
 
             <pre class="noswf">&lt;?xml version="1.0"?&gt; 
@@ -1201,18 +1201,18 @@ module is loaded. </p>
 
             <div class="p">To use the ModuleManager to load a module in ActionScript:<ol>
                   <li>
-                     <p>Get a reference to the module’s <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/modules/IModuleInfo.html" target="_blank">IModuleInfo</a> interface
+                     <p>Get a reference to the module's <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/modules/IModuleInfo.html" target="_blank">IModuleInfo</a> interface
 by using the ModuleManager <samp class="codeph">getModule()</samp> method.</p>
 
                   </li>
 
                   <li>
-                     <p>Call the interface’s <samp class="codeph">load()</samp> method. </p>
+                     <p>Call the interface's <samp class="codeph">load()</samp> method. </p>
 
                      <div class="p">The
 application that loads the module should pass in its <samp class="codeph">moduleFactory</samp> property.
 This lets the module know who its parent style manager is. When using
-the <samp class="codeph">load()</samp> method, you can specify the application’s <samp class="codeph">moduleFactory</samp> with
+the <samp class="codeph">load()</samp> method, you can specify the application's <samp class="codeph">moduleFactory</samp> with
 the fourth parameter, as the following example shows:<pre class="codeblock">info.load(null, null, null, moduleFactory);</pre>
 
                      </div>
@@ -1222,7 +1222,7 @@ the fourth parameter, as the following example shows:<pre class="codeblock">info
                   <li>
                      <p>Use the <samp class="codeph">factory</samp> property of the interface
 to call the <samp class="codeph">create()</samp> method and cast the return
-value as the module’s class. If you are adding the module to a container,
+value as the module's class. If you are adding the module to a container,
 you can cast the return value as an IVisualElement (for Spark containers)
 or a DisplayObject (for MX containers) so that they can be added to
 the display list.</p>
@@ -1291,7 +1291,7 @@ it appears when the application starts:</p>
  
 &lt;/s:Application&gt;</pre>
 
-            <p>The <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/modules/IModuleInfo.html" target="_blank">IModuleInfo</a> class’s <samp class="codeph">load()</samp> method
+            <p>The <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/modules/IModuleInfo.html" target="_blank">IModuleInfo</a> class's <samp class="codeph">load()</samp> method
 also optionally takes an ApplicationDomain and a SecurityDomain
 as arguments. If you do not specify either of these (or set them
 to <samp class="codeph">null</samp>), then the module is loaded into a new
@@ -1301,7 +1301,7 @@ child domain.</p>
 load other modules, and so on.</p>
 
             <p>Be sure to define the module instance outside of a function,
-so that it is not in the function’s local scope. Otherwise, the
+so that it is not in the function's local scope. Otherwise, the
 object might be garbage collected and the associated event listeners
 might never be invoked.</p>
 
@@ -1373,7 +1373,7 @@ of the loading application:</p>
  	loader.load(request); 
  }</pre>
 
-               <p>The following example shows the loaded module’s <samp class="codeph">init()</samp> method:</p>
+               <p>The following example shows the loaded module's <samp class="codeph">init()</samp> method:</p>
 
                <pre class="codeblock"> public function initMod():void { 
  	Security.allowDomain("loaderservername"); 
@@ -1403,30 +1403,30 @@ see <a href="flx_security2_se.html#WS2db454920e96a9e51e63e3d11c0bf69084-7f9b_ver
          
          <div>
             <p>When you first start an application that uses modules,
-the application’s file size should be smaller than a similar application
+the application's file size should be smaller than a similar application
 that does not use modules. As a result, there should be a reduction
 in wait time because the application can be loaded into memory and
-run before the modules’ SWF files are even transferred across the
+run before the modules' SWF files are even transferred across the
 network. However, there will be a delay when the user navigates
 to a part in the application that uses the module. This is because
 the modules are not by default preloaded, but rather loaded when
 they are first requested.</p>
 
             <p>When a module is loaded by the application for the first time,
-the module’s SWF file is transferred across the network and stored
-in the browser’s cache. If the application unloads that module,
+the module's SWF file is transferred across the network and stored
+in the browser's cache. If the application unloads that module,
 but then later reloads it, there should be less wait time because
 Flash Player loads the module from the cache rather than across
 the network.</p>
 
-            <p>Module SWF files, like all SWF files, reside in the browser’s
+            <p>Module SWF files, like all SWF files, reside in the browser's
 cache unless and until a user clears them. As a result, modules
 can be loaded by the main application across several sessions, reducing
-load time; but this depends on how frequently the browser’s cache
+load time; but this depends on how frequently the browser's cache
 is flushed.</p>
 
             <p>You can preload modules at any time so that you can have the
-modules’ SWF files in memory even if the module is not currently
+modules' SWF files in memory even if the module is not currently
 being used.</p>
 
             <p>To preload modules on application startup, use the IModuleInfo
@@ -1784,13 +1784,13 @@ the error message to the trace log.</p>
             <p>You can use the <samp class="codeph">progress</samp> event to track
 the progress of a module as it loads. When you add a listener for
 the <samp class="codeph">progress</samp> event, Flex calls that listener at regular
-intervals during the module’s loading process. Each time the listener
+intervals during the module's loading process. Each time the listener
 is called, you can look at the <samp class="codeph">bytesLoaded</samp> property
 of the event. You can compare this to the <samp class="codeph">bytesTotal</samp> property
 to get a percentage of completion.</p>
 
             <p>The following example reports the level of completion during
-the module’s loading process. It also produces a simple progress
+the module's loading process. It also produces a simple progress
 bar that shows users how close the loading is to being complete.</p>
 
             <pre class="noswf">&lt;?xml version="1.0"?&gt; 
@@ -1967,8 +1967,8 @@ data to modules with the query string</a>.</p>
             <li>
                <p>
                   <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/spark/modules/ModuleLoader.html" target="_blank">ModuleLoader</a>
-                  <samp class="codeph">’s child</samp>, <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/modules/ModuleManager.html" target="_blank">ModuleManager</a> ‘s<samp class="codeph"> factory</samp>,
-and Application’s <samp class="codeph">parentApplication</samp> properties
+                  <samp class="codeph">'s child</samp>, <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/modules/ModuleManager.html" target="_blank">ModuleManager</a> 's<samp class="codeph"> factory</samp>,
+and Application's <samp class="codeph">parentApplication</samp> properties
 — You can use these properties to access modules and applications.
 However, by using these properties, you create a tightly-coupled
 design that prevents code reuse and is easily broken. In addition,
@@ -2004,7 +2004,7 @@ to the module. This lets you avoid so-called hard dependencies between the
 module and the application.</p>
 
             <p>In the main application, when you want to call methods on the
-module, you cast the ModuleLoader class’s <samp class="codeph">child</samp> property
+module, you cast the ModuleLoader class's <samp class="codeph">child</samp> property
 to an instance of the custom interface.</p>
 
             <p>The following example application lets you customize the appearance
@@ -2166,8 +2166,8 @@ previous example. It implements the custom IModuleInterface interface.</p>
             <p>In general, if you want to set properties on controls in the
 module by using external values, you should create variables that
 are bindable. You then set the values of those variables in the
-interface’s implemented methods. If you try to set properties of
-the module’s controls directly by using external values, the controls might
+interface's implemented methods. If you try to set properties of
+the module's controls directly by using external values, the controls might
 not be instantiated by the time the module is loaded and the attempt
 to set the properties might fail. </p>
 
@@ -2348,7 +2348,7 @@ directly negates some of the benefits of using modules.</p>
             <p>The following example accesses the <samp class="codeph">expenses</samp> property
 of the parent application when the module first loads. The module
 then uses this property, an ArrayCollection, as the source for its
-chart’s data. When the user clicks the button, the module calls
+chart's data. When the user clicks the button, the module calls
 the <samp class="codeph">getNewData()</samp> method of the parent application
 that returns a new ArrayCollection for the chart:</p>
 
@@ -2460,8 +2460,8 @@ interfaces for module communication</a>.</p>
          <div>
             <p>You can access properties and methods of other modules
 by using references to the other modules through the parent application.
-You do this by using the ModuleLoader class’s <samp class="codeph">child</samp> property.
-This property points to an instance of the module’s class, which
+You do this by using the ModuleLoader class's <samp class="codeph">child</samp> property.
+This property points to an instance of the module's class, which
 lets you call methods and access properties. In most cases, you
 should avoid doing this as it creates a close coupling among the
 modules. Having this coupling directly negates some of the benefits
@@ -2555,7 +2555,7 @@ on the application that the modules could access. For more information,
 see <a href="flx_modular_md.html#WS2db454920e96a9e51e63e3d11c0bf69084-7d1b_verapache">Accessing
 the parent application from modules</a>.</p>
 
-            <p>As with accessing the parent application’s properties and methods
+            <p>As with accessing the parent application's properties and methods
 directly, using the technique described in this section can make
 your modules difficult to reuse and also can create dependencies
 that can cause the module to be larger than necessary. Instead,
@@ -2574,7 +2574,7 @@ application</h3>
          
          <div>
             <p>You can access the methods and properties of a module from
-its parent application by getting an instance of the module’s class.
+its parent application by getting an instance of the module's class.
 Referencing a module by its class name in an application causes
 the whole module and all of its dependencies to be linked into the
 application. This defeats the purpose of using modules. However,
@@ -2587,12 +2587,12 @@ for module communication</a>.</p>
 
             <p>If you use the ModuleLoader to load the module, you can call
 methods on a module from the parent application by referencing the
-ModuleLoader class’s <samp class="codeph">child</samp> property, and casting
-it to the module’s class. The <samp class="codeph">child</samp> property is
-an instance of the module’s class. In this case, the module’s class
+ModuleLoader class's <samp class="codeph">child</samp> property, and casting
+it to the module's class. The <samp class="codeph">child</samp> property is
+an instance of the module's class. In this case, the module's class
 is the name of the MXML file that defines the module.</p>
 
-            <p>The following example calls the module’s <samp class="codeph">getTitle()</samp> method
+            <p>The following example calls the module's <samp class="codeph">getTitle()</samp> method
 from the parent application:</p>
 
             <p>Parent Application:</p>
@@ -2643,7 +2643,7 @@ from the parent application:</p>
             <p>If you load the module that you want to call by using the ModuleManager
 API, there is some additional coding in the shell application. You
 use the ModuleManager <samp class="codeph">factory</samp> property to get an
-instance of the module’s class. You can then call the module’s method
+instance of the module's class. You can then call the module's method
 on that instance.</p>
 
             <p>The following module example defines a single method, <samp class="codeph">computeAnswer()</samp>:</p>
@@ -2667,7 +2667,7 @@ on that instance.</p>
 
             <p>The following example gets an instance of the SimpleModule class
 by using the <samp class="codeph">factory</samp> property to call the <samp class="codeph">create()</samp> method.
-It then calls the module’s <samp class="codeph">computeAnswer()</samp> method
+It then calls the module's <samp class="codeph">computeAnswer()</samp> method
 on that instance:</p>
 
             <pre class="noswf">&lt;?xml version="1.0"?&gt; 

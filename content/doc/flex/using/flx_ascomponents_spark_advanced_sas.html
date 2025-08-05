@@ -415,7 +415,7 @@ modify the component by changing its size or position, modifying
 a property that controls its display, or modifying a style or skin
 property of the component. For example, you might change the font
 size of the text displayed in a component. As part of changing the
-font size, the component’s size might also change, which requires Flex
+font size, the component's size might also change, which requires Flex
 to update the layout of the application. The layout operation might
 require Flex to invoke the <samp class="codeph">commitProperties()</samp>, <samp class="codeph">measure()</samp>, <samp class="codeph">getCurrentSkinState()</samp>,
 and the <samp class="codeph">updateDisplayList()</samp> methods of your component. </p>
@@ -423,7 +423,7 @@ and the <samp class="codeph">updateDisplayList()</samp> methods of your componen
             <p>Your application can programmatically change the font size of
 a component much faster than Flex can update the layout of an application.
 Therefore, you only want to update the layout after you are sure
-that you’ve determined the final value of the font size.</p>
+that you've determined the final value of the font size.</p>
 
             <p>In another scenario, when you set multiple properties of a component,
 such as the <samp class="codeph">label</samp> and <samp class="codeph">icon</samp> properties
@@ -441,7 +441,7 @@ layout operation to eliminate any redundant processing. </p>
             <p>Flex uses an invalidation mechanism to synchronize modifications
 to components. Flex implements the invalidation mechanism as a set
 of methods that you call to signal that something about the component
-has changed and requires Flex to call the component’s <samp class="codeph">commitProperties()</samp>, <samp class="codeph">measure()</samp>, <samp class="codeph">getCurrentSkinState()</samp>,
+has changed and requires Flex to call the component's <samp class="codeph">commitProperties()</samp>, <samp class="codeph">measure()</samp>, <samp class="codeph">getCurrentSkinState()</samp>,
 or <samp class="codeph">updateDisplayList()</samp> methods.</p>
 
             <p>The following table describes the invalidation methods:</p>
@@ -547,7 +547,7 @@ call invalidation methods, Flex coordinates updates so that they
 all occur together during the next screen update.</p>
 
             <p>Typically, component users do not call the invalidation methods
-directly. Instead, they are called by the component’s setter methods,
+directly. Instead, they are called by the component's setter methods,
 or by any other methods of a component class as necessary. For more
 information and examples, see <a href="flx_ascomponents_advanced_asa.html#WS2db454920e96a9e51e63e3d11c0bf69084-79eb_verapache">Implementing
 the commitProperties() method</a>.</p>
@@ -592,7 +592,7 @@ to create the Button control, and add the control to the container: </p>
 
             <ol>
                <li>
-                  <p>You call the component’s constructor, as the following
+                  <p>You call the component's constructor, as the following
 code shows: </p>
 
                   <pre class="codeblock"> // Create a Button control.  
@@ -643,7 +643,7 @@ component. </p>
                </li>
 
                <li>
-                  <p>Calls the component’s <samp class="codeph">createChildren()</samp> method.
+                  <p>Calls the component's <samp class="codeph">createChildren()</samp> method.
 For skinnable components, this causes a call to <samp class="codeph">attachSkin()</samp>,
 which calls <samp class="codeph">partAdded()</samp>, for all static parts defined
 in the skin file.</p>
@@ -664,7 +664,7 @@ when the user sets the height and width of the component. </p>
 
                <li>
                   <p>Dispatches the <samp class="codeph">initialize</samp> event on the component.
-At this time, all of the component’s children are initialized, but
+At this time, all of the component's children are initialized, but
 the component has not been sized or processed for layout. You can
 use this event to perform additional processing of the component
 before it is laid out. </p>
@@ -694,19 +694,19 @@ the following actions:</p>
 
                   <ol type="a">
                      <li>
-                        <p>Calls the component’s <samp class="codeph">commitProperties()</samp> method.
+                        <p>Calls the component's <samp class="codeph">commitProperties()</samp> method.
 For skinnable components, the <samp class="codeph">commitProperties()</samp> method
 calls the <samp class="codeph">getCurrentSkinState()</samp> methods.</p>
 
                      </li>
 
                      <li>
-                        <p>Calls the component’s <samp class="codeph">measure()</samp> method.</p>
+                        <p>Calls the component's <samp class="codeph">measure()</samp> method.</p>
 
                      </li>
 
                      <li>
-                        <p>Calls the component’s <samp class="codeph">updateDisplayList()</samp> method.</p>
+                        <p>Calls the component's <samp class="codeph">updateDisplayList()</samp> method.</p>
 
                      </li>
 
@@ -804,7 +804,7 @@ Skinning</a>.</p>
                </li>
 
                <li>
-                  <p>Create the component’s ActionScript class file.</p>
+                  <p>Create the component's ActionScript class file.</p>
 
                   <ol type="a">
                      <li>
@@ -1274,7 +1274,7 @@ The constructor has the following characteristics:</p>
                </li>
 
                <li>
-                  <p>Calls the <samp class="codeph">super()</samp> method to invoke the superclass’
+                  <p>Calls the <samp class="codeph">super()</samp> method to invoke the superclass'
 constructor</p>
 
                </li>
@@ -1580,7 +1580,7 @@ signature:</p>
                   <dt class="dlterm">unscaledWidth </dt>
 
                   <dd>
-                     <p>Specifies the width of the component, in pixels, in the component’s
+                     <p>Specifies the width of the component, in pixels, in the component's
 coordinates, regardless of the value of the <samp class="codeph">scaleX</samp> property
 of the component. This is the width of the component as determined
 by its parent container. </p>
@@ -1592,7 +1592,7 @@ by its parent container. </p>
                   <dt class="dlterm">unscaledHeight </dt>
 
                   <dd>
-                     <p>Specifies the height of the component, in pixels, in the component’s
+                     <p>Specifies the height of the component, in pixels, in the component's
 coordinates, regardless of the value of the <samp class="codeph">scaleY</samp> property
 of the component. This is the height of the component as determined
 by its parent container.</p>
@@ -1774,7 +1774,7 @@ public class ModalTextStates extends SkinnableComponent
 
             </div>
 
-            <div class="p">The component’s skin class then define these view states, as
+            <div class="p">The component's skin class then define these view states, as
 the following example shows: <pre class="codeblock">&lt;?xml version="1.0" encoding="utf-8"?&gt; 
 &lt;s:SparkSkin xmlns:fx="http://ns.adobe.com/mxml/2009" 
 	xmlns:s="library://ns.adobe.com/flex/spark" 
@@ -1825,7 +1825,7 @@ of the component to determine the view state of the skin: <pre class="codeblock"
             When releasing components,
 you can define a version number. This lets developers know whether
 they should upgrade, and helps with technical support issues. When
-you set a component’s version number, use the static variable <samp class="codeph">version</samp>,
+you set a component's version number, use the static variable <samp class="codeph">version</samp>,
 as the following example shows:</p>
 
          <pre class="codeblock"> static var version:String = "1.0.0.42";</pre>
@@ -1903,14 +1903,14 @@ a button, rich text field, and a border graphic. Or, you can create a
 component that includes a text field and a validator. </p>
 
          <p>When you create composite components, you define the subcomponents
-inside the component’s skin class. You must plan the layout of the
+inside the component's skin class. You must plan the layout of the
 subcomponents that you are including, and set properties such as
 default values in the skin class. </p>
 
          <p>Properties of the individual subcomponents are not directly accessible
 in MXML. For example, if you create a component that extends the
 SkinnableComponent class and uses a Button and a RichEditableText
-component as subcomponents, you cannot set the Button control’s <samp class="codeph">label</samp> property
+component as subcomponents, you cannot set the Button control's <samp class="codeph">label</samp> property
 in MXML.</p>
 
          <p>Instead, you can define a myLabel property on the custom component
@@ -2054,7 +2054,7 @@ the ModalText class, as the following example shows:</p>
 
                <p>You can handle an event dispatched by a child of a composite
 component in the component. In this example, the event listener
-for the Button subcomponent’s <samp class="codeph">click</samp> event is defined
+for the Button subcomponent's <samp class="codeph">click</samp> event is defined
 in the class definition to toggle the <samp class="codeph">editable</samp> property of
 the RichEditableText subcomponent.</p>
 

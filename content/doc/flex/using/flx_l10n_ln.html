@@ -132,11 +132,11 @@ much of your application needs to be localized.</p>
       
       <div>
          <p>When an application starts up, you should generally determine
-which locale the user wants and then set the application’s <samp class="codeph">locale</samp> style
+which locale the user wants and then set the application's <samp class="codeph">locale</samp> style
 property to that locale. This ensures that the localization-aware
 classes such as formatters and sorters behave as the user expects.
 If you use resource bundles, then you should use some method to
-determine the user’s preferred locale, and load the appropriate resource
+determine the user's preferred locale, and load the appropriate resource
 bundle.</p>
 
          <p>To determine which locale your users want to use, you can use
@@ -173,12 +173,12 @@ you will not have access to this header. </p>
             </li>
 
             <li>
-               <p>Browser preferences — You can access the browser’s language
+               <p>Browser preferences — You can access the browser's language
 settings in the HTML wrapper by using JavaScript. You can then pass
 the values as <samp class="codeph">flashVars</samp> variables to your application.
 You can also use the ExternalInterface API to access the values
 from within your Flex application. The language is typically accessible
-via the Navigator object’s <samp class="codeph">language</samp> property. Depending
+via the Navigator object's <samp class="codeph">language</samp> property. Depending
 on the browser, you also access the <samp class="codeph">userLanguage</samp> or <samp class="codeph">systemLanguage</samp> properties.
 For more information on using the ExternalInterface API, see <a href="flx_passingarguments_pa.html#WS2db454920e96a9e51e63e3d11c0bf69084-7f31_verapache">Using
 the ExternalInterface API to access JavaScript</a>.</p>
@@ -192,7 +192,7 @@ the ExternalInterface API to access JavaScript</a>.</p>
             <p>Typically,
 you set the <samp class="codeph">locale</samp> style property of the application
 or the component to the value of the <samp class="codeph">LocaleID.DEFAULT</samp> property.
-This instructs Flex to use the client’s operating system for locale
+This instructs Flex to use the client's operating system for locale
 information (such as the currency symbol, date/time format, or preferred
 sorting rules). </p>
 
@@ -205,9 +205,9 @@ property, the compiler uses the global defaults that are defined
 in the defaults.css style sheet. In this case, the default value
 is "en".</p>
 
-            <div class="p">The following example sets the value of the application’s <samp class="codeph">locale</samp> style
+            <div class="p">The following example sets the value of the application's <samp class="codeph">locale</samp> style
 property to the <samp class="codeph">LocaleID.DEFAULT</samp> constant. When
-you run this example, the value of the DateTimeFormatter’s <samp class="codeph">actualLocaleIDName</samp> property
+you run this example, the value of the DateTimeFormatter's <samp class="codeph">actualLocaleIDName</samp> property
 will be whatever language preference you have set in your operating
 system.<pre class="codeblock">&lt;?xml version="1.0"?&gt; 
 &lt;!-- l10n/LocaleApp.mxml --&gt; 
@@ -257,8 +257,8 @@ other objects in your application.</p>
 use resource bundles, you must explicitly compile assets for the
 supported locales into the application. You can then let your users
 choose from a list of the compiled-in locales. After determining
-the user’s preferred locale, you set the value of the ResourceManager’s <samp class="codeph">localeChain</samp> property
-so that that locale’s assets are used in your application.</p>
+the user's preferred locale, you set the value of the ResourceManager's <samp class="codeph">localeChain</samp> property
+so that that locale's assets are used in your application.</p>
 
          </div>
 
@@ -301,7 +301,7 @@ dates, numbers and currencies:<ul>
          <p>Each of these classes is based on a similar class in the flash.globalization.* package.
 Flex lets you instantiate these formatters in MXML as well as ActionScript. </p>
 
-         <p>The formatters’ output might differ depending on the runtime
+         <p>The formatters' output might differ depending on the runtime
 environment of the client. The formatters call the underlying operating
 system which can return different results, depending on the device.</p>
 
@@ -312,10 +312,10 @@ property, have bindable properties and methods, and generate events.</p>
 of your applications.</p>
 
          <div class="p">The following example uses a CurrencyFormatter and a NumberFormatter
-to display formatted values in the client’s default locale. The
+to display formatted values in the client's default locale. The
 currency symbol and grouping separator (sometimes called the thousands
-separator) are defined by whatever the client machine’s locale is.
-The client’s preferred locale is obtained by using the <samp class="codeph">LocaleID.DEFAULT</samp> property.<pre class="codeblock">&lt;?xml version="1.0" encoding="utf-8"?&gt; 
+separator) are defined by whatever the client machine's locale is.
+The client's preferred locale is obtained by using the <samp class="codeph">LocaleID.DEFAULT</samp> property.<pre class="codeblock">&lt;?xml version="1.0" encoding="utf-8"?&gt; 
 &lt;!-- l10n/CurrencyFormatterApp.mxml --&gt; 
 &lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
                xmlns:s="library://ns.adobe.com/flex/spark" 
@@ -430,7 +430,7 @@ the script, language, and currency symbol:<pre class="codeblock">&lt;?xml versio
          </div>
 
          <p>In addition, this example shows a list of all available locales.
-These are the locales that are supported by the client’s operating
+These are the locales that are supported by the client's operating
 system. </p>
 
          <div class="p">In some cases, you do not necessarily want your application to
@@ -471,7 +471,7 @@ Hebrew.</p>
          <p>The layout of the controls and the direction of text inputs should
 match the direction of the language. For example, an application
 that uses an RTL language should layout on the right side of the
-application’s stage.</p>
+application's stage.</p>
 
          <div class="p">There are two primary ways to control the appearance of an application
 that supports both left-to-right (LTR) and right-to-left (RTL) languages:<ul>
@@ -500,7 +500,7 @@ of the text internally. They do not use mirroring to render text.</p>
 
          </div>
 
-         <p>To change an application’s layout from LTR to RTL, set the <samp class="codeph">layoutDirection</samp> property
+         <p>To change an application's layout from LTR to RTL, set the <samp class="codeph">layoutDirection</samp> property
 of the application object to <samp class="codeph">"rtl"</samp>. The direction
 of text is automatically set based on the characters used, but you
 should also set the <samp class="codeph">direction</samp> style property to <samp class="codeph">"rtl"</samp> if
@@ -576,14 +576,14 @@ the lower case sharp-s ("ß") is represented with two characters,
       
       <div>
          <p>When ordering a list that is presented visually to the
-user, it is essential to follow the user’s expectations. It is not
+user, it is essential to follow the user's expectations. It is not
 just a question of aesthetics: expecting it at the end of the list,
 a Swedish user might fail to find an element that begins with "ö"
 if placed next to the plain "o". Fortunately, avoiding that problem
 is easy: sort the list with a Sort or SortingCollator class that
-is configured for the user’s locale.</p>
+is configured for the user's locale.</p>
 
-         <p>The sorting and matching classes’ output might differ depending
+         <p>The sorting and matching classes' output might differ depending
 on the runtime environment of the client. The collators call the
 underlying operating system which can return different results,
 depending on the device.</p>

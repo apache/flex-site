@@ -252,7 +252,7 @@ modify the component by changing its size or position, modifying
 a property that controls its display, or modifying a style or skin
 property of the component. For example, you might change the font
 size of the text displayed in a component. As part of changing the
-font size, the component’s size might also change, which requires Flex
+font size, the component's size might also change, which requires Flex
 to update the layout of the application. The layout operation might
 require Flex to invoke the <samp class="codeph">commitProperties()</samp>, <samp class="codeph">measure()</samp>, <samp class="codeph">layoutChrome()</samp>, and
 the <samp class="codeph">updateDisplayList()</samp> methods of your component. </p>
@@ -260,7 +260,7 @@ the <samp class="codeph">updateDisplayList()</samp> methods of your component. <
             <p>Your application can programmatically change the font size of
 a component much faster than Flex can update the layout of an application.
 Therefore, you should only want to update the layout after you are
-sure that you’ve determined the final value of the font size.</p>
+sure that you've determined the final value of the font size.</p>
 
             <p>In another scenario, when you set multiple properties of a component,
 such as the <samp class="codeph">label</samp> and <samp class="codeph">icon</samp> properties
@@ -278,7 +278,7 @@ layout operation to eliminate any redundant processing. </p>
             <p>Flex uses an invalidation mechanism to synchronize modifications
 to components. Flex implements the invalidation mechanism as a set
 of methods that you call to signal that something about the component
-has changed and requires Flex to call the component’s <samp class="codeph">commitProperties()</samp>, <samp class="codeph">measure()</samp>, <samp class="codeph">layoutChrome()</samp>,
+has changed and requires Flex to call the component's <samp class="codeph">commitProperties()</samp>, <samp class="codeph">measure()</samp>, <samp class="codeph">layoutChrome()</samp>,
 or <samp class="codeph">updateDisplayList()</samp> methods.</p>
 
             <p>The following table describes the invalidation methods:</p>
@@ -366,7 +366,7 @@ call invalidation methods, Flex coordinates updates so that they
 all occur together during the next screen update.</p>
 
             <p>Typically, component users do not call the invalidation methods
-directly. Instead, they are called by the component’s setter methods,
+directly. Instead, they are called by the component's setter methods,
 or by any other methods of a component class as necessary. For more
 information and examples, see <a href="flx_ascomponents_advanced_asa.html#WS2db454920e96a9e51e63e3d11c0bf69084-79eb_verapache">Implementing
 the commitProperties() method</a>.</p>
@@ -409,7 +409,7 @@ to create the Button control, and add the control to the Box container: </p>
 
             <ol>
                <li>
-                  <p>You call the component’s constructor, as the following
+                  <p>You call the component's constructor, as the following
 code shows: </p>
 
                   <pre class="codeblock"> // Create a Button control.  
@@ -460,7 +460,7 @@ component. </p>
                </li>
 
                <li>
-                  <p>Calls the component’s <samp class="codeph">createChildren()</samp> method.</p>
+                  <p>Calls the component's <samp class="codeph">createChildren()</samp> method.</p>
 
                </li>
 
@@ -478,7 +478,7 @@ when the user sets the height and width of the component. </p>
 
                <li>
                   <p>Dispatches the <samp class="codeph">initialize</samp> event on the component.
-At this time, all of the component’s children are initialized, but
+At this time, all of the component's children are initialized, but
 the component has not been sized or processed for layout. You can
 use this event to perform additional processing of the component
 before it is laid out. </p>
@@ -503,22 +503,22 @@ the following actions:</p>
 
                   <ol type="a">
                      <li>
-                        <p>Calls the component’s <samp class="codeph">commitProperties()</samp> method.</p>
+                        <p>Calls the component's <samp class="codeph">commitProperties()</samp> method.</p>
 
                      </li>
 
                      <li>
-                        <p>Calls the component’s <samp class="codeph">measure()</samp> method.</p>
+                        <p>Calls the component's <samp class="codeph">measure()</samp> method.</p>
 
                      </li>
 
                      <li>
-                        <p>Calls the component’s <samp class="codeph">layoutChrome()</samp> method.</p>
+                        <p>Calls the component's <samp class="codeph">layoutChrome()</samp> method.</p>
 
                      </li>
 
                      <li>
-                        <p>Calls the component’s <samp class="codeph">updateDisplayList()</samp> method.</p>
+                        <p>Calls the component's <samp class="codeph">updateDisplayList()</samp> method.</p>
 
                      </li>
 
@@ -1109,7 +1109,7 @@ The constructor has the following characteristics:</p>
                </li>
 
                <li>
-                  <p>Calls the <samp class="codeph">super()</samp> method to invoke the superclass’
+                  <p>Calls the <samp class="codeph">super()</samp> method to invoke the superclass'
 constructor</p>
 
                </li>
@@ -1279,7 +1279,7 @@ based on the new property value. This design lets the setter method
 return quickly, and leaves any processing of the new value to the <samp class="codeph">commitProperties()</samp> method. </p>
 
             <p>Changing the alignment of text in a control does not necessarily
-change the control’s size. However, if it does, include a call to
+change the control's size. However, if it does, include a call to
 the <samp class="codeph">invalidateSize()</samp> method to trigger the <samp class="codeph">measure()</samp> method. </p>
 
             <p>The main advantages of using the <samp class="codeph">commitProperties()</samp> method
@@ -1408,7 +1408,7 @@ for MX components</h3>
             <p>
                The <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/core/UIComponent.html#measure()" target="_blank">measure()</a> method
 sets the default component size, in pixels, and optionally sets
-the component’s default minimum size. </p>
+the component's default minimum size. </p>
 
             <p>Flex schedules a call to the <samp class="codeph">measure()</samp> method
 when a call to the <samp class="codeph">invalidateSize()</samp> method occurs.
@@ -1615,10 +1615,10 @@ of the text it contains. If the text is larger than the TextArea
 control, the control displays scroll bars. </p>
 
                <p>Often, you set the default size based on characteristics of the
-component or information passed to the component. For example, the <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/controls/Button.html" target="_blank">Button</a> control’s <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/core/UIComponent.html#measure()" target="_blank">measure</a>
+component or information passed to the component. For example, the <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/controls/Button.html" target="_blank">Button</a> control's <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/core/UIComponent.html#measure()" target="_blank">measure</a>
                   <samp class="codeph">()</samp> method
 examines its label text, margin settings, and font characteristics
-to determine the control’s default size.</p>
+to determine the control's default size.</p>
 
                <p>In the following example, you override the <samp class="codeph">measure()</samp> method
 of the TextArea control so that it examines the text passed to the
@@ -1815,7 +1815,7 @@ signature:</p>
                   <dt class="dlterm">unscaledWidth </dt>
 
                   <dd>
-                     <p>Specifies the width of the component, in pixels, in the component’s
+                     <p>Specifies the width of the component, in pixels, in the component's
 coordinates, regardless of the value of the scaleX property of the component.
 This is the width of the component as determined by its parent container. </p>
 
@@ -1826,7 +1826,7 @@ This is the width of the component as determined by its parent container. </p>
                   <dt class="dlterm">unscaledHeight </dt>
 
                   <dd>
-                     <p>Specifies the height of the component, in pixels, in the component’s
+                     <p>Specifies the height of the component, in pixels, in the component's
 coordinates, regardless of the value of the <samp class="codeph">scaleY</samp> property
 of the component. This is the height of the component as determined
 by its parent container.</p>
@@ -2027,7 +2027,7 @@ they use the Accessibility panel to configure each component instance.</p>
          </ul>
 
          <p>To enable accessibility in your component, add the following
-line to your component’s class file:</p>
+line to your component's class file:</p>
 
          <pre class="codeblock"> mx.accessibility.ComponentName.enableAccessibility();</pre>
 
@@ -2053,7 +2053,7 @@ applications</a>.</p>
             When releasing components,
 you can define a version number. This lets developers know whether
 they should upgrade, and helps with technical support issues. When
-you set a component’s version number, use the static variable <samp class="codeph">version</samp>,
+you set a component's version number, use the static variable <samp class="codeph">version</samp>,
 as the following example shows:</p>
 
          <pre class="codeblock"> static var version:String = "1.0.0.42";</pre>
@@ -2137,7 +2137,7 @@ a text field, or a component that includes a button, a text field,
 and a validator. </p>
 
          <p>When you create composite components, you should instantiate
-the controls inside the component’s class file. Assuming that some
+the controls inside the component's class file. Assuming that some
 of these controls have graphical assets, you must plan the layout
 of the controls that you are including, and set properties such
 as default values in your class file. You must also ensure that
@@ -2150,10 +2150,10 @@ must instantiate each of the controls as children of the custom
 component and arrange them on the screen.</p>
 
          <p>Properties of the individual controls are not accessible from
-the MXML author’s environment unless you design your class to allow
+the MXML author's environment unless you design your class to allow
 this. For example, if you create a component that extends the UIComponent
 class and uses a Button and a <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/controls/TextArea.html" target="_blank">TextArea</a> component,
-you cannot set the Button control’s label text in the MXML tag because
+you cannot set the Button control's label text in the MXML tag because
 you do not directly extend the Button class. </p>
 
       </div>
@@ -2219,7 +2219,7 @@ the following example shows:</p>
 
                <p>You can handle an event dispatched by a child of a composite
 component in the component. In this example, the event listener
-for the Button control’s <samp class="codeph">click</samp> event is defined
+for the Button control's <samp class="codeph">click</samp> event is defined
 in the class definition to toggle the <samp class="codeph">editable</samp> property
 of the TextArea control.</p>
 

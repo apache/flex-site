@@ -53,7 +53,7 @@ on the screen. For information on transitions, see <a href="flx_transitions_tr.h
 rich Internet applications, the interface changes based on the task
 the user is performing. A simple example is an image that changes
 when the user rolls the mouse over it. More complex examples include
-user interfaces whose contents change depending on the user’s progress
+user interfaces whose contents change depending on the user's progress
 through a task, such as changing from a browse view to a detail
 view. View states let you easily implement such applications. </p>
 
@@ -330,7 +330,7 @@ component. </p>
                </li>
 
                <li>
-                  <p>Define states by using a component’s <samp class="codeph">states</samp> property,
+                  <p>Define states by using a component's <samp class="codeph">states</samp> property,
 normally by using the <samp class="codeph">&lt;s:states&gt;</samp> tag in MXML.</p>
 
                </li>
@@ -345,7 +345,7 @@ to a view state.</p>
                <li>
                   <p>Use the <samp class="codeph">name</samp> property of the State object
 to specify its identifier. To change to that view state, you set
-a component’s <samp class="codeph">currentState</samp> property to the value
+a component's <samp class="codeph">currentState</samp> property to the value
 of the <samp class="codeph">name</samp> property.</p>
 
                   <div class="p">
@@ -421,7 +421,7 @@ example shows:</p>
 
             </div>
 
-            <p>You can change a component’s view state by calling the <samp class="codeph">setCurrentState()</samp> method
+            <p>You can change a component's view state by calling the <samp class="codeph">setCurrentState()</samp> method
 of the UIComponent class. Use this method when you do <em>not</em> want
 to apply a transition that you have defined between two view states.
 For more information on transitions, see <a href="flx_transitions_tr.html#WS2db454920e96a9e51e63e3d11c0bf69084-7f6a_verapache">Transitions</a>. </p>
@@ -776,7 +776,7 @@ children</h4>
             
             <div>
                <p> When you remove a component as part of a change of view
-state, you remove the component from the application’s display list,
+state, you remove the component from the application's display list,
 which means that it no longer appears on the screen. Even though
 the component is no longer visible, the component still exists and
 you can access it from within your application. </p>
@@ -794,7 +794,7 @@ that first change. </p>
 required as part of a change of view state. However, if a child
 requires a long time to create, users might see a delay when the
 view state changes. Therefore, you can choose to create the child
-before the state changes to improve your application’s apparent speed
+before the state changes to improve your application's apparent speed
 and responsiveness. </p>
 
                <p>Regardless of when you create a component, the component remains
@@ -1267,7 +1267,7 @@ as the following example shows:</p>
 
          
          <div>
-            <p>When a component’s <samp class="codeph">currentState</samp> property
+            <p>When a component's <samp class="codeph">currentState</samp> property
 changes, the State object for the states being exited and entered
 dispatch the following events:</p>
 
@@ -1316,7 +1316,7 @@ to request any data from the server required by the new view state. </p>
                      <p>Dispatched after the view state has completed changing. It
 is dispatched by a component after its <samp class="codeph">currentState</samp> property
 changes. You can use this event to send data back to a server indicating
-the user’s current view state.</p>
+the user's current view state.</p>
 
                   </dd>
 
@@ -1478,7 +1478,7 @@ has a border and a drop shadow, as the following image shows:</p>
             <img src="images/us_CellRenderer3.png" alt="In the new state, the cell also has a border and a drop shadow"/>
          </div>
 
-         <p>In this example, the application item renderer’s two view states
+         <p>In this example, the application item renderer's two view states
 have different child components and have different component styles.
 The summary state, for example, includes an availability label and
 a star rating image, and has no border. The rolled-over state replaces
@@ -1496,7 +1496,7 @@ code shows an application that uses a custom item renderer to display
 catalog items. When the user moves the mouse over an item, the item renderer
 changes to a state where the picture is slightly enlarged, the price appears
 in the cell, and a text box shows a message about the item. All
-changes are made by the item renderer’s state, including the change
+changes are made by the item renderer's state, including the change
 in the parent application.</p>
 
             <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
@@ -1585,7 +1585,7 @@ the item renderer, in the file ImageComp.mxml:</p>
       
       <div>
          <p>The Flex browser manager lets users navigate through an
-application by using the web browser’s back and forward navigation
+application by using the web browser's back and forward navigation
 commands. The browser manager can track when the application enters
 a state so that users can use the browser to navigate between states,
 such as states that correspond to different stages in an application
@@ -1599,8 +1599,8 @@ as <samp class="codeph">setTitle()</samp> and <samp class="codeph">setFragment()
 
          <p>To save the current state of an application, you write the state
 name as a name-value pair to the application URL in the browser's
-address bar. When the user clicks the browser’s Forward or Back
-button, extract the state from the browser’s URL and set the <samp class="codeph">currentState</samp> value
+address bar. When the user clicks the browser's Forward or Back
+button, extract the state from the browser's URL and set the <samp class="codeph">currentState</samp> value
 appropriately. For more information the browser manager, see <a href="flx_deep_linking_dl.html#WS2db454920e96a9e51e63e3d11c0bf64e50-7ff4_verapache">Using
 the BrowserManager</a>.</p>
 
@@ -1708,9 +1708,9 @@ so that the browser manager tracks the state of the application: </p>
 &lt;/s:Application&gt;</pre>
 
          <p>In this example, when the user changes state, the <samp class="codeph">updateURL()</samp> method
-writes the current state to the browser’s URL as a name/value pair.
-When the user clicks the browser’s Forward or Back button, the <samp class="codeph">parseURL()</samp> method
-extracts the state from the browser’s URL and set the <samp class="codeph">currentState</samp> value.</p>
+writes the current state to the browser's URL as a name/value pair.
+When the user clicks the browser's Forward or Back button, the <samp class="codeph">parseURL()</samp> method
+extracts the state from the browser's URL and set the <samp class="codeph">currentState</samp> value.</p>
 
          <p>You can modify the <samp class="codeph">updateURL()</samp> method to write
 more than just the current state to the URL. For example, you can

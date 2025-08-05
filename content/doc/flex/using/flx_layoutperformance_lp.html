@@ -63,7 +63,7 @@ default behavior of Flex is to create all containers and their children
 in the initial view, and then display everything at one time. The
 user will not be able to interact with the application or see meaningful
 data until all the containers and their children are created. In
-some cases, you can improve the user’s initial experience by displaying
+some cases, you can improve the user's initial experience by displaying
 the components in one container before creating the components in
 the next container. This process is called <em>ordered creation</em>.</p>
 
@@ -76,7 +76,7 @@ startup time and ordered creation to make the initial startup time
 appear as short as possible to the user. But before you can fully understand
 ordered creation and deferred creation, you must also understand the
 differences between single-view and multiple-view containers, the
-order of events in a component’s startup life cycle, and how to
+order of events in a component's startup life cycle, and how to
 manually instantiate controls from their child descriptors.</p>
 
       </div>
@@ -101,7 +101,7 @@ then sized and laid out inside their container. The component creation
 order is as follows:</p>
 
          <p>The following example shows the major events that are dispatched
-during a component’s creation life cycle:</p>
+during a component's creation life cycle:</p>
 
          <div class="figborder">
             <img src="images/lifecycle_component.png" alt="Major events dispatched during a component\xd5 s creation life cycle."/>
@@ -114,11 +114,11 @@ during a component’s creation life cycle:</p>
 and components because containers can be the parent of other components
 or containers. Components within the containers must also go through
 the creation order. If a container is the parent of another container,
-the inner container’s children must also go through the creation
+the inner container's children must also go through the creation
 order. </p>
 
          <p>The following example shows the major events that are dispatched
-during a container’s creation life cycle:</p>
+during a container's creation life cycle:</p>
 
          <div class="figborder">
             <img src="images/lifecycle_container.png" alt="Major events dispatched during a container\xd5 s creation life cycle."/>
@@ -134,7 +134,7 @@ the last event dispatched during an application startup.</p>
 from standard containers. By default, all top-level views of the
 navigator are instantiated. However, Flex creates only the children
 of the initially visible view. When the user navigates to the other
-views of the navigator, Flex creates those views’ children. For
+views of the navigator, Flex creates those views' children. For
 more information on the deferred creation of children of multiview containers,
 see <a href="flx_layoutperformance_lp.html#WS2db454920e96a9e51e63e3d11c0bf69084-7af8_verapache">Using
 deferred creation</a>.</p>
@@ -158,10 +158,10 @@ events</a>.</p>
             
             By default, containers create only
 the controls that initially appear to the user. Flex creates the
-container’s other descendants if the user navigates to them. Containers
+container's other descendants if the user navigates to them. Containers
 with a single view, such as <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/spark/components/Group.html" target="_blank">Group</a>, <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/containers/Box.html" target="_blank">Box</a>, <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/spark/components/Form.html" target="_blank">Form</a>,
 and <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/spark/components/Grid.html" target="_blank">Grid</a> containers, create
-all of their descendants during the container’s instantiation because
+all of their descendants during the container's instantiation because
 these containers display all of their descendants immediately.</p>
 
          <p>Containers with multiple views, called navigator containers,
@@ -187,7 +187,7 @@ interacting with the application.</p>
          <p>
             You
 can instruct each container to create their children or defer the
-creation of their children at application startup by using the container’s <samp class="codeph">creationPolicy</samp> property.
+creation of their children at application startup by using the container's <samp class="codeph">creationPolicy</samp> property.
 This can improve the user experience after the application loads.
 For more information, see <a href="flx_layoutperformance_lp.html#WS2db454920e96a9e51e63e3d11c0bf69084-7cb8_verapache">About
 the creationPolicy property</a>.</p>
@@ -320,7 +320,7 @@ deferred components</a>.</p>
                   </table>
 </div>
 
-               <p>The following example sets the value of a Spark Panel container’s <samp class="codeph">creationPolicy</samp> property
+               <p>The following example sets the value of a Spark Panel container's <samp class="codeph">creationPolicy</samp> property
 to <samp class="codeph">auto</samp>, the default value:</p>
 
                <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
@@ -413,8 +413,8 @@ example shows:</p>
 
                <p>When the user navigates to another panel in the Accordion container,
 the navigator container creates the next set of controls, and recursively
-creates the new view’s controls and their descendants. You can use
-the Accordion container’s <samp class="codeph">creationPolicy</samp> property
+creates the new view's controls and their descendants. You can use
+the Accordion container's <samp class="codeph">creationPolicy</samp> property
 to modify this behavior. The following table describes the values
 of the <samp class="codeph">creationPolicy</samp> property when you use it
 with navigator containers:</p>
@@ -494,7 +494,7 @@ containers.</p>
 
                            <td class="cellrowborder" valign="top" width="NaN%" headers="d272721e574 ">
                               <p>Instructs Flex to not instantiate any component
-within the navigator container or any of the navigator container’s panels
+within the navigator container or any of the navigator container's panels
 until you manually instantiate the controls.</p>
 
                               <p>To manually instantiate
@@ -542,7 +542,7 @@ navigator container when the application starts:</p>
     &lt;/s:Panel&gt; 
 &lt;/s:Application&gt;</pre>
 
-               <p>Setting a container’s <samp class="codeph">creationPolicy</samp> property
+               <p>Setting a container's <samp class="codeph">creationPolicy</samp> property
 does not override the policies of the containers within that container. </p>
 
                <p>In the following example, the button1 control is never created
@@ -577,7 +577,7 @@ to <samp class="codeph">all</samp>:</p>
 
       
       <div>
-         <p>When you set a container’s <samp class="codeph">creationPolicy</samp> property
+         <p>When you set a container's <samp class="codeph">creationPolicy</samp> property
 to <samp class="codeph">none</samp>, components declared as MXML tags inside
 that container are not created.</p>
 
@@ -690,9 +690,9 @@ to <samp class="codeph">all</samp>, you do not have to call the <samp class="cod
 the container creates all controls in all views of the container.
 If you set the <samp class="codeph">creationPolicy</samp> property to <samp class="codeph">none</samp> or <samp class="codeph">auto</samp>,
 calling the <samp class="codeph">createComponentsFromDescriptors()</samp> method
-creates only the current view’s controls and their descendents.</p>
+creates only the current view's controls and their descendents.</p>
 
-            <p>Another common usage is to set the navigator container’s <samp class="codeph">creationPolicy</samp> property
+            <p>Another common usage is to set the navigator container's <samp class="codeph">creationPolicy</samp> property
 to <samp class="codeph">auto</samp>. You can then call <em>navigator</em>
                <samp class="codeph">.getChildAt(n).createComponentsFromDescriptors()</samp> to
 explicitly create the children of the <em>n</em>-th view.</p>

@@ -179,7 +179,7 @@ external CSS file, as the following example shows:</p>
          
          <div>
             <p>When a user sets a style on a component, Flex calls the
-component’s <samp class="codeph">styleChanged()</samp> method, passing to it
+component's <samp class="codeph">styleChanged()</samp> method, passing to it
 the name of the style being set. When you create a custom component,
 you can override the <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/core/UIComponent.html#styleChanged()" target="_blank">UIComponent.styleChanged()</a> method
 to check the style name passed to it, and handle the change accordingly,
@@ -200,7 +200,7 @@ as the following example shows:</p>
  	} 
  }</pre>
 
-            <p>The <samp class="codeph">styleChanged()</samp> method first calls superclass’ <samp class="codeph">styleChanged()</samp> method
+            <p>The <samp class="codeph">styleChanged()</samp> method first calls superclass' <samp class="codeph">styleChanged()</samp> method
 to let the superclass handle the style change.</p>
 
             <p>After the superclass gets a call to handle the style change,
@@ -210,7 +210,7 @@ makes the change, you can override the way the superclass handles
 the style. </p>
 
             <p>Notice that the method calls the <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/core/UIComponent.html#invalidateDisplayList()" target="_blank">invalidateDisplayList()</a> method,
-which causes Flex to execute the component’s <samp class="codeph">updateDisplayList()</samp> method
+which causes Flex to execute the component's <samp class="codeph">updateDisplayList()</samp> method
 at the next screen update. Although you can detect style changes
 in the <samp class="codeph">styleChanged()</samp> method, you still use the <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/core/UIComponent.html#updateDisplayList()" target="_blank">updateDisplayList()</a> method
 to draw the component on the screen. For more information, see <a href="flx_skinstyle_ss.html#WS2db454920e96a9e51e63e3d11c0bf69084-79da_verapache">Defining
@@ -487,13 +487,13 @@ of the issues that you have to decide when you create a style property
 for your component is how to set its default value. Setting a default
 value for a style property is not as simple as calling the <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/core/UIComponent.html#setStyle()" target="_blank">setStyle</a>
                <samp class="codeph">()</samp> method
-in the component’s constructor; you must take into consideration
+in the component's constructor; you must take into consideration
 how Flex processes styles, and the order of precedence of styles. </p>
 
             <p>When Flex compiles your application, Flex first examines any
 style definitions in the <samp class="codeph">&lt;fx:Style&gt;</samp> tag,
 before it creates any components. Therefore, if you call <samp class="codeph">setStyle()</samp> from
-within the component’s constructor, which occurs after processing
+within the component's constructor, which occurs after processing
 the <samp class="codeph">&lt;fx:Style&gt;</samp> tag, you set the style property
 on each instance of the component; this overrides any conflicting
 CSS declarations in the <samp class="codeph">&lt;fx:Style&gt;</samp> tag.</p>

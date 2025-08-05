@@ -71,7 +71,7 @@ events</a>.</p>
 
          <p>Components generate and dispatch events and <em>consume</em> (listen
 to) other events. An object that requires information about another
-object’s events registers a listener with that object. When an event
+object's events registers a listener with that object. When an event
 occurs, the object dispatches the event to all registered listeners
 by calling a function that was requested during registration. To
 receive multiple events from the same object, you must register
@@ -79,7 +79,7 @@ your listener for each event.</p>
 
          <p>Components have built-in events that you can handle in ActionScript
 blocks in your MXML applications. You can also take advantage of
-the Flex event system’s dispatcher-listener model to define your
+the Flex event system's dispatcher-listener model to define your
 own event listeners outside of your applications, and define which
 methods of your custom listeners will listen to certain events.
 You can register listeners with the target object so that when the target
@@ -95,14 +95,14 @@ An object on the display list is analogous to a node in the DOM
 hierarchical structure. The terms <em>display list object</em> and <em>node</em> are
 used interchangeably. </p>
 
-         <p>For information about each component’s events, see the component’s description
+         <p>For information about each component's events, see the component's description
 in <a href="flx_controls_ctr.html#WS2db454920e96a9e51e63e3d11c0bf69084-7ff8_verapache">UI
-Controls</a> or the control’s entry in <em>
+Controls</a> or the control's entry in <em>
                <a href="http://www.adobe.com/go/learn_flex4_apiref_en" target="_blank">ActionScript 3.0 Reference for the Adobe
 Flash Platform</a>
             </em>. </p>
 
-         <p>For a detailed description of a component’s startup life cycle,
+         <p>For a detailed description of a component's startup life cycle,
 including major events in that life cycle, see <a href="flx_ascomponents_advanced_asa.html#WS2db454920e96a9e51e63e3d11c0bf69084-7cdd_verapache">Create
 advanced MX visual components in ActionScript</a>.</p>
 
@@ -140,7 +140,7 @@ parent of the target node. During this phase, Flash Player examines
 each node, starting with the root, to see if it has a listener registered
 to handle the event. If it does, Flash Player sets the appropriate values
 of the Event object and then calls that listener. Flash Player stops
-after it reaches the target node’s parent and calls any listeners
+after it reaches the target node's parent and calls any listeners
 registered on the parent. For more information, see <a href="flx_events_ev.html#WS2db454920e96a9e51e63e3d11c0bf69084-7cde_verapache">Capturing
 phase</a>.</p>
 
@@ -166,8 +166,8 @@ the bubbling phase</h4>
                <p>
                   The
 third part of the event flow, the <em>bubbling phase</em>, comprises
-all of the nodes from the target node’s parent to the root node.
-Starting with the target node’s parent, Flash Player sets the appropriate
+all of the nodes from the target node's parent to the root node.
+Starting with the target node's parent, Flash Player sets the appropriate
 values on the Event object and then calls event listeners on each
 of these nodes. Flash Player stops after calling any listeners on
 the root node. For more information about the bubbling phase, see <a href="flx_events_ev.html#WS2db454920e96a9e51e63e3d11c0bf69084-7cce_verapache">Bubbling
@@ -197,7 +197,7 @@ You can use the Event object inside an event listener to access
 details about the event that was dispatched, or about the component
 that dispatched the event. Passing an Event object to, and using
 it in, an event listener is optional. However, if you want to access
-the Event object’s properties inside your event listeners, you must
+the Event object's properties inside your event listeners, you must
 pass the Event object to the listener. </p>
 
             <p>Flex creates only one Event object when an event is dispatched.
@@ -284,7 +284,7 @@ from the EventDispatcher class—to listen for a particular event,
 but only if the listening object is part of the event flow for that
 event.</p>
 
-            <p>Although the name EventDispatcher seems to imply that this class’s
+            <p>Although the name EventDispatcher seems to imply that this class's
 main purpose is to send (or dispatch) Event objects, the methods
 of this class are used much more frequently to register event listeners,
 check for event listeners, and remove event listeners.</p>
@@ -310,7 +310,7 @@ information about the existence of event listeners. The <samp class="codeph">has
 an event listener is found for that specific event type on a particular
 display list object. The <samp class="codeph">willTrigger()</samp> method checks
 for event listeners on a particular display list object, but it
-also checks for listeners on all of that display list object’s ancestors
+also checks for listeners on all of that display list object's ancestors
 for all phases of the event flow. The method returns <samp class="codeph">true</samp> if
 it finds one.</p>
 
@@ -371,7 +371,7 @@ or class method with a display list object by using the <a href="http://help.ado
          <p>Most Flex controls simplify listener registration by letting
 you specify the listener inside the MXML tag. For example, instead
 of using the <samp class="codeph">addEventListener()</samp> method to specify
-a listener function for the Button control’s <samp class="codeph">click</samp> event,
+a listener function for the Button control's <samp class="codeph">click</samp> event,
 you specify it in the <samp class="codeph">click</samp> attribute of the <samp class="codeph">&lt;mx:Button&gt;</samp> tag:</p>
 
          <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
@@ -496,7 +496,7 @@ the currentTarget property</a>.</p>
 
          
          <div>
-            <p>You specify the object in a listener function’s signature
+            <p>You specify the object in a listener function's signature
 as type Event, as the following example shows:</p>
 
             <pre class="codeblock"> function myEventListener(e:Event):void { ... }</pre>
@@ -509,7 +509,7 @@ as the following example shows:</p>
             <pre class="codeblock"> import mx.events.ToolTip 
  function myEventListener(e:ToolTipEvent):void { ... }</pre>
 
-            <p>In some cases, you must import the event’s class in your ActionScript
+            <p>In some cases, you must import the event's class in your ActionScript
 block.</p>
 
             <p>Most objects have specific events that are associated with them,
@@ -575,7 +575,7 @@ class before calling the <samp class="codeph">selectRange()</samp> method,
 but does not cast it before trying to set the <samp class="codeph">tmesis</samp> property.
 The <samp class="codeph">tmesis</samp> property does not exist on the TextInput
 class. This illustrates that you will get a run-time error but not
-a compile-time error when you try to access members that don’t exist,
+a compile-time error when you try to access members that don't exist,
 unless you cast <samp class="codeph">currentTarget</samp> to a specific type
 so that type checking can occur:</p>
 
@@ -619,7 +619,7 @@ so that type checking can occur:</p>
 
             <p>You could also cast <samp class="codeph">currentTarget</samp> to UIComponent
 or some other more general class that still has methods of display
-objects. That way, if you don’t know exactly which control will
+objects. That way, if you don't know exactly which control will
 dispatch an event, at least you can ensure there is some type checking.</p>
 
             <p>You can also access methods and properties of the <samp class="codeph">target</samp> property,
@@ -737,19 +737,19 @@ event handler classes</a>.</p>
                <p>
                   The
 simplest method of defining event handlers in applications is to
-point to a handler function in the component’s MXML tag. To do this,
-you add any of the component’s events as a tag attribute followed
+point to a handler function in the component's MXML tag. To do this,
+you add any of the component's events as a tag attribute followed
 by an ActionScript statement or function call.</p>
 
                <p>You add an event handler inline using the following syntax:</p>
 
                <pre class="codeblock"> &lt;s:<em>tag_name</em> <em>event_name</em>="<em>handler_function</em>"/&gt;</pre>
 
-               <p>For example, to listen for a Button control’s <samp class="codeph">click</samp> event,
-you add a statement in the <samp class="codeph">&lt;mx:Button&gt;</samp> tag’s <samp class="codeph">click</samp> attribute.
+               <p>For example, to listen for a Button control's <samp class="codeph">click</samp> event,
+you add a statement in the <samp class="codeph">&lt;mx:Button&gt;</samp> tag's <samp class="codeph">click</samp> attribute.
 If you add a function, you define that function in an ActionScript
 block. The following example defines the <samp class="codeph">submitForm()</samp> function
-as the handler for the Button control’s <samp class="codeph">click</samp> event:</p>
+as the handler for the Button control's <samp class="codeph">click</samp> event:</p>
 
                <pre class="codeblock"> &lt;fx:Script&gt;&lt;![CDATA[ 
  	function submitForm():void { 
@@ -992,7 +992,7 @@ addEventListener() inside an MXML tag</h5>
 the <samp class="codeph">addEventListener()</samp> method inline with the component
 definition. The following Button control definition adds the call
 to the <samp class="codeph">addEventListener()</samp> method inline with the
-Button control’s <samp class="codeph">initialize</samp> property:</p>
+Button control's <samp class="codeph">initialize</samp> property:</p>
 
                   <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
 &lt;!-- events/CallingAddEventListenerInline.mxml --&gt; 
@@ -1277,7 +1277,7 @@ readable and maintainable.</p>
 
                <p>To create a class that handles events, you usually import the
 flash.events.Event class. You also usually write an empty constructor.
-The following ActionScript class file calls the Alert control’s <samp class="codeph">show()</samp> method
+The following ActionScript class file calls the Alert control's <samp class="codeph">show()</samp> method
 whenever it handles an event with the <samp class="codeph">handleAllEvents()</samp> method:</p>
 
                <pre class="codeblock">// events/MyEventHandler.as 
@@ -1301,7 +1301,7 @@ package { // Empty package.
                <p>In your MXML file, you declare a new instance of MyEventHandler
 and use the <samp class="codeph">addEventListener()</samp> method to register
 its <samp class="codeph">handleAllEvents()</samp> method as a handler to the
-Button control’s <samp class="codeph">click</samp> event, as the following example
+Button control's <samp class="codeph">click</samp> event, as the following example
 shows:</p>
 
                <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
@@ -1326,7 +1326,7 @@ shows:</p>
  
 &lt;/s:Application&gt;</pre>
 
-               <p>The best approach is to define the event handler’s method as
+               <p>The best approach is to define the event handler's method as
 static. When you make the event handler method static, you are not
 required to instantiate the class inside your MXML application.
 The following <samp class="codeph">createHandler()</samp> function registers
@@ -1435,7 +1435,7 @@ as handlers of the <samp class="codeph">click</samp> event:</p>
 you can add any number of handlers with additional calls to the <samp class="codeph">addEventListener()</samp> method.
 Each call adds a handler function that you want to register to the specified
 object. The following example registers the <samp class="codeph">submitForm()</samp> and <samp class="codeph">debugMessage()</samp> handler
-functions with b1’s <samp class="codeph">click</samp> event:</p>
+functions with b1's <samp class="codeph">click</samp> event:</p>
 
             <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
 &lt;!-- events/MultipleEventHandlersAS.mxml --&gt; 
@@ -1718,7 +1718,7 @@ expects two arguments:</p>
 is a function, you can define that function and pass the event object
 plus any additional parameters through to a different handler. The
 following example creates a new function in the <samp class="codeph">addEventListener()</samp> method,
-add two parameters to the new handler’s call, and then handles all
+add two parameters to the new handler's call, and then handles all
 of the parameters in the <samp class="codeph">myClickListener()</samp> method.</p>
 
             <pre class="codeblock">&lt;?xml version="1.0" encoding="utf-8"?&gt; 
@@ -1774,7 +1774,7 @@ of the parameters in the <samp class="codeph">myClickListener()</samp> method.</
 function is to define them in the listener function and then call
 the final method with those parameters. If you define an event listener
 inline (inside the MXML tag), you can add any number of parameters
-as long as the listener function’s signature agrees with that number
+as long as the listener function's signature agrees with that number
 of parameters. </p>
 
             <p>The following example passes a string and the Event object to
@@ -1850,7 +1850,7 @@ the <samp class="codeph">runMove()</samp> method:</p>
 
       
       <div>
-         <p>You can manually dispatch events using a component instance’s <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/flash/events/EventDispatcher.html#dispatchEvent()" target="_blank">dispatchEvent()</a> method.
+         <p>You can manually dispatch events using a component instance's <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/flash/events/EventDispatcher.html#dispatchEvent()" target="_blank">dispatchEvent()</a> method.
 All components that extend <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/core/UIComponent.html" target="_blank">UIComponent</a> have
 this method. The method is inherited from the <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/flash/events/EventDispatcher.html" target="_blank">EventDispatcher</a> class,
 which UIComponent extends.</p>
@@ -1875,7 +1875,7 @@ propagation</a>.</p>
 
          <p>You can use the <samp class="codeph">dispatchEvent()</samp> method to dispatch
 any event you want, not just a custom event. You can dispatch a
-Button control’s <samp class="codeph">click</samp> event, even though the user
+Button control's <samp class="codeph">click</samp> event, even though the user
 did not click a Button control, as in the following example:</p>
 
          <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
@@ -1908,7 +1908,7 @@ did not click a Button control, as in the following example:</p>
 
          <p>You can also manually dispatch an event in an MXML tag. In the
 following example, moving the mouse pointer over the button triggers
-the button’s <samp class="codeph">click</samp> event:</p>
+the button's <samp class="codeph">click</samp> event:</p>
 
          <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
 &lt;!-- events/DispatchEventExampleInline.mxml --&gt; 
@@ -2064,7 +2064,7 @@ in the following order: </p>
 to the event. For example, assume the user clicks a Button control
 that is inside a VBox container. During the capturing phase, Flex
 checks the Application object and the VBox for listeners to handle
-the event. Flex then triggers the Button’s listeners in the target phase.
+the event. Flex then triggers the Button's listeners in the target phase.
 In the bubbling phase, the VBox and then the Application are again
 given a chance to handle the event but now in the reverse order
 from the order in which they were checked in the capturing phase.</p>
@@ -2119,7 +2119,7 @@ the current node that is being examined for event listeners.</p>
             <p>When you handle a mouse event such as <samp class="codeph">MouseEvent.CLICK</samp> by
 writing a listener on some component, the <samp class="codeph">event.target</samp> property
 does not necessarily refer to that component; it is often a subcomponent,
-such as the Button control’s UITextField, that defines the label.</p>
+such as the Button control's UITextField, that defines the label.</p>
 
             <p>When Flash Player or Adobe<sup>®</sup> AIR™ dispatches an event, it dispatches the
 event from the frontmost object under the mouse. Because children
@@ -2137,13 +2137,13 @@ on any ancestor. As the event bubbles, the value of the <samp class="codeph">eve
 stays the same (UITextField), but the value of the <samp class="codeph">event.currentTarget</samp> property is
 set at each level to be the ancestor that is handling the event.
 Eventually, the <samp class="codeph">currentTarget</samp> will be Button, at
-which time the Button control’s event listener will handle the event.
+which time the Button control's event listener will handle the event.
 For this reason, you should use the <samp class="codeph">event.currentTarget</samp> property
 rather than the <samp class="codeph">event.target</samp> property; for example:</p>
 
             <pre class="codeblock"> &lt;mx:Button label="OK" click="trace(event.currentTarget.label)"/&gt;</pre>
 
-            <p>In this case, in the Button event’s click event listener, the <samp class="codeph">event.currentTarget</samp> property
+            <p>In this case, in the Button event's click event listener, the <samp class="codeph">event.currentTarget</samp> property
 always refers to the Button, while <samp class="codeph">event.target</samp> might
 be either the Button or its UITextField, depending on where on the
 Button control the user clicked.</p>
@@ -2157,7 +2157,7 @@ Button control the user clicked.</p>
 
          
          <div>
-            <p>In the capturing phase, Flex examines an event target’s
+            <p>In the capturing phase, Flex examines an event target's
 ancestors in the display list to see which ones are registered as
 a listener for the event. Flex starts with the root ancestor and
 continues down the display list to the direct ancestor of the target.
@@ -2231,7 +2231,7 @@ By contrast, bubbling is much more common.</p>
 
          
          <div>
-            <p>In the targeting phase, Flex invokes the event dispatcher’s
+            <p>In the targeting phase, Flex invokes the event dispatcher's
 listeners. No other nodes on the display list are examined for event
 listeners. The values of the <samp class="codeph">currentTarget</samp> and
 the <samp class="codeph">target</samp> properties on the Event object during
@@ -2246,8 +2246,8 @@ the targeting phase are the same.</p>
 
          
          <div>
-            <p>In the bubbling phase, Flex examines an event’s ancestors
-for event listeners. Flex starts with the dispatcher’s immediate
+            <p>In the bubbling phase, Flex examines an event's ancestors
+for event listeners. Flex starts with the dispatcher's immediate
 ancestor and continues up the display list to the root ancestor.
 This is the reverse of the capturing phase.</p>
 
@@ -2288,7 +2288,7 @@ are among those that bubble; it is less common for higher-level events
 that are dispatched by Flex to bubble. Events that can be bubbled
 include <samp class="codeph">change</samp>, <samp class="codeph">click</samp>, <samp class="codeph">doubleClick</samp>, <samp class="codeph">keyDown</samp>, <samp class="codeph">keyUp</samp>, <samp class="codeph">mouseDown</samp>,
 and <samp class="codeph">mouseUp</samp>. To determine whether an event bubbles,
-see the event’s entry in the <em>
+see the event's entry in the <em>
                   <a href="http://www.adobe.com/go/learn_flex4_apiref_en" target="_blank">ActionScript 3.0 Reference for the Adobe
 Flash Platform</a>
                </em>.</p>
@@ -2314,9 +2314,9 @@ phases, you must call <samp class="codeph">addEventListener()</samp> twice: once
 with <samp class="codeph">useCapture</samp> set to <samp class="codeph">true</samp>, and
 then again with <samp class="codeph">useCapture</samp> set to <samp class="codeph">false</samp>.</p>
 
-            <p>An event only bubbles up the parent’s chain of ancestors in the
+            <p>An event only bubbles up the parent's chain of ancestors in the
 display list. Siblings, such as two Button controls inside the same
-container, do not intercept each other’s events. </p>
+container, do not intercept each other's events. </p>
 
          </div>
 
@@ -2328,7 +2328,7 @@ container, do not intercept each other’s events. </p>
          
          <div>
             <p>You can determine what phase you are in by using the Event
-object’s <samp class="codeph">eventPhase</samp> property. This property contains
+object's <samp class="codeph">eventPhase</samp> property. This property contains
 an integer that represents one of the following constants:</p>
 
             <ul>
@@ -2403,11 +2403,11 @@ list by calling one of the following methods on the Event object:</p>
 
             </ul>
 
-            <p>You can call either the event’s <samp class="codeph">stopPropagation()</samp> method
+            <p>You can call either the event's <samp class="codeph">stopPropagation()</samp> method
 or the <samp class="codeph">stopImmediatePropagation()</samp> method to prevent
 an Event object from continuing on its way through the event flow.
 The two methods are nearly identical and differ only in whether
-the current node’s remaining event listeners are allowed to execute.
+the current node's remaining event listeners are allowed to execute.
 The <samp class="codeph">stopPropagation()</samp> method prevents the Event object
 from moving on to the next node, but only after any other event
 listeners on the current node are allowed to execute. </p>
@@ -2505,7 +2505,7 @@ not prevent default behavior from occurring.</div>
 
          
          <div>
-            <p>In the following example, the parent container’s click
+            <p>In the following example, the parent container's click
 handler disables the target control after the target handles the
 event. It shows that you can reuse the logic of a single listener
 (click the HGroup container) for multiple events (all the clicks).</p>
@@ -2810,15 +2810,15 @@ example:</p>
 &lt;/s:Application&gt;</pre>
 
          <p>This approach can use less memory and system resources, but it
-is best to declare the event’s type as specifically as possible.</p>
+is best to declare the event's type as specifically as possible.</p>
 
-         <p>Each of the Event object’s subclasses provides additional properties
+         <p>Each of the Event object's subclasses provides additional properties
 and event types that are unique to that category of events. The
 MouseEvent class defines several event types related to that input
 device, including the <samp class="codeph">CLICK</samp>, <samp class="codeph">DOUBLE_CLICK</samp>, <samp class="codeph">MOUSE_DOWN</samp>,
 and <samp class="codeph">MOUSE_UP</samp> event types. </p>
 
-         <p>For a list of types for each Event subclass, see the subclass’s
+         <p>For a list of types for each Event subclass, see the subclass's
 entry in <em>
                <a href="http://www.adobe.com/go/learn_flex4_apiref_en" target="_blank">ActionScript 3.0 Reference for the Adobe
 Flash Platform</a>
