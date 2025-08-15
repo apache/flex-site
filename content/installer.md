@@ -7,9 +7,12 @@ The Apache Flex® SDK Installer is an application that simplifies the download a
 
 Note: the installer downloads other files besides the Apache Flex SDK. These files are needed for the proper functioning of the SDK. The required TLF and the OSMF frameworks, as well as the optional Embedded Font Libraries and Utilities and BlazeDS are mentioned separately in the installer application. The other non-Apache files downloaded by the installer are:
 
- - [Adobe AIR SDK][6]
- - [PlayerGlobal.swc][7]
- - [SWFObject.js][8]
+  - Adobe AIR SDK
+    - [Windows][6]
+    - [macOS][7]
+    - Linux (not available)
+ - [PlayerGlobal.swc][8]
+ - [SWFObject.js][9]
 
 # Download Apache Flex® SDK Installer 3.3.2 (source)
 
@@ -32,6 +35,7 @@ Binaries are provided as a convenience for those who do not wish to compile the 
   [3]: https://www.apache.org/dyn/closer.lua/flex/installer/3.3.2/binaries/apache-flex-sdk-installer-3.3.2-bin.dmg
   [4]: https://www.apache.org/dyn/closer.lua/flex/installer/3.3.2/binaries/apache-flex-sdk-installer-3.3.2-bin.exe
   [5]: https://dist.apache.org/repos/dist/release/flex/installer/3.3.2/READme
-  [6]: https://www.adobe.com/devnet/air/air-sdk-download.html
-  [7]: https://www.adobe.com/support/flashplayer/downloads.html
-  [8]: https://code.google.com/p/swfobject/
+  [6]: https://airdownload.adobe.com/air/win/download/32.0/AdobeAIRSDK.zip
+  [7]: https://airdownload.adobe.com/air/mac/download/32.0/AdobeAIRSDK.dmg
+  [8]: https://fpdownload.macromedia.com/get/flashplayer/updaters/32/playerglobal32_0.swc
+  [9]: https://github.com/swfobject/swfobject
