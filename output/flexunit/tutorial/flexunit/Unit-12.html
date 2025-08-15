@@ -226,37 +226,37 @@
 <li>
 <p>Open the TestAssert.as file in the fu1 package in the tests folder.</p>
 <p>As you examine the class file you will notice a few differences about these test methods. The <code>TestAssert</code> class extends from the <code>TestCase</code> class.  The TestCase class was the base class for all tests in FlexUnit .9.</p>
-<pre><code>public class TestAssert extends TestCase {      
-      public function TestAssert( name : String = null ) {
-         super( name );
-      }
-      ...
-}
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="err">public class TestAssert extends TestCase {      </span>
+<span class="err">      public function TestAssert( name : String = null ) {</span>
+<span class="err">         super( name );</span>
+<span class="err">      }</span>
+<span class="err">      ...</span>
+<span class="err">}</span>
+</code></pre></div>
 <p>The class constructor in FlexUnit .9 can be used to provide a name for this test in certain circumstances. In this test it does nothing more than call its <code>super()</code> method. FlexUnit 4.x tests do not descend from any particular class.</p>
 <p>Metadata is not used to distinguish tests and fixture from normal methods. Every method in this case prefixes the word <i>test</i> to its name. Take a look at the <code>testMatch()</code> method:</p>
-<pre><code>public function testMatch() : void {
-	Assert.assertMatch(
-	     /fr.*gt/,
-	     "feeefrbgbgbggt" );
-	Assert.assertMatch(
-	     /.*@adobe\.com/,
-	     "xagnetti@adobe.com" );
-	Assert.assertMatch(
-	     /.*@adobe.?com/,
-	     "xagnetti@adobevcom" );
-	try {
-	   Assert.assertMatch(
-	     /.*@adobe\.com/,
-	     "xagnetti@adobevcom" );             
-	}
-	catch ( e : AssertionFailedError ) {
-	   assertAssertionsHaveBeenMade( 4 );
-	   return;
-	}
-	fail();
-}
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="err">public function testMatch() : void {</span>
+<span class="err">    Assert.assertMatch(</span>
+<span class="err">         /fr.*gt/,</span>
+<span class="err">         "feeefrbgbgbggt" );</span>
+<span class="err">    Assert.assertMatch(</span>
+<span class="err">         /.*@adobe\.com/,</span>
+<span class="err">         "xagnetti@adobe.com" );</span>
+<span class="err">    Assert.assertMatch(</span>
+<span class="err">         /.*@adobe.?com/,</span>
+<span class="err">         "xagnetti@adobevcom" );</span>
+<span class="err">    try {</span>
+<span class="err">       Assert.assertMatch(</span>
+<span class="err">         /.*@adobe\.com/,</span>
+<span class="err">         "xagnetti@adobevcom" );             </span>
+<span class="err">    }</span>
+<span class="err">    catch ( e : AssertionFailedError ) {</span>
+<span class="err">       assertAssertionsHaveBeenMade( 4 );</span>
+<span class="err">       return;</span>
+<span class="err">    }</span>
+<span class="err">    fail();</span>
+<span class="err">}</span>
+</code></pre></div>
 <p>There are separate Assert classes in FlexUnit 4 and FlexUnit .9.  Both have static methods for making assertions. When running tests in FlexUnit 4 you can use either of these classes, to help maintain backwards compatibility.</p>
 <p>FlexUnit 4.x Assert: <code>org.flexunit.Assert</code></p>
 <p>FlexUnit 1 Assert: <code>flexunit.framework.Assert</code></p>
@@ -268,15 +268,15 @@
 </li>
 <li>
 <p>Within the <code>&lt;fx:Script&gt;</code> block there is a function named <code>currentRunTestSuite()</code>. Add a line that calls the <code>testsToRun.push()</code> method with the argument <code>TestAssert</code>.</p>
-<pre><code>import fu1.TestAssert;
-import math.testcases.CircleSuite;
-public function currentRunTestSuite():Array {
-	var testsToRun:Array = new Array();
-	testsToRun.push( CircleSuite );
-	testsToRun.push( TestAssert );
-	return testsToRun;
-}
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">fu1.TestAssert</span><span class="p">;</span>
+<span class="kn">import</span> <span class="nn">math.testcases.CircleSuite</span><span class="p">;</span>
+<span class="n">public</span> <span class="n">function</span> <span class="n">currentRunTestSuite</span><span class="p">():</span><span class="n">Array</span> <span class="p">{</span>
+    <span class="n">var</span> <span class="n">testsToRun</span><span class="p">:</span><span class="n">Array</span> <span class="o">=</span> <span class="n">new</span> <span class="n">Array</span><span class="p">();</span>
+    <span class="n">testsToRun</span><span class="o">.</span><span class="n">push</span><span class="p">(</span> <span class="n">CircleSuite</span> <span class="p">);</span>
+    <span class="n">testsToRun</span><span class="o">.</span><span class="n">push</span><span class="p">(</span> <span class="n">TestAssert</span> <span class="p">);</span>
+    <span class="k">return</span> <span class="n">testsToRun</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
 <p>If you did not use code-completion, add the import statement for fu1.TestAssert at this point.</p>
 </li>
 <li>
@@ -301,7 +301,6 @@ public function currentRunTestSuite():Array {
 <li><a href="Unit-13.html">Unit 13 - Working with Asynchronous Operations</a></li>
 <li><a href="../index.html">Table of Contents / Introduction</a></li>
 </ul>
-
 
 <!-- Home Page Exception -->
 
