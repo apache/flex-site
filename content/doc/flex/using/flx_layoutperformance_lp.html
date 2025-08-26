@@ -19,32 +19,20 @@
   PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html lang="en-us" xml:lang="en-us">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 <meta name="DC.Type" content="topic"/>
 <meta name="DC.Title" content="Improving startup performance"/>
 <meta name="DC.Format" content="XHTML"/>
 <meta name="DC.Identifier" content="WS2db454920e96a9e51e63e3d11c0bf69084-7ee5_verapache"/>
-<link rel="stylesheet" type="text/css" href="commonltr.css"/>
 <title>Improving startup performance</title>
 </head>
 <body id="WS2db454920e96a9e51e63e3d11c0bf69084-7ee5_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7ee5_verapache"><!-- --></a>
-
-
-   <h1 class="topictitle1">Improving startup performance</h1>
-
-   <div>
-      <p/>
-
-   </div>
 
    <div class="nested1" id="WS2db454920e96a9e51e63e3d11c0bf67382-7fff_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf67382-7fff_verapache"><!-- --></a>
       <h2 class="topictitle2">About startup performance</h2>
 
       
       <div>
-         <p>
-            
-            You could increase the startup time
+         <p>You could increase the startup time
 and decrease performance of your applications if you create too
 many objects or put too many objects into a single view. To improve
 startup time, minimize the number of objects that are created when the
@@ -67,10 +55,7 @@ some cases, you can improve the user's initial experience by displaying
 the components in one container before creating the components in
 the next container. This process is called <em>ordered creation</em>.</p>
 
-         <p>
-            
-            
-            The remaining sections of this topic
+         <p>The remaining sections of this topic
 describe how to use deferred creation to reduce overall application
 startup time and ordered creation to make the initial startup time
 appear as short as possible to the user. But before you can fully understand
@@ -88,9 +73,7 @@ manually instantiate controls from their child descriptors.</p>
 
       
       <div>
-         <p>
-            
-            All Flex components trigger a number of events
+         <p>All Flex components trigger a number of events
 during their startup procedure. These events indicate when the component
 is first created, plotted internally, and drawn on the screen. The
 events also indicate when the component is finished being created
@@ -107,10 +90,7 @@ during a component's creation life cycle:</p>
             <img src="images/lifecycle_component.png" alt="Major events dispatched during a component\xd5 s creation life cycle."/>
          </div>
 
-         <p>
-            
-            
-            The creation order is different for containers
+         <p>The creation order is different for containers
 and components because containers can be the parent of other components
 or containers. Components within the containers must also go through
 the creation order. If a container is the parent of another container,
@@ -124,8 +104,7 @@ during a container's creation life cycle:</p>
             <img src="images/lifecycle_container.png" alt="Major events dispatched during a container\xd5 s creation life cycle."/>
          </div>
 
-         <p>
-            After
+         <p>After
 all components are created and drawn, the <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/spark/componets/Application/html" target="_blank">Application</a> object
 dispatches an <samp class="codeph">applicationComplete</samp> event. This is
 the last event dispatched during an application startup.</p>
@@ -152,11 +131,7 @@ events</a>.</p>
 
       
       <div>
-         <p>
-            
-            
-            
-            By default, containers create only
+         <p>By default, containers create only
 the controls that initially appear to the user. Flex creates the
 container's other descendants if the user navigates to them. Containers
 with a single view, such as <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/spark/components/Group.html" target="_blank">Group</a>, <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/containers/Box.html" target="_blank">Box</a>, <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/spark/components/Form.html" target="_blank">Form</a>,
@@ -169,23 +144,19 @@ only create and display the descendants that are visible at any
 given time. These containers are the MX <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/containers/ViewStack.html" target="_blank">ViewStack</a>, <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/containers/Accordion.html" target="_blank">Accordion</a>,
 and <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/containers/TabNavigator.html" target="_blank">TabNavigator</a> containers. </p>
 
-         <p>
-            
-            When navigator containers
+         <p>When navigator containers
 are created, they do not immediately create all of their descendants,
 but only those descendants that are initially visible. Flex defers
 the creation of descendants that are not initially visible until
 the user navigates to a view that contains them.</p>
 
-         <p>
-            The
+         <p>The
 result of this deferred creation is that an MXML application with
 navigator containers loads more quickly, but the user experiences
 brief pauses when he or she moves from one view to another when
 interacting with the application.</p>
 
-         <p>
-            You
+         <p>You
 can instruct each container to create their children or defer the
 creation of their children at application startup by using the container's <samp class="codeph">creationPolicy</samp> property.
 This can improve the user experience after the application loads.
@@ -205,8 +176,7 @@ deferred components</a>.</p>
 
          
          <div>
-            <p>
-               To
+            <p>To
 defer the creation of any component, container, or child of a container,
 you use the <samp class="codeph">creationPolicy</samp> property. Every container
 has a <samp class="codeph">creationPolicy</samp> property that determines how
@@ -239,8 +209,7 @@ unless you explicitly set it.</p>
 
             
             <div>
-               <p>
-                  Single-view
+               <p>Single-view
 containers by default create all their children when the application first
 starts. You can use the <samp class="codeph">creationPolicy</samp> property
 to change this behavior. The following table describes the values
@@ -339,9 +308,7 @@ to <samp class="codeph">auto</samp>, the default value:</p>
     &lt;/s:Panel&gt; 
 &lt;/s:Application&gt;</pre>
 
-               <p>
-                  
-                  The
+               <p>The
 default behavior of all single-view containers is that they and
 their children are entirely instantiated when the application starts.
 If you set the <samp class="codeph">creationPolicy</samp> property to <samp class="codeph">none</samp>,
@@ -358,12 +325,7 @@ components</a>.</p>
 
             
             <div>
-               <p>
-                  
-                  
-                  
-                  
-                  Containers with
+               <p>Containers with
 multiple views, such as the ViewStack and Accordion, do not immediately
 create all of their descendants, but only those descendants that
 are visible in the initial view. Flex defers the instantiation of
@@ -656,21 +618,12 @@ is for MX containers. For Spark containers, use the <samp class="codeph">createD
 
             </div>
 
-            <p>
-               
-               
-               
-               
-               You
+            <p>You
 use the <samp class="codeph">createComponentsFromDescriptors()</samp> method
 of an MX container to create all the children of a container at
 one time.</p>
 
-            <p>
-               
-               
-               
-               The <samp class="codeph">createComponentsFromDescriptors()</samp> method
+            <p>The <samp class="codeph">createComponentsFromDescriptors()</samp> method
 has the following signature:</p>
 
             <pre class="codeblock"> container.createComponentsFromDescriptors(<em>recurse</em>:Boolean):Boolean</pre>
@@ -708,13 +661,7 @@ explicitly create the children of the <em>n</em>-th view.</p>
 
       
       <div>
-         <p>
-            
-            
-            
-            
-            
-            The <samp class="codeph">callLater()</samp> method
+         <p>The <samp class="codeph">callLater()</samp> method
 queues an operation to be performed for the next screen refresh,
 rather than in the current update. Without the <samp class="codeph">callLater()</samp> method,
 you might try to access a property of a component that is not yet available.
@@ -723,8 +670,7 @@ the <samp class="codeph">creationComplete</samp> event to ensure that a componen
 has finished being created before Flex proceeds with a specified
 method call on that component.</p>
 
-         <p>
-            All objects
+         <p>All objects
 that inherit from the <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/core/UIComponent.html" target="_blank">UIComponent</a> class can open
 the <samp class="codeph">callLater()</samp> method. It has the following signature:</p>
 
@@ -744,8 +690,7 @@ and the "Product Description" String in an Array to that function:</p>
  	... 
  }</pre>
 
-         <p>
-            The
+         <p>The
 following example uses a call to the <samp class="codeph">callLater()</samp> method
 to ensure that new data is added to a <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/controls/DataGrid.html" target="_blank">DataGrid</a> before
 Flex tries to put focus on the new row. Without the <samp class="codeph">callLater()</samp> method,
