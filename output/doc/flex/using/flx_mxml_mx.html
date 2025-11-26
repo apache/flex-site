@@ -1,0 +1,1412 @@
+<!DOCTYPE html>
+<!--[if IE 7 ]><html class="ie ie7" lang="en"><![endif]-->
+<!--[if IE 8 ]><html class="ie ie8" lang="en"><![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!--><html lang="en"><!--<![endif]-->
+
+<head>
+
+    <meta charset="utf-8">
+    <title>Apache Flex® - Developing applications in MXML</title>
+
+    <!-- For Mobiles  -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <!-- CSS -->
+    <link rel="stylesheet" type="text/css" href="/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="/css/fixed-width.css" id="layout">
+    <link rel="stylesheet" type="text/css" href="/css/style.css">
+    <!-- favicon -->
+    <link rel="icon" type="image/x-icon" href="/images/favicon.ico"/>
+    <link rel="apple-touch-icon-precomposed" href="/images/apple-touch-icon-60.png">
+    <link rel="apple-touch-icon-precomposed" sizes="76x76" href="/images/apple-touch-icon-76.png">
+    <link rel="apple-touch-icon-precomposed" sizes="120x120" href="/images/apple-touch-icon-120.png">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="/images/apple-touch-icon-152.png">
+
+    <!-- Java Script  -->
+    <script src="/js/jquery.js"></script>
+    <script src="/js/custom.js"></script>
+    <script src="/js/selectnav.js"></script>
+    <script src="/js/flexslider.js"></script>
+    <script src="/js/twitter.js"></script>
+    <script src="/js/fancybox.js"></script>
+    <script src="/js/isotope.js"></script>
+    <script src="/js/bootstrap.js"></script>
+    <script src="/js/showcase.js"></script>
+
+
+</head>
+<body>
+
+<!-- Wrapper Start -->
+<div id="wrapper" class="container-fluid">
+
+
+    <!-- Header -->
+
+
+    <div class="ie-dropdown-fix" >
+
+        <!-- Header -->
+        <div class="row-fluid" id="header">
+
+            <!-- Logo -->
+            <div class="span5">
+
+                <a href="/"><img src="/images/logo_01_fullcolor-sm.png" alt="Apache Flex®" title="Apache Flex®" /></a>
+
+            </div>
+
+            <!-- Social / Contact -->
+            <div class="span3 pull-right">
+
+                <!-- Social Icons -->
+                <ul class="social-icons">
+                    <li class="facebook"><a href="https://www.facebook.com/pages/Apache-Flex/174249699342648">Facebook</a></li>
+                    <li class="twitter"><a href="http://twitter.com/ApacheFlex">Twitter</a></li>
+                    <li class="linkedin"><a href="http://www.linkedin.com/groups/Apache-Flex-Developers-4296888">LinkedIn</a></li>
+                </ul>
+
+                <!-- Apache Logo -->
+                <a href="http://www.apache.org" id="contact-top"><img src="https://www.apache.org/images/feather-small.gif" title="An Apache Project" alt="An Apache Project" /> </a>
+            </div>
+
+        </div>
+        <!-- Header / End -->
+
+        <!-- Navigation -->
+        <div id="navigation" class="margintop">
+            <ul id="nav">
+
+                <li><a href="/index.html">Home</a></li>
+
+                <li><a href="#">About Flex</a>
+                    <ul>
+
+                        <li><a href="/about-whatis.html">What is Flex?</a></li>
+                        <li><a href="/about-features.html">Features</a></li>
+						<li><a href="/tourdeflex/explorer.html">Tour de Flex</a></li>
+                        <li><a href="/about-licensing.html">License &amp; Trademarks</a></li>
+                        <li><a href="/about-people.html">The Team</a></li>
+                        <li><a href="/about-history.html">Project History</a></li>
+                        <li><a href="/about-assets.html">Logo and Assets</a></li>
+                    </ul>
+                </li>
+                <li><a href="#">Community</a>
+                    <ul>
+
+                        <li><a href="/community-getinvolved.html">How to get involved</a></li>
+                        <li><a href="/community-mailinglists.html">Mailing Lists</a></li>
+                        <li><a href="/community-showcase.html">Flex Showcase</a></li>
+						<li><a href="/community-3rdparty.html">Third-Party</a></li>
+                        <li><a href="https://cwiki.apache.org/confluence/display/FLEX/Apache+Flex+Wiki">Wiki <i class="icon-share icon-white"></i></a></li>
+                        <li><a href="http://blogs.apache.org/flex/">Blog <i class="icon-share icon-white"></i></a></li>
+                    </ul>
+                </li>
+
+                <li><a href="#">Development</a>
+                    <ul>
+                        <li><a href="/dev-faq.html">Developer FAQ</a></li>
+                        <li><a href="/dev-sourcecode.html">Source Code</a></li>
+                        <li><a href="https://issues.apache.org/jira/browse/FLEX">Bug-Tracker <i class="icon-share icon-white"></i></a></li>
+                    </ul>
+                </li>
+
+                <li><a href="#">Documentation</a>
+                    <ul>
+
+                        <li><a href="/doc-getstarted.html">Getting Started</a></li>
+                        <li><a href="/doc/flex/using/index.html">Using Flex</a></li>
+                        <li><a href="/doc-videos.html">Videos</a></li>
+                        <li><a href="/asdoc/">Flex ASDocs</a></li>
+                        <li><a href="http://help.adobe.com/en_US/flex/using/index.html">Documentation Reference (Old) <i class="icon-share icon-white"></i></a></li>
+                        <li><a href="/flexunit/tutorial/">FlexUnit Tutorials</a></li>
+                        <li><a href="/flexunit/asdoc/">FlexUnit ASDocs</a></li>
+
+                    </ul>
+                </li>
+
+                <li><a href="#">About Apache</a>
+                    <ul>
+
+                        <li><a href="http://www.apache.org">The Apache Software Foundation Website <i class="icon-share icon-white"></i></a></li>
+                        <li><a href="http://www.apache.org/foundation/contributing.html">Donations <i class="icon-share icon-white"></i></a></li>
+                        <li><a href="http://www.apache.org/foundation/sponsorship.html">Sponsorship <i class="icon-share icon-white"></i></a></li>
+                        <li><a href="http://www.apache.org/foundation/thanks.html">Thanks <i class="icon-share icon-white"></i></a></li>
+                    </ul>
+                </li>
+
+                <li><a href="#" class="download">Download Flex</a>
+                    <ul>
+
+                       <li><a href="/installer.html">SDK Installer (For Application Developers)</a></li>
+                       <li><a href="/download-source.html">SDK Source Code (For SDK Developers)</a></li>
+                       <li><a href="/download-binaries.html">SDK Binaries (For SDK Developers)</a></li>
+                       <li><a href="/download-flexjs.html">FlexJS 'beta' (For Application Developers)</a> </li>
+                       <li><a href="/download-flexunit.html">FlexUnit (For Application Developers)</a> </li>
+                       <li><a href="/download-blazeds.html">Blaze DS Source Code</a></li>
+                       <li><a href="/download-tourdeflex.html">Tour De Flex Source Code</a></li>
+                       <li><a href="/download-squiggly.html">Squiggly Spell Checker</a></li>
+                       <li><a href="/download-utilities.html">Flex Utilities</a></li>
+                       <li><a href="/download-archive.html">Previous Versions</a></li>`
+                    </ul>
+                </li>
+            </ul>
+
+        </div>
+        <div class="clear"></div>
+
+    </div>
+    <!-- Navigation / End -->
+
+
+    <!-- Content -->
+
+    <div class="row-fluid">
+
+
+        <!-- Page Title -->
+        <div id="page-title">
+            <h2>Developing applications in MXML</h2>
+        </div>
+        <!-- Page Title / End -->
+
+
+    </div>
+
+    <div class="row-fluid">
+
+<!-- Home Page Exception -->
+
+    <a name="WS2db454920e96a9e51e63e3d11c0bf69084-79b5_verapache"><!-- --></a>
+<div>
+<p>MXML is
+an XML language that you use to lay out user interface components
+for applications built in  Flex. You also
+use MXML to declaratively define nonvisual aspects of an application,
+such as access to server-side data sources and data bindings between
+user interface components and server-side data sources. </p>
+<p>For information on MXML syntax, see <a href="flx_mxmlSyntax_sy.html#WS2db454920e96a9e51e63e3d11c0bf69084-8000_verapache">MXML
+syntax</a>. </p>
+</div>
+<div class="nested1" id="WS2db454920e96a9e51e63e3d11c0bf5f39f-7fff_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf5f39f-7fff_verapache"><!-- --></a>
+<h2 class="topictitle2">About MXML</h2>
+<div>
+<p>You use two
+languages to write applications in Flex: MXML and ActionScript. MXML
+is an XML markup language that you use to lay out user interface
+components. You also use MXML to declaratively define nonvisual
+aspects of an application, such as access to data sources on the
+server and data bindings between user interface components and data
+sources on the server. </p>
+<p>Like HTML, MXML provides tags that define user interfaces. MXML
+will seem very familiar if you have worked with HTML. However, MXML
+is more structured than HTML, and it provides a much richer tag
+set. For example, MXML includes tags for visual components such
+as data grids, trees, tab navigators, accordions, and menus, as
+well as nonvisual components that provide web service connections, data
+binding, and animation effects. You can also extend MXML with custom components
+that you reference as MXML tags.</p>
+<p>One of the biggest differences between MXML and HTML is that
+MXML-defined applications are compiled into SWF files and rendered
+by Adobe<sup>&reg;</sup> Flash<sup>&reg;</sup> Player or
+Adobe<sup>&reg;</sup> AIR&trade;, which
+provides a richer and more dynamic user interface than page-based
+HTML applications.</p>
+<p>You can write an MXML application in a single file or in multiple
+files. MXML also supports custom components written in MXML and
+ActionScript files. </p>
+</div>
+<div class="nested2" id="WS03d33b8076db57b9-70e4419b120e8046573-8000_verapache"><a name="WS03d33b8076db57b9-70e4419b120e8046573-8000_verapache"><!-- --></a>
+<h3 class="topictitle3">Using Spark and MX component sets</h3>
+<div>
+<p>Flex defines two sets of components: MX and Spark. The
+MX component set was included in previous releases of Flex, and
+is defined in the mx.* packages. The Spark component set is new
+for Flex 4 and is defined in the spark.* packages. The Spark components
+use a new architecture for skinning and have other advantages over
+the MX components. </p>
+<p>The MX and Spark component sets contain many of the same components.
+For example, both component sets defines a Button control, TextInput
+control, and List control. However, while you can use MX components
+to perform most of the same actions that you can perform by using
+the Spark components, it's best to you use the Spark components
+when possible. </p>
+</div>
+</div>
+<div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf5f39f-7ffe_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf5f39f-7ffe_verapache"><!-- --></a>
+<h3 class="topictitle3">Writing a simple application in
+MXML</h3>
+<div>
+<p>Because
+MXML files are ordinary XML files, you have a wide choice of development
+environments. You can write MXML code in a simple text editor, a dedicated
+XML editor, or an integrated development environment (IDE) that supports
+text editing.</p>
+<p>The following example shows a simple "Hello World" application
+that contains just an <samp class="codeph">&lt;s:Application&gt;</samp> tag
+and three child tags, the <samp class="codeph">&lt;s:Panel&gt;</samp> tag and the <samp class="codeph">&lt;s:Label&gt;</samp> tags,
+plus a <samp class="codeph">&lt;s:layout&gt;</samp> tag. The <samp class="codeph">&lt;s:Application&gt;</samp> tag defines
+the Application container that is always the root tag of an application. The <samp class="codeph">&lt;s:Panel&gt;</samp> tag
+defines a Panel container that includes a title bar, a title, a status
+message, a border, and a content area for its children. The <samp class="codeph">&lt;s:Label&gt;</samp> tag represents
+a Label control, a very simple user interface component that displays text.</p>
+<pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- mxml\HellowWorld.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark"&gt; 
+    &lt;s:layout&gt; 
+        &lt;s:VerticalLayout/&gt; 
+    &lt;/s:layout&gt; 
+ 
+    &lt;s:Panel title="My Application"&gt; 
+        &lt;s:Label text="Hello World" fontWeight="bold" fontSize="24"/&gt; 
+    &lt;/s:Panel&gt; 
+&lt;/s:Application&gt;</pre>
+<p>Save this code to a file named hello.mxml. MXML filenames must
+end in a lowercase .mxml file extension.</p>
+<div class="section" id="WS2db454920e96a9e51e63e3d11c0bf5f39f-7ffe_verapache__WS2db454920e96a9e51e63e3d11c0bf5f39f-7ffd_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf5f39f-7ffe_verapache__WS2db454920e96a9e51e63e3d11c0bf5f39f-7ffd_verapache"><!-- --></a><h4 class="sectiontitle">About
+XML encoding</h4>
+<p>The
+first line of the document specifies an optional declaration of
+the XML version. It is good practice to include encoding information
+that specifies how the MXML file is encoded. Many editors let you
+select from a range of file encoding options. On North American
+operating systems, ISO-8859-1 is the dominant encoding format, and
+most programs use that format by default. You can use the UTF-8
+encoding format to ensure maximum platform compatibility. UTF-8
+provides a unique number for every character in a file, and it is
+platform-, program-, and language-independent. </p>
+<p>If you specify
+an encoding format, it must match the file encoding you use. The following
+example shows an XML declaration tag that specifies the UTF-8 encoding
+format:</p>
+<pre class="codeblock">&thinsp;&lt;?xml version="1.0" encoding="utf-8"?&gt;</pre>
+</div>
+<div class="section" id="WS2db454920e96a9e51e63e3d11c0bf5f39f-7ffe_verapache__WS2db454920e96a9e51e63e3d11c0bf5f39f-7ffc_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf5f39f-7ffe_verapache__WS2db454920e96a9e51e63e3d11c0bf5f39f-7ffc_verapache"><!-- --></a><h4 class="sectiontitle">About
+the &lt;s:Application&gt; tag</h4>
+<p>In addition to being the
+root tag of an application, the <samp class="codeph">&lt;s:Application&gt;</samp> tag represents
+a Spark Application container. A <em>container</em> is a user-interface component
+that contains other component sets, and uses layout rules for positioning
+its child components. By default, the Spark Application container
+lets that you set the position of its children. In the previous
+example, you set the layout of the container to VerticalLayout so
+that the Application container automatically lays out its children
+in a vertical column.</p>
+<p>You can nest other types of containers
+inside an Application container, such as the Panel container shown
+above, to position user interface components according to other
+rules. For more information, see <a href="flx_components_cmp.html#WS2db454920e96a9e51e63e3d11c0bf69084-7fff_verapache">Visual
+components</a>.</p>
+</div>
+<div class="section"><h4 class="sectiontitle">About namespaces</h4>
+<p>In an XML document, tags
+are associated with a namespace. XML namespaces let you refer to
+more than one set of XML tags in the same XML document. The <samp class="codeph">xmlns</samp> property
+in an MXML tag specifies an XML namespace. </p>
+<div class="p">In Flex, you typically
+define three namespaces: <ul>
+<li>
+<p>
+<samp class="codeph">xmlns:fx="http://ns.adobe.com/mxml/2009"</samp>&emsp;The
+namespace for top-level ActionScript elements, such as Object and
+Array, and for tags built into the MXML compiler, such as <samp class="codeph">&lt;fx:Script&gt;</samp>.</p>
+</li>
+<li>
+<p>
+<samp class="codeph">xmlns:mx="library://ns.adobe.com/flex/mx"</samp>&emsp;The namespace
+for the MX component set.</p>
+</li>
+<li>
+<p>
+<samp class="codeph">xmlns:s="library://ns.adobe.com/flex/spark"</samp>&emsp;The namespace
+for the Spark component set.</p>
+</li>
+</ul>
+</div>
+<p>In general, you
+include the Spark and MX component namespaces so that you can use
+any components from those sets. Where possible, use the Spark components.
+However, not all MX components have Spark counterparts, so the components
+in the MX namespace are also sometimes necessary.</p>
+<p>You can
+define additional namespaces for your custom component libraries.
+For more information on namespaces, see <a href="flx_mxml_mx.html#WS2db454920e96a9e51e63e3d11c0bf5f39f-7ff3_verapache">Using
+XML namespaces</a>.</p>
+</div>
+<div class="section" id="WS2db454920e96a9e51e63e3d11c0bf5f39f-7ffe_verapache__WS2db454920e96a9e51e63e3d11c0bf5f39f-7ffb_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf5f39f-7ffe_verapache__WS2db454920e96a9e51e63e3d11c0bf5f39f-7ffb_verapache"><!-- --></a><h4 class="sectiontitle">About
+MXML tag properties</h4>
+<p>The properties of an MXML tag, such
+as the <samp class="codeph">text</samp>, <samp class="codeph">fontWeight</samp>, and <samp class="codeph">fontSize</samp> properties
+of the <samp class="codeph">&lt;s:Label&gt;</samp> tag, let you declaratively
+configure the initial state of the component. You can use ActionScript
+code in an <samp class="codeph">&lt;fx:Script&gt;</samp> tag to change the
+state of a component at run time. For more information, see <a href="flx_usingas_ua.html#WS2db454920e96a9e51e63e3d11c0bf69084-7ffe_verapache">Using
+ActionScript</a>.</p>
+</div>
+</div>
+</div>
+<div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf5f39f-7ffa_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf5f39f-7ffa_verapache"><!-- --></a>
+<h3 class="topictitle3">Compiling MXML to SWF Files</h3>
+<div>
+<p>You comple MXML files into SWF files. </p>
+<p>You can deploy
+your application as a compiled SWF file or as a SWF file included in
+an AIR application. </p>
+<p>End users of the application do not typically reference the SWF
+file directly in an HTTP request. Instead, you embed the application
+SWF file in an HTML page. The HTML page then uses a script to load
+the SWF file. Collectively, the HTML page and the script are known
+as the <em>wrapper</em>.</p>
+<p>When the SWF file is embedded in the HTML page, users then access
+the deployed SWF file by making an HTTP request to the HTML page,
+in the form:</p>
+<pre class="codeblock">&thinsp;http://hostname/path/filename.html</pre>
+<p>For more information on wrappers, see <a href="flx_wrapper_wr.html#WS2db454920e96a9e51e63e3d11c0bf69084-7ecf_verapache">Creating
+a wrapper</a>.</p>
+<p>Flex also provides a command-line MXML compiler, mxmlc, that
+lets you compile MXML files. You can use mxmlc to compile hello.mxml
+from a command line, as the following example shows:</p>
+<pre class="codeblock">&thinsp;cd <em>flex_install_dir</em>/bin 
+&thinsp;mxmlc --show-actionscript-warnings=true --strict=true c:/<em>app_dir</em>/hello.mxml</pre>
+<p>In this example, <em>flex_install_dir</em> is the Flex installation
+directory, and <em>app_dir</em> is the directory containing hello.mxml.
+The resultant SWF file, hello.swf, is written to the same directory
+as hello.mxml.</p>
+<p>For more information about mxmlc, see <a href="flx_compilers_cpl.html#WS2db454920e96a9e51e63e3d11c0bf69084-7ffd_verapache">Flex
+compilers</a>. </p>
+</div>
+</div>
+<div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf5f39f-7ff9_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf5f39f-7ff9_verapache"><!-- --></a>
+<h3 class="topictitle3">The relationship of MXML tags to
+ActionScript classes</h3>
+<div>
+<p>Flex is implemented as an ActionScript class library. That
+class library contains components (containers and controls), manager
+classes, data-service classes, and classes for all other features.
+You develop applications by using the MXML and ActionScript languages
+with the class library. </p>
+<p>MXML tags correspond to ActionScript classes or properties of
+classes. Flex parses MXML tags and compiles a SWF file that contains
+the corresponding ActionScript objects. For example, Flex provides
+the ActionScript <a href="https://flex.apache.org/asdoc/spark/components/Button.html" target="_blank">Button</a> class that
+defines the Flex Button control. In MXML, you create a Button control
+by using the following MXML statement:</p>
+<pre class="codeblock">&thinsp;&lt;s:Button label="Submit"/&gt;</pre>
+<p>When you declare a control using an MXML tag, you create an instance
+of that class. This MXML statement creates a Button object, and
+initializes the <samp class="codeph">label</samp> property of the Button object
+to the string <samp class="codeph">"Submit"</samp>.</p>
+<p>An MXML tag that corresponds to an ActionScript class uses the
+same naming conventions as the ActionScript class. Class names begin
+with an uppercase letter, and uppercase letters separate the words
+in class names. Every MXML tag attribute corresponds to a property
+of the ActionScript object, a style applied to the object, or an
+event listener for the object. For a complete description of the Flex
+class library and MXML tag syntax, see the <em>
+<a href="https://flex.apache.org/asdoc/" target="_blank">ActionScript 3.0 Reference for Apache Flex</a></em>.</p>
+</div>
+</div>
+<div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf5f39f-7ff8_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf5f39f-7ff8_verapache"><!-- --></a>
+<h3 class="topictitle3">Understanding the structure of
+an application built with Flex</h3>
+<div>
+<p>You can write an MXML application in a single file or in
+multiple files. You typically define a main file that contains the <samp class="codeph">&lt;s:Application&gt;</samp> tag.
+From within your main file, you can then reference additional files
+written in MXML, ActionScript, or a combination of the two languages. </p>
+<p>A common
+coding practice is to divide your Flex application into functional
+units, or modules, where each module performs a discrete task. In
+Flex, you can divide your application into separate MXML files and
+ActionScript files, where each file corresponds to a different module.
+By dividing your application into modules, you provide many benefits,
+including the following:</p>
+<dl>
+<dt class="dlterm">Ease of development</dt>
+<dd>
+<p>Different developers or development groups can develop and
+debug modules independently of each other. </p>
+</dd>
+<dt class="dlterm">Reusability</dt>
+<dd>
+<p>You can reuse modules in different applications so that you
+do not have to duplicate your work.</p>
+</dd>
+<dt class="dlterm">Maintainability</dt>
+<dd>
+<p>You can isolate and debug errors faster than if your application is
+developed in a single file. </p>
+<p>In Flex, a module corresponds
+to a custom component implemented either in MXML or in ActionScript.
+These custom components can reference other custom components. There
+is no restriction on the level of nesting of component references
+in Flex. You define your components as required by your application.</p>
+<p>You
+can also use sub-applications rather than modules to develop applications that
+are not monolithic.</p>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+<div class="nested1" id="WS2db454920e96a9e51e63e3d11c0bf5f39f-7ff7_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf5f39f-7ff7_verapache"><!-- --></a>
+<h2 class="topictitle2">Developing applications</h2>
+<div>
+<p>MXML development is based on the same iterative process
+used for other types of web application files such as HTML, JavaServer
+Pages (JSP), Active Server Pages (ASP), and ColdFusion Markup Language
+(CFML). Developing a useful Flex application is as easy as opening
+your favorite text editor, typing some XML tags, saving the file,
+requesting the file's URL in a web browser, and then repeating the same
+process.</p>
+<p>Flex also provides tools for code debugging. For more information,
+see <a href="flx_debugging_de.html#WS2db454920e96a9e51e63e3d11c0bf69084-7ffb_verapache">Command-line
+debugger</a>.</p>
+</div>
+<div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf5f39f-7ff6_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf5f39f-7ff6_verapache"><!-- --></a>
+<h3 class="topictitle3">Laying out a user interface using
+containers</h3>
+<div>
+<p>In the Flex model-view design pattern, user interface components
+represent the view. The MXML language supports two types of user
+interface components: controls and containers. Controls are form
+elements, such as buttons, text fields, and list boxes. Containers
+are rectangular regions of the screen that contain controls and
+other containers.</p>
+<p>You
+use container components for laying out a user interface, and for
+controlling user navigation through the application. Examples of
+layout containers include the <a href="https://flex.apache.org/asdoc/spark/components/HGroup.html" target="_blank">HGroup</a> container
+for laying out child components horizontally and the VGroup container
+for laying out child components vertically. Examples of navigator
+containers include the MX <a href="https://flex.apache.org/asdoc/mx/containers/TabNavigator.html" target="_blank">TabNavigator</a> container
+for creating tabbed panels and the MX <a href="https://flex.apache.org/asdoc/mx/containers/Accordion.html" target="_blank">Accordion</a> navigator
+container for creating collapsible panels. Typical properties of
+a container tag include <samp class="codeph">id</samp>, <samp class="codeph">width</samp>,
+and <samp class="codeph">height</samp>. For more information about the standard
+Flex containers, see <a href="flx_containers_intro_cn.html#WS2db454920e96a9e51e63e3d11c0bf69084-7ffa_verapache">Introduction
+to containers</a>.</p>
+<p>The following example application contains a Spark List control
+on the left side of the user interface and an MX TabNavigator container
+on the right side. Both controls are enclosed in a Spark Panel container:</p>
+<pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- mxml/LayoutExample.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark"&gt; 
+    &lt;s:layout&gt; 
+        &lt;s:VerticalLayout/&gt; 
+    &lt;/s:layout&gt; 
+ 
+    &lt;s:Panel title="My Application"&gt; 
+        &lt;s:HGroup&gt; 
+            &lt;!-- List with three items --&gt; 
+            &lt;s:List&gt; 
+                &lt;s:dataProvider&gt; 
+                    &lt;mx:ArrayCollection&gt; 
+                        &lt;fx:String&gt;Item 1&lt;/fx:String&gt; 
+                        &lt;fx:String&gt;Item 2&lt;/fx:String&gt; 
+                        &lt;fx:String&gt;Item 3&lt;/fx:String&gt; 
+                    &lt;/mx:ArrayCollection&gt; 
+                &lt;/s:dataProvider&gt; 
+            &lt;/s:List&gt; 
+ 
+            &lt;!-- First pane of TabNavigator --&gt; 
+            &lt;mx:TabNavigator borderStyle="solid"&gt; 
+                &lt;s:NavigatorContent label="Pane1" width="300"&gt; 
+                    &lt;s:layout&gt; 
+                        &lt;s:VerticalLayout/&gt; 
+                    &lt;/s:layout&gt; 
+                    &lt;s:TextArea text="Hello World"/&gt; 
+                    &lt;s:Button label="Submit"/&gt; 
+                &lt;/s:NavigatorContent&gt; 
+ 
+                &lt;!-- Second pane of TabNavigator --&gt; 
+                &lt;s:NavigatorContent label="Pane2" width="300" height="150"&gt; 
+                    &lt;!-- Stock view goes here --&gt; 
+                &lt;/s:NavigatorContent&gt; 
+            &lt;/mx:TabNavigator&gt; 
+        &lt;/s:HGroup&gt; 
+    &lt;/s:Panel&gt; 
+&lt;/s:Application&gt;</pre>
+<p>The <a href="https://flex.apache.org/asdoc/spark/components/List.html" target="_blank">List</a> control
+and TabNavigator container are laid out side by side because they
+are in an HGroup container. The controls in the TabNavigator container
+are laid out from top to bottom because they are in a NavigatorContent
+containers that use the VerticalLayout class.</p>
+<p>For more information about laying out user interface components,
+see <a href="flx_components_cmp.html#WS2db454920e96a9e51e63e3d11c0bf69084-7fff_verapache">Visual components</a>.</p>
+</div>
+</div>
+<div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf5f39f-7ff5_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf5f39f-7ff5_verapache"><!-- --></a>
+<h3 class="topictitle3">Adding user interface controls</h3>
+<div>
+<p>Flex includes a large selection of user interface components,
+such as <a href="https://flex.apache.org/asdoc/spark/components/Button.html" target="_blank">Button</a>, <a href="https://flex.apache.org/asdoc/spark/components/TextInput.html" target="_blank">TextInput</a>,
+and <a href="https://flex.apache.org/asdoc/spark/components/ComboBox.html" target="_blank">ComboBox</a> controls.
+After you define the layout and navigation of your application by
+using container components, you add the user interface controls.</p>
+<p>The following example contains an HGroup (horizontal group) container
+with two child controls, a TextInput control and a Button control.
+An <a href="https://flex.apache.org/asdoc/spark/components/HGroup.html" target="_blank">HGroup</a> container lays
+out its children horizontally.</p>
+<pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- mxml/AddUIControls.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark"&gt; 
+    
+    &lt;fx:Script&gt; 
+        &lt;![CDATA[ 
+            private function storeZipInDatabase(s:String):void { 
+                // event handler code here 
+            } 
+        ]]&gt; 
+    &lt;/fx:Script&gt; 
+ 
+    &lt;s:HGroup&gt; 
+        &lt;s:TextInput id="myText"/&gt; 
+        &lt;s:Button click="storeZipInDatabase(myText.text);"/&gt; 
+    &lt;/s:HGroup&gt; 
+&lt;/s:Application&gt;</pre>
+<p>Typical properties of a control tag include <samp class="codeph">id</samp>, <samp class="codeph">width</samp>, <samp class="codeph">height</samp>, <samp class="codeph">fontSize</samp>, <samp class="codeph">color</samp>,
+event listeners for events such as <samp class="codeph">click</samp> and <samp class="codeph">change</samp>,
+and effect triggers such as<samp class="codeph"> showEffect</samp> and <samp class="codeph">rollOverEffect</samp>.
+For information about the standard Flex controls, see <a href="flx_controls_ctr.html#WS2db454920e96a9e51e63e3d11c0bf69084-7ff8_verapache">UI
+Controls</a>.</p>
+</div>
+</div>
+<div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf5f39f-7ff4_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf5f39f-7ff4_verapache"><!-- --></a>
+<h3 class="topictitle3">Using the id property with MXML
+tags</h3>
+<div>
+<p>With
+a few exceptions (see <a href="flx_mxmlSyntax_sy.html#WS2db454920e96a9e51e63e3d11c0bf69084-7ff7_verapache">MXML
+tag rules</a>), an MXML tag has an optional <samp class="codeph">id</samp> property,
+which must be unique within the MXML file. If a tag has an <samp class="codeph">id</samp> property, you
+can reference the corresponding object in ActionScript. </p>
+<p>The following example uses the <samp class="codeph">trace()</samp> function
+to write the value of the <samp class="codeph">text</samp> property of a TextInput
+control to the log file:</p>
+<pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- mxml/UseIDProperty.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark"&gt; 
+    
+    &lt;fx:Script&gt; 
+        &lt;![CDATA[ 
+            private function writeToLog():void { 
+                trace(myText.text); 
+            } 
+        ]]&gt; 
+    &lt;/fx:Script&gt; 
+ 
+    &lt;s:VGroup id="myVGroup"&gt; 
+        &lt;s:TextInput id="myText" 
+            text="Hello World!" /&gt; 
+        &lt;s:Button id="mybutton" 
+            label="Get Weather" 
+            click="writeToLog();"/&gt; 
+    &lt;/s:VGroup&gt; 
+&lt;/s:Application&gt;</pre>
+<p>This code causes the MXML compiler to generate a public variable
+named <samp class="codeph">myText</samp> that contains a reference to the <a href="https://flex.apache.org/asdoc/spark/components/TextInput.html" target="_blank">TextInput</a> instance.
+This variable lets you access the component instance in ActionScript.
+You can explicitly refer to the TextInput control's instance with
+its <samp class="codeph">id</samp> instance reference in any ActionScript class
+or script block. By referring to a component's instance, you can
+modify its properties and call its methods.</p>
+<p>Because each <samp class="codeph">id</samp> value in an MXML file is unique,
+all objects in a file are part of the same flat namespace. You do
+not qualify an object by referencing its parent with dot notation,
+as in <samp class="codeph">myVGroup.myText.text.</samp>
+</p>
+<p>For more information, see <a href="flx_usingas_ua.html#WS2db454920e96a9e51e63e3d11c0bf69084-7ff6_verapache">Referring
+to components</a>. </p>
+</div>
+</div>
+<div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf5f39f-7ff3_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf5f39f-7ff3_verapache"><!-- --></a>
+<h3 class="topictitle3">Using XML namespaces</h3>
+<div>
+<p>The <samp class="codeph">xmlns</samp> property in an MXML tag specifies
+an XML namespace. To use the default namespace, specify no prefix.
+Typically, you specify a tag prefix and a namespace. </p>
+<p>For example, the <samp class="codeph">xmlns</samp> properties
+in the following <samp class="codeph">&lt;s:Application&gt;</samp> tag indicates
+that tags corresponding to the Spark component set use the prefix <em>s:</em>. </p>
+<pre class="codeblock">&thinsp;&lt;s:Application 
+	xmlns:fx="http://ns.adobe.com/mxml/2009" 
+	xmlns:mx="library://ns.adobe.com/flex/mx" 
+	xmlns:s="library://ns.adobe.com/flex/spark" &gt;</pre>
+<p>Flex defines the following Universal Resource Identifiers (URI)
+for the Flex namespaces:</p>
+<ul>
+<li>
+<p>
+<samp class="codeph">xmlns:fx="http://ns.adobe.com/mxml/2009"</samp>&emsp;
+                  </p>
+<p>The
+MXML language namespace URI. This namespace includes the top-level ActionScript
+language elements, such as Object, Number, Boolean, and Array. For
+a complete list of the top-level elements, see the Top Level package
+in the <em>
+<a href="https://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/" target="_blank">ActionScript 3.0 Reference for the Adobe
+Flash Platform</a>
+</em>.</p>
+<p>This namespace also includes the
+tags built in to the MXML compiler, such as <samp class="codeph">&lt;fx:Script&gt;</samp>, <samp class="codeph">&lt;fx:Declarations&gt;</samp>,
+and<samp class="codeph"> &lt;fx:Style&gt;</samp> tags. For a list of the compiler
+elements, see the MXML Only Tags appendix in the <em>
+<a href="https://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/" target="_blank">ActionScript 3.0 Reference for the Adobe
+Flash Platform</a>
+</em>.</p>
+<p>This namespace does not include
+the MX or Spark component sets. </p>
+<p>The complete list of top-level
+ActionScript language elements included in this namespace is defined
+by the frameworks\mxml-2009-manifest.xml manifest file in your Flex
+SDK installation directory. Note that this file does not list the MXML
+compiler tags because they are built in to the MXML compiler.</p>
+</li>
+<li>
+<p>
+<samp class="codeph">xmlns:mx="library://ns.adobe.com/flex/mx"</samp>&emsp;
+                  </p>
+<p>The
+MX component set namespace URI. This namespace includes all of the components
+in the Flex mx.* packages, the Flex charting components, and the Flex
+data visualization components. </p>
+<p>The complete list of elements
+included in this namespace is defined by the frameworks\mx-manifest.xml
+manifest file in your Flex SDK installation directory. </p>
+</li>
+<li>
+<p>
+<samp class="codeph">xmlns:s="library://ns.adobe.com/flex/spark"</samp>&emsp;
+                  </p>
+<p>The
+Spark component set namespace URI. This namespace includes all of
+the components in the Flex spark.* packages and the text framework
+classes in the flashx.* packages.</p>
+<p>This namespace includes
+the RPC classes for the WebService, HTTPService, and RemoteObject
+components and additional classes to support the RPC components.
+These classes are included in the <samp class="codeph">mx:</samp> namespace,
+but are provided as a convenience so that you can also reference
+them by using the <samp class="codeph">s:</samp> namespace.</p>
+<p>This namespace
+also includes several graphics, effect, and state classes from the
+mx.* packages. These classes are included in the <samp class="codeph">mx:</samp> namespace,
+but are provided as a convenience so that you can also reference
+them by using the <samp class="codeph">s:</samp> namespace. </p>
+<p>The complete
+list of elements included in this namespace is defined by the frameworks\spark-manifest.xml
+manifest file in your Flex SDK installation directory. </p>
+<div class="p">The
+following table lists the classes from the mx.* packages included
+in this namespace: 
+<div class="tablenoborder"><table border="1" cellpadding="4" cellspacing="0" frame="border" rules="all" summary="">
+<thead align="left">
+<tr>
+<th class="cellrowborder" id="d317300e868" valign="top" width="NaN%">
+<p>Category</p>
+</th>
+<th class="cellrowborder" id="d317300e874" valign="top" width="NaN%">
+<p>Class</p>
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="cellrowborder" headers="d317300e868" valign="top" width="NaN%">
+<p>RPC classes</p>
+</td>
+<td class="cellrowborder" headers="d317300e874" valign="top" width="NaN%">
+<p>mx.messaging.channels.AMFChannel</p>
+<p>mx.rpc.CallResponder</p>
+<p>mx.messaging.ChannelSet</p>
+<p>mx.messaging.Consumer</p>
+<p>mx.messaging.channels.HTTPChannel</p>
+<p>mx.rpc.http.mxml.HTTPService</p>
+<p>mx.messaging.Producer</p>
+<p>mx.rpc.remoting.mxml.RemoteObject</p>
+<p>mx.rpc.remoting.mxml.Operation</p>
+<p>mx.messaging.channels.RTMPChannel</p>
+<p>mx.messaging.channels.SecureAMFChannel</p>
+<p>mx.messaging.channels.SecureStreamingAMFChannel</p>
+<p>mx.messaging.channels.SecureHTTPChannel</p>
+<p>mx.messaging.channels.SecureStreamingHTTPChannel</p>
+<p>mx.messaging.channels.SecureRTMPChannel</p>
+<p>mx.messaging.channels.StreamingAMFChannel</p>
+<p>mx.messaging.channels.StreamingHTTPChannel</p>
+<p>mx.rpc.soap.mxml.WebService</p>
+<p>mx.rpc.soap.mxml.Operation</p>
+<p>mx.data.mxml.DataService</p>
+</td>
+</tr>
+<tr>
+<td class="cellrowborder" headers="d317300e868" valign="top" width="NaN%">
+<p>Graphics classes</p>
+</td>
+<td class="cellrowborder" headers="d317300e874" valign="top" width="NaN%">
+<p>mx.graphics.BitmapFill</p>
+<p>mx.geom.CompoundTransform</p>
+<p>mx.graphics.GradientEntry</p>
+<p>mx.graphics.LinearGradient</p>
+<p>mx.graphics.LinearGradientStroke</p>
+<p>mx.graphics.RadialGradient</p>
+<p>mx.graphics.RadialGradientStroke</p>
+<p>mx.graphics.SolidColor</p>
+<p>mx.graphics.SolidColorStroke</p>
+<p>mx.graphics.Stroke</p>
+<p>mx.geom.Transform</p>
+</td>
+</tr>
+<tr>
+<td class="cellrowborder" headers="d317300e868" valign="top" width="NaN%">
+<p>Effect classes</p>
+</td>
+<td class="cellrowborder" headers="d317300e874" valign="top" width="NaN%">
+<p>mx.effects.Parallel</p>
+<p>mx.effects.Sequence</p>
+<p>mx.states.Transition</p>
+<p>mx.effects.Wait</p>
+</td>
+</tr>
+<tr>
+<td class="cellrowborder" headers="d317300e868" valign="top" width="NaN%">
+<p>States classes</p>
+</td>
+<td class="cellrowborder" headers="d317300e874" valign="top" width="NaN%">
+<p>mx.states.State</p>
+<p>mx.states.AddItems</p>
+</td>
+</tr>
+<tr>
+<td class="cellrowborder" headers="d317300e868" valign="top" width="NaN%">
+<p>Component classes</p>
+</td>
+<td class="cellrowborder" headers="d317300e874" valign="top" width="NaN%">
+<p>mx.controls.Spacer</p>
+<p>mx.controls.SWFLoader</p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</li>
+</ul>
+<p>XML namespaces give you the ability to use classes in custom
+packages that are not in the Flex namespaces. The following example
+shows an application that contains a custom component called CustomBox.
+The namespace value <samp class="codeph">myComponents.boxes.*</samp> indicates
+that an MXML component called CustomBox is in the myComponents/boxes
+directory. </p>
+<pre class="noswf">&lt;?xml version="1.0"?&gt; 
+&lt;!-- mxml/XMLNamespaces.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:MyComps="myComponents.boxes.*"&gt; 
+     
+    &lt;s:Panel title="My Application" 
+        height="150"&gt; 
+        &lt;MyComps:CustomBox/&gt; 
+    &lt;/s:Panel&gt; 
+&lt;/s:Application&gt;</pre>
+<p>The myComponents/boxes directory can be a subdirectory of the
+directory that contains the application file, or it can be a subdirectory
+of one of the ActionScript source path directories assigned in the
+flex‑config.xml file. If copies of the same file exist in both places,
+Flex uses the file in the application file directory. The prefix
+name is arbitrary, but it must be used as declared.</p>
+<p>When using a component contained in a SWC file, the package name
+and the namespace must match, even though the SWC file is in the
+same directory as the MXML file that uses it. A SWC file is an archive
+file for Flex components. SWC files make it easy to exchange components
+among Flex developers. You exchange only a single file, rather than
+the MXML or ActionScript files and images, along with other resource
+files. Also, the SWF file inside a SWC file is compiled, which means
+that the source code is obfuscated from casual view. </p>
+<p>For more information on SWC files, see <a href="flx_compilers_cpl.html#WS2db454920e96a9e51e63e3d11c0bf69084-7ffd_verapache">Flex
+compilers</a>.</p>
+</div>
+</div>
+<div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf5f39f-7ff2_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf5f39f-7ff2_verapache"><!-- --></a>
+<h3 class="topictitle3">Using MXML to trigger run-time
+code</h3>
+<div>
+<p>Flex
+applications are driven by run-time events, such as when a user
+selects a <a href="https://flex.apache.org/asdoc/mx/controls/Button.html" target="_blank">Button</a> control.
+You can specify <em>event listeners</em>, which consist of code for
+handling run-time events, in the event properties of MXML tags.
+For example, the <samp class="codeph">&lt;s:Button&gt;</samp> tag has a <samp class="codeph">click</samp> event
+property in which you can specify ActionScript code that executes
+when the Button control is clicked at run time. You can specify
+simple event listener code directly in event properties. To use
+more complex code, you can specify the name of an ActionScript function
+defined in an <samp class="codeph">&lt;fx:Script&gt;</samp> tag.</p>
+<p>The following example shows an application that contains a Button
+control and a <a href="https://flex.apache.org/asdoc/spark/components/TextArea.html" target="_blank">TextArea</a> control.
+The <samp class="codeph">click</samp> property of the Button control contains
+a simple event listener that sets the value of the TextArea control's <samp class="codeph">text</samp> property
+to the text <samp class="codeph">Hello World</samp>.</p>
+<pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- mxml/TriggerCodeExample.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark"&gt; 
+    
+    &lt;s:Panel title="My Application"&gt; 
+        &lt;s:layout&gt; 
+            &lt;s:VerticalLayout/&gt; 
+        &lt;/s:layout&gt; 
+        &lt;s:TextArea id="textarea1"/&gt; 
+        &lt;s:Button label="Submit" 
+            click="textarea1.text='Hello World';"/&gt; 
+    &lt;/s:Panel&gt; 
+&lt;/s:Application&gt;</pre>
+<p>The following example shows the code for a version of the application
+in which the event listener is contained in an ActionScript function
+in an <samp class="codeph">&lt;fx:Script&gt;</samp> tag:</p>
+<pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- mxml/TriggerCodeExample2.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark"&gt; 
+    
+    &lt;fx:Script&gt; 
+        &lt;![CDATA[ 
+            private function hello():void { 
+                textarea1.text="Hello World"; 
+            } 
+        ]]&gt; 
+    &lt;/fx:Script&gt; 
+    
+    &lt;s:Panel title="My Application"&gt; 
+        &lt;s:layout&gt; 
+            &lt;s:VerticalLayout/&gt; 
+        &lt;/s:layout&gt; 
+        &lt;s:TextArea id="textarea1"/&gt; 
+        &lt;s:Button label="Submit" 
+            click="hello();"/&gt; 
+    &lt;/s:Panel&gt; 
+&lt;/s:Application&gt;</pre>
+<p>For more information about using ActionScript with MXML, see <a href="flx_usingas_ua.html#WS2db454920e96a9e51e63e3d11c0bf69084-7ffe_verapache">Using
+ActionScript</a>.</p>
+</div>
+</div>
+<div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf5f39f-7ff1_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf5f39f-7ff1_verapache"><!-- --></a>
+<h3 class="topictitle3">Binding data between components</h3>
+<div>
+<p>Flex
+provides simple syntax for binding the properties of components
+to each other. In the following example, the value inside the curly
+braces ({ }) binds the <samp class="codeph">text</samp> property of a <a href="https://flex.apache.org/asdoc/spark/components/TextArea.html" target="_blank">TextArea</a> control
+to the <samp class="codeph">text</samp> property of a TextInput control. When
+the application initializes, both controls display the text <samp class="codeph">Hello</samp>.
+When the user clicks the <a href="https://flex.apache.org/asdoc/spark/components/Button.html" target="_blank">Button</a> control,
+both controls display the text <samp class="codeph">Goodbye</samp>. </p>
+<pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- mxml/BindingExample.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark"&gt; 
+    
+    &lt;s:Panel title="My Application"&gt; 
+        &lt;s:VGroup left="10" right="10" top="10" bottom="10"&gt; 
+            &lt;s:Label text="Enter Text:"/&gt; 
+            &lt;s:TextInput id="textinput1" 
+                text="Hello"/&gt; 
+            &lt;s:Label text="Bind Text to the TextArea control:"/&gt; 
+            &lt;s:TextArea id="textarea1" 
+                text="{textinput1.text}"/&gt; 
+            &lt;s:Button label="Submit" 
+                click="textinput1.text='Goodbye';"/&gt; 
+        &lt;/s:VGroup&gt; 
+    &lt;/s:Panel&gt; 
+&lt;/s:Application&gt;</pre>
+<p>As an alternative to the curly braces ({ }) syntax, you can use
+the <samp class="codeph">&lt;fx:Binding&gt;</samp> tag, in which you specify
+the source and destination of a binding. For more information about
+data binding, see <a href="flx_databinding_db.html#WS2db454920e96a9e51e63e3d11c0bf69084-7fe7_verapache">Data
+binding</a>.</p>
+</div>
+</div>
+<div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf5f39f-7ff0_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf5f39f-7ff0_verapache"><!-- --></a>
+<h3 class="topictitle3">Using RPC services</h3>
+<div>
+<p>Remote-procedure-call (RPC) services let your application
+interact with remote servers to provide data to your applications,
+or for your application to send data to a server. </p>
+<p>Flex is designed to interact with several types of RPC services
+that provide access to local and remote server-side logic. For example,
+a Flex application can connect to a web service that uses the Simple
+Object Access Protocol (SOAP), a Java object residing on the same
+application server as Flex using AMF, or an HTTP URL that returns
+XML. </p>
+<p>The
+MXML components that provide data access are called RPC components. MXML
+includes the following types of RPC components:</p>
+<ul>
+<li>
+<p>
+<a href="https://flex.apache.org/asdoc/mx/rpc/soap/mxml/WebService.html" target="_blank">WebService</a> provides
+access to SOAP-based web services.</p>
+</li>
+<li>
+<p>
+<a href="https://flex.apache.org/asdoc/mx/rpc/http/mxml/HTTPService.html" target="_blank">HTTPService</a> provides
+access to HTTP URLs that return data.</p>
+</li>
+<li>
+<p>
+<a href="https://flex.apache.org/asdoc/mx/rpc/remoting/mxml/RemoteObject.html" target="_blank">RemoteObject</a> provides
+access to Java objects using the AMF protocol.</p>
+</li>
+</ul>
+<p>In MXML, define the RPC components in an <samp class="codeph">&lt;fx:Declarations&gt;</samp> tag.
+You use the <samp class="codeph">&lt;fx:Declarations&gt;</samp> tag to declare
+non-visual components an MXML file. </p>
+<p>The following example shows an application that calls a web service
+that provides weather information, and displays the current temperature
+for a given ZIP code. The application binds the ZIP code that a
+user enters in a TextInput control to a web service input parameter.
+It binds the current temperature value contained in the web service
+result to a TextArea control.</p>
+<pre class="noswf">&lt;?xml version="1.0"?&gt; 
+&lt;!-- mxml/RPCExample.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark"&gt; 
+    
+    &lt;fx:Declarations&gt; 
+        &lt;!-- Define the web service connection 
+            (the specified WSDL URL is not functional). --&gt; 
+        &lt;s:WebService id="WeatherService"       
+            wsdl="http:/example.com/ws/WeatherService?wsdl" 
+            useProxy="false"&gt; 
+ 
+            &lt;!-- Bind the value of the ZIP code entered in the TextInput control 
+                to the ZipCode parameter of the GetWeather operation. --&gt; 
+            &lt;s:operation name="GetWeather"&gt; 
+                &lt;s:request&gt; 
+                    &lt;ZipCode&gt;{zip.text}&lt;/ZipCode&gt; 
+                &lt;/s:request&gt; 
+            &lt;/s:operation&gt; 
+        &lt;/s:WebService&gt; 
+    &lt;/fx:Declarations&gt; 
+    
+    &lt;s:Panel title="My Application"&gt; 
+        &lt;s:VGroup left="10" right="10" top="10" bottom="10"&gt; 
+            &lt;!-- Provide a ZIP code in a TextInput control. --&gt; 
+            &lt;s:TextInput id="zip" width="200" text="Zipcode please?"/&gt; 
+ 
+            &lt;!-- Call the web service operation with a Button click. --&gt; 
+            &lt;s:Button width="60" label="Get Weather" 
+                click="WeatherService.GetWeather.send();"/&gt; 
+ 
+            &lt;!-- Display the location for the specified ZIP code. --&gt; 
+            &lt;s:Label text="Location:"/&gt; 
+            &lt;s:TextArea text="{WeatherService.GetWeather.lastResult.Location}"/&gt; 
+ 
+            &lt;!-- Display the current temperature for the specified ZIP code. --&gt; 
+            &lt;s:Label text="Temperature:"/&gt; 
+            &lt;s:TextArea 
+                text="{WeatherService.GetWeather.lastResult.CurrentTemp}"/&gt; 
+        &lt;/s:VGroup&gt; 
+    &lt;/s:Panel&gt; 
+&lt;/s:Application&gt;</pre>
+</div>
+</div>
+<div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf5f39f-7fef_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf5f39f-7fef_verapache"><!-- --></a>
+<h3 class="topictitle3">Storing data in a data model</h3>
+<div>
+<p>You can use a data model to store application-specific
+data. A <em>data model</em> is an ActionScript object that provides
+properties for storing data, and optionally contains methods for
+additional functionality. Data models provide a way to store data
+in the Flex application before it is sent to the server, or to store
+data sent from the server before using it in the application.</p>
+<p>You can declare a simple data model that does not require methods
+in an <samp class="codeph">&lt;fx:Model&gt;</samp>, <samp class="codeph">&lt;fx:XML&gt;</samp>,
+or <samp class="codeph">&lt;fx:XMLList&gt;</samp> tag. In MXML, define a data model
+in an <samp class="codeph">&lt;fx:Declarations&gt;</samp> tag. You use the <samp class="codeph">&lt;fx:Declarations&gt;</samp> tag
+to declare non-visual components an MXML file. </p>
+<p>The following example shows an application that contains <a href="https://flex.apache.org/asdoc/spark/components/TextInput.html" target="_blank">TextInput</a> controls
+for entering personal contact information and a data model, represented
+by the <samp class="codeph">&lt;fx:Model&gt;</samp> tag, for storing the contact
+information:</p>
+<pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- mxml/StoringData.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark"&gt; 
+ 
+    &lt;fx:Declarations&gt; 
+        &lt;!-- A data model called "contact" stores contact information. 
+            The text property of each TextInput control shown above 
+            is passed to a field of the data model by using data binding. --&gt; 
+        &lt;fx:Model id="contact"&gt; 
+            &lt;info&gt; 
+                &lt;homePhone&gt;{homePhoneInput.text}&lt;/homePhone&gt; 
+                &lt;cellPhone&gt;{cellPhoneInput.text}&lt;/cellPhone&gt; 
+                &lt;email&gt;{emailInput.text}&lt;/email&gt; 
+            &lt;/info&gt; 
+        &lt;/fx:Model&gt; 
+    &lt;/fx:Declarations&gt; 
+ 
+    &lt;s:Panel title="My Application"&gt; 
+        &lt;s:VGroup left="10" right="10" top="10" bottom="10"&gt; 
+            &lt;!-- The user enters contact information in TextInput controls. --&gt; 
+            &lt;s:TextInput id="homePhoneInput" 
+                text="This isn't a valid phone number."/&gt; 
+            &lt;s:TextInput id="cellPhoneInput" 
+                text="(999)999-999"/&gt; 
+            &lt;s:TextInput id="emailInput" 
+                text="me@somewhere.net"/&gt; 
+        &lt;/s:VGroup&gt; 
+    &lt;/s:Panel&gt; 
+&lt;/s:Application&gt;</pre>
+<p>This example uses data binding in the model definition to automatically
+copy data from the UI controls to the data model.</p>
+</div>
+</div>
+<div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf5f39f-7fee_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf5f39f-7fee_verapache"><!-- --></a>
+<h3 class="topictitle3">Validating data</h3>
+<div>
+<p>Flex
+includes a set of standard validator components for data such as
+phone numbers, social security numbers, and ZIP codes. You can also
+create your own custom validator.</p>
+<p>In MXML, define validators in an <samp class="codeph">&lt;fx:Declarations&gt;</samp> tag.
+You use the <samp class="codeph">&lt;fx:Declarations&gt;</samp> tag to declare
+non-visual components an MXML file. </p>
+<p>The following example uses validator components for validating
+that the expected type of data is entered in the <a href="https://flex.apache.org/asdoc/spark/components/TextInput.html" target="_blank">TextInput</a> fields.
+In this example, you validate a phone number by using the <a href="https://flex.apache.org/asdoc/mx/validators/PhoneNumberValidator.html" target="_blank">PhoneNumberValidator</a> class
+and an e-mail address by using the <a href="https://flex.apache.org/asdoc/mx/validators/EmailValidator.html" target="_blank">EmailValidator</a> class.
+Validation is triggered automatically when the user edits a TextInput
+control. If validation fails, the user receives immediate visual
+feedback.</p>
+<pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- mxml/ValidatingExample.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark"&gt; 
+    
+    &lt;fx:Declarations&gt; 
+        &lt;!-- Validator components validate data entered into the TextInput controls. --&gt; 
+        &lt;mx:PhoneNumberValidator id="pnV" 
+            source="{homePhoneInput}" property="text"/&gt; 
+        &lt;mx:EmailValidator id="emV" 
+            source="{emailInput}" property="text" /&gt; 
+    &lt;/fx:Declarations&gt; 
+ 
+    &lt;s:Panel title="My Application"&gt; 
+        &lt;s:VGroup left="10" right="10" top="10" bottom="10"&gt; 
+            &lt;s:Label text="Enter phone number:"/&gt; 
+            &lt;s:TextInput id="homePhoneInput"/&gt; 
+            &lt;s:Label text="Enter email address:"/&gt; 
+            &lt;s:TextInput id="emailInput"/&gt; 
+        &lt;/s:VGroup&gt; 
+    &lt;/s:Panel&gt; 
+&lt;/s:Application&gt;</pre>
+<p>A component with a validation failure displays a red border.
+If the component has focus, it also displays a validation error
+message. Set the component to a valid value to remove the error
+indication.</p>
+<p>For more information about using data models, see <a href="flx_datamodels_dm.html#WS2db454920e96a9e51e63e3d11c0bf69084-7ff3_verapache">Storing
+data</a>. For more information on validators, see <a href="flx_validators_va.html#WS2db454920e96a9e51e63e3d11c0bf69084-7ff0_verapache">Validating
+Data</a>.</p>
+</div>
+</div>
+<div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf5f39f-7fed_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf5f39f-7fed_verapache"><!-- --></a>
+<h3 class="topictitle3">Formatting data</h3>
+<div>
+<p>Formatter
+components are ActionScript components that perform a one-way conversion
+of raw data to a formatted string. They are triggered just before
+data is displayed in a text field. Flex includes a set of standard
+formatters. You can also create your own formatters. </p>
+<p>In MXML, define formatters in an <samp class="codeph">&lt;fx:Declarations&gt;</samp> tag.
+You use the <samp class="codeph">&lt;fx:Declarations&gt;</samp> tag to declare
+non-visual components an MXML file. </p>
+<p>The following example shows an application that uses the standard <a href="https://flex.apache.org/asdoc/mx/formatters/ZipCodeFormatter.html" target="_blank">ZipCodeFormatter</a> component
+to format the value of a variable:</p>
+<pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- mxml/FormatterExample.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark"&gt; 
+ 
+    &lt;fx:Script&gt; 
+        &lt;![CDATA[ 
+            [Bindable] 
+            private var storedZipCode:Number=123456789; 
+        ]]&gt; 
+    &lt;/fx:Script&gt; 
+ 
+    &lt;fx:Declarations&gt; 
+        &lt;!-- Declare a ZipCodeFormatter and define parameters. --&gt; 
+        &lt;mx:ZipCodeFormatter id="ZipCodeDisplay" formatString="#####-####"/&gt; 
+    &lt;/fx:Declarations&gt; 
+ 
+    &lt;s:Panel title="My Application"&gt; 
+        &lt;!-- Trigger the formatter while populating a string with data. --&gt; 
+        &lt;s:TextInput text="{ZipCodeDisplay.format(storedZipCode)}"/&gt; 
+    &lt;/s:Panel&gt; 
+&lt;/s:Application&gt;</pre>
+<p>For more information about formatter components, see <a href="flx_formatters_fm.html#WS2db454920e96a9e51e63e3d11c0bf69084-7fef_verapache">Formatting
+Data</a>.</p>
+</div>
+</div>
+<div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf5f39f-7fec_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf5f39f-7fec_verapache"><!-- --></a>
+<h3 class="topictitle3">Using Cascading Style Sheets (CSS)</h3>
+<div>
+<p>You can use style sheets based on the CSS
+standard to declare styles to Flex components. The MXML <samp class="codeph">&lt;fx:Style&gt;</samp> tag
+contains inline style definitions or a reference to an external
+file that contains style definitions. </p>
+<p>The <samp class="codeph">&lt;fx:Style&gt;</samp> tag must be an immediate
+child of the root tag of the MXML file. You can apply styles to
+an individual component using a class selector, or to all components
+of a certain type using a type selector.</p>
+<p>Namespace qualification is required for type selectors in the <samp class="codeph">&lt;fx:Style&gt;</samp> tag. Prefix
+the namespace qualification with the <samp class="codeph">@namespace</samp> tag.</p>
+<p>The following example defines a class selector and a type selector
+in the <samp class="codeph">&lt;fx:Style&gt;</samp> tag. Both the class selector
+and the type selector are applied to the Button control.</p>
+<pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- mxml/CSSExample.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark"&gt; 
+    
+    &lt;fx:Style&gt; 
+        @namespace s "library://ns.adobe.com/flex/spark"; 
+        @namespace mx "library://ns.adobe.com/flex/mx"; 
+        
+        /* class selector */ 
+        .myClass { 
+            color: Red 
+        } 
+        
+        /* type selector */ 
+        s|Button { 
+            font-size: 18pt 
+        } 
+    &lt;/fx:Style&gt; 
+ 
+    &lt;s:Panel title="My Application"&gt; 
+        &lt;s:Button styleName="myClass" label="This is red 18 point text."/&gt; 
+    &lt;/s:Panel&gt; 
+&lt;/s:Application&gt;</pre>
+<p>A class selector in a style definition, defined as a label preceded
+by a period, defines a new named style, such as <samp class="codeph">myClass</samp> in
+the preceding example. After you define it, you can apply the style
+to any component by using the <samp class="codeph">styleName</samp> property.
+In the preceding example, you apply the style to the Button control
+to set the font color to red. </p>
+<p>A type selector applies a style to all instances of a particular
+component type. In the preceding example, you set the font size
+for all Spark <a href="https://flex.apache.org/asdoc/spark/components/Button.html" target="_blank">Button</a> controls
+to 18 points.</p>
+<p>For more information about using Cascading Style Sheets, see <a href="flx_styles_st.html#WS2db454920e96a9e51e63e3d11c0bf69084-7fee_verapache">Styles
+and themes</a>.</p>
+</div>
+</div>
+<div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf5f39f-7feb_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf5f39f-7feb_verapache"><!-- --></a>
+<h3 class="topictitle3">Using skins</h3>
+<div>
+<p>
+<em>Skinning</em> is the process of changing the appearance
+of a component by modifying or replacing its visual elements. These
+elements can be made up of bitmap images, SWF files, or class files
+that contain drawing methods that define vector images. Skins can
+define the entire appearance, or only a part of the appearance,
+of a component in various states.</p>
+<p>One of the big differences between Spark and MX components is
+that Spark components rely on the component skin to define its layout
+and appearance. When working with Spark components, you often define
+a custom skin to modify the component appearance.</p>
+<p>MX components use a combination of CSS styles and skins to control
+their appearance. With MX components, you can use styles to modify
+much of the appearance of the component without having to define
+a custom skin. </p>
+<p>For more information about using Spark skins, see <a href="flx_gumboskinning_gs.html#WS53116913-F952-4b21-831F-9DE85B647C8A_verapache">Spark
+Skinning</a>. For more information about using MX skins, see <a href="flx_skinning_sk.html#WS2db454920e96a9e51e63e3d11c0bf69084-7fed_verapache">Skinning
+MX components</a>.</p>
+</div>
+</div>
+<div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf5f39f-7fea_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf5f39f-7fea_verapache"><!-- --></a>
+<h3 class="topictitle3">Using effects</h3>
+<div>
+<p>An <em>effect</em> is
+a change to a component that occurs over a brief period of time. Examples
+of effects are fading, resizing, and moving a component. In MXML,
+you apply effects as properties of a control or container. Flex
+provides a set of built-in effects with default properties. </p>
+<p>In MXML, define effects in an <samp class="codeph">&lt;fx:Declarations&gt;</samp> tag.
+You use the <samp class="codeph">&lt;fx:Declarations&gt;</samp> tag to declare
+non-visual components an MXML file. </p>
+<div class="p">The following example shows an application that contains a <a href="https://flex.apache.org/asdoc/spark/components/Button.html" target="_blank">Button</a> control
+with its <samp class="codeph">click</samp> property set to use the <a href="https://flex.apache.org/asdoc/spark/effects/Resize.html" target="_blank">Resize</a> effect
+when the user moves the mouse over it:<pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- behaviors\TargetProp.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark"&gt; 
+ 
+    &lt;fx:Declarations&gt; 
+        &lt;s:Resize id="myResize" 
+            heightBy="25" 
+            widthBy="50" 
+            target="{myButton}"/&gt; 
+    &lt;/fx:Declarations&gt; 
+        
+    &lt;s:Button id="myButton" 
+        label="Resize target" 
+        click="myResize.end();myResize.play();"/&gt; 
+&lt;/s:Application&gt;</pre>
+</div>
+<p>For more information about effects, see <a href="flx_behaviors_be.html#WS2db454920e96a9e51e63e3d11c0bf69084-7fec_verapache">Introduction
+to effects</a>.</p>
+</div>
+</div>
+<div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf5f39f-7fe9_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf5f39f-7fe9_verapache"><!-- --></a>
+<h3 class="topictitle3">Defining custom MXML components</h3>
+<div>
+<p>Custom
+MXML components are MXML files that you create and use as custom MXML
+tags in other MXML files. They encapsulate and extend the functionality
+of existing Flex components. Just like MXML application files, MXML
+component files can contain a mix of MXML tags and ActionScript
+code. The name of the MXML file becomes the class name with which
+you refer to the component in another MXML file. </p>
+<p>The following example shows a custom <a href="https://flex.apache.org/asdoc/mx/controls/ComboBox.html" target="_blank">ComboBox</a> control
+that is prepopulated with list items:</p>
+<pre class="noswf">&lt;?xml version="1.0"?&gt; 
+&lt;!-- mxml/myComponents/boxes/MyComboBox.mxml --&gt; 
+&lt;s:VGroup xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark"&gt; 
+    
+     &lt;s:ComboBox&gt; 
+        &lt;s:dataProvider&gt; 
+            &lt;s:ArrayCollection&gt; 
+                &lt;fx:String&gt;Dogs&lt;/fx:String&gt; 
+                &lt;fx:String&gt;Cats&lt;/fx:String&gt; 
+                &lt;fx:String&gt;Mice&lt;/fx:String&gt; 
+            &lt;/s:ArrayCollection&gt; 
+        &lt;/s:dataProvider&gt; 
+    &lt;/s:ComboBox&gt; 
+&lt;/s:VGroup&gt;</pre>
+<p>The
+following example shows an application that uses the MyComboBox component
+as a custom tag. The value <samp class="codeph">myComponents.boxes.*</samp> assigns
+the <samp class="codeph">MyComps</samp> namespace to the myComponents/boxes
+sub-directory. To run this example, store the MyComboBox.mxml file
+in that sub-directory.</p>
+<pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- mxml/CustomMXMLComponent.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:MyComps="myComponents.boxes.*"&gt; 
+ 
+    &lt;s:Panel title="My Application" 
+        height="150"&gt; 
+        &lt;MyComps:MyComboBox/&gt; 
+    &lt;/s:Panel&gt; 
+&lt;/s:Application&gt;</pre>
+<p>For more information about MXML components, see <a href="flx_mxmlcomponents_mxc.html#WS2db454920e96a9e51e63e3d11c0bf69084-7feb_verapache">Simple
+MXML components</a>. You can also define custom Flex components
+in ActionScript. For more information, see <a href="flx_ascomponents_as.html#WS2db454920e96a9e51e63e3d11c0bf69084-7fea_verapache">Create
+simple visual components in ActionScript</a>.</p>
+</div>
+</div>
+<div>
+<p><strong>Navigation</strong></p>
+<p><a href="index.html">Using Flex</a> &raquo; <a href="flx_p1_gettingstarted.html">Getting Started</a></p>
+</div>
+<p>Adobe, Adobe AIR, Adobe ColdFusion, Adobe Flash Platform and Adobe Flash Player are either registered trademarks or trademarks of Adobe Systems Incorporated in the United States and/or other countries and are used by permission from Adobe.  No other license to the Adobe trademarks are granted.</p>
+</div>
+
+
+<!-- Home Page Exception -->
+
+</div></div>
+<!-- Wrapper / End -->
+
+
+<!-- Footer -->
+
+<!-- Footer Top -->
+<div id="footer" class="container-fluid paddingbottom" >
+
+
+    <div class="row-fluid">
+
+        <!-- About -->
+        <div class="span3">
+            <div class="footer-headline"><h4>About Us</h4></div>
+            <p>Apache Flex® is a highly productive, open source application framework for building and maintaining expressive web applications that deploy consistently on all major browsers, desktops and devices (including smartphones, tablets and tv). It provides a modern, standards-based language and programming model that supports common design patterns suitable for developers from many backgrounds. Flex applications can be deployed with Adobe® AIR™ on desktop and mobile, including native Android™, iOS™, Windows®, macOS®, and Linux applications.</p>
+        </div>
+
+        <!-- Subscribe  -->
+        <div class="span3">
+            <div class="footer-headline"><h4>Subscribe</h4></div>
+            <p>We have two mailing lists, one for SDK developers, and one for SDK users.</p>
+            <ul>
+                <li><strong>Users</strong>, send an email to <br>
+                    <a href="mailto:users-subscribe@flex.apache.org">users-subscribe@flex.apache.org</a>
+                </li>
+                <li><strong>Contributors</strong>, send an email to <br>
+                    <a href="mailto:dev-subscribe@flex.apache.org">dev-subscribe@flex.apache.org</a>
+                </li>
+            </ul>
+        </div>
+
+        <!-- Latest Releases -->
+        <div class="span3">
+            <div class="footer-headline"><h4>Latest Releases</h4></div>
+            <p>
+            	Apache Flex SDK : <a href="/download-binaries.html">4.16.1 (Nov 2017)</a><br />
+                Apache FlexJS SDK : <a href="/download-flexjs.html">0.8.0 (Jun 2017)</a><br />
+                Blaze DS : <a href="/download-blazeds.html">4.8.0 (Apr 2023)</a><br />
+                Flex SDK Converter : <a href="https://github.com/apache/flex-utilities/tree/develop/flex-maven-tools/flex-sdk-converter"> 1.1.0 (Feb 2023)</a><br />
+                FlexUnit : <a href="/download-flexunit.html">4.2.0 (Apr 2014)</a><br />
+                SDK Installer : <a href="/installer.html">3.3.2 (Jul 2018)</a><br />
+                Squiggly : <a href="/download-squiggly.html">1.1 (Oct 2014)</a><br />
+                Tour De Flex : <a href="/download-tourdeflex.html">1.2 (Nov 2014)</a><br />
+            </p>
+        </div>
+
+    </div>
+
+</div>
+<!-- Footer / Bottom -->
+<div id="footer" class="container-fluid" style="background: #111;">
+    <div class="row-fluid">
+        <div class="span12">
+            <div id="footer-bottom">
+                Copyright © 2025 The Apache Software Foundation, Licensed under the Apache License, Version 2.0 <br>
+                Apache Flex, Apache and the Apache feather logo are trademarks of The Apache Software Foundation. All other marks mentioned may be trademarks or registered trademarks of their respective owners.
+                Read more about the <a href="https://privacy.apache.org/policies/privacy-policy-public.html">ASF's Privacy Policy</a>.
+                <div id="scroll-top-top"><a href="#" title="Go to Top"></a></div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<!-- Footer / End -->
+
+</body>
+
+</html>

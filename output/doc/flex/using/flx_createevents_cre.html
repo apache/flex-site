@@ -1,0 +1,797 @@
+<!DOCTYPE html>
+<!--[if IE 7 ]><html class="ie ie7" lang="en"><![endif]-->
+<!--[if IE 8 ]><html class="ie ie8" lang="en"><![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!--><html lang="en"><!--<![endif]-->
+
+<head>
+
+    <meta charset="utf-8">
+    <title>Apache Flex® - Custom events</title>
+
+    <!-- For Mobiles  -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <!-- CSS -->
+    <link rel="stylesheet" type="text/css" href="/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="/css/fixed-width.css" id="layout">
+    <link rel="stylesheet" type="text/css" href="/css/style.css">
+    <!-- favicon -->
+    <link rel="icon" type="image/x-icon" href="/images/favicon.ico"/>
+    <link rel="apple-touch-icon-precomposed" href="/images/apple-touch-icon-60.png">
+    <link rel="apple-touch-icon-precomposed" sizes="76x76" href="/images/apple-touch-icon-76.png">
+    <link rel="apple-touch-icon-precomposed" sizes="120x120" href="/images/apple-touch-icon-120.png">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="/images/apple-touch-icon-152.png">
+
+    <!-- Java Script  -->
+    <script src="/js/jquery.js"></script>
+    <script src="/js/custom.js"></script>
+    <script src="/js/selectnav.js"></script>
+    <script src="/js/flexslider.js"></script>
+    <script src="/js/twitter.js"></script>
+    <script src="/js/fancybox.js"></script>
+    <script src="/js/isotope.js"></script>
+    <script src="/js/bootstrap.js"></script>
+    <script src="/js/showcase.js"></script>
+
+
+</head>
+<body>
+
+<!-- Wrapper Start -->
+<div id="wrapper" class="container-fluid">
+
+
+    <!-- Header -->
+
+
+    <div class="ie-dropdown-fix" >
+
+        <!-- Header -->
+        <div class="row-fluid" id="header">
+
+            <!-- Logo -->
+            <div class="span5">
+
+                <a href="/"><img src="/images/logo_01_fullcolor-sm.png" alt="Apache Flex®" title="Apache Flex®" /></a>
+
+            </div>
+
+            <!-- Social / Contact -->
+            <div class="span3 pull-right">
+
+                <!-- Social Icons -->
+                <ul class="social-icons">
+                    <li class="facebook"><a href="https://www.facebook.com/pages/Apache-Flex/174249699342648">Facebook</a></li>
+                    <li class="twitter"><a href="http://twitter.com/ApacheFlex">Twitter</a></li>
+                    <li class="linkedin"><a href="http://www.linkedin.com/groups/Apache-Flex-Developers-4296888">LinkedIn</a></li>
+                </ul>
+
+                <!-- Apache Logo -->
+                <a href="http://www.apache.org" id="contact-top"><img src="https://www.apache.org/images/feather-small.gif" title="An Apache Project" alt="An Apache Project" /> </a>
+            </div>
+
+        </div>
+        <!-- Header / End -->
+
+        <!-- Navigation -->
+        <div id="navigation" class="margintop">
+            <ul id="nav">
+
+                <li><a href="/index.html">Home</a></li>
+
+                <li><a href="#">About Flex</a>
+                    <ul>
+
+                        <li><a href="/about-whatis.html">What is Flex?</a></li>
+                        <li><a href="/about-features.html">Features</a></li>
+						<li><a href="/tourdeflex/explorer.html">Tour de Flex</a></li>
+                        <li><a href="/about-licensing.html">License &amp; Trademarks</a></li>
+                        <li><a href="/about-people.html">The Team</a></li>
+                        <li><a href="/about-history.html">Project History</a></li>
+                        <li><a href="/about-assets.html">Logo and Assets</a></li>
+                    </ul>
+                </li>
+                <li><a href="#">Community</a>
+                    <ul>
+
+                        <li><a href="/community-getinvolved.html">How to get involved</a></li>
+                        <li><a href="/community-mailinglists.html">Mailing Lists</a></li>
+                        <li><a href="/community-showcase.html">Flex Showcase</a></li>
+						<li><a href="/community-3rdparty.html">Third-Party</a></li>
+                        <li><a href="https://cwiki.apache.org/confluence/display/FLEX/Apache+Flex+Wiki">Wiki <i class="icon-share icon-white"></i></a></li>
+                        <li><a href="http://blogs.apache.org/flex/">Blog <i class="icon-share icon-white"></i></a></li>
+                    </ul>
+                </li>
+
+                <li><a href="#">Development</a>
+                    <ul>
+                        <li><a href="/dev-faq.html">Developer FAQ</a></li>
+                        <li><a href="/dev-sourcecode.html">Source Code</a></li>
+                        <li><a href="https://issues.apache.org/jira/browse/FLEX">Bug-Tracker <i class="icon-share icon-white"></i></a></li>
+                    </ul>
+                </li>
+
+                <li><a href="#">Documentation</a>
+                    <ul>
+
+                        <li><a href="/doc-getstarted.html">Getting Started</a></li>
+                        <li><a href="/doc/flex/using/index.html">Using Flex</a></li>
+                        <li><a href="/doc-videos.html">Videos</a></li>
+                        <li><a href="/asdoc/">Flex ASDocs</a></li>
+                        <li><a href="http://help.adobe.com/en_US/flex/using/index.html">Documentation Reference (Old) <i class="icon-share icon-white"></i></a></li>
+                        <li><a href="/flexunit/tutorial/">FlexUnit Tutorials</a></li>
+                        <li><a href="/flexunit/asdoc/">FlexUnit ASDocs</a></li>
+
+                    </ul>
+                </li>
+
+                <li><a href="#">About Apache</a>
+                    <ul>
+
+                        <li><a href="http://www.apache.org">The Apache Software Foundation Website <i class="icon-share icon-white"></i></a></li>
+                        <li><a href="http://www.apache.org/foundation/contributing.html">Donations <i class="icon-share icon-white"></i></a></li>
+                        <li><a href="http://www.apache.org/foundation/sponsorship.html">Sponsorship <i class="icon-share icon-white"></i></a></li>
+                        <li><a href="http://www.apache.org/foundation/thanks.html">Thanks <i class="icon-share icon-white"></i></a></li>
+                    </ul>
+                </li>
+
+                <li><a href="#" class="download">Download Flex</a>
+                    <ul>
+
+                       <li><a href="/installer.html">SDK Installer (For Application Developers)</a></li>
+                       <li><a href="/download-source.html">SDK Source Code (For SDK Developers)</a></li>
+                       <li><a href="/download-binaries.html">SDK Binaries (For SDK Developers)</a></li>
+                       <li><a href="/download-flexjs.html">FlexJS 'beta' (For Application Developers)</a> </li>
+                       <li><a href="/download-flexunit.html">FlexUnit (For Application Developers)</a> </li>
+                       <li><a href="/download-blazeds.html">Blaze DS Source Code</a></li>
+                       <li><a href="/download-tourdeflex.html">Tour De Flex Source Code</a></li>
+                       <li><a href="/download-squiggly.html">Squiggly Spell Checker</a></li>
+                       <li><a href="/download-utilities.html">Flex Utilities</a></li>
+                       <li><a href="/download-archive.html">Previous Versions</a></li>`
+                    </ul>
+                </li>
+            </ul>
+
+        </div>
+        <div class="clear"></div>
+
+    </div>
+    <!-- Navigation / End -->
+
+
+    <!-- Content -->
+
+    <div class="row-fluid">
+
+
+        <!-- Page Title -->
+        <div id="page-title">
+            <h2>Custom events</h2>
+        </div>
+        <!-- Page Title / End -->
+
+
+    </div>
+
+    <div class="row-fluid">
+
+<!-- Home Page Exception -->
+
+    <a name="WS2db454920e96a9e51e63e3d11c0bf69084-7a22_verapache"><!-- --></a>
+<div>
+<p>You can create custom events as part of defining MXML and
+ActionScript components. Custom events let you add functionality
+to your custom components to respond to user interactions, to trigger
+actions by your custom component, and to take advantage of data
+binding.</p>
+<p>For more information on creating custom events for MXML components,
+see <a href="flx_mxmlcomponents_advanced_mxa.html#WS2db454920e96a9e51e63e3d11c0bf69084-7a35_verapache">Advanced
+MXML components</a>. For information on creating custom events
+for ActionScript components, see <a href="flx_ascomponents_as.html#WS2db454920e96a9e51e63e3d11c0bf69084-7fea_verapache">Create
+simple visual components in ActionScript</a>.</p>
+</div>
+<div class="nested1" id="WS2db454920e96a9e51e63e3d11c0bf67fe7-7ffe_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf67fe7-7ffe_verapache"><!-- --></a>
+<h2 class="topictitle2">About events</h2>
+<div>
+<p>Flex applications
+are event-driven. Events let an application know when the user interacts
+with the interface, and also when important changes happen in the appearance
+or life cycle of a component, such as the creation of a component
+or its resizing. Events can be generated by user input devices,
+such as the mouse and keyboard, or by the asynchronous operations,
+such as the return of a web service call or the firing of a timer.</p>
+<p>The core class of the Flex component architecture, <a href="https://flex.apache.org/asdoc/mx/core/UIComponent.html" target="_blank">mx.core.UIComponent</a>, defines
+core events, such as <samp class="codeph">updateComplete</samp>, <samp class="codeph">resize</samp>, <samp class="codeph">move</samp>, <samp class="codeph">creationComplete</samp>,
+and others that are fundamental to all components. Subclasses of
+UIComponent inherit these events.</p>
+<p>Custom components that extend existing Flex classes inherit all
+the events of the base class. Therefore, if you extend the <a href="https://flex.apache.org/asdoc/spark/components/Button.html" target="_blank">Button</a> class
+to create the MyButton class, you can use the <samp class="codeph">click</samp> event
+and the events that all controls inherit, such as <samp class="codeph">mouseOver</samp> or <samp class="codeph">initialize</samp>,
+as the following example shows:</p>
+<pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- createcomps_events/EventsMyApplication.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:MyComp="myComponents.*"&gt; 
+    &lt;fx:Script&gt; 
+        &lt;![CDATA[ 
+            import flash.events.Event; 
+ 
+            // Event listener for the click event. 
+            private function handleClick(eventObj:Event):void { 
+                // Define event listener. 
+            } 
+ 
+            // Event listener for the initialize event. 
+            private function handleInit(eventObj:Event):void { 
+                // Define event listener. 
+            } 
+        ]]&gt; 
+    &lt;/fx:Script&gt; 
+ 
+    &lt;MyComp:MyButton 
+        click="handleClick(event);" 
+        initialize="handleInit(event);"/&gt; 
+ 
+&lt;/s:Application&gt;</pre>
+<p>In addition to using the events inherited from its superclasses,
+your custom components can define custom events. You use custom
+events to support data binding, to respond to user interactions,
+or to trigger actions by your component. </p>
+<p>For more information on the Flex event mechanism, see <a href="flx_events_ev.html#WS2db454920e96a9e51e63e3d11c0bf69084-7ee9_verapache">Events</a>.</p>
+</div>
+<div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf67fe7-7ffc_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf67fe7-7ffc_verapache"><!-- --></a>
+<h3 class="topictitle3">Using an event object</h3>
+<div>
+<p>When a Flex component dispatches an event, it creates an
+event object, where the properties of the event object contain information
+describing the event. An event listener takes this event object
+as an argument and accesses the properties of the object to determine
+information about the event. </p>
+<p>The base class for all event objects is the <a href="https://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/flash/events/Event.html" target="_blank">flash.events.Event</a> class.
+All event objects are instances of the Event class, or instances
+of a subclass of the Event class. </p>
+<p>The following table describes the public properties of the <a href="https://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/flash/events/Event.html" target="_blank">Event</a> class.
+The Event class implements these properties using getter methods. </p>
+<div class="tablenoborder"><table border="1" cellpadding="4" cellspacing="0" frame="border" rules="all" summary="">
+<thead align="left">
+<tr>
+<th class="cellrowborder" id="d164204e141" valign="top" width="NaN%">
+<p>Property</p>
+</th>
+<th class="cellrowborder" id="d164204e147" valign="top" width="NaN%">
+<p>Type</p>
+</th>
+<th class="cellrowborder" id="d164204e153" valign="top" width="NaN%">
+<p>Description</p>
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="cellrowborder" headers="d164204e141" valign="top" width="NaN%">
+<div class="p">
+<pre class="codeblock"><samp class="codeph">type</samp></pre>
+</div>
+</td>
+<td class="cellrowborder" headers="d164204e147" valign="top" width="NaN%">
+<p>String</p>
+</td>
+<td class="cellrowborder" headers="d164204e153" valign="top" width="NaN%">
+<p>The name of the event; for example, <samp class="codeph">"click"</samp>.
+The event constructor sets this property. </p>
+</td>
+</tr>
+<tr>
+<td class="cellrowborder" headers="d164204e141" valign="top" width="NaN%">
+<div class="p">
+<pre class="codeblock"><samp class="codeph">target</samp></pre>
+</div>
+</td>
+<td class="cellrowborder" headers="d164204e147" valign="top" width="NaN%">
+<p>EventDispatcher</p>
+</td>
+<td class="cellrowborder" headers="d164204e153" valign="top" width="NaN%">
+<p>A reference to the component instance that
+dispatches the event. This property is set by the <samp class="codeph">dispatchEvent()</samp> method;
+you cannot change this to a different object. </p>
+</td>
+</tr>
+<tr>
+<td class="cellrowborder" headers="d164204e141" valign="top" width="NaN%">
+<div class="p">
+<pre class="codeblock">currentTarget</pre>
+</div>
+</td>
+<td class="cellrowborder" headers="d164204e147" valign="top" width="NaN%">
+<p>EventDispatcher</p>
+</td>
+<td class="cellrowborder" headers="d164204e153" valign="top" width="NaN%">
+<p>A reference to the component instance that
+is actively processing the Event object. The value of this property
+is different from the value of the <samp class="codeph">target</samp> property
+during the event capture and bubbling phase. For more information,
+see <a href="flx_events_ev.html#WS2db454920e96a9e51e63e3d11c0bf69084-7ee9_verapache">Events</a>.</p>
+</td>
+</tr>
+<tr>
+<td class="cellrowborder" headers="d164204e141" valign="top" width="NaN%">
+<div class="p">
+<pre class="codeblock">eventPhase</pre>
+</div>
+</td>
+<td class="cellrowborder" headers="d164204e147" valign="top" width="NaN%">
+<p>uint</p>
+</td>
+<td class="cellrowborder" headers="d164204e153" valign="top" width="NaN%">
+<p>The current phase in the event flow. The
+property might contain the following values:</p>
+<div class="p">
+<ul>
+<li>
+<p>
+<samp class="codeph">EventPhase.CAPTURING_PHASE</samp>:
+The capture phase</p>
+</li>
+<li>
+<p>
+<samp class="codeph">EventPhase.AT_TARGET</samp>: The target phase</p>
+</li>
+<li>
+<p>
+<samp class="codeph">EventPhase.BUBBLING_PHASE</samp>: The bubbling
+phase</p>
+</li>
+</ul>
+</div>
+</td>
+</tr>
+<tr>
+<td class="cellrowborder" headers="d164204e141" valign="top" width="NaN%">
+<div class="p">
+<pre class="codeblock">bubbles</pre>
+</div>
+</td>
+<td class="cellrowborder" headers="d164204e147" valign="top" width="NaN%">
+<p>Boolean</p>
+</td>
+<td class="cellrowborder" headers="d164204e153" valign="top" width="NaN%">
+<p>Whether an event is a bubbling event. If
+the event can bubble, the value for this property is <samp class="codeph">true;</samp> otherwise,
+it is <samp class="codeph">false</samp>. You can optionally pass this property
+as a constructor argument to the Event class. By default, most event
+classes set this property to <samp class="codeph">false</samp>. For more information,
+see <a href="flx_events_ev.html#WS2db454920e96a9e51e63e3d11c0bf69084-7ee9_verapache">Events</a>.</p>
+</td>
+</tr>
+<tr>
+<td class="cellrowborder" headers="d164204e141" valign="top" width="NaN%">
+<div class="p">
+<pre class="codeblock">cancelable</pre>
+</div>
+</td>
+<td class="cellrowborder" headers="d164204e147" valign="top" width="NaN%">
+<p>Boolean</p>
+</td>
+<td class="cellrowborder" headers="d164204e153" valign="top" width="NaN%">
+<p>Whether the event can be canceled. If the
+event can be canceled, the value for this value is <samp class="codeph">true;</samp> otherwise,
+it is <samp class="codeph">false</samp>. You can optionally pass this property
+as a constructor argument to the Event class. By default, most event
+classes set this property to <samp class="codeph">false</samp>. For more information,
+see <a href="flx_events_ev.html#WS2db454920e96a9e51e63e3d11c0bf69084-7ee9_verapache">Events</a>.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+<div class="nested1" id="WS2db454920e96a9e51e63e3d11c0bf67fe7-7ffd_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf67fe7-7ffd_verapache"><!-- --></a>
+<h2 class="topictitle2">Dispatching custom events</h2>
+<div>
+<p>Flex defines many of the most common
+events, such as the <samp class="codeph">click</samp> event for the <a href="https://flex.apache.org/asdoc/spark/components/Button.html" target="_blank">Button</a> control;
+however, your application may require that you create events. In your
+custom Flex components, you can dispatch any of the predefined events inherited
+by the component from its superclass, and dispatch new events that you
+define within the component. </p>
+<p>To dispatch a new event from your custom component, you must
+do the following:</p>
+<ol>
+<li>
+<p>(Optional) Create a subclass from the <a href="https://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/flash/events/Event.html" target="_blank">flash.events.Event</a> class
+to create an event class that describes the event object. For more
+information, see <a href="flx_createevents_cre.html#WS2db454920e96a9e51e63e3d11c0bf69084-7a36_verapache">Creating a
+subclass from the Event class</a>.</p>
+</li>
+<li>
+<p>(Optional) Use the <samp class="codeph">[Event]</samp> metadata tag
+to make the event public so that the MXML compiler recognizes it.
+For more information, see <a href="flx_createevents_cre.html#WS2db454920e96a9e51e63e3d11c0bf69084-7a34_verapache">Using
+the Event metadata tag</a>.</p>
+</li>
+<li>
+<p>Dispatch the event using the <samp class="codeph">dispatchEvent()</samp> method.
+For more information, see <a href="flx_createevents_cre.html#WS2db454920e96a9e51e63e3d11c0bf69084-7a33_verapache">Dispatching
+an event</a>. </p>
+</li>
+</ol>
+</div>
+<div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf69084-7a36_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7a36_verapache"><!-- --></a>
+<h3 class="topictitle3">Creating a subclass from the Event
+class</h3>
+<div>
+<p>All
+events use an event object to transmit information about the event
+to the event listener, where the base class for all event objects
+is the <a href="https://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/flash/events/Event.html" target="_blank">flash.events.Event</a> class.
+When you define a custom event, you can dispatch an event object
+of the Event type, or you can create a subclass of the Event class
+to dispatch an event object of a different type. You typically create
+a subclass of the Event class when your event requires you to add
+information to the event object, such as a new property to hold
+information that the event listener requires.</p>
+<p>For example, the event objects associated with the Flex <a href="https://flex.apache.org/asdoc/mx/controls/Tree.html" target="_blank">Tree</a> control
+include a property named <samp class="codeph">node</samp>, which identifies
+the node of the Tree control associated with the event. To support
+the <samp class="codeph">node</samp> property, the Tree control dispatches
+event objects of type TreeEvent, a subclass of the Event class. </p>
+<p>Within your subclass of the Event class, you can add properties,
+add methods, set the value of an inherited property, or override
+methods inherited from the Event class. For example, you might want
+to set the <samp class="codeph">bubbles</samp> property to <samp class="codeph">true</samp> to override
+the default setting of <samp class="codeph">false</samp>, which is inherited
+from the Event class. </p>
+<p>You are required to override the <samp class="codeph">Event.clone()</samp> method
+in your subclass. The <samp class="codeph">clone()</samp> method returns a
+cloned copy of the event object by setting the <samp class="codeph">type</samp> property
+and any new properties in the clone. Typically, you define the <samp class="codeph">clone()</samp> method
+to return an event instance created with the <samp class="codeph">new</samp> operator.</p>
+<p>Suppose that you want to pass information about the state of
+your component to the event listener as part of the event object.
+To do so, you create a subclass of the Event class to create an
+event, EnableChangeEvent, as the following example shows:</p>
+<pre class="codeblock">package myEvents 
+{ 
+    //createcomps_events/myEvents/EnableChangeEvent.as 
+    import flash.events.Event; 
+ 
+    public class EnableChangeEvent extends Event 
+    { 
+ 
+        // Public constructor. 
+        public function EnableChangeEvent(type:String, 
+            isEnabled:Boolean=false) { 
+                // Call the constructor of the superclass. 
+                super(type); 
+    
+                // Set the new property. 
+                this.isEnabled = isEnabled; 
+        } 
+ 
+        // Define static constant. 
+        public static const ENABLE_CHANGE:String = "enableChange"; 
+ 
+        // Define a public variable to hold the state of the enable property. 
+        public var isEnabled:Boolean; 
+ 
+        // Override the inherited clone() method. 
+        override public function clone():Event { 
+            return new EnableChangeEvent(type, isEnabled); 
+        } 
+    } 
+}</pre>
+<p>In this example, your custom class defines a public constructor
+that takes two arguments:</p>
+<ul>
+<li>
+<p>A String value that contains the value of the <samp class="codeph">type</samp> property
+of the Event object.</p>
+</li>
+<li>
+<p>An optional Boolean value that contains the state of the
+component's <samp class="codeph">isEnabled</samp> property. By convention,
+all constructor arguments for class properties, except for the <samp class="codeph">type</samp> argument,
+are optional.</p>
+<p>From within the body of your constructor, you
+call the <samp class="codeph">super()</samp> method to initialize the base
+class properties. </p>
+</li>
+</ul>
+</div>
+</div>
+<div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf69084-7a34_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7a34_verapache"><!-- --></a>
+<h3 class="topictitle3">Using the Event metadata tag</h3>
+<div>
+<p>You use the <samp class="codeph">[Event]</samp> metadata
+tag to define events dispatched by a component so that the Flex
+compiler can recognize them as MXML tag attributes in an MXML file.
+You add the <samp class="codeph">[Event]</samp> metadata tag in one of the
+following locations:</p>
+<div class="p">
+<ul>
+<li>
+<p>ActionScript components</p>
+<p>Above the class definition,
+but within the package definition, so that the events are bound
+to the class and not a particular member of the class.</p>
+</li>
+<li>
+<p>MXML components</p>
+<p>In the <samp class="codeph">&lt;fx:Metadata&gt;</samp> tag
+of an MXML file.</p>
+</li>
+</ul>
+</div>
+<p>The <samp class="codeph">Event</samp> metadata keyword has the following
+syntax:</p>
+<pre class="codeblock">&thinsp;&thinsp;[Event(name="eventName", type="package.eventType")]</pre>
+<p>The <em>eventName</em> argument specifies the name of the event.
+The <em>eventType</em> argument specifies the class name, including
+the package, that defines the event object.</p>
+<p>The following example identifies the <samp class="codeph">enableChange</samp> event
+as an event that an ActionScript component can dispatch:</p>
+<pre class="codeblock">[Event(name="enableChange", type="myEvents.EnableChangeEvent")] 
+&thinsp;public class MyComponent extends TextArea 
+&thinsp;{ 
+&thinsp;	... 
+&thinsp;}</pre>
+<p>The following example shows the <samp class="codeph">[Event]</samp> metadata
+tag within the <samp class="codeph">&lt;fx:Metadata&gt;</samp> tag of an MXML
+file:</p>
+<pre class="noswf">&lt;?xml version="1.0"?&gt; 
+&lt;!-- createcomps_events\myComponents\MyButton.mxml --&gt; 
+&lt;s:Button xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    click="dispatchEvent(new EnableChangeEvent('enableChange'));"&gt; 
+ 
+    &lt;fx:Script&gt; 
+        &lt;![CDATA[ 
+            import myEvents.EnableChangeEvent; 
+        ]]&gt; 
+    &lt;/fx:Script&gt; 
+ 
+    &lt;fx:Metadata&gt; 
+        [Event(name="enableChange", type="myEvents.EnableChangeEvent")] 
+    &lt;/fx:Metadata&gt; 
+&lt;/s:Button&gt;</pre>
+<p>Once you define the event using the <samp class="codeph">[Event]</samp> metadata
+tag, you can refer to the event in an MXML file, as the following
+example shows:</p>
+<pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- createcomps_events/MainEventApp.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:MyComp="myComponents.*" &gt; 
+    &lt;s:layout&gt; 
+        &lt;s:VerticalLayout/&gt; 
+    &lt;/s:layout&gt; 
+ 
+    &lt;fx:Script&gt; 
+        &lt;![CDATA[ 
+            import myEvents.EnableChangeEvent; 
+ 
+            public function 
+                enableChangeListener(eventObj:EnableChangeEvent):void { 
+                    // Handle event. 
+                    myTA2.text='got event'; 
+            } 
+        ]]&gt; 
+    &lt;/fx:Script&gt; 
+ 
+    &lt;MyComp:MyButton enableChange="myTA.text='got event';" /&gt; 
+    &lt;mx:TextArea id="myTA" /&gt; 
+ 
+    &lt;MyComp:MyButton enableChange="enableChangeListener(event);" /&gt; 
+    &lt;mx:TextArea id="myTA2" /&gt; 
+&lt;/s:Application&gt;</pre>
+<p>If you do not identify an event with the <samp class="codeph">[Event]</samp> metadata
+tag, the compiler generates an error if you try to use the event
+name in MXML. The metadata for events is inherited from the superclass,
+however, so you do not need to tag events that are already defined
+with the <samp class="codeph">[Event]</samp> metadata tag in the superclass.</p>
+</div>
+</div>
+<div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf69084-7a33_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7a33_verapache"><!-- --></a>
+<h3 class="topictitle3">Dispatching an event</h3>
+<div>
+<p>You use the <a href="https://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/flash/events/EventDispatcher.html#disaptchEvent()" target="_blank">dispatchEvent()</a> method
+to dispatch an event. The <samp class="codeph">dispatchEvent()</samp> method
+has the following signature:</p>
+<pre class="codeblock">&thinsp;&thinsp;public dispatchEvent(event:Event):Boolean</pre>
+<p>This method requires an argument of the Event type, which is
+the event object. The <samp class="codeph">dispatchEvent()</samp> method initializes
+the <samp class="codeph">target</samp> property of the event object with a
+reference to the component dispatching the event. </p>
+<p>You can create an event object and dispatch the event in a single
+statement, as the following example shows:</p>
+<pre class="codeblock">&thinsp;&thinsp;dispatchEvent(new Event("click")); </pre>
+<p>You can also create an event object, initialize it, and then
+dispatch it, as the following example shows: </p>
+<pre class="codeblock">&thinsp;&thinsp;var eventObj:EnableChangeEvent = new EnableChangeEvent("enableChange"); 
+&thinsp;eventObj.isEnabled=true; 
+&thinsp;dispatchEvent(eventObj);</pre>
+<p>For complete examples that create and dispatch custom events,
+see <a href="flx_mxmlcomponents_advanced_mxa.html#WS2db454920e96a9e51e63e3d11c0bf69084-7a35_verapache">Advanced MXML
+components</a> and <a href="flx_ascomponents_as.html#WS2db454920e96a9e51e63e3d11c0bf69084-7fea_verapache">Create
+simple visual components in ActionScript</a>.</p>
+</div>
+</div>
+<div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf67fe7-7ff9_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf67fe7-7ff9_verapache"><!-- --></a>
+<h3 class="topictitle3">Creating static constants for the
+Event.type property</h3>
+<div>
+<p>The constructor
+of an event class typically takes a single required argument that specifies
+the value of the event object's <samp class="codeph">type</samp> property.
+In the previous section, you passed the string <samp class="codeph">enableChange</samp> to
+the constructor, as the following example shows:</p>
+<pre class="codeblock">&thinsp;&thinsp;// Define event object, initialize it, then dispatch it.  
+&thinsp;<strong>var eventObj:EnableChangeEvent = new EnableChangeEvent("enableChange");</strong> 
+&thinsp;<strong>dispatchEvent(eventObj);</strong></pre>
+<p>The Flex compiler does not examine the string passed to the constructor
+to determine if it is valid. Therefore, the following code compiles,
+even though <samp class="codeph">enableChangeAgain</samp> might not be a valid
+value for the <samp class="codeph">type</samp> property:</p>
+<pre class="codeblock">&thinsp;&thinsp;var eventObj:EnableChangeEvent =  
+&thinsp;	new EnableChangeEvent("enableChangeAgain");</pre>
+<p>Because the compiler does not check the value of the <samp class="codeph">type</samp> property,
+the only time that your application can determine if <samp class="codeph">enableChangeAgain</samp> is
+valid is at run time. </p>
+<p>However, to ensure that the value of the <samp class="codeph">type</samp> property
+is valid at compile time, Flex event classes define static constants
+for the possible values for the <samp class="codeph">type</samp> property.
+For example, the Flex <a href="https://flex.apache.org/asdoc/mx/events/EffectEvent.html" target="_blank">EffectEvent</a> class
+defines the following static constant:</p>
+<pre class="codeblock">&thinsp;&thinsp;// Define static constant for event type. 
+&thinsp;public static const EFFECT_END:String = "effectEnd";</pre>
+<p>To create an instance of an EffectEvent class, you use the following
+constructor:</p>
+<pre class="codeblock">&thinsp;&thinsp;var eventObj:EffectEvent = new EffectEvent(EffectEvent.EFFECT_END);</pre>
+<p>If you incorrectly reference the constant in the constructor,
+the compiler generates a syntax error because it cannot locate the
+associated constant. For example, the following constructor generates
+a syntax error at compile time because <samp class="codeph">MY_EFFECT_END</samp> is
+not a predefined constant of the EffectEvent class:</p>
+<pre class="codeblock">&thinsp;&thinsp;var eventObj:EffectEvent = new EffectEvent(EffectEvent.MY_EFFECT_END);</pre>
+<p>You can use this technique when you define your event classes.
+The following example modifies the definition of the EnableChangeEventConst
+class to include a static constant for the <samp class="codeph">type</samp> property: </p>
+<pre class="codeblock">package myEvents 
+{ 
+    //createcomps_events/myEvents/EnableChangeEventConst.as 
+    import flash.events.Event; 
+ 
+    public class EnableChangeEventConst extends Event 
+    {   
+        // Public constructor. 
+        public function EnableChangeEventConst(type:String, 
+            isEnabled:Boolean=false) { 
+                // Call the constructor of the superclass. 
+                super(type); 
+                
+                // Set the new property. 
+                this.isEnabled = isEnabled; 
+        } 
+ 
+        // Define static constant. 
+        public static const ENABLE_CHANGE:String = "myEnable"; 
+            
+        // Define a public variable to hold the state of the enable property. 
+        public var isEnabled:Boolean; 
+ 
+        // Override the inherited clone() method. 
+        override public function clone():Event { 
+            return new EnableChangeEvent(type, isEnabled); 
+        } 
+    } 
+}</pre>
+<p>Now you create an instance of the class by using the static constant,
+as the following example shows for the MyButtonConst custom component:</p>
+<pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- createcomps_events\myComponents\MyButtonConst.mxml --&gt; 
+&lt;s:Button xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    click="dispatchEvent(new EnableChangeEventConst(EnableChangeEventConst.ENABLE_CHANGE));"&gt; 
+ 
+    &lt;fx:Script&gt; 
+        &lt;![CDATA[ 
+            import myEvents.EnableChangeEventConst; 
+        ]]&gt; 
+    &lt;/fx:Script&gt; 
+ 
+    &lt;fx:Metadata&gt; 
+        [Event(name="myEnable", type="myEvents.EnableChangeEventConst")] 
+    &lt;/fx:Metadata&gt; 
+&lt;/s:Button&gt;</pre>
+<p>This technique does not preclude you from passing a string to
+the constructor. </p>
+<p></p>
+</div>
+</div>
+<div>
+<p><strong>Navigation</strong></p>
+<p><a href="index.html">Using Flex</a> &raquo; <a href="flx_p8a_custom_components.html">Custom components</a></p>
+</div>
+<p>Adobe and Adobe Flash Platform are either registered trademarks or trademarks of Adobe Systems Incorporated in the United States and/or other countries and are used by permission from Adobe.  No other license to the Adobe trademarks are granted.</p>
+</div>
+
+
+<!-- Home Page Exception -->
+
+</div></div>
+<!-- Wrapper / End -->
+
+
+<!-- Footer -->
+
+<!-- Footer Top -->
+<div id="footer" class="container-fluid paddingbottom" >
+
+
+    <div class="row-fluid">
+
+        <!-- About -->
+        <div class="span3">
+            <div class="footer-headline"><h4>About Us</h4></div>
+            <p>Apache Flex® is a highly productive, open source application framework for building and maintaining expressive web applications that deploy consistently on all major browsers, desktops and devices (including smartphones, tablets and tv). It provides a modern, standards-based language and programming model that supports common design patterns suitable for developers from many backgrounds. Flex applications can be deployed with Adobe® AIR™ on desktop and mobile, including native Android™, iOS™, Windows®, macOS®, and Linux applications.</p>
+        </div>
+
+        <!-- Subscribe  -->
+        <div class="span3">
+            <div class="footer-headline"><h4>Subscribe</h4></div>
+            <p>We have two mailing lists, one for SDK developers, and one for SDK users.</p>
+            <ul>
+                <li><strong>Users</strong>, send an email to <br>
+                    <a href="mailto:users-subscribe@flex.apache.org">users-subscribe@flex.apache.org</a>
+                </li>
+                <li><strong>Contributors</strong>, send an email to <br>
+                    <a href="mailto:dev-subscribe@flex.apache.org">dev-subscribe@flex.apache.org</a>
+                </li>
+            </ul>
+        </div>
+
+        <!-- Latest Releases -->
+        <div class="span3">
+            <div class="footer-headline"><h4>Latest Releases</h4></div>
+            <p>
+            	Apache Flex SDK : <a href="/download-binaries.html">4.16.1 (Nov 2017)</a><br />
+                Apache FlexJS SDK : <a href="/download-flexjs.html">0.8.0 (Jun 2017)</a><br />
+                Blaze DS : <a href="/download-blazeds.html">4.8.0 (Apr 2023)</a><br />
+                Flex SDK Converter : <a href="https://github.com/apache/flex-utilities/tree/develop/flex-maven-tools/flex-sdk-converter"> 1.1.0 (Feb 2023)</a><br />
+                FlexUnit : <a href="/download-flexunit.html">4.2.0 (Apr 2014)</a><br />
+                SDK Installer : <a href="/installer.html">3.3.2 (Jul 2018)</a><br />
+                Squiggly : <a href="/download-squiggly.html">1.1 (Oct 2014)</a><br />
+                Tour De Flex : <a href="/download-tourdeflex.html">1.2 (Nov 2014)</a><br />
+            </p>
+        </div>
+
+    </div>
+
+</div>
+<!-- Footer / Bottom -->
+<div id="footer" class="container-fluid" style="background: #111;">
+    <div class="row-fluid">
+        <div class="span12">
+            <div id="footer-bottom">
+                Copyright © 2025 The Apache Software Foundation, Licensed under the Apache License, Version 2.0 <br>
+                Apache Flex, Apache and the Apache feather logo are trademarks of The Apache Software Foundation. All other marks mentioned may be trademarks or registered trademarks of their respective owners.
+                Read more about the <a href="https://privacy.apache.org/policies/privacy-policy-public.html">ASF's Privacy Policy</a>.
+                <div id="scroll-top-top"><a href="#" title="Go to Top"></a></div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<!-- Footer / End -->
+
+</body>
+
+</html>

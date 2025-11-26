@@ -1,0 +1,2860 @@
+<!DOCTYPE html>
+<!--[if IE 7 ]><html class="ie ie7" lang="en"><![endif]-->
+<!--[if IE 8 ]><html class="ie ie8" lang="en"><![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!--><html lang="en"><!--<![endif]-->
+
+<head>
+
+    <meta charset="utf-8">
+    <title>Apache Flex® - MX item renderers and item editors</title>
+
+    <!-- For Mobiles  -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <!-- CSS -->
+    <link rel="stylesheet" type="text/css" href="/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="/css/fixed-width.css" id="layout">
+    <link rel="stylesheet" type="text/css" href="/css/style.css">
+    <!-- favicon -->
+    <link rel="icon" type="image/x-icon" href="/images/favicon.ico"/>
+    <link rel="apple-touch-icon-precomposed" href="/images/apple-touch-icon-60.png">
+    <link rel="apple-touch-icon-precomposed" sizes="76x76" href="/images/apple-touch-icon-76.png">
+    <link rel="apple-touch-icon-precomposed" sizes="120x120" href="/images/apple-touch-icon-120.png">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="/images/apple-touch-icon-152.png">
+
+    <!-- Java Script  -->
+    <script src="/js/jquery.js"></script>
+    <script src="/js/custom.js"></script>
+    <script src="/js/selectnav.js"></script>
+    <script src="/js/flexslider.js"></script>
+    <script src="/js/twitter.js"></script>
+    <script src="/js/fancybox.js"></script>
+    <script src="/js/isotope.js"></script>
+    <script src="/js/bootstrap.js"></script>
+    <script src="/js/showcase.js"></script>
+
+
+</head>
+<body>
+
+<!-- Wrapper Start -->
+<div id="wrapper" class="container-fluid">
+
+
+    <!-- Header -->
+
+
+    <div class="ie-dropdown-fix" >
+
+        <!-- Header -->
+        <div class="row-fluid" id="header">
+
+            <!-- Logo -->
+            <div class="span5">
+
+                <a href="/"><img src="/images/logo_01_fullcolor-sm.png" alt="Apache Flex®" title="Apache Flex®" /></a>
+
+            </div>
+
+            <!-- Social / Contact -->
+            <div class="span3 pull-right">
+
+                <!-- Social Icons -->
+                <ul class="social-icons">
+                    <li class="facebook"><a href="https://www.facebook.com/pages/Apache-Flex/174249699342648">Facebook</a></li>
+                    <li class="twitter"><a href="http://twitter.com/ApacheFlex">Twitter</a></li>
+                    <li class="linkedin"><a href="http://www.linkedin.com/groups/Apache-Flex-Developers-4296888">LinkedIn</a></li>
+                </ul>
+
+                <!-- Apache Logo -->
+                <a href="http://www.apache.org" id="contact-top"><img src="https://www.apache.org/images/feather-small.gif" title="An Apache Project" alt="An Apache Project" /> </a>
+            </div>
+
+        </div>
+        <!-- Header / End -->
+
+        <!-- Navigation -->
+        <div id="navigation" class="margintop">
+            <ul id="nav">
+
+                <li><a href="/index.html">Home</a></li>
+
+                <li><a href="#">About Flex</a>
+                    <ul>
+
+                        <li><a href="/about-whatis.html">What is Flex?</a></li>
+                        <li><a href="/about-features.html">Features</a></li>
+						<li><a href="/tourdeflex/explorer.html">Tour de Flex</a></li>
+                        <li><a href="/about-licensing.html">License &amp; Trademarks</a></li>
+                        <li><a href="/about-people.html">The Team</a></li>
+                        <li><a href="/about-history.html">Project History</a></li>
+                        <li><a href="/about-assets.html">Logo and Assets</a></li>
+                    </ul>
+                </li>
+                <li><a href="#">Community</a>
+                    <ul>
+
+                        <li><a href="/community-getinvolved.html">How to get involved</a></li>
+                        <li><a href="/community-mailinglists.html">Mailing Lists</a></li>
+                        <li><a href="/community-showcase.html">Flex Showcase</a></li>
+						<li><a href="/community-3rdparty.html">Third-Party</a></li>
+                        <li><a href="https://cwiki.apache.org/confluence/display/FLEX/Apache+Flex+Wiki">Wiki <i class="icon-share icon-white"></i></a></li>
+                        <li><a href="http://blogs.apache.org/flex/">Blog <i class="icon-share icon-white"></i></a></li>
+                    </ul>
+                </li>
+
+                <li><a href="#">Development</a>
+                    <ul>
+                        <li><a href="/dev-faq.html">Developer FAQ</a></li>
+                        <li><a href="/dev-sourcecode.html">Source Code</a></li>
+                        <li><a href="https://issues.apache.org/jira/browse/FLEX">Bug-Tracker <i class="icon-share icon-white"></i></a></li>
+                    </ul>
+                </li>
+
+                <li><a href="#">Documentation</a>
+                    <ul>
+
+                        <li><a href="/doc-getstarted.html">Getting Started</a></li>
+                        <li><a href="/doc/flex/using/index.html">Using Flex</a></li>
+                        <li><a href="/doc-videos.html">Videos</a></li>
+                        <li><a href="/asdoc/">Flex ASDocs</a></li>
+                        <li><a href="http://help.adobe.com/en_US/flex/using/index.html">Documentation Reference (Old) <i class="icon-share icon-white"></i></a></li>
+                        <li><a href="/flexunit/tutorial/">FlexUnit Tutorials</a></li>
+                        <li><a href="/flexunit/asdoc/">FlexUnit ASDocs</a></li>
+
+                    </ul>
+                </li>
+
+                <li><a href="#">About Apache</a>
+                    <ul>
+
+                        <li><a href="http://www.apache.org">The Apache Software Foundation Website <i class="icon-share icon-white"></i></a></li>
+                        <li><a href="http://www.apache.org/foundation/contributing.html">Donations <i class="icon-share icon-white"></i></a></li>
+                        <li><a href="http://www.apache.org/foundation/sponsorship.html">Sponsorship <i class="icon-share icon-white"></i></a></li>
+                        <li><a href="http://www.apache.org/foundation/thanks.html">Thanks <i class="icon-share icon-white"></i></a></li>
+                    </ul>
+                </li>
+
+                <li><a href="#" class="download">Download Flex</a>
+                    <ul>
+
+                       <li><a href="/installer.html">SDK Installer (For Application Developers)</a></li>
+                       <li><a href="/download-source.html">SDK Source Code (For SDK Developers)</a></li>
+                       <li><a href="/download-binaries.html">SDK Binaries (For SDK Developers)</a></li>
+                       <li><a href="/download-flexjs.html">FlexJS 'beta' (For Application Developers)</a> </li>
+                       <li><a href="/download-flexunit.html">FlexUnit (For Application Developers)</a> </li>
+                       <li><a href="/download-blazeds.html">Blaze DS Source Code</a></li>
+                       <li><a href="/download-tourdeflex.html">Tour De Flex Source Code</a></li>
+                       <li><a href="/download-squiggly.html">Squiggly Spell Checker</a></li>
+                       <li><a href="/download-utilities.html">Flex Utilities</a></li>
+                       <li><a href="/download-archive.html">Previous Versions</a></li>`
+                    </ul>
+                </li>
+            </ul>
+
+        </div>
+        <div class="clear"></div>
+
+    </div>
+    <!-- Navigation / End -->
+
+
+    <!-- Content -->
+
+    <div class="row-fluid">
+
+
+        <!-- Page Title -->
+        <div id="page-title">
+            <h2>MX item renderers and item editors</h2>
+        </div>
+        <!-- Page Title / End -->
+
+
+    </div>
+
+    <div class="row-fluid">
+
+<!-- Home Page Exception -->
+
+    <a name="WS2db454920e96a9e51e63e3d11c0bf69084-7fb7_verapache"><!-- --></a>
+<div>
+<p>You can customize the appearance
+and behavior of cells in MX list-based data provider controls that
+you use in applications built with  Flex,
+including the DataGrid, HorizontalList, List, Menu, MenuBar, TileList,
+and Tree controls. To control the appearance of cells in list controls,
+you create custom item renderers and item editors. </p>
+<p>For more information about creating more advanced item editors,
+see <a href="flx_celleditor_ce.html#WS2db454920e96a9e51e63e3d11c0bf69084-7cb2_verapache">Advanced data
+display with MX item editors</a>. </p>
+<p>For information on using item renderers with Spark components,
+see <a href="flx_spark_itemrenderers_sir.html#WS4bebcd66a74275c3-fc6548e124e49b51c4-8000_verapache">Custom Spark
+item renderers</a>.</p>
+</div>
+<div class="nested1" id="WS2db454920e96a9e51e63e3d11c0bf64fe7-7fff_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf64fe7-7fff_verapache"><!-- --></a>
+<h2 class="topictitle2">About MX item renderers</h2>
+<div>
+<p>MX supports several controls that you can use to represent
+lists of items. These controls let the application user scroll through
+the item list and select one or more items from the list. All MX
+list components are derived from the ListBase class, and include
+the following controls:</p>
+<ul>
+<li>
+<p>
+<a href="https://flex.apache.org/asdoc/mx/controls/DataGrid.html" target="_blank">DataGrid</a>
+</p>
+</li>
+<li>
+<p>
+<a href="https://flex.apache.org/asdoc/mx/controls/HorizontalList.html" target="_blank">HorizontalList</a>
+</p>
+</li>
+<li>
+<p>
+<a href="https://flex.apache.org/asdoc/mx/controls/List.html" target="_blank">List</a>
+</p>
+</li>
+<li>
+<p>
+<a href="https://flex.apache.org/asdoc/mx/controls/Menu.html" target="_blank">Menu</a>
+</p>
+</li>
+<li>
+<p>
+<a href="https://flex.apache.org/asdoc/mx/controls/MenuBar.html" target="_blank">MenuBar</a>
+</p>
+</li>
+<li>
+<p>
+<a href="https://flex.apache.org/asdoc/mx/controls/TileList.html" target="_blank">TileList</a>
+</p>
+</li>
+<li>
+<p>
+<a href="https://flex.apache.org/asdoc/mx/controls/Tree.html" target="_blank">Tree</a>
+</p>
+</li>
+</ul>
+<p>A list control gets its data from a data provider. A <em>data provider</em> is
+a collection that contains a data object such as an Array or XMLList
+object. For example, a Tree control reads data from a data provider
+to define the structure of the tree and any associated data that
+is assigned to each tree node. <em>Collections</em> are objects that contain
+a set of methods that let you access, sort, filter, and modify the
+data items in a data object. The standard collection types are the
+ArrayCollection and XMLListCollection classes, for working with
+Array-based and XMLList-based data, respectively. </p>
+<p>Collections provide a level of abstraction between Flex components
+and the data that you use to populate them. You can populate multiple
+components from the same collection, switch the collection that
+a component uses as a data provider at run time, or modify a collection
+so that changes are reflected by all components that use it as a
+data provider. </p>
+<p>You can think of the data provider as the model, and the Flex
+components as the view of the model. By separating the model from
+the view, you can change one without changing the other. Each list
+control has a default mechanism for controlling the display of data,
+or view, and lets you override that default. To override the default
+view, you create a custom <em>item renderer</em>.</p>
+<p>In addition to controlling the display of data using an item
+renderer, the DataGrid, List, and Tree controls let users edit the
+data. For example, you could let users update the Quantity column
+of a DataGrid control if you are using it for a shopping cart. As
+with the display of data, the list controls have a default mechanism
+for letting users edit data that you can override by creating a
+custom <em>item editor</em>.</p>
+</div>
+<div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf69084-7caf_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7caf_verapache"><!-- --></a>
+<h3 class="topictitle3">Default item rendering and cell
+editing in MX</h3>
+<div>
+<p>Each MX list-based control has a default item renderer
+defined for it. The simplest item renderer is the <a href="https://flex.apache.org/asdoc/mx/controls/dataGridClasses/DataGridItemRenderer.html" target="_blank">DataGridItemRenderer</a> class,
+which defines the item renderer for the <a href="https://flex.apache.org/asdoc/mx/controls/DataGrid.html" target="_blank">DataGrid</a> control.
+This item renderer assumes that each element in a data provider
+is a text string.</p>
+<p>Other item renderers include the <a href="https://flex.apache.org/asdoc/mx/controls/listClasses/ListItemRenderer.html" target="_blank">ListItemRenderer</a>, <a href="https://flex.apache.org/asdoc/mx/controls/menuClasses/MenuItemRenderer.html" target="_blank">MenuItemRenderer</a>, <a href="https://flex.apache.org/asdoc/mx/controls/menuClasses/MenuBarItem.html" target="_blank">MenuBarItem</a>, <a href="https://flex.apache.org/asdoc/mx/controls/listClasses/TileListItemRenderer.html" target="_blank">TileListItemRenderer</a>,
+and <a href="https://flex.apache.org/asdoc/mx/controls/treeClasses/TreeItemRenderer.html" target="_blank">TreeItemRenderer</a>.
+By default, these item renderers combine an image with text.</p>
+<p>For example, the following image shows a List control that displays
+three items using its default item renderer:</p>
+<div class="figborder">
+<img alt="List control that displays three items using its default item renderer" src="images/cr_listDefaultCellRenderer.png"/>
+</div>
+<p>In this example, the <a href="https://flex.apache.org/asdoc/mx/controls/List.html" target="_blank">List</a> control
+uses the default item renderer to display each of the three strings
+that represent postal codes for Alaska, Alabama, and Arkansas. You
+use the following code to create this List control:</p>
+<pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- itemRenderers\list\ListDefaultRenderer.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx"&gt; 
+ 
+    &lt;mx:List width="50" height ="75"&gt; 
+        &lt;mx:dataProvider&gt; 
+            &lt;fx:String&gt;AK&lt;/fx:String&gt; 
+            &lt;fx:String&gt;AL&lt;/fx:String&gt; 
+            &lt;fx:String&gt;AR&lt;/fx:String&gt; 
+        &lt;/mx:dataProvider&gt; 
+    &lt;/mx:List&gt; 
+&lt;/s:Application&gt;</pre>
+<p>Because the data in this example is inline static data, it is
+not necessary to explicitly wrap it in an ArrayCollection instance.
+However, when you work with data that could change, it is always
+best to specify a collection explicitly; for more information, see <a href="flx_about_dataproviders_ab.html#WS2db454920e96a9e51e63e3d11c0bf69084-7fb8_verapache">Data
+providers and collections</a>.</p>
+<p>In the next example, the data provider for the DataGrid control
+contains fields for an artist, album name, and price. Each of these
+fields appears in the DataGrid control using the default item renderer,
+which displays data as text.</p>
+<div class="figborder">
+<img alt="DataGrid control using the default item renderer" src="images/cr_dgDefaultCellRenderer.png"/>
+</div>
+<p>The following code creates the example shown in the previous
+image:</p>
+<pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- itemRenderers\dataGrid\DGDefaultRenderer.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" &gt; 
+    
+    &lt;fx:Script&gt; 
+        &lt;![CDATA[ 
+          import mx.collections.ArrayCollection; 
+        
+          [Bindable] 
+          private var initDG:ArrayCollection = new ArrayCollection([ 
+            {Artist:'Pavement', Album:'Slanted and Enchanted', Price:11.99}, 
+            {Artist:'Pavement', Album:'Brighten the Corners', Price:11.99} 
+          ]);            
+        ]]&gt; 
+    &lt;/fx:Script&gt; 
+ 
+    &lt;mx:Panel paddingTop="10" paddingBottom="10" 
+        paddingLeft="10" paddingRight="10"&gt; 
+ 
+        &lt;mx:DataGrid id="myGrid" dataProvider="{initDG}" 
+            width="100%" editable="true"&gt; 
+            &lt;mx:columns&gt; 
+                &lt;mx:DataGridColumn dataField="Artist" resizable="true"/&gt; 
+                &lt;mx:DataGridColumn dataField="Album" resizable="true"/&gt; 
+                &lt;mx:DataGridColumn dataField="Price" resizable="true"/&gt; 
+            &lt;/mx:columns&gt;       
+        &lt;/mx:DataGrid&gt;  
+    &lt;/mx:Panel&gt;    
+&lt;/s:Application&gt;</pre>
+<p>An editable component lets the user modify the data in the list
+control, and propagates the changes in the data back to the underlying
+data provider of the control. The DataGrid, List, and <a href="https://flex.apache.org/asdoc/mx/controls/Tree.html" target="_blank">Tree</a> controls
+have a property named <samp class="codeph">editable</samp> that, if set to <samp class="codeph">true</samp>,
+lets you edit the contents of a cell. By default, the list controls use
+a TextInput control as the item editor. That means when you select
+a cell in the list control, Flex opens a TextInput control that
+contains the current contents of the cell and lets you edit it,
+as the following image shows:</p>
+<div class="figborder">
+<img alt="DataGrid control using the default item editor" src="images/cr_dgDefaultCellEditor.png"/>
+</div>
+<p>In this image, you use the default item editor to edit the price
+of the first album in the DataGrid control. </p>
+<p>For more information on item editors, see <a href="flx_celleditor_ce.html#WS2db454920e96a9e51e63e3d11c0bf69084-7cb2_verapache">Advanced
+data display with MX item editors</a>.</p>
+</div>
+</div>
+<div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf69084-7c9b_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7c9b_verapache"><!-- --></a>
+<h3 class="topictitle3">Using custom MX item renderers
+and item editors</h3>
+<div>
+<p>To
+control the display of a list component, you write a custom item
+renderer or custom item editor. Your custom item renderers and item
+editors still use the underlying functionality of the list control,
+but let you control the display and editing of the data. Custom
+item renderers and item editors provide you with several advantages:</p>
+<ul>
+<li>
+<p>You can create a more compelling user interface by replacing
+the display of text with a more user-intuitive appearance. </p>
+</li>
+<li>
+<p>You can combine multiple elements in a single list item,
+such as a label and an image.</p>
+</li>
+<li>
+<p>You can programmatically control the display of the data.</p>
+</li>
+</ul>
+<p>The following <a href="https://flex.apache.org/asdoc/mx/controls/List.html" target="_blank">List</a> control
+is a modification of the List control in the section <a href="flx_cellrenderer_cr.html#WS2db454920e96a9e51e63e3d11c0bf69084-7caf_verapache">Default
+item rendering and cell editing in MX</a>. In this example,
+you use a custom item renderer to display the state name, capital,
+and a URL to the state's official web site in each list item:</p>
+<div class="figborder">
+<img alt="Custom item renderer to display the state name, capital, and a URL to the state\xd5 s official website" src="images/cr_listStateCellRenderer.png"/>
+</div>
+<p>For the code for this example, see <a href="flx_cellrenderer_cr.html#WS2db454920e96a9e51e63e3d11c0bf69084-7cae_verapache">Example:
+Using an item renderer with an MX List control</a>.</p>
+<p>In the next image, you use a default item renderer for the first
+and third columns of the <a href="https://flex.apache.org/asdoc/mx/controls/DataGrid.html" target="_blank">DataGrid</a> control.
+You use a custom item renderer for the second column to display
+the album cover along with the album title in the DataGrid control.</p>
+<div class="figborder">
+<img alt="Custom item renderer for the second column to display the album cover" src="images/cr_dgMultiFieldCellRenderer.png"/>
+</div>
+<p>For the code for this example, see <a href="flx_cellrenderer_cr.html#WS2db454920e96a9e51e63e3d11c0bf69084-7cad_verapache">Creating
+a complex inline item renderer or item editor</a>.</p>
+<p>Just as you can define a custom item renderer to control the
+display of a cell, you can use a custom item editor to edit the
+contents of the cell. For example, if the custom item renderer displays
+an image, you could define a custom item editor that uses a <a href="https://flex.apache.org/asdoc/mx/controls/ComboBox.html" target="_blank">ComboBox</a> control
+that lets users select an image from a list of available images.
+Or you could use a <a href="https://flex.apache.org/asdoc/mx/controls/CheckBox.html" target="_blank">CheckBox</a> control
+to let the user set a <samp class="codeph">true</samp> or <samp class="codeph">false</samp> value
+for a cell, as the right side of the following example shows:</p>
+<div class="figborder">
+<img alt="Custom item editor using a CheckBox control" src="images/cr_dgPreEdit_CellEditor.png"/>
+</div>
+<p>For the code for this example, see <a href="flx_cellrenderer_cr.html#WS2db454920e96a9e51e63e3d11c0bf69084-7cac_verapache">Creating
+a simple item editor component</a>.</p>
+<p>Using an item renderer does not imply that the control also has
+an item editor. Often, you do not allow your controls to be edited;
+that is, they are for display only. </p>
+<p>You can also use an item editor without a corresponding item
+renderer. For example, you could display information such as a male/female
+or true/false as text using the default item renderer. But, you
+could then use a custom item editor with a ComboBox control that
+provides the user only a limited set of options to enter into the
+cell when changing the value. </p>
+</div>
+</div>
+<div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf64fe7-7ffc_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf64fe7-7ffc_verapache"><!-- --></a>
+<h3 class="topictitle3">MX item renderer and item editor
+architecture</h3>
+<div>
+<p>In order for an item renderer
+or item editor to work with the contents of a list control, the
+list control must be able to pass information to the item renderer
+or item editor. An item editor must also be able to pass updated
+information back to the list control. </p>
+<p>The following image shows the relationship of a list control
+to an item renderer or item editor: </p>
+<div class="figborder">
+<img alt="The relationship of a list control to an item renderer or item editor" src="images/cr_item_renderer_editor.png"/>
+</div>
+<p>To pass information to an item renderer or item editor, Flex
+sets the <samp class="codeph">data</samp> property of the item renderer or
+item editor to the cell data. In the previous image, you can see
+the <samp class="codeph">data</samp> property that is used to pass the data
+to the item renderer or item editor. </p>
+<p>By default, an item editor can pass back a single value to the
+list control that becomes the new value of the edited cell. To return
+more than one value, you must write additional code to return the
+data back to the list control. </p>
+<p>Any Flex component that you want to use in an item renderer or
+item editor, and that requires access to the cell data of the list
+control, must implement the <a href="https://flex.apache.org/asdoc/mx/core/IDataRenderer.html" target="_blank">IDataRenderer</a> interface
+to support the <samp class="codeph">data</samp> property. You can use additional components
+in an item renderer that do not support the <samp class="codeph">data</samp> property,
+if those components do not need to access data passed from the list
+control.</p>
+<p>The contents of the <samp class="codeph">data</samp> property depend on
+the type of control, as the following table shows:</p>
+<div class="tablenoborder"><table border="1" cellpadding="4" cellspacing="0" frame="border" rules="all" summary="">
+<thead align="left">
+<tr>
+<th class="cellrowborder" id="d70304e465" valign="top" width="NaN%">
+<p>Control</p>
+</th>
+<th class="cellrowborder" id="d70304e471" valign="top" width="NaN%">
+<p>Contents of the data property</p>
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="cellrowborder" headers="d70304e465" valign="top" width="NaN%">
+<p>
+<a href="https://flex.apache.org/asdoc/mx/controls/DataGrid.html" target="_blank">DataGrid</a>
+</p>
+</td>
+<td class="cellrowborder" headers="d70304e471" valign="top" width="NaN%">
+<p>Contains the data provider element for the
+entire row of the DataGrid control. That means if you use a different
+item renderer for each cell of the DataGrid control, each cell in
+a row receives the same information in the <samp class="codeph">data</samp> property.</p>
+</td>
+</tr>
+<tr>
+<td class="cellrowborder" headers="d70304e465" valign="top" width="NaN%">
+<p>
+<a href="https://flex.apache.org/asdoc/mx/controls/Tree.html" target="_blank">Tree</a>
+</p>
+<p>
+<a href="https://flex.apache.org/asdoc/mx/controls/List.html" target="_blank">List</a>
+</p>
+</td>
+<td class="cellrowborder" headers="d70304e471" valign="top" width="NaN%">
+<p>Contains the data provider element for the
+node of the List or Tree control.</p>
+</td>
+</tr>
+<tr>
+<td class="cellrowborder" headers="d70304e465" valign="top" width="NaN%">
+<p>
+<a href="https://flex.apache.org/asdoc/mx/controls/HorizontalList.html" target="_blank">HorizontalList</a>
+</p>
+<p>
+<a href="https://flex.apache.org/asdoc/mx/controls/TileList.html" target="_blank">TileList</a>
+</p>
+</td>
+<td class="cellrowborder" headers="d70304e471" valign="top" width="NaN%">
+<p>Contains the data provider element for the
+cell.</p>
+</td>
+</tr>
+<tr>
+<td class="cellrowborder" headers="d70304e465" valign="top" width="NaN%">
+<p>
+<a href="https://flex.apache.org/asdoc/mx/controls/Menu.html" target="_blank">Menu</a>
+</p>
+</td>
+<td class="cellrowborder" headers="d70304e471" valign="top" width="NaN%">
+<p>Contains the data provider element for the
+menu item.</p>
+</td>
+</tr>
+<tr>
+<td class="cellrowborder" headers="d70304e465" valign="top" width="NaN%">
+<p>
+<a href="https://flex.apache.org/asdoc/mx/controls/Menu.html" target="_blank">MenuBar</a>
+</p>
+</td>
+<td class="cellrowborder" headers="d70304e471" valign="top" width="NaN%">
+<p>Contains the data provider element for the
+menu bar item. </p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>For more information about item editors, see <a href="flx_celleditor_ce.html#WS2db454920e96a9e51e63e3d11c0bf69084-7cb2_verapache">Advanced
+data display with MX item editors</a>.</p>
+</div>
+</div>
+<div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf64fe7-7ffb_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf64fe7-7ffb_verapache"><!-- --></a>
+<h3 class="topictitle3">About MX item renderer and item
+editor interfaces</h3>
+<div>
+<p>The Flex item renderer and item editor architecture is
+defined by several interfaces. Flex components that you can use
+as item renderers and item editors implement one or more of these
+interfaces. If you create your own custom component to use as an
+item renderer or item editor, your component must implement one
+or more of these interfaces, depending on how you intend to use it.</p>
+<p>The following table describes the interfaces that you use with
+item renderers and item editors:</p>
+<div class="tablenoborder"><table border="1" cellpadding="4" cellspacing="0" frame="border" rules="all" summary="">
+<thead align="left">
+<tr>
+<th class="cellrowborder" id="d70304e635" valign="top" width="NaN%">
+<p>Interface</p>
+</th>
+<th class="cellrowborder" id="d70304e641" valign="top" width="NaN%">
+<p>Use</p>
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="cellrowborder" headers="d70304e635" valign="top" width="NaN%">
+<p>
+<a href="https://flex.apache.org/asdoc/mx/core/IDataRenderer.html" target="_blank">IDataRenderer</a>
+</p>
+</td>
+<td class="cellrowborder" headers="d70304e641" valign="top" width="NaN%">
+<p>Defines the <samp class="codeph">data</samp> property
+used to pass information to an item renderer or item editor. All
+item renderers and item editors must implement this interface.</p>
+<p>Many
+Flex components implement this interface, such as the chart renderer
+classes and many Flex controls. </p>
+</td>
+</tr>
+<tr>
+<td class="cellrowborder" headers="d70304e635" valign="top" width="NaN%">
+<p>
+<a href="https://flex.apache.org/asdoc/mx/controls/listClasses/IDropInListItemRenderer.html" target="_blank">IDropInListItemRenderer</a>
+</p>
+</td>
+<td class="cellrowborder" headers="d70304e641" valign="top" width="NaN%">
+<p>Defines the <samp class="codeph">listData</samp> property
+required by drop-in item renderers and item editors. All drop-in
+item renderers and item editors must implement this interface. For
+more information, see <a href="flx_cellrenderer_cr.html#WS2db454920e96a9e51e63e3d11c0bf69084-7cb3_verapache">Creating
+MX drop-in item renderers and item editors</a>.</p>
+<p>The <samp class="codeph">listData</samp> property
+is of type BaseListData, where the BaseListData class has three
+subclasses: DataGridListData, ListData, TreeListData. The actual
+data type of the value of the <samp class="codeph">listData</samp> property depends
+on the control using the drop-in item renderer or item editor. For
+a DataGrid control, the value is of type DataGridListData; for a
+List control, the value is of type ListData; and for a Tree control,
+the value is of type TreeListData.</p>
+</td>
+</tr>
+<tr>
+<td class="cellrowborder" headers="d70304e635" valign="top" width="NaN%">
+<p>
+<a href="https://flex.apache.org/asdoc/mx/controls/listClasses/IListItemRenderer.html" target="_blank">IListItemRenderer</a>
+</p>
+</td>
+<td class="cellrowborder" headers="d70304e641" valign="top" width="NaN%">
+<p>Defines the complete set of interfaces that
+an item renderer or item editor must implement to be used with any
+Flex control other than a Chart control. A renderer for a Chart
+control has to implement only the IDataRenderer interface.</p>
+<p>The
+set of interfaces includes the following:</p>
+<p>IDataRenderer, IFlexDisplayObject,
+ILayoutClient, IStyleable, and IUIComponent. </p>
+<p>The UIComponent
+class implements all of these interfaces, except the IDataRenderer
+interface. Therefore, if you create a custom item renderer or item
+editor as a subclass of the UIComponent class, you have to implement
+only the IDataRenderer interface. If you implement a drop-in item
+renderer or item editor as a subclass of the UIComponent class,
+you have to implement only the IDataRenderer and IDropInListItemRenderer
+interfaces. </p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf64fe7-7ffa_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf64fe7-7ffa_verapache"><!-- --></a>
+<h3 class="topictitle3">Application layout with item renderers
+and item editors</h3>
+<div>
+<p>All
+list controls, with the exception of the <a href="https://flex.apache.org/asdoc/mx/controls/TileList.html" target="_blank">TileList</a> and <a href="https://flex.apache.org/asdoc/mx/controls/HorizontalList.html" target="_blank">HorizontalList</a> controls, ignore
+item renderers when calculating the default height and width of
+their contents. By default, item renderers are sized to the full
+width of a control, or the width of the column for a DataGrid control.
+Therefore, if you define a custom item renderer that requires a
+size other than its default, you should explicitly size the control. </p>
+<p>Vertical controls such as the <a href="https://flex.apache.org/asdoc/mx/controls/List.html" target="_blank">List</a> and <a href="https://flex.apache.org/asdoc/mx/controls/Tree.html" target="_blank">Tree</a> controls
+use the <samp class="codeph">rowHeight</samp> property to determine the default
+cell height. You can also set the <samp class="codeph">variableRowHeight</samp> property
+to <samp class="codeph">true</samp> if each row has a different height. Otherwise,
+Flex sets the height of each cell to 20 pixels.</p>
+<p>For the HorizontalList control, Flex can use the value of the <samp class="codeph">columnWidth</samp> property,
+if specified. For the TileList control, Flex uses the values of
+the <samp class="codeph">columnWidth</samp> and <samp class="codeph">rowHeight</samp> properties.
+If you omit these properties, Flex examines the control's data provider
+to determine the default size of each cell, including an item renderer,
+if specified. Otherwise, Flex sets the height and width of each
+cell to 50 pixels.</p>
+</div>
+</div>
+</div>
+<div class="nested1" id="WS2db454920e96a9e51e63e3d11c0bf64fe7-7ff9_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf64fe7-7ff9_verapache"><!-- --></a>
+<h2 class="topictitle2">Creating an MX item renderer and
+item editor</h2>
+<div>
+<p>One of the first decisions that you must make when using
+custom item renderers and item editors is how to implement them.
+Flex lets you define item renderers and item editors in three different
+ways:</p>
+<dl>
+<dt class="dlterm">Drop-in item renderers and item editors</dt>
+<dd>
+<p>Insert a single component to define an item renderer or item
+editor. For more information, see <a href="flx_cellrenderer_cr.html#WS2db454920e96a9e51e63e3d11c0bf69084-7ca9_verapache">Using
+an MX drop-in item renderer or item editor</a>.</p>
+</dd>
+<dt class="dlterm">Inline item renderers and item editors</dt>
+<dd>
+<p>Define one or more components using child tags of the list
+control to define an item renderer or item editor. For more information,
+see <a href="flx_cellrenderer_cr.html#WS2db454920e96a9e51e63e3d11c0bf69084-7ca8_verapache">Using
+an MX inline item renderer or item editor</a>.</p>
+</dd>
+<dt class="dlterm">Item renderer and item editor components</dt>
+<dd>
+<p>Define an item renderer or item editor as a reusable component.
+For more information, see <a href="flx_cellrenderer_cr.html#WS2db454920e96a9e51e63e3d11c0bf69084-7ca7_verapache">Using
+a component as an MX item renderer or item editor</a>.</p>
+<p>The
+following sections describe each technique.</p>
+</dd>
+</dl>
+</div>
+<div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf69084-7ca9_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7ca9_verapache"><!-- --></a>
+<h3 class="topictitle3">Using an MX drop-in item renderer
+or item editor</h3>
+<div>
+<p>For simple item renderers and item editors, such as using
+a <a href="https://flex.apache.org/asdoc/mx/controls/NumericStepper.html" target="_blank">NumericStepper</a> control
+to edit a field of a <a href="https://flex.apache.org/asdoc/mx/controls/DataGrid.html" target="_blank">DataGrid</a> control,
+you can use a drop-in item editor. A <em>drop-in item renderer</em> or <em>drop-in item editor</em> is
+a Flex component that you specify as the value of the <samp class="codeph">itemRenderer</samp> or <samp class="codeph">itemEditor</samp> property
+of a list control. </p>
+<p>In the following example, you specify the <a href="https://flex.apache.org/asdoc/mx/controls/NumericStepper.html" target="_blank">NumericStepper</a> control
+as the item editor for a column of the DataGrid control: </p>
+<pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- itemRenderers\dropin\DropInNumStepper.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx"&gt; 
+    
+    &lt;fx:Script&gt; 
+        &lt;![CDATA[                
+            import mx.collections.ArrayCollection; 
+        
+            [Bindable] 
+            private var myDP:ArrayCollection = new ArrayCollection([ 
+                {label1:"Order #2314", quant:3, Sent:true}, 
+                {label1:"Order #2315", quant:3, Sent:false}     
+            ]);               
+        ]]&gt; 
+    &lt;/fx:Script&gt; 
+ 
+    &lt;mx:DataGrid id="myDG" dataProvider="{myDP}" 
+        variableRowHeight="true" 
+        editable="true" &gt; 
+        &lt;mx:columns&gt; 
+            &lt;mx:DataGridColumn dataField="label1" headerText="Order #"/&gt; 
+            &lt;mx:DataGridColumn dataField="quant" 
+                headerText="Qty" 
+                itemEditor="mx.controls.NumericStepper"  
+                editorDataField="value" 
+            /&gt; 
+        &lt;/mx:columns &gt; 
+    &lt;/mx:DataGrid&gt; 
+&lt;/s:Application&gt;</pre>
+<p>In this example, when the user selects a cell of the column to
+edit it, Flex displays the NumericStepper control in that cell.
+Flex automatically uses the <samp class="codeph">data</samp> property to populate
+the NumericStepper control with the current value of the column. </p>
+<p>You use the <samp class="codeph">editorDataField</samp> property to specify
+the property of the item editor that returns the new data for the
+cell. By default, the list control uses the <samp class="codeph">text</samp> field
+of the TextInput control to supply the new value; therefore, the default
+value of the <samp class="codeph">editorDataField</samp> property is <samp class="codeph">"text"</samp>.
+In this example, you specify that the <samp class="codeph">value</samp> field
+of the NumericStepper supplies the new value for the cell.</p>
+<p>You can use only a subset of the Flex components as drop-in item
+renderers and item editors&mdash;those components that implement the IDropInListItemRenderer interface.
+For more information on using drop-in item renderers and item editors, and
+for a list of controls that support drop-in item renderers and item
+editors, see <a href="flx_cellrenderer_cr.html#WS2db454920e96a9e51e63e3d11c0bf69084-7cb3_verapache">Creating
+MX drop-in item renderers and item editors</a>.</p>
+</div>
+</div>
+<div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf69084-7ca8_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7ca8_verapache"><!-- --></a>
+<h3 class="topictitle3">Using an MX inline item renderer
+or item editor</h3>
+<div>
+<p>In the section <a href="flx_cellrenderer_cr.html#WS2db454920e96a9e51e63e3d11c0bf69084-7ca9_verapache">Using
+an MX drop-in item renderer or item editor</a>, the example shows
+how easy it is to use drop-in item renderers and item editors. The
+only drawback to using them is that you cannot configure them. You
+can specify the drop-in item renderers and item editors only as
+the values of a list control property.</p>
+<p>To create more flexible item renderers and item editors, you
+develop your item renderer or item editor as an inline component.
+In the next example, you modify the previous example to use a <a href="https://flex.apache.org/asdoc/mx/controls/NumericStepper.html" target="_blank">NumericStepper</a> control
+as an inline item editor. With an inline item editor, you can configure
+the NumericStepper control just as if you used it as a stand-alone
+control.</p>
+<pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- itemRenderers\inline\InlineNumStepper.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx"&gt; 
+    
+    &lt;fx:Script&gt; 
+        &lt;![CDATA[ 
+            import mx.collections.ArrayCollection; 
+        
+            [Bindable]                
+            private var myDP:ArrayCollection = new ArrayCollection([ 
+                {label1:"Order #2314", quant:3, Sent:true}, 
+                {label1:"Order #2315", quant:3, Sent:false}     
+            ]);               
+        ]]&gt; 
+    &lt;/fx:Script&gt; 
+ 
+    &lt;mx:DataGrid id="myDG" dataProvider="{myDP}" 
+        variableRowHeight="true" 
+        editable="true" &gt; 
+        &lt;mx:columns&gt; 
+            &lt;mx:DataGridColumn dataField="label1" headerText="Order #"/&gt; 
+            &lt;mx:DataGridColumn dataField="quant" editorDataField="value" headerText="Qty"&gt; 
+                &lt;mx:itemEditor&gt; 
+                    &lt;fx:Component&gt; 
+                        &lt;mx:NumericStepper stepSize="1" maximum="50"/&gt; 
+                    &lt;/fx:Component&gt; 
+                &lt;/mx:itemEditor&gt; 
+            &lt;/mx:DataGridColumn&gt; 
+        &lt;/mx:columns&gt; 
+    &lt;/mx:DataGrid&gt; 
+&lt;/s:Application&gt;</pre>
+<p>In this example, you define the NumericStepper control as the
+item editor for the column, and specify a maximum value of 50 and
+a step size of 1 for the NumericStepper control. </p>
+<p>For more information on creating inline item renderers and item
+editors, see <a href="flx_cellrenderer_cr.html#WS2db454920e96a9e51e63e3d11c0bf69084-7ca4_verapache">Creating
+MX inline item renderers and editors</a>.</p>
+</div>
+</div>
+<div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf69084-7ca7_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7ca7_verapache"><!-- --></a>
+<h3 class="topictitle3">Using a component as an MX item
+renderer or item editor</h3>
+<div>
+<p>One disadvantage of using drop-in and inline item renderers
+and editors is that you define the item renderer or editor in the
+application file; therefore, it is not reusable in another location
+in the application, or in another application. You can create a
+reusable item renderer or item editor as a Flex component, and then
+use that component anywhere in an application that requires the
+item renderer.</p>
+<p>For example, the following code uses a <a href="https://flex.apache.org/asdoc/mx/controls/NumericStepper.html" target="_blank">NumericStepper</a> control
+to define a custom item editor as an MXML component:</p>
+<pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- itemRenderers\component\myComponents\NSEditor.mxml --&gt; 
+&lt;mx:NumericStepper xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    stepSize="1" 
+    maximum="50"/&gt;</pre>
+<p>The custom MXML component defines the item editor as a NumericStepper control.
+In this example, the custom item editor is named NSEditor and is
+implemented as an MXML component in the NSEditor.mxml file. You
+place the file NSEditor.mxml in the myComponents directory beneath
+your main application directory. </p>
+<p>You can then use this component anywhere in an application, as
+the following example shows:</p>
+<pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- itemRenderers\component\MainNSEditor.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx"&gt; 
+    
+    &lt;fx:Script&gt; 
+        &lt;![CDATA[ 
+            import mx.collections.ArrayCollection; 
+        
+            [Bindable] 
+            private var myDP:ArrayCollection = new ArrayCollection([ 
+                {label1:"Order #2314", quant:3, Sent:true}, 
+                {label1:"Order #2315", quant:3, Sent:false}     
+            ]);               
+        ]]&gt; 
+    &lt;/fx:Script&gt; 
+ 
+    &lt;mx:DataGrid id="myDG" dataProvider="{myDP}" 
+            variableRowHeight="true" 
+            editable="true" &gt; 
+        &lt;mx:columns&gt; 
+            &lt;mx:DataGridColumn dataField="label1" 
+                headerText="Order #"/&gt; 
+            &lt;mx:DataGridColumn dataField="quant" 
+                itemEditor="myComponents.NSEditor" 
+                editorDataField="value"/&gt; 
+        &lt;/mx:columns &gt; 
+    &lt;/mx:DataGrid&gt; 
+&lt;/s:Application&gt;</pre>
+<p>When the user selects a cell in the quant column of the <a href="https://flex.apache.org/asdoc/mx/controls/DataGrid.html" target="_blank">DataGrid</a> control,
+Flex displays a NumericStepper control with the current cell value. </p>
+<p>You might have several locations in your application where users
+can modify a numeric value. You defined this item editor as a custom
+component; therefore, you can reuse it anywhere in your application. </p>
+<p>For more information on creating item renderers and item editors
+as components, see <a href="flx_cellrenderer_cr.html#WS2db454920e96a9e51e63e3d11c0bf69084-7ca3_verapache">Creating
+MX item renderers and item editor components</a>.</p>
+</div>
+</div>
+<div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf64fe7-7ff5_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf64fe7-7ff5_verapache"><!-- --></a>
+<h3 class="topictitle3">Using editable controls in an MX
+item renderer</h3>
+<div>
+<p>Item
+renderers do not impose restrictions on the types of Flex components
+that you can use in them. For example, you can use controls, such
+as the <a href="https://flex.apache.org/asdoc/mx/controls/Label.html" target="_blank">Label</a>, <a href="https://flex.apache.org/asdoc/mx/controls/LinkButton.html" target="_blank">LinkButton</a>, <a href="https://flex.apache.org/asdoc/mx/controls/Button.html" target="_blank">Button</a>, and <a href="https://flex.apache.org/asdoc/mx/controls/Text.html" target="_blank">Text</a> controls,
+to display data, but these controls do not let the user modify the
+contents of the control.</p>
+<p>Or you can use controls such as the <a href="https://flex.apache.org/asdoc/mx/controls/CheckBox.html" target="_blank">CheckBox</a>, <a href="https://flex.apache.org/asdoc/mx/controls/ComboBox.html" target="_blank">ComboBox</a>,
+and <a href="https://flex.apache.org/asdoc/mx/controls/TextInput.html" target="_blank">TextInput</a> controls that
+both display data and let users interact with the control to modify
+or change it. For example, you could use a CheckBox control to display
+a selected (<samp class="codeph">true</samp> value) or unselected (<samp class="codeph">false</samp> value)
+cell in a <a href="https://flex.apache.org/asdoc/mx/controls/DataGrid.html" target="_blank">DataGrid</a> control.</p>
+<p>When the user selects the cell of the DataGrid control that contains
+the CheckBox control, the user can interact with the control to
+change its state. To the user, it appears that the DataGrid control
+is editable. </p>
+<p>However, an item renderer by default is not connected to the
+editing mechanism of the list control; it does not propagate changes
+to the list control's data provider, nor does it dispatch an event
+when the user modifies the cell. Although the list control appears
+to the user to be editable, it really is not.</p>
+<p>In another example, the user changes the value of the CheckBox
+control, and then sorts the DataGrid column. But the DataGrid sorts
+the cell by the value in the data provider, not the value in the
+CheckBox control, so the user perceives that the sort works incorrectly. </p>
+<p>You can manage this situation in several ways, including the
+following:</p>
+<ul>
+<li>
+<p>In your item renderer, do not use controls that let users
+modify them (CheckBox, ComboBox, and others).</p>
+</li>
+<li>
+<p>Create custom versions of these controls to prohibit user
+interaction with them.</p>
+</li>
+<li>
+<p>Use the <samp class="codeph">rendererIsEditor</samp> property of the
+list control to specify that the item renderer is also an item editor.
+For more information, see <a href="flx_celleditor_ce.html#WS2db454920e96a9e51e63e3d11c0bf69084-7ca2_verapache">Example:
+Using an item renderer as an item editor</a>. </p>
+</li>
+<li>
+<p>Write your own code for the item renderer and hosting control
+to pass data back from the item renderer when you do let users interact
+with it. </p>
+</li>
+</ul>
+</div>
+</div>
+<div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf64fe7-7ff4_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf64fe7-7ff4_verapache"><!-- --></a>
+<h3 class="topictitle3">Setting the itemRenderer or itemEditor
+property in ActionScript</h3>
+<div>
+<p>The <samp class="codeph">itemRenderer</samp> and <samp class="codeph">itemEditor</samp> properties
+are of type <a href="https://flex.apache.org/asdoc/mx/core/IFactory.html" target="_blank">IFactory</a>.
+When you set these properties in MXML, the MXML compiler automatically
+casts the property value to the type <a href="https://flex.apache.org/asdoc/mx/core/ClassFactory.html" target="_blank">ClassFactory</a>,
+a class that implements the IFactory interface.</p>
+<p>When you set these properties in ActionScript, you must explicitly
+cast the property value to ClassFactory, as the following example
+shows:</p>
+<pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- itemRenderers\list\AppListStateRendererEditorAS.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx"&gt; 
+ 
+    &lt;fx:Script&gt; 
+        &lt;![CDATA[ 
+            import mx.core.ClassFactory; 
+            
+            // Cast the value of the itemRenderer property 
+            // to ClassFactory. 
+            public function initCellEditor():void {  
+                myList.itemRenderer=new ClassFactory(RendererState); 
+            }           
+        ]]&gt; 
+    &lt;/fx:Script&gt; 
+ 
+    &lt;mx:List id="myList" variableRowHeight="true" 
+            height="180" width="250" 
+            initialize="initCellEditor();"&gt; 
+        &lt;mx:dataProvider&gt; 
+            &lt;fx:Object label="Alaska" 
+                data="Juneau" 
+                webPage="http://www.state.ak.us/"/&gt; 
+            &lt;fx:Object label="Alabama" 
+                data="Montgomery" 
+                webPage="http://www.alabama.gov/" /&gt; 
+            &lt;fx:Object label="Arkansas" 
+                data="Little Rock" 
+                webPage="http://www.state.ar.us/"/&gt;  
+        &lt;/mx:dataProvider&gt; 
+    &lt;/mx:List&gt; 
+&lt;/s:Application&gt;</pre>
+<p>Shown below is the code for the RenderState.mxml item renderer:</p>
+<pre class="noswf">&lt;?xml version="1.0"?&gt; 
+&lt;!-- itemRenderers\list\RendererState.mxml --&gt; 
+&lt;mx:VBox xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx"&gt;    
+    &lt;fx:Script&gt; 
+        &lt;![CDATA[ 
+            // Import Event and URLRequest classes. 
+            import flash.events.Event; 
+            import flash.net.URLRequest; 
+                
+            private var u:URLRequest; 
+            
+            // Event handler to open URL using navigateToURL(). 
+            private function handleClick(eventObj:Event):void { 
+                u = new URLRequest(data.webPage); 
+                navigateToURL(u); 
+            }   
+        ]]&gt; 
+    &lt;/fx:Script&gt; 
+    
+    &lt;mx:HBox &gt;  
+        &lt;!-- Use Label controls to display state and capital names. --&gt; 
+        &lt;mx:Label id="State" text="State: {data.label}"/&gt; 
+        &lt;mx:Label id="Statecapital" text="Capital: {data.data}" /&gt; 
+    &lt;/mx:HBox&gt; 
+ 
+    &lt;!-- Define the Link control to open a URL. --&gt; 
+    &lt;mx:LinkButton id="webPage" label="Official {data.label} web page" 
+        click="handleClick(event);" color="blue"  /&gt; 
+&lt;/mx:VBox&gt;</pre>
+</div>
+</div>
+<div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf64fe7-7ff3_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf64fe7-7ff3_verapache"><!-- --></a>
+<h3 class="topictitle3">About the MX item renderer and
+item editor life cycle</h3>
+<div>
+<p>Flex creates instances of item renderers and item editors
+as needed by your application for display and measurement purposes.
+Therefore, the number of instances of an item renderer or item editor
+in your application is not necessarily directly related to the number
+of visible item renderers. Also, if the list control is scrolled
+or resized, a single item renderer instance may be reused to represent more
+than one data item. Thus, you should not make assumptions about
+how many instances of your item renderer and item editor are active
+at any time. </p>
+<p>Because Flex can reuse an item renderer, ensure that you fully
+define its state. For example, you use a <a href="https://flex.apache.org/asdoc/mx/controls/CheckBox.html" target="_blank">CheckBox</a> control
+in an item renderer to display a <samp class="codeph">true</samp> (checked)
+or <samp class="codeph">false</samp> (unchecked) value based on the current
+value of the <samp class="codeph">data</samp> property. A common mistake is
+to assume that the CheckBox control in the item renderer is always
+in its default state of unchecked. Developers then write an item
+renderer to inspect the <samp class="codeph">data</samp> property for a value
+of <samp class="codeph">true</samp> and set the CheckBox control to checked
+if found.</p>
+<p>However, you must take into account that the CheckBox may already
+be checked. So, you must inspect the <samp class="codeph">data</samp> property
+for a value of <samp class="codeph">false</samp>, and explicitly uncheck the
+control if it is checked.</p>
+</div>
+</div>
+<div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf69084-7c93_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7c93_verapache"><!-- --></a>
+<h3 class="topictitle3">Accessing the listData property</h3>
+<div>
+<p>If
+a component implements the <a href="https://flex.apache.org/asdoc/mx/controls/listClasses/IDropInListItemRenderer.html" target="_blank">IDropInListItemRenderer</a> interface,
+you can use its <samp class="codeph">listData</samp> property to obtain information
+about the data passed to the component when you use the component
+in an item renderer or item editor. The <samp class="codeph">listData</samp> property
+is of type <a href="https://flex.apache.org/asdoc/mx/controls/listClasses/BaseListData.html" target="_blank">BaseListData</a>,
+where the BaseListData class defines the following properties:</p>
+<div class="tablenoborder"><table border="1" cellpadding="4" cellspacing="0" frame="border" rules="all" summary="">
+<thead align="left">
+<tr>
+<th class="cellrowborder" id="d70304e1296" valign="top" width="NaN%">
+<p>Property</p>
+</th>
+<th class="cellrowborder" id="d70304e1302" valign="top" width="NaN%">
+<p>Description</p>
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="cellrowborder" headers="d70304e1296" valign="top" width="NaN%">
+<div class="p">
+<pre class="codeblock">owner</pre>
+</div>
+</td>
+<td class="cellrowborder" headers="d70304e1302" valign="top" width="NaN%">
+<p>A reference to the list control that uses
+the item renderer or item editor.</p>
+</td>
+</tr>
+<tr>
+<td class="cellrowborder" headers="d70304e1296" valign="top" width="NaN%">
+<div class="p">
+<pre class="codeblock">rowIndex</pre>
+</div>
+</td>
+<td class="cellrowborder" headers="d70304e1302" valign="top" width="NaN%">
+<p>The index of the row of the DataGrid, List,
+or Tree control relative to the currently visible rows of the control,
+where the first row is at an index of 1. </p>
+</td>
+</tr>
+<tr>
+<td class="cellrowborder" headers="d70304e1296" valign="top" width="NaN%">
+<div class="p">
+<pre class="codeblock">label</pre>
+</div>
+</td>
+<td class="cellrowborder" headers="d70304e1302" valign="top" width="NaN%">
+<p>The text representation of the item data
+based on the List class's <samp class="codeph">itemToLabel()</samp> method.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>The BaseListData class has three subclasses: <a href="https://flex.apache.org/asdoc/mx/controls/dataGridClasses/DataGridListData.html" target="_blank">DataGridListData</a>, <a href="https://flex.apache.org/asdoc/mx/controls/listClasses/ListData.html" target="_blank">ListData</a>, <a href="https://flex.apache.org/asdoc/mx/controls/treeClasses/TreeListData.html" target="_blank">TreeListData</a> that
+define additional properties. For example, the DataGridListData
+class adds the <samp class="codeph">columnIndex</samp> and <samp class="codeph">dataField</samp> properties
+that you can access from an item renderer or item editor. </p>
+<p>The data type of the value of the <samp class="codeph">listData</samp> property
+depends on the control that uses the item renderer or item editor.
+For a <a href="https://flex.apache.org/asdoc/mx/controls/DataGrid.html" target="_blank">DataGrid</a> control,
+the value is of type DataGridListData; for a <a href="https://flex.apache.org/asdoc/mx/controls/List.html" target="_blank">List</a> control,
+the value is of type ListData; and for a <a href="https://flex.apache.org/asdoc/mx/controls/Tree.html" target="_blank">Tree</a> control,
+the value is of type TreeListData.</p>
+<p>The <a href="https://flex.apache.org/asdoc/mx/controls/TextArea.html" target="_blank">TextArea</a> control
+is one of the Flex controls that implements the IDropInListItemRenderer
+interface The item renderer in the following example uses the <samp class="codeph">listData</samp> property
+of the TextArea control to display the row and column of each item
+renderer in the DataGrid control: </p>
+<pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- itemRenderers\dataGrid\myComponents\RendererDGListData.mxml --&gt; 
+&lt;mx:TextArea xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    preinitialize="initTA();"&gt; 
+ 
+    &lt;fx:Script&gt; 
+        &lt;![CDATA[ 
+        
+            import mx.controls.dataGridClasses.DataGridListData; 
+            import flash.events.Event; 
+        
+            public function initTA():void {         
+                addEventListener("dataChange", handleDataChanged); 
+            }   
+            public function handleDataChanged(event:Event):void {       
+                // Cast listData to DataGridListData. 
+                var myListData:DataGridListData = 
+                    DataGridListData(listData); 
+                
+                // Access information about the data passed 
+                // to the cell renderer. 
+                text="row index: " + String(myListData.rowIndex) + 
+                    " column index: " + String(myListData.columnIndex); 
+            }   
+        ]]&gt; 
+    &lt;/fx:Script&gt; 
+&lt;/mx:TextArea&gt;</pre>
+<p>Because you use this item renderer in a DataGrid control, the
+data type of the value of the <samp class="codeph">listData</samp> property
+is DataGridListData. You use the <samp class="codeph">dataChange</samp> event
+in this example to set the contents of the TextArea control every
+time the <samp class="codeph">data</samp> property changes. </p>
+<p>The DataGrid control in the following example uses this item
+renderer to display the column and row index of each cell of the
+DataGrid control:</p>
+<pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- itemRenderers\dataGrid\MainDGListDataRenderer.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx"&gt; 
+    
+    &lt;fx:Script&gt; 
+        &lt;![CDATA[ 
+            import mx.collections.ArrayCollection; 
+        
+            [Bindable] 
+            public var initDG:ArrayCollection = new ArrayCollection([ 
+                { Company: 'Acme', Contact: 'Bob Jones', 
+                    Phone: '413-555-1212', Date: '5/5/05'}, 
+                { Company: 'Allied', Contact: 'Jane Smith', 
+                    Phone: '617-555-3434', Date: '5/6/05'} 
+            ]); 
+        ]]&gt; 
+    &lt;/fx:Script&gt; 
+ 
+    &lt;mx:Panel paddingTop="10" paddingBottom="10" 
+        paddingLeft="10" paddingRight="10" &gt; 
+ 
+        &lt;mx:DataGrid id="myGrid" dataProvider="{initDG}" 
+                variableRowHeight="true"&gt; 
+            &lt;mx:columns&gt; 
+                &lt;mx:DataGridColumn dataField="Company" 
+                    itemRenderer="myComponents.RendererDGListData"/&gt; 
+                &lt;mx:DataGridColumn dataField="Contact" 
+                    itemRenderer="myComponents.RendererDGListData"/&gt; 
+                &lt;mx:DataGridColumn dataField="Phone" 
+                    itemRenderer="myComponents.RendererDGListData"/&gt; 
+                &lt;mx:DataGridColumn dataField="Date" 
+                    itemRenderer="myComponents.RendererDGListData"/&gt; 
+            &lt;/mx:columns&gt;       
+        &lt;/mx:DataGrid&gt;      
+    &lt;/mx:Panel&gt;     
+&lt;/s:Application&gt;</pre>
+</div>
+</div>
+<div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf64fe7-7ff1_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf64fe7-7ff1_verapache"><!-- --></a>
+<h3 class="topictitle3">Handling data binding warnings
+from the compiler</h3>
+<div>
+<p>Many of the following examples, and those in <a href="flx_celleditor_ce.html#WS2db454920e96a9e51e63e3d11c0bf69084-7cb2_verapache">Advanced
+data display with MX item editors</a>, define the application
+data as an ArrayCollection of Objects. However, you might get compiler
+warning for these examples because the Object class does not support
+data binding. That does not matter with these examples because the
+data is static. </p>
+<p>If your data is dynamic, and you want it to support data binding,
+you can instead define your own data class that supports binding.
+For example, you could create the following subclass of Object that
+supports data binding, and use it instead:</p>
+<pre class="codeblock">&thinsp;package 
+&thinsp;{ 
+&thinsp;	[Bindable] 
+&thinsp;	public class MyBindableObj extends Object 
+&thinsp;	{ 
+&thinsp;		public function MyBindableObj()  { 
+&thinsp;			super(); 
+&thinsp;		} 
+&thinsp;	 
+&thinsp;		public var Artist:String = new String(); 
+&thinsp;	 
+&thinsp;		public var Album:String = new String(); 
+&thinsp;	 
+&thinsp;		public var Price:Number = new Number(); 
+&thinsp; 
+&thinsp;		public var Cover:String = new String();                           
+&thinsp;	} 
+&thinsp;}</pre>
+<p>By inserting the <samp class="codeph">[Bindable]</samp> metadata tag before
+the class definition, you specify that all public properties support
+data binding. For more information on data binding, see <a href="flx_databinding_db.html#WS2db454920e96a9e51e63e3d11c0bf69084-7fe7_verapache">Data
+binding</a>.</p>
+</div>
+</div>
+</div>
+<div class="nested1" id="WS2db454920e96a9e51e63e3d11c0bf69084-7cb3_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7cb3_verapache"><!-- --></a>
+<h2 class="topictitle2">Creating MX drop-in item renderers
+and item editors</h2>
+<div>
+<p>Several MX controls are designed
+to work as item renderers and item editors. This lets you specify
+these controls as values of the <samp class="codeph">itemRenderer</samp> or <samp class="codeph">itemEditor</samp> property.
+When you specify one of these controls as a property value, it is
+called a drop-in item renderer or drop-in item editor. </p>
+<p>To use a component as a drop-in item renderer or drop-in item
+editor, a component must implement the IDropInListItemRenderer interface.
+The following controls implement the IDropInListItemRenderer interface,
+making them usable directly as a drop-in item renderer or drop-in
+item editor:</p>
+<ul>
+<li>
+<p>Button</p>
+</li>
+<li>
+<p>CheckBox</p>
+</li>
+<li>
+<p>DateField</p>
+</li>
+<li>
+<p>Image</p>
+</li>
+<li>
+<p>Label</p>
+</li>
+<li>
+<p>NumericStepper</p>
+</li>
+<li>
+<p>Text</p>
+</li>
+<li>
+<p>TextArea</p>
+</li>
+<li>
+<p>TextInput</p>
+</li>
+</ul>
+<p>You can define your own components for use as drop-in item renderers
+or drop-in item editors. The only requirement is that they, too,
+implement the <a href="https://flex.apache.org/asdoc/mx/controls/listClasses/IDropInListItemRenderer.html" target="_blank">IDropInListItemRenderer</a> interface.</p>
+</div>
+<div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf64fe7-7fef_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf64fe7-7fef_verapache"><!-- --></a>
+<h3 class="topictitle3">Using MX drop-in item renderers
+and item editors</h3>
+<div>
+<p>When you use a control as a drop-in item renderer, Flex
+sets the control's default property to the current value of the
+cell. When you use a control as an item editor, the initial value
+of the cell becomes the current value of the control. Any edits made
+to the cell are copied back to the data provider of the list control.</p>
+<p>The following table lists the MX components that you can use
+as drop-in item renderers and item editors, and the default property
+of the component: </p>
+<div class="tablenoborder"><table border="1" cellpadding="4" cellspacing="0" frame="border" rules="all" summary="">
+<thead align="left">
+<tr>
+<th class="cellrowborder" id="d70304e1611" valign="top" width="NaN%">
+<p>Control</p>
+</th>
+<th class="cellrowborder" id="d70304e1617" valign="top" width="NaN%">
+<p>Default property</p>
+</th>
+<th class="cellrowborder" id="d70304e1623" valign="top" width="NaN%">
+<p>Notes</p>
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="cellrowborder" headers="d70304e1611" valign="top" width="NaN%">
+<p>
+<a href="https://flex.apache.org/asdoc/mx/controls/Button.html" target="_blank">Button</a>
+</p>
+</td>
+<td class="cellrowborder" headers="d70304e1617" valign="top" width="NaN%">
+<div class="p">
+<pre class="codeblock">selected</pre>
+</div>
+</td>
+<td class="cellrowborder" headers="d70304e1623" valign="top" width="NaN%">
+<p>Cannot specify a label for the Button control. </p>
+</td>
+</tr>
+<tr>
+<td class="cellrowborder" headers="d70304e1611" valign="top" width="NaN%">
+<p>
+<a href="https://flex.apache.org/asdoc/mx/controls/CheckBox.html" target="_blank">CheckBox</a>
+</p>
+</td>
+<td class="cellrowborder" headers="d70304e1617" valign="top" width="NaN%">
+<div class="p">
+<pre class="codeblock">selected</pre>
+</div>
+</td>
+<td class="cellrowborder" headers="d70304e1623" valign="top" width="NaN%">
+<p>If used as a drop-in item renderer in a
+Tree control, the Tree displays only check boxes with no text.</p>
+</td>
+</tr>
+<tr>
+<td class="cellrowborder" headers="d70304e1611" valign="top" width="NaN%">
+<p>
+<a href="https://flex.apache.org/asdoc/mx/controls/DateField.html" target="_blank">DateField</a>
+</p>
+</td>
+<td class="cellrowborder" headers="d70304e1617" valign="top" width="NaN%">
+<div class="p">
+<pre class="codeblock">selectedDate</pre>
+</div>
+</td>
+<td class="cellrowborder" headers="d70304e1623" valign="top" width="NaN%">
+<p>Requires that the data provider of the list
+control has a field of type Date. </p>
+</td>
+</tr>
+<tr>
+<td class="cellrowborder" headers="d70304e1611" valign="top" width="NaN%">
+<p>
+<a href="https://flex.apache.org/asdoc/mx/controls/Image.html" target="_blank">Image</a>
+</p>
+</td>
+<td class="cellrowborder" headers="d70304e1617" valign="top" width="NaN%">
+<div class="p">
+<pre class="codeblock">source</pre>
+</div>
+</td>
+<td class="cellrowborder" headers="d70304e1623" valign="top" width="NaN%">
+<p>Set an explicit row height by using the <samp class="codeph">rowHeight</samp> property,
+or set the <samp class="codeph">variableRowHeight</samp> property to <samp class="codeph">true</samp> to
+size the row correctly.</p>
+</td>
+</tr>
+<tr>
+<td class="cellrowborder" headers="d70304e1611" valign="top" width="NaN%">
+<p>
+<a href="https://flex.apache.org/asdoc/mx/controls/Label.html" target="_blank">Label</a>
+</p>
+</td>
+<td class="cellrowborder" headers="d70304e1617" valign="top" width="NaN%">
+<div class="p">
+<pre class="codeblock">text</pre>
+</div>
+</td>
+<td class="cellrowborder" headers="d70304e1623" valign="top" width="NaN%">
+<div class="p">
+<pre class="codeblock"> </pre>
+</div>
+</td>
+</tr>
+<tr>
+<td class="cellrowborder" headers="d70304e1611" valign="top" width="NaN%">
+<p>
+<a href="https://flex.apache.org/asdoc/mx/controls/NumericStepper.html" target="_blank">NumericStepper</a>
+</p>
+</td>
+<td class="cellrowborder" headers="d70304e1617" valign="top" width="NaN%">
+<div class="p">
+<pre class="codeblock">value</pre>
+</div>
+</td>
+<td class="cellrowborder" headers="d70304e1623" valign="top" width="NaN%">
+<div class="p">
+<pre class="codeblock"> </pre>
+</div>
+</td>
+</tr>
+<tr>
+<td class="cellrowborder" headers="d70304e1611" valign="top" width="NaN%">
+<p>
+<a href="https://flex.apache.org/asdoc/mx/controls/Text.html" target="_blank">Text</a>
+</p>
+</td>
+<td class="cellrowborder" headers="d70304e1617" valign="top" width="NaN%">
+<div class="p">
+<pre class="codeblock">text</pre>
+</div>
+</td>
+<td class="cellrowborder" headers="d70304e1623" valign="top" width="NaN%">
+<div class="p">
+<pre class="codeblock"> </pre>
+</div>
+</td>
+</tr>
+<tr>
+<td class="cellrowborder" headers="d70304e1611" valign="top" width="NaN%">
+<p>
+<a href="https://flex.apache.org/asdoc/mx/controls/TextArea.html" target="_blank">TextArea</a>
+</p>
+</td>
+<td class="cellrowborder" headers="d70304e1617" valign="top" width="NaN%">
+<div class="p">
+<pre class="codeblock">text</pre>
+</div>
+</td>
+<td class="cellrowborder" headers="d70304e1623" valign="top" width="NaN%">
+<div class="p">
+<pre class="codeblock"> </pre>
+</div>
+</td>
+</tr>
+<tr>
+<td class="cellrowborder" headers="d70304e1611" valign="top" width="NaN%">
+<p>
+<a href="https://flex.apache.org/asdoc/mx/controls/TextInput.html" target="_blank">TextInput</a>
+</p>
+</td>
+<td class="cellrowborder" headers="d70304e1617" valign="top" width="NaN%">
+<div class="p">
+<pre class="codeblock">text</pre>
+</div>
+</td>
+<td class="cellrowborder" headers="d70304e1623" valign="top" width="NaN%">
+<div class="p">
+<pre class="codeblock"> </pre>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>In the following example, you use the NumericStepper, DateField,
+and CheckBox controls as the drop-in item renderers and item editors
+for a DataGrid control:</p>
+<pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- itemRenderers\inline\CBInlineCellEditor.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx"&gt; 
+    
+    &lt;fx:Script&gt; 
+        &lt;![CDATA[ 
+            import mx.collections.ArrayCollection; 
+        
+            [Bindable]                
+            private var myDP:ArrayCollection = new ArrayCollection([ 
+                {label1:"Order #2314", contact:"John Doe", 
+                    quant:3, solddate:new Date(2005, 0, 1), Sent:true}, 
+                {label1:"Order #2315", contact:"Jane Doe", 
+                    quant:3, solddate:new Date(2005, 0, 5), Sent:false} 
+            ]); 
+        ]]&gt; 
+    &lt;/fx:Script&gt; 
+ 
+    &lt;mx:DataGrid id="myDG" 
+            dataProvider="{myDP}" 
+            variableRowHeight="true" 
+            width="500" height="250" 
+            editable="true"&gt; 
+        &lt;mx:columns&gt; 
+            &lt;mx:DataGridColumn dataField="label1" 
+                headerText="Order #" 
+                editable="false"/&gt; 
+            &lt;mx:DataGridColumn dataField="quant" 
+                headerText="Quantity" 
+                itemEditor="mx.controls.NumericStepper"  
+                editorDataField="value"/&gt; 
+            &lt;mx:DataGridColumn dataField="solddate" 
+                headerText="Date"  
+                itemRenderer="mx.controls.DateField" 
+                rendererIsEditor="true" 
+                editorDataField="selectedDate"/&gt; 
+            &lt;mx:DataGridColumn dataField="Sent" 
+                itemRenderer="mx.controls.CheckBox" 
+                rendererIsEditor="true" 
+                editorDataField="selected"/&gt; 
+        &lt;/mx:columns &gt; 
+    &lt;/mx:DataGrid&gt;  
+&lt;/s:Application&gt;</pre>
+<p>To determine the field of the data provider used to populate
+the drop-in item renderer, Flex uses the value of the <samp class="codeph">dataField</samp> property
+for the <samp class="codeph">&lt;mx:DataGridColumn&gt;</samp> tag. In this
+example, you do the following:</p>
+<ul>
+<li>
+<p>You set the <samp class="codeph">dataField</samp> property of the
+second column to <samp class="codeph">quant</samp>, and define the NumericStepper
+control as the item editor. Therefore, the column displays the cell
+value as text, and opens the NumericStepper control when you select the
+cell to edit it. The NumericStepper control displays the current
+value of the cell, and any changes you make to it are copied back
+to the data provider of the DataGrid control. </p>
+</li>
+<li>
+<p>You set the <samp class="codeph">dataField</samp> property of the third
+column to <samp class="codeph">solddate</samp>, and define the DateField control
+as the item renderer and item editor by setting the <samp class="codeph">rendererIsEditor</samp> property
+to <samp class="codeph">true</samp>. The data provider defines the data as
+an object of type Date, which is required to use the DateField control as
+the item renderer or item editor. Therefore, the column displays
+the date value using the DateField control, and also uses the DateField
+control to edit the cell value. </p>
+</li>
+<li>
+<p>You set the <samp class="codeph">dataField</samp> property of the fourth
+column to <samp class="codeph">Sent</samp>, and define the CheckBox control
+as the item renderer and item editor. Typically, you use <samp class="codeph">itemEditor</samp> property
+to specify a different class as the item editor, and specify to
+use the same control as both the item renderer and item editor by setting
+the <samp class="codeph">rendererIsEditor</samp> property to <samp class="codeph">true</samp>.
+The CheckBox control displays a check mark in the cell if the Sent
+field for the row is set to <samp class="codeph">true</samp>, and an empty
+check box if the field is set to <samp class="codeph">false</samp>. </p>
+<p>For
+more information on using an item renderer as an item editor, see <a href="flx_celleditor_ce.html#WS2db454920e96a9e51e63e3d11c0bf69084-7c9e_verapache">Creating an
+editable cell in MX</a>.</p>
+</li>
+</ul>
+<div class="note"><span class="notetitle">Note:</span> When you use a CheckBox control as a drop-in
+item renderer, the control appears flush against the left cell border.
+To center a CheckBox control, or any drop-in item renderer, create
+a custom item renderer that wraps the control in a container, such
+as the HBox container. However, the addition of the container can
+affect application performance when you are rendering large amounts
+of data. For more information, see <a href="flx_cellrenderer_cr.html#WS2db454920e96a9e51e63e3d11c0bf69084-7ca3_verapache">Creating
+MX item renderers and item editor components</a>. </div>
+<p>When you use the Image control as a drop-in item renderer, you
+usually have to set the row height to accommodate the image, as
+the following example shows:</p>
+<pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- itemRenderers\DGDropInImageRenderer.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" &gt; 
+    
+    &lt;fx:Script&gt; 
+        &lt;![CDATA[ 
+            import mx.collections.ArrayCollection; 
+        
+            [Bindable] 
+            private var initDG:ArrayCollection = new ArrayCollection([ 
+                {Artist:'Pavement', Album:'Slanted and Enchanted', 
+                    Price:11.99, Cover:'../assets/slanted.jpg'}, 
+                {Artist:'Pavement', Album:'Brighten the Corners', 
+                    Price:11.99, Cover:'../assets/brighten.jpg'} 
+            ]); 
+        ]]&gt; 
+    &lt;/fx:Script&gt; 
+ 
+    &lt;mx:DataGrid id="myGrid" dataProvider="{initDG}" rowHeight="50"&gt;    
+        &lt;mx:columns&gt; 
+            &lt;mx:DataGridColumn dataField="Artist"/&gt; 
+            &lt;mx:DataGridColumn dataField="Album"/&gt; 
+            &lt;mx:DataGridColumn dataField="Cover" 
+                itemRenderer="mx.controls.Image"/&gt; 
+            &lt;mx:DataGridColumn dataField="Price"/&gt; 
+        &lt;/mx:columns&gt;       
+    &lt;/mx:DataGrid&gt;      
+&lt;/s:Application&gt;</pre>
+<p>In this example, you use the Image control to display the album
+cover in a cell of the DataGrid control. </p>
+</div>
+</div>
+<div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf64fe7-7fee_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf64fe7-7fee_verapache"><!-- --></a>
+<h3 class="topictitle3">Requirements of a drop-in item
+renderer in a List control</h3>
+<div>
+<p>When you use the <samp class="codeph">itemRenderer</samp> property
+of the <a href="https://flex.apache.org/asdoc/mx/controls/List.html" target="_blank">List</a> control
+to specify a drop-in item renderer, the data in the data provider
+must be of the type expected by the item renderer control. For example,
+if you use an Image control as a drop-in item renderer, the data
+provider for the List control must have String data in the field.</p>
+</div>
+</div>
+</div>
+<div class="nested1" id="WS2db454920e96a9e51e63e3d11c0bf69084-7ca4_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7ca4_verapache"><!-- --></a>
+<h2 class="topictitle2">Creating MX inline item renderers
+and editors</h2>
+<div>
+<p>You define
+inline item renderers and item editors in the MXML definition of
+a component. Inline item renderers and item editors give you complete
+control over item rendering and cell editing. </p>
+</div>
+<div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf64fe7-7fec_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf64fe7-7fec_verapache"><!-- --></a>
+<h3 class="topictitle3">Creating a simple inline item renderer
+or item editor</h3>
+<div>
+<p>A simple inline item renderer contains a single control
+that supports the <samp class="codeph">data</samp> property. Flex automatically
+copies the current cell data to the item renderer, as the following
+example shows:</p>
+<pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- itemRenderers\InlineImageRenderer.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" &gt; 
+    
+    &lt;fx:Script&gt; 
+        &lt;![CDATA[ 
+            import mx.collections.ArrayCollection; 
+        
+            [Bindable] 
+            private var initDG:ArrayCollection = new ArrayCollection([ 
+                {Artist:'Pavement', Album:'Slanted and Enchanted', 
+                    Price:11.99, Cover: '../assets/slanted.jpg'}, 
+                {Artist:'Pavement', Album:'Brighten the Corners', 
+                    Price:11.99, Cover: '../assets/brighten.jpg'} 
+            ]);            
+        ]]&gt; 
+    &lt;/fx:Script&gt; 
+ 
+    &lt;mx:DataGrid id="myGrid" dataProvider="{initDG}" rowHeight="50"&gt;    
+        &lt;mx:columns&gt; 
+            &lt;mx:DataGridColumn dataField="Artist"/&gt; 
+            &lt;mx:DataGridColumn dataField="Album"/&gt; 
+            &lt;mx:DataGridColumn dataField="Cover"&gt; 
+                &lt;mx:itemRenderer&gt; 
+                    &lt;fx:Component&gt; 
+                        &lt;mx:Image height="45"/&gt; 
+                    &lt;/fx:Component&gt; 
+                &lt;/mx:itemRenderer&gt; 
+            &lt;/mx:DataGridColumn&gt; 
+            &lt;mx:DataGridColumn dataField="Price"/&gt; 
+        &lt;/mx:columns&gt;       
+    &lt;/mx:DataGrid&gt;      
+&lt;/s:Application&gt;</pre>
+<p>In this example, you use an Image control to display the album
+cover.</p>
+<p>A simple inline item editor contains a single control that supports
+the <samp class="codeph">data</samp> property. Flex automatically copies the
+current cell data to the item renderer or item editor, and copies
+the new cell data back to the list control based on the value of
+the <samp class="codeph">editorDataField</samp> property, as the following
+example item editor shows: </p>
+<pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- itemRenderers\inline\InlineNumStepper.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx"&gt; 
+    
+    &lt;fx:Script&gt; 
+        &lt;![CDATA[ 
+            import mx.collections.ArrayCollection; 
+        
+            [Bindable]                
+            private var myDP:ArrayCollection = new ArrayCollection([ 
+                {label1:"Order #2314", quant:3, Sent:true}, 
+                {label1:"Order #2315", quant:3, Sent:false}     
+            ]);               
+        ]]&gt; 
+    &lt;/fx:Script&gt; 
+ 
+    &lt;mx:DataGrid id="myDG" dataProvider="{myDP}" 
+        variableRowHeight="true" 
+        editable="true" &gt; 
+        &lt;mx:columns&gt; 
+            &lt;mx:DataGridColumn dataField="label1" headerText="Order #"/&gt; 
+            &lt;mx:DataGridColumn dataField="quant" editorDataField="value" headerText="Qty"&gt; 
+                &lt;mx:itemEditor&gt; 
+                    &lt;fx:Component&gt; 
+                        &lt;mx:NumericStepper stepSize="1" maximum="50"/&gt; 
+                    &lt;/fx:Component&gt; 
+                &lt;/mx:itemEditor&gt; 
+            &lt;/mx:DataGridColumn&gt; 
+        &lt;/mx:columns&gt; 
+    &lt;/mx:DataGrid&gt; 
+&lt;/s:Application&gt;</pre>
+<p>In this example, you return the new cell value by using the value
+property of the <a href="https://flex.apache.org/asdoc/mx/controls/NumericStepper.html" target="_blank">NumericStepper</a> control. </p>
+</div>
+</div>
+<div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf69084-7cad_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7cad_verapache"><!-- --></a>
+<h3 class="topictitle3">Creating a complex inline item
+renderer or item editor</h3>
+<div>
+<p>A complex item renderer or item editor defines multiple
+controls. For example, the section <a href="flx_cellrenderer_cr.html#WS2db454920e96a9e51e63e3d11c0bf69084-7caf_verapache">Default
+item rendering and cell editing in MX</a> showed a <a href="https://flex.apache.org/asdoc/mx/controls/DataGrid.html" target="_blank">DataGrid</a> control
+that displayed information about albums by using three text fields.
+You could add a visual element to your DataGrid control to make
+it more compelling. To do that, you modify the data provider so
+that it contains a reference to a JPEG image of the album cover. </p>
+<p>Rather than displaying the album name and album image in separate
+cells of the DataGrid control, you can use an inline item renderer
+to make them appear in a single cell, as the following example shows:</p>
+<pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- itemRenderers\InlineDGRenderer.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx"&gt; 
+    
+    &lt;fx:Script&gt; 
+        &lt;![CDATA[ 
+        
+            import mx.collections.ArrayCollection; 
+        
+            // Variable in the Application scope. 
+            public var localVar:String="Application localVar"; 
+        
+            // Data includes URL to album cover. 
+            [Bindable] 
+            private var initDG:ArrayCollection = new ArrayCollection([ 
+                {Artist:'Pavement', Album:'Slanted and Enchanted', 
+                    Price:11.99, Cover:'../assets/slanted.jpg'}, 
+                {Artist:'Pavement', Album:'Brighten the Corners', 
+                    Price:11.99, Cover:'../assets/brighten.jpg'} 
+            ]); 
+        ]]&gt; 
+    &lt;/fx:Script&gt; 
+ 
+    &lt;mx:DataGrid id="myGrid" dataProvider="{initDG}" 
+            variableRowHeight="true"&gt;   
+        &lt;mx:columns&gt; 
+                &lt;mx:DataGridColumn dataField="Artist"/&gt; 
+                &lt;mx:DataGridColumn dataField="Album"&gt; 
+                    &lt;mx:itemRenderer&gt; 
+                        &lt;fx:Component&gt; 
+                            &lt;mx:VBox&gt; 
+                                &lt;mx:Text id="albumName" 
+                                    width="100%" text="{data.Album}"/&gt; 
+                                &lt;mx:Image id="albumImage" 
+                                    height="45" source="{data.Cover}"/&gt; 
+                            &lt;/mx:VBox&gt; 
+                        &lt;/fx:Component&gt; 
+                    &lt;/mx:itemRenderer&gt; 
+                &lt;/mx:DataGridColumn&gt;    
+                &lt;mx:DataGridColumn dataField="Price"/&gt; 
+        &lt;/mx:columns&gt;       
+    &lt;/mx:DataGrid&gt;      
+&lt;/s:Application&gt;</pre>
+<p>In the preceding example, you define three columns in the DataGrid
+control, and assign your item renderer to the second column. For
+an image that shows the output of this application, see <a href="flx_cellrenderer_cr.html#WS2db454920e96a9e51e63e3d11c0bf69084-7c9b_verapache">Using
+custom MX item renderers and item editors</a>.</p>
+<p>Notice that the <a href="https://flex.apache.org/asdoc/mx/controls/Text.html" target="_blank">Text</a> and <a href="https://flex.apache.org/asdoc/mx/controls/Image.html" target="_blank">Image</a> controls
+in the item renderer both use the <samp class="codeph">data</samp> property
+to initialize their values. This is necessary because you defined
+multiple controls in the item renderer, and Flex cannot automatically
+determine which data element in the data provider is associated
+with each control of the item renderer. </p>
+<p>Even if the top-level container of an inline item renderer has
+a single child control, you must use the <samp class="codeph">data</samp> property
+to initialize the child control, as the following example shows:</p>
+<pre class="codeblock">&thinsp;&lt;mx:DataGridColumn dataField="Cover"&gt; 
+&thinsp;	&lt;mx:itemRenderer&gt; 
+&thinsp;		&lt;fx:Component&gt; 
+&thinsp;			<strong>&lt;mx:VBox horizontalAlign="center"&gt;</strong> 
+&thinsp;				<strong>&lt;mx:Image height="45" source="{data.Cover}"/&gt; </strong> 
+&thinsp;			<strong>&lt;/mx:VBox&gt;</strong> 
+&thinsp;		&lt;/fx:Component&gt; 
+&thinsp;	&lt;/mx:itemRenderer&gt; 
+&thinsp;&lt;/mx:DataGridColumn&gt; </pre>
+<p>In the preceding example, you make the Image control a child
+of a <a href="https://flex.apache.org/asdoc/mx/containers/VBox.html" target="_blank">VBox</a> container
+so that you can align the image in the cell. Because the Image control is
+now a child of the VBox container, you must initialize it by using
+the <samp class="codeph">data</samp> property. </p>
+<p>You can define multiple controls in a complex inline item editor,
+which lets you edit multiple values of the data provider for the
+list control. Alternatively, you can define a complex inline item
+editor so it returns a value other than a String. For more information,
+see <a href="flx_celleditor_ce.html#WS2db454920e96a9e51e63e3d11c0bf69084-7cb2_verapache">Advanced
+data display with MX item editors</a>. </p>
+</div>
+</div>
+<div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf64fe7-7fea_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf64fe7-7fea_verapache"><!-- --></a>
+<h3 class="topictitle3">Items allowed in an inline component</h3>
+<div>
+<p>The only restriction on what you can and cannot do in an
+inline item renderer or editor is that you cannot create an empty <samp class="codeph">&lt;fx:Component&gt;&lt;/fx:Component&gt;</samp> tag.
+For example, you can combine effect and style definitions in an
+inline item renderer or editor along with your rendering and editing
+logic. </p>
+<p>You can include the following items in an inline item renderer
+or editor:</p>
+<ul>
+<li>
+<p>Binding tags</p>
+</li>
+<li>
+<p>Effect tags</p>
+</li>
+<li>
+<p>Metadata tags</p>
+</li>
+<li>
+<p>Model tags</p>
+</li>
+<li>
+<p>Scripts tags</p>
+</li>
+<li>
+<p>Service tags</p>
+</li>
+<li>
+<p>State tags</p>
+</li>
+<li>
+<p>Styles tags</p>
+</li>
+<li>
+<p>XML tags</p>
+</li>
+<li>
+<p>
+<samp class="codeph">id</samp> attributes, except for the top-most component</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf64fe7-7fe9_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf64fe7-7fe9_verapache"><!-- --></a>
+<h3 class="topictitle3">Using the Component tag</h3>
+<div>
+<p>You use the <samp class="codeph">&lt;fx:Component&gt;</samp> tag to
+define an inline item renderer or item editor in an MXML file.</p>
+<div class="section" id="WS2db454920e96a9e51e63e3d11c0bf64fe7-7fe9_verapache__WS2db454920e96a9e51e63e3d11c0bf64fe7-7fe8_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf64fe7-7fe9_verapache__WS2db454920e96a9e51e63e3d11c0bf64fe7-7fe8_verapache"><!-- --></a><h4 class="sectiontitle">Defining
+the scope in an Component tag</h4>
+<p>The <samp class="codeph">&lt;fx:Component&gt;</samp> tag
+defines a new scope in an MXML file, where the local scope of the
+item renderer or item editor is defined by the MXML code block delimited
+by the <samp class="codeph">&lt;fx:Component&gt;</samp> and <samp class="codeph">&lt;/fx:Component&gt;</samp> tags.
+To access elements outside of the local scope of the item renderer
+or item editor, you prefix the element name with the <samp class="codeph">outerDocument</samp> keyword. </p>
+<p>For
+example, you define one variable named localVar in the scope of
+the main application, and another variable with the same name in
+the scope of the item renderer. From within the item renderer, you
+access the application's localVar by prefixing it with <samp class="codeph">outerDocument</samp> keyword,
+as the following example shows:</p>
+<pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- itemRenderers\InlineDGImageScope.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx"&gt; 
+    
+    &lt;fx:Script&gt; 
+        &lt;![CDATA[ 
+            import mx.collections.ArrayCollection; 
+        
+            // Variable in the Application scope. 
+            [Bindable]                        
+            public var localVar:String="Application localVar"; 
+        
+            // Data includes URL to album cover. 
+            [Bindable]                        
+            private var initDG:ArrayCollection = new ArrayCollection([ 
+                { Artist:'Pavement', Album:'Slanted and Enchanted', 
+                    Price:11.99, Cover:'../assets/slanted.jpg'}, 
+                { Artist:'Pavement', Album:'Brighten the Corners', 
+                    Price:11.99, Cover:'../assets/brighten.jpg'} 
+            ]); 
+        ]]&gt; 
+    &lt;/fx:Script&gt; 
+ 
+    &lt;mx:DataGrid id="myGrid" dataProvider="{initDG}" width="100%" 
+            variableRowHeight="true"&gt;   
+        &lt;mx:columns&gt; 
+            &lt;mx:DataGridColumn dataField="Artist"/&gt; 
+            &lt;mx:DataGridColumn dataField="Album"/&gt; 
+            &lt;mx:DataGridColumn dataField="Cover"&gt; 
+                &lt;mx:itemRenderer&gt; 
+                  &lt;fx:Component&gt; 
+                    &lt;mx:VBox&gt; 
+                        &lt;fx:Script&gt; 
+                          &lt;![CDATA[           
+                            // Variable in the renderer scope. 
+                            [Bindable]                        
+                            public var localVar:String="Renderer localVar";     
+                          ]]&gt; 
+                         &lt;/fx:Script&gt; 
+ 
+                         &lt;mx:Text id="albumName" 
+                            width="100%" 
+                            selectable="false" 
+                            text="{data.Album}"/&gt; 
+                         &lt;mx:Image id="albumImage" 
+                            height="45" 
+                            source="{data.Cover}"/&gt; 
+                         &lt;mx:TextArea 
+                            text="{'Renderer localVar= ' + localVar}"/&gt; 
+                         &lt;mx:TextArea 
+                            text="{'Application localVar= ' + outerDocument.localVar}"/&gt; 
+                    &lt;/mx:VBox&gt; 
+                  &lt;/fx:Component&gt; 
+                &lt;/mx:itemRenderer&gt; 
+            &lt;/mx:DataGridColumn&gt;    
+            &lt;mx:DataGridColumn dataField="Price"/&gt; 
+        &lt;/mx:columns&gt;       
+    &lt;/mx:DataGrid&gt;      
+&lt;/s:Application&gt;</pre>
+<p>One use of the <samp class="codeph">outerDocument</samp> keyword
+is to initialize the data provider of a control in the inline item
+editor. For example, you can use a web service, or other mechanism,
+to pass data into the application, such as the list of U.S. states.
+You can then initialize all <a href="https://flex.apache.org/asdoc/mx/controls/ComboBox.html" target="_blank">ComboBox</a> controls
+that are used as item editors from a single property of the application
+that contains the list of U.S. states.</p>
+</div>
+<div class="section" id="WS2db454920e96a9e51e63e3d11c0bf64fe7-7fe9_verapache__WS2db454920e96a9e51e63e3d11c0bf64fe7-7fe7_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf64fe7-7fe9_verapache__WS2db454920e96a9e51e63e3d11c0bf64fe7-7fe7_verapache"><!-- --></a><h4 class="sectiontitle">Specifying
+a class name to the inline component</h4>
+<p>You can optionally
+specify the <samp class="codeph">className</samp> property of the <samp class="codeph">&lt;fx:Component&gt;</samp> tag
+to explicitly name the class generated by Flex for the inline component.
+By naming the class, you define a way to reference the elements
+in the inline component. </p>
+</div>
+<div class="section" id="WS2db454920e96a9e51e63e3d11c0bf64fe7-7fe9_verapache__WS2db454920e96a9e51e63e3d11c0bf64fe7-7fe6_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf64fe7-7fe9_verapache__WS2db454920e96a9e51e63e3d11c0bf64fe7-7fe6_verapache"><!-- --></a><h4 class="sectiontitle">Creating
+a reusable inline item renderer or item editor</h4>
+<p>Rather
+than defining an inline item renderer or item editor in the definition
+of a component, you can define a reusable inline item renderer or
+item editor for use in multiple locations in your application.</p>
+<p>For
+example, you use the <samp class="codeph">&lt;fx:Component&gt;</samp> tag to
+define an inline item editor that consists of a ComboBox control
+for selecting the state portion of an address. You then use that
+inline item editor in two different <a href="https://flex.apache.org/asdoc/mx/controls/DataGrid.html" target="_blank">DataGrid</a> controls,
+as the following example shows:</p>
+<pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- itemRenderers\inline\InlineDGEditorCBReUse.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    width="700" &gt; 
+    
+    &lt;fx:Script&gt; 
+        &lt;![CDATA[ 
+            import mx.collections.ArrayCollection; 
+        
+            [Bindable]                
+            public var initDG:ArrayCollection = new ArrayCollection([ 
+                {Company: 'Acme', Contact: 'Bob Jones', 
+                    Phone: '413-555-1212', City: 'Boston', State: 'MA'}, 
+                {Company: 'Allied', Contact: 'Jane Smith', 
+                    Phone: '617-555-3434', City: 'SanFrancisco', State: 'CA'} 
+            ]); 
+ 
+            [Bindable]                
+            public var initDG2:ArrayCollection = new ArrayCollection([ 
+                {Company: 'MyCo', Contact: 'Stan Stanley', 
+                    Phone: '413-555-5555', City: 'Boston', State: 'MA'}, 
+                {Company: 'YourCo', Contact: 'Dave Davis', 
+                    Phone: '617-555-1212', City: 'SanFrancisco', State: 'CA'} 
+            ]); 
+        ]]&gt; 
+    &lt;/fx:Script&gt; 
+ 
+    &lt;fx:Declarations&gt; 
+        &lt;fx:Component id="inlineEditor"&gt; 
+            &lt;mx:ComboBox &gt; 
+                &lt;mx:dataProvider&gt; 
+                    &lt;fx:String&gt;AL&lt;/fx:String&gt; 
+                    &lt;fx:String&gt;AK&lt;/fx:String&gt; 
+                    &lt;fx:String&gt;AR&lt;/fx:String&gt; 
+                    &lt;fx:String&gt;CA&lt;/fx:String&gt; 
+                    &lt;fx:String&gt;MA&lt;/fx:String&gt; 
+                &lt;/mx:dataProvider&gt; 
+            &lt;/mx:ComboBox&gt; 
+        &lt;/fx:Component&gt; 
+    &lt;/fx:Declarations&gt; 
+ 
+    &lt;mx:DataGrid id="myGrid" 
+        variableRowHeight="true" 
+        dataProvider="{initDG}" 
+        editable="true" &gt; 
+        &lt;mx:columns&gt; 
+            &lt;mx:DataGridColumn dataField="Company" editable="false"/&gt; 
+            &lt;mx:DataGridColumn dataField="Contact"/&gt; 
+            &lt;mx:DataGridColumn dataField="Phone"/&gt; 
+            &lt;mx:DataGridColumn dataField="City"/&gt; 
+            &lt;mx:DataGridColumn dataField="State" 
+                width="150" 
+                editorDataField="selectedItem" 
+                itemEditor="{inlineEditor}"/&gt; 
+        &lt;/mx:columns&gt;       
+    &lt;/mx:DataGrid&gt;  
+    
+    &lt;mx:DataGrid id="myGrid2" 
+        variableRowHeight="true" 
+        dataProvider="{initDG2}" 
+        editable="true"&gt;    
+        &lt;mx:columns&gt; 
+            &lt;mx:DataGridColumn dataField="Company" editable="false"/&gt; 
+            &lt;mx:DataGridColumn dataField="Contact"/&gt; 
+            &lt;mx:DataGridColumn dataField="Phone"/&gt; 
+            &lt;mx:DataGridColumn dataField="City"/&gt; 
+            &lt;mx:DataGridColumn dataField="State" 
+                width="150" 
+                editorDataField="selectedItem" 
+                itemEditor="{inlineEditor}"/&gt; 
+        &lt;/mx:columns&gt;       
+    &lt;/mx:DataGrid&gt;  
+&lt;/s:Application&gt;</pre>
+<p>In this example, you specify
+the <samp class="codeph">id</samp> property of the inline item editor defined
+by the <samp class="codeph">&lt;fx:Component&gt;</samp> tag. You then use data
+binding to specify the editor as the value of the <samp class="codeph">itemEditor</samp> property
+for the two DataGrid controls. </p>
+<p>The inline item editor or
+item renderer defined in the <samp class="codeph">&lt;fx:Component&gt;</samp> tag appears
+only where you use it in the DataGrid control; otherwise, Flex ignores
+it when laying out your application. </p>
+</div>
+</div>
+</div>
+</div>
+<div class="nested1" id="WS2db454920e96a9e51e63e3d11c0bf69084-7ca3_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7ca3_verapache"><!-- --></a>
+<h2 class="topictitle2">Creating MX item renderers and
+item editor components</h2>
+<div>
+<p>Defining
+a custom item renderer or item editor by using an MXML component gives
+you greater flexibility and functionality than using a drop-in item
+renderer or item editor. Many of the rules for defining item renderers
+and item editors as custom components are the same as for using
+inline item renderers and editors. For more information, see <a href="flx_cellrenderer_cr.html#WS2db454920e96a9e51e63e3d11c0bf69084-7ca4_verapache">Creating
+MX inline item renderers and editors</a>.</p>
+<p>For more information on working with custom components, see <a href="flx_createcomps_intro_cci.html#WS2db454920e96a9e51e63e3d11c0bf68268-8000_verapache">Custom
+Flex components</a>. </p>
+</div>
+<div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf64fe7-7fe4_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf64fe7-7fe4_verapache"><!-- --></a>
+<h3 class="topictitle3">Creating an item renderer component</h3>
+<div>
+<p>The section <a href="flx_cellrenderer_cr.html#WS2db454920e96a9e51e63e3d11c0bf69084-7caf_verapache">Default
+item rendering and cell editing in MX</a> shows a <a href="https://flex.apache.org/asdoc/mx/controls/DataGrid.html" target="_blank">DataGrid</a> control
+that displays information about albums by using three text fields.
+You could add a visual element to your DataGrid control to make
+it more compelling. To do that, you modify the data provider so
+that it contains a URL for a JPEG image of the album cover.</p>
+<p>The default item renderer for a DataGrid control displays data
+as text. To get the DataGrid control to display the image of the
+album cover, you use the custom item renderer defined in the RendererDGImage.mxml
+file, as the following example shows:</p>
+<pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- itemRenderers\myComponents\RendererDGImage.mxml --&gt; 
+&lt;mx:HBox xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    horizontalAlign="center" &gt; 
+ 
+    &lt;mx:Image id="albumImage" height="175" source="{data.Cover}"/&gt; 
+&lt;/mx:HBox&gt;  </pre>
+<p>The item renderer contains an Image control in an <a href="https://flex.apache.org/asdoc/mx/containers/HBox.html" target="_blank">HBox</a> container.
+The HBox container specifies to center the image in the container;
+otherwise, the image appears flush left in the cell. The Image control
+specifies the height of the image as 75 pixels. By default, an image
+has a height of 0 pixels; therefore, if you omit the height, the
+image does not appear. </p>
+<p>You use data binding to associate fields of a <samp class="codeph">data</samp> property
+with the controls in an item renderer or item editor. In this example,
+the <samp class="codeph">data</samp> property that is passed to the item renderer
+contains the element of the data provider for the entire row of
+the DataGrid control. You then bind the Cover field of the <samp class="codeph">data</samp> property
+to the Image control. </p>
+<p>The following example illustrates using a custom item renderer
+with the DataGrid control: </p>
+<pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- itemRenderers\MainDGImageRenderer.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx"&gt; 
+    
+    &lt;fx:Script&gt; 
+        &lt;![CDATA[ 
+            import mx.collections.ArrayCollection; 
+        
+            [Bindable]                
+            private var initDG:ArrayCollection = new ArrayCollection([ 
+                {Artist:'Pavement', Album:'Slanted and Enchanted', 
+                    Price:11.99, Cover: '../assets/slanted.jpg'}, 
+                {Artist:'Pavement', Album:'Brighten the Corners', 
+                    Price:11.99, Cover: '../assets/brighten.jpg'} 
+            ]); 
+        ]]&gt; 
+    &lt;/fx:Script&gt; 
+ 
+    &lt;mx:DataGrid id="myGrid" 
+        dataProvider="{initDG}" 
+        variableRowHeight="true"&gt;  
+        &lt;mx:columns&gt; 
+            &lt;mx:DataGridColumn dataField="Artist"/&gt; 
+            &lt;mx:DataGridColumn dataField="Album"/&gt; 
+            &lt;mx:DataGridColumn dataField="Cover" 
+                itemRenderer="myComponents.RendererDGImage"/&gt; 
+            &lt;mx:DataGridColumn dataField="Price"/&gt; 
+        &lt;/mx:columns&gt;       
+    &lt;/mx:DataGrid&gt;  
+&lt;/s:Application&gt;</pre>
+<p>The DataGrid control contains a column for the album cover that
+uses the <samp class="codeph">itemRenderer</samp> property to specify the name
+of the MXML file that contains the item renderer for that column.
+Now, when you run this example, the DataGrid control uses your custom
+item renderer for the Cover column to display an image of the album
+cover.</p>
+<p>Rather than having the album name and album image in separate
+cells of the DataGrid control, you can use an item renderer to make
+them appear in a single cell, as the following example shows: </p>
+<pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- itemRenderers\myComponents\RendererDGTitleImage.mxml --&gt; 
+&lt;mx:VBox xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    horizontalAlign="center" height="75"&gt; 
+ 
+    &lt;mx:Text id="albumName" 
+        width="100%" 
+        selectable="false" 
+        text="{data.Album}"/&gt; 
+    &lt;mx:Image id="albumImage" 
+        source="{data.Cover}"/&gt;    
+&lt;/mx:VBox&gt;   </pre>
+<p>You save this item renderer to the RendererDGTitleImage.mxml
+file. The DataGrid control in the main application references the
+item renderer, as the following example shows: </p>
+<pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- itemRenderers\MainDGTitleRenderer.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx"&gt; 
+    
+    &lt;fx:Script&gt; 
+        &lt;![CDATA[ 
+            import mx.collections.ArrayCollection; 
+        
+            [Bindable]                
+            private var initDG:ArrayCollection = new ArrayCollection([ 
+                {Artist:'Pavement', Album:'Slanted and Enchanted', 
+                    Price:11.99, Cover: '../assets/slanted.jpg'}, 
+                {Artist:'Pavement', Album:'Brighten the Corners', 
+                    Price:11.99, Cover: '../assets/brighten.jpg'} 
+            ]); 
+        ]]&gt; 
+    &lt;/fx:Script&gt; 
+ 
+    &lt;mx:DataGrid id="myGrid" 
+        dataProvider="{initDG}" 
+        variableRowHeight="true"&gt;  
+        &lt;mx:columns&gt; 
+            &lt;mx:DataGridColumn dataField="Artist" /&gt; 
+            &lt;mx:DataGridColumn dataField="Album" 
+                itemRenderer="myComponents.RendererDGTitleImage" /&gt; 
+            &lt;mx:DataGridColumn dataField="Price"  /&gt; 
+        &lt;/mx:columns&gt;       
+    &lt;/mx:DataGrid&gt;  
+&lt;/s:Application&gt;</pre>
+<p>In the preceding example, you define three columns in the DataGrid
+control, and assign your item renderer to the second column. For
+an image that shows the output of this application, see <a href="flx_cellrenderer_cr.html#WS2db454920e96a9e51e63e3d11c0bf69084-7c9b_verapache">Using
+custom MX item renderers and item editors</a>.</p>
+</div>
+</div>
+<div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf69084-7cac_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7cac_verapache"><!-- --></a>
+<h3 class="topictitle3">Creating a simple item editor component</h3>
+<div>
+<p>A simple item editor component defines a single control
+that you use to edit a cell, and returns a single value to the list
+control. For an example of a simple item editor component, see <a href="flx_cellrenderer_cr.html#WS2db454920e96a9e51e63e3d11c0bf69084-7ca7_verapache">Using
+a component as an MX item renderer or item editor</a>.</p>
+<p>A complex item editor can contain multiple components, or can
+return something other than a single value to the list control.
+For more information, see <a href="flx_celleditor_ce.html#WS2db454920e96a9e51e63e3d11c0bf69084-7cb2_verapache">Advanced
+data display with MX item editors</a>.</p>
+</div>
+</div>
+<div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf64fe7-7fe2_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf64fe7-7fe2_verapache"><!-- --></a>
+<h3 class="topictitle3">Overriding the data property</h3>
+<div>
+<p>All components that you use in a custom item renderer or
+item editor that require access to the data passed to the renderer
+must implement the <a href="https://flex.apache.org/asdoc/mx/core/IDataRenderer.html" target="_blank">mx.core.IDataRenderer</a> interface
+to define the <samp class="codeph">data</samp> property. All Flex containers
+and many Flex components support this property. </p>
+<p>Classes implement the mx.core.IDataRenderer interface by defining
+the <samp class="codeph">data</samp> property as a setter and getter method,
+with the following signature:</p>
+<pre class="codeblock">&thinsp;override public function set data(value:Object):void 
+&thinsp;public function get data():Object</pre>
+<p>In the setter method, <em>value</em> is the <samp class="codeph">data</samp> property
+passed to the item renderer.</p>
+<p>If you define a custom component and you want to support the <samp class="codeph">data</samp> property, your
+component must implement the mx.core.IDataRenderer interface. If
+your component is a subclass of a class that already implements
+the mx.core.IDataRenderer interface, you do not have to reimplement
+the interface. </p>
+<p>To add programmatic logic to the controls in your item renderer
+or item editor that already implement the <samp class="codeph">data</samp> property,
+you can override the setter or getter method for the <samp class="codeph">data</samp> property.
+Typically, you override the setter method so that you can perform
+some operation based on the value that is passed to it.</p>
+<p>For example, the following DataGrid control uses <samp class="codeph">true</samp> and <samp class="codeph">false</samp> for
+the values of the SalePrice field of the data provider. Although
+you could display these values in your <a href="https://flex.apache.org/asdoc/mx/controls/DataGrid.html" target="_blank">DataGrid</a> control,
+you can create a more compelling DataGrid control by displaying
+images instead, as the following item renderer shows:</p>
+<pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- itemRenderers\component\myComponents\RendererDGImageSelect.mxml --&gt; 
+&lt;mx:HBox xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    horizontalAlign="center"&gt; 
+ 
+    &lt;fx:Script&gt; 
+        &lt;![CDATA[ 
+ 
+            import mx.events.FlexEvent; 
+ 
+            [Embed(source="saleIcon.jpg")] 
+            [Bindable] 
+            public var sale:Class; 
+            
+            [Embed(source="noSaleIcon.jpg")] 
+            [Bindable] 
+            public var noSale:Class;            
+            override public function set data(value:Object):void {      
+                if(value != null)  { 
+                    super.data = value; 
+                    if (value.SalePrice == true) onSale.source=new sale(); 
+                    else onSale.source=new noSale(); 
+                }   
+                // Dispatch the dataChange event. 
+                dispatchEvent(new FlexEvent(FlexEvent.DATA_CHANGE)); 
+            }   
+        ]]&gt; 
+    &lt;/fx:Script&gt; 
+ 
+    &lt;mx:Image id="onSale" height="20"/&gt; 
+&lt;/mx:HBox&gt;</pre>
+<p>In this example, you override the setter method for the <a href="https://flex.apache.org/asdoc/mx/containers/HBox.html" target="_blank">HBox</a> container.
+In the override, use <samp class="codeph">super.data</samp> to set the <samp class="codeph">data</samp> property
+for the base class, and then set the <samp class="codeph">source</samp> property
+of the Image control based on the value of the SalePrice field.
+If the field is <samp class="codeph">true</samp>, which indicates that the
+item is on sale, you display one icon. If the item is not on sale,
+you display a different icon.</p>
+<p>The override also dispatches the <samp class="codeph">dataChange</samp> event
+to indicate that the <samp class="codeph">data</samp> property has changed.
+You typically dispatch this event from the setter method.</p>
+</div>
+</div>
+<div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf64fe7-7fe1_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf64fe7-7fe1_verapache"><!-- --></a>
+<h3 class="topictitle3">About using the creationComplete
+and dataChange events</h3>
+<div>
+<p>Flex dispatches the <samp class="codeph">creationComplete</samp> event
+once for a component after the component is created and initialized.
+Many custom components define an event listener for the <samp class="codeph">creationComplete</samp> event
+to handle any postprocessing tasks that must be performed after
+the component is completely created and initialized.</p>
+<p>However, although for an item renderer or item editor, Flex might
+reuse an instance of the item renderer or item editor, a reused
+instance of an item renderer or item editor does not redispatch
+the <samp class="codeph">creationComplete</samp> event. Instead, you can use
+the <samp class="codeph">dataChange</samp> event with an item renderer or item
+editor. Flex dispatches the <samp class="codeph">dataChange</samp> event every
+time the <samp class="codeph">data</samp> property changes. The example in
+the section <a href="flx_cellrenderer_cr.html#WS2db454920e96a9e51e63e3d11c0bf69084-7c93_verapache">Accessing
+the listData property</a> uses the <samp class="codeph">dataChange</samp> event
+to update the TextArea in an item renderer for a DataGrid control.</p>
+</div>
+</div>
+<div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf64fe7-7fe0_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf64fe7-7fe0_verapache"><!-- --></a>
+<h3 class="topictitle3">Creating an MX item renderer in
+ActionScript</h3>
+<div>
+<p>Although you commonly create item renderers and editors
+in MXML, you can also create them in ActionScript, as the following
+example item renderer shows:</p>
+<pre class="codeblock">package myComponents { 
+    // myComponents/CellField.as 
+    import mx.controls.*; 
+    import mx.controls.dataGridClasses.DataGridListData; 
+    import mx.core.*; 
+ 
+    public class CellField extends TextInput 
+    { 
+        // Get the initial background color. 
+        public var tempBGColor:Number; 
+        
+        // Define the constructor and set properties. 
+        public function CellField() { 
+            super(); 
+            height=60; 
+            width=80; 
+            tempBGColor = getStyle("contentBackgroundColor"); 
+            editable=false; 
+        } 
+ 
+        // Override the set method for the data property. 
+        override public function set data(value:Object):void { 
+            super.data = value; 
+            // Since the item renderer can be recycled, 
+            // set the initial background color. 
+            setStyle("contentBackgroundColor", tempBGColor); 
+       
+            if (value != null) 
+            { 
+                text = value[DataGridListData(listData).dataField]; 
+                if(Number(text) &gt; 100) 
+                { 
+                    setStyle("contentBackgroundColor", 0xFF0000); 
+                } 
+                else 
+                { 
+                    setStyle("contentBackgroundColor", 0xFFFFFF); 
+                } 
+            } 
+ 
+            else 
+            { 
+                // If value is null, clear text. 
+                text= ""; 
+            } 
+ 
+            super.invalidateDisplayList(); 
+        } 
+    } 
+}</pre>
+<p>In the preceding example, you create a subclass of the <a href="https://flex.apache.org/asdoc/mx/controls/TextInput.html" target="_blank">TextInput</a> control
+as your item renderer. The class must be public to be used as an
+item renderer or editor. This item renderer displays a red background
+if the value of the <a href="https://flex.apache.org/asdoc/mx/controls/DataGrid.html" target="_blank">DataGrid</a> cell
+is greater than 100. </p>
+<p>You can use this item renderer in a DataGrid control, as the
+following example shows:</p>
+<pre class="codeblock">&lt;?xml version="1.0" encoding="iso-8859-1"?&gt; 
+&lt;!-- itemRenderers\asRenderer\MainASItemRenderer.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    width="600" height="600"&gt; 
+ 
+    &lt;fx:Script&gt; 
+        &lt;![CDATA[ 
+            import mx.collections.ArrayCollection; 
+        
+            [Bindable]                
+            private var initDG:ArrayCollection = new ArrayCollection([ 
+                {Monday: 12, Tuesday: 22, Wednesday: 452, Thursday: 90}, 
+                {Monday: 258, Tuesday: 22, Wednesday: 45, Thursday: 46}, 
+                {Monday: 4, Tuesday: 123, Wednesday: 50, Thursday: 95}, 
+                {Monday: 12, Tuesday: 52, Wednesday: 111, Thursday: 20}, 
+                {Monday: 22, Tuesday: 78, Wednesday: 4, Thursday: 51} 
+            ]); 
+        ]]&gt; 
+    &lt;/fx:Script&gt; 
+ 
+    &lt;mx:Text text="All cells over 100 are red" /&gt; 
+    
+    &lt;mx:DataGrid id="myDataGrid" 
+        dataProvider="{initDG}" 
+        variableRowHeight="true"&gt; 
+        &lt;mx:columns&gt; 
+            &lt;mx:DataGridColumn dataField="Monday" 
+                itemRenderer="myComponents.CellField" /&gt; 
+            &lt;mx:DataGridColumn dataField="Tuesday" 
+                itemRenderer="myComponents.CellField" /&gt; 
+            &lt;mx:DataGridColumn dataField="Wednesday" 
+                itemRenderer="myComponents.CellField" /&gt; 
+            &lt;mx:DataGridColumn dataField="Thursday" 
+                itemRenderer="myComponents.CellField" /&gt; 
+        &lt;/mx:columns&gt; 
+    &lt;/mx:DataGrid&gt; 
+&lt;/s:Application&gt;</pre>
+</div>
+</div>
+</div>
+<div class="nested1" id="WS2db454920e96a9e51e63e3d11c0bf64fe7-7fdf_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf64fe7-7fdf_verapache"><!-- --></a>
+<h2 class="topictitle2">Working with MX item renderers</h2>
+<div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf64fe7-7fde_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf64fe7-7fde_verapache"><!-- --></a>
+<h3 class="topictitle3">Example: Using an item renderer
+with the MX TileList and HorizontalList controls</h3>
+<div>
+<p>The <a href="https://flex.apache.org/asdoc/mx/controls/TileList.html" target="_blank">TileList</a> and <a href="https://flex.apache.org/asdoc/mx/controls/HorizontalList.html" target="_blank">HorizontalList</a> controls
+display a tiled list of items. The TileList control displays items
+in vertical columns. The HorizontalList control displays items in
+horizontal rows. The TileList and HorizontalList controls are particularly useful
+in combination with a custom item renderer for displaying a list
+of images and other data. </p>
+<p>The following image shows a HorizontalList control that is used
+to display a product catalog:</p>
+<div class="figborder">
+<img alt="HorizontalList control used to display a product catalog" src="images/cr_horizontallist2.png"/>
+</div>
+<p>Each
+item in the HorizontalList control contains an image, a descriptive
+text string, and a price. The following code shows the application
+that displays the catalog. The item renderer for the HorizontalList
+control is an MXML component named Thumbnail. </p>
+<pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- itemRenderers\MainTlistThumbnailRenderer.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx"&gt; 
+ 
+    &lt;fx:Declarations&gt; 
+        &lt;fx:Model id="catalog" source="catalog.xml"/&gt; 
+    &lt;/fx:Declarations&gt; 
+ 
+    &lt;mx:HorizontalList id="myList" 
+        columnWidth="125" 
+        rowHeight="125" 
+        columnCount="4" 
+        dataProvider="{catalog.product}" 
+        itemRenderer="myComponents.Thumbnail"/&gt; 
+&lt;/s:Application&gt;</pre>
+<p>The file catalog.xml defines the data provider for the HorizontalList
+control:</p>
+<pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;catalog&gt; 
+    &lt;product id="1"&gt; 
+        &lt;name&gt;Flex Model 3595&lt;/name&gt; 
+        &lt;price&gt;129.99&lt;/price&gt; 
+        &lt;image&gt;../assets/products/Flex_3595.gif&lt;/image&gt; 
+        &lt;thumbnail&gt;../assets/products/Flex_3595_sm.gif&lt;/thumbnail&gt; 
+    &lt;/product&gt; 
+    &lt;product id="2"&gt; 
+        &lt;name&gt;Flex Model 3650&lt;/name&gt; 
+        &lt;price&gt;99.99&lt;/price&gt; 
+        &lt;image&gt;../assets/products/Flex_3650.gif&lt;/image&gt; 
+        &lt;thumbnail&gt;../assets/products/Flex_3650_sm.gif&lt;/thumbnail&gt; 
+    &lt;/product&gt; 
+    &lt;product id="3"&gt; 
+        &lt;name&gt;Flex Model 6010&lt;/name&gt; 
+        &lt;price&gt;49.99&lt;/price&gt; 
+        &lt;image&gt;../assets/products/Flex_6010.gif&lt;/image&gt; 
+        &lt;thumbnail&gt;../assets/products/Flex_6010_sm.gif&lt;/thumbnail&gt; 
+    &lt;/product&gt; 
+    &lt;product id="4"&gt; 
+        &lt;name&gt;Flex Model 6360&lt;/name&gt; 
+        &lt;price&gt;19.99&lt;/price&gt; 
+        &lt;image&gt;../assets/products/Flex_6360.gif&lt;/image&gt; 
+        &lt;thumbnail&gt;../assets/products/Flex_6360_sm.gif&lt;/thumbnail&gt; 
+    &lt;/product&gt; 
+    &lt;product id="5"&gt; 
+        &lt;name&gt;Flex Model 6680&lt;/name&gt; 
+        &lt;price&gt;19.99&lt;/price&gt; 
+        &lt;image&gt;../assets/products/Flex_6680.gif&lt;/image&gt; 
+        &lt;thumbnail&gt;../assets/products/Flex_6680_sm.gif&lt;/thumbnail&gt; 
+    &lt;/product&gt; 
+    &lt;product id="6"&gt; 
+        &lt;name&gt;Flex Model 6820&lt;/name&gt; 
+        &lt;price&gt;49.99&lt;/price&gt; 
+        &lt;image&gt;../assets/products/Flex_6820.gif&lt;/image&gt; 
+        &lt;thumbnail&gt;../assets/products/Flex_6820_sm.gif&lt;/thumbnail&gt; 
+    &lt;/product&gt; 
+&lt;/catalog&gt;</pre>
+<p>The following example shows the Thumbnail.mxml MXML component.
+In this example, you define the item renderer to contain three controls:
+an Image control and two Label controls. These controls examine
+the <samp class="codeph">data</samp> property that is passed to the item renderer
+to determine the content to display. </p>
+<pre class="codeblock">&lt;?xml version="1.0" ?&gt; 
+&lt;!-- itemRenderers\myComponents\Thumbnail.mxml --&gt; 
+&lt;mx:VBox xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    horizontalAlign="center" 
+    verticalGap="0" borderStyle="none" backgroundColor="white" &gt; 
+ 
+    &lt;mx:Image id="image" width="60" height="60" source="{data.image}"/&gt; 
+    &lt;mx:Label text="{data.name}" width="120" textAlign="center"/&gt; 
+    &lt;mx:Label text="${data.price}" fontWeight="bold"/&gt; 
+&lt;/mx:VBox&gt;</pre>
+<p>For more information on the TileList and HorizontalList controls,
+see <a href="flx_dpcontrols_dpc.html#WS2db454920e96a9e51e63e3d11c0bf69084-7d7e_verapache">MX
+data-driven controls</a>.</p>
+</div>
+</div>
+<div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf64fe7-7fdd_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf64fe7-7fdd_verapache"><!-- --></a>
+<h3 class="topictitle3">Example: Using an item renderer
+with an MX DataGrid control</h3>
+<div>
+<p>The <a href="https://flex.apache.org/asdoc/mx/controls/DataGrid.html" target="_blank">DataGrid</a> control
+works with the DataGridColumn class to configure the grid. For a
+DataGrid control, you can specify two types of renderers: one for
+the cells of each column, and one for the header cell at the top
+of each column. To specify an item renderer for a column of a DataGrid
+control, you use the <samp class="codeph">DataGridColumn.itemRenderer</samp> property.
+To specify an item renderer for a column header cell, you use the <samp class="codeph">DataGridColumn.headerRenderer</samp> property.</p>
+<p>For example, to highlight a column in the DataGrid control, you
+can use using an icon in the column header cell to indicate a sale
+price, as the following item renderer shows: </p>
+<pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- itemRenderers\dataGrid\myComponents\RendererDGHeader.mxml --&gt; 
+&lt;mx:HBox xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx"&gt; 
+    &lt;fx:Script&gt; 
+        &lt;![CDATA[ 
+ 
+            [Embed(source="saleIcon.jpg")] 
+            [Bindable] 
+            public var sale:Class;            
+        ]]&gt; 
+    &lt;/fx:Script&gt; 
+ 
+    &lt;mx:Label text="Sale Price!"/&gt; 
+    &lt;mx:Image height="20" source="{sale}"/&gt; 
+ 
+&lt;/mx:HBox&gt;</pre>
+<p>This item renderer uses a <a href="https://flex.apache.org/asdoc/mx/controls/Label.html" target="_blank">Label</a> control
+to insert the text "Sale Price!" and an Image control to insert
+an icon in the column header. </p>
+<p>The following example shows the main application:</p>
+<pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- itemRenderers\dataGrid\MainDGHeaderRenderer.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx"&gt; 
+    
+    &lt;fx:Script&gt; 
+        &lt;![CDATA[ 
+          import mx.collections.ArrayCollection; 
+        
+          [Bindable] 
+          private var initDG:ArrayCollection = new ArrayCollection([ 
+            {Artist:'Pavement', Album:'Slanted and Enchanted', 
+                Price:11.99, SalePrice: true }, 
+            {Artist:'Pavement', Album:'Brighten the Corners', 
+                Price:11.99, SalePrice: false } 
+          ]);   
+        ]]&gt; 
+    &lt;/fx:Script&gt; 
+ 
+    &lt;mx:DataGrid id="myGrid" 
+        dataProvider="{initDG}" 
+        variableRowHeight="true"&gt; 
+        &lt;mx:columns&gt; 
+            &lt;mx:DataGridColumn dataField="Artist"/&gt; 
+            &lt;mx:DataGridColumn dataField="Album"/&gt; 
+            &lt;mx:DataGridColumn dataField="Price"/&gt; 
+            &lt;mx:DataGridColumn width="150" dataField="SalePrice" 
+                headerRenderer="myComponents.RendererDGHeader"/&gt; 
+        &lt;/mx:columns&gt;       
+    &lt;/mx:DataGrid&gt;  
+&lt;/s:Application&gt;</pre>
+<p>In this example, the DataGrid control displays the String <samp class="codeph">true</samp> or <samp class="codeph">false</samp> in
+the column to indicate that the price is a sale price. You can also
+define an item renderer for that column to display a more compelling
+icon rather than text. For an example that uses an item renderer
+with a DataGrid control, see <a href="flx_cellrenderer_cr.html#WS2db454920e96a9e51e63e3d11c0bf69084-7c9b_verapache">Using
+custom MX item renderers and item editors</a>.</p>
+</div>
+</div>
+<div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf69084-7cae_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7cae_verapache"><!-- --></a>
+<h3 class="topictitle3">Example: Using an item renderer
+with an MX List control</h3>
+<div>
+<p>When you use a custom item renderer with a <a href="https://flex.apache.org/asdoc/mx/controls/List.html" target="_blank">List</a> control,
+you specify it using the <samp class="codeph">List.itemRenderer</samp> property,
+as the following example shows:</p>
+<pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- itemRenderers\list\MainListStateRenderer.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    height="700" width="700"&gt; 
+ 
+    &lt;mx:List id="myList" 
+        height="180" width="250" 
+        variableRowHeight="true" 
+        itemRenderer="myComponents.RendererState"&gt; 
+        &lt;mx:dataProvider&gt; 
+            &lt;fx:Object label="Alaska" 
+                data="Juneau" 
+                webPage="http://www.state.ak.us/"/&gt; 
+            &lt;fx:Object label="Alabama" 
+                data="Montgomery" 
+                webPage="http://www.alabama.gov/" /&gt; 
+            &lt;fx:Object label="Arkansas" 
+                data="Little Rock" 
+                webPage="http://www.state.ar.us/"/&gt;                  
+        &lt;/mx:dataProvider&gt; 
+    &lt;/mx:List&gt; 
+&lt;/s:Application&gt;</pre>
+<p>The previous
+example sets the <samp class="codeph">rowHeight</samp> property to 75 pixels
+because the item renderer displays content that exceeds the default
+row height of the List control. To see an image that shows this
+application, see <a href="flx_cellrenderer_cr.html#WS2db454920e96a9e51e63e3d11c0bf69084-7c9b_verapache">Using
+custom MX item renderers and item editors</a>.</p>
+<p>The following item renderer, RendererState.mxml, displays the
+parts of each List item, and creates a LinkButton control which
+lets you open the state's web site:</p>
+<pre class="noswf">&lt;?xml version="1.0"?&gt; 
+&lt;!-- itemRenderers\list\myComponents\RendererState.mxml --&gt; 
+&lt;mx:VBox xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx"&gt;    
+    &lt;fx:Script&gt; 
+        &lt;![CDATA[ 
+            // Import Event and URLRequest classes. 
+            import flash.events.Event; 
+            import flash.net.URLRequest; 
+                
+            private var u:URLRequest; 
+            
+            // Event handler to open URL using 
+            // the navigateToURL() method. 
+            private function handleClick(eventObj:Event):void { 
+                u = new URLRequest(data.webPage); 
+                navigateToURL(u); 
+            }   
+        ]]&gt; 
+    &lt;/fx:Script&gt; 
+    
+    &lt;mx:HBox &gt;  
+        &lt;!-- Use Label controls to display state and capital names. --&gt; 
+        &lt;mx:Label id="State" text="State: {data.label}"/&gt; 
+        &lt;mx:Label id="Statecapital" text="Capital: {data.data}" /&gt; 
+    &lt;/mx:HBox&gt; 
+ 
+    &lt;!-- Define the Link control to open a URL. --&gt; 
+    &lt;mx:LinkButton id="webPage" label="Official {data.label} web page" 
+        click="handleClick(event);" color="blue"  /&gt; 
+&lt;/mx:VBox&gt;</pre>
+</div>
+</div>
+<div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf64fe7-7fdb_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf64fe7-7fdb_verapache"><!-- --></a>
+<h3 class="topictitle3">Example: Using an item renderer
+with an MX Tree control</h3>
+<div>
+<p>For the <a href="https://flex.apache.org/asdoc/mx/controls/Tree.html" target="_blank">Tree</a> control,
+you use the <samp class="codeph">itemRenderer</samp> property to specify a
+single renderer for all nodes of the tree. If you define a custom
+item renderer, you are responsible for handling the display of the
+entire node, including the text and icon. </p>
+<p>One option is to define an item renderer as a subclass of the
+default item renderer class, the <a href="https://flex.apache.org/asdoc/mx/controls/treeClasses/TreeItemRenderer.html" target="_blank">TreeItemRenderer</a> class.
+You can then modify the item renderer as required by your application
+without implementing the entire renderer, as the following example
+shows:</p>
+<pre class="codeblock">package myComponents 
+{ 
+    // itemRenderers/tree/myComponents/MyTreeItemRenderer.as 
+    import mx.controls.treeClasses.*; 
+    import mx.collections.*; 
+ 
+    public class MyTreeItemRenderer extends TreeItemRenderer 
+    { 
+ 
+        // Define the constructor.      
+        public function MyTreeItemRenderer() { 
+            super(); 
+        } 
+        
+        // Override the set method for the data property 
+        // to set the font color and style of each node.        
+        override public function set data(value:Object):void { 
+            super.data = value; 
+            if(TreeListData(super.listData).hasChildren) 
+            { 
+                setStyle("color", 0xff0000); 
+                setStyle("fontWeight", 'bold'); 
+            } 
+            else 
+            { 
+                setStyle("color", 0x000000); 
+                setStyle("fontWeight", 'normal'); 
+            }  
+        } 
+     
+        // Override the updateDisplayList() method 
+        // to set the text for each tree node.      
+        override protected function updateDisplayList(unscaledWidth:Number, 
+            unscaledHeight:Number):void { 
+       
+            super.updateDisplayList(unscaledWidth, unscaledHeight); 
+            if(super.data) 
+            { 
+                if(TreeListData(super.listData).hasChildren) 
+                { 
+                    var tmp:XMLList = 
+                        new XMLList(TreeListData(super.listData).item); 
+                    var myStr:int = tmp[0].children().length(); 
+                    super.label.text =  TreeListData(super.listData).label + 
+                        "(" + myStr + ")"; 
+                } 
+            } 
+        } 
+    } 
+}</pre>
+<p>For each node that has a child node, this item renderer displays
+the node text in red and includes the count of the number of child
+nodes in parentheses. The following example uses this item renderer
+in an application:</p>
+<pre class="codeblock">&lt;?xml version="1.0" encoding="iso-8859-1"?&gt; 
+&lt;!-- itemRenderers\tree\MainTreeItemRenderer.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    initialize="initCollections();"&gt; 
+    &lt;s:layout&gt; 
+        &lt;s:VerticalLayout/&gt; 
+    &lt;/s:layout&gt; 
+ 
+    &lt;fx:Script&gt; 
+        &lt;![CDATA[ 
+    
+            import mx.collections.*; 
+    
+            public var xmlBalanced:XMLList = 
+                &lt;&gt; 
+                    &lt;node label="Containers"&gt; 
+                        &lt;node label="DividedBoxClasses"&gt; 
+                            &lt;node label="BoxDivider" data="BoxDivider.as"/&gt; 
+                        &lt;/node&gt; 
+                        &lt;node label="GridClasses"&gt; 
+                            &lt;node label="GridRow" data="GridRow.as"/&gt; 
+                            &lt;node label="GridItem" data="GridItem.as"/&gt; 
+                            &lt;node label="Other File" data="Other.as"/&gt; 
+                        &lt;/node&gt; 
+                    &lt;/node&gt; 
+                    &lt;node label="Data"&gt; 
+                        &lt;node label="Messages"&gt; 
+                            &lt;node label="DataMessage" 
+                                data="DataMessage.as"/&gt; 
+                            &lt;node label="SequenceMessage" 
+                                data="SequenceMessage.as"/&gt; 
+                        &lt;/node&gt; 
+                        &lt;node label="Events"&gt; 
+                            &lt;node label="ConflictEvents" 
+                                data="ConflictEvent.as"/&gt; 
+                            &lt;node label="CommitFaultEvent" 
+                                data="CommitFaultEvent.as"/&gt; 
+                        &lt;/node&gt; 
+                    &lt;/node&gt; 
+                &lt;/&gt;; 
+                
+            [Bindable] 
+            public var xlcBalanced:XMLListCollection; 
+    
+            private function initCollections():void { 
+                xlcBalanced = new XMLListCollection(xmlBalanced); 
+            } 
+        ]]&gt; 
+    &lt;/fx:Script&gt; 
+ 
+    &lt;mx:Text width="400" 
+        text="The nodes with children are in bold red text, with the number of children in parenthesis.)"/&gt; 
+ 
+    &lt;mx:Tree id="compBalanced" 
+        width="400" height="500" 
+        dataProvider="{xlcBalanced}" 
+        labelField="@label"  
+        itemRenderer="myComponents.MyTreeItemRenderer"/&gt; 
+&lt;/s:Application&gt;</pre>
+<p></p>
+</div>
+</div>
+<div>
+<p><strong>Navigation</strong></p>
+<p><a href="index.html">Using Flex</a> &raquo; <a href="flx_p4_using_ddui_components.html">Using data-driven UI components</a></p>
+</div>
+<p>Adobe and Adobe Flash are either registered trademarks or trademarks of Adobe Systems Incorporated in the United States and/or other countries and are used by permission from Adobe.  No other license to the Adobe trademarks are granted.</p>
+</div>
+
+
+<!-- Home Page Exception -->
+
+</div></div>
+<!-- Wrapper / End -->
+
+
+<!-- Footer -->
+
+<!-- Footer Top -->
+<div id="footer" class="container-fluid paddingbottom" >
+
+
+    <div class="row-fluid">
+
+        <!-- About -->
+        <div class="span3">
+            <div class="footer-headline"><h4>About Us</h4></div>
+            <p>Apache Flex® is a highly productive, open source application framework for building and maintaining expressive web applications that deploy consistently on all major browsers, desktops and devices (including smartphones, tablets and tv). It provides a modern, standards-based language and programming model that supports common design patterns suitable for developers from many backgrounds. Flex applications can be deployed with Adobe® AIR™ on desktop and mobile, including native Android™, iOS™, Windows®, macOS®, and Linux applications.</p>
+        </div>
+
+        <!-- Subscribe  -->
+        <div class="span3">
+            <div class="footer-headline"><h4>Subscribe</h4></div>
+            <p>We have two mailing lists, one for SDK developers, and one for SDK users.</p>
+            <ul>
+                <li><strong>Users</strong>, send an email to <br>
+                    <a href="mailto:users-subscribe@flex.apache.org">users-subscribe@flex.apache.org</a>
+                </li>
+                <li><strong>Contributors</strong>, send an email to <br>
+                    <a href="mailto:dev-subscribe@flex.apache.org">dev-subscribe@flex.apache.org</a>
+                </li>
+            </ul>
+        </div>
+
+        <!-- Latest Releases -->
+        <div class="span3">
+            <div class="footer-headline"><h4>Latest Releases</h4></div>
+            <p>
+            	Apache Flex SDK : <a href="/download-binaries.html">4.16.1 (Nov 2017)</a><br />
+                Apache FlexJS SDK : <a href="/download-flexjs.html">0.8.0 (Jun 2017)</a><br />
+                Blaze DS : <a href="/download-blazeds.html">4.8.0 (Apr 2023)</a><br />
+                Flex SDK Converter : <a href="https://github.com/apache/flex-utilities/tree/develop/flex-maven-tools/flex-sdk-converter"> 1.1.0 (Feb 2023)</a><br />
+                FlexUnit : <a href="/download-flexunit.html">4.2.0 (Apr 2014)</a><br />
+                SDK Installer : <a href="/installer.html">3.3.2 (Jul 2018)</a><br />
+                Squiggly : <a href="/download-squiggly.html">1.1 (Oct 2014)</a><br />
+                Tour De Flex : <a href="/download-tourdeflex.html">1.2 (Nov 2014)</a><br />
+            </p>
+        </div>
+
+    </div>
+
+</div>
+<!-- Footer / Bottom -->
+<div id="footer" class="container-fluid" style="background: #111;">
+    <div class="row-fluid">
+        <div class="span12">
+            <div id="footer-bottom">
+                Copyright © 2025 The Apache Software Foundation, Licensed under the Apache License, Version 2.0 <br>
+                Apache Flex, Apache and the Apache feather logo are trademarks of The Apache Software Foundation. All other marks mentioned may be trademarks or registered trademarks of their respective owners.
+                Read more about the <a href="https://privacy.apache.org/policies/privacy-policy-public.html">ASF's Privacy Policy</a>.
+                <div id="scroll-top-top"><a href="#" title="Go to Top"></a></div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<!-- Footer / End -->
+
+</body>
+
+</html>

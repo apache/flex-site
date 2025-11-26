@@ -1,0 +1,881 @@
+<!DOCTYPE html>
+<!--[if IE 7 ]><html class="ie ie7" lang="en"><![endif]-->
+<!--[if IE 8 ]><html class="ie ie8" lang="en"><![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!--><html lang="en"><!--<![endif]-->
+
+<head>
+
+    <meta charset="utf-8">
+    <title>Apache Flex® - Improving startup performance</title>
+
+    <!-- For Mobiles  -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <!-- CSS -->
+    <link rel="stylesheet" type="text/css" href="/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="/css/fixed-width.css" id="layout">
+    <link rel="stylesheet" type="text/css" href="/css/style.css">
+    <!-- favicon -->
+    <link rel="icon" type="image/x-icon" href="/images/favicon.ico"/>
+    <link rel="apple-touch-icon-precomposed" href="/images/apple-touch-icon-60.png">
+    <link rel="apple-touch-icon-precomposed" sizes="76x76" href="/images/apple-touch-icon-76.png">
+    <link rel="apple-touch-icon-precomposed" sizes="120x120" href="/images/apple-touch-icon-120.png">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="/images/apple-touch-icon-152.png">
+
+    <!-- Java Script  -->
+    <script src="/js/jquery.js"></script>
+    <script src="/js/custom.js"></script>
+    <script src="/js/selectnav.js"></script>
+    <script src="/js/flexslider.js"></script>
+    <script src="/js/twitter.js"></script>
+    <script src="/js/fancybox.js"></script>
+    <script src="/js/isotope.js"></script>
+    <script src="/js/bootstrap.js"></script>
+    <script src="/js/showcase.js"></script>
+
+
+</head>
+<body>
+
+<!-- Wrapper Start -->
+<div id="wrapper" class="container-fluid">
+
+
+    <!-- Header -->
+
+
+    <div class="ie-dropdown-fix" >
+
+        <!-- Header -->
+        <div class="row-fluid" id="header">
+
+            <!-- Logo -->
+            <div class="span5">
+
+                <a href="/"><img src="/images/logo_01_fullcolor-sm.png" alt="Apache Flex®" title="Apache Flex®" /></a>
+
+            </div>
+
+            <!-- Social / Contact -->
+            <div class="span3 pull-right">
+
+                <!-- Social Icons -->
+                <ul class="social-icons">
+                    <li class="facebook"><a href="https://www.facebook.com/pages/Apache-Flex/174249699342648">Facebook</a></li>
+                    <li class="twitter"><a href="http://twitter.com/ApacheFlex">Twitter</a></li>
+                    <li class="linkedin"><a href="http://www.linkedin.com/groups/Apache-Flex-Developers-4296888">LinkedIn</a></li>
+                </ul>
+
+                <!-- Apache Logo -->
+                <a href="http://www.apache.org" id="contact-top"><img src="https://www.apache.org/images/feather-small.gif" title="An Apache Project" alt="An Apache Project" /> </a>
+            </div>
+
+        </div>
+        <!-- Header / End -->
+
+        <!-- Navigation -->
+        <div id="navigation" class="margintop">
+            <ul id="nav">
+
+                <li><a href="/index.html">Home</a></li>
+
+                <li><a href="#">About Flex</a>
+                    <ul>
+
+                        <li><a href="/about-whatis.html">What is Flex?</a></li>
+                        <li><a href="/about-features.html">Features</a></li>
+						<li><a href="/tourdeflex/explorer.html">Tour de Flex</a></li>
+                        <li><a href="/about-licensing.html">License &amp; Trademarks</a></li>
+                        <li><a href="/about-people.html">The Team</a></li>
+                        <li><a href="/about-history.html">Project History</a></li>
+                        <li><a href="/about-assets.html">Logo and Assets</a></li>
+                    </ul>
+                </li>
+                <li><a href="#">Community</a>
+                    <ul>
+
+                        <li><a href="/community-getinvolved.html">How to get involved</a></li>
+                        <li><a href="/community-mailinglists.html">Mailing Lists</a></li>
+                        <li><a href="/community-showcase.html">Flex Showcase</a></li>
+						<li><a href="/community-3rdparty.html">Third-Party</a></li>
+                        <li><a href="https://cwiki.apache.org/confluence/display/FLEX/Apache+Flex+Wiki">Wiki <i class="icon-share icon-white"></i></a></li>
+                        <li><a href="http://blogs.apache.org/flex/">Blog <i class="icon-share icon-white"></i></a></li>
+                    </ul>
+                </li>
+
+                <li><a href="#">Development</a>
+                    <ul>
+                        <li><a href="/dev-faq.html">Developer FAQ</a></li>
+                        <li><a href="/dev-sourcecode.html">Source Code</a></li>
+                        <li><a href="https://issues.apache.org/jira/browse/FLEX">Bug-Tracker <i class="icon-share icon-white"></i></a></li>
+                    </ul>
+                </li>
+
+                <li><a href="#">Documentation</a>
+                    <ul>
+
+                        <li><a href="/doc-getstarted.html">Getting Started</a></li>
+                        <li><a href="/doc/flex/using/index.html">Using Flex</a></li>
+                        <li><a href="/doc-videos.html">Videos</a></li>
+                        <li><a href="/asdoc/">Flex ASDocs</a></li>
+                        <li><a href="http://help.adobe.com/en_US/flex/using/index.html">Documentation Reference (Old) <i class="icon-share icon-white"></i></a></li>
+                        <li><a href="/flexunit/tutorial/">FlexUnit Tutorials</a></li>
+                        <li><a href="/flexunit/asdoc/">FlexUnit ASDocs</a></li>
+
+                    </ul>
+                </li>
+
+                <li><a href="#">About Apache</a>
+                    <ul>
+
+                        <li><a href="http://www.apache.org">The Apache Software Foundation Website <i class="icon-share icon-white"></i></a></li>
+                        <li><a href="http://www.apache.org/foundation/contributing.html">Donations <i class="icon-share icon-white"></i></a></li>
+                        <li><a href="http://www.apache.org/foundation/sponsorship.html">Sponsorship <i class="icon-share icon-white"></i></a></li>
+                        <li><a href="http://www.apache.org/foundation/thanks.html">Thanks <i class="icon-share icon-white"></i></a></li>
+                    </ul>
+                </li>
+
+                <li><a href="#" class="download">Download Flex</a>
+                    <ul>
+
+                       <li><a href="/installer.html">SDK Installer (For Application Developers)</a></li>
+                       <li><a href="/download-source.html">SDK Source Code (For SDK Developers)</a></li>
+                       <li><a href="/download-binaries.html">SDK Binaries (For SDK Developers)</a></li>
+                       <li><a href="/download-flexjs.html">FlexJS 'beta' (For Application Developers)</a> </li>
+                       <li><a href="/download-flexunit.html">FlexUnit (For Application Developers)</a> </li>
+                       <li><a href="/download-blazeds.html">Blaze DS Source Code</a></li>
+                       <li><a href="/download-tourdeflex.html">Tour De Flex Source Code</a></li>
+                       <li><a href="/download-squiggly.html">Squiggly Spell Checker</a></li>
+                       <li><a href="/download-utilities.html">Flex Utilities</a></li>
+                       <li><a href="/download-archive.html">Previous Versions</a></li>`
+                    </ul>
+                </li>
+            </ul>
+
+        </div>
+        <div class="clear"></div>
+
+    </div>
+    <!-- Navigation / End -->
+
+
+    <!-- Content -->
+
+    <div class="row-fluid">
+
+
+        <!-- Page Title -->
+        <div id="page-title">
+            <h2>Improving startup performance</h2>
+        </div>
+        <!-- Page Title / End -->
+
+
+    </div>
+
+    <div class="row-fluid">
+
+<!-- Home Page Exception -->
+
+    <a name="WS2db454920e96a9e51e63e3d11c0bf69084-7ee5_verapache"><!-- --></a>
+<div class="nested1" id="WS2db454920e96a9e51e63e3d11c0bf67382-7fff_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf67382-7fff_verapache"><!-- --></a>
+<h2 class="topictitle2">About startup performance</h2>
+<div>
+<p>You could increase the startup time
+and decrease performance of your applications if you create too
+many objects or put too many objects into a single view. To improve
+startup time, minimize the number of objects that are created when the
+application is first loaded. If a user-interface component is not
+initially visible at startup, avoid creating that component until
+you need it. This is called deferred creation. Containers that have
+multiple views, such as an Accordion container, provide built-in
+support for this behavior. You can use ActionScript to customize the
+creation order of multiple-view containers or defer the creation
+of other containers and controls.</p>
+<p>After you improve the <em>actual</em> startup time of your application
+as much as possible, you can improve <em>perceived</em> startup time
+by ordering the creation of containers in the initial view. The
+default behavior of Flex is to create all containers and their children
+in the initial view, and then display everything at one time. The
+user will not be able to interact with the application or see meaningful
+data until all the containers and their children are created. In
+some cases, you can improve the user's initial experience by displaying
+the components in one container before creating the components in
+the next container. This process is called <em>ordered creation</em>.</p>
+<p>The remaining sections of this topic
+describe how to use deferred creation to reduce overall application
+startup time and ordered creation to make the initial startup time
+appear as short as possible to the user. But before you can fully understand
+ordered creation and deferred creation, you must also understand the
+differences between single-view and multiple-view containers, the
+order of events in a component's startup life cycle, and how to
+manually instantiate controls from their child descriptors.</p>
+</div>
+</div>
+<div class="nested1" id="WS2db454920e96a9e51e63e3d11c0bf69084-7ee6_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7ee6_verapache"><!-- --></a>
+<h2 class="topictitle2">About startup order</h2>
+<div>
+<p>All Flex components trigger a number of events
+during their startup procedure. These events indicate when the component
+is first created, plotted internally, and drawn on the screen. The
+events also indicate when the component is finished being created
+and, in the case of containers, when its children are created.</p>
+<p>Components are instantiated, added or linked to a parent, and
+then sized and laid out inside their container. The component creation
+order is as follows:</p>
+<p>The following example shows the major events that are dispatched
+during a component's creation life cycle:</p>
+<div class="figborder">
+<img alt="Major events dispatched during a component\xd5 s creation life cycle." src="images/lifecycle_component.png"/>
+</div>
+<p>The creation order is different for containers
+and components because containers can be the parent of other components
+or containers. Components within the containers must also go through
+the creation order. If a container is the parent of another container,
+the inner container's children must also go through the creation
+order. </p>
+<p>The following example shows the major events that are dispatched
+during a container's creation life cycle:</p>
+<div class="figborder">
+<img alt="Major events dispatched during a container\xd5 s creation life cycle." src="images/lifecycle_container.png"/>
+</div>
+<p>After
+all components are created and drawn, the <a href="https://flex.apache.org/asdoc/spark/componets/Application/html" target="_blank">Application</a> object
+dispatches an <samp class="codeph">applicationComplete</samp> event. This is
+the last event dispatched during an application startup.</p>
+<p>The creation order of multiview containers (navigators) is different
+from standard containers. By default, all top-level views of the
+navigator are instantiated. However, Flex creates only the children
+of the initially visible view. When the user navigates to the other
+views of the navigator, Flex creates those views' children. For
+more information on the deferred creation of children of multiview containers,
+see <a href="flx_layoutperformance_lp.html#WS2db454920e96a9e51e63e3d11c0bf69084-7af8_verapache">Using
+deferred creation</a>.</p>
+<p>For a detailed description of the component creation life cycle,
+see <a href="flx_containers_intro_cn.html#WS2db454920e96a9e51e63e3d11c0bf62b90-7ff8_verapache">Using container
+events</a>.</p>
+</div>
+</div>
+<div class="nested1" id="WS2db454920e96a9e51e63e3d11c0bf69084-7af8_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7af8_verapache"><!-- --></a>
+<h2 class="topictitle2">Using deferred creation</h2>
+<div>
+<p>By default, containers create only
+the controls that initially appear to the user. Flex creates the
+container's other descendants if the user navigates to them. Containers
+with a single view, such as <a href="https://flex.apache.org/asdoc/spark/components/Group.html" target="_blank">Group</a>, <a href="https://flex.apache.org/asdoc/mx/containers/Box.html" target="_blank">Box</a>, <a href="https://flex.apache.org/asdoc/spark/components/Form.html" target="_blank">Form</a>,
+and <a href="https://flex.apache.org/asdoc/spark/components/Grid.html" target="_blank">Grid</a> containers, create
+all of their descendants during the container's instantiation because
+these containers display all of their descendants immediately.</p>
+<p>Containers with multiple views, called navigator containers,
+only create and display the descendants that are visible at any
+given time. These containers are the MX <a href="https://flex.apache.org/asdoc/mx/containers/ViewStack.html" target="_blank">ViewStack</a>, <a href="https://flex.apache.org/asdoc/mx/containers/Accordion.html" target="_blank">Accordion</a>,
+and <a href="https://flex.apache.org/asdoc/mx/containers/TabNavigator.html" target="_blank">TabNavigator</a> containers. </p>
+<p>When navigator containers
+are created, they do not immediately create all of their descendants,
+but only those descendants that are initially visible. Flex defers
+the creation of descendants that are not initially visible until
+the user navigates to a view that contains them.</p>
+<p>The
+result of this deferred creation is that an MXML application with
+navigator containers loads more quickly, but the user experiences
+brief pauses when he or she moves from one view to another when
+interacting with the application.</p>
+<p>You
+can instruct each container to create their children or defer the
+creation of their children at application startup by using the container's <samp class="codeph">creationPolicy</samp> property.
+This can improve the user experience after the application loads.
+For more information, see <a href="flx_layoutperformance_lp.html#WS2db454920e96a9e51e63e3d11c0bf69084-7cb8_verapache">About
+the creationPolicy property</a>.</p>
+<p>You can also create individual components whose instantiation
+is deferred by using the <samp class="codeph">createDeferredContent()</samp> method
+(for Spark containers) or the <samp class="codeph">createComponentsFromDescriptors()</samp> method
+(for MX containers). For more information, see <a href="flx_layoutperformance_lp.html#WS2db454920e96a9e51e63e3d11c0bf69084-7aee_verapache">Creating
+deferred components</a>.</p>
+</div>
+<div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf69084-7cb8_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7cb8_verapache"><!-- --></a>
+<h3 class="topictitle3">About the creationPolicy property</h3>
+<div>
+<p>To
+defer the creation of any component, container, or child of a container,
+you use the <samp class="codeph">creationPolicy</samp> property. Every container
+has a <samp class="codeph">creationPolicy</samp> property that determines how
+the container decides whether to create its descendants when the
+container is created. You can change the policy of a container using
+MXML or ActionScript.</p>
+<p>The valid values for the <samp class="codeph">creationPolicy</samp> property
+are <samp class="codeph">auto</samp>, <samp class="codeph">all</samp>, and <samp class="codeph">none</samp>. The
+meaning of these settings depends on whether the container is a
+navigator container (multiple-view container) or a single-view container.</p>
+<p>The <samp class="codeph">creationPolicy</samp> property is inheritable when
+set on the MX Container or Spark SkinnableContainer class. This
+means that if you set the value of the <samp class="codeph">creationPolicy</samp> property
+to <samp class="codeph">none</samp> on an outer container, all containers within
+that container inherit that value of the <samp class="codeph">creationPolicy</samp> property, unless
+otherwise overridden. </p>
+<p>This inheritance does not apply to sibling containers. If you
+have two containers at the same level (of the same type) and you
+set the <samp class="codeph">creationPolicy</samp> of one of them, the other
+container continues to have the default value of the <samp class="codeph">creationPolicy</samp> property
+unless you explicitly set it.</p>
+</div>
+<div class="nested3" id="WS2db454920e96a9e51e63e3d11c0bf69084-7ae6_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7ae6_verapache"><!-- --></a>
+<h4 class="topictitle4">Single-view containers</h4>
+<div>
+<p>Single-view
+containers by default create all their children when the application first
+starts. You can use the <samp class="codeph">creationPolicy</samp> property
+to change this behavior. The following table describes the values
+of the <samp class="codeph">creationPolicy</samp> property when you use it
+with single-view containers:</p>
+<div class="tablenoborder"><table border="1" cellpadding="4" cellspacing="0" frame="border" rules="all" summary="">
+<thead align="left">
+<tr>
+<th class="cellrowborder" id="d272721e344" valign="top" width="NaN%">
+<p>Value</p>
+</th>
+<th class="cellrowborder" id="d272721e350" valign="top" width="NaN%">
+<p>Description</p>
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="cellrowborder" headers="d272721e344" valign="top" width="NaN%">
+<p>
+<samp class="codeph">all</samp>, <samp class="codeph">auto</samp>
+</p>
+</td>
+<td class="cellrowborder" headers="d272721e350" valign="top" width="NaN%">
+<p>Creates all controls inside the single-view
+container. The default value is <samp class="codeph">auto</samp>, but <samp class="codeph">all</samp> results
+in the same behavior.</p>
+</td>
+</tr>
+<tr>
+<td class="cellrowborder" headers="d272721e344" valign="top" width="NaN%">
+<p>
+<samp class="codeph">none</samp>
+</p>
+</td>
+<td class="cellrowborder" headers="d272721e350" valign="top" width="NaN%">
+<p>Instructs Flex to not instantiate any component
+within the container until you manually instantiate the controls.</p>
+<p>When
+the value of the <samp class="codeph">creationPolicy</samp> property is <samp class="codeph">none</samp>,
+you generally set a width and height for that container explicitly.
+Normally, Flex scales the container to fit the children that are
+inside it, but because no children are created, proper scaling is
+not possible. If you do not explicitly size the container, it grows
+to accommodate the children when they are created.</p>
+<p>To manually
+instantiate controls, you use the <samp class="codeph">createDeferredContent()</samp> method
+(for Spark containers) or the <samp class="codeph">createComponentsFromDescriptors()</samp> method
+(for MX containers). For more information, see <a href="flx_layoutperformance_lp.html#WS2db454920e96a9e51e63e3d11c0bf69084-7aee_verapache">Creating
+deferred components</a>.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>The following example sets the value of a Spark Panel container's <samp class="codeph">creationPolicy</samp> property
+to <samp class="codeph">auto</samp>, the default value:</p>
+<pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- layoutperformance/AutoCreationPolicy.mxml --&gt; 
+&lt;s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009"    
+    xmlns:mx="library://ns.adobe.com/flex/mx"     
+    xmlns:s="library://ns.adobe.com/flex/spark"&gt; 
+ 
+    &lt;s:layout&gt; 
+        &lt;s:VerticalLayout/&gt; 
+    &lt;/s:layout&gt; 
+ 
+    &lt;s:Panel id="myPanel" creationPolicy="auto"&gt; 
+        &lt;s:Button id="b1" label="Get Weather"/&gt; 
+    &lt;/s:Panel&gt; 
+&lt;/s:Application&gt;</pre>
+<p>The
+default behavior of all single-view containers is that they and
+their children are entirely instantiated when the application starts.
+If you set the <samp class="codeph">creationPolicy</samp> property to <samp class="codeph">none</samp>,
+however, you can selectively instantiate controls within the containers
+by using the techniques described in <a href="flx_layoutperformance_lp.html#WS2db454920e96a9e51e63e3d11c0bf69084-7aee_verapache">Creating deferred
+components</a>.</p>
+</div>
+</div>
+<div class="nested3" id="WS2db454920e96a9e51e63e3d11c0bf69084-7ae5_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7ae5_verapache"><!-- --></a>
+<h4 class="topictitle4">Multiple-view containers</h4>
+<div>
+<p>Containers with
+multiple views, such as the ViewStack and Accordion, do not immediately
+create all of their descendants, but only those descendants that
+are visible in the initial view. Flex defers the instantiation of
+descendants that are not initially visible until the user navigates
+to a view that contains them. The following containers have multiple
+views and, so, are defined as navigator containers:</p>
+<ul>
+<li>
+<p>
+<a href="https://flex.apache.org/asdoc/mx/containers/ViewStack.html" target="_blank">ViewStack</a>
+</p>
+</li>
+<li>
+<p>
+<a href="https://flex.apache.org/asdoc/mx/containers/TabNavigator.html" target="_blank">TabNavigator</a>
+</p>
+</li>
+<li>
+<p>
+<a href="https://flex.apache.org/asdoc/mx/containers/Accordion.html" target="_blank">Accordion</a>
+</p>
+</li>
+</ul>
+<p>When you instantiate a navigator container, Flex creates all
+of the top-level children. For example, creating an Accordion container
+triggers the creation of each of its views, but not the controls
+within those views. The <samp class="codeph">creationPolicy</samp> property
+determines the creation of the child controls inside each view.</p>
+<p>When you set the <samp class="codeph">creationPolicy</samp> property to <samp class="codeph">auto</samp> (the
+default value), navigator containers instantiate only the controls
+and their children that appear in the initial view. The first view
+of the Accordion container is the initial pane, as the following
+example shows:</p>
+<div class="figborder">
+<img alt="First pane of the Accordion container." src="images/cn_accordion_example.png"/>
+</div>
+<p>When the user navigates to another panel in the Accordion container,
+the navigator container creates the next set of controls, and recursively
+creates the new view's controls and their descendants. You can use
+the Accordion container's <samp class="codeph">creationPolicy</samp> property
+to modify this behavior. The following table describes the values
+of the <samp class="codeph">creationPolicy</samp> property when you use it
+with navigator containers:</p>
+<div class="tablenoborder"><table border="1" cellpadding="4" cellspacing="0" frame="border" rules="all" summary="">
+<thead align="left">
+<tr>
+<th class="cellrowborder" id="d272721e568" valign="top" width="NaN%">
+<p>Value</p>
+</th>
+<th class="cellrowborder" id="d272721e574" valign="top" width="NaN%">
+<p>Description</p>
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="cellrowborder" headers="d272721e568" valign="top" width="NaN%">
+<div class="p">
+<pre class="codeblock">all</pre>
+</div>
+</td>
+<td class="cellrowborder" headers="d272721e574" valign="top" width="NaN%">
+<p>Creates all controls in all views of the
+navigator container. This setting causes a delay in application
+startup time and an increase in memory usage, but results in quicker
+response time for user navigation. You should generally not use <samp class="codeph">all</samp> because
+of the performance hit that your application will take when it starts
+up.</p>
+</td>
+</tr>
+<tr>
+<td class="cellrowborder" headers="d272721e568" valign="top" width="NaN%">
+<div class="p">
+<pre class="codeblock">auto</pre>
+</div>
+</td>
+<td class="cellrowborder" headers="d272721e574" valign="top" width="NaN%">
+<p>Creates all controls only in the initial
+view of the navigator container. This setting causes a faster startup
+time for the application, but results in slower response time for
+user navigation. </p>
+<p>This setting is the default for multiple-view
+containers.</p>
+</td>
+</tr>
+<tr>
+<td class="cellrowborder" headers="d272721e568" valign="top" width="NaN%">
+<div class="p">
+<pre class="codeblock">none</pre>
+</div>
+</td>
+<td class="cellrowborder" headers="d272721e574" valign="top" width="NaN%">
+<p>Instructs Flex to not instantiate any component
+within the navigator container or any of the navigator container's panels
+until you manually instantiate the controls.</p>
+<p>To manually instantiate
+controls, you use the <samp class="codeph">createDeferredContent()</samp> method
+(for Spark containers) or the <samp class="codeph">createComponentsFromDescriptors()</samp> method
+(for MX containers). For more information, see <a href="flx_layoutperformance_lp.html#WS2db454920e96a9e51e63e3d11c0bf69084-7aee_verapache">Creating deferred
+components</a>.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>The following example sets the <samp class="codeph">creationPolicy</samp> property
+of an Accordion container to <samp class="codeph">all</samp>, which instructs
+the container to instantiate all controls for every panel in the
+navigator container when the application starts:</p>
+<pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- layoutperformance/AllCreationPolicy.mxml --&gt; 
+&lt;s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009"    
+    xmlns:mx="library://ns.adobe.com/flex/mx"     
+    xmlns:s="library://ns.adobe.com/flex/spark"&gt; 
+ 
+    &lt;s:Panel title="Accordion"&gt; 
+        &lt;mx:Accordion id="myAccordion" creationPolicy="all"&gt; 
+            &lt;mx:VBox label="Accordion Button for Panel 1"&gt; 
+                &lt;mx:Label text="Accordion container panel 1"/&gt; 
+                &lt;s:Button label="Click Me"/&gt; 
+            &lt;/mx:VBox&gt; 
+            &lt;mx:VBox label="Accordion Button for Panel 2"&gt; 
+                &lt;mx:Label text="Accordion container panel 2"/&gt; 
+                &lt;s:Button label="Click Me"/&gt; 
+            &lt;/mx:VBox&gt; 
+            &lt;mx:VBox label="Accordion Button for Panel 3"&gt; 
+                &lt;mx:Label text="Accordion container panel 3"/&gt; 
+                &lt;s:Button label="Click Me"/&gt; 
+            &lt;/mx:VBox&gt; 
+        &lt;/mx:Accordion&gt; 
+    &lt;/s:Panel&gt; 
+&lt;/s:Application&gt;</pre>
+<p>Setting a container's <samp class="codeph">creationPolicy</samp> property
+does not override the policies of the containers within that container. </p>
+<p>In the following example, the button1 control is never created
+because its immediate parent container specifies a <samp class="codeph">creationPolicy</samp> of <samp class="codeph">none</samp>,
+even though the outer container sets the <samp class="codeph">creationPolicy</samp> property
+to <samp class="codeph">all</samp>:</p>
+<pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- layoutperformance/TwoCreationPolicies.mxml --&gt; 
+&lt;s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009"    
+    xmlns:mx="library://ns.adobe.com/flex/mx"     
+    xmlns:s="library://ns.adobe.com/flex/spark"&gt; 
+ 
+    &lt;s:Panel title="Outer Panel where creationPolicy=all" creationPolicy="all"&gt; 
+        &lt;s:Panel title="Inner Panel where creationPolicy=none" creationPolicy="none"&gt; 
+            &lt;s:Button id="button1" label="Click Me"/&gt; 
+        &lt;/s:Panel&gt; 
+    &lt;/s:Panel&gt; 
+&lt;/s:Application&gt;</pre>
+</div>
+</div>
+</div>
+</div>
+<div class="nested1" id="WS2db454920e96a9e51e63e3d11c0bf69084-7aee_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7aee_verapache"><!-- --></a>
+<h2 class="topictitle2">Creating deferred components</h2>
+<div>
+<p>When you set a container's <samp class="codeph">creationPolicy</samp> property
+to <samp class="codeph">none</samp>, components declared as MXML tags inside
+that container are not created.</p>
+<p>For Spark containers, you use the <samp class="codeph">createDeferredContent()</samp> method
+to manually instantiate deferred components. This method is defined
+on the spark.components.SkinnableContainer class.</p>
+<p>For MX containers, you use the <samp class="codeph">createComponentsFromDescriptors()</samp> method
+to manually instantiate deferred components. This method is defined
+on the MX <a href="https://flex.apache.org/asdoc/mx/core/Container.html" target="_blank">Container</a> base class.</p>
+</div>
+<div class="nested2" id="WS02f7d8d4857b16777a3e38d412643352e23-8000_verapache"><a name="WS02f7d8d4857b16777a3e38d412643352e23-8000_verapache"><!-- --></a>
+<h3 class="topictitle3">Using the createDeferredContent()
+method</h3>
+<div>
+<p>You use the <samp class="codeph">createDeferredContent()</samp> method
+to create deferred child components in a Spark container.</p>
+<div class="p">In the following example with a Spark container, the children
+of the Panel container are not instantiated when the application
+is first loaded, but only after the user clicks the button:<pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- layoutperformance/CreationPolicyNoneSpark.mxml --&gt; 
+&lt;s:Application     
+    xmlns:fx="http://ns.adobe.com/mxml/2009"    
+    xmlns:mx="library://ns.adobe.com/flex/mx"     
+    xmlns:s="library://ns.adobe.com/flex/spark"&gt; 
+ 
+    &lt;s:layout&gt; 
+        &lt;s:VerticalLayout/&gt; 
+    &lt;/s:layout&gt; 
+ 
+    &lt;fx:Script&gt;&lt;![CDATA[ 
+ 
+        private function createButtons(e:Event):void { 
+            myPanel.createDeferredContent(); 
+        } 
+ 
+    ]]&gt;&lt;/fx:Script&gt; 
+ 
+    &lt;s:Panel id="myPanel" title="Panel with Deferred Content" creationPolicy="none"&gt; 
+        &lt;s:VGroup&gt; 
+            &lt;s:Button id="b1" label="Hurley"/&gt; 
+            &lt;s:Button id="b2" label="Jack"/&gt; 
+            &lt;s:Button id="b3" label="Sawyer"/&gt; 
+        &lt;/s:VGroup&gt; 
+    &lt;/s:Panel&gt; 
+    
+    &lt;s:Button id="myButton" click="createButtons(event)" label="Create Buttons"/&gt; 
+ 
+&lt;/s:Application&gt;</pre>
+</div>
+<p>Only SkinnableContainer and containers that extend the SkinnableContainer class
+support deferred instantiation; Groups do not. When a Group is created,
+its children are always created. You cannot specify a creation policy
+on a Group.</p>
+</div>
+</div>
+<div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf67382-7ff8_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf67382-7ff8_verapache"><!-- --></a>
+<h3 class="topictitle3">Using the createComponentsFromDescriptors()
+method</h3>
+<div>
+<div class="p">
+<div class="note"><span class="notetitle">Note:</span> The <samp class="codeph">createComponentsFromDescriptors()</samp> method
+is for MX containers. For Spark containers, use the <samp class="codeph">createDeferredContent()</samp> method.</div>
+</div>
+<p>You
+use the <samp class="codeph">createComponentsFromDescriptors()</samp> method
+of an MX container to create all the children of a container at
+one time.</p>
+<p>The <samp class="codeph">createComponentsFromDescriptors()</samp> method
+has the following signature:</p>
+<pre class="codeblock">&thinsp;container.createComponentsFromDescriptors(<em>recurse</em>:Boolean):Boolean</pre>
+<p>The <em>recurse</em> argument determines whether Flex should recursively
+instantiate children of containers that are children of the top-level
+container. Set the parameter to <samp class="codeph">true</samp> to instantiate
+children of the containers, or <samp class="codeph">false</samp> to not instantiate
+the children. The default value is <samp class="codeph">true</samp>.</p>
+<p>On a single-view MX container, calling the <samp class="codeph">createComponentsFromDescriptors()</samp> method
+instantiates all controls in that container, regardless of the value
+of the <samp class="codeph">creationPolicy</samp> property. </p>
+<p>In navigator containers, if you set the <samp class="codeph">creationPolicy</samp> property
+to <samp class="codeph">all</samp>, you do not have to call the <samp class="codeph">createComponentsFromDescriptors()</samp> method, because
+the container creates all controls in all views of the container.
+If you set the <samp class="codeph">creationPolicy</samp> property to <samp class="codeph">none</samp> or <samp class="codeph">auto</samp>,
+calling the <samp class="codeph">createComponentsFromDescriptors()</samp> method
+creates only the current view's controls and their descendents.</p>
+<p>Another common usage is to set the navigator container's <samp class="codeph">creationPolicy</samp> property
+to <samp class="codeph">auto</samp>. You can then call <em>navigator</em>
+<samp class="codeph">.getChildAt(n).createComponentsFromDescriptors()</samp> to
+explicitly create the children of the <em>n</em>-th view.</p>
+</div>
+</div>
+</div>
+<div class="nested1" id="WS2db454920e96a9e51e63e3d11c0bf69084-7b06_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7b06_verapache"><!-- --></a>
+<h2 class="topictitle2">Using the callLater() method</h2>
+<div>
+<p>The <samp class="codeph">callLater()</samp> method
+queues an operation to be performed for the next screen refresh,
+rather than in the current update. Without the <samp class="codeph">callLater()</samp> method,
+you might try to access a property of a component that is not yet available.
+The <samp class="codeph">callLater()</samp> method is most commonly used with
+the <samp class="codeph">creationComplete</samp> event to ensure that a component
+has finished being created before Flex proceeds with a specified
+method call on that component.</p>
+<p>All objects
+that inherit from the <a href="https://flex.apache.org/asdoc/mx/core/UIComponent.html" target="_blank">UIComponent</a> class can open
+the <samp class="codeph">callLater()</samp> method. It has the following signature:</p>
+<pre class="codeblock">&thinsp;callLater(<em>method</em>:Function, <em>args</em>:Array):void</pre>
+<p>The <em>method</em> argument is the function to call on the object.
+The <em>args</em> argument is an optional Array of arguments that
+you can pass to that function.</p>
+<p>The following example defers the invocation of the <samp class="codeph">doSomething()</samp> method, but
+when it is opened, Flex passes the <a href="https://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/flash/events/Event.html" target="_blank">Event</a> object
+and the "Product Description" String in an Array to that function:</p>
+<pre class="codeblock">&thinsp;callLater(doSomething, [event, "Product Description"]); 
+&thinsp;... 
+&thinsp;private function doSomething(event:Event, title:String):void { 
+&thinsp;	... 
+&thinsp;}</pre>
+<p>The
+following example uses a call to the <samp class="codeph">callLater()</samp> method
+to ensure that new data is added to a <a href="https://flex.apache.org/asdoc/mx/controls/DataGrid.html" target="_blank">DataGrid</a> before
+Flex tries to put focus on the new row. Without the <samp class="codeph">callLater()</samp> method,
+Flex might try to focus on a cell that does not exist and throw
+an error:</p>
+<pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- layoutperformance/CallLaterAddItem.mxml --&gt; 
+&lt;s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009"    
+    xmlns:mx="library://ns.adobe.com/flex/mx"     
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    initialize="initData()"&gt; 
+ 
+    &lt;fx:Script&gt;&lt;![CDATA[ 
+        import mx.collections.*; 
+        private var DGArray:Array = [ 
+            {Artist:'Pavement', Album:'Charred Walls', Price:11.99}, 
+            {Artist:'Pavement', Album:'Good For You', Price:11.99}]; 
+            
+        [Bindable] 
+        public var initDG:ArrayCollection; 
+        //Initialize initDG ArrayCollection variable from the Array. 
+        
+        public function initData():void { 
+            initDG=new ArrayCollection(DGArray); 
+        } 
+        
+        public function addNewItem():void { 
+            var o:Object; 
+            o = {Artist:'Pavement', Album:'Tradio', Price:11.99}; 
+            initDG.addItem(o); 
+            callLater(focusNewRow); 
+        } 
+ 
+        public function focusNewRow():void { 
+            myGrid.editedItemPosition = { 
+                columnIndex:0,rowIndex:myGrid.dataProvider.length-1 
+            }; 
+        } 
+        
+    ]]&gt;&lt;/fx:Script&gt; 
+ 
+    &lt;s:VGroup&gt; 
+        &lt;mx:DataGrid id="myGrid" width="350" height="200" dataProvider="{initDG}"  editable="true"&gt; 
+            &lt;mx:columns&gt; 
+                &lt;fx:Array&gt; 
+                    &lt;mx:DataGridColumn dataField="Album" /&gt; 
+                    &lt;mx:DataGridColumn dataField="Price" /&gt; 
+                &lt;/fx:Array&gt; 
+            &lt;/mx:columns&gt; 
+        &lt;/mx:DataGrid&gt; 
+ 
+        &lt;s:Button id="b1" label="Add New Item" click="addNewItem()"/&gt; 
+    &lt;/s:VGroup&gt; 
+    
+&lt;/s:Application&gt;</pre>
+<p>Another use of the <samp class="codeph">callLater()</samp> method is to
+create a recursive method. Because the function is called only after
+the next screen refresh (or frame), the <samp class="codeph">callLater()</samp> method
+can be used to create animations or scroll text with methods that
+reference themselves. </p>
+<p>The following example scrolls ticker symbols across the screen
+and lets users adjust the speed with an <a href="https://flex.apache.org/asdoc/mx/controls/HSlider.html" target="_blank">HSlider</a> control:</p>
+<pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- layoutperformance/CallLaterTicker.mxml --&gt; 
+&lt;s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009"    
+    xmlns:mx="library://ns.adobe.com/flex/mx"     
+    xmlns:s="library://ns.adobe.com/flex/spark"&gt; 
+    
+    &lt;fx:Script&gt;&lt;![CDATA[ 
+    
+        [Bindable] 
+        public var text:String = "SLAR:95.5....TIBA:42....RTF:34.15....AST:23.42"; 
+        [Bindable] 
+        public var speed:Number = 5; 
+ 
+        public function initTicker():void { 
+            theText.move( this.width+10, 0 ); // Start the text on the right side. 
+            callLater(moveText); 
+        } 
+ 
+        public function moveText():void { 
+            var xpos:Number = theText.x; 
+            if( xpos-speed+theText.width &lt; 0 ) { 
+                xpos = this.width+10; // Start the text on the right side. 
+            } 
+            xpos -= speed; 
+            theText.move(xpos,0); 
+            callLater(moveText); 
+        } 
+ 
+        public function changeSpeed():void { 
+            speed = speedSelector.value; 
+        } 
+        
+    ]]&gt;&lt;/fx:Script&gt; 
+ 
+    &lt;s:Panel title="Ticker Sample" width="400" height="200"&gt; 
+        &lt;s:VGroup&gt; 
+                &lt;mx:Canvas creationComplete="initTicker()" 
+                    horizontalScrollPolicy="off" backgroundColor="red" color="white" 
+                    width="400"&gt; 
+                &lt;mx:Label id="theText" text="{text}" y="0"/&gt; 
+            &lt;/mx:Canvas&gt; 
+            &lt;mx:HBox&gt; 
+                &lt;mx:Label text="Speed:"/&gt; 
+                &lt;mx:HSlider minimum="1" maximum="10" value="{speed}" 
+                    id="speedSelector" snapInterval="1" tickInterval="1" 
+                    change="changeSpeed()"/&gt; 
+            &lt;/mx:HBox&gt; 
+        &lt;/s:VGroup&gt; 
+    &lt;/s:Panel&gt; 
+&lt;/s:Application&gt;</pre>
+<p></p>
+</div>
+<div>
+<p><strong>Navigation</strong></p>
+<p><a href="index.html">Using Flex</a> &raquo; <a href="flx_p8_qa_automation.html">Testing and automation</a></p>
+</div>
+<p>Adobe, Adobe AIR, Adobe Flash and Adobe Flash Player are either registered trademarks or trademarks of Adobe Systems Incorporated in the United States and/or other countries and are used by permission from Adobe.  No other license to the Adobe trademarks are granted.</p>
+</div>
+
+
+<!-- Home Page Exception -->
+
+</div></div>
+<!-- Wrapper / End -->
+
+
+<!-- Footer -->
+
+<!-- Footer Top -->
+<div id="footer" class="container-fluid paddingbottom" >
+
+
+    <div class="row-fluid">
+
+        <!-- About -->
+        <div class="span3">
+            <div class="footer-headline"><h4>About Us</h4></div>
+            <p>Apache Flex® is a highly productive, open source application framework for building and maintaining expressive web applications that deploy consistently on all major browsers, desktops and devices (including smartphones, tablets and tv). It provides a modern, standards-based language and programming model that supports common design patterns suitable for developers from many backgrounds. Flex applications can be deployed with Adobe® AIR™ on desktop and mobile, including native Android™, iOS™, Windows®, macOS®, and Linux applications.</p>
+        </div>
+
+        <!-- Subscribe  -->
+        <div class="span3">
+            <div class="footer-headline"><h4>Subscribe</h4></div>
+            <p>We have two mailing lists, one for SDK developers, and one for SDK users.</p>
+            <ul>
+                <li><strong>Users</strong>, send an email to <br>
+                    <a href="mailto:users-subscribe@flex.apache.org">users-subscribe@flex.apache.org</a>
+                </li>
+                <li><strong>Contributors</strong>, send an email to <br>
+                    <a href="mailto:dev-subscribe@flex.apache.org">dev-subscribe@flex.apache.org</a>
+                </li>
+            </ul>
+        </div>
+
+        <!-- Latest Releases -->
+        <div class="span3">
+            <div class="footer-headline"><h4>Latest Releases</h4></div>
+            <p>
+            	Apache Flex SDK : <a href="/download-binaries.html">4.16.1 (Nov 2017)</a><br />
+                Apache FlexJS SDK : <a href="/download-flexjs.html">0.8.0 (Jun 2017)</a><br />
+                Blaze DS : <a href="/download-blazeds.html">4.8.0 (Apr 2023)</a><br />
+                Flex SDK Converter : <a href="https://github.com/apache/flex-utilities/tree/develop/flex-maven-tools/flex-sdk-converter"> 1.1.0 (Feb 2023)</a><br />
+                FlexUnit : <a href="/download-flexunit.html">4.2.0 (Apr 2014)</a><br />
+                SDK Installer : <a href="/installer.html">3.3.2 (Jul 2018)</a><br />
+                Squiggly : <a href="/download-squiggly.html">1.1 (Oct 2014)</a><br />
+                Tour De Flex : <a href="/download-tourdeflex.html">1.2 (Nov 2014)</a><br />
+            </p>
+        </div>
+
+    </div>
+
+</div>
+<!-- Footer / Bottom -->
+<div id="footer" class="container-fluid" style="background: #111;">
+    <div class="row-fluid">
+        <div class="span12">
+            <div id="footer-bottom">
+                Copyright © 2025 The Apache Software Foundation, Licensed under the Apache License, Version 2.0 <br>
+                Apache Flex, Apache and the Apache feather logo are trademarks of The Apache Software Foundation. All other marks mentioned may be trademarks or registered trademarks of their respective owners.
+                Read more about the <a href="https://privacy.apache.org/policies/privacy-policy-public.html">ASF's Privacy Policy</a>.
+                <div id="scroll-top-top"><a href="#" title="Go to Top"></a></div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<!-- Footer / End -->
+
+</body>
+
+</html>
