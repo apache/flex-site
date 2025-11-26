@@ -1,0 +1,1962 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Licensed to the Apache Software Foundation (ASF) under one or more
+  contributor license agreements.  See the NOTICE file distributed with
+  this work for additional information regarding copyright ownership.
+  The ASF licenses this file to You under the Apache License, Version 2.0
+  (the "License"); you may not use this file except in compliance with
+  the License.  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+-->
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en-us" xml:lang="en-us">
+<head>
+<meta name="DC.Type" content="topic"/>
+<meta name="DC.Title" content="ToolTip controls"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="WS2db454920e96a9e51e63e3d11c0bf69084-7f3f_verapache"/>
+<title>ToolTip controls</title>
+</head>
+<body id="WS2db454920e96a9e51e63e3d11c0bf69084-7f3f_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7f3f_verapache"><!-- --></a>
+
+   <div>
+      <p>Flex ToolTips are a flexible method of providing
+helpful information to your users. When a user moves the mouse pointer
+over graphical components, ToolTips pop up and text appears. You
+can use ToolTips to guide users through working with your application
+or customize them to provide additional functionality. </p>
+
+   </div>
+
+   <div class="nested1" id="WS2db454920e96a9e51e63e3d11c0bf60d65-7ffc_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf60d65-7ffc_verapache"><!-- --></a>
+      <h2 class="topictitle2">About ToolTip controls</h2>
+
+      
+      <div>
+         <p>
+            
+            <a href="https://flex.apache.org/asdoc/mx/controls/ToolTip.html" target="_blank">ToolTips</a> are
+a standard feature of many desktop applications. They make the application
+easier to use by displaying messages when the user moves the mouse
+pointer over an onscreen element, such as a Button control.</p>
+
+         <p>The following image shows ToolTip text that appears when the
+user hovers the mouse pointer over a button:</p>
+
+         <div class="figborder">
+            <img src="images/tt_tooltip_hover.png" alt="A ToolTip over a Button control."/>
+         </div>
+
+         <p>When the user moves the mouse pointer away from the component
+or clicks the mouse button, the ToolTip disappears. If the mouse
+pointer remains over the component, the ToolTip eventually disappears.
+The default behavior is to display only one ToolTip at a time.</p>
+
+         <p>You can set the time it takes for the ToolTip to appear when
+a user moves the mouse pointer over the component. You can also
+set the amount of time it takes for the ToolTip to disappear.</p>
+
+         <p>If you define a ToolTip on a container, the ToolTipManager displays
+the parent's ToolTip for the children if the child does not have
+one.</p>
+
+         <p>Flex ToolTips support style sheets and the dynamic loading of
+ToolTip text. ToolTip text does not support embedded HTML. For more
+information on using style sheets and dynamic loading of text, see <a href="flx_tooltips_tt.html#WS2db454920e96a9e51e63e3d11c0bf69084-7f66_verapache">Setting
+styles in ToolTips</a> and <a href="flx_tooltips_tt.html#WS2db454920e96a9e51e63e3d11c0bf69084-7f65_verapache">Using dynamic
+ToolTip text</a>.</p>
+
+         <p>Not all Spark text components support ToolTips. For example,
+you can add a ToolTip to the RichEditableText component, but not
+the RichText control.</p>
+
+         <p>Some components have their own ToolTip-like "data tips." These
+components include the List control, most chart controls, and DataGrid
+control. For more information, see that component's documentation.</p>
+
+         <p>ToolTips are the basis for the accessibility implementation within
+Flex. All controls that support accessibility do so by making their
+ToolTip text readable by screen readers such as JAWS. For more information
+on accessibility, see <a href="flx_accessible_ac.html#WS2db454920e96a9e51e63e3d11c0bf69084-7f60_verapache">Accessible
+applications</a>.</p>
+
+      </div>
+
+   </div>
+
+   <div class="nested1" id="WS2db454920e96a9e51e63e3d11c0bf60d65-7fff_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf60d65-7fff_verapache"><!-- --></a>
+      <h2 class="topictitle2">Creating ToolTips</h2>
+
+      
+      <div>
+         <p>Every
+visual component that extends the <a href="https://flex.apache.org/asdoc/mx/core/UIComponent.html" target="_blank">UIComponent</a>, <a href="https://flex.apache.org/asdoc/mx/core/UITextField.html" target="_blank">UITextField</a>,
+or <a href="https://flex.apache.org/asdoc/mx/core/UIFTETextField.html" target="_blank">UIFTETextField</a> classes
+(which implement the <a href="https://flex.apache.org/asdoc/mx/managers/IToolTipManagerClient.html" target="_blank">IToolTipManagerClient</a> interface) supports
+a <samp class="codeph">toolTip</samp> property. This property is inherited
+from those class that implement IToolTipManagerClient. You set the
+value of the <samp class="codeph">toolTip</samp> property to a text string,
+and when the mouse pointer hovers over that component, the text
+string appears. The following example sets the <samp class="codeph">toolTip</samp> property
+text for a Button control:</p>
+
+         <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- tooltips/BasicToolTip.mxml --&gt; 
+&lt;s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009"    
+    xmlns:mx="library://ns.adobe.com/flex/mx"     
+    xmlns:s="library://ns.adobe.com/flex/spark"&gt; 
+ 
+    &lt;s:layout&gt; 
+        &lt;s:VerticalLayout/&gt; 
+    &lt;/s:layout&gt; 
+ 
+  &lt;s:Button id="b1" label="Click Me" toolTip="This Button does nothing."/&gt; 
+ 
+&lt;/s:Application&gt;</pre>
+
+         <p>To set the value of a <a href="https://flex.apache.org/asdoc/mx/controls/ToolTip.html" target="_blank">ToolTip</a> in
+ActionScript, use the <samp class="codeph">toolTip</samp> property of the component.
+The following example creates a new <a href="https://flex.apache.org/asdoc/spark/components/Button.html" target="_blank">Button</a> and
+sets the <samp class="codeph">toolTip</samp> property of a Button control:</p>
+
+         <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- tooltips/BasicToolTipActionScript.mxml --&gt; 
+&lt;s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009"    
+    xmlns:mx="library://ns.adobe.com/flex/mx"     
+    xmlns:s="library://ns.adobe.com/flex/spark"&gt; 
+ 
+    &lt;s:layout&gt; 
+        &lt;s:VerticalLayout/&gt; 
+    &lt;/s:layout&gt; 
+ 
+  &lt;fx:Script&gt; 
+    &lt;![CDATA[ 
+     public function createNewButton(event:MouseEvent):void { 
+        var myButton:Button = new Button(); 
+        myButton.label = "Create Another Button"; 
+        myButton.toolTip = "Click this new button to create another button."; 
+        myButton.addEventListener(MouseEvent.CLICK, createNewButton); 
+        addElement(myButton); 
+     } 
+    ]]&gt; 
+  &lt;/fx:Script&gt; 
+  
+  &lt;s:Button id="b1" label="Create Another Button" 
+        toolTip="Click this button to create another button." 
+        click="createNewButton(event);"/&gt; 
+ 
+&lt;/s:Application&gt;</pre>
+
+         <p>If you do not define a ToolTip on the child of a container, the
+ToolTipManager displays the parent's ToolTip. For example, if you
+add a Button control to a Panel container that has a ToolTip, the
+user sees the Panel container's ToolTip text when the user moves
+the mouse pointer over the Panel. When the user moves the mouse
+pointer over the Button control, the Panel's ToolTip continues to
+be displayed. You can override the container's ToolTip text by setting
+the value of the child's <samp class="codeph">toolTip</samp> property.</p>
+
+         <p>The following example shows the inheritance of ToolTip text:</p>
+
+         <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- tooltips/ToolTipInheritance.mxml --&gt; 
+&lt;s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009"    
+    xmlns:mx="library://ns.adobe.com/flex/mx"     
+    xmlns:s="library://ns.adobe.com/flex/spark"&gt; 
+ 
+    &lt;s:VGroup toolTip="VGroup ToolTip"&gt; 
+        &lt;s:Button id="b1" label="Button 1" toolTip="Button ToolTip"/&gt; 
+        &lt;s:Button id="b2" label="Button 2"/&gt; 
+    &lt;/s:VGroup&gt; 
+ 
+&lt;/s:Application&gt;</pre>
+
+         <p>When the mouse pointer is over button b1, the ToolTip displays
+"Button ToolTip". When the mouse pointer is over button b2 or anywhere
+in the VGroup container except over button b1, the ToolTip displays
+"VGroup ToolTip".</p>
+
+         <p>The <a href="https://flex.apache.org/asdoc/mx/containers/TabNavigator.html" target="_blank">TabNavigator</a> container
+uses the ToolTips that are on its children. If you add a ToolTip
+to a child view of a TabNavigator container, the ToolTip appears
+when the mouse is over the tab for that view, but not when the mouse
+is over the view itself. If you add a ToolTip to the TabNavigator
+container, the ToolTip appears when the mouse is over either the
+tab or the view, unless the ToolTip is overridden by the tab or
+the view. ToolTips in the following controls also behave this way:</p>
+
+         <ul>
+            <li>
+               <p>
+                  <a href="https://flex.apache.org/asdoc/mx/containers/Accordion.html" target="_blank">Accordion</a>
+               </p>
+
+            </li>
+
+            <li>
+               <p>
+                  <a href="https://flex.apache.org/asdoc/mx/controls/ButtonBar.html" target="_blank">ButtonBar</a>
+               </p>
+
+            </li>
+
+            <li>
+               <p>
+                  <a href="https://flex.apache.org/asdoc/mx/controls/LinkBar.html" target="_blank">LinkBar</a>
+               </p>
+
+            </li>
+
+            <li>
+               <p>
+                  <a href="https://flex.apache.org/asdoc/mx/controls/TabBar.html" target="_blank">TabBar</a>
+               </p>
+
+            </li>
+
+            <li>
+               <p>
+                  <a href="https://flex.apache.org/asdoc/mx/controls/ToggleButtonBar.html" target="_blank">ToggleButtonBar</a>
+               </p>
+
+            </li>
+
+         </ul>
+
+         <p>There
+is no limit to the size of the ToolTip text, although long messages
+can be difficult to read. When the ToolTip text reaches the width
+of the ToolTip box, the text wraps to the next line. You can add
+line breaks in ToolTip text. In ActionScript, you use the \n escaped
+newline character. In MXML tags, you use the &amp;#13; XML entity.</p>
+
+         <p>The following examples show using the \n escaped newline character
+and the &amp;#13; entity:</p>
+
+         <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- tooltips/ToolTipNewlines.mxml --&gt; 
+&lt;s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009"    
+    xmlns:mx="library://ns.adobe.com/flex/mx"     
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    initialize="doSomething(event)"&gt; 
+    
+    &lt;fx:Script&gt; 
+        &lt;![CDATA[ 
+            public function doSomething(event:Event):void { 
+                // Use the \n to force a line break in ActionScript. 
+                b1.toolTip = "Click this button \nto clear the form."; 
+            } 
+        ]]&gt; 
+    &lt;/fx:Script&gt; 
+ 
+    &lt;s:Button id="b1" label="Clear" width="100"/&gt; 
+    
+    &lt;!-- Use &amp;#13; to force a line break in MXML tags. --&gt; 
+    &lt;s:Button id="b2" label="Submit" width="100" 
+        toolTip="Click this button &amp;#13;to submit the form."/&gt; 
+ 
+&lt;/s:Application&gt;</pre>
+
+         <p>You
+also have some flexibility in formatting the text of the ToolTip.
+You can apply styles and change other settings for all ToolTips
+in your application by using the ToolTip Cascading Style Sheets
+(CSS) type selector. The following sections describe how to set
+styles on the ToolTip text and box.</p>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf69084-7f66_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7f66_verapache"><!-- --></a>
+         <h3 class="topictitle3">Setting styles in ToolTips</h3>
+
+         
+         <div>
+            <p>You can
+change the appearance of ToolTip text and the ToolTip box by using
+CSS syntax or the mx.styles.StyleManager class. Changes to ToolTip
+styles apply to all ToolTips in the current application.</p>
+
+            <p>The default styles for ToolTips are defined by the ToolTip type
+selector in the defaults.css file in the framework.swc file. You
+can use a type selector in the <samp class="codeph">&lt;fx:Style&gt;</samp> tag
+to override the default styles of your ToolTips. The following example
+sets the styles of the ToolTip type selector using CSS syntax:</p>
+
+            <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- tooltips/ToolTipStyles.mxml --&gt; 
+&lt;s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009"    
+    xmlns:mx="library://ns.adobe.com/flex/mx"     
+    xmlns:s="library://ns.adobe.com/flex/spark"&gt; 
+ 
+    &lt;fx:Style&gt; 
+        @namespace mx "library://ns.adobe.com/flex/mx"; 
+ 
+        mx|ToolTip { 
+            fontFamily: "Arial"; 
+            fontSize: 19; 
+            fontStyle: "italic"; 
+            color: #FF6699; 
+            backgroundColor: #33CC99; 
+        } 
+    &lt;/fx:Style&gt; 
+ 
+    &lt;s:Button id="b1" label="Click Me" toolTip="This Button does nothing."/&gt; 
+ 
+&lt;/s:Application&gt;</pre>
+
+            <p>You can also use the StyleManager to apply styles to all ToolTips.
+You must first get a reference to the top-level StyleManager with
+the Application object's <samp class="codeph">styleManager</samp> property.
+You then get the ToolTip style declaration with the <samp class="codeph">getStyleDeclaration()</samp> method.
+Finally, you apply a style to the ToolTip type selector with the <samp class="codeph">setStyle()</samp> method,
+as the following example shows:</p>
+
+            <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- tooltips/ToolTipStyleManager.mxml --&gt; 
+&lt;s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009"    
+    xmlns:mx="library://ns.adobe.com/flex/mx"     
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    creationComplete="setToolTipStyle()"&gt; 
+ 
+    &lt;fx:Script&gt; 
+        &lt;![CDATA[ 
+            private function setToolTipStyle():void { 
+                styleManager.getStyleDeclaration("mx.controls.ToolTip").setStyle("fontStyle","italic"); 
+                styleManager.getStyleDeclaration("mx.controls.ToolTip").setStyle("fontSize","19"); 
+                styleManager.getStyleDeclaration("mx.controls.ToolTip").setStyle("fontFamily","Arial"); 
+                styleManager.getStyleDeclaration("mx.controls.ToolTip").setStyle("color","#FF6699"); 
+                styleManager.getStyleDeclaration("mx.controls.ToolTip").setStyle("backgroundColor","#33CC99"); 
+            } 
+        ]]&gt; 
+    &lt;/fx:Script&gt; 
+ 
+  &lt;s:Button id="b1" label="Click Me" toolTip="This Button does nothing."/&gt; 
+ 
+&lt;/s:Application&gt;</pre>
+
+            <p>ToolTips use inheritable styles that you set globally. For example,
+you can set the <samp class="codeph">fontWeight</samp> of ToolTips with the
+StyleManager by setting it on the global selector, as the following
+example shows:</p>
+
+            <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- tooltips/ToolTipGlobalStyles.mxml --&gt; 
+&lt;s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009"    
+    xmlns:mx="library://ns.adobe.com/flex/mx"     
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    creationComplete="setToolTipStyle()"&gt; 
+ 
+    &lt;fx:Script&gt; 
+        &lt;![CDATA[ 
+            private function setToolTipStyle():void { 
+                styleManager.getStyleDeclaration("global").setStyle("fontWeight","bold"); 
+                styleManager.getStyleDeclaration("global").setStyle("color","red"); 
+            } 
+        ]]&gt; 
+    &lt;/fx:Script&gt; 
+ 
+  &lt;s:Button id="b1" label="Click Me" toolTip="This Button does nothing, but the ToolTip is styled red and bold."/&gt; 
+ 
+&lt;/s:Application&gt;</pre>
+
+            <p>Styles set on the Application object typically apply to all UI
+objects. However, ToolTips do not inherit styles set on the Application
+object.</p>
+
+            <p>If you set the <samp class="codeph">fontWeight</samp> property on the global
+selector, your change affects the text of many controls in addition
+to ToolTips, so be careful when using the global selector. </p>
+
+            <p>For a complete list of styles supported by ToolTips, see the <em>
+                  <a href="https://flex.apache.org/asdoc/" target="_blank">ActionScript 3.0 Reference for Apache Flex</a></em>. For more information on using styles,
+see <a href="flx_styles_st.html#WS2db454920e96a9e51e63e3d11c0bf69084-7fee_verapache">Styles
+and themes</a>.</p>
+
+            <p>You can reskin ToolTip controls to give them an entirely new
+appearance. You can do this by using the <a href="https://flex.apache.org/asdoc/mx/skins/halo/ToolTipBorder.html" target="_blank">ToolTipBorder</a> programmatic
+skin or reskin them graphically. For an example of programmatically
+reskinning a ToolTip control, see <a href="flx_tooltips_tt.html#WS2db454920e96a9e51e63e3d11c0bf69084-7f61_verapache">Reskinning ToolTips</a>.</p>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf60d65-7ff9_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf60d65-7ff9_verapache"><!-- --></a>
+         <h3 class="topictitle3">Setting the width of ToolTips</h3>
+
+         
+         <div>
+            <p>You can set the width of the ToolTip box by changing the <samp class="codeph">maxWidth</samp> property
+of the ToolTip class. This property is static so when you set it,
+you are setting it for all ToolTip objects. You cannot set it on
+an instance of a ToolTip class.</p>
+
+            <p>The <samp class="codeph">maxWidth</samp> property
+specifies the maximum width in pixels for new ToolTips boxes. For
+example, the following line changes the maximum width of the ToolTip
+box to 100 pixels:</p>
+
+            <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- tooltips/SetMaxWidth.mxml --&gt; 
+&lt;s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009"    
+    xmlns:mx="library://ns.adobe.com/flex/mx"     
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    creationComplete="initApp()"&gt; 
+ 
+    &lt;s:layout&gt; 
+        &lt;s:VerticalLayout/&gt; 
+    &lt;/s:layout&gt; 
+ 
+  &lt;fx:Script&gt; 
+    &lt;![CDATA[ 
+     import mx.controls.ToolTip; 
+ 
+     public function initApp():void { 
+        ToolTip.maxWidth = 100; 
+     }     
+     public function createNewButton(event:MouseEvent):void {       
+        var myButton:Button = new Button(); 
+        myButton.label = "Create Another Button"; 
+        myButton.toolTip = "Click this new button to create another button."; 
+        myButton.addEventListener(MouseEvent.CLICK, createNewButton); 
+        addElement(myButton); 
+     } 
+    ]]&gt; 
+  &lt;/fx:Script&gt; 
+  
+  &lt;s:Button id="b1" label="Create Another Button" 
+    click="createNewButton(event);" 
+    toolTip="Click this button to create a new one."/&gt; 
+&lt;/s:Application&gt;</pre>
+
+            <p>Flex wraps the text of a ToolTip onto multiple lines to ensure
+that the width does not exceed this value. If the text in the ToolTip
+box is not as wide as the <samp class="codeph">maxWidth</samp> property, Flex
+creates a box only wide enough for the text to fit.</p>
+
+            <p>The default value of <samp class="codeph">maxWidth</samp> is <samp class="codeph">300</samp>.
+If the value of <samp class="codeph">maxWidth</samp> exceeds the width of the
+application, Flex clips the text in the ToolTip box.</p>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf60d65-7ff7_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf60d65-7ff7_verapache"><!-- --></a>
+         <h3 class="topictitle3">Using ToolTip events</h3>
+
+         
+         <div>
+            <p>ToolTips trigger many events during their life cycle. These
+events are of type <a href="https://flex.apache.org/asdoc/mx/events/ToolTipEvent.html" target="_blank">ToolTipEvent</a>.</p>
+
+            <p>In addition to the <samp class="codeph">type</samp> and <samp class="codeph">target</samp> properties,
+the ToolTipEvent object references the ToolTip in its <samp class="codeph">toolTip</samp> property.
+With a reference to the ToolTip, you can then access the ToolTip
+text with the <samp class="codeph">text</samp> property.</p>
+
+            <p>To use events of type ToolTipEvent in your <samp class="codeph">&lt;fx:Script&gt;</samp> blocks,
+you must import mx.events.ToolTipEvent class.</p>
+
+            <p>The following example plays a sound in response to the <samp class="codeph">TOOL_TIP_SHOW</samp> event:</p>
+
+            <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- tooltips/ToolTipsWithSoundEffects.mxml --&gt; 
+&lt;s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009"    
+    xmlns:mx="library://ns.adobe.com/flex/mx"     
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    initialize="initApp()"&gt; 
+ 
+  &lt;fx:Script&gt; 
+    &lt;![CDATA[ 
+     import mx.events.ToolTipEvent; 
+     import flash.media.Sound; 
+ 
+     [Embed(source="../assets/sound1.mp3")] 
+     private var beepSound:Class; 
+     private var myClip:Sound; 
+ 
+     public function playSound():void { 
+        myClip.play(); 
+     } 
+     private function myListener(event:ToolTipEvent):void { 
+        playSound(); 
+     } 
+     private function initApp():void { 
+        myRichEditableText.addEventListener(ToolTipEvent.TOOL_TIP_SHOW, myListener); 
+        myClip = new beepSound(); 
+     } 
+    ]]&gt; 
+  &lt;/fx:Script&gt; 
+ 
+  &lt;s:RichEditableText id="myRichEditableText" toolTip="ToolTip" text="Mouse Over Me"/&gt; 
+ 
+&lt;/s:Application&gt;</pre>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf60d65-7ff3_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf60d65-7ff3_verapache"><!-- --></a>
+         <h3 class="topictitle3">Using ToolTips with MX navigator
+containers</h3>
+
+         
+         <div>
+            <p>MX <a href="https://flex.apache.org/asdoc/mx/controls/NavBar.html" target="_blank">NavBar</a> and <a href="https://flex.apache.org/asdoc/mx/controls/TabBar.html" target="_blank">TabBar</a> subclasses
+(such as <a href="https://flex.apache.org/asdoc/mx/controls/ButtonBar.html" target="_blank">ButtonBar</a>, <a href="https://flex.apache.org/asdoc/mx/controls/LinkBar.html" target="_blank">LinkBar</a>,
+and <a href="https://flex.apache.org/asdoc/mx/controls/ToggleButtonBar.html" target="_blank">ToggleButtonBar</a>)
+support ToolTips in their data providers. The data provider array
+can contain a <samp class="codeph">toolTip</samp> field that specifies the <samp class="codeph">toolTip</samp> for
+the navigation items. </p>
+
+            <p>The following example creates ToolTips for each of the navigation
+items:</p>
+
+            <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- tooltips/NavItemToolTips.mxml --&gt; 
+&lt;s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009"    
+    xmlns:mx="library://ns.adobe.com/flex/mx"     
+    xmlns:s="library://ns.adobe.com/flex/spark"&gt; 
+ 
+    &lt;s:layout&gt; 
+        &lt;s:VerticalLayout/&gt; 
+    &lt;/s:layout&gt; 
+ 
+    &lt;s:ButtonBar&gt; 
+        &lt;s:dataProvider&gt; 
+            &lt;s:ArrayCollection&gt; 
+                &lt;fx:Object label="OK" toolTip="OK Button ToolTip"/&gt; 
+                &lt;fx:Object label="Cancel" toolTip="Cancel Button ToolTip"/&gt; 
+            &lt;/s:ArrayCollection&gt; 
+        &lt;/s:dataProvider&gt; 
+    &lt;/s:ButtonBar&gt; 
+ 
+    &lt;mx:ButtonBar&gt; 
+        &lt;mx:dataProvider&gt; 
+                &lt;fx:Object label="OK" toolTip="OK Button ToolTip"/&gt; 
+                &lt;fx:Object label="Cancel" toolTip="Cancel Button ToolTip"/&gt; 
+        &lt;/mx:dataProvider&gt; 
+    &lt;/mx:ButtonBar&gt; 
+&lt;/s:Application&gt;</pre>
+
+            <p>The Spark ButtonBar component does not by default support the
+use of a <samp class="codeph">toolTip</samp> field in its data provider. To
+add ToolTips to a Spark ButtonBar in this way, you must create a
+custom item renderer. For more information, see <a href="flx_spark_itemrenderers_sir.html#WS4bebcd66a74275c3-fc6548e124e49b51c4-8000_verapache">Custom Spark
+item renderers</a>.</p>
+
+            <p>You can use ToolTips on child elements in a navigator container's
+data provider. The component recognizes those ToolTips and displays
+them accordingly. In the following example, the ToolTips are propagated
+up to the <a href="https://flex.apache.org/asdoc/mx/controls/LinkBar.html" target="_blank">LinkBar</a>:</p>
+
+            <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- tooltips/DataProviderToolTips.mxml --&gt; 
+&lt;s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009"    
+    xmlns:mx="library://ns.adobe.com/flex/mx"     
+    xmlns:s="library://ns.adobe.com/flex/spark"&gt; 
+ 
+  &lt;mx:VBox&gt; 
+     &lt;!-- Create a LinkBar control to navigate the ViewStack. --&gt; 
+     &lt;mx:LinkBar dataProvider="{vs1}" borderStyle="solid"/&gt; 
+   
+     &lt;!-- Define the ViewStack and the three child containers. --&gt; 
+     &lt;mx:ViewStack id="vs1" borderStyle="solid" width="100%" height="150"&gt; 
+        &lt;mx:Canvas id="search" label="Search" toolTip="Search Screen"&gt; 
+           &lt;mx:Label text="Search Screen"/&gt; 
+        &lt;/mx:Canvas&gt; 
+        &lt;mx:Canvas id="custInfo" label="Customer" 
+           toolTip="Customer Info Screen"&gt; 
+           &lt;mx:Label text="Customer Info"/&gt; 
+        &lt;/mx:Canvas&gt; 
+        &lt;mx:Canvas id="accountInfo" label="Account" 
+           toolTip="Account Info Screen"&gt; 
+           &lt;mx:Label text="Account Info"/&gt; 
+        &lt;/mx:Canvas&gt; 
+     &lt;/mx:ViewStack&gt; 
+  &lt;/mx:VBox&gt; 
+ 
+&lt;/s:Application&gt; </pre>
+
+            <p>You can also set the value of the NavBar's <samp class="codeph">toolTipField</samp> property
+to point to the field in the data provider that provides a ToolTip.
+The data provider in the following example defines ToolTips in the <samp class="codeph">myToolTip</samp> field:</p>
+
+            <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- tooltips/ToolTipFieldExample.mxml --&gt; 
+&lt;s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009"    
+    xmlns:mx="library://ns.adobe.com/flex/mx"     
+    xmlns:s="library://ns.adobe.com/flex/spark"&gt; 
+ 
+  &lt;mx:ButtonBar toolTipField="myToolTip"&gt; 
+    &lt;mx:dataProvider&gt; 
+     &lt;fx:Object label="OK" myToolTip="OK Button TooTip"/&gt; 
+     &lt;fx:Object label="Cancel" myToolTip="Cancel Button ToolTip"/&gt; 
+    &lt;/mx:dataProvider&gt; 
+  &lt;/mx:ButtonBar&gt; 
+ 
+&lt;/s:Application&gt;</pre>
+
+         </div>
+
+      </div>
+
+   </div>
+
+   <div class="nested1" id="WS2db454920e96a9e51e63e3d11c0bf60d65-7ffe_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf60d65-7ffe_verapache"><!-- --></a>
+      <h2 class="topictitle2">Using the ToolTip Manager</h2>
+
+      
+      <div>
+         <p>The <a href="https://flex.apache.org/asdoc/mx/managers/ToolTipManager.html" target="_blank">ToolTipManager</a> class
+lets you set basic <a href="https://flex.apache.org/asdoc/mx/controls/ToolTip.html" target="_blank">ToolTip</a> functionality,
+such as display delay and the disabling of ToolTips. It is located
+in the mx.managers package. You must import this class when using
+the ToolTipManager. The ToolTipManager class also contains a reference
+to the current ToolTip in its <samp class="codeph">currentToolTip</samp> property.</p>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf60d65-7ffb_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf60d65-7ffb_verapache"><!-- --></a>
+         <h3 class="topictitle3">Enabling and disabling ToolTips</h3>
+
+         
+         <div>
+            <p>You
+can enable and disable ToolTips in your applications. When you disable ToolTips,
+no ToolTip box appears when the user moves the mouse pointer over
+a visible component, regardless of whether that component's <samp class="codeph">toolTip</samp> property is
+set.</p>
+
+            <p>You use the <samp class="codeph">enabled</samp> property of the ToolTipManager
+to enable or disable ToolTips. You set this property to <samp class="codeph">true</samp> to
+enable ToolTips or <samp class="codeph">false</samp> to disable ToolTips. The
+default value is <samp class="codeph">true</samp>.</p>
+
+            <p>The following example toggles ToolTips on and off when the user
+clicks the Toggle ToolTips button:</p>
+
+            <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- tooltips/ToggleToolTips.mxml --&gt; 
+&lt;s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009"    
+    xmlns:mx="library://ns.adobe.com/flex/mx"     
+    xmlns:s="library://ns.adobe.com/flex/spark"&gt; 
+ 
+  &lt;fx:Script&gt; 
+    &lt;![CDATA[ 
+     import mx.managers.ToolTipManager; 
+ 
+     private function toggleToolTips():void { 
+        if (ToolTipManager.enabled) { 
+           ToolTipManager.enabled = false; 
+        } else { 
+           ToolTipManager.enabled = true; 
+        } 
+     } 
+    ]]&gt; 
+  &lt;/fx:Script&gt; 
+ 
+  &lt;s:Button id="b1" 
+    label="Toggle ToolTips" 
+    width="150" 
+    click="toggleToolTips();" 
+    toolTip="Click me to enable/disable tooltips." 
+  /&gt; 
+  
+&lt;/s:Application&gt;</pre>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf60d65-7ffd_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf60d65-7ffd_verapache"><!-- --></a>
+         <h3 class="topictitle3">Setting delay times</h3>
+
+         
+         <div>
+            <p>A <em>delay time</em> is a measurement
+of time that passes before something takes place. For example, after
+the user moves the mouse pointer over a component, there is a brief
+delay before the ToolTip appears. This gives someone who is not
+looking for ToolTip text enough time to move the mouse pointer away
+before seeing the pop-up. </p>
+
+            <p>The ToolTipManager lets you set the length of time that passes
+before the ToolTip box appears, and the length of time that a ToolTip
+remains on the screen when a mouse pointer hovers over the component.
+You can also set the delay between ToolTips.</p>
+
+            <p>You set the value of the ToolTipManager's <samp class="codeph">showDelay</samp>, <samp class="codeph">hideDelay</samp>,
+and <samp class="codeph">scrubDelay</samp> properties in ActionScript. The
+following table describes the time delay properties of the ToolTipManager:</p>
+
+            
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" frame="border" border="1" rules="all">
+                  
+                  
+                  <thead align="left">
+                     <tr>
+                        <th class="cellrowborder" valign="top" width="NaN%" id="d919628e666">
+                           <p>Property</p>
+
+                        </th>
+
+                        <th class="cellrowborder" valign="top" width="NaN%" id="d919628e672">
+                           <p>Description</p>
+
+                        </th>
+
+                     </tr>
+
+                  </thead>
+
+                  <tbody>
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d919628e666 ">
+                           <div class="p">
+                              <pre class="codeblock"><samp class="codeph">showDelay</samp></pre>
+
+                           </div>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d919628e672 ">
+                           <p>The length of time, in milliseconds, that
+Flex waits before displaying the ToolTip box when a user moves the
+mouse pointer over a component that has a ToolTip.</p>
+
+                           <p>To make
+the ToolTip appear instantly, set the <samp class="codeph">showDelay</samp> property
+to 0. </p>
+
+                           <p>The default value is 500 milliseconds, or half of a
+second.</p>
+
+                        </td>
+
+                     </tr>
+
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d919628e666 ">
+                           <div class="p">
+                              <pre class="codeblock"><samp class="codeph">hideDelay</samp></pre>
+
+                           </div>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d919628e672 ">
+                           <p>The length of time, in milliseconds, that
+Flex waits to hide the ToolTip box after it appears. This amount
+of time only applies if the mouse pointer is over the target component.
+Otherwise the ToolTip disappears immediately when you move the mouse
+pointer away from the target component. After Flex hides a ToolTip
+box, the user must move the mouse pointer off the component and
+back onto it to see the ToolTip box again.</p>
+
+                           <p>If you set the <samp class="codeph">hideDelay</samp> property
+to 0, Flex does not display the ToolTip. It's best to use the default
+value of 10,000 milliseconds, or 10 seconds.</p>
+
+                           <p>If you set the <samp class="codeph">hideDelay</samp> property
+to <samp class="codeph">Infinity</samp>, Flex does not hide the ToolTip until
+the user triggers an event (such as moving the mouse pointer off
+the component). The following example sets the <samp class="codeph">hideDelay</samp> property
+to <samp class="codeph">Infinity</samp>:</p>
+
+                           <div class="p">
+                              <pre class="codeblock">ToolTipManager.hideDelay = Infinity;</pre>
+
+                           </div>
+
+                        </td>
+
+                     </tr>
+
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d919628e666 ">
+                           <div class="p">
+                              <pre class="codeblock">scrubDelay</pre>
+
+                           </div>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d919628e672 ">
+                           <p>The length of time, in milliseconds, that
+a user can take when moving the mouse between controls before Flex
+again waits for the duration of <samp class="codeph">showDelay</samp> to display
+a ToolTip box. </p>
+
+                           <p>This setting is useful if the user moves quickly
+from one control to another; after displaying the first ToolTip,
+Flex displays the others immediately rather than waiting for the
+duration of the <samp class="codeph">showDelay</samp> setting. The shorter
+the setting for <samp class="codeph">scrubDelay</samp>, the more likely that
+the user must wait for an amount of time specified by the <samp class="codeph">showDelay</samp> property
+in order to see the next ToolTip.</p>
+
+                           <p>A good use of this property
+is if you have several buttons on a toolbar, and the user will quickly
+scan across them to see brief descriptions of their functionality. </p>
+
+                           <p>The
+default value is 100.</p>
+
+                        </td>
+
+                     </tr>
+
+                  </tbody>
+
+               </table>
+</div>
+
+            <p>The following example uses the <a href="https://flex.apache.org/asdoc/spark/components/Application.html" target="_blank">Application</a> control's <samp class="codeph">initialize</samp> event
+to set the starting values for the ToolTipManager:</p>
+
+            <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- tooltips/ToolTipTiming.mxml --&gt; 
+&lt;s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009"    
+    xmlns:mx="library://ns.adobe.com/flex/mx"     
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    creationComplete="initApp();"&gt; 
+ 
+    &lt;s:layout&gt; 
+        &lt;s:VerticalLayout/&gt; 
+    &lt;/s:layout&gt; 
+ 
+    &lt;fx:Script&gt;&lt;![CDATA[ 
+        import mx.managers.ToolTipManager; 
+        private function initApp():void { 
+            ToolTipManager.enabled = true;// Optional. Default value is true. 
+            ToolTipManager.showDelay = 0;// Display immediately. 
+            ToolTipManager.hideDelay = 3000; // Hide after 3 seconds of being viewed. 
+        } 
+    ]]&gt;&lt;/fx:Script&gt; 
+ 
+    &lt;s:Button label="Click Me" toolTip="Click this Button to do something."/&gt; 
+    &lt;s:Button label="Click Me" toolTip="Click this Button to do something else."/&gt; 
+    &lt;s:Button label="Click Me" toolTip="Click this Button to do a third thing."/&gt; 
+    &lt;s:Button label="Click Me" toolTip="Click this Button to do the same thing."/&gt; 
+ 
+&lt;/s:Application&gt;</pre>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf60d65-7ff5_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf60d65-7ff5_verapache"><!-- --></a>
+         <h3 class="topictitle3">Using effects with ToolTips</h3>
+
+         
+         <div>
+            <p>You can use a custom effect or one of the standard Flex
+effects with ToolTips. You set the <samp class="codeph">showEffect</samp> or <samp class="codeph">hideEffect</samp> property
+of the ToolTipManager to define the effect that is triggered whenever
+a ToolTip is displayed or is hidden.</p>
+
+            <p>The following example uses the Fade effect so that ToolTips fade
+in when the user moves the mouse pointer over a component with a
+ToolTip:</p>
+
+            <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- tooltips/FadeInToolTips.mxml --&gt; 
+&lt;s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009"    
+    xmlns:mx="library://ns.adobe.com/flex/mx"     
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    width="600" height="600" 
+    initialize="app_init();"&gt; 
+ 
+    &lt;s:layout&gt; 
+        &lt;s:VerticalLayout/&gt; 
+    &lt;/s:layout&gt; 
+ 
+    &lt;fx:Declarations&gt; 
+        &lt;s:Fade id="fadeIn" alphaFrom="0" alphaTo="1" duration="1000"/&gt; 
+    &lt;/fx:Declarations&gt; 
+ 
+    &lt;fx:Script&gt; 
+        &lt;![CDATA[ 
+            import mx.managers.ToolTipManager; 
+ 
+            public function app_init():void { 
+                ToolTipManager.showEffect = fadeIn; 
+            } 
+        ]]&gt; 
+    &lt;/fx:Script&gt; 
+ 
+    &lt;s:Button id="b1" label="Click Me" 
+        toolTip="This is a ToolTip that fades in."/&gt; 
+ 
+&lt;/s:Application&gt;</pre>
+
+            <p>By default, the font used in this example does not fade. You
+must use an embedded font to achieve the effect. For more information
+on using embedded fonts, see <a href="flx_fonts_ft.html#WS2db454920e96a9e51e63e3d11c0bf69084-7f5f_verapache">Embed
+fonts</a>.</p>
+
+            <p>If you set a fade out effect for the <samp class="codeph">hideEffect</samp> event,
+the user must wait with the mouse hovering over the component to
+trigger that effect; the <samp class="codeph">hideToolTip</samp> event is not
+triggered if the user moves the mouse pointer to a different component
+before the ToolTip object hides on its own.</p>
+
+            <p>For more information about using effects and defining custom
+effects, see <a href="flx_behaviors_be.html#WS2db454920e96a9e51e63e3d11c0bf69084-7fec_verapache">Introduction
+to effects</a>.</p>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf69084-7f65_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7f65_verapache"><!-- --></a>
+         <h3 class="topictitle3">Using dynamic ToolTip text</h3>
+
+         
+         <div>
+            <p>You
+can use ToolTips for more than just displaying static help text
+to the user. You can also bind the ToolTip text to data or component
+text. This lets you use ToolTips as a part of the user interface,
+showing drill-down information, query results, or more helpful text
+that is customized to the user experience.</p>
+
+            <p>You bind the value of the ToolTip text to the value of another
+control's text using curly braces ({ }) syntax.</p>
+
+            <p>The following example inserts the value of the TextInput control
+into the Button control's ToolTip text when the user moves the mouse
+pointer over the Button control:</p>
+
+            <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- tooltips/BoundToolTipText.mxml --&gt; 
+&lt;s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009"    
+    xmlns:mx="library://ns.adobe.com/flex/mx"     
+    xmlns:s="library://ns.adobe.com/flex/spark"&gt; 
+ 
+    &lt;s:layout&gt; 
+        &lt;s:VerticalLayout/&gt; 
+    &lt;/s:layout&gt; 
+ 
+    &lt;s:TextInput id="txtTo" width="300"/&gt; 
+    &lt;s:Button label="Send" toolTip="Send e-mail to {txtTo.text}"/&gt; 
+ 
+&lt;/s:Application&gt;</pre>
+
+            <p>In this example, if the user enters <strong>fred@fred.com</strong> in the
+TextInput box, and then moves the mouse pointer over the button,
+Flex displays the message "Send e-mail to fred@fred.com" in the
+ToolTip box.</p>
+
+            <p>Another approach to creating dynamic text for ToolTips is to
+intercept the ToolTip in its <samp class="codeph">toolTipShow</samp> event
+handler and change the value of its <samp class="codeph">text</samp> property.
+The following example registers the <samp class="codeph">myToolTipChanger()</samp> method as
+a listener for the Button control's <samp class="codeph">toolTipShow</samp> event.
+The code in that method changes the value of the <samp class="codeph">ToolTipManager.currentToolTip.text</samp> property
+to a value that is not known until run time. </p>
+
+            <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- tooltips/DynamicToolTipText.mxml --&gt; 
+&lt;s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009"    
+    xmlns:mx="library://ns.adobe.com/flex/mx"     
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    initialize="initApp()"&gt; 
+ 
+  &lt;fx:Script&gt; 
+    &lt;![CDATA[ 
+     import mx.managers.ToolTipManager; 
+     import mx.controls.ToolTip; 
+     import mx.events.ToolTipEvent; 
+     import mx.core.FlexGlobals; 
+ 
+     public function initApp():void { 
+        b1.addEventListener(ToolTipEvent.TOOL_TIP_SHOW, myToolTipChanger) 
+     } 
+     
+     public function myToolTipChanger(event:ToolTipEvent):void { 
+        /* Pass the value of myName in to your application as a flashVars variable. 
+           For example, on the query string. */ 
+        ToolTipManager.currentToolTip.text = "Click the button, " + 
+           FlexGlobals.topLevelApplication.parameters.myName; 
+     } 
+    ]]&gt; 
+  &lt;/fx:Script&gt; 
+ 
+  &lt;s:Button id="b1" label="Click Me" toolTip="Click the button."/&gt; 
+ 
+&lt;/s:Application&gt;</pre>
+
+            <p>You can only create text for the current ToolTip in the <samp class="codeph">toolTipShow</samp> event handler
+if the object had a ToolTip in the first place. For example, if
+the button in the previous example did not set a value for the <samp class="codeph">toolTip</samp> property,
+no ToolTip would appear even after the <samp class="codeph">myToolTipChanger()</samp> method
+was called.</p>
+
+            <p>For information about using the <samp class="codeph">FlexGlobals.topLevelApplication.application</samp> object,
+see <a href="flx_passingarguments_pa.html#WS2db454920e96a9e51e63e3d11c0bf69084-7f5e_verapache">Passing
+request data with flashVars properties</a>.</p>
+
+         </div>
+
+      </div>
+
+   </div>
+
+   <div class="nested1" id="WS2db454920e96a9e51e63e3d11c0bf60d65-7ff6_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf60d65-7ff6_verapache"><!-- --></a>
+      <h2 class="topictitle2">Creating custom ToolTips</h2>
+
+      
+      <div>
+         <p>The <a href="https://flex.apache.org/asdoc/mx/managers/ToolTipManager.html" target="_blank">ToolTipManager</a> has
+two methods that let you programmatically use <a href="https://flex.apache.org/asdoc/mx/controls/ToolTip.html" target="_blank">ToolTips</a>.
+These methods are <samp class="codeph">createToolTip()</samp> and <samp class="codeph">destroyToolTip()</samp>, which
+you use to create and destroy new ToolTip objects. When you create
+a ToolTip object, you can customize it as you would any object,
+with access to its properties, styles, events, and effects.</p>
+
+         <p>The <samp class="codeph">createToolTip()</samp> method has the following
+signature:</p>
+
+         <pre class="codeblock"> createToolTip(<em>text</em>:String, <em>x</em>:Number, <em>y</em>:Number, <em>errorTipBorderStyle</em>:String, 
+	<em>context</em>:IUIComponent):IToolTip</pre>
+
+         <p>The <samp class="codeph">
+               <em>text</em>
+            </samp> parameter defines the contents
+of the ToolTip. </p>
+
+         <p>The <samp class="codeph">x</samp> and <samp class="codeph">y</samp> parameters define
+the x and y coordinates of the ToolTip, relative to the application
+container. </p>
+
+         <p>The <samp class="codeph">
+               <em>errorTipBorderStyle</em>
+            </samp> parameter sets
+the location of the pointer on the error tip. This parameter is
+optional. If you specify the value of the <samp class="codeph">errorTipBorderStyle</samp> parameter
+in the <samp class="codeph">createToolTip()</samp> method, Flex styles the
+ToolTip as an error tip. Valid values are <samp class="codeph">"errorTipRight"</samp>, <samp class="codeph">"errorTipAbove"</samp>,
+or <samp class="codeph">"errorTipBelow"</samp>, and indicate the location of
+the error tip relative to the component. If you set the <samp class="codeph">errorTipBorderStyle</samp> parameter
+to <samp class="codeph">null</samp>, then the ToolTip is a normal ToolTip,
+not an error tip. </p>
+
+         <p>The following example shows the valid values and their resulting
+locations on the error tip:</p>
+
+         <div class="figborder">
+            <img src="images/tt_errorTipBorderStyles.png" alt="The appearance of error tips in the right, bottom, and top locations."/>
+         </div>
+
+         <p>The <samp class="codeph">
+               <em>context</em>
+            </samp> parameter determines which
+StyleManager is used. Typically, you pass the object on which the
+ToolTip appears, so that the ToolTip's StyleManager is the same
+one use by that object. This object must be of type IUIComponent,
+so you might need to cast it in some cases, such as when you want
+to specify the context as the <samp class="codeph">event.currentTarget</samp> in
+an event handler.</p>
+
+         <p>For more information about using error tips, see <a href="flx_tooltips_tt.html#WS2db454920e96a9e51e63e3d11c0bf69084-7f5c_verapache">Using
+error tips</a>.</p>
+
+         <p>The <samp class="codeph">createToolTip()</samp> method returns a new ToolTip
+object that implements the IToolTip interface. You typically cast
+the return value of this method to a ToolTip, although it is more
+efficient if you do not do this. To cast, you can do one of the
+following:</p>
+
+         <ul>
+            <li>
+               <p>Use the <samp class="codeph">as</samp> keyword, as the following
+example shows:</p>
+
+               <pre class="codeblock"> myTip = ToolTipManager.createToolTip(s,10,10) as ToolTip;</pre>
+
+            </li>
+
+            <li>
+               <p>Use the <em>type</em>
+                  <samp class="codeph">(</samp>
+                  <em>object</em>
+                  <samp class="codeph">)</samp> casting
+syntax, as the following example shows:</p>
+
+               <pre class="codeblock"> myTip = ToolTip(ToolTipManager.createToolTip(s,10,10));</pre>
+
+            </li>
+
+         </ul>
+
+         <p>These methods of casting differ only in the way that they behave
+when a cast fails. </p>
+
+         <p>Flex displays the ToolTip until you destroy it. In general, you
+should not display more than one ToolTip box at a time, because
+it is confusing to the user. </p>
+
+         <p>You can use the <samp class="codeph">destroyToolTip()</samp> method to destroy
+the specified ToolTip object. The <samp class="codeph">destroyToolTip()</samp> method
+has the following signature:</p>
+
+         <pre class="codeblock"> destroyToolTip(<em>toolTip</em>:IToolTip):void</pre>
+
+         <p>The <samp class="codeph">
+               <em>toolTip</em>
+            </samp> parameter is the ToolTip
+object that you want to destroy. This is the object returned by
+the <samp class="codeph">createToolTip()</samp> method. </p>
+
+         <p>The following example creates a custom ToolTip when you move
+the mouse over a Panel container that contains three Button controls.
+Each Button control has its own ToolTip that appears when you mouse
+over that particular control. The big ToolTip disappears only when
+you move the mouse away from the Panel container.</p>
+
+         <pre class="codeblock">Ôªø&lt;?xml version="1.0"?&gt; 
+&lt;!-- tooltips/CreatingToolTips.mxml --&gt; 
+&lt;s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009"    
+    xmlns:mx="library://ns.adobe.com/flex/mx"     
+    xmlns:s="library://ns.adobe.com/flex/spark"&gt; 
+ 
+    &lt;s:layout&gt; 
+        &lt;s:VerticalLayout/&gt; 
+    &lt;/s:layout&gt; 
+ 
+    &lt;fx:Script&gt; 
+        &lt;![CDATA[ 
+            import mx.managers.ToolTipManager; 
+            import mx.controls.ToolTip; 
+            import mx.core.IUIComponent; 
+ 
+            public var myTip:ToolTip; 
+ 
+            private function createBigTip(event:Event):void { 
+                var s:String = "These buttons let you save, exit, or continue with the current operation." 
+                myTip = ToolTipManager.createToolTip(s,75,75,null,IUIComponent(event.currentTarget)) as ToolTip; 
+                myTip.setStyle("backgroundColor",0xFFCC00); 
+                myTip.width = 125; 
+                myTip.height = 75; 
+            } 
+ 
+            private function destroyBigTip():void { 
+                ToolTipManager.destroyToolTip(myTip); 
+            } 
+        ]]&gt; 
+    &lt;/fx:Script&gt; 
+    
+    &lt;fx:Style&gt; 
+        @namespace s "library://ns.adobe.com/flex/spark"; 
+ 
+        s|Panel { 
+            paddingLeft: 5; 
+            paddingRight: 5; 
+            paddingTop: 5; 
+            paddingBottom: 5; 
+        } 
+    &lt;/fx:Style&gt; 
+ 
+    &lt;s:Panel title="ToolTips" height="200" width="200" rollOver="createBigTip(event)" rollOut="destroyBigTip()"&gt; 
+        &lt;s:Button label="OK" y="20" toolTip="Save your changes and exit."/&gt; 
+        &lt;s:Button label="Apply" y="50" toolTip="Apply changes and continue."/&gt; 
+        &lt;s:Button label="Cancel" y="80" toolTip="Cancel and exit."/&gt; 
+    &lt;/s:Panel&gt; 
+ 
+&lt;/s:Application&gt;</pre>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf60d65-7ff4_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf60d65-7ff4_verapache"><!-- --></a>
+         <h3 class="topictitle3">Customizing the current ToolTip</h3>
+
+         
+         <div>
+            <p>Another approach to customizing ToolTip objects is to intercept
+the current ToolTip and customize it rather than using the ToolTipManager
+to create a new ToolTip object.</p>
+
+            <p>You do this by customizing the ToolTip during one of the ToolTip-related
+events like <samp class="codeph">toolTipHide</samp>, <samp class="codeph">toolTipShow</samp>,
+and <samp class="codeph">toolTipShown</samp>.</p>
+
+            <p>The following example triggers the customization on the ToolTip's <samp class="codeph">toolTipShown</samp> event.
+This lets Flex handle all the logic for displaying and hiding the
+ToolTip, but lets you modify the current ToolTip's text, position,
+and other properties.</p>
+
+            <pre class="codeblock">&lt;?xml version="1.0" encoding="utf-8"?&gt; 
+&lt;!-- tooltips/CustomToolTipInActionScript.mxml --&gt; 
+&lt;s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009"    
+    xmlns:mx="library://ns.adobe.com/flex/mx"     
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    creationComplete="initApp();"&gt; 
+ 
+    &lt;s:layout&gt; 
+        &lt;s:VerticalLayout/&gt; 
+    &lt;/s:layout&gt; 
+ 
+    &lt;fx:Script&gt; 
+        &lt;![CDATA[ 
+            import spark.components.Button; 
+            import mx.core.IToolTip; 
+            import mx.events.ToolTipEvent; 
+            import mx.managers.ToolTipManager; 
+            import mx.core.FlexGlobals; 
+            
+            public var myTip:IToolTip; 
+            public var b:Button; 
+            
+            private function initApp():void {           
+                b = new Button(); 
+                b.addEventListener("toolTipShown", createCustomTip); 
+                b.label = "Click Me"; 
+                
+                /* You must create a blank ToolTip so that the control 
+                   can dispatch ToolTip-related events. The new ToolTip 
+                   will replace this empty ToolTip. */ 
+                b.toolTip = " "; 
+                
+                addElement(b); 
+            } 
+            
+            private function createCustomTip(e:ToolTipEvent):void { 
+                var s:String = "This is a ToolTip for the button."; 
+                myTip = ToolTipManager.currentToolTip; 
+                
+                // Customize the text of the ToolTip. 
+                myTip.text = s; 
+                
+                // Customize the alpha of the ToolTip. 
+                myTip.alpha = .6; 
+                
+                // Customize the position of the ToolTip. 
+                myTip.x = FlexGlobals.topLevelApplication.mouseX + 20; 
+                myTip.y = FlexGlobals.topLevelApplication.mouseY; 
+            } 
+        ]]&gt; 
+    &lt;/fx:Script&gt; 
+&lt;/s:Application&gt;</pre>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf60d65-7fee_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf60d65-7fee_verapache"><!-- --></a>
+         <h3 class="topictitle3">Implementing the IToolTip interface</h3>
+
+         
+         <div>
+            <p>You can also create a custom ToolTip by extending an existing
+control, such as a Panel or other container, and implementing the
+IToolTip interface. The following example uses a Panel container
+as the base for a new implementation of the IToolTip interface:</p>
+
+            <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- tooltips/ToolTipComponents/PanelToolTip.mxml --&gt; 
+&lt;s:Panel 
+    xmlns:fx="http://ns.adobe.com/mxml/2009"    
+    xmlns:mx="library://ns.adobe.com/flex/mx"     
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    implements="mx.core.IToolTip" 
+    width="200" 
+    alpha=".75"&gt; 
+    &lt;fx:Script&gt; 
+        &lt;![CDATA[ 
+            [Bindable] 
+            public var bodyText:String = ""; 
+ 
+            //  Implement required methods of the IToolTip interface; these 
+            //  methods are not used in this example, though. 
+            public var _text:String; 
+ 
+            public function get text():String { 
+                return _text; 
+            } 
+            public function set text(value:String):void { 
+            } 
+        ]]&gt; 
+    &lt;/fx:Script&gt; 
+ 
+    &lt;s:RichText text="{bodyText}" percentWidth="100"/&gt; 
+ 
+&lt;/s:Panel&gt;</pre>
+
+            <p>In your application, you can create a custom ToolTip by intercepting
+the <samp class="codeph">toolTipCreate</samp> event handler of the target component.
+In the event handler, you instantiate the new ToolTip and set its
+properties. You then point the <samp class="codeph">toolTip</samp> property
+of the ToolTipEvent object to the new ToolTip.</p>
+
+            <p>In the following example, the first two buttons in the application
+use the custom PanelToolTip class in the ToolTipComponents package.
+The third button uses a default ToolTip to show you how the two
+are different. To run this example, store the PanelToolTip.mxml
+file in a subdirectory named ToolTipComponents.</p>
+
+            <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- tooltips/MainCustomApp.mxml --&gt; 
+&lt;s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009"    
+    xmlns:mx="library://ns.adobe.com/flex/mx"     
+    xmlns:s="library://ns.adobe.com/flex/spark"&gt; 
+ 
+    &lt;s:layout&gt; 
+        &lt;s:VerticalLayout/&gt; 
+    &lt;/s:layout&gt; 
+ 
+    &lt;fx:Script&gt; 
+        &lt;![CDATA[ 
+            import ToolTipComponents.PanelToolTip; 
+            import mx.events.ToolTipEvent; 
+ 
+            private function createCustomTip(title:String, body:String, event:ToolTipEvent):void { 
+               var ptt:PanelToolTip = new PanelToolTip(); 
+               ptt.title = title; 
+               ptt.bodyText = body; 
+               event.toolTip = ptt; 
+            } 
+        ]]&gt; 
+    &lt;/fx:Script&gt; 
+    
+    &lt;s:Button id="b1" 
+        label="Delete" 
+        toolTip=" " 
+        toolTipCreate="createCustomTip('DELETE','Click this button to delete the report.', event)" 
+    /&gt; 
+    &lt;s:Button id="b2" 
+        label="Generate" 
+        toolTip=" " 
+        toolTipCreate="createCustomTip('GENERATE','Click this button to generate the report.', event)" 
+    /&gt; 
+    
+    &lt;s:Button id="b3" 
+        label="Stop" 
+        toolTip="Click this button to stop the creation of the report. This button uses a standard ToolTip style." 
+    /&gt; 
+ 
+&lt;/s:Application&gt;</pre>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf60d65-7fef_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf60d65-7fef_verapache"><!-- --></a>
+         <h3 class="topictitle3">Positioning custom ToolTips</h3>
+
+         
+         <div>
+            <p>When you use the ToolTipManager to create a custom ToolTip,
+you specify the coordinates of the ToolTip on the Stage. You do
+this by specifying the values of the <samp class="codeph">x</samp> and <samp class="codeph">y</samp> parameters
+of the new ToolTip in the <samp class="codeph">createToolTip()</samp> method. These
+coordinates are relative to the Stage. For example, a value of 0,0
+creates a ToolTip at the top-left corner of the application. </p>
+
+            <p>In some cases, you might not know the exact position that you
+want the ToolTip to be drawn in; instead, you want the location
+of the ToolTip to be relative to the target component (the component
+that has a ToolTip on it). In those cases, you can use the location
+of the target component to calculate the values of these coordinates.
+For example, if you want the ToolTip to appear to a component's right,
+you set the ToolTip's x position to be the x position of the component
+plus the component's width, plus some other value for an offset. </p>
+
+            <p>The following image shows the results of this formula:</p>
+
+            <div class="figborder">
+               <img src="images/tt_component_plus_tooltip.png" alt="A ToolTip on a TextInput control with a custom position."/>
+            </div>
+
+            <p>You also set the value of the ToolTip's y position to be the
+same as the target component's y position to line the ToolTip and
+the component up horizontally.</p>
+
+            <p>One way to get the values you need to calculate the x position
+of the ToolTip is to use an event handler. Event objects passed
+to an event handler can give you the x position and the width of
+the target component.</p>
+
+            <p>The following example gets the value of the current target's <samp class="codeph">x</samp>, <samp class="codeph">y</samp>,
+and <samp class="codeph">width</samp> properties in the focusIn event handler,
+and uses them to position the ToolTip. In this case, the current
+target is the TextInput control, and the ToolTip appears to its
+right with a 10-pixel offset.</p>
+
+            <pre class="codeblock">Ôªø&lt;?xml version="1.0"?&gt; 
+&lt;!-- tooltips/PlacingToolTips.mxml --&gt; 
+&lt;s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009"    
+    xmlns:mx="library://ns.adobe.com/flex/mx"     
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    height="100" width="300"&gt; 
+    &lt;s:layout&gt; 
+        &lt;s:VerticalLayout/&gt; 
+    &lt;/s:layout&gt; 
+ 
+    &lt;fx:Script&gt; 
+        &lt;![CDATA[ 
+             import mx.controls.ToolTip; 
+             import mx.managers.ToolTipManager; 
+             import mx.core.IUIComponent; 
+             
+             private var tip:ToolTip; 
+             private var s:String; 
+               
+             private function showTip(event:Object):void { 
+                s="My ToolTip"; 
+                
+                // Position the ToolTip to the right of the current target. 
+                tip = ToolTipManager.createToolTip(s, 
+                    event.currentTarget.x + event.currentTarget.width + 10, 
+                    event.currentTarget.y, null,IUIComponent(event.currentTarget)) 
+                    as ToolTip; 
+            } 
+ 
+            private function destroyTip(event:Object):void { 
+                 ToolTipManager.destroyToolTip(tip);               
+            }            
+        ]]&gt; 
+    &lt;/fx:Script&gt; 
+ 
+    &lt;s:TextInput id="a" 
+        width="100" 
+        focusIn="showTip(event)" 
+        focusOut="destroyTip(event)"/&gt; 
+ 
+    &lt;s:TextInput id="b" 
+        width="100" 
+        focusIn="showTip(event)" 
+        focusOut="destroyTip(event)"/&gt; 
+ 
+&lt;/s:Application&gt;</pre>
+
+            <p>The previous example creates a ToolTip on a target component
+that is not inside any containers. However, in many cases, your
+components will be inside layout containers such as a VGroup or
+an HGroup. Under these circumstances, the coordinates you access
+in the event handler will be relative to the container and not the
+main application. But the ToolTipManager expects global coordinates when
+positioning the ToolTip. This will position ToolTips in unexpected
+locations. </p>
+
+            <p>To avoid this, you can use the <samp class="codeph">contentToGlobal()</samp> method
+to convert the coordinates in the event handler from local to global.
+All components that subclass UIComponent have this method. It takes
+a single Point that is relative to the target's enclosing container
+as an argument and returns a Point that is relative to the Stage.</p>
+
+            <p>The following example calls the TextInput control's <samp class="codeph">contentToGlobal()</samp> method
+to convert the control's coordinates from those that are relative
+to the VGroup container to global coordinates. </p>
+
+            <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- tooltips/PlacingToolTipsInContainers.mxml --&gt; 
+&lt;s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009"    
+    xmlns:mx="library://ns.adobe.com/flex/mx"     
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    height="400" width="600"&gt; 
+    &lt;s:layout&gt; 
+        &lt;s:VerticalLayout/&gt; 
+    &lt;/s:layout&gt; 
+ 
+    &lt;fx:Script&gt; 
+        &lt;![CDATA[ 
+            import mx.controls.ToolTip; 
+            import mx.managers.ToolTipManager; 
+            import mx.core.IUIComponent; 
+ 
+            private var tip:ToolTip; 
+            private var s:String; 
+               
+            private function showTipA(event:Object):void { 
+                s="My Tip A"; 
+                tip = ToolTipManager.createToolTip(s, 
+                    event.currentTarget.x + event.currentTarget.width + 10, 
+                    event.currentTarget.y) as ToolTip; 
+            } 
+ 
+            private function showTipB(event:Object):void { 
+                s="My Tip B"; 
+                var pt:Point = new Point(0,0); 
+                
+                /* Call this method to convert the object's 
+                   coordinates inside its container to the stage's 
+                   global coordinates. */ 
+                pt = event.currentTarget.contentToGlobal(pt); 
+                
+                tip = ToolTipManager.createToolTip(s, 
+                    pt.x + event.currentTarget.width + 10, pt.y, null, 
+                    IUIComponent(event.currentTarget)) as ToolTip; 
+            } 
+ 
+            private function destroyTip(event:Object):void { 
+                 ToolTipManager.destroyToolTip(tip);               
+            }            
+        ]]&gt; 
+    &lt;/fx:Script&gt; 
+ 
+    &lt;!-- A ToolTip at the top level. --&gt; 
+    &lt;!-- The event handler for this ToolTip does not use any special 
+    logic to account for whether the ToolTip is inside a container. 
+    But this ToolTip is not inside a container so it positions itself 
+    normally. --&gt; 
+    &lt;s:TextInput id="a" 
+        text="Good ToolTip placement" 
+        width="175" 
+        focusIn="showTipA(event)" 
+        focusOut="destroyTip(event)"/&gt; 
+ 
+    &lt;s:VGroup&gt; 
+        &lt;!-- A ToolTip inside a container. --&gt; 
+        &lt;!-- The event handler for this ToolTip accounts for the control 
+        being inside a container and positions the ToolTip using the 
+        contentToGlobal() method. --&gt; 
+        &lt;s:TextInput id="b" 
+            text="Good ToolTip placement" 
+            width="175" 
+            focusIn="showTipB(event)" 
+            focusOut="destroyTip(event)"/&gt;  
+        &lt;!-- A ToolTip inside a container. --&gt; 
+        &lt;!-- The event handler for this ToolTip does not use any special 
+        logic to account for whether the ToolTip is inside a container. 
+        As a result, it positions itself using coordinates that are relative 
+        to the container, but that are not converted to global coordinates. --&gt; 
+        
+        &lt;s:TextInput id="c" 
+            text="Bad ToolTip placement" 
+            width="175" 
+            focusIn="showTipA(event)" 
+            focusOut="destroyTip(event)"/&gt;  
+    &lt;/s:VGroup&gt; 
+&lt;/s:Application&gt;</pre>
+
+         </div>
+
+      </div>
+
+   </div>
+
+   <div class="nested1" id="WS2db454920e96a9e51e63e3d11c0bf69084-7f5c_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7f5c_verapache"><!-- --></a>
+      <h2 class="topictitle2">Using error tips</h2>
+
+      
+      <div>
+         <p>Error tips are
+instances of the <a href="https://flex.apache.org/asdoc/mx/controls/ToolTip.html" target="_blank">ToolTip</a> class
+that get their styles from the <samp class="codeph">errorTip</samp> CSS class
+selector. They are most often seen when the Flex validation mechanism
+displays a warning when data is invalid. But you can use the definitions
+of the <samp class="codeph">errorTip</samp> style and apply it to ToolTips
+to create a custom validation warning mechanism.</p>
+
+         <p>You can trigger an error tip to appear on any control when you
+set its <samp class="codeph">errorString</samp> property to anything other
+than an empty String ("").</p>
+
+         <p>The styles of an error tip are defined in the defaults.css file,
+which is in the framework.swc file. It specifies the following default
+settings for <samp class="codeph">errorTip</samp> (notice the period preceding <samp class="codeph">errorTip</samp>,
+which indicates that it is a class selector):</p>
+
+         <pre class="codeblock"> .errorTip { 
+ 	color: #FFFFFF; 
+ 	fontSize: 9; 
+ 	fontWeight: "bold"; 
+ 	shadowColor: #000000; 
+ 	borderColor: #CE2929; 
+ 	borderStyle: "errorTipRight"; 
+ 	paddingBottom: 4; 
+ 	paddingLeft: 4; 
+ 	paddingRight: 4; 
+ 	paddingTop: 4; 
+ }</pre>
+
+         <p>You can customize the appearance of error tips by creating a
+new theme that overrides these styles, or by overriding the style
+properties in your application. For more information on creating
+themes, see <a href="flx_styles_st.html#WS2db454920e96a9e51e63e3d11c0bf69084-7f85_verapache">About
+themes</a>.</p>
+
+         <p>You can also set the <samp class="codeph">errorColor</samp> property of
+any UIComponent. This defines the color of the "halo" around a component
+that has an error tip. The ErrorSkin class handles the logic that
+draws this glow around the target component.</p>
+
+         <p>You can create ToolTips that look like validation error tips
+by applying the <samp class="codeph">errorTip</samp> style to the ToolTip.
+The following example does not contain any validation logic, but
+shows you how to use the <samp class="codeph">errorTip</samp> style to create ToolTips
+that look like validation error tips. When you run the example,
+press the Enter key after entering text into the TextInput controls.</p>
+
+         <pre class="codeblock">Ôªø&lt;?xml version="1.0"?&gt; 
+&lt;!-- tooltips/ErrorTipStyle.mxml --&gt; 
+&lt;s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009"    
+    xmlns:mx="library://ns.adobe.com/flex/mx"     
+    xmlns:s="library://ns.adobe.com/flex/spark"&gt; 
+ 
+    &lt;s:layout&gt; 
+        &lt;s:VerticalLayout/&gt; 
+    &lt;/s:layout&gt; 
+ 
+  &lt;fx:Script&gt; 
+    &lt;![CDATA[ 
+     import mx.controls.ToolTip; 
+     import mx.managers.ToolTipManager; 
+     import mx.core.IUIComponent; 
+     
+     private var errorTip:ToolTip; 
+     private var myError:String; 
+  
+     private function validateEntry(type:String, event:Object):void { 
+        if (errorTip) { 
+            resetApp(); 
+        } 
+        
+        // NOTE: Validation logic would go here. 
+        switch(type) { 
+           case "ssn": 
+            myError="Use SSN format (NNN-NN-NNNN)"; 
+            break; 
+           case "phone": 
+            myError="Use phone format (NNN-NNN-NNNN)"; 
+            break; 
+        } 
+        
+        // Use the target's x and y positions to set position of error tip. 
+        trace("event.currentTarget.width" + event.currentTarget.width); 
+        trace("event.currentTarget.x" + event.currentTarget.x); 
+        
+        errorTip = ToolTipManager.createToolTip( 
+            myError, event.currentTarget.x + event.currentTarget.width, event.currentTarget.y, null, IUIComponent(event.currentTarget)) as ToolTip; 
+      
+        // Apply the errorTip class selector. 
+        errorTip.setStyle("styleName", "errorTip"); 
+     } 
+     
+     private function resetApp():void { 
+        if (errorTip) { 
+            ToolTipManager.destroyToolTip(errorTip); 
+            errorTip = null; 
+        } 
+     } 
+    ]]&gt; 
+  &lt;/fx:Script&gt; 
+ 
+    &lt;s:TextInput id="ssn" enter="validateEntry('ssn',event)"/&gt; 
+    &lt;s:TextInput id="phone" enter="validateEntry('phone',event)"/&gt; 
+    &lt;s:Label text="Press the enter key after entering text in each text input."/&gt; 
+    &lt;s:Button id="b1" label="Reset" click="resetApp()"/&gt; 
+ 
+&lt;/s:Application&gt;</pre>
+
+         <p>Another way to use error tips is to set the value of the <samp class="codeph">errorString</samp> property of
+the component. This causes the <a href="https://flex.apache.org/asdoc/mx/managers/ToolTipManager.html" target="_blank">ToolTipManager</a> to
+create an instance of a ToolTip and apply the <samp class="codeph">errorTip</samp> style
+to that ToolTip without requiring any coding on your part. </p>
+
+         <p>The following example shows how to set the value of the <samp class="codeph">errorString</samp> property
+to create an error tip without performing any validation:</p>
+
+         <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- tooltips/ErrorString.mxml --&gt; 
+&lt;s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009"    
+    xmlns:mx="library://ns.adobe.com/flex/mx"     
+    xmlns:s="library://ns.adobe.com/flex/spark"&gt; 
+ 
+    &lt;s:layout&gt; 
+        &lt;s:VerticalLayout/&gt; 
+    &lt;/s:layout&gt; 
+ 
+  &lt;fx:Script&gt; 
+    &lt;![CDATA[ 
+     import mx.controls.ToolTip; 
+     import mx.managers.ToolTipManager; 
+     
+     private var errorTip:ToolTip; 
+     private var myError:String; 
+  
+     private function validateEntry(type:String, event:Object):void { 
+        // NOTE: Validation logic would go here. 
+        switch(type) { 
+           case "ssn": 
+            myError="Use SSN format"; 
+            break; 
+           case "phone": 
+            myError="Use phone format"; 
+            break; 
+        } 
+ 
+        event.currentTarget.errorString = myError; 
+ 
+     } 
+    ]]&gt; 
+  &lt;/fx:Script&gt; 
+ 
+  &lt;s:TextInput id="ssn" enter="validateEntry('ssn',event)"/&gt; 
+  &lt;s:TextInput id="phone" enter="validateEntry('phone',event)"/&gt; 
+ 
+&lt;/s:Application&gt;</pre>
+
+         <p>You can also specify that the ToolTipManager create an error
+tip when you call the <samp class="codeph">createToolTip()</samp> method. You
+do this by specifying the value of the <samp class="codeph">createToolTip()</samp> method's <samp class="codeph">errorTipBorderStyle</samp> argument
+(the fourth argument), as the following example shows:</p>
+
+         <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- tooltips/CreatingErrorTips.mxml --&gt; 
+&lt;s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009"    
+    xmlns:mx="library://ns.adobe.com/flex/mx"     
+    xmlns:s="library://ns.adobe.com/flex/spark"&gt; 
+ 
+    &lt;s:layout&gt; 
+        &lt;s:VerticalLayout/&gt; 
+    &lt;/s:layout&gt; 
+ 
+    &lt;fx:Script&gt; 
+        &lt;![CDATA[ 
+            import mx.managers.ToolTipManager; 
+            import mx.controls.ToolTip; 
+            import mx.core.IUIComponent; 
+ 
+            public var myTip:ToolTip; 
+ 
+            private function createBigTip(event:Event):void { 
+                var myError:String = "These buttons let you save, exit, or continue with the current operation."; 
+ 
+                // By setting the fourth argument ('errorTipBorderStyle:String') to a non-null value, 
+                // this ToolTip is created as an error tip. 
+                myTip = ToolTipManager.createToolTip(myError, 
+                    event.currentTarget.x + event.currentTarget.width, 
+                    event.currentTarget.y, "errorTipRight", 
+                    IUIComponent(event.currentTarget)) as ToolTip; 
+            } 
+ 
+            private function destroyBigTip():void { 
+                ToolTipManager.destroyToolTip(myTip); 
+            } 
+        ]]&gt; 
+    &lt;/fx:Script&gt; 
+ 
+    &lt;fx:Style&gt; 
+        @namespace s "library://ns.adobe.com/flex/spark"; 
+ 
+        s|Panel { 
+            paddingLeft: 5; 
+            paddingRight: 5; 
+            paddingTop: 5; 
+            paddingBottom: 5; 
+        } 
+    &lt;/fx:Style&gt; 
+ 
+    &lt;s:Panel id="myPanel" title="ToolTips" rollOver="createBigTip(event)" rollOut="destroyBigTip()"&gt; 
+        &lt;s:Button label="OK" y="20" toolTip="Save your changes and exit."/&gt; 
+        &lt;s:Button label="Apply" y="50" toolTip="Apply changes and continue."/&gt; 
+        &lt;s:Button label="Cancel" y="80" toolTip="Cancel and exit."/&gt; 
+    &lt;/s:Panel&gt; 
+&lt;/s:Application&gt;</pre>
+
+         <p>Note that if you set the value of the <samp class="codeph">errorTipBorderStyle</samp> parameter
+to null, then a regular ToolTip, and not an error tip, is created.</p>
+
+         <p>For more information on using validators, see <a href="flx_validators_va.html#WS2db454920e96a9e51e63e3d11c0bf69084-7ff0_verapache">Validating
+Data</a>.</p>
+
+      </div>
+
+   </div>
+
+   <div class="nested1" id="WS2db454920e96a9e51e63e3d11c0bf69084-7f61_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7f61_verapache"><!-- --></a>
+      <h2 class="topictitle2">Reskinning ToolTips</h2>
+
+      
+      <div>
+         <p>You can apply a programmatic skin to <a href="https://flex.apache.org/asdoc/mx/controls/ToolTip.html" target="_blank">ToolTip</a> controls.
+This method of applying skins is consistent with the Halo component
+architecture. It does not use the rules that apply to the Spark
+component architecture.</p>
+
+         <p>ToolTip skins are defined by the <a href="https://flex.apache.org/asdoc/mx/skins/halo/ToolTipBorder.html" target="_blank">ToolTipBorder</a> programmatic
+skin. This file is located in the mx.skins.halo package.</p>
+
+         <p>To reskin ToolTips, you edit the ToolTipBorder class file, and
+then apply the new skin to the ToolTip by using CSS. For more information
+on skinning, see <a href="flx_skinning_sk.html#WS2db454920e96a9e51e63e3d11c0bf69084-7fed_verapache">Skinning MX
+components</a>.</p>
+
+         <div class="section" id="WS2db454920e96a9e51e63e3d11c0bf69084-7f61_verapache__WS2db454920e96a9e51e63e3d11c0bf60d65-7ff0_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7f61_verapache__WS2db454920e96a9e51e63e3d11c0bf60d65-7ff0_verapache"><!-- --></a><h3 class="sectiontitle">Reskin
+ToolTips by using CSS</h3>
+            
+            <ol>
+               <li>
+                  <p>Open the mx.skins.halo.ToolTipBorder.as
+file. This file is included with the source files, as described
+in <a href="flx_skinning_sk.html#WS2db454920e96a9e51e63e3d11c0bf69084-7f63_verapache">MX
+component skin resources</a>.</p>
+
+               </li>
+
+               <li>
+                  <p>Save the ToolTipBorder.as file under another name, and in
+a different location. The filename must be the same as the new class
+name.</p>
+
+               </li>
+
+               <li>
+                  <p>Change the package from mx.skins.halo to your package name,
+or to the empty package, as the following example shows:</p>
+
+                  <pre class="codeblock"> //package mx.skins.halo { // Old package name 
+ package { // New, empty package</pre>
+
+               </li>
+
+               <li>
+                  <p>Change the class name in the file, as the following example
+shows:</p>
+
+                  <pre class="codeblock"> //public class ToolTipBorder extends RectangularBorder // Old name 
+ public class MyToolTipBorder extends RectangularBorder // New name</pre>
+
+               </li>
+
+               <li>
+                  <p>Change the constructor to reflect the new class name, as
+the following example shows:</p>
+
+                  <pre class="codeblock"> //public function ToolTipBorder() // Old constructor 
+ public function MyToolTipBorder() // New constructor</pre>
+
+               </li>
+
+               <li>
+                  <p>Comment out the versioning line, as the following example
+shows:</p>
+
+                  <pre class="codeblock"> //include "../../core/Version.as";</pre>
+
+               </li>
+
+               <li>
+                  <p>Edit the class file to change the appearance of the ToolTip.
+You do this by editing the "toolTip" case in the <samp class="codeph">updateDisplayList()</samp> method.
+That is the method that draws the ToolTip's border and sets the
+default styles. Most commonly, you change the arguments of the <samp class="codeph">drawRoundRect()</samp> method to
+change the appearance of the ToolTip.</p>
+
+                  <p>The following example
+adds a red tinge to the background of the ToolTip's box by replacing
+the default <samp class="codeph">backgroundColor</samp> property with an array
+of colors:</p>
+
+                  <pre class="codeblock"> var highlightAlphas:Array = [0.3,0.0]; 
+ drawRoundRect(3, 1, w-6, h-4, cornerRadius, [0xFF0000, 0xFFFFBB], 
+ 	backgroundAlpha);</pre>
+
+                  <p>The values of the <samp class="codeph">cornerRadius</samp> and <samp class="codeph">backgroundAlpha</samp> properties
+that are shown in the previous code snippet are set earlier in the <samp class="codeph">updateDisplayList()</samp> method.</p>
+
+               </li>
+
+               <li>
+                  <p>Save the class file.</p>
+
+               </li>
+
+               <li>
+                  <p>In your application, edit the ToolTip's <samp class="codeph">borderSkin</samp> style
+property to point to the new skin. You can do this in an <samp class="codeph">&lt;fx:Style&gt;</samp> tag
+inside your application, or by using external CSS file or a custom
+theme file. The following example sets the <samp class="codeph">borderSkin</samp> property
+to the new skin class:</p>
+
+                  <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- skins/ApplyCustomToolTipSkin.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark"&gt; 
+  
+  &lt;fx:Style&gt; 
+     @namespace mx "library://ns.adobe.com/flex/mx"; 
+  
+     mx|ToolTip { 
+        borderSkin: ClassReference("MyToolTipBorder"); 
+     } 
+  &lt;/fx:Style&gt; 
+ 
+  &lt;s:Button id="b1" label="Click Me" toolTip="Click this button"/&gt; 
+ 
+&lt;/s:Application&gt;</pre>
+
+                  <p>You must specify the full package
+name in the CSS reference. In this example, the file MyToolTipBorder.as
+is in an empty package and, therefore, has no package designation
+such as mx.skins.halo.</p>
+
+               </li>
+
+               <li>
+                  <p>Compile and run the application with the new skin file in
+the source path. You do this by setting the value of the compiler's <samp class="codeph">source-path</samp> option.</p>
+
+                  <p>If
+the skin class is in the same directory as the application, you
+do not have to add its location to the source path. The current
+directory is assumed. For more information, see <a href="flx_compilers_cpl.html#WS2db454920e96a9e51e63e3d11c0bf69084-7ffd_verapache">Flex
+compilers</a>.</p>
+
+               </li>
+
+            </ol>
+
+         </div>
+
+      </div>
+
+<div>
+  <p><strong>Navigation</strong></p>
+  <p><a href="index.html">Using Flex</a> &raquo; <a href="flx_p6_enhancing_usability.html">Enhancing usability</a></p>
+</div>
+
+         <p>Adobe and Adobe Flash Platform are either registered trademarks or trademarks of Adobe Systems Incorporated in the United States and/or other countries and are used by permission from Adobe.  No other license to the Adobe trademarks are granted.</p>
+   </div>
+
+
+</body>
+</html>

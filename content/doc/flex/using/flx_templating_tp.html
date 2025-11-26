@@ -1,0 +1,472 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Licensed to the Apache Software Foundation (ASF) under one or more
+  contributor license agreements.  See the NOTICE file distributed with
+  this work for additional information regarding copyright ownership.
+  The ASF licenses this file to You under the Apache License, Version 2.0
+  (the "License"); you may not use this file except in compliance with
+  the License.  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+-->
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en-us" xml:lang="en-us">
+<head>
+<meta name="DC.Type" content="topic"/>
+<meta name="DC.Title" content="Template components"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="WS2db454920e96a9e51e63e3d11c0bf69084-7a1e_verapache"/>
+<title>Template components</title>
+</head>
+<body id="WS2db454920e96a9e51e63e3d11c0bf69084-7a1e_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7a1e_verapache"><!-- --></a>
+
+   <div>
+      <p>One way to create reusable components is to define them
+as template components. A template component defines properties
+with a general data type that lets the component user specify an
+object of a concrete data type when using the component. By using
+a general data type to define component properties, you create highly
+reusable components that can work with many different types of objects.</p>
+
+   </div>
+
+   <div class="nested1" id="WS2db454920e96a9e51e63e3d11c0bf69084-79c3_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-79c3_verapache"><!-- --></a>
+      <h2 class="topictitle2">About template components</h2>
+
+      
+      <div>
+         <p>A
+standard component defines a property with a concrete data type,
+such as Number or String. The component user must then pass a value
+that exactly matches the property's data type or else  Flex issues a compiler error.</p>
+
+         <p>A <em>template component</em> is a component in which one or more
+of its properties is defined with a general data type. This property
+serves as a slot for values that can be of the exact data type of
+the property, or of a value of a subclass of the data type. For
+example, to accept any Flex visual component as a property value,
+you define the data type of the property as <a href="https://flex.apache.org/asdoc/mx/core/UIComponent.html" target="_blank">UIComponent</a>.
+To accept only container components, you define the data type of
+the property as <a href="https://flex.apache.org/asdoc/mx/core/Container.html" target="_blank">Container</a>.</p>
+
+         <p>When you use the template component in an application, the component
+user sets the property value to be an object with a concrete data
+type. You can think of the property as a placeholder for information,
+where it is up to the component user, rather than the component
+developer, to define the actual data type of the property. </p>
+
+         <p>The following example shows an application that uses a template
+component called MyTemplateComponent:</p>
+
+         <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- templating/MainTemplateButton.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:MyComp="myComponents.*" 
+    height="700" width="700"&gt; 
+ 
+    &lt;s:Panel&gt; 
+        &lt;MyComp:MyTemplateComponent id="myTComp1"&gt; 
+            &lt;MyComp:topRow&gt;                        
+                &lt;s:Label text="top component"/&gt; 
+            &lt;/MyComp:topRow&gt; 
+            &lt;MyComp:bottomRow&gt; 
+                &lt;s:Button label="Button 1"/&gt;           
+                &lt;s:Button label="Button 2"/&gt; 
+                &lt;s:Button label="Button 3"/&gt; 
+            &lt;/MyComp:bottomRow&gt; 
+        &lt;/MyComp:MyTemplateComponent&gt; 
+    &lt;/s:Panel&gt; 
+&lt;/s:Application&gt;</pre>
+
+         <p>The MyTemplateComponent takes two properties:</p>
+
+         <ul>
+            <li>
+               <p>The <samp class="codeph">topRow</samp> property specifies the single
+Flex component that appears in the top row of the <a href="https://flex.apache.org/asdoc/spark/components/VGroup.html" target="_blank">VGroup</a> container. </p>
+
+            </li>
+
+            <li>
+               <p>The <samp class="codeph">bottomRow</samp> property specifies one or
+more Flex components that appear along the bottom row of the VGroup
+container. </p>
+
+            </li>
+
+         </ul>
+
+         <p>The implementation of the MyTemplateComponent consists of a VGroup container
+that displays its children in two rows. The following image shows
+the output of this application:</p>
+
+         <div class="figborder">
+            <img src="images/tp_templateComponent.png" alt="The MyTemplateComponent consists of a VBox container that displays its children in two rows"/>
+         </div>
+
+         <p>The implementation of the <samp class="codeph">topRow</samp> and <samp class="codeph">bottomRow</samp> properties
+lets you specify any Flex component as a value, as the following
+example shows:</p>
+
+         <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- templating/MainTemplateLink.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:MyComp="myComponents.*" 
+    height="700" width="700"&gt; 
+ 
+    &lt;s:Panel&gt; 
+    
+        &lt;MyComp:MyTemplateComponent id="myTComp2"&gt; 
+            &lt;MyComp:topRow&gt;                        
+                &lt;s:TextArea text="top component"/&gt; 
+            &lt;/MyComp:topRow&gt; 
+            &lt;MyComp:bottomRow&gt; 
+                &lt;mx:LinkButton label="Link 1"/&gt;         
+                &lt;mx:LinkButton label="Link 2"/&gt; 
+                &lt;mx:LinkButton label="Link 3"/&gt; 
+            &lt;/MyComp:bottomRow&gt; 
+        &lt;/MyComp:MyTemplateComponent&gt; 
+    &lt;/s:Panel&gt; 
+&lt;/s:Application&gt;</pre>
+
+         <p>In this example, the top component is a <a href="https://flex.apache.org/asdoc/spark/components/TextArea.html" target="_blank">TextArea</a> control,
+and the bottom components are two <a href="https://flex.apache.org/asdoc/mx/controls/LinkButton.html" target="_blank">LinkButton</a> controls.</p>
+
+      </div>
+
+   </div>
+
+   <div class="nested1" id="WS2db454920e96a9e51e63e3d11c0bf68a49-7ffa_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf68a49-7ffa_verapache"><!-- --></a>
+      <h2 class="topictitle2">Implementing a template component</h2>
+
+      
+      <div>
+         <p>The section <a href="flx_templating_tp.html#WS2db454920e96a9e51e63e3d11c0bf69084-79c3_verapache">About
+template components</a> shows an example of a template component
+named MyTemplateComponent. Flex provides you with two primary ways
+to create template components: </p>
+
+         <ul>
+            <li>
+               <p>Create properties with general data types, such as <a href="https://flex.apache.org/asdoc/mx/core/UIComponent.html" target="_blank">UIComponent</a> or <a href="https://flex.apache.org/asdoc/mx/core/Container.html" target="_blank">Container.</a>
+               </p>
+
+            </li>
+
+            <li>
+               <p>Create properties with the type IDeferredInstance. </p>
+
+            </li>
+
+         </ul>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf68a49-7ff9_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf68a49-7ff9_verapache"><!-- --></a>
+         <h3 class="topictitle3">Using general data types in a template
+component</h3>
+
+         
+         <div>
+            <p>One
+way to implement the component MyTemplateComponent (see <a href="flx_templating_tp.html#WS2db454920e96a9e51e63e3d11c0bf69084-79c3_verapache">About template
+components</a>) is to define the properties <samp class="codeph">topRow</samp> and <samp class="codeph">bottomRow</samp> as type <a href="https://flex.apache.org/asdoc/mx/core/UIComponent.html" target="_blank">UIComponent</a>.
+Users of the component can specify any object to these properties
+that is an instance of the UIComponent class, or an instance of
+a subclass of UIComponent.</p>
+
+            <p>The following code shows the implementation of MyTemplateComponent: </p>
+
+            <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- templating/myComponents/MyTemplateComponent.mxml --&gt; 
+&lt;s:VGroup xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    initialize="init();"&gt; 
+ 
+    &lt;fx:Script&gt; 
+        &lt;![CDATA[ 
+        
+            import spark.components.HGroup; 
+            import mx.core.UIComponent; 
+                
+            // Define a property for the top component. 
+            public var topRow:UIComponent; 
+ 
+            // Define an Array of properties for a row of components. 
+            // Restrict the type of the Array elements 
+            // to mx.core.UIComponent.          
+            [ArrayElementType("mx.core.UIComponent")] 
+            public var bottomRow:Array; 
+    
+            private function init():void {            
+                // Add the top component to the VGroup container. 
+                addElement(topRow); 
+ 
+                // Create an HGroup container. This container 
+                // is the parent container of the bottom row of components. 
+                var controlHGroup:HGroup = new HGroup(); 
+ 
+                // Add the bottom row of components 
+                // to the HGroup container.              
+                for (var i:int = 0; i &lt; bottomRow.length; i++) 
+                    controlHGroup.addElement(bottomRow[i]); 
+ 
+                // Add the HGroup container to the VGroup container. 
+                addElement(controlHGroup); 
+            } 
+        ]]&gt; 
+    &lt;/fx:Script&gt; 
+&lt;/s:VGroup&gt;</pre>
+
+            <p>For the <samp class="codeph">bottomRow</samp> property, you define it as
+an Array and include the <samp class="codeph">[ArrayElementType]</samp> metadata
+tag to specify to the compiler that the data type of the Array elements
+is also UIComponent. For more information on the <samp class="codeph">[ArrayElementType]</samp> metadata
+tag, see <a href="flx_metadata_me.html#WS2db454920e96a9e51e63e3d11c0bf69084-7fe9_verapache">Metadata
+tags in custom components</a>. </p>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf68a49-7ff8_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf68a49-7ff8_verapache"><!-- --></a>
+         <h3 class="topictitle3">Using IDeferredInstance in a template
+component</h3>
+
+         
+         <div>
+            <p>Deferred
+creation is a feature of Flex where Flex containers create only
+the controls that initially appear to the user. Flex then creates
+the container's other descendants if the user navigates to them.
+For more information, see <a href="flx_layoutperformance_lp.html#WS2db454920e96a9e51e63e3d11c0bf69084-7ee5_verapache">Improving startup
+performance</a>.</p>
+
+            <p>You
+can create a template component that also takes advantage of deferred creation.
+Rather than having Flex create your component and its properties
+when the application loads, you can define a component that creates
+its properties only when a user navigates to the area of the application
+that uses the component. This is especially useful for large components
+that may have many child components. Flex view states make use of
+this feature.</p>
+
+            <p>The following example shows an alternative implementation for
+the MyTemplateComponent component shown in the section <a href="flx_templating_tp.html#WS2db454920e96a9e51e63e3d11c0bf69084-79c3_verapache">About
+template components</a>, named MyTemplateComponentDeferred.mxml,
+by defining the topRow and bottomRow properties to be of type <a href="https://flex.apache.org/asdoc/mx/core/IDeferredInstance.html" target="_blank">IDeferredInstance</a>:</p>
+
+            <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- templating/myComponents/MyTemplateComponentDeferred.mxml --&gt; 
+&lt;s:VGroup xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    initialize="init();"&gt; 
+ 
+    &lt;fx:Script&gt; 
+        &lt;![CDATA[ 
+        
+            import spark.components.HGroup; 
+            import mx.core.UIComponent; 
+                
+            // Define a deferred property for the top component. 
+            public var topRow:IDeferredInstance; 
+ 
+            // Define an Array of deferred properties 
+            // for a row of components. 
+            [ArrayElementType("mx.core.IDeferredInstance")] 
+            public var bottomRow:Array; 
+    
+            private function init():void {  
+                // Add the top component to the VGroup container. 
+                // Cast the IDeferredInstance object to UIComponent 
+                // so that you can add it to the parent container.      
+                addElement(UIComponent(topRow.getInstance())); 
+ 
+                // Create an HGroup container. This container 
+                // is the parent container of the bottom row of components. 
+                var controlHGroup:HGroup = new HGroup(); 
+                
+                // Add the bottom row of components 
+                // to the HGroup container.              
+                for (var i:int = 0; i &lt; bottomRow.length; i++) 
+            controlHGroup.addElement(UIComponent(bottomRow[i].getInstance())); 
+ 
+                // Add the HBox container to the VGroup container. 
+                addElement(controlHGroup); 
+            } 
+        ]]&gt; 
+    &lt;/fx:Script&gt; 
+&lt;/s:VGroup&gt;</pre>
+
+            <p>The IDeferredInstance interface defines a single method, <samp class="codeph">getInstance()</samp>.
+Flex calls the <samp class="codeph">getInstance()</samp> method to initialize
+a property when it creates an instance of the component. A subsequent
+call to the <samp class="codeph">getInstance()</samp> method returns a reference
+to the property value.</p>
+
+            <p>In MXML, when the compiler encounters a value declaration for
+a property of type IDeferredInstance, instead of generating code
+to construct and assign the value to the property, the compiler
+generates code to construct and assign an IDeferredInstance implementation
+object, which then produces the value at run time. </p>
+
+            <p>You can pass any data type to a property of type IDeferredInstance.
+In the example in the section <a href="flx_templating_tp.html#WS2db454920e96a9e51e63e3d11c0bf69084-79c3_verapache">About
+template components</a>, you pass a Label control to the <samp class="codeph">topRow</samp> property,
+and three Button controls to the <samp class="codeph">bottomRow</samp> property. </p>
+
+            <p>Notice in the example that the <samp class="codeph">addElement()</samp> methods
+that take <samp class="codeph">topRow</samp> and <samp class="codeph">bottomRow</samp> as
+arguments cast them to <a href="https://flex.apache.org/asdoc/mx/core/UIComponent.html" target="_blank">UIComponent</a>.
+This cast is necessary because the <samp class="codeph">addElement()</samp> method
+can only add an object that implements the IUIComponent interface
+to a container, and the <samp class="codeph">DeferredInstance.getInstance()</samp> method
+returns a value of type Object. </p>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf68a49-7ffd_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf68a49-7ffd_verapache"><!-- --></a>
+         <h3 class="topictitle3">Defining properties using the IDeferredInstance
+interface</h3>
+
+         
+         <div>
+            <p>You can define component properties of type IDeferredInstance.</p>
+
+            <div class="section" id="WS2db454920e96a9e51e63e3d11c0bf68a49-7ffd_verapache__WS2db454920e96a9e51e63e3d11c0bf68a49-7ffc_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf68a49-7ffd_verapache__WS2db454920e96a9e51e63e3d11c0bf68a49-7ffc_verapache"><!-- --></a><h4 class="sectiontitle">Defining
+a generic property</h4>
+               
+               <p>To define a generic property, one with
+no associated data type, you define its type as <a href="https://flex.apache.org/asdoc/mx/core/IDeferredInstance.html" target="_blank">IDeferredInstance</a>,
+as the following example shows:</p>
+
+               <pre class="codeblock"> // Define a deferred property for the top component. 
+ public var topRow:IDeferredInstance;</pre>
+
+               <p>The user of
+the component can then specify an object of any type to the property.
+It is your responsibility in the component implementation to verify
+that the value passed by the user is of the correct data type. </p>
+
+            </div>
+
+            <div class="section" id="WS2db454920e96a9e51e63e3d11c0bf68a49-7ffd_verapache__WS2db454920e96a9e51e63e3d11c0bf68a49-7ffb_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf68a49-7ffd_verapache__WS2db454920e96a9e51e63e3d11c0bf68a49-7ffb_verapache"><!-- --></a><h4 class="sectiontitle">Restricting
+the data type of a property</h4>
+               
+               <p>You use the <samp class="codeph">[InstanceType]</samp> metadata
+tag to specify the allowed data type of a property of type <a href="https://flex.apache.org/asdoc/mx/core/IDeferredInstance.html" target="_blank">IDeferredInstance</a>,
+as the following example shows: </p>
+
+               <pre class="codeblock"> // Define a deferred property for the top component. 
+ [InstanceType("spark.components.Label")] 
+ public var topRow:IDeferredInstance;</pre>
+
+               <p>The Flex compiler
+validates that users only assign values of the specified type to the
+property. In this example, if the component user sets the <samp class="codeph">topRow</samp> property to
+a value of a type other than <a href="https://flex.apache.org/asdoc/spark/components/Label.html" target="_blank">spark.components.Label</a>,
+the compiler issues an error message.</p>
+
+            </div>
+
+            <div class="section" id="WS2db454920e96a9e51e63e3d11c0bf68a49-7ffd_verapache__WS2db454920e96a9e51e63e3d11c0bf68a49-7ffe_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf68a49-7ffd_verapache__WS2db454920e96a9e51e63e3d11c0bf68a49-7ffe_verapache"><!-- --></a><h4 class="sectiontitle">Defining
+an array of template properties</h4>
+               
+               <p>You can define an Array
+of template properties, as the following example shows:</p>
+
+               <pre class="codeblock"> // Define an Array of deferred properties for a row of components. 
+ // Do not restrict the type of the component. 
+ [ArrayElementType("mx.core.IDeferredInstance")] 
+ public var bottomRow:Array; 
+  
+ // Define an Array of deferred properties for a row of components. 
+ // Restrict the type of the component to mx.controls.Button. 
+ [InstanceType("mx.controls.Button")] 
+ [ArrayElementType("mx.core.IDeferredInstance")] 
+ public var bottomRow:Array;</pre>
+
+               <p>In the first example,
+you can assign a value of any data type to the <samp class="codeph">bottomRow</samp> property.
+Each array element's <samp class="codeph">getInstance()</samp> method is not
+called until the element is used. </p>
+
+               <p>In the second example,
+you can only assign values of type <a href="https://flex.apache.org/asdoc/spark/components/Button.html" target="_blank">spark.components.Button</a> to
+it. Each Array element is created when the application loads. The following
+template component shows an alternative implementation of the MyTemplateComponent
+that restricts the type of components to be of type mx.controls.Button:</p>
+
+               <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- templating/myComponents/MyTemplateComponentDeferredSpecific.mxml --&gt; 
+&lt;s:VGroup xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    initialize="init();"&gt; 
+    
+    &lt;fx:Script&gt; 
+        &lt;![CDATA[ 
+        
+            import spark.components.HGroup; 
+            import mx.core.UIComponent; 
+                
+            [InstanceType("spark.components.Label")] 
+            public var topRow:IDeferredInstance; 
+ 
+            // Define an Array of deferred properties 
+            // for a row of components. 
+            // Restrict the type of the component 
+            // to mx.controls.Button. 
+            [InstanceType("spark.components.Button")] 
+            [ArrayElementType("mx.core.IDeferredInstance")] 
+            public var bottomRow:Array; 
+    
+            private function init():void {            
+                addElement(UIComponent(topRow.getInstance())); 
+ 
+                var controlHGroup:HGroup = new HGroup(); 
+                for (var i:int = 0; i &lt; bottomRow.length; i++) 
+            controlHGroup.addElement(UIComponent(bottomRow[i].getInstance())); 
+ 
+                addElement(controlHGroup); 
+            } 
+        ]]&gt; 
+    &lt;/fx:Script&gt; 
+&lt;/s:VGroup&gt;</pre>
+
+               <p/>
+
+            </div>
+
+         </div>
+
+      </div>
+
+<div>
+  <p><strong>Navigation</strong></p>
+  <p><a href="index.html">Using Flex</a> &raquo; <a href="flx_p8a_custom_components.html">Custom components</a></p>
+</div>
+
+         <p>Adobe and Adobe Flash Platform are either registered trademarks or trademarks of Adobe Systems Incorporated in the United States and/or other countries and are used by permission from Adobe.  No other license to the Adobe trademarks are granted.</p>
+
+
+   </div>
+
+
+</body>
+</html>

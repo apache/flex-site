@@ -1,0 +1,2744 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Licensed to the Apache Software Foundation (ASF) under one or more
+  contributor license agreements.  See the NOTICE file distributed with
+  this work for additional information regarding copyright ownership.
+  The ASF licenses this file to You under the Apache License, Version 2.0
+  (the "License"); you may not use this file except in compliance with
+  the License.  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+-->
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en-us" xml:lang="en-us">
+<head>
+<meta name="DC.Type" content="topic"/>
+<meta name="DC.Title" content="Modular applications"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="WS2db454920e96a9e51e63e3d11c0bf69084-7f22_verapache"/>
+<title>Modular applications</title>
+</head>
+<body id="WS2db454920e96a9e51e63e3d11c0bf69084-7f22_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7f22_verapache"><!-- --></a>
+
+   <div class="nested1" id="WS19f279b149e7481c-3e29f2ba12dbeecdd8a-8000_verapache"><a name="WS19f279b149e7481c-3e29f2ba12dbeecdd8a-8000_verapache"><!-- --></a>
+      <h2 class="topictitle2">Modules quick start</h2>
+
+      
+      <div>
+         <p>Modules are SWF files that are similar to applications.
+You use modules to externalize functionality and load it only when
+it is needed. Applications can load and unload modules at run time,
+which can save start up time and memory because the applications
+can be smaller and download faster.</p>
+
+         <p>The most common use of modules is in a navigator container. Typically,
+each view in a navigator container is a module. When the user navigates
+to a new view, a new module is loaded.</p>
+
+         <p>You compile modules just as you would any application file. On
+the command line, you create a new module and compile it with the
+mxmlc compiler. </p>
+
+         <p>Modules are MXML documents with <samp class="codeph">&lt;s:Module&gt;</samp> as
+the root tag. Within that tag, you can use any child tags that you
+can use in a <samp class="codeph">&lt;s:Application&gt;</samp> tag. The following
+examples shows two modules:</p>
+
+         <div class="p">HorizontalLayoutModule.mxml:<pre class="noswf">&lt;?xml version="1.0" encoding="utf-8"?&gt; 
+&lt;!-- modules/mxmlmodules/HorizontalLayoutModule.mxml --&gt; 
+&lt;s:Module xmlns:fx="http://ns.adobe.com/mxml/2009" 
+          xmlns:s="library://ns.adobe.com/flex/spark" 
+          xmlns:mx="library://ns.adobe.com/flex/mx" 
+          minWidth="955" minHeight="600" 
+          &gt; 
+    &lt;fx:Declarations&gt; 
+    &lt;/fx:Declarations&gt; 
+    &lt;fx:Style&gt; 
+    &lt;/fx:Style&gt; 
+    
+    &lt;fx:Script&gt; 
+        &lt;![CDATA[ 
+        ]]&gt; 
+    &lt;/fx:Script&gt; 
+    &lt;s:layout&gt; 
+        &lt;s:HorizontalLayout /&gt; 
+    &lt;/s:layout&gt; 
+    &lt;s:Label text="label three"/&gt; 
+    &lt;s:Button label="button three"/&gt; 
+    &lt;s:Label text="label four"/&gt; 
+    &lt;s:Button label="button four"/&gt; 
+&lt;/s:Module&gt;</pre>
+
+         </div>
+
+         <div class="p">VerticalLayoutModule.mxml:<pre class="noswf">&lt;?xml version="1.0" encoding="utf-8"?&gt; 
+&lt;!-- modules/mxmlmodules/VerticalLayoutModule.mxml --&gt; 
+&lt;s:Module xmlns:fx="http://ns.adobe.com/mxml/2009" 
+          xmlns:s="library://ns.adobe.com/flex/spark" 
+          xmlns:mx="library://ns.adobe.com/flex/mx" 
+          minWidth="955" minHeight="600"&gt; 
+    &lt;fx:Declarations&gt; 
+    &lt;/fx:Declarations&gt; 
+    &lt;fx:Style&gt; 
+    &lt;/fx:Style&gt; 
+    
+    &lt;fx:Script&gt; 
+        &lt;![CDATA[ 
+        ]]&gt; 
+    &lt;/fx:Script&gt; 
+    &lt;s:layout&gt; 
+        &lt;s:VerticalLayout /&gt; 
+    &lt;/s:layout&gt; 
+    &lt;s:Label text="label one"/&gt; 
+    &lt;s:TextInput /&gt; 
+    &lt;s:Label text="label two"/&gt; 
+    &lt;s:TextArea/&gt; 
+&lt;/s:Module&gt;</pre>
+
+         </div>
+
+         <div class="p">To load modules in an application, you use a <samp class="codeph">&lt;s:ModuleLoader&gt;</samp> tag
+inside a container. The container can be an MX container (such as
+a TabNavigator container), or a Spark container (such as a Group).
+The following example application uses a TabNavigator container: <pre class="noswf">&lt;?xml version="1.0" encoding="utf-8"?&gt; 
+&lt;!-- modules/SimpleLoader.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+               xmlns:s="library://ns.adobe.com/flex/spark" 
+               xmlns:mx="library://ns.adobe.com/flex/mx" 
+               minWidth="955" minHeight="600"&gt; 
+    
+    &lt;mx:TabNavigator width="500" height="300"&gt; 
+        &lt;s:ModuleLoader label="Tab One" url="mxmlmodules/VerticalLayoutModule.swf"/&gt; 
+        &lt;s:ModuleLoader label="Tab Two" url="mxmlmodules/HorizontalLayoutModule.swf"/&gt; 
+    &lt;/mx:TabNavigator&gt; 
+&lt;/s:Application&gt;</pre>
+
+         </div>
+
+         <p>When the application first loads, Flash Player loads the first
+module in the first view of the container. When the user navigates
+to the second view of the container, Flash Player loads the second
+module.</p>
+
+         <p>The Spark ModuleLoader class implements the INavigatorContent
+interface. As a result, it provides some convenience properties
+for working with navigator containers. For example, you can use
+the <samp class="codeph">label</samp> property to set a label on the tab in
+a TabNavigator container, or you can use the <samp class="codeph">icon</samp> property
+to instead add an icon to the tab.</p>
+
+         <p>The ModuleLoader class also provides a <samp class="codeph">creationPolicy</samp> property.
+You can use this property to instruct the application when to load
+the module. </p>
+
+      </div>
+
+      <div><div class="relinfo"><strong>Related information</strong><br/>
+<div><a href="flx_compilers_cpl.html#WS2db454920e96a9e51e63e3d11c0bf69084-7fcc_verapache">Using mxmlc, the application compiler</a></div>
+<div><a href="flx_layoutperformance_lp.html#WS2db454920e96a9e51e63e3d11c0bf69084-7cb8_verapache">About the creationPolicy property</a></div>
+</div>
+</div>
+   </div>
+
+   <div class="nested1" id="WS2db454920e96a9e51e63e3d11c0bf69084-799a_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-799a_verapache"><!-- --></a>
+      <h2 class="topictitle2">Modular applications overview</h2>
+
+      
+      <div/>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf64277-7fff_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf64277-7fff_verapache"><!-- --></a>
+         <h3 class="topictitle3">About modules</h3>
+
+         
+         <div>
+            <p>
+               <em>Modules</em> are SWF files that can be loaded and unloaded
+by an application. They cannot be run independently of an application,
+but any number of applications can share the modules.</p>
+
+            <p>Modules let you split your application into several pieces, or
+modules. The main application, or shell, can dynamically load other
+modules that it requires, when it needs them. It does not have to
+load all modules when it starts, nor does it have to load any modules
+if the user does not interact with them. When the application no
+longer needs a module, it can unload the module to free up memory and
+resources. </p>
+
+            <p>Modular applications have the following benefits:</p>
+
+            <ul>
+               <li>
+                  <p>Smaller initial download size of the SWF file.</p>
+
+               </li>
+
+               <li>
+                  <p>Less memory use of overall application when modules are unloaded.</p>
+
+               </li>
+
+               <li>
+                  <p>Shorter load time due to smaller SWF file size.</p>
+
+               </li>
+
+               <li>
+                  <p>Better encapsulation of related aspects of an application.
+For example, a "reporting" feature can be separated into a module
+that you can then work on independently.</p>
+
+               </li>
+
+            </ul>
+
+            <p>Modules and sub-applications are similar in many ways. Before
+deciding on an architecture for your applications, see the comparison
+of these two approaches in <a href="flx_loading_applications_la.html#WS2db454920e96a9e51e63e3d11c0bf69084-7f07_verapache">Comparing
+loaded applications to modules</a>.</p>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf64277-7ff2_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf64277-7ff2_verapache"><!-- --></a>
+         <h3 class="topictitle3">Benefits of modules</h3>
+
+         
+         <div>
+            <p>A module is a special type of dynamically loadable SWF
+file that contains an IFlexModuleFactory class factory. This allows
+an application to load code at run time and create class instances
+without requiring that the class implementations be linked into
+the main application. </p>
+
+            <p>Modules are similar to Runtime Shared Libraries (RSLs) in that
+they separate code from an application into separately loaded SWF
+files. Modules are very flexible because modules can be loaded and
+unloaded at run time and compiled without the application.</p>
+
+            <p>Two common scenarios in which using modules is beneficial are
+a large application with different user paths and a portal application.</p>
+
+            <p>An example of the first common scenario is an enormous insurance
+application that includes thousands of screens, for life insurance,
+car insurance, health insurance, dental insurance, travel insurance,
+and veterinary pet insurance. </p>
+
+            <p>By using a traditional approach to Rich Internet Application
+(RIA) design, you might build a monolithic application with a hierarchical
+tree of MXML classes. Memory use and start-up time for the application
+would be significant, and the SWF file size would grow with each
+new set of functionality. </p>
+
+            <p>When using this application, however, any user accesses only
+a subset of the screens. By refactoring the screens into small groups
+of modules that are loaded on demand, you can improve the perceived
+performance of the main application and reduce the memory use. Also,
+when the application is separated into modules, developers' productivity
+may increase due to better encapsulation of design. When rebuilding
+the application, the developers also have to recompile only the
+single module instead of the entire application. </p>
+
+            <p>An example of the second common scenario is a system with a main
+portal application, written in ActionScript 3.0, that provides services
+for numerous portlets. Portlets are configured based on data that
+is downloaded on a per-user basis. By using the traditional approach,
+you might build an application that compiles in all known portlets.
+This is inefficient, both for deployment and development.</p>
+
+            <p>By using modules, you can establish an interface that contains
+portal services, and a generic portlet interface. You can use XML
+data to determine which modules to load for a given session. When
+the module is loaded, you obtain a handle to a class factory inside
+the module, and from that you create an instance of a class that
+implements the portlet interface. In this scenario, full recompilation
+is necessary only if the interfaces change.</p>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf64277-7fec_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf64277-7fec_verapache"><!-- --></a>
+         <h3 class="topictitle3">Module API details</h3>
+
+         
+         <div>
+            <p>Modules implement a class factory with a standard interface.
+The product of that class factory implements an interface known
+to the shell, or the shell implements an interface known to the
+modules. These shared interfaces reduce hard dependencies between
+the shell and the module. This provides type-safe communication
+and enforces an abstraction layer without adding significantly to
+the SWF file size.</p>
+
+            <p>The following image shows the relationship between the shell
+and the module's interfaces:</p>
+
+            <div class="figborder">
+               <img src="images/md_ModuleDiagram.png" alt="The relationship between the shell and the module\xd5 s interface."/>
+            </div>
+
+            <p>The <a href="https://flex.apache.org/asdoc/mx/modules/ModuleManager.html" target="_blank">ModuleManager</a> manages
+the set of loaded modules, which are treated as a map of Singletons
+that are indexed by the module URL. Loading a module triggers a
+series of events that let clients monitor the status of the module. Modules
+are only ever loaded once, but subsequent reloads also dispatch
+events so that client code can be simplified and rely on using the <samp class="codeph">READY</samp> event
+to know that the module's class factory is available for use.</p>
+
+            <p>The <a href="https://flex.apache.org/asdoc/spark/modules/ModuleLoader.html" target="_blank">ModuleLoader</a> class
+is a thin layer on top of the ModuleManager API that is intended
+to act similarly to the mx.controls.SWFLoader class for modules
+that only define a single visual UIComponent. The ModuleLoader class
+is the easiest class to use when implementing a module-based architecture,
+but the ModuleManager provides greater control over the modules.</p>
+
+            <p>The ModuleLoader class implements the INavigatorContent interface
+so that it can be used directly by MX-based navigator containers
+(such as TabNavigator). The ModuleLoader class does not have any
+UI associated with it. All UI is defined by the module that it loads.</p>
+
+            <p>The Spark Module class extends the SkinnableContainer class.
+This means you can skin it and add visual components, including
+graphics, as children.</p>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf69084-7d0f_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7d0f_verapache"><!-- --></a>
+         <h3 class="topictitle3">Module domains and sharing class
+libraries</h3>
+
+         
+         <div>
+            <p>By default, a module is loaded into a child domain of the
+current application domain. You can specify a different application
+domain by using the <samp class="codeph">applicationDomain</samp> property
+of the ModuleLoader class. </p>
+
+            <p>Because a module is loaded into a child domain, it owns class
+definitions that are not in the main application's domain. For example,
+the first module to load the PopUpManager class becomes the owner
+of the PopUpManager class for the entire application because it
+registers the manager with the SingletonManager. If another module
+later tries to use the PopUpManager, Adobe <sup>®</sup> Flash<sup>®</sup> Player throws an exception. </p>
+
+            <p>One solution is to use framework RSLs when compiling your applications
+and modules (RSLs are enabled by default). The definitions of the
+manager classes will be loaded in the framework RSL by the main
+application. Then, all the modules and sub-applications can share
+it. For more information about using framework RSLs with modules,
+see <a href="flx_modular_md.html#WS19f279b149e7481c-7592484b12db94a3ab2-8000_verapache">Using
+RSLs with modules</a>.</p>
+
+            <p>If you do not use RSLs, the solution is to ensure that managers
+such as PopUpManager and DragManager and any other shared services
+are defined by the main application (or loaded late into the shell's
+application domain). When you promote one of those classes to the
+main application, the class can then be used by all modules. Typically,
+this is done by adding the following to a script block in the main
+application:</p>
+
+            <pre class="codeblock"> import mx.managers.PopUpManager; 
+import mx.managers.DragManager; 
+import mx.managers.ToolTipManager; 
+import mx.managers.CursorManager; 
+import mx.core.EmbeddedFontRegistry; 
+ 
+private var popUpManager:PopUpManager; 
+private var dragManager:DragManager; 
+private var tooltipManager:ToolTipManager; 
+private var cursorManager:CursorManager; 
+private var embeddedFontRegistry:EmbeddedFontRegistry;</pre>
+
+            <p>You should only define these classes in your main application
+if your modules use the related functionality. For example, define
+the EmbeddedFontRegistry class in your main application if one or
+more of your modules uses embedded fonts.</p>
+
+            <p>This technique also applies to components. The module that first
+uses the component owns that component's class definition in its
+domain. As a result, if another module tries to use a component
+that has already been used by another module, its definition will
+not match the existing definition. </p>
+
+            <p>To avoid a mismatch of component definitions, create an instance
+of the component in the main application. The result is that the
+definition of the component is owned by the main application and
+can be used by modules in any child domain.</p>
+
+            <p>By default, modules do not share the main application's StyleManager,
+however. They have their own instances of the IStyleManager2 class.
+As a result, modules can define their own styles. For example, style
+properties set on a Button control in one module are not applied
+to the Button control in another module or to the main application.</p>
+
+            <p>Because a module must be in the same security domain as the application
+(SWF) that loads it, when you're using modules in an AIR application,
+any module SWF must be located in the same directory as the main
+application SWF or one of its subdirectories, which ensures that,
+like the main application SWF, the module SWF is in the AIR application
+security sandbox. One way to verify this is to ensure that a relative
+URL for the module's location doesn't require "../" ("up one level") notation
+to navigate outside the application directory or one of its subdirectories.</p>
+
+            <p>For more information about application domains, see <a href="flx_loading_applications_la.html#WS2db454920e96a9e51e63e3d11c0bf69084-7d14_verapache">Developing
+and loading sub-applications</a>.</p>
+
+         </div>
+
+         <div class="nested3" id="WS2db454920e96a9e51e63e3d11c0bf64277-7ff4_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf64277-7ff4_verapache"><!-- --></a>
+            <h4 class="topictitle4">Create a modular application</h4>
+
+            
+            <div>
+               <p>To create a modular application, you create separate classes
+for each module, and an application that loads the modules. </p>
+
+               <ol>
+                  <li>
+                     <p>Create any number of modules. An MXML-based module file's
+root tag is <samp class="codeph">&lt;s:Module&gt;</samp>. ActionScript-based
+modules extend either the Module or ModuleBase class.</p>
+
+                  </li>
+
+                  <li>
+                     <p>Compile each module as if it were an application. You can
+do this by using the mxmlc command-line compiler.</p>
+
+                  </li>
+
+                  <li>
+                     <p>Create an Application class. This is typically an MXML file
+whose root tag is <samp class="codeph">&lt;s:Application&gt;</samp>, but it
+can also be an ActionScript-only application.</p>
+
+                  </li>
+
+                  <li>
+                     <p>In the Application file, use an <samp class="codeph">&lt;s:ModuleLoader&gt;</samp> tag
+to load each of the modules. You can also load modules by using
+methods of the spark.modules.ModuleLoader and mx.modules.ModuleManager
+classes in ActionScript.</p>
+
+                  </li>
+
+               </ol>
+
+            </div>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WSda78ed3a750d6b8f1b97f82d12508050aa0-8000_verapache"><a name="WSda78ed3a750d6b8f1b97f82d12508050aa0-8000_verapache"><!-- --></a>
+         <h3 class="topictitle3">Using styles with modules</h3>
+
+         
+         <div>
+            <p>When you set styles on modules, the style properties are
+set on the local StyleManager. Each module has its own instance
+of the IStyleManager2 class. This means that each module can load
+its own set of styles, and its styles do not necessarily affect
+the styles of other modules.</p>
+
+            <p>After an application finishes loading a module, the module's
+styles are merged with the styles of the application. The module's
+StyleManager walks the chain of parent modules and applications,
+up to the top-level StyleManager, and merges its styles with those
+set on the StyleManagers above it.</p>
+
+            <p>If during a style merge, a module encounters a style that it
+already sets on itself, the style is ignored. If the module encounters
+a style not set on itself, the style is added to the merged style
+definition. The styles set on the StyleManager that is closest to
+the module wins. </p>
+
+            <div class="p">The following example loads two modules. The main application
+sets the <samp class="codeph">color</samp> and <samp class="codeph">cornerRadius</samp> style
+properties on the Button control type selector. The modules each
+set the <samp class="codeph">color</samp> property on the Button control type
+selector. The merged styles result in the Buttons having a corner
+radius of 10, with colors set by each module. This shows how style
+merges work.<pre class="noswf">&lt;?xml version="1.0"?&gt; 
+&lt;!-- modules/StyleModLoaderApp.mxml --&gt; 
+&lt;s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx"&gt; 
+ 
+    &lt;s:layout&gt; 
+        &lt;s:VerticalLayout/&gt; 
+    &lt;/s:layout&gt; 
+ 
+    &lt;fx:Style&gt; 
+        @namespace s "library://ns.adobe.com/flex/spark"; 
+ 
+        s|Button { 
+            color:blue; 
+            cornerRadius:10; 
+        } 
+    &lt;/fx:Style&gt; 
+ 
+    &lt;s:VGroup&gt; 
+        &lt;s:Label id="l1" text="Module 1"/&gt; 
+        &lt;s:ModuleLoader id="ml1" url="mxmlmodules/StyleMod1.swf"/&gt; 
+    &lt;/s:VGroup&gt; 
+ 
+    &lt;s:VGroup&gt; 
+        &lt;s:Label id="l2" text="Module 2"/&gt; 
+        &lt;s:ModuleLoader id="ml2" url="mxmlmodules/StyleMod2.swf"/&gt; 
+    &lt;/s:VGroup&gt; 
+ 
+    &lt;s:Button id="myButton" label="Main App Button"/&gt; 
+ 
+&lt;/s:Application&gt;</pre>
+
+            </div>
+
+            <div class="p">Module 1:<pre class="noswf">&lt;?xml version="1.0"?&gt; 
+&lt;!-- modules/mxmlmodules/StyleMod1.mxml --&gt; 
+&lt;s:Module 
+    xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx"&gt; 
+ 
+    &lt;fx:Style&gt; 
+        @namespace s "library://ns.adobe.com/flex/spark"; 
+ 
+        s|Button { 
+            color:red; 
+        } 
+    &lt;/fx:Style&gt; 
+    
+    &lt;s:Button label="StyleMod1"/&gt; 
+ 
+&lt;/s:Module&gt;</pre>
+
+            </div>
+
+            <div class="p">Module 2:<pre class="noswf">&lt;?xml version="1.0"?&gt; 
+&lt;!-- modules/mxmlmodules/StyleMod2.mxml --&gt; 
+&lt;s:Module 
+    xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx"&gt; 
+ 
+    &lt;fx:Style&gt; 
+        @namespace s "library://ns.adobe.com/flex/spark"; 
+ 
+        s|Button { 
+            color:green; 
+        } 
+    &lt;/fx:Style&gt; 
+    
+    &lt;s:Button label="StyleMod2"/&gt; 
+ 
+&lt;/s:Module&gt;</pre>
+
+            </div>
+
+            <p>To prevent style merges, set the <samp class="codeph">isolate-styles</samp> compiler
+argument to <samp class="codeph">false</samp>. By doing this, you might trigger
+type coercion errors when loading skins. Modules also might not
+be properly garbage collected when they are unloaded. This is because
+the main application's StyleManager will maintain references to the
+module even after is is unloaded. When you set <samp class="codeph">isolate-styes</samp> to <samp class="codeph">false</samp>, if
+more than one module loads a style, the first one loaded wins. In
+this case, styles set on modules can be overridden by those set
+on other modules.</p>
+
+            <p>In the previous example, if you set the <samp class="codeph">isolate-styles</samp> compiler
+argument to <samp class="codeph">false</samp>, the color of the Button controls'
+labels in both modules would be red, because that is definition
+that is first loaded.</p>
+
+            <p>The <samp class="codeph">getStyleDeclarations()</samp> method returns only
+the local style definitions. To get the merged style definitions,
+you can use the <samp class="codeph">getMergedStyleDeclaration()</samp> method.
+All methods that modify style definitions affect only the local
+style definitions and not the merged style definitions.</p>
+
+            <p>Style properties are merged when the module is loaded. This means
+that style properties set on the main application and all child
+applications and modules are set on the module if the module does
+not override that style. Merged styles are set on a per-property
+basis, starting with the closest StyleManager and working upwards
+to the top-level StyleManager.</p>
+
+            <div class="p">Even when using merged styles, child modules still inherit their
+parent module or application's inheritable style properties when
+those settings are applied at runtime. Their StyleManager is not
+changed, but the values of the properties are inherited and applied
+where applicable. If you set a property at run time on the main
+application, the modules inherit that style immediately, as the
+following example shows:<pre class="noswf">&lt;?xml version="1.0"?&gt; 
+&lt;!-- modules/StyleModLoaderApp2.mxml --&gt; 
+&lt;s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx"&gt; 
+ 
+    &lt;s:layout&gt; 
+        &lt;s:VerticalLayout/&gt; 
+    &lt;/s:layout&gt; 
+ 
+    &lt;fx:Script&gt; 
+        /* When you set this style in the main application, the modules immediately 
+           inherit the value. */ 
+        private function changeStyle():void { 
+            styleManager.getStyleDeclaration("spark.components.Button").setStyle("fontSize", 15); 
+        } 
+    &lt;/fx:Script&gt; 
+ 
+    &lt;fx:Style&gt; 
+        @namespace s "library://ns.adobe.com/flex/spark"; 
+ 
+        s|Button { 
+            color:blue; 
+            cornerRadius:10; 
+        } 
+    &lt;/fx:Style&gt; 
+ 
+    &lt;s:VGroup&gt; 
+        &lt;s:Label id="l1" text="Module 1"/&gt; 
+        &lt;s:ModuleLoader id="ml1" url="mxmlmodules/StyleMod1.swf"/&gt; 
+    &lt;/s:VGroup&gt; 
+ 
+    &lt;s:VGroup&gt; 
+        &lt;s:Label id="l2" text="Module 2"/&gt; 
+        &lt;s:ModuleLoader id="ml2" url="mxmlmodules/StyleMod2.swf"/&gt; 
+    &lt;/s:VGroup&gt; 
+ 
+    &lt;s:Button label="Change Styles" click="changeStyle()"/&gt; 
+ 
+&lt;/s:Application&gt;</pre>
+
+            </div>
+
+            <p>For information on using run-time style sheets with modules,
+see <a href="flx_styles_st.html#WS2db454920e96a9e51e63e3d11c0bf69084-7e6d_verapache">Using
+run-time style sheets with modules and sub-applications</a>.</p>
+
+            <p>If you use run-time resource bundles with loaded modules, you
+should consider setting the <samp class="codeph">addResourceBundle()</samp> method's <samp class="codeph">useWeakReferences</samp> parameter
+to <samp class="codeph">true</samp>. For more information, see <a href="flx_resourcebundles_rb.html#WS19f279b149e7481c-6f660f0612ca9140b8f-8000_verapache">Preventing
+memory leaks in modules and sub-applications</a>.</p>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS19f279b149e7481c-7592484b12db94a3ab2-8000_verapache"><a name="WS19f279b149e7481c-7592484b12db94a3ab2-8000_verapache"><!-- --></a>
+         <h3 class="topictitle3">Using RSLs with modules</h3>
+
+         
+         <div>
+            <p>Starting with Flex 4.5, modules work much more efficiently
+with RSLs. Modules will not load RSLs that the main application
+has already loaded, and modules can share RSLs with other modules.</p>
+
+            <p>The application only loads those framework RSLs that are needed
+at startup, and creates placeholders for all remaining framework
+RSLs. When a module is loaded, it does not try to load RSLs that
+are already loaded by the main application. If the module needs
+a framework RSL that is not initially loaded by the main application
+(and has a placeholder), then the module loads the RSL.</p>
+
+            <p>In addition, when a module loads an RSL, you can specify which
+domain the RSL is loaded into with the <samp class="codeph">application-domain</samp> compiler
+argument. This lets you load an RSL into the parent, current, or
+top-level application domains. This applies to both framework RSLs
+and custom RLSs. </p>
+
+            <p>For more information about using modules and RSLs, see <a href="flx_rsl_rsl.html#WS19f279b149e7481c311d007d12d9f3bc5d8-8000_verapache">Using
+RSLs with modules and sub-applications</a>.</p>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS19f279b149e7481c-5c393e7912dc8e2afe8-8000_verapache"><a name="WS19f279b149e7481c-5c393e7912dc8e2afe8-8000_verapache"><!-- --></a>
+         <h3 class="topictitle3">Using pop-ups with modules</h3>
+
+         
+         <div>
+            <p>When using modules as pop-ups, you might not be able to
+click or drag the pop-up. The solution is to create a subclass of
+the pop-up (such as a TitleWindow container) that you use as the
+top-level MXML tag in the Module.</p>
+
+         </div>
+
+      </div>
+
+   </div>
+
+   <div class="nested1" id="WS2db454920e96a9e51e63e3d11c0bf69084-7997_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7997_verapache"><!-- --></a>
+      <h2 class="topictitle2">Writing modules</h2>
+
+      
+      <div>
+         <p>Modules are classes just like application files. You can
+create them either in ActionScript or by extending a Flex class
+by using MXML tags. You can create modules in MXML and in ActionScript. </p>
+
+         <p>After you compile a module, you can load it into an application
+or another module. Typically, you use one of the following techniques
+to load MXML-based modules:</p>
+
+         <ul>
+            <li>
+               <p>ModuleLoader — The <a href="https://flex.apache.org/asdoc/spark/modules/ModuleLoader.html" target="_blank">ModuleLoader</a> class
+provides the highest-level API for handling modules. For more information,
+see <a href="flx_modular_md.html#WS2db454920e96a9e51e63e3d11c0bf69084-7d21_verapache">Using
+the ModuleLoader class to load modules</a>.</p>
+
+            </li>
+
+            <li>
+               <p>ModuleManager — The <a href="https://flex.apache.org/asdoc/mx/modules/ModuleManager.html" target="_blank">ModuleManager</a> class
+provides a lower-level API for handling modules than the ModuleLoader
+class does. For more information, see <a href="flx_modular_md.html#WS2db454920e96a9e51e63e3d11c0bf69084-7d20_verapache">Using
+the ModuleManager class to load modules</a>.</p>
+
+            </li>
+
+         </ul>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf64277-7fe3_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf64277-7fe3_verapache"><!-- --></a>
+         <h3 class="topictitle3">Creating MXML-based modules</h3>
+
+         
+         <div>
+            <p>To create a module in MXML, you extend the <a href="https://flex.apache.org/asdoc/spark/modules/Module.html" target="_blank">spark.modules.Module</a> class
+by creating a file whose root tag is <samp class="codeph">&lt;s:Module&gt;</samp>.
+In that tag, ensure that you add any namespaces that are used in
+that module. You must also include an XML type declaration tag at
+the beginning of the file, such as the following:</p>
+
+            <pre class="codeblock"> &lt;?xml version="1.0"?&gt;</pre>
+
+            <p>The following example is a module that includes a Chart control:</p>
+
+            <pre class="noswf">&lt;?xml version="1.0"?&gt; 
+&lt;!-- modules/ColumnChartModule.mxml --&gt; 
+&lt;s:Module 
+    xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    width="100%" height="100%" &gt; 
+ 
+    &lt;s:layout&gt; 
+        &lt;s:VerticalLayout/&gt; 
+    &lt;/s:layout&gt; 
+   
+    &lt;fx:Script&gt;&lt;![CDATA[ 
+        import mx.collections.ArrayCollection; 
+        [Bindable] 
+        public var expenses:ArrayCollection = new ArrayCollection([ 
+            {Month:"Jan", Profit:2000, Expenses:1500}, 
+            {Month:"Feb", Profit:1000, Expenses:200}, 
+            {Month:"Mar", Profit:1500, Expenses:500} 
+        ]); 
+    ]]&gt;&lt;/fx:Script&gt; 
+    
+    &lt;mx:ColumnChart id="myChart" dataProvider="{expenses}"&gt; 
+        &lt;mx:horizontalAxis&gt; 
+           &lt;mx:CategoryAxis 
+                dataProvider="{expenses}" 
+                categoryField="Month"/&gt; 
+        &lt;/mx:horizontalAxis&gt; 
+        &lt;mx:series&gt; 
+           &lt;mx:ColumnSeries 
+                xField="Month" 
+                yField="Profit" 
+                displayName="Profit"/&gt; 
+           &lt;mx:ColumnSeries 
+                xField="Month" 
+                yField="Expenses" 
+                displayName="Expenses"/&gt; 
+        &lt;/mx:series&gt; 
+     &lt;/mx:ColumnChart&gt; 
+     &lt;mx:Legend dataProvider="{myChart}"/&gt; 
+&lt;/s:Module&gt;</pre>
+
+            <p>After you create a module, you compile it as if it were an application.
+For more information on compiling modules, see <a href="flx_modular_md.html#WS2db454920e96a9e51e63e3d11c0bf69084-7d1f_verapache">Compiling
+modules</a>. </p>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf69084-7d1e_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7d1e_verapache"><!-- --></a>
+         <h3 class="topictitle3">Creating ActionScript-based modules</h3>
+
+         
+         <div>
+            <p>To create a module in ActionScript, you can create a file
+that extends either the spark.modules.Module class or the <a href="https://flex.apache.org/asdoc/mx/modules/ModuleBase.html" target="_blank">mx.modules.ModuleBase</a> class. </p>
+
+            <p>Extending the Module class is the same as using the <samp class="codeph">&lt;s:Module&gt;</samp> tag
+in an MXML file. You should extend this class if your module interacts
+with the framework; this typically means that it adds objects to
+the display list or otherwise interacts with visible objects.</p>
+
+            <p>To see an example of an ActionScript class that extends the Module
+class, create an MXML file with the root tag of <samp class="codeph">&lt;s:Module&gt;</samp>.
+When you compile this file, set the value of the <samp class="codeph">keep-generated-actionscript</samp> compiler
+property to <samp class="codeph">true</samp>. The Flex compiler stores the
+generated ActionScript class in a directory called generated. You
+will notice that this generated class contains code that you probably
+will not understand. As a result, you should not write ActionScript-based
+modules that extend the Module class; instead, you should use MXML
+to write such modules.</p>
+
+            <p>If your module does not include any framework code, you can create
+a class that extends ModuleBase. If you use the ModuleBase class,
+your module will typically be smaller than if you use a module based
+on the Module class because it does not have any framework class
+dependencies.</p>
+
+            <p>The following example creates a simple module that does not contain
+any framework code and therefore extends the ModuleBase class: </p>
+
+            <pre class="noswf">// modules/asmodules/SimpleModule.as 
+package { 
+    import mx.modules.ModuleBase; 
+ 
+    public class SimpleModule extends ModuleBase { 
+        public function SimpleModule() { 
+            trace("SimpleModule created"); 
+        } 
+    
+        public function computeAnswer(a:Number, b:Number):Number { 
+            return a + b; 
+        } 
+    } 
+}</pre>
+
+            <p>To call the <samp class="codeph">computeAnswer()</samp> method on the ActionScript
+module, you can use one of the techniques shown in <a href="flx_modular_md.html#WS2db454920e96a9e51e63e3d11c0bf69084-7d1a_verapache">Accessing
+modules from the parent application</a>.</p>
+
+         </div>
+
+      </div>
+
+   </div>
+
+   <div class="nested1" id="WS2db454920e96a9e51e63e3d11c0bf69084-7d1f_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7d1f_verapache"><!-- --></a>
+      <h2 class="topictitle2">Compiling modules</h2>
+
+      
+      <div>
+         <p>The way you compile modules is similar to the way you compile
+applications. On the command line, you use the mxmlc command-line
+compiler; for example:</p>
+
+         <pre class="codeblock"> mxmlc MyModule.mxml</pre>
+
+         <p>The result of compiling a module is a SWF file that you load
+into your application. You cannot run the module-based SWF file
+as a stand-alone application or load it into a browser window. It
+must be loaded by an application as a module. Modules should not
+be opened directly by Adobe<sup>®</sup> Flash<sup>®</sup> Player or Adobe<sup>®</sup> AIR,™ or requested through a browser directly.</p>
+
+         <p>When you compile your module, you should try to remove redundancies between
+the module and the application that uses it. To do this on the command line,
+you create a link report for the application, and then externalize
+any assets in the module that appear in that report. For more information,
+see <a href="flx_modular_md.html#WS2db454920e96a9e51e63e3d11c0bf69084-7d15_verapache">Reducing module
+size</a>.</p>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf69084-7d15_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7d15_verapache"><!-- --></a>
+         <h3 class="topictitle3">Reducing module size</h3>
+
+         
+         <div>
+            <p>Module size varies based on the components and classes
+that are used in the module. By default, a module externalizes all
+framework code that its components depend on by using RSLs. However,
+other custom classes and libraries are not externalized by default,
+which can cause modules to be larger than necessary by linking classes
+that overlap with the application's classes.</p>
+
+            <p>To reduce the size of the modules, you can optimize the module
+by instructing the compiler to externalize classes that are included
+by the application. This includes custom classes and framework classes.
+The result is that the module includes only the classes it requires,
+while the framework code and other dependencies are included in
+the application.</p>
+
+            <p>If you want to use a module with more than one application, you
+might want to optimize it for no applications so that it contains
+all the class references necessary to run, regardless of the parent
+application.</p>
+
+         </div>
+
+         <div class="nested3" id="WS2db454920e96a9e51e63e3d11c0bf64277-7ffa_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf64277-7ffa_verapache"><!-- --></a>
+            <h4 class="topictitle4">Create and use a linker report
+with the command-line compiler</h4>
+
+            
+            <div>
+               <p>To externalize framework classes with the command-line
+compiler, you generate a linker report from the application that
+loads the modules. You then use this report as input to the module's <samp class="codeph">load-externs</samp> compiler
+option. The compiler externalizes all classes from the module for
+which the application contains definitions. </p>
+
+               <ol>
+                  <li>
+                     <p>Generate the linker report and compile the application:</p>
+
+                     <pre class="codeblock"> mxmlc -link-report=report.xml MyApplication.mxml</pre>
+
+                     <p>The
+default output location of the linker report is the same directory
+as the compiler. In this case, it would be in the bin directory.</p>
+
+                  </li>
+
+                  <li>
+                     <p>Compile the module and pass the linker report to the <samp class="codeph">load-externs</samp> option:</p>
+
+                     <pre class="codeblock"> mxmlc -load-externs=report.xml MyModule.mxml</pre>
+
+                  </li>
+
+               </ol>
+
+            </div>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf64277-7fe5_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf64277-7fe5_verapache"><!-- --></a>
+         <h3 class="topictitle3">Recompiling modules</h3>
+
+         
+         <div>
+            <p>If you change a module, you do not have to recompile the
+application that uses the module if that module is in the same project.
+This is because the application loads the module at run time and
+does not check against it at compile time. Similarly, if you make
+changes to the application, you do not have to recompile the module.
+Just as the application does not check against the module at compile
+time, the module does not check against the application until run
+time.</p>
+
+            <p>If the module is in a separate project than the application that
+loads it, you must recompile the module separately.</p>
+
+            <p>However, if you make changes that might affect the linker report
+or common code, you should recompile both the application and the
+modules.</p>
+
+            <div class="note"><span class="notetitle">Note:</span> If you externalize the module's dependencies
+by using the <samp class="codeph">load-externs</samp> or <samp class="codeph">
+                  <em>optimize</em>
+               </samp> option,
+your module might not be compatible with future versions of Adobe
+Flex. You might be required to recompile the module. To ensure that
+a future application can use a module, compile that module with
+all the classes it requires. This also applies to applications that
+you load inside other applications.</div>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf64277-7fee_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf64277-7fee_verapache"><!-- --></a>
+         <h3 class="topictitle3">Debugging modules</h3>
+
+         
+         <div>
+            <p>To debug an application that uses modules, you set the <samp class="codeph">debug</samp> compiler
+option to <samp class="codeph">true</samp> for the modules when you compile
+them. Otherwise, you will not be able to set breakpoints in the
+modules or gather other debugging information from them. On the
+command line, debugging is disabled by default. You must also set
+the <samp class="codeph">debug</samp> option to <samp class="codeph">true</samp> when
+you compile the application that loads the modules that you want
+to debug.</p>
+
+            <p>A common issue that occurs when using multiple modules is that
+modules sometimes own the class definitions that the other modules
+want to use. Because they are in sibling application domains, the
+module that loaded the class definition first owns the definition
+for that class, but other modules will experience errors when they
+try to use that class. The solution is to promote the class definition
+to the main application domain so that all modules can use the class.
+For more information, see <a href="flx_modular_md.html#WS2db454920e96a9e51e63e3d11c0bf69084-7d0f_verapache">Module
+domains and sharing class libraries</a>.</p>
+
+         </div>
+
+      </div>
+
+   </div>
+
+   <div class="nested1" id="WS2db454920e96a9e51e63e3d11c0bf64277-7ffd_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf64277-7ffd_verapache"><!-- --></a>
+      <h2 class="topictitle2">Loading and unloading modules</h2>
+
+      
+      <div>
+         <p>There are several techniques you can use to load and unload
+modules in your applications. These techniques include:</p>
+
+         <ul>
+            <li>
+               <p>ModuleLoader — The <a href="https://flex.apache.org/asdoc/spark/modules/ModuleLoader.html" target="_blank">ModuleLoader</a> class
+provides the highest-level API for handling modules. For more information,
+see <a href="flx_modular_md.html#WS2db454920e96a9e51e63e3d11c0bf69084-7d21_verapache">Using
+the ModuleLoader class to load modules</a>.</p>
+
+            </li>
+
+            <li>
+               <p>ModuleManager — The <a href="https://flex.apache.org/asdoc/mx/modules/ModuleManager.html" target="_blank">ModuleManager</a> class
+provides a lower-level API for handling modules than the ModuleLoader
+class does. For more information, see <a href="flx_modular_md.html#WS2db454920e96a9e51e63e3d11c0bf69084-7d20_verapache">Using
+the ModuleManager class to load modules</a>.</p>
+
+            </li>
+
+         </ul>
+
+         <p>When you're using modules in an AIR application, the module SWF
+file must be located in the same directory as the main application
+SWF file or one of its subdirectories.</p>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf69084-7d21_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7d21_verapache"><!-- --></a>
+         <h3 class="topictitle3">Using the ModuleLoader class to
+load modules</h3>
+
+         
+         <div>
+            <p>You can use the <a href="https://flex.apache.org/asdoc/spark/modules/ModuleLoader.html" target="_blank">ModuleLoader</a> class
+to load a module in an application or other module. The easiest
+way to do this in an MXML application is to use the <samp class="codeph">&lt;s:ModuleLoader&gt;</samp> tag.
+You set the value of the <samp class="codeph">url</samp> property to point
+to the location of the module's SWF file. The following example
+loads the module when the application first starts:</p>
+
+            <pre class="noswf">&lt;?xml version="1.0"?&gt; 
+&lt;!-- modules/MySimplestModuleLoader.mxml --&gt; 
+&lt;s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx"&gt; 
+    
+    &lt;s:ModuleLoader url="ColumnChartModule.swf"/&gt; 
+ 
+&lt;/s:Application&gt;</pre>
+
+            <p>You can change the timing of when the module loads by setting
+the value of the <samp class="codeph">url</samp> property at some other time,
+such as in response to an event. Setting the target URL of a ModuleLoader
+object triggers a call to the <samp class="codeph">loadModule()</samp> method.
+This occurs when you first create a ModuleLoader object with the <samp class="codeph">url</samp> property
+set. It also occurs if you change the value of that property. </p>
+
+            <p>If you set the value of the <samp class="codeph">url</samp> property to
+an empty string (<samp class="codeph">""</samp>) or <samp class="codeph">null</samp>,
+the ModuleLoader object unloads the current module by calling the <samp class="codeph">release()</samp> method.</p>
+
+            <p>You can have multiple instances of the ModuleLoader class in
+a single application. The following example loads the modules when
+the user navigates to the appropriate tabs in the TabNavigator container:</p>
+
+            <pre class="noswf">&lt;?xml version="1.0"?&gt; 
+&lt;!-- modules/URLModuleLoaderApp.mxml --&gt; 
+&lt;s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx"&gt; 
+ 
+    &lt;s:Panel title="Module Example" width="100%" height="100%"&gt; 
+        &lt;s:layout&gt; 
+            &lt;s:VerticalLayout/&gt; 
+        &lt;/s:layout&gt; 
+    
+        &lt;mx:TabNavigator id="tn"          
+            paddingTop="10" 
+            paddingLeft="10" 
+            paddingRight="10" 
+            paddingBottom="10" 
+            width="100%" height="100%" 
+            creationPolicy="auto"&gt; 
+            &lt;s:ModuleLoader id="ml1" 
+                label="ColumnChart Module" 
+                url="ColumnChartModule.swf"/&gt; 
+            &lt;s:ModuleLoader id="ml2" 
+                label="BarChart Module" 
+                url="BarChartModule.swf"/&gt; 
+        &lt;/mx:TabNavigator&gt; 
+    &lt;/s:Panel&gt; 
+&lt;/s:Application&gt;</pre>
+
+            <p>You can also use the ModuleLoader API to load and unload modules
+with the <samp class="codeph">loadModule()</samp> and <samp class="codeph">unloadModule()</samp> methods.
+These methods take no parameters; the ModuleLoader class loads or
+unloads the module that matches the value of the current <samp class="codeph">url</samp> property.</p>
+
+            <p>The following example loads and unloads the module when you click
+the button:</p>
+
+            <pre class="noswf">&lt;?xml version="1.0"?&gt; 
+&lt;!-- modules/ASModuleLoaderApp.mxml --&gt; 
+&lt;s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx"&gt; 
+ 
+    &lt;s:layout&gt; 
+        &lt;s:VerticalLayout/&gt; 
+    &lt;/s:layout&gt; 
+ 
+    &lt;fx:Script&gt; 
+        &lt;![CDATA[ 
+        import spark.modules.ModuleLoader; 
+ 
+        public function createModule(m:ModuleLoader, s:String):void { 
+            if (!m.url) { 
+                m.url = s; 
+            } 
+            m.loadModule(); 
+        } 
+        
+        public function removeModule(m:ModuleLoader):void { 
+            m.unloadModule(); 
+        } 
+        ]]&gt; 
+    &lt;/fx:Script&gt; 
+ 
+    &lt;s:Panel title="Module Example" width="100%" height="100%"&gt; 
+        &lt;mx:TabNavigator id="tn"          
+            paddingTop="10" 
+            paddingLeft="10" 
+            paddingRight="10" 
+            paddingBottom="10" 
+            width="100%" height="100%" 
+            creationPolicy="auto"&gt; 
+            &lt;s:NavigatorContent label="ColumnChartModule"&gt; 
+                &lt;s:layout&gt; 
+                    &lt;s:VerticalLayout paddingTop="10" paddingLeft="5"/&gt; 
+                &lt;/s:layout&gt; 
+                &lt;s:Button label="Load" 
+                    click="createModule(chartModuleLoader, l1.text)"/&gt; 
+                &lt;s:Button label="Unload" 
+                    click="removeModule(chartModuleLoader)"/&gt; 
+                &lt;s:Label id="l1" text="ColumnChartModule.swf"/&gt; 
+                &lt;s:ModuleLoader id="chartModuleLoader"/&gt;                                
+            &lt;/s:NavigatorContent&gt; 
+ 
+            &lt;s:NavigatorContent label="FormModule"&gt; 
+                &lt;s:layout&gt; 
+                    &lt;s:VerticalLayout paddingTop="10" paddingLeft="5"/&gt; 
+                &lt;/s:layout&gt; 
+                &lt;s:Button label="Load" 
+                    click="createModule(formModuleLoader, l2.text)"/&gt; 
+                &lt;s:Button label="Unload" 
+                    click="removeModule(formModuleLoader)"/&gt; 
+                &lt;s:Label id="l2" text="FormModule.swf"/&gt; 
+                &lt;s:ModuleLoader id="formModuleLoader"/&gt; 
+            &lt;/s:NavigatorContent&gt; 
+        &lt;/mx:TabNavigator&gt; 
+    &lt;/s:Panel&gt; 
+&lt;/s:Application&gt;</pre>
+
+            <p>When you load a module, Flex ensures that there is only one copy
+of a module loaded, no matter how many times you call the <samp class="codeph">load()</samp> method
+for that module. </p>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf69084-7d20_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7d20_verapache"><!-- --></a>
+         <h3 class="topictitle3">Using the ModuleManager class to
+load modules</h3>
+
+         
+         <div>
+            <p>You can use the <a href="https://flex.apache.org/asdoc/mx/modules/ModuleManager.html" target="_blank">ModuleManager</a> class
+to load the module. This technique is less abstract than using the <samp class="codeph">&lt;s:ModuleLoader&gt;</samp> tag,
+but it does provide you with greater control over how and when the
+module is loaded. </p>
+
+            <div class="p">To use the ModuleManager to load a module in ActionScript:<ol>
+                  <li>
+                     <p>Get a reference to the module's <a href="https://flex.apache.org/asdoc/mx/modules/IModuleInfo.html" target="_blank">IModuleInfo</a> interface
+by using the ModuleManager <samp class="codeph">getModule()</samp> method.</p>
+
+                  </li>
+
+                  <li>
+                     <p>Call the interface's <samp class="codeph">load()</samp> method. </p>
+
+                     <div class="p">The
+application that loads the module should pass in its <samp class="codeph">moduleFactory</samp> property.
+This lets the module know who its parent style manager is. When using
+the <samp class="codeph">load()</samp> method, you can specify the application's <samp class="codeph">moduleFactory</samp> with
+the fourth parameter, as the following example shows:<pre class="codeblock">info.load(null, null, null, moduleFactory);</pre>
+
+                     </div>
+
+                  </li>
+
+                  <li>
+                     <p>Use the <samp class="codeph">factory</samp> property of the interface
+to call the <samp class="codeph">create()</samp> method and cast the return
+value as the module's class. If you are adding the module to a container,
+you can cast the return value as an IVisualElement (for Spark containers)
+or a DisplayObject (for MX containers) so that they can be added to
+the display list.</p>
+
+                  </li>
+
+               </ol>
+
+            </div>
+
+            <p>The following example shell application loads the ColumnChartModule.swf
+file. The example then adds the modules to the display list so that
+it appears when the application starts:</p>
+
+            <pre class="noswf">&lt;?xml version="1.0"?&gt; 
+&lt;!-- modules/ModuleLoaderApp.mxml --&gt; 
+&lt;s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    creationComplete="initApp()"&gt; 
+ 
+    &lt;s:layout&gt; 
+        &lt;s:VerticalLayout/&gt; 
+    &lt;/s:layout&gt; 
+ 
+    &lt;fx:Script&gt; 
+        &lt;![CDATA[ 
+        import mx.events.ModuleEvent; 
+        import mx.modules.ModuleManager; 
+        import mx.modules.IModuleInfo;        
+        import mx.core.IVisualElement; 
+ 
+        public var info:IModuleInfo; 
+        
+        private function initApp():void { 
+            info = ModuleManager.getModule("ColumnChartModule.swf"); 
+            info.addEventListener(ModuleEvent.READY, modEventHandler);           
+            /* Load the module into memory. Calling load() makes the 
+               IFlexModuleFactory available. You can then get an 
+               instance of the class using the factory's create() 
+               method. */ 
+            info.load(null, null, null, moduleFactory); 
+        } 
+ 
+        /* Add an instance of the module's class to the display list. */        
+        private function modEventHandler(e:ModuleEvent):void { 
+            /* For MX containers, cast to a DisplayObject. */ 
+            vb1.addChild(info.factory.create() as DisplayObject); 
+ 
+            /* For Spark containers, cast to a UIComponent. */ 
+            vg1.addElement(info.factory.create() as IVisualElement); 
+        } 
+        ]]&gt; 
+    &lt;/fx:Script&gt; 
+ 
+    &lt;!-- MX container --&gt; 
+    &lt;mx:VBox id="vb1"&gt; 
+        &lt;s:Label text="Module loaded in MX VBox container:"/&gt; 
+    &lt;/mx:VBox&gt; 
+ 
+    &lt;!-- Spark container --&gt; 
+    &lt;s:VGroup id="vg1"&gt; 
+        &lt;s:Label text="Module loaded in Spark VGroup container:"/&gt;    
+    &lt;/s:VGroup&gt; 
+ 
+&lt;/s:Application&gt;</pre>
+
+            <p>The <a href="https://flex.apache.org/asdoc/mx/modules/IModuleInfo.html" target="_blank">IModuleInfo</a> class's <samp class="codeph">load()</samp> method
+also optionally takes an ApplicationDomain and a SecurityDomain
+as arguments. If you do not specify either of these (or set them
+to <samp class="codeph">null</samp>), then the module is loaded into a new
+child domain.</p>
+
+            <p>MXML-based modules can load other modules. Those modules can
+load other modules, and so on.</p>
+
+            <p>Be sure to define the module instance outside of a function,
+so that it is not in the function's local scope. Otherwise, the
+object might be garbage collected and the associated event listeners
+might never be invoked.</p>
+
+            <p>If you remove all references to the module, it will be garbage
+collected. You do not need to call the <samp class="codeph">unload()</samp> method
+when adding and removing modules using the IModuleInfo class. You
+just need to set the IModuleInfo instance to <samp class="codeph">null</samp>.</p>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf64277-7ff0_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf64277-7ff0_verapache"><!-- --></a>
+         <h3 class="topictitle3">Loading modules from different
+servers</h3>
+
+         
+         <div>
+            <p>To load a module from one server into an application running
+on a different server, you must establish trust between the module
+and the application that loads it. </p>
+
+         </div>
+
+         <div class="nested3" id="WS2db454920e96a9e51e63e3d11c0bf64277-7fef_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf64277-7fef_verapache"><!-- --></a>
+            <h4 class="topictitle4">Access applications across domains</h4>
+
+            
+            <div>
+               <ol>
+                  <li>
+                     <p>In your loading application, you must call the <samp class="codeph">allowDomain()</samp> method
+and specify the target domain from which you load a module. So,
+specify the target domain in the preinitialize event handler of
+your application to ensure that the application is set up before
+the module is loaded. </p>
+
+                  </li>
+
+                  <li>
+                     <p>In the cross-domain file of the remote server where your
+module is, add an entry that specifies the server on which the loading
+application is running.</p>
+
+                  </li>
+
+                  <li>
+                     <p>Load the cross-domain file on the remote server in the preinitialize
+event handler of your loading application. </p>
+
+                  </li>
+
+                  <li>
+                     <p>In the loaded module, call the <samp class="codeph">allowDomain()</samp> method
+so that it can communicate with the loader. </p>
+
+                  </li>
+
+               </ol>
+
+               <p>The following example shows the <samp class="codeph">init()</samp> method
+of the loading application:</p>
+
+               <pre class="codeblock"> public function setup():void { 
+ 	Security.allowDomain("remoteservername"); 
+ 	Security.loadPolicyFile("http://remoteservername/crossdomain.xml"); 
+ 	var request:URLRequest = new URLRequest("http://remoteservername/crossdomain.xml"); 
+ 	var loader:URLLoader = new URLLoader(); 
+ 	loader.load(request); 
+ }</pre>
+
+               <p>The following example shows the loaded module's <samp class="codeph">init()</samp> method:</p>
+
+               <pre class="codeblock"> public function initMod():void { 
+ 	Security.allowDomain("loaderservername"); 
+ }</pre>
+
+               <p>The following example shows the cross-domain file that resides
+on the remote server:</p>
+
+               <pre class="codeblock"> &lt;!-- crossdomain.xml file located at the root of the server --&gt; 
+ &lt;cross-domain-policy&gt; 
+ 	&lt;site-control permitted-cross-domain-policies="all"/&gt; 
+ 	&lt;allow-access-from domain="loaderservername" to-ports="*"/&gt; 
+ &lt;/cross-domain-policy&gt;</pre>
+
+               <p>For more information about using the cross-domain policy file,
+see <a href="flx_security2_se.html#WS2db454920e96a9e51e63e3d11c0bf69084-7f9b_verapache">Security</a>.</p>
+
+            </div>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf64277-7feb_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf64277-7feb_verapache"><!-- --></a>
+         <h3 class="topictitle3">Preloading modules</h3>
+
+         
+         <div>
+            <p>When you first start an application that uses modules,
+the application's file size should be smaller than a similar application
+that does not use modules. As a result, there should be a reduction
+in wait time because the application can be loaded into memory and
+run before the modules' SWF files are even transferred across the
+network. However, there will be a delay when the user navigates
+to a part in the application that uses the module. This is because
+the modules are not by default preloaded, but rather loaded when
+they are first requested.</p>
+
+            <p>When a module is loaded by the application for the first time,
+the module's SWF file is transferred across the network and stored
+in the browser's cache. If the application unloads that module,
+but then later reloads it, there should be less wait time because
+Flash Player loads the module from the cache rather than across
+the network.</p>
+
+            <p>Module SWF files, like all SWF files, reside in the browser's
+cache unless and until a user clears them. As a result, modules
+can be loaded by the main application across several sessions, reducing
+load time; but this depends on how frequently the browser's cache
+is flushed.</p>
+
+            <p>You can preload modules at any time so that you can have the
+modules' SWF files in memory even if the module is not currently
+being used.</p>
+
+            <p>To preload modules on application startup, use the IModuleInfo
+class <samp class="codeph">load()</samp> method. This loads the module into
+memory but does not create an instance of the module. </p>
+
+            <p>The following example loads the BarChartModule.swf module when
+the application starts up, even though it will not be displayed
+until the user navigates to the second pane of the TabNavigator
+container. Without preloading, the user would wait for the SWF file
+to be transferred across the network when they navigated to the
+second pane of the TabNavigator.</p>
+
+            <pre class="noswf">&lt;?xml version="1.0"?&gt; 
+&lt;!-- modules/PreloadModulesApp.mxml --&gt; 
+&lt;s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    creationComplete="preloadModules()"&gt; 
+ 
+    &lt;s:layout&gt; 
+        &lt;s:VerticalLayout/&gt; 
+    &lt;/s:layout&gt; 
+    
+    &lt;fx:Script&gt; 
+        &lt;![CDATA[ 
+        import mx.events.ModuleEvent; 
+        import mx.modules.ModuleManager; 
+        import mx.modules.IModuleInfo; 
+        
+        private function preloadModules():void { 
+            /* Get a reference to the module's interface. */ 
+            var info:IModuleInfo = 
+                ModuleManager.getModule("BarChartModule.swf"); 
+            info.addEventListener(ModuleEvent.READY, modEventHandler); 
+            
+            /* Load the module into memory. The module will be 
+               displayed when the user navigates to the second 
+               tab of the TabNavigator. */ 
+            info.load(); 
+        } 
+        
+        private function modEventHandler(e:ModuleEvent):void { 
+            trace("module event: " + e.type); // "ready" 
+        } 
+        ]]&gt; 
+    &lt;/fx:Script&gt; 
+ 
+    &lt;s:Panel title="Module Example" width="100%" height="100%"&gt; 
+        &lt;mx:TabNavigator id="tn"          
+            paddingTop="10" 
+            paddingLeft="10" 
+            paddingRight="10" 
+            paddingBottom="10" 
+            width="100%" height="100%" 
+            creationPolicy="auto"&gt; 
+            &lt;s:ModuleLoader label="ColumnChartModule" 
+                url="ColumnChartModule.swf"/&gt; 
+            &lt;s:ModuleLoader label="BarChartModule" 
+                url="BarChartModule.swf"/&gt; 
+        &lt;/mx:TabNavigator&gt; 
+    &lt;/s:Panel&gt; 
+&lt;/s:Application&gt;</pre>
+
+         </div>
+
+      </div>
+
+   </div>
+
+   <div class="nested1" id="WS2db454920e96a9e51e63e3d11c0bf64277-7ff8_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf64277-7ff8_verapache"><!-- --></a>
+      <h2 class="topictitle2">Using ModuleLoader events</h2>
+
+      
+      <div>
+         <p>The ModuleLoader class triggers several events, including <samp class="codeph">setup</samp>, <samp class="codeph">ready</samp>, <samp class="codeph">loading</samp>, <samp class="codeph">unload</samp>, <samp class="codeph">progress</samp>, <samp class="codeph">error</samp>,
+and <samp class="codeph">urlChanged</samp>. You can use these events to track
+the loading process, and find out when a module has been unloaded
+or when the ModuleLoader target URL has changed.</p>
+
+         <p>The following example uses a custom ModuleLoader component. This component
+reports all the events of the modules as they are loaded by the
+main application.</p>
+
+         <p>Custom ModuleLoader:</p>
+
+         <pre class="noswf">&lt;?xml version="1.0" encoding="iso-8859-1"?&gt; 
+&lt;!-- modules/CustomModuleLoader.mxml --&gt; 
+&lt;s:ModuleLoader 
+    xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns="*" 
+    creationComplete="init()"&gt; 
+    
+  &lt;fx:Script&gt; 
+    &lt;![CDATA[ 
+        import mx.core.UIComponent; 
+    
+        public var standin:UIComponent; 
+ 
+        public function init():void { 
+            addEventListener("urlChanged", onUrlChanged); 
+            addEventListener("loading", onLoading); 
+            addEventListener("progress", onProgress); 
+            addEventListener("setup", onSetup); 
+            addEventListener("ready", onReady); 
+            addEventListener("error", onError); 
+            addEventListener("unload", onUnload); 
+ 
+            standin = panel; 
+            removeElement(standin);        
+        } 
+ 
+        public function onUrlChanged(event:Event):void { 
+            if (url == null) { 
+                if (contains(standin)) 
+                    removeElement(standin); 
+            } else { 
+                if (!contains(standin)) 
+                    addElement(standin); 
+            } 
+            progress.indeterminate=true; 
+            unload.enabled=false; 
+            reload.enabled=false; 
+        } 
+ 
+        public function onLoading(event:Event):void { 
+            progress.label="Loading module " + url; 
+            if (!contains(standin)) 
+                addElement(standin); 
+ 
+            progress.indeterminate=true; 
+            unload.enabled=false; 
+            reload.enabled=false; 
+        } 
+ 
+        public function onProgress(event:Event):void { 
+            progress.label="Loaded %1 of %2 bytes..."; 
+            progress.indeterminate=false; 
+            unload.enabled=true; 
+            reload.enabled=false; 
+        } 
+ 
+        public function onSetup(event:Event):void { 
+            progress.label="Module " + url + " initialized!"; 
+            progress.indeterminate=false; 
+            unload.enabled=true; 
+            reload.enabled=true; 
+        } 
+ 
+        public function onReady(event:Event):void { 
+            progress.label="Module " + url + " successfully loaded!"; 
+            unload.enabled=true; 
+            reload.enabled=true; 
+ 
+            if (contains(standin)) 
+                removeElement(standin); 
+        } 
+ 
+        public function onError(event:Event):void { 
+            progress.label="Error loading module " + url; 
+            unload.enabled=false; 
+            reload.enabled=true; 
+        } 
+ 
+        public function onUnload(event:Event):void { 
+            if (url == null) { 
+                if (contains(standin)) 
+                    removeElement(standin); 
+            } else { 
+                if (!contains(standin)) 
+                    addElement(standin); 
+            } 
+            progress.indeterminate=true; 
+            progress.label="Module " + url + " was unloaded!"; 
+            unload.enabled=false; 
+            reload.enabled=true; 
+        } 
+    ]]&gt; 
+  &lt;/fx:Script&gt; 
+ 
+  &lt;s:Panel id="panel" width="100%" title="Status &amp;amp; Operations"&gt; 
+    &lt;s:layout&gt; 
+        &lt;s:VerticalLayout/&gt; 
+    &lt;/s:layout&gt; 
+    &lt;mx:ProgressBar width="100%" id="progress" source="{this}"/&gt; 
+    &lt;s:HGroup width="100%"&gt; 
+      &lt;s:Button id="unload" label="Unload Module" click="unloadModule()"/&gt; 
+      &lt;s:Button id="reload" label="Reload Module" click="unloadModule();loadModule()"/&gt; 
+    &lt;/s:HGroup&gt; 
+  &lt;/s:Panel&gt; 
+&lt;/s:ModuleLoader&gt;</pre>
+
+         <p>Main application:</p>
+
+         <pre class="noswf">&lt;?xml version="1.0"?&gt; 
+&lt;!-- modules/EventApp.mxml --&gt; 
+&lt;s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns="*"&gt; 
+    &lt;s:layout&gt; 
+        &lt;s:VerticalLayout/&gt; 
+    &lt;/s:layout&gt; 
+ 
+    &lt;fx:Script&gt; 
+        &lt;![CDATA[ 
+            [Bindable] 
+            public var selectedModule:Object; 
+        ]]&gt; 
+    &lt;/fx:Script&gt; 
+ 
+    &lt;s:ComboBox width="215" labelField="label" prompt="Select Coverage" 
+        close="selectedModule=ComboBox(event.target).selectedItem"&gt; 
+        &lt;s:dataProvider&gt; 
+            &lt;s:ArrayCollection&gt; 
+                &lt;fx:Object label="Life Insurance" 
+                    module="insurancemodules/LifeInsurance.swf"/&gt; 
+                &lt;fx:Object label="Auto Insurance" 
+                    module="insurancemodules/AutoInsurance.swf"/&gt;          
+                &lt;fx:Object label="Home Insurance" 
+                    module="insurancemodules/HomeInsurance.swf"/&gt; 
+            &lt;/s:ArrayCollection&gt; 
+        &lt;/s:dataProvider&gt; 
+    &lt;/s:ComboBox&gt; 
+ 
+    &lt;s:Panel width="100%" height="100%" title="Custom Module Loader"&gt; 
+        &lt;s:layout&gt; 
+            &lt;s:VerticalLayout/&gt; 
+        &lt;/s:layout&gt; 
+        &lt;CustomModuleLoader id="mod" width="100%" url="{selectedModule.module}"/&gt; 
+    &lt;/s:Panel&gt; 
+    &lt;s:HGroup&gt; 
+        &lt;s:Button label="Unload" click="mod.unloadModule()"/&gt; 
+        &lt;s:Button label="Nullify" click="mod.url=null"/&gt; 
+    &lt;/s:HGroup&gt;  
+&lt;/s:Application&gt;</pre>
+
+         <p>The insurance modules used in this example are simple forms,
+such as the following:</p>
+
+         <pre class="noswf">&lt;?xml version="1.0" encoding="utf-8"?&gt; 
+&lt;!-- modules/insurancemodules/AutoInsurance.mxml --&gt; 
+&lt;s:Module 
+    xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    backgroundColor="#ffffff" 
+    width="100%" height="100%"&gt; 
+    &lt;s:Label x="147" y="50" text="Auto Insurance" 
+        fontSize="28" fontFamily="Myriad Pro"/&gt; 
+    &lt;s:Form left="47" top="80"&gt; 
+        &lt;s:FormHeading label="Coverage"/&gt; 
+        &lt;s:FormItem label="Latte Spillage"&gt; 
+            &lt;s:TextInput id="latte" width="200"/&gt; 
+        &lt;/s:FormItem&gt; 
+        &lt;s:FormItem label="Shopping Cart to the Door"&gt; 
+            &lt;s:TextInput id="cart" width="200"/&gt; 
+        &lt;/s:FormItem&gt; 
+        &lt;s:FormItem label="Irate Moose"&gt; 
+            &lt;s:TextInput id="moose" width="200"/&gt; 
+        &lt;/s:FormItem&gt; 
+        &lt;s:FormItem label="Color Fade"&gt; 
+            &lt;mx:ColorPicker/&gt; 
+        &lt;/s:FormItem&gt; 
+    &lt;/s:Form&gt; 
+&lt;/s:Module&gt;</pre>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf64277-7ff7_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf64277-7ff7_verapache"><!-- --></a>
+         <h3 class="topictitle3">Using the error event</h3>
+
+         
+         <div>
+            <p>The <samp class="codeph">error</samp> event gives you an opportunity
+to gracefully fail when a module does not load for some reason.
+In the following example, you can load and unload a module by using
+the Button controls. To trigger an <samp class="codeph">error</samp> event,
+change the URL in the TextInput control to a module that does not
+exist. The error handler displays a message to the user and writes
+the error message to the trace log.</p>
+
+            <pre class="noswf">&lt;?xml version="1.0"?&gt; 
+&lt;!-- modules/ErrorEventHandler.mxml --&gt; 
+&lt;s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx"&gt; 
+ 
+    &lt;s:layout&gt; 
+        &lt;s:VerticalLayout 
+                paddingTop="10" 
+                paddingLeft="10" 
+                paddingRight="10" 
+                paddingBottom="10"/&gt; 
+    &lt;/s:layout&gt; 
+ 
+    &lt;fx:Script&gt; 
+        &lt;![CDATA[ 
+        import mx.events.ModuleEvent; 
+        import spark.modules.ModuleLoader; 
+        import spark.modules.Module; 
+        import mx.controls.Alert; 
+        
+        private function errorHandler(e:ModuleEvent):void { 
+            Alert.show("There was an error loading the module." + 
+                " Please contact the Help Desk.\n" + 
+                e.errorText); 
+        } 
+  
+        public function createModule():void { 
+            if (chartModuleLoader.url == ti1.text) { 
+                /* If they are the same, call the loadModule() method. */ 
+                chartModuleLoader.loadModule(); 
+            } else { 
+                /* If they are not the same, then change the url, 
+                   which then triggers a call to the loadModule() method. */ 
+                chartModuleLoader.url = ti1.text; 
+            } 
+        } 
+        
+        public function removeModule():void { 
+            chartModuleLoader.unloadModule(); 
+        } 
+        ]]&gt; 
+    &lt;/fx:Script&gt; 
+ 
+    &lt;s:Panel title="Module Example" height="90%" width="90%"&gt; 
+        &lt;s:layout&gt; 
+            &lt;s:VerticalLayout/&gt; 
+        &lt;/s:layout&gt; 
+        &lt;s:HGroup&gt; 
+            &lt;s:Label text="URL:"/&gt; 
+            &lt;s:TextInput width="200" id="ti1" text="ColumnChartModule.swf"/&gt; 
+            &lt;s:Button label="Load" click="createModule()"/&gt; 
+            &lt;s:Button label="Unload" click="removeModule()"/&gt; 
+        &lt;/s:HGroup&gt; 
+        &lt;s:ModuleLoader id="chartModuleLoader" error="errorHandler(event)"/&gt; 
+    &lt;/s:Panel&gt; 
+&lt;/s:Application&gt;</pre>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf64277-7ff6_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf64277-7ff6_verapache"><!-- --></a>
+         <h3 class="topictitle3">Using the progress event</h3>
+
+         
+         <div>
+            <p>You can use the <samp class="codeph">progress</samp> event to track
+the progress of a module as it loads. When you add a listener for
+the <samp class="codeph">progress</samp> event, Flex calls that listener at regular
+intervals during the module's loading process. Each time the listener
+is called, you can look at the <samp class="codeph">bytesLoaded</samp> property
+of the event. You can compare this to the <samp class="codeph">bytesTotal</samp> property
+to get a percentage of completion.</p>
+
+            <p>The following example reports the level of completion during
+the module's loading process. It also produces a simple progress
+bar that shows users how close the loading is to being complete.</p>
+
+            <pre class="noswf">&lt;?xml version="1.0"?&gt; 
+&lt;!-- modules/SimpleProgressEventHandler.mxml --&gt; 
+&lt;s:Application 
+    creationComplete="initApp()" 
+    xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx"&gt; 
+ 
+    &lt;s:layout&gt; 
+        &lt;s:VerticalLayout/&gt; 
+    &lt;/s:layout&gt; 
+ 
+    &lt;fx:Script&gt; 
+        &lt;![CDATA[ 
+        import mx.events.ModuleEvent; 
+        import flash.events.ProgressEvent; 
+        import spark.modules.Module; 
+        import spark.modules.ModuleLoader; 
+        
+        [Bindable] 
+        public var progBar:String = ""; 
+        [Bindable] 
+        public var progMessage:String = ""; 
+        
+        private function progressEventHandler(e:ProgressEvent):void { 
+            progBar += "."; 
+            progMessage = 
+                "Module " +  
+                Math.round((e.bytesLoaded/e.bytesTotal) * 100) + 
+                "% loaded"; 
+        } 
+ 
+        public function initApp():void { 
+            chartModuleLoader.url = "ColumnChartModule.swf";     
+        } 
+ 
+        public function createModule():void { 
+            chartModuleLoader.loadModule(); 
+        } 
+        
+        public function removeModule():void { 
+            chartModuleLoader.unloadModule(); 
+            progBar = ""; 
+            progMessage = ""; 
+        } 
+        ]]&gt; 
+    &lt;/fx:Script&gt; 
+ 
+    &lt;s:Panel title="Module Example" height="90%" width="90%"&gt;        
+        &lt;s:layout&gt; 
+            &lt;s:VerticalLayout 
+                paddingTop="10" paddingLeft="10" 
+                paddingRight="10" paddingBottom="10"/&gt; 
+        &lt;/s:layout&gt; 
+ 
+        &lt;s:HGroup&gt; 
+            &lt;s:Label id="l2" text="{progMessage}"/&gt; 
+            &lt;s:Label id="l1" text="{progBar}"/&gt; 
+        &lt;/s:HGroup&gt;  
+        &lt;s:Button label="Load" click="createModule()"/&gt; 
+        &lt;s:Button label="Unload" click="removeModule()"/&gt; 
+ 
+        &lt;s:ModuleLoader id="chartModuleLoader" 
+            progress="progressEventHandler(event)"/&gt; 
+    &lt;/s:Panel&gt;    
+&lt;/s:Application&gt;</pre>
+
+            <p>You can also connect a module loader to a ProgressBar control.
+The following example creates a custom component for the ModuleLoader
+that includes a ProgressBar control. The ProgressBar control displays
+the progress of the module loading.</p>
+
+            <pre class="noswf">&lt;?xml version="1.0"?&gt; 
+&lt;!-- modules/MySimpleModuleLoader.mxml --&gt; 
+&lt;s:ModuleLoader 
+    xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx"&gt; 
+ 
+    &lt;s:layout&gt; 
+        &lt;s:VerticalLayout/&gt; 
+    &lt;/s:layout&gt; 
+ 
+    &lt;fx:Script&gt; 
+        &lt;![CDATA[        
+            private function clickHandler():void { 
+                if (!url) { 
+                    url="ColumnChartModule.swf"; 
+                } 
+                loadModule(); 
+            }        
+        ]]&gt; 
+    &lt;/fx:Script&gt; 
+ 
+    &lt;mx:ProgressBar id="progress" width="100%" source="{this}"/&gt; 
+    &lt;s:HGroup width="100%"&gt; 
+      &lt;s:Button id="load" label="Load" click="clickHandler()"/&gt; 
+      &lt;s:Button id="unload" label="Unload" click="unloadModule()"/&gt; 
+      &lt;s:Button id="reload" label="Reload" click="unloadModule();loadModule();"/&gt; 
+    &lt;/s:HGroup&gt; 
+&lt;/s:ModuleLoader&gt;</pre>
+
+            <p>You can use this module in a simple application, as the following
+example shows:</p>
+
+            <pre class="noswf">&lt;?xml version="1.0"?&gt; 
+&lt;!-- modules/ComplexProgressEventHandler.mxml --&gt; 
+&lt;s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:local="*"&gt; 
+ 
+    &lt;s:layout&gt; 
+        &lt;s:VerticalLayout/&gt; 
+    &lt;/s:layout&gt; 
+ 
+    &lt;s:Panel title="Module Example" height="90%" width="90%"&gt;        
+        &lt;s:layout&gt; 
+            &lt;s:VerticalLayout 
+                paddingTop="10" paddingLeft="10" 
+                paddingRight="10" paddingBottom="10"/&gt; 
+        &lt;/s:layout&gt; 
+        &lt;s:Label text="Use the buttons below to load and unload the module."/&gt; 
+        &lt;local:MySimpleModuleLoader id="customLoader"/&gt; 
+    &lt;/s:Panel&gt; 
+    
+&lt;/s:Application&gt;</pre>
+
+            <p>This example does not change the ProgressBar <samp class="codeph">label</samp> property
+for all events. For example, if you load and then unload the module,
+the <samp class="codeph">label</samp> property remains at "LOADING 100%". To
+adjust the label properly, you must define other event handlers
+for the ModuleLoader events, such as <samp class="codeph">unload</samp> and <samp class="codeph">error</samp>. </p>
+
+         </div>
+
+      </div>
+
+   </div>
+
+   <div class="nested1" id="WS2db454920e96a9e51e63e3d11c0bf64277-7fea_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf64277-7fea_verapache"><!-- --></a>
+      <h2 class="topictitle2">Passing data to modules</h2>
+
+      
+      <div>
+         <p>Communication between modules and the parent application,
+and among modules, is possible. You can use the following approaches
+to facilitate inter-module, application-to-module, and module-to-application
+communication:</p>
+
+         <ul>
+            <li>
+               <p>Interfaces — You can create ActionScript interfaces that
+define the methods and properties that modules and applications
+can access. This gives you greater control over module and application
+interaction. It also prevents you from creating dependencies between
+modules and applications. For more information, see <a href="flx_modular_md.html#WS2db454920e96a9e51e63e3d11c0bf69084-7d1d_verapache">Using
+interfaces for module communication</a>.</p>
+
+            </li>
+
+            <li>
+               <p>Query string parameters — Modules are loaded with a URL;
+you can pass parameters on this URL and then parse those parameters
+in the module. This is only a way to pass simple data, and is not
+appropriate for complex data. For more information, see <a href="flx_modular_md.html#WS2db454920e96a9e51e63e3d11c0bf69084-7d10_verapache">Passing
+data to modules with the query string</a>.</p>
+
+            </li>
+
+            <li>
+               <p>
+                  <a href="https://flex.apache.org/asdoc/spark/modules/ModuleLoader.html" target="_blank">ModuleLoader</a>
+                  <samp class="codeph">'s child</samp>, <a href="https://flex.apache.org/asdoc/mx/modules/ModuleManager.html" target="_blank">ModuleManager</a> 's<samp class="codeph"> factory</samp>,
+and Application's <samp class="codeph">parentApplication</samp> properties
+— You can use these properties to access modules and applications.
+However, by using these properties, you create a tightly-coupled
+design that prevents code reuse and is easily broken. In addition,
+you also create dependencies among modules and applications that cause
+class sizes to be bigger. For more information, see <a href="flx_modular_md.html#WS2db454920e96a9e51e63e3d11c0bf69084-7d1a_verapache">Accessing
+modules from the parent application</a>, <a href="flx_modular_md.html#WS2db454920e96a9e51e63e3d11c0bf69084-7d1b_verapache">Accessing
+the parent application from modules</a>, and <a href="flx_modular_md.html#WS2db454920e96a9e51e63e3d11c0bf69084-7d22_verapache">Accessing
+modules from other modules</a>.</p>
+
+            </li>
+
+         </ul>
+
+         <p>The following techniques for accessing methods and properties
+apply to parent applications as well as modules. Modules can load
+other modules, which makes the loading module similar to the parent
+application in the simpler examples.</p>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf69084-7d1d_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7d1d_verapache"><!-- --></a>
+         <h3 class="topictitle3">Using interfaces for module communication</h3>
+
+         
+         <div>
+            <p>You can use an interface to provide module-to-application
+communication. Your modules implement the interface and your application
+calls its methods or sets its properties. The interface defines
+stubs for the methods and properties that you want the application
+and module to share. The module implements an interface known to
+the application, or the application implements an interface known
+to the module. This lets you avoid so-called hard dependencies between the
+module and the application.</p>
+
+            <p>In the main application, when you want to call methods on the
+module, you cast the ModuleLoader class's <samp class="codeph">child</samp> property
+to an instance of the custom interface.</p>
+
+            <p>The following example application lets you customize the appearance
+of the module that it loads by calling methods on the custom IModuleInterface interface.
+The application also calls the <samp class="codeph">getModuleName()</samp> method.
+This method returns a value from the module and sets a local property
+to that value.</p>
+
+            <pre class="noswf">&lt;?xml version="1.0"?&gt; 
+&lt;!-- modules/interfaceexample/MainModuleApp.mxml --&gt; 
+&lt;s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns="*"&gt; 
+    &lt;s:layout&gt; 
+        &lt;s:VerticalLayout/&gt; 
+    &lt;/s:layout&gt; 
+ 
+    &lt;fx:Script&gt; 
+        &lt;![CDATA[ 
+            import mx.events.ModuleEvent; 
+            import mx.modules.ModuleManager; 
+        
+            [Bindable] 
+            public var selectedItem:Object; 
+ 
+            [Bindable] 
+            public var currentModuleName:String; 
+            
+            private function applyModuleSettings(e:Event):void { 
+                /* Cast the ModuleLoader's child to the interface. 
+                   This child is an instance of the module. 
+                   You can now call methods on that instance. */ 
+                var ichild:* = mod.child as IModuleInterface;                
+                if (mod.child != null) {                    
+                    /* Call setters in the module to adjust its 
+                       appearance when it loads. */ 
+                    ichild.setAdjusterID(myId.text); 
+                    ichild.setBackgroundColor(myColor.selectedColor); 
+                } else {                
+                    trace("Uh oh. The mod.child property is null");                 
+                } 
+                /* Set the value of a local variable by calling a method 
+                   on the interface. */ 
+                currentModuleName = ichild.getModuleName(); 
+            } 
+            
+            private function reloadModule():void { 
+                // Reset the ColorPicker control: 
+                myColor.selectedColor = 0xFFFFFF; 
+                
+                // Reload the module: 
+                mod.unloadModule(); 
+                mod.loadModule();            
+            } 
+        ]]&gt; 
+    &lt;/fx:Script&gt; 
+    
+    &lt;s:Form&gt; 
+        &lt;s:FormItem label="Current Module:"&gt; 
+            &lt;s:Label id="l1" text="{currentModuleName}"/&gt; 
+        &lt;/s:FormItem&gt; 
+        &lt;s:FormItem label="Adjuster ID:"&gt; 
+            &lt;s:TextInput id="myId" text="Enter your ID"/&gt; 
+        &lt;/s:FormItem&gt; 
+        &lt;s:FormItem label="Background Color:"&gt; 
+            &lt;mx:ColorPicker id="myColor" 
+                selectedColor="0xFFFFFF" 
+                change="applyModuleSettings(event)"/&gt; 
+        &lt;/s:FormItem&gt; 
+    &lt;/s:Form&gt; 
+    
+    &lt;s:Label text="Long Shot Insurance" fontSize="24"/&gt; 
+    &lt;s:ComboBox labelField="label" prompt="Select Module" 
+        close="selectedItem=ComboBox(event.target).selectedItem"&gt; 
+        &lt;s:dataProvider&gt; 
+            &lt;s:ArrayList&gt; 
+                &lt;fx:Object label="Auto Insurance" module="AutoInsurance2.swf"/&gt;          
+            &lt;/s:ArrayList&gt; 
+        &lt;/s:dataProvider&gt; 
+    &lt;/s:ComboBox&gt; 
+ 
+    &lt;s:Panel width="100%" height="100%"&gt; 
+        &lt;s:ModuleLoader id="mod" 
+            width="80%" height="80%" 
+            url="{selectedItem.module}" 
+            ready="applyModuleSettings(event)"/&gt; 
+    &lt;/s:Panel&gt;    
+    &lt;s:Button id="b1" label="Reload Module" click="reloadModule()"/&gt; 
+&lt;/s:Application&gt;</pre>
+
+            <p>The following example defines a simple interface that has two
+getters and one setter. This interface is used by the application
+in the previous example.</p>
+
+            <pre class="codeblock">// modules/interfaceexample/IModuleInterface.as 
+package 
+{ 
+    import flash.events.IEventDispatcher; 
+ 
+    public interface IModuleInterface extends IEventDispatcher { 
+    
+        function getModuleName():String; 
+        function setAdjusterID(s:String):void; 
+        function setBackgroundColor(n:Number):void; 
+    } 
+ 
+}</pre>
+
+            <p>The following example defines the module that is loaded by the
+previous example. It implements the custom IModuleInterface interface.</p>
+
+            <pre class="noswf">&lt;?xml version="1.0"?&gt; 
+&lt;!-- modules/interfaceexample/AutoInsurance2.mxml --&gt; 
+&lt;s:Module 
+    xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    width="100%" height="100%" implements="IModuleInterface"&gt; 
+    
+    &lt;s:Panel id="p1" title="Auto Insurance" 
+        width="100%" height="100%" 
+        backgroundColor="{bgcolor}"&gt; 
+        &lt;s:Label id="myLabel" text="ID: {adjuster}"/&gt; 
+    &lt;/s:Panel&gt; 
+ 
+    &lt;fx:Script&gt; 
+        &lt;![CDATA[ 
+            [Bindable] 
+            private var adjuster:String; 
+            [Bindable] 
+            private var bgcolor:Number; 
+ 
+            public function setAdjusterID(s:String):void { 
+                adjuster = s; 
+            } 
+            
+            public function setBackgroundColor(n:Number):void { 
+                /* Use a bindable property to set values of controls 
+                   in the module. This ensures that the property will be set 
+                   even if Flex applies the property after the module is 
+                   loaded but before it is rendered by the player. */ 
+                bgcolor = n; 
+                
+                /* Don't do this. The backgroundColor style might not be set 
+                   by the time the ModuleLoader triggers the READY 
+                   event: */ 
+                // p1.setStyle("backgroundColor", n); 
+            } 
+            
+            public function getModuleName():String { 
+                return "Auto Insurance"; 
+            } 
+        ]]&gt; 
+    &lt;/fx:Script&gt; 
+&lt;/s:Module&gt;</pre>
+
+            <p>In general, if you want to set properties on controls in the
+module by using external values, you should create variables that
+are bindable. You then set the values of those variables in the
+interface's implemented methods. If you try to set properties of
+the module's controls directly by using external values, the controls might
+not be instantiated by the time the module is loaded and the attempt
+to set the properties might fail. </p>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf69084-7d10_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7d10_verapache"><!-- --></a>
+         <h3 class="topictitle3">Passing data to modules with the
+query string</h3>
+
+         
+         <div>
+            <p>One way to pass data to a module is to append query string
+parameters to the URL that you use to load the module. You can then
+parse the query string by using ActionScript to access the data. </p>
+
+            <p>In the module, you can access the URL by using the <samp class="codeph">loaderInfo</samp> property.
+This property points to the <a href="https://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/flash/display/LoaderInfo.html" target="_blank">LoaderInfo</a> object
+of the loading SWF (in this case, the main application). The information
+provided by the LoaderInfo object includes load progress, the URLs
+of the loader and loaded content, the file size of the application,
+and the height and width of the application.</p>
+
+            <p>The following example application builds a unique query string
+for the module that it loads. The query string includes a <samp class="codeph">firstName</samp> and <samp class="codeph">lastName</samp> parameter.</p>
+
+            <pre class="noswf">&lt;?xml version="1.0"?&gt; 
+&lt;!-- modules/QueryStringApp.mxml --&gt; 
+&lt;s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    height="500" width="400"&gt; 
+ 
+    &lt;s:layout&gt; 
+        &lt;s:VerticalLayout/&gt; 
+    &lt;/s:layout&gt; 
+ 
+    &lt;fx:Script&gt; 
+        &lt;![CDATA[        
+            public function initModule():void { 
+                // Build query string so that it looks something like this: 
+                // "QueryStringModule.swf?firstName=Nick&amp;lastName=Danger" 
+                var s:String = "QueryStringModule.swf?" + "firstName=" +                 
+                    ti1.text + "&amp;lastName=" + ti2.text; 
+ 
+                // Changing the url property of the ModuleLoader causes 
+                // the ModuleLoader to load a new module. 
+                m1.url = s; 
+            }        
+        ]]&gt; 
+    &lt;/fx:Script&gt; 
+ 
+    &lt;s:Form&gt; 
+        &lt;s:FormItem id="fi1" label="First Name:"&gt; 
+            &lt;s:TextInput id="ti1"/&gt; 
+        &lt;/s:FormItem&gt; 
+        &lt;s:FormItem id="fi2" label="Last Name:"&gt; 
+            &lt;s:TextInput id="ti2"/&gt; 
+        &lt;/s:FormItem&gt;  
+    &lt;/s:Form&gt; 
+ 
+    &lt;s:ModuleLoader id="m1"/&gt; 
+    
+    &lt;s:Button id="b1" label="Submit" click="initModule()"/&gt; 
+ 
+&lt;/s:Application&gt;</pre>
+
+            <p>The following example module parses the query string that was
+used to load it. If the <samp class="codeph">firstName</samp> and <samp class="codeph">lastName</samp> parameters
+are set, the module prints the results in a TextArea. The module
+also traces some additional information available through the LoaderInfo
+object:</p>
+
+            <pre class="noswf">&lt;?xml version="1.0"?&gt; 
+&lt;!-- modules/QueryStringModule.mxml --&gt; 
+&lt;s:Module 
+    xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    creationComplete="parseString()"&gt; 
+ 
+    &lt;s:layout&gt; 
+        &lt;s:VerticalLayout/&gt; 
+    &lt;/s:layout&gt; 
+ 
+    &lt;fx:Script&gt; 
+        &lt;![CDATA[ 
+            import mx.utils.*; 
+ 
+            [Bindable] 
+            private var salutation:String; 
+            
+            public var o:Object = {};      
+            
+            public function parseString():void { 
+                try { 
+                    /* Remove everything before the question mark, including 
+                       the question mark. */ 
+                    var myPattern:RegExp = /.*\?/;  
+                    var s:String = this.loaderInfo.url.toString(); 
+                    s = s.replace(myPattern, ""); 
+ 
+                    /* Create an Array of name=value Strings. */ 
+                    var params:Array = s.split("&amp;"); 
+                    
+                    /* Print the params that are in the Array. */ 
+                    var keyStr:String; 
+                    var valueStr:String; 
+                    var paramObj:Object = params; 
+                    for (keyStr in paramObj) { 
+                        valueStr = String(paramObj[keyStr]); 
+                        ta1.text += keyStr + ":" + valueStr + "\n"; 
+                    } 
+ 
+                    /* Set the values of the salutation. */ 
+                    for (var i:int = 0; i &lt; params.length; i++) { 
+                        var tempA:Array = params[i].split("=");                        
+                        if (tempA[0] == "firstName") { 
+                            o.firstName = tempA[1]; 
+                        } 
+                        if (tempA[0] == "lastName") { 
+                            o.lastName = tempA[1]; 
+                        } 
+                    }                    
+                    if (StringUtil.trim(o.firstName) != "" &amp;&amp; 
+                        StringUtil.trim(o.lastName) != "") { 
+                            salutation = "Welcome " + 
+                            o.firstName + " " + o.lastName + "!";                           
+                    } else { 
+                        salutation = "Full name not entered." 
+                    } 
+                } catch (e:Error) { 
+                    trace(e); 
+                } 
+ 
+                /* Show some of the information available through loaderInfo: */ 
+               ta2.text = "AS version: " + this.loaderInfo.actionScriptVersion; 
+               ta2.text += "\nApp height: " + this.loaderInfo.height; 
+               ta2.text += "\nApp width: " + this.loaderInfo.width; 
+               ta2.text += "\nApp bytes: " + this.loaderInfo.bytesTotal; 
+            } 
+        ]]&gt; 
+    &lt;/fx:Script&gt; 
+    &lt;s:Label text="{salutation}"/&gt; 
+    &lt;s:TextArea height="75" width="250" id="ta1"/&gt;    
+    &lt;s:TextArea height="200" width="250" id="ta2"/&gt;    
+&lt;/s:Module&gt;</pre>
+
+            <p>This example uses methods of the <a href="String.html" target="_blank">String</a> and <a href="https://flex.apache.org/asdoc/mx/utils/StringUtil.html" target="_blank">StringUtil</a> classes,
+plus a for-in loop to parse the URLs. You can also use methods of
+the <a href="https://flex.apache.org/asdoc/mx/utils/URLUtil.html" target="_blank">URLUtil</a> and <a href="https://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/flash/net/URLVariables.html" target="_blank">URLVariables</a> classes
+to do this.</p>
+
+            <p>Modules are cached by their URL, including the query string.
+As a result, you will load a new module if you change the URL or
+any of the query string parameters in the URL. This can be useful
+if you want multiple instances of a module based on the parameters
+that you pass in the URL with the ModuleLoader.</p>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf69084-7d1b_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7d1b_verapache"><!-- --></a>
+         <h3 class="topictitle3">Accessing the parent application
+from modules</h3>
+
+         
+         <div>
+            <p>Modules can access properties and methods of the parent
+application by using a reference to the <samp class="codeph">parentApplication</samp> property.
+In most cases, you should avoid doing this as it creates a close
+coupling between the module and the application. Having this coupling
+directly negates some of the benefits of using modules.</p>
+
+            <p>The following example accesses the <samp class="codeph">expenses</samp> property
+of the parent application when the module first loads. The module
+then uses this property, an ArrayCollection, as the source for its
+chart's data. When the user clicks the button, the module calls
+the <samp class="codeph">getNewData()</samp> method of the parent application
+that returns a new ArrayCollection for the chart:</p>
+
+            <pre class="noswf">&lt;?xml version="1.0"?&gt; 
+&lt;!-- modules/ChartChildModule.mxml --&gt; 
+&lt;s:Module 
+    xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    width="100%" height="100%" 
+    creationComplete="getDataFromParent()"&gt; 
+ 
+    &lt;s:layout&gt; 
+        &lt;s:VerticalLayout/&gt; 
+    &lt;/s:layout&gt; 
+    
+    &lt;fx:Script&gt; 
+        &lt;![CDATA[    
+            import mx.collections.ArrayCollection; 
+ 
+            [Bindable] 
+            private var expenses:ArrayCollection; 
+ 
+            // Access properties of the parent application. 
+            private function getDataFromParent():void { 
+                expenses = parentApplication.expenses; 
+            }        
+        ]]&gt; 
+    &lt;/fx:Script&gt; 
+    
+    &lt;mx:ColumnChart id="myChart" dataProvider="{expenses}"&gt; 
+        &lt;mx:horizontalAxis&gt; 
+           &lt;mx:CategoryAxis dataProvider="{expenses}" categoryField="Month"/&gt; 
+        &lt;/mx:horizontalAxis&gt; 
+        &lt;mx:series&gt; 
+           &lt;mx:ColumnSeries xField="Month" yField="Profit" 
+                displayName="Profit"/&gt; 
+           &lt;mx:ColumnSeries xField="Month" yField="Expenses" 
+                displayName="Expenses"/&gt; 
+        &lt;/mx:series&gt; 
+     &lt;/mx:ColumnChart&gt; 
+     &lt;mx:Legend dataProvider="{myChart}"/&gt; 
+     
+     &lt;s:Button id="b1" 
+        click="expenses = parentApplication.getNewData();" 
+        label="Get New Data"/&gt; 
+     
+&lt;/s:Module&gt;</pre>
+
+            <p>The following example shows the parent application that the previous
+example module uses:</p>
+
+            <pre class="noswf">&lt;?xml version="1.0"?&gt; 
+&lt;!-- modules/ChartChildModuleLoader.mxml --&gt; 
+&lt;s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx"&gt; 
+ 
+    &lt;fx:Script&gt; 
+        &lt;![CDATA[    
+            import mx.collections.ArrayCollection; 
+ 
+            [Bindable] 
+            public var expenses:ArrayCollection = new ArrayCollection([ 
+                {Month:"Jan", Profit:2000, Expenses:1500}, 
+                {Month:"Feb", Profit:1000, Expenses:200}, 
+                {Month:"Mar", Profit:1500, Expenses:500} 
+            ]); 
+ 
+            public function getNewData():ArrayCollection { 
+                return new ArrayCollection([ 
+                    {Month:"Apr", Profit:1000, Expenses:1100}, 
+                    {Month:"May", Profit:1300, Expenses:500}, 
+                    {Month:"Jun", Profit:1200, Expenses:600} 
+                ]); 
+            } 
+        ]]&gt; 
+    &lt;/fx:Script&gt; 
+    
+    &lt;s:ModuleLoader url="ChartChildModule.swf" id="m1"/&gt; 
+ 
+&lt;/s:Application&gt;</pre>
+
+            <p>You can also call methods and access properties on other modules.
+For more information, see <a href="flx_modular_md.html#WS2db454920e96a9e51e63e3d11c0bf69084-7d22_verapache">Accessing
+modules from other modules</a>.</p>
+
+            <p>The drawback to this approach is that it can create dependencies
+on the parent application inside the module. In addition, the modules
+are no longer portable across multiple applications unless you ensure
+that you replicate the behavior of the applications.</p>
+
+            <p>To avoid these drawbacks, you should use interfaces that secure
+a contract between the application and its modules. This contract
+defines the methods and properties that you can access. Having an
+interface lets you reuse the application and modules as long as
+you keep the interface updated. For more information, see <a href="flx_modular_md.html#WS2db454920e96a9e51e63e3d11c0bf69084-7d1d_verapache">Using
+interfaces for module communication</a>.</p>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf69084-7d22_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7d22_verapache"><!-- --></a>
+         <h3 class="topictitle3">Accessing modules from other modules</h3>
+
+         
+         <div>
+            <p>You can access properties and methods of other modules
+by using references to the other modules through the parent application.
+You do this by using the ModuleLoader class's <samp class="codeph">child</samp> property.
+This property points to an instance of the module's class, which
+lets you call methods and access properties. In most cases, you
+should avoid doing this as it creates a close coupling among the
+modules. Having this coupling directly negates some of the benefits
+of using modules in the first place.</p>
+
+            <p>The following example defines a single application that loads
+two modules. The InterModule1 module defines a method that returns
+a String. The InterModule2 module calls that method and sets the
+value of its Label to the return value of that method. </p>
+
+            <p>Main application:</p>
+
+            <pre class="noswf">&lt;?xml version="1.0"?&gt; 
+&lt;!-- modules/InterModuleLoader.mxml --&gt; 
+&lt;s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx"&gt; 
+ 
+    &lt;s:layout&gt; 
+        &lt;s:VerticalLayout/&gt; 
+    &lt;/s:layout&gt; 
+ 
+    &lt;fx:Script&gt; 
+        &lt;![CDATA[           
+        ]]&gt; 
+    &lt;/fx:Script&gt; 
+    
+    &lt;s:ModuleLoader url="InterModule1.swf" id="m1"/&gt; 
+    
+    &lt;s:ModuleLoader url="InterModule2.swf" id="m2"/&gt; 
+ 
+&lt;/s:Application&gt;</pre>
+
+            <p>Module 1:</p>
+
+            <pre class="noswf">&lt;?xml version="1.0"?&gt; 
+&lt;!-- modules/InterModule1.mxml --&gt; 
+&lt;s:Module 
+    xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    width="100%" height="100%"&gt; 
+    
+    &lt;fx:Script&gt; 
+        &lt;![CDATA[    
+            /* Defines the method that the other module calls. */ 
+            public function getNewTitle():String { 
+                return "New Title"; 
+            }    
+        ]]&gt; 
+    &lt;/fx:Script&gt; 
+&lt;/s:Module&gt;</pre>
+
+            <p>Module 2:</p>
+
+            <pre class="noswf">&lt;?xml version="1.0"?&gt; 
+&lt;!-- modules/InterModule2.mxml --&gt; 
+&lt;s:Module 
+    xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    width="100%" height="100%"&gt; 
+ 
+    &lt;s:layout&gt; 
+        &lt;s:VerticalLayout/&gt; 
+    &lt;/s:layout&gt; 
+    
+    &lt;fx:Script&gt; 
+        &lt;![CDATA[    
+            [Bindable] 
+            private var title:String = "Original Title"; 
+ 
+            // Call method of another module. 
+            private function changeTitle():void { 
+                title = parentApplication.m1.child.getNewTitle(); 
+            }        
+        ]]&gt; 
+    &lt;/fx:Script&gt; 
+ 
+    &lt;s:HGroup&gt; 
+        &lt;s:Label id="l1" text="Title: "/&gt; 
+        &lt;s:Label id="myTitle" text="{title}"/&gt; 
+    &lt;/s:HGroup&gt;    
+    &lt;s:Button id="b1" label="Change Title" click="changeTitle()"/&gt;    
+&lt;/s:Module&gt;</pre>
+
+            <p>The application in this example lets the two modules communicate
+with each other. You could, however, define methods and properties
+on the application that the modules could access. For more information,
+see <a href="flx_modular_md.html#WS2db454920e96a9e51e63e3d11c0bf69084-7d1b_verapache">Accessing
+the parent application from modules</a>.</p>
+
+            <p>As with accessing the parent application's properties and methods
+directly, using the technique described in this section can make
+your modules difficult to reuse and also can create dependencies
+that can cause the module to be larger than necessary. Instead,
+you should use interfaces to define the contract between modules.
+For more information, see <a href="flx_modular_md.html#WS2db454920e96a9e51e63e3d11c0bf69084-7d1d_verapache">Using
+interfaces for module communication</a>.</p>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf69084-7d1a_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7d1a_verapache"><!-- --></a>
+         <h3 class="topictitle3">Accessing modules from the parent
+application</h3>
+
+         
+         <div>
+            <p>You can access the methods and properties of a module from
+its parent application by getting an instance of the module's class.
+Referencing a module by its class name in an application causes
+the whole module and all of its dependencies to be linked into the
+application. This defeats the purpose of using modules. However,
+using this technique can be useful for debugging and testing.</p>
+
+            <p>You should only use interfaces to access the methods and properties
+of a module unless you want to create these dependencies. For more
+information, see <a href="flx_modular_md.html#WS2db454920e96a9e51e63e3d11c0bf69084-7d1d_verapache">Using interfaces
+for module communication</a>.</p>
+
+            <p>If you use the ModuleLoader to load the module, you can call
+methods on a module from the parent application by referencing the
+ModuleLoader class's <samp class="codeph">child</samp> property, and casting
+it to the module's class. The <samp class="codeph">child</samp> property is
+an instance of the module's class. In this case, the module's class
+is the name of the MXML file that defines the module.</p>
+
+            <p>The following example calls the module's <samp class="codeph">getTitle()</samp> method
+from the parent application:</p>
+
+            <p>Parent Application:</p>
+
+            <pre class="noswf">&lt;?xml version="1.0"?&gt; 
+&lt;!-- modules/ParentApplication.mxml --&gt; 
+&lt;s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx"&gt; 
+ 
+    &lt;s:layout&gt; 
+        &lt;s:VerticalLayout/&gt; 
+    &lt;/s:layout&gt; 
+ 
+    &lt;fx:Script&gt;&lt;![CDATA[    
+        [Bindable] 
+        private var s:String; 
+        
+        private function getTitle():void { 
+            s = (m1.child as ChildModule1).getModTitle(); 
+        }       
+    ]]&gt;&lt;/fx:Script&gt; 
+    
+    &lt;s:Label id="l1" text="{s}"/&gt; 
+    &lt;s:ModuleLoader id="m1" 
+        url="ChildModule1.swf" 
+        ready="getTitle()"/&gt; 
+&lt;/s:Application&gt;</pre>
+
+            <p>Module:</p>
+
+            <pre class="noswf">&lt;?xml version="1.0"?&gt; 
+&lt;!-- modules/ChildModule1.mxml --&gt; 
+&lt;s:Module 
+    xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    width="100%" height="100%"&gt; 
+    &lt;fx:Script&gt;&lt;![CDATA[    
+        /* Defines the method that the application calls. */ 
+        public function getModTitle():String { 
+            return "Child Module 1"; 
+        }    
+    ]]&gt;&lt;/fx:Script&gt; 
+&lt;/s:Module&gt;</pre>
+
+            <p>If you load the module that you want to call by using the ModuleManager
+API, there is some additional coding in the shell application. You
+use the ModuleManager <samp class="codeph">factory</samp> property to get an
+instance of the module's class. You can then call the module's method
+on that instance.</p>
+
+            <p>The following module example defines a single method, <samp class="codeph">computeAnswer()</samp>:</p>
+
+            <pre class="noswf">&lt;?xml version="1.0"?&gt; 
+&lt;!-- modules/mxmlmodules/SimpleModule.mxml --&gt; 
+&lt;s:Module 
+    xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx"&gt; 
+ 
+    &lt;fx:Script&gt; 
+        &lt;![CDATA[ 
+            public function computeAnswer(a:Number, b:Number):Number { 
+                return a + b; 
+            } 
+        ]]&gt; 
+    &lt;/fx:Script&gt; 
+ 
+&lt;/s:Module&gt;</pre>
+
+            <p>The following example gets an instance of the SimpleModule class
+by using the <samp class="codeph">factory</samp> property to call the <samp class="codeph">create()</samp> method.
+It then calls the module's <samp class="codeph">computeAnswer()</samp> method
+on that instance:</p>
+
+            <pre class="noswf">&lt;?xml version="1.0"?&gt; 
+&lt;!-- modules/mxmlmodules/SimpleMXMLApp.mxml --&gt; 
+&lt;s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    creationComplete="initApp()"&gt; 
+ 
+    &lt;s:layout&gt; 
+        &lt;s:VerticalLayout/&gt; 
+    &lt;/s:layout&gt; 
+ 
+  &lt;fx:Script&gt; 
+    &lt;![CDATA[ 
+        import mx.modules.IModuleInfo; 
+        import mx.modules.ModuleManager; 
+ 
+        public var assetModule:IModuleInfo; 
+        public var sm:Object; 
+        
+        [Bindable] 
+        public var answer:Number = 0; 
+ 
+        public function initApp():void {        
+            /* Get the IModuleInfo interface for the specified URL. */ 
+            assetModule = ModuleManager.getModule("SimpleModule.swf");    
+            assetModule.addEventListener("ready", getModuleInstance); 
+            assetModule.load(null, null, null, moduleFactory); 
+        } 
+ 
+        public function getModuleInstance(e:Event):void { 
+            /* Get an instance of the module. */ 
+            sm = assetModule.factory.create() as SimpleModule; 
+        }            
+        
+        public function addNumbers():void { 
+            var a:Number = Number(ti1.text); 
+            var b:Number = Number(ti2.text); 
+ 
+            /* Call a method on the module. */ 
+            answer = sm.computeAnswer(a, b).toString(); 
+        } 
+    ]]&gt; 
+  &lt;/fx:Script&gt; 
+ 
+   &lt;s:Form&gt; 
+        &lt;s:FormHeading label="Enter values to sum."/&gt; 
+        &lt;s:FormItem label="First Number"&gt; 
+            &lt;s:TextInput id="ti1" width="50"/&gt; 
+        &lt;/s:FormItem&gt; 
+        &lt;s:FormItem label="Second Number"&gt; 
+            &lt;s:TextInput id="ti2" width="50"/&gt; 
+        &lt;/s:FormItem&gt; 
+        &lt;s:FormItem label="Result"&gt; 
+            &lt;s:Label id="ti3" width="100" text="{answer}"/&gt; 
+        &lt;/s:FormItem&gt; 
+        &lt;s:Button id="b1" label="Compute" click="addNumbers()"/&gt; 
+    &lt;/s:Form&gt; 
+&lt;/s:Application&gt;</pre>
+
+            <p>In this example, you should actually create a module that extends
+the ModuleBase class in ActionScript rather than an MXML-based module
+that extends the Module class. This is because the example module
+does not have any visual elements and contains only a single method
+that computes and returns a value. A module that extends the ModuleBase
+class would be more lightweight than a class that extends Module.
+For more information on writing ActionScript-based modules that
+extend the ModuleBase class, see <a href="flx_modular_md.html#WS2db454920e96a9e51e63e3d11c0bf69084-7d1e_verapache">Creating
+ActionScript-based modules</a>.</p>
+
+         </div>
+
+      </div>
+
+<div>
+  <p><strong>Navigation</strong></p>
+  <p><a href="index.html">Using Flex</a> &raquo; <a href="flx_p2_app_architecture.html">Application architecture</a></p>
+</div>
+
+         <p>Adobe, Adobe AIR and Adobe Flash Player are either registered trademarks or trademarks of Adobe Systems Incorporated in the United States and/or other countries and are used by permission from Adobe.  No other license to the Adobe trademarks are granted.</p>
+   </div>
+
+
+</body>
+</html>

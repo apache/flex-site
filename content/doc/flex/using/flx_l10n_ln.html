@@ -1,0 +1,904 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Licensed to the Apache Software Foundation (ASF) under one or more
+  contributor license agreements.  See the NOTICE file distributed with
+  this work for additional information regarding copyright ownership.
+  The ASF licenses this file to You under the Apache License, Version 2.0
+  (the "License"); you may not use this file except in compliance with
+  the License.  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+-->
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en-us" xml:lang="en-us">
+<head>
+<meta name="DC.Type" content="topic"/>
+<meta name="DC.Title" content="Localization"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="WS19f279b149e7481c-1c03f02c12bd00c4763-8000_verapache"/>
+<title>Localization</title>
+</head>
+<body id="WS19f279b149e7481c-1c03f02c12bd00c4763-8000_verapache"><a name="WS19f279b149e7481c-1c03f02c12bd00c4763-8000_verapache"><!-- --></a>
+
+   <div>
+      <p>Flex includes robust support for localizing your applications.</p>
+
+   </div>
+
+   <div class="nested1" id="WS19f279b149e7481c7370eb2d12bd013e888-8000_verapache"><a name="WS19f279b149e7481c7370eb2d12bd013e888-8000_verapache"><!-- --></a>
+      <h2 class="topictitle2">Introduction to localization</h2>
+
+      
+      <div>
+         <p>
+            <em>Localization</em> is the process of including assets
+and formatting an application to support a locale. A <em>locale</em> is
+the combination of a language and a country code; for example, en_US
+refers to the English language as spoken in the United States, and
+fr_FR refers to the French language as spoken in France. To localize
+an application for the US and France, you would provide two sets
+of assets, one for the en_US locale and one for the fr_FR locale. </p>
+
+         <p>Locales can share languages. For example, en_US and en_GB (Great
+Britain) are different locales and therefore use different sets
+of assets. In this case, both locales use the English language,
+but the country code indicates that they are different locales,
+and might therefor use different assets. For example, an application
+in the en_US locale might spell the word "color", whereas the word
+would be "colour" in the en_GB locale. Also, units of currency would
+be represented in dollars or pounds, depending on the locale, and
+the format of dates and times would also be different.</p>
+
+         <p>Localization goes beyond formatting numbers and translating strings
+that are used in your application. It can also include any type
+of asset such as audio files, images, styles, SWF files, and video
+files. </p>
+
+         <div class="p">There are two ways to localize an application:<ul>
+               <li>
+                  <p>Using
+built-in localization support. Flex includes localization-aware
+classes for the following:</p>
+
+                  <ul>
+                     <li>
+                        <p>Currency formatters</p>
+
+                     </li>
+
+                     <li>
+                        <p>Number formatters</p>
+
+                     </li>
+
+                     <li>
+                        <p>Date and time formatters</p>
+
+                     </li>
+
+                     <li>
+                        <p>Layout mirroring</p>
+
+                     </li>
+
+                     <li>
+                        <p>Bidirectional text</p>
+
+                     </li>
+
+                     <li>
+                        <p>Sorters and collators</p>
+
+                     </li>
+
+                  </ul>
+
+               </li>
+
+               <li>
+                  <p>Using resource bundles. Resource bundles let you define assets
+such as strings and images for various locales and use those assets
+at run time.</p>
+
+               </li>
+
+            </ul>
+
+         </div>
+
+         <p>You can use a combination of these approaches, depending on how
+much of your application needs to be localized.</p>
+
+      </div>
+
+   </div>
+
+   <div class="nested1" id="WS19f279b149e7481c-99797f112bd080033f-8000_verapache"><a name="WS19f279b149e7481c-99797f112bd080033f-8000_verapache"><!-- --></a>
+      <h2 class="topictitle2">Setting the locale</h2>
+
+      
+      <div>
+         <p>When an application starts up, you should generally determine
+which locale the user wants and then set the application's <samp class="codeph">locale</samp> style
+property to that locale. This ensures that the localization-aware
+classes such as formatters and sorters behave as the user expects.
+If you use resource bundles, then you should use some method to
+determine the user's preferred locale, and load the appropriate resource
+bundle.</p>
+
+         <p>To determine which locale your users want to use, you can use
+one or more of the following methods:</p>
+
+         <ul>
+            <li>
+               <p>User prompt — You can start the application in a default
+locale, and then ask the user to choose their preferred locale from
+a list of pre-determined locales.</p>
+
+            </li>
+
+            <li>
+               <p>
+                  <samp class="codeph">Capabilities.language</samp> — The <samp class="codeph">Capabilities.language</samp> property
+in ActionScript provides the language code for Adobe<sup>®</sup> Flash<sup>®</sup> Player and Adobe AIR™.
+On English systems, this property returns only the language code,
+not the country code. This property returns the user interface language, which
+refers to the language used for all menus, dialog boxes, error messages, and
+help files in Flash Player and AIR.</p>
+
+            </li>
+
+            <li>
+               <p>
+                  <samp class="codeph">Accept-Language</samp> header — When a browser
+makes an HTTP request, it sends a list of languages to the server
+in the <samp class="codeph">Accept-Language</samp> header. You can parse this
+header in your HTML wrapper and pass it as a <samp class="codeph">flashVars</samp> variable
+into your Flex application. If you use URLLoader to load an application,
+you will not have access to this header. </p>
+
+            </li>
+
+            <li>
+               <p>Browser preferences — You can access the browser's language
+settings in the HTML wrapper by using JavaScript. You can then pass
+the values as <samp class="codeph">flashVars</samp> variables to your application.
+You can also use the ExternalInterface API to access the values
+from within your Flex application. The language is typically accessible
+via the Navigator object's <samp class="codeph">language</samp> property. Depending
+on the browser, you also access the <samp class="codeph">userLanguage</samp> or <samp class="codeph">systemLanguage</samp> properties.
+For more information on using the ExternalInterface API, see <a href="flx_passingarguments_pa.html#WS2db454920e96a9e51e63e3d11c0bf69084-7f31_verapache">Using
+the ExternalInterface API to access JavaScript</a>.</p>
+
+            </li>
+
+         </ul>
+
+         <div class="section"><h3 class="sectiontitle">Built-in localization support</h3>
+            
+            <p>Typically,
+you set the <samp class="codeph">locale</samp> style property of the application
+or the component to the value of the <samp class="codeph">LocaleID.DEFAULT</samp> property.
+This instructs Flex to use the client's operating system for locale
+information (such as the currency symbol, date/time format, or preferred
+sorting rules). </p>
+
+            <p>You can set the <samp class="codeph">locale</samp> style
+property on an individual component or on the entire application.
+The style is inheritable, which means if you set it on the application,
+then all components in that application inherit that style, unless
+they specifically override it. If you do not set the <samp class="codeph">locale</samp> style
+property, the compiler uses the global defaults that are defined
+in the defaults.css style sheet. In this case, the default value
+is "en".</p>
+
+            <div class="p">The following example sets the value of the application's <samp class="codeph">locale</samp> style
+property to the <samp class="codeph">LocaleID.DEFAULT</samp> constant. When
+you run this example, the value of the DateTimeFormatter's <samp class="codeph">actualLocaleIDName</samp> property
+will be whatever language preference you have set in your operating
+system.<pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- l10n/LocaleApp.mxml --&gt; 
+&lt;s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    creationComplete="initApp()"&gt; 
+ 
+    &lt;fx:Declarations&gt; 
+        &lt;s:DateTimeFormatter id="dateTimeFormatter"/&gt; 
+    &lt;/fx:Declarations&gt; 
+ 
+    &lt;fx:Script&gt; 
+        &lt;![CDATA[ 
+        import flash.globalization.LocaleID; 
+        
+        public function initApp():void { 
+            this.setStyle("locale", LocaleID.DEFAULT); 
+        } 
+        
+        public function doSomething():void { 
+            l1.text = dateTimeFormatter.actualLocaleIDName; 
+        } 
+        ]]&gt; 
+    &lt;/fx:Script&gt;    
+    &lt;s:VGroup&gt; 
+        &lt;s:Label id="l1"/&gt; 
+        &lt;s:Button id="b1" label="Click Me" click="doSomething()"/&gt; 
+    &lt;/s:VGroup&gt; 
+    
+&lt;/s:Application&gt;</pre>
+
+            </div>
+
+            <p>You can create a LocaleID
+object to retrieve data about the locale. You can use methods such
+as <samp class="codeph">getKeysAndValues()</samp>, <samp class="codeph">getLanguage()</samp>, <samp class="codeph">getRegion()</samp>, <samp class="codeph">getScript()</samp>, <samp class="codeph">getVariant()</samp>,
+and <samp class="codeph">isRightToLeft()</samp> to set properties and create
+other objects in your application.</p>
+
+         </div>
+
+         <div class="section"><h3 class="sectiontitle">Resource bundles</h3>
+            
+            <p>For applications that
+use resource bundles, you must explicitly compile assets for the
+supported locales into the application. You can then let your users
+choose from a list of the compiled-in locales. After determining
+the user's preferred locale, you set the value of the ResourceManager's <samp class="codeph">localeChain</samp> property
+so that that locale's assets are used in your application.</p>
+
+         </div>
+
+      </div>
+
+   </div>
+
+   <div class="nested1" id="WS19f279b149e7481c7370eb2d12bd013e888-7fff_verapache"><a name="WS19f279b149e7481c7370eb2d12bd013e888-7fff_verapache"><!-- --></a>
+      <h2 class="topictitle2">Formatting dates, numbers, and currencies</h2>
+
+      
+      <div>
+         <div class="p">Flex includes the following Spark classes for formatting
+dates, numbers and currencies:<ul>
+               <li>
+                  <p>
+                     <a href="https://flex.apache.org/asdoc/spark/formatters/CurrencyFormatter.html" target="_blank">spark.formatters.CurrencyFormatter</a>
+                  </p>
+
+               </li>
+
+               <li>
+                  <p>
+                     <a href="https://flex.apache.org/asdoc/spark/formatters/NumberFormatter.html" target="_blank">spark.formatters.NumberFormatter</a>
+                  </p>
+
+               </li>
+
+               <li>
+                  <p>
+                     <a href="https://flex.apache.org/asdoc/spark/formatters/DateTimeFormatter.html" target="_blank">spark.formatters.DateTimeFormatter</a>
+                  </p>
+
+               </li>
+
+            </ul>
+
+         </div>
+
+         <p>Each of these classes is based on a similar class in the flash.globalization.* package.
+Flex lets you instantiate these formatters in MXML as well as ActionScript. </p>
+
+         <p>The formatters' output might differ depending on the runtime
+environment of the client. The formatters call the underlying operating
+system which can return different results, depending on the device.</p>
+
+         <p>The Spark formatters inherit the <samp class="codeph">locale</samp> style
+property, have bindable properties and methods, and generate events.</p>
+
+         <p>As with other non-visual classes, you declare formatters in the <samp class="codeph">&lt;fx:Declarations&gt;</samp> block
+of your applications.</p>
+
+         <div class="p">The following example uses a CurrencyFormatter and a NumberFormatter
+to display formatted values in the client's default locale. The
+currency symbol and grouping separator (sometimes called the thousands
+separator) are defined by whatever the client machine's locale is.
+The client's preferred locale is obtained by using the <samp class="codeph">LocaleID.DEFAULT</samp> property.<pre class="codeblock">&lt;?xml version="1.0" encoding="utf-8"?&gt; 
+&lt;!-- l10n/CurrencyFormatterApp.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+               xmlns:s="library://ns.adobe.com/flex/spark" 
+               xmlns:mx="library://ns.adobe.com/flex/mx"               
+               minWidth="955" minHeight="600"&gt;             
+    &lt;s:layout&gt; 
+        &lt;s:VerticalLayout/&gt; 
+    &lt;/s:layout&gt; 
+    &lt;fx:Declarations&gt; 
+        &lt;!-- Get the client's default locale from the OS 
+            by using the LocaleID.DEFAULT constant. --&gt; 
+        &lt;s:CurrencyFormatter id="curFormatter" 
+            useCurrencySymbol="true" 
+            locale="{LocaleID.DEFAULT}"/&gt; 
+        &lt;s:NumberFormatter id="numFormatter" 
+            locale="{LocaleID.DEFAULT}"/&gt; 
+    &lt;/fx:Declarations&gt; 
+    
+    &lt;fx:Script&gt; 
+        &lt;![CDATA[ 
+            import flash.globalization.LocaleID;            
+        ]]&gt; 
+    &lt;/fx:Script&gt; 
+    
+    &lt;s:Label id="la1" text="{curFormatter.format(4500000)}"/&gt; 
+    &lt;s:Label id="la2" text="{numFormatter.format(4500000)}"/&gt; 
+    
+&lt;/s:Application&gt;</pre>
+
+         </div>
+
+         <p>You can explicitly let a user select their locale, and bind your
+formatters to the selected locale. You can also create a new LocaleID
+object based on the selected locale so that you can get other details
+about the locale. </p>
+
+         <div class="p">The following example lets a user select from a list of locales,
+and then returns various information about that locale, including
+the script, language, and currency symbol:<pre class="codeblock">&lt;?xml version="1.0" encoding="utf-8"?&gt; 
+&lt;!-- l10n/CurrencyFormatterSelector.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+               xmlns:s="library://ns.adobe.com/flex/spark" 
+               xmlns:mx="library://ns.adobe.com/flex/mx" 
+               minWidth="955" minHeight="600"&gt; 
+    &lt;fx:Declarations&gt; 
+        &lt;s:CurrencyFormatter id="curFormatter" 
+            useCurrencySymbol="true" 
+            locale="{myDDL.selectedItem}"/&gt; 
+    &lt;/fx:Declarations&gt; 
+    
+    &lt;fx:Script&gt;    
+        import flash.globalization.LocaleID; 
+    
+        private function updateLocaleDetails():void { 
+            var locale:LocaleID = new LocaleID(myDDL.selectedItem); 
+            l6.text = "Locale Script: " + locale.getScript(); 
+            l7.text = "Locale Region: " + locale.getRegion(); 
+            l8.text = "Locale Language: " + locale.getLanguage(); 
+        } 
+    &lt;/fx:Script&gt; 
+    
+    &lt;s:VGroup&gt; 
+        &lt;s:HGroup&gt; 
+            &lt;s:Label text="Select Locale ID: "/&gt; 
+            &lt;s:DropDownList id="myDDL" 
+                change="updateLocaleDetails()" 
+                width="200" 
+                prompt="Select One" 
+                labelField="product"&gt; 
+                &lt;mx:ArrayCollection&gt; 
+                    &lt;fx:String&gt;ar-SA&lt;/fx:String&gt; 
+                    &lt;fx:String&gt;da-DK&lt;/fx:String&gt; 
+                    &lt;fx:String&gt;de-DE&lt;/fx:String&gt; 
+                    &lt;fx:String&gt;en-GB&lt;/fx:String&gt; 
+                    &lt;fx:String&gt;en-US&lt;/fx:String&gt; 
+                    &lt;fx:String&gt;es-ES&lt;/fx:String&gt; 
+                    &lt;fx:String&gt;fi-FI&lt;/fx:String&gt; 
+                    &lt;fx:String&gt;fr-FR&lt;/fx:String&gt; 
+                    &lt;fx:String&gt;it-IT&lt;/fx:String&gt; 
+                    &lt;fx:String&gt;ja-JP&lt;/fx:String&gt; 
+                    &lt;fx:String&gt;ko-KR&lt;/fx:String&gt; 
+                    &lt;fx:String&gt;nb-NO&lt;/fx:String&gt; 
+                    &lt;fx:String&gt;nl-NL&lt;/fx:String&gt; 
+                    &lt;fx:String&gt;pt-BR&lt;/fx:String&gt; 
+                    &lt;fx:String&gt;ru-RU&lt;/fx:String&gt; 
+                    &lt;fx:String&gt;sv-SE&lt;/fx:String&gt; 
+                    &lt;fx:String&gt;zh-CN&lt;/fx:String&gt; 
+                    &lt;fx:String&gt;zh-TW&lt;/fx:String&gt; 
+                &lt;/mx:ArrayCollection&gt;           
+            &lt;/s:DropDownList&gt; 
+        &lt;/s:HGroup&gt; 
+ 
+        &lt;s:Label id="currencyLabel" 
+            fontWeight="bold" 
+            fontSize="16" 
+            text="{curFormatter.format(4500000)}"/&gt; 
+        &lt;s:Label id="l2" text="Actual Locale ID Name: {curFormatter.actualLocaleIDName}"/&gt; 
+        &lt;s:Label id="l4" text="Currency Symbol: {curFormatter.currencySymbol}"/&gt; 
+        &lt;s:Label id="l5" text="Currency ISO Code: {curFormatter.currencyISOCode}"/&gt; 
+        &lt;s:Label id="l6" text="Locale Script: "/&gt; 
+        &lt;s:Label id="l7" text="Locale Region: "/&gt; 
+        &lt;s:Label id="l8" text="Locale Language: "/&gt; 
+ 
+        &lt;s:Label text="All Available Locale ID Names: "/&gt; 
+        &lt;s:TextArea id="ta1" 
+            text="{String(CurrencyFormatter.getAvailableLocaleIDNames())}" 
+            width="300" height="400"/&gt; 
+ 
+    &lt;/s:VGroup&gt; 
+&lt;/s:Application&gt;</pre>
+
+         </div>
+
+         <p>In addition, this example shows a list of all available locales.
+These are the locales that are supported by the client's operating
+system. </p>
+
+         <div class="p">In some cases, you do not necessarily want your application to
+support all possible locales, or you want your application to use
+only one locale. In these cases, you can set the locale(s) programmatically.
+To do this, you can use the <samp class="codeph">locale</samp> style property
+to apply a particular locale to individual components or to an entire
+application; for example:<pre class="codeblock">&lt;fx:Style&gt; 
+	@namespace s "library://ns.adobe.com/flex/spark"; 
+	s|Application { 
+		locale: 'fr-FR'; 
+	} 
+&lt;/fx:Style&gt;</pre>
+
+         </div>
+
+         <p>You can also use resource bundles to configure the formatters.
+For more information, see <a href="flx_resourcebundles_rb.html#WS2db454920e96a9e51e63e3d11c0bf6119c-7ff4_verapache">Custom
+formatting with resource bundles</a>.</p>
+
+         <p>For more information on using the Spark formatter classes, see <a href="flx_formatters_fm.html#WS2db454920e96a9e51e63e3d11c0bf69084-7fef_verapache">Formatting
+Data</a>.</p>
+
+      </div>
+
+   </div>
+
+   <div class="nested1" id="WS19f279b149e7481c-5102f48712bd073918c-8000_verapache"><a name="WS19f279b149e7481c-5102f48712bd073918c-8000_verapache"><!-- --></a>
+      <h2 class="topictitle2">Mirroring and bidirectional text</h2>
+
+      
+      <div>
+         <p>One aspect of localizing applications is the direction
+of the text. Some languages are read from left to right, such as
+English, and other languages are read from right to left, such as
+Hebrew.</p>
+
+         <p>The layout of the controls and the direction of text inputs should
+match the direction of the language. For example, an application
+that uses an RTL language should layout on the right side of the
+application's stage.</p>
+
+         <div class="p">There are two primary ways to control the appearance of an application
+that supports both left-to-right (LTR) and right-to-left (RTL) languages:<ul>
+               <li>
+                  <p>Layout mirroring — Layout mirroring is the process of flipping
+the appearance of the layout controls. For example, in an RTL application,
+vertical scroll bars should appear on the left instead of the right.
+For horizontal scrollbars, the thumb should appear on the right
+side of the control instead of the left. Layout mirroring is commonly
+used to make a UI match the direction of an RTL language.</p>
+
+               </li>
+
+               <li>
+                  <p>Text direction — Text direction defines the direction that
+text flows in the text controls. For RTL languages such as Hebrew
+and Arabic, the characters should render from the right side to
+the left. This also includes bidirectional text support, where a
+control might need to render some of the text RTL, and some of the
+text LTR in the same control. The Spark text controls handle directionality
+of the text internally. They do not use mirroring to render text.</p>
+
+               </li>
+
+            </ul>
+
+         </div>
+
+         <p>To change an application's layout from LTR to RTL, set the <samp class="codeph">layoutDirection</samp> property
+of the application object to <samp class="codeph">"rtl"</samp>. The direction
+of text is automatically set based on the characters used, but you
+should also set the <samp class="codeph">direction</samp> style property to <samp class="codeph">"rtl"</samp> if
+the majority of your text is RTL. This property instructs the text
+control to apply RTL rules to the text.</p>
+
+         <p>For more information, see <a href="flx_mirroring_mr.html#WS022ac6da934778d01dbcea6412e9c9fa58e-8000_verapache">Mirroring
+and bidirectional text</a>.</p>
+
+      </div>
+
+   </div>
+
+   <div class="nested1" id="WS19f279b149e7481c7370eb2d12bd013e888-7ffc_verapache"><a name="WS19f279b149e7481c7370eb2d12bd013e888-7ffc_verapache"><!-- --></a>
+      <h2 class="topictitle2">Transforming text</h2>
+
+      
+      <div>
+         <p>The <a href="https://flex.apache.org/asdoc/spark/globalization/StringTools.html" target="_blank">spark.globalization.StringTools</a> class
+provides methods to convert letters to minuscules (lowercase letters)
+or majuscules (uppercase letters) for languages based on writing
+systems that incorporate the concept of capitalization (essentially,
+the Armenian, Latin, Cyrillic, and Greek alphabets). Using the StringTools class
+enables your application to use language-specific rules to perform
+those transformations.</p>
+
+         <p>The Spark StringTools class is based on the <a href="https://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/flash/globalization/StringTools.html" target="_blank">flash.globalization.StringTools</a> class. This
+lets you use this class in MXML as well as ActionScript, and also
+lets it inherit the value of the <samp class="codeph">locale</samp> style property.
+In addition, the Spark StringTools class has bindable properties
+and methods and generates events.</p>
+
+         <p>As with formatters, you declare an instance of the StringTools
+class in the <samp class="codeph">&lt;fx:Declarations&gt;</samp> block of your
+application.</p>
+
+         <div class="p">The following example uses the StringTools class to convert a
+string to all lower case:<pre class="codeblock">&lt;?xml version="1.0" encoding="utf-8"?&gt; 
+&lt;!-- l10n/TransformingText.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" minWidth="955" minHeight="600"&gt; 
+    &lt;s:layout&gt; 
+        &lt;s:VerticalLayout/&gt; 
+    &lt;/s:layout&gt; 
+    &lt;fx:Declarations&gt; 
+        &lt;s:StringTools id="st1" locale="{LocaleID.DEFAULT}"/&gt; 
+    &lt;/fx:Declarations&gt; 
+            
+    &lt;fx:Script&gt; 
+        &lt;![CDATA[ 
+            import flash.globalization.LocaleID; 
+        ]]&gt; 
+    &lt;/fx:Script&gt; 
+ 
+    &lt;s:Label id="l1" text="{st1.toLowerCase('THIS LABEL WAS IN ALL CAPS.')}"/&gt; 
+&lt;/s:Application&gt;</pre>
+
+         </div>
+
+         <p>Note that some characters for some languages do not have the
+same character length before and after case conversion. For example,
+the lower case sharp-s ("ß") is represented with two characters,
+"SS", when converted to upper case in the German language.</p>
+
+      </div>
+
+   </div>
+
+   <div class="nested1" id="WS19f279b149e7481c-2b2dfa9012bd01637f0-8000_verapache"><a name="WS19f279b149e7481c-2b2dfa9012bd01637f0-8000_verapache"><!-- --></a>
+      <h2 class="topictitle2">Sorting and matching</h2>
+
+      
+      <div>
+         <p>When ordering a list that is presented visually to the
+user, it is essential to follow the user's expectations. It is not
+just a question of aesthetics: expecting it at the end of the list,
+a Swedish user might fail to find an element that begins with "ö"
+if placed next to the plain "o". Fortunately, avoiding that problem
+is easy: sort the list with a Sort or SortingCollator class that
+is configured for the user's locale.</p>
+
+         <p>The sorting and matching classes' output might differ depending
+on the runtime environment of the client. The collators call the
+underlying operating system which can return different results,
+depending on the device.</p>
+
+         <p>As with formatters, the Spark <a href="https://flex.apache.org/asdoc/spark/collections/Sort.html" target="_blank">Sort</a> and <a href="https://flex.apache.org/asdoc/spark/collections/SortField.html" target="_blank">SortField</a> classes
+inherit the value of the <samp class="codeph">locale</samp> style property
+on the application, or you can set the locale style on the component.</p>
+
+         <div class="p">The following example creates a Spark Sort with two Spark SortFields.
+Select a locale from the the drop-down list to change the sort order
+to match the preferences of the selected locale.<pre class="codeblock">&lt;?xml version="1.0" encoding="utf-8"?&gt; 
+&lt;!-- l10n/SortLocale2.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+               xmlns:s="library://ns.adobe.com/flex/spark" 
+               xmlns:mx="library://ns.adobe.com/flex/mx" 
+               minWidth="955" minHeight="600"&gt; 
+    &lt;fx:Declarations&gt; 
+        &lt;s:Sort id="sortbyLastName_FirstName"&gt; 
+            &lt;s:fields&gt; 
+                &lt;s:SortField name="last"/&gt; 
+                &lt;s:SortField name="first"/&gt; 
+            &lt;/s:fields&gt; 
+        &lt;/s:Sort&gt; 
+        &lt;mx:ArrayCollection id="collection" sort="{sortbyLastName_FirstName}"&gt; 
+            &lt;mx:source&gt; 
+                &lt;fx:Object first="Anders" last="Ðñhlund"/&gt; 
+                &lt;fx:Object first="Eileen" last="Oehland"/&gt; 
+                &lt;fx:Object first="Aiden" last="Zorn"/&gt; 
+                &lt;fx:Object first="Steve" last="Ohlin"/&gt; 
+            &lt;/mx:source&gt; 
+        &lt;/mx:ArrayCollection&gt; 
+    &lt;/fx:Declarations&gt; 
+    
+    &lt;fx:Script&gt; 
+        /* Sets the locale style on the document UI component. 
+            The SortField and Sort objects defined in the 
+            fx:Declarations section will inherit this style. */ 
+        private function updateSort(e:Event):void { 
+            setStyle('locale', myDDL.selectedItem); 
+            collection.refresh(); 
+        } 
+    &lt;/fx:Script&gt; 
+    
+    &lt;s:VGroup&gt; 
+        &lt;s:HGroup&gt; 
+            &lt;s:Label text="Select Locale ID Name: "/&gt; 
+            &lt;s:DropDownList id="myDDL" prompt="Select One" 
+                width="200" 
+                labelField="product" 
+                change="updateSort(event)"&gt; 
+                &lt;mx:ArrayCollection&gt; 
+                    &lt;fx:String&gt;en-US&lt;/fx:String&gt; 
+                    &lt;fx:String&gt;sv-SE&lt;/fx:String&gt; 
+                    &lt;fx:String&gt;zh-CN&lt;/fx:String&gt; 
+                &lt;/mx:ArrayCollection&gt;           
+            &lt;/s:DropDownList&gt; 
+        &lt;/s:HGroup&gt; 
+ 
+        &lt;s:DataGrid 
+            dataProvider="{collection}" 
+            creationComplete="{collection.refresh()}"&gt; 
+            &lt;s:columns&gt; 
+                &lt;s:ArrayList&gt; 
+                    &lt;s:GridColumn dataField="last"/&gt; 
+                    &lt;s:GridColumn dataField="first"/&gt; 
+                &lt;/s:ArrayList&gt; 
+            &lt;/s:columns&gt; 
+        &lt;/s:DataGrid&gt; 
+ 
+    &lt;/s:VGroup&gt; 
+&lt;/s:Application&gt;</pre>
+
+         </div>
+
+         <div class="p">The following example uses the Spark Sort and SortField classes
+in ActionScript to create a locale-dependent sort:<pre class="codeblock">&lt;?xml version="1.0" encoding="utf-8"?&gt; 
+&lt;!-- l10n/SweeterSwedishSort.mxml --&gt; 
+&lt;s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    width="500" 
+    creationComplete="initApp()"&gt; 
+    &lt;s:layout&gt; 
+        &lt;s:VerticalLayout/&gt; 
+    &lt;/s:layout&gt; 
+    
+    &lt;fx:Script&gt; 
+        &lt;![CDATA[ 
+            import mx.collections.ISort; 
+            import mx.collections.ISortField; 
+            import mx.collections.ArrayCollection; 
+            import spark.collections.Sort; 
+            import spark.collections.SortField; 
+            
+            private var defaultSort:ISort = new Sort(); 
+            private var swedishSort:ISort = new Sort(); 
+ 
+            private var a:Array = new Array('Ðñhlund','Oehland','Zorn','Ohlin'); 
+            private var names:ArrayCollection = new ArrayCollection(a); 
+ 
+            private var sortField:SortField = new SortField(null);                
+            private function initApp():void { 
+                originalOrder.text = "Original Order: " + names.toString(); 
+ 
+                /* Add a style client, so sortField can pick up the locale style. */ 
+                addStyleClient(sortField as spark.collections.SortField); 
+ 
+                /* Add the sortField to the fields array of the sorts. */ 
+                defaultSort.fields = [sortField]; 
+                swedishSort.fields = [sortField];                
+            } 
+            
+            private function changeSortOrder(s:String):void { 
+                if (s=="en-US") { 
+                    /* Set the locale for the SortField. */ 
+                    sortField.setStyle("locale","en-US"); 
+ 
+                    names.sort = defaultSort; 
+ 
+                    /* Refresh the ArrayCollection after changing the sort property. */ 
+                    names.refresh(); 
+ 
+                    ta1.text = "Default Order: " + names.toString();                
+                } else { 
+                    /* Set the locale for the SortField. */ 
+                    sortField.setStyle("locale","sv-SE"); 
+ 
+                    names.sort = swedishSort; 
+ 
+                    /* Refresh the ArrayCollection after changing the sort property. */ 
+                    names.refresh(); 
+ 
+                    ta1.text = "Swedish Order: " + names.toString();                
+                } 
+            } 
+        ]]&gt; 
+    &lt;/fx:Script&gt; 
+    
+    &lt;s:Label id="originalOrder" paddingTop="10" fontWeight="bold"/&gt; 
+    &lt;s:TextArea id="ta1" height="200" width="400"/&gt; 
+    &lt;s:HGroup&gt; 
+        &lt;s:Button label="Show Default Sort Order" click="changeSortOrder('en-US')"/&gt; 
+        &lt;s:Button label="Show Swedish Sort Order" click="changeSortOrder('sv-SE')"/&gt; 
+    &lt;/s:HGroup&gt; 
+&lt;/s:Application&gt;</pre>
+
+         </div>
+
+         <div class="p">The following example shows a custom sort that also depends on
+locale. This example uses the SortingCollator class and defines
+the logic for the sort. As with formatters and StringTools, you
+declare collators in the <samp class="codeph">&lt;fx:Declarations&gt;</samp> block
+your application.<pre class="codeblock">&lt;?xml version="1.0" encoding="utf-8"?&gt; 
+&lt;!-- l10n/SwedishSort.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+               xmlns:s="library://ns.adobe.com/flex/spark" 
+               xmlns:mx="library://ns.adobe.com/flex/mx" minWidth="955" minHeight="600" 
+               creationComplete="initApp()"&gt; 
+    &lt;s:layout&gt; 
+        &lt;s:VerticalLayout/&gt; 
+    &lt;/s:layout&gt; 
+    &lt;fx:Declarations&gt; 
+        &lt;s:SortingCollator id="defaultSorter" locale="{LocaleID.DEFAULT}"/&gt; 
+        &lt;s:SortingCollator id="swedishSorter" locale="sv-SE"/&gt; 
+    &lt;/fx:Declarations&gt; 
+    
+    &lt;fx:Script&gt; 
+        &lt;![CDATA[ 
+            import flash.globalization.LocaleID;            
+            import mx.collections.ArrayCollection; 
+            
+            private var a:Array = new Array('Ðñhlund','Oehland','Zorn','Ohlin'); 
+            [Bindable] 
+            private var names:ArrayCollection = new ArrayCollection(a); 
+            
+            private function initApp():void { 
+                originalOrder.text = "Original Order: " + names.toString(); 
+ 
+                sortNames(defaultSorter); 
+                label1.text = "Default Order: " + names.toString(); 
+ 
+                sortNames(swedishSorter); 
+                label2.text = "Swedish Order: " + names.toString(); 
+            } 
+            
+            private function sortNames(sorter:SortingCollator):void {               
+                var changed:Boolean = false;                
+                while (!changed) { 
+                    changed = true;                 
+                    for (var i:int = 0; i &lt; names.length - 1; i++) { 
+                        var comparisonResult:int = sorter.compare(names[i],names[i+1]); 
+                        if (comparisonResult &gt; 0) { 
+                            var s:String = names[i];  
+                            names[i] = names[i + 1]; 
+                            names[i + 1] = s;                           
+                            changed = false; 
+                        } 
+                    } 
+                }               
+            }           
+        ]]&gt; 
+    &lt;/fx:Script&gt;    
+    &lt;s:Label id="originalOrder" paddingTop="10" fontWeight="bold"/&gt; 
+    &lt;s:Label id="label1"/&gt; 
+    &lt;s:Label id="label2"/&gt; 
+&lt;/s:Application&gt;</pre>
+
+         </div>
+
+         <p>Matching is typically performed when the user searches for an
+item (for example, searching for a word in a document). When matching,
+you might want to ignore minor differences to increase the chances
+of finding relevant matches. For example, capitalization is commonly
+ignored. Diacritical marks are also often disregarded because not
+all users enter them as expected (either because their keyboard
+layout makes it difficult, or as the result of a spelling mistake). </p>
+
+         <div class="p">You use the <samp class="codeph">&lt;s:MatchingCollator&gt;</samp> tag to
+configure your matching rules. The following example shows how the
+locale and settings on the MatchingCollator can affect string comparisons:<pre class="codeblock">&lt;?xml version="1.0" encoding="utf-8"?&gt; 
+&lt;!-- l10n/MatchingCollatorExample.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+               xmlns:s="library://ns.adobe.com/flex/spark" 
+               xmlns:mx="library://ns.adobe.com/flex/mx" 
+               minWidth="955" minHeight="600"&gt; 
+    &lt;s:layout&gt; 
+        &lt;s:VerticalLayout/&gt; 
+    &lt;/s:layout&gt; 
+    &lt;fx:Declarations&gt; 
+        &lt;s:MatchingCollator id="matchingCollator" 
+            ignoreCase="false" 
+            ignoreCharacterWidth="false" 
+            ignoreDiacritics="{cb1.selected}" 
+            ignoreKanaType="false" 
+            ignoreSymbols="false" 
+            numericComparison="false" 
+            locale="{myDDL.selectedItem}"/&gt; 
+    &lt;/fx:Declarations&gt; 
+    
+    &lt;fx:Script&gt; 
+        &lt;![CDATA[ 
+            private function doCompares():void { 
+                label1.text = matchingCollator.compare('Ð§','vu').toString(); 
+                label2.text = matchingCollator.compare('a','Ð§').toString(); 
+                label3.text = matchingCollator.compare('cotÐ©','cÐ¥te').toString(); 
+            } 
+        ]]&gt; 
+    &lt;/fx:Script&gt;    
+    &lt;s:HGroup&gt; 
+        &lt;s:Label text="Select Locale ID: "/&gt; 
+        &lt;s:DropDownList id="myDDL" 
+            change="doCompares()" 
+            width="200" 
+            prompt="Select One"&gt; 
+            &lt;mx:ArrayCollection&gt; 
+                &lt;fx:String&gt;en-US&lt;/fx:String&gt; 
+                &lt;fx:String&gt;fr-FR&lt;/fx:String&gt; 
+            &lt;/mx:ArrayCollection&gt;           
+        &lt;/s:DropDownList&gt; 
+        &lt;s:CheckBox id="cb1" 
+            label="Ignore Diacritics" 
+            change="doCompares()"/&gt;         
+    &lt;/s:HGroup&gt; 
+ 
+    &lt;s:Form&gt; 
+        &lt;s:FormItem label="{matchingCollator.actualLocaleIDName}"/&gt; 
+        &lt;s:FormItem label="String1: Ð§, String2: vu"&gt; 
+            &lt;s:Label id="label1" text=""/&gt; 
+        &lt;/s:FormItem&gt; 
+        &lt;s:FormItem label="String1: a, String2: Ð§"&gt; 
+            &lt;s:Label id="label2" text=""/&gt; 
+        &lt;/s:FormItem&gt; 
+        &lt;s:FormItem label="String1: cotÐ©, String2: cÐ¥te"&gt; 
+            &lt;s:Label id="label3" text=""/&gt; 
+        &lt;/s:FormItem&gt; 
+    &lt;/s:Form&gt; 
+ 
+    &lt;s:Label text="-1: string1 is less than string 2; 0: strings are equal; 1: string1 is greater than string2"/&gt; 
+&lt;/s:Application&gt;</pre>
+
+         </div>
+
+      </div>
+
+   </div>
+
+   <div class="nested1" id="WS19f279b149e7481c7370eb2d12bd013e888-7ffb_verapache"><a name="WS19f279b149e7481c7370eb2d12bd013e888-7ffb_verapache"><!-- --></a>
+      <h2 class="topictitle2">Resource bundles</h2>
+
+      
+      <div>
+         <p>A <em>resource bundle</em> is a list of assets that is organized
+by locale. These assets can be just about anything, from strings,
+numbers, formats, and images to styles. You typically have a separate
+resource bundle for each locale that your application supports.</p>
+
+         <p>To localize an application with resource bundles, you first create
+properties files that define the localized assets. You then compile
+these properties files into the application as resource bundles,
+or create resource modules from the properties files and load them
+at run time. To compile resources into an application, you pass
+a comma-separated list of locales to the the <samp class="codeph">locale</samp> compiler
+option. This compiler option has no effect on the spark.globalization.*
+classes.</p>
+
+         <p>You can also load pre-compiled resource modules and define resource
+bundles at run time. For more information on creating and using
+resource bundles in your applications, see <a href="flx_resourcebundles_rb.html#WS2db454920e96a9e51e63e3d11c0bf69084-7fcf_verapache">Resource
+Bundles</a>.</p>
+
+      </div>
+
+<div>
+  <p><strong>Navigation</strong></p>
+  <p><a href="index.html">Using Flex</a> &raquo; <a href="flx_p6_enhancing_usability.html">Enhancing usability</a></p>
+</div>
+
+         <p>Adobe, Adobe AIR and Adobe Flash Player are either registered trademarks or trademarks of Adobe Systems Incorporated in the United States and/or other countries and are used by permission from Adobe.  No other license to the Adobe trademarks are granted.</p>
+   </div>
+
+
+</body>
+</html>

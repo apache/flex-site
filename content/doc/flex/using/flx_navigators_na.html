@@ -1,0 +1,1466 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Licensed to the Apache Software Foundation (ASF) under one or more
+  contributor license agreements.  See the NOTICE file distributed with
+  this work for additional information regarding copyright ownership.
+  The ASF licenses this file to You under the Apache License, Version 2.0
+  (the "License"); you may not use this file except in compliance with
+  the License.  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+-->
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en-us" xml:lang="en-us">
+<head>
+<meta name="DC.Type" content="topic"/>
+<meta name="DC.Title" content="MX navigator containers"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="WS2db454920e96a9e51e63e3d11c0bf69084-7fb9_verapache"/>
+<title>MX navigator containers</title>
+</head>
+<body id="WS2db454920e96a9e51e63e3d11c0bf69084-7fb9_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7fb9_verapache"><!-- --></a>
+
+   <div>
+      <p>MX
+navigator containers control user movement, or navigation, among
+multiple children where the children are other MX containers. The
+individual child containers of the navigator container oversee the
+layout and positioning of their children; the navigator container
+does not oversee layout and positioning. </p>
+
+   </div>
+
+   <div class="nested1" id="WS2db454920e96a9e51e63e3d11c0bf6475a-7ffc_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf6475a-7ffc_verapache"><!-- --></a>
+      <h2 class="topictitle2">About MX navigator containers</h2>
+
+      
+      <div>
+         <p>An
+MX navigator container controls user movement through a group of
+child MX containers. For example, a TabNavigator container lets
+you select the visible child container by using a set of tabs. </p>
+
+         <div class="note"><span class="notetitle">Note:</span> The direct children of an MX navigator container
+must be MX containers, either MX layout or MX navigator containers,
+or a Spark NavigatorContent container. You cannot directly nest
+a control or a Spark container other than the Spark NavigatorContent
+container in an MX navigator. </div>
+
+         <p>Flex provides the following navigator
+containers:</p>
+
+         <ul>
+            <li>
+               <p>ViewStack</p>
+
+            </li>
+
+            <li>
+               <p>TabNavigator</p>
+
+            </li>
+
+            <li>
+               <p>Accordion</p>
+
+            </li>
+
+         </ul>
+
+      </div>
+
+   </div>
+
+   <div class="nested1" id="WS263BA71B-EA66-4f1f-B311-0C62242A50FF_verapache"><a name="WS263BA71B-EA66-4f1f-B311-0C62242A50FF_verapache"><!-- --></a>
+      <h2 class="topictitle2">Using Spark containers in an MX navigator
+container</h2>
+
+      
+      <div>
+         <div class="p">The children of a navigator container must be MX containers
+or a Spark NavigatorContent container. The following example uses
+the Spark NavigatorContent container as a child of an Accordion
+container: <pre class="codeblock">&lt;?xml version="1.0" encoding="utf-8"?&gt; 
+&lt;!-- containers\spark\SparkNavContent.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx"&gt; 
+ 
+    &lt;mx:Accordion&gt; 
+        &lt;s:NavigatorContent label="Pane 1" 
+            width="100" height="100"&gt; 
+            &lt;s:layout&gt; 
+                &lt;s:VerticalLayout paddingTop="10" paddingLeft="5"/&gt; 
+            &lt;/s:layout&gt; 
+            &lt;s:Label text="Text for Pane 1"/&gt; 
+            &lt;s:Button label="Button 1"/&gt; 
+        &lt;/s:NavigatorContent&gt; 
+        &lt;s:NavigatorContent label="Pane 2" 
+            width="100" height="100"&gt; 
+            &lt;s:layout&gt; 
+                &lt;s:VerticalLayout paddingTop="10" paddingLeft="5"/&gt; 
+            &lt;/s:layout&gt; 
+            &lt;s:Label text="Text for Pane 2"/&gt; 
+            &lt;s:Button label="Button 2"/&gt; 
+        &lt;/s:NavigatorContent&gt; 
+        &lt;s:NavigatorContent label="Pane 3" 
+            width="100" height="100"&gt; 
+            &lt;s:layout&gt; 
+                &lt;s:VerticalLayout paddingTop="10" paddingLeft="5"/&gt; 
+            &lt;/s:layout&gt; 
+            &lt;s:Label text="Text for Pane 3"/&gt; 
+            &lt;s:Button label="Button 3"/&gt; 
+        &lt;/s:NavigatorContent&gt; 
+    &lt;/mx:Accordion&gt; 
+&lt;/s:Application&gt;</pre>
+
+         </div>
+
+         <p>For more information on the NavigatorContent container, see <a href="flx_groups_containers_gc.html#WSb96f4baaef289fcf-2107ed10123b8e266e7-8000_verapache">The
+Spark NavigatorContent container</a>.</p>
+
+         <p>To use a Spark container other than the Spark NavigatorContent
+container as the child of a navigator, wrap it in an MX container
+or in the Spark NavigatorContent container. The following wraps
+a Spark SkinnableContainer container in an MX Box container:</p>
+
+         <div class="p">
+            <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- containers\navigators\AccordionSimpleSpark.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark"&gt; 
+ 
+    &lt;mx:Accordion id="accordion1" height="250"&gt; 
+        &lt;mx:Box label="Accordion Panel 1"&gt; 
+            &lt;s:SkinnableContainer&gt; 
+                &lt;s:TextInput text="Text 1"/&gt; 
+            &lt;/s:SkinnableContainer&gt; 
+        &lt;/mx:Box&gt; 
+        &lt;mx:Box label="Accordion Panel 2"&gt; 
+            &lt;s:SkinnableContainer&gt; 
+                &lt;s:Button label="Button 2"/&gt; 
+            &lt;/s:SkinnableContainer&gt; 
+        &lt;/mx:Box&gt; 
+        &lt;mx:Box label="Accordion Panel 3"&gt; 
+            &lt;s:SkinnableContainer&gt; 
+                &lt;s:CheckBox label="CheckBox 3"/&gt; 
+            &lt;/s:SkinnableContainer&gt; 
+        &lt;/mx:Box&gt; 
+    &lt;/mx:Accordion&gt; 
+&lt;/s:Application&gt;</pre>
+
+         </div>
+
+         <p>This scenario lets you take advantage of the new features of
+the Spark containers, such as skinning and styling, which still
+being able to use them in MX navigators.</p>
+
+      </div>
+
+   </div>
+
+   <div class="nested1" id="WS2db454920e96a9e51e63e3d11c0bf69084-7e4d_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7e4d_verapache"><!-- --></a>
+      <h2 class="topictitle2">MX ViewStack navigator container</h2>
+
+      
+      <div>
+         <p>A ViewStack navigator container
+is made up of a collection of child containers that are stacked
+on top of each other, with only one container visible, or active,
+at a time. The ViewStack container does not define a built-in mechanism
+for users to switch the currently active container; you must use
+a <a href="https://flex.apache.org/asdoc/mx/controls/LinkBar.html" target="_blank">LinkBar</a>, <a href="https://flex.apache.org/asdoc/mx/controls/TabBar.html" target="_blank">TabBar</a>, <a href="https://flex.apache.org/asdoc/mx/controls/ButtonBar.html" target="_blank">ButtonBar</a>,
+or <a href="https://flex.apache.org/asdoc/mx/controls/ToggleButtonBar.html" target="_blank">ToggleButtonBar</a> control
+or build the logic yourself in ActionScript to let users change
+the currently active child. For example, you can define a set of Button
+controls that switch among the child containers. </p>
+
+         <p>The following image shows the stacked child containers in a ViewStack
+container:</p>
+
+         <div class="figborder">
+            <img src="images/na_ViewStack_container.png" alt="Child containers in a ViewStack container"/>
+            <dl>
+               
+                  <dt class="dlterm">
+                     <strong>A.</strong>
+                  </dt>
+
+                  <dd>Child container 1 active</dd>
+
+               
+               
+                  <dt class="dlterm">
+                     <strong>B.</strong>
+                  </dt>
+
+                  <dd>Child container 0 active</dd>
+
+               
+            </dl>
+
+         </div>
+
+         <p>On the left, you see a ViewStack container with the first child
+active. The index of a child in a ViewStack container is numbered
+from 0 to <em>n</em> - 1, where <em>n</em> is the number of child containers.
+The container on the right is a ViewStack container with the second
+child container active.</p>
+
+         <p>For complete reference information, see <a href="https://flex.apache.org/asdoc/mx/containers/ViewStack.html" target="_blank">ViewStack</a> in
+the <em>
+               <a href="https://flex.apache.org/asdoc/" target="_blank">ActionScript 3.0 Reference for Apache Flex</a></em>.</p>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf6475a-7ffb_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf6475a-7ffb_verapache"><!-- --></a>
+         <h3 class="topictitle3">Creating a ViewStack container</h3>
+
+         
+         <div>
+            <p>You
+use the <samp class="codeph">&lt;</samp>
+               <a href="https://flex.apache.org/asdoc/mx/containers/ViewStack.html" target="_blank">mx:ViewStack</a>
+               <samp class="codeph">&gt;</samp> tag
+to define a ViewStack container, and you define the child containers
+in the tag body. You use the following properties of the ViewStack
+container to control the active child container: </p>
+
+            <dl>
+               
+                  <dt class="dlterm">
+                     <samp class="codeph">selectedIndex</samp>
+                  </dt>
+
+                  <dd>
+                     <p>The index of the currently active container if one or more child
+containers are defined. The value of this property is -1 if no child
+containers are defined. The index is numbered from 0 to <samp class="codeph">numChildren</samp> ‑
+1, where <samp class="codeph">numChildren</samp> is the number of child containers
+in the ViewStack container. Set this property to the index of the
+container that you want active.</p>
+
+                     <p>You can use the <samp class="codeph">selectedIndex</samp> property
+of the <samp class="codeph">&lt;mx:ViewStack&gt;</samp> tag to set the default
+active container when your application starts. The following example
+sets the index of the default active container to 1:</p>
+
+                     <pre class="codeblock"> &lt;mx:ViewStack id="myViewStack" selectedIndex="1"&gt;</pre>
+
+                     <p>The
+following example uses ActionScript to set the <samp class="codeph">selectedIndex</samp> property so
+that the active child container is the second container in the stack:</p>
+
+                     <pre class="codeblock"> myViewStack.selectedIndex=1;</pre>
+
+                  </dd>
+
+               
+               
+                  <dt class="dlterm">
+                     <samp class="codeph">selectedChild</samp>
+                  </dt>
+
+                  <dd>
+                     <p>The currently active container if one or more child containers are
+defined. The value of this property is <samp class="codeph">null</samp> if
+no child containers are defined. Set this property in ActionScript
+to the identifier of the container that you want active.</p>
+
+                     <p>You
+can set this property only in an ActionScript statement, not in
+MXML. </p>
+
+                     <p>The following example uses ActionScript to set the <samp class="codeph">selectedChild</samp> property so
+that the active child container is the child container with an identifier
+of <samp class="codeph">search</samp>:</p>
+
+                     <pre class="codeblock"> myViewStack.selectedChild=search;</pre>
+
+                  </dd>
+
+               
+               
+                  <dt class="dlterm">
+                     <samp class="codeph">numChildren</samp>
+                  </dt>
+
+                  <dd>
+                     <p>Contains the number of child containers in the ViewStack container.</p>
+
+                     <p>The
+following example uses the <samp class="codeph">numChildren</samp> property
+in an ActionScript statement to set the active child container to
+the last container in the stack:</p>
+
+                     <pre class="codeblock"> myViewStack.selectedIndex=myViewStack.numChildren-1;</pre>
+
+                     <div class="note"><span class="notetitle">Note:</span> The default creation policy for all containers,
+except the Application container, is the policy of the parent container.
+The default policy for the Application container is auto. In most
+cases, therefore, the View Stack control's children are not created
+until they are selected. You cannot set the <samp class="codeph">selectedChild</samp> property
+to a child that is not yet created.</div>
+
+                     <p>The following example
+creates a ViewStack container with three child containers. The example
+also defines three Button controls that when clicked, select the active
+child container: </p>
+
+                     <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- containers\navigators\VSSimple.mxml  --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark"&gt; 
+ 
+    &lt;!-- Create a VGroup container so the container for 
+        the buttons appears above the ViewStack container. --&gt; 
+    &lt;s:VGroup&gt; 
+        &lt;!-- Create an HBox container to hold the three buttons. --&gt; 
+        &lt;mx:HBox borderStyle="solid"&gt; 
+ 
+            &lt;!-- Define the three buttons. 
+                Each uses the child container identifier 
+                to set the active child container. --&gt; 
+            &lt;s:Button id="searchButton" 
+                label="Search Screen" 
+                click="myViewStack.selectedChild=search;"/&gt; 
+ 
+            &lt;s:Button id="cInfoButton" 
+                label="Customer Info Screen" 
+                click="myViewStack.selectedChild=custInfo;"/&gt; 
+ 
+            &lt;s:Button id="aInfoButton" 
+                label="Account Info Screen" 
+                click="myViewStack.selectedChild=accountInfo;"/&gt; 
+        &lt;/mx:HBox&gt; 
+ 
+        &lt;!-- Define the ViewStack and the three child containers and have it 
+            resize up to the size of the container for the buttons. --&gt; 
+        &lt;mx:ViewStack id="myViewStack" 
+            borderStyle="solid" width="100%"&gt; 
+ 
+            &lt;mx:Canvas id="search" label="Search"&gt; 
+                &lt;mx:Label text="Search Screen"/&gt; 
+            &lt;/mx:Canvas&gt; 
+ 
+            &lt;mx:Canvas id="custInfo" label="Customer Info"&gt; 
+                &lt;mx:Label text="Customer Info"/&gt; 
+            &lt;/mx:Canvas&gt; 
+ 
+            &lt;mx:Canvas id="accountInfo" label="Account Info"&gt; 
+                &lt;mx:Label text="Account Info"/&gt; 
+            &lt;/mx:Canvas&gt; 
+        &lt;/mx:ViewStack&gt; 
+    &lt;/s:VGroup&gt; 
+&lt;/s:Application&gt;</pre>
+
+                     <p>When this example loads, the
+three Button controls appear, and the first child container defined
+in the ViewStack container is active. Select a Button control to change
+the active container. </p>
+
+                     <p>You can also use an MX <a href="https://flex.apache.org/asdoc/mx/controls/LinkBar.html" target="_blank">LinkBar</a>, <a href="https://flex.apache.org/asdoc/mx/controls/TabBar.html" target="_blank">TabBar</a>, <a href="https://flex.apache.org/asdoc/mx/controls/ButtonBar.html" target="_blank">ButtonBar</a>,
+or <a href="https://flex.apache.org/asdoc/mx/controls/ToggleButtonBar.html" target="_blank">ToggleButtonBar</a> control
+or the Spark <a href="https://flex.apache.org/asdoc/spark/components/ButtonBar.html" target="_blank">ButtonBar</a> or <a href="https://flex.apache.org/asdoc/spark/components/TabBar.html" target="_blank">TabBar</a> control
+to set the active child of a ViewStack container. These controls
+can determine the number of child containers in a ViewStack container,
+and then create a horizontal or vertical set of links, tabs, or buttons
+that let the user select the active child, as the following image
+shows: </p>
+
+                     <div class="figborder">
+                        <img src="images/na_vstack_and_lb.png" alt="Child containers in a ViewStack container"/>
+                     </div>
+
+                     <p>The items in
+the LinkBar control correspond to the values of the <samp class="codeph">label</samp> property of
+each child of the ViewStack container, as the following example
+shows:</p>
+
+                     <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- containers\navigators\VSLinkBar.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark"&gt; 
+ 
+    &lt;s:VGroup&gt; 
+        &lt;!-- Create a LinkBar control to navigate 
+            the ViewStack container. --&gt; 
+        &lt;mx:LinkBar dataProvider="{myViewStack}" borderStyle="solid"/&gt; 
+ 
+        &lt;!-- Define the ViewStack and the three child containers. --&gt; 
+        &lt;mx:ViewStack id="myViewStack" 
+            borderStyle="solid" 
+            width="100%"&gt; 
+            
+            &lt;mx:Canvas id="search" label="Search"&gt; 
+                &lt;mx:Label text="Search Screen"/&gt; 
+            &lt;/mx:Canvas&gt; 
+ 
+            &lt;mx:Canvas id="custInfo" label="Customer Info"&gt; 
+                &lt;mx:Label text="Customer Info"/&gt; 
+            &lt;/mx:Canvas&gt; 
+ 
+            &lt;mx:Canvas id="accountInfo" label="Account Info"&gt; 
+                &lt;mx:Label text="Account Info"/&gt; 
+            &lt;/mx:Canvas&gt; 
+        &lt;/mx:ViewStack&gt; 
+    &lt;/s:VGroup&gt; 
+&lt;/s:Application&gt;</pre>
+
+                     <p>You provide only a single property
+to the navigator bar control, <samp class="codeph">dataProvider</samp>, to
+specify the name of the ViewStack container associated with it.
+For more information on the LinkBar control, see <a href="flx_controls_ctr.html#WS2db454920e96a9e51e63e3d11c0bf69084-7d92_verapache">LinkBar
+control</a>. For more information on the TabBar control, see <a href="flx_controls_ctr.html#WS2db454920e96a9e51e63e3d11c0bf69084-7d86_verapache">MX
+TabBar control</a>. For more information on the ButtonBar and
+ToggleButtonBar controls, see <a href="flx_controls_ctr.html#WS2db454920e96a9e51e63e3d11c0bf69084-7d9e_verapache">MX
+ButtonBar and MX ToggleButtonBar controls</a>. </p>
+
+                     <div class="p">You can
+also use the Spark <a href="https://flex.apache.org/asdoc/spark/components/ButtonBar.html" target="_blank">ButtonBar</a> control
+to set the active child of a ViewStack container, as the following
+example shows: <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- containers\navigators\VSSparkButtonBar.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark"&gt; 
+ 
+    &lt;s:VGroup&gt; 
+        &lt;!-- Create a Spark ButtonBar control to navigate 
+            the ViewStack container. --&gt; 
+        &lt;s:ButtonBar dataProvider="{myViewStack}"/&gt; 
+ 
+        &lt;!-- Define the ViewStack and the three child containers. --&gt; 
+        &lt;mx:ViewStack id="myViewStack" 
+            borderStyle="solid" 
+            width="100%"&gt; 
+            
+            &lt;s:NavigatorContent id="search" label="Search"&gt; 
+                &lt;s:Label text="Search Screen"/&gt; 
+            &lt;/s:NavigatorContent&gt; 
+ 
+            &lt;s:NavigatorContent id="custInfo" label="Customer Info"&gt; 
+                &lt;s:Label text="Customer Info"/&gt; 
+            &lt;/s:NavigatorContent&gt; 
+ 
+            &lt;s:NavigatorContent id="accountInfo" label="Account Info"&gt; 
+                &lt;s:Label text="Account Info"/&gt; 
+            &lt;/s:NavigatorContent&gt; 
+        &lt;/mx:ViewStack&gt; 
+    &lt;/s:VGroup&gt; 
+&lt;/s:Application&gt;</pre>
+
+                     </div>
+
+                     <p>For more information on
+the Spark ButtonBar control, see the <a href="flx_spark_dpcontrols_sdp.html#WSc2368ca491e3ff92-59bf082612135c9e688-8000_verapache">Spark
+ButtonBar and TabBar controls</a>.</p>
+
+                  </dd>
+
+               
+            </dl>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf6475a-7ffa_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf6475a-7ffa_verapache"><!-- --></a>
+         <h3 class="topictitle3">Sizing the children of a ViewStack
+container</h3>
+
+         
+         <div>
+            <p>The
+default width and height of a ViewStack container is the width and
+height of the first child. A ViewStack container does not change
+size every time you change the active child. </p>
+
+            <p>You can use the following techniques to control the size of a
+ViewStack container so that it displays all the components inside
+its children:</p>
+
+            <ul>
+               <li>
+                  <p>Set explicit <samp class="codeph">width</samp> and <samp class="codeph">height</samp> properties
+for all children to the same fixed values.</p>
+
+               </li>
+
+               <li>
+                  <p>Set percentage-based <samp class="codeph">width</samp> and <samp class="codeph">height</samp> properties
+for all children to the same fixed values.</p>
+
+               </li>
+
+               <li>
+                  <p>Set <samp class="codeph">width</samp> and <samp class="codeph">height</samp> properties
+for the ViewStack container to a fixed or percentage-based value.</p>
+
+                  <p>The
+technique that you use is based on your application and the content
+of your ViewStack container.</p>
+
+               </li>
+
+            </ul>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf6475a-7ff9_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf6475a-7ff9_verapache"><!-- --></a>
+         <h3 class="topictitle3">Applying effects to a ViewStack
+container</h3>
+
+         
+         <div>
+            <p>You
+can assign effects to the ViewStack container or to its children.
+For example, if you assign the WipeRight effect to the <samp class="codeph">creationCompleteEffect</samp> property
+of the ViewStack control, Flex plays the effect once when the ViewStack first
+appears.</p>
+
+            <p>To specify the effects that run when the ViewStack changes children,
+use the children's <samp class="codeph">hideEffect</samp> and <samp class="codeph">showEffect</samp> properties.
+The effect specified by the <samp class="codeph">hideEffect</samp> property
+plays as a container is being hidden, and the effect specified by
+the <samp class="codeph">showEffect</samp> property plays as the newly visible
+child appears. The ViewStack container waits for the completion
+of the effect specified by the <samp class="codeph">hideEffect</samp> property
+for the container that is being hidden before it reveals the new
+child container.</p>
+
+            <p>The following example runs a WipeRight effect when the ViewStack
+container is first created, and runs a WipeDown effect when each
+child is hidden and a WipeUp effect when a new child appears.</p>
+
+            <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- containers\navigators\VSLinkEffects.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark"&gt; 
+    
+    &lt;fx:Declarations&gt; 
+        &lt;mx:WipeUp id="myWU" duration="300"/&gt; 
+        &lt;mx:WipeDown id="myWD" duration="300"/&gt; 
+        &lt;mx:WipeRight id="myWR" duration="300"/&gt; 
+    &lt;/fx:Declarations&gt; 
+ 
+    &lt;s:VGroup&gt; 
+        &lt;mx:LinkBar dataProvider="{myViewStack}" 
+            borderStyle="solid" 
+            backgroundColor="#EEEEFF"/&gt; 
+ 
+        &lt;mx:ViewStack id="myViewStack" 
+            borderStyle="solid" 
+            width="100%" 
+            creationCompleteEffect="{myWR}"&gt; 
+ 
+            &lt;mx:Canvas id="search" 
+                label="Search" 
+                hideEffect="{myWD}" 
+                showEffect="{myWU}"&gt; 
+                &lt;mx:Label text="Search Screen"/&gt; 
+            &lt;/mx:Canvas&gt; 
+ 
+            &lt;mx:Canvas id="custInfo" 
+                label="Customer Info" 
+                hideEffect="{myWD}" 
+                showEffect="{myWU}"&gt; 
+                &lt;mx:Label text="Customer Info"/&gt; 
+            &lt;/mx:Canvas&gt; 
+ 
+            &lt;mx:Canvas id="accountInfo" 
+                label="Account Info" 
+                hideEffect="{myWD}" 
+                showEffect="{myWU}"&gt; 
+                &lt;mx:Label text="Account Info"/&gt; 
+            &lt;/mx:Canvas&gt; 
+        &lt;/mx:ViewStack&gt; 
+    &lt;/s:VGroup&gt; 
+&lt;/s:Application&gt;</pre>
+
+            <p>Notice that the <samp class="codeph">showEffect</samp> property of a container
+is only triggered when the container's visibility changes from <samp class="codeph">false</samp> to <samp class="codeph">true</samp>.
+Therefore, you use the <samp class="codeph">creationCompleteEffect</samp> property
+to trigger the effect when Flex first creates the component. </p>
+
+         </div>
+
+      </div>
+
+   </div>
+
+   <div class="nested1" id="WS2db454920e96a9e51e63e3d11c0bf69084-7e50_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7e50_verapache"><!-- --></a>
+      <h2 class="topictitle2">MX TabNavigator container</h2>
+
+      
+      <div>
+         <p>A <a href="https://flex.apache.org/asdoc/mx/containers/TabNavigator.html" target="_blank">TabNavigator</a> container
+creates and manages a set of tabs, which you use to navigate among
+its children. The children of a TabNavigator container are other containers.
+The TabNavigator container creates one tab for each child. When
+the user selects a tab, the TabNavigator container displays the
+associated child, as the following image shows: </p>
+
+         <div class="figborder">
+            <img src="images/na_tabnav.png" alt="TabNavigator container"/>
+         </div>
+
+         <p>The TabNavigator container is a child class of the <a href="https://flex.apache.org/asdoc/mx/containers/ViewStack.html" target="_blank">ViewStack</a> container
+and inherits much of its functionality. For complete reference information,
+see the <em>
+               <a href="https://flex.apache.org/asdoc/" target="_blank">ActionScript 3.0 Reference for Apache Flex</a></em>.</p>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf6475a-7ffe_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf6475a-7ffe_verapache"><!-- --></a>
+         <h3 class="topictitle3">Creating a TabNavigator container</h3>
+
+         
+         <div>
+            <p>You
+use the <samp class="codeph">&lt;</samp>
+               <a href="https://flex.apache.org/asdoc/mx/containers/TabNavigator.html" target="_blank">mx:TabNavigator</a> tag
+to define a TabNavigator container. Only one child of the TabNavigator
+container is visible at a time. Users can make any child the selected
+child by selecting its associated tab or by using keyboard navigation controls.
+Whenever the user changes the current child, the TabNavigator container
+broadcasts a <samp class="codeph">change</samp> event.</p>
+
+            <p>The TabNavigator container automatically creates a tab for each
+of its children and determines the tab text from the <samp class="codeph">label</samp> property
+of the child, and the tab icon from the <samp class="codeph">icon</samp> property
+of the child. The tabs are arranged left to right in the order determined
+by the child indexes. All tabs are visible, unless they do not fit within
+the width of the TabNavigator container. </p>
+
+            <p>If you disable a child of a TabNavigator container by setting
+its <samp class="codeph">enabled</samp> property to <samp class="codeph">false</samp>,
+you also disable the associated tab. </p>
+
+            <p>The following code creates the TabNavigator container in the
+image in <a href="flx_navigators_na.html#WS2db454920e96a9e51e63e3d11c0bf69084-7e50_verapache">MX TabNavigator
+container</a>:</p>
+
+            <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- containers\navigators\TNSimple.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark"&gt; 
+ 
+    &lt;mx:TabNavigator borderStyle="solid" &gt; 
+        &lt;mx:VBox label="Accounts" 
+            width="300" 
+            height="150"&gt; 
+            &lt;!-- Accounts view goes here. --&gt; 
+        &lt;/mx:VBox&gt; 
+ 
+        &lt;mx:VBox label="Stocks" 
+            width="300" 
+            height="150"&gt; 
+            &lt;!-- Stocks view goes here. --&gt; 
+        &lt;/mx:VBox&gt; 
+ 
+        &lt;mx:VBox label="Futures" 
+            width="300" 
+            height="150"&gt; 
+            &lt;!-- Futures view goes here. --&gt; 
+        &lt;/mx:VBox&gt;   
+    &lt;/mx:TabNavigator&gt; 
+&lt;/s:Application&gt;</pre>
+
+            <p>You can also set the currently active child by using the <samp class="codeph">selectedChild</samp> and <samp class="codeph">selectedIndex</samp> properties
+inherited from the ViewStack container as follows: </p>
+
+            <ul>
+               <li>
+                  <p>
+                     <samp class="codeph">numChildren</samp> The index of the currently
+active container if one or more child containers are defined. The
+index is numbered from 0 to <samp class="codeph">numChildren</samp> ‑ 1, where <samp class="codeph">numChildren</samp> is
+the number of child containers in the TabNavigator container. Set
+this property to the index of the container that you want active.</p>
+
+               </li>
+
+               <li>
+                  <p>
+                     <samp class="codeph">selectedChild</samp> The currently active container,
+if one or more child containers are defined. This property is <samp class="codeph">null</samp> if
+no child containers are defined. Set this property to the identifier
+of the container that you want active. You can set this property
+only in an ActionScript statement, not in MXML. </p>
+
+               </li>
+
+            </ul>
+
+            <p>For more information on the <samp class="codeph">selectedChild</samp> and <samp class="codeph">selectedIndex</samp> properties,
+including examples, see <a href="flx_navigators_na.html#WS2db454920e96a9e51e63e3d11c0bf69084-7e4d_verapache">MX
+ViewStack navigator container</a>. </p>
+
+            <p>You use the <samp class="codeph">showEffect</samp> and <samp class="codeph">hideEffect</samp> properties
+of the children of a TabNavigator container to specify an effect
+to play when the user changes the currently active child. The following
+example plays the WipeRight effect each time the selected tab changes: </p>
+
+            <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- containers\navigators\TNEffect.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark"&gt; 
+ 
+    &lt;fx:Declarations&gt; 
+        &lt;mx:WipeRight id="myWR"/&gt; 
+    &lt;/fx:Declarations&gt; 
+ 
+    &lt;mx:TabNavigator&gt; 
+        &lt;mx:VBox label="Accounts" 
+            width="300" 
+            height="150" 
+            showEffect="{myWR}"&gt; 
+            &lt;!-- Accounts view goes here. --&gt; 
+            &lt;mx:Text text="This is a text control."/&gt; 
+        &lt;/mx:VBox&gt; 
+ 
+        &lt;mx:VBox label="Stocks" 
+            width="300" 
+            height="150" 
+            showEffect="{myWR}"&gt; 
+            &lt;!-- Stocks view goes here. --&gt; 
+            &lt;mx:Text text="This is a text control."/&gt; 
+        &lt;/mx:VBox&gt; 
+ 
+        &lt;mx:VBox label="Futures" 
+            width="300" 
+            height="150" 
+            showEffect="{myWR}"&gt; 
+            &lt;!-- Futures view goes here. --&gt; 
+            &lt;mx:Text text="This is a text control."/&gt; 
+        &lt;/mx:VBox&gt;   
+    &lt;/mx:TabNavigator&gt;  
+&lt;/s:Application&gt;</pre>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf6475a-7ff7_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf6475a-7ff7_verapache"><!-- --></a>
+         <h3 class="topictitle3">Sizing the children of a TabNavigator
+container</h3>
+
+         
+         <div>
+            <p>The
+default width and height of a <a href="https://flex.apache.org/asdoc/mx/containers/TabNavigator.html" target="_blank">TabNavigator</a> container
+is the width and height of the first child. A TabNavigator container
+does not change size every time you change the active child. </p>
+
+            <p>You can use the following techniques to control the size of a
+TabNavigator container so that it displays all the components inside
+its children:</p>
+
+            <ul>
+               <li>
+                  <p>Set explicit <samp class="codeph">width</samp> and <samp class="codeph">height</samp> properties
+for all children to the same fixed values.</p>
+
+               </li>
+
+               <li>
+                  <p>Set percentage-based <samp class="codeph">width</samp> and <samp class="codeph">height</samp> properties
+for all children to the same fixed values.</p>
+
+               </li>
+
+               <li>
+                  <p>Set explicit or percentage-based <samp class="codeph">width</samp> and <samp class="codeph">height</samp> properties
+for the TabNavigator container.</p>
+
+                  <p>The method that you use is
+based on your application and the content of your TabNavigator container. </p>
+
+               </li>
+
+            </ul>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf69084-7da9_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7da9_verapache"><!-- --></a>
+         <h3 class="topictitle3">TabNavigator container Keyboard
+navigation</h3>
+
+         
+         <div>
+            <p>When
+a <a href="https://flex.apache.org/asdoc/mx/containers/TabNavigator.html" target="_blank">TabNavigator</a> container
+has focus, Flex processes keystrokes as the following table describes: </p>
+
+            
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" frame="border" border="1" rules="all">
+                  
+                  
+                  <thead align="left">
+                     <tr>
+                        <th class="cellrowborder" valign="top" width="NaN%" id="d323658e841">
+                           <p>Key</p>
+
+                        </th>
+
+                        <th class="cellrowborder" valign="top" width="NaN%" id="d323658e847">
+                           <p>Action</p>
+
+                        </th>
+
+                     </tr>
+
+                  </thead>
+
+                  <tbody>
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d323658e841 ">
+                           <p>Down Arrow</p>
+
+                           <p>Right Arrow</p>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d323658e847 ">
+                           <p>Gives focus to the next tab, wrapping from
+last to first, without changing the selected child.</p>
+
+                        </td>
+
+                     </tr>
+
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d323658e841 ">
+                           <p>Up Arrow</p>
+
+                           <p>Left Arrow</p>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d323658e847 ">
+                           <p>Gives focus to the previous tab, wrapping
+from first to last, without changing the selected child.</p>
+
+                        </td>
+
+                     </tr>
+
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d323658e841 ">
+                           <p>Page Down</p>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d323658e847 ">
+                           <p>Selects the next child, wrapping from last
+to first.</p>
+
+                        </td>
+
+                     </tr>
+
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d323658e841 ">
+                           <p>Page Up</p>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d323658e847 ">
+                           <p>Selects the previous child, wrapping from
+first to last.</p>
+
+                        </td>
+
+                     </tr>
+
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d323658e841 ">
+                           <p>Home</p>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d323658e847 ">
+                           <p>Selects the first child.</p>
+
+                        </td>
+
+                     </tr>
+
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d323658e841 ">
+                           <p>End</p>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d323658e847 ">
+                           <p>Selects the last child.</p>
+
+                        </td>
+
+                     </tr>
+
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d323658e841 ">
+                           <p>Enter</p>
+
+                           <p>Spacebar</p>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d323658e847 ">
+                           <p>Selects the child associated with the tab
+displaying focus.</p>
+
+                        </td>
+
+                     </tr>
+
+                  </tbody>
+
+               </table>
+</div>
+
+         </div>
+
+      </div>
+
+   </div>
+
+   <div class="nested1" id="WS2db454920e96a9e51e63e3d11c0bf69084-7e59_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7e59_verapache"><!-- --></a>
+      <h2 class="topictitle2">MX Accordion navigator container</h2>
+
+      
+      <div>
+         <p>Forms are a basic component
+of many applications. However, users have difficulty navigating
+through complex forms, or moving back and forth through multipage
+forms. Sometimes, forms can be so large that they do not fit onto
+a single screen. </p>
+
+         <p>Flex includes the Accordion navigator container, which can greatly
+improve the look and navigation of a form. The Accordion container
+defines a sequence of child panels, but displays only one panel
+at a time. The following image shows an example of an Accordion
+container: </p>
+
+         <div class="figborder">
+            <img src="images/cn_accordion_example.png" alt="Accordion container"/>
+            <dl>
+               
+                  <dt class="dlterm">
+                     <strong>A.</strong>
+                  </dt>
+
+                  <dd>Accordion container navigation button</dd>
+
+               
+               
+                  <dt class="dlterm">
+                     <strong>A.</strong>
+                  </dt>
+
+                  <dd>Accordion container navigation button</dd>
+
+               
+            </dl>
+
+         </div>
+
+         <p>To navigate a container, the user clicks the navigation button
+that corresponds to the child panel that they want to access. Accordion
+containers let users access the child panels in any order to move
+back and forth through the form. For example, when the user is in
+the Credit Card Information panel, they might decide to change the
+information in the Billing Address panel. To do so, they navigate
+to the Billing Address panel, edit the information, and then navigate
+back to the Credit Card Information panel. </p>
+
+         <p>In
+HTML, a form that contains shipping address, billing address, and
+credit card information is often implemented as three separate pages,
+which requires the user to submit each page to the server before
+moving on to the next. An Accordion container can organize the information
+on three child panels with a single Submit button. This architecture
+minimizes server traffic and lets the user maintain a better sense
+of progress and context.</p>
+
+         <div class="note"><span class="notetitle">Note:</span> An empty Accordion container with no child panels
+cannot take focus.</div>
+
+         <p>Although Accordion containers are useful for working with forms
+and Form containers, you can use any Flex component within a child
+panel of an Accordion container. For example, you could create a
+catalog of products in an Accordion container, where each panel
+contains a group of similar products. </p>
+
+         <p>For complete reference information, see <a href="https://flex.apache.org/asdoc/mx/containers/Accordion.html" target="_blank">Accordion</a> in
+the <em>
+               <a href="https://flex.apache.org/asdoc/" target="_blank">ActionScript 3.0 Reference for Apache Flex</a></em>.</p>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf6475a-7ff5_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf6475a-7ff5_verapache"><!-- --></a>
+         <h3 class="topictitle3">Creating an Accordion container</h3>
+
+         
+         <div>
+            <p>You use the <samp class="codeph">&lt;mx:Accordion&gt;</samp> tag to
+define an Accordion container. In the Accordion container, you define
+one container for each child panel. For example, if the Accordion
+container has four child panels that the correspond to four parts of
+a form, you define each child panel by using the Form container,
+as the following example shows:</p>
+
+            <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- containers\navigators\AccordionSimple.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark"&gt; 
+ 
+    &lt;mx:Accordion id="accordion1" height="250"&gt; 
+        &lt;mx:Form id="shippingAddress" label="1. Shipping Address"&gt; 
+ 
+            &lt;mx:FormItem id="sfirstNameItem" label="First Name"&gt; 
+                &lt;mx:TextInput id="sfirstName"/&gt; 
+            &lt;/mx:FormItem&gt; 
+ 
+            &lt;!-- Additional contents goes here. --&gt; 
+ 
+        &lt;/mx:Form&gt; 
+ 
+        &lt;mx:Form id="billingAddress" label="2. Billing Address"&gt; 
+            &lt;!-- Form contents goes here. --&gt; 
+        &lt;/mx:Form&gt; 
+ 
+        &lt;mx:Form id="creditCardInfo" label="3. Credit Card Information"&gt; 
+            &lt;!-- Form contents goes here. --&gt; 
+        &lt;/mx:Form&gt; 
+ 
+        &lt;mx:Form id="submitOrder"   label="4. Submit Order"&gt; 
+            &lt;!-- Form contents goes here. --&gt; 
+        &lt;/mx:Form&gt; 
+    &lt;/mx:Accordion&gt; 
+&lt;/s:Application&gt;</pre>
+
+            <p>This example defines each child panel by using a Form container.
+However, you can use any container to define a child panel. </p>
+
+            <div class="note"><span class="notetitle">Note:</span> You can use any container to define child panels.
+Some containers, such as an Accordion container, do not belong in
+child panels.</div>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf69084-7dba_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7dba_verapache"><!-- --></a>
+         <h3 class="topictitle3">Accordion container Keyboard navigation</h3>
+
+         
+         <div>
+            <p>When
+an <a href="https://flex.apache.org/asdoc/mx/containers/Accordion.html" target="_blank">Accordion</a> container
+has focus, Flex processes keystrokes as the following table describes:</p>
+
+            
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" frame="border" border="1" rules="all">
+                  
+                  
+                  <thead align="left">
+                     <tr>
+                        <th class="cellrowborder" valign="top" width="NaN%" id="d323658e1128">
+                           <p>Key</p>
+
+                        </th>
+
+                        <th class="cellrowborder" valign="top" width="NaN%" id="d323658e1134">
+                           <p>Action</p>
+
+                        </th>
+
+                     </tr>
+
+                  </thead>
+
+                  <tbody>
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d323658e1128 ">
+                           <p>Down Arrow</p>
+
+                           <p>Right Arrow</p>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d323658e1134 ">
+                           <p>Gives focus to the next button, wrapping
+from last to first, without changing the selected child.</p>
+
+                        </td>
+
+                     </tr>
+
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d323658e1128 ">
+                           <p>Up Arrow</p>
+
+                           <p>Left Arrow</p>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d323658e1134 ">
+                           <p>Gives focus to the previous button, wrapping
+from first to last, without changing the selected child.</p>
+
+                        </td>
+
+                     </tr>
+
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d323658e1128 ">
+                           <p>Page Up</p>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d323658e1134 ">
+                           <p>Moves to the previous child panel, wrapping
+from first to last. </p>
+
+                        </td>
+
+                     </tr>
+
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d323658e1128 ">
+                           <p>Page Down</p>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d323658e1134 ">
+                           <p>Moves to the next child panel, wrapping
+from last to first.</p>
+
+                        </td>
+
+                     </tr>
+
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d323658e1128 ">
+                           <p>Home</p>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d323658e1134 ">
+                           <p>Moves to the first child panel.</p>
+
+                        </td>
+
+                     </tr>
+
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d323658e1128 ">
+                           <p>End</p>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d323658e1134 ">
+                           <p>Moves to the last child panel.</p>
+
+                        </td>
+
+                     </tr>
+
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d323658e1128 ">
+                           <p>Enter</p>
+
+                           <p>Spacebar</p>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d323658e1134 ">
+                           <p>Selects the child associated with the tab
+displaying focus.</p>
+
+                        </td>
+
+                     </tr>
+
+                  </tbody>
+
+               </table>
+</div>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf69084-7ce7_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7ce7_verapache"><!-- --></a>
+         <h3 class="topictitle3">Using Button controls to navigate
+an Accordion container</h3>
+
+         
+         <div>
+            <p>The
+simplest way for users to navigate the panels of an Accordion container
+is to click the navigator button for the desired panel. However,
+you can create additional navigation Button controls, such as Back
+and Next, to make it easier for users to navigate. </p>
+
+            <p>Navigation Button controls use the following properties of the
+Accordion container to move among the child panels: </p>
+
+            
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" frame="border" border="1" rules="all">
+                  
+                  
+                  <thead align="left">
+                     <tr>
+                        <th class="cellrowborder" valign="top" width="NaN%" id="d323658e1298">
+                           <p>Property</p>
+
+                        </th>
+
+                        <th class="cellrowborder" valign="top" width="NaN%" id="d323658e1304">
+                           <p>Description</p>
+
+                        </th>
+
+                     </tr>
+
+                  </thead>
+
+                  <tbody>
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d323658e1298 ">
+                           <div class="p">
+                              <pre class="codeblock">numChildren</pre>
+
+                           </div>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d323658e1304 ">
+                           <p>Contains the total number of child panels
+defined in an Accordion container.</p>
+
+                        </td>
+
+                     </tr>
+
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d323658e1298 ">
+                           <div class="p">
+                              <pre class="codeblock">selectedIndex</pre>
+
+                           </div>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d323658e1304 ">
+                           <p>The index of the currently active child
+panel. Child panels are numbered from 0 to <samp class="codeph">numChildren</samp> ‑
+1. Setting the <samp class="codeph">selectedIndex</samp> property changes the
+currently active panel.</p>
+
+                        </td>
+
+                     </tr>
+
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d323658e1298 ">
+                           <div class="p">
+                              <pre class="codeblock">selectedChild</pre>
+
+                           </div>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d323658e1304 ">
+                           <p>The currently active child container if
+one or more child containers are defined. This property is <samp class="codeph">null</samp> if
+no child containers are defined. Set this property to the identifier
+of the container that you want active. You can set this property
+only in an ActionScript statement, not in MXML. </p>
+
+                        </td>
+
+                     </tr>
+
+                  </tbody>
+
+               </table>
+</div>
+
+            <p>For more information on these properties, see <a href="flx_navigators_na.html#WS2db454920e96a9e51e63e3d11c0bf69084-7e4d_verapache">MX
+ViewStack navigator container</a>. </p>
+
+            <p>You can use the following two Button controls, for example, in
+the second panel of an Accordion container, panel number 1, to move
+back to panel number 0 or ahead to panel number 2:</p>
+
+            <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- containers\navigators\AccordionButtonNav.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark"&gt; 
+ 
+    &lt;mx:Accordion id="accordion1" height="250"&gt; 
+        &lt;mx:Form id="shippingAddress" label="1. Shipping Address"&gt; 
+            &lt;mx:FormItem id="sfirstNameItem" label="First Name"&gt; 
+                &lt;s:TextInput id="sfirstName"/&gt; 
+            &lt;/mx:FormItem&gt; 
+        &lt;/mx:Form&gt; 
+ 
+        &lt;mx:Form id="billingAddress" label="2. Billing Address"&gt; 
+            &lt;s:Button id="backButton" 
+                label="Back" 
+                click="accordion1.selectedIndex=0;"/&gt; 
+            &lt;s:Button id="nextButton" 
+                label="Next" 
+                click="accordion1.selectedIndex=2;"/&gt; 
+        &lt;/mx:Form&gt; 
+ 
+        &lt;mx:Form id="creditCardInfo" label="3. Credit Card Information"&gt; 
+        &lt;/mx:Form&gt; 
+    &lt;/mx:Accordion&gt; 
+&lt;/s:Application&gt;</pre>
+
+            <p>You can also use relative location with navigation buttons. The
+following Button controls move forward and backward through Accordion
+container panels based on the current panel number:</p>
+
+            <pre class="codeblock"> &lt;s:Button id="backButton" label="Back" 
+	click="accordion1.selectedIndex = accordion1.selectedIndex - 1;"/&gt; 
+ &lt;s:Button id="nextButton" label="Next" 
+	click="accordion1.selectedIndex = accordion1.selectedIndex + 1;"/&gt;</pre>
+
+            <p>For the Next Button control, you also can use the <samp class="codeph">selectedChild</samp> property
+to move to the next panel based on the value of the <samp class="codeph">id</samp> property
+of the panel's container, as the following code shows:</p>
+
+            <pre class="codeblock"> &lt;s:Button id="nextButton" label="Next" 
+	click="accordion1.selectedChild=creditCardInfo;"/&gt;</pre>
+
+            <p>The following Button control opens the last panel in the Accordion
+container: </p>
+
+            <pre class="codeblock"> &lt;s:Button id="lastButton" label="Last" 
+	click="accordion1.selectedIndex = accordion1.numChildren - 1;"/&gt;</pre>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf6475a-7ff2_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf6475a-7ff2_verapache"><!-- --></a>
+         <h3 class="topictitle3">Handling child button events</h3>
+
+         
+         <div>
+            <p>The Accordion container can recognize an event when the
+user changes the current panel. The Accordion container broadcasts
+a <samp class="codeph">change</samp> event when the user changes the child
+panel, either by clicking a button or pressing a key, such as the
+Page Down key. </p>
+
+            <div class="note"><span class="notetitle">Note:</span> A <samp class="codeph">change</samp> event is not dispatched
+when the child panel changes programmatically; for example, the <samp class="codeph">change</samp> event
+is not dispatched when you use the buttons in change panels (see <a href="flx_navigators_na.html#WS2db454920e96a9e51e63e3d11c0bf69084-7ce7_verapache">Using
+Button controls to navigate an Accordion container</a>). However,
+the <samp class="codeph">valueCommit</samp> event is dispatched. </div>
+
+            <p>You can register an event handler for the <samp class="codeph">change</samp> event
+by using the <samp class="codeph">change</samp> property of the <samp class="codeph">&lt;mx:Accordion&gt;</samp> tag,
+or by registering the handler in ActionScript. The following example
+logs the change event to flashlog.txt each time the user changes
+panels:</p>
+
+            <pre class="codeblock"> &lt;mx:Accordion id="accordion1" height="450" change="trace('change');"&gt;</pre>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf6475a-7ff1_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf6475a-7ff1_verapache"><!-- --></a>
+         <h3 class="topictitle3">Controlling the appearance of accordion
+buttons</h3>
+
+         
+         <div>
+            <p>The buttons on an Accordion container are rendered by the <a href="https://flex.apache.org/asdoc/mx/containers/accordionClasses/AccordionHeader.html" target="_blank">AccordionHeader</a> class,
+which is a subclass of Button, and has the same style properties
+as the <a href="https://flex.apache.org/asdoc/mx/controls/Button.html" target="_blank">Button class</a>.</p>
+
+            <p>To change the style of an Accordion button, call the Accordion
+class <samp class="codeph">getHeaderAt()</samp> method to get a reference to
+a child container's button, and then call the button's <samp class="codeph">setStyle()</samp> method
+to set the style. The following example uses this technique to set
+a different text color for each of the Accordion buttons:</p>
+
+            <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- containers\navigators\AccordionStyling.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    width="600" 
+    height="600" 
+    creationComplete="setButtonStyles();"&gt; 
+ 
+    &lt;fx:Script&gt; 
+        &lt;![CDATA[ 
+            public function setButtonStyles():void { 
+                comp.getHeaderAt(0).setStyle('color', 0xAA0000); 
+                comp.getHeaderAt(1).setStyle('color', 0x00AA00); 
+            } 
+        ]]&gt; 
+    &lt;/fx:Script&gt; 
+ 
+    &lt;mx:Accordion id="comp"&gt; 
+        &lt;mx:VBox label="First VBox"&gt; 
+            &lt;mx:TextInput/&gt; 
+            &lt;mx:Button label="Button 1"/&gt; 
+        &lt;/mx:VBox&gt; 
+        &lt;mx:VBox label="Second VBox"&gt; 
+            &lt;mx:TextInput/&gt; 
+            &lt;mx:Button label="Button 2"/&gt; 
+        &lt;/mx:VBox&gt; 
+    &lt;/mx:Accordion&gt; 
+&lt;/s:Application&gt;</pre>
+
+            <p>You can also control the appearance of the buttons by using the <samp class="codeph">headerStyleName</samp> style
+property of the Accordion class. For more information, see <a href="https://flex.apache.org/asdoc/mx/containers/Accordion.html" target="_blank">Accordion</a> in
+the <em>
+                  <a href="https://flex.apache.org/asdoc/" target="_blank">ActionScript 3.0 Reference for Apache Flex</a></em>.</p>
+
+         </div>
+
+      </div>
+
+<div>
+  <p><strong>Navigation</strong></p>
+  <p><a href="index.html">Using Flex</a> &raquo; <a href="flx_p3_building_ui.html">Building the user interface</a></p>
+</div>
+
+         <p>Adobe and Adobe Flash Platform are either registered trademarks or trademarks of Adobe Systems Incorporated in the United States and/or other countries and are used by permission from Adobe.  No other license to the Adobe trademarks are granted.</p>
+   </div>
+
+
+</body>
+</html>

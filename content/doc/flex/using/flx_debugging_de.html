@@ -1,0 +1,1964 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Licensed to the Apache Software Foundation (ASF) under one or more
+  contributor license agreements.  See the NOTICE file distributed with
+  this work for additional information regarding copyright ownership.
+  The ASF licenses this file to You under the Apache License, Version 2.0
+  (the "License"); you may not use this file except in compliance with
+  the License.  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+-->
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en-us" xml:lang="en-us">
+<head>
+<meta name="DC.Type" content="topic"/>
+<meta name="DC.Title" content="Command-line debugger"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="WS2db454920e96a9e51e63e3d11c0bf69084-7ffb_verapache"/>
+<title>Command-line debugger</title>
+</head>
+<body id="WS2db454920e96a9e51e63e3d11c0bf69084-7ffb_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7ffb_verapache"><!-- --></a>
+
+   <div>
+      <p>If you encounter errors in your applications, you can use
+the debugging tools to set and manage breakpoints in your code;
+control application execution by suspending, resuming, and terminating
+the application; step into and over the code statements; select
+critical variables to watch; evaluate watch expressions while the
+application is running, and so on. </p>
+
+   </div>
+
+   <div class="nested1" id="WS2db454920e96a9e51e63e3d11c0bf62063-7fff_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf62063-7fff_verapache"><!-- --></a>
+      <h2 class="topictitle2">About debugging</h2>
+
+      
+      <div>
+         <p>Debugging
+ Flex applications can be as simple as enabling <samp class="codeph">trace()</samp> statements or
+as complex as stepping into an application's source files and running
+the code, one line at a time. The command-line debugger, fdb, let
+you step through and debug the files used by your Flex applications.</p>
+
+         <p>To debug a Flex application, you must generate a debug SWF file.
+This is a SWF file with debug information in it. You then connect
+fdb to the debugger version of Adobe<sup>®</sup> Flash<sup>®</sup> Player that is running the debug SWF file. </p>
+
+         <p>The debugger is an agent that communicates with the application
+that is running in Flash Player. It connects to your application
+with a local socket connection. As a result, you might have to disable
+anti-virus software to use it if your anti-virus software prevents
+socket communication. The debugger uses this connection to transfer
+information from the SWF file to the command line so that you can
+add breakpoints, inspect variables, and do other common debugging
+tasks. The port through which the debugger connects to your application
+is 7935. You cannot change this port.</p>
+
+         <p>This topic describes how to use the fdb command-line debugger.</p>
+
+         <p>To use either debugger, you must install and configure the debugger
+version of Flash Player. To determine if you are running the debugger
+version or the standard version of Flash Player, open any Flex application
+in the player and right-click the mouse button. If you see the Show
+Redraw Regions option, you are running the debugger version of Flash
+Player. For more information about the debugger version of Flash
+Player, and how to detect which player you are running, see <a href="flx_logging_lg.html#WS2db454920e96a9e51e63e3d11c0bf69084-7ed6_verapache">Using
+the debugger version of Flash Player</a>.</p>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf62063-7ffe_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf62063-7ffe_verapache"><!-- --></a>
+         <h3 class="topictitle3">Using the command-line debugger</h3>
+
+         
+         <div>
+            <p>The
+fdb command-line debugger is located in the <em>flex_install_dir</em>/bin
+directory. To start fdb, open a command prompt, change to that directory,
+and enter <strong>fdb</strong>. </p>
+
+            <p>For a description of available commands, use the following command:</p>
+
+            <pre class="codeblock"> <strong>(fdb) help</strong> </pre>
+
+            <p>For an overview of the fdb debugger, use the following command:</p>
+
+            <pre class="codeblock"> <strong>(fdb) tutorial</strong> </pre>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf62063-7ffd_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf62063-7ffd_verapache"><!-- --></a>
+         <h3 class="topictitle3">Generating debug SWF files</h3>
+
+         
+         <div>
+            <p>To debug a Flex application, you
+first generate a debug SWF file. Debug SWF files are similar to
+other application SWF files except that they contain debugging-specific
+information that the debugger and the debugger version of Flash
+Player use during debugging sessions. Debug SWF files are larger
+than non-debug SWF files, so generate them only when you are going
+to debug with them.</p>
+
+            <p>To generate
+the debug SWF file using the mxmlc command-line compiler, you set the <samp class="codeph">debug</samp> option
+to <samp class="codeph">true</samp>, either on the command line or in the flex-config.xml file.
+The following example sets the <samp class="codeph">debug</samp> option to <samp class="codeph">true</samp> on
+the command line:</p>
+
+            <pre class="codeblock"> mxmlc -debug=true myApp.mxml</pre>
+
+            <p>You can use fdb in any gdb-compatible debugging environment.
+For example, you can use M‑x gdb inside Emacs and specify fdb.exe
+as the gdb command.</p>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf62063-7ffc_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf62063-7ffc_verapache"><!-- --></a>
+         <h3 class="topictitle3">Command-line debugger limitations</h3>
+
+         
+         <div>
+            <p>The command-line
+debugger supports debugging only at the ActionScript level and does
+not support the Flash timeline concept. The debugger also does not support
+adding breakpoints inside script snippets in MXML tags. You can
+set breakpoints on event handlers defined for MXML tags.</p>
+
+            <p>Flash Player may interact with a server. The debugger does not
+assist in debugging the server-side portion of the application,
+nor does it offer support for inspecting any of the IP transactions
+that take place from Flash Player to the server, and vice versa.</p>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf62063-7ffb_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf62063-7ffb_verapache"><!-- --></a>
+         <h3 class="topictitle3">Command-line debugger shortcuts</h3>
+
+         
+         <div>
+            <p>You can open
+commands within the fdb debugger by using the fewest number of nonambiguous
+keystrokes. For example, to use the <samp class="codeph">print</samp> command,
+you can type <strong>p</strong>, because no other command begins with that
+letter.</p>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf62063-7ffa_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf62063-7ffa_verapache"><!-- --></a>
+         <h3 class="topictitle3">Using the default browser</h3>
+
+         
+         <div>
+            <p>When you debug an application
+in a web browser, fdb opens the player in the default browser. The <em>default browser</em> is
+the browser that opens when you open a web-specific file without
+specifying an application. You must also have the debugger version
+of Flash Player installed with this browser. If you do not have the
+debugger version of Flash Player, Flash displays an error indicating
+that your Flash Player does not support all fdb commands.</p>
+
+            <p>Your default browser might not be the first browser that you
+installed on your computer. For example, if you installed another
+web browser <em>after</em> installing Microsoft Internet Explorer,
+Internet Explorer might not be your default browser.</p>
+
+         </div>
+
+         <div class="nested3" id="WS2db454920e96a9e51e63e3d11c0bf62063-7ff9_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf62063-7ff9_verapache"><!-- --></a>
+            <h4 class="topictitle4">Determine your default browser</h4>
+
+            
+            <div>
+               <ol>
+                  <li>
+                     <p>From
+the Windows toolbar, select Start.</p>
+
+                  </li>
+
+                  <li>
+                     <div class="p">Select Run and enter a URL in the Run dialog box. For example:<pre class="codeblock">http://www.adobe.com</pre>
+
+                     </div>
+
+                  </li>
+
+                  <li>
+                     <p>Click OK.</p>
+
+                     <p>Windows opens the default browser or displays
+an error message indicating that there is no application configured
+to handle your request.</p>
+
+                  </li>
+
+               </ol>
+
+            </div>
+
+         </div>
+
+         <div class="nested3" id="WS2db454920e96a9e51e63e3d11c0bf62063-7ff8_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf62063-7ff8_verapache"><!-- --></a>
+            <h4 class="topictitle4">Set Internet Explorer 6.x as your
+default browser</h4>
+
+            
+            <div>
+               <ol>
+                  <li>
+                     <p>Open
+the Internet Explorer application.</p>
+
+                  </li>
+
+                  <li>
+                     <p>Select Tools &gt; Internet Options.</p>
+
+                  </li>
+
+                  <li>
+                     <p>Select the Programs tab.</p>
+
+                  </li>
+
+                  <li>
+                     <p>Select the "Internet Explorer should check to see whether
+it is the default browser" option, and click OK.</p>
+
+                     <p>The next
+time you start Internet Explorer, Internet Explorer prompts you
+to make it the default browser. If you are not prompted, Internet
+Explorer is already your default browser.</p>
+
+                  </li>
+
+               </ol>
+
+            </div>
+
+         </div>
+
+         <div class="nested3" id="WS2db454920e96a9e51e63e3d11c0bf62063-7ff7_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf62063-7ff7_verapache"><!-- --></a>
+            <h4 class="topictitle4">Set Firefox as your default browser</h4>
+
+            
+            <div>
+               <ol>
+                  <li>
+                     <p>Open the Firefox application.</p>
+
+                  </li>
+
+                  <li>
+                     <p>Select Tools &gt; Options.</p>
+
+                  </li>
+
+                  <li>
+                     <p>Select the General icon to view general settings.</p>
+
+                  </li>
+
+                  <li>
+                     <p>Select the "Firefox should check to see if it is the default
+browser when starting" option, and click OK.</p>
+
+                     <p>The next time
+you start FireFox, FireFox prompts you to make it the default browser.
+If you are not prompted, FireFox is already your default browser.</p>
+
+                  </li>
+
+               </ol>
+
+            </div>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf62063-7ff6_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf62063-7ff6_verapache"><!-- --></a>
+         <h3 class="topictitle3">About the source files</h3>
+
+         
+         <div>
+            <p>Each application can have any number of ActionScript files.
+Some of the files that fdb steps into are external class files,
+and some are generated by the Flex compilers.</p>
+
+            <p>In general, Flex generates a single file that contains ActionScript
+statements used in <samp class="codeph">&lt;fx:Script&gt;</samp> blocks in
+the root MXML file, and an additional file for each ActionScript
+class that the application uses. Flex generates many source files
+so that you can navigate the application from within the debugger.</p>
+
+            <p>To view a list of files that are used by the application you
+are debugging, use the <samp class="codeph">info files</samp> command. For
+more information, see <a href="flx_debugging_de.html#WS2db454920e96a9e51e63e3d11c0bf69084-7ed4_verapache">Getting
+status</a>.</p>
+
+            <p>The generated ActionScript class files are sometimes referred
+to as compilation units. For more information about compilation
+units, see <a href="flx_compilers_cpl.html#WS2db454920e96a9e51e63e3d11c0bf69084-7ed3_verapache">About
+incremental compilation</a>.</p>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WSda78ed3a750d6b8f-168a7ece123f1f222b2-8000_verapache"><a name="WSda78ed3a750d6b8f-168a7ece123f1f222b2-8000_verapache"><!-- --></a>
+         <h3 class="topictitle3">Using RSLs when debugging</h3>
+
+         
+         <div>
+            <p>By default, you compile applications against the signed
+framework RSLs. The signed framework RSLs are optimized, which means
+that they do not include debugging information. If you compile on
+the command line and use the command line debugger, you must either
+disable RSLs or specify non-optimized RSLs to use. Otherwise, you
+will not be able to set break points or take advantage of other
+debugging functionality. </p>
+
+            <p>For more information, see <a href="flx_rsl_rsl.html#WS2db454920e96a9e51e63e3d11c0bf674ba-7fe1_verapache">Example
+of using the framework RSLs on the command line</a>
+            </p>
+
+         </div>
+
+      </div>
+
+   </div>
+
+   <div class="nested1" id="WS2db454920e96a9e51e63e3d11c0bf62063-7ff5_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf62063-7ff5_verapache"><!-- --></a>
+      <h2 class="topictitle2">Starting a debugging session</h2>
+
+      
+      <div>
+         <p>You start
+a debugging session by using the fdb command-line debugger. After you
+start a session, you typically type <strong>continue</strong> once before
+you set break points and perform other debugging tasks. This is
+because the first frame that suspends debugging occurs before the
+application has finished initialization.</p>
+
+         <p>For more information about which commands are available after
+you start a debugging session, see <a href="flx_debugging_de.html#WS2db454920e96a9e51e63e3d11c0bf69084-7ed2_verapache">Using
+the command-line debugger commands</a>.</p>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf62063-7ff4_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf62063-7ff4_verapache"><!-- --></a>
+         <h3 class="topictitle3">Starting a session with the stand-alone
+Flash Player</h3>
+
+         
+         <div>
+            <p>You can start a debugging session with the stand-alone
+debugger version of Flash Player. You do this by compiling the application
+into a SWF file, and then invoking the SWF file with the fdb command-line
+debugger. The fdb debugger opens the debugger version of the stand-alone
+Flash Player. </p>
+
+            <p>The debugger version of the stand-alone Flash Player runs as
+an independent application. It does not run within a web browser
+or other shell. The debugger version of the stand-alone Flash Player
+does not support any server requests, such as web services and dynamic
+SWF loading, so not all applications can be properly debugged inside
+the debugger version of the stand-alone Flash Player.</p>
+
+         </div>
+
+         <div class="nested3" id="WS2db454920e96a9e51e63e3d11c0bf62063-7ff3_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf62063-7ff3_verapache"><!-- --></a>
+            <h4 class="topictitle4">Debug with the stand-alone Flash
+Player</h4>
+
+            
+            <div>
+               <ol>
+                  <li>
+                     <p>Compile the Flex application's debug SWF file and
+set the <samp class="codeph">debug</samp> option to<samp class="codeph"> true</samp>. </p>
+
+                     <div class="p">The
+following example compiles an application with the mxmlc command-line
+compiler:<pre class="codeblock">mxmlc -debug=true myApp.mxml</pre>
+
+                     </div>
+
+                     <p>For
+more information on Flex compilers, see <a href="flx_compilers_cpl.html#WS2db454920e96a9e51e63e3d11c0bf69084-7ed1_verapache">About
+the Flex compilers</a>.</p>
+
+                  </li>
+
+                  <li>
+                     <p>Find the <em>flex_install_dir</em>/bin directory. You installed
+the Flex application files to this directory. </p>
+
+                  </li>
+
+                  <li>
+                     <p>Type <strong>fdb</strong> from the command line. The fdb prompt appears.</p>
+
+                     <div class="p">You
+can also open fdb with the JAR file, as the following example shows:<pre class="codeblock"> java -jar ../lib/fdb.jar</pre>
+
+                     </div>
+
+                  </li>
+
+                  <li>
+                     <p>Type <strong>run</strong> at the fdb prompt, followed by the path to
+the SWF file, as shown in the following example:</p>
+
+                     <p>
+                        <samp class="codeph">(fdb) run c:/myfiles/fonts/EmbedMyFont.swf</samp>
+                     </p>
+
+                     <p>The
+fdb debugger starts the Flex application in the debugger version
+of the stand-alone Flash Player, and the <samp class="codeph">(fdb</samp>)
+command prompt appears. You can also start a session by typing <strong>fdb</strong>
+                        <em>filename</em>
+                        <strong>.swf</strong> at
+the command prompt, rather than by using the <samp class="codeph">run</samp> command.</p>
+
+                  </li>
+
+               </ol>
+
+            </div>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf62063-7ff2_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf62063-7ff2_verapache"><!-- --></a>
+         <h3 class="topictitle3">Starting a session in a browser</h3>
+
+         
+         <div>
+            <p>You can start a debugging session in a browser. This requires
+that you pre-compile the SWF file and are able to request it from
+a web server.</p>
+
+         </div>
+
+         <div class="nested3" id="WS2db454920e96a9e51e63e3d11c0bf62063-7ff1_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf62063-7ff1_verapache"><!-- --></a>
+            <h4 class="topictitle4">Debug in a browser</h4>
+
+            
+            <div>
+               <ol>
+                  <li>
+                     <div class="p">Compile the Flex application's debug SWF file and
+set the <samp class="codeph">debug</samp> option to <samp class="codeph">true</samp>.
+The following example compiles an application with the mxmlc command-line
+compiler:<pre class="codeblock">mxmlc -debug=true myApp.mxml</pre>
+
+                     </div>
+
+                     <p>For
+more information on Flex compilers, see <a href="flx_compilers_cpl.html#WS2db454920e96a9e51e63e3d11c0bf69084-7ed1_verapache">About
+the Flex compilers</a>.</p>
+
+                  </li>
+
+                  <li>
+                     <p>Create an HTML wrapper that embeds this SWF file, if you
+have not already done so. For more information on creating a wrapper,
+see <a href="flx_wrapper_wr.html#WS2db454920e96a9e51e63e3d11c0bf69084-7ecf_verapache">Creating
+a wrapper</a>.</p>
+
+                  </li>
+
+                  <li>
+                     <p>Copy the SWF file and its wrapper files to your web server.</p>
+
+                  </li>
+
+                  <li>
+                     <p>Find the <em>flex_install_dir</em>/bin directory. You installed
+the Flex application files to this directory. </p>
+
+                  </li>
+
+                  <li>
+                     <p>Type <strong>fdb</strong> in the command line. The fdb prompt appears.</p>
+
+                     <p>You
+can also open fdb with the JAR file, as the following example shows:</p>
+
+                     <pre class="codeblock"> java -jar ../lib/fdb.jar</pre>
+
+                  </li>
+
+                  <li>
+                     <p>Type <strong>run</strong> at the fdb prompt:</p>
+
+                     <pre class="codeblock"> (fdb) run</pre>
+
+                     <p>This
+instructs fdb to wait for a player to connect to it.</p>
+
+                  </li>
+
+                  <li>
+                     <p>In your browser, request a wrapper that embeds the debug
+SWF file. Do not request the SWF file directly in a browser because
+some browsers do not allow you to run a SWF file directly.</p>
+
+                     <p>Alternatively,
+you can type <strong>run</strong>
+                        <em>filename</em>
+                        <strong>.html</strong> at the command
+line, and fdb launches the browser for you. The filename should
+include the entire URL; for example:</p>
+
+                     <pre class="codeblock"> (fdb) run http://localhost:8100/flexapps/index.html</pre>
+
+                  </li>
+
+               </ol>
+
+            </div>
+
+         </div>
+
+      </div>
+
+   </div>
+
+   <div class="nested1" id="WS2db454920e96a9e51e63e3d11c0bf69084-7ecc_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7ecc_verapache"><!-- --></a>
+      <h2 class="topictitle2">Configuring the command-line debugger</h2>
+
+      
+      <div>
+         <p>You can
+configure the current session of the fdb command-line debugger using variables
+that exist entirely within fdb; they are not part of your application.
+The configuration variables are prefixed with $.</p>
+
+         <p>The
+following table describes the most common configuration variables
+used by fdb:</p>
+
+         
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" frame="border" border="1" rules="all">
+               
+               
+               <thead align="left">
+                  <tr>
+                     <th class="cellrowborder" valign="top" width="NaN%" id="d173266e774">
+                        <p>Variable</p>
+
+                     </th>
+
+                     <th class="cellrowborder" valign="top" width="NaN%" id="d173266e780">
+                        <p>Description</p>
+
+                     </th>
+
+                  </tr>
+
+               </thead>
+
+               <tbody>
+                  <tr>
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d173266e774 ">
+                        <div class="p">
+                           <pre class="codeblock">$invokegetters</pre>
+
+                        </div>
+
+                     </td>
+
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d173266e780 ">
+                        <p>Set to 0 to prevent fdb from firing getter
+functions. The default value is <samp class="codeph">1</samp> (enabled).</p>
+
+                     </td>
+
+                  </tr>
+
+                  <tr>
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d173266e774 ">
+                        <div class="p">
+                           <pre class="codeblock">$listsize</pre>
+
+                        </div>
+
+                     </td>
+
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d173266e780 ">
+                        <p>Sets the number of lines to display with
+the list command. The default value is <samp class="codeph">10</samp>.</p>
+
+                     </td>
+
+                  </tr>
+
+               </tbody>
+
+            </table>
+</div>
+
+         <p>To set the value of a configuration variable, you use the <samp class="codeph">set</samp> command,
+as the following example shows:</p>
+
+         <pre class="codeblock"> <strong>(fdb) set $invokegetters = 0</strong> </pre>
+
+         <p>For more information on using the <samp class="codeph">set</samp> command,
+see <a href="flx_debugging_de.html#WS2db454920e96a9e51e63e3d11c0bf69084-7ece_verapache">Changing
+data values</a>.</p>
+
+      </div>
+
+   </div>
+
+   <div class="nested1" id="WS2db454920e96a9e51e63e3d11c0bf69084-7ed2_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7ed2_verapache"><!-- --></a>
+      <h2 class="topictitle2">Using the command-line debugger commands</h2>
+
+      
+      <div>
+         <p>The fdb command-line debugger includes commands that you
+use to debug and navigate your Flex application.</p>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf62063-7fee_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf62063-7fee_verapache"><!-- --></a>
+         <h3 class="topictitle3">Running the debugger</h3>
+
+         
+         <div>
+            <p>The
+fdb debugger provides several commands for stepping through the debugged
+application's files. The following table summarizes those commands:</p>
+
+            
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" frame="border" border="1" rules="all">
+                  
+                  
+                  <thead align="left">
+                     <tr>
+                        <th class="cellrowborder" valign="top" width="NaN%" id="d173266e906">
+                           <p>Command</p>
+
+                        </th>
+
+                        <th class="cellrowborder" valign="top" width="NaN%" id="d173266e912">
+                           <p>Description</p>
+
+                        </th>
+
+                     </tr>
+
+                  </thead>
+
+                  <tbody>
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d173266e906 ">
+                           <div class="p">
+                              <pre class="codeblock"><samp class="codeph">continue</samp></pre>
+
+                           </div>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d173266e912 ">
+                           <p>Continues running the application.</p>
+
+                        </td>
+
+                     </tr>
+
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d173266e906 ">
+                           <div class="p">
+                              <pre class="codeblock"><samp class="codeph">file [</samp><em>file</em><samp class="codeph">]</samp></pre>
+
+                           </div>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d173266e912 ">
+                           <p>Specifies an application to be debugged,
+without starting it. This command does not cause the application
+to start; use the <samp class="codeph">run</samp> command without an argument
+to start debugging the application.</p>
+
+                        </td>
+
+                     </tr>
+
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d173266e906 ">
+                           <div class="p">
+                              <pre class="codeblock"><samp class="codeph">finish</samp></pre>
+
+                           </div>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d173266e912 ">
+                           <p>Continues until the function exits.</p>
+
+                        </td>
+
+                     </tr>
+
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d173266e906 ">
+                           <div class="p">
+                              <pre class="codeblock"><samp class="codeph">next [</samp><em>N</em><samp class="codeph">]</samp></pre>
+
+                           </div>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d173266e912 ">
+                           <p>Continues to the next source line in the
+application. The optional argument <samp class="codeph">
+                                 <em>N</em>
+                              </samp> means
+do this <samp class="codeph">
+                                 <em>N</em>
+                              </samp> times or until the program stops
+for some other reason.</p>
+
+                        </td>
+
+                     </tr>
+
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d173266e906 ">
+                           <div class="p">
+                              <pre class="codeblock"><samp class="codeph">quit</samp></pre>
+
+                           </div>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d173266e912 ">
+                           <p>Exits from the debug session.</p>
+
+                        </td>
+
+                     </tr>
+
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d173266e906 ">
+                           <div class="p">
+                              <pre class="codeblock">run [<em>file</em>]</pre>
+
+                           </div>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d173266e912 ">
+                           <p>Starts a debugging session by running the
+specified file. To run the application that the file command previously
+specified, execute the <samp class="codeph">run</samp> command without any
+options.</p>
+
+                           <p>The <samp class="codeph">run</samp> command starts the application
+in a browser or stand-alone Flash Player.</p>
+
+                        </td>
+
+                     </tr>
+
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d173266e906 ">
+                           <div class="p">
+                              <pre class="codeblock"><samp class="codeph">step [</samp><em>N</em><samp class="codeph">]</samp></pre>
+
+                           </div>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d173266e912 ">
+                           <p>Steps into the application. The optional
+argument <samp class="codeph">
+                                 <em>N</em>
+                              </samp> means do this <samp class="codeph">
+                                 <em>N</em>
+                              </samp> times
+or until the program stops for some other reason.</p>
+
+                           <p>These commands
+are nonblocking, which means that when they return, the client has
+at least begun the operation, but it has not necessarily finished
+it.</p>
+
+                        </td>
+
+                     </tr>
+
+                  </tbody>
+
+               </table>
+</div>
+
+            <p>When you start a session, fdb stops execution before Flex renders
+the application on the screen. Use the <samp class="codeph">continue</samp> command
+to get to the application's starting screen. </p>
+
+            <p>The following example shows a sample application after it starts:</p>
+
+            <pre class="codeblock"> <strong>(fdb) continue</strong> 
+ [trace] ComboBase: y = undefined text_mc.bl = undefined 
+ [trace] ComboBase: y = undefined text_mc.bl = undefined 
+ [trace] ComboBase: y = undefined text_mc.bl = undefined 
+ [trace] ComboBase: y = undefined text_mc.bl = undefined 
+ [trace] ComboBase: y = undefined text_mc.bl = undefined 
+ [trace] ComboBase: y = undefined text_mc.bl = undefined 
+ [trace] ComboBase: y = undefined text_mc.bl = undefined 
+ [trace] RadioButtonGroup.addInstance: instance = _level0._VBox0._Accordion0._For 
+ m2._FormItem3._RadioButton1 data = undefined label = 2005 
+ [trace] RadioButtonGroup.addInstance: instance = _level0._VBox0._Accordion0._For 
+ m2._FormItem3._RadioButton2 data = undefined label = 2004 
+ [trace] RadioButtonGroup.addInstance: instance = _level0._VBox0._Accordion0._For 
+ m2._FormItem3._RadioButton3 data = undefined label = 2005 
+ [trace] RadioButtonGroup.addInstance: instance = _level0._VBox0._Accordion0._For 
+ m2._FormItem3._RadioButton4 data = undefined label = 2006 
+ [trace] ComboBase: y = 0 text_mc.bl = 12 
+ [trace] ComboBase: y = 0 text_mc.bl = 12 
+ [trace] ComboBase: y = 0 text_mc.bl = 12 
+ [trace] ComboBase: y = 0 text_mc.bl = 14</pre>
+
+            <p>During the debugging session, you interact with the application
+in the debugger version of Flash Player. For example, if you select
+an item from the drop-down list, the debugger continues to output
+information to the command window:</p>
+
+            <pre class="codeblock"> [trace] SSL : ConfigureScrolling 
+ [trace] SSP : 5 51 true 47 
+ [trace] ComboBase: y = 0 text_mc.bl = 14 
+ [trace] layoutChildren : bRowHeightChanged 
+ [trace] &gt;&gt;SSL:layoutChildren 
+ [trace] deltaRows 5 
+ [trace] rowCount 5 
+ [trace] &lt;&lt;SSL:layoutChildren 
+ [trace] &gt;&gt;SSL:draw 
+ [trace] bScrollChanged 
+ [trace] SSL : ConfigureScrolling 
+ [trace] SSP : 5 51 false 46 
+ [trace] SSL Drawing Rows in UpdateControl 5 
+ [trace] &lt;&lt;SSL:draw</pre>
+
+            <p>You can store commonly used commands in a source file, and then
+load that file by using the <samp class="codeph">source</samp> command. For
+more information, see <a href="flx_debugging_de.html#WS2db454920e96a9e51e63e3d11c0bf69084-7ecd_verapache">Accessing commands
+from a file</a>.</p>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf62063-7fed_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf62063-7fed_verapache"><!-- --></a>
+         <h3 class="topictitle3">Setting breakpoints</h3>
+
+         
+         <div>
+            <p>Setting breakpoints is a critical aspect
+of debugging any application. You can set breakpoints on any ActionScript
+code in your Flex application. You can set breakpoints on statements
+in any external ActionScript file, on ActionScript statements in
+an <samp class="codeph">&lt;fx:Script&gt;</samp> tag, or on MXML tags that
+have event handler properties. In the following MXML code, <samp class="codeph">click</samp> is
+an event handler property:</p>
+
+            <pre class="codeblock"> &lt;s:Button click="ws.getWeather.send();"/&gt;</pre>
+
+            <p>Breakpoints are maintained from session to session. However,
+when you change the target file or quit fdb, breakpoints are lost.</p>
+
+            <p>The following table summarizes the commands for manipulating
+breakpoints with the ActionScript debugger:</p>
+
+            
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" frame="border" border="1" rules="all">
+                  
+                  
+                  <thead align="left">
+                     <tr>
+                        <th class="cellrowborder" valign="top" width="NaN%" id="d173266e1194">
+                           <p>Command</p>
+
+                        </th>
+
+                        <th class="cellrowborder" valign="top" width="NaN%" id="d173266e1200">
+                           <p>Description</p>
+
+                        </th>
+
+                     </tr>
+
+                  </thead>
+
+                  <tbody>
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d173266e1194 ">
+                           <div class="p">
+                              <pre class="codeblock"><samp class="codeph">break [<em>args</em>]</samp></pre>
+
+                           </div>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d173266e1200 ">
+                           <p>Sets a breakpoint at the specified line
+or function. The argument can be a line number or function name.
+With no arguments, the <samp class="codeph">break</samp> command sets a breakpoint
+at the currently stopped line (not the currently listed line).</p>
+
+                           <p>If
+you specify a line number, fdb breaks at the start of code for that
+line. If you specify a function name, fdb breaks at the start of
+code for that function.</p>
+
+                        </td>
+
+                     </tr>
+
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d173266e1194 ">
+                           <div class="p">
+                              <pre class="codeblock"><samp class="codeph">clear [<em>args</em>]</samp></pre>
+
+                           </div>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d173266e1200 ">
+                           <p>Clears a breakpoint at the specified line
+or function. The argument can be a line number or function name. </p>
+
+                           <p>If
+you specify a line number, fdb clears a breakpoint in that line.
+If you specify a function name, fdb clears a breakpoint at the beginning
+of that function.</p>
+
+                           <p>With no argument, fdb clears a breakpoint
+in the line that the selected frame is executing in.</p>
+
+                           <p>Compare
+the <samp class="codeph">delete</samp> command, which clears breakpoints by
+number.</p>
+
+                        </td>
+
+                     </tr>
+
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d173266e1194 ">
+                           <div class="p">
+                              <pre class="codeblock">commands [<em>breakpoint</em>]</pre>
+
+                           </div>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d173266e1200 ">
+                           <p>Sets commands to execute when the specified
+breakpoint is encountered. If you do not specify a breakpoint, the
+commands are applied to the last breakpoint.</p>
+
+                        </td>
+
+                     </tr>
+
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d173266e1194 ">
+                           <div class="p">
+                              <pre class="codeblock">condition <em>bp_num</em> [<em>expression</em>]</pre>
+
+                           </div>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d173266e1200 ">
+                           <p>Specifies a condition that must be met to
+stop at the given breakpoint (identified by the breakpoint number).
+The fdb debugger evaluates expression when the breakpoint is reached.
+If the value is <samp class="codeph">true</samp> or nonzero, fdb stops at the
+breakpoint. Otherwise, fdb ignores the breakpoint and continues
+execution.</p>
+
+                           <p>To remove the condition from the breakpoint, do
+not specify an expression.</p>
+
+                           <p>You can use conditional breakpoints
+to stop on all events of a particular type. For example, to stop
+on every <samp class="codeph">initialize</samp> event, use the following commands:</p>
+
+                           <div class="p">
+                              <pre class="codeblock">(fdb) <strong>break UIEvent:dispatch</strong> 
+Breakpoint 18 at 0x16cb3: file UIEventDispatcher.as, line 190(fdb) <strong> 
+condition 18 (eventObj.type == 'initialize')</strong></pre>
+
+                           </div>
+
+                        </td>
+
+                     </tr>
+
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d173266e1194 ">
+                           <div class="p">
+                              <pre class="codeblock"><samp class="codeph">delete [<em>args</em>]</samp></pre>
+
+                           </div>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d173266e1200 ">
+                           <p>Deletes breakpoints. Specify one or more
+comma- or space-separated breakpoint numbers to delete those breakpoints.
+To delete all breakpoints, do not provide an argument.</p>
+
+                        </td>
+
+                     </tr>
+
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d173266e1194 ">
+                           <div class="p">
+                              <pre class="codeblock">disable breakpoints [<em>bp_num</em>]</pre>
+
+                           </div>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d173266e1200 ">
+                           <p>Disables breakpoints. Specify one or more
+space-separated numbers as options to disable only those breakpoints.</p>
+
+                        </td>
+
+                     </tr>
+
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d173266e1194 ">
+                           <div class="p">
+                              <pre class="codeblock">enable breakpoints [<em>bp_num</em>]</pre>
+
+                           </div>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d173266e1200 ">
+                           <p>Enables breakpoints that were previously
+disabled. Specify one or more space-separated numbers as options
+to enable only those breakpoints.</p>
+
+                        </td>
+
+                     </tr>
+
+                  </tbody>
+
+               </table>
+</div>
+
+            <p>The following example sets a breakpoint on the <samp class="codeph">myFunc()</samp> method,
+which is triggered when the user clicks a button:</p>
+
+            <pre class="codeblock"> <strong>(fdb) break myFunc</strong> 
+ Breakpoint 1 at 0x401ef: file file1.mxml, line 5 
+ <strong>(fdb) continue</strong> 
+ Breakpoint 1, myFunc() at file1.mxml:5 
+ 	5ta1.text = "Clicked"; 
+ (fdb)</pre>
+
+            <p>To see all breakpoints and their numbers, use the <samp class="codeph">info breakpoints</samp> command.
+This will also tell you if a breakpoint is unresolved.</p>
+
+            <p>You can use the <samp class="codeph">commands</samp> command to periodically
+print out values of objects and variables whenever fdb encounters
+a particular breakpoint. The following example prints out the value
+of ta1.text (referred to as <samp class="codeph">$1</samp>), executes the <samp class="codeph">where</samp> command,
+and then continues when it encounters the button's click handler breakpoint:</p>
+
+            <pre class="codeblock"> <strong>(fdb) commands 1</strong> 
+ Type commands for when breakpoint 1 is hit, one per line. 
+ End with a line saying just 'end'. 
+ <strong>&gt;print ta1.text</strong> 
+ <strong>&gt;where</strong> 
+ <strong>&gt;continue</strong> 
+ <strong>&gt;end</strong> 
+ <strong>(fdb) cont</strong> 
+ Breakpoint 1, myFunc() at file1.mxml:5 
+ 	5ta1.text = "Clicked"; 
+ $1 = "" 
+ #0 [MovieClip 1].myFunc(event=undefined) at file1.mxml:5 
+ #1 [MovieClip 1].handler(event=[Object 18127]) at file1.mxml:15</pre>
+
+            <p>Breakpoints are not specific to a single SWF file. If you set
+a breakpoint in a file that is common to multiple SWF files, fdb
+applies the breakpoint to all SWF files.</p>
+
+            <p>For example, suppose you have four SWF files loaded and each
+of those SWF files contains the same version of an ActionScript
+file, view.as. To set a breakpoint in the <samp class="codeph">init()</samp> function
+of the view.as file, you need to set only a single breakpoint in
+one of the view.as files. When fdb encounters any of the <samp class="codeph">init()</samp> functions,
+it triggers the break.</p>
+
+            <div class="p">By using the <samp class="codeph">watch</samp> command, you can set watchpoints
+on variables. When that variable changes, the debugger halts. Watched
+variables can be any member variable, but cannot be dynamic, getters,
+or local variables. The <samp class="codeph">watch</samp> command has the following
+syntax:<pre class="codeblock">(fdb) watch <em>variable_name</em></pre>
+
+            </div>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf69084-7ecd_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7ecd_verapache"><!-- --></a>
+         <h3 class="topictitle3">Accessing commands from a file</h3>
+
+         
+         <div>
+            <p>You
+can use the <samp class="codeph">source</samp> command to read fdb commands
+from a file and execute them. This lets you write commands such
+as breakpoints once and use them repeatedly when debugging the same
+application in different sessions or across different applications.</p>
+
+            <p>The <samp class="codeph">source</samp> command has the following syntax:</p>
+
+            <pre class="codeblock"> <em>(fdb) source file</em> </pre>
+
+            <p>The value of file can be a filename for a file in the current
+working directory or an absolute path to a remote file. To determine
+the current working directory, use the <samp class="codeph">pwd</samp> command. </p>
+
+            <p>The following examples read in the mycommands.txt file from different locations:</p>
+
+            <pre class="codeblock"> <strong>(fdb) source mycommands.txt</strong> 
+ <strong>(fdb) source mydir\mycommands.txt</strong> 
+ <strong>(fdb) source c:\mydir\mycommands.txt</strong> </pre>
+
+            <div class="section" id="WS2db454920e96a9e51e63e3d11c0bf69084-7ecd_verapache__WS2db454920e96a9e51e63e3d11c0bf62063-7feb_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7ecd_verapache__WS2db454920e96a9e51e63e3d11c0bf62063-7feb_verapache"><!-- --></a><h4 class="sectiontitle">Examining
+data values</h4>
+               
+               <p>The <samp class="codeph">print</samp> command displays
+values of members such as variables, objects, and properties. This
+command excludes functions, static variables, constants, and inaccessible
+member variables (such as the members of an Array). </p>
+
+               <p>The <samp class="codeph">print</samp> command
+uses the following syntax:</p>
+
+               <pre class="codeblock"> print [<em>variable_name</em> | <em>object_name</em>[.] | <em>property</em>]</pre>
+
+               <p>The <samp class="codeph">print</samp> command
+prints the value of the specified variable, object, or property.
+You can specify the <samp class="codeph">name</samp> or <samp class="codeph">name.property</samp> to
+narrow the results. If fdb can determine the type of the entity,
+fdb displays the type.</p>
+
+               <p>If you specify the <samp class="codeph">print</samp> command
+on an object, fdb displays a numeric identifier for the object.</p>
+
+               <p>To
+list all the properties of an object, use trailing dot-notation
+syntax. The following example prints all the properties of the object
+myButton:</p>
+
+               <pre class="codeblock"> <strong>(fdb) print myButton</strong>. </pre>
+
+               <p>To
+print the value of a single variable, use dot-notation syntax, as
+the following example shows:</p>
+
+               <pre class="codeblock"> <strong>(fdb) print myButton.label</strong> </pre>
+
+               <p>Use
+the <samp class="codeph">what</samp> command to view the context of a variable.
+The <samp class="codeph">what</samp> command has the following syntax:</p>
+
+               <pre class="codeblock"> <em>(fdb) what variable</em></pre>
+
+               <p>Use
+the <samp class="codeph">display</samp> command to add an expression to the
+autodisplay list. Every time debugging stops, fdb prints the list
+of expressions in the autodisplay list. The <samp class="codeph">display</samp> command
+has the following syntax:</p>
+
+               <pre class="codeblock"> (fdb) display [<em>expression</em>]</pre>
+
+               <p>The
+expression is the same as the arguments for the <samp class="codeph">print</samp> command,
+as the following example shows:</p>
+
+               <pre class="codeblock"> <strong>(fdb) display myButton.color</strong> </pre>
+
+               <p>To
+view all expressions on the autodisplay list, use the <samp class="codeph">info</samp> 
+                  <samp class="codeph">display</samp> command. </p>
+
+               <p>To
+remove an expression from the autodisplay list, use the <samp class="codeph">undisplay</samp> command.
+The <samp class="codeph">undisplay</samp> command has the following syntax:</p>
+
+               <pre class="codeblock"> (fdb) undisplay<em> [list_num]</em> </pre>
+
+               <p>Use
+the <samp class="codeph">undisplay</samp> command without an argument to remove
+all entries on the autodisplay list. Specify one or more <samp class="codeph">list_num</samp> options
+separated by spaces to remove numbered entries from the autodisplay
+list.</p>
+
+               <p>You can temporarily disable autodisplay expressions
+by using the <samp class="codeph">disable</samp> 
+                  <samp class="codeph">display</samp> command.
+The <samp class="codeph">disable display</samp> command has the following syntax:</p>
+
+               <pre class="codeblock"> (fdb) disable display [<em>display_num</em>]</pre>
+
+               <p>Specify
+one or more space-separated numbers as options to disable only those entries
+in the autodisplay list.</p>
+
+               <p>To re-enable the display list, use
+the <samp class="codeph">enable</samp> 
+                  <samp class="codeph">display</samp> command, which
+has the same syntax as the <samp class="codeph">disable display</samp> command.</p>
+
+            </div>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf69084-7ece_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7ece_verapache"><!-- --></a>
+         <h3 class="topictitle3">Changing data values</h3>
+
+         
+         <div>
+            <p>You can use the <samp class="codeph">set</samp> command to assign
+the value of a variable or a configuration variable. The <samp class="codeph">set</samp> command
+has the following syntax:</p>
+
+            <pre class="codeblock"> set [expression]</pre>
+
+            <p>Depending on the variable type, you use different syntax for
+the <em>expression</em>. The following example sets the variable <samp class="codeph">i</samp> to
+the number 3:</p>
+
+            <pre class="codeblock"> <strong>(fdb) set i = 3</strong> </pre>
+
+            <p>The following example sets the variable <samp class="codeph">employee.name</samp> to
+the string <samp class="codeph">Reiner</samp>: </p>
+
+            <pre class="codeblock"> <strong>(fdb) set employee.name = "Reiner"</strong> </pre>
+
+            <p>The following example sets the convenience variable <samp class="codeph">$myVar</samp> to
+the number <samp class="codeph">20</samp>:</p>
+
+            <pre class="codeblock"> <strong>(fdb) set $myVar = 20</strong> </pre>
+
+            <p>You use the <samp class="codeph">set</samp> command to set the values of
+fdb configuration variables. For more information, see <a href="flx_debugging_de.html#WS2db454920e96a9e51e63e3d11c0bf69084-7ecc_verapache">Configuring
+the command-line debugger</a>.</p>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf62063-7fe9_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf62063-7fe9_verapache"><!-- --></a>
+         <h3 class="topictitle3">Viewing file contents</h3>
+
+         
+         <div>
+            <p>You use the <samp class="codeph">list</samp> command to view lines
+of code in the ActionScript files. The <samp class="codeph">list</samp> command
+uses the following syntax:</p>
+
+            <pre class="codeblock"> list [- | <em>line_num</em>[,<em>line_num</em>] | [<em>file_name</em>:]<em>line_num</em> | <em>file_name</em>[:<em>line_num</em>] | [<em>file_name</em>:]<em>function_name</em>]</pre>
+
+            <p>You use the <samp class="codeph">list</samp> command to print the lines
+around the specified function or line of the current file. If you
+do not specify an argument, <samp class="codeph">list</samp> prints 10 lines after
+or around the previous listing. If you specify a filename, but not
+a line number, <samp class="codeph">list</samp> assumes line 1.</p>
+
+            <p>If you specify a single numeric argument, the <samp class="codeph">list</samp> command
+lists 10 lines around that line. If you specify more than one comma-separated
+numeric argument, the <samp class="codeph">list</samp> command displays lines
+between and including those line numbers.</p>
+
+            <p>To set the list location to where the execution is currently
+stopped, use the <samp class="codeph">home</samp> command.</p>
+
+            <p>The following example lists code from line 10 to line 15:</p>
+
+            <pre class="codeblock"> <strong>(fdb) list 10, 15</strong> </pre>
+
+            <p>If you specify a hyphen (-) in the previous example, the <samp class="codeph">list</samp> command
+displays the 10 lines before a previous 10-line listing. </p>
+
+            <p>Specify a line number to list the lines around that line in the
+current file, as in the following example:</p>
+
+            <pre class="codeblock"> <strong>(fdb) list 10</strong> </pre>
+
+            <p>Specify a filename followed by a line number to list the lines
+around that line in that file, as in the following example:</p>
+
+            <pre class="codeblock"> <strong>(fdb) list effects.mxml:10</strong> </pre>
+
+            <p>Specify a function name to list the lines around the beginning
+of that function, as in the following example:</p>
+
+            <pre class="codeblock"> <strong>(fdb) list myFunction</strong> </pre>
+
+            <p>Specify a filename followed by a function name to list the lines
+around the beginning of that function. This lets you distinguish
+among like-named static functions, as follows:</p>
+
+            <pre class="codeblock"> <strong>(fdb) list effects.mxml:myFunction</strong> </pre>
+
+            <p>You can resolve ambiguous matches by extending the value of the
+function name or filename, as the following examples show:</p>
+
+            <p>Filenames:</p>
+
+            <pre class="codeblock"> <strong>(fdb) list UIOb</strong> 
+ Ambiguous matching file names: 
+ UIComponent.as#66 
+ UIComponentDescriptor.as#67 
+ UIComponentExtensions.as#68 
+ <strong>(fdb) list UIComponent.</strong> </pre>
+
+            <p>Function names:</p>
+
+            <pre class="codeblock"> <strong>(fdb) list init</strong> 
+ Ambiguous matching function names: 
+ init 
+ initFromClipParameters 
+ <strong>(fdb) list init(</strong> </pre>
+
+            <div class="section" id="WS2db454920e96a9e51e63e3d11c0bf62063-7fe9_verapache__WS2db454920e96a9e51e63e3d11c0bf62063-7fe8_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf62063-7fe9_verapache__WS2db454920e96a9e51e63e3d11c0bf62063-7fe8_verapache"><!-- --></a><h4 class="sectiontitle">Viewing
+and changing the current file</h4>
+               
+               <p>The <samp class="codeph">list</samp> command
+acts on the current file by default. To change to a different file,
+use the <samp class="codeph">cf</samp> command. The <samp class="codeph">cf</samp> command
+has the following syntax:</p>
+
+               <pre class="codeblock"> (fdb) cf [<em>file_name</em>|<em>file_number</em>]</pre>
+
+               <p>For
+example, to change the file to MyApp.mxml, use the following command:</p>
+
+               <pre class="codeblock"> <strong>(fdb) cf MyApp.mxml</strong> </pre>
+
+               <p>If
+you do not specify a filename, the <samp class="codeph">cf</samp> command lists
+the name and file number of the current file.</p>
+
+               <p>To view a list
+of all files used by the current application, use the <samp class="codeph">info</samp> 
+                  <samp class="codeph">files</samp> command.
+For more information, see <a href="flx_debugging_de.html#WS2db454920e96a9e51e63e3d11c0bf69084-7ed4_verapache">Getting
+status</a>.</p>
+
+            </div>
+
+            <div class="section" id="WS2db454920e96a9e51e63e3d11c0bf62063-7fe9_verapache__WS2db454920e96a9e51e63e3d11c0bf62063-7fe7_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf62063-7fe9_verapache__WS2db454920e96a9e51e63e3d11c0bf62063-7fe7_verapache"><!-- --></a><h4 class="sectiontitle">Viewing
+the current working directory</h4>
+               
+               <p>Use the <samp class="codeph">pwd</samp> command
+to view the file system's current working directory, as the following
+example shows. This is the directory from which fdb was run.</p>
+
+               <pre class="codeblock"> <strong>(fdb) pwd</strong> 
+ c:/Flex2SDK/bin/</pre>
+
+            </div>
+
+            <div class="section" id="WS2db454920e96a9e51e63e3d11c0bf62063-7fe9_verapache__WS2db454920e96a9e51e63e3d11c0bf62063-7fe6_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf62063-7fe9_verapache__WS2db454920e96a9e51e63e3d11c0bf62063-7fe6_verapache"><!-- --></a><h4 class="sectiontitle">Locating
+source files</h4>
+               
+               <p>Usually, fdb can find the source files for
+your application to display them with the <samp class="codeph">list</samp> command.
+In some situations, however, you need to add a directory to the search
+path so that fdb can find the source files. This can be necessary,
+for example, when the application was compiled on a different computer
+than you are using to debug the application.</p>
+
+               <p>You use the <samp class="codeph">directory</samp> command
+to add a directory to the search path. This command adds the specified
+directory or directories to the beginning of the list of directories
+that fdb searches for source files. The syntax for the <samp class="codeph">directory</samp> command
+is as follows: </p>
+
+               <pre class="codeblock"> <em>(fdb) directory path</em> </pre>
+
+               <p>For
+example:</p>
+
+               <pre class="codeblock"> (fdb) directory C:\MySource;C:\MyOtherSource</pre>
+
+               <p>On
+Windows, use the semicolon character as a separator. On Macintosh
+and UNIX, use the colon character as a separator.</p>
+
+               <p>To see the
+current list of directories in the search path, use the <samp class="codeph">show directories</samp> command.</p>
+
+            </div>
+
+            <div class="section" id="WS2db454920e96a9e51e63e3d11c0bf62063-7fe9_verapache__WS2db454920e96a9e51e63e3d11c0bf62063-7fe5_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf62063-7fe9_verapache__WS2db454920e96a9e51e63e3d11c0bf62063-7fe5_verapache"><!-- --></a><h4 class="sectiontitle">Using
+truncated file and function names</h4>
+               
+               <p>The fdb debugger supports
+truncated file and function names. You can specify <samp class="codeph">
+                     <em>file_name</em>
+                  </samp> and <samp class="codeph">
+                     <em>function_name</em>
+                  </samp> arguments
+with partial names, as long as the names are unambiguous. </p>
+
+               <p>If
+you use truncated file and function names, fdb tries to map the
+argument to an unambiguous function name first, and then a filename.
+For example, <samp class="codeph">list</samp> 
+                  <samp class="codeph">foo</samp> first tries
+to find a function unambiguously starting with <em>foo</em> in the
+current file. If this fails, it tries to find a file unambiguously
+starting with <em>foo</em>.</p>
+
+            </div>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf62063-7fe4_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf62063-7fe4_verapache"><!-- --></a>
+         <h3 class="topictitle3">Printing stack traces</h3>
+
+         
+         <div>
+            <p>Use
+the <samp class="codeph">bt</samp> command to display a back trace of all stack
+frames. The <samp class="codeph">bt</samp> command has the following syntax:</p>
+
+            <pre class="codeblock"> <strong>(fdb) bt</strong> </pre>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf69084-7ed4_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7ed4_verapache"><!-- --></a>
+         <h3 class="topictitle3">Getting status</h3>
+
+         
+         <div>
+            <p>Use the <samp class="codeph">info</samp> command
+to get general information about the application. The <samp class="codeph">info</samp> command
+has the following syntax:</p>
+
+            <pre class="codeblock"> info [options] [args]</pre>
+
+            <p>The <samp class="codeph">info</samp> command displays general information
+about the application being debugged. The following table describes
+the options of the <samp class="codeph">info</samp> command:</p>
+
+            
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" frame="border" border="1" rules="all">
+                  
+                  
+                  <thead align="left">
+                     <tr>
+                        <th class="cellrowborder" valign="top" width="NaN%" id="d173266e2203">
+                           <p>Option</p>
+
+                        </th>
+
+                        <th class="cellrowborder" valign="top" width="NaN%" id="d173266e2209">
+                           <p>Description</p>
+
+                        </th>
+
+                     </tr>
+
+                  </thead>
+
+                  <tbody>
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d173266e2203 ">
+                           <p>
+                              <samp class="codeph">arguments</samp>
+                           </p>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d173266e2209 ">
+                           <p>Displays the argument variables of the current
+stack frame.</p>
+
+                        </td>
+
+                     </tr>
+
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d173266e2203 ">
+                           <p>
+                              <samp class="codeph">breakpoints</samp>
+                           </p>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d173266e2209 ">
+                           <p>Displays the status of user-settable breakpoints.</p>
+
+                        </td>
+
+                     </tr>
+
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d173266e2203 ">
+                           <p>
+                              <samp class="codeph">display</samp>
+                           </p>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d173266e2209 ">
+                           <p>Displays the list of autodisplay expressions.</p>
+
+                        </td>
+
+                     </tr>
+
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d173266e2203 ">
+                           <p>
+                              <samp class="codeph">files [arg]</samp>
+                           </p>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d173266e2209 ">
+                           <p>Displays the names of all files used by
+the target application. This includes authored files and system
+files, plus generated files. Also indicates the file number for
+each file.</p>
+
+                           <p>You can use wildcards and literals to select and
+sort the output. The <samp class="codeph">info</samp> 
+                              <samp class="codeph">files</samp> command
+supports the following:</p>
+
+                           <p>
+                              <samp class="codeph">info files character</samp> Alphabetically
+lists files with names that start with the specified character.
+The following example lists all files starting with the letter V:</p>
+
+                           <div class="p">
+                              <pre class="codeblock">info files V</pre>
+
+                           </div>
+
+                           <p>
+                              <samp class="codeph">info files *.extension</samp> Alphabetically
+lists all files with the given extension. The following example
+lists all files with the as extension:</p>
+
+                           <div class="p">
+                              <pre class="codeblock">info files *.as</pre>
+
+                           </div>
+
+                           <p>
+                              <samp class="codeph">info files *string*</samp> Alphabetically
+lists all files with names that include string.</p>
+
+                        </td>
+
+                     </tr>
+
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d173266e2203 ">
+                           <p>
+                              <samp class="codeph">functions [arg]</samp>
+                           </p>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d173266e2209 ">
+                           <p>Displays all function names used in this
+application. The <samp class="codeph">info functions</samp> command optionally
+takes an argument; for example:</p>
+
+                           <p>
+                              <samp class="codeph">info</samp> 
+                              <samp class="codeph">functions</samp> Lists
+all functions in all files.</p>
+
+                           <p>
+                              <samp class="codeph">info</samp> 
+                              <samp class="codeph">functions</samp> Lists
+all functions in the current file.</p>
+
+                           <p>
+                              <samp class="codeph">info</samp> 
+                              <samp class="codeph">functions MyApp.mxml</samp> Lists
+all functions in the MyApp.mxml file.</p>
+
+                        </td>
+
+                     </tr>
+
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d173266e2203 ">
+                           <div class="p">
+                              <pre class="codeblock">handle</pre>
+
+                           </div>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d173266e2209 ">
+                           <p>Displays settings for fault handling in
+the debugger.</p>
+
+                        </td>
+
+                     </tr>
+
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d173266e2203 ">
+                           <p>
+                              <samp class="codeph">locals</samp>
+                           </p>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d173266e2209 ">
+                           <p>Displays the local variables of the current
+stack frame.</p>
+
+                        </td>
+
+                     </tr>
+
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d173266e2203 ">
+                           <p>
+                              <samp class="codeph">sources</samp>
+                           </p>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d173266e2209 ">
+                           <p>Displays authored source files used by the
+target application.</p>
+
+                        </td>
+
+                     </tr>
+
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d173266e2203 ">
+                           <div class="p">
+                              <pre class="codeblock">stack</pre>
+
+                           </div>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d173266e2209 ">
+                           <p>Displays the backtrace of the stack.</p>
+
+                        </td>
+
+                     </tr>
+
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d173266e2203 ">
+                           <div class="p">
+                              <pre class="codeblock">swfs</pre>
+
+                           </div>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d173266e2209 ">
+                           <p>Displays
+all current SWF files.</p>
+
+                        </td>
+
+                     </tr>
+
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d173266e2203 ">
+                           <div class="p">
+                              <pre class="codeblock">targets</pre>
+
+                           </div>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d173266e2209 ">
+                           <p>Displays the HTTP or file URL of the target
+application.</p>
+
+                        </td>
+
+                     </tr>
+
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d173266e2203 ">
+                           <p>
+                              <samp class="codeph">variables</samp>
+                           </p>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d173266e2209 ">
+                           <p>Displays all global and static variable
+names.</p>
+
+                        </td>
+
+                     </tr>
+
+                  </tbody>
+
+               </table>
+</div>
+
+            <p>For additional information about these options, use the <samp class="codeph">help</samp> command,
+as the following example shows:</p>
+
+            <pre class="codeblock"> (fdb) help info targets</pre>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf62063-7fe2_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf62063-7fe2_verapache"><!-- --></a>
+         <h3 class="topictitle3">Handling faults and catching exceptions</h3>
+
+         
+         <div>
+            <p>Use the <samp class="codeph">handle</samp> command
+to specify how fdb reacts to Flash Player exceptions during execution.
+To view the current settings, use the <samp class="codeph">info</samp> command,
+as the following example shows:</p>
+
+            <pre class="codeblock"> <strong>(fdb) info handle</strong> </pre>
+
+            <p>The <samp class="codeph">handle</samp> command has the following syntax:</p>
+
+            <pre class="codeblock"> (fdb) handle exception [action]</pre>
+
+            <p>The <em>fault_type</em> is the category of fault that fdb handles.
+The <em>action</em> is what fdb does in response to that fault. The
+possible actions are <samp class="codeph">print</samp>, <samp class="codeph">noprint</samp>, <samp class="codeph">stop</samp>, and <samp class="codeph">nostop</samp>.
+The following table describes these actions:</p>
+
+            
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" frame="border" border="1" rules="all">
+                  
+                  
+                  <thead align="left">
+                     <tr>
+                        <th class="cellrowborder" valign="top" width="NaN%" id="d173266e2599">
+                           <p>Action</p>
+
+                        </th>
+
+                        <th class="cellrowborder" valign="top" width="NaN%" id="d173266e2605">
+                           <p>Description</p>
+
+                        </th>
+
+                     </tr>
+
+                  </thead>
+
+                  <tbody>
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d173266e2599 ">
+                           <div class="p">
+                              <pre class="codeblock">print</pre>
+
+                           </div>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d173266e2605 ">
+                           <p>Prints a message if this type of fault occurs.</p>
+
+                        </td>
+
+                     </tr>
+
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d173266e2599 ">
+                           <div class="p">
+                              <pre class="codeblock">noprint</pre>
+
+                           </div>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d173266e2605 ">
+                           <p>Does not print a message if this type of
+fault occurs.</p>
+
+                        </td>
+
+                     </tr>
+
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d173266e2599 ">
+                           <div class="p">
+                              <pre class="codeblock">stop</pre>
+
+                           </div>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d173266e2605 ">
+                           <p>Stops execution of the debugger if this
+type of fault occurs.</p>
+
+                        </td>
+
+                     </tr>
+
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d173266e2599 ">
+                           <div class="p">
+                              <pre class="codeblock">nostop</pre>
+
+                           </div>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d173266e2605 ">
+                           <p>Does not stop execution of the debugger
+if this type of fault occurs.</p>
+
+                        </td>
+
+                     </tr>
+
+                  </tbody>
+
+               </table>
+</div>
+
+            <div class="p">You can also use the <samp class="codeph">catch</samp> command to halt the
+debugger when an exception of a specified type is encountered. The
+debugger halts even if there is a <samp class="codeph">catch</samp> statement
+that catches the exception. The syntax of the <samp class="codeph">catch</samp> command
+is as follows:<pre class="codeblock">(fdb) catch <em>exception_type</em></pre>
+
+            </div>
+
+            <div class="p">The <em>exception_type</em> argument is the type of exception that
+stops the debugger. For example, TypeError:<pre class="codeblock">(fdb) catch TypeError</pre>
+
+            </div>
+
+            <div class="p">To halt the debugger on any exception, you can use a wildcard
+("*"), as the following example shows:<pre class="codeblock">(fdb) catch *</pre>
+
+            </div>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf62063-7fe1_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf62063-7fe1_verapache"><!-- --></a>
+         <h3 class="topictitle3">Getting help</h3>
+
+         
+         <div>
+            <p>Use the <samp class="codeph">help</samp> command to get information
+on particular topics. The <samp class="codeph">help</samp> command has the
+following syntax:</p>
+
+            <pre class="codeblock"> help [topic]</pre>
+
+            <p>The <samp class="codeph">help</samp> command provides a relatively terse
+description of each command and its usage. The following example
+opens the <samp class="codeph">help</samp> command:</p>
+
+            <pre class="codeblock"> <strong>(fdb) help</strong> </pre>
+
+            <p>Type <strong>help</strong> followed by the command name to get the full
+help information, as the following example shows:</p>
+
+            <pre class="codeblock"> <strong>(fdb) help delete</strong> </pre>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf62063-7fe0_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf62063-7fe0_verapache"><!-- --></a>
+         <h3 class="topictitle3">Terminating the session</h3>
+
+         
+         <div>
+            <p>You use the <samp class="codeph">kill</samp> and <samp class="codeph">exit</samp> commands
+to end the current debugging session and exit from the fdb application.
+The <samp class="codeph">kill</samp> and <samp class="codeph">exit</samp> commands do
+not take any arguments. If fdb opened the default browser, you can
+also terminate the fdb session by closing the browser window.</p>
+
+            <p>To stop the current session, use the <samp class="codeph">kill</samp> command,
+as the following example shows:</p>
+
+            <pre class="codeblock"> <strong>(fdb) kill</strong> </pre>
+
+            <p>Using the <samp class="codeph">kill</samp> command does not quit the fdb
+application. You can immediately start another session. To exit
+from fdb, use the <samp class="codeph">exit</samp> command, as follows:</p>
+
+            <pre class="codeblock"> (fdb) exit</pre>
+
+         </div>
+
+      </div>
+
+<div>
+  <p><strong>Navigation</strong></p>
+  <p><a href="index.html">Using Flex</a> &raquo; <a href="flx_p7_dev_tools.html">Developer tools</a></p>
+</div>
+
+         <p>Adobe, Adobe Flash and Adobe Flash Player are either registered trademarks or trademarks of Adobe Systems Incorporated in the United States and/or other countries and are used by permission from Adobe.  No other license to the Adobe trademarks are granted.</p>
+   </div>
+
+
+</body>
+</html>

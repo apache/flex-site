@@ -1,0 +1,3764 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Licensed to the Apache Software Foundation (ASF) under one or more
+  contributor license agreements.  See the NOTICE file distributed with
+  this work for additional information regarding copyright ownership.
+  The ASF licenses this file to You under the Apache License, Version 2.0
+  (the "License"); you may not use this file except in compliance with
+  the License.  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+-->
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en-us" xml:lang="en-us">
+<head>
+<meta name="DC.Type" content="topic"/>
+<meta name="DC.Title" content="Drag and drop"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="WS2db454920e96a9e51e63e3d11c0bf69084-7c0a_verapache"/>
+<title>Drag and drop</title>
+</head>
+<body id="WS2db454920e96a9e51e63e3d11c0bf69084-7c0a_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7c0a_verapache"><!-- --></a>
+
+   <div>
+      <p>The
+drag-and-drop operation lets you move data from one place in an
+application to another. It is especially useful in a visual application
+where you can drag data between two lists, drag controls in a container
+to reposition them, or drag Flex components between containers. </p>
+
+   </div>
+
+   <div class="nested1" id="WS2db454920e96a9e51e63e3d11c0bf64595-7fff_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf64595-7fff_verapache"><!-- --></a>
+      <h2 class="topictitle2">About drag and drop</h2>
+
+      
+      <div>
+         <p>Visual
+development environments typically let you manipulate objects in
+an application by selecting them with a mouse and moving them around
+the screen. Drag and drop lets you select an object, such as an
+item in a List control, or a Flex control such as an Image control,
+and then drag it over another component to add it to that component. </p>
+
+         <p>You can add support for drag and drop to all Flex components.
+Flex also includes built-in support for the drag-and-drop operation
+for certain controls such as the MX <a href="https://flex.apache.org/asdoc/mx/controls/List.html" target="_blank">List</a>, <a href="https://flex.apache.org/asdoc/mx/controls/Tree.html" target="_blank">Tree</a>, and <a href="https://flex.apache.org/asdoc/mx/controls/DataGrid.html" target="_blank">DataGrid</a> controls
+and the Spark <a href="https://flex.apache.org/asdoc/spark/components/List.html" target="_blank">List</a> control,
+that automate much of the processing required to support drag and
+drop.</p>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf64595-7ffe_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf64595-7ffe_verapache"><!-- --></a>
+         <h3 class="topictitle3">About the drag-and-drop operation</h3>
+
+         
+         <div>
+            <p>The drag-and-drop operation has three main stages: initiation,
+dragging, and dropping:</p>
+
+            <dl>
+               
+                  <dt class="dlterm">Initiation</dt>
+
+                  <dd>
+                     <p>User
+initiates a drag-and-drop operation by using the mouse to select a
+Flex component, or an item in a Flex component, and then moving
+the component or item while holding down the mouse button. For example,
+a user selects an item in a List control with the mouse and, while
+holding down the mouse button, moves the mouse several pixels. The
+selected component, the List control in this example, is the <em>drag initiator</em>. </p>
+
+                  </dd>
+
+               
+               
+                  <dt class="dlterm">Dragging</dt>
+
+                  <dd>
+                     <p>While still holding down the mouse button, the user moves
+the mouse around the application. Flex displays an image during
+the drag, called the <em>drag indicator</em>. A <em>drag source</em> object
+(an object of type DragSource) contains the data being dragged. </p>
+
+                  </dd>
+
+               
+               
+                  <dt class="dlterm">Dropping</dt>
+
+                  <dd>
+                     <p>When
+the user moves the drag indicator over another Flex component, that
+component becomes a possible <em>drop target</em>. The drop target inspects
+the drag source object to determine whether the data is in a format
+that the target accepts and, if so, allows the user to drop the
+data onto it. If the drop target determines that the data is not
+in an acceptable format, the drop target disallows the drop. </p>
+
+                     <p>A
+drag-and-drop operation either copies or moves data from the drag
+initiator to the drop target. Upon a successful drop, Flex adds
+the data to the drop target and, optionally, deletes it from the
+drag initiator in the case of a move. </p>
+
+                     <p>The following figure
+shows one List control functioning as the drag initiator and a second
+List control functioning as the drop target. In this example, you
+use drag and drop to move the 'Television' list item from the drag
+initiator to the drop target:</p>
+
+                     <div class="figborder">
+                        <img src="images/dd_ListControlDropTarget.png" alt="Drag and drop between two List controls"/>
+                     </div>
+
+                     <p>A single component
+can function as both the drag initiator and the drop target. This
+lets you move the data within the component. The following example
+shows a List control functioning as both the drag initiator and
+the drop target: </p>
+
+                     <div class="figborder">
+                        <img src="images/dd_ListControlDragDrop.png" alt="Drag and drop in the same List control"/>
+                     </div>
+
+                     <p>By specifying
+the List control as both the drag initiator and the drop target,
+you can use drag and drop to rearrange the items in the control.
+For example, if you use a Canvas container as the drag initiator
+and the drop target, you can then use drag and drop to move controls
+in the Canvas container to rearrange them. </p>
+
+                  </dd>
+
+               
+            </dl>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf69084-7ced_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7ced_verapache"><!-- --></a>
+         <h3 class="topictitle3">Performing a drag and drop</h3>
+
+         
+         <div>
+            <p>Drag and drop is event driven. To configure a component
+as a drag initiator or as a drop target, you have to write event
+handlers for specific events, such as the <samp class="codeph">dragDrop</samp> and <samp class="codeph">dragEnter</samp> events.
+For more information, see <a href="flx_dragdrop_dd.html#WS2db454920e96a9e51e63e3d11c0bf69084-7cfe_verapache">Manually
+adding drag-and-drop support</a>.</p>
+
+            <p>For some components that you often use with drag and drop, Flex
+provides built-in event handlers to automate much of the drag and
+drop operation. These controls are all subclasses of the MX mx.controls.listClasses.ListBase
+class and the Spark spark.components.supportClasses.ListBase class,
+and are referred to as list-based controls. For more information,
+see <a href="flx_dragdrop_dd.html#WS2db454920e96a9e51e63e3d11c0bf69084-7cfd_verapache">Using
+drag-and-drop with list-based controls</a>.</p>
+
+            <p>For a move or copy operation, the list-based controls can handle
+all of the events required by a drag-and-drop operation. However,
+if you want to copy the drag data to the drop target, and the drop
+target uses a different data format, you have to write an event
+handler. For more information, see <a href="flx_dragdrop_dd.html#WS2db454920e96a9e51e63e3d11c0bf69084-7cfc_verapache">Moving
+and copying data</a>.</p>
+
+         </div>
+
+      </div>
+
+   </div>
+
+   <div class="nested1" id="WS2db454920e96a9e51e63e3d11c0bf69084-7cfd_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7cfd_verapache"><!-- --></a>
+      <h2 class="topictitle2">Using drag-and-drop with list-based controls</h2>
+
+      
+      <div>
+         <p>The following MX list-based controls include
+built-in support for the drag-and-drop operation:</p>
+
+         <ul>
+            <li>
+               <p>
+                  <a href="https://flex.apache.org/asdoc/mx/controls/DataGrid.html" target="_blank">DataGrid</a>
+               </p>
+
+            </li>
+
+            <li>
+               <p>
+                  <a href="https://flex.apache.org/asdoc/mx/controls/HorizontalList.html" target="_blank">HorizontalList</a>
+               </p>
+
+            </li>
+
+            <li>
+               <p>
+                  <a href="https://flex.apache.org/asdoc/mx/controls/List.html" target="_blank">List</a>
+               </p>
+
+            </li>
+
+            <li>
+               <p>
+                  <a href="https://flex.apache.org/asdoc/mx/printing/PrintDataGrid.html" target="_blank">PrintDataGrid</a> 
+               </p>
+
+            </li>
+
+            <li>
+               <p>
+                  <a href="https://flex.apache.org/asdoc/mx/controls/TileList.html" target="_blank">TileList</a>
+               </p>
+
+            </li>
+
+            <li>
+               <p>
+                  <a href="https://flex.apache.org/asdoc/mx/controls/Tree.html" target="_blank">Tree</a>
+               </p>
+
+            </li>
+
+         </ul>
+
+         <p>The Spark <a href="https://flex.apache.org/asdoc/spark/components/List.html" target="_blank">List</a> control
+include built-in support for the drag-and-drop operation.</p>
+
+         <p>The built-in support for these controls lets you move and copy
+items by dragging them from a drag-enabled control to a drop-enabled
+control. </p>
+
+         <p>The following drag-and-drop example lets you move items from
+one Spark <a href="https://flex.apache.org/asdoc/spark/components/List.html" target="_blank">List</a> control
+to another:</p>
+
+         <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- dragdrop\SimpleListToListMove.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    creationComplete="initApp();"&gt; 
+    &lt;s:layout&gt; 
+        &lt;s:VerticalLayout/&gt; 
+    &lt;/s:layout&gt; 
+    
+    &lt;fx:Script&gt; 
+        &lt;![CDATA[ 
+            import mx.collections.ArrayCollection; 
+ 
+            private function initApp():void { 
+                srclist.dataProvider = 
+                    new ArrayCollection(['Reading', 'Television', 'Movies']); 
+                destlist.dataProvider = new ArrayCollection([]); 
+            } 
+        ]]&gt; 
+    &lt;/fx:Script&gt; 
+ 
+    &lt;s:HGroup&gt; 
+        &lt;s:VGroup&gt; 
+            &lt;s:Label text="Available Activities"/&gt; 
+            &lt;s:List id="srclist" 
+                allowMultipleSelection="true" 
+                dragEnabled="true" 
+                dragMoveEnabled="true"/&gt; 
+        &lt;/s:VGroup&gt; 
+ 
+        &lt;s:VGroup&gt; 
+            &lt;s:Label text="Activities I Like"/&gt; 
+            &lt;s:List id="destlist" 
+                dropEnabled="true"/&gt; 
+        &lt;/s:VGroup&gt; 
+    &lt;/s:HGroup&gt; 
+ 
+    &lt;s:Button id="b1" 
+        label="Reset" 
+        click="initApp();"/&gt; 
+&lt;/s:Application&gt;</pre>
+
+         <p>By setting the <samp class="codeph">dragEnabled</samp> property to <samp class="codeph">true</samp> on
+the first List and the <samp class="codeph">dropEnabled</samp> property to <samp class="codeph">true</samp> on
+the second List control, you enabled users to drag items from the
+first list to the second without worrying about any of the underlying
+event processing.</p>
+
+         <p>For all list-based classes except the Tree control, the default
+value of the <samp class="codeph">dragMoveEnabled</samp> property is <samp class="codeph">false</samp>,
+so you can only copy elements from one control to the other. By
+setting the <samp class="codeph">dragMoveEnabled</samp> to <samp class="codeph">true</samp> in
+the first List control, you can move and copy data. For the Tree
+control, the default value of the <samp class="codeph">dragMoveEnabled</samp> property
+is <samp class="codeph">true</samp>. </p>
+
+         <p>When the <samp class="codeph">dragMoveEnabled</samp> property is set to <samp class="codeph">true</samp>,
+the default drag-and-drop action is to move the drag data. To perform
+a copy, hold down the Control key during the drag-and-drop operation.</p>
+
+         <p>The only requirement on the drag and drop operation is that the
+structure of the data providers must match for the two controls.
+In this example, the data provider for srclist is an Array of Strings,
+and the data provider for the destination List control is an empty
+Array. If the data provider for destlist is an Array of some other
+type of data, destlist might not display the dragged data correctly. </p>
+
+         <p>You can modify the dragged data as part of a drag-and-drop operation
+to make the dragged data compatible with the destination. For an
+example of dragging data from one control to another when the data
+formats do not match, see <a href="flx_dragdrop_dd.html#WS2db454920e96a9e51e63e3d11c0bf69084-7cfa_verapache">Example:
+Copying data from an MX List control to an MX DataGrid control</a>.</p>
+
+         <p>You can allow two-way drag and drop by setting the <samp class="codeph">dragEnabled</samp>, <samp class="codeph">dropEnabled</samp>,
+and <samp class="codeph">dragMoveEnabled</samp> properties to <samp class="codeph">true</samp> for
+both list-based controls, as the following example shows for two
+MX DataGrid controls. In this example, you can drag and drop rows
+from either MX DataGrid control to the other:</p>
+
+         <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- dragdrop\SimpleDGToDG.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    width="650" 
+    creationComplete="initApp();"&gt; 
+    &lt;s:layout&gt; 
+        &lt;s:VerticalLayout/&gt; 
+    &lt;/s:layout&gt; 
+    
+    &lt;fx:Script&gt; 
+      &lt;![CDATA[ 
+          import mx.collections.ArrayCollection; 
+      
+          private function initApp():void { 
+            srcgrid.dataProvider = new ArrayCollection([ 
+              {Artist:'Carole King', Album:'Tapestry', Price:11.99}, 
+              {Artist:'Paul Simon', Album:'Graceland', Price:10.99}, 
+              {Artist:'Original Cast', Album:'Camelot', Price:12.99}, 
+              {Artist:'The Beatles', Album:'The White Album', Price:11.99} 
+            ]); 
+ 
+            destgrid.dataProvider = new ArrayCollection([]);    
+          } 
+      ]]&gt; 
+    &lt;/fx:Script&gt; 
+ 
+    &lt;s:HGroup&gt; 
+        &lt;s:VGroup&gt; 
+            &lt;s:Label text="Available Albums"/&gt; 
+            &lt;mx:DataGrid id="srcgrid" 
+                allowMultipleSelection="true" 
+                dragEnabled="true" 
+                dropEnabled="true" 
+                dragMoveEnabled="true"&gt; 
+                &lt;mx:columns&gt; 
+                    &lt;mx:DataGridColumn dataField="Artist"/&gt; 
+                    &lt;mx:DataGridColumn dataField="Album"/&gt; 
+                    &lt;mx:DataGridColumn dataField="Price"/&gt; 
+                &lt;/mx:columns&gt;    
+            &lt;/mx:DataGrid&gt; 
+        &lt;/s:VGroup&gt; 
+ 
+        &lt;s:VGroup&gt; 
+            &lt;s:Label text="Buy These Albums"/&gt; 
+            &lt;mx:DataGrid id="destgrid" 
+                allowMultipleSelection="true" 
+                dragEnabled="true" 
+                dropEnabled="true" 
+                dragMoveEnabled="true"&gt; 
+                &lt;mx:columns&gt; 
+                    &lt;mx:DataGridColumn dataField="Artist"/&gt; 
+                    &lt;mx:DataGridColumn dataField="Album"/&gt; 
+                    &lt;mx:DataGridColumn dataField="Price"/&gt; 
+                &lt;/mx:columns&gt;    
+            &lt;/mx:DataGrid&gt; 
+        &lt;/s:VGroup&gt; 
+    &lt;/s:HGroup&gt; 
+ 
+    &lt;s:Button id="b1" 
+        label="Reset" 
+        click="initApp()" 
+    /&gt; 
+ 
+&lt;/s:Application&gt;</pre>
+
+      </div>
+
+      <div class="nested2" id="WS7d89194359d2921c55a0a0ac1247d0abc10-8000_verapache"><a name="WS7d89194359d2921c55a0a0ac1247d0abc10-8000_verapache"><!-- --></a>
+         <h3 class="topictitle3">Dragging and dropping between different
+list-based controls</h3>
+
+         
+         <div>
+            <div class="p">You can drag and drop data between different types of list-based
+controls. For example, you can drag and drop between an MX List
+and a Spark List control, as the following example shows: <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- dragdrop\SimpleListToListMoveSpark.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    creationComplete="initApp();"&gt; 
+    &lt;s:layout&gt; 
+        &lt;s:VerticalLayout/&gt; 
+    &lt;/s:layout&gt; 
+    
+    &lt;fx:Script&gt; 
+        &lt;![CDATA[ 
+            import mx.collections.ArrayList; 
+ 
+            private function initApp():void { 
+                srclist.dataProvider = 
+                    new ArrayList(['Reading', 'Television', 'Movies']); 
+                destlist.dataProvider = new ArrayList([]); 
+            } 
+        ]]&gt; 
+    &lt;/fx:Script&gt; 
+ 
+    &lt;s:HGroup&gt; 
+        &lt;s:VGroup&gt; 
+            &lt;s:Label text="Available Activities"/&gt; 
+            &lt;s:List id="srclist" 
+                allowMultipleSelection="true" 
+                dragEnabled="true" 
+                dragMoveEnabled="true"/&gt; 
+        &lt;/s:VGroup&gt; 
+ 
+        &lt;s:VGroup&gt; 
+            &lt;s:Label text="Activities I Like"/&gt; 
+            &lt;mx:List id="destlist" 
+                dropEnabled="true"/&gt; 
+        &lt;/s:VGroup&gt; 
+    &lt;/s:HGroup&gt; 
+ 
+    &lt;s:Button id="b1" 
+        label="Reset" 
+        click="initApp();"/&gt; 
+&lt;/s:Application&gt;</pre>
+
+            </div>
+
+            <p>Dragging and dropping between two types of List controls is relatively
+simple because the control use the same data format. However, when
+you drag and drop between a List and a DataGrid, or a List and a
+Tree, the data formats might not match. In that case, you have to
+manipulate the data before dropping it onto the target. see <a href="flx_dragdrop_dd.html#WS2db454920e96a9e51e63e3d11c0bf69084-7cfa_verapache">Example:
+Copying data from an MX List control to an MX DataGrid control</a>.</p>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf64595-7ffb_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf64595-7ffb_verapache"><!-- --></a>
+         <h3 class="topictitle3">Dragging and dropping in the same
+control</h3>
+
+         
+         <div>
+            <p>One use of drag and drop is to let you reorganize the items
+in a list-based control by dragging the items and then dropping
+them in the same control. In the next example, you define an MX
+Tree control, and let the user reorganize the nodes of the Tree
+control by dragging and dropping them. In this example, you set
+the <samp class="codeph">dragEnabled</samp> and <samp class="codeph">dropEnabled</samp> to <samp class="codeph">true</samp> for
+the Tree control (the <samp class="codeph">dragMoveEnabled</samp> property
+defaults to <samp class="codeph">true</samp> for the Tree control):</p>
+
+            <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- dragdrop\SimpleTreeSelf.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx"&gt; 
+ 
+    &lt;fx:Script&gt; 
+        &lt;![CDATA[ 
+            // Initialize the data provider for the Tree. 
+            private function initApp():void { 
+                firstList.dataProvider = treeDP; 
+            } 
+        ]]&gt; 
+    &lt;/fx:Script&gt; 
+    
+    &lt;fx:Declarations&gt; 
+        &lt;fx:XML id="treeDP"&gt; 
+            &lt;node label="Mail"&gt; 
+                &lt;node label="Inbox"/&gt; 
+                &lt;node label="Personal Folder"&gt; 
+                    &lt;node label="Demo"/&gt; 
+                    &lt;node label="Personal"/&gt; 
+                    &lt;node label="Saved Mail"/&gt; 
+                    &lt;node label="bar"/&gt; 
+                &lt;/node&gt; 
+                &lt;node label="Calendar"/&gt; 
+                &lt;node label="Sent"/&gt; 
+                &lt;node label="Trash"/&gt; 
+            &lt;/node&gt; 
+        &lt;/fx:XML&gt; 
+    &lt;/fx:Declarations&gt; 
+ 
+    &lt;mx:Tree id="firstList" 
+        showRoot="false" 
+        labelField="@label" 
+        dragEnabled="true" 
+        dropEnabled="true" 
+        allowMultipleSelection="true" 
+        creationComplete="initApp();"/&gt; 
+&lt;/s:Application&gt;</pre>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf64595-7ffa_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf64595-7ffa_verapache"><!-- --></a>
+         <h3 class="topictitle3">Drag and drop properties for list-based
+controls</h3>
+
+         
+         <div>
+            <p>List-based controls provide properties and methods for
+managing the drag-and-drop operation. The following table lists
+these properties and methods:</p>
+
+            
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" frame="border" border="1" rules="all">
+                  
+                  
+                  <thead align="left">
+                     <tr>
+                        <th class="cellrowborder" valign="top" width="NaN%" id="d194280e468">
+                           <p>Property/Method</p>
+
+                        </th>
+
+                        <th class="cellrowborder" valign="top" width="NaN%" id="d194280e474">
+                           <p>Description</p>
+
+                        </th>
+
+                     </tr>
+
+                  </thead>
+
+                  <tbody>
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d194280e468 ">
+                           <div class="p">
+                              <pre class="codeblock">dragEnabled</pre>
+
+                           </div>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d194280e474 ">
+                           <p>A Boolean value that specifies whether the
+control is a drag initiator. The default value is <samp class="codeph">false</samp>.
+When <samp class="codeph">true</samp>, users can drag selected items from the
+control. When a user drags items from the control, Flex creates
+a DragSource object that contains the following data objects:</p>
+
+                           <div class="p">
+                              <ul>
+                                 <li>
+                                    <p>The drag data as a Vector of type Object. Each element of
+the Vector corresponds to a dragged item from the data provider
+of the drag initiator. If you drag a single item, the Vector has
+a length of 1. For all controls except for Tree, the format string
+of the drag data is <samp class="codeph">"itemsByIndex"</samp>, and the items
+implement the IDataProvider interface. </p>
+
+                                 </li>
+
+                                 <li>
+                                    <p>For Tree controls the drag data is an Array. The format string
+of the drag data is "<samp class="codeph">treeItems</samp>" and the items implement
+the ITreeDataProvider API interface. </p>
+
+                                 </li>
+
+                                 <li>
+                                    <p>The index of the item that was clicked by the mouse. The
+format string of the index is "<samp class="codeph">caretIndex</samp>". The
+index is relative to the items in the drag data. Therefore, if the
+drag data contains three items, the index is a value between 0 and
+2. By default, only the Spark list-based controls working as a drop
+target use this information to update the selected item on the drop.</p>
+
+                                 </li>
+
+                                 <li>
+                                    <p>A reference to the drag initiator, with a format String of <samp class="codeph">"source".</samp> 
+                                    </p>
+
+                                 </li>
+
+                              </ul>
+
+                           </div>
+
+                        </td>
+
+                     </tr>
+
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d194280e468 ">
+                           <div class="p">
+                              <pre class="codeblock">dropEnabled</pre>
+
+                           </div>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d194280e474 ">
+                           <p>A Boolean value that specifies whether the
+control can be a drop target. The default value is <samp class="codeph">false</samp>,
+which means that you must write event handlers for the drag events.
+When the value is <samp class="codeph">true</samp>, you can drop items onto
+the control by using the default drop behavior.</p>
+
+                        </td>
+
+                     </tr>
+
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d194280e468 ">
+                           <div class="p">
+                              <pre class="codeblock">dragMoveEnabled</pre>
+
+                           </div>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d194280e474 ">
+                           <p>If the value is <samp class="codeph">true</samp>, and
+the <samp class="codeph">dragEnabled</samp> property is <samp class="codeph">true</samp>,
+specifies that you can move or copy items from the drag initiator
+to the drop target. When you move an item, the item is deleted from
+the drag initiator when you add it to the drop target. </p>
+
+                           <p>If
+the value is <samp class="codeph">false</samp>, you can only copy an item to
+the drop target. For a copy, the item in the drag initiator is not
+affected by the drop. </p>
+
+                           <p>When the <samp class="codeph">dragMoveEnabled</samp> property
+is <samp class="codeph">true</samp>, you must hold down the Control key during
+the drop operation to perform a copy. </p>
+
+                           <p>The default value is <samp class="codeph">false</samp> for
+all list controls except the Tree control, and <samp class="codeph">true</samp> for
+the Tree control. </p>
+
+                        </td>
+
+                     </tr>
+
+                  </tbody>
+
+               </table>
+</div>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf64595-7ff9_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf64595-7ff9_verapache"><!-- --></a>
+         <h3 class="topictitle3">Maintaining type information during
+a copy</h3>
+
+         
+         <div>
+            <p>When you use the built-in support of the list-based controls
+to copy data from one list-based control to another list-based control,
+you might run into an occasion where you lose the data-type information
+of the copied data. The loss of data-type information can occur
+when:</p>
+
+            <ul>
+               <li>
+                  <p>You perform a copy operation between two list-based controls;
+it does not occur during a move operation</p>
+
+               </li>
+
+               <li>
+                  <p>The data type of the copied item is not a basic ActionScript
+data type, such as Date, Number, Object, or String</p>
+
+               </li>
+
+               <li>
+                  <p>The data type of the copied item is not DisplayObject, or
+a subclass of DisplayObject</p>
+
+               </li>
+
+            </ul>
+
+            <p>For example, you define the following class, Car.as, that you
+use to populate the data provider of a List control:</p>
+
+            <pre class="codeblock">package 
+{ 
+    // dragdrop/Car.as 
+    
+    [RemoteClass] 
+    public class Car extends Object 
+    { 
+        // Constructor. 
+        public function Car() 
+        { 
+            super(); 
+        } 
+        
+        // Class properties. 
+        public var numWheels:int; 
+        public var model:String; 
+        public var make:String; 
+        
+        public function get label():String 
+        { 
+            return make + " " + model; 
+        }        
+    } 
+}</pre>
+
+            <p>Notice that the Car.as file includes the <samp class="codeph">[RemoteClass]</samp> metadata
+tag. This metadata tag is required to register the Car data type
+with Flex so that its type information is preserved during the copy
+operation. If you omit the <samp class="codeph">[RemoteClass]</samp> metadata
+tag, type information is lost.</p>
+
+            <p>You then use that class in your application, as the following
+example shows:</p>
+
+            <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- dragdrop\DandDRemoteClassListUpdated.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns="*"&gt; 
+    &lt;s:layout&gt; 
+        &lt;s:BasicLayout/&gt; 
+    &lt;/s:layout&gt; 
+ 
+    &lt;fx:Script&gt; 
+        &lt;![CDATA[ 
+        
+            public function changeit():void 
+            { 
+                if (list2.dataProvider != null) 
+                {                
+                    msg.text += list2.dataProvider[0] 
+                    
+                    if(list2.dataProvider[0] is Car) 
+                        msg.text += " Is Car\n"; 
+                    else 
+                        msg.text += " Is NOT Car\n"; 
+                } 
+            } 
+        ]]&gt; 
+    &lt;/fx:Script&gt; 
+ 
+    &lt;s:List id="list1" 
+        x="10" y="45" 
+        width="160" height="120" 
+        dragEnabled="true" 
+        dragMoveEnabled="true"&gt; 
+        &lt;s:dataProvider&gt; 
+            &lt;s:ArrayCollection&gt; 
+                &lt;Car model="Camry" make="Toyota" numWheels="4"/&gt; 
+                &lt;Car model="Prius" make="Toyota" numWheels="4"/&gt; 
+            &lt;/s:ArrayCollection&gt; 
+       &lt;/s:dataProvider&gt; 
+    &lt;/s:List&gt; 
+ 
+    &lt;s:List  id="list2" 
+        x="200" y="45" 
+        width="160" height="120" 
+        dropEnabled="true"/&gt; 
+    
+    &lt;s:Button label="Access it as button" click="changeit();"/&gt; 
+    
+    &lt;s:TextArea id="msg"  
+        x="10" y="200" 
+        width="400" height="100"/&gt; 
+&lt;/s:Application&gt;</pre>
+
+         </div>
+
+      </div>
+
+   </div>
+
+   <div class="nested1" id="WS2db454920e96a9e51e63e3d11c0bf69084-7cfe_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7cfe_verapache"><!-- --></a>
+      <h2 class="topictitle2">Manually adding drag-and-drop support</h2>
+
+      
+      <div>
+         <p>The list-based controls have built-in support for drag
+and drop, but you can use drag and drop with any Flex component.
+To support drag-and-drop operations with components other than MX
+list-based controls, or to explicitly control drag and drop with
+MX list-based controls, you must handle the drag and drop events. </p>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf64595-7ff7_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf64595-7ff7_verapache"><!-- --></a>
+         <h3 class="topictitle3">Classes used in drag-and-drop operations</h3>
+
+         
+         <div>
+            <p>You use the following classes to implement the drag-and-drop
+operation:</p>
+
+            
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" frame="border" border="1" rules="all">
+                  
+                  
+                  <thead align="left">
+                     <tr>
+                        <th class="cellrowborder" valign="top" width="NaN%" id="d194280e735">
+                           <p>Class</p>
+
+                        </th>
+
+                        <th class="cellrowborder" valign="top" width="NaN%" id="d194280e741">
+                           <p>Function</p>
+
+                        </th>
+
+                     </tr>
+
+                  </thead>
+
+                  <tbody>
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d194280e735 ">
+                           <p>
+                              <a href="https://flex.apache.org/asdoc/mx/managers/DragManager.html" target="_blank">DragManager</a>
+                           </p>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d194280e741 ">
+                           <p>Manages the drag-and-drop operations; for
+example, its <samp class="codeph">doDrag()</samp> method starts the drag operation.</p>
+
+                        </td>
+
+                     </tr>
+
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d194280e735 ">
+                           <p>
+                              <a href="https://flex.apache.org/asdoc/mx/core/DragSource.html" target="_blank">DragSource</a>
+                           </p>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d194280e741 ">
+                           <p>Contains the data being dragged. It also
+provides additional drag management features, such as the ability
+to add a handler that is called when data is requested.</p>
+
+                        </td>
+
+                     </tr>
+
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d194280e735 ">
+                           <p>
+                              <a href="https://flex.apache.org/asdoc/mx/events/DragEvent.html" target="_blank">DragEvent</a>
+                           </p>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d194280e741 ">
+                           <p>Represents the event object for all drag-and-drop
+events.</p>
+
+                        </td>
+
+                     </tr>
+
+                  </tbody>
+
+               </table>
+</div>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf64595-7ff6_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf64595-7ff6_verapache"><!-- --></a>
+         <h3 class="topictitle3">Drag-and-drop events for a drag
+initiator</h3>
+
+         
+         <div>
+            <p>A
+component that acts as a drag initiator handles the following events
+to manage the drag-and-drop operation: </p>
+
+            
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" frame="border" border="1" rules="all">
+                  
+                  
+                  
+                  
+                  <thead align="left">
+                     <tr>
+                        <th class="cellrowborder" valign="top" width="NaN%" id="d194280e850">
+                           <p>Drag initiator event</p>
+
+                        </th>
+
+                        <th class="cellrowborder" valign="top" width="NaN%" id="d194280e856">
+                           <p>Description</p>
+
+                        </th>
+
+                        <th class="cellrowborder" valign="top" width="NaN%" id="d194280e862">
+                           <p>Handler required</p>
+
+                        </th>
+
+                        <th class="cellrowborder" valign="top" width="NaN%" id="d194280e868">
+                           <p>Implemented by list-based controls</p>
+
+                        </th>
+
+                     </tr>
+
+                  </thead>
+
+                  <tbody>
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d194280e850 ">
+                           <p>
+                              <samp class="codeph">mouseDown</samp> and</p>
+
+                           <p>
+                              <samp class="codeph">mouseMove</samp>
+                           </p>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d194280e856 ">
+                           <p>The <samp class="codeph">mouseDown</samp> event is
+dispatched when the user selects a control with the mouse and holds
+down the mouse button. The <samp class="codeph">mouseMove</samp> event is dispatched
+when the mouse moves. </p>
+
+                           <p>For most controls, you initiate the
+drag-and-drop operation in response to one of these events. For
+an example, see <a href="flx_dragdrop_dd.html#WS2db454920e96a9e51e63e3d11c0bf69084-7d04_verapache">Example:
+Handling the dragOver and dragExit events for the drop target</a>. </p>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d194280e862 ">
+                           <p>Yes, for nonlist controls</p>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d194280e868 ">
+                           <p>No</p>
+
+                        </td>
+
+                     </tr>
+
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d194280e850 ">
+                           <p>
+                              <samp class="codeph">dragStart</samp>
+                           </p>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d194280e856 ">
+                           <p>Dispatched by a list-based component when
+the user initiates a drag operation. This event is used internally
+by the list-based controls; you do not handle it when implementing
+drag and drop.</p>
+
+                           <p>If you want to control the start of a drag-and-drop
+operation, use the <samp class="codeph">mouseDown</samp> or <samp class="codeph">mouseMove</samp> event.</p>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d194280e862 ">
+                           <p>Yes, for list controls</p>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d194280e868 ">
+                           <p>Yes</p>
+
+                        </td>
+
+                     </tr>
+
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d194280e850 ">
+                           <p>
+                              <samp class="codeph">dragComplete</samp> 
+                           </p>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d194280e856 ">
+                           <p>Dispatched when a drag operation completes,
+either when the drag data drops onto a drop target, or when the drag-and-drop
+operation ends without performing a drop operation. </p>
+
+                           <p>You can use this event to perform any final
+cleanup of the drag-and-drop operation. For example, if a user moves data
+from one component to another, you can use this event to delete
+the item from the drag initiator. For an example, see <a href="flx_dragdrop_dd.html#WS2db454920e96a9e51e63e3d11c0bf69084-7d03_verapache">Example:
+Moving and copying data for a nonlist-based control</a>. </p>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d194280e862 ">
+                           <p>No</p>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d194280e868 ">
+                           <p>Yes</p>
+
+                        </td>
+
+                     </tr>
+
+                  </tbody>
+
+               </table>
+</div>
+
+            <p>When adding drag-and-drop support to a component, you must implement
+an event handler for either the <samp class="codeph">mouseDown</samp> or <samp class="codeph">mouseMove</samp> event,
+and optionally for the <samp class="codeph">dragComplete</samp> event. When
+you set the <samp class="codeph">dragEnabled</samp> property to <samp class="codeph">true</samp> for
+a list-based control, Flex automatically adds event handlers for
+the <samp class="codeph">dragStart</samp> and <samp class="codeph">dragComplete</samp> events. </p>
+
+            <div class="note"><span class="notetitle">Note:</span> Do not add an event handler for the <samp class="codeph">dragStart</samp> event.
+That is an internal event handled by Flex.</div>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf64595-7ff5_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf64595-7ff5_verapache"><!-- --></a>
+         <h3 class="topictitle3">Drag-and-drop events for a drop
+target</h3>
+
+         
+         <div>
+            <p>To use a component as a drop target, you handle the following
+events:</p>
+
+            
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" frame="border" border="1" rules="all">
+                  
+                  
+                  
+                  
+                  <thead align="left">
+                     <tr>
+                        <th class="cellrowborder" valign="top" width="NaN%" id="d194280e1075">
+                           <p>Drop target event</p>
+
+                        </th>
+
+                        <th class="cellrowborder" valign="top" width="NaN%" id="d194280e1081">
+                           <p>Description</p>
+
+                        </th>
+
+                        <th class="cellrowborder" valign="top" width="NaN%" id="d194280e1087">
+                           <p>Handler required</p>
+
+                        </th>
+
+                        <th class="cellrowborder" valign="top" width="NaN%" id="d194280e1093">
+                           <p>Implemented by list-based controls</p>
+
+                        </th>
+
+                     </tr>
+
+                  </thead>
+
+                  <tbody>
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d194280e1075 ">
+                           <p>
+                              <samp class="codeph">dragEnter</samp>
+                           </p>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d194280e1081 ">
+                           <p>Dispatched when a drag indicator moves over
+the drop target from outside the drop target. </p>
+
+                           <p>A component <em>must</em> define
+an event handler for this event to be a drop target. The event handler
+determines whether the data being dragged is in an accepted format.
+To accept the drop, the event handler calls the <samp class="codeph">DragManager.acceptDragDrop()</samp> method.
+You must call the <samp class="codeph">DragManager.acceptDragDrop()</samp> method
+for the drop target to receive the <samp class="codeph">dragOver</samp>, <samp class="codeph">dragExit</samp>,
+and <samp class="codeph">dragDrop</samp> events.</p>
+
+                           <p>In the handler,
+you can change the appearance of the drop target to provide visual
+feedback to the user that the component can accept the drag operation.
+For example, you can draw a border around the drop target, or give
+focus to the drop target. For an example, see <a href="flx_dragdrop_dd.html#WS2db454920e96a9e51e63e3d11c0bf69084-7d02_verapache">Example:
+Simple drag-and-drop operation for a nonlist-based control</a>. </p>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d194280e1087 ">
+                           <p>Yes</p>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d194280e1093 ">
+                           <p>Yes</p>
+
+                        </td>
+
+                     </tr>
+
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d194280e1075 ">
+                           <p>
+                              <samp class="codeph">dragOver</samp>
+                           </p>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d194280e1081 ">
+                           <p>Dispatched while the user moves the mouse
+over the target, after the <samp class="codeph">dragEnter</samp> event. </p>
+
+                           <p>You can handle
+this event to perform additional logic before allowing the drop
+operation, such as adding the data to various locations within the
+drop target, reading keyboard input to determine if the drag-and-drop
+operation is a move or copy of the drag data, or providing different
+types of visual feedback based on the type of drag-and-drop operation.
+For an example, see <a href="flx_dragdrop_dd.html#WS2db454920e96a9e51e63e3d11c0bf69084-7d04_verapache">Example:
+Handling the dragOver and dragExit events for the drop target</a>. </p>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d194280e1087 ">
+                           <p>No</p>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d194280e1093 ">
+                           <p>Yes</p>
+
+                        </td>
+
+                     </tr>
+
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d194280e1075 ">
+                           <p>
+                              <samp class="codeph">dragDrop</samp>
+                           </p>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d194280e1081 ">
+                           <p>Dispatched when the user releases the mouse
+over the drop target. </p>
+
+                           <p>Use
+this event handler to add the drag data to the drop target. For
+an example, see <a href="flx_dragdrop_dd.html#WS2db454920e96a9e51e63e3d11c0bf69084-7d02_verapache">Example:
+Simple drag-and-drop operation for a nonlist-based control</a>. </p>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d194280e1087 ">
+                           <p>Yes</p>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d194280e1093 ">
+                           <p>Yes</p>
+
+                        </td>
+
+                     </tr>
+
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d194280e1075 ">
+                           <p>
+                              <samp class="codeph">dragExit</samp>
+                           </p>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d194280e1081 ">
+                           <p>Dispatched when the user moves the drag
+indicator off of the drop target, but does not drop the data onto
+the target. </p>
+
+                           <p>You can use this event to restore the
+drop target to its normal appearance if you modified its appearance
+in response to a <samp class="codeph">dragEnter</samp> event or other event.
+For an example, see <a href="flx_dragdrop_dd.html#WS2db454920e96a9e51e63e3d11c0bf69084-7d04_verapache">Example:
+Handling the dragOver and dragExit events for the drop target</a>. </p>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d194280e1087 ">
+                           <p>No</p>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d194280e1093 ">
+                           <p>Yes</p>
+
+                        </td>
+
+                     </tr>
+
+                  </tbody>
+
+               </table>
+</div>
+
+            <p>When adding drag-and-drop support to a nonlist-based component,
+you must implement an event handler for the <samp class="codeph">dragEnter</samp> and <samp class="codeph">dragDrop</samp> events,
+and optionally for the other events. When you set the <samp class="codeph">dropEnabled</samp> property
+to <samp class="codeph">true</samp> for a list-based control, Flex automatically
+adds event handlers for all events. </p>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf64595-7ff4_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf64595-7ff4_verapache"><!-- --></a>
+         <h3 class="topictitle3">The drag-and-drop operation</h3>
+
+         
+         <div>
+            <p>The
+following steps define the drag-and-drop operation.</p>
+
+            <ol>
+               <li>
+                  <p>A component becomes a drag-and-drop initiator in either
+of the following ways:</p>
+
+                  <ul>
+                     <li>
+                        <p>List-based components with <samp class="codeph">dragEnabled=true</samp>
+                        </p>
+
+                        <p>Flex
+automatically makes the component an initiator when the user clicks and
+moves the mouse on the component.</p>
+
+                     </li>
+
+                     <li>
+                        <p>Nonlist-based components, or list-based components with <samp class="codeph">dragEnabled=false</samp>
+                        </p>
+
+                        <p>The
+component must detect the user's attempt to start a drag operation and
+explicitly become an initiator. Typically, you use the <samp class="codeph">mouseMove</samp> or <samp class="codeph">mouseDown</samp> event
+to start the drag-and-drop operation. </p>
+
+                        <p>The component then
+creates an instance of the <a href="https://flex.apache.org/asdoc/mx/core/DragSource.html" target="_blank">mx.core.DragSource</a> class that
+contains the data to be dragged, and specifies the format for the
+data. The drop target can examine the format to determine if it
+is compatible with the drop target.</p>
+
+                        <p>The component then calls
+the <samp class="codeph">mx.managers.DragManager.doDrag()</samp> method, to
+initiate the drag-and-drop operation.</p>
+
+                     </li>
+
+                  </ul>
+
+               </li>
+
+               <li>
+                  <p>While the mouse button is still pressed,
+the user moves the mouse around the application. Flex displays the
+drag indicator image in your application. </p>
+
+                  <div class="note"><span class="notetitle">Note:</span> Releasing
+the mouse button when the drag indicator is not over a target ends
+the drag-and-drop operation. Flex generates a <samp class="codeph">DragComplete</samp> event
+on the drag initiator, and the <samp class="codeph">DragManager.getFeedback()</samp> method
+returns <samp class="codeph">DragManager.NONE</samp>
+                     <em>.</em>
+                  </div>
+
+               </li>
+
+               <li>
+                  <p>If the user moves the drag indicator over a Flex component,
+Flex dispatches a <samp class="codeph">dragEnter</samp> event for the component. </p>
+
+                  <ul>
+                     <li>
+                        <p>List-based components with <samp class="codeph">dropEnabled=true</samp>
+                        </p>
+
+                        <p>Flex
+checks to see if the component can be a drop target.</p>
+
+                     </li>
+
+                     <li>
+                        <p>Nonlist-based components, or list-based components with <samp class="codeph">dropEnabled=false</samp>
+                        </p>
+
+                        <p>The
+component must define an event handler for the <samp class="codeph">dragEnter</samp> event
+to be a drop target. </p>
+
+                     </li>
+
+                  </ul>
+
+                  <p>The <samp class="codeph">dragEnter</samp> event
+handler can examine the <samp class="codeph">DragSource</samp> object to determine
+whether the data being dragged is in an accepted format. To accept the
+drop, the event handler calls the <samp class="codeph">DragManager.acceptDragDrop()</samp> method.
+You must call the <samp class="codeph">DragManager.acceptDragDrop()</samp> method for
+the drop target to receive the <samp class="codeph">dragOver</samp>, <samp class="codeph">dragExit</samp>,
+and <samp class="codeph">dragDrop</samp> events.</p>
+
+                  <ul>
+                     <li>
+                        <p>If the drop
+target does not accept the drop, Flex examines all DisplayObject components
+under the mouse. Flex examines the components in order of depth
+to determine if any component accepts the drop data. </p>
+
+                     </li>
+
+                     <li>
+                        <p>If the drop target accepts the drop, Flex dispatches the <samp class="codeph">dragOver</samp> event
+as the user moves the drag indicator over the target.</p>
+
+                     </li>
+
+                  </ul>
+
+               </li>
+
+               <li>
+                  <p>(Optional) The drop target can handle the <samp class="codeph">dragOver</samp> event.
+For example, the drop target can use this event handler to set the
+focus on itself. Or, the target can display a visual indication
+showing where the drag data is to be inserted. </p>
+
+               </li>
+
+               <li>
+                  <p>(Optional) If the user decides not to drop the data onto
+the drop target and moves the drag indicator outside of the drop
+target without releasing the mouse button, Flex dispatches a <samp class="codeph">dragExit</samp> event
+for the drop target. The drop target can optionally handle this
+event; for example, to undo any actions made in the <samp class="codeph">dragOver</samp> event
+handler.</p>
+
+               </li>
+
+               <li>
+                  <p>If the user releases the mouse while over the drop target,
+Flex dispatches a <samp class="codeph">dragDrop</samp> event on the drop target. </p>
+
+                  <ul>
+                     <li>
+                        <p>List-based components with <samp class="codeph">dropEnabled=true</samp>
+                        </p>
+
+                        <p>Flex
+automatically adds the drag data to the drop target. </p>
+
+                     </li>
+
+                     <li>
+                        <p>Nonlist-based components, or list-based components with <samp class="codeph">dropEnabled=false</samp>
+                        </p>
+
+                        <p>The
+drop target must define an event listener for the <samp class="codeph">dragDrop</samp> event handler
+to add the drag data to the drop target. </p>
+
+                     </li>
+
+                  </ul>
+
+               </li>
+
+               <li>
+                  <p>(Optional) When the drop operation completes, Flex dispatches
+a <samp class="codeph">dragComplete</samp> event. The drag initiator can handle
+this event; for example, to delete the drag data from the drag initiator
+in the case of a move. </p>
+
+                  <ul>
+                     <li>
+                        <p>List-based components with <samp class="codeph">dragEnabled=true</samp>
+                        </p>
+
+                        <p>If
+this is a move operation, Flex automatically removes the drag data
+from the drag initiator.</p>
+
+                     </li>
+
+                     <li>
+                        <p>Nonlist-based components, or list-based components with <samp class="codeph">dragEnabled=false</samp>
+                        </p>
+
+                        <p>The
+drag initiator completes any final processing required. If this
+was a move operation, the event handler must remove the drag data
+from the drag initiator. For an example of writing the event handler
+for the <samp class="codeph">dragComplete</samp> event, see <a href="flx_dragdrop_dd.html#WS2db454920e96a9e51e63e3d11c0bf69084-7d03_verapache">Example:
+Moving and copying data for a nonlist-based control</a>.</p>
+
+                     </li>
+
+                  </ul>
+
+               </li>
+
+            </ol>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf69084-7d02_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7d02_verapache"><!-- --></a>
+         <h3 class="topictitle3">Example: Simple drag-and-drop operation
+for a nonlist-based control</h3>
+
+         
+         <div>
+            <p>The following example lets you set the background color
+of a Canvas container by dropping either of two colors onto it.
+You are not copying or moving any data; instead, you are using the
+two drag initiators as a color palette. You then drag the color
+from one palette onto the drop target to set its background color.</p>
+
+            <p>The drag initiators, two Canvas containers, implement an event
+handler for the <samp class="codeph">mouseDown</samp> event to initiate the
+drag and drop operation. This is the only event required to be handled
+by the drag initiator. The drop target is required to implement
+event handlers for the <samp class="codeph">dragEnter</samp> and <samp class="codeph">dragDrop</samp> events. </p>
+
+            <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- dragdrop\DandDCanvas.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    backgroundColor="white"&gt; 
+    &lt;s:layout&gt; 
+        &lt;s:VerticalLayout/&gt; 
+    &lt;/s:layout&gt; 
+ 
+    &lt;fx:Script&gt; 
+        &lt;![CDATA[ 
+ 
+        import mx.core.DragSource; 
+        import mx.managers.DragManager; 
+        import mx.events.*; 
+        import mx.containers.Canvas; 
+ 
+        // Initializes the drag and drop operation. 
+        private function mouseMoveHandler(event:MouseEvent):void { 
+            
+            // Get the drag initiator component from the event object. 
+            var dragInitiator:Canvas=Canvas(event.currentTarget); 
+            
+            // Get the color of the drag initiator component. 
+            var dragColor:int = dragInitiator.getStyle('backgroundColor'); 
+ 
+            // Create a DragSource object. 
+            var ds:DragSource = new DragSource(); 
+ 
+            // Add the data to the object. 
+            ds.addData(dragColor, 'color'); 
+ 
+            // Call the DragManager doDrag() method to start the drag. 
+            DragManager.doDrag(dragInitiator, ds, event); 
+        } 
+ 
+        // Called when the user moves the drag indicator onto the drop target. 
+        private function dragEnterHandler(event:DragEvent):void { 
+ 
+            // Accept the drag only if the user is dragging data 
+            // identified by the 'color' format value. 
+            if (event.dragSource.hasFormat('color')) { 
+ 
+                // Get the drop target component from the event object. 
+                var dropTarget:Canvas=Canvas(event.currentTarget); 
+                // Accept the drop. 
+                DragManager.acceptDragDrop(dropTarget); 
+            } 
+        } 
+                
+        // Called if the target accepts the dragged object and the user 
+        // releases the mouse button while over the Canvas container. 
+        private function dragDropHandler(event:DragEvent):void { 
+ 
+            // Get the data identified by the color format 
+            // from the drag source. 
+            var data:Object = event.dragSource.dataForFormat('color'); 
+            // Set the canvas color. 
+            myCanvas.setStyle("backgroundColor", data); 
+        }    
+        ]]&gt; 
+    &lt;/fx:Script&gt; 
+ 
+    &lt;!-- A horizontal box with red and green canvases that the user can drag. --&gt; 
+    &lt;mx:HBox&gt; 
+        &lt;mx:Canvas 
+            width="30" height="30" 
+            backgroundColor="red" 
+            borderStyle="solid" 
+            mouseMove="mouseMoveHandler(event);"/&gt; 
+        &lt;mx:Canvas 
+            width="30" height="30" 
+            backgroundColor="green" 
+            borderStyle="solid" 
+            mouseMove="mouseMoveHandler(event);"/&gt; 
+    &lt;/mx:HBox&gt; 
+ 
+    &lt;mx:Label text="Drag a color onto the Canvas container."/&gt; 
+ 
+    &lt;!-- Handles dragEnter and dragDrop events to allow dropping. --&gt; 
+    &lt;mx:Canvas id="myCanvas" 
+        width="100" height="100" 
+        backgroundColor="#FFFFFF" 
+        borderStyle="solid" 
+        dragEnter="dragEnterHandler(event);" 
+        dragDrop="dragDropHandler(event);"/&gt; 
+        
+    &lt;mx:Button id="b1" 
+        label="Clear Canvas" 
+        click="myCanvas.setStyle('backgroundColor', '0xFFFFFF');"/&gt; 
+&lt;/s:Application&gt;</pre>
+
+            <p>The following sections describe the event handlers for the <samp class="codeph">mouseDown</samp>, <samp class="codeph">dragEnter</samp>,
+and <samp class="codeph">dragDrop</samp> events.</p>
+
+         </div>
+
+         <div class="nested3" id="WS8b1c39bd7e9fc364-1f29f0f412c130d1b55-8000_verapache"><a name="WS8b1c39bd7e9fc364-1f29f0f412c130d1b55-8000_verapache"><!-- --></a>
+            <h4 class="topictitle4">Writing the mouseDown event handler</h4>
+
+            
+            <div>
+               <p>The event handler that initiates a drag-and-drop operation
+must do two things.</p>
+
+               <ol>
+                  <li>
+                     <p>Create a <a href="https://flex.apache.org/asdoc/mx/core/DragSource.html" target="_blank">DragSource</a> object
+and initialize it with the drag data and the data format.</p>
+
+                     <p>The
+DragSource object contains the drag data and a description of the
+drag data, called the data format. The event object for the <samp class="codeph">dragEnter</samp> and <samp class="codeph">dragDrop</samp> events
+contains a reference to this object in their <samp class="codeph">dragSource</samp> property,
+which allows the event handlers to access the drag data. </p>
+
+                     <p>You
+use the <samp class="codeph">DragSource.addData()</samp> method to add the
+drag data and format to the DragSource object, where the <samp class="codeph">addData()</samp> method
+has the following signature:</p>
+
+                     <pre class="codeblock"> addData(<em>data</em>:Object, <em>format</em>:String):void</pre>
+
+                     <p>The <samp class="codeph">format</samp> argument
+is a text string such as <samp class="codeph">"color"</samp>, <samp class="codeph">"list data",</samp> or <samp class="codeph">"employee record".</samp> In
+the event handler for the <samp class="codeph">dragEnter</samp> event, the drop
+target examines this string to determine whether the data format matches
+the type of data that the drop target accepts. If the format matches, the
+drop target lets users drop the data on the target; if the format
+does not match, the target does not enable the drop operation.</p>
+
+                     <p>One
+example of using the format string is when you have multiple components
+in your application that function as drop targets. Each drop target examines
+the DragSource object during its <samp class="codeph">dragEnter</samp> event
+to determine if the drop target supports that format. For more information,
+see <a href="flx_dragdrop_dd.html#WS8b1c39bd7e9fc364-1f29f0f412c130d1b55-7fff_verapache">Handling
+the dragEnter event</a>.</p>
+
+                     <div class="note"><span class="notetitle">Note:</span> List-based controls
+have predefined values for the <samp class="codeph">format</samp> argument.
+For all list controls other than the Tree control, the format String
+is <samp class="codeph">"itemsByIndex"</samp>. For the Tree control, the format
+String is <samp class="codeph">"treeItems"</samp>. For previous versions of
+Flex, list-based controls used a format String of <samp class="codeph">"items"</samp>. For
+more information, see <a href="flx_dragdrop_dd.html#WS2db454920e96a9e51e63e3d11c0bf69084-7cfd_verapache">Using
+drag-and-drop with list-based controls</a>
+                        <em>.</em> 
+                     </div>
+
+                     <p>If
+you drag large or complex data items, consider creating a handler
+to copy the data, and specify it by calling the <samp class="codeph">DragSource.addHandler()</samp> method
+instead of using the <samp class="codeph">DragSource.addData()</samp> method.
+If you do this, the data does not get copied until the user drops
+it, which avoids the processing overhead of copying the data if
+a user starts dragging data but never drops it. The implementation
+of the list-based classes use this technique.</p>
+
+                  </li>
+
+                  <li>
+                     <p>Call
+the <samp class="codeph">DragManager.doDrag()</samp> method to start the drag-and-drop operation.</p>
+
+                     <p>The <samp class="codeph">doDrag()</samp> method
+has the following signature:</p>
+
+                     <pre class="codeblock"> doDrag(<em>dragInitiator</em>:IUIComponent, <em>dragSource</em>:DragSource, <em>mouseEvent</em>:MouseEvent, 
+	<em>dragImage</em>:IFlexDisplayObject = null, <em>xOffset</em>:Number = 0, <em>yOffset</em>:Number = 0, 
+	<em>imageAlpha</em>:Number = 0.5, <em>allowMove</em>:Boolean = true):void</pre>
+
+                     <p>The <samp class="codeph">doDrag()</samp> method
+requires three arguments: a reference to the component that initiates
+the drag operation (identified by the <samp class="codeph">event.currentTarget</samp> object);
+the DragSource object that you created in step 1, and the event
+object passed to the event handler. </p>
+
+                     <p>Optional arguments specify
+the drag indicator image and the characteristics of the image. For
+an example that specifies a drag indicator, see <a href="flx_dragdrop_dd.html#WS2db454920e96a9e51e63e3d11c0bf69084-7d05_verapache">Example: Specifying
+the drag indicator by using the DragManager</a>.</p>
+
+                  </li>
+
+               </ol>
+
+            </div>
+
+         </div>
+
+         <div class="nested3" id="WS8b1c39bd7e9fc364-1f29f0f412c130d1b55-7fff_verapache"><a name="WS8b1c39bd7e9fc364-1f29f0f412c130d1b55-7fff_verapache"><!-- --></a>
+            <h4 class="topictitle4">Handling the dragEnter event</h4>
+
+            
+            <div>
+               <p>Flex generates a <samp class="codeph">dragEnter</samp> event when
+the user moves the drag indicator over any component. A component <em>must</em> define
+a handler for a <samp class="codeph">dragEnter</samp> event to be a drop target.
+The event handler typically performs the following actions:</p>
+
+               <ul>
+                  <li>
+                     <p>Use the <samp class="codeph">format</samp> property in the <a href="https://flex.apache.org/asdoc/mx/core/DragSource.html" target="_blank">DragSource</a> object
+to determine whether the drag data is in a format accepted by the
+drop target. </p>
+
+                  </li>
+
+                  <li>
+                     <p>If
+the drag data is in a compatible format, the handler <em>must</em> call
+the <samp class="codeph">DragManager.acceptDragDrop()</samp> method to enable
+the user to drop the data on the drop target. </p>
+
+                  </li>
+
+                  <li>
+                     <p>If
+the drag data is not in a compatible format, do not call the <samp class="codeph">DragManager.acceptDragDrop()</samp> method.
+If the event handler does not call this method, the user cannot
+drop the data and the drop target will not receive the <samp class="codeph">dragOver</samp>, <samp class="codeph">dragExit</samp>,
+and <samp class="codeph">dragDrop</samp> events.</p>
+
+                  </li>
+
+                  <li>
+                     <p>Optionally, perform any other actions necessary when the
+user first drags a drag indicator over a drop target.</p>
+
+                  </li>
+
+               </ul>
+
+               <p>The value of the <samp class="codeph">action</samp> property of the event
+object for the <samp class="codeph">dragEnter</samp> event is <samp class="codeph">DragManager.MOVE</samp>,
+even if you are doing a copy. This is because the <samp class="codeph">dragEnter</samp> event
+occurs before the drop target recognizes that the Control key is
+pressed to signal a copy. </p>
+
+               <p>The Flex default event handler for the <samp class="codeph">dragOver</samp> event
+for a list-based control automatically sets the <samp class="codeph">action</samp> property.
+For nonlist-based controls, or if you explicitly handle the <samp class="codeph">dragOver</samp> event
+for a list-based control, use the <samp class="codeph">DragManager.showFeedback()</samp> method
+to set the <samp class="codeph">action</samp> property to a value that signifies
+the type of drag operation: <samp class="codeph">DragManager.COPY</samp>, <samp class="codeph">DragManager.LINK</samp>, <samp class="codeph">DragManager.MOVE</samp>,
+or <samp class="codeph">DragManager.NONE</samp>. For more information on the <samp class="codeph">dragOver</samp> event,
+see <a href="flx_dragdrop_dd.html#WS2db454920e96a9e51e63e3d11c0bf69084-7d04_verapache">Example:
+Handling the dragOver and dragExit events for the drop target</a>.</p>
+
+            </div>
+
+         </div>
+
+         <div class="nested3" id="WS8b1c39bd7e9fc364-1f29f0f412c130d1b55-7ffe_verapache"><a name="WS8b1c39bd7e9fc364-1f29f0f412c130d1b55-7ffe_verapache"><!-- --></a>
+            <h4 class="topictitle4">Handling the dragDrop event</h4>
+
+            
+            <div>
+               <p>The <samp class="codeph">dragDrop</samp> event occurs when the user
+releases the mouse to drop data on a target, and the <samp class="codeph">dragEnter</samp> event
+handler has called the <samp class="codeph">DragManager.acceptDragDrop()</samp> method
+to accept the drop. You must define a handler for the event to add
+the drag data to the drop target. </p>
+
+               <p>The event handler uses the <samp class="codeph">DragSource.dataForFormat()</samp> method
+to retrieve the drag data. In the previous example, the drag data
+contains the new background color of the drop target. The event
+handler then calls <samp class="codeph">setStyle()</samp> to set the background
+color of the drop target.</p>
+
+            </div>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf64595-7fef_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf64595-7fef_verapache"><!-- --></a>
+         <h3 class="topictitle3">Example: Handling drag and drop
+events in a list-based control</h3>
+
+         
+         <div>
+            <p>Flex automatically defines default event handlers for the
+drag-and-drop events when you set <samp class="codeph">dragEnabled</samp> or <samp class="codeph">dropEnabled</samp> property
+to <samp class="codeph">true</samp> for an MX list-based control. You can either
+use these default event handlers, which requires you to do no additional
+work in your application, or define your own event handlers. </p>
+
+            <p>There are three common scenarios for using event handlers with
+the list-based controls:</p>
+
+            <dl>
+               
+                  <dt class="dlterm">Use the default event handlers</dt>
+
+                  <dd>
+                     <p>When you set <samp class="codeph">dragEnabled</samp> to <samp class="codeph">true</samp> for
+a drag initiator, or when you set <samp class="codeph">dropEnabled</samp> to <samp class="codeph">true</samp> for
+a drop target, Flex handles all drag-and-drop events for you. You
+only have to define your own <samp class="codeph">dragDrop</samp> event handler
+when you want to copy data as part of the drag-and-drop operation
+and the drop target uses a different data format. For more information,
+see <a href="flx_dragdrop_dd.html#WS2db454920e96a9e51e63e3d11c0bf69084-7cfc_verapache">Moving
+and copying data</a>.</p>
+
+                  </dd>
+
+               
+               
+                  <dt class="dlterm">Define your own event handlers</dt>
+
+                  <dd>
+                     <p>If you want to control the drag-and-drop operation for a
+list-based control, you can explicitly handle the drag-and-drop events,
+just as you can for any component. In this scenario, set the <samp class="codeph">dragEnabled</samp> property
+to <samp class="codeph">false</samp> for a drag initiator, or set the <samp class="codeph">dropEnabled</samp> property
+to <samp class="codeph">false</samp> for a drop target. For more information
+on handling these events, see <a href="flx_dragdrop_dd.html#WS2db454920e96a9e51e63e3d11c0bf69084-7d02_verapache">Example:
+Simple drag-and-drop operation for a nonlist-based control</a>.</p>
+
+                  </dd>
+
+               
+               
+                  <dt class="dlterm">Define your own event handlers and use the default
+event handlers</dt>
+
+                  <dd>
+                     <p>You might want to add your own event handler for a drag-and-drop
+event, and also use the build in drag-and-drop handlers. In this
+case, your event handler executes first, then the default event
+handler provided by Flex executes. If, for any reason, you want
+to explicitly prohibit the execution of the default event handler,
+call the <samp class="codeph">Event.preventDefault()</samp> method from within
+your event handler.</p>
+
+                     <div class="note"><span class="notetitle">Note:</span> If you call <samp class="codeph">Event.preventDefault()</samp> in
+the event handler for the <samp class="codeph">dragComplete</samp> or <samp class="codeph">dragDrop</samp> event
+for a Tree control when dragging data from one Tree control to another,
+it prevents the drop. </div>
+
+                     <p>Because of the way data to a Tree
+control is structured, the Tree control handles drag and drop differently
+from the other list-based controls. For the Tree control, the event
+handler for the <samp class="codeph">dragDrop</samp> event only performs an
+action when you move or copy data in the same Tree control, or copy
+data to another Tree control. If you drag data from one Tree control
+and drop it onto another Tree control to move the data, the event
+handler for the <samp class="codeph">dragComplete</samp> event actually performs
+the work to add the data to the destination Tree control, rather
+than the event handler for the <samp class="codeph">dragDrop</samp> event,
+and also removes the data from the source Tree control. This is
+necessary because to reparent the data being moved, Flex must remove
+it first from the source Tree control.</p>
+
+                     <p>Therefore, if you call <samp class="codeph">Event.preventDefault()</samp> in
+the event handler for the <samp class="codeph">dragDrop</samp> or <samp class="codeph">dragComplete</samp> events,
+you implement the drop behavior yourself. For more information,
+see <a href="flx_dragdrop_dd.html#WS2db454920e96a9e51e63e3d11c0bf69084-7d03_verapache">Example:
+Moving and copying data for a nonlist-based control</a>.</p>
+
+                     <p>The
+following example defines an event handler for the <samp class="codeph">dragDrop</samp> event
+that accesses the data dragged from one DataGrid control to another.
+This event handler is executed before the default event handler
+for the <samp class="codeph">dragDrop</samp> event to display in an Alert control
+the Artist field of each DataGrid row dragged from the drag initiator
+to the drop target:</p>
+
+                     <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- dragdrop\SimpleDGToDGAlert.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    width="650" 
+    creationComplete="initApp();"&gt; 
+    &lt;s:layout&gt; 
+        &lt;s:VerticalLayout/&gt; 
+    &lt;/s:layout&gt; 
+ 
+    &lt;fx:Script&gt; 
+        &lt;![CDATA[        
+            import mx.events.DragEvent; 
+            import mx.controls.Alert; 
+            import mx.collections.ArrayCollection; 
+            
+            private function initApp():void { 
+              srcgrid.dataProvider =  new ArrayCollection([ 
+                {Artist:'Carole King', Album:'Tapestry', Price:11.99}, 
+                {Artist:'Paul Simon', Album:'Graceland', Price:10.99}, 
+                {Artist:'Original Cast', Album:'Camelot', Price:12.99}, 
+                {Artist:'The Beatles', Album:'The White Album', Price:11.99} 
+              ]); 
+                
+                destgrid.dataProvider = new ArrayCollection([]); 
+            } 
+ 
+            // Define the event listener. 
+            public function dragDropHandler(event:DragEvent):void {    
+                // dataForFormat() always returns an Vector.&lt;Object&gt; 
+                // for the list-based controls 
+                // in case multiple items were selected. 
+                var dragObj:Vector.&lt;Object&gt;= 
+                    event.dragSource.dataForFormat("itemsByIndex") as Vector.&lt;Object&gt;; 
+                // Get the Artist for all dragged albums. 
+                var artistList:String=''; 
+                for (var i:Number = 0; i &lt; dragObj.length; i++) { 
+                    artistList+='Artist: ' + dragObj[i].Artist + '\n'; 
+                } 
+                
+                Alert.show(artistList);                
+            }           
+        ]]&gt; 
+    &lt;/fx:Script&gt; 
+ 
+    &lt;s:HGroup&gt; 
+        &lt;s:VGroup&gt; 
+            &lt;s:Label text="Available Albums"/&gt; 
+            &lt;mx:DataGrid id="srcgrid" 
+                allowMultipleSelection="true" 
+                dragEnabled="true" 
+                dropEnabled="true" 
+                dragMoveEnabled="true"&gt;                
+                &lt;mx:columns&gt; 
+                    &lt;mx:DataGridColumn dataField="Artist"/&gt; 
+                    &lt;mx:DataGridColumn dataField="Album"/&gt; 
+                    &lt;mx:DataGridColumn dataField="Price"/&gt; 
+                &lt;/mx:columns&gt;    
+            &lt;/mx:DataGrid&gt; 
+        &lt;/s:VGroup&gt; 
+ 
+        &lt;s:VGroup&gt; 
+            &lt;s:Label text="Buy These Albums"/&gt; 
+            &lt;mx:DataGrid id="destgrid" 
+                allowMultipleSelection="true" 
+                dragEnabled="true" 
+                dropEnabled="true" 
+                dragMoveEnabled="true" 
+                dragDrop="dragDropHandler(event);"&gt;                
+                &lt;mx:columns&gt; 
+                    &lt;mx:DataGridColumn dataField="Artist"/&gt; 
+                    &lt;mx:DataGridColumn dataField="Album"/&gt; 
+                    &lt;mx:DataGridColumn dataField="Price"/&gt; 
+                &lt;/mx:columns&gt;    
+            &lt;/mx:DataGrid&gt; 
+        &lt;/s:VGroup&gt; 
+    &lt;/s:HGroup&gt; 
+ 
+    &lt;s:Button id="b1" 
+        label="Reset" 
+        click="initApp();"/&gt; 
+&lt;/s:Application&gt; </pre>
+
+                     <p>Notice that the <samp class="codeph">dataForFormat()</samp> method
+specifies an argument value of "<samp class="codeph">itemsByIndex</samp>".
+This is because the list-based controls have predefined values for
+the data format of drag data. For all list controls other than the
+Tree control, the format String is "<samp class="codeph">itemsByIndex</samp>".
+For the Tree control, the format String is "<samp class="codeph">treeItems</samp>". </p>
+
+                     <p>For
+Spark controls only, the DragSource object also contains the index
+of the item in the drag initiator that was clicked by the mouse.
+The format string of the index is "<samp class="codeph">caretIndex</samp>".
+The index is relative to the items in the drag data. Therefore,
+if the drag data contains three items, the index is a value between
+0 and 2.</p>
+
+                     <p>Notice that the return value of the <samp class="codeph">dataForFormat()</samp> method
+is a Vector of type Object. Because list-based controls let you
+select multiple items, the <samp class="codeph">dataForFormat()</samp> method
+always returns a Vector for a list-based control, even if you are
+only dragging a single item. </p>
+
+                  </dd>
+
+               
+            </dl>
+
+         </div>
+
+      </div>
+
+   </div>
+
+   <div class="nested1" id="WS2db454920e96a9e51e63e3d11c0bf64595-7fee_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf64595-7fee_verapache"><!-- --></a>
+      <h2 class="topictitle2">Using drag and drop with Flex applications
+running in AIR</h2>
+
+      
+      <div>
+         <p>When a Flex application runs in Adobe<sup>®</sup> AIR™, you can control whether the application
+uses the Flex drag manager or the AIR drag manager. These drag managers
+are implemented by the classes mx.managers.DragManager (Flex drag manager)
+and flash.desktop.NativeDragManager (AIR drag manager). </p>
+
+         <p>Internally, the Flex mx.managers.DragManager class uses an implementation class
+to determine which drag manager to use. It uses either the Flex mx.managers.DragManagerImpl
+class, or the AIR mx.managers.NativeDragManagerImpl class. </p>
+
+         <p>By default, an application defined by the Spark <samp class="codeph">&lt;s:Application&gt;</samp> or
+the MX <samp class="codeph">&lt;mx:Application&gt;</samp> tag uses the Flex
+drag-and-drop manager, even when the Flex application runs in AIR.
+If you run your Flex application in AIR, and you want to take advantage
+of the AIR drag-and-drop manager to drag and drop items from outside
+of AIR, then you must configure the Flex mx.managers.DragManager
+class to use the AIR drag-and-drop manager.</p>
+
+         <p>There are three scenarios that determine which drag-and-drop
+manager your Flex application uses when running in AIR:</p>
+
+         <ol>
+            <li>
+               <p>Your main application file uses the Spark <samp class="codeph">&lt;s:Application&gt;</samp> or
+the MX <samp class="codeph">&lt;mx:Application&gt;</samp> tag. In this scenario,
+you use the Flex drag-and-drop manager, and cannot drag and drop
+items from outside of AIR.</p>
+
+            </li>
+
+            <li>
+               <p>Your main application file uses the Spark <samp class="codeph">&lt;s:WindowedApplication&gt;</samp> or the
+MX <samp class="codeph">&lt;mx:WindowedApplication&gt;</samp> tag. In this
+scenario, you use the AIR drag-and-drop manager, and can drag and
+drop items from outside of AIR.</p>
+
+            </li>
+
+            <li>
+               <p>Your main application file uses the Spark <samp class="codeph">&lt;s:Application&gt;</samp> or
+the MX <samp class="codeph">&lt;mx:Application&gt;</samp> tag, but loads the
+AIR drag-and-drop manager as represented by the mx.managers.NativeDragManagerImpl
+class. In this scenario, you use the AIR drag-and-drop manager,
+and can drag and drop items from outside of AIR.</p>
+
+            </li>
+
+         </ol>
+
+         <p>For the third scenario, to use the AIR drag-and-drop manager
+in your Flex application, you must write your application to link
+to mx.managers.NativeDragManagerImpl class, and to load it at runtime,
+as the following example shows:</p>
+
+         <pre class="codeblock"> &lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+	xmlns:s="library://ns.adobe.com/flex/spark" 
+	xmlns:mx="library://ns.adobe.com/flex/mx" 
+ 	initialize="initDandD();"&gt;  
+  
+ 	&lt;fx:Script&gt; 
+ 		&lt;![CDATA[         
+ 			// Ensure that the NativeDragManagerImpl class is linked in to your application. 
+ 			import mx.managers.NativeDragManagerImpl; 
+ 			var placeholder:NativeDragManagerImpl; 
+  
+ 			// Handle the initialize event to load the DragManager. 
+ 			public function initDandD():void 
+ 			{ 
+ 				// Ensure the DragManager is loaded, so that dragging in an AIR works. 
+ 				DragManager.isDragging; 
+ 			} 
+ 		]]&gt; 
+ 	&lt;/fx:Script&gt; 
+  
+ 	... 
+ &lt;/s:Application&gt;</pre>
+
+         <p>Two drag-and-drop events work differently depending on whether
+your application runs in Adobe<sup>®</sup> Flash<sup>®</sup> Player or AIR, as the following table
+shows:</p>
+
+         
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" frame="border" border="1" rules="all">
+               
+               
+               
+               <thead align="left">
+                  <tr>
+                     <th class="cellrowborder" valign="top" width="NaN%" id="d194280e2296">
+                        <p>Event</p>
+
+                     </th>
+
+                     <th class="cellrowborder" valign="top" width="NaN%" id="d194280e2302">
+                        <p>Flash Player</p>
+
+                     </th>
+
+                     <th class="cellrowborder" valign="top" width="NaN%" id="d194280e2308">
+                        <p>AIR</p>
+
+                     </th>
+
+                  </tr>
+
+               </thead>
+
+               <tbody>
+                  <tr>
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d194280e2296 ">
+                        <div class="p">
+                           <pre class="codeblock">dragEnter</pre>
+
+                        </div>
+
+                     </td>
+
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d194280e2302 ">
+                        <p>Triggers when you move the mouse pointer over
+any component during a drag and drop operation.</p>
+
+                        <p>The default
+value of the <samp class="codeph">DragEvent.action</samp> property is <samp class="codeph">DragEvent.MOVE</samp>.</p>
+
+                     </td>
+
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d194280e2308 ">
+                        <p>Triggers when you move the mouse pointer
+over any component during a drag and drop operation.</p>
+
+                        <p>The default
+value of the <samp class="codeph">DragEvent.action</samp> property is <samp class="codeph">DragEvent.COPY</samp>.</p>
+
+                     </td>
+
+                  </tr>
+
+                  <tr>
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d194280e2296 ">
+                        <div class="p">
+                           <pre class="codeblock">dragOver</pre>
+
+                        </div>
+
+                     </td>
+
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d194280e2302 ">
+                        <p>Triggers many times when you drag an item over
+a valid drop target.</p>
+
+                     </td>
+
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d194280e2308 ">
+                        <p>Triggers many times when you drag an item
+over any component, even if the component is not a valid drop target.</p>
+
+                     </td>
+
+                  </tr>
+
+               </tbody>
+
+            </table>
+</div>
+
+         <p>There are several other differences between the Flex and AIR
+drag managers, as described below:</p>
+
+         
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" frame="border" border="1" rules="all">
+               
+               
+               
+               <thead align="left">
+                  <tr>
+                     <th class="cellrowborder" valign="top" width="NaN%" id="d194280e2404">
+                        <p>Characteristic</p>
+
+                     </th>
+
+                     <th class="cellrowborder" valign="top" width="NaN%" id="d194280e2410">
+                        <p>Flash player</p>
+
+                     </th>
+
+                     <th class="cellrowborder" valign="top" width="NaN%" id="d194280e2416">
+                        <p>AIR</p>
+
+                     </th>
+
+                  </tr>
+
+               </thead>
+
+               <tbody>
+                  <tr>
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d194280e2404 ">
+                        <p>Cursors</p>
+
+                     </td>
+
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d194280e2410 ">
+                        <p>Flex draws the drag-and-drop cursors.</p>
+
+                     </td>
+
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d194280e2416 ">
+                        <p>The operating system draws the cursors.</p>
+
+                     </td>
+
+                  </tr>
+
+                  <tr>
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d194280e2404 ">
+                        <p>Styles</p>
+
+                     </td>
+
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d194280e2410 ">
+                        <p>Cursor styles and the <samp class="codeph">mx.managers.DragManager.defaultDragImageSkin</samp> property
+are supported.</p>
+
+                     </td>
+
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d194280e2416 ">
+                        <p>Cursor styles and the <samp class="codeph">mx.managers.DragManager.defaultDragImageSkin</samp> property
+are ignored.</p>
+
+                     </td>
+
+                  </tr>
+
+                  <tr>
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d194280e2404 ">
+                        <p>Drag indicator</p>
+
+                     </td>
+
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d194280e2410 ">
+                        <p>The drag image of the drag indicator can
+be an instance of the DisplayObject class, including an animated
+SWF file, an image, or a Flex component. </p>
+
+                        <p> </p>
+
+                     </td>
+
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d194280e2416 ">
+                        <p>By default, the drag image is a bitmap created from
+the object being dragged. It does not change dynamically as the
+user drags it.</p>
+
+                        <p>If you pass a drag image to the <samp class="codeph">doDrag()</samp> method,
+it must already be loaded by your application when you call <samp class="codeph">doDrag()</samp>,
+otherwise it will be blank. For more information on the <samp class="codeph">doDrag()</samp> method,
+see <a href="flx_dragdrop_dd.html#WS2db454920e96a9e51e63e3d11c0bf69084-7d05_verapache">Example:
+Specifying the drag indicator by using the DragManager</a>.</p>
+
+                     </td>
+
+                  </tr>
+
+                  <tr>
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d194280e2404 ">
+                        <p>Drop animation</p>
+
+                     </td>
+
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d194280e2410 ">
+                        <p>The DragProxy class animates the drag image based
+on the results of the drop, such as accepted or rejected.</p>
+
+                     </td>
+
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d194280e2416 ">
+                        <p>No custom animations can be used. The operating
+system handles the behavior of the cursor and the drag image. </p>
+
+                     </td>
+
+                  </tr>
+
+               </tbody>
+
+            </table>
+</div>
+
+      </div>
+
+   </div>
+
+   <div class="nested1" id="WS7d89194359d2921c5daddfab1247d167dad-8000_verapache"><a name="WS7d89194359d2921c5daddfab1247d167dad-8000_verapache"><!-- --></a>
+      <h2 class="topictitle2">Drag and drop differences between Spark
+and MX</h2>
+
+      
+      <div>
+         <p>Much of the drag and drop functionality is the same for
+the Spark and MX list-based controls. However, there are a few differences,
+as the following table shows: </p>
+
+         
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" frame="border" border="1" rules="all">
+               
+               
+               
+               
+               <thead align="left">
+                  <tr>
+                     <th class="cellrowborder" valign="top" width="NaN%" id="d194280e2571">
+                        <p>Topic</p>
+
+                     </th>
+
+                     <th class="cellrowborder" valign="top" width="NaN%" id="d194280e2577">
+                        <p>Description</p>
+
+                     </th>
+
+                     <th class="cellrowborder" valign="top" width="NaN%" id="d194280e2583">
+                        <p>Spark</p>
+
+                     </th>
+
+                     <th class="cellrowborder" valign="top" width="NaN%" id="d194280e2589">
+                        <p>MX</p>
+
+                     </th>
+
+                  </tr>
+
+               </thead>
+
+               <tbody>
+                  <tr>
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d194280e2571 ">
+                        <p>Set the drag indicator</p>
+
+                     </td>
+
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d194280e2577 ">
+                        <p>Specifies the appearance of the dragged
+data during the drag.</p>
+
+                     </td>
+
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d194280e2583 ">
+                        <p>Defined by the optional <samp class="codeph">dragging</samp> view
+state in the item renderer.</p>
+
+                        <p>You can further customize it by creating
+a subclass of the spark.components.supportClasses.ListItemDragProxy
+class.</p>
+
+                     </td>
+
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d194280e2589 ">
+                        <p>Override the <samp class="codeph">mx.controls.listClasses.ListBase.dragImage</samp> property.
+The default value is ListItemDragProxy.</p>
+
+                     </td>
+
+                  </tr>
+
+                  <tr>
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d194280e2571 ">
+                        <p>Set the drop indicator</p>
+
+                     </td>
+
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d194280e2577 ">
+                        <p>Specifies the appearance of the drop indicator
+which shows where the dragged data will be inserted into the drop
+target.</p>
+
+                     </td>
+
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d194280e2583 ">
+                        <p>Define a <samp class="codeph">dropIndicator</samp> skin part
+in the skin class of the drop target.</p>
+
+                     </td>
+
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d194280e2589 ">
+                        <p>Use the <samp class="codeph">mx.controls.listClasses.ListBase.dropIndicatorSkin</samp> property
+to set the skin class. The default value is ListDropIndicator.</p>
+
+                     </td>
+
+                  </tr>
+
+                  <tr>
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d194280e2571 ">
+                        <p>Calculate the drop index</p>
+
+                     </td>
+
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d194280e2577 ">
+                        <p>Returns the item index in the data provider
+of the drop target where the item will be dropped. Used by the <samp class="codeph">dragDrop</samp> event
+handler to add the items in the correct location.</p>
+
+                        <p>Not available
+in the MX TileList or HorizontalList controls.</p>
+
+                     </td>
+
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d194280e2583 ">
+                        <p>Use the <samp class="codeph">spark.layouts.supportClasses.LayoutBase.calculateDropLocation()</samp> method.
+Use the <samp class="codeph">layout</samp> property of the list class to access
+this method in the layout class of the component.</p>
+
+                     </td>
+
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d194280e2589 ">
+                        <p>Use the <samp class="codeph">mx.controls.listClasses.ListBase.calculateDropIndex()</samp> method.</p>
+
+                     </td>
+
+                  </tr>
+
+                  <tr>
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d194280e2571 ">
+                        <p>Show drop feedback</p>
+
+                     </td>
+
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d194280e2577 ">
+                        <p>Specifies to display the focus rectangle
+around the target control and positions the drop indicator where
+the drop operation should occur. If the control has active scroll
+bars, hovering the mouse pointer near the edges of the control scrolls
+the contents.</p>
+
+                        <p>You typically call this method from within the
+handler for the <samp class="codeph">dragOver</samp> event.</p>
+
+                        <p>When you
+set <samp class="codeph">dropEnabled</samp> to <samp class="codeph">true</samp>, Flex
+automatically shows the drop indicator when necessary.</p>
+
+                     </td>
+
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d194280e2583 ">
+                        <p>Use the <samp class="codeph">spark.layouts.supportClasses.LayoutBase.showDropIndicator()</samp> method.
+Use the <samp class="codeph">layout</samp> property to access this method in
+the layout class of the control.</p>
+
+                        <p>If you override the <samp class="codeph">dragEnter</samp> event
+handler, and call <samp class="codeph">preventDefault()</samp> so that the default
+handler does not execute, call <samp class="codeph">List.createDropIndicator()</samp> to
+create the drop indicator.</p>
+
+                     </td>
+
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d194280e2589 ">
+                        <p>Use the <samp class="codeph">mx.controls.listClasses.ListBase.showDropFeedback()</samp> method.</p>
+
+                     </td>
+
+                  </tr>
+
+                  <tr>
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d194280e2571 ">
+                        <p>Hide drop feedback</p>
+
+                     </td>
+
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d194280e2577 ">
+                        <p>Hides drop target feedback and removes the
+focus rectangle from the target. You typically call this method from
+within the handler for the <samp class="codeph">dragExit</samp> and <samp class="codeph">dragDrop</samp> events. When
+you set <samp class="codeph">dropEnabled</samp> to <samp class="codeph">true</samp>, Flex
+automatically hides the drop indicator when necessary.</p>
+
+                     </td>
+
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d194280e2583 ">
+                        <p>Use the <samp class="codeph">spark.layouts.supportClasses.LayoutBase.hideDropIndicator()</samp> method.
+Use the <samp class="codeph">layout</samp> property to access this method in
+the layout class of the control. </p>
+
+                        <p>Focus not handled by <samp class="codeph">hideDropIndicator()</samp>. </p>
+
+                        <p>If
+you override the <samp class="codeph">dragExit</samp> event handler, and call <samp class="codeph">preventDefault()</samp> so
+that the default handler does not execute, call <samp class="codeph">List.destroyDropIndicator()</samp> to
+delete the drop indicator.</p>
+
+                     </td>
+
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d194280e2589 ">
+                        <p>Use the <samp class="codeph">mx.controls.listClasses.ListBase.hideDropFeedback()</samp> method.</p>
+
+                     </td>
+
+                  </tr>
+
+               </tbody>
+
+            </table>
+</div>
+
+      </div>
+
+   </div>
+
+   <div class="nested1" id="WS2db454920e96a9e51e63e3d11c0bf64595-7fed_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf64595-7fed_verapache"><!-- --></a>
+      <h2 class="topictitle2">Drag and drop examples</h2>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf69084-7cee_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7cee_verapache"><!-- --></a>
+         <h3 class="topictitle3">Example: Using a container as a
+drop target</h3>
+
+         
+         <div>
+            <p>To
+use a container as a drop target, you must use the <samp class="codeph">backgroundColor</samp> property
+of the container to set a color. Otherwise, the background color
+of the container is transparent, and the Drag and Drop Manager is
+unable to detect that the mouse pointer is on a possible drop target. </p>
+
+            <p>In the following example, you use the Image control to load a
+draggable image into a <a href="https://flex.apache.org/asdoc/mx/containers/Canvas.html" target="_blank">Canvas</a> container.
+You then add event handlers to let the user drag the Image control
+within the Canvas container to reposition it:</p>
+
+            <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- dragdrop\DandDImage.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx"&gt; 
+ 
+    &lt;fx:Script&gt; 
+        &lt;![CDATA[ 
+            //Import classes so you don't have to use full names. 
+            import mx.managers.DragManager; 
+            import mx.core.DragSource; 
+            import mx.events.DragEvent; 
+            import flash.events.MouseEvent; 
+ 
+            // Embed icon image. 
+            [Embed(source='assets/globe.jpg')] 
+            public var globeImage:Class; 
+ 
+            // The mouseMove event handler for the Image control 
+            // initiates the drag-and-drop operation. 
+            private function mouseMoveHandler(event:MouseEvent):void 
+            {                
+                var dragInitiator:Image=Image(event.currentTarget); 
+                var ds:DragSource = new DragSource(); 
+                ds.addData(dragInitiator, "img");               
+                DragManager.doDrag(dragInitiator, ds, event); 
+            } 
+            
+            // The dragEnter event handler for the Canvas container 
+            // enables dropping. 
+            private function dragEnterHandler(event:DragEvent):void { 
+                if (event.dragSource.hasFormat("img")) 
+                { 
+                    DragManager.acceptDragDrop(Canvas(event.currentTarget)); 
+                } 
+            } 
+ 
+            // The dragDrop event handler for the Canvas container 
+            // sets the Image control's position by 
+            // "dropping" it in its new location. 
+            private function dragDropHandler(event:DragEvent):void { 
+                Image(event.dragInitiator).x = 
+                    Canvas(event.currentTarget).mouseX; 
+                Image(event.dragInitiator).y = 
+                    Canvas(event.currentTarget).mouseY; 
+            } 
+        ]]&gt; 
+    &lt;/fx:Script&gt; 
+    
+    &lt;!-- The Canvas is the drag target --&gt; 
+    &lt;mx:Canvas id="v1" 
+        width="500" height="500"  
+        borderStyle="solid" 
+        backgroundColor="#DDDDDD" 
+        dragEnter="dragEnterHandler(event);" 
+        dragDrop="dragDropHandler(event);"&gt; 
+        
+        &lt;!-- The image is the drag initiator. --&gt; 
+        &lt;s:Image id="myimg" 
+            source="@Embed(source='assets/globe.jpg')" 
+            mouseMove="mouseMoveHandler(event);"/&gt; 
+    &lt;/mx:Canvas&gt; 
+&lt;/s:Application&gt;</pre>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS7d89194359d2921c7475f7431247d780728-8000_verapache"><a name="WS7d89194359d2921c7475f7431247d780728-8000_verapache"><!-- --></a>
+         <h3 class="topictitle3">Example: Setting the drag indicator
+for Spark controls</h3>
+
+         
+         <div>
+            <p>The drag indicator defines the appearance of the dragged
+data during drag-and-drop operations. The appearance of the dragged
+data is determined by the item renderer for the list-based control. </p>
+
+            <p>By default, Spark item renderers use the <samp class="codeph">normal</samp> view
+state to display the dragged data. For more information on view
+states in Spark item renderers, see <a href="flx_spark_itemrenderers_sir.html#WS05A80398-9DD3-445a-BD33-A7D9FD695FA3_verapache">Defining
+item renderer view states for a Spark container</a>.</p>
+
+            <div class="p">Spark item renderers support the optional <samp class="codeph">dragging</samp> view
+state that you can use to control the appearance of the drag indicator.
+The following item renderer add the <samp class="codeph">dragging</samp> view
+state to display the dragged data in a bold, blue italic font:<pre class="noswf">&lt;?xml version="1.0" encoding="utf-8"?&gt; 
+&lt;!-- dragdrop\myComponents\MyListItemRenderer.mxml --&gt; 
+&lt;s:ItemRenderer focusEnabled="false" 
+    xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark"&gt; 
+   
+    &lt;s:states&gt; 
+        &lt;s:State name="normal" /&gt;            
+        &lt;s:State name="hovered" /&gt; 
+        &lt;s:State name="selected" /&gt; 
+        &lt;s:State name="normalAndShowsCaret"/&gt; 
+        &lt;s:State name="hoveredAndShowsCaret"/&gt; 
+        &lt;s:State name="selectedAndShowsCaret"/&gt; 
+        &lt;s:State name="dragging"/&gt; 
+    &lt;/s:states&gt; 
+    
+    &lt;s:Rect left="0" right="0" top="0" bottom="0"&gt; 
+        &lt;s:stroke.normalAndShowsCaret&gt; 
+            &lt;s:SolidColorStroke 
+                color="{getStyle('selectionColor')}" 
+                weight="1"/&gt; 
+        &lt;/s:stroke.normalAndShowsCaret&gt; 
+        &lt;s:stroke.hoveredAndShowsCaret&gt; 
+            &lt;s:SolidColorStroke 
+                color="{getStyle('selectionColor')}" 
+                weight="1"/&gt; 
+        &lt;/s:stroke.hoveredAndShowsCaret&gt; 
+        &lt;s:stroke.selectedAndShowsCaret&gt; 
+            &lt;s:SolidColorStroke 
+                color="{getStyle('selectionColor')}" 
+                weight="1"/&gt; 
+        &lt;/s:stroke.selectedAndShowsCaret&gt; 
+        &lt;s:fill&gt; 
+            &lt;s:SolidColor 
+                color.normal="0xFFFFFF" 
+                color.normalAndShowsCaret="0xFFFFFF" 
+                color.hovered="{getStyle('rollOverColor')}" 
+ 
+                color.hoveredAndShowsCaret="{getStyle('rollOverColor')}" 
+                color.selected="{getStyle('selectionColor')}" 
+                color.selectedAndShowsCaret="{getStyle('selectionColor')}" 
+                color.dragging="0xFFFFFF"/&gt; 
+        &lt;/s:fill&gt; 
+    &lt;/s:Rect&gt; 
+    &lt;s:Label id="labelDisplay" verticalCenter="0" left="3" right="3" top="6" bottom="4" 
+        fontStyle.dragging="italic" fontWeight.dragging="bold" color.dragging="blue"/&gt; 
+&lt;/s:ItemRenderer&gt;</pre>
+
+            </div>
+
+            <div class="p">The following application uses this item renderer: <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- dragdrop\SimpleListToListMoveSparkDragIndicator.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    creationComplete="initApp();"&gt; 
+    &lt;s:layout&gt; 
+        &lt;s:VerticalLayout/&gt; 
+    &lt;/s:layout&gt; 
+    
+    &lt;fx:Script&gt; 
+        &lt;![CDATA[ 
+            import mx.collections.ArrayList; 
+ 
+            private function initApp():void { 
+                srclist.dataProvider = 
+                    new ArrayList(['Reading', 'Television', 'Movies']); 
+                destlist.dataProvider = new ArrayList([]); 
+            } 
+        ]]&gt; 
+    &lt;/fx:Script&gt; 
+ 
+    &lt;s:HGroup&gt; 
+        &lt;s:VGroup&gt; 
+            &lt;s:Label text="Available Activities"/&gt; 
+            &lt;s:List id="srclist" 
+                allowMultipleSelection="true" 
+                dragEnabled="true" 
+                dragMoveEnabled="true" 
+                itemRenderer="myComponents.MyListItemRenderer"/&gt; 
+        &lt;/s:VGroup&gt; 
+ 
+        &lt;s:VGroup&gt; 
+            &lt;s:Label text="Activities I Like"/&gt; 
+            &lt;s:List id="destlist" 
+                dropEnabled="true"/&gt; 
+        &lt;/s:VGroup&gt; 
+    &lt;/s:HGroup&gt; 
+ 
+    &lt;s:Button id="b1" 
+        label="Reset" 
+        click="initApp();"/&gt; 
+&lt;/s:Application&gt;</pre>
+
+            </div>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf69084-7d05_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7d05_verapache"><!-- --></a>
+         <h3 class="topictitle3">Example: Specifying the drag indicator
+by using the DragManager</h3>
+
+         
+         <div>
+            <p>In the event handler for the <samp class="codeph">mouseDown</samp> or <samp class="codeph">mouseUp</samp> event,
+you can optionally specify a drag indicator in the <samp class="codeph">doDrag</samp>()
+method of the <a href="https://flex.apache.org/asdoc/mx/managers/DragManager.html" target="_blank">DragManager</a> class.
+If you do not specify a drag indicator, Flex uses a default drag
+indicator. The <samp class="codeph">doDrag()</samp> method takes the following
+optional arguments to specify the drag indicator and its properties.</p>
+
+            
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" frame="border" border="1" rules="all">
+                  
+                  
+                  <thead align="left">
+                     <tr>
+                        <th class="cellrowborder" valign="top" width="NaN%" id="d194280e2982">
+                           <p>Argument</p>
+
+                        </th>
+
+                        <th class="cellrowborder" valign="top" width="NaN%" id="d194280e2988">
+                           <p>Description</p>
+
+                        </th>
+
+                     </tr>
+
+                  </thead>
+
+                  <tbody>
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d194280e2982 ">
+                           <p>
+                              <samp class="codeph">
+                                 <em>dragIndicator</em>
+                              </samp> 
+                           </p>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d194280e2988 ">
+                           <p>The image that defines the drag indicator.</p>
+
+                           <p>To
+specify a symbol, such as a JPEG image of a product that a user
+wants to order, use a string that specifies the symbol's name, such
+as myImage.jpg. </p>
+
+                           <p>To specify a component, such as a Flex container
+or control, create an instance of the control or container, configure
+and size it, and then pass it as an argument to the <samp class="codeph">doDrag()</samp> method.</p>
+
+                        </td>
+
+                     </tr>
+
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d194280e2982 ">
+                           <p>
+                              <samp class="codeph">
+                                 <em>xOffset</em>
+                              </samp> 
+                           </p>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d194280e2988 ">
+                           <p>Number that specifies the x offset, in pixels,
+for the <samp class="codeph">dragImage</samp>. This argument is optional. If
+omitted, the drag indicator is shown at the upper-left corner of
+the drag initiator. The offset is expressed in pixels from the left
+edge of the drag indicator to the left edge of the drag initiator,
+and is usually a negative number.</p>
+
+                        </td>
+
+                     </tr>
+
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d194280e2982 ">
+                           <p>
+                              <samp class="codeph">
+                                 <em>yOffset</em>
+                              </samp> 
+                           </p>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d194280e2988 ">
+                           <p>Number that specifies the y offset, in pixels,
+for the <samp class="codeph">dragImage</samp>. This argument is optional. If
+omitted, the drag indicator is shown at the upper-left corner of
+the drag initiator. The offset is expressed in pixels from the top
+edge of the drag indicator to the top edge of the drag initiator,
+and is usually a negative number.</p>
+
+                        </td>
+
+                     </tr>
+
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d194280e2982 ">
+                           <p>
+                              <samp class="codeph">
+                                 <em>imageAlpha</em>
+                              </samp> 
+                           </p>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d194280e2988 ">
+                           <p>A Number that specifies the alpha value
+used for the drag indicator image. If omitted, Flex uses an alpha
+value of 0.5. A value of 0 corresponds to transparent and a value
+of 1.0 corresponds to fully opaque.</p>
+
+                        </td>
+
+                     </tr>
+
+                  </tbody>
+
+               </table>
+</div>
+
+            <p>You must specify a size for the drag indicator, otherwise it
+does not appear. The following example modifies the example in <a href="flx_dragdrop_dd.html#WS2db454920e96a9e51e63e3d11c0bf69084-7cee_verapache">Example:
+Using a container as a drop target</a> to use a 15 pixel by 15
+pixel <a href="https://flex.apache.org/asdoc/mx/controls/Image.html" target="_blank">Image</a> control
+as the drag indicator:</p>
+
+            <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- dragdrop\DandDImageProxy.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx"&gt; 
+ 
+    &lt;fx:Script&gt; 
+        &lt;![CDATA[ 
+            //Import classes so you don't have to use full names. 
+            import mx.managers.DragManager; 
+            import mx.core.DragSource; 
+            import mx.events.DragEvent; 
+            import flash.events.MouseEvent; 
+ 
+            // Embed icon image. 
+            [Embed(source='assets/globe.jpg')] 
+            public var globeImage:Class; 
+ 
+            // The mouseMove event handler for the Image control 
+            // initiates the drag-and-drop operation. 
+            private function mouseOverHandler(event:MouseEvent):void 
+            {                
+                var dragInitiator:Image=Image(event.currentTarget); 
+                var ds:DragSource = new DragSource(); 
+                ds.addData(dragInitiator, "img");               
+                // The drag manager uses the Image control 
+                // as the drag indicator and sets the alpha to 1.0 (opaque), 
+                // so it appears to be dragged across the Canvas. 
+                var imageProxy:Image = new Image(); 
+                imageProxy.source = globeImage; 
+                imageProxy.height=15; 
+                imageProxy.width=15;                
+                DragManager.doDrag(dragInitiator, ds, event, 
+                    imageProxy, -15, -15, 1.00); 
+            } 
+            
+            // The dragEnter event handler for the Canvas container 
+            // enables dropping. 
+            private function dragEnterHandler(event:DragEvent):void { 
+                if (event.dragSource.hasFormat("img")) 
+                { 
+                    DragManager.acceptDragDrop(Canvas(event.currentTarget)); 
+                } 
+            } 
+ 
+            // The dragDrop event handler for the Canvas container 
+            // sets the Image control's position by 
+            // "dropping" it in its new location. 
+            private function dragDropHandler(event:DragEvent):void { 
+                Image(event.dragInitiator).x = 
+                    Canvas(event.currentTarget).mouseX; 
+                Image(event.dragInitiator).y = 
+                    Canvas(event.currentTarget).mouseY; 
+            } 
+        ]]&gt; 
+    &lt;/fx:Script&gt; 
+    
+    &lt;!-- The Canvas is the drag target --&gt; 
+    &lt;mx:Canvas id="v1" 
+        width="500" height="500"  
+        borderStyle="solid" 
+        backgroundColor="#DDDDDD" 
+        dragEnter="dragEnterHandler(event);" 
+        dragDrop="dragDropHandler(event);"&gt; 
+        
+        &lt;!-- The image is the drag initiator. --&gt; 
+        &lt;s:Image id="myimg" 
+            source="@Embed(source='assets/globe.jpg')" 
+            mouseMove="mouseOverHandler(event);"/&gt; 
+    &lt;/mx:Canvas&gt; 
+&lt;/s:Application&gt;</pre>
+
+            <p>To use a control with specific contents, such as a <a href="https://flex.apache.org/asdoc/mx/containers/VBox.html" target="_blank">VBox</a> control
+with a picture and label, you must create a custom component that
+contains the control or controls, and use an instance of the component
+as the <em>dragIndicator</em> argument. </p>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS7d89194359d2921c7475f7431247d780728-7fff_verapache"><a name="WS7d89194359d2921c7475f7431247d780728-7fff_verapache"><!-- --></a>
+         <h3 class="topictitle3">Example: Setting the drop indicator
+for Spark controls</h3>
+
+         
+         <div>
+            <p>The drop indicator shows where the dragged data will be
+inserted into the drop target. The appearance of the drop indicator
+is controlled by the skin class of the drop target. By default,
+the drop indicator for a Spark control is a solid line that spans
+the width of the control.</p>
+
+            <p>You can create a custom drop indicator by creating a custom skin
+class for the drop target. In your skin class, create a skin part
+named <samp class="codeph">dropIndicator</samp> in the <samp class="codeph">&lt;fx:Declarations&gt;</samp> area
+of the skin class, as the following example shows:</p>
+
+            <div class="p">
+               <pre class="codeblock">&lt;fx:Declarations&gt; 
+	&lt;fx:Component id="dropIndicator"&gt; 
+		&lt;s:Group includeInLayout="false" 
+			minWidth="4" minHeight="4" 
+			maxWidth="4" maxHeight="4"&gt; 
+			&lt;s:Line xFrom="0" xTo="10" yFrom="5" yTo="5"&gt; 
+				&lt;s:stroke&gt; 
+					&lt;s:SolidColorStroke color="blue" weight="2"/&gt; 
+				&lt;/s:stroke&gt; 
+			&lt;/s:Line&gt; 
+			&lt;s:Line xFrom="5" xTo="10" yFrom="0" yTo="5"&gt; 
+				&lt;s:stroke&gt; 
+					&lt;s:SolidColorStroke color="blue" weight="2"/&gt; 
+				&lt;/s:stroke&gt; 
+			&lt;/s:Line&gt; 
+			&lt;s:Line xFrom="5" xTo="10" yFrom="10" yTo="5"&gt; 
+				&lt;s:stroke&gt; 
+					&lt;s:SolidColorStroke color="blue" weight="2"/&gt; 
+				&lt;/s:stroke&gt; 
+			&lt;/s:Line&gt; 
+		&lt;/s:Group&gt; 
+	&lt;/fx:Component&gt; 
+&lt;/fx:Declarations&gt;</pre>
+
+            </div>
+
+            <p>This code shows an excerpt from the MyListSkin.mxml file, a custom
+skin class for the Spark List control. The lines define the drop
+indicator to be a blue arrow that appears in the drop target to
+indicate where the dragged data is added.</p>
+
+            <p>Note that the bounding Group container specifies the <samp class="codeph">maxWidth</samp> and <samp class="codeph">maxHeight</samp> properties.
+For the drop indicator, only the setting along the major axis of
+the control is applied. For example, for a List class using vertical
+layout, the x-axis is the major axis. Therefore, the <samp class="codeph">maxHeight</samp> property
+is applied and the <samp class="codeph">maxWidth</samp> property is ignored. </p>
+
+            <div class="p">The Spark layout classes use the following rules to size and
+position the drop indicator: <ol>
+                  <li>
+                     <p>The drop indicator's size
+is calculated to be as big as the gap between the neighboring data
+items in the control.</p>
+
+                     <p>Any minimum or maximum setting in the
+major axis of orientation is honored. Along the minor axis, minimum
+and maximum settings are ignored. The drop indicator is sized to
+be as wide as the respective column and as tall as the respective
+row.</p>
+
+                  </li>
+
+                  <li>
+                     <p>After drop indicator is sized, it is centered within the
+gap between the data items.</p>
+
+                  </li>
+
+               </ol>
+
+            </div>
+
+            <div class="p">The following example uses the MyListSkin.mxml skin class: <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- dragdrop\SimpleListToListMoveSparkDropIndicator.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    creationComplete="initApp();"&gt; 
+    &lt;s:layout&gt; 
+        &lt;s:VerticalLayout/&gt; 
+    &lt;/s:layout&gt; 
+    
+    &lt;fx:Script&gt; 
+        &lt;![CDATA[ 
+            import mx.collections.ArrayList;             
+            import myComponents.MyListSkin; 
+ 
+            private function initApp():void { 
+                srclist.dataProvider = 
+                    new ArrayList(['Reading', 'Television', 'Movies']); 
+                destlist.dataProvider = new ArrayList([]); 
+            } 
+        ]]&gt; 
+    &lt;/fx:Script&gt; 
+ 
+    &lt;s:HGroup&gt; 
+        &lt;s:VGroup&gt; 
+            &lt;s:Label text="Available Activities"/&gt; 
+            &lt;s:List id="srclist" 
+                allowMultipleSelection="true" 
+                dragEnabled="true" 
+                dragMoveEnabled="true"/&gt; 
+        &lt;/s:VGroup&gt; 
+ 
+        &lt;s:VGroup&gt; 
+            &lt;s:Label text="Activities I Like"/&gt; 
+            &lt;s:List id="destlist" 
+                dropEnabled="true" 
+                skinClass="myComponents.MyListSkin"/&gt; 
+        &lt;/s:VGroup&gt; 
+    &lt;/s:HGroup&gt; 
+ 
+    &lt;s:Button id="b1" 
+        label="Reset" 
+        click="initApp();"/&gt; 
+&lt;/s:Application&gt;</pre>
+
+            </div>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WSa69f3ed0a1e0d2796bf33078121f8745b52-8000_verapache"><a name="WSa69f3ed0a1e0d2796bf33078121f8745b52-8000_verapache"><!-- --></a>
+         <h3 class="topictitle3">Example: Setting the cursor styles
+of the DragManager</h3>
+
+         
+         <div>
+            <p>The DragManager uses styles to control the display of the
+different cursors used during the drag and drop operation, such
+as the move and copy cursors. The cursors are defined as symbols
+in the Assets.swf file in the <em>flexInstallDir</em>\frameworks\projects\framework\assets
+directory.</p>
+
+            <p>By default, Flex defines the cursor styles as if you had used
+the following type selector in your application:</p>
+
+            <div class="p">
+               <pre class="codeblock">&lt;fx:Style&gt; 
+	@namespace mx "library://ns.adobe.com/flex/mx"; 
+ 
+	mx|DragManager 
+	{ 
+		copyCursor: Embed(source="Assets.swf",symbol="mx.skins.cursor.DragCopy"); 
+		defaultDragImageSkin: ClassReference("mx.skins.halo.DefaultDragImage"); 
+		linkCursor: Embed(source="Assets.swf",symbol="mx.skins.cursor.DragLink"); 
+		moveCursor: Embed(source="Assets.swf",symbol="mx.skins.cursor.DragMove"); 
+		rejectCursor: Embed(source="Assets.swf",symbol="mx.skins.cursor.DragReject"); 
+	} 
+&lt;/fx:Style&gt;</pre>
+
+            </div>
+
+            <div class="p">Use the <samp class="codeph">&lt;fx:Style&gt;</samp> tag to define your
+own assets to use for the cursors. The following example replaces
+the copy cursor with a custom cursor: <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- dragdrop\SimpleListToListMoveStyles.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    creationComplete="initApp();"&gt; 
+    &lt;s:layout&gt; 
+        &lt;s:VerticalLayout/&gt; 
+    &lt;/s:layout&gt; 
+    
+    &lt;fx:Style&gt; 
+        @namespace mx "library://ns.adobe.com/flex/mx"; 
+ 
+        mx|DragManager 
+        { 
+            copyCursor: Embed(source="assets/globe.jpg"); 
+        }         
+    &lt;/fx:Style&gt; 
+    
+    &lt;fx:Script&gt; 
+        &lt;![CDATA[ 
+            import mx.collections.ArrayCollection; 
+ 
+            private function initApp():void { 
+                srclist.dataProvider = 
+                    new ArrayCollection(['Reading', 'Television', 'Movies']); 
+                destlist.dataProvider = new ArrayCollection([]); 
+            } 
+        ]]&gt; 
+    &lt;/fx:Script&gt; 
+ 
+    &lt;s:HGroup&gt; 
+        &lt;s:VGroup&gt; 
+            &lt;s:Label text="Available Activities"/&gt; 
+            &lt;s:List id="srclist" 
+                allowMultipleSelection="true" 
+                dragEnabled="true" 
+                dragMoveEnabled="true"/&gt; 
+        &lt;/s:VGroup&gt; 
+ 
+        &lt;s:VGroup&gt; 
+            &lt;s:Label text="Activities I Like"/&gt; 
+            &lt;s:List id="destlist" 
+                dropEnabled="true"/&gt; 
+        &lt;/s:VGroup&gt; 
+    &lt;/s:HGroup&gt; 
+ 
+    &lt;s:Button id="b1" 
+        label="Reset" 
+        click="initApp();"/&gt; 
+&lt;/s:Application&gt;</pre>
+
+            </div>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf69084-7d04_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7d04_verapache"><!-- --></a>
+         <h3 class="topictitle3">Example: Handling the dragOver
+and dragExit events for the drop target</h3>
+
+         
+         <div>
+            <p>The <samp class="codeph">dragOver</samp> event occurs when the user
+moves the mouse over a drag-and-drop target whose <samp class="codeph">dragEnter</samp> event
+handler has called the <samp class="codeph">DragManager.acceptDragDrop()</samp> method.
+This event is dispatched continuously as the user drags the mouse
+over the target. The <samp class="codeph">dragOver</samp> event handler is
+optional; you do not have to define it to perform a drag‑and-drop operation. </p>
+
+            <p>The <samp class="codeph">dragOver</samp> event is useful for specifying
+the visual feedback that the user gets when the mouse is over a
+drop target. For example, you can use the <samp class="codeph">DragManager.showFeedback()</samp> method
+to specify the drag-feedback indicator that appears along with the
+drag indicator. This method uses four constant values for the argument,
+as the following table shows: </p>
+
+            
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" frame="border" border="1" rules="all">
+                  
+                  
+                  <thead align="left">
+                     <tr>
+                        <th class="cellrowborder" valign="top" width="NaN%" id="d194280e3290">
+                           <p>Argument value</p>
+
+                        </th>
+
+                        <th class="cellrowborder" valign="top" width="NaN%" id="d194280e3296">
+                           <p>Icon</p>
+
+                        </th>
+
+                     </tr>
+
+                  </thead>
+
+                  <tbody>
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d194280e3290 ">
+                           <div class="p">
+                              <pre class="codeblock"><samp class="codeph">DragManager.COPY</samp></pre>
+
+                           </div>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d194280e3296 ">
+                           <p>A green circle with a white plus sign indicating
+that you can perform the drop.</p>
+
+                        </td>
+
+                     </tr>
+
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d194280e3290 ">
+                           <div class="p">
+                              <pre class="codeblock"><samp class="codeph">DragManager.LINK</samp></pre>
+
+                           </div>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d194280e3296 ">
+                           <p>A grey circle with a white arrow sign indicating
+that you can perform the drop.</p>
+
+                        </td>
+
+                     </tr>
+
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d194280e3290 ">
+                           <div class="p">
+                              <pre class="codeblock"><samp class="codeph">DragManager.MOVE</samp></pre>
+
+                           </div>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d194280e3296 ">
+                           <p>A plain arrow indicating that you can perform
+the drop.</p>
+
+                        </td>
+
+                     </tr>
+
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d194280e3290 ">
+                           <div class="p">
+                              <pre class="codeblock"><samp class="codeph">DragManager.NONE</samp></pre>
+
+                           </div>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d194280e3296 ">
+                           <p>A red circle with a white <em>x</em> appears
+indicating that a drop is prohibited. This is the same image that
+appears when the user drags over an object that is not a drag target.</p>
+
+                        </td>
+
+                     </tr>
+
+                  </tbody>
+
+               </table>
+</div>
+
+            <p>You typically show the feedback indicator based on the keys pressed
+by the user during the drag-and-drop operation. The DragEvent object
+for the <samp class="codeph">dragOver</samp> event contains Boolean properties
+that indicate whether the Control or Shift keys are pressed at the
+time of the event: <samp class="codeph">ctrlKey</samp> and <samp class="codeph">shiftKey</samp>,
+respectively. No key pressed indicates a move, the Control key indicates
+a copy, and the Shift key indicates a link. You then call the <samp class="codeph">showFeedback()</samp> method
+as appropriate for the key pressed.</p>
+
+            <p>Another use of the <samp class="codeph">showFeedback()</samp> method is
+that it determines the value of the <samp class="codeph">action</samp> property
+of the DragEvent object for the <samp class="codeph">dragDrop</samp>, <samp class="codeph">dragExit</samp>, and <samp class="codeph">dragComplete</samp> events.
+If you do not call the <samp class="codeph">showFeedback()</samp> method in
+the <samp class="codeph">dragOver</samp> event handler, the <samp class="codeph">action</samp> property
+of the DragEvent is always set to <samp class="codeph">DragManager.MOVE</samp>.</p>
+
+            <p>The <samp class="codeph">dragExit</samp> event is dispatched when the user
+drags the drag indicator off the drop target, but does not drop
+the data onto the target. You can use this event to restore any
+visual changes that you made to the drop target in the <samp class="codeph">dragOver</samp> event
+handler.</p>
+
+            <p>In the following example, you set the <samp class="codeph">dropEnabled</samp> property
+of a List control to <samp class="codeph">true</samp> to configure it as a
+drop target and to use the default event handlers. However, you
+want to provide your own visual feedback, so you also define event handlers
+for the <samp class="codeph">dragEnter</samp>, <samp class="codeph">dragExit</samp>, and <samp class="codeph">dragDrop</samp> events.
+The <samp class="codeph">dragOver</samp> event handler completely overrides
+the default event handler, so you call the <samp class="codeph">Event.preventDefault()</samp> method
+to prohibit the default event handler from execution.</p>
+
+            <p>The <samp class="codeph">dragOver</samp> event handler determines whether
+the user is pressing a key while dragging the drag indicator over
+the target, and sets the feedback appearance based on the key that
+is pressed. The <samp class="codeph">dragOver</samp> event handler also sets
+the border color of the drop target to green to indicate that it
+is a viable drop target, and uses the <samp class="codeph">dragExit</samp> event
+handler to restore the original border color.</p>
+
+            <div class="p">For the <samp class="codeph">dragExit</samp> and <samp class="codeph">dragDrop</samp> handlers,
+you only want to remove any visual changes that you made in the <samp class="codeph">dragOver</samp> event
+handlers, but otherwise you want to rely on the default Flex event
+handlers. Therefore, these event handlers do not call the <samp class="codeph">Event.preventDefault()</samp> method: <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- dragdrop\DandDListToListShowFeedbackSpark.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    creationComplete="initApp();"&gt; 
+    &lt;s:layout&gt; 
+        &lt;s:VerticalLayout/&gt; 
+    &lt;/s:layout&gt; 
+ 
+    &lt;fx:Script&gt; 
+        &lt;![CDATA[ 
+            import mx.collections.ArrayCollection; 
+            import mx.events.DragEvent; 
+            import mx.managers.DragManager; 
+            import spark.layouts.supportClasses.DropLocation; 
+    
+            private function initApp():void { 
+                firstList.dataProvider = new ArrayCollection([ 
+                    {label:"First", data:"1"}, 
+                    {label:"Second", data:"2"}, 
+                    {label:"Third", data:"3"}, 
+                    {label:"Fourth", data:"4"} 
+                ]); 
+                secondList.dataProvider = new ArrayCollection([]); 
+            } 
+ 
+            // Variable to store original border color. 
+            private var tempBorderColor:uint; 
+            
+            // Flag to indicate that tempBorderColor has been set. 
+            private var borderColorSet:Boolean = false; 
+ 
+            private function dragOverHandler(event:DragEvent):void { 
+            
+                // Explpicitly handle the dragOver event.            
+                event.preventDefault(); 
+                
+                // Since you are explicitly handling the dragOver event, 
+                // call showDropIndicator() to have the drop target 
+                // display the drop indicator. 
+                // The drop indicator is removed 
+                // automatically for the list controls by the built-in 
+                // event handler for the dragDrop event. 
+                var dropLocal:DropLocation = 
+                    event.currentTarget.layout.calculateDropLocation(event); 
+                event.currentTarget.layout.showDropIndicator(dropLocal); 
+            
+                if (event.dragSource.hasFormat("itemsByIndex")) 
+                { 
+                    // Set the border to green to indicate that 
+                    // this is a drop target. 
+                    // Since the dragOver event is dispatched continuosly 
+                    // as you move over the drop target, only set it once. 
+                    if (borderColorSet == false) {                 
+                        tempBorderColor = 
+                            event.currentTarget.getStyle('borderColor'); 
+                        borderColorSet = true; 
+                    } 
+                
+                    // Set the drag-feedback indicator based on the 
+                    // type of drag-and-drop operation. 
+                    event.currentTarget.setStyle('borderColor', 'green'); 
+                    if (event.ctrlKey) {                    
+                        DragManager.showFeedback(DragManager.COPY); 
+                        return; 
+                    } 
+                    else if (event.shiftKey) { 
+                        DragManager.showFeedback(DragManager.LINK); 
+                        return; 
+                    } 
+                    else { 
+                        DragManager.showFeedback(DragManager.MOVE); 
+                        return; 
+                    } 
+                } 
+ 
+                // Drag not allowed. 
+                DragManager.showFeedback(DragManager.NONE);                
+            } 
+            
+            private function dragDropHandler(event:DragEvent):void { 
+                dragExitHandler(event); 
+            }            
+            // Restore the border color. 
+            private function dragExitHandler(event:DragEvent):void { 
+              event.currentTarget.setStyle('borderColor', tempBorderColor); 
+              borderColorSet = true; 
+            } 
+        ]]&gt; 
+    &lt;/fx:Script&gt; 
+ 
+    &lt;s:HGroup id="myHG"&gt; 
+        &lt;s:List  id="firstList" 
+            dragEnabled="true" 
+            dragMoveEnabled="true"/&gt; 
+ 
+        &lt;s:List  id="secondList" 
+            dropEnabled="true" 
+            dragOver="dragOverHandler(event);" 
+            dragDrop="dragExitHandler(event);" 
+            dragExit="dragExitHandler(event);"/&gt; 
+    &lt;/s:HGroup&gt; 
+    
+    &lt;s:Button id="b1" 
+        label="Reset" 
+        click="initApp();"/&gt; 
+&lt;/s:Application&gt;</pre>
+
+            </div>
+
+         </div>
+
+      </div>
+
+   </div>
+
+   <div class="nested1" id="WS2db454920e96a9e51e63e3d11c0bf69084-7cfc_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7cfc_verapache"><!-- --></a>
+      <h2 class="topictitle2">Moving and copying data</h2>
+
+      
+      <div>
+         <p>You implement a move and a copy as part of a drag-and-drop
+operation.</p>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf64595-7fe8_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf64595-7fe8_verapache"><!-- --></a>
+         <h3 class="topictitle3">About moving data</h3>
+
+         
+         <div>
+            <p>When you move data, you add it to the drop target and delete
+it from the drag initiator. You use the <samp class="codeph">dragDrop</samp> event
+for the drop target to add the data, and the <samp class="codeph">dragComplete</samp> event
+for the drag initiator to remove the data. </p>
+
+            <p>How much work you have to do to implement the move depends on
+whether the drag initiator and drop target are list-based controls
+or nonlist-based controls:</p>
+
+            <dl>
+               
+                  <dt class="dlterm">List-based control</dt>
+
+                  <dd>
+                     <p>You do not have to do any additional work; list-based controls
+handle all of the processing required to move data from one list-based control
+to another list-based control. For an example, see <a href="flx_dragdrop_dd.html#WS2db454920e96a9e51e63e3d11c0bf69084-7ced_verapache">Performing
+a drag and drop</a>. </p>
+
+                  </dd>
+
+               
+               
+                  <dt class="dlterm">nonlist-based control</dt>
+
+                  <dd>
+                     <p>If the drag initiator is a nonlist-based control, you have
+to implement the event handler for the <samp class="codeph">dragComplete</samp> event
+to delete the drag data from the drag initiator. If the drop target
+is a nonlist-based control, you have to implement the event handler
+for the <samp class="codeph">dragDrop</samp> event to add the data to the drop
+target. For an example, see <a href="flx_dragdrop_dd.html#WS2db454920e96a9e51e63e3d11c0bf69084-7d03_verapache">Example:
+Moving and copying data for a nonlist-based control</a>.</p>
+
+                  </dd>
+
+               
+            </dl>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf64595-7fe7_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf64595-7fe7_verapache"><!-- --></a>
+         <h3 class="topictitle3">About copying data</h3>
+
+         
+         <div>
+            <p>The list-based controls can automate all of the drag-and-drop
+operation except for when you copy the drag data to the drop target,
+and the drop target uses a different data format. If the drop target
+uses a different data format, you must explicitly handle the <samp class="codeph">dragDrop</samp> event
+for the drop target. </p>
+
+            <p>When using a nonlist-based control as the drop target, you always
+have to write an event handler for the <samp class="codeph">dragDrop</samp> event,
+regardless of whether you are performing a move or copy.</p>
+
+            <p>Copying data in an object-oriented environment is not a trivial
+task. An object may contain pointers to other objects that themselves
+contain pointers to even more objects. Rather than try to define
+a universal object copy as part of the drag-and-drop operation,
+Flex leaves it to you to implement object copying because you will
+have first-hand knowledge of your data format and requirements. </p>
+
+            <p>In some circumstances, you may have objects that implement a
+clone method that makes it easy to create a byte copy of the object.
+In other cases, you will have to perform the copy yourself by copying
+individual fields of the source object to the destination object.</p>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf69084-7cfa_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7cfa_verapache"><!-- --></a>
+         <h3 class="topictitle3">Example: Copying data from an MX
+List control to an MX DataGrid control</h3>
+
+         
+         <div>
+            <p>You can use drag and drop to copy data between controls
+that use different data formats. To handle this situation, you write
+an event handler for the <samp class="codeph">dragDrop</samp> event that converts
+the data from the format of the drag initiator to the format required
+by the drop target.</p>
+
+            <p>In the following example, you can move or copy data from a Spark
+List control to an MX DataGrid control. The event handler for the <samp class="codeph">dragDrop</samp> event
+adds a new field to the dragged data that contains the date:</p>
+
+            <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- dragdrop\DandDListToDGSpark.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    creationComplete="initApp();"&gt; 
+    &lt;s:layout&gt; 
+        &lt;s:VerticalLayout/&gt; 
+    &lt;/s:layout&gt; 
+ 
+    &lt;fx:Script&gt; 
+        &lt;![CDATA[ 
+            import mx.events.DragEvent; 
+            import mx.managers.DragManager; 
+            import mx.core.DragSource; 
+            import mx.collections.IList; 
+            import mx.collections.ArrayCollection; 
+    
+            private function initApp():void { 
+                srcList.dataProvider = new ArrayCollection([ 
+                    {label:"First", data:"1"}, 
+                    {label:"Second", data:"2"}, 
+                    {label:"Third", data:"3"}, 
+                    {label:"Fourth", data:"4"}, 
+                ]); 
+                
+                destDG.dataProvider = new ArrayCollection([]); 
+            } 
+ 
+            private function dragDropHandler(event:DragEvent):void { 
+                if (event.dragSource.hasFormat("itemsByIndex")) 
+                { 
+                    // Explicitly handle the dragDrop event.            
+                    event.preventDefault(); 
+                    
+                    // Since you are explicitly handling the dragDrop event, 
+                    // call hideDropFeedback(event) to have the drop target 
+                    // hide the drop indicator. 
+                    // The drop indicator is created 
+                    // automatically for the list controls by the built-in 
+                    // event handler for the dragOver event. 
+                    event.currentTarget.hideDropFeedback(event);                    
+                    
+                    // Get drop target. 
+                    var dropTarget:DataGrid = 
+                        DataGrid(event.currentTarget); 
+                    
+                    var itemsVector:Vector.&lt;Object&gt; = 
+                        event.dragSource.dataForFormat('itemsByIndex') as Vector.&lt;Object&gt;; 
+                    var tempItem:Object = 
+                        { label: itemsVector[0].label, 
+                            data: itemsVector[0].data, 
+                            date: new Date() 
+                        }; 
+                    
+                    // Get the drop location in the destination. 
+                    var dropLoc:int = dropTarget.calculateDropIndex(event); 
+                    
+                    IList(dropTarget.dataProvider).addItemAt(tempItem, dropLoc); 
+                } 
+            } 
+        ]]&gt; 
+    &lt;/fx:Script&gt; 
+ 
+    &lt;s:HGroup&gt; 
+        &lt;s:List  id="srcList" 
+            dragEnabled="true" 
+            dragMoveEnabled="true"/&gt; 
+ 
+        &lt;mx:DataGrid  id="destDG" 
+            dropEnabled="true" 
+            dragDrop="dragDropHandler(event);"&gt; 
+            &lt;mx:columns&gt; 
+                &lt;mx:DataGridColumn dataField="label"/&gt; 
+                &lt;mx:DataGridColumn dataField="data"/&gt;            
+                &lt;mx:DataGridColumn dataField="date"/&gt;            
+            &lt;/mx:columns&gt;                
+        &lt;/mx:DataGrid&gt;            
+    &lt;/s:HGroup&gt; 
+ 
+    &lt;s:Button id="b1" 
+        label="Reset" 
+        click="initApp();"/&gt; 
+&lt;/s:Application&gt;</pre>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf69084-7d03_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7d03_verapache"><!-- --></a>
+         <h3 class="topictitle3">Example: Moving and copying data
+for a nonlist-based control</h3>
+
+         
+         <div>
+            <p>The <samp class="codeph">dragComplete</samp> event occurs on the drag
+initiator when a drag operation completes, either when the drag
+data drops onto a drop target, or when the drag-and-drop operation
+ends without performing a drop operation. The drag initiator can
+specify a handler to perform cleanup actions when the drag finishes, or
+when the target does not accept the drop. </p>
+
+            <p>One use of the <samp class="codeph">dragComplete</samp> event handler is
+to remove from the drag initiator the objects that you move to the
+drop target. The items that you drag from a control are copies of
+the original items, not the items themselves. Therefore, when you
+drop items onto the drop target, you use the <samp class="codeph">dragComplete</samp> event
+handler to delete them from the drag initiator.</p>
+
+            <p>To determine the type of drag operation (copy or move), you use
+the <samp class="codeph">action</samp> property of the event object passed
+to the event handler. This method returns the drag feedback set
+by the <samp class="codeph">dragOver</samp> event handler. For more information, see <a href="flx_dragdrop_dd.html#WS2db454920e96a9e51e63e3d11c0bf69084-7d04_verapache">Example:
+Handling the dragOver and dragExit events for the drop target</a>. </p>
+
+            <p>In the following example, you drag an Image control from one
+Canvas container to another. As part of the drag-and-drop operation,
+you can move the Image control, or copy it by holding down the Control
+key. If you perform a move, the <samp class="codeph">dragComplete</samp> event
+handler removes the Image control from its original parent container:</p>
+
+            <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- dragdrop\DandDImageCopyMove.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" &gt; 
+    &lt;s:layout&gt; 
+        &lt;s:HorizontalLayout/&gt; 
+    &lt;/s:layout&gt; 
+ 
+    &lt;fx:Script&gt; 
+        &lt;![CDATA[ 
+            import mx.managers.DragManager; 
+            import mx.core.DragSource; 
+            import mx.events.DragEvent; 
+            import flash.events.MouseEvent; 
+ 
+            // Embed icon image. 
+            [Embed(source='assets/globe.jpg')] 
+            public var globeImage:Class; 
+ 
+            // The mouseMove event handler for the Image control 
+            // functioning as the drag initiator. 
+            private function mouseOverHandler(event:MouseEvent):void 
+            {                
+                var dragInitiator:Image=Image(event.currentTarget); 
+                var ds:DragSource = new DragSource(); 
+                ds.addData(dragInitiator, "img");               
+                // The drag manager uses the image as the drag indicator 
+                // and sets the alpha to 1.0 (opaque), 
+                // so it appears to be dragged across the canvas. 
+                var imageProxy:Image = new Image(); 
+                imageProxy.source = globeImage; 
+                imageProxy.height=10; 
+                imageProxy.width=10;                
+                DragManager.doDrag(dragInitiator, ds, event, 
+                    imageProxy, -15, -15, 1.00); 
+            } 
+            
+            // The dragEnter event handler for the Canvas container 
+            // functioning as the drop target. 
+            private function dragEnterHandler(event:DragEvent):void { 
+              if (event.dragSource.hasFormat("img")) 
+                DragManager.acceptDragDrop(Canvas(event.currentTarget)); 
+            } 
+            
+            // The dragOver event handler for the Canvas container 
+            // sets the type of drag-and-drop 
+            // operation as either copy or move. 
+            // This information is then used in the 
+            // dragComplete event handler for the source Canvas container. 
+            private function dragOverHandler(event:DragEvent):void 
+            { 
+                if (event.dragSource.hasFormat("img")) { 
+                    if (event.ctrlKey) {                    
+                        DragManager.showFeedback(DragManager.COPY); 
+                        return; 
+                    } 
+                    else { 
+                        DragManager.showFeedback(DragManager.MOVE); 
+                        return; 
+                    } 
+                } 
+ 
+                DragManager.showFeedback(DragManager.NONE); 
+            } 
+            
+            // The dragDrop event handler for the Canvas container 
+            // sets the Image control's position by 
+            // "dropping" it in its new location. 
+            private function dragDropHandler(event:DragEvent):void { 
+              if (event.dragSource.hasFormat("img")) { 
+                  var draggedImage:Image = 
+                    event.dragSource.dataForFormat('img') as Image; 
+                  var dropCanvas:Canvas = event.currentTarget as Canvas; 
+              
+                  // Since this is a copy, create a new object to 
+                  // add to the drop target. 
+                  var newImage:Image=new Image(); 
+                  newImage.source = draggedImage.source; 
+                  newImage.x = dropCanvas.mouseX; 
+                  newImage.y = dropCanvas.mouseY; 
+                  dropCanvas.addChild(newImage); 
+              } 
+            } 
+            
+            // The dragComplete event handler for the source Canvas container 
+            // determines if this was a copy or move. 
+            // If a move, remove the dragged image from the Canvas. 
+            private function dragCompleteHandler(event:DragEvent):void { 
+                var draggedImage:Image = 
+                    event.dragInitiator as Image; 
+                var dragInitCanvas:Canvas = 
+                    event.dragInitiator.parent as Canvas; 
+ 
+                if (event.action == DragManager.MOVE) 
+                    dragInitCanvas.removeChild(draggedImage); 
+            }            
+        ]]&gt; 
+    &lt;/fx:Script&gt; 
+ 
+    &lt;!-- Canvas holding the Image control that is the drag initiator. --&gt; 
+    &lt;mx:Canvas 
+        width="250" height="500"  
+        borderStyle="solid" 
+        backgroundColor="#DDDDDD"&gt; 
+        
+    &lt;!-- The Image control is the drag initiator and the drag indicator. --&gt; 
+        &lt;s:Image id="myimg" 
+            source="@Embed(source='assets/globe.jpg')" 
+            mouseMove="mouseOverHandler(event);" 
+            dragComplete="dragCompleteHandler(event);"/&gt; 
+    &lt;/mx:Canvas&gt; 
+ 
+    &lt;!-- This Canvas is the drop target. --&gt; 
+    &lt;mx:Canvas 
+        width="250" height="500"  
+        borderStyle="solid" 
+        backgroundColor="#DDDDDD" 
+        dragEnter="dragEnterHandler(event);" 
+        dragOver="dragOverHandler(event);" 
+        dragDrop="dragDropHandler(event);"&gt;        
+    &lt;/mx:Canvas&gt; 
+&lt;/s:Application&gt;</pre>
+
+            <p/>
+
+         </div>
+
+      </div>
+
+<div>
+  <p><strong>Navigation</strong></p>
+  <p><a href="index.html">Using Flex</a> &raquo; <a href="flx_p5_enhancing_ui.html">Enhancing the user interface</a></p>
+</div>
+
+         <p>Adobe, Adobe AIR and Adobe Flash Player are either registered trademarks or trademarks of Adobe Systems Incorporated in the United States and/or other countries and are used by permission from Adobe.  No other license to the Adobe trademarks are granted.</p>
+   </div>
+
+
+</body>
+</html>

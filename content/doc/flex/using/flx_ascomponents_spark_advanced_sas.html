@@ -1,0 +1,2685 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Licensed to the Apache Software Foundation (ASF) under one or more
+  contributor license agreements.  See the NOTICE file distributed with
+  this work for additional information regarding copyright ownership.
+  The ASF licenses this file to You under the Apache License, Version 2.0
+  (the "License"); you may not use this file except in compliance with
+  the License.  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+-->
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en-us" xml:lang="en-us">
+<head>
+<meta name="DC.Type" content="topic"/>
+<meta name="DC.Title" content="Create advanced Spark visual components in ActionScript"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="WS460ee381960520ad-2811830c121e9107ecb-8000_verapache"/>
+<title>Create advanced Spark visual components in ActionScript</title>
+</head>
+<body id="WS460ee381960520ad-2811830c121e9107ecb-8000_verapache"><a name="WS460ee381960520ad-2811830c121e9107ecb-8000_verapache"><!-- --></a>
+
+   <div>
+      <p>You can create advanced visual components for use in applications built
+         in Flex. Advanced visual components override methods of the UIComponent
+         or SkinnableComponent base classes.</p>
+
+   </div>
+
+   <div class="nested1" id="WS460ee381960520ad-2811830c121e9107ecb-7fff_verapache"><a name="WS460ee381960520ad-2811830c121e9107ecb-7fff_verapache"><!-- --></a>
+      <h2 class="topictitle2">About creating advanced Spark components</h2>
+
+      
+      <div>
+         <p>Simple
+visual components are subclasses of existing Flex components that modify
+the appearance of the component by using skins or styles, or add
+new functionality to the component. For example, you add a new event
+type to a <a href="https://flex.apache.org/asdoc/mx/controls/Button.html" target="_blank">Button</a> control,
+or modify the default styles or skins of a <a href="https://flex.apache.org/asdoc/mx/controls/DataGrid.html" target="_blank">DataGrid</a> control.
+For more information, see <a href="flx_ascomponents_as.html#WS2db454920e96a9e51e63e3d11c0bf69084-7fea_verapache">Create
+simple visual components in ActionScript</a>.</p>
+
+         <p>In advanced components, you typically perform the following actions:</p>
+
+         <ul>
+            <li>
+               <p>Modify the basic functionality or logic of an existing
+component.</p>
+
+            </li>
+
+            <li>
+               <p>Create a composite component that encapsulates two or more
+components within it.</p>
+
+            </li>
+
+            <li>
+               <p>Create a skinnable component by creating a subclass of the <a href="https://flex.apache.org/asdoc/spark/components/supportClasses/SkinnableComponent.html" target="_blank">SkinnableComponent</a> class. </p>
+
+               <p>A
+skinnable component uses two files: one for the component definition
+and one for the skin definition. Create a Spark skinnable component
+as a subclass of the SkinnableComponent class. </p>
+
+            </li>
+
+            <li>
+               <p>Create a nonskinnable component by creating a subclass of
+the <a href="https://flex.apache.org/asdoc/mx/core/UIComponent.html" target="_blank">UIComponent</a> or
+other nonskinnable Spark class. </p>
+
+               <p>A nonskinnable component
+is defined by a single file. Create a nonskinnable component as
+a subclass of the UIComponent class. You can also create one from
+a Spark class that does not have the SkinnableComponent class in
+its class hierarchy, such a <a href="https://flex.apache.org/asdoc/spark/components/Group.html" target="_blank">Group</a> or <a href="https://flex.apache.org/asdoc/spark/components/DataGroup.html" target="_blank">DataGroup</a>.</p>
+
+            </li>
+
+         </ul>
+
+         <p>This topic contains several examples of Spark ActionScript components.
+For more examples, examine the source code for the Spark components
+in your Flex installation directory. The spark.components and spark.components.supportClasses
+packages contain many of the Spark components mentioned in this topic. </p>
+
+      </div>
+
+      <div class="nested2" id="WS03d33b8076db57b9-1a43779c121ef19b7b5-8000_verapache"><a name="WS03d33b8076db57b9-1a43779c121ef19b7b5-8000_verapache"><!-- --></a>
+         <h3 class="topictitle3">Spark skinnable components and
+skin classes</h3>
+
+         
+         <div>
+            <p>When creating an skinnable Spark component in ActionScript,
+you create two classes: the component class and the skin class. </p>
+
+            <p>The component class defines the core behavior of the component.
+This behavior includes defining the events dispatched by the component,
+the data that the component represents, the skin parts implemented
+by the skin class, and the view states that the skin class supports.</p>
+
+            <p>The skin class manages the visual appearance of the component
+and creates visual subcomponents. The skin class defines the default
+layout of the component, its default size, the supported view states,
+graphics, and data representation. </p>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS460ee381960520ad-2811830c121e9107ecb-7ffe_verapache"><a name="WS460ee381960520ad-2811830c121e9107ecb-7ffe_verapache"><!-- --></a>
+         <h3 class="topictitle3">About overriding protected UIComponent
+methods for Spark components</h3>
+
+         
+         <div>
+            <p>All Flex visual components are subclasses of the <a href="https://flex.apache.org/asdoc/mx/core/UIComponent.html" target="_blank">UIComponent</a> class.
+Therefore, visual components inherit the methods, properties, events,
+styles, and effects defined by the UIComponent class. </p>
+
+            <p>To create an advanced visual component, you must implement a
+class constructor. Also, you optionally override one or more of
+the following protected methods of the UIComponent class:</p>
+
+            
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" frame="border" border="1" rules="all">
+                  
+                  
+                  <thead align="left">
+                     <tr>
+                        <th class="cellrowborder" valign="top" width="NaN%" id="d45547e161">
+                           <p>UIComponent method</p>
+
+                        </th>
+
+                        <th class="cellrowborder" valign="top" width="NaN%" id="d45547e167">
+                           <p>Description</p>
+
+                        </th>
+
+                     </tr>
+
+                  </thead>
+
+                  <tbody>
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d45547e161 ">
+                           <div class="p">
+                              <pre class="codeblock">commitProperties()</pre>
+
+                           </div>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d45547e167 ">
+                           <p>Commits any changes to component properties,
+either to make the changes occur at the same time or to ensure that
+properties are set in a specific order.</p>
+
+                           <p>For more information,
+see <a href="flx_ascomponents_spark_advanced_sas.html#WS460ee381960520ad-2811830c121e9107ecb-7ff5_verapache">Implementing
+the commitProperties() method</a>.</p>
+
+                        </td>
+
+                     </tr>
+
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d45547e161 ">
+                           <div class="p">
+                              <pre class="codeblock">createChildren()</pre>
+
+                           </div>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d45547e167 ">
+                           <p>Creates any child components of the component.
+For example, the Halo ComboBox control contains a Halo TextInput
+control and a Halo Button control as child components. </p>
+
+                           <p>Typically,
+you do not implement this method in a Spark component because any
+child components are defined in the skin class.</p>
+
+                           <p>This topic
+does not describe how to implement the <samp class="codeph">createChildren()</samp> method.
+For more information, see the example for creating a Halo component
+in <a href="flx_ascomponents_advanced_asa.html#WS2db454920e96a9e51e63e3d11c0bf69084-79ec_verapache">Implementing
+the createChildren() method</a>. </p>
+
+                        </td>
+
+                     </tr>
+
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d45547e161 ">
+                           <div class="p">
+                              <pre class="codeblock">measure()</pre>
+
+                           </div>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d45547e167 ">
+                           <p>Sets the default size and default minimum
+size of the component. </p>
+
+                           <p>You typically do not have to implement
+this method for Spark components. The default size of a Spark component
+is defined by the skin class, and by the children of the skin class.
+You also set the minimum and maximum sizes of the component in the
+root tag of the skin class.</p>
+
+                           <p>This topic does not describe how
+to implement the <samp class="codeph">measure()</samp> method. For more information,
+see the example for creating a MX components in <a href="flx_ascomponents_advanced_asa.html#WS2db454920e96a9e51e63e3d11c0bf69084-79ed_verapache">Implementing
+the measure() method</a>.</p>
+
+                        </td>
+
+                     </tr>
+
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d45547e161 ">
+                           <div class="p">
+                              <pre class="codeblock">updateDisplayList()</pre>
+
+                           </div>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d45547e167 ">
+                           <p>Sizes and positions the children of the
+component on the screen based on all previous property and style settings,
+and draws any skins or graphic elements used by the component. The
+parent container for the component determines the size of the component
+itself.</p>
+
+                           <p>Typically, you do not have to implement this method
+for Spark components. A few Spark components, such as spark.components.supportClasses.SkinnableComponent,
+do implement it. The SkinnableComponent class implements it to pass
+sizing information to the component's skin class.</p>
+
+                           <p>This topic
+does not describe how to implement the <samp class="codeph">updateDisplayList()</samp> method.
+For more information, see the example for creating a Halo component
+in <a href="flx_ascomponents_advanced_asa.html#WS2db454920e96a9e51e63e3d11c0bf69084-79e9_verapache">Implementing
+the updateDisplayList() method</a>.</p>
+
+                        </td>
+
+                     </tr>
+
+                  </tbody>
+
+               </table>
+</div>
+
+            <p>Component users do not call these methods directly; Flex calls
+them as part of the initialization process of creating a component,
+or when other method calls occur. For more information, see <a href="flx_ascomponents_advanced_asa.html#WS2db454920e96a9e51e63e3d11c0bf69084-79e5_verapache">About
+the component instantiation life cycle</a>. </p>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS460ee381960520ad4060ff1b121e93530df-8000_verapache"><a name="WS460ee381960520ad4060ff1b121e93530df-8000_verapache"><!-- --></a>
+         <h3 class="topictitle3">About overriding SkinnableComponent
+methods for Spark components</h3>
+
+         
+         <div>
+            <p>All Spark skinnable components are subclasses of the <a href="https://flex.apache.org/asdoc/spark/components/supportClasses/SkinnableComponent.html" target="_blank">SkinnableComponent</a> class.
+Therefore, skinnable components inherit the methods, properties,
+events, styles, and effects defined by the SkinnableComponent class. </p>
+
+            <p>To create an skinnable Spark component, you optionally override
+one or more of the following methods of the SkinnableComponent class:</p>
+
+            
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" frame="border" border="1" rules="all">
+                  
+                  
+                  <thead align="left">
+                     <tr>
+                        <th class="cellrowborder" valign="top" width="NaN%" id="d45547e342">
+                           <p>SkinnableComponent method</p>
+
+                        </th>
+
+                        <th class="cellrowborder" valign="top" width="NaN%" id="d45547e348">
+                           <p>Description</p>
+
+                        </th>
+
+                     </tr>
+
+                  </thead>
+
+                  <tbody>
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d45547e342 ">
+                           <p>
+                              <samp class="codeph">attachSkin()</samp> 
+                           </p>
+
+                           <p>
+                              <samp class="codeph">detachSkin()</samp>
+                           </p>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d45547e348 ">
+                           <p>Called automatically by the <samp class="codeph">commitProperties()</samp> method
+when a skin is added, <samp class="codeph">attachSkin()</samp>, or a skin is
+removed, <samp class="codeph">detachSkin()</samp>. You can optionally implement
+these methods to add a specific behavior to a skin. </p>
+
+                           <p>Typically
+you do not implement these methods. </p>
+
+                        </td>
+
+                     </tr>
+
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d45547e342 ">
+                           <p>
+                              <samp class="codeph">partAdded()</samp>
+                           </p>
+
+                           <p> 
+                              <samp class="codeph">partRemoved()</samp>
+                           </p>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d45547e348 ">
+                           <p>Called automatically when a skin part is
+added or removed. You typically override <samp class="codeph">partAdded()</samp> to attach
+event handlers to the skin part, configure the skin part, or perform
+other actions when a skin part is added. Implement the <samp class="codeph">partRemoved()</samp> method
+to remove the even handlers added in <samp class="codeph">partAdded()</samp>. </p>
+
+                           <p>For
+more information, see <a href="flx_ascomponents_spark_advanced_sas.html#WS03d33b8076db57b9-a120b14121ef5f63a3-8000_verapache">Implementing
+the partAdded() and partRemoved() methods for skinnable components</a>.</p>
+
+                        </td>
+
+                     </tr>
+
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d45547e342 ">
+                           <p>
+                              <samp class="codeph">getCurrentSkinState()</samp>
+                           </p>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d45547e348 ">
+                           <p>Called automatically by the <samp class="codeph">commitProperties()</samp> method
+to set the view state of the skin class. </p>
+
+                           <p>For more information,
+see <a href="flx_ascomponents_spark_advanced_sas.html#WS03d33b8076db57b9-a120b14121ef5f63a3-7fff_verapache">Implementing
+the getCurrentSkinState() method for skinnable components</a>.</p>
+
+                        </td>
+
+                     </tr>
+
+                  </tbody>
+
+               </table>
+</div>
+
+            <p>Component users do not call these methods directly; Flex calls
+them as part of the initialization process of creating a component,
+or when other method calls occur. For more information, see <a href="flx_ascomponents_advanced_asa.html#WS2db454920e96a9e51e63e3d11c0bf69084-79e5_verapache">About
+the component instantiation life cycle</a>. </p>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS460ee381960520ad-2811830c121e9107ecb-7ffd_verapache"><a name="WS460ee381960520ad-2811830c121e9107ecb-7ffd_verapache"><!-- --></a>
+         <h3 class="topictitle3">About the invalidation methods
+for Spark components</h3>
+
+         
+         <div>
+            <p>During the lifetime of a component, your application might
+modify the component by changing its size or position, modifying
+a property that controls its display, or modifying a style or skin
+property of the component. For example, you might change the font
+size of the text displayed in a component. As part of changing the
+font size, the component's size might also change, which requires Flex
+to update the layout of the application. The layout operation might
+require Flex to invoke the <samp class="codeph">commitProperties()</samp>, <samp class="codeph">measure()</samp>, <samp class="codeph">getCurrentSkinState()</samp>,
+and the <samp class="codeph">updateDisplayList()</samp> methods of your component. </p>
+
+            <p>Your application can programmatically change the font size of
+a component much faster than Flex can update the layout of an application.
+Therefore, you only want to update the layout after you are sure
+that you've determined the final value of the font size.</p>
+
+            <p>In another scenario, when you set multiple properties of a component,
+such as the <samp class="codeph">label</samp> and <samp class="codeph">icon</samp> properties
+of a Button control, you want the <samp class="codeph">commitProperties()</samp>, <samp class="codeph">measure()</samp>, <samp class="codeph">getCurrentSkinState()</samp>,
+and <samp class="codeph">updateDisplayList()</samp> methods to execute only
+once, after all properties are set. You do not want these methods
+to execute when you set the <samp class="codeph">label</samp> property, and
+then execute again when you set the <samp class="codeph">icon</samp> property.</p>
+
+            <p>Also, several components might change their font size at the
+same time. Rather than updating the application layout after each
+component changes its font size, you want Flex to coordinate the
+layout operation to eliminate any redundant processing. </p>
+
+            <p>Flex uses an invalidation mechanism to synchronize modifications
+to components. Flex implements the invalidation mechanism as a set
+of methods that you call to signal that something about the component
+has changed and requires Flex to call the component's <samp class="codeph">commitProperties()</samp>, <samp class="codeph">measure()</samp>, <samp class="codeph">getCurrentSkinState()</samp>,
+or <samp class="codeph">updateDisplayList()</samp> methods.</p>
+
+            <p>The following table describes the invalidation methods:</p>
+
+            
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" frame="border" border="1" rules="all">
+                  
+                  
+                  <thead align="left">
+                     <tr>
+                        <th class="cellrowborder" valign="top" width="NaN%" id="d45547e566">
+                           <p>Invalidation method</p>
+
+                        </th>
+
+                        <th class="cellrowborder" valign="top" width="NaN%" id="d45547e572">
+                           <p>Description</p>
+
+                        </th>
+
+                     </tr>
+
+                  </thead>
+
+                  <tbody>
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d45547e566 ">
+                           <div class="p">
+                              <pre class="codeblock">invalidateDisplayList()</pre>
+
+                           </div>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d45547e572 ">
+                           <p>Marks a component so that its <samp class="codeph">updateDisplayList()</samp> method
+gets called during the next screen update.</p>
+
+                        </td>
+
+                     </tr>
+
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d45547e566 ">
+                           <div class="p">
+                              <pre class="codeblock">invalidateProperties()</pre>
+
+                           </div>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d45547e572 ">
+                           <p>Marks a component so that its <samp class="codeph">commitProperties()</samp> method
+gets called during the next screen update.</p>
+
+                        </td>
+
+                     </tr>
+
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d45547e566 ">
+                           <div class="p">
+                              <pre class="codeblock">invalidateSize()</pre>
+
+                           </div>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d45547e572 ">
+                           <p>Marks a component so that its <samp class="codeph">measure()</samp> method
+gets called during the next screen update.</p>
+
+                        </td>
+
+                     </tr>
+
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d45547e566 ">
+                           <p>
+                              <samp class="codeph">invalidateSkinState()</samp>
+                           </p>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d45547e572 ">
+                           <p>Marks a component so that its <samp class="codeph">commitProperties()</samp> method
+gets called on the next screen update to change the view state of
+the skin class. The <samp class="codeph">commitProperties()</samp> method calls
+the <samp class="codeph">getCurrentSkinState()</samp> method. </p>
+
+                        </td>
+
+                     </tr>
+
+                  </tbody>
+
+               </table>
+</div>
+
+            <p>When a component calls an invalidation method, it signals to
+Flex that the component must be updated. When multiple components
+call invalidation methods, Flex coordinates updates so that they
+all occur together during the next screen update.</p>
+
+            <p>Typically, component users do not call the invalidation methods
+directly. Instead, they are called by the component's setter methods,
+or by any other methods of a component class as necessary. For more
+information and examples, see <a href="flx_ascomponents_advanced_asa.html#WS2db454920e96a9e51e63e3d11c0bf69084-79eb_verapache">Implementing
+the commitProperties() method</a>.</p>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS460ee381960520ad-2811830c121e9107ecb-7ffc_verapache"><a name="WS460ee381960520ad-2811830c121e9107ecb-7ffc_verapache"><!-- --></a>
+         <h3 class="topictitle3">About the Spark component instantiation
+life cycle</h3>
+
+         
+         <div>
+            <p>The component instantiation
+life cycle describes the sequence of steps that occur when you create
+a component object from a component class. As part of that life
+cycle, Flex automatically calls component methods, dispatches events, and
+makes the component visible. </p>
+
+            <p>The following example creates a <a href="https://flex.apache.org/asdoc/spark/components/Button.html" target="_blank">Button</a> control
+in ActionScript and adds it to a Group container: </p>
+
+            <pre class="codeblock"> // Create a Group container. 
+ var groupContainer:Group = new Group(); 
+ // Configure the Group container.  
+groupContainer.x = 10; 
+groupContainer.y = 10; 
+  
+ // Create a Button control.  
+ var b:Button = new Button() 
+ // Configure the button control. 
+ b.label = "Submit"; 
+ ... 
+ // Add the Button control to the Box container. 
+ groupContainer.addElement(b);</pre>
+
+            <p>The following steps show what occurs when you execute the code
+to create the Button control, and add the control to the container: </p>
+
+            <ol>
+               <li>
+                  <p>You call the component's constructor, as the following
+code shows: </p>
+
+                  <pre class="codeblock"> // Create a Button control.  
+ var b:Button = new Button()</pre>
+
+               </li>
+
+               <li>
+                  <p>You configure the component by setting its properties, as
+the following code shows:</p>
+
+                  <pre class="codeblock"> // Configure the button control. 
+ b.label = "Submit";</pre>
+
+                  <p>Component setter methods might
+call the <samp class="codeph">invalidateProperties()</samp>, <samp class="codeph">invalidateSize()</samp>, <samp class="codeph">invalidateSkinState()</samp>,
+or <samp class="codeph">invalidateDisplayList()</samp> methods.</p>
+
+               </li>
+
+               <li>
+                  <p>You call the <samp class="codeph">addElement()</samp> method to add
+the component to its parent, as the following code shows:</p>
+
+                  <pre class="codeblock"> // Add the Button control to the Box container. 
+ gropContainer.addElement(b);</pre>
+
+                  <p>Flex then performs the
+following actions:</p>
+
+               </li>
+
+               <li>
+                  <p>Sets the <samp class="codeph">parent</samp> property for the component
+to reference its parent container. </p>
+
+               </li>
+
+               <li>
+                  <p>Computes the style settings for the component. </p>
+
+               </li>
+
+               <li>
+                  <p>Dispatches the <samp class="codeph">preinitialize</samp> event on the
+component. </p>
+
+               </li>
+
+               <li>
+                  <p>Calls the component's <samp class="codeph">createChildren()</samp> method.
+For skinnable components, this causes a call to <samp class="codeph">attachSkin()</samp>,
+which calls <samp class="codeph">partAdded()</samp>, for all static parts defined
+in the skin file.</p>
+
+               </li>
+
+               <li>
+                  <p>Calls the <samp class="codeph">invalidateProperties()</samp>, <samp class="codeph">invalidateSize()</samp>, <samp class="codeph">invalidateSkinSate()</samp>,
+and <samp class="codeph">invalidateDisplayList()</samp> methods to trigger
+calls to the <samp class="codeph">commitProperties()</samp>, <samp class="codeph">measure()</samp>, <samp class="codeph">getCurrentSkinState()</samp>,
+or <samp class="codeph">updateDisplayList()</samp> methods during the next <samp class="codeph">render</samp> event.</p>
+
+                  <p>The
+only exception to this rule is that Flex does not call the <samp class="codeph">measure()</samp> method
+when the user sets the height and width of the component. </p>
+
+               </li>
+
+               <li>
+                  <p>Dispatches the <samp class="codeph">initialize</samp> event on the component.
+At this time, all of the component's children are initialized, but
+the component has not been sized or processed for layout. You can
+use this event to perform additional processing of the component
+before it is laid out. </p>
+
+                  <p>Because the <samp class="codeph">initialize</samp> event
+is dispatched early in the component's startup sequence, make sure
+that none of your processing causes the component to invalidate
+itself. You typically perform any final processing during the <samp class="codeph">creationComplete</samp> event.</p>
+
+               </li>
+
+               <li>
+                  <p>Dispatches the <samp class="codeph">elementAdd</samp> event on the parent
+container. </p>
+
+               </li>
+
+               <li>
+                  <p>Dispatches the <samp class="codeph">initialize</samp> event on the parent
+container. </p>
+
+               </li>
+
+               <li>
+                  <p>During the next <samp class="codeph">render</samp> event, Flex performs
+the following actions:</p>
+
+                  <ol type="a">
+                     <li>
+                        <p>Calls the component's <samp class="codeph">commitProperties()</samp> method.
+For skinnable components, the <samp class="codeph">commitProperties()</samp> method
+calls the <samp class="codeph">getCurrentSkinState()</samp> methods.</p>
+
+                     </li>
+
+                     <li>
+                        <p>Calls the component's <samp class="codeph">measure()</samp> method.</p>
+
+                     </li>
+
+                     <li>
+                        <p>Calls the component's <samp class="codeph">updateDisplayList()</samp> method.</p>
+
+                     </li>
+
+                  </ol>
+
+               </li>
+
+               <li>
+                  <p>Flex dispatches additional <samp class="codeph">render</samp> events
+if the <samp class="codeph">commitProperties()</samp>, <samp class="codeph">measure()</samp>,
+or <samp class="codeph">updateDisplayList()</samp> methods call the <samp class="codeph">invalidateProperties()</samp>, <samp class="codeph">invalidateSize()</samp>, <samp class="codeph">invalidateSkinSate()</samp>,
+or <samp class="codeph">invalidateDisplayList()</samp> methods. </p>
+
+               </li>
+
+               <li>
+                  <p>After the last <samp class="codeph">render</samp> event occurs, Flex
+performs the following actions: </p>
+
+                  <ol type="a">
+                     <li>
+                        <p>Makes the component
+visible by setting the <samp class="codeph">visible</samp> property to <samp class="codeph">true</samp>. </p>
+
+                     </li>
+
+                     <li>
+                        <p>Dispatches the <samp class="codeph">creationComplete</samp> event on
+the component. The component is sized and processed for layout.
+This event is only dispatched once when the component is created. </p>
+
+                     </li>
+
+                     <li>
+                        <p>Dispatches the <samp class="codeph">updateComplete</samp> event on the
+component. Flex dispatches additional <samp class="codeph">updateComplete</samp> events
+whenever the layout, position, size, or other visual characteristic
+of the component changes and the component is updated for display. </p>
+
+                     </li>
+
+                  </ol>
+
+               </li>
+
+            </ol>
+
+            <p>Most of the work for configuring a component occurs when you
+add the component to a container by using the <samp class="codeph">addElement()</samp> method.
+That is because until you add the component to a container, Flex
+cannot determine its size, set inheriting style properties, or draw
+it on the screen. </p>
+
+            <p>You can also define your application in MXML, as the following
+example shows:</p>
+
+            <pre class="codeblock"> &lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark"&gt; 
+ 	&lt;s:Group&gt; 
+ 		&lt;s:Button label="Submit"/&gt; 
+ 	&lt;/s:Group&gt; 
+ &lt;/s:Application&gt;</pre>
+
+            <p>The sequence of steps that Flex executes when creating a component
+in MXML are equivalent to the steps described for ActionScript. </p>
+
+            <p>You can remove a component from a container by using the <samp class="codeph">removeElement()</samp> method.
+If there are no references to the component, it is eventually deleted
+from memory by the garbage collection mechanism of Adobe<sup>®</sup> Flash<sup>®</sup> Player
+or Adobe<sup>®</sup> AIR™.</p>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS460ee381960520ad-2811830c121e9107ecb-7ffb_verapache"><a name="WS460ee381960520ad-2811830c121e9107ecb-7ffb_verapache"><!-- --></a>
+         <h3 class="topictitle3">About the steps for creating a
+Spark component</h3>
+
+         
+         <div>
+            <p>When you implement a component, you override component
+methods, define new properties, dispatch new events, or perform
+any other customizations required by your application. </p>
+
+            <p>To implement your component, follow these general steps: </p>
+
+            <ol>
+               <li>
+                  <p>Create the skin class for the component. You typically
+create the skin class in MXML. For more information on skins, see <a href="flx_gumboskinning_gs.html#WS53116913-F952-4b21-831F-9DE85B647C8A_verapache">Spark
+Skinning</a>.</p>
+
+               </li>
+
+               <li>
+                  <p>Create the component's ActionScript class file.</p>
+
+                  <ol type="a">
+                     <li>
+                        <p>For a skinnable component, extend one of the base classes,
+such as SkinnableComponent, or a subclass of class SkinnableComponent.
+For a nonskinnable component, extend UIComponent or a Spark class
+that does not have SkinnableComponent in it class hierarchy.</p>
+
+                     </li>
+
+                     <li>
+                        <p>Implement the constructor.</p>
+
+                     </li>
+
+                     <li>
+                        <p>Implement the <a href="https://flex.apache.org/asdoc/mx/core/UIComponent.html#createChildren()" target="_blank">UIComponent.createChildren()</a> method.
+You rarely have to implement this method for Spark components. </p>
+
+                     </li>
+
+                     <li>
+                        <p>Implement the <a href="https://flex.apache.org/asdoc/mx/core/UIComponent.html#commitProperties()" target="_blank">UIComponent.commitProperties()</a> method.</p>
+
+                     </li>
+
+                     <li>
+                        <p>Implement the <a href="https://flex.apache.org/asdoc/mx/core/UIComponent.html#measure()" target="_blank">UIComponent.measure()</a> method.
+You rarely have to implement this method for Spark components. </p>
+
+                     </li>
+
+                     <li>
+                        <p>Implement the <a href="https://flex.apache.org/asdoc/mx/core/UIComponent.html#updateDisplayList()" target="_blank">UIComponent.updateDisplayList()</a> method.
+You rarely have to implement this method for Spark components. </p>
+
+                     </li>
+
+                     <li>
+                        <p>For a skinnable component, implement the <a href="https://flex.apache.org/asdoc/spark/components/supportClasses/SkinnableComponent.html#partAdded()" target="_blank">SkinnableComponent.partAdded()</a> and <a href="https://flex.apache.org/asdoc/spark/components/supportClasses/SkinnableComponent.html#partRemoved()" target="_blank">SkinnableComponent.partRemoved()</a> methods.</p>
+
+                     </li>
+
+                     <li>
+                        <p>For a skinnable component, implement the <a href="https://flex.apache.org/asdoc/spark/components/supportClasses/SkinnableComponent.html#getCurrentSkinState()" target="_blank">SkinnableComponent.getCurrentSkinState()</a> method.</p>
+
+                     </li>
+
+                     <li>
+                        <p>Add properties, methods, styles, events, and metadata.</p>
+
+                     </li>
+
+                  </ol>
+
+               </li>
+
+               <li>
+                  <p>Deploy the component as an ActionScript file or as a SWC
+file.</p>
+
+               </li>
+
+            </ol>
+
+            <p>For more information about MXML tag properties and embedding
+graphic and skin files, see <a href="flx_ascomponents_as.html#WS2db454920e96a9e51e63e3d11c0bf69084-7fea_verapache">Create
+simple visual components in ActionScript</a>.</p>
+
+            <p>You do not have to override all component methods to define a
+new component. You only override the methods required to implement
+the functionality of your component. If you create a subclass of
+an existing component, such as Button, you implement only the methods
+necessary for you to add any new functionality to the component.
+	</p>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS460ee381960520ad-2811830c121e9107ecb-7ffa_verapache"><a name="WS460ee381960520ad-2811830c121e9107ecb-7ffa_verapache"><!-- --></a>
+         <h3 class="topictitle3">About interfaces</h3>
+
+         
+         <div>
+            <p>Flex uses
+interfaces to divide the basic functionality of components into
+discrete elements so that they can be implemented piece by piece.
+For example, to make your component focusable, it must implement
+the IFocusManagerComponent interface; to let it participate in the
+layout process, it must implement ILayoutClient interface.</p>
+
+            <p>To simplify the use of interfaces, the UIComponent class implements
+all of the interfaces defined in the following table, except for
+the IFocusManagerComponent interface. However, many subclasses of
+UIComponent implement the IFocusManagerComponent interface. </p>
+
+            <p>Therefore, if you create a subclass of the UIComponent class
+or subclass of UIComponent, such as SkinnableComponent, you do not
+have to implement these interfaces. But, if you create a component
+that is not a subclass of UIComponent, and you want to use that
+component in Flex, you might have to implement one or more of these
+interfaces. </p>
+
+            <p>The following table lists the main interfaces implemented by
+Flex components:</p>
+
+            
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" frame="border" border="1" rules="all">
+                  
+                  
+                  <thead align="left">
+                     <tr>
+                        <th class="cellrowborder" valign="top" width="NaN%" id="d45547e1226">
+                           <p>Interface</p>
+
+                        </th>
+
+                        <th class="cellrowborder" valign="top" width="NaN%" id="d45547e1232">
+                           <p>Use</p>
+
+                        </th>
+
+                     </tr>
+
+                  </thead>
+
+                  <tbody>
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d45547e1226 ">
+                           <p>
+                              <a href="https://flex.apache.org/asdoc/mx/styles/IAdvancedStyleClient.html" target="_blank">IAdvancedStyleClient</a>
+                           </p>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d45547e1232 ">
+                           <p>Indicates that the component supports the
+advanced style subsystem.</p>
+
+                        </td>
+
+                     </tr>
+
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d45547e1226 ">
+                           <p>
+                              <a href="https://flex.apache.org/asdoc/mx/automation/IAutomationObject.html" target="_blank">IAutomationObject</a>
+                           </p>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d45547e1232 ">
+                           <p>Indicates that a component is an object
+within the automation object hierarchy.</p>
+
+                        </td>
+
+                     </tr>
+
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d45547e1226 ">
+                           <p>
+                              <a href="https://flex.apache.org/asdoc/mx/core/IChildList.html" target="_blank">IChildList</a>
+                           </p>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d45547e1232 ">
+                           <p>Indicates the number of children in a container.</p>
+
+                        </td>
+
+                     </tr>
+
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d45547e1226 ">
+                           <p>
+                              <a href="https://flex.apache.org/asdoc/mx/core/IConstraintClient.html" target="_blank">IConstraintClient</a>
+                           </p>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d45547e1232 ">
+                           <p>Indicates that the component support layout
+constraints.</p>
+
+                        </td>
+
+                     </tr>
+
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d45547e1226 ">
+                           <p>
+                              <a href="https://flex.apache.org/asdoc/mx/core/IDeferredInstantiationUIComponent.html" target="_blank">IDeferredInstantiationUIComponent</a>
+                           </p>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d45547e1232 ">
+                           <p>Indicates that a component or object can
+effect deferred instantiation.</p>
+
+                        </td>
+
+                     </tr>
+
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d45547e1226 ">
+                           <p>
+                              <a href="https://flex.apache.org/asdoc/mx/core/IFlexDisplayObject.html" target="_blank">IFlexDisplayObject</a>
+                           </p>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d45547e1232 ">
+                           <p>Specifies the interface for skin elements.</p>
+
+                        </td>
+
+                     </tr>
+
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d45547e1226 ">
+                           <p>
+                              <a href="https://flex.apache.org/asdoc/mx/core/IFlexModule.html" target="_blank">IFlexModule</a>
+                           </p>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d45547e1232 ">
+                           <p>indicates that the component can be used
+with module factories</p>
+
+                        </td>
+
+                     </tr>
+
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d45547e1226 ">
+                           <p>
+                              <a href="https://flex.apache.org/asdoc/mx/managers/IFocusManagerComponent.html" target="_blank">IFocusManagerComponent</a>
+                           </p>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d45547e1232 ">
+                           <p>Indicates that a component or object is
+focusable, which means that the components can receive focus from
+the FocusManager. The UIComponent class does not implement IFocusable
+because some components are not intended to receive focus.</p>
+
+                        </td>
+
+                     </tr>
+
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d45547e1226 ">
+                           <p>
+                              <a href="https://flex.apache.org/asdoc/mx/core/IInvalidating.html" target="_blank">IInvalidating</a>
+                           </p>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d45547e1232 ">
+                           <p>Indicates that a component or object can
+use the invalidation mechanism to perform delayed, rather than immediate,
+property commitment, measurement, and drawing or layout.</p>
+
+                        </td>
+
+                     </tr>
+
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d45547e1226 ">
+                           <p>
+                              <a href="https://flex.apache.org/asdoc/mx/managers/ILayoutManagerClient.html" target="_blank">ILayoutManagerClient</a>
+                           </p>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d45547e1232 ">
+                           <p>Indicates that a component or object can
+participate in the LayoutManager's commit, measure, and update sequence.</p>
+
+                        </td>
+
+                     </tr>
+
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d45547e1226 ">
+                           <p>
+                              <a href="https://flex.apache.org/asdoc/mx/core/IPropertyChangeNotifier.html" target="_blank">IPropertyChangeNotifier</a>
+                           </p>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d45547e1232 ">
+                           <p>Indicates that a component supports a specialized
+form of event propagation.</p>
+
+                        </td>
+
+                     </tr>
+
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d45547e1226 ">
+                           <p>
+                              <a href="https://flex.apache.org/asdoc/mx/core/IStateClient.html" target="_blank">IStateClient</a>
+                           </p>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d45547e1232 ">
+                           <p>Indicates that the component supports view
+states.</p>
+
+                        </td>
+
+                     </tr>
+
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d45547e1226 ">
+                           <p>
+                              <a href="https://flex.apache.org/asdoc/mx/managers/IToolTipManagerClient.html" target="_blank">IToolTipManagerClient</a>
+                           </p>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d45547e1232 ">
+                           <p>Indicates that a component has a <samp class="codeph">toolTip</samp> property,
+and therefore is monitored by the ToolTipManager.</p>
+
+                        </td>
+
+                     </tr>
+
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d45547e1226 ">
+                           <p>
+                              <a href="https://flex.apache.org/asdoc/mx/core/IUIComponent.html" target="_blank">IUIComponent</a>
+                           </p>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d45547e1232 ">
+                           <p>Defines the basic set of APIs that you must
+implement in order to be a child of layout containers and lists.</p>
+
+                        </td>
+
+                     </tr>
+
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d45547e1226 ">
+                           <p>
+                              <a href="https://flex.apache.org/asdoc/mx/validators/IValidatorListener.html" target="_blank">IValidatorListener</a>
+                           </p>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d45547e1232 ">
+                           <p>Indicates that a component can listen for
+validation events, and therefore show a validation state, such as
+a red border and error tooltips.</p>
+
+                        </td>
+
+                     </tr>
+
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d45547e1226 ">
+                           <p>
+                              <a href="https://flex.apache.org/asdoc/mx/core/IVisualElement.html" target="_blank">IVisualElement</a>
+                           </p>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d45547e1232 ">
+                           <p>Indicates that the component can be laid
+out and displayed in a Spark application.</p>
+
+                        </td>
+
+                     </tr>
+
+                  </tbody>
+
+               </table>
+</div>
+
+         </div>
+
+      </div>
+
+   </div>
+
+   <div class="nested1" id="WS460ee381960520ad-2811830c121e9107ecb-7ff9_verapache"><a name="WS460ee381960520ad-2811830c121e9107ecb-7ff9_verapache"><!-- --></a>
+      <h2 class="topictitle2">Implementing a Spark component</h2>
+
+      
+      <div>
+         <p>When you create a custom component in ActionScript, you
+have to override the methods of UIComponent and, if the component
+is skinnable, of SkinnableComponent. </p>
+
+      </div>
+
+      <div class="nested2" id="WS460ee381960520ad-2811830c121e9107ecb-7ff8_verapache"><a name="WS460ee381960520ad-2811830c121e9107ecb-7ff8_verapache"><!-- --></a>
+         <h3 class="topictitle3">Basic component structure</h3>
+
+         
+         <div>
+            <p>The following example shows the basic structure of a skinnable
+Spark component:</p>
+
+            <pre class="codeblock"> package myComponents 
+ { 
+	 public class MyComponent extends SkinnableComponent 
+	 {	 
+		 .... 
+	 } 
+ }</pre>
+
+            <p>You must define your ActionScript custom components within a
+package. The package reflects the directory location of your component
+within the directory structure of your application.</p>
+
+            <p>The class definition of your component must be prefixed by the <samp class="codeph">public</samp> keyword.
+A file that contains a class definition can have one, and only one,
+public class definition, although it can have additional internal
+class definitions. Place any internal class definitions at the bottom
+of your source file below the closing curly brace of the package
+definition.</p>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS460ee381960520ad-2811830c121e9107ecb-7ff7_verapache"><a name="WS460ee381960520ad-2811830c121e9107ecb-7ff7_verapache"><!-- --></a>
+         <h3 class="topictitle3">Implementing the constructor</h3>
+
+         
+         <div>
+            <p>Your
+ActionScript class should define a public constructor method for
+a class that is a subclass of the UIComponent class, or a subclass
+of any child of the <a href="https://flex.apache.org/asdoc/mx/core/UIComponent.html" target="_blank">UIComponent</a> class.
+The constructor has the following characteristics:</p>
+
+            <ul>
+               <li>
+                  <p>No return type</p>
+
+               </li>
+
+               <li>
+                  <p>Declared public</p>
+
+               </li>
+
+               <li>
+                  <p>No arguments</p>
+
+               </li>
+
+               <li>
+                  <p>Calls the <samp class="codeph">super()</samp> method to invoke the superclass'
+constructor</p>
+
+               </li>
+
+            </ul>
+
+            <p>Each class can contain only one constructor method; ActionScript
+does not support overloaded constructor methods. For more information,
+see <a href="flx_createcomps_basicas_cca.html#WS2db454920e96a9e51e63e3d11c0bf69084-79dd_verapache">Defining the
+constructor</a>. </p>
+
+            <p>Use the constructor to set the initial values of class properties.
+For example, you can set default values for properties and styles,
+or initialize data structures, such as Arrays. You can also set
+the <samp class="codeph">skinClass</samp> style to the name of your skin class.</p>
+
+            <p>Do not create child display objects in the constructor; you should
+use it only for setting initial properties of the component. If
+your component creates child components, create them in the skin
+class.</p>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS460ee381960520ad-2811830c121e9107ecb-7ff5_verapache"><a name="WS460ee381960520ad-2811830c121e9107ecb-7ff5_verapache"><!-- --></a>
+         <h3 class="topictitle3">Implementing the commitProperties()
+method for Spark components</h3>
+
+         
+         <div>
+            <p>You
+use the <a href="https://flex.apache.org/asdoc/mx/core/UIComponent.html#commitProperties()" target="_blank">commitProperties()</a> method
+to coordinate modifications to component properties. Most often,
+you use it with properties that affect how a component appears on
+the screen. </p>
+
+            <p>Flex schedules a call to the <samp class="codeph">commitProperties()</samp> method
+when a call to the <samp class="codeph">invalidateProperties()</samp> method
+occurs. The <samp class="codeph">commitProperties()</samp> method executes
+during the next <samp class="codeph">render</samp> event after a call to the <samp class="codeph">invalidateProperties()</samp> method.
+When you use the <samp class="codeph">addElement()</samp> method to add a component
+to a container, Flex automatically calls the <samp class="codeph">invalidateProperties()</samp> method. </p>
+
+            <p>The typical pattern for defining component properties is to define
+the properties by using getter and setter methods, as the following
+example shows: </p>
+
+            <pre class="codeblock"> // Define a private variable for the alignText property. 
+ private var _alignText:String = "right"; 
+  
+ // Define a flag to indicate when the _alignText property changes. 
+ private var bAlignTextChanged:Boolean = false; 
+  
+ // Define getter and setter methods for the property.		 
+ public function get alignText():String { 
+ 		return _alignText; 
+ } 
+  
+ public function set alignText(t:String):void { 
+ 	_alignText = t; 
+ 	bAlignTextChanged = true; 
+  
+ 	<strong>// Trigger the commitProperties(), measure() method.</strong><strong> 
+	invalidateProperties();</strong><strong> 
+	invalidateSize();</strong> 
+} 
+  
+ // Implement the commitProperties() method.  
+ override protected function commitProperties():void { 
+ 	super.commitProperties(); 
+ 	 
+ 	<strong>// Check whether the flag indicates a change to the alignText property. </strong> 
+ 	<strong>if (bAlignTextChanged) {</strong> 
+ 		// Reset flag. 
+ 		bAlignTextChanged = false; 
+  
+ 		// Handle alignment change 
+		... <strong> 
+ 
+		// If necessary, call invalidateDisplayList() to update the display. 
+		invalidateDisplayList(); </strong> 
+	} 
+ }</pre>
+
+            <p>As you can see in this example, the setter method modifies the
+property, calls the <samp class="codeph">invalidateProperties()</samp> method,
+and then returns. The setter itself does not perform any calculations
+based on the new property value. This design lets the setter method
+return quickly, and leaves any processing of the new value to the <samp class="codeph">commitProperties()</samp> method. </p>
+
+            <p>The <samp class="codeph">commitProperties()</samp> method in the previous
+example process the changes to the property, then calls the <samp class="codeph">invalidateDisplay()</samp> method
+to cause the component to update its display. The call to the <samp class="codeph">invalidateDisplay()</samp> method
+is only necessary if the component has to update its display based
+on the property change.</p>
+
+            <p>The main advantages of using the <samp class="codeph">commitProperties()</samp> method
+are the following:</p>
+
+            <ul>
+               <li>
+                  <p>To coordinate the modifications of multiple properties
+so that the modifications occur synchronously.</p>
+
+                  <p>For example,
+you might define multiple properties that control the text displayed
+by the component, such as the alignment of the text within the component.
+A change to either the text or the alignment property requires Flex
+to update the appearance of the component. However, if you modify
+both the text and the alignment, you want Flex to perform any calculations
+for sizing or positioning the component once, when the screen updates. </p>
+
+                  <p>Therefore,
+you use the <samp class="codeph">commitProperties()</samp> method to calculate
+any values based on the relationship of multiple component properties.
+By coordinating the property changes in the <samp class="codeph">commitProperties()</samp> method,
+you can reduce unnecessary processing overhead. </p>
+
+               </li>
+
+               <li>
+                  <p>To coordinate the sequence that you set properties.</p>
+
+                  <p>Some
+properties may have to be set in a particular sequence. In the <samp class="codeph">commitProperties()</samp> method,
+determine which properties are being modified, and, if necessary,
+set them in the proper order. </p>
+
+               </li>
+
+               <li>
+                  <p>To coordinate multiple modifications to the same property.</p>
+
+                  <p>You
+do not necessarily want to perform a complex calculation every time
+a user updates a component property. For example, users modify the <samp class="codeph">icon</samp> property
+of the Button control to change the image displayed in the button. Calculating
+the label position based on the presence or size of an icon can
+be a computationally expensive operation that you want to perform
+only when necessary. </p>
+
+                  <p>To avoid this behavior, you use the <samp class="codeph">commitProperties()</samp> method
+to perform the calculations. Flex calls the <samp class="codeph">commitProperties()</samp> method when
+it updates the display. That means you perform the calculations
+once when Flex updates the screen, regardless of the number of times
+the property changed between screen updates. </p>
+
+               </li>
+
+            </ul>
+
+            <p>The following example shows how you can handle two related properties
+in the <samp class="codeph">commitProperties()</samp> method:</p>
+
+            <pre class="codeblock"> <strong>// Define a private variable for the text property.</strong> 
+ private var _text:String = "ModalText"; 
+ private var bTextChanged:Boolean = false; 
+ 		 
+ // Define the getter method.  
+ public function get text():String { 
+ 		return _text; 
+ } 
+  
+ //Define the setter method to call invalidateProperties()  
+ // when the property changes.  
+ public function set text(t:String):void { 
+ 	_text = t; 
+ 	bTextChanged = true; 
+ 	<strong>invalidateProperties();</strong> 
+} 
+  
+ <strong>// Define a private variable for the alignText property.</strong> 
+ private var _alignText:String = "right"; 
+ private var bAlignTextChanged:Boolean = false; 
+ 		 
+ public function get alignText():String { 
+ 		return _alignText; 
+ } 
+ 	 
+ public function set alignText(t:String):void { 
+ 	_alignText = t; 
+ 	bAlignTextChanged = true; 
+ 	<strong>invalidateProperties();</strong> 
+	invalidateSize(); 
+} 
+ 	 
+ // Implement the commitProperties() method.  
+ override protected function commitProperties():void { 
+ 	super.commitProperties(); 
+  
+ 	<strong>// Check whether the flags indicate a change to both properties. </strong> 
+ 	<strong>if (bTextChanged &amp;&amp; bAlignTextChanged) {</strong> 
+ 		// Reset flags. 
+ 		bTextChanged = false; 
+ 		bAlignTextChanged = false; 
+  
+ 		// If necessary, update the dispaly. 
+		invalidateDisplayList(); 
+ 	} 
+ 	 
+ 	// Check whether the flag indicates a change to the text property.  
+ 	if (bTextChanged) { 
+ 		// Reset flag. 
+ 		bTextChanged = false; 
+  
+ 		// If necessary, update the dispaly. 
+		invalidateDisplayList(); 
+ 	} 
+  
+ 	// Check whether the flag indicates a change to the alignText property.  
+ 	if (bAlignTextChanged) { 
+ 		// Reset flag. 
+ 		bAlignTextChanged = false; 
+  
+ 		// If necessary, update the dispaly. 
+		invalidateDisplayList(); 
+ 	} 
+ }</pre>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS460ee381960520ad-2811830c121e9107ecb-7ff1_verapache"><a name="WS460ee381960520ad-2811830c121e9107ecb-7ff1_verapache"><!-- --></a>
+         <h3 class="topictitle3">Implementing the updateDisplayList()
+method for Spark components</h3>
+
+         
+         <div>
+            <p>The <a href="https://flex.apache.org/asdoc/mx/core/UIComponent.html#updateDisplayList()" target="_blank">updateDisplayList()</a> method
+sizes and positions parts of the component based on all previous
+property and style settings. The parent container for the component
+determines the size of the component itself. You rarely have to implement
+this method for Spark components.</p>
+
+            <p>A component does not appear on the screen until its <samp class="codeph">updateDisplayList()</samp> method
+gets called. Flex schedules a call to the <samp class="codeph">updateDisplayList()</samp> method
+when a call to the <samp class="codeph">invalidateDisplayList()</samp> method
+occurs. The <samp class="codeph">updateDisplayList()</samp> method executes
+during the next <samp class="codeph">render</samp> event after a call to the <samp class="codeph">invalidateDisplayList()</samp> method.
+When you use the <samp class="codeph">addElement()</samp> method to add a component
+to a container, Flex automatically calls the <samp class="codeph">invalidateDisplayList()</samp> method. </p>
+
+            <p>In general, all visual aspects of a Spark component are controlled
+by the skin class. But, there are times when the component must
+participate in the visual display. The only time a Spark component
+implements the <samp class="codeph">updateDisplayList()</samp> method is when
+the component has view-specific knowledge that it must control.
+For example, the slider thumb of the Spark HSlider and VSlider controls
+is positioned by the <samp class="codeph">updateDisplayList()</samp> method. </p>
+
+            <p>Make sure to perform as much visual display as possible in the
+skin. For example, the <samp class="codeph">updateDisplayList()</samp> method
+of the HSlider component only sets the x position of the slider
+thumb. The skin class sets the y position.</p>
+
+            <p>The main uses of the <samp class="codeph">updateDisplayList()</samp> method
+are the following:</p>
+
+            <ul>
+               <li>
+                  <p>To set the size and position of the elements of the component
+for display. </p>
+
+                  <p>Many components are made up of one or more child
+components, or have properties that control the display of information
+in the component. </p>
+
+                  <p>To size components in the <samp class="codeph">updateDisplayList()</samp> method,
+you use the <samp class="codeph">setActualSize()</samp> method, not the sizing
+properties, such as <samp class="codeph">width</samp> and <samp class="codeph">height</samp>.
+To position a component, use the <samp class="codeph">move()</samp> method,
+not the <samp class="codeph">x</samp> and <samp class="codeph">y</samp> properties. </p>
+
+               </li>
+
+               <li>
+                  <p>To draw any visual elements necessary for the component.</p>
+
+                  <p>Components
+support many types of visual elements such as graphics, styles, and
+borders. Within the <samp class="codeph">updateDisplayList()</samp> method,
+you can add these visual elements, use the Flash drawing APIs, and
+perform additional control over the visual display of your component. </p>
+
+               </li>
+
+            </ul>
+
+            <p>The <samp class="codeph">updateDisplayList()</samp> method has the following
+signature:</p>
+
+            <pre class="codeblock"> protected function updateDisplayList(unscaledWidth:Number, 
+ 	unscaledHeight:Number):void</pre>
+
+            <p>The properties have the following values:</p>
+
+            <dl>
+               
+                  <dt class="dlterm">unscaledWidth</dt>
+
+                  <dd>
+                     <p>Specifies the width of the component, in pixels, in the component's
+coordinates, regardless of the value of the <samp class="codeph">scaleX</samp> property
+of the component. This is the width of the component as determined
+by its parent container. </p>
+
+                  </dd>
+
+               
+               
+                  <dt class="dlterm">unscaledHeight</dt>
+
+                  <dd>
+                     <p>Specifies the height of the component, in pixels, in the component's
+coordinates, regardless of the value of the <samp class="codeph">scaleY</samp> property
+of the component. This is the height of the component as determined
+by its parent container.</p>
+
+                     <p>Scaling occurs in Flash Player or
+AIR, after <samp class="codeph">updateDisplayList()</samp> executes. For example,
+a component with an <samp class="codeph">unscaledHeight</samp> value of 100,
+and with a <samp class="codeph">scaleY</samp> property of 2.0, appears 200
+pixels high in Flash Player or AIR. </p>
+
+                  </dd>
+
+               
+            </dl>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS03d33b8076db57b9-a120b14121ef5f63a3-8000_verapache"><a name="WS03d33b8076db57b9-a120b14121ef5f63a3-8000_verapache"><!-- --></a>
+         <h3 class="topictitle3">Implementing the partAdded() and
+partRemoved() methods for skinnable components for Spark components</h3>
+
+         
+         <div>
+            <p>Some skinnable components are composed of one or more subcomponents.
+For example, a NumericStepper component contains a subcomponent
+for an up button, a down button, and a text area. </p>
+
+            <p>The component class is responsible for controlling the behavior
+of the subcomponents. The skin class is responsible for defining
+the subcomponents, including the appearance of the component, its
+subcomponents, and any other visual aspects of the component.</p>
+
+            <div class="p">Flex clearly defines the relationship between the component class
+and the skin class. The component class must do the following:<ul>
+                  <li>
+                     <p>Identify the skin parts that it expects with the <samp class="codeph">[SkinPart]</samp> metadata
+tag. The skin parts are implemented in the skin file. For more information
+on using the <samp class="codeph">[SkinPart]</samp> metadata tag, see <a href="flx_metadata_me.html#WSed21e2b297da693f52150838121df2b8ad7-8000_verapache">SkinPart
+metadata tag</a>.</p>
+
+                  </li>
+
+                  <li>
+                     <p>Identify the view states that the component supports with
+the <samp class="codeph">[SkinStates]</samp> metadata tag. For more information
+on the <samp class="codeph">[SkinState]</samp> metadata tag, see <a href="flx_metadata_me.html#WSed21e2b297da693f52150838121df2b8ad7-7fff_verapache">SkinState
+metadata tag</a>.</p>
+
+                  </li>
+
+                  <li>
+                     <p>Use CSS styles to associate the skin class with the component.</p>
+
+                  </li>
+
+               </ul>
+
+            </div>
+
+            <div class="p">The skin class must do the following:<ul>
+                  <li>
+                     <p>Specify the component
+name with the <samp class="codeph">[HostComponent]</samp> metadata tag. While
+the <samp class="codeph">[HostComponent]</samp> metadata tag is not required,
+it is strongly recommended. For more information on the <samp class="codeph">[HostComponent]</samp> metadata tag,
+see <a href="flx_metadata_me.html#WS8fdf84466d28f0b0-6fc09fae121f39ef56b-8000_verapache">HostComponent
+metadata tag</a>.</p>
+
+                  </li>
+
+                  <li>
+                     <p>Declare the view states, and define their appearance.</p>
+
+                  </li>
+
+                  <li>
+                     <p>Define the appearance of the skin parts. The skin parts must
+use the same name as the corresponding skin-part property in the
+component.</p>
+
+                  </li>
+
+               </ul>
+
+            </div>
+
+            <p>Flex calls the <samp class="codeph">partAdded()</samp> and <samp class="codeph">partRemoved()</samp> methods
+automatically when a skin is created or destroyed. You typically
+override the <samp class="codeph">partAdded()</samp> method to attach event
+handlers to a skin part, configure a skin part, or perform other
+actions when a skin part is added. You implement the <samp class="codeph">partRemoved()</samp> method
+to remove the even handlers added in <samp class="codeph">partAdded()</samp>.</p>
+
+            <div class="p">In the component class, define skin parts as properties. In the
+following example, the component defines two required skin parts:<pre class="codeblock">// Define the skin parts. 
+[SkinPart(required="true")] 
+public var modeButton:Button; 
+ 
+[SkinPart(required="true")] 
+public var textInput:RichEditableText;</pre>
+
+            </div>
+
+            <p>The first skin part defines a Button control, and the second
+defines a RichEditableText control. While the skin parts are defined
+as properties of the component, component users do not directly
+modify them. The skin class defines their implementation and appearance.
+For more information on defining skin parts, see <a href="flx_gumboskinning_gs.html#WSF11B6088-034E-458c-836B-6B53BEF88CC7_verapache">Skin
+parts</a>.</p>
+
+            <div class="p">In your implementation of the <samp class="codeph">partAdded()</samp> method,
+you first use <samp class="codeph">super</samp> to invoke the <samp class="codeph">partAdded()</samp> method
+of the base class. Then, determine the skin part that was added,
+and configure it. Use the property name of the skin part to reference
+it. In this example, you set properties on the skin part and add
+event listeners to it:<pre class="codeblock">override protected function partAdded(partName:String, instance:Object):void { 
+	super.partAdded(partName, instance); 
+ 
+	if (instance == textInput) { 
+		textInput.editable = false; 
+		textInput.text= _text; 
+		textInput.addEventListener("change", modeButton_clickHandler); 
+	} 
+ 
+	if (instance == modeButton) { 
+		modeButton.label = "Toggle Editing Mode"; 
+		modeButton.addEventListener("click", modeButton_changeHandler); 
+	} 
+}</pre>
+
+            </div>
+
+            <div class="p">In your implementation of the <samp class="codeph">partRemoved()</samp> method,
+use <samp class="codeph">super</samp> to invoke the <samp class="codeph">partRemoved()</samp> method
+of the base class. You can then remove the event listeners added
+by the <samp class="codeph">partAdded()</samp> method: <pre class="codeblock">override protected function partRemoved(partName:String, instance:Object):void { 
+	super.partRemoved(partName, instance); 
+ 
+	if (instance == textInput) { 
+		textInput.removeEventListener("change", modeButton_clickHandler); 
+	} 
+ 
+	if (instance == modeButton) { 
+		modeButton.removeEventListener("click", modeButton_changeHandler); 
+	} 
+}</pre>
+
+            </div>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS03d33b8076db57b9-a120b14121ef5f63a3-7fff_verapache"><a name="WS03d33b8076db57b9-a120b14121ef5f63a3-7fff_verapache"><!-- --></a>
+         <h3 class="topictitle3">Implementing the getCurrentSkinState()
+method for skinnable components for Spark components</h3>
+
+         
+         <div>
+            <div class="p">A component must identify the view states that its skin
+supports. Use the <samp class="codeph">[SkinState]</samp> metadata tag to define
+the view states in the component class. This tag has the following
+syntax: <pre class="codeblock">[SkinState("<em>stateName</em>")]</pre>
+
+            </div>
+
+            <p>Specify the metadata before the class definition. For more information
+on the <samp class="codeph">[SkinState]</samp> metadata tag, see <a href="flx_metadata_me.html#WSed21e2b297da693f52150838121df2b8ad7-7fff_verapache">SkinState
+metadata tag</a>.</p>
+
+            <div class="p">The following example defines two view states for the component
+named ModalTextStates: <pre class="codeblock">[SkinState("normal")] 
+[SkinState("textLeft")] 
+public class ModalTextStates extends SkinnableComponent 
+{ 
+	...</pre>
+
+            </div>
+
+            <div class="p">The component's skin class then define these view states, as
+the following example shows: <pre class="codeblock">&lt;?xml version="1.0" encoding="utf-8"?&gt; 
+&lt;s:SparkSkin xmlns:fx="http://ns.adobe.com/mxml/2009" 
+	xmlns:s="library://ns.adobe.com/flex/spark" 
+	xmlns:mx="library://ns.adobe.com/flex/mx" 
+	minWidth="100" minHeight="25"&gt; 
+ 
+	&lt;s:states&gt; 
+		&lt;s:State name="normal" /&gt; 
+		&lt;s:State name="textLeft"/&gt; 
+	&lt;/s:states&gt; 
+	...</pre>
+
+            </div>
+
+            <p>In your component, implement the <samp class="codeph">getCurrentSkinState()</samp> method
+to set the view state of the skin class. Flex calls the <samp class="codeph">getCurrentSkinState()</samp> method
+automatically from the <samp class="codeph">commitProperties()</samp> method. </p>
+
+            <div class="p">The <samp class="codeph">getCurrentSkinState()</samp> method takes no arguments,
+and returns a String identifying the view state of the skin. You
+can use information in the class to determine the new view state.
+In the following example, you examine the <samp class="codeph">_textPlacement</samp> property
+of the component to determine the view state of the skin: <pre class="codeblock">override protected function getCurrentSkinState():String { 
+	var returnState:String = "normal"; 
+ 
+	// Use information in the class to determine the new view state of the skin class. 
+	if (_textPlacement == "left") 	{ 
+		returnState = "textLeft"; 
+	} 
+	return returnState; 
+}</pre>
+
+            </div>
+
+         </div>
+
+      </div>
+
+   </div>
+
+   <div class="nested1" id="WS460ee381960520ad-2811830c121e9107ecb-7fed_verapache"><a name="WS460ee381960520ad-2811830c121e9107ecb-7fed_verapache"><!-- --></a>
+      <h2 class="topictitle2">Adding version numbers</h2>
+
+      
+      <div>
+         <p>When releasing components,
+you can define a version number. This lets developers know whether
+they should upgrade, and helps with technical support issues. When
+you set a component's version number, use the static variable <samp class="codeph">version</samp>,
+as the following example shows:</p>
+
+         <pre class="codeblock"> static var version:String = "1.0.0.42";</pre>
+
+         <div class="note"><span class="notetitle">Note:</span> Flex does not use or interpret the value of
+the <samp class="codeph">version</samp> property. </div>
+
+         <p>If you create many components as part of a component package,
+you can include the version number in an external file. That way,
+you update the version number in only one place. For example, the
+following code imports the contents of an external file that stores
+the version number in one place:</p>
+
+         <pre class="codeblock"> include "../myPackage/ComponentVersion.as"</pre>
+
+         <p>The contents of the ComponentVersion.as file are identical to
+the previous variable declaration, as the following example shows:</p>
+
+         <pre class="codeblock"> static var version:String = "1.0.0.42";</pre>
+
+      </div>
+
+   </div>
+
+   <div class="nested1" id="WS460ee381960520ad-2811830c121e9107ecb-7fec_verapache"><a name="WS460ee381960520ad-2811830c121e9107ecb-7fec_verapache"><!-- --></a>
+      <h2 class="topictitle2">Best practices when designing a component</h2>
+
+      
+      <div>
+         <p>Use
+the following practices when you design a component:</p>
+
+         <ul>
+            <li>
+               <p>Keep the file size as small as possible. </p>
+
+            </li>
+
+            <li>
+               <p>Make your component as reusable as possible by generalizing
+functionality. </p>
+
+            </li>
+
+            <li>
+               <p>Assume an initial state. Because style properties are on
+the object, you can set initial settings for styles and properties
+so your initialization code does not have to set them when the object
+is constructed, unless the user overrides the default state. </p>
+
+            </li>
+
+         </ul>
+
+      </div>
+
+   </div>
+
+   <div class="nested1" id="WS460ee381960520ad-2811830c121e9107ecb-7feb_verapache"><a name="WS460ee381960520ad-2811830c121e9107ecb-7feb_verapache"><!-- --></a>
+      <h2 class="topictitle2">Example: Creating a skinnable Spark component</h2>
+
+      
+      <div>
+         <p><em>Composite components</em> are
+components that contain multiple subcomponents. They might be graphical
+assets or a combination of graphical assets and component classes.
+For example, you can create a component that includes as subcomponents
+a button, rich text field, and a border graphic. Or, you can create a
+component that includes a text field and a validator. </p>
+
+         <p>When you create composite components, you define the subcomponents
+inside the component's skin class. You must plan the layout of the
+subcomponents that you are including, and set properties such as
+default values in the skin class. </p>
+
+         <p>Properties of the individual subcomponents are not directly accessible
+in MXML. For example, if you create a component that extends the
+SkinnableComponent class and uses a Button and a RichEditableText
+component as subcomponents, you cannot set the Button control's <samp class="codeph">label</samp> property
+in MXML.</p>
+
+         <p>Instead, you can define a myLabel property on the custom component
+that is exposed in MXML. When the user sets the myLabel property,
+your custom component can set that property on the Button. </p>
+
+      </div>
+
+      <div class="nested2" id="WS460ee381960520ad-2811830c121e9107ecb-7fea_verapache"><a name="WS460ee381960520ad-2811830c121e9107ecb-7fea_verapache"><!-- --></a>
+         <h3 class="topictitle3">Creating the ModalText component</h3>
+
+         
+         <div>
+            <p>This example component, called ModalText and defined in
+the file ModalText.as, combines a Button control and a RichEditableText
+component. You use the Button control to enable or disable text
+input in the RichEditableText component. </p>
+
+            <p>This control has the following attributes:</p>
+
+            <ul>
+               <li>
+                  <p>By default, you cannot edit the RichEditableText component.</p>
+
+               </li>
+
+               <li>
+                  <p>Click the Button control to toggle editing of the RichEditableText
+component.</p>
+
+               </li>
+
+               <li>
+                  <p>Use the <samp class="codeph">ModalText.text</samp> property to programmatically
+write content to the RichEditableText component. </p>
+
+               </li>
+
+               <li>
+                  <p>Editing the text in the RichEditableText component dispatches
+the <samp class="codeph">change</samp> event.</p>
+
+               </li>
+
+               <li>
+                  <p>Use the <samp class="codeph">text</samp> property as the source for
+a data binding expression. </p>
+
+               </li>
+
+            </ul>
+
+            <div class="p">The following is an example MXML file that uses the ModalText
+control: <pre class="codeblock">&lt;?xml version="1.0" encoding="utf-8"?&gt; 
+&lt;!-- asAdvancedSpark/SparkMainModalText.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:MyComp="myComponents.*"&gt; 
+    
+    &lt;MyComp:ModalText/&gt; 
+ 
+&lt;/s:Application&gt;</pre>
+
+            </div>
+
+            <div class="p">Component users cannot directly access the properties of the
+Button and RichEditableText subcomponents. However, they can use
+descendant selectors to set the styles on the subcomponents, as
+the following example shows: <pre class="codeblock">&lt;?xml version="1.0" encoding="utf-8"?&gt; 
+&lt;!-- asAdvancedSpark/SparkMainModalTextStyled.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:MyComp="myComponents.*"&gt; 
+    
+    &lt;fx:Style&gt; 
+        @namespace MyComp "myComponents.*"; 
+        @namespace s "library://ns.adobe.com/flex/spark"; 
+ 
+        MyComp|ModalText s|Button { 
+            chromeColor: #663366; 
+            color: #9999CC; 
+        } 
+    &lt;/fx:Style&gt; 
+    
+    &lt;MyComp:ModalText/&gt; 
+ 
+&lt;/s:Application&gt;</pre>
+
+            </div>
+
+            <p>In this example, you use descendent selectors to set the set
+the <samp class="codeph">chromeColor</samp> and <samp class="codeph">color</samp> styles
+of the Button subcomponent. For more information, see <a href="flx_styles_st.html#WS2db454920e96a9e51e63e3d11c0bf62883-7ff2_verapache">Using Cascading
+Style Sheets</a>.</p>
+
+         </div>
+
+         <div class="nested3" id="WS460ee381960520ad-2811830c121e9107ecb-7fe9_verapache"><a name="WS460ee381960520ad-2811830c121e9107ecb-7fe9_verapache"><!-- --></a>
+            <h4 class="topictitle4">Defining event listeners for composite
+components</h4>
+
+            
+            <div>
+               <p>Subcomponents can dispatch events. The main component can
+either handle the events internally, or propagate the event so that
+a component user can handle them. </p>
+
+               <p>Custom components implement the <samp class="codeph">partAdded()</samp> method
+to create children of the component, as the following example shows: </p>
+
+               <pre class="codeblock">override protected function partAdded(partName:String, instance:Object):void { 
+	super.partAdded(partName, instance); 
+	if (instance == textInput) { 
+		textInput.editable = false; 
+		textInput.text= _text; 
+		textInput.addEventListener("change", textInput_changeHandler); 
+	} 
+	if (instance == modeButton) { 
+		modeButton.label = "Toggle Editing Mode"; 
+		modeButton.addEventListener("click", modeButton_changeHandler); 
+	} 
+ }</pre>
+
+               <p>The <samp class="codeph">partAdded()</samp> method contains a call to the <samp class="codeph">addEventListener()</samp> method
+to register an event listener for the <samp class="codeph">change</samp> event
+generated by the RichEditableText subcomponent, and for the <samp class="codeph">click</samp> event
+for the Button subcomponent. These event listeners are defined within
+the ModalText class, as the following example shows:</p>
+
+               <pre class="codeblock"> // Handle events for a change to RichEditableText.text property. 
+ private function textInput_changeHandler(eventObj:Event):void { 
+ 		dispatchEvent(new Event("change")); 
+ } 
+  
+ // Handle the click event for the Button subcomponent. 
+ private function modeButton_changeHandler(eventObj:Event):void { 
+ 		text_mc.editable = !text_mc.editable; 
+ }</pre>
+
+               <p>You can handle an event dispatched by a child of a composite
+component in the component. In this example, the event listener
+for the Button subcomponent's <samp class="codeph">click</samp> event is defined
+in the class definition to toggle the <samp class="codeph">editable</samp> property of
+the RichEditableText subcomponent.</p>
+
+               <p>However, if a child component dispatches an event, and you want
+that opportunity to handle the event outside of the component, you
+must add logic to your custom component to propagate the event.
+Notice that the event listener for the <samp class="codeph">change</samp> event
+for the RichEditableText subcomponent propagates the event. This
+lets you handle the event in your application, as the following
+example shows:</p>
+
+               <pre class="codeblock"> &lt;?xml version="1.0"?&gt; 
+ &lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+	xmlns:MyComp="myComponents.*"&gt; 
+  
+ 	&lt;fx:Script&gt; 
+ 		&lt;![CDATA[ 
+  
+ 			import flash.events.Event; 
+  
+ 			function handleText(eventObj:Event) 
+ 			{ 
+ 				... 
+ 			} 
+ 		]]&gt; 
+ 	&lt;/fx:Script&gt; 
+  
+ 	&lt;MyComp:ModalText change="handleText(event);"/&gt; 
+ &lt;/s:Application&gt;</pre>
+
+            </div>
+
+         </div>
+
+         <div class="nested3" id="WS03d33b8076db57b9-62538396121efa9408a-8000_verapache"><a name="WS03d33b8076db57b9-62538396121efa9408a-8000_verapache"><!-- --></a>
+            <h4 class="topictitle4">Creating the skin class for the
+ModalText component</h4>
+
+            
+            <div>
+               <p>The ModalText component defines a Button subcomponent and
+a Rich TextArea subcomponent. Each of these subcomponents is defined
+in the ModalText.as file as a required skin part. </p>
+
+               <p>A component uses CSS styles to specify the skin class that implements
+the skin parts. The ModalText component uses the <samp class="codeph">setStyle()</samp> method
+to set the style. However, calling the <samp class="codeph">setStyle()</samp> method
+in the component definition does not make it easy to reskin the
+component. You can also use an external style sheet or other mechanism
+to set the style that defines the skin class.</p>
+
+               <div class="p">The skin class performs the following: <ul>
+                     <li>
+                        <p>Uses the <samp class="codeph">[HostComponent]</samp> metadata
+tag to specify ModalText as the host component of the skin.</p>
+
+                     </li>
+
+                     <li>
+                        <p>Defines a single view state named normal.</p>
+
+                     </li>
+
+                     <li>
+                        <p>Uses the Rect class to draw a border around the RichTextArea
+subcomponent.</p>
+
+                     </li>
+
+                     <li>
+                        <p>Uses a Scroller component to add scroll bars to the RichTextArea
+subcomponent.</p>
+
+                     </li>
+
+                  </ul>
+
+               </div>
+
+               <p>The skin class is defined in MXML, as the following example shows:</p>
+
+               <div class="p">
+                  <pre class="codeblock">&lt;?xml version="1.0" encoding="utf-8"?&gt; 
+&lt;!-- asAdvancedSpark\myComponents\ModalTextSkin.mxml --&gt; 
+&lt;s:SparkSkin xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    minWidth="100" minHeight="25"&gt; 
+ 
+    &lt;!-- Define ModalText as the host component of the skin. --&gt; 
+    &lt;fx:Metadata&gt; 
+        &lt;![CDATA[ 
+            [HostComponent("myComponents.ModalText")] 
+        ]]&gt; 
+    &lt;/fx:Metadata&gt; 
+    &lt;!-- Define the normal view state. --&gt; 
+    &lt;s:states&gt; 
+        &lt;s:State name="normal"/&gt; 
+    &lt;/s:states&gt; 
+ 
+    &lt;!-- Define the border around the RichEditableText subcomponent. --&gt; 
+    &lt;s:Rect x="{myScroller.x}" 
+        width="{myScroller.width}" 
+        height="{myScroller.height}"&gt; 
+        &lt;s:stroke&gt; 
+            &lt;s:SolidColorStroke color="0x686868" weight="1"/&gt; 
+        &lt;/s:stroke&gt; 
+    &lt;/s:Rect&gt; 
+ 
+    &lt;!--- Defines the appearance of the Button subcomponent. --&gt; 
+    &lt;s:Button id="modeButton" 
+        width="150" 
+        x="0" 
+        minHeight="25"/&gt; 
+                           
+    &lt;!--- Defines the appearance of the RichEditableText subcomponent. --&gt; 
+    &lt;s:Scroller id="myScroller" 
+        width="200" 
+        x="156"&gt; 
+        &lt;s:RichEditableText id="textInput" 
+            minHeight="25" 
+            heightInLines="4" 
+            widthInChars="20" 
+            paddingLeft="4" paddingTop="4" 
+            paddingRight="4" paddingBottom="4"/&gt; 
+    &lt;/s:Scroller&gt; 
+&lt;/s:SparkSkin&gt;</pre>
+
+               </div>
+
+            </div>
+
+         </div>
+
+         <div class="nested3" id="WS460ee381960520ad-2811830c121e9107ecb-7fe8_verapache"><a name="WS460ee381960520ad-2811830c121e9107ecb-7fe8_verapache"><!-- --></a>
+            <h4 class="topictitle4">Creating the ModalText component</h4>
+
+            
+            <div>
+               <div class="p">The following code implements the class definition for
+the ModalText component. The ModalText component is a composite
+component that contains a <a href="https://flex.apache.org/asdoc/mx/controls/Button.html" target="_blank">Button</a> and
+a <a href="https://flex.apache.org/asdoc/spark/components/RichEditableText.html" target="_blank">RichEditableText</a> subcomponent: <pre class="codeblock">package myComponents 
+{ 
+    import flash.events.Event; 
+    import spark.components.Button; 
+    import spark.components.RichEditableText; 
+    import spark.components.supportClasses.SkinnableComponent; 
+ 
+    // ModalText dispatches a change event when the text of the  
+    // RichEditableText subcomponent changes. 
+    [Event(name="change", type="flash.events.Event")] 
+    
+    /** a) Extend SkinnableComponent. */ 
+    public class ModalText extends SkinnableComponent 
+    { 
+        /** b) Implement the constructor. */ 
+        public function ModalText() { 
+            super(); 
+            
+            // Set the skinClass style to the name of the skin class. 
+            setStyle("skinClass", ModalTextSkin); 
+        } 
+        
+        /** c) Define the skin parts for the Button 
+        *     and RichEditableText subcomponents. **/ 
+        [SkinPart(required="true")] 
+        public var modeButton:Button; 
+        
+        [SkinPart(required="true")] 
+        public var textInput:RichEditableText; 
+        
+        /** d) Implement the commitProperties() method to handle the 
+        *     change to the ModalText.text property. 
+        *     Changes to the ModalText.text property are copied to 
+        *     the  RichEditableText subcomponent. */ 
+        override protected function commitProperties():void { 
+            super.commitProperties(); 
+            
+            if (bTextChanged) { 
+                bTextChanged = false; 
+                textInput.text = _text; 
+            } 
+        }       
+        
+        /** e) Implement the partAdded() method to 
+        *     initialize the Button and RichEditableText subcomponents. */ 
+        override protected function partAdded(partName:String, instance:Object):void { 
+            super.partAdded(partName, instance); 
+        
+            if (instance == textInput) { 
+                textInput.editable = false; 
+                textInput.text= _text; 
+                textInput.addEventListener("change", textInput_changeHandler); 
+            } 
+ 
+            if (instance == modeButton) { 
+                modeButton.label = "Toggle Editing Mode"; 
+                modeButton.addEventListener("click", modeButton_clickHandler); 
+            } 
+        } 
+        
+        /** f) Implement the partRemoved() method to remove the 
+        *     event listeners added by partAdded(). */ 
+        override protected function partRemoved(partName:String, instance:Object):void { 
+            super.partRemoved(partName, instance); 
+        
+            if (instance == textInput) { 
+                textInput.removeEventListener("change", textInput_changeHandler); 
+            } 
+ 
+            if (instance == modeButton) { 
+                textInput.removeEventListener("click", modeButton_clickHandler); 
+            } 
+        } 
+ 
+        /** g) Add methods, properties, and metadata. 
+        *     The general pattern for properties is to specify a 
+        *     private holder variable. */ 
+        
+        // Implement the ModalText.text property. 
+        private var _text:String = "ModalText"; 
+        private var bTextChanged:Boolean = false; 
+        
+        // Create a getter/setter pair for the text property. 
+        [Bindable] 
+        public function set text(t:String):void { 
+            _text = t; 
+            bTextChanged = true; 
+            invalidateProperties(); 
+        } 
+        
+        public function get text():String { 
+                return textInput.text; 
+        } 
+        
+        // Dispatch a change event when the RichEditableText.text 
+        // property changes. 
+        private function textInput_changeHandler(eventObj:Event):void { 
+                dispatchEvent(new Event("change")); 
+        } 
+ 
+        // Handle the Button click event to toggle the 
+        // editting mode of the RichEditableText subcomponent. 
+        private function modeButton_clickHandler(eventObj:Event):void { 
+                textInput.editable = !textInput.editable; 
+        } 
+    } 
+}</pre>
+
+               </div>
+
+            </div>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS03d33b8076db57b9-5442b031121efa2ef1b-8000_verapache"><a name="WS03d33b8076db57b9-5442b031121efa2ef1b-8000_verapache"><!-- --></a>
+         <h3 class="topictitle3">Creating the ModalTextStates component</h3>
+
+         
+         <div>
+            <p>The following code example implements the class definition
+for the ModalTextStates component. The ModalTextStates component
+modifies the ModalText components shown in the previous section
+to add view states to the skin class. This control has all of the
+attributes of the ModalText class, and adds the following attributes:</p>
+
+            <ul>
+               <li>
+                  <p>Uses the <samp class="codeph">textPlacement</samp> property of the
+component to make the RichEditableText subcomponent appear on the
+right side or the left side of the component.</p>
+
+               </li>
+
+               <li>
+                  <p>Editing the <samp class="codeph">textPlacement</samp> property of the
+control dispatches the <samp class="codeph">placementChanged</samp> event. </p>
+
+               </li>
+
+               <li>
+                  <p>Uses the <samp class="codeph">textPlacement</samp> property as the source
+for a data binding expression. </p>
+
+               </li>
+
+               <li>
+                  <p>Setting the <samp class="codeph">textPlacement</samp> property so that
+the RichTextArea component appears on the right configures the skin
+class to use normal view state. Setting it to appear on the left
+uses the textLeft view state.</p>
+
+               </li>
+
+               <li>
+                  <p>Disabling editing of the RichTextArea component sets the
+view state of the skin class to normalDisabled or textLeftDisabled.</p>
+
+               </li>
+
+            </ul>
+
+            <div class="p">The following example uses the ModalTextStates component in an
+application: <pre class="codeblock">&lt;?xml version="1.0" encoding="utf-8"?&gt; 
+&lt;!-- asAdvancedSpark/SparkMainModalTextStates.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:MyComp="myComponents.*"&gt; 
+     &lt;s:layout&gt; 
+        &lt;s:VerticalLayout/&gt; 
+    &lt;/s:layout&gt; 
+ 
+    &lt;fx:Script&gt; 
+      &lt;![CDATA[ 
+        import flash.events.Event; 
+    
+        private function placementChangedListener(event:Event):void { 
+          myEvent.text="placementChanged event occurred - textPlacement = " 
+              + myMT.textPlacement as String; 
+        } 
+      ]]&gt; 
+    &lt;/fx:Script&gt; 
+ 
+    &lt;MyComp:ModalTextStates id="myMT" 
+        textPlacement="left" 
+        placementChanged="placementChangedListener(event);"/&gt; 
+    &lt;s:TextArea id="myEvent" width="50%" height="25"/&gt;    
+    &lt;s:Label text="Change Placement"/&gt; 
+    &lt;s:Button label="Set Text Placement Right" 
+        click="myMT.textPlacement='right';" /&gt; 
+    &lt;s:Button label="Set Text Placement Left" 
+        click="myMT.textPlacement='left';"/&gt; 
+&lt;/s:Application&gt;</pre>
+
+            </div>
+
+            <p>This applications sets the initial placement of the RichEditableText
+subcomponent to left. Use the buttons to switch the placement between
+right and left. When the placement changes, the event handler for
+the placementChanged event displays the current placement.</p>
+
+         </div>
+
+         <div class="nested3" id="WS03d33b8076db57b9-6f78c687121efad956c-7fff_verapache"><a name="WS03d33b8076db57b9-6f78c687121efad956c-7fff_verapache"><!-- --></a>
+            <h4 class="topictitle4">Creating the skin class for the
+ModalTextStates component</h4>
+
+            
+            <div>
+               <div class="p">The skin class for the ModalTextStates component, ModalTextStatesSkin.mxml, defines
+the following view states to control the display of the component:<ul>
+                     <li>
+                        <p>normal The RichEditableText subcomponent is on the right,
+and editing is enabled.</p>
+
+                     </li>
+
+                     <li>
+                        <p>disabled The RichEditableText subcomponent is on the right,
+and editing is disabled.</p>
+
+                     </li>
+
+                     <li>
+                        <p>textLeft The RichEditableText subcomponent is on the left,
+and editing is enabled.</p>
+
+                     </li>
+
+                     <li>
+                        <p>textLeftDisabled The RichEditableText subcomponent is on
+the left, and editing is disabled.</p>
+
+                     </li>
+
+                  </ul>
+
+               </div>
+
+               <p>Shown below is the skin definition:</p>
+
+               <div class="p">
+                  <pre class="codeblock">&lt;?xml version="1.0" encoding="utf-8"?&gt; 
+&lt;!-- asAdvancedSpark\myComponents\ModalTextStatesSkin.mxml --&gt; 
+&lt;s:SparkSkin xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    minWidth="100" minHeight="25"&gt; 
+ 
+    &lt;!-- Define ModalTextState as the host component of the skin. --&gt; 
+    &lt;fx:Metadata&gt; 
+        &lt;![CDATA[ 
+            [HostComponent("myComponents.ModalTextStates")] 
+        ]]&gt; 
+    &lt;/fx:Metadata&gt; 
+    &lt;!-- Define the view states. --&gt; 
+    &lt;s:states&gt; 
+        &lt;s:State name="normal" /&gt; 
+        &lt;s:State name="normalDisabled" stateGroups="disabledGroup"/&gt; 
+        &lt;s:State name="textLeft"/&gt; 
+        &lt;s:State name="textLeftDisabled" stateGroups="disabledGroup"/&gt; 
+    &lt;/s:states&gt; 
+ 
+    &lt;!-- Define the border around the RichEditableText control. --&gt; 
+    &lt;s:Rect x="{myScroller.x}" 
+        width="{myScroller.width}" 
+        height="{myScroller.height}"&gt; 
+        &lt;s:stroke&gt; 
+            &lt;s:SolidColorStroke color="0x686868" weight="1"/&gt; 
+        &lt;/s:stroke&gt; 
+    &lt;/s:Rect&gt; 
+ 
+    &lt;!--- Defines the appearance of the Button subcomponent. --&gt; 
+    &lt;s:Button id="modeButton" 
+        width="150" 
+        x="0" 
+        x.textLeft="206" 
+        x.textLeftDisabled="206" 
+        minHeight="25" height="100%"/&gt; 
+                           
+    &lt;!--- Defines the appearance of the RichEditableText subcomponent. --&gt; 
+    &lt;s:Scroller id="myScroller" 
+        width="200" 
+        x="156" 
+        x.textLeft="0" 
+        x.textLeftDisabled="0"&gt; 
+        &lt;s:RichEditableText id="textInput" 
+            alpha="1.0" alpha.disabledGroup="0.5" 
+            minHeight="25" 
+            heightInLines="4" 
+            widthInChars="20" 
+            paddingLeft="4" paddingTop="4" 
+            paddingRight="4" paddingBottom="4"/&gt; 
+    &lt;/s:Scroller&gt; 
+&lt;/s:SparkSkin&gt;</pre>
+
+               </div>
+
+            </div>
+
+         </div>
+
+         <div class="nested3" id="WS03d33b8076db57b9-6f78c687121efad956c-8000_verapache"><a name="WS03d33b8076db57b9-6f78c687121efad956c-8000_verapache"><!-- --></a>
+            <h4 class="topictitle4">Creating the ModalTextStates component</h4>
+
+            
+            <div>
+               <p>Shown below is the code for the ModalTextStates component.
+The ModalTextStates class modifies the ModalText class in the following
+ways: </p>
+
+               <div class="p">
+                  <ul>
+                     <li>
+                        <p>Adds the implementation of the <samp class="codeph">ModalTextStates()</samp> method
+to set the view state of the skin.</p>
+
+                     </li>
+
+                     <li>
+                        <p>Adds the implementation of the <samp class="codeph">textPlacement</samp> property
+to set the placement of the RichEditableText subcomponent.</p>
+
+                     </li>
+
+                  </ul>
+
+               </div>
+
+               <div class="p">
+                  <pre class="codeblock">package myComponents 
+{ 
+    import flash.events.Event; 
+    import spark.components.Button; 
+    import spark.components.RichEditableText; 
+    import spark.components.supportClasses.SkinnableComponent; 
+ 
+    // ModalText dispatches a change event when the text of the  
+    // RichEditableText subcomponent changes, 
+    // and a placementChanged event 
+    // when you change the textPlacement property of ModalText. 
+    [Event(name="change", type="flash.events.Event")] 
+    [Event(name="placementChanged", type="flash.events.Event")] 
+ 
+    // Define the skin states implemented by the skin class. 
+    [SkinState("normal")] 
+    [SkinState("normalDisabled")] 
+    [SkinState("textLeft")] 
+    [SkinState("textLeftDisabled")] 
+   
+    /** a) Extend SkinnableComponent. */ 
+    public class ModalTextStates extends SkinnableComponent 
+    { 
+        /** b) Implement the constructor. */ 
+        public function ModalTextStates() { 
+            super(); 
+            
+            // Set the skin class. 
+            setStyle("skinClass", ModalTextStatesSkin); 
+        } 
+        
+        /** C) Define the skin parts. */ 
+        [SkinPart(required="true")] 
+        public var modeButton:Button; 
+        
+        [SkinPart(required="true")] 
+        public var textInput:RichEditableText; 
+        
+        /** d) Implement the commitProperties() method. */ 
+        override protected function commitProperties():void { 
+            super.commitProperties(); 
+            
+            if (bTextChanged) { 
+                bTextChanged = false; 
+                textInput.text = _text; 
+            } 
+        }       
+        
+        /** e) Implement the partAdded() method. */ 
+        override protected function partAdded(partName:String, instance:Object):void { 
+            super.partAdded(partName, instance); 
+        
+            if (instance == textInput) { 
+                textInput.editable = false; 
+                textInput.text= _text; 
+                textInput.addEventListener("change", textInput_changeHandler); 
+            } 
+ 
+            if (instance == modeButton) { 
+                modeButton.label = "Toggle Editing Mode"; 
+                modeButton.addEventListener("click", modeButton_changeHandler); 
+            } 
+        } 
+        
+        /** f) Implement the partRemoved() method. */ 
+        override protected function partRemoved(partName:String, instance:Object):void { 
+            super.partRemoved(partName, instance); 
+        
+            if (instance == textInput) { 
+                textInput.removeEventListener("change", textInput_changeHandler); 
+            } 
+ 
+            if (instance == modeButton) { 
+                textInput.removeEventListener("click", modeButton_changeHandler); 
+            } 
+        } 
+ 
+        /** g) Implement the getCurrentSkinState() method. 
+        *     The view state is determined by the _textPlacement property 
+        *     and the editable property of the RichEditableText subcomponent.*/ 
+        override protected function getCurrentSkinState():String { 
+            var returnState:String = "normal"; 
+            
+            if (textInput.editable == true) 
+            { 
+                if (_textPlacement == "right") { 
+                    returnState = "normal"; 
+                } 
+                else if (_textPlacement == "left") { 
+                    returnState = "textLeft"; 
+                } 
+            } 
+ 
+            if (textInput.editable == false) 
+            { 
+                if (_textPlacement == "right") { 
+                    returnState = "normalDisabled"; 
+                } 
+                else if (_textPlacement == "left") { 
+                    returnState = "textLeftDisabled"; 
+                } 
+            } 
+            return returnState; 
+        } 
+ 
+        /** h) Add methods, properties, and metadata.  
+        *     The general pattern for properties is to specify a private 
+        *     holder variable. */ 
+        
+        // Define the text property. 
+        private var _text:String = "ModalText"; 
+        private var bTextChanged:Boolean = false; 
+        
+        // Then, create a getter/setter pair for the text property. 
+        [Bindable] 
+        public function set text(t:String):void { 
+            _text = t; 
+            bTextChanged = true; 
+            invalidateProperties(); 
+        } 
+        
+        public function get text():String { 
+            return textInput.text; 
+        } 
+        // Define the textPlacement property. 
+        private var _textPlacement:String = "right"; 
+        
+        // Create a getter/setter pair for the textPlacement property. 
+        // Dispatch the placementChanged event when it changes. 
+        [Bindable] 
+        public function set textPlacement(p:String):void { 
+            _textPlacement = p; 
+            invalidateSkinState(); 
+            dispatchEvent(new Event("placementChanged")); 
+        } 
+        
+        public function get textPlacement():String { 
+            return _textPlacement; 
+        } 
+        
+        // Dispatch a change event when the RichEditableText.text 
+        // property changes. 
+        private function textInput_changeHandler(eventObj:Event):void { 
+            dispatchEvent(new Event("change")); 
+        } 
+ 
+        // Handle the Button click event to toggle the 
+        // editting mode of the RichEditableText subcomponent. 
+        private function modeButton_changeHandler(eventObj:Event):void { 
+            textInput.editable = !textInput.editable; 
+            invalidateSkinState(); 
+        } 
+    } 
+}</pre>
+
+               </div>
+
+            </div>
+
+         </div>
+
+      </div>
+
+<div>
+  <p><strong>Navigation</strong></p>
+  <p><a href="index.html">Using Flex</a> &raquo; <a href="flx_p8a_custom_components.html">Custom components</a></p>
+</div>
+
+         <p>Adobe, Adobe AIR, Adobe Flash and Adobe Flash Player are either registered trademarks or trademarks of Adobe Systems Incorporated in the United States and/or other countries and are used by permission from Adobe.  No other license to the Adobe trademarks are granted.</p>
+   </div>
+
+
+</body>
+</html>

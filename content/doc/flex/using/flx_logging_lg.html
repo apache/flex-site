@@ -1,0 +1,1640 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Licensed to the Apache Software Foundation (ASF) under one or more
+  contributor license agreements.  See the NOTICE file distributed with
+  this work for additional information regarding copyright ownership.
+  The ASF licenses this file to You under the Apache License, Version 2.0
+  (the "License"); you may not use this file except in compliance with
+  the License.  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+-->
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en-us" xml:lang="en-us">
+<head>
+<meta name="DC.Type" content="topic"/>
+<meta name="DC.Title" content="Logging"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="WS2db454920e96a9e51e63e3d11c0bf69084-7ffc_verapache"/>
+<title>Logging</title>
+</head>
+<body id="WS2db454920e96a9e51e63e3d11c0bf69084-7ffc_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7ffc_verapache"><!-- --></a>
+
+   <div>
+      <p>You can log messages at several different points in a  Flex application's life cycle. You can log messages
+when you compile the application, when you deploy it to a web application
+server, or when a client runs it. You can log messages on the server
+or on the client. These messages are useful for informational, diagnostic, and
+debugging activities.</p>
+
+   </div>
+
+   <div class="nested1" id="WS2db454920e96a9e51e63e3d11c0bf6240d-7fff_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf6240d-7fff_verapache"><!-- --></a>
+      <h2 class="topictitle2">About logging</h2>
+
+      
+      <div>
+         <p>When you
+encounter a problem with your application, whether during compilation
+or at run time, the first step is to gather diagnostic information
+to locate the cause of the problem. The source of a problem typically
+is in one of two places: the server web application, or the client
+application.</p>
+
+         <p>Flex includes several different logging and error reporting mechanisms
+that you can use to track down failures:</p>
+
+         <dl>
+            
+               <dt class="dlterm">Client-side logging and debugging</dt>
+
+               <dd>
+                  <p>With the debugger version of Adobe<sup>®</sup> Flash<sup>®</sup> Player, or with an AIR application that
+you debug using ADL, you can use the global <a href="global#method:trace" target="_blank">trace()</a> method
+to write out messages or configure a <a href="https://flex.apache.org/asdoc/mx/logging/targets/TraceTarget.html" target="_blank">TraceTarget</a> to customize
+log levels of applications for data services-based applications.
+For more information, see <a href="flx_logging_lg.html#WS2db454920e96a9e51e63e3d11c0bf69084-7fd6_verapache">Client-side
+logging and debugging</a>. </p>
+
+               </dd>
+
+            
+            
+               <dt class="dlterm">Compiler logging</dt>
+
+               <dd>
+                  <p>When compiling your Flex applications , you can view deprecation
+and warning messages, and sources of fatal errors. For more information, see <a href="flx_logging_lg.html#WS2db454920e96a9e51e63e3d11c0bf69084-7fd5_verapache">Compiler
+logging</a>.</p>
+
+               </dd>
+
+            
+            
+               <dt class="dlterm">Policy file logging</dt>
+
+               <dd>
+                  <p>You can log messages for all policy file interactions between a
+running SWF and Flash Player. For more information, see <a href="flx_logging_lg.html#WS2db454920e96a9e51e63e3d11c0bf69084-7ec4_verapache">Policy
+file logging</a>.</p>
+
+               </dd>
+
+            
+         </dl>
+
+         <p>The following example shows the types of logging you can do in
+the appropriate environment:</p>
+
+         <div class="figborder">
+            <img src="images/lg_logging.png" alt="Types of logging."/>
+         </div>
+
+         <p>To use client-side debugging utilities such as the <samp class="codeph">trace()</samp> global
+method and client-side data services logging, you must install and
+configure the debugger version of Flash Player. This is described
+in <a href="flx_logging_lg.html#WS2db454920e96a9e51e63e3d11c0bf69084-7ed6_verapache">Using
+the debugger version of Flash Player</a>. The debugger version
+of Flash Player is not required to log compiler messages.</p>
+
+      </div>
+
+   </div>
+
+   <div class="nested1" id="WS2db454920e96a9e51e63e3d11c0bf69084-7ed6_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7ed6_verapache"><!-- --></a>
+      <h2 class="topictitle2">Using the debugger version of Flash Player</h2>
+
+      
+      <div>
+         <p>The debugger version of Flash Player is
+a tool for development and testing. Like the standard version of
+Adobe Flash Player, it runs SWF files in a browser or on the desktop
+in a stand-alone player. Unlike Flash Player, the debugger version
+of Flash Player enables you to do the following:</p>
+
+         <ul>
+            <li>
+               <p>Output statements and application errors to the debugger
+version of the Flash Player local log file by using the <a href="global#method:trace" target="_blank">trace()</a> method.</p>
+
+            </li>
+
+            <li>
+               <p>Write data services log messages to the local log file of
+the debugger version of Flash Player.</p>
+
+            </li>
+
+            <li>
+               <p>View run-time errors (RTEs).</p>
+
+            </li>
+
+            <li>
+               <p>Use the fdb command-line debugger.</p>
+
+            </li>
+
+         </ul>
+
+         <div class="note"><span class="notetitle">Note:</span> Any client running the debugger version of Flash
+Player can view your application's <samp class="codeph">trace()</samp> statements
+and other log messages unless you disable them. For more information,
+see <a href="flx_security2_se.html#WS2db454920e96a9e51e63e3d11c0bf69084-7ebc_verapache">Suppressing
+debug output</a>.</div>
+
+         <p>The debugger version of Flash Player lets you take advantage
+of the client-side logging utilities such as the <samp class="codeph">trace()</samp> method
+and the logging API. You are not required to run the debugger version
+of Flash Player to log compiler messages because compiling does
+not require a player.</p>
+
+         <div class="note"><span class="notetitle">Note:</span> ADL logs <samp class="codeph">trace()</samp> output from
+AIR applications, based on the setting in mm.cfg (the same setting
+used by the debug version of Flash Player). </div>
+
+         <p>In nearly all respects, the debugger version of Flash Player
+appears to be the same as the standard version of Flash Player.
+To determine whether or not you are running the debugger version
+of Flash Player, use the instructions in <a href="flx_logging_lg.html#WS2db454920e96a9e51e63e3d11c0bf69084-7ebb_verapache">Determining
+Flash Player version in Flex</a>.</p>
+
+         <p>The debugger version of Flash Player comes in ActiveX, Plug-in,
+and stand-alone versions for Microsoft Internet Explorer, Netscape-based
+browsers, and desktop applications, respectively. You can find the
+debugger version of Flash Player installers in the following locations:</p>
+
+         <div class="p">
+            <ul>
+               <li>
+                  <p>Flex SDK: <em>install_dir</em>/runtimes/player/<em>os_version</em>/</p>
+
+               </li>
+
+            </ul>
+
+         </div>
+
+         <p>Uninstall your current Flash Player before you install the debugger
+version of Flash Player. For information on installing the debugger
+version of Flash Player, see the Flex installation instructions.</p>
+
+         <p>You can enable or disable trace logging and perform other configuration
+tasks for the debugger version of Flash Player. For more information,
+see <a href="flx_logging_lg.html#WS2db454920e96a9e51e63e3d11c0bf69084-7fc9_verapache">Editing
+the mm.cfg file</a>.</p>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf69084-7fc9_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7fc9_verapache"><!-- --></a>
+         <h3 class="topictitle3">Editing the mm.cfg file</h3>
+
+         
+         <div>
+            <p>You use the settings in the mm.cfg text file to configure
+the debugger version of Flash Player. These settings also affect
+logging of <samp class="codeph">trace()</samp> output in AIR applications running
+in the ADL debugger. If this file does not exist, you can create
+it when you first configure the debugger version of Flash Player.
+The location of this file depends on your operating system. </p>
+
+            <p>The following table
+shows where to create the mm.cfg file for Flash Player 10.1 and
+later on several operating systems:</p>
+
+            
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" frame="border" border="1" rules="all">
+                  
+                  
+                  <thead align="left">
+                     <tr>
+                        <th class="cellrowborder" valign="top" width="NaN%" id="d288688e284">
+                           <p>Operating system</p>
+
+                        </th>
+
+                        <th class="cellrowborder" valign="top" width="NaN%" id="d288688e290">
+                           <p>Create file in … </p>
+
+                        </th>
+
+                     </tr>
+
+                  </thead>
+
+                  <tbody>
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d288688e284 ">
+                           <p>Macintosh OS X</p>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d288688e290 ">
+                           <p>Flash Player first checks the user's home
+directory (~). If none is found, then Flash Player looks in /Library/Application
+Support/Macromedia</p>
+
+                        </td>
+
+                     </tr>
+
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d288688e284 ">
+                           <p>Windows 2000/XP</p>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d288688e290 ">
+                           <p>
+                              <samp class="codeph">%HOMEDRIVE%\%HOMEPATH%</samp>
+                           </p>
+
+                           <p>The
+default value is "c:\Documents and settings\<em>username</em>".</p>
+
+                           <p>Your
+system administrator might map the home directory to a shared network
+drive. In that case, check with your system administrator to determine
+how to configure your debugger Player.</p>
+
+                        </td>
+
+                     </tr>
+
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d288688e284 ">
+                           <p>Windows Vista Windows 7</p>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d288688e290 ">
+                           <p>
+                              <samp class="codeph">%HOMEDRIVE%\%HOMEPATH%</samp>
+                           </p>
+
+                           <p>The
+default value is "c:\Users\<em>username</em>".</p>
+
+                           <p>Your system administrator
+might map the home directory to a shared network drive. In that
+case, check with your system administrator to determine how to configure
+your debugger Player.</p>
+
+                        </td>
+
+                     </tr>
+
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d288688e284 ">
+                           <p>Linux</p>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d288688e290 ">
+                           <div class="p">
+                              <pre class="codeblock">/home/<em>username</em></pre>
+
+                           </div>
+
+                        </td>
+
+                     </tr>
+
+                  </tbody>
+
+               </table>
+</div>
+
+            <div class="tip"><span class="tiptitle">Tip:</span> On Microsoft Windows 2000, the default location
+of the mm.cfg file for earlier versions of Flash Player was \.</div>
+
+            <p>The following table
+lists the properties that you can set in the mm.cfg file: </p>
+
+            
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" frame="border" border="1" rules="all">
+                  
+                  
+                  <thead align="left">
+                     <tr>
+                        <th class="cellrowborder" valign="top" width="NaN%" id="d288688e414">
+                           <p>Property</p>
+
+                        </th>
+
+                        <th class="cellrowborder" valign="top" width="NaN%" id="d288688e420">
+                           <p>Description</p>
+
+                        </th>
+
+                     </tr>
+
+                  </thead>
+
+                  <tbody>
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d288688e414 ">
+                           <div class="p">
+                              <pre class="codeblock">ErrorReportingEnable</pre>
+
+                           </div>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d288688e420 ">
+                           <p>Enables the logging of error messages. </p>
+
+                           <p>Set
+the <samp class="codeph">ErrorReportingEnable</samp> property to 1 to enable
+the debugger version of Flash Player to write error messages to
+the log file. To disable logging of error messages, set the <samp class="codeph">ErrorReportingEnable</samp> property
+to 0. </p>
+
+                           <p>The default value is 0.</p>
+
+                        </td>
+
+                     </tr>
+
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d288688e414 ">
+                           <div class="p">
+                              <pre class="codeblock">MaxWarnings</pre>
+
+                           </div>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d288688e420 ">
+                           <p>Sets the number of warnings to log before
+stopping.</p>
+
+                           <p>The default value of the <samp class="codeph">MaxWarnings</samp> property
+is 100. After 100 messages, the debugger version of Flash Player
+writes a message to the file stating that further error messages
+will be suppressed.</p>
+
+                           <p>Set the <samp class="codeph">MaxWarnings</samp> property
+to override the default message limit. For example, you can set
+it to 500 to capture 500 error messages.</p>
+
+                           <p>Set the <samp class="codeph">MaxWarnings</samp> property
+to 0 to remove the limit so that all error messages are recorded.</p>
+
+                        </td>
+
+                     </tr>
+
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d288688e414 ">
+                           <div class="p">
+                              <pre class="codeblock">PolicyFileLog</pre>
+
+                           </div>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d288688e420 ">
+                           <p>Enables the logging of policy file messages.</p>
+
+                           <p>Set <samp class="codeph">PolicyFileLog</samp> to
+1 to log policy file messages. The default value is 0.</p>
+
+                           <p>For
+more information on using policy file logs, see <a href="flx_logging_lg.html#WSda78ed3a750d6b8f-4867184d1239f9d0558-8000_verapache">Log
+file location</a>.</p>
+
+                        </td>
+
+                     </tr>
+
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d288688e414 ">
+                           <div class="p">
+                              <pre class="codeblock">PolicyFileLogAppend</pre>
+
+                           </div>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d288688e420 ">
+                           <p>Lets you save the contents of the policy
+file log file.</p>
+
+                           <p>Set the <samp class="codeph">PolicyFileLogAppend</samp> property
+to 1 to save previous policy file log entries. The default value
+is 0.</p>
+
+                           <p>If <samp class="codeph">PolicyFileLogAppend</samp> is not enabled,
+each new root-level SWF clears the log file. If PolicyFileLogAppend
+is enabled, the previous contents of the log file will always be
+kept, and the log file will grow at the end.</p>
+
+                           <p>If many different
+root-level SWF files are loaded during your testing, you will probably
+want to enable <samp class="codeph">PolicyFileLogAppend</samp>. However, if
+you enable <samp class="codeph">PolicyFileLogAppend</samp>, you will probably
+need to manually rename or delete the log file from time to time,
+since otherwise it will grow to a large size, and it will be difficult
+to determine where previous output ends and new output begins.</p>
+
+                           <p>For
+more information on using policy file logs, see <a href="flx_logging_lg.html#WS2db454920e96a9e51e63e3d11c0bf69084-7ec4_verapache">Policy
+file logging</a>.</p>
+
+                        </td>
+
+                     </tr>
+
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d288688e414 ">
+                           <div class="p">
+                              <pre class="codeblock">TraceOutputFileEnable</pre>
+
+                           </div>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d288688e420 ">
+                           <p>Enables trace logging.</p>
+
+                           <p>Set <samp class="codeph">TraceOutputFileEnable</samp> to
+1 to enable the debugger version of Flash Player to write trace
+messages to the log file. Disable trace logging by setting the <samp class="codeph">TraceOutputFileEnable</samp> property
+to 0. </p>
+
+                           <p>The
+default value is 0.</p>
+
+                        </td>
+
+                     </tr>
+
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d288688e414 ">
+                           <div class="p">
+                              <pre class="codeblock">TraceOutputFileName</pre>
+
+                           </div>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d288688e420 ">
+                           <p>
+                              <strong>Note</strong>: Beginning with the Flash Player
+9 Update, Flash Player ignores the <samp class="codeph">TraceOutputFileName</samp> property
+and stores the flashlog.txt file in a hard-coded location based
+on operating system. For more information, see <a href="flx_logging_lg.html#WSda78ed3a750d6b8f-4867184d1239f9d0558-8000_verapache">Log
+file location</a>.</p>
+
+                           <p>Sets the location of the log file. By
+default, the debugger version of Flash Player writes error messages
+to a file named flashlog.txt, located in the same directory in which
+the mm.cfg file is located. </p>
+
+                           <p>Set <samp class="codeph">TraceOutputFileName</samp> to
+override the default name and location of the log file by specifying
+a new location and name in the following form: On Macintosh OS X,
+you should use colons to separate directories in the TraceOutputFileName
+path rather than slashes.</p>
+
+                           <div class="p">
+                              <pre class="codeblock">TraceOutputFileName=&lt;fully qualified path/filename&gt; </pre>
+
+                           </div>
+
+                        </td>
+
+                     </tr>
+
+                  </tbody>
+
+               </table>
+</div>
+
+            <p>The following sample mm.cfg file enables error reporting and
+trace logging:</p>
+
+            <pre class="codeblock"> ErrorReportingEnable=1</pre>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WSda78ed3a750d6b8f-4867184d1239f9d0558-8000_verapache"><a name="WSda78ed3a750d6b8f-4867184d1239f9d0558-8000_verapache"><!-- --></a>
+         <h3 class="topictitle3">Log file location</h3>
+
+         
+         <div>
+            <p>Beginning with the Flash Player 9 Update, you cannot modify
+the log file location or name. The filename is flashlog.txt, and
+its location is hard-coded, depending on your operating system.
+The following table shows the flashlog.txt file location:</p>
+
+            
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" frame="border" border="1" rules="all">
+                  
+                  
+                  <thead align="left">
+                     <tr>
+                        <th class="cellrowborder" valign="top" width="NaN%" id="d288688e691">
+                           <p>Operating System</p>
+
+                        </th>
+
+                        <th class="cellrowborder" valign="top" width="NaN%" id="d288688e697">
+                           <p>Log file location</p>
+
+                        </th>
+
+                     </tr>
+
+                  </thead>
+
+                  <tbody>
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d288688e691 ">
+                           <p>Windows 95/98/ME/2000/XP</p>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d288688e697 ">
+                           <div class="p">
+                              <pre class="codeblock">C:\Documents and Settings\<em>username</em>\Application Data\Macromedia\Flash Player\Logs</pre>
+
+                           </div>
+
+                        </td>
+
+                     </tr>
+
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d288688e691 ">
+                           <p>Windows Vista/Windows 7</p>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d288688e697 ">
+                           <div class="p">
+                              <pre class="codeblock">C:\Users\<em>username</em>\AppData\Roaming\Macromedia\Flash Player\Logs</pre>
+
+                           </div>
+
+                        </td>
+
+                     </tr>
+
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d288688e691 ">
+                           <p>Macintosh OS X</p>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d288688e697 ">
+                           <div class="p">
+                              <pre class="codeblock">/Users/<em>username</em>/Library/Preferences/Macromedia/Flash Player/Logs/</pre>
+
+                           </div>
+
+                        </td>
+
+                     </tr>
+
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d288688e691 ">
+                           <p>Linux</p>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d288688e697 ">
+                           <div class="p">
+                              <pre class="codeblock">/home/<em>username</em>/.macromedia/Flash_Player/Logs/</pre>
+
+                           </div>
+
+                        </td>
+
+                     </tr>
+
+                  </tbody>
+
+               </table>
+</div>
+
+            <p>The default log file location changed between the initial Flash
+Player 9 release and the Flash Player 9 Update. In the initial Flash
+Player 9 release, the default location was the same directory as
+the mm.cfg file and you could update the log file location and name
+through the <samp class="codeph">TraceOutputFileName</samp> property. </p>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf69084-7ebb_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7ebb_verapache"><!-- --></a>
+         <h3 class="topictitle3">Determining Flash Player version
+in Flex</h3>
+
+         
+         <div>
+            <p>To determine which version
+of Flash Player you are currently using—the standard version or
+the debugger version—you can use the <a href="https://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/flash/system/Capabilities.html" target="_blank">Capabilities</a> class.
+This class contains information about Flash Player and the system
+that it is currently operating on. To determine if you are using
+the debugger version of Flash Player, you can use the <samp class="codeph">isDebugger</samp> property
+of that class. This property returns a Boolean value: the value
+is <samp class="codeph">true</samp> if the current player is the debugger version
+of Flash Player and <samp class="codeph">false</samp> if it is not. </p>
+
+            <p>The following example uses the <samp class="codeph">playerType</samp>, <samp class="codeph">version</samp>,
+and <samp class="codeph">isDebugger</samp> properties of the Capabilities class
+to display information about the Player:</p>
+
+            <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- logging/CheckDebugger.mxml --&gt; 
+&lt;s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx"&gt; 
+ 
+    &lt;s:layout&gt; 
+        &lt;s:VerticalLayout/&gt; 
+    &lt;/s:layout&gt; 
+ 
+    &lt;fx:Script&gt; 
+        &lt;![CDATA[ 
+        import flash.system.Capabilities; 
+ 
+        private function reportVersion():String { 
+            if (Capabilities.isDebugger) { 
+                return "Debugger version of Flash Player"; 
+            } else { 
+                return "Flash Player"; 
+            } 
+        } 
+        private function reportType():String { 
+            return Capabilities.playerType + " (" + Capabilities.version + ")"; 
+        } 
+        ]]&gt; 
+    &lt;/fx:Script&gt; 
+    
+    &lt;s:Label text="{reportVersion()}"/&gt; 
+    &lt;s:Label text="{reportType()}"/&gt; 
+ 
+&lt;/s:Application&gt;</pre>
+
+            <p>Other properties of the Capabilities class include <samp class="codeph">hasPrinting</samp>, <samp class="codeph">os</samp>,
+and <samp class="codeph">language</samp>.</p>
+
+         </div>
+
+      </div>
+
+   </div>
+
+   <div class="nested1" id="WS2db454920e96a9e51e63e3d11c0bf69084-7fd6_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7fd6_verapache"><!-- --></a>
+      <h2 class="topictitle2">Client-side logging and debugging</h2>
+
+      
+      <div>
+         <p>Often, you use the <samp class="codeph">trace()</samp> method
+when you debug applications to write a checkpoint message on the
+client, which signals that your application reached a specific line
+of code, or to output the value of a variable. </p>
+
+         <p>The debugger version of Flash Player has two primary methods
+of writing messages that use <samp class="codeph">trace()</samp>:</p>
+
+         <ul>
+            <li>
+               <p>The global <samp class="codeph">trace()</samp> method. The global <a href="global#method:trace" target="_blank">trace()</a> method
+prints Strings to a specified output log file. For more information,
+see <a href="flx_logging_lg.html#WS2db454920e96a9e51e63e3d11c0bf69084-7eb8_verapache">Using
+the global trace() method</a>.</p>
+
+            </li>
+
+            <li>
+               <p>Logging API. The logging API provides a layer of functionality
+on top of the <samp class="codeph">trace()</samp> method that you can use with
+your custom classes or with the data service APIs. For more information,
+see <a href="flx_logging_lg.html#WS2db454920e96a9e51e63e3d11c0bf69084-7f0f_verapache">Using
+the logging API</a>.</p>
+
+            </li>
+
+         </ul>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf69084-7eb4_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7eb4_verapache"><!-- --></a>
+         <h3 class="topictitle3">Configuring the debugger version
+of Flash Player to record trace() output</h3>
+
+         
+         <div>
+            <p>To record messages on the client, you must use the debugger
+version of Flash Player. You must also set <samp class="codeph">TraceOutputFileEnable</samp> to
+1 in your mm.cfg file. For more information on editing the mm.cfg
+file, see <a href="flx_logging_lg.html#WS2db454920e96a9e51e63e3d11c0bf69084-7fc9_verapache">Editing
+the mm.cfg file</a>.</p>
+
+            <p>The debugger version of Flash Player sends output from the <a href="global#method:trace" target="_blank">trace()</a> method
+to the flashlog.txt file. The location of this file is determined
+by the operating system. For more information, see <a href="flx_logging_lg.html#WSda78ed3a750d6b8f-4867184d1239f9d0558-8000_verapache">Log
+file location</a>.</p>
+
+            <p>You can suppress trace output by setting the <samp class="codeph">omit-trace-statements</samp> compiler
+argument to <samp class="codeph">true</samp>.</p>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf69084-7eb8_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7eb8_verapache"><!-- --></a>
+         <h3 class="topictitle3">Using the global trace() method</h3>
+
+         
+         <div>
+            <p>You
+can use the debugger version of Flash Player to capture output from
+the global <samp class="codeph">trace()</samp> method and write that output
+to the client log file. You can use <a href="global#method:trace" target="_blank">trace()</a> statements
+in any ActionScript or MXML file in your application. Because it
+is a global function, you are not required to import any ActionScript
+classes packages to use the <samp class="codeph">trace()</samp> method.</p>
+
+            <p>Only debug SWF files will write out <samp class="codeph">trace()</samp> statements.
+To create a debug SWF file, set the <samp class="codeph">debug</samp> compiler
+argument to true.</p>
+
+            <p>The following example defines a function that logs the various
+stages of the <a href="https://flex.apache.org/asdoc/spark/components/Button.html" target="_blank">Button</a> control's startup life
+cycle:</p>
+
+            <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- logging/ButtonLifeCycle.mxml --&gt; 
+&lt;s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx"&gt; 
+ 
+    &lt;fx:Script&gt; 
+        &lt;![CDATA[ 
+        private function traceEvent(event:Event):void { 
+            trace(event.currentTarget + ":" + event.type); 
+        } 
+        ]]&gt; 
+    &lt;/fx:Script&gt; 
+ 
+    &lt;s:Button id="b1" label="Click Me" 
+        preinitialize="traceEvent(event)" 
+        initialize="traceEvent(event)" 
+        creationComplete="traceEvent(event)" 
+        updateComplete="traceEvent(event)" 
+    /&gt; 
+ 
+&lt;/s:Application&gt;</pre>
+
+            <p>The following example shows the output of this simple application:</p>
+
+            <pre class="codeblock"> TraceLifecycle_3.b1:Button:preinitialize 
+ TraceLifecycle_3.b1:Button:initialize 
+ TraceLifecycle_3.b1:Button:creationComplete 
+ TraceLifecycle_3.b1:Button:updateComplete 
+ TraceLifecycle_3.b1:Button:updateComplete 
+ TraceLifecycle_3.b1:Button:updateComplete</pre>
+
+            <p>Messages that you log by using the <samp class="codeph">trace()</samp> method
+should be Strings. If the output is not a String, use the <samp class="codeph">String(...)</samp> conversion
+function, or use the object's <samp class="codeph">toString()</samp> method,
+if one is available, before you call the <samp class="codeph">trace()</samp> method.</p>
+
+            <p>To enable tracing, you must configure the debugger version of
+Flash Player as described in <a href="flx_logging_lg.html#WS2db454920e96a9e51e63e3d11c0bf69084-7eb4_verapache">Configuring
+the debugger version of Flash Player to record trace() output</a>.</p>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf69084-7f0f_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7f0f_verapache"><!-- --></a>
+         <h3 class="topictitle3">Using the logging API</h3>
+
+         
+         <div>
+            <p>The logging API lets an application capture
+and write messages to a target's configured output. Typically the
+output is equivalent to the global <samp class="codeph">trace()</samp> method,
+but it can be anything that an active target supports.</p>
+
+            <p>The logging API consists of the following parts:</p>
+
+            <dl>
+               
+                  <dt class="dlterm">Logger</dt>
+
+                  <dd>
+                     <p>The logger provides an interface for sending
+a message to an active target. Loggers implement the <a href="https://flex.apache.org/asdoc/mx/logging/ILogger.html" target="_blank">ILogger</a> interface
+and call methods on the <a href="https://flex.apache.org/asdoc/mx/logging/Log.html" target="_blank">Log</a> class. The two classes
+of information used to filter a message are category and level.
+Each logger operates under a category. A <em>category</em> is a string
+used to filter all messages sent from that logger. For example,
+a logger can be acquired with the category "orange". Any message
+sent using the "orange" logger only reaches those targets that are
+listening for the "orange" category. In contrast to the category
+that is applied to all messages sent with a logger, the <em>level</em> provides additional
+filtering on a per-message basis. For example, to indicate that
+an error occurred within the "orange" subsystem, you can use the
+error level when logging the message. The supported levels are defined
+by the LogEventLevel class. The Flex framework classes that use
+the logging API set the category to the fully qualified class name
+as a convention.</p>
+
+                  </dd>
+
+               
+               
+                  <dt class="dlterm">Log target</dt>
+
+                  <dd>
+                     <p>The log target defines where log messages
+are written. Flex predefines a single log target: <a href="https://flex.apache.org/asdoc/mx/logging/targets/TraceTarget.html" target="_blank">TraceTarget</a>,
+which is the most commonly used log target. This log target connects
+the logging API to the trace system so that log messages are sent
+to the same location as the output of the <a href="global#method:trace" target="_blank">trace()</a> method.
+For more information on the <samp class="codeph">trace()</samp> method, see <a href="flx_logging_lg.html#WS2db454920e96a9e51e63e3d11c0bf69084-7eb8_verapache">Using
+the global trace() method</a>. </p>
+
+                     <p>You can also write your
+own custom log target. For more information, see <a href="flx_logging_lg.html#WS2db454920e96a9e51e63e3d11c0bf69084-7eb2_verapache">Implementing
+a custom logger with the logging API</a>.</p>
+
+                  </dd>
+
+               
+               
+                  <dt class="dlterm">Destination</dt>
+
+                  <dd>
+                     <p>The
+destination is where the log message is written. Typically, this is
+a file, but it can also be a console or something else, such as
+an in-memory object. The default destination for TraceTarget is
+the flashlog.txt file. You configure this destination on the client.</p>
+
+                     <p>The
+following example shows a sample relationship between a logger,
+a log target, and a destination:</p>
+
+                     <div class="figborder">
+                        <img src="images/lg_logger_target_dist.png" alt="Relationship between a logger, log target, and destination."/>
+                     </div>
+
+                     <p>You
+can also use the logging API to send messages from custom code you
+write. You can do this when you create a set of custom APIs or components
+or when you extend the Flex framework classes and you want users
+to be able to customize their logging. For more information, see <a href="flx_logging_lg.html#WS2db454920e96a9e51e63e3d11c0bf69084-7eb2_verapache">Implementing
+a custom logger with the logging API</a>.</p>
+
+                     <p>The following
+packages within the Flex framework are the only ones that use the logging
+API:</p>
+
+                     <ul>
+                        <li>
+                           <p>mx.rpc.* </p>
+
+                        </li>
+
+                        <li>
+                           <p>mx.messaging.* </p>
+
+                        </li>
+
+                        <li>
+                           <p>mx.data.*</p>
+
+                        </li>
+
+                     </ul>
+
+                     <p>To configure client-side logging
+in MXML or ActionScript, create a TraceTarget object to log messages.
+The TraceTarget object logs messages to the same location as the
+output of the <samp class="codeph">trace()</samp> statements. You can also
+use the TraceTarget to specify which classes to log messages for,
+and what level of messages to log.</p>
+
+                     <p>The levels of logging messages are defined
+as constants of the LogEventLevel class. The following table lists
+the log level constants and their numeric equivalents, and describes
+each message level:</p>
+
+                     
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" frame="border" border="1" rules="all">
+                           
+                           
+                           <thead align="left">
+                              <tr>
+                                 <th class="cellrowborder" valign="top" width="NaN%" id="d288688e1260">
+                                    <p>Logging level constant (int)</p>
+
+                                 </th>
+
+                                 <th class="cellrowborder" valign="top" width="NaN%" id="d288688e1266">
+                                    <p>Description</p>
+
+                                 </th>
+
+                              </tr>
+
+                           </thead>
+
+                           <tbody>
+                              <tr>
+                                 <td class="cellrowborder" valign="top" width="NaN%" headers="d288688e1260 ">
+                                    <div class="p">
+                                       <pre class="codeblock">ALL (0)</pre>
+
+                                    </div>
+
+                                 </td>
+
+                                 <td class="cellrowborder" valign="top" width="NaN%" headers="d288688e1266 ">
+                                    <p>Designates
+that messages of all logging levels should be logged.</p>
+
+                                 </td>
+
+                              </tr>
+
+                              <tr>
+                                 <td class="cellrowborder" valign="top" width="NaN%" headers="d288688e1260 ">
+                                    <div class="p">
+                                       <pre class="codeblock">DEBUG (2)</pre>
+
+                                    </div>
+
+                                 </td>
+
+                                 <td class="cellrowborder" valign="top" width="NaN%" headers="d288688e1266 ">
+                                    <p>Logs internal Flex activities. This is most
+useful when debugging an application.</p>
+
+                                    <p>Select the <samp class="codeph">DEBUG</samp> logging
+level to include <samp class="codeph">DEBUG</samp>, <samp class="codeph">INFO</samp>, <samp class="codeph">WARN</samp>, <samp class="codeph">ERROR</samp>,
+and <samp class="codeph">FATAL</samp> messages in your log files.</p>
+
+                                 </td>
+
+                              </tr>
+
+                              <tr>
+                                 <td class="cellrowborder" valign="top" width="NaN%" headers="d288688e1260 ">
+                                    <div class="p">
+                                       <pre class="codeblock">INFO (4)</pre>
+
+                                    </div>
+
+                                 </td>
+
+                                 <td class="cellrowborder" valign="top" width="NaN%" headers="d288688e1266 ">
+                                    <p>Logs general information.</p>
+
+                                    <p>Select the <samp class="codeph">INFO</samp> logging
+level to include <samp class="codeph">INFO</samp>, <samp class="codeph">WARN</samp>, <samp class="codeph">ERROR</samp>,
+and <samp class="codeph">FATAL</samp> messages in your log files.</p>
+
+                                 </td>
+
+                              </tr>
+
+                              <tr>
+                                 <td class="cellrowborder" valign="top" width="NaN%" headers="d288688e1260 ">
+                                    <div class="p">
+                                       <pre class="codeblock">WARN (6)</pre>
+
+                                    </div>
+
+                                 </td>
+
+                                 <td class="cellrowborder" valign="top" width="NaN%" headers="d288688e1266 ">
+                                    <p>Logs a message when the application encounters
+a problem. These problems do not cause the application to stop running,
+but could lead to further errors.</p>
+
+                                    <p>Select the <samp class="codeph">WARN</samp> logging level
+to include <samp class="codeph">WARN</samp>, <samp class="codeph">ERROR</samp>, and <samp class="codeph">FATAL</samp> messages
+in your log files.</p>
+
+                                 </td>
+
+                              </tr>
+
+                              <tr>
+                                 <td class="cellrowborder" valign="top" width="NaN%" headers="d288688e1260 ">
+                                    <div class="p">
+                                       <pre class="codeblock">ERROR (8)</pre>
+
+                                    </div>
+
+                                 </td>
+
+                                 <td class="cellrowborder" valign="top" width="NaN%" headers="d288688e1266 ">
+                                    <p>Logs a message when a critical service is
+not available or a situation has occurred that restricts the use
+of the application.</p>
+
+                                    <p>Select
+the <samp class="codeph">ERROR</samp> logging level to include <samp class="codeph">ERROR</samp> and <samp class="codeph">FATAL</samp> messages
+in your log files.</p>
+
+                                 </td>
+
+                              </tr>
+
+                              <tr>
+                                 <td class="cellrowborder" valign="top" width="NaN%" headers="d288688e1260 ">
+                                    <div class="p">
+                                       <pre class="codeblock">FATAL (1000)</pre>
+
+                                    </div>
+
+                                 </td>
+
+                                 <td class="cellrowborder" valign="top" width="NaN%" headers="d288688e1266 ">
+                                    <p>Logs a message when an event occurs that
+results in the failure of the application.</p>
+
+                                    <p>Select the <samp class="codeph">FATAL</samp> logging
+level to include only <samp class="codeph">FATAL</samp> messages in your log
+files.</p>
+
+                                 </td>
+
+                              </tr>
+
+                           </tbody>
+
+                        </table>
+</div>
+
+                     <p>The log level lets you restrict the amount
+of messages sent to any running targets. Whatever log level you
+specify, all "lower" levels of messages are written to the log.
+For example, if you set the log level to <samp class="codeph">DEBUG</samp>,
+all log levels are included. If you set the log level to <samp class="codeph">WARNING</samp>,
+only <samp class="codeph">WARNING</samp>, <samp class="codeph">ERROR</samp>, and <samp class="codeph">FATAL</samp> messages
+are logged. If you set the log level to the lowest level of message, <samp class="codeph">FATAL</samp>,
+only <samp class="codeph">FATAL</samp> messages are logged. </p>
+
+                  </dd>
+
+               
+            </dl>
+
+         </div>
+
+         <div class="nested3" id="WS2db454920e96a9e51e63e3d11c0bf6240d-7ff6_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf6240d-7ff6_verapache"><!-- --></a>
+            <h4 class="topictitle4">Using the logging API with data
+services</h4>
+
+            
+            <div>
+               <p>The
+data services classes are designed to use the logging API to log
+client-side and server-side messages.</p>
+
+            </div>
+
+            <div class="nested4" id="WS2db454920e96a9e51e63e3d11c0bf6240d-7ff5_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf6240d-7ff5_verapache"><!-- --></a>
+               <h5 class="topictitle5">Enable the logging API with data
+services</h5>
+
+               
+               <div>
+                  <ol>
+                     <li>
+                        <p>Create a <a href="https://flex.apache.org/asdoc/mx/logging/targets/TraceTarget.html" target="_blank">TraceTarget</a> logging
+target and set the value of one or more filter properties to include
+the classes whose messages you want to log. You can filter the log
+messages to a specific class or package. You can use wildcards (*) when
+defining a filter.</p>
+
+                     </li>
+
+                     <li>
+                        <p>Set the log level by using the <samp class="codeph">level</samp> property
+of the log target. You can also add detail to the log file output,
+such as the date and time that the event occurred, by using properties
+of the log target. </p>
+
+                     </li>
+
+                     <li>
+                        <p>When you create a target within ActionScript, call the <a href="https://flex.apache.org/asdoc/mx/logging/Log.html" target="_blank">Log</a> class's <samp class="codeph">addTarget()</samp> method
+to add the new target to the logging system. Calling the<samp class="codeph"> addTarget()</samp> method
+is not required when you create a target in MXML. As long as the
+client is using the debugger version of Flash Player and meets the
+requirements described in <a href="flx_logging_lg.html#WS2db454920e96a9e51e63e3d11c0bf69084-7eb4_verapache">Configuring
+the debugger version of Flash Player to record trace() output</a>,
+the messages are logged.</p>
+
+                     </li>
+
+                  </ol>
+
+                  <p>The following example configures a TraceTarget logging target
+in ActionScript:</p>
+
+                  <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- logging/ActionScriptTraceTarget.mxml --&gt; 
+&lt;s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    creationComplete="initLogging();" 
+    height="600"&gt; 
+ 
+    &lt;s:layout&gt; 
+        &lt;s:VerticalLayout/&gt; 
+    &lt;/s:layout&gt; 
+    
+    &lt;fx:Script&gt; 
+        &lt;![CDATA[ 
+        import mx.collections.ArrayCollection; 
+        import mx.logging.targets.*; 
+        import mx.logging.*; 
+ 
+        [Bindable] 
+        public var myData:ArrayCollection; 
+ 
+        private function initLogging():void { 
+            /* Create a target. */ 
+            var logTarget:TraceTarget = new TraceTarget(); 
+ 
+            /* Log only messages for the classes in the mx.rpc.* and 
+               mx.messaging packages. */ 
+            logTarget.filters=["mx.rpc.*","mx.messaging.*"]; 
+ 
+            /* Log all log levels. */ 
+            logTarget.level = LogEventLevel.ALL; 
+ 
+            /* Add date, time, category, and log level to the output. */ 
+            logTarget.includeDate = true; 
+            logTarget.includeTime = true; 
+            logTarget.includeCategory = true; 
+            logTarget.includeLevel = true; 
+ 
+            /* Begin logging. */ 
+            Log.addTarget(logTarget); 
+        } 
+        ]]&gt; 
+    &lt;/fx:Script&gt; 
+ 
+    &lt;fx:Declarations&gt; 
+        &lt;!-- HTTPService is in the mx.rpc.http.* package --&gt; 
+        &lt;mx:HTTPService id="srv" 
+            url="../assets/trace_example_data.xml" 
+            useProxy="false" 
+            result="myData=ArrayCollection(srv.lastResult.data.result)"/&gt; 
+    &lt;/fx:Declarations&gt; 
+ 
+    &lt;mx:LineChart id="chart" dataProvider="{myData}" showDataTips="true"&gt; 
+        &lt;mx:horizontalAxis&gt; 
+            &lt;mx:CategoryAxis categoryField="month"/&gt; 
+        &lt;/mx:horizontalAxis&gt; 
+        &lt;mx:series&gt; 
+            &lt;mx:LineSeries yField="apple" name="Apple"/&gt; 
+            &lt;mx:LineSeries yField="orange" name="Orange"/&gt; 
+            &lt;mx:LineSeries yField="banana" name="Banana"/&gt; 
+        &lt;/mx:series&gt; 
+    &lt;/mx:LineChart&gt; 
+ 
+    &lt;s:Button id="b1" click="srv.send();" label="Load Data"/&gt; 
+ 
+&lt;/s:Application&gt;</pre>
+
+                  <p>In the preceding example, the <samp class="codeph">filters</samp> property
+is set to log messages for all classes in the mx.rpc and mx.messaging
+packages. In this case, it logs messages for the HTTPService class,
+which is in the mx.rpc.http.* package.</p>
+
+                  <p>You can also configure a log target in MXML. When you do this,
+though, you must be sure to use an appropriate number (such as 2)
+rather than a constant (such as <samp class="codeph">DEBUG</samp>) for the
+log level. </p>
+
+                  <p>The following example sets the values of the filters for a TraceTarget
+logging target by using MXML syntax:</p>
+
+                  <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- charts/MXMLTraceTarget.mxml --&gt; 
+&lt;s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    creationComplete="initApp();" 
+    height="600"&gt; 
+ 
+    &lt;s:layout&gt; 
+        &lt;s:VerticalLayout/&gt; 
+    &lt;/s:layout&gt; 
+ 
+    &lt;fx:Declarations&gt; 
+        &lt;!-- HTTPService is in the mx.rpc.http.* package --&gt; 
+        &lt;mx:HTTPService id="srv" 
+            url="../assets/trace_example_data.xml" 
+            useProxy="false" 
+            result="myData=ArrayCollection(srv.lastResult.data.result)"/&gt; 
+ 
+        &lt;mx:TraceTarget id="logTarget" 
+            includeDate="true" 
+            includeTime="true" 
+            includeCategory="true" 
+            includeLevel="true"&gt; 
+            &lt;mx:filters&gt; 
+                &lt;fx:Array&gt; 
+                    &lt;fx:String&gt;mx.rpc.*&lt;/fx:String&gt; 
+                    &lt;fx:String&gt;mx.messaging.*&lt;/fx:String&gt; 
+                &lt;/fx:Array&gt; 
+            &lt;/mx:filters&gt; 
+            &lt;!-- 0 is represents the LogEventLevel.ALL constant. --&gt; 
+            &lt;mx:level&gt;0&lt;/mx:level&gt; 
+        &lt;/mx:TraceTarget&gt; 
+    &lt;/fx:Declarations&gt; 
+    
+    &lt;fx:Script&gt; 
+        &lt;![CDATA[ 
+        import mx.collections.ArrayCollection; 
+        import mx.logging.Log; 
+ 
+        [Bindable] 
+        public var myData:ArrayCollection; 
+        
+        private function initApp():void { 
+            Log.addTarget(logTarget); 
+        }        
+        ]]&gt; 
+    &lt;/fx:Script&gt; 
+ 
+    &lt;mx:LineChart id="chart" dataProvider="{myData}" showDataTips="true"&gt; 
+        &lt;mx:horizontalAxis&gt; 
+            &lt;mx:CategoryAxis categoryField="month"/&gt; 
+        &lt;/mx:horizontalAxis&gt; 
+        &lt;mx:series&gt; 
+            &lt;mx:LineSeries yField="apple" name="Apple"/&gt; 
+            &lt;mx:LineSeries yField="orange" name="Orange"/&gt; 
+            &lt;mx:LineSeries yField="banana" name="Banana"/&gt; 
+        &lt;/mx:series&gt; 
+    &lt;/mx:LineChart&gt; 
+ 
+    &lt;s:Button id="b1" click="srv.send();" label="Load Data"/&gt; 
+ 
+&lt;/s:Application&gt;</pre>
+
+               </div>
+
+            </div>
+
+         </div>
+
+         <div class="nested3" id="WS2db454920e96a9e51e63e3d11c0bf69084-7eb2_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7eb2_verapache"><!-- --></a>
+            <h4 class="topictitle4">Implementing a custom logger with
+the logging API</h4>
+
+            
+            <div>
+               <p>If you write custom components
+or an ActionScript API, you can use the logging API to access the
+trace system in the debugger version of Flash Player. You do this by
+defining your log target as a <a href="https://flex.apache.org/asdoc/mx/logging/targets/TraceTarget.html" target="_blank">TraceTarget</a>,
+and then calling methods on your logger when you log messages.</p>
+
+               <p>The following example extends a <a href="https://flex.apache.org/asdoc/spark/components/Button.html" target="_blank">Button</a> control.
+It writes log messages for the startup life cycle events, such as <samp class="codeph">initialize</samp> and <samp class="codeph">creationComplete</samp>,
+and the common UI events, such as <samp class="codeph">click</samp> and <samp class="codeph">mouseOver</samp>. </p>
+
+               <pre class="codeblock">// logging/MyCustomLogger.as 
+package { // The empty package. 
+    import mx.controls.Button; 
+    import flash.events.*; 
+    import mx.logging.*; 
+    import mx.logging.targets.*; 
+        
+    public class MyCustomLogger extends Button { 
+ 
+        private var myLogger:ILogger; 
+ 
+        public function MyCustomLogger() { 
+            super(); 
+            initListeners(); 
+            initLogger(); 
+        } 
+        private function initListeners():void { 
+            // Add event listeners life cycle events. 
+            addEventListener("preinitialize", logLifeCycleEvent); 
+            addEventListener("initialize", logLifeCycleEvent); 
+            addEventListener("creationComplete", logLifeCycleEvent); 
+            addEventListener("updateComplete", logLifeCycleEvent); 
+            
+            // Add event listeners for other common events. 
+            addEventListener("click", logUIEvent);      
+            addEventListener("mouseUp", logUIEvent);        
+            addEventListener("mouseDown", logUIEvent);      
+            addEventListener("mouseOver", logUIEvent);      
+            addEventListener("mouseOut", logUIEvent);       
+        } 
+        private function initLogger():void { 
+            myLogger = Log.getLogger("MyCustomClass"); 
+        } 
+ 
+        private function logLifeCycleEvent(e:Event):void { 
+            if (Log.isInfo()) { 
+                myLogger.info(" STARTUP: " + e.target + ":" + e.type); 
+            } 
+        } 
+ 
+        private function logUIEvent(e:MouseEvent):void { 
+            if (Log.isDebug()) { 
+                myLogger.debug(" EVENT:   " + e.target + ":" + e.type); 
+            } 
+        } 
+    } 
+}</pre>
+
+               <p>Within the application that uses the MyCustomLogger class, define
+a TraceTarget, as the following example shows:</p>
+
+               <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- logging/LoadCustomLogger.mxml --&gt; 
+&lt;s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns="*" &gt; 
+ 
+    &lt;s:layout&gt; 
+        &lt;s:VerticalLayout/&gt; 
+    &lt;/s:layout&gt; 
+ 
+    &lt;fx:Declarations&gt; 
+        &lt;mx:TraceTarget level="0" 
+            includeDate="true" 
+            includeTime="true" 
+            includeCategory="true" 
+            includeLevel="true"&gt; 
+            &lt;mx:filters&gt; 
+                &lt;fx:Array&gt; 
+                    &lt;fx:String&gt;*&lt;/fx:String&gt; 
+                &lt;/fx:Array&gt; 
+            &lt;/mx:filters&gt; 
+        &lt;/mx:TraceTarget&gt; 
+    &lt;/fx:Declarations&gt; 
+ 
+    &lt;MyCustomLogger label="Click Me"/&gt; 
+ 
+&lt;/s:Application&gt;</pre>
+
+               <p>After running this application, the flashlog.txt file looks similar
+to the following: </p>
+
+               <pre class="codeblock"> 3/9/2009 18:58:05.042 [INFO] MyCustomLogger STARTUP: Main_3.mcc:MyCustomLogger:preinitialize 
+ 3/9/2009 18:58:05.487 [INFO] MyCustomLogger STARTUP:  
+ Main_3.mcc:MyCustomLogger:initialize 
+ 3/9/2009 18:58:05.557 [INFO] MyCustomLogger STARTUP: Main_3.mcc:MyCustomLogger:creationComplete 
+ 3/9/2009 18:58:05.567 [INFO] MyCustomLogger STARTUP: Main_3.mcc:MyCustomLogger:updateComplete 
+ 3/9/2009 18:58:05.577 [INFO] MyCustomLogger STARTUP: Main_3.mcc:MyCustomLogger:updateComplete 
+ 3/9/2009 18:58:05.577 [INFO] MyCustomLogger STARTUP: Main_3.mcc:MyCustomLogger:updateComplete 
+ 3/9/2009 18:58:06.849 [DEBUG] MyCustomLogger EVENT: Main_3.mcc:MyCustomLogger:mouseOver 
+ 3/9/2009 18:58:07.109 [DEBUG] MyCustomLogger EVENT: Main_3.mcc:MyCustomLogger:mouseDown 
+ 3/9/2009 18:58:07.340 [DEBUG] MyCustomLogger EVENT: Main_3.mcc:MyCustomLogger:mouseUp 
+ 3/9/2009 18:58:07.360 [DEBUG] MyCustomLogger EVENT: Main_3.mcc:MyCustomLogger:click 
+ 3/9/2009 18:58:07.610 [DEBUG] MyCustomLogger EVENT: Main_3.mcc:MyCustomLogger:mouseOut</pre>
+
+               <p>To log a message,
+you call the appropriate method of the <a href="https://flex.apache.org/asdoc/mx/logging/ILogger.html" target="_blank">ILogger</a> interface.
+The ILogger interface defines a method for each log level: <samp class="codeph">debug()</samp>, <samp class="codeph">info()</samp>, <samp class="codeph">warn()</samp>, <samp class="codeph">error()</samp>,
+and <samp class="codeph">fatal()</samp>. The logger logs messages from these
+calls if their levels are at or under the log target's logging level.
+If the target's logging level is set to <samp class="codeph">all</samp>, the
+logger records messages when any of these methods are called.</p>
+
+               <p>To improve performance, a static method corresponding to each
+level exists on the Log class, which indicates if any targets are
+listening for a specific level. Before you log a message, you can
+use one of these methods in an <samp class="codeph">if</samp> statement to avoid
+running the code. The previous example uses the <samp class="codeph">Log.isDebug()</samp> and <samp class="codeph">Log.isInfo()</samp> static
+methods to ensure that the messages are of level <samp class="codeph">INFO</samp> or <samp class="codeph">DEBUG</samp> before
+logging them.</p>
+
+               <p>The
+previous example logs messages dispatched from any category because
+the TraceTarget's <samp class="codeph">filters</samp> property is set to the
+wildcard character (*). The framework code sets the category of
+the logger to the fully qualified class name of the class in which
+logging is being performed. This is by convention only; any String
+specified when calling <samp class="codeph">Log.getLogger(x)</samp> is the
+category required in a <samp class="codeph">filters</samp> property to receive
+the message. </p>
+
+               <p>When you set the <samp class="codeph">filters</samp> property for logging
+within the Flex framework, you can restrict this to a certain package
+or packages, or to other classes. To restrict the logging to your
+custom class only, add the category specified when the logger was
+acquired ("MyCustomLogger") to the <samp class="codeph">filters</samp> Array,
+as the following example shows:</p>
+
+               <pre class="codeblock"> &lt;mx:filters&gt; 
+ 	&lt;mx:Array&gt; 
+ 		&lt;mx:String&gt;MyCustomLogger&lt;/mx:String&gt; 
+ 	&lt;/mx:Array&gt; 
+ &lt;/mx:filters&gt;</pre>
+
+               <p>In ActionScript, you can set the <samp class="codeph">filters</samp> property
+by using the following syntax:</p>
+
+               <pre class="codeblock"> traceTarget.filters = ["p1.*", "p2.*", "otherPackage*"];</pre>
+
+               <p>The wildcard character can appear only at the end of a value
+in the Array.</p>
+
+               <p>The <samp class="codeph">Log.getLogger()</samp> method sets the category
+of the logger. You pass this method a String that defines the category. </p>
+
+               <div class="note"><span class="notetitle">Note:</span> The Flex packages that use the logging API set
+the category to the current class name by convention, but it can
+be any String that falls within the filters definitions. </div>
+
+               <p>The value of the category must fall within the definition of
+at least one of the filters for the log message to be logged. For
+example, if you set the <samp class="codeph">filters</samp> property to something
+other than "*" and you use <samp class="codeph">Log.getLogger("MyCustomLogger")</samp>,
+the filter Array must include an entry that matches MyCustomLogger,
+such as "MyCustomLogger" or "My*". </p>
+
+               <p>You can include the logger's category in your log message, if
+you set the logger's <samp class="codeph">includeCategory</samp> property to <samp class="codeph">true</samp>. </p>
+
+               <p>You can also use the ILogger interface's <samp class="codeph">log()</samp> method
+to customize the log message, and you can specify the logging level
+in that method. The following example logs messages that use the
+log level that is passed into the method:</p>
+
+               <pre class="codeblock">package { // The empty package. 
+    // logging/MyCustomLogger2.as 
+    import mx.controls.Button; 
+    import flash.events.*; 
+    import flash.events.MouseEvent; 
+    import mx.logging.*; 
+    import mx.logging.targets.*; 
+        
+    public class MyCustomLogger2 extends Button { 
+ 
+        private var myLogger:ILogger; 
+ 
+        public function MyCustomLogger2() { 
+            super(); 
+            initListeners(); 
+            initLogger(); 
+        } 
+        private function initListeners():void { 
+            // Add event listeners life cycle events. 
+            addEventListener("preinitialize", logLifeCycleEvent); 
+            addEventListener("initialize", logLifeCycleEvent); 
+            addEventListener("creationComplete", logLifeCycleEvent); 
+            addEventListener("updateComplete", logLifeCycleEvent); 
+            
+            // Add event listeners for other common events. 
+            addEventListener("click", logUIEvent);      
+            addEventListener("mouseUp", logUIEvent);        
+            addEventListener("mouseDown", logUIEvent);      
+            addEventListener("mouseOver", logUIEvent);      
+            addEventListener("mouseOut", logUIEvent);       
+        } 
+        private function initLogger():void { 
+            myLogger = Log.getLogger("MyCustomClass"); 
+        } 
+ 
+        private function logLifeCycleEvent(e:Event):void { 
+            if (Log.isInfo()) { 
+                dynamicLogger(LogEventLevel.INFO, e, "STARTUP"); 
+            } 
+        } 
+ 
+        private function logUIEvent(e:MouseEvent):void { 
+            if (Log.isDebug()) { 
+                dynamicLogger(LogEventLevel.DEBUG, e, "EVENT"); 
+            } 
+        } 
+        
+        private function dynamicLogger( 
+                level:int, 
+                e:Event, prefix:String):void { 
+            var s:String = "__" + prefix + "__" + e.currentTarget + 
+                ":" + e.type; 
+            myLogger.log(level, s); 
+        } 
+ 
+    } 
+}</pre>
+
+            </div>
+
+         </div>
+
+      </div>
+
+   </div>
+
+   <div class="nested1" id="WS2db454920e96a9e51e63e3d11c0bf69084-7fd5_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7fd5_verapache"><!-- --></a>
+      <h2 class="topictitle2">Compiler logging</h2>
+
+      
+      <div>
+         <p>Flex provides you with control over the output of warning
+and debug messages for the application and component compilers.
+When you compile, you can enable the message output to help you
+to locate and fix problems in your application. </p>
+
+         <p>For
+the command-line compiler, the settings that you use to control
+messages are defined in the flex-config.xml file or as command-line
+compiler options.</p>
+
+         <p>You have a high level of control over what compiler messages
+are displayed. For example, you can enable or disable messages such
+as binding-related warnings in the flex-config.xml file by using
+the <samp class="codeph">show-binding-warnings</samp> option. The following
+example disables these messages in the flex-config.xml file:</p>
+
+         <pre class="codeblock"> &lt;show-binding-warnings&gt;false&lt;/show-binding-warnings&gt;</pre>
+
+         <p>You can also set this option on the command line.</p>
+
+         <p>If you enable compiler messages, they are written to the console
+window (or System.out) by default. </p>
+
+         <p>For more information on the compiler logging settings, see <a href="flx_compilers_cpl.html#WS2db454920e96a9e51e63e3d11c0bf69084-7eaf_verapache">Viewing
+warnings and errors</a>.</p>
+
+      </div>
+
+   </div>
+
+   <div class="nested1" id="WS2db454920e96a9e51e63e3d11c0bf69084-7ec4_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7ec4_verapache"><!-- --></a>
+      <h2 class="topictitle2">Policy file logging</h2>
+
+      
+      <div>
+         <p>Flash Player 9 and later support policy file logging. The
+policy file log shows messages for every event relating to policy
+files like the crossdomain.xml file. This includes attempts to retrieve
+them, successes and failures in processing them, and the fate of
+the requests that depend on them. </p>
+
+         <p>The policy file log file is named policyfiles.txt. It is in the
+same location as the trace log (flashlog.txt). For information on
+where to find these log files, see <a href="flx_logging_lg.html#WSda78ed3a750d6b8f-4867184d1239f9d0558-8000_verapache">Log
+file location</a>.</p>
+
+         <p>To use policy file logging, you must use the debug version of
+Flash Player. In addition, you must add the following to your mm.cfg
+file:</p>
+
+         <pre class="codeblock"> PolicyFileLog=1   # Enables policy file logging 
+ PolicyFileLogAppend=1  # Optional; do not clear log at startup</pre>
+
+         <p>For more information about editing the mm.cfg file, see <a href="flx_logging_lg.html#WS2db454920e96a9e51e63e3d11c0bf69084-7fc9_verapache">Editing
+the mm.cfg file</a>.</p>
+
+         <p>To test if you are logging policy file log messages, open any
+SWF file with your debug player. The application does not need to
+use a policy file, or even be running on the network. In the log
+file, you should see at least one message indicating that the root-level
+SWF was loaded.</p>
+
+      </div>
+
+<div>
+  <p><strong>Navigation</strong></p>
+  <p><a href="index.html">Using Flex</a> &raquo; <a href="flx_p7_dev_tools.html">Developer tools</a></p>
+</div>
+
+         <p>Adobe and Adobe Flash Player are either registered trademarks or trademarks of Adobe Systems Incorporated in the United States and/or other countries and are used by permission from Adobe.  No other license to the Adobe trademarks are granted.</p>
+   </div>
+
+
+</body>
+</html>

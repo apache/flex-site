@@ -1,0 +1,2602 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Licensed to the Apache Software Foundation (ASF) under one or more
+  contributor license agreements.  See the NOTICE file distributed with
+  this work for additional information regarding copyright ownership.
+  The ASF licenses this file to You under the Apache License, Version 2.0
+  (the "License"); you may not use this file except in compliance with
+  the License.  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+-->
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en-us" xml:lang="en-us">
+<head>
+<meta name="DC.Type" content="topic"/>
+<meta name="DC.Title" content="Creating a wrapper"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="WS2db454920e96a9e51e63e3d11c0bf69084-7ecf_verapache"/>
+<title>Creating a wrapper</title>
+</head>
+<body id="WS2db454920e96a9e51e63e3d11c0bf69084-7ecf_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7ecf_verapache"><!-- --></a>
+
+   <div>
+      <p>You typically embed an application built with Flex as a SWF file in an HTML page. The HTML
+page often includes script or external files that provide other
+functionality. Collectively, the HTML page and other external files
+are known as the <em>wrapper</em>. </p>
+
+   </div>
+
+   <div class="nested1" id="WS2db454920e96a9e51e63e3d11c0bf663fe-7fff_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf663fe-7fff_verapache"><!-- --></a>
+      <h2 class="topictitle2">About the wrapper</h2>
+
+      
+      <div>
+         <p>A simple
+wrapper is responsible for embedding the application's SWF file
+in a web page, such as an HTML, ASP, JSP, or Adobe<sup>®</sup> ColdFusion<sup>®</sup> page.
+In more complex wrappers, you can enable features such as deep linking
+and Express Install. The wrapper can also ensure that users both
+with and without JavaScript enabled in their browsers can access
+your applications built with Flex. You can also use the wrapper
+to pass <samp class="codeph">flashVars</samp> variables into your applications
+and to use the ExternalInterface API. These topics are described
+in <a href="flx_passingarguments_pa.html#WS2db454920e96a9e51e63e3d11c0bf69084-7f17_verapache">Communicating
+with the wrapper</a>.</p>
+
+         <p>There are several ways to create a wrapper:</p>
+
+         <ul>
+            <li>
+               <p>Write a simple wrapper using the instructions in <a href="flx_wrapper_wr.html#WS2db454920e96a9e51e63e3d11c0bf69084-7ba8_verapache">Create
+a custom wrapper</a>.</p>
+
+            </li>
+
+            <li>
+               <p>Use the <samp class="codeph">html-wrapper</samp> Flex Ant task. For
+more information, see <a href="flx_anttasks_an.html#WS2db454920e96a9e51e63e3d11c0bf69084-7ba4_verapache">Using
+the html-wrapper task</a>.</p>
+
+            </li>
+
+         </ul>
+
+         <p>The mxmlc command-line compiler does not generate a wrapper.
+When using mxmlc, you generally write the wrapper manually or use
+the existing template as a guide. You can start out with a simple
+wrapper that just embeds your application's SWF file. You can then
+add features such as deep linking and Express Install support to
+your wrapper.</p>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf69084-7ba5_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7ba5_verapache"><!-- --></a>
+         <h3 class="topictitle3">About the HTML template</h3>
+
+         
+         <div>
+            <p>Flex
+SDK includes an HTML template and supporting files in the <em>flex_install_dir</em>/templates/swfobject
+directory. The file name is index.template.html.</p>
+
+            <p>For clients with scripting enabled, the template uses SWFObject
+2 to embed the SWF file built with Flex. For clients with scripting
+disabled, the template provides a <samp class="codeph">&lt;noscript&gt;</samp> section
+that uses the <samp class="codeph">&lt;object&gt;</samp> and <samp class="codeph">&lt;embed&gt;</samp> tags
+to embed the SWF file.</p>
+
+            <p>For deployment, rename the template to index.html or whatever
+filename fits your web site's configuration. If you already have
+the HTML set up for your web site and are incorporating applications
+built with Flex into that site, then you can copy and paste the
+code from the template into your existing web site's files. The template
+HTML also works with dynamic scripting code such as PHP, ASP, or
+JSP. </p>
+
+            <p>The template uses tokens, such as <samp class="codeph">${height}</samp> and <samp class="codeph">${title}</samp>.
+If you are editing the wrapper manually and deploying an application
+built with the SDK, then you manually replace these tokens with
+the appropriate values.</p>
+
+            <p>In many cases, the tokens set the values of parameters that are
+passed to the <samp class="codeph">swfobject.embedSWF()</samp> JavaScript method,
+or are used in the <samp class="codeph">&lt;object&gt;</samp> and <samp class="codeph">&lt;embed&gt;</samp> tags
+in the <samp class="codeph">&lt;noscript&gt;</samp> block of the template.</p>
+
+            <p>The following table describes the template tokens:</p>
+
+            
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" frame="border" border="1" rules="all">
+                  
+                  
+                  <thead align="left">
+                     <tr>
+                        <th class="cellrowborder" valign="top" width="NaN%" id="d939457e174">
+                           <p>Token</p>
+
+                        </th>
+
+                        <th class="cellrowborder" valign="top" width="NaN%" id="d939457e180">
+                           <p>Description</p>
+
+                        </th>
+
+                     </tr>
+
+                  </thead>
+
+                  <tbody>
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d939457e174 ">
+                           <div class="p">
+                              <pre class="codeblock">${application}</pre>
+
+                           </div>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d939457e180 ">
+                           <p>Identifies the SWF file to the host environment
+(a web browser, typically) so that it can be referenced by using
+a scripting language. </p>
+
+                           <p>This token sets the value of the <samp class="codeph">attributes.id</samp> and <samp class="codeph">attributes.name</samp> properties
+in the SWFObject 2 logic.</p>
+
+                        </td>
+
+                     </tr>
+
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d939457e174 ">
+                           <div class="p">
+                              <pre class="codeblock">${bgcolor}</pre>
+
+                           </div>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d939457e180 ">
+                           <p>Specifies
+the background color of the application. Use this property to override
+the background color setting specified in the application. This
+property does not affect the background color of the HTML page. </p>
+
+                           <p>Valid
+formats for <samp class="codeph">bgcolor</samp> are any #RRGGBB, hexadecimal,
+or RGB value.</p>
+
+                           <p>This token sets the value of the <samp class="codeph">params.bgcolor</samp> property
+in the SWFObject 2 logic.</p>
+
+                        </td>
+
+                     </tr>
+
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d939457e174 ">
+                           <p>
+                              <samp class="codeph">${expressInstallSwf}</samp>
+                           </p>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d939457e180 ">
+                           <p>Enables Express Install for the embedded
+SWF file.</p>
+
+                           <p>To enable Express Install, set this property to
+"playerProductIntsall.swf". To disable Express Install, set this
+property to an empty string. If you enable Express Install, you
+must also deploy this SWF file with your application built with
+Flex.</p>
+
+                           <p>This token sets the value of the <samp class="codeph">xiSwfUrlStr</samp> property
+in the SWFObject 2 logic.</p>
+
+                        </td>
+
+                     </tr>
+
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d939457e174 ">
+                           <div class="p">
+                              <pre class="codeblock">${height}</pre>
+
+                           </div>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d939457e180 ">
+                           <p>Defines the height, in pixels, of the SWF
+file. Flash Player makes a best guess to determine the height of
+the application if none is provided.</p>
+
+                           <p>The browser scales an
+object or image to match the height and width specified by the author. </p>
+
+                           <p>You
+can set this value to a fixed number or a percentage value; for
+example, <samp class="codeph">'100'</samp> or <samp class="codeph">'50%'</samp>.</p>
+
+                           <p>Lengths
+expressed as percentages are based on the horizontal or vertical
+space currently available, not on the default size of the SWF file. </p>
+
+                           <p>You
+can also set the height of an application by setting the <samp class="codeph">height</samp> property
+of the <samp class="codeph">&lt;s:Application&gt;</samp> tag in an MXML file.</p>
+
+                           <p>This
+token sets the value of the <samp class="codeph">heightStr</samp> property
+in the SWFObject 2 logic.</p>
+
+                        </td>
+
+                     </tr>
+
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d939457e174 ">
+                           <div class="p">
+                              <pre class="codeblock">${swf}</pre>
+
+                           </div>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d939457e180 ">
+                           <p>Specifies the location of the SWF file.</p>
+
+                           <p>This
+token sets the value of the <samp class="codeph">swfUrlStr</samp> property
+in the SWFObject 2 logic.</p>
+
+                        </td>
+
+                     </tr>
+
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d939457e174 ">
+                           <div class="p">
+                              <pre class="codeblock">${title}</pre>
+
+                           </div>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d939457e180 ">
+                           <p>The title of the HTML page. This value appears
+in the browser's title bar when the user requests the HTML page. </p>
+
+                        </td>
+
+                     </tr>
+
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d939457e174 ">
+                           <p>
+                              <samp class="codeph">${useBrowserHistory}</samp>
+                           </p>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d939457e180 ">
+                           <p>Enables deep linking for the embedded SWF
+file.</p>
+
+                           <p>To enable deep linking, set this property to "--". To
+disable deep linking, remove the token and the <samp class="codeph">&lt;script&gt;</samp> tags
+that follow it. </p>
+
+                           <p>If you enable deep linking, youmust also
+deploy the files in the /templates/swfobject/history file with your
+application built with Flex.</p>
+
+                        </td>
+
+                     </tr>
+
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d939457e174 ">
+                           <div class="p">
+                              <pre class="codeblock">${version_major}</pre>
+
+                           </div>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d939457e180 ">
+                           <p>The required major version number of Flash
+Player. For example, 10. This token is one part of the <samp class="codeph">swfVersionStr</samp> property
+in the SWFObject 2 logic. It is used for Express Install.</p>
+
+                        </td>
+
+                     </tr>
+
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d939457e174 ">
+                           <div class="p">
+                              <pre class="codeblock">${version_minor}</pre>
+
+                           </div>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d939457e180 ">
+                           <p>The required minor version number of Flash
+Player. For example, 0. This token is one part of the <samp class="codeph">swfVersionStr</samp> property
+in the SWFObject 2 logic. It is used for Express Install.</p>
+
+                        </td>
+
+                     </tr>
+
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d939457e174 ">
+                           <div class="p">
+                              <pre class="codeblock">${version_revision}</pre>
+
+                           </div>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d939457e180 ">
+                           <p>The required revision version number of
+Flash Player. For example, 162. This token is one part of the <samp class="codeph">swfVersionStr</samp> property
+in the SWFObject 2 logic. It is used for Express Install.</p>
+
+                        </td>
+
+                     </tr>
+
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d939457e174 ">
+                           <div class="p">
+                              <pre class="codeblock">${width}</pre>
+
+                           </div>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d939457e180 ">
+                           <p>Defines the width, in pixels, of the SWF
+file. Flash Player makes a best guess to determine the width of
+the application if none is provided.</p>
+
+                           <p>Browsers scale an object
+or image to match the height and width specified by the author. </p>
+
+                           <p>You
+can set this value to a fixed number or a percentage value. For
+example, <samp class="codeph">'100'</samp> or <samp class="codeph">'50%'</samp>.</p>
+
+                           <p>Lengths
+expressed as percentages are based on the horizontal or vertical
+space currently available, not on the natural size of the SWF file.</p>
+
+                           <p>You
+can also set the width of an application by setting the <samp class="codeph">width</samp> property
+of the <samp class="codeph">&lt;s:Application&gt;</samp> tag in an MXML file.</p>
+
+                           <p>This
+token sets the value of the <samp class="codeph">widthStr</samp> property in
+the SWFObject 2 logic.</p>
+
+                        </td>
+
+                     </tr>
+
+                  </tbody>
+
+               </table>
+</div>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf69084-7b86_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7b86_verapache"><!-- --></a>
+         <h3 class="topictitle3">About SWFObject 2</h3>
+
+         
+         <div>
+            <p>SWFObject 2 is a standards-based library that embeds SWF
+files in HTML pages. It abstracts implementation details about Plugin
+detection, embedding, and other features so that you only need to
+call a single method to embed your SWF file. The default template
+included with Flex SDK embeds the SWFObject 2 functionality with
+the following <samp class="codeph">&lt;script&gt;</samp> tag:</p>
+
+            <pre class="codeblock"> &lt;script type="text/javascript" src="swfobject.js"&gt;&lt;/script&gt;</pre>
+
+            <p>To embed a SWF file built with Flex, the HTML wrapper creates
+a number of properties and objects, and then passes them to the <samp class="codeph">swfobject.embedSWF()</samp> method.</p>
+
+            <div class="p">The <samp class="codeph">embedSWF()</samp> method has the following signature:<pre class="codeblock">embedSWF( 
+	<em>swfUrlStr</em>:String, <em> 
+	replaceElemIdStr</em>:String, <em> 
+	heightStr</em>:String, <em> 
+	widthStr</em>:String, <em> 
+	swfVersionStr</em>:String, <em> 
+	xiSwfUrlStr</em>:String, <em> 
+	flashvars</em>:Object, <em> 
+	params</em>:Object, <em> 
+	attributes</em>:Object 
+)</pre>
+
+            </div>
+
+            <p>The following is an example of the <samp class="codeph">embedSWF()</samp> method
+in an HTML wrapper:</p>
+
+            <div class="p">
+               <pre class="codeblock">swfobject.embedSWF("TestProject.swf", "flashContent","100%", "100%", "10.0.0", "playerProductInstall.swf", flashvars, params, attributes);</pre>
+
+            </div>
+
+            <div class="p">You set the values of several of these arguments in the HTML
+wrapper's script prior to passing them to the <samp class="codeph">embedSWF()</samp> method.
+The following table describes these arguments.
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" frame="border" border="1" rules="all">
+                     
+                     
+                     <thead align="left">
+                        <tr>
+                           <th class="cellrowborder" valign="top" width="NaN%" id="d939457e607">
+                              <p>Argument</p>
+
+                           </th>
+
+                           <th class="cellrowborder" valign="top" width="NaN%" id="d939457e613">
+                              <p>Description</p>
+
+                           </th>
+
+                        </tr>
+
+                     </thead>
+
+                     <tbody>
+                        <tr>
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d939457e607 ">
+                              <p>
+                                 <samp class="codeph">swfUrlStr</samp>
+                              </p>
+
+                           </td>
+
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d939457e613 ">
+                              <p>Defines the location of the application
+built with Flex. In most cases, this is the name of the output SWF
+file.</p>
+
+                           </td>
+
+                        </tr>
+
+                        <tr>
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d939457e607 ">
+                              <p>
+                                 <samp class="codeph">replaceElemIdStr</samp>
+                              </p>
+
+                           </td>
+
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d939457e613 ">
+                              <p>The name of the alternative content that
+appears if Flash Player is not available.</p>
+
+                              <p>You define the alternative
+content in a <samp class="codeph">&lt;div&gt;</samp> tag. </p>
+
+                           </td>
+
+                        </tr>
+
+                        <tr>
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d939457e607 ">
+                              <p>
+                                 <samp class="codeph">heightStr</samp>
+                              </p>
+
+                           </td>
+
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d939457e613 ">
+                              <p>The height of the application built with
+Flex.</p>
+
+                           </td>
+
+                        </tr>
+
+                        <tr>
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d939457e607 ">
+                              <p>
+                                 <samp class="codeph">widthStr</samp>
+                              </p>
+
+                           </td>
+
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d939457e613 ">
+                              <p>The width of the application built with
+Flex.</p>
+
+                           </td>
+
+                        </tr>
+
+                        <tr>
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d939457e607 ">
+                              <p>
+                                 <samp class="codeph">swfVersionStr</samp>
+                              </p>
+
+                           </td>
+
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d939457e613 ">
+                              <p>The minimum version of Flash Player that
+is required to run the application built with Flex. The default
+value is "10.0.0". Set this property to "0" to disable version detection. </p>
+
+                           </td>
+
+                        </tr>
+
+                        <tr>
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d939457e607 ">
+                              <p>
+                                 <samp class="codeph">xiSwfUrlStr</samp>
+                              </p>
+
+                           </td>
+
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d939457e613 ">
+                              <p>Enables Express Install. Set this argument
+to the location of the playerProductInstall.swf file. The default
+value is "playerProductInstall.swf". This SWF file is in the same
+directory as the HTML wrapper. If you deploy it to another location,
+change the value of the <samp class="codeph">xiSwfUrlStr</samp> argument to
+the new path.</p>
+
+                              <p>To disable Express Install, set the value of
+this argument to an empty string.</p>
+
+                           </td>
+
+                        </tr>
+
+                        <tr>
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d939457e607 ">
+                              <p>
+                                 <samp class="codeph">flashvars</samp>
+                              </p>
+
+                           </td>
+
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d939457e613 ">
+                              <p>Adds <samp class="codeph">flashVars</samp> variables
+to your template. To do this, attach dynamic properties to the flashvars
+object in the HTML template. </p>
+
+                              <div class="p">The following example adds <samp class="codeph">firstName</samp> and <samp class="codeph">lastName</samp> as
+dynamic properties to flashvars object:<pre class="codeblock">var flashvars = {}; 
+flashvars.firstName = "Nick"; 
+flashvars.lastName = "Danger";</pre>
+
+                              </div>
+
+                              <p>For more information
+about using <samp class="codeph">flashVars</samp> variables in applications built
+with Flex, see <a href="flx_passingarguments_pa.html#WS2db454920e96a9e51e63e3d11c0bf626ae-7feb_verapache">Passing
+request data with flashVars properties</a>.</p>
+
+                           </td>
+
+                        </tr>
+
+                        <tr>
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d939457e607 ">
+                              <p>
+                                 <samp class="codeph">params</samp>
+                              </p>
+
+                           </td>
+
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d939457e613 ">
+                              <p>Sets parameters for the SWF object. These
+properties typically define how it interacts with the HTML wrapper
+or appears in the browser.</p>
+
+                              <div class="p">You can set the values of the following
+properties by using the <samp class="codeph">params</samp> argument:<ul>
+                                    <li>
+                                       <p>
+                                          <samp class="codeph">menu</samp>
+                                       </p>
+
+                                    </li>
+
+                                    <li>
+                                       <p>
+                                          <samp class="codeph">quality</samp>
+                                       </p>
+
+                                    </li>
+
+                                    <li>
+                                       <p>
+                                          <samp class="codeph">scale</samp>
+                                       </p>
+
+                                    </li>
+
+                                    <li>
+                                       <p>
+                                          <samp class="codeph">salign</samp>
+                                       </p>
+
+                                    </li>
+
+                                    <li>
+                                       <p>
+                                          <samp class="codeph">wmode</samp>
+                                       </p>
+
+                                    </li>
+
+                                    <li>
+                                       <p>
+                                          <samp class="codeph">bgcolor</samp>
+                                       </p>
+
+                                    </li>
+
+                                    <li>
+                                       <p>
+                                          <samp class="codeph">base</samp>
+                                       </p>
+
+                                    </li>
+
+                                    <li>
+                                       <p>
+                                          <samp class="codeph">flashvars</samp>
+                                       </p>
+
+                                    </li>
+
+                                    <li>
+                                       <p>
+                                          <samp class="codeph">devicefont</samp>
+                                       </p>
+
+                                    </li>
+
+                                    <li>
+                                       <p>
+                                          <samp class="codeph">allowscriptaccess</samp>
+                                       </p>
+
+                                    </li>
+
+                                    <li>
+                                       <p>
+                                          <samp class="codeph">seamlessstabbing</samp>
+                                       </p>
+
+                                    </li>
+
+                                    <li>
+                                       <p>
+                                          <samp class="codeph">allowfullscreen</samp>
+                                       </p>
+
+                                    </li>
+
+                                    <li>
+                                       <p>
+                                          <samp class="codeph">allownetworking</samp>
+                                       </p>
+
+                                    </li>
+
+                                 </ul>
+
+                              </div>
+
+                              <p>For
+more information about these properties, see the property's description
+in <a href="flx_wrapper_wr.html#WS2db454920e96a9e51e63e3d11c0bf69084-7f18_verapache">About
+the object and embed tags</a>.</p>
+
+                              <div class="p">The following example adds
+several parameters to the <samp class="codeph">params</samp> object in the
+HTML wrapper:<pre class="codeblock">var params = {}; 
+params.quality = "high"; 
+params.bgcolor = "${bgcolor}"; 
+params.allowscriptaccess = "sameDomain";</pre>
+
+                              </div>
+
+                           </td>
+
+                        </tr>
+
+                        <tr>
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d939457e607 ">
+                              <p>
+                                 <samp class="codeph">attributes</samp>
+                              </p>
+
+                           </td>
+
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d939457e613 ">
+                              <p>Sets attributes for the SWF object.</p>
+
+                              <div class="p">You
+can set the values of the following properties with the <samp class="codeph">attributes</samp> argument:<ul>
+                                    <li>
+                                       <p>
+                                          <samp class="codeph">id</samp>
+                                       </p>
+
+                                    </li>
+
+                                    <li>
+                                       <p>
+                                          <samp class="codeph">name</samp>
+                                       </p>
+
+                                    </li>
+
+                                    <li>
+                                       <p>
+                                          <samp class="codeph">class</samp>
+                                       </p>
+
+                                    </li>
+
+                                    <li>
+                                       <p>
+                                          <samp class="codeph">align</samp>
+                                       </p>
+
+                                    </li>
+
+                                 </ul>
+
+                              </div>
+
+                              <p>The <samp class="codeph">id</samp> and <samp class="codeph">name</samp> properties
+are required.</p>
+
+                              <p>For more information about these properties,
+see the property's description in <a href="flx_wrapper_wr.html#WS2db454920e96a9e51e63e3d11c0bf69084-7f18_verapache">About
+the object and embed tags</a>.</p>
+
+                              <div class="p">The following example adds
+the <samp class="codeph">id</samp>, <samp class="codeph">name</samp>, and <samp class="codeph">align</samp> properties
+to the attributes object.<pre class="codeblock">var attributes = {}; 
+attributes.id = "${application}"; 
+attributes.name = "${application}"; 
+attributes.align = "middle";</pre>
+
+                              </div>
+
+                           </td>
+
+                        </tr>
+
+                     </tbody>
+
+                  </table>
+</div>
+
+            </div>
+
+            <p>For more information on SWFObject 2, see <a href="https://github.com/swfobject/swfobject/wiki" target="_blank">https://github.com/swfobject/swfobject/wiki</a>.</p>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS4229AC77-F526-44c9-AF5C-F0B80FF73F00_verapache"><a name="WS4229AC77-F526-44c9-AF5C-F0B80FF73F00_verapache"><!-- --></a>
+         <h3 class="topictitle3">Using deep linking in the wrapper</h3>
+
+         
+         <div>
+            <p>Deep linking lets users navigate the history of their interactions
+within the application by using the browser's Forward and Back buttons.
+Deep linking also lets users read and write to the browser's address
+bar. </p>
+
+            <p>When you deploy an application that uses deep linking, you must
+deploy the files in the /templates/swfobject/history directory with
+that application.</p>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WSDF4E56EF-2198-4843-ACF0-D78D52422046_verapache"><a name="WSDF4E56EF-2198-4843-ACF0-D78D52422046_verapache"><!-- --></a>
+         <h3 class="topictitle3">Using Express Install in the wrapper</h3>
+
+         
+         <div>
+            <p>The recommended method of ensuring that Flash Player can
+run the application on the client is to use Express Install. With
+Express Install, you can detect when users do not have the latest
+version of Flash Player, and you can initiate an update process
+that installs the latest version of the player. The updated Player
+can be installed from the Adobe website or from a local intranet
+site. When the installation is complete, users are directed back
+your website, where they can run your application. </p>
+
+            <p>Express Install runs a SWF file in the existing Flash<sup>®</sup> Player
+to upgrade users to the latest version of the player. As a result,
+Express Install requires that Flash Player already be installed
+on the client, and that it be version 6.0.65 or later. The Express Install
+feature also relies on JavaScript detection logic in the browser
+to ensure that the player required to start the process exists.
+As a result, the browser must have JavaScript enabled for Express
+Install to work. If the player on the client is not new enough to
+support Express Install, you can display alternate content, redirect
+the user to the Flash Player download page, or initiate another
+type of Flash Player upgrade experience.</p>
+
+            <p>When you deploy an application with a wrapper that supports Express
+Install, you must also deploy the playerProductInstall.swf file.
+This file is located in the /templates/swfobject directory.</p>
+
+         </div>
+
+      </div>
+
+   </div>
+
+   <div class="nested1" id="WS2db454920e96a9e51e63e3d11c0bf69084-7ba8_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7ba8_verapache"><!-- --></a>
+      <h2 class="topictitle2">Create a custom wrapper</h2>
+
+      
+      <div>
+         <p>You can
+write your own wrapper for your SWF files. Your own wrapper can
+be simple HTML, or it can be a JavaServer Page (JSP), a PHP page,
+an Active Server Page (ASP), or anything that can return HTML that
+is rendered in your client's browser. Typically, you integrate wrapper
+logic into your website's own HTML templates. </p>
+
+         <div class="p">You can create a simple wrapper that uses SWFObject 2 but not
+other features such as deep linking and Express Install. You do
+this by creating an HTML file that imports the swfobject.js file.
+You then call the <samp class="codeph">swfobject.embedSWF()</samp> method.
+The following is a simple wrapper that uses SWFObject 2:<pre class="codeblock">&lt;!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"&gt; 
+&lt;!-- saved from url=(0014)about:internet --&gt; 
+&lt;html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"&gt; 
+    &lt;head&gt; 
+        &lt;title&gt;wrapper/SimpleSwfObjectWrapper.html&lt;/title&gt; 
+        &lt;script type="text/javascript" src="swfobject.js"&gt;&lt;/script&gt; 
+        &lt;script type="text/javascript"&gt; 
+            var swfVersionStr = "0"; 
+            var xiSwfUrlStr = ""; 
+            var flashvars = {}; 
+            var params = {}; 
+            params.quality = "high"; 
+            params.bgcolor = "#ffffff"; 
+            params.allowscriptaccess = "sameDomain"; 
+            var attributes = {}; 
+            attributes.id = "TestProject"; 
+            attributes.name = "TestProject"; 
+            attributes.align = "middle"; 
+            swfobject.embedSWF( 
+                "TestProject.swf", "flashContent", 
+                "100%", "100%", 
+                swfVersionStr, xiSwfUrlStr, 
+                flashvars, params, attributes); 
+        &lt;/script&gt; 
+    &lt;/head&gt; 
+    &lt;body&gt; 
+        &lt;div id="flashContent"/&gt; 
+   &lt;/body&gt; 
+&lt;/html&gt;</pre>
+
+         </div>
+
+         <p>This wrapper sets the <samp class="codeph">swfVersionStr</samp> property
+to 0 and the <samp class="codeph">xiSwfUrlStr</samp> property to an empty string.
+Doing this disables Express Install and deep linking functionality.
+These features improve the user experience and should be omitted only
+after careful consideration.</p>
+
+         <p>When you deploy this example wrapper, you must also deploy the
+swfobject.js file from the /templates/swfobject directory.</p>
+
+         <p>To write an even simpler wrapper, you can use just the <samp class="codeph">&lt;object&gt;</samp> and <samp class="codeph">&lt;embed&gt;</samp> tags
+rather than the SWFObject 2 JavaScript code. </p>
+
+         <p>A basic wrapper consists of the following files:</p>
+
+         <dl>
+            
+               <dt class="dlterm">HTML page</dt>
+
+               <dd>
+                  <p>This is the file that the client browser requests directly.
+It typically defines two possible experiences (one for users with
+JavaScript enabled and one for users without JavaScript enabled).
+This page also references a separate JavaScript file in a <samp class="codeph">&lt;script&gt;</samp> tag. </p>
+
+               </dd>
+
+            
+            
+               <dt class="dlterm">JavaScript file</dt>
+
+               <dd>
+                  <p>The JavaScript file referenced by the <samp class="codeph">&lt;script&gt;</samp> tag
+in the HTML page defines the following:</p>
+
+                  <ul>
+                     <li>
+                        <p>
+                           <samp class="codeph">&lt;object&gt;</samp> tag This
+tag embeds the SWF file for Internet Explorer.</p>
+
+                     </li>
+
+                     <li>
+                        <p>
+                           <samp class="codeph">&lt;embed&gt;</samp> tag This tag embeds the SWF
+file for Netscape-based browsers.</p>
+
+                     </li>
+
+                  </ul>
+
+                  <p>In the default
+HTML template, the JavaScript file is named swfobject.js. This JavaScript
+file contains the SWFObject 2 logic. If you want to create your
+own basic wrapper, you can load a different JavaScript file that
+only has <samp class="codeph">&lt;object&gt;</samp> and <samp class="codeph">&lt;embed&gt;</samp> tags
+in it.</p>
+
+                  <p>The client first requests the HTML page. If
+the user's browser has JavaScript enabled, the HTML page then loads
+the JavaScript file. The JavaScript file embeds the application's
+SWF file. </p>
+
+                  <p>To make your application respond immediately without
+user interaction, use a <samp class="codeph">&lt;script&gt;</samp> tag to load
+the JavaScript file that contains the embedding logic. Do not write
+the embed logic directly in the HTML file. Controls that are directly loaded
+by the embedding page require activation before they will run in Microsoft
+Internet Explorer 6 or later. If you load the controls directly
+in the HTML page, users will be required to activate those controls
+before they can use them by clicking on the control or giving it
+focus. This is undesirable because you want your application to
+run immediately when the page loads, not after the user interacts
+with the control.</p>
+
+                  <p>The following example illustrates a typical
+series of requests that a JavaScript-enabled client browser makes
+when requesting a simple HTML wrapper:</p>
+
+                  <div class="figborder">
+                     <img src="images/wr_wrapper_request.png" alt="The requests that a client browser makes when JavaScript is enabled."/>
+                  </div>
+
+                  <p>The following example shows a simple
+HTML page and JavaScript file that embeds an application named MyApp:</p>
+
+                  <pre class="codeblock"> &lt;!-- index.html --&gt; 
+ &lt;!-- saved from url=(0014)about:internet --&gt; 
+ &lt;html&gt; 
+ 	&lt;body&gt; 
+ 		&lt;script src="mysource.js"&gt;&lt;/script&gt; 
+ 	&lt;/body&gt; 
+ &lt;/html&gt; 
+  
+ &lt;!-- mysource.js --&gt; 
+ document.write("&lt;object id='MyApp' classid='clsid:D27CDB6E-AE6D-11cf-96B8-444553540000' height='100%' width='100%'&gt;"); 
+ document.write("&lt;param name='movie' value='MyApp.swf'/&gt;"); 
+ document.write("&lt;embed name='MyApp' src='MyApp.swf' height='100%' width='100%'/&gt;"); 
+ document.write("&lt;/object&gt;");</pre>
+
+                  <p>The first line in the index.html
+page is called the Mark of the Web (MOTW). Adding the MOTW to your
+wrapper is optional. However, if you do not add the MOTW to your
+wrapper, your application might not open in the expected security
+zone within Internet Explorer. The following example MOTW forces Internet
+Explorer to open the page in the Internet zone:</p>
+
+                  <pre class="codeblock"> &lt;!-- saved from url=(0014)about:internet --&gt;</pre>
+
+                  <p>In
+general, add a MOTW when you are previewing pages locally before publishing
+them on a server. For more information about the MOTW, see <a href="https://msdn.microsoft.com/en-us/library/ms537628%28VS.85%29.aspx" target="_blank">https://msdn.microsoft.com/en-us/library/ms537628%28VS.85%29.aspx</a>.</p>
+
+                  <p>To
+support browsers that do not have scripting enabled, you can add
+a <samp class="codeph">&lt;noscript&gt;</samp> block to your simple wrapper.
+The tags in this block of code usually mirror the output of the <samp class="codeph">document.write()</samp> methods
+in the embedded JavaScript file. The following example adds the <samp class="codeph">&lt;noscript&gt;</samp> block:</p>
+
+                  <pre class="codeblock"> &lt;!-- index.html --&gt; 
+ &lt;!-- saved from url=(0014)about:internet --&gt; 
+ &lt;html&gt; 
+ 	&lt;body&gt; 
+ 		&lt;script src="mysource.js"&gt;&lt;/script&gt; 
+ 		&lt;noscript&gt; 
+ 			&lt;object id='MyApp' classid='clsid:D27CDB6E-AE6D-11cf-96B8-444553540000' 
+				height='100%' width='100%'&gt; 
+ 				&lt;param name='src' value='MyApp.swf'/&gt; 
+ 				&lt;embed name='MultipleButtons' src='MyApp.swf' height='100%' 
+					width='100%'/&gt; 
+ 			&lt;/object&gt; 
+ 		&lt;/noscript&gt; 
+ 	&lt;/body&gt; 
+ &lt;/html&gt;</pre>
+
+               </dd>
+
+            
+         </dl>
+
+         <p>This simple wrapper does not include any assurances that the
+client can run the application. If they do not have a minimum version
+of Flash Player, their attempt to run this application will fail
+and they might be prompted to upgrade. The upgrade experience is
+considerably better with Express Install. If the user's Player does
+not meet the minimum requirements, the new player is automatically installed
+for them. You add Express Install by editing your wrapper. For more information,
+see <a href="flx_wrapper_wr.html#WS2db454920e96a9e51e63e3d11c0bf69084-7b9e_verapache">Adding
+Express Install to a custom wrapper</a>.</p>
+
+         <p>With a generic wrapper, a user who clicks the Back and Forward
+buttons in their browser navigates the HTML pages in the browser's
+history and not the history of their interactions within the application.
+Deep linking lets users navigate their interactions with the application
+by using the Back and Forward buttons in their browser. You can
+add deep linking by editing your wrapper and deploying additional
+files with it. For more information, see <a href="flx_wrapper_wr.html#WS2db454920e96a9e51e63e3d11c0bf69084-7b9d_verapache">Adding
+deep linking to a custom wrapper</a>.</p>
+
+         <p>For more information about using the <samp class="codeph">&lt;object&gt;</samp> and <samp class="codeph">&lt;embed&gt;</samp> tags,
+see <a href="flx_wrapper_wr.html#WS2db454920e96a9e51e63e3d11c0bf69084-7f18_verapache">About the
+object and embed tags</a>.</p>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf69084-7b97_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7b97_verapache"><!-- --></a>
+         <h3 class="topictitle3">About customizing a wrapper</h3>
+
+         
+         <div>
+            <p>Use the following guidelines when you create a custom wrapper.</p>
+
+            <ul>
+               <li>
+                  <p>You can use the HTML template in the /templates/swfobject
+directory as a guide to adding new features to the wrapper. For
+information about the template, see <a href="flx_wrapper_wr.html#WS2db454920e96a9e51e63e3d11c0bf69084-7ba5_verapache">About
+the HTML template</a>.</p>
+
+               </li>
+
+               <li>
+                  <p>You must embed the SWF file and not the MXML file of an application
+built with Flex. Set the value of the <samp class="codeph">src</samp> property
+to <em>mxml_filename</em>
+                     <samp class="codeph">.swf</samp>.</p>
+
+                  <p>The following
+example defines the <samp class="codeph">src</samp> property of the <samp class="codeph">&lt;object&gt;</samp> tag
+for an MXML application called MyApp.mxml:</p>
+
+                  <pre class="codeblock"> &lt;param name='src' value='MyApp.swf'&gt;</pre>
+
+                  <p>The <samp class="codeph">&lt;embed&gt;</samp> tag
+uses the <samp class="codeph">src</samp> property to define the source of the
+SWF file:</p>
+
+                  <pre class="codeblock"> src='MyApp.mxml.swf'</pre>
+
+               </li>
+
+               <li>
+                  <p>Do not include periods or other special characters in the <samp class="codeph">id</samp> and <samp class="codeph">name</samp> properties
+of the <samp class="codeph">&lt;object&gt;</samp> and <samp class="codeph">&lt;embed&gt;</samp> tags.
+These tags identify the SWF object on the page, and you use them
+when you use the ExternalInterface API. This API lets Flex communicate
+with the wrapper, and vice versa. For more information about using
+the ExternalInterface API, see <a href="flx_passingarguments_pa.html#WS2db454920e96a9e51e63e3d11c0bf69084-7f17_verapache">Communicating
+with the wrapper</a>.</p>
+
+               </li>
+
+               <li>
+                  <p>Do not put the contents of the JavaScript file directly in
+the HTML page. This causes Internet Explorer to prompt the user
+before enabling Flash Player. If the client has "Disable Script
+Debugging (Internet Explorer)" unchecked in Internet Explorer's
+advanced settings, the browser still prompts the user to load the
+ActiveX plug-in before running it.</p>
+
+               </li>
+
+               <li>
+                  <p>If you use both the <samp class="codeph">&lt;object&gt;</samp> and the <samp class="codeph">&lt;embed&gt;</samp> tags
+in your custom wrapper, use identical values for each attribute
+to ensure consistent playback across browsers. For more information
+about the <samp class="codeph">&lt;object&gt;</samp> and the <samp class="codeph">&lt;embed&gt;</samp> tags,
+see <a href="flx_wrapper_wr.html#WS2db454920e96a9e51e63e3d11c0bf69084-7f18_verapache">About
+the object and embed tags</a>.</p>
+
+               </li>
+
+               <li>
+                  <p>To add support for deep linking, follow the instructions
+in <a href="flx_wrapper_wr.html#WS2db454920e96a9e51e63e3d11c0bf69084-7b9d_verapache">Adding
+deep linking to a custom wrapper</a>. </p>
+
+               </li>
+
+               <li>
+                  <p>To add support for Flash Player detection, follow the instructions
+in <a href="flx_wrapper_wr.html#WS2db454920e96a9e51e63e3d11c0bf69084-7b9e_verapache">Adding Express
+Install to a custom wrapper</a>.</p>
+
+               </li>
+
+            </ul>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf69084-7b9e_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7b9e_verapache"><!-- --></a>
+         <h3 class="topictitle3">Adding Express Install to a custom
+wrapper</h3>
+
+         
+         <div>
+            <div class="section" id="WS2db454920e96a9e51e63e3d11c0bf69084-7b9e_verapache__WS2db454920e96a9e51e63e3d11c0bf663fe-7ff1_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7b9e_verapache__WS2db454920e96a9e51e63e3d11c0bf663fe-7ff1_verapache"><!-- --></a>
+               <p>Express
+Install uses the existing Flash Player to upgrade users to the latest
+version of the Player when it is required for viewing content. Express
+Install requires that the user has Flash Player 6.0.65 or later
+installed on a Mac or Windows operating system. Express Install
+also requires the user to have JavaScript enabled in the browser.</p>
+
+               <p>If
+you write your own custom wrapper and want to use Express Install,
+you must add support for it manually. It's best that you use the
+Express Install functionality in the wrapper template at /templates/swfobject
+directory as a base. </p>
+
+               <p>Adding Express Install support from
+the wrapper template involves adding JavaScript to your main wrapper
+file, as well as deploying the swfobject.js file. In addition, you
+must deploy the playerProductInstall.swf file with your application. This
+file is located in the /templates/swfobject directory.</p>
+
+               <p>You
+can also use the Flash Player Detection Kit to add Express Install
+support to your custom wrapper.</p>
+
+            </div>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf69084-7b9d_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7b9d_verapache"><!-- --></a>
+         <h3 class="topictitle3">Adding deep linking to a custom
+wrapper</h3>
+
+         
+         <div>
+            <p>Support for deep linking, also
+known as history management. If you write your own wrappe you must
+add it manually or use the HTML template file as a base. </p>
+
+            <div class="p">To add deep linking support, you reference the history.js and
+history.css files in your wrapper. The following sample wrapper
+references these files in the /history subdirectory:<pre class="codeblock">&lt;!-- index.html --&gt; 
+&lt;!-- saved from url=(0014)about:internet --&gt; 
+&lt;html&gt; 
+&lt;body&gt; 
+	&lt;link rel="stylesheet" type="text/css" href="history/history.css" /&gt; 
+	&lt;script type="text/javascript" src="history/history.js"&gt;&lt;/script&gt; 
+	&lt;script src="mysource.js"&gt;&lt;/script&gt; 
+&lt;/body&gt; 
+&lt;/html&gt;</pre>
+
+            </div>
+
+            <p>The history.js file records actions for deep linking. The history.css
+file defines styles for the history files. To support deep linking
+in your application built with Flex, you must deploy the following
+files with your wrapper:</p>
+
+            <ul>
+               <li>
+                  <p>history.js</p>
+
+               </li>
+
+               <li>
+                  <p>historyFrame.html</p>
+
+               </li>
+
+               <li>
+                  <p>history.css</p>
+
+               </li>
+
+            </ul>
+
+            <p>If you do not add deep linking support to your wrapper, you cannot
+use the BrowserManager class in applications built with Flex.</p>
+
+         </div>
+
+         <div><div class="relinfo"><strong>Related information</strong><br/>
+<div><a href="flx_deep_linking_dl.html#WS2db454920e96a9e51e63e3d11c0bf69084-7bb5_verapache">Deep linking</a></div>
+</div>
+</div>
+      </div>
+
+   </div>
+
+   <div class="nested1" id="WS2db454920e96a9e51e63e3d11c0bf69084-7f18_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7f18_verapache"><!-- --></a>
+      <h2 class="topictitle2">About the object and embed tags</h2>
+
+      
+      <div>
+         <p>The <samp class="codeph">&lt;object&gt;</samp> and <samp class="codeph">&lt;embed&gt;</samp> tags
+embed SWF files in HTML. </p>
+
+         <p>It's best to use SWFObject 2 rather than the <samp class="codeph">&lt;object&gt;</samp> and <samp class="codeph">&lt;embed&gt;</samp> tags
+to embed your SWF file, but these tags are useful in some cases,
+such as if you want to create a custom wrapper or if there is a
+likelihood that your users will have JavaScript disabled in their
+browsers.</p>
+
+         <p>For browsers with scripting disabled, the default HTML template
+uses the <samp class="codeph">&lt;object&gt;</samp> and <samp class="codeph">&lt;embed&gt;</samp> tags
+to embed your application. These tags are children of the <samp class="codeph">&lt;noscript&gt;</samp> tag,
+which means that the browser executes them when scripting is disabled
+on the client. When you compile an application with the SDK, you
+must manually edit the template and set the values of these tags.</p>
+
+         <p>You can also use the <samp class="codeph">&lt;object&gt;</samp> and <samp class="codeph">&lt;embed&gt;</samp> tags
+tags in simple HTML wrappers. For more complex wrappers, or wrappers
+that support features such as Express Install, you should use the
+SWFObject 2 functionality as described in <a href="flx_wrapper_wr.html#WS2db454920e96a9e51e63e3d11c0bf69084-7b86_verapache">About
+SWFObject 2</a>.</p>
+
+         <p>The <samp class="codeph">&lt;object&gt;</samp> and <samp class="codeph">&lt;embed&gt;</samp> tags
+support a set of properties that add additional functionality to
+the wrapper. These properties let you change the appearance of the
+SWF file on the page or change some of its properties such as the
+title or language. If you want to customize your wrapper, you can
+add these properties to the wrapper. </p>
+
+         <p>The <samp class="codeph">&lt;object&gt;</samp> tag is supported by Internet
+Explorer 3.0 or later on Windows platforms or any browser that supports
+the use of the Flash ActiveX control. The <samp class="codeph">&lt;embed&gt;</samp> tag
+is supported by Netscape Navigator 2.0 or later, or browsers that support
+the use of the Netscape-compatible plug-in version of Flash Player.</p>
+
+         <p>When an ActiveX-enabled browser loads the HTML page, it reads
+the values set on the <samp class="codeph">&lt;object&gt;</samp> and ignores
+the <samp class="codeph">&lt;embed&gt;</samp> tag. When browsers using the
+Flash plug-in load the HTML page, they read the values set on the <samp class="codeph">&lt;embed&gt;</samp> tag
+and ignore the <samp class="codeph">&lt;object&gt;</samp> tag. Make sure that
+the properties for each tag are identical, unless you want different
+results depending on the user's browser.</p>
+
+         <p>The following are required attributes of the <samp class="codeph">&lt;object&gt;</samp> tag:</p>
+
+         <ul>
+            <li>
+               <p>
+                  <samp class="codeph">height</samp> 
+               </p>
+
+            </li>
+
+            <li>
+               <p>
+                  <samp class="codeph">width</samp> 
+               </p>
+
+            </li>
+
+            <li>
+               <p>
+                  <samp class="codeph">classid</samp> 
+               </p>
+
+            </li>
+
+         </ul>
+
+         <p>All other properties are optional and you set their values in
+separate, named <samp class="codeph">&lt;param&gt;</samp> tags. </p>
+
+         <p>Although the <samp class="codeph">movie</samp> property is technically an
+optional tag, without it, there is no reference to the SWF file
+you want the client to load. Therefore, your wrapper should always
+set the <samp class="codeph">movie</samp> parameter in the <samp class="codeph">&lt;object&gt;</samp> tag.</p>
+
+         <p>The following example shows the required properties as attributes
+of the <samp class="codeph">&lt;object&gt;</samp> tag, and two optional properties, <samp class="codeph">movie</samp> and <samp class="codeph">quality</samp>,
+as <samp class="codeph">&lt;param&gt;</samp> child tags:</p>
+
+         <pre class="codeblock"> &lt;object classid="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000" width="100" height="100"&gt; 
+ 	&lt;param name="movie" value="moviename.swf"&gt; 
+ 	&lt;param name="quality" value="high"&gt; 
+ &lt;/object&gt;</pre>
+
+         <p>For the <samp class="codeph">&lt;embed&gt;</samp> tag, all settings are
+attributes that appear between the angle brackets of the opening <samp class="codeph">&lt;embed&gt;</samp> tag.
+The <samp class="codeph">&lt;embed&gt;</samp> tag requires the <samp class="codeph">height</samp> and <samp class="codeph">width</samp> attributes.
+The <samp class="codeph">&lt;embed&gt;</samp> tag does not require a <samp class="codeph">classid</samp> attribute. As
+with the <samp class="codeph">movie</samp> parameter of the <samp class="codeph">&lt;object&gt;</samp> tag,
+the <samp class="codeph">src</samp> attribute of the <samp class="codeph">&lt;embed&gt;</samp> tag
+provides the reference to the application. Without it, there would be
+no SWF file, so you should consider it a required attribute.</p>
+
+         <p>The following
+example shows a simple <samp class="codeph">&lt;embed&gt;</samp> tag with the
+optional <samp class="codeph">quality</samp> attribute: </p>
+
+         <pre class="codeblock"> &lt;embed src="moviename.swf" width="100" height="100" quality="high"&gt; &lt;/embed&gt;</pre>
+
+         <p>To use both tags together, position the <samp class="codeph">&lt;embed&gt;</samp> tag
+just before the closing <samp class="codeph">&lt;/object&gt;</samp> tag, as
+the following example shows:</p>
+
+         <pre class="codeblock"> &lt;object classid="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000" width="100" height="100"&gt; 
+ 	&lt;param name="movie" value="moviename.swf"&gt; 
+ 	&lt;param name="quality" value="high"&gt; 
+ 	&lt;embed src="moviename.swf" width="100" height="100" quality="high"&gt;&lt;/embed&gt; 
+ &lt;/object&gt;</pre>
+
+         <p>When you define parameters for the <samp class="codeph">&lt;object&gt;</samp> tag,
+also add them as tag properties to the <samp class="codeph">&lt;embed&gt;</samp> tag
+so that the SWF file appears the same on the page regardless of
+the client's browser.</p>
+
+         <p>If you are using the included HTML wrapper template, you will
+need to replace tokens such as <samp class="codeph">${height}</samp> and <samp class="codeph">${width}</samp> with
+absolute values before deploying the wrapper. For more information,
+see <a href="flx_wrapper_wr.html#WS2db454920e96a9e51e63e3d11c0bf69084-7ba5_verapache">About
+the HTML template</a>.</p>
+
+         <p>Not all properties are supported by both the <samp class="codeph">&lt;object&gt;</samp> and
+the <samp class="codeph">&lt;embed&gt;</samp> tags. For example, the <samp class="codeph">id</samp> property
+is used only by the <samp class="codeph">&lt;object&gt;</samp> tag, just as
+the <samp class="codeph">name</samp> property is used only by the <samp class="codeph">&lt;embed&gt;</samp> tag.</p>
+
+         <p>In some cases, the <samp class="codeph">&lt;object&gt;</samp> and <samp class="codeph">&lt;embed&gt;</samp> tag
+properties duplicate properties that you can set on the <samp class="codeph">&lt;s:Application&gt;</samp> tag
+in the application source code. For example, you can set the <samp class="codeph">height</samp> and <samp class="codeph">width</samp> properties
+of the SWF file on the <samp class="codeph">&lt;object&gt;</samp> and <samp class="codeph">&lt;embed&gt;</samp> tags
+or you can set them on the <samp class="codeph">&lt;s:Application&gt;</samp> tag.</p>
+
+         <p>The following table describes the supported <samp class="codeph">&lt;object&gt;</samp> and <samp class="codeph">&lt;embed&gt;</samp> tag properties: </p>
+
+         
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" frame="border" border="1" rules="all">
+               
+               
+               
+               <thead align="left">
+                  <tr>
+                     <th class="cellrowborder" valign="top" width="NaN%" id="d939457e1919">
+                        <p>Property</p>
+
+                     </th>
+
+                     <th class="cellrowborder" valign="top" width="NaN%" id="d939457e1925">
+                        <p>Type</p>
+
+                     </th>
+
+                     <th class="cellrowborder" valign="top" width="NaN%" id="d939457e1931">
+                        <p>Description</p>
+
+                     </th>
+
+                  </tr>
+
+               </thead>
+
+               <tbody>
+                  <tr>
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d939457e1919 ">
+                        <div class="p">
+                           <pre class="codeblock">align</pre>
+
+                        </div>
+
+                     </td>
+
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d939457e1925 ">
+                        <p>String</p>
+
+                     </td>
+
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d939457e1931 ">
+                        <p>Specifies the position of the SWF file.</p>
+
+                        <p>The <samp class="codeph">align</samp> property
+supports the following values:</p>
+
+                        <div class="p">
+                           <ul>
+                              <li>
+                                 <p>
+                                    <samp class="codeph">bottom</samp>:
+Vertically aligns the bottom of the SWF file with the current baseline.
+This is typically the default value.</p>
+
+                              </li>
+
+                              <li>
+                                 <p>
+                                    <samp class="codeph">middle</samp>: Vertically aligns the middle of
+the SWF file with the current baseline. </p>
+
+                              </li>
+
+                              <li>
+                                 <p>
+                                    <samp class="codeph">top</samp>: Vertically aligns the top of the SWF
+file with the top of the current text line. </p>
+
+                              </li>
+
+                              <li>
+                                 <p>
+                                    <samp class="codeph">left</samp>: Horizontally aligns the SWF file to
+the left margin.</p>
+
+                              </li>
+
+                              <li>
+                                 <p>
+                                    <samp class="codeph">right</samp>: Horizontally aligns the SWF file
+to the right margin.</p>
+
+                              </li>
+
+                           </ul>
+
+                        </div>
+
+                     </td>
+
+                  </tr>
+
+                  <tr>
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d939457e1919 ">
+                        <div class="p">
+                           <pre class="codeblock">allowNetworking</pre>
+
+                        </div>
+
+                     </td>
+
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d939457e1925 ">
+                        <p>String</p>
+
+                     </td>
+
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d939457e1931 ">
+                        <p>Restricts communication between the HTML
+page and the SWF file. This property affects more APIs than the <samp class="codeph">allowScriptAccess</samp> property.</p>
+
+                        <p>The <samp class="codeph">allowNetworking</samp> property
+supports the following values:</p>
+
+                        <div class="p">
+                           <ul>
+                              <li>
+                                 <p>
+                                    <samp class="codeph">all</samp>:
+No networking restrictions. Flash Player behaves normally. This
+is typically the default.</p>
+
+                              </li>
+
+                              <li>
+                                 <p>
+                                    <samp class="codeph">internal</samp>: SWF files cannot call browser
+navigation or browser interaction APIs (such as the <samp class="codeph">ExternalInterface.call()</samp>, <samp class="codeph">fscommand()</samp>,
+and <samp class="codeph">navigateToURL()</samp> methods), but can call other
+networking APIs.</p>
+
+                              </li>
+
+                              <li>
+                                 <p>
+                                    <samp class="codeph">none</samp>: SWF files cannot call networking or
+SWF-to-SWF file communication APIs. In addition to the APIs restricted
+by the <samp class="codeph">internal</samp> value, these include other methods
+such as <samp class="codeph">URLLoader.load()</samp>, <samp class="codeph">Security.loadPolicyFile()</samp>,
+and <samp class="codeph">SharedObject.getLocal()</samp>.</p>
+
+                              </li>
+
+                           </ul>
+
+                        </div>
+
+                        <p>For
+more information, see <a href="https://help.adobe.com/en_US/as3/dev/index.html" target="_blank">ActionScript 3.0 Developer's Guide</a>.</p>
+
+                     </td>
+
+                  </tr>
+
+                  <tr>
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d939457e1919 ">
+                        <div class="p">
+                           <pre class="codeblock">allowScriptAccess</pre>
+
+                        </div>
+
+                     </td>
+
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d939457e1925 ">
+                        <p>String</p>
+
+                     </td>
+
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d939457e1931 ">
+                        <p>Controls the ability to perform outbound
+scripting from within the SWF file.</p>
+
+                        <p>The <samp class="codeph">allowScriptAccess</samp> property
+can prevent a SWF file hosted from one domain from accessing a script
+in an HTML page that comes from another domain.</p>
+
+                        <p>Valid values
+are as follows:</p>
+
+                        <div class="p">
+                           <ul>
+                              <li>
+                                 <p>
+                                    <samp class="codeph">always</samp>: Outbound
+scripting always succeeds.</p>
+
+                              </li>
+
+                              <li>
+                                 <p>
+                                    <samp class="codeph">samedomain:</samp> Outbound scripting succeds only
+if the application is from the same domain as the HTML page.</p>
+
+                              </li>
+
+                              <li>
+                                 <p>
+                                    <samp class="codeph">never</samp>: Outbound scripting always fails.
+Using this value is deprecated and not recommended, and should not
+be necessary if you do not serve untrusted SWF files from your own
+domain. If you do need to serve untrusted SWF files, it's best that
+you create a distinct subdomain and place all untrusted content
+there. </p>
+
+                              </li>
+
+                           </ul>
+
+                        </div>
+
+                        <p>This property affects the following
+operations:</p>
+
+                        <div class="p">
+                           <ul>
+                              <li>
+                                 <p>
+                                    <samp class="codeph">ExternalInterface.call()</samp>
+                                 </p>
+
+                              </li>
+
+                              <li>
+                                 <p>
+                                    <samp class="codeph">fscommand()</samp>
+                                 </p>
+
+                              </li>
+
+                              <li>
+                                 <p>
+                                    <samp class="codeph">navigateToURL()</samp>, when used with <samp class="codeph">javascript</samp> or
+another scripting scheme</p>
+
+                              </li>
+
+                              <li>
+                                 <p>
+                                    <samp class="codeph">navigateToURL()</samp>, when used with window name
+of <samp class="codeph">_self</samp>, <samp class="codeph">_parent</samp>, or <samp class="codeph">_top</samp>.</p>
+
+                              </li>
+
+                           </ul>
+
+                        </div>
+
+                        <p>For
+more information, see <a href="https://help.adobe.com/en_US/as3/dev/index.html" target="_blank">ActionScript 3.0 Developer's Guide</a>.</p>
+
+                     </td>
+
+                  </tr>
+
+                  <tr>
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d939457e1919 ">
+                        <div class="p">
+                           <pre class="codeblock">archive</pre>
+
+                        </div>
+
+                     </td>
+
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d939457e1925 ">
+                        <p>String</p>
+
+                     </td>
+
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d939457e1931 ">
+                        <p>Specifies a space-separated list of URIs
+for archives containing resources used by the application, which
+may include the resources specified by the <samp class="codeph">classid</samp> and <samp class="codeph">data</samp> properties.</p>
+
+                        <p>Preloading
+archives can result in reduced load times for applications. Archives
+specified as relative URIs are interpreted relative to the <samp class="codeph">codebase</samp> property.</p>
+
+                     </td>
+
+                  </tr>
+
+                  <tr>
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d939457e1919 ">
+                        <div class="p">
+                           <pre class="codeblock">base</pre>
+
+                        </div>
+
+                     </td>
+
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d939457e1925 ">
+                        <p>String</p>
+
+                     </td>
+
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d939457e1931 ">
+                        <p>Specifies the base directory or URL used
+to resolve relative path statements in ActionScript.</p>
+
+                     </td>
+
+                  </tr>
+
+                  <tr>
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d939457e1919 ">
+                        <div class="p">
+                           <pre class="codeblock">bgcolor</pre>
+
+                        </div>
+
+                     </td>
+
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d939457e1925 ">
+                        <p>String</p>
+
+                     </td>
+
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d939457e1931 ">
+                        <p>Specifies the background color of the application.</p>
+
+                     </td>
+
+                  </tr>
+
+                  <tr>
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d939457e1919 ">
+                        <div class="p">
+                           <pre class="codeblock">border</pre>
+
+                        </div>
+
+                     </td>
+
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d939457e1925 ">
+                        <p>int</p>
+
+                     </td>
+
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d939457e1931 ">
+                        <p>Specifies the width of the SWF file's border,
+in pixels. The default value for this property depends on the user
+agent.</p>
+
+                     </td>
+
+                  </tr>
+
+                  <tr>
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d939457e1919 ">
+                        <div class="p">
+                           <pre class="codeblock">classid</pre>
+
+                        </div>
+
+                     </td>
+
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d939457e1925 ">
+                        <p>String</p>
+
+                     </td>
+
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d939457e1931 ">
+                        <p>Defines the <samp class="codeph">classid</samp> of
+Flash Player. This identifies the ActiveX control for the browser.
+Internet Explorer 3.0 or later on Windows 9x, Windows 2000, Windows
+NT, Windows ME, and Windows XP prompt the user with a dialog box
+asking if they would like to auto-install Flash Player if it's not already
+installed. This process can occur without the user having to restart
+the browser.</p>
+
+                        <p>This property is used for the <samp class="codeph">&lt;object&gt;</samp> tag
+only.</p>
+
+                        <p>For the <samp class="codeph">&lt;object&gt;</samp> tag, you set
+the value of this property as an attribute of the <samp class="codeph">&lt;object&gt;</samp> tag
+and not as a <samp class="codeph">&lt;param&gt;</samp> tag.</p>
+
+                     </td>
+
+                  </tr>
+
+                  <tr>
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d939457e1919 ">
+                        <div class="p">
+                           <pre class="codeblock"><samp class="codeph">codetype</samp></pre>
+
+                        </div>
+
+                     </td>
+
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d939457e1925 ">
+                        <p>String</p>
+
+                     </td>
+
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d939457e1931 ">
+                        <p>Defines
+the content type of data expected when downloading the application
+specified by the <samp class="codeph">classid</samp> property</p>
+
+                        <p>The <samp class="codeph">codetype</samp> property
+is optional but recommended when the <samp class="codeph">classid</samp> property
+is specified; it lets the browser avoid loading unsupported content
+types.</p>
+
+                        <p>The default value of the <samp class="codeph">codetype</samp> property
+is the value of the <samp class="codeph">type</samp> property.</p>
+
+                     </td>
+
+                  </tr>
+
+                  <tr>
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d939457e1919 ">
+                        <div class="p">
+                           <pre class="codeblock">data</pre>
+
+                        </div>
+
+                     </td>
+
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d939457e1925 ">
+                        <p>String</p>
+
+                     </td>
+
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d939457e1931 ">
+                        <p>Specifies the location of the application's
+data; for example, instance image data for objects that define images.</p>
+
+                     </td>
+
+                  </tr>
+
+                  <tr>
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d939457e1919 ">
+                        <div class="p">
+                           <pre class="codeblock">declare</pre>
+
+                        </div>
+
+                     </td>
+
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d939457e1925 ">
+                        <p>Boolean</p>
+
+                     </td>
+
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d939457e1931 ">
+                        <p>Makes the current SWF file's definition
+a declaration only. The SWF file must be instantiated by a subsequent
+object definition referring to this declaration.</p>
+
+                     </td>
+
+                  </tr>
+
+                  <tr>
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d939457e1919 ">
+                        <div class="p">
+                           <pre class="codeblock">devicefont</pre>
+
+                        </div>
+
+                     </td>
+
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d939457e1925 ">
+                        <p>Boolean</p>
+
+                     </td>
+
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d939457e1931 ">
+                        <p>Specifies whether static text objects for
+which the <samp class="codeph">deviceFont</samp> option is not selected are
+drawn using a device font anyway, if the needed fonts are available
+from the operating system.</p>
+
+                     </td>
+
+                  </tr>
+
+                  <tr>
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d939457e1919 ">
+                        <div class="p">
+                           <pre class="codeblock">dir</pre>
+
+                        </div>
+
+                     </td>
+
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d939457e1925 ">
+                        <p>String</p>
+
+                     </td>
+
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d939457e1931 ">
+                        <p>Specifies the base direction of text in
+an element's content and attribute values. It also specifies the directionality
+of tables. Valid values are <samp class="codeph">LTR</samp> (left-to-right
+text or table) and <samp class="codeph">RTL</samp> (right-to-left text or table).</p>
+
+                     </td>
+
+                  </tr>
+
+                  <tr>
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d939457e1919 ">
+                        <div class="p">
+                           <pre class="codeblock">flashVars</pre>
+
+                        </div>
+
+                     </td>
+
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d939457e1925 ">
+                        <p>String</p>
+
+                     </td>
+
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d939457e1931 ">
+                        <p>Sends variables to the application. The
+format is a set of name-value pairs, each separated by an ampersand
+(&amp;). </p>
+
+                        <p>Most browsers support string sizes of up to 64 KB
+(65535 bytes) in length.</p>
+
+                        <p>The default value of this property
+is typically an empty string.</p>
+
+                        <p>The value of this property is
+URL encoded prior to being sent to the application.</p>
+
+                        <p>For more information on using <samp class="codeph">flashVars</samp> to
+pass variables to applications built with Flex, see <a href="flx_passingarguments_pa.html#WS2db454920e96a9e51e63e3d11c0bf69084-7f17_verapache">Communicating
+with the wrapper</a>.</p>
+
+                     </td>
+
+                  </tr>
+
+                  <tr>
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d939457e1919 ">
+                        <div class="p">
+                           <pre class="codeblock">height</pre>
+
+                        </div>
+
+                     </td>
+
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d939457e1925 ">
+                        <p>int</p>
+
+                     </td>
+
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d939457e1931 ">
+                        <p>The height of the application SWF file.</p>
+
+                        <p>For
+the <samp class="codeph">&lt;object&gt;</samp> tag, you set the value of this
+property as an attribute of the <samp class="codeph">&lt;object&gt;</samp> tag
+and not as a <samp class="codeph">&lt;param&gt;</samp> child tag.</p>
+
+                     </td>
+
+                  </tr>
+
+                  <tr>
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d939457e1919 ">
+                        <div class="p">
+                           <pre class="codeblock">hspace</pre>
+
+                        </div>
+
+                     </td>
+
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d939457e1925 ">
+                        <p>int</p>
+
+                     </td>
+
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d939457e1931 ">
+                        <p>Specifies the amount of white space inserted
+to the left and right of the SWF file. The default value is typically
+not specified, but is generally a small, nonzero length.</p>
+
+                     </td>
+
+                  </tr>
+
+                  <tr>
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d939457e1919 ">
+                        <div class="p">
+                           <pre class="codeblock">id</pre>
+
+                        </div>
+
+                     </td>
+
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d939457e1925 ">
+                        <p>String</p>
+
+                     </td>
+
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d939457e1931 ">
+                        <p>Identifies the SWF file to the host environment
+(a web browser, for example) so that it can be referenced by using
+a scripting language such as VBScript or JavaScript. </p>
+
+                        <p>The <samp class="codeph">id</samp> property
+is only used with the <samp class="codeph">&lt;object&gt;</samp> tag. It is
+equivalent to the <samp class="codeph">name</samp> property used with the <samp class="codeph">&lt;embed&gt;</samp> tag.</p>
+
+                     </td>
+
+                  </tr>
+
+                  <tr>
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d939457e1919 ">
+                        <div class="p">
+                           <pre class="codeblock">lang</pre>
+
+                        </div>
+
+                     </td>
+
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d939457e1925 ">
+                        <p>String</p>
+
+                     </td>
+
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d939457e1931 ">
+                        <p>Specifies the base language of an element's
+property values and text content.</p>
+
+                        <p>The default value is typically <samp class="codeph">unknown</samp>.
+The browser can use language information specified using the <samp class="codeph">lang</samp> property
+to control rendering in a variety of ways.</p>
+
+                     </td>
+
+                  </tr>
+
+                  <tr>
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d939457e1919 ">
+                        <div class="p">
+                           <pre class="codeblock">menu</pre>
+
+                        </div>
+
+                     </td>
+
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d939457e1925 ">
+                        <p>Boolean</p>
+
+                     </td>
+
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d939457e1931 ">
+                        <p>Changes the appearance of the menu that
+appears when users right-click over an application in Flash Player.
+Set to <samp class="codeph">true</samp> to display the entire menu. Set to <samp class="codeph">false</samp> to
+display only the About and Settings options on the menu.</p>
+
+                        <p>The
+default value is typically <samp class="codeph">true</samp>.</p>
+
+                     </td>
+
+                  </tr>
+
+                  <tr>
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d939457e1919 ">
+                        <div class="p">
+                           <pre class="codeblock">movie</pre>
+
+                        </div>
+
+                     </td>
+
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d939457e1925 ">
+                        <p>String</p>
+
+                     </td>
+
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d939457e1931 ">
+                        <p>Specifies the location of the SWF file.</p>
+
+                        <p>The <samp class="codeph">movie</samp> property
+is only used with the <samp class="codeph">&lt;object&gt;</samp> tag. It is
+equivalent to the <samp class="codeph">src</samp> property used with the <samp class="codeph">&lt;embed&gt;</samp> tag.</p>
+
+                     </td>
+
+                  </tr>
+
+                  <tr>
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d939457e1919 ">
+                        <div class="p">
+                           <pre class="codeblock">name</pre>
+
+                        </div>
+
+                     </td>
+
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d939457e1925 ">
+                        <p>String</p>
+
+                     </td>
+
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d939457e1931 ">
+                        <p>Identifies the SWF file to the host environment
+(a web browser, typically) so that it can be referenced by using
+a scripting language.</p>
+
+                        <p>The <samp class="codeph">name</samp> property is
+only used with the <samp class="codeph">&lt;embed&gt;</samp> tag. It is equivalent
+to the <samp class="codeph">id</samp> property used with the <samp class="codeph">&lt;object&gt;</samp> tag.</p>
+
+                     </td>
+
+                  </tr>
+
+                  <tr>
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d939457e1919 ">
+                        <div class="p">
+                           <pre class="codeblock">quality</pre>
+
+                        </div>
+
+                     </td>
+
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d939457e1925 ">
+                        <p>String</p>
+
+                     </td>
+
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d939457e1931 ">
+                        <p>Defines the quality of playback in Flash
+Player. Valid values of quality are <samp class="codeph">low</samp>, <samp class="codeph">medium</samp>, <samp class="codeph">high</samp>, <samp class="codeph">autolow</samp>, <samp class="codeph">autohigh</samp>,
+and<samp class="codeph"> best</samp>. The default value is typically <samp class="codeph">best</samp>.</p>
+
+                        <p>The <samp class="codeph">low</samp> setting
+favors playback speed over appearance and never uses anti-aliasing. </p>
+
+                        <p>The <samp class="codeph">autolow</samp> setting
+emphasizes speed at first but improves appearance whenever possible.
+Playback begins with anti-aliasing turned off. If Flash Player detects
+that the processor can handle it, anti-aliasing is turned on.</p>
+
+                        <p>The <samp class="codeph">autohigh</samp> setting
+emphasizes playback speed and appearance equally at first, but sacrifices appearance
+for playback speed if necessary. Playback begins with anti-aliasing
+turned on. If the actual frame rate drops below the specified frame
+rate, anti-aliasing is turned off to improve playback speed. Use
+this setting to emulate the View &gt; Antialias setting in Flash. </p>
+
+                        <p>The <samp class="codeph">medium</samp> setting
+applies some anti-aliasing and does not smooth bitmaps. </p>
+
+                        <p>The <samp class="codeph">high</samp> setting
+favors appearance over playback speed and always applies anti-aliasing. </p>
+
+                        <p>The <samp class="codeph">best</samp> setting
+provides the best display quality and does not consider playback
+speed. All output is anti-aliased and all bitmaps are smoothed. </p>
+
+                     </td>
+
+                  </tr>
+
+                  <tr>
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d939457e1919 ">
+                        <div class="p">
+                           <pre class="codeblock">salign</pre>
+
+                        </div>
+
+                     </td>
+
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d939457e1925 ">
+                        <p>String</p>
+
+                     </td>
+
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d939457e1931 ">
+                        <p>Positions
+the SWF file within the browser. Valid values are <samp class="codeph">L</samp>, <samp class="codeph">T</samp>, <samp class="codeph">R</samp>, <samp class="codeph">B</samp>, <samp class="codeph">TL</samp>, <samp class="codeph">TR</samp>, <samp class="codeph">BL</samp>,
+and <samp class="codeph">BR</samp>.</p>
+
+                        <p>
+                           <samp class="codeph">L</samp>, <samp class="codeph">R</samp>, <samp class="codeph">T</samp>,
+and <samp class="codeph">B</samp> align the SWF file along the left, right,
+top, or bottom edge, respectively, of the browser window and crop
+the remaining three sides as needed. </p>
+
+                        <p>
+                           <samp class="codeph">TL</samp> and <samp class="codeph">TR</samp> align
+the SWF file to the top-left and top-right corner, respectively,
+of the browser window and crop the bottom and remaining right or
+left side as needed. </p>
+
+                        <p>
+                           <samp class="codeph">BL</samp> and <samp class="codeph">BR</samp> align
+the SWF file to the bottom-left and bottom-right corner, respectively,
+of the browser window and crop the top and remaining right or left
+side as needed. </p>
+
+                     </td>
+
+                  </tr>
+
+                  <tr>
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d939457e1919 ">
+                        <div class="p">
+                           <pre class="codeblock">scale</pre>
+
+                        </div>
+
+                     </td>
+
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d939457e1925 ">
+                        <p>String</p>
+
+                     </td>
+
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d939457e1931 ">
+                        <p>Defines
+how the browser fills the screen with the SWF file. The default
+value is typically <samp class="codeph">showall</samp>. Valid values of the <samp class="codeph">scale</samp> property
+are <samp class="codeph">showall</samp>, <samp class="codeph">noborder</samp>, and <samp class="codeph">exactfit</samp>.</p>
+
+                        <p>Set
+to <samp class="codeph">showall</samp> to make the entire SWF file visible
+in the specified area without distortion, while maintaining the
+original aspect ratio of the SWF file. Borders may appear on two
+sides of the SWF file. </p>
+
+                        <p>Set to <samp class="codeph">noborder</samp> to
+scale the SWF file to fill the specified area, without distortion
+but possibly with some cropping, while maintaining the original
+aspect ratio of the SWF file.</p>
+
+                        <p>Set to <samp class="codeph">exactfit</samp> to make the
+entire SWF file visible in the specified area without trying to
+preserve the original aspect ratio. Distortion may occur.</p>
+
+                     </td>
+
+                  </tr>
+
+                  <tr>
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d939457e1919 ">
+                        <div class="p">
+                           <pre class="codeblock">src</pre>
+
+                        </div>
+
+                     </td>
+
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d939457e1925 ">
+                        <p>String</p>
+
+                     </td>
+
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d939457e1931 ">
+                        <p>Specifies the location of the SWF file.</p>
+
+                        <p>The <samp class="codeph">src</samp> property
+is only used with the <samp class="codeph">&lt;embed&gt;</samp> tag. It is
+equivalent to the <samp class="codeph">movie</samp> property used with the <samp class="codeph">&lt;object&gt;</samp> tag.</p>
+
+                     </td>
+
+                  </tr>
+
+                  <tr>
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d939457e1919 ">
+                        <div class="p">
+                           <pre class="codeblock">standby</pre>
+
+                        </div>
+
+                     </td>
+
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d939457e1925 ">
+                        <p>String</p>
+
+                     </td>
+
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d939457e1931 ">
+                        <p>Defines a message that the browser displays
+while loading the object's implementation and data.</p>
+
+                     </td>
+
+                  </tr>
+
+                  <tr>
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d939457e1919 ">
+                        <div class="p">
+                           <pre class="codeblock">style</pre>
+
+                        </div>
+
+                     </td>
+
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d939457e1925 ">
+                        <p>String</p>
+
+                     </td>
+
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d939457e1931 ">
+                        <p>Specifies style information for the SWF
+file.</p>
+
+                        <p>The syntax of the value of the <samp class="codeph">style</samp> property
+is determined by the default style sheet language. In CSS, property
+declarations have the form "name:value" and are separated by a semicolon.</p>
+
+                        <p>Styles
+set with this property do not affect components or the Application
+container in the application. Rather, they apply to the SWF file
+as it appears on the HTML page.</p>
+
+                     </td>
+
+                  </tr>
+
+                  <tr>
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d939457e1919 ">
+                        <p>
+                           <samp class="codeph">supportembed</samp>
+                        </p>
+
+                     </td>
+
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d939457e1925 ">
+                        <p>Boolean</p>
+
+                     </td>
+
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d939457e1931 ">
+                        <p>Determines whether the Netscape-specific <samp class="codeph">&lt;embed&gt;</samp> tag
+is supported. The <samp class="codeph">supportembed</samp> property is optional,
+and the default value is typically <samp class="codeph">true</samp>.</p>
+
+                        <p>Set
+to <samp class="codeph">false</samp> to prevent the <samp class="codeph">&lt;embed&gt;</samp> tag
+from being read by the browser.</p>
+
+                     </td>
+
+                  </tr>
+
+                  <tr>
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d939457e1919 ">
+                        <p>
+                           <samp class="codeph">tabindex</samp>
+                        </p>
+
+                     </td>
+
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d939457e1925 ">
+                        <p>int</p>
+
+                     </td>
+
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d939457e1931 ">
+                        <p>Specifies the position of the SWF file in
+the tabbing order for the current document. This value must be a
+number between 0 and 32767. User agents should ignore leading zeros.</p>
+
+                     </td>
+
+                  </tr>
+
+                  <tr>
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d939457e1919 ">
+                        <div class="p">
+                           <pre class="codeblock">title</pre>
+
+                        </div>
+
+                     </td>
+
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d939457e1925 ">
+                        <p>String</p>
+
+                     </td>
+
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d939457e1931 ">
+                        <p>Displays information about the SWF file. </p>
+
+                        <p>Values
+of the <samp class="codeph">title</samp> property can be rendered by browsers
+or other user agents in different ways. For example, some browsers
+display the title as a ToolTip. Audio user agents might speak the
+title information in a similar context.</p>
+
+                     </td>
+
+                  </tr>
+
+                  <tr>
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d939457e1919 ">
+                        <div class="p">
+                           <pre class="codeblock">type</pre>
+
+                        </div>
+
+                     </td>
+
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d939457e1925 ">
+                        <p>String</p>
+
+                     </td>
+
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d939457e1931 ">
+                        <p>Specifies the content type for the data
+specified by the <samp class="codeph">data</samp> property.</p>
+
+                        <p>The <samp class="codeph">type</samp> property
+is optional but recommended when data is specified; it prevents
+the browser from loading unsupported content types. </p>
+
+                        <p>If the
+value of this property differs from the HTTP Content-Type returned
+by the server, the HTTP Content-Type takes precedence.</p>
+
+                     </td>
+
+                  </tr>
+
+                  <tr>
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d939457e1919 ">
+                        <div class="p">
+                           <pre class="codeblock">usemap</pre>
+
+                        </div>
+
+                     </td>
+
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d939457e1925 ">
+                        <p>String</p>
+
+                     </td>
+
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d939457e1931 ">
+                        <p>Associates an image map with the SWF file.
+The image map is defined by a <samp class="codeph">map</samp> element. The
+value of <samp class="codeph">usemap</samp> must match the value of the <samp class="codeph">name</samp> attribute
+of the associated <samp class="codeph">map</samp> element.</p>
+
+                     </td>
+
+                  </tr>
+
+                  <tr>
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d939457e1919 ">
+                        <p>
+                           <samp class="codeph">vspace</samp>
+                        </p>
+
+                     </td>
+
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d939457e1925 ">
+                        <p>int</p>
+
+                     </td>
+
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d939457e1931 ">
+                        <p>Specifies the amount of white space inserted
+above and below the SWF file. The default value is typically not
+specified, but is generally a small, nonzero length.</p>
+
+                     </td>
+
+                  </tr>
+
+                  <tr>
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d939457e1919 ">
+                        <p>
+                           <samp class="codeph">width</samp>
+                        </p>
+
+                     </td>
+
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d939457e1925 ">
+                        <p>int</p>
+
+                     </td>
+
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d939457e1931 ">
+                        <p>The width of the application SWF file.</p>
+
+                        <p>For
+the <samp class="codeph">&lt;object&gt;</samp> tag, you set the value of this
+property as an attribute of the <samp class="codeph">&lt;object&gt;</samp> tag
+and not as a <samp class="codeph">&lt;param&gt;</samp> tag.</p>
+
+                     </td>
+
+                  </tr>
+
+                  <tr>
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d939457e1919 ">
+                        <p>
+                           <samp class="codeph">wmode</samp>
+                        </p>
+
+                     </td>
+
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d939457e1925 ">
+                        <p>String</p>
+
+                     </td>
+
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d939457e1931 ">
+                        <p>Sets the Window Mode property of the SWF
+file for transparency, layering, and positioning in the browser.
+Valid values of <samp class="codeph">wmode</samp> are <samp class="codeph">window</samp>, <samp class="codeph">opaque</samp>,
+and <samp class="codeph">transparent</samp>.</p>
+
+                        <p>Set to <samp class="codeph">window</samp> to
+play the SWF in its own rectangular window on a web page. </p>
+
+                        <p>Set
+to <samp class="codeph">opaque</samp> to hide everything on the page behind
+it.</p>
+
+                        <p>Set to <samp class="codeph">transparent</samp> so that the background
+of the HTML page shows through all transparent portions of the SWF
+file. This can slow animation performance.</p>
+
+                        <p>To make sections
+of your SWF file transparent, you must set the <samp class="codeph">alpha</samp> property
+to 0. To make your application's background transparent, set the <samp class="codeph">backgroundAlpha</samp> property
+on the <samp class="codeph">&lt;fx:Application&gt;</samp> tag to 0.</p>
+
+                        <p>The <samp class="codeph">wmode</samp> property
+is not supported in all browsers and platforms.</p>
+
+                     </td>
+
+                  </tr>
+
+               </tbody>
+
+            </table>
+</div>
+
+         <p>The <samp class="codeph">&lt;object&gt;</samp> and <samp class="codeph">&lt;embed&gt;</samp> tags
+can also take additional properties that are not supported by applications
+built with Flex. These unsupported properties are listed in <a href="flx_wrapper_wr.html#WS2db454920e96a9e51e63e3d11c0bf69084-7b8b_verapache">Unsupported
+Flash Player properties</a>.</p>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf69084-7b8b_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7b8b_verapache"><!-- --></a>
+         <h3 class="topictitle3">Unsupported Flash Player properties</h3>
+
+         
+         <div>
+            <p>Some
+optional Flash Player properties do not apply to applications built
+with Flex. These are properties that involve movie frames and looping.
+The following properties have no effect when used with Flex:</p>
+
+            <ul>
+               <li>
+                  <p>
+                     <samp class="codeph">loop</samp> 
+                  </p>
+
+               </li>
+
+               <li>
+                  <p>
+                     <samp class="codeph">play</samp> 
+                  </p>
+
+               </li>
+
+            </ul>
+
+         </div>
+
+      </div>
+
+<div>
+  <p><strong>Navigation</strong></p>
+  <p><a href="index.html">Using Flex</a> &raquo; <a href="flx_p9_deploying_apps.html">Deploying applications</a></p>
+</div>
+
+         <p>Adobe, Adobe ColdFusion, Adobe Flash and Adobe Flash Player are either registered trademarks or trademarks of Adobe Systems Incorporated in the United States and/or other countries and are used by permission from Adobe.  No other license to the Adobe trademarks are granted.</p>
+   </div>
+
+
+</body>
+</html>

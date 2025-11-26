@@ -1,0 +1,1649 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Licensed to the Apache Software Foundation (ASF) under one or more
+  contributor license agreements.  See the NOTICE file distributed with
+  this work for additional information regarding copyright ownership.
+  The ASF licenses this file to You under the Apache License, Version 2.0
+  (the "License"); you may not use this file except in compliance with
+  the License.  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+-->
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en-us" xml:lang="en-us">
+<head>
+<meta name="DC.Type" content="topic"/>
+<meta name="DC.Title" content="Custom effects"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="WS2db454920e96a9e51e63e3d11c0bf69084-7fc8_verapache"/>
+<title>Custom effects</title>
+</head>
+<body id="WS2db454920e96a9e51e63e3d11c0bf69084-7fc8_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7fc8_verapache"><!-- --></a>
+
+   <div>
+      <p>Flex supplies a number of standard
+effects that you can use in your application. However, you also
+can define custom effects for your specific application needs. </p>
+
+      <p>For information on the standard effects, see <a href="flx_behaviors_be.html#WS2db454920e96a9e51e63e3d11c0bf69084-7fec_verapache">Introduction
+to effects</a>.</p>
+
+   </div>
+
+   <div class="nested1" id="WS2db454920e96a9e51e63e3d11c0bf68e80-7fee_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf68e80-7fee_verapache"><!-- --></a>
+      <h2 class="topictitle2">About creating a custom effect</h2>
+
+      
+      <div>
+         <p>Flex
+implements effects by using an architecture in which each effect
+is represented by two classes: a factory class and an instance class.
+Therefore, to implement a custom effect, you create two classes:
+the factory class and the instance class. </p>
+
+         <p>You create a factory class by creating a subclass of the <a href="https://flex.apache.org/asdoc/mx/effects/Effect.html" target="_blank">mx.effects.Effect</a> class,
+or by creating a subclass of one of the subclasses of the mx.effects.Effect
+class. You create an instance class by creating a subclass of the <a href="https://flex.apache.org/asdoc/mx/effects/EffectInstance.html" target="_blank">mx.effects.EffectInstance</a> class,
+or a subclass of one of the subclasses of the mx.effects.EffectInstance
+class.</p>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf68e80-7ffb_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf68e80-7ffb_verapache"><!-- --></a>
+         <h3 class="topictitle3">Defining factory and instance classes</h3>
+
+         
+         <div>
+            <p>To define a custom effect, you create two
+classes: the factory class and the instance class:</p>
+
+            <dl>
+               
+                  <dt class="dlterm">Factory class</dt>
+
+                  <dd>
+                     <p>The
+factory class creates an object of the instance class to perform the
+effect on the target. You create a factory class instance in your
+application, and configure it with the necessary properties to control
+the effect, such as the zoom size or effect duration, as the following
+example shows:</p>
+
+                     <pre class="codeblock">&lt;fx:Declarations&gt; 
+	 &lt;!-- Define factory class. --&gt; 
+	&lt;s:Resize id="myResizeEffect" target="{myImage}" 
+		widthBy="10" heightBy="10"/&gt; 
+&lt;/fx:Declarations&gt; 
+ 
+&lt;mx:Image id="myImage" source="@Embed(source='assets/logo.jpg')"/&gt; 
+&lt;s:Button label="Resize Me" click="myResizeEffect.end();myResizeEffect.play();"/&gt;</pre>
+
+                     <p>By
+convention, the name of a factory class is the name of the effect,
+such as Zoom or Fade. </p>
+
+                  </dd>
+
+               
+               
+                  <dt class="dlterm">Instance class</dt>
+
+                  <dd>
+                     <p>The instance class implements the effect logic. When you
+invoke an effect, the factory class creates an object of the instance
+class to perform the effect on the target. When the effect ends,
+Flex destroys the instance object. If the effect has multiple target
+components, the factory class creates multiple instance objects,
+one per target.</p>
+
+                     <p>By convention, the name of an instance class
+is the name of the effect with the suffix <em>Instance</em>, such
+as ZoomInstance or FadeInstance.</p>
+
+                  </dd>
+
+               
+            </dl>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf68e80-7ffc_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf68e80-7ffc_verapache"><!-- --></a>
+         <h3 class="topictitle3">About the effect base classes</h3>
+
+         
+         <div>
+            <p>You define effects by creating a subclass from the effects
+class hierarchy. Typically, you create a subclass from one of the
+following classes:</p>
+
+            <ul>
+               <li>
+                  <p>
+                     <a href="https://flex.apache.org/asdoc/mx/effects/Effect.html" target="_blank">mx.effects.Effect</a> Create
+a subclass from this class for simple effects that do not require
+an effect to play over a period of time. For example, the Pause effect
+inserts a delay between two consecutive effects. You can also define
+a simple sound effect that plays an MP3 file.</p>
+
+               </li>
+
+               <li>
+                  <p>
+                     <a href="https://flex.apache.org/asdoc/spark/effects/Animate.html" target="_blank">spark.effects.Animate</a> Create
+a subclass from this class to define an effect that animates a set
+of properties between values over a period of time. For example,
+the Spark AnimateColor effect is a subclass of the Animate class
+that modifies a color property of its target over a specified duration. </p>
+
+               </li>
+
+               <li>
+                  <p>
+                     <a href="https://flex.apache.org/asdoc/mx/effects/TweenEffect.html" target="_blank">mx.effects.TweenEffect</a> Create
+a subclass from this class to define an effect that plays over a
+period of time, such as an animation. For example, the MX Resize
+effect is a subclass of the TweenEffect class that modifies the
+size of its target over a specified duration. </p>
+
+               </li>
+
+            </ul>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf68e80-7ffe_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf68e80-7ffe_verapache"><!-- --></a>
+         <h3 class="topictitle3">About implementing your effects
+classes</h3>
+
+         
+         <div>
+            <p>You must override several methods and properties in your
+custom effect classes, and define any new properties and methods
+that are required to implement the effect. You can optionally override
+additional properties and methods based on the type of effect that
+you create.</p>
+
+            <p>The following table lists the methods and properties that you
+define in a factory class: </p>
+
+            
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" frame="border" border="1" rules="all">
+                  
+                  
+                  <thead align="left">
+                     <tr>
+                        <th class="cellrowborder" valign="top" width="NaN%" id="d160950e202">
+                           <p>Factory method/property</p>
+
+                        </th>
+
+                        <th class="cellrowborder" valign="top" width="NaN%" id="d160950e208">
+                           <p>Description</p>
+
+                        </th>
+
+                     </tr>
+
+                  </thead>
+
+                  <tbody>
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d160950e202 ">
+                           <div class="p">
+                              <pre class="codeblock">constructor</pre>
+
+                           </div>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d160950e208 ">
+                           <p>(Required) The class constructor. You typically
+call the <samp class="codeph">super()</samp> method to invoke the superclass
+constructor to initialize the inherited items from the superclasses. </p>
+
+                           <p>Your
+constructor must take at least one optional argument, of type Object.
+This argument specifies the target component of the effect. </p>
+
+                        </td>
+
+                     </tr>
+
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d160950e202 ">
+                           <div class="p">
+                              <pre class="codeblock">Effect.initInstance() </pre>
+
+                           </div>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d160950e208 ">
+                           <p>(Required) Copies properties of the factory
+class to the instance class. Flex calls this protected method from
+the <samp class="codeph">Effect.createInstance()</samp> method; you do not
+have to call it yourself.</p>
+
+                           <p>In your override, you must call
+the <samp class="codeph">super.initInstance()</samp> method. </p>
+
+                        </td>
+
+                     </tr>
+
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d160950e202 ">
+                           <div class="p">
+                              <pre class="codeblock">Effect.getAffectedProperties() </pre>
+
+                           </div>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d160950e208 ">
+                           <p>(Required) Returns an Array of Strings,
+where each String is the name of a property of the target object
+that is changed by this effect. If the effect does not modify any
+properties, it should return an empty Array. </p>
+
+                        </td>
+
+                     </tr>
+
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d160950e202 ">
+                           <div class="p">
+                              <pre class="codeblock">Effect.instanceClass</pre>
+
+                           </div>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d160950e208 ">
+                           <p>(Required) Contains an object of type Class
+that specifies the name of the instance class for this effect class. </p>
+
+                           <p>All
+subclasses of the Effect class must set this property, typically
+in the constructor. </p>
+
+                        </td>
+
+                     </tr>
+
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d160950e202 ">
+                           <div class="p">
+                              <pre class="codeblock">Effect.effectEndHandler() </pre>
+
+                           </div>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d160950e208 ">
+                           <p>(Optional) Called when an effect instance
+finishes playing. If you override this method, ensure that you call
+the <samp class="codeph">super()</samp> method.</p>
+
+                        </td>
+
+                     </tr>
+
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d160950e202 ">
+                           <div class="p">
+                              <pre class="codeblock">Effect.effectStartHandler()</pre>
+
+                           </div>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d160950e208 ">
+                           <p>(Optional) Called when the effect instance
+starts playing. If you override this method, ensure that you call
+the <samp class="codeph">super()</samp> method.</p>
+
+                        </td>
+
+                     </tr>
+
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d160950e202 ">
+                           <p>Additional methods and properties</p>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d160950e208 ">
+                           <p>(Optional) Define any additional methods
+and properties that the user requires to configure the effect. </p>
+
+                        </td>
+
+                     </tr>
+
+                  </tbody>
+
+               </table>
+</div>
+
+            <p>The following table lists the methods and properties that you
+define in an instance class: </p>
+
+            
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" frame="border" border="1" rules="all">
+                  
+                  
+                  <thead align="left">
+                     <tr>
+                        <th class="cellrowborder" valign="top" width="NaN%" id="d160950e384">
+                           <p>Instance method/property</p>
+
+                        </th>
+
+                        <th class="cellrowborder" valign="top" width="NaN%" id="d160950e390">
+                           <p>Description</p>
+
+                        </th>
+
+                     </tr>
+
+                  </thead>
+
+                  <tbody>
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d160950e384 ">
+                           <p>constructor</p>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d160950e390 ">
+                           <p>(Required) The class constructor. You typically
+call the <samp class="codeph">super()</samp> method to invoke the superclass
+constructor to initialize the inherited items from the superclasses. </p>
+
+                        </td>
+
+                     </tr>
+
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d160950e384 ">
+                           <div class="p">
+                              <pre class="codeblock">EffectInstance.play() </pre>
+
+                           </div>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d160950e390 ">
+                           <p>(Required) Invokes the effect. You must
+call <samp class="codeph">super.play()</samp> from your override.</p>
+
+                        </td>
+
+                     </tr>
+
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d160950e384 ">
+                           <div class="p">
+                              <pre class="codeblock">EffectInstance.end() </pre>
+
+                           </div>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d160950e390 ">
+                           <p>(Optional) Interrupts an effect that is
+currently playing, and jumps immediately to the end of the effect.</p>
+
+                        </td>
+
+                     </tr>
+
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d160950e384 ">
+                           <div class="p">
+                              <pre class="codeblock">EffectInstance.initEffect() </pre>
+
+                           </div>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d160950e390 ">
+                           <p>(Optional) Called if the effect was triggered
+by the EffectManager. You rarely have to implement this method.
+For more information, see <a href="flx_createeffects_cfx.html#WS2db454920e96a9e51e63e3d11c0bf69084-79a4_verapache">Overriding
+the initEffect() method</a>.</p>
+
+                        </td>
+
+                     </tr>
+
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d160950e384 ">
+                           <div class="p">
+                              <pre class="codeblock">TweenEffectInstance.onTweenUpdate() </pre>
+
+                           </div>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d160950e390 ">
+                           <p>(Required) Use when you create a subclass
+from TweenEffectInstance. A callback method called at regular intervals
+to implement a tween effect. For more information, see <a href="flx_createeffects_cfx.html#WS2db454920e96a9e51e63e3d11c0bf69084-79a8_verapache">Example:
+Creating a tween effect</a>.</p>
+
+                        </td>
+
+                     </tr>
+
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d160950e384 ">
+                           <div class="p">
+                              <pre class="codeblock">TweenEffectInstance.onTweenEnd() </pre>
+
+                           </div>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d160950e390 ">
+                           <p>(Optional) Use when you create a subclass
+from TweenEffectInstance. A callback method called when the tween
+effect ends. You must call <samp class="codeph">super.onTweenEnd()</samp> from
+your override. For more information, see <a href="flx_createeffects_cfx.html#WS2db454920e96a9e51e63e3d11c0bf69084-79a8_verapache">Example:
+Creating a tween effect</a>.</p>
+
+                        </td>
+
+                     </tr>
+
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d160950e384 ">
+                           <p>Additional methods and properties</p>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d160950e390 ">
+                           <p>(Optional) Define any additional methods
+and properties. These typically correspond to the public properties
+and methods from the factory class, and any additional properties
+and methods that you require to implement the effect.</p>
+
+                        </td>
+
+                     </tr>
+
+                  </tbody>
+
+               </table>
+</div>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf68e80-7ffd_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf68e80-7ffd_verapache"><!-- --></a>
+         <h3 class="topictitle3">Example: Defining a simple effect</h3>
+
+         
+         <div>
+            <p>To define a simple custom effect, you create a factory
+class from the <a href="https://flex.apache.org/asdoc/mx/effects/Effect.html" target="_blank">Effect</a> base class,
+and the instance class from the mx.effects.EffectInstance class.
+The following example shows an effect class that uses a <a href="https://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/flash/media/Sound.html" target="_blank">Sound</a> object
+to play an embedded MP3 file when a user action occurs. This example
+is a simplified version of the <a href="https://flex.apache.org/asdoc/mx/effects/SoundEffect.html" target="_blank">SoundEffect</a> class
+that ships with Flex.</p>
+
+            <pre class="codeblock">package myEffects 
+{ 
+   // createcomps_effects/myEffects/MySound.as 
+   import mx.effects.Effect; 
+   import mx.effects.EffectInstance; 
+   import mx.effects.IEffectInstance; 
+ 
+   public class MySound extends Effect 
+   { 
+       // Define constructor with optional argument. 
+       public function MySound(targetObj:Object = null) { 
+           // Call base class constructor. 
+           super(targetObj); 
+           
+           // Set instanceClass to the name of the effect instance class. 
+           instanceClass= MySoundInstance;         
+       } 
+      
+       // This effect modifies no properties, so your 
+       // override of getAffectedProperties() method 
+       // returns an empty array. 
+       override public function getAffectedProperties():Array { 
+           return []; 
+       } 
+        
+       // Override initInstance() method. 
+       override protected function initInstance(inst:IEffectInstance):void { 
+           super.initInstance(inst); 
+       }   
+   } 
+}</pre>
+
+            <p>The <samp class="codeph">package</samp> statement in your class specifies
+that you should deploy it in a directory called myEffects. In this
+example, you place it in the subdirectory of the directory that
+contains your Flex application. Therefore, the namespace definition
+in your Flex application is <samp class="codeph">xmlns:MyComp="myEffects.*"</samp>.
+For more information on deployment, see <a href="flx_compiledeploy_cd.html#WS2db454920e96a9e51e63e3d11c0bf69084-79bd_verapache">Component
+compilation</a>. </p>
+
+            <p>To define your instance class, you
+create a subclass from the mx.effects.EffectInstance class. In the
+class definition, you must define a constructor and <samp class="codeph">play()</samp> methods,
+and you can optionally define an <samp class="codeph">end()</samp> method to
+stop the effect.</p>
+
+            <pre class="codeblock">package myEffects 
+{ 
+    // createcomps_effects/myEffects/MySoundInstance.as 
+    import mx.effects.EffectInstance; 
+    import flash.media.SoundChannel; 
+    import flash.media.Sound; 
+ 
+    public class MySoundInstance extends EffectInstance 
+    { 
+ 
+        // Embed the MP3 file. 
+        [Embed(source="sample.mp3")] 
+        [Bindable] 
+        private var sndCls:Class; 
+            
+        // Define local variables. 
+        private var snd:Sound = new sndCls() as Sound; 
+        private var sndChannel:SoundChannel; 
+            
+        // Define constructor. 
+        public function MySoundInstance(targetObj:Object) { 
+            super(targetObj); 
+        } 
+ 
+        // Override play() method. 
+        // Notice that the MP3 file is embedded in the class. 
+        override public function play():void { 
+            super.play(); 
+            sndChannel=snd.play(); 
+        } 
+    
+        // Override end() method class to stop the MP3. 
+        override public function end():void { 
+            sndChannel.stop(); 
+            super.end(); 
+        } 
+    } 
+}</pre>
+
+            <p>To use your custom effect class in an MXML file, you insert a
+tag with the same name as the factory class in the MXML file. You
+reference the custom effect the same way that you reference a standard
+effect.</p>
+
+            <p>The following example shows an application that uses the MySound
+effect:</p>
+
+            <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- createcomps_effects/MainSoundEffect.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:MyComp="myEffects.*"&gt; 
+    &lt;fx:Declarations&gt; 
+        &lt;MyComp:MySound id="mySoundEffect" target="{myLabel}" /&gt; 
+    &lt;/fx:Declarations&gt; 
+ 
+    &lt;!-- Use the SoundEffect effect with a mouseOver trigger. --&gt; 
+    &lt;s:Label id="myLabel" 
+        text="play MP3"  
+        rollOver="mySoundEffect.end();mySoundEffect.play();"/&gt; 
+&lt;/s:Application&gt;</pre>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf68e80-7ff9_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf68e80-7ff9_verapache"><!-- --></a>
+         <h3 class="topictitle3">Example: Passing parameters to
+effects</h3>
+
+         
+         <div>
+            <p>To make your effects more robust, you often design them
+to let the user pass parameters to them. The example in this section
+modifies the sound effect from the previous section to take a parameter
+that specifies the MP3 file to play:</p>
+
+            <pre class="codeblock">package myEffects 
+{ 
+    // createcomps_effects/myEffects/MySoundParam.as 
+    import mx.effects.Effect; 
+    import mx.effects.EffectInstance; 
+    import mx.effects.IEffectInstance; 
+ 
+    public class MySoundParam extends Effect 
+    { 
+    
+       // Define a variable for the MP3 URL 
+       // and give it a default value. 
+       public var soundMP3:String= 
+           "http://localhost:8100/flex/assets/default.mp3"; 
+    
+       // Define constructor with optional argument. 
+       public function MySoundParam(targetObj:Object = null) { 
+           // Call base class constructor. 
+           super(targetObj); 
+ 
+           // Set instanceClass to the name of the effect instance class. 
+          instanceClass= MySoundParamInstance;            
+       } 
+ 
+       // Override getAffectedProperties() method to return an empty array. 
+       override public function getAffectedProperties():Array { 
+           return []; 
+       } 
+    
+       // Override initInstance() method. 
+       override protected function initInstance(inst:IEffectInstance):void { 
+           super.initInstance(inst); 
+           // initialize the corresponding parameter in the instance class. 
+           MySoundParamInstance(inst).soundMP3 = soundMP3;     
+       } 
+   } 
+}</pre>
+
+            <p>In the MySoundParam class, you define a variable named <samp class="codeph">soundMP3</samp> that enables
+the user of the effect to specify the URL of the MP3 file to play.
+You also modify your override of the <samp class="codeph">initInstance()</samp> method
+to pass the value of the <samp class="codeph">soundMP3</samp> variable to the
+instance class.</p>
+
+            <p>Notice that the <a href="https://flex.apache.org/asdoc/mx/effects/Effect.html#getAffectedProperties()" target="_blank">getAffectedProperties()</a> method
+still returns an empty Array. That is because <samp class="codeph">getAffectedProperties()</samp> returns
+the list of properties of the effect target that are modified by
+the effect, not the properties of the effect itself. </p>
+
+            <p>In your instance class, you define a property named soundMP3,
+corresponding to the property with the same name in the factory
+class. Then, you use it to create the URLRequest object to play
+the sound, as the following example shows:</p>
+
+            <pre class="codeblock">package myEffects 
+{ 
+    // createcomps_effects/myEffects/MySoundParamInstance.as 
+    import mx.effects.EffectInstance; 
+    import flash.media.Sound; 
+    import flash.media.SoundChannel; 
+    import flash.net.URLRequest; 
+ 
+    public class MySoundParamInstance extends EffectInstance 
+    { 
+ 
+        // Define local variables. 
+        private var s:Sound; 
+        private var sndChannel:SoundChannel; 
+        private var u:URLRequest; 
+ 
+        // Define a variable for the MP3 URL. 
+        public var soundMP3:String; 
+ 
+        // Define constructor. 
+        public function MySoundParamInstance(targetObj:Object) { 
+            super(targetObj); 
+        } 
+ 
+        // Override play() method. 
+        override public function play():void     { 
+            // You must call super.play() from within your override. 
+            super.play(); 
+            s = new Sound(); 
+            // Use the new parameter to specify the URL. 
+            u = new URLRequest(soundMP3); 
+            s.load(u); 
+            sndChannel=s.play(); 
+        } 
+    
+        // Override end() method to stop the MP3. 
+        override public function end():void  { 
+            sndChannel.stop(); 
+            super.end(); 
+        } 
+    } 
+}</pre>
+
+            <p>You can now pass the URL of an MP3 to the effect, as the following
+example shows:</p>
+
+            <pre class="noswf">&lt;?xml version="1.0"?&gt; 
+&lt;!-- createcomps_effects/MainSoundParam.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:MyComps="myEffects.*"&gt; 
+    &lt;fx:Declarations&gt; 
+        &lt;MyComps:MySoundParam id="mySoundEffect" 
+            soundMP3="http://localhost:8100/flex/assets/sample.mp3"/&gt; 
+    &lt;/fx:Declarations&gt; 
+ 
+    &lt;!-- Use the SoundEffect effect with a mouseOver trigger. --&gt; 
+    &lt;mx:Label id="myLabel" 
+        text="play MP3" 
+        rollOver="mySoundEffect.end();mySoundEffect.play();"/&gt; 
+&lt;/s:Application&gt;</pre>
+
+         </div>
+
+      </div>
+
+   </div>
+
+   <div class="nested1" id="WS2db454920e96a9e51e63e3d11c0bf68e80-7ffa_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf68e80-7ffa_verapache"><!-- --></a>
+      <h2 class="topictitle2">About MX tween effects</h2>
+
+      
+      <div>
+         <p>Most
+MX effects are implemented by using the tweening mechanism, where
+a <em>tween</em> defines a transition performed on a target object
+over a period of time. That transition could be a change in size,
+such as the <a href="https://flex.apache.org/asdoc/mx/effects/Zoom.html" target="_blank">Zoom</a> or <a href="https://flex.apache.org/asdoc/mx/effects/Resize.html" target="_blank">Resize</a> effects perform;
+a change in visibility, such as the Fade or Dissolve effects perform;
+or other types of transitions. </p>
+
+         <p>You use the following
+classes to implement a tween effect:</p>
+
+         <ul>
+            <li>
+               <p>
+                  <a href="https://flex.apache.org/asdoc/mx/effects/Tween.html" target="_blank">mx.effects.Tween</a> A
+class used to implement tween effects. A Tween object accepts a
+start value, an end value, and an optional easing function. When
+you define tween effect classes, you create an instance of the Tween
+class in your override of the <samp class="codeph">Effect.play()</samp> method. </p>
+
+               <p>The
+Tween object invokes the <samp class="codeph">mx.effects.TweenEffect.onTweenUpdate()</samp> callback
+method on a regular interval, passing the callback method an interpolated
+value between the start and end values. Typically, the callback
+method updates some property of the target component, causing that
+component's property to animate over time. For example, the Move
+effect modifies the <samp class="codeph">x</samp> and <samp class="codeph">y</samp> properties
+of the target component for the duration of the effect to show an animated
+movement.</p>
+
+               <p>When the effect ends, the Tween object invokes the <samp class="codeph">mx.effects.TweenEffect.onTweenEnd()</samp> callback
+method. This method performs any final processing before the effect
+terminates. You must call <samp class="codeph">super.onTweenEnd()</samp> from
+your override.</p>
+
+            </li>
+
+            <li>
+               <p>
+                  <a href="https://flex.apache.org/asdoc/mx/effects/TweenEffect.html" target="_blank">mx.effects.TweenEffect</a> The
+base factory class for all tween effects. This class encapsulates
+methods and properties that are common among all Tween-based effects. </p>
+
+            </li>
+
+            <li>
+               <p>
+                  <a href="https://flex.apache.org/asdoc/mx/effects/effectClasses/TweenEffectInstance.html" target="_blank">mx.effects.effectClasses.TweenEffectInstance</a> The
+instance class for all tween effects. </p>
+
+               <p>When you define effects
+based on the TweenEffect class, you must override the <samp class="codeph">TweenEffectInstance.onTweenUpdate</samp>()
+method, and optionally override the <samp class="codeph">TweenEffectInstance.onTweenEnd</samp>()
+method. </p>
+
+            </li>
+
+         </ul>
+
+         <p>The following example creates a tween effect. However, Flex supplies
+the AnimateProperty class that you can use to create a tween effect
+for a single property of the target component. For more information,
+see <a href="flx_behaviors_be.html#WS2db454920e96a9e51e63e3d11c0bf69084-7fec_verapache">Introduction
+to effects</a>.</p>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf69084-79a8_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-79a8_verapache"><!-- --></a>
+         <h3 class="topictitle3">Example: Creating a tween effect</h3>
+
+         
+         <div>
+            <p>In this example, you create a tween effect that rotates
+a component in a circle. This example implements a simplified version
+of the Rotate effect. The rotation is controlled by two parameters
+that are passed to the effect: <samp class="codeph">angleFrom</samp> and <samp class="codeph">angleTo</samp>:</p>
+
+            <pre class="codeblock">package myEffects 
+{ 
+   // createcomps_effects/myEffects/Rotation.as 
+   import mx.effects.TweenEffect; 
+   import mx.effects.EffectInstance; 
+   import mx.effects.IEffectInstance; 
+ 
+   public class Rotation extends TweenEffect 
+   { 
+       // Define parameters for the effect. 
+       public var angleFrom:Number = 0; 
+       public var angleTo:Number = 360; 
+  
+       // Define constructor with optional argument. 
+       public function Rotation(targetObj:* = null) { 
+           super(targetObj); 
+           instanceClass= RotationInstance;            
+       } 
+ 
+       // Override getAffectedProperties() method to return "rotation". 
+       override public function getAffectedProperties():Array { 
+           return ["rotation"]; 
+       } 
+    
+       // Override initInstance() method. 
+       override protected function initInstance(inst:IEffectInstance):void { 
+           super.initInstance(inst); 
+           RotationInstance(inst).angleFrom = angleFrom; 
+           RotationInstance(inst).angleTo = angleTo; 
+       } 
+   } 
+}</pre>
+
+            <p>In this example, the effect works by modifying the <samp class="codeph">rotation</samp> property
+of the target component. Therefore, your override of the <samp class="codeph">getAffectedProperties()</samp> method
+returns an array that contains a single element.</p>
+
+            <p>You derive your instance class from the TweenEffectInstance class,
+and override the <samp class="codeph">play()</samp>, <samp class="codeph">onTweenUpdate()</samp>,
+and <samp class="codeph">onTweenEnd()</samp> methods, as the following example
+shows: </p>
+
+            <pre class="codeblock">package myEffects 
+{ 
+    // createcomps_effects/myEffects/RotationInstance.as 
+    import mx.effects.effectClasses.TweenEffectInstance; 
+    import mx.effects.Tween; 
+ 
+    public class RotationInstance extends TweenEffectInstance 
+    { 
+        // Define parameters for the effect. 
+        public var angleFrom:Number; 
+        public var angleTo:Number; 
+  
+        public function RotationInstance(targetObj:*) { 
+            super(targetObj); 
+        } 
+  
+        // Override play() method class. 
+        override public function play():void { 
+            // All classes must call super.play(). 
+            super.play(); 
+            // Create a Tween object. The tween begins playing immediately. 
+            var tween:Tween = 
+                createTween(this, angleFrom, angleTo, duration);  
+        } 
+ 
+        // Override onTweenUpdate() method. 
+        override public function onTweenUpdate(val:Object):void { 
+            target.rotation = val; 
+        } 
+  
+        // Override onTweenEnd() method. 
+        override public function onTweenEnd(val:Object):void { 
+            // All classes that implement onTweenEnd() 
+            // must call    super.onTweenEnd(). 
+            super.onTweenEnd(val); 
+        } 
+    } 
+}</pre>
+
+            <p>In this example, the Tween object invokes the <samp class="codeph">onTweenUpdate()</samp> callback method
+on a regular interval, passing it values between <samp class="codeph">angleFrom</samp> and <samp class="codeph">angleTo</samp>.
+At the end of the effect, the Tween object calls the <samp class="codeph">onTweenUpdate()</samp> callback
+method with a value of <samp class="codeph">angleTo</samp>. By invoking the <samp class="codeph">onTweenUpdate()</samp> callback
+method at regular intervals throughout the duration of the effect,
+the target component displays a smooth animation as it rotates.</p>
+
+            <p>You use your new effect in an MXML application, as the following
+example shows:</p>
+
+            <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- createcomps_effects/MainRotation.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:MyComp="myEffects.*" 
+    height="450"&gt; 
+    &lt;fx:Declarations&gt; 
+        &lt;MyComp:Rotation id="Rotate90" 
+            angleFrom="0" angleTo="360" 
+            duration="1000" 
+            target="{myImage}"/&gt; 
+    &lt;/fx:Declarations&gt; 
+ 
+    &lt;mx:Image id="myImage" 
+        x="250" y="200" 
+        source="@Embed(source='../assets/myRotationImage.jpg')" 
+        mouseDown="Rotate90.end();Rotate90.play();"/&gt; 
+&lt;/s:Application&gt;</pre>
+
+            <p>In this example, you use the effect to rotate an image when the
+user clicks it.</p>
+
+         </div>
+
+      </div>
+
+   </div>
+
+   <div class="nested1" id="WS2db454920e96a9e51e63e3d11c0bf68e80-7ff6_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf68e80-7ff6_verapache"><!-- --></a>
+      <h2 class="topictitle2">Writing an effect for a transition</h2>
+
+      
+      <div>
+         <p>Transitions define how a change of view
+state appears on the screen. You define a transition by using a
+combination of the Flex effect classes. For more information on
+transitions, see <a href="flx_transitions_tr.html#WS2db454920e96a9e51e63e3d11c0bf69084-7f6a_verapache">Transitions</a>. </p>
+
+         <p>You can define your own custom effects for use in transitions.
+To do so, you have to account for the effect being used in a transition
+when you override the <a href="https://flex.apache.org/asdoc/mx/effects/EffectInstance.html#play()" target="_blank">EffectInstance.play()</a> method.
+The <samp class="codeph">EffectInstance.play()</samp> method must be able to
+determine default values for effect properties when the effect is
+used in a transition. </p>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf68e80-7ff3_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf68e80-7ff3_verapache"><!-- --></a>
+         <h3 class="topictitle3">Defining the default values for
+a transition effect</h3>
+
+         
+         <div>
+            <p>Like any effect, an effect in a transition has properties
+that you use to configure it. For example, most effects have properties
+that define starting and ending information for the target component,
+such as the <samp class="codeph">xFrom</samp>, <samp class="codeph">yFrom</samp>, <samp class="codeph">xTo</samp>,
+and <samp class="codeph">yTo</samp> properties of the <a href="https://flex.apache.org/asdoc/mx/effects/Move.html" target="_blank">Move</a> effect. </p>
+
+            <p>Flex uses the following rules to determine the start and end
+values of effect properties when you use the effect in a transition: </p>
+
+            <ol>
+               <li>
+                  <p>If the effect defines the values of any properties, it
+uses the properties in the transition, as the following example
+shows:</p>
+
+                  <pre class="codeblock"> &lt;mx:Transition fromState="*" toState="*"&gt; 
+ 	&lt;mx:Sequence id="t1" targets="{[p1,p2,p3]}"&gt;			 
+ 		<strong>&lt;mx:Blur duration="100" </strong> 
+ 			<strong>blurXFrom="0.0" blurXTo="10.0" blurYFrom="0.0" blurYTo="10.0"/&gt;</strong> 
+ 	 &lt;mx:Parallel&gt; 
+ 			&lt;mx:Move duration="400"/&gt; 
+ 			&lt;mx:Resize duration="400"/&gt; 
+ 		&lt;/mx:Parallel&gt;	 
+ 	<strong> &lt;mx:Blur duration="100" </strong> 
+ 			<strong>blurXFrom="10.0" blurXTo="0.0" blurYFrom="10.0" blurYTo="0.0"/&gt;</strong>			 
+ 	&lt;/mx:Sequence&gt; 
+ &lt;/mx:Transition&gt;</pre>
+
+                  <p>In this example, the two Blur
+filters define the properties of the effect.</p>
+
+               </li>
+
+               <li>
+                  <p>If the effect does not define the start values of the effect,
+the effect determines the values from the <a href="https://flex.apache.org/asdoc/mx/effects/EffectInstance.html#propertyChanges" target="_blank">EffectInstance.propertyChanges</a> property
+passed to the effect instance. Flex sets the <samp class="codeph">propertyChanges</samp> property
+by using information from the current settings of the component,
+as defined by the current view state. For more information on the <samp class="codeph">propertyChanges</samp> property,
+see <a href="flx_createeffects_cfx.html#WS2db454920e96a9e51e63e3d11c0bf69084-799f_verapache">How
+Flex initializes the propertyChanges property</a>.</p>
+
+                  <p>In the
+example in step 1, notice that the Move and Resize effects do not
+define start values. Therefore, Flex determines the start values
+from the current size and position of the effect targets in the
+current view state, and passes that information to each effect instance
+by using the <samp class="codeph">propertyChanges</samp> property.</p>
+
+               </li>
+
+               <li>
+                  <p>If the effect does not define the end values of the effect,
+the effect determines the values from the <samp class="codeph">Effectinstance.propertyChanges</samp> property passed
+to the effect instance. Flex sets the <samp class="codeph">propertyChanges</samp> property
+by using information about the component, as defined by the destination
+view state. For more information on the <samp class="codeph">propertyChanges</samp> property,
+see <a href="flx_createeffects_cfx.html#WS2db454920e96a9e51e63e3d11c0bf69084-799f_verapache">How Flex
+initializes the propertyChanges property</a>.</p>
+
+                  <p>In the example
+in rule 1, Flex determines the end values of the Move and Resize
+effects from the size and position of the effect targets in the
+destination view state. In some cases, the destination view state
+defines those values. If the destination view state does not define
+the values, Flex determines them from the setting of the base view
+state, and passes that information to each effect instance by using
+the <samp class="codeph">propertyChanges</samp> property. </p>
+
+               </li>
+
+               <li>
+                  <p>If there are no explicit values, and Flex cannot determine
+values from the current or destination view states, the effect uses
+its default property values. </p>
+
+               </li>
+
+            </ol>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf68e80-7ff2_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf68e80-7ff2_verapache"><!-- --></a>
+         <h3 class="topictitle3">Using the propertyChanges property</h3>
+
+         
+         <div>
+            <p>The <a href="https://flex.apache.org/asdoc/mx/effects/EffectInstance.html#propertyChanges" target="_blank">EffectInstance.propertyChanges</a> property
+contains a PropertyChanges object. A PropertyChanges object contains
+the properties described in the following table:</p>
+
+            
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" frame="border" border="1" rules="all">
+                  
+                  
+                  <thead align="left">
+                     <tr>
+                        <th class="cellrowborder" valign="top" width="NaN%" id="d160950e1055">
+                           <p>Property</p>
+
+                        </th>
+
+                        <th class="cellrowborder" valign="top" width="NaN%" id="d160950e1061">
+                           <p>Description</p>
+
+                        </th>
+
+                     </tr>
+
+                  </thead>
+
+                  <tbody>
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d160950e1055 ">
+                           <div class="p">
+                              <pre class="codeblock">target</pre>
+
+                           </div>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d160950e1061 ">
+                           <p>A target component of the effect. The <samp class="codeph">end</samp> and <samp class="codeph">start</samp> properties
+of the PropertyChanges class define how the target component is
+modified by the change to the view state. </p>
+
+                        </td>
+
+                     </tr>
+
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d160950e1055 ">
+                           <div class="p">
+                              <pre class="codeblock">start</pre>
+
+                           </div>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d160950e1061 ">
+                           <p>An object that contains the starting properties
+of the <samp class="codeph">target</samp> component, as defined by the current
+view state. For example, for a <samp class="codeph">target</samp> component
+that is moved and resized by a change to the view state, the <samp class="codeph">start</samp> property
+contains the starting position and size of the component, as the
+following example shows:</p>
+
+                           <div class="p">
+                              <pre class="codeblock">{x:00, y:00, width:100, height:100}</pre>
+
+                           </div>
+
+                        </td>
+
+                     </tr>
+
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d160950e1055 ">
+                           <div class="p">
+                              <pre class="codeblock">end</pre>
+
+                           </div>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d160950e1061 ">
+                           <p>An object that contains the ending properties
+of the <samp class="codeph">target</samp> component, as defined by the destination
+view state. For example, for a <samp class="codeph">target</samp> component
+that is moved and resized by a change to the view state, the <samp class="codeph">end</samp> property
+contains the ending position and size of the component, as the following
+example shows:</p>
+
+                           <div class="p">
+                              <pre class="codeblock">{x:100, y:100, width:200, height:200}</pre>
+
+                           </div>
+
+                        </td>
+
+                     </tr>
+
+                  </tbody>
+
+               </table>
+</div>
+
+            <p>In the body of the <samp class="codeph">Effectinstance.play()</samp> method,
+you can examine the information in the <samp class="codeph">propertyChanges</samp> property
+to configure the effect.</p>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf69084-799f_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-799f_verapache"><!-- --></a>
+         <h3 class="topictitle3">How Flex initializes the propertyChanges
+property</h3>
+
+         
+         <div>
+            <p>Before you can use the <a href="https://flex.apache.org/asdoc/mx/effects/EffectInstance.html#propertyChanges" target="_blank">EffectInstance.propertyChanges</a> property
+in your effect instance, it has to be properly initialized. When
+you change the view state, Flex initializes <samp class="codeph">propertyChanges.start</samp> and <samp class="codeph">propertyChanges.end</samp> separately. </p>
+
+            <p>The following steps describe the actions that occur when you
+change view states. Notice that Flex initializes <samp class="codeph">propertyChanges.start</samp> as
+part of step 4, and initializes <samp class="codeph">propertyChanges.end</samp> as
+part of step 7.</p>
+
+            <ol>
+               <li>
+                  <p>You set the <samp class="codeph">currentState</samp> property to
+the destination view state.</p>
+
+               </li>
+
+               <li>
+                  <p>Flex dispatches the <samp class="codeph">currentStateChanging</samp> event.</p>
+
+               </li>
+
+               <li>
+                  <p>Flex examines the list of transitions to determine the one
+that matches the change of view state.</p>
+
+               </li>
+
+               <li>
+                  <p>Flex calls the <samp class="codeph">Effect.captureStartValues()</samp> method
+to initialize <samp class="codeph">propertyChanges.start</samp> for all effect
+instances. </p>
+
+                  <p>You can also call <samp class="codeph">Effect.captureStartValues()</samp> to
+initialize an effect instance used outside of a transition.</p>
+
+               </li>
+
+               <li>
+                  <p>Flex applies the destination view state to the application.</p>
+
+               </li>
+
+               <li>
+                  <p>Flex dispatches the <samp class="codeph">currentStateChange</samp> event.</p>
+
+               </li>
+
+               <li>
+                  <p>Flex plays the effects defined in the transition. </p>
+
+                  <p>As
+part of playing the effect, Flex invokes the factory class play()
+method and the <samp class="codeph">Effect.play()</samp> method to initialize <samp class="codeph">propertyChanges.end</samp> for effect
+instances. </p>
+
+               </li>
+
+            </ol>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf68e80-7ff5_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf68e80-7ff5_verapache"><!-- --></a>
+         <h3 class="topictitle3">Example: Creating a transition
+effect</h3>
+
+         
+         <div>
+            <p>The following example modifies the Rotation effect created
+in <a href="flx_createeffects_cfx.html#WS2db454920e96a9e51e63e3d11c0bf69084-79a8_verapache">Example:
+Creating a tween effect</a> to make the effect usable in a transition. </p>
+
+            <p>This example shows the RotationTrans.as class that defines the
+factory class for the effect. To create RotationTrans.as, the only
+modification you make to Rotation.as is to remove the default value
+definitions for the <samp class="codeph">angleFrom</samp> and <samp class="codeph">angleTo</samp> properties.
+The <samp class="codeph">RotationTransInstance.play()</samp> method determines
+the default values. </p>
+
+            <pre class="codeblock">package myEffects 
+{ 
+   // createcomps_effects/myEffects/RotationTrans.as 
+   import mx.effects.TweenEffect; 
+   import mx.effects.EffectInstance; 
+   import mx.effects.IEffectInstance; 
+ 
+   public class RotationTrans extends TweenEffect 
+   { 
+       // Define parameters for the effect. 
+       // Do not specify any default values. 
+       // The default value of these properties is NaN. 
+       public var angleFrom:Number; 
+       public var angleTo:Number; 
+ 
+       // Define constructor with optional argument. 
+       public function RotationTrans(targetObj:Object = null) { 
+           super(targetObj); 
+           instanceClass= RotationTransInstance;           
+       } 
+ 
+       // Override getAffectedProperties() method to return "rotation". 
+       override public function getAffectedProperties():Array { 
+           return ["rotation"]; 
+       } 
+    
+       // Override initInstance() method. 
+       override protected function initInstance(inst:IEffectInstance):void { 
+           super.initInstance(inst); 
+           RotationTransInstance(inst).angleFrom = angleFrom; 
+           RotationTransInstance(inst).angleTo = angleTo; 
+       } 
+   } 
+}</pre>
+
+            <p>In the RotationTransInstance.as class, you modify the <samp class="codeph">play()</samp> method
+to calculate the default values for the <samp class="codeph">angleFrom</samp> and <samp class="codeph">angleTo</samp> properties.
+This method performs the following actions: </p>
+
+            <ol>
+               <li>
+                  <p>Determines whether the user set values for the <samp class="codeph">angleFrom</samp> and <samp class="codeph">angleTo</samp> properties. </p>
+
+               </li>
+
+               <li>
+                  <p>If not, determines whether the <samp class="codeph">Effectinstance.propertyChanges</samp> property
+was initialized with start and end values. If so, the method uses
+those values to configure the effect.</p>
+
+               </li>
+
+               <li>
+                  <p>If not, sets the <samp class="codeph">angleFrom</samp> and <samp class="codeph">angleTo</samp> properties
+to the default values of 0 for the <samp class="codeph">angleFrom</samp> property,
+and 360 for the <samp class="codeph">angleTo</samp> property.</p>
+
+               </li>
+
+            </ol>
+
+            <p>The following example shows the RotationTransInstance.as class:</p>
+
+            <pre class="codeblock">package myEffects 
+{ 
+    // createcomps_effects/myEffects/RotationTransInstance.as 
+    import mx.effects.effectClasses.TweenEffectInstance; 
+    import mx.effects.Tween; 
+ 
+    public class RotationTransInstance extends TweenEffectInstance 
+    { 
+        // Define parameters for the effect. 
+        public var angleFrom:Number; 
+        public var angleTo:Number; 
+  
+        public function RotationTransInstance(targetObj:Object) { 
+            super(targetObj); 
+        } 
+  
+        // Override play() method class. 
+        override public function play():void { 
+            // All classes must call super.play(). 
+            super.play(); 
+            
+            // Check whether angleFrom is set. 
+            if (isNaN(angleFrom)) 
+            { 
+              // If not, look in propertyChanges.start for a value. 
+              // Otherwise, set it to 0. 
+              angleFrom = (propertyChanges.start["rotation"] != undefined) ? 
+                    propertyChanges.start["rotation"] : 0; 
+ 
+            } 
+                    
+            // Check whether angleTo is set. 
+            if (isNaN(angleTo)) 
+            { 
+                // If not, look in propertyChanges.end for a value. 
+                // Otherwise, set it to 360. 
+                angleTo = (propertyChanges.end["rotation"] != undefined) ? 
+                    propertyChanges.end["rotation"] : 360; 
+            } 
+            
+            // Create a Tween object. The tween begins playing immediately. 
+            var tween:Tween = 
+                createTween(this, angleFrom, angleTo, duration);  
+        } 
+ 
+        // Override onTweenUpdate() method. 
+        override public function onTweenUpdate(val:Object):void { 
+            target.rotation = val; 
+        } 
+  
+        // Override onTweenEnd() method. 
+        override public function onTweenEnd(val:Object):void { 
+            // All classes that implement onTweenEnd() 
+            // must call super.onTweenEnd(). 
+            super.onTweenEnd(val); 
+        } 
+    } 
+}</pre>
+
+            <p>The following application uses the RotationTrans effect:</p>
+
+            <pre class="codeblock">&lt;?xml version="1.0" encoding="UTF-8"?&gt; 
+&lt;!-- createcomps_effects/MainRotationTrans.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:MyComp="myEffects.*"&gt; 
+    &lt;!-- Define the two view states, in addition to the base state.--&gt; 
+    &lt;s:states&gt; 
+        &lt;s:State name="Default"/&gt; 
+        &lt;s:State name="One"/&gt; 
+        &lt;s:State name="Two"/&gt; 
+    &lt;/s:states&gt; 
+    
+    &lt;!-- Define the single transition for all view state changes.--&gt; 
+    &lt;s:transitions&gt; 
+        &lt;mx:Transition fromState="*" toState="*"&gt; 
+            &lt;mx:Sequence id="t1" targets="{[p1,p2,p3]}"&gt; 
+                &lt;mx:Parallel&gt; 
+                    &lt;mx:Move  duration="400"/&gt; 
+                    &lt;mx:Resize duration="400"/&gt; 
+                &lt;/mx:Parallel&gt;  
+                &lt;MyComp:RotationTrans filter="move"/&gt; 
+            &lt;/mx:Sequence&gt; 
+        &lt;/mx:Transition&gt; 
+    &lt;/s:transitions&gt; 
+    
+    &lt;!-- Define the Canvas container holdig the three Panel containers.--&gt; 
+    &lt;mx:Canvas id="pm" width="100%" height="100%" &gt; 
+        &lt;mx:Panel id="p1" title="One" 
+                x="0" y="0" 
+                x.One="110" 
+                width="100" height="100" 
+                width.One="200" height.One="200" 
+                click="currentState='One'" &gt; 
+            &lt;mx:Label fontSize="24" text="One"/&gt; 
+        &lt;/mx:Panel&gt; 
+        &lt;mx:Panel id="p2" title="Two" 
+                x="0" y="110" 
+                y.One="0" 
+                x.Two="110" y.Two="0" 
+                width="100" height="100" 
+                width.Two="200" height.Two="210" 
+                click="currentState='Two'" &gt; 
+            &lt;mx:Label fontSize="24" text="Two"/&gt; 
+        &lt;/mx:Panel&gt; 
+        &lt;mx:Panel id="p3" title="Three" 
+                x="110" y="0" 
+                x.One="0" y.One="110" 
+                x.Two="0" y.Two="110" 
+                width="200" height="210" 
+                width.One="100" height.One="100" 
+                width.Two="100" height.Two="100" 
+                click="currentState=''" &gt; 
+            &lt;mx:Label fontSize="24" text="Three"/&gt; 
+        &lt;/mx:Panel&gt; 
+    &lt;/mx:Canvas&gt; 
+&lt;/s:Application&gt;</pre>
+
+         </div>
+
+      </div>
+
+   </div>
+
+   <div class="nested1" id="WS2db454920e96a9e51e63e3d11c0bf69084-79a1_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-79a1_verapache"><!-- --></a>
+      <h2 class="topictitle2">Defining a custom effect trigger
+for MX effects</h2>
+
+      
+      <div>
+         <p>You can create a custom effect trigger
+to handle situations for which the standard Flex triggers do not
+meet your needs. An effect trigger is paired with a corresponding
+event that invokes the trigger. For example, a <a href="https://flex.apache.org/asdoc/mx/controls/Button.html" target="_blank">Button</a> control
+has a <samp class="codeph">mouseDown</samp> event and a <samp class="codeph">mouseDownEffect</samp> trigger.
+The event initiates the corresponding effect trigger when a user
+clicks a component. You use the <samp class="codeph">mouseDown</samp> event
+to specify the event listener that executes when the user selects
+the component. You use the <samp class="codeph">mouseDownEffect</samp> trigger
+to associate an effect with the trigger.</p>
+
+         <p>Suppose that you want to apply an effect that sets the brightness
+level of a component when a user action occurs. The following example
+shows a custom Button control that uses a new property, <samp class="codeph">bright</samp>,
+and dispatches two new events, <samp class="codeph">darken</samp> and <samp class="codeph">brighten</samp>,
+based on changes to the <samp class="codeph">bright</samp> property. The control
+also defines two new effect triggers, <samp class="codeph">darkenEffect</samp> and <samp class="codeph">brightenEffect</samp>,
+which are paired with the <samp class="codeph">darken</samp> event and the <samp class="codeph">brighten</samp> event. </p>
+
+         <pre class="noswf">&lt;?xml version="1.0"?&gt; 
+&lt;!-- createcomps_effects\myComponents\MyButton.mxml --&gt; 
+&lt;mx:Button xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" &gt; 
+ 
+    &lt;fx:Metadata&gt; 
+        &lt;!-- Define the metadata for the events and effect triggers. --&gt; 
+        [Event(name="darken", type="flash.events.Event")] 
+        [Event(name="brighten", type="flash.events.Event")] 
+        [Effect(name="darkenEffect", event="darken")] 
+        [Effect(name="brightenEffect", event="brighten")] 
+    &lt;/fx:Metadata&gt; 
+  
+    &lt;fx:Script&gt; 
+        &lt;![CDATA[ 
+            import flash.events.Event; 
+ 
+            // Define the private variable for the bright setting. 
+            private var _bright:Boolean = true; 
+    
+            // Define the setter to dispatch the events 
+            // corresponding to the effect triggers. 
+            public function set bright(value:Boolean):void { 
+                _bright = value; 
+                      
+                if (_bright) 
+                    dispatchEvent(new Event("brighten")); 
+                else 
+                    dispatchEvent(new Event("darken")); 
+            } 
+    
+            // Define the getter to return the current bright setting. 
+            public function get bright():Boolean { 
+                return _bright; 
+            } 
+        ]]&gt; 
+    &lt;/fx:Script&gt; 
+&lt;/mx:Button&gt;</pre>
+
+         <p>When you declare an event in the form <samp class="codeph">[Event(name="</samp>
+            <em>eventName</em>
+            <samp class="codeph">", type="</samp>
+            <em>package.eventType</em>
+            <samp class="codeph">")]</samp>,
+you can also create a corresponding effect, in the form <samp class="codeph">[Effect(name="</samp>
+            <em>eventname</em>
+            <samp class="codeph">Effect", event="</samp>
+            <em>eventname</em>
+            <samp class="codeph">")]</samp>. As
+in the previous example, in the <samp class="codeph">&lt;fx:Metadata&gt;</samp> tag,
+you insert the metadata statements that define the two new events, <samp class="codeph">darken</samp> and <samp class="codeph">brighten</samp>, and
+the new effect triggers, <samp class="codeph">darkenEffect</samp> and <samp class="codeph">brightenEffect</samp>,
+to the Flex compiler. </p>
+
+         <p>For more information on using metadata, see <a href="flx_metadata_me.html#WS2db454920e96a9e51e63e3d11c0bf69084-7fe9_verapache">Metadata
+tags in custom components</a>.</p>
+
+         <p>The application in the following example uses the MyButton control.
+The <samp class="codeph">darkenEffect</samp> and <samp class="codeph">brightenEffect</samp> properties
+are set to the FadeOut and FadeIn effects, respectively. The <samp class="codeph">click</samp> event
+of a second Button control toggles the MyButton control's <samp class="codeph">bright</samp> property
+and executes the corresponding effect (FadeOut or FadeIn). </p>
+
+         <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- createcomps_effects/MainMyButton.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:MyComp="myComponents.*" &gt; 
+    &lt;s:layout&gt; 
+        &lt;s:VerticalLayout/&gt; 
+    &lt;/s:layout&gt; 
+ 
+    &lt;fx:Declarations&gt; 
+        &lt;!-- Define two fade effects for darkening and brightening target. --&gt; 
+        &lt;mx:Fade id="FadeOut" 
+            duration="1000" 
+            alphaFrom="1.00" alphaTo=".20"/&gt; 
+        &lt;mx:Fade id="FadeIn" 
+            duration="1000" 
+            alphaFrom=".20" alphaTo="1.00"/&gt; 
+    &lt;/fx:Declarations&gt; 
+ 
+    &lt;!-- Define custom button that defines the 
+        darkenEffect and brightenEffect. --&gt; 
+    &lt;MyComp:MyButton 
+        label="MyButton" id="btn" 
+        darkenEffect="{FadeOut}" 
+        brightenEffect="{FadeIn}" 
+        darken="debugW.text='got darken event';" 
+        brighten="debugW.text='got brighten event';"/&gt; 
+  
+    &lt;!-- Define button that triggers darken event. --&gt; 
+    &lt;mx:Button 
+        label="set bright to false" 
+        click="btn.bright = false; myTA.text=String(btn.bright);"/&gt; 
+    
+    &lt;!-- Define button that triggers brighten event. --&gt; 
+    &lt;mx:Button 
+        label="set bright to true" 
+        click="btn.bright = true; myTA.text=String(btn.bright);"/&gt; 
+    
+    &lt;!-- TextArea displays the current value of bright. --&gt; 
+    &lt;mx:TextArea id="myTA" /&gt; 
+    
+    &lt;!-- TextArea displays event messages. --&gt;  
+    &lt;mx:TextArea id="debugW" /&gt; 
+ 
+    &lt;!-- Define button to make sure effects working. --&gt; 
+    &lt;MyComp:MyButton id="btn2" label="test effects" 
+        mouseDownEffect="{FadeOut}" 
+        mouseUpEffect="{FadeIn}"/&gt; 
+&lt;/s:Application&gt;</pre>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf69084-79a4_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-79a4_verapache"><!-- --></a>
+         <h3 class="topictitle3">Overriding the initEffect() method</h3>
+
+         
+         <div>
+            <p>The EffectInstance class defines the <a href="https://flex.apache.org/asdoc/mx/effects/EffectInstance.html#initEffect()" target="_blank">initEffect()</a> method
+that you can override in your custom effect. This method has the
+following signature:</p>
+
+            <pre class="codeblock"> public initEffect(event:Event):void</pre>
+
+            <p>where <em>event</em> is the <a href="https://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/flash/events/Event.html" target="_blank">Event</a> object
+dispatched by the event that triggered the effect. </p>
+
+            <p>For example, a user might create an instance of an effect, but
+not provide all of the configuration information that is required
+to play the effect. Although you might be able to assign default
+values to all properties within the definition of the effect class,
+in some cases you might have to determine the default values at run
+time.</p>
+
+            <p>In this method, you can examine the event object and the effect
+target to calculate values at run time. For more information on
+how to create a custom event and an effect trigger, see <a href="flx_createeffects_cfx.html#WS2db454920e96a9e51e63e3d11c0bf69084-79a1_verapache">Defining
+a custom effect trigger for MX effects</a>. As part of that example,
+you can add properties to the event object passed to the <samp class="codeph">dispatchEvent()</samp> method.
+You can then access that event object, and its additional properties,
+from the <samp class="codeph">initEffect()</samp> method. </p>
+
+            <p>By overriding the <samp class="codeph">initEffect()</samp> method, you can
+also access the <samp class="codeph">target</samp> property of the Event object
+to reference the target component of the effect. For example, if
+you must determine the current x and y coordinates of the component,
+or its current height and width, you can access them from your override
+of the <samp class="codeph">initEffect()</samp> method.</p>
+
+            <p/>
+
+         </div>
+
+      </div>
+
+<div>
+  <p><strong>Navigation</strong></p>
+  <p><a href="index.html">Using Flex</a> &raquo; <a href="flx_p8a_custom_components.html">Custom components</a></p>
+</div>
+
+         <p>Adobe and Adobe Flash Platform are either registered trademarks or trademarks of Adobe Systems Incorporated in the United States and/or other countries and are used by permission from Adobe.  No other license to the Adobe trademarks are granted.</p>
+
+   </div>
+
+
+</body>
+</html>

@@ -1,0 +1,656 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Licensed to the Apache Software Foundation (ASF) under one or more
+  contributor license agreements.  See the NOTICE file distributed with
+  this work for additional information regarding copyright ownership.
+  The ASF licenses this file to You under the Apache License, Version 2.0
+  (the "License"); you may not use this file except in compliance with
+  the License.  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+-->
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en-us" xml:lang="en-us">
+<head>
+<meta name="DC.Type" content="topic"/>
+<meta name="DC.Title" content="Custom ActionScript components"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="WS2db454920e96a9e51e63e3d11c0bf69084-79fc_verapache"/>
+<title>Custom ActionScript components</title>
+</head>
+<body id="WS2db454920e96a9e51e63e3d11c0bf69084-79fc_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-79fc_verapache"><!-- --></a>
+
+   <div>
+      <p>You use ActionScript code to create ActionScript components
+for  Flex, or to add logic to MXML components.
+ActionScript provides flow control and object manipulation features
+that are not available in MXML. </p>
+
+      <p>The summary of the general rules for using ActionScript code
+in custom components in this topic supplements the information in
+the ActionScript reference documentation. For additional information
+on ActionScript, see the following resources:</p>
+
+      <ul>
+         <li>
+            <p>
+               <em><a href="https://flex.apache.org/asdoc/" target="_blank">ActionScript 3.0 Reference for Apache Flex</a>:</em>
+               Contains the ActionScript 3.0 API reference for Apache Flex.
+            </p>
+         </li>
+
+         <li>
+            <p>
+               <em>
+                  <a href="https://help.adobe.com/en_US/as3/dev/index.html" target="_blank">ActionScript 3.0 Developer's Guide</a>
+               </em>
+               <em>:</em> Contains
+information on using ActionScript 3.0. </p>
+
+         </li>
+
+      </ul>
+
+   </div>
+
+   <div class="nested1" id="WS2db454920e96a9e51e63e3d11c0bf67eed-7fff_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf67eed-7fff_verapache"><!-- --></a>
+      <h2 class="topictitle2">Using ActionScript</h2>
+
+      
+      <div>
+         <p>Before
+you start developing custom components, you should be familiar with basic
+ActionScript coding practices. </p>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf67eed-7ffe_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf67eed-7ffe_verapache"><!-- --></a>
+         <h3 class="topictitle3">Using the package statement</h3>
+
+         
+         <div>
+            <p>You must
+define your ActionScript custom components within a package. The package
+reflects the directory location of your component within the directory structure
+of your application. To define the package structure, you include
+the <a href="statements.html#package" target="_blank">package</a> statement
+in your class definition, as the following example shows: </p>
+
+            <pre class="codeblock"> package myComponents 
+ { 
+ 	// Class definition goes here. 
+ }</pre>
+
+            <p>Your <samp class="codeph">package</samp> statement must wrap the entire
+class definition. If you write your ActionScript class file to the
+same directory as your other application files, you can leave the
+package name blank. However, as a best practice, you should store your
+components in a subdirectory, where the package name reflects the directory
+location. In this example, write your ActionScript class file to
+the directory myComponents, a subdirectory of your main application
+directory.</p>
+
+            <p>Formatters are a particular type of component. You might also
+create a subdirectory of your application's root directory called
+myFormatters for all of your custom formatter classes. Each formatter
+class would then define its <samp class="codeph">package</samp> statement,
+as the following example shows:</p>
+
+            <pre class="codeblock"> package myFormatters 
+ { 
+ 	// Formatter class definition goes here. 
+ }</pre>
+
+            <p>If you create a component that is shared among multiple applications,
+or a component that might be used with third-party components, assign
+a unique package name to avoid naming conflicts. For example, you
+might prefix your package name with your company name, as in:</p>
+
+            <pre class="codeblock"> package Acme.myFormatters 
+ { 
+ 	// Formatter class definition goes here. 
+ }</pre>
+
+            <p>When you reference a custom component from an MXML file, specify
+a namespace definition for the component that corresponds to its
+directory location and package name, as the following example shows:</p>
+
+            <pre class="codeblock"> &lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+	xmlns:s="library://ns.adobe.com/flex/spark" 
+	xmlns:mx="library://ns.adobe.com/flex/mx" 
+	xmlns:MyComp="myFormatters.*"&gt;  
+  
+ 	&lt;!-- Declare a formatter and specify formatting properties. --&gt; 
+ 	<strong>&lt;MyComp:SimpleFormatter id="upperFormat" formatString="upper"/&gt;</strong> 	 
+	 	... 
+  
+ &lt;/s:Application&gt;</pre>
+
+            <p>If a formatter class is in a subdirectory of myFormatters, such
+as myFormatters/dataFormatters, the package statement is as follows:</p>
+
+            <pre class="codeblock"> package myFormatters.dataFormatters 
+ { 
+ 	// Formatter class definition goes here. 
+ }</pre>
+
+            <p>You then specify the namespace definition for the component,
+as the following example shows: </p>
+
+            <pre class="codeblock"> &lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+	xmlns:s="library://ns.adobe.com/flex/spark" 
+	xmlns:mx="library://ns.adobe.com/flex/mx" 
+	xmlns:MyComp="myFormatters.dataFormatters.*"&gt;  
+  
+ 	&lt;!-- Declare a formatter and specify formatting properties. --&gt; 
+ 	<strong>&lt;MyComp:SimpleFormatter id="upperFormat" formatString="upper"/&gt;</strong> 
+	 	... 
+  
+ &lt;/s:Application&gt;</pre>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf67eed-7ffd_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf67eed-7ffd_verapache"><!-- --></a>
+         <h3 class="topictitle3">Using the import statement</h3>
+
+         
+         <div>
+            <p>You use the <a href="statements.html#import" target="_blank">import</a> statement to import
+any classes that your class requires. Importing adds a reference
+to the class so that you can access classes defined by the import.
+Classes that you import must be located in the ActionScript source path
+for your application. </p>
+
+            <p>You import the
+classes referenced by your custom component as part of its implementation,
+as the following example shows: </p>
+
+            <pre class="codeblock"> package myComponents 
+ { 
+ 	// Import necessary classes. 
+ 	import mx.core.Container; 
+ 	import mx.controls.Button; 
+ 	// Import all classes in the mx.events package 
+ 	import mx.events.*; 
+  
+ 	// Class definition goes here.  
+  
+ 	// You can now create an instance of a Container using this syntax: 
+ 	private var myContainer:Container = new Container(); 
+  
+ }</pre>
+
+            <p>There is a distinct difference between including and importing
+in ActionScript. <em>Including</em> is copying lines of code from
+one ActionScript file into another. Files that you include must
+be located relative to the file performing the include, or use an
+absolute path. <em>Importing</em> is adding a reference to a class
+file or package so that you can access objects and properties defined
+by external classes.</p>
+
+            <p>For more information on including and importing, see <a href="flx_usingas_ua.html#WS2db454920e96a9e51e63e3d11c0bf69084-7ffe_verapache">Using
+ActionScript</a>.</p>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf67eed-7ffc_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf67eed-7ffc_verapache"><!-- --></a>
+         <h3 class="topictitle3">Using the class statement</h3>
+
+         
+         <div>
+            <p>You use
+the <a href="statements.html#class" target="_blank">class</a> statement
+to define your class name, and to specify its superclass, as the
+following example shows:</p>
+
+            <pre class="codeblock"> package myComponents 
+ { 
+ 	// Import necessary classes 
+ 	import mx.core.Container; 
+ 	import mx.controls.Button; 
+ 	// Import all classes in the mx.events package 
+ 	import mx.events.*; 
+  
+ 	// Class definition goes here. 
+ 	<strong>public class MyButton extends Button {</strong> 
+ 		 
+ 		// Define properties, constructor, and methods.	 
+ 	 
+ 	} 
+ }</pre>
+
+            <p>The class definition of your component must be prefixed by the <samp class="codeph">public</samp> keyword,
+or it cannot be used as an MXML tag. A file that contains a class definition
+can have one, and only one, public class definition, although it
+can have additional internal class definitions. Place any internal
+class definitions at the bottom of your source file below the closing
+curly brace of the package definition.</p>
+
+            <p>In a single ActionScript file, you can define only one class
+in the package. To define more than one class in a file, define
+the additional classes outside of the package body.</p>
+
+            <div class="note"><span class="notetitle">Note:</span> The class definition is one of the few ActionScript
+constructs that you cannot use in an <samp class="codeph">&lt;fx:Script&gt;</samp> block
+in an MXML file.</div>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf69084-79dd_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-79dd_verapache"><!-- --></a>
+         <h3 class="topictitle3">Defining the constructor</h3>
+
+         
+         <div>
+            <p>An ActionScript
+class must define a public constructor method, which initializes an
+instance of the class. The constructor has the following characteristics:</p>
+
+            <ul>
+               <li>
+                  <p>No return type.</p>
+
+               </li>
+
+               <li>
+                  <p>Should be declared public.</p>
+
+               </li>
+
+               <li>
+                  <p>Might have optional arguments.</p>
+
+               </li>
+
+               <li>
+                  <p>Cannot have any required arguments if you use it as an MXML
+tag.</p>
+
+               </li>
+
+               <li>
+                  <p>Calls the <samp class="codeph">super()</samp> method to invoke the superclass'
+constructor.</p>
+
+               </li>
+
+            </ul>
+
+            <p>You call the <a href="statements.html#super" target="_blank">super()</a> method within your
+constructor to invoke the superclass' constructor to initialize
+the inherited items from the superclass. The <samp class="codeph">super()</samp> method
+should be the first statement in your constructor; otherwise, the inherited
+parts of the superclass might not be properly constructed. In some cases,
+you might want to initialize your class first, and then call <samp class="codeph">super()</samp>. </p>
+
+            <div class="note"><span class="notetitle">Note:</span> If you do not define a constructor, the compiler
+inserts one for you and adds a call to <samp class="codeph">super()</samp>.
+However, it is considered a best practice to write a constructor
+and to explicitly call <samp class="codeph">super()</samp>, unless the class
+contains nothing but static members. If you define the constructor,
+but omit the call to <samp class="codeph">super()</samp>, Flex automatically
+calls <samp class="codeph">super()</samp> at the beginning of your constructor. </div>
+
+            <p>In the following example, you define a constructor that uses <samp class="codeph">super()</samp> to
+call the superclass' constructor: </p>
+
+            <pre class="codeblock"> package myComponents 
+ { 
+ 	// Import necessary classes 
+ 	import mx.core.Container; 
+ 	import mx.controls.Button; 
+ 	// Import all classes in the mx.events package 
+ 	import mx.events.*; 
+  
+ 	// Class definition goes here. 
+ 	public class MyButton extends Button { 
+ 		 
+ 		<strong>// Public constructor. </strong> 
+ 		<strong>public function MyButton()</strong> 
+ 		<strong>{</strong> 
+ 			<strong>// Call the constructor in the superclass. </strong> 
+ 			<strong>super();</strong> 
+ 		<strong>}</strong> 
+ 		// Define properties and methods.	 
+ 	 
+ 	} 
+ }</pre>
+
+            <div class="note"><span class="notetitle">Note:</span> You cannot define a constructor for an MXML
+component. For more information, see <a href="flx_mxmlcomponents_advanced_mxa.html#WS2db454920e96a9e51e63e3d11c0bf69084-7a3a_verapache">About
+implementing IMXMLObject</a>
+            </div>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf67eed-7ffa_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf67eed-7ffa_verapache"><!-- --></a>
+         <h3 class="topictitle3">Defining properties as variables</h3>
+
+         
+         <div>
+            <p>Properties
+let you define data storage within your class. You can define your properties
+as public, which means that they can be accessed by users of the
+class. You can also define properties as private, which means that
+they are used internally by the class, as the following example
+shows:</p>
+
+            <pre class="codeblock"> public class MyButton extends Button { 
+  
+ 	// Define private vars. 
+ 	private var currentFontSize:Number; 
+  
+ 	// Define public vars.  
+ 	public var maxFontSize:Number = 15; 
+ 	public var minFontSize:Number = 5; 
+ }</pre>
+
+            <p>Users of the class can access the public variables but not the
+private variables, as the following example shows:</p>
+
+            <pre class="codeblock"> &lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+	xmlns:s="library://ns.adobe.com/flex/spark" 
+	xmlns:mx="library://ns.adobe.com/flex/mx" 
+ 	xmlns:MyComp="myControls.*"&gt; 
+  
+ 	<strong>&lt;MyComp:MyButton label="Submit" maxFontSize="30"/&gt;</strong> 
+ &lt;/s:Application&gt;</pre>
+
+            <p>Although you can define your classes to use public properties,
+you may find it advantageous to define properties by using setter
+and getter methods. For more information, see <a href="flx_createcomps_basicas_cca.html#WS2db454920e96a9e51e63e3d11c0bf69084-7a39_verapache">Defining
+methods</a>. </p>
+
+            <div class="note"><span class="notetitle">Note:</span> You cannot override an inherited property defined
+by a variable, but you can override a property defined by setter
+and getter methods. You can reset the value of an inherited property
+defined by a variable. You typically reset it in the constructor
+of the subclass for an ActionScript component, or in an event handler
+for an MXML component because MXML components cannot define a constructor. </div>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf69084-79fb_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-79fb_verapache"><!-- --></a>
+         <h3 class="topictitle3">Defining properties as getters
+and setters</h3>
+
+         
+         <div>
+            <p>You
+can define properties for your components by using setter and getter methods.
+The advantage of getters and setters is that they isolate the variable from
+direct public access so that you can perform the following actions:</p>
+
+            <ul>
+               <li>
+                  <p>Inspect and validate any data written to the property
+on a write</p>
+
+               </li>
+
+               <li>
+                  <p>Trigger
+events that are associated with the property when the property changes</p>
+
+               </li>
+
+               <li>
+                  <p>Calculate a return value on a read</p>
+
+               </li>
+
+               <li>
+                  <p>Allow a child class to override</p>
+
+               </li>
+
+            </ul>
+
+            <p>To define getter and setter methods, precede the method name
+with the keyword <a href="statements.html#get" target="_blank">get</a> or <a href="statements.html#set" target="_blank">set</a>,
+followed by a space and the property name. The following example
+shows the declaration of a public property named <samp class="codeph">initialCount</samp>, and
+the getter and setter methods that get and set the value of this
+property:</p>
+
+            <pre class="codeblock"> // Define internal private variable. 
+ private var _initialCount:uint = 42; 
+  
+ // Define public getter. 
+ public function get initialCount():uint { 
+ 	return _initialCount; 
+ } 
+  
+ // Define public setter.  
+ public function set initialCount(value:uint):void { 
+ 	_initialCount = value; 
+ }</pre>
+
+            <p>By convention, setters use the identifier <samp class="codeph">value</samp> for
+the name of the argument.</p>
+
+            <p>The variable that stores the property's value cannot have the
+same name as the getter or setter. By convention, precede the name
+of the variables with one (_) or two underscores (__). In addition,
+it's best to declare the variable as private or protected.</p>
+
+            <p>Users of the class can access the public property, as the following
+example shows:</p>
+
+            <pre class="codeblock"> &lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+	xmlns:s="library://ns.adobe.com/flex/spark" 
+	xmlns:mx="library://ns.adobe.com/flex/mx" 
+ 	xmlns:MyComp="myControls.*" &gt; 
+  
+ 	<strong>&lt;MyComp:MyButton label="Submit" initialCount="24"/&gt;</strong> 
+ &lt;/s:Application&gt;</pre>
+
+            <p>If the getter or setter overrides a getter or setter in a superclass,
+ensure that you include the <samp class="codeph">override</samp> keyword, as
+the following example shows: </p>
+
+            <pre class="codeblock"> override public function get label():String {} 
+ override public function set label(value:String):void {}</pre>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf69084-7a39_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7a39_verapache"><!-- --></a>
+         <h3 class="topictitle3">Defining methods</h3>
+
+         
+         <div>
+            <p>Methods
+define the operations that your class can perform. You define methods in
+the body of the class. Your methods can override a method of a superclass,
+or define new functionality for your components. </p>
+
+            <p>If the method adds new functionality, you define it using the <samp class="codeph">function</samp> keyword,
+as the following example shows:</p>
+
+            <pre class="codeblock"> public function myMethod():void { 
+ 	// Method definition  
+ }</pre>
+
+            <p>If you define this method as a public method, users of the class
+can call it. </p>
+
+            <p>You can also define private methods, as the following example
+shows:</p>
+
+            <pre class="codeblock"> private function internalMethod():void { 
+ 	// Method definition  
+ }</pre>
+
+            <p>Private methods are for internal use by the class, and cannot
+be called by users of the class. </p>
+
+            <p>If the method overrides a method in a superclass, you must include
+the <samp class="codeph">override</samp> keyword and the signature of the method
+must exactly match that of the superclass method, as the following
+example shows:</p>
+
+            <pre class="codeblock"> override protected function createChildren():void { 
+ 	// Method definition  
+ }</pre>
+
+            <p>Your methods may take required or optional arguments. To make
+any of the arguments optional, assign default values to them, as
+the following example shows: </p>
+
+            <pre class="codeblock"> override public validate(value:Object = null,  
+ 	supressEvents:Boolean = false):ValidationResultEvent { 
+ 	// Method definition  
+ }</pre>
+
+            <p>If the method takes a variable number of arguments, use the "..."
+syntax, as the following example shows: </p>
+
+            <pre class="codeblock"> function foo(n:Number, ... rest):void { 
+ 	// Method definition  
+ }</pre>
+
+            <p>Flex creates an Array called <samp class="codeph">rest</samp> for the optional
+arguments. Therefore, you can determine the number of arguments
+passed to the method by using <samp class="codeph">rest.length</samp>, and
+access the arguments by using <samp class="codeph">rest[i]</samp>.</p>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf67eed-7ff7_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf67eed-7ff7_verapache"><!-- --></a>
+         <h3 class="topictitle3">Using the super keyword in a method
+override</h3>
+
+         
+         <div>
+            <p>You use the <a href="statements.html#super" target="_blank">super</a> keyword
+in a method override to invoke the corresponding method of the superclass.
+The <samp class="codeph">super</samp> keyword has the following syntax:</p>
+
+            <pre class="codeblock"> super.methodName([arg1, ..., argN])</pre>
+
+            <p>This technique is useful when you create a subclass method that
+adds behavior to a superclass method but also invokes the superclass
+method to perform its original behavior.</p>
+
+            <div class="note"><span class="notetitle">Note:</span> Although Flex automatically calls the <samp class="codeph">super()</samp> method
+in a constructor to execute the superclass' constructor, you must
+call <samp class="codeph">super.</samp>
+               <samp class="codeph">
+                  <em>methodName</em>
+               </samp>
+               <samp class="codeph">()</samp> in
+a method override. Otherwise, the superclass' version of the method
+does not execute.</div>
+
+            <p>Whether you call <samp class="codeph">super.</samp>
+               <em>myMethod</em>
+               <samp class="codeph">()</samp> within
+a method override depends on your application requirement, as follows:</p>
+
+            <ul>
+               <li>
+                  <p>Typically, you extend the existing functionality of the
+superclass method, so the most common pattern is to call <samp class="codeph">super.</samp>
+                     <em>myMethod</em>
+                     <samp class="codeph">()</samp> first
+in your method override, and then add your logic.</p>
+
+               </li>
+
+               <li>
+                  <p>You might need to change something before the superclass
+method does its work. In this case, you might call <samp class="codeph">super.</samp>
+                     <em>myMethod</em>
+                     <samp class="codeph">()</samp> in
+the override after your logic.</p>
+
+               </li>
+
+               <li>
+                  <p>In some method overrides, you might not want to invoke the
+superclass method at all. Only call <samp class="codeph">super.</samp>
+                     <em>myMethod</em>
+                     <samp class="codeph">()</samp> if
+and when you want the superclass to do its work.</p>
+
+               </li>
+
+               <li>
+                  <p>Sometimes the superclass has an empty method that does nothing,
+which requires you to implement the functionality in the method.
+In this case, you should still call <samp class="codeph">super.</samp>
+                     <em>myMethod</em>
+                     <samp class="codeph">()</samp> because
+in a future version of Flex, that method might implement some functionality.
+For more information, see the documentation on each Flex class. </p>
+
+               </li>
+
+            </ul>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf67eed-7ff6_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf67eed-7ff6_verapache"><!-- --></a>
+         <h3 class="topictitle3">About the scope</h3>
+
+         
+         <div>
+            <p>Scoping is
+mostly a description of what the <samp class="codeph">this</samp> keyword refers
+to at any given point in your application. In the main MXML application
+file, the file that contains the <samp class="codeph">&lt;s:Application&gt;</samp> tag,
+the current scope is the Application object, and therefore the <samp class="codeph">this</samp> keyword
+refers to the Application object. </p>
+
+            <p>In an ActionScript component, the scope is the component itself
+and not the application or other file that references the component.
+As a result, the <samp class="codeph">this</samp> keyword inside the component
+refers to the component instance and not the Flex Application object.</p>
+
+            <p>Nonvisual ActionScript components do not have access to their
+parent application with the <samp class="codeph">parentDocument</samp> property.
+However, you can access the top-level Application object by using
+the <samp class="codeph">mx.core.Application.application</samp> property.</p>
+
+            <p>For more information on scope, see <a href="flx_usingas_ua.html#WS2db454920e96a9e51e63e3d11c0bf69084-7ffe_verapache">Using
+ActionScript</a>.</p>
+
+            <p/>
+
+         </div>
+
+      </div>
+
+<div>
+  <p><strong>Navigation</strong></p>
+  <p><a href="index.html">Using Flex</a> &raquo; <a href="flx_p8a_custom_components.html">Custom components</a></p>
+</div>
+
+         <p>Adobe and Adobe Flash Platform are either registered trademarks or trademarks of Adobe Systems Incorporated in the United States and/or other countries and are used by permission from Adobe.  No other license to the Adobe trademarks are granted.</p>
+   </div>
+
+
+</body>
+</html>

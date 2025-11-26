@@ -1,0 +1,1740 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Licensed to the Apache Software Foundation (ASF) under one or more
+  contributor license agreements.  See the NOTICE file distributed with
+  this work for additional information regarding copyright ownership.
+  The ASF licenses this file to You under the Apache License, Version 2.0
+  (the "License"); you may not use this file except in compliance with
+  the License.  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+-->
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en-us" xml:lang="en-us">
+<head>
+<meta name="DC.Type" content="topic"/>
+<meta name="DC.Title" content="Using MX effects"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="WS18BE0709-58EF-436d-B4E4-4DD3BDF9104B_verapache"/>
+<title>Using MX effects</title>
+</head>
+<body id="WS18BE0709-58EF-436d-B4E4-4DD3BDF9104B_verapache"><a name="WS18BE0709-58EF-436d-B4E4-4DD3BDF9104B_verapache"><!-- --></a>
+
+   <div>
+      <p>In MX, an effect defines the visual or audible change to
+the target component, and a trigger initiates the effect. A trigger
+is an action, such as a mouse click on a component, a component
+getting focus, or a component becoming visible. The MX effects are
+shipped in the mx.effects package. </p>
+
+      <p>While Flex ships with both Spark and MX effects, it's best to
+use the Spark effects when possible. </p>
+
+      <p>For an introduction to effects, see <a href="flx_behaviors_be.html#WS2db454920e96a9e51e63e3d11c0bf69084-7fec_verapache">Introduction
+to effects</a>.</p>
+
+   </div>
+
+   <div class="nested1" id="WS2db454920e96a9e51e63e3d11c0bf5fdc3-7ffa_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf5fdc3-7ffa_verapache"><!-- --></a>
+      <h2 class="topictitle2">Available MX triggers</h2>
+
+      
+      <div>
+         <p>You use a trigger name to assign an effect to a target
+component. You can reference a trigger name as a property of an
+MXML tag, in the <samp class="codeph">&lt;fx:Style&gt;</samp> tag, or in an
+ActionScript <samp class="codeph">setStyle()</samp> and <samp class="codeph">getStyle()</samp> function.
+Trigger names use the following naming convention: </p>
+
+         <pre class="codeblock"> <em>triggerEvent</em>Effect</pre>
+
+         <p>where <em>triggerEvent</em> is the event that invokes the effect. </p>
+
+         <p>For example, the <samp class="codeph">focusIn</samp> event occurs when a
+component gains focus; you use the <samp class="codeph">focusInEffect</samp> trigger
+property to specify the effect to invoke for the <samp class="codeph">focusIn</samp> event.
+The <samp class="codeph">focusOut</samp> event occurs when a component loses
+focus; the corresponding trigger property is <samp class="codeph">focusOutEffect</samp>.</p>
+
+         <p>The following table lists the effect name that corresponds to
+each trigger:</p>
+
+         
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" frame="border" border="1" rules="all">
+               
+               
+               <thead align="left">
+                  <tr>
+                     <th class="cellrowborder" valign="top" width="NaN%" id="d268048e99">
+                        <p>Trigger name</p>
+
+                     </th>
+
+                     <th class="cellrowborder" valign="top" width="NaN%" id="d268048e105">
+                        <p>Triggering event</p>
+
+                     </th>
+
+                  </tr>
+
+               </thead>
+
+               <tbody>
+                  <tr>
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d268048e99 ">
+                        <div class="p">
+                           <pre class="codeblock">addedEffect</pre>
+
+                        </div>
+
+                     </td>
+
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d268048e105 ">
+                        <p>Component is added as a child to a container.</p>
+
+                     </td>
+
+                  </tr>
+
+                  <tr>
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d268048e99 ">
+                        <div class="p">
+                           <pre class="codeblock">creationCompleteEffect</pre>
+
+                        </div>
+
+                     </td>
+
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d268048e105 ">
+                        <p>Component is created.</p>
+
+                     </td>
+
+                  </tr>
+
+                  <tr>
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d268048e99 ">
+                        <div class="p">
+                           <pre class="codeblock">focusInEffect</pre>
+
+                        </div>
+
+                     </td>
+
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d268048e105 ">
+                        <p>Component gains keyboard focus.</p>
+
+                     </td>
+
+                  </tr>
+
+                  <tr>
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d268048e99 ">
+                        <div class="p">
+                           <pre class="codeblock">focusOutEffect</pre>
+
+                        </div>
+
+                     </td>
+
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d268048e105 ">
+                        <p>Component loses keyboard focus.</p>
+
+                     </td>
+
+                  </tr>
+
+                  <tr>
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d268048e99 ">
+                        <div class="p">
+                           <pre class="codeblock">hideEffect</pre>
+
+                        </div>
+
+                     </td>
+
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d268048e105 ">
+                        <p>Component becomes invisible by changing
+the <samp class="codeph">visible</samp> property of the component from <samp class="codeph">true</samp> to <samp class="codeph">false</samp>.</p>
+
+                     </td>
+
+                  </tr>
+
+                  <tr>
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d268048e99 ">
+                        <div class="p">
+                           <pre class="codeblock">mouseDownEffect</pre>
+
+                        </div>
+
+                     </td>
+
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d268048e105 ">
+                        <p>User presses the mouse button while the
+mouse pointer is over the component.</p>
+
+                     </td>
+
+                  </tr>
+
+                  <tr>
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d268048e99 ">
+                        <div class="p">
+                           <pre class="codeblock">mouseUpEffect</pre>
+
+                        </div>
+
+                     </td>
+
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d268048e105 ">
+                        <p>User releases the mouse button.</p>
+
+                     </td>
+
+                  </tr>
+
+                  <tr>
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d268048e99 ">
+                        <div class="p">
+                           <pre class="codeblock">moveEffect</pre>
+
+                        </div>
+
+                     </td>
+
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d268048e105 ">
+                        <p>Component is moved.</p>
+
+                     </td>
+
+                  </tr>
+
+                  <tr>
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d268048e99 ">
+                        <div class="p">
+                           <pre class="codeblock">removedEffect</pre>
+
+                        </div>
+
+                     </td>
+
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d268048e105 ">
+                        <p>Component is removed from a container.</p>
+
+                     </td>
+
+                  </tr>
+
+                  <tr>
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d268048e99 ">
+                        <div class="p">
+                           <pre class="codeblock">resizeEffect</pre>
+
+                        </div>
+
+                     </td>
+
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d268048e105 ">
+                        <p>Component is resized.</p>
+
+                     </td>
+
+                  </tr>
+
+                  <tr>
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d268048e99 ">
+                        <div class="p">
+                           <pre class="codeblock">rollOutEffect</pre>
+
+                        </div>
+
+                     </td>
+
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d268048e105 ">
+                        <p>User rolls the mouse pointer off the component.</p>
+
+                     </td>
+
+                  </tr>
+
+                  <tr>
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d268048e99 ">
+                        <div class="p">
+                           <pre class="codeblock">rollOverEffect</pre>
+
+                        </div>
+
+                     </td>
+
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d268048e105 ">
+                        <p>User rolls the mouse pointer over the component.</p>
+
+                     </td>
+
+                  </tr>
+
+                  <tr>
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d268048e99 ">
+                        <div class="p">
+                           <pre class="codeblock">showEffect</pre>
+
+                        </div>
+
+                     </td>
+
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d268048e105 ">
+                        <p>Component becomes visible by changing the <samp class="codeph">visible</samp> property
+of the component from <samp class="codeph">false</samp> to <samp class="codeph">true</samp>.</p>
+
+                     </td>
+
+                  </tr>
+
+               </tbody>
+
+            </table>
+</div>
+
+      </div>
+
+      <div class="nested2" id="WS52716414-09A4-4765-B58A-B969E5C4B920_verapache"><a name="WS52716414-09A4-4765-B58A-B969E5C4B920_verapache"><!-- --></a>
+         <h3 class="topictitle3">Applying MX effects in MXML</h3>
+
+         
+         <div>
+            <div class="p">Associate MX effects with triggers as part of defining
+the basic behavior for your application, as the following example
+shows: <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- behaviors\ButtonWL.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark"&gt; 
+    &lt;s:layout&gt; 
+        &lt;s:VerticalLayout/&gt; 
+    &lt;/s:layout&gt; 
+ 
+    &lt;fx:Declarations&gt; 
+        &lt;!-- Define effect. --&gt; 
+        &lt;mx:WipeLeft id="myWL" duration="1000"/&gt; 
+    &lt;/fx:Declarations&gt; 
+ 
+    &lt;!-- Assign effect to targets. --&gt; 
+    &lt;mx:Button id="myButton" label="Click Me" 
+        mouseDownEffect="{myWL}"/&gt; 
+    &lt;mx:Button id="myOtherButton" label="Click Me" 
+        mouseDownEffect="{myWL}"/&gt; 
+&lt;/s:Application&gt;</pre>
+
+            </div>
+
+            <p>In this example, the effect is a WipeLeft effect with a duration
+of 1000 milliseconds (ms). That means it takes 1000 ms for the effect
+to play from start to finish. </p>
+
+            <p>You use data binding to assign the effect to the <samp class="codeph">mouseDownEffect</samp> property of
+each Button control. The <samp class="codeph">mouseDownEffect</samp> property
+is the effect trigger that specifies to play the effect when the
+user clicks the control using the mouse pointer. In the previous
+example, the effect makes the Button control appear as if it is
+being wiped onto the screen from right to left. </p>
+
+            <div class="p">Using ActionScript, you can create, modify, or play an effect.
+With ActionScript, you can configure the effect to play in response
+to an effect trigger, or you can explicitly invoke it by calling
+the <samp class="codeph">play()</samp> method of the effect's class. ActionScript
+gives you control of effects so that you can configure them as part
+of a user preferences setting, or modify them based on user actions.
+The following example creates the WipeLeft effect in ActionScript: <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- behaviors\AsEffect.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    creationComplete="createEffect(event);" &gt; 
+    &lt;s:layout&gt; 
+        &lt;s:VerticalLayout/&gt; 
+    &lt;/s:layout&gt; 
+    
+    &lt;!-- Define effect. --&gt; 
+    &lt;fx:Script&gt; 
+        &lt;![CDATA[ 
+ 
+            // Import the effect class. 
+            import mx.effects.*; 
+            
+            // Define effect variable. 
+            private var myWL:WipeLeft; 
+ 
+            private function createEffect(eventObj:Event):void { 
+                // Create the WipeLeft effect object. 
+                myWL=new WipeLeft(); 
+                
+                // Set the effect duration. 
+                myWL.duration=1000; 
+                            
+                // Assign the effects to the targets. 
+                myButton.setStyle('mouseDownEffect', myWL); 
+                myOtherButton.setStyle('mouseDownEffect', myWL); 
+            } 
+        ]]&gt; 
+    &lt;/fx:Script&gt; 
+ 
+    &lt;mx:Button id="myButton" label="Click Me"/&gt; 
+    &lt;mx:Button id="myOtherButton" label="Click Me"/&gt; 
+ 
+&lt;/s:Application&gt;</pre>
+
+            </div>
+
+            <p>This example still uses an event to invoke the effect. To play
+an effect programmatically, you call the effect's <samp class="codeph">play()</samp> method.
+For information on using ActionScript to configure and invoke effects,
+and for more information on using MXML, see "Applying behaviors
+in MXML" on page 130.</p>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS3884CA75-C157-4091-B2EE-A44B162A40CC_verapache"><a name="WS3884CA75-C157-4091-B2EE-A44B162A40CC_verapache"><!-- --></a>
+         <h3 class="topictitle3">Applying MX effects in MXML using
+styles</h3>
+
+         
+         <div>
+            <p>All MXML properties corresponding to effect triggers are
+implemented as CSS styles. Therefore, you can also apply an effect
+using the <samp class="codeph">&lt;fx:Style&gt;</samp> tag. For example, to
+set the <samp class="codeph">mouseDownEffect</samp> property for all TextArea
+controls in an application, you can use a CSS type selector, as
+the following example shows:</p>
+
+            <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- behaviors\MxmlTypeSel.mxml--&gt; 
+&lt;s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark"&gt; 
+    &lt;s:layout&gt; 
+        &lt;s:VerticalLayout/&gt; 
+    &lt;/s:layout&gt; 
+ 
+    &lt;fx:Style&gt; 
+        @namespace mx "library://ns.adobe.com/flex/mx"; 
+        mx|TextArea {mouseDownEffect: slowWipe;} 
+    &lt;/fx:Style&gt; 
+ 
+    &lt;fx:Declarations&gt; 
+        &lt;mx:WipeLeft id="slowWipe" duration="5000"/&gt; 
+    &lt;/fx:Declarations&gt; 
+ 
+    &lt;mx:TextArea id="myTA" 
+        text="This TextArea slowly wipes in on mouseDown."/&gt; 
+ 
+    &lt;mx:TextArea id="myTA2" 
+        text="This TextArea control has no effect." 
+        mouseDownEffect="none"/&gt; 
+&lt;/s:Application&gt;</pre>
+
+            <p>Setting the <samp class="codeph">mouseDownEffect</samp> property in a component
+tag overrides any settings that you make in an <samp class="codeph">&lt;fx:Style&gt;</samp> tag.
+If you want to remove the associated effect defined in a type selector,
+you can explicitly set the value of any trigger to <samp class="codeph">none</samp>,
+as the following example shows:</p>
+
+            <pre class="codeblock"> <strong>&lt;mx:TextArea id="myTA" mouseDownEffect="none"/&gt;</strong></pre>
+
+            <p>You can also use a class selector to apply effects, as the following
+example shows:</p>
+
+            <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- behaviors\ButtonWLClassSel.mxml --&gt; 
+&lt;s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark"&gt; 
+ 
+    &lt;!-- Define a class selector for a TextArea control --&gt; 
+    &lt;fx:Style&gt; 
+        .textAreaStyle { mouseDownEffect: WipeLeft; } 
+    &lt;/fx:Style&gt; 
+ 
+    &lt;fx:Declarations&gt; 
+        &lt;mx:WipeLeft id="slowWipe" duration="5000"/&gt; 
+    &lt;/fx:Declarations&gt; 
+ 
+    &lt;mx:TextArea id="myTA" 
+        styleName="textAreaStyle" 
+        text="This TextArea control quickly wipes in."/&gt; 
+&lt;/s:Application&gt;</pre>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS994BFB3F-21D3-485b-8C28-E0336A99B767_verapache"><a name="WS994BFB3F-21D3-485b-8C28-E0336A99B767_verapache"><!-- --></a>
+         <h3 class="topictitle3">Using setStyle() and getStyle()
+with MX effects defined in MXML</h3>
+
+         
+         <div>
+            <p>Trigger properties are implemented as styles; therefore,
+you can use the <a href="https://flex.apache.org/asdoc/mx/core/UIComponent.html#setStyle()" target="_blank">setStyle()</a> and <a href="https://flex.apache.org/asdoc/mx/core/UIComponent.html#getStyle()" target="_blank">getStyle()</a> methods
+to manipulate triggers and their associated effects. The <samp class="codeph">setStyle()</samp> method
+has the following signature:</p>
+
+            <pre class="codeblock"> setStyle("<em>trigger_name</em>", effect) </pre>
+
+            <dl>
+               
+                  <dt class="dlterm">trigger_name</dt>
+
+                  <dd>
+                     <p>String indicating the name of the trigger property; for example, <samp class="codeph">mouseDownEffect</samp> or <samp class="codeph">focusInEffect</samp>.</p>
+
+                  </dd>
+
+               
+               
+                  <dt class="dlterm">effect</dt>
+
+                  <dd>
+                     <p>The effect associated with the trigger. The data type of <samp class="codeph">effect</samp> is
+an Effect object, or an object of a subclass of the Effect class. </p>
+
+                     <p>The <samp class="codeph">getStyle()</samp> method
+has the following signature:</p>
+
+                     <pre class="codeblock"> getStyle("<em>trigger_name</em>"):<em>return_type</em></pre>
+
+                  </dd>
+
+               
+               
+                  <dt class="dlterm">trigger_name</dt>
+
+                  <dd>
+                     <p>String indicating the name of the trigger property. </p>
+
+                  </dd>
+
+               
+               
+                  <dt class="dlterm">return_type</dt>
+
+                  <dd>
+                     <p>An Effect object, or an object of a subclass of the Effect
+class. </p>
+
+                     <p>The following scenarios show how to use <samp class="codeph">getStyle()</samp> with
+effects defined in MXML: </p>
+
+                     <p>When you use MXML tag properties
+or the <samp class="codeph">&lt;fx:Style&gt;</samp> tag to apply effects to a
+target,<samp class="codeph"> getStyle()</samp> returns an <a href="https://flex.apache.org/asdoc/mx/effects/Effect.html" target="_blank">Effect</a> object.
+The type of the object depends on the type of the effect that you
+specified. In the following example, you use the <samp class="codeph">setStyle()</samp> method
+to set the duration of an effect, and the <samp class="codeph">getStyle()</samp> method
+to return the duration:</p>
+
+                     <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- behaviors\ButtonWLGetStyleMXML.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark"&gt; 
+    &lt;s:layout&gt; 
+        &lt;s:VerticalLayout/&gt; 
+    &lt;/s:layout&gt; 
+    
+    &lt;fx:Script&gt; 
+        &lt;![CDATA[ 
+            private function displayStyle():void { 
+                var s:String = String(myB.getStyle('mouseDownEffect').duration) 
+                myTA.text = "mouseDownEffect duration: " + s; 
+            } 
+            
+            private function changeStyle(n:Number):void { 
+                myB.getStyle('mouseDownEffect').duration = n; 
+            } 
+        ]]&gt; 
+    &lt;/fx:Script&gt; 
+ 
+    &lt;fx:Declarations&gt; 
+        &lt;mx:WipeLeft id="slowWipe" duration="5000"/&gt; 
+    &lt;/fx:Declarations&gt;    
+    &lt;!-- Set the behavior in MXML. --&gt; 
+    &lt;mx:Button id="myB" label="Click Me" 
+        mouseDownEffect="{slowWipe}"/&gt; 
+ 
+    &lt;mx:TextArea id="myTA" width="200"/&gt; 
+    
+    &lt;!-- Call getStyle() to return an object of type WipeLeft. --&gt; 
+    &lt;mx:HBox&gt; 
+        &lt;mx:Button label="Get Style" click="displayStyle();"/&gt; 
+        &lt;mx:Button label="Set Duration" click="changeStyle(1000);"/&gt; 
+        &lt;mx:Button label="Reset Duration" click="changeStyle(5000);"/&gt; 
+    &lt;/mx:HBox&gt; 
+ 
+&lt;/s:Application&gt;</pre>
+
+                     <p>For more information on working
+with styles, see <a href="flx_styles_st.html#WS2db454920e96a9e51e63e3d11c0bf69084-7fee_verapache">Styles
+and themes</a>.</p>
+
+                  </dd>
+
+               
+            </dl>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WSC3A722E2-622E-481c-9473-3B41614F84D8_verapache"><a name="WSC3A722E2-622E-481c-9473-3B41614F84D8_verapache"><!-- --></a>
+         <h3 class="topictitle3">Applying MX effects in ActionScript
+using styles</h3>
+
+         
+         <div>
+            <p>Because Flex implements the properties corresponding to
+effect triggers as styles, you can use style sheets and the <a href="https://flex.apache.org/asdoc/mx/core/UIComponent.html#setStyle()" target="_blank">setStyle()</a> and <a href="https://flex.apache.org/asdoc/mx/core/UIComponent.html#getStyle()" target="_blank">getStyle()</a> methods
+to apply effects. Therefore, you can create an effect in ActionScript,
+and then use the <samp class="codeph">setStyle()</samp> method to associate
+it with a trigger, as the following example shows: </p>
+
+            <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- behaviors\BehaviorsASStyles.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    creationComplete="initApp();"&gt; 
+    &lt;s:layout&gt; 
+        &lt;s:VerticalLayout/&gt; 
+    &lt;/s:layout&gt; 
+ 
+    &lt;fx:Script&gt; 
+        &lt;![CDATA[        
+            import mx.effects.Zoom; 
+ 
+            // Define a new Zoom effect. 
+            private var zEffect:Zoom = new Zoom(); 
+ 
+            private function initApp():void { 
+                // Set duration of zoom effect. 
+                zEffect.duration = 1000; 
+ 
+                // Define zoom in ratio.        
+                zEffect.zoomHeightTo = 1.0; 
+                zEffect.zoomWidthTo = 1.0; 
+            } 
+        
+            private function applyZoomEffect(newZoom:Number):void { 
+                zEffect.zoomHeightTo = newZoom; 
+                zEffect.zoomWidthTo = newZoom;             
+                // Apply or re-apply the Zoom effect to the Button control. 
+                b1.setStyle("mouseDownEffect", zEffect);                
+            } 
+            
+            private function resizeButton():void { 
+                var newZoom:Number; 
+                var n:Number = zEffect.zoomHeightTo; 
+                if (n == 1.0) { 
+                    newZoom = 2.0; 
+                } else { 
+                    newZoom = 1.0; 
+                } 
+                applyZoomEffect(newZoom); 
+            } 
+        ]]&gt; 
+    &lt;/fx:Script&gt; 
+ 
+    &lt;mx:HBox&gt; 
+        &lt;mx:Button id="b1" label="Click Me" click="resizeButton();"/&gt; 
+    &lt;/mx:HBox&gt; 
+&lt;/s:Application&gt;</pre>
+
+            <p>You can also define the effect in MXML, then use ActionScript
+to apply it, as the following example shows:</p>
+
+            <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- behaviors\ASStylesMXML.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    creationComplete="initializeEffect(event);"&gt; 
+    &lt;s:layout&gt; 
+        &lt;s:VerticalLayout/&gt; 
+    &lt;/s:layout&gt; 
+ 
+    &lt;fx:Script&gt; 
+        &lt;![CDATA[        
+            import flash.events.Event; 
+        
+            private function initializeEffect(eventObj:Event):void { 
+                myB.setStyle("mouseDownEffect", myWL); 
+            } 
+        ]]&gt; 
+    &lt;/fx:Script&gt; 
+ 
+    &lt;fx:Declarations&gt; 
+        &lt;mx:WipeLeft id="myWL" duration="1000"/&gt; 
+    &lt;/fx:Declarations&gt; 
+ 
+    &lt;mx:Button id="myB" label="Click Me"/&gt; 
+&lt;/s:Application&gt;</pre>
+
+            <p>The code in the following example alternates the <a href="https://flex.apache.org/asdoc/mx/effects/WipeRight.html" target="_blank">WipeRight</a> and <a href="https://flex.apache.org/asdoc/mx/effects/WipeLeft.html" target="_blank">WipeLeft</a> effects for
+the <samp class="codeph">mouseDownEffect</samp> style of a <a href="https://flex.apache.org/asdoc/mx/controls/Button.html" target="_blank">Button</a> control: </p>
+
+            <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- behaviors\ASStyleGetStyleMXML.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark"&gt; 
+    &lt;s:layout&gt; 
+        &lt;s:VerticalLayout/&gt; 
+    &lt;/s:layout&gt; 
+ 
+    &lt;fx:Script&gt; 
+        &lt;![CDATA[ 
+            private function changeEffect():void {           
+                if (myButton.getStyle("mouseUpEffect") == myWR) { 
+                    myButton.setStyle("mouseUpEffect", myWL); 
+                } 
+                else if (myButton.getStyle("mouseUpEffect") == myWL) { 
+                    myButton.setStyle("mouseUpEffect", myWR); 
+                } 
+            }   
+        ]]&gt; 
+    &lt;/fx:Script&gt; 
+ 
+    &lt;fx:Declarations&gt; 
+        &lt;mx:WipeRight id="myWR" duration="1000"/&gt; 
+        &lt;mx:WipeLeft id="myWL" duration="1000"/&gt; 
+    &lt;/fx:Declarations&gt; 
+ 
+    &lt;mx:Button id="myButton" 
+        label="Click Me" 
+        click="changeEffect();" 
+        mouseUpEffect="{myWL}"/&gt; 
+&lt;/s:Application&gt;</pre>
+
+         </div>
+
+      </div>
+
+   </div>
+
+   <div class="nested1" id="WSA8A23863-A3B5-4122-A440-C32FF182C94F_verapache"><a name="WSA8A23863-A3B5-4122-A440-C32FF182C94F_verapache"><!-- --></a>
+      <h2 class="topictitle2">Handling MX effect events</h2>
+
+      
+      <div>
+         <p>MX effects support all of the general events, such as <samp class="codeph">effectStart</samp>, <samp class="codeph">effectStop</samp>,
+and <samp class="codeph">effectEnd</samp>. For more information on handling
+these events, see <a href="flx_behaviors_be.html#WS2db454920e96a9e51e63e3d11c0bf69084-7fbb_verapache">Handling
+effect events</a>.</p>
+
+         <p>In addition, every MX effect that is a subclass of the TweenEffect
+class, such as the Fade and Move effects, supports the following
+events:</p>
+
+         <ul>
+            <li>
+               <p>
+                  <a href="https://flex.apache.org/asdoc/mx/effects/TweenEffect.html#tweenStart" target="_blank">tweenStart</a> Dispatched
+when the tween effect starts. The <samp class="codeph">type</samp> property
+of the event object for this event is set to <samp class="codeph">TweenEvent.TWEEN_START</samp>.
+The <samp class="codeph">Effect.effectStart</samp> event is dispatched before
+the <samp class="codeph">tweenStart</samp> event.</p>
+
+            </li>
+
+            <li>
+               <p>
+                  <a href="https://flex.apache.org/asdoc/mx/effects/TweenEffect.html#tweenUpdate" target="_blank">tweenUpdate</a> Dispatched
+every time a TweenEffect class calculates a new value. The <samp class="codeph">type</samp> property
+of the event object for this event is set to <samp class="codeph">TweenEvent.TWEEN_UPDATE</samp>.</p>
+
+            </li>
+
+            <li>
+               <p>
+                  <a href="https://flex.apache.org/asdoc/mx/effects/TweenEffect.html#tweenEnd" target="_blank">tweenEnd</a> Dispatched
+when the tween effect ends. The <samp class="codeph">type</samp> property of the
+event object for this event is set to <samp class="codeph">TweenEvent.TWEEN_END</samp>.</p>
+
+            </li>
+
+         </ul>
+
+         <p>The event object passed to the event listener for these events
+is of type <a href="https://flex.apache.org/asdoc/mx/events/TweenEvent.html" target="_blank">TweenEvent</a>.
+The TweenEvent class is a subclass of the Event class, and contains all
+of the properties inherited from Event, including <samp class="codeph">target</samp>,
+and <samp class="codeph">type</samp>, and defines the following new property:</p>
+
+         <dl>
+            
+               <dt class="dlterm">value</dt>
+
+               <dd>
+                  <p>Contains the tween value calculated by the effect. For example,
+for the Fade effect, the <samp class="codeph">value</samp> property contains
+a single Number between the values of the <samp class="codeph">Fade.alphaFrom</samp> and <samp class="codeph">Fade.alphaTo</samp> properties.
+For the Move effect, the <samp class="codeph">value</samp> property contains
+a two item Array, where the first value is the current <samp class="codeph">x</samp> value
+of the effect target and the second value is the current <samp class="codeph">y</samp> value
+of the effect target. For more information on the <samp class="codeph">value</samp> property,
+see the instance class for each effect that is a subclass of the
+TweenEffect class. </p>
+
+               </dd>
+
+            
+         </dl>
+
+      </div>
+
+   </div>
+
+   <div class="nested1" id="WS2db454920e96a9e51e63e3d11c0bf5fdc3-7feb_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf5fdc3-7feb_verapache"><!-- --></a>
+      <h2 class="topictitle2">Using the MX AnimateProperty effect</h2>
+
+      
+      <div>
+         <p>You use the <a href="https://flex.apache.org/asdoc/mx/effects/AnimateProperty.html" target="_blank">AnimateProperty</a> effect
+to animate a numeric property of a component. For example, you can
+use this effect to animate the <samp class="codeph">scaleX</samp> property
+of a control, as the following example shows:</p>
+
+         <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- behaviors\AnimateHScrollPos.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark"&gt; 
+    &lt;s:layout&gt; 
+        &lt;s:VerticalLayout/&gt; 
+    &lt;/s:layout&gt; 
+ 
+    &lt;fx:Declarations&gt; 
+        &lt;mx:Sequence id="animateScaleXUpDown" &gt; 
+            &lt;mx:AnimateProperty 
+                property="scaleX" 
+                fromValue="1.0" 
+                toValue="1.5"/&gt; 
+            &lt;mx:AnimateProperty 
+                property="scaleX" 
+                fromValue="1.5" 
+                toValue="1.0"/&gt;    
+        &lt;/mx:Sequence&gt; 
+    &lt;/fx:Declarations&gt; 
+ 
+    &lt;mx:Button label="Scale Button" 
+        mouseDownEffect="{animateScaleXUpDown}"/&gt; 
+&lt;/s:Application&gt;</pre>
+
+         <p>In this example, clicking on the Button control starts the <a href="https://flex.apache.org/asdoc/mx/effects/Sequence.html" target="_blank">Sequence</a> effect,
+which is made up of two AnimateProperty effects. The first AnimateProperty
+effect scales the control to 150% of its width, and the second scrolls
+it back to its original width. </p>
+
+      </div>
+
+   </div>
+
+   <div class="nested1" id="WS2db454920e96a9e51e63e3d11c0bf69084-7fc0_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7fc0_verapache"><!-- --></a>
+      <h2 class="topictitle2">Using the MX sound effect</h2>
+
+      
+      <div>
+         <p>You
+use the <a href="https://flex.apache.org/asdoc/mx/effects/SoundEffect.html" target="_blank">SoundEffect</a> class
+to play a sound represented as an MP3 file. You specify the MP3
+file using the <samp class="codeph">source</samp> property. If you have already
+embedded the MP3 file, using the <samp class="codeph">Embed</samp> keyword,
+you can pass the Class object of the MP3 file to the source property.
+Otherwise, specify the full URL to the MP3 file.</p>
+
+         <p>The following example shows both methods of specifying the MP3
+file:</p>
+
+         <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- behaviors\Sound.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark"&gt; 
+    &lt;s:layout&gt; 
+        &lt;s:VerticalLayout/&gt; 
+    &lt;/s:layout&gt; 
+ 
+    &lt;fx:Script&gt; 
+        &lt;![CDATA[ 
+            // Embed MP3 file. 
+            [Bindable] 
+            [Embed(source="../assets/sound1.mp3")] 
+            public var soundClass:Class;            
+        ]]&gt; 
+    &lt;/fx:Script&gt; 
+        
+    &lt;fx:Declarations&gt; 
+        &lt;mx:SoundEffect id="soundEmbed" 
+            useDuration="false" 
+            loops="0" 
+            source="{soundClass}"/&gt; 
+    &lt;/fx:Declarations&gt; 
+ 
+    &lt;mx:Button id="myButton2" 
+        label="Sound Embed" 
+        mouseDownEffect="{soundEmbed}"/&gt; 
+&lt;/s:Application&gt;</pre>
+
+         <p>In this example, you embed the sound1.mp3 file in your application.
+That means the file is compiled into the SWF file. </p>
+
+         <p>The SoundEffect class has several properties that you can use
+to control the playback of the MP3 file, including <samp class="codeph">useDuration</samp> and <samp class="codeph">loops</samp>.
+The <samp class="codeph">useDuration</samp> property specifies whether to use
+the <samp class="codeph">duration</samp> property to control the play time
+of the MP3 file. If the <samp class="codeph">useDuration</samp> property is <samp class="codeph">true</samp>,
+the MP3 file will play for as long as the time specified by the <samp class="codeph">duration</samp> property, which
+defaults to 500 ms. If you set <samp class="codeph">useDuration</samp> to <samp class="codeph">false</samp>,
+the MP3 file plays to completion.</p>
+
+         <p>The <samp class="codeph">loops</samp> property specifies the number of times
+to repeat the MP3 file, where a value of 0 means play the effect
+once, a value of 1 means play the effect twice, and so on. If you
+repeat the MP3 file, it still uses the setting of the <samp class="codeph">useDuration</samp> property
+to determine the playback time. </p>
+
+         <p>The <samp class="codeph">duration</samp> property takes precedence over
+the <samp class="codeph">loops</samp> property. If the effect duration is not
+long enough to play the sound at least once, then the sound will
+not loop.</p>
+
+         <p>The SoundEffect class also defines the following events:</p>
+
+         <dl>
+            
+               <dt class="dlterm">complete</dt>
+
+               <dd>
+                  <p>Dispatched when the sound file completes loading.</p>
+
+               </dd>
+
+            
+            
+               <dt class="dlterm">id3</dt>
+
+               <dd>
+                  <p>Dispatched when ID3 data is available for an MP3 sound file.</p>
+
+               </dd>
+
+            
+            
+               <dt class="dlterm">ioError</dt>
+
+               <dd>
+                  <p>Dispatched when an error occurs during the loading of the
+sound file. </p>
+
+               </dd>
+
+            
+            
+               <dt class="dlterm">progress</dt>
+
+               <dd>
+                  <p>Dispatched periodically as the sound file loads. Within the
+event object, you can access the number of bytes currently loaded
+and the total number of bytes to load. The event is not guaranteed
+to be dispatched, which means that the <samp class="codeph">complete</samp> event
+might be dispatched without any <samp class="codeph">progress</samp> events
+being dispatched. </p>
+
+                  <p>For more information, see the <em>
+                        <a href="https://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/" target="_blank">ActionScript 3.0 Reference for the Adobe<sup>®</sup> Flash<sup>®</sup> Platform</a>
+                     </em>. </p>
+
+               </dd>
+
+            
+         </dl>
+
+      </div>
+
+   </div>
+
+   <div class="nested1" id="WS2db454920e96a9e51e63e3d11c0bf69084-7fc4_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7fc4_verapache"><!-- --></a>
+      <h2 class="topictitle2">Using MX mask effects</h2>
+
+      
+      <div>
+         <p>A mask effect
+is any effect that is a subclass of the <a href="https://flex.apache.org/asdoc/mx/effects/MaskEffect.html" target="_blank">MaskEffect</a> class,
+which includes the wipe effects and the Iris effect. A mask effect
+uses an overlay, called a mask, to perform the effect. By default,
+for the wipe effects, the mask is a rectangle with the same size
+as the target component. For the <a href="https://flex.apache.org/asdoc/mx/effects/Iris.html" target="_blank">Iris</a> effect,
+the default mask is a rectangle centered on the component. </p>
+
+         <p>The before or after state of the target component of a mask effect
+must be invisible. That means a mask effect always makes a target
+component appear on the screen, or disappear from the screen. </p>
+
+         <p>To control the mask effect, you set the <samp class="codeph">MaskEffect.showTarget</samp> property
+to correspond to the action of the component. If the target component
+is becoming visible, set <samp class="codeph">showTarget</samp> to <samp class="codeph">true</samp>.
+If the target is becoming invisible, set <samp class="codeph">showTarget</samp> to <samp class="codeph">false</samp>.
+The default value is <samp class="codeph">true</samp>. </p>
+
+         <p>Often, you use these effects with the <samp class="codeph">showEffect</samp> and <samp class="codeph">hideEffect</samp> triggers. The <samp class="codeph">showEffect</samp> trigger
+occurs when a component becomes visible by changing its <samp class="codeph">visible</samp> property
+from <samp class="codeph">false</samp> to <samp class="codeph">true</samp>. The <samp class="codeph">hideEffect</samp> trigger
+occurs when the component becomes invisible by changing its <samp class="codeph">visible</samp> property
+from <samp class="codeph">true</samp> to <samp class="codeph">false</samp>. When using
+a mask effect with the <samp class="codeph">showEffect</samp> or <samp class="codeph">hideEffect</samp> triggers,
+you can ignore the <samp class="codeph">showTarget</samp> property; Flex sets it
+for you automatically. </p>
+
+         <p>As the mask effect executes, the effect either covers the target
+component or uncovers it, based on the setting of the <samp class="codeph">showTarget</samp> property.
+The following diagram shows the action of the WipeLeft effect for
+the two different settings of the <samp class="codeph">showTarget</samp> property: </p>
+
+         <div class="figborder">
+            <img src="images/be_showTarget_WipeLeft.png" alt="WipeLeft effect for the two different settings of the showTarget property"/>
+         </div>
+
+         <p>You can use several properties of the MaskEffect class to control
+the location and size of the mask, including the following:</p>
+
+         <dl>
+            
+               <dt class="dlterm">scaleXFrom, scaleYFrom, scaleXTo, and scaleX</dt>
+
+               <dd>
+                  <p>Specify the initial and final scale of the mask where a value
+of 1.0 corresponds to scaling the mask to the size of the target
+component, 2.0 scales the mask to twice the size of the component, 0.5
+scales the mask to half the size of the component, and so on. To
+use any one of these properties, you must specify all four.</p>
+
+               </dd>
+
+            
+            
+               <dt class="dlterm">xFrom, yFrom, xTo, and yTo</dt>
+
+               <dd>
+                  <p>Specify the coordinates of the initial position and final
+position of the mask relative to the target component, where (0,
+0) corresponds to the upper-left corner of the target. To use any
+one of these properties, you must specify all four. </p>
+
+                  <p>The coordinates
+of the initial and final position of the mask depend on the type of
+effect and whether the <samp class="codeph">showTarget</samp> property is <samp class="codeph">true</samp> or <samp class="codeph">false</samp>.
+For example, for the WipeLeft effect with a <samp class="codeph">showTarget</samp> value
+of <samp class="codeph">false</samp>, the coordinates of the initial mask position
+are (0, 0), corresponding to the upper-left corner of the target,
+and the coordinates of the final position are the upper-right corner
+of the target (-<samp class="codeph">width</samp>, 0), where <samp class="codeph">width</samp> is
+the width of the target. </p>
+
+                  <p>For a <samp class="codeph">showTarget</samp> value
+of <samp class="codeph">true</samp> for the WipeLeft effect, the coordinates
+of the initial mask position are (<samp class="codeph">width</samp>, 0), and
+the coordinates of the final position are (0, 0). </p>
+
+               </dd>
+
+            
+         </dl>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf5fdc3-7fe6_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf5fdc3-7fe6_verapache"><!-- --></a>
+         <h3 class="topictitle3">Creating a custom mask function</h3>
+
+         
+         <div>
+            <p>You can supply a custom mask function to a mask effect
+using the <a href="https://flex.apache.org/asdoc/mx/effects/MaskEffect.html#createMaskFunction" target="_blank">createMaskFunction</a> property.
+A custom mask function lets you create a mask with a custom shape,
+color, or other attributes for your application requirements.</p>
+
+            <p>The custom mask function has the following signature:</p>
+
+            <pre class="codeblock"> public function funcName(targ:Object, bounds:Rectangle):Shape 
+ 	var myMask:Shape = new Shape(); 
+ 	// Create mask. 
+  
+ 	return myMask; 
+ }</pre>
+
+            <p>Your custom mask function takes an argument that corresponds
+to the target component of the effect, and a second argument that
+defines the dimensions of the target so that you can correctly size
+the mask. The function returns a single Shape object that defines
+the mask. </p>
+
+            <p>The following example uses a custom mask with a <a href="https://flex.apache.org/asdoc/mx/effects/WipeLeft.html" target="_blank">WipeLeft</a> effect:</p>
+
+            <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- behaviors\CustomMaskSimple.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark"&gt; 
+    &lt;s:layout&gt; 
+        &lt;s:VerticalLayout/&gt; 
+    &lt;/s:layout&gt; 
+ 
+    &lt;fx:Script&gt; 
+        &lt;![CDATA[ 
+ 
+            // Import the effect class. 
+            import mx.effects.*; 
+        
+            public function createLargeMask(targ:Object, 
+                    bounds:Rectangle):Shape { 
+                // Create the Shape object. 
+                var largeMask:Shape = new Shape(); 
+ 
+                // Access the Graphics object of the 
+                // Shape object to draw the mask. 
+                largeMask.graphics.beginFill(0x00FFFF, 0.5); 
+                largeMask.graphics.drawRoundRect(0, 0, bounds.width + 10, 
+                    bounds.height - 10, 3);   
+                largeMask.graphics.endFill(); 
+ 
+                // Return the mask. 
+                return largeMask; 
+            } 
+        ]]&gt; 
+    &lt;/fx:Script&gt; 
+ 
+    &lt;fx:Declarations&gt; 
+        &lt;mx:WipeLeft id="customWL" 
+            createMaskFunction="createLargeMask" 
+            showTarget="false"/&gt; 
+    
+        &lt;mx:WipeLeft id="standardWL" 
+            showTarget="false"/&gt; 
+    &lt;/fx:Declarations&gt; 
+ 
+    &lt;mx:HBox borderStyle="solid" 
+        paddingLeft="10" paddingRight="10" 
+        paddingTop="10" paddingBottom="10"&gt; 
+ 
+        &lt;mx:Button label="Custom Mask" 
+            mouseDownEffect="{customWL}" 
+            height="100" width="150"/&gt; 
+    &lt;/mx:HBox&gt; 
+&lt;/s:Application&gt;</pre>
+
+         </div>
+
+      </div>
+
+   </div>
+
+   <div class="nested1" id="WS2db454920e96a9e51e63e3d11c0bf69084-7fa8_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7fa8_verapache"><!-- --></a>
+      <h2 class="topictitle2">Using MX data effects</h2>
+
+      
+      <div>
+         <p>The MX List and MX TileList controls take input from a <em>data provider</em>,
+an object that contains the data displayed by the control. To provide
+this data, you assign a collection, which is usually an ArrayCollection
+or XMLListCollection object, to the control's <samp class="codeph">dataProvider</samp> property.
+Each item in the control is then displayed by using an item renderer.</p>
+
+         <p>MX data effects make it possible to apply effects to the item
+renderers in List and TileList controls when the data provider for
+the control changes. For example, when an item is deleted from the
+data provider of a List control, the item renderer for that item
+might fade out and shrink. </p>
+
+         <p>For more information about data providers and controls that use
+data providers, see <a href="flx_about_dataproviders_ab.html#WS2db454920e96a9e51e63e3d11c0bf69084-7fb8_verapache">Data
+providers and collections</a>. For more information about item
+renderers, see <a href="flx_cellrenderer_cr.html#WS2db454920e96a9e51e63e3d11c0bf69084-7fb7_verapache">MX
+item renderers and item editors</a>. </p>
+
+         <p>By default, the List and TileList control do not use a data effect.
+To specify the effect to apply to the control, use the control's <samp class="codeph">itemsChangeEffect</samp> style property.
+For the List control, use the DefaultListEffect class to configure
+the data effect. For the TileList control, use the DefaultTileListEffect
+class. </p>
+
+         <p>You can also create custom data effects. For more information,
+see <a href="flx_createeffects_cfx.html#WS2db454920e96a9e51e63e3d11c0bf69084-7fc8_verapache">Custom effects</a>.</p>
+
+         <div class="section" id="WS2db454920e96a9e51e63e3d11c0bf69084-7fa8_verapache__WS2db454920e96a9e51e63e3d11c0bf5fdc3-7fde_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7fa8_verapache__WS2db454920e96a9e51e63e3d11c0bf5fdc3-7fde_verapache"><!-- --></a><h3 class="sectiontitle">Example:
+Applying a MX data effect to a MX List or MX TileList control</h3>
+            
+            <p>The
+following example applies the MX DefaultListEffect effect to the
+MX List control when items are added to or removed from the control.
+When an item in the List control is removed, this effect first fades
+out the item, then collapses the size of the item to 0. When you
+add an item to the List control, this effect expands the slot for
+the item, then fades in the new item. </p>
+
+            <p>Because the DefaultListEffect
+effect grows and shrinks item renderers as it plays, you must set
+the <samp class="codeph">List.variableRowHeight</samp> property to <samp class="codeph">true</samp> to
+enable the List control to dynamically change its row height, as
+the following example shows:</p>
+
+            <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- dataEffects\ListEffectCustomDefaultEffect.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark"&gt; 
+    &lt;s:layout&gt; 
+        &lt;s:VerticalLayout/&gt; 
+    &lt;/s:layout&gt; 
+    
+    &lt;fx:Script&gt; 
+        &lt;![CDATA[ 
+            import mx.effects.DefaultListEffect; 
+            import mx.collections.ArrayCollection; 
+            
+            [Bindable] 
+            private var myDP:ArrayCollection = new ArrayCollection( 
+                ['A','B','C','D','E']); 
+            
+            private function deleteItem():void { 
+                // As each item is removed, the index of the other items changes. 
+                // So first get the items to delete, and then determine their indices 
+                // as you remove them. 
+                var toRemove:Array = []; 
+                for (var i:int = 0; i &lt; list0.selectedItems.length; i++) 
+                    toRemove.push(list0.selectedItems[i]); 
+                for (i = 0; i &lt; toRemove.length; i++) 
+                    myDP.removeItemAt(myDP.getItemIndex(toRemove[i])); 
+            } 
+ 
+            private var zcount:int = 0; 
+            private function addItem():void { 
+                // Always add the new item after the third item, 
+                // or after the last item if the length is less than 3. 
+                myDP.addItemAt("Z"+zcount++,Math.min(3,myDP.length)); 
+            }            
+        ]]&gt; 
+    &lt;/fx:Script&gt; 
+ 
+    &lt;fx:Declarations&gt; 
+        &lt;!-- Define an instance of the DefaultListEffect effect, 
+             and set its fadeOutDuration and color properties. --&gt; 
+        &lt;mx:DefaultListEffect id="myDLE" 
+            fadeOutDuration="1000"/&gt; 
+    &lt;/fx:Declarations&gt; 
+ 
+    &lt;mx:List id="list0" 
+        width="150" 
+        dataProvider="{myDP}" 
+        variableRowHeight="true" 
+        fontSize="24" 
+        allowMultipleSelection="true" 
+        itemsChangeEffect="{myDLE}"/&gt; 
+ 
+    &lt;mx:Button 
+        label="Delete Item" 
+        click="deleteItem();"/&gt; 
+    &lt;mx:Button 
+        label="Add Item" 
+        click="addItem();"/&gt; 
+&lt;/s:Application&gt;</pre>
+
+            <p>To use a MX data effect with
+the TileList class, apply the DefaultTileListEffect effect to the
+control. When an item in the TileList control is removed, this effect first
+fades out the item, and then moves the remaining items to their
+new position. When you add an item to the TileList control, this
+effect moves the existing items to their new position, and then
+fades in the new item.</p>
+
+            <p>You typically set the <samp class="codeph">offscreenExtraRowsOrColumns</samp> property
+of the TileList control when you apply a data effect. This property
+specifies the number of extra rows or columns of offscreen item
+renderers used in the layout of the control. This property is useful
+because data effects work by first determining a <em>before</em> layout
+of the list-based control, then determining an <em>after</em> layout,
+and finally setting the properties of the effect to create an animation
+from the before layout to the after layout. Because many effects
+cause currently invisible items to become visible, or currently
+visible items to become invisible, this property configures the
+control to create the offscreen item renderers so that they already exist
+when the data effect plays. </p>
+
+            <p>You typically set the <samp class="codeph">offscreenExtraRowsOrColumns</samp> property
+to a nonzero, even value, such as 2 or 4, for a TileList control,
+as the following example shows:</p>
+
+            <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- dataEffects\TileListEffectCustomDefaultEffect.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    height="500"&gt; 
+    &lt;s:layout&gt; 
+        &lt;s:VerticalLayout/&gt; 
+    &lt;/s:layout&gt; 
+    
+    &lt;fx:Script&gt; 
+        &lt;![CDATA[ 
+            import mx.effects.DefaultTileListEffect; 
+            import mx.effects.easing.Elastic; 
+            import mx.collections.ArrayCollection; 
+            import mx.effects.Move; 
+            
+            [Bindable] 
+            private var myDP:ArrayCollection = new ArrayCollection( 
+                ["A","B",'C','D','E','F','G','H','I','J','K','L','M','N','O','P']); 
+ 
+            private function deleteItems():void { 
+                // As each item is removed, the index of the other items changes. 
+                // So first get the items to delete, and then determine their indices 
+                // as you remove them. 
+                var toRemove:Array = []; 
+                for (var i:int = 0; i &lt; tlist0.selectedItems.length; i++) 
+                    toRemove.push(tlist0.selectedItems[i]); 
+                for (i = 0; i &lt; toRemove.length; i++) 
+                    myDP.removeItemAt(myDP.getItemIndex(toRemove[i])); 
+            } 
+ 
+            private var zcount:int = 0; 
+            private function addItems():void { 
+                myDP.addItemAt("Z"+zcount++,Math.min(2,myDP.length)); 
+            }            
+        ]]&gt; 
+    &lt;/fx:Script&gt; 
+    
+    &lt;fx:Declarations&gt; 
+        &lt;!-- Define an instance of the DefaultTileListEffect effect, 
+             and set its moveDuration and color properties. --&gt; 
+        &lt;mx:DefaultTileListEffect id="myDTLE" 
+            moveDuration="100"/&gt; 
+    &lt;/fx:Declarations&gt; 
+ 
+    &lt;mx:TileList id="tlist0" 
+        height="400" width="400" 
+        columnCount="4" rowCount="4" 
+        fontSize="30" fontWeight="bold" 
+        direction="horizontal" 
+        dataProvider="{myDP}" 
+        allowMultipleSelection="true" 
+        offscreenExtraRowsOrColumns="2" 
+        itemsChangeEffect="{myDTLE}" /&gt; 
+ 
+    &lt;mx:Button 
+        label="Delete Selected Item(s)" 
+        click="deleteItems();"/&gt; 
+    &lt;mx:Button 
+        label="Add Item" 
+        click="addItems();"/&gt; 
+&lt;/s:Application&gt;</pre>
+
+         </div>
+
+      </div>
+
+   </div>
+
+   <div class="nested1" id="WS1b75b3cd39e0a19d6f1b8095120c95d3de4-8000_verapache"><a name="WS1b75b3cd39e0a19d6f1b8095120c95d3de4-8000_verapache"><!-- --></a>
+      <h2 class="topictitle2">Improving performance when resizing Panel
+containers</h2>
+
+      
+      <div>
+         <p>When you apply a Resize effect to a MX Panel container,
+the measurement and layout algorithm for the effect executes repeatedly
+over the duration of the effect. When a Panel container has many
+children, the animation can be jerky because Flex cannot update
+the screen quickly enough. </p>
+
+         <p>To solve this problem, you can use the Resize effect's <samp class="codeph">hideChildrenTargets</samp> property
+to hide the children of panel containers while the Resize effect
+is playing. The value of the <samp class="codeph">hideChildrenTargets</samp> property
+is an Array of Panel containers that should include the Panel containers
+that resize during the animation. Before the Resize effect plays,
+Flex iterates through the Array and hides the children of each of
+the specified Panel containers.</p>
+
+         <p>In the following example, the children of the panelOne and panelTwo
+containers are hidden while the containers resize:</p>
+
+         <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- behaviors\PanelResize.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark"&gt; 
+    &lt;s:layout&gt; 
+        &lt;s:HorizontalLayout/&gt; 
+    &lt;/s:layout&gt; 
+ 
+    &lt;fx:Declarations&gt; 
+        &lt;mx:Resize id="myResizeOne" heightTo="300" 
+            target="{panelOne}" 
+            hideChildrenTargets="{[panelOne]}"/&gt; 
+        &lt;mx:Resize id="myResizeTwo" heightTo="300" 
+            target="{panelTwo}"/&gt; 
+    &lt;/fx:Declarations&gt; 
+ 
+    &lt;s:Button id="b1" 
+        label="Reset" 
+        click="panelOne.height=200;panelTwo.height=200;"/&gt; 
+ 
+    &lt;mx:Panel id="panelOne" title="Panel 1" height="200" 
+        mouseDown="myResizeOne.end();myResizeOne.play();"&gt; 
+        &lt;s:Button label="Click Me"/&gt; 
+        &lt;s:Button label="Click Me"/&gt; 
+        &lt;s:Button label="Click Me"/&gt; 
+        &lt;s:Button label="Click Me"/&gt; 
+        &lt;s:Button label="Click Me"/&gt; 
+    &lt;/mx:Panel&gt; 
+ 
+    &lt;mx:Panel id="panelTwo" title="Panel 2" height="200" 
+        mouseDown="myResizeTwo.end();myResizeTwo.play();"&gt; 
+        &lt;s:Button label="Click Me"/&gt; 
+        &lt;s:Button label="Click Me"/&gt; 
+        &lt;s:Button label="Click Me"/&gt; 
+        &lt;s:Button label="Click Me"/&gt; 
+        &lt;s:Button label="Click Me"/&gt; 
+    &lt;/mx:Panel&gt; 
+&lt;/s:Application&gt;</pre>
+
+         <p>For the MX Panel container, you can control the effect used to
+hide the container children. For each panel container in the <samp class="codeph">hideChildrenTargets</samp> Array,
+the following effect triggers execute:</p>
+
+         <ul>
+            <li>
+               <p>
+                  <samp class="codeph">resizeStartEffect</samp> Delivered before the
+Resize effect begins playing.</p>
+
+            </li>
+
+            <li>
+               <p>
+                  <samp class="codeph">resizeEndEffect</samp> Delivered after the Resize
+effect finishes playing.</p>
+
+               <p>If the <samp class="codeph">resizeStartEffect</samp> trigger
+specifies an effect to play, the Resize effect is delayed until
+the effect finishes playing.</p>
+
+            </li>
+
+         </ul>
+
+         <p>The default value for the MX Panel container's <samp class="codeph">resizeStartEffect</samp> and <samp class="codeph">resizeEndEffect</samp> triggers
+is <samp class="codeph">Dissolve</samp>, which plays the Dissolve effect. To disable
+the Dissolve effect so that a Panel container's children are hidden immediately,
+you must set the value of the <samp class="codeph">resizeStartEffect</samp> and <samp class="codeph">resizeEndEffect</samp> triggers
+to <samp class="codeph">none</samp>. </p>
+
+      </div>
+
+   </div>
+
+   <div class="nested1" id="WS2db454920e96a9e51e63e3d11c0bf5fdc3-7ffd_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf5fdc3-7ffd_verapache"><!-- --></a>
+      <h2 class="topictitle2">Using the MX Dissolve effect with
+the MX Panel, TitleWindow, and Accordion containers</h2>
+
+      
+      <div>
+         <p>The MX Dissolve effects is only applied to the content
+area of the Panel, TitleWindow, and Accordion containers. Therefore,
+the title bar of the Panel and TitleWindow containers, and the navigation
+buttons of the Accordion container are not modified by this effect.</p>
+
+         <p>To apply the Dissolve effect to the entire container, create
+a RoundedRectange instance that is the same size as the container,
+and then use the <samp class="codeph">targetArea</samp> property of the effect
+to specify the area on which to apply the effect. In the following
+example, you apply a Dissolve effect to the first Panel container,
+and apply a Dissolve effect to a RoundedRectange instance overlaid
+on top of the second Panel container: </p>
+
+         <pre class="codeblock">&lt;?xml version="1.0" encoding="utf-8"?&gt; 
+&lt;!-- behaviors\PanelDissolve.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    creationComplete="init();"&gt; 
+    &lt;s:layout&gt; 
+        &lt;s:VerticalLayout/&gt; 
+    &lt;/s:layout&gt; 
+    
+    &lt;fx:Script&gt; 
+        &lt;![CDATA[ 
+           import mx.geom.*; 
+ 
+            // Define a bounding box for the target area of the effect. 
+           [Bindable] 
+           public var tArea:RoundedRectangle; 
+ 
+            // Size the bounding box to the size of Panel 2. 
+           private function init():void 
+           { 
+              tArea = new RoundedRectangle(0,0, panel2.width, panel2.height, 5); 
+           } 
+        ]]&gt; 
+    &lt;/fx:Script&gt; 
+ 
+    &lt;fx:Declarations&gt; 
+        &lt;mx:Dissolve id="dissolveP1" 
+            duration="1000" 
+            target="{panel1}" 
+            alphaFrom="1.0" alphaTo="0.0"/&gt; 
+ 
+        &lt;!-- Apply the effect to the bounding box, not to Panel 2. --&gt; 
+        &lt;mx:Dissolve id="dissolveP2" 
+            duration="1000" 
+            target="{panel2}" 
+            alphaFrom="1.0" alphaTo="0.0" 
+            targetArea="{tArea}"/&gt; 
+    &lt;/fx:Declarations&gt; 
+ 
+    &lt;mx:Panel id="panel1" title="Panel 1" 
+        width="100" height="140" &gt; 
+       &lt;mx:Button label="Orange" /&gt; 
+    &lt;/mx:Panel&gt; 
+ 
+    &lt;mx:Panel id="panel2" title="Panel 2" 
+        width="100" height="140" &gt; 
+       &lt;mx:Button label="Red" /&gt; 
+    &lt;/mx:Panel&gt; 
+ 
+    &lt;mx:Button label="Dissolve Panel 1" 
+        click="dissolveP1.end();dissolveP1.play();"/&gt; 
+    &lt;mx:Button label="Dissolve Panel 2" 
+        click="dissolveP2.end();dissolveP2.play();"/&gt; 
+&lt;/s:Application&gt;</pre>
+
+      </div>
+
+   </div>
+
+   <div class="nested1" id="WS2db454920e96a9e51e63e3d11c0bf5fdc3-7fe2_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf5fdc3-7fe2_verapache"><!-- --></a>
+      <h2 class="topictitle2">Using MX easing functions</h2>
+
+      
+      <div>
+         <p>You
+can change the speed of an animation by defining an easing function
+for an effect. With easing, you can create a more realistic rate
+of acceleration and deceleration. You can also use an easing function
+to create a bounce effect or control other types of motion. </p>
+
+         <p>Flex supplies MX easing functions in the mx.effects.easing package.
+This package includes functions for the most common types of easing,
+including <a href="https://flex.apache.org/asdoc/mx/effects/easing/Bounce.html" target="_blank">Bounce</a>, <a href="https://flex.apache.org/asdoc/mx/effects/easing/Linear.html" target="_blank">Linear</a>,
+and <a href="https://flex.apache.org/asdoc/mx/effects/easing/Sine.html" target="_blank">Sine</a> easing.
+For more information on using these functions, see the <em>
+               <a href="https://flex.apache.org/asdoc/" target="_blank">ActionScript 3.0 Reference for Apache Flex</a></em>.</p>
+
+         <p>The following code shows the basic format of an easing function:</p>
+
+         <pre class="codeblock"> function myEasingFunction(t:Number, b:Number, c:Number, d:Number):Number { 
+ 	... 
+ }</pre>
+
+         <p>You specify the following arguments of an easing function:</p>
+
+         <ul>
+            <li>
+               <p>
+                  <samp class="codeph">t</samp> specifies time.</p>
+
+            </li>
+
+            <li>
+               <p>
+                  <samp class="codeph">b</samp> specifies the initial position of a component.</p>
+
+            </li>
+
+            <li>
+               <p>
+                  <samp class="codeph">c</samp> specifies the total change in position
+of the component.</p>
+
+            </li>
+
+            <li>
+               <p>
+                  <samp class="codeph">d</samp> specifies the duration of the effect,
+in milliseconds.</p>
+
+            </li>
+
+         </ul>
+
+      </div>
+
+      <div class="nested2" id="WS9972EE3A-9C0D-4af1-A7AD-4D29765A17ED_verapache"><a name="WS9972EE3A-9C0D-4af1-A7AD-4D29765A17ED_verapache"><!-- --></a>
+         <h3 class="topictitle3">Configuring a MX easing function</h3>
+
+         
+         <div>
+            <p>You specify
+an easing function to a component by passing a reference to the function
+to a component property. You pass only the name of the easing function;
+Flex automatically sets the values for the arguments of the easing function. </p>
+
+            <p>All tween effects, meaning effect classes that are child classes
+of the <a href="https://flex.apache.org/asdoc/mx/effects/TweenEffect.html" target="_blank">TweenEffect</a> class,
+support the <samp class="codeph">easingFunction</samp> property, which lets
+you specify an easing function to the effect. Mask effects, those
+effect classes that are child classes of the <a href="https://flex.apache.org/asdoc/mx/effects/MaskEffect.html" target="_blank">MaskEffect</a> class,
+also support easing functions. Other components support easing functions
+as well. For example, the <a href="https://flex.apache.org/asdoc/mx/containers/Accordion.html" target="_blank">Accordion</a> and <a href="https://flex.apache.org/asdoc/mx/controls/Tree.html" target="_blank">Tree</a> components
+let you use the <samp class="codeph">openEasingFunction</samp> style property
+to specify an easing function, and the ComboBox component supports
+a <samp class="codeph">closeEasingFunction</samp> style property. </p>
+
+            <p>For example, you can specify the <samp class="codeph">mx.effects.easing.Bounce.easeOut()</samp> method
+to the Accordion container using the <samp class="codeph">openEasingFunction</samp> property,
+as the following code shows.</p>
+
+            <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- behaviors\EasingFuncExample.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    height="550"&gt; 
+    &lt;s:layout&gt; 
+        &lt;s:VerticalLayout/&gt; 
+    &lt;/s:layout&gt; 
+ 
+    &lt;fx:Script&gt; 
+        import mx.effects.easing.*; 
+    &lt;/fx:Script&gt; 
+ 
+    &lt;mx:Accordion 
+        openEasingFunction="{Bounce.easeOut}" 
+        openDuration="2000"&gt; 
+        &lt;mx:VBox label="Pane 1" width="400" height="400"/&gt; 
+        &lt;mx:VBox label="Pane 2" width="400" height="400"/&gt; 
+    &lt;/mx:Accordion&gt; 
+&lt;/s:Application&gt;</pre>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS6106614B-2F66-4ce6-9388-496C982081C6_verapache"><a name="WS6106614B-2F66-4ce6-9388-496C982081C6_verapache"><!-- --></a>
+         <h3 class="topictitle3">Creating a custom easing function</h3>
+
+         
+         <div>
+            <p>In the following example, you create a custom easing function
+that creates a bounce motion when combined with the Flex <a href="https://flex.apache.org/asdoc/mx/effects/Move.html" target="_blank">Move</a> effect: </p>
+
+            <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- behaviors\Easing.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    width="650"&gt; 
+    &lt;s:layout&gt; 
+        &lt;s:VerticalLayout/&gt; 
+    &lt;/s:layout&gt; 
+ 
+    &lt;fx:Script&gt; 
+        &lt;![CDATA[ 
+            private function myEasingFunction(t:Number, b:Number, 
+                    c:Number, d:Number):Number { 
+              if ((t /= d) &lt; (1 / 2.75)) { 
+                  return c * (7.5625 * t * t) + b; 
+              } 
+              else if (t &lt; (2 / 2.75)) { 
+                  return c * (7.5625 * (t-=(1.5/2.75)) * t + .75) + b; 
+              } 
+              else if (t &lt; (2.5 / 2.75)) { 
+                  return c * (7.5625 * (t-=(2.25/2.75)) * t + .9375) + b; 
+              } 
+              else { 
+                  return c * (7.5625 * (t-=(2.625/2.75)) * t + .984375) + b; 
+              } 
+            }; 
+        ]]&gt; 
+    &lt;/fx:Script&gt; 
+ 
+    &lt;fx:Declarations&gt; 
+        &lt;mx:Move id="moveLeftShow" 
+            xFrom="600" xTo="0" yTo="0" 
+            duration="3000" 
+            easingFunction="myEasingFunction"/&gt; 
+        &lt;mx:Move id="moveRightHide" 
+            xFrom="0" xTo="600" 
+            duration="3000" 
+            easingFunction="myEasingFunction"/&gt;    
+    &lt;/fx:Declarations&gt; 
+    
+    &lt;mx:LinkBar dataProvider="myVS"/&gt; 
+    &lt;mx:ViewStack id="myVS" borderStyle="solid"&gt; 
+        &lt;mx:Canvas id="Canvas0" label="Canvas0" 
+            creationCompleteEffect="{moveLeftShow}" 
+            showEffect="{moveLeftShow}" 
+            hideEffect="{moveRightHide}" &gt; 
+                &lt;mx:Box height="300" width="600" backgroundColor="#00FF00"&gt; 
+                    &lt;mx:Label text="Screen 0" color="#FFFFFF" fontSize="40"/&gt; 
+                &lt;/mx:Box&gt; 
+        &lt;/mx:Canvas&gt;            
+        &lt;mx:Canvas id="Canvas1" label="Canvas1" 
+            showEffect="{moveLeftShow}" hideEffect="{moveRightHide}" &gt; 
+                &lt;mx:Box height="300" width="600" backgroundColor="#0033CC"&gt; 
+                    &lt;mx:Label text="Screen 1" color="#FFFFFF" fontSize="40"/&gt; 
+                &lt;/mx:Box&gt; 
+            &lt;/mx:Canvas&gt; 
+    &lt;/mx:ViewStack&gt;  
+&lt;/s:Application&gt;</pre>
+
+            <p>In this example, you use the custom effects in the <samp class="codeph">showEffect</samp> and <samp class="codeph">hideEffect</samp> properties
+of the children of a <a href="https://flex.apache.org/asdoc/mx/containers/ViewStack.html" target="_blank">ViewStack</a> container.
+When you click a label in the LinkBar control, the corresponding
+child of the ViewStack container slides in from the right, and bounces
+to a stop against the left margin of the ViewStack container, while
+the previously visible child of the ViewStack container slides off
+to the right. </p>
+
+            <p>The custom effect for the <samp class="codeph">showEffect</samp> property
+is only triggered when the child's visibility changes from <samp class="codeph">false</samp> to <samp class="codeph">true</samp>.
+Therefore, the first child of the ViewStack container also includes
+a <samp class="codeph">creationCompleteEffect</samp> property. This is necessary
+to trigger the effect when Flex first creates the component. If you
+omit the <samp class="codeph">creationCompleteEffect</samp> property, you do
+not see the <samp class="codeph">moveLeftShow</samp> effect when the application
+starts.</p>
+
+         </div>
+
+      </div>
+
+<div>
+  <p><strong>Navigation</strong></p>
+  <p><a href="index.html">Using Flex</a> &raquo; <a href="flx_p5_enhancing_ui.html">Enhancing the user interface</a></p>
+</div>
+
+         <p>Adobe and Adobe Flash Platform are either registered trademarks or trademarks of Adobe Systems Incorporated in the United States and/or other countries and are used by permission from Adobe.  No other license to the Adobe trademarks are granted.</p>
+   </div>
+
+
+</body>
+</html>

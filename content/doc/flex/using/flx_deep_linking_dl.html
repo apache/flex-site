@@ -1,0 +1,1217 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Licensed to the Apache Software Foundation (ASF) under one or more
+  contributor license agreements.  See the NOTICE file distributed with
+  this work for additional information regarding copyright ownership.
+  The ASF licenses this file to You under the Apache License, Version 2.0
+  (the "License"); you may not use this file except in compliance with
+  the License.  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+-->
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en-us" xml:lang="en-us">
+<head>
+<meta name="DC.Type" content="topic"/>
+<meta name="DC.Title" content="Deep linking"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="WS2db454920e96a9e51e63e3d11c0bf69084-7bb5_verapache"/>
+<title>Deep linking</title>
+</head>
+<body id="WS2db454920e96a9e51e63e3d11c0bf69084-7bb5_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7bb5_verapache"><!-- --></a>
+
+   <div class="nested1" id="WS2db454920e96a9e51e63e3d11c0bf69084-7cb6_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7cb6_verapache"><!-- --></a>
+      <h2 class="topictitle2">About deep linking</h2>
+
+      
+      <div>
+         <p>One of the benefits of an application built with Flex is
+that it can smoothly transition from state to state without having
+to fetch a new page from the server and refresh the browser. By
+avoiding the constant refreshing of pages, the end-user's experience
+is more fluid and continuous. In addition, the load on the server is
+greatly reduced because it need only return the application once,
+rather than a new page every time the user changes views. </p>
+
+         <p>However one of the advantages of a browser's page-oriented model
+is that an application's navigational state is usually clearly coupled
+to a URL. Thus, when the state of an application changes, the user
+can usually do the following: </p>
+
+         <ul>
+            <li>
+               <p>Bookmark the URL to get back to that state in the application</p>
+
+            </li>
+
+            <li>
+               <p>Email the URL to a friend</p>
+
+            </li>
+
+            <li>
+               <p>Use the Back and Forward buttons to navigate to recently
+visited application states</p>
+
+            </li>
+
+         </ul>
+
+         <p>Losing the ability to couple a browser-managed URL to a specific
+state of an application can be a fairly big drawback when creating
+applications. Deep linking adds URL-mapping or "bookmarking" capabilities
+to applications. At the high level, deep linking lets you do the
+following:</p>
+
+         <ul>
+            <li>
+               <p>Update the URL when the application state changes. This
+also generates a new entry in the browser's history.</p>
+
+            </li>
+
+            <li>
+               <p>Read in values from the URL to change the state of the application.
+For example, a bookmark could load the application at a particular
+state.</p>
+
+            </li>
+
+            <li>
+               <p>Recognize when the URL in the browser's address bar has changed.
+If the user clicks the Forward or Back button, or changes the URL
+in the address bar, the application is notified and can react to
+the change.</p>
+
+            </li>
+
+         </ul>
+
+         <p>What states of your application are bookmarkable will vary by
+application, but possibilities include a login page, a product page,
+a search result page, or a drill down view into data. </p>
+
+         <p>Deep linking only works with certain browsers. The following
+browsers support deep linking:</p>
+
+         <ul>
+            <li>
+               <p>Microsoft Internet Explorer version 6 or later</p>
+
+            </li>
+
+            <li>
+               <p>FireFox for Windows and Macintosh</p>
+
+            </li>
+
+            <li>
+               <p>Safari for Macintosh</p>
+
+            </li>
+
+         </ul>
+
+         <p>In addition to requiring these browsers, deep linking requires
+that the client browser also has JavaScript enabled. Deep linking
+does not work with the standalone Adobe<sup>®</sup> Flash<sup>®</sup> Player or Adobe AIR™.</p>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf64e50-7ffc_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf64e50-7ffc_verapache"><!-- --></a>
+         <h3 class="topictitle3">How deep linking works</h3>
+
+         
+         <div>
+            <p>Deep linking relies on communication between the browser
+and the application. The communication is bidirectional: if a change
+occurs in the application, the browser must be notified, and if
+a change in the browser occurs, then the application must be notified.
+This communication is handled by the <a href="https://flex.apache.org/asdoc/mx/managers/BrowserManager.html" target="_blank">BrowserManager</a> class.
+This class uses methods in the HTML wrapper's JavaScript to handle
+events, update the browser's address bar, and call other methods.
+Another class, <a href="https://flex.apache.org/asdoc/mx/utils/URLUtil.html" target="_blank">URLUtil</a>, is provided to make
+it easier to parse the URL as you read it in your application and
+write it back to the browser.</p>
+
+            <p>To use deep linking, you write ActionScript that sets and gets
+portions of the URL to determine which state the application is
+in. These portions are called fragments, and occur after the pound
+sign ("#") in the URL. In the following example, <samp class="codeph">view=1</samp> is
+the fragment:</p>
+
+            <pre class="codeblock"> http://my.domain.com#view=1</pre>
+
+            <p>If the user navigates to a new view in your application, you
+update the URL and set <samp class="codeph">view=2</samp> in the URL fragment.
+If the user then clicks the browser's Back button, the BrowserManager
+is notified of the event, and gives you a chance to change the application's
+state in respond to the URL fragment changing back to <samp class="codeph">view=1</samp>.</p>
+
+            <p>You typically use the methods of the URLUtil class to parse the
+URL. This class provides methods for detecting the server name,
+port number, and protocol of a URL. In addition, you can use the <samp class="codeph">objectToString()</samp> method
+to convert an ActionScript object to a String that you then append
+to the end of a URL. Alternatively, you can convert any number of
+name/value pairs on a query string into an object by using the URLUtil
+class's <samp class="codeph">stringToObject()</samp> method. This lets you
+then manipulate the fragment more easily in your application logic.</p>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf69084-7cb5_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7cb5_verapache"><!-- --></a>
+         <h3 class="topictitle3">Deploying applications that use
+deep linking</h3>
+
+         
+         <div>
+            <p>To use deep linking, your HTML wrapper requires that the
+following files be deployed with your application:</p>
+
+            <ul>
+               <li>
+                  <p>history.css</p>
+
+               </li>
+
+               <li>
+                  <p>history.js</p>
+
+               </li>
+
+               <li>
+                  <p>historyFrame.html</p>
+
+               </li>
+
+            </ul>
+
+            <p>You must include the history.js and history.css files in your
+wrapper. The following example imports the JS and CSS files:</p>
+
+            <pre class="codeblock"> &lt;!--  BEGIN Browser History required section --&gt; 
+ &lt;link rel="stylesheet" type="text/css" href="history/history.css"/&gt; 
+ &lt;script src="history/history.js" language="javascript"&gt;&lt;/script&gt; 
+ &lt;!--  END Browser History required section --&gt;</pre>
+
+            <p>You must also deploy the historyFrame.html file with your application.
+This file must be located in the /history sub-directory; its location
+is relative to your deployed application SWF file's location. </p>
+
+            <p>For the SDK, the files are located in the <em>sdk_install</em>/templates/swfobject/history directory.</p>
+
+         </div>
+
+      </div>
+
+   </div>
+
+   <div class="nested1" id="WS2db454920e96a9e51e63e3d11c0bf64e50-7ff4_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf64e50-7ff4_verapache"><!-- --></a>
+      <h2 class="topictitle2">Using the BrowserManager</h2>
+
+      
+      <div>
+         <p>The BrowserManager is a Singleton class that acts as a
+proxy between the browser and the application. It provides access
+to the URL in the browser address bar similar to accessing the <samp class="codeph">document.location</samp> property
+in JavaScript. When the URL changes in the browser, the BrowserManager
+is notified of the event. You can then change the URL, respond to
+the event, or block the event.</p>
+
+         <p>To get a reference to the BrowserManager, you call its <samp class="codeph">getInstance()</samp> method.
+This method returns the current instance of the manager, which implements
+IBrowserManager. You can then call methods on the manager such as <samp class="codeph">setTitle()</samp> and <samp class="codeph">setFragment()</samp>. </p>
+
+         <p>You can also listen to events on that manager. The events are <samp class="codeph">browserURLChange</samp>, <samp class="codeph">urlChange</samp>,
+and <samp class="codeph">applicationURLChange</samp>. These events are described
+in <a href="flx_deep_linking_dl.html#WS2db454920e96a9e51e63e3d11c0bf69084-7cbd_verapache">About
+BrowserManager events</a>.</p>
+
+         <p>You can also access properties of the manager. These properties
+store the browser's current title, plus the full URL and its sub-parts, <samp class="codeph">fragment</samp> and <samp class="codeph">base</samp>. The
+properties are read-only, but you can use methods of the manager,
+such as <samp class="codeph">setTitle()</samp> and <samp class="codeph">setFragment()</samp>,
+to set the values of some of them.</p>
+
+         <p>You typically call the <samp class="codeph">getInstance()</samp> method
+when your application initializes. This returns an instance of the
+Singleton BrowserManager. You then register an event listener for
+the <samp class="codeph">browserURLChange</samp> event. This event is dispatched
+when the user clicks the Back or Forward button in the browser. Finally,
+you call the <samp class="codeph">init()</samp> method to initialize the BrowserManager.
+The first parameter of the <samp class="codeph">init()</samp> method defines
+the default fragment, and the second parameter defines the title
+for the current page.</p>
+
+         <p>The following example instantiates the BrowserManager, registers
+the <samp class="codeph">parseURL()</samp> method to listen for <samp class="codeph">browserURLChange</samp> events,
+and calls the <samp class="codeph">init()</samp> method with a blank fragment
+as the default fragment. It sets the value of the page's title to
+"Test Deep Linking":</p>
+
+         <pre class="codeblock"> private function initApp():void { 
+ 	browserManager = BrowserManager.getInstance(); 
+ 	browserManager.addEventListener(BrowserChangeEvent.BROWSER_URL_CHANGE, parseURL); 
+ 	browserManager.init("", "Test Deep Linking"); 
+ }</pre>
+
+         <p>Calling the BrowserManager class's <samp class="codeph">init()</samp> method
+also gets the current URL as a property in the BrowserManager.</p>
+
+         <p>If you set a value for the default fragment in the <samp class="codeph">init()</samp> method,
+when the URL changes, the URL with the default fragment will be
+entered in the browser's history. This way, if the user clicks the
+Back button or in some other way accesses this page from the browser's
+history, this fragment will be used. Also, the BrowserManager returns
+the default fragment if there is nothing after the pound sign ("#")
+in the URL.</p>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf69084-7cbc_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7cbc_verapache"><!-- --></a>
+         <h3 class="topictitle3">Updating the URL</h3>
+
+         
+         <div>
+            <p>You use the BrowserManager's <samp class="codeph">setFragment()</samp> method
+to update the URL in the browser's address bar. You can only change
+the fragments in the URL. You cannot change the base of the URL,
+including the server, protocol, or port numbers.</p>
+
+            <p>When you use the <samp class="codeph">setFragment()</samp> method to change
+the URL, you trigger an <samp class="codeph">applicationURLChange</samp> event.</p>
+
+            <p>The following example updates the URL in the browser whenever
+you change the active panel in the TabNavigator container. It also
+keeps a record of the current URL and previous URL each time an <samp class="codeph">applicationURLChange</samp> event is
+triggered.</p>
+
+            <pre class="noswf">&lt;?xml version="1.0" encoding="utf-8"?&gt; 
+&lt;!-- deeplinking/UpdateURLExample.mxml --&gt; 
+&lt;s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    creationComplete="init();"&gt;   
+    &lt;s:layout&gt; 
+        &lt;s:VerticalLayout/&gt; 
+    &lt;/s:layout&gt; 
+ 
+    &lt;fx:Script&gt; 
+    &lt;![CDATA[ 
+        import mx.events.BrowserChangeEvent; 
+        import mx.managers.IBrowserManager; 
+        import mx.managers.BrowserManager; 
+        import mx.utils.URLUtil; 
+ 
+        private var browserManager:IBrowserManager; 
+ 
+        private function init():void { 
+            browserManager = BrowserManager.getInstance(); 
+            browserManager.addEventListener(BrowserChangeEvent.APPLICATION_URL_CHANGE, 
+                logURLChange); 
+            browserManager.init("", "Welcome!"); 
+        } 
+ 
+        public function updateTitle(e:Event):void { 
+            browserManager.setTitle("Welcome " + ti1.text + " from " + ti2.text + "!"); 
+        } 
+ 
+        private function updateURL(event:Event):void { 
+            var s:String = "panel=" + event.currentTarget.selectedIndex; 
+            browserManager.setFragment(s); 
+        } 
+ 
+        private function logURLChange(event:BrowserChangeEvent):void { 
+            ta1.text += "APPLICATION_URL_CHANGE event:\n"; 
+            ta1.text += " url: " + event.url + "\n"; // Current URL in the browser. 
+            ta1.text += " prev: " + event.lastURL + "\n"; // Previous URL. 
+        } 
+    ]]&gt; 
+    &lt;/fx:Script&gt; 
+ 
+    &lt;mx:TabNavigator id="tn" width="300" change="updateURL(event)"&gt; 
+            &lt;mx:Panel label="Personal Data"&gt; 
+                &lt;mx:Form&gt; 
+                    &lt;mx:FormItem label="Name:"&gt; 
+                        &lt;mx:TextInput id="ti1"/&gt; 
+                    &lt;/mx:FormItem&gt; 
+                    &lt;mx:FormItem label="Hometown:"&gt; 
+                        &lt;mx:TextInput id="ti2"/&gt; 
+                    &lt;/mx:FormItem&gt; 
+                    &lt;mx:Button id="b1" click="updateTitle(event)" label="Submit"/&gt; 
+                &lt;/mx:Form&gt; 
+            &lt;/mx:Panel&gt; 
+            &lt;mx:Panel label="Credit Card Info"&gt; 
+                &lt;mx:Form&gt; 
+                    &lt;mx:FormItem label="Type:"&gt; 
+                        &lt;mx:ComboBox&gt; 
+                            &lt;mx:dataProvider&gt; 
+                                &lt;fx:String&gt;Visa&lt;/fx:String&gt; 
+                                &lt;fx:String&gt;MasterCard&lt;/fx:String&gt; 
+                                &lt;fx:String&gt;American Express&lt;/fx:String&gt; 
+                            &lt;/mx:dataProvider&gt; 
+                        &lt;/mx:ComboBox&gt; 
+                    &lt;/mx:FormItem&gt; 
+                    &lt;mx:FormItem label="Number:"&gt; 
+                        &lt;mx:TextInput id="ccnumber"/&gt; 
+                    &lt;/mx:FormItem&gt; 
+                &lt;/mx:Form&gt; 
+            &lt;/mx:Panel&gt; 
+            &lt;mx:Panel label="Check Out"&gt; 
+                &lt;mx:TextArea id="ta2" text="You must agree to all the following conditions..."/&gt; 
+                &lt;mx:CheckBox label="Agree"/&gt; 
+            &lt;/mx:Panel&gt;            
+    &lt;/mx:TabNavigator&gt; 
+    &lt;mx:TextArea id="ta1" width="580" height="400"/&gt; 
+ 
+&lt;/s:Application&gt;</pre>
+
+            <p>When you click on the second panel, you trigger a <samp class="codeph">change</samp> event,
+which causes Flash Player to call the <samp class="codeph">updateURL()</samp> method.
+This method calls the <samp class="codeph">setFragment()</samp> method that
+changes the URL in the browser's address bar. If you cycle through
+the panels, the URL in the browser's address bar will change from
+this:</p>
+
+            <pre class="codeblock"> http://localhost:8100/devapps/code/deeplinking/FragmentExample.html#panel=1</pre>
+
+            <p>To this:</p>
+
+            <pre class="codeblock"> http://localhost:8100/devapps/code/deeplinking/FragmentExample.html#panel=2</pre>
+
+            <p>And then, to this:</p>
+
+            <pre class="codeblock"> http://localhost:8100/devapps/code/deeplinking/FragmentExample.html#panel=0</pre>
+
+            <p>Each time the application changes the URL in the browser's address
+bar, Flash Player dispatches an <samp class="codeph">applicationURLChange</samp> event.
+This example logs the previous and current URLs, which are properties
+of this event object.</p>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf64e50-7ffb_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf64e50-7ffb_verapache"><!-- --></a>
+         <h3 class="topictitle3">Parsing the URL</h3>
+
+         
+         <div>
+            <p>Changing the URL in the browser's address bar does not
+necessarily provide you with deep linking functionality. For example,
+loading a bookmarked URL that specifies the panel would not start
+the application on that panel. You must add code to the application
+that parses the URL so that the application's state reflects the
+URL. </p>
+
+            <p>In this case, you add a listener for the <samp class="codeph">browserURLChange</samp> event.
+In that listener, you parse the URL and set the application state
+according to the results. For example, if the URL includes a fragment
+such as <samp class="codeph">panel=2</samp>, then you write code that sets
+the current panel with the selected index of 2.</p>
+
+            <p>The <samp class="codeph">browserURLChange</samp> event is not triggered
+when the application first loads. As a result, you must also check
+the URL on startup with the application's <samp class="codeph">creationComplete</samp> event,
+and trigger the parsing before the application finishes being rendered
+on the screen. </p>
+
+            <p>The following is a simple example that sets the value of the
+Accordion's <samp class="codeph">selectedIndex</samp> property to the value
+of the <samp class="codeph">index</samp> fragment in the URL. You request this
+application by setting the value of the <samp class="codeph">index</samp> fragment
+on the URL, as the following example shows:</p>
+
+            <pre class="codeblock"> http://www.myurl.com/InitFrag.html#index=1</pre>
+
+            <p>When the application starts up, the Accordion is opened to the
+panel corresponding to the value of the <samp class="codeph">index</samp> fragment:</p>
+
+            <pre class="noswf">&lt;?xml version="1.0" encoding="utf-8"?&gt; 
+&lt;!-- deeplinking/InitFrag.mxml --&gt; 
+&lt;s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    creationComplete="init(event);"&gt;    
+    &lt;s:layout&gt; 
+        &lt;s:VerticalLayout/&gt; 
+    &lt;/s:layout&gt; 
+ 
+    &lt;fx:Script&gt; 
+        &lt;![CDATA[ 
+            import mx.managers.BrowserManager; 
+            import mx.managers.IBrowserManager; 
+            import mx.events.BrowserChangeEvent; 
+            import mx.utils.URLUtil; 
+ 
+            private var bm:IBrowserManager;            
+            private function init(e:Event):void { 
+                bm = BrowserManager.getInstance();                
+                bm.init("", "Welcome!"); 
+                parseURL(e); 
+            } 
+        
+            [Bindable] 
+            private var indexFromURL:int; 
+            private function parseURL(e:Event):void {            
+                var o:Object = URLUtil.stringToObject(bm.fragment);                
+                indexFromURL = o.index; 
+            }           
+        ]]&gt; 
+    &lt;/fx:Script&gt; 
+ 
+    &lt;mx:Accordion selectedIndex="{indexFromURL}"&gt; 
+        &lt;mx:VBox label="Panel 1"&gt; 
+            &lt;mx:Label text="Accordion container panel 1"/&gt; 
+        &lt;/mx:VBox&gt; 
+        &lt;mx:VBox label="Panel 2"&gt; 
+            &lt;mx:Label text="Accordion container panel 2"/&gt; 
+        &lt;/mx:VBox&gt; 
+        &lt;mx:VBox label="Panel 3"&gt; 
+            &lt;mx:Label text="Accordion container panel 3"/&gt; 
+        &lt;/mx:VBox&gt;    
+    &lt;/mx:Accordion&gt;   
+&lt;/s:Application&gt;</pre>
+
+            <p>The following example expands on the example from <a href="flx_deep_linking_dl.html#WS2db454920e96a9e51e63e3d11c0bf69084-7cbc_verapache">Updating
+the URL</a>. It reads the URL on startup, and opens the application
+to the first, second, or third panel, depending on the value of
+the <samp class="codeph">panel</samp> fragment. It also sets the title of the
+HTML page according to which panel is opened.</p>
+
+            <pre class="noswf">&lt;?xml version="1.0" encoding="utf-8"?&gt; 
+&lt;!-- deeplinking/TabNavExample.mxml --&gt; 
+&lt;s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    creationComplete="initApp()" 
+    height="250" 
+    width="500"&gt; 
+ 
+    &lt;s:layout&gt; 
+        &lt;s:VerticalLayout/&gt; 
+    &lt;/s:layout&gt; 
+ 
+    &lt;fx:Script&gt; 
+    &lt;![CDATA[ 
+        import mx.events.BrowserChangeEvent; 
+        import mx.managers.IBrowserManager; 
+        import mx.managers.BrowserManager; 
+        import mx.utils.URLUtil; 
+ 
+        public var browserManager:IBrowserManager; 
+ 
+        private function initApp():void { 
+            browserManager = BrowserManager.getInstance(); 
+            browserManager.addEventListener(BrowserChangeEvent.BROWSER_URL_CHANGE, parseURL); 
+            browserManager.init("", "Shipping"); 
+        } 
+        private var parsing:Boolean = false; 
+        private function parseURL(event:Event):void { 
+            parsing = true; 
+ 
+            var o:Object = URLUtil.stringToObject(browserManager.fragment); 
+            if (o.view == undefined) 
+                o.view = 0; 
+            tn.selectedIndex = o.view; 
+            browserManager.setTitle((tn.selectedIndex == 0) ? "Shipping" : "Receiving"); 
+            tn.validateNow(); 
+ 
+            var details:Boolean = o.details == true; 
+            if (tn.selectedIndex == 0) 
+                shipDetails.selected = details; 
+            else 
+                recvDetails.selected = details; 
+            parsing = false;        
+        } 
+ 
+        private function updateURL():void { 
+            if (!parsing) 
+                callLater(actuallyUpdateURL); 
+        } 
+ 
+        private function actuallyUpdateURL():void { 
+            var o:Object = {}; 
+            var t:String = ""; 
+ 
+            if (tn.selectedIndex == 1) { 
+                t = "Receiving"; 
+                o.view = tn.selectedIndex; 
+                if (recvDetails.selected) 
+                    o.details = true; 
+            } else { 
+                t = "Shipping"; 
+                o.view = tn.selectedIndex; 
+                if (shipDetails.selected) 
+                    o.details = true; 
+            } 
+            var s:String = URLUtil.objectToString(o); 
+            browserManager.setFragment(s); 
+            browserManager.setTitle(t); 
+        } 
+    ]]&gt; 
+    &lt;/fx:Script&gt; 
+ 
+    &lt;mx:TabNavigator id="tn" change="updateURL()" width="300"&gt; 
+            &lt;mx:Panel label="Shipping"&gt; 
+                &lt;mx:CheckBox id="shipDetails" label="Show Details" change="updateURL()" /&gt; 
+            &lt;/mx:Panel&gt; 
+            &lt;mx:Panel label="Receiving"&gt; 
+                &lt;mx:CheckBox id="recvDetails" label="Show Details" change="updateURL()" /&gt; 
+            &lt;/mx:Panel&gt; 
+    &lt;/mx:TabNavigator&gt; 
+ 
+&lt;/s:Application&gt;</pre>
+
+            <p>This example has one major drawback: it does not "remember" the
+state of the panel that is not in the current view. If you copy
+the bookmark and open it in a new browser, the view that you were
+last looking at, and the state of the CheckBox on that view, are
+maintained. However, the CheckBox in the other view that was hidden
+is reset to its original value (unchecked). There are several techniques
+to solve this issue. For more information, see <a href="flx_deep_linking_dl.html#WS2db454920e96a9e51e63e3d11c0bf69084-7cbb_verapache">Using
+deep linking with navigator containers</a>.</p>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf69084-7cbd_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7cbd_verapache"><!-- --></a>
+         <h3 class="topictitle3">About BrowserManager events</h3>
+
+         
+         <div>
+            <p>The BrowserManager triggers the following types of BrowserChangeEvent events:</p>
+
+            <ul>
+               <li>
+                  <p>
+                     <samp class="codeph">applicationURLChange</samp>
+                  </p>
+
+               </li>
+
+               <li>
+                  <p>
+                     <samp class="codeph">browserURLChange</samp>
+                  </p>
+
+               </li>
+
+               <li>
+                  <p>
+                     <samp class="codeph">urlChange</samp>
+                  </p>
+
+               </li>
+
+            </ul>
+
+            <p>These changes can be triggered by the following actions:</p>
+
+            <ul>
+               <li>
+                  <p>URL is changed programmatically, such as with the BrowserManager's <samp class="codeph">setFragment()</samp> method
+(<samp class="codeph">applicationURLChange</samp>)</p>
+
+               </li>
+
+               <li>
+                  <p>User clicks the Forward or Back button (<samp class="codeph">browserURLChange</samp>)</p>
+
+               </li>
+
+               <li>
+                  <p>User changes the URL and clicks Enter or Go (<samp class="codeph">browserURLChange</samp>)</p>
+
+               </li>
+
+            </ul>
+
+            <p>The <samp class="codeph">urlChange</samp> event is triggered whenever either <samp class="codeph">applicationURLChange</samp> or <samp class="codeph">browserURLChange</samp> events
+are triggered.</p>
+
+            <p>The following example shows the properties of the change events
+in a DataGrid control. You can trigger an <samp class="codeph">applicationURLChange</samp> event
+by selecting a new value in the ComboBox control. You can trigger
+a <samp class="codeph">browserURLChange</samp> event by using the Forward and
+Back buttons in your browser. In both cases, you also trigger a <samp class="codeph">urlChange</samp> event.</p>
+
+            <pre class="noswf">&lt;?xml version="1.0" encoding="utf-8"?&gt; 
+&lt;!-- deeplinking/URLChangeLogger.mxml --&gt; 
+&lt;s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    creationComplete="init();"&gt;   
+    &lt;s:layout&gt; 
+        &lt;s:VerticalLayout/&gt; 
+    &lt;/s:layout&gt; 
+ 
+    &lt;fx:Script&gt; 
+    &lt;![CDATA[ 
+        import mx.managers.BrowserManager; 
+        import mx.managers.IBrowserManager; 
+        import mx.events.BrowserChangeEvent; 
+ 
+        private var bm:IBrowserManager; 
+ 
+        private function init():void { 
+            bm = BrowserManager.getInstance(); 
+ 
+            bm.addEventListener(BrowserChangeEvent.APPLICATION_URL_CHANGE, doEvent); 
+            bm.addEventListener(BrowserChangeEvent.BROWSER_URL_CHANGE, doEvent); 
+            bm.addEventListener(BrowserChangeEvent.URL_CHANGE, doEvent); 
+ 
+            bm.init("", "Base title"); 
+        } 
+ 
+        public function doEvent(evt:BrowserChangeEvent):void { 
+            eventDG.dataProvider.addItem(evt); 
+        } 
+    ]]&gt; 
+    &lt;/fx:Script&gt; 
+    
+    &lt;fx:Declarations&gt; 
+        &lt;fx:Array id="dp"&gt; 
+            &lt;fx:Object label="one"/&gt; 
+            &lt;fx:Object label="two"/&gt; 
+            &lt;fx:Object label="three"/&gt; 
+        &lt;/fx:Array&gt; 
+    &lt;/fx:Declarations&gt; 
+ 
+    &lt;mx:ComboBox id="cb" dataProvider="{dp}" 
+        change="bm.setFragment('selectedItem=' + cb.selectedItem.label);"/&gt; 
+    
+    &lt;mx:DataGrid id="eventDG" 
+        dataProvider="[]" 
+        width="100%" 
+        variableRowHeight="true" 
+        wordWrap="true" 
+        height="500"/&gt; 
+&lt;/s:Application&gt;</pre>
+
+            <p>Changing the URL fragments in the browser's address bar triggers
+a <samp class="codeph">browserURLChange</samp> event but does not trigger a
+page reload in FireFox or Internet Explorer 7. In Internet Explorer
+version 6 and earlier, changing the part of the address that is
+to the right of the pound sign ("#") <em>does</em> trigger a page reload.</p>
+
+         </div>
+
+      </div>
+
+   </div>
+
+   <div class="nested1" id="WS2db454920e96a9e51e63e3d11c0bf64e50-7fff_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf64e50-7fff_verapache"><!-- --></a>
+      <h2 class="topictitle2">Setting the title of the HTML wrapper</h2>
+
+      
+      <div>
+         <p>You can use the BrowserManager's <samp class="codeph">setTitle()</samp> method
+to set the title in your HTML wrapper. This shows up as the name
+of the web page in the title bar of the browser. When you first
+initialize the BrowserManager, you set the value of the title in
+the second parameter to the <samp class="codeph">init()</samp> method.</p>
+
+         <p>The following example sets the initial value of the title to
+"Welcome". It then changes the title depending on the name and hometown
+that you enter in the TextInput fields.</p>
+
+         <pre class="noswf">&lt;?xml version="1.0" encoding="utf-8"?&gt; 
+&lt;!-- deeplinking/TitleManipulationExample.mxml --&gt; 
+&lt;s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    creationComplete="init();"&gt;    
+    &lt;s:layout&gt; 
+        &lt;s:VerticalLayout/&gt; 
+    &lt;/s:layout&gt; 
+ 
+    &lt;fx:Script&gt; 
+    &lt;![CDATA[ 
+        import mx.managers.BrowserManager; 
+        import mx.managers.IBrowserManager; 
+        import mx.events.BrowserChangeEvent; 
+ 
+        private var bm:IBrowserManager; 
+ 
+        private function init():void { 
+            bm = BrowserManager.getInstance(); 
+            bm.init("", "Welcome!"); 
+        } 
+ 
+        public function updateTitle(e:Event):void { 
+            bm.setTitle("Welcome " + ti1.text + " from " + ti2.text + "!"); 
+        } 
+    ]]&gt; 
+    &lt;/fx:Script&gt; 
+    
+    &lt;mx:Form&gt; 
+        &lt;mx:FormItem label="Name:"&gt; 
+            &lt;mx:TextInput id="ti1"/&gt; 
+        &lt;/mx:FormItem&gt; 
+        &lt;mx:FormItem label="Hometown:"&gt; 
+            &lt;mx:TextInput id="ti2"/&gt; 
+        &lt;/mx:FormItem&gt; 
+        &lt;mx:Button id="b1" click="updateTitle(event)" label="Submit"/&gt; 
+    &lt;/mx:Form&gt; 
+ 
+&lt;/s:Application&gt;</pre>
+
+      </div>
+
+   </div>
+
+   <div class="nested1" id="WS2db454920e96a9e51e63e3d11c0bf69084-7e9c_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7e9c_verapache"><!-- --></a>
+      <h2 class="topictitle2">Passing request data with URL fragments</h2>
+
+      
+      <div>
+         <p>In applications, there are several ways to pass values
+to an application with the URL. You can convert query string parameters
+to <samp class="codeph">flashVars</samp> variables or you can append them to
+the SWF file's URL (for example, MyApp.swf?value1=x&amp;value2=y).
+You do both of these things in the HTML wrapper that embeds the
+application. To access the values in your application, you then
+use the <samp class="codeph">FlexGlobals.topLevelApplication.application</samp> object.
+For more information on passing <samp class="codeph">flashVars</samp> variables,
+see <a href="flx_passingarguments_pa.html#WS2db454920e96a9e51e63e3d11c0bf69084-7f5e_verapache">Passing request
+data with flashVars properties</a>.</p>
+
+         <p>The BrowserManager also provides a method of accessing values
+from a URL inside your application. You do this by accessing the
+URL fragments that deep linking uses. By default, you can append
+any Strings after the pound sign ("#") in the URL and be able to
+access them as semi-colon-separated name/value pairs. For example,
+with a URL like the following, you can access the <samp class="codeph">firstName</samp> and <samp class="codeph">lastName</samp> values
+once you convert the fragment to an object:</p>
+
+         <pre class="codeblock"> http://www.mydomain.com/MyApp.html#firstName=Nick;lastName=Danger</pre>
+
+         <p>To convert these parameters to an object, you get the URL and
+then use the URLUtil class's <samp class="codeph">stringToObject()</samp> method.
+You then access <samp class="codeph">firstName</samp> and <samp class="codeph">lastName</samp> as
+properties on that new object.</p>
+
+         <p>To make the URL more "URL-like", you can separate the fragments
+with an ampersand ("&amp;"). When you convert the fragment to an
+object with the <samp class="codeph">stringToObject()</samp> method, you specify
+the new delimiter.</p>
+
+         <p>The following example takes a URL that sets the value of the <samp class="codeph">firstName</samp> and <samp class="codeph">lastName</samp> query
+string parameters in its fragment. It specifies an ampersand as the
+delimiter.</p>
+
+         <pre class="noswf">&lt;?xml version="1.0" encoding="utf-8"?&gt; 
+&lt;!-- deeplinking/PassURLParamsAsFragments.mxml --&gt; 
+&lt;s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    creationComplete="init(event);"&gt;    
+    &lt;s:layout&gt; 
+        &lt;s:VerticalLayout/&gt; 
+    &lt;/s:layout&gt; 
+ 
+    &lt;fx:Script&gt; 
+    &lt;![CDATA[ 
+        import mx.managers.BrowserManager; 
+        import mx.managers.IBrowserManager; 
+        import mx.utils.URLUtil; 
+ 
+        private var bm:IBrowserManager; 
+        [Bindable] 
+        private var fName:String; 
+        [Bindable] 
+        private var lName:String;            
+        private function init(e:Event):void { 
+            bm = BrowserManager.getInstance();                
+            bm.init("", "Welcome!"); 
+ 
+            /* The following code will parse a URL that passes firstName and lastName as 
+               query string parameters after the "#" sign; for example: 
+               http://www.mydomain.com/MyApp.html#firstName=Nick&amp;lastName=Danger */ 
+            var o:Object = URLUtil.stringToObject(bm.fragment, "&amp;");                
+            fName = o.firstName; 
+            lName = o.lastName;                
+        } 
+    ]]&gt; 
+    &lt;/fx:Script&gt; 
+    
+    &lt;mx:Form&gt; 
+        &lt;mx:FormItem label="First name:"&gt; 
+            &lt;mx:Label id="ti1" text="{fName}"/&gt; 
+        &lt;/mx:FormItem&gt; 
+        &lt;mx:FormItem label="Last name:"&gt; 
+            &lt;mx:Label id="ti2" text="{lName}"/&gt; 
+        &lt;/mx:FormItem&gt; 
+    &lt;/mx:Form&gt; 
+ 
+&lt;/s:Application&gt;</pre>
+
+      </div>
+
+   </div>
+
+   <div class="nested1" id="WS2db454920e96a9e51e63e3d11c0bf69084-7cbb_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7cbb_verapache"><!-- --></a>
+      <h2 class="topictitle2">Using deep linking with navigator containers</h2>
+
+      
+      <div>
+         <p>A common use case is for a user to start filling out a
+form, and then either bookmark the form for later use, or send the
+URL to someone else to take a look at the values. In many cases,
+forms are implemented as navigator containers such as TabNavigator
+and Accordion containers. </p>
+
+         <p>This can be a problem for deep linking because you might try
+to read properties on controls that are in views that have not yet
+been viewed (and therefore, the controls have not yet been instantiated).
+One possible solution is to disable deferred instantiation, and
+set the value of the container's <samp class="codeph">creationPolicy</samp> property
+to <samp class="codeph">all</samp>. This instructs Flex to instantiate all
+controls in all views at application startup, regardless of whether
+they can be viewed initially or not. This is not a recommended solution
+because it creates additional overhead when the application starts,
+and can end up using unnecessary amounts of processor time and memory.
+Depending on the complexity of the user interface, setting the value
+of the <samp class="codeph">creationPolicy</samp> property to <samp class="codeph">all</samp> can
+seriously degrade performance of your application and detract from
+a positive user experience. For more information about creation
+policies, see <a href="flx_layoutperformance_lp.html#WS2db454920e96a9e51e63e3d11c0bf69084-7cb8_verapache">About
+the creationPolicy property</a>.</p>
+
+         <p>A technique that does not rely on deferred instantiation is to
+bind the values of the properties you want to maintain state on
+to the values in the URL. Controls that have not yet been created
+apply these values when they are created. This has the benefit of
+keeping the URL and the application's state in sync with each other, without
+requiring that a view's controls are first created. </p>
+
+         <p>You do this by setting up variables that are mapped to the URL's
+values at start up and then kept in sync with the application as
+the user interacts with it. When the application starts up, you
+set the value of the bound property to the value taken from the
+URL (if there is one). Then, whenever the application's state changes (such
+as when the user navigates to a new panel or clicks on a check box),
+you update the bound property to the new value. You also update
+the value of the property's fragment in the URL.</p>
+
+         <p>By doing this, though, you must wrap your variable assignments
+with try/catch blocks because you will attempt to set the values
+of variables with properties of components that might not yet have
+been instantiated. This ensures that assignment errors are caught
+rather than thrown as run-time errors. </p>
+
+         <p>The following example uses a TabNavigator container to help the
+user through a payment process. Whenever the user navigates to a
+new panel, changes the value in a TextInput control, or checks the
+CheckBox control, the URL and the bound properties are updated.
+At any time, you can bookmark the URL, close your browser, and then
+come back to the application at a later time. The values of all
+the properties are maintained in the bookmarked URL.</p>
+
+         <pre class="noswf">&lt;?xml version="1.0" encoding="utf-8"?&gt; 
+&lt;!-- deeplinking/ComplexMultiPanelExample.mxml --&gt; 
+&lt;s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    creationComplete="init();parseURL(event)"&gt; 
+ 
+    &lt;s:layout&gt; 
+        &lt;s:VerticalLayout/&gt; 
+    &lt;/s:layout&gt; 
+   
+    &lt;fx:Script&gt; 
+    &lt;![CDATA[ 
+        import mx.events.BrowserChangeEvent; 
+        import mx.managers.IBrowserManager; 
+        import mx.managers.BrowserManager; 
+        import mx.utils.URLUtil; 
+ 
+        private var bm:IBrowserManager; 
+ 
+        [Bindable] 
+        private var agreeBoxFromURL:Boolean; 
+        [Bindable] 
+        private var personNameFromURL:String; 
+        [Bindable] 
+        private var hometownFromURL:String; 
+        [Bindable] 
+        private var cctypeFromURL:int; 
+        [Bindable] 
+        private var ccnumberFromURL:String; 
+ 
+        private function init():void { 
+            bm = BrowserManager.getInstance(); 
+            bm.addEventListener(BrowserChangeEvent.BROWSER_URL_CHANGE, parseURL);                
+            bm.init("", "Welcome!"); 
+        } 
+ 
+        /* This method is called once when application starts up. It is also 
+           called when the browser's address bar changes, either due to user action 
+           or user navigation with the browser's Forward and Back buttons. */ 
+        private function parseURL(event:Event):void { 
+ 
+            var o:Object = URLUtil.stringToObject(bm.fragment, "&amp;"); 
+            if (o.panel == undefined) 
+                o.panel = 0; 
+ 
+            tn.selectedIndex = o.panel; 
+            tn.validateNow(); 
+ 
+            personNameFromURL = o.personName; 
+            hometownFromURL = o.hometown; 
+            ccnumberFromURL = o.ccnumber;                
+            cctypeFromURL = o.cctype; 
+            agreeBoxFromURL = o.agreeBox; 
+        } 
+ 
+        public function updateTitle(e:Event):void { 
+            l1.text += "updateTitle()\n"; 
+            bm.setTitle("Welcome " + personName.text + " from " + hometown.text + "!"); 
+        } 
+ 
+        private function updateURL():void { 
+            /* Called when state changes in the application, such as when the panel changes, 
+               or a checkbox is checked. 
+ 
+               You must wrap the following assignments in a try/catch block, otherwise the 
+               application tries to access components that have not yet been created. 
+               You can circumvent this by setting the container's creationPolicy to "all", 
+               but that is not a good solution for performance reasons. */ 
+            try { 
+                personNameFromURL = personName.text; 
+                hometownFromURL = hometown.text; 
+                ccnumberFromURL = ccnumber.text;                
+                cctypeFromURL = cctype.selectedIndex; 
+                agreeBoxFromURL = agreeBox.selected; 
+            } catch (e:Error) { 
+            } 
+ 
+            var o:Object = {}; 
+ 
+            try { 
+                o.panel = tn.selectedIndex; 
+                o.personName = personName.text; 
+                o.hometown = hometown.text; 
+                o.ccnumber = ccnumber.text; 
+                o.cctype = cctype.selectedIndex; 
+                o.agreeBox = agreeBox.selected; 
+            } catch (e:Error) { 
+            } finally {                
+                var s:String = URLUtil.objectToString(o, "&amp;"); 
+                bm.setFragment(s); 
+            } 
+        } 
+    ]]&gt; 
+    &lt;/fx:Script&gt; 
+ 
+    &lt;mx:TabNavigator id="tn" width="300" change="updateURL()"&gt;            
+        &lt;mx:Panel label="Personal Data"&gt; 
+            &lt;mx:Form&gt; 
+                &lt;mx:FormItem label="Name:"&gt; 
+                    &lt;mx:TextInput id="personName" 
+                        text="{personNameFromURL}" 
+                        focusOut="updateURL()" 
+                        enter="updateURL()"/&gt; 
+                &lt;/mx:FormItem&gt; 
+                &lt;mx:FormItem label="Hometown:"&gt; 
+                    &lt;mx:TextInput id="hometown" 
+                        text="{hometownFromURL}" 
+                        focusOut="updateURL()" 
+                        enter="updateURL()"/&gt; 
+                &lt;/mx:FormItem&gt; 
+                &lt;mx:Button id="b1" click="updateTitle(event)" label="Submit"/&gt; 
+            &lt;/mx:Form&gt; 
+        &lt;/mx:Panel&gt; 
+ 
+        &lt;mx:Panel label="Credit Card Info"&gt; 
+            &lt;mx:Form&gt; 
+                &lt;mx:FormItem label="Type:"&gt; 
+                    &lt;mx:ComboBox id="cctype" 
+                        change="updateURL()" 
+                        selectedIndex="{cctypeFromURL}"&gt; 
+                        &lt;mx:dataProvider&gt; 
+                            &lt;fx:String&gt;Visa&lt;/fx:String&gt; 
+                            &lt;fx:String&gt;MasterCard&lt;/fx:String&gt; 
+                            &lt;fx:String&gt;American Express&lt;/fx:String&gt; 
+                        &lt;/mx:dataProvider&gt; 
+                    &lt;/mx:ComboBox&gt; 
+                &lt;/mx:FormItem&gt; 
+                &lt;mx:FormItem label="Number:"&gt; 
+                    &lt;mx:TextInput id="ccnumber" 
+                        text="{ccnumberFromURL}" 
+                        focusOut="updateURL()" 
+                        enter="updateURL()"/&gt; 
+                &lt;/mx:FormItem&gt; 
+            &lt;/mx:Form&gt; 
+        &lt;/mx:Panel&gt; 
+ 
+        &lt;mx:Panel label="Check Out"&gt; 
+            &lt;mx:TextArea id="ta2" text="You must agree to all the following conditions..."/&gt; 
+            &lt;mx:CheckBox id="agreeBox" 
+                label="Agree" 
+                selected="{agreeBoxFromURL}" 
+                click="updateURL()"/&gt; 
+        &lt;/mx:Panel&gt;            
+    &lt;/mx:TabNavigator&gt; 
+    &lt;mx:TextArea id="l1" height="400" width="300"/&gt; 
+ 
+&lt;/s:Application&gt;</pre>
+
+         <p>Rather than update the values of the bindable variables in the <samp class="codeph">updateURL()</samp> method,
+you can also set their values in the event handlers. For example,
+when the user changes the value of the TextInput control, you can
+use the <samp class="codeph">focusOut</samp> and <samp class="codeph">enter</samp> event
+handlers to set the value of the <samp class="codeph">hometownFromURL</samp> property:</p>
+
+         <pre class="codeblock"> &lt;mx:TextInput id="hometown"  
+ 	text="{hometownFromURL}"  
+ 	focusOut="hometownFromURL=hometown.text;updateURL()"  
+ 	enter="hometownFromURL=hometown.text;updateURL()" /&gt;</pre>
+
+         <p>In this example, the controls in the view update the model when
+the controls' properties change. This helps enforce a cleaner separation
+between the model and the view.</p>
+
+      </div>
+
+   </div>
+
+   <div class="nested1" id="WS2db454920e96a9e51e63e3d11c0bf64e50-7ff8_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf64e50-7ff8_verapache"><!-- --></a>
+      <h2 class="topictitle2">Accessing information about the
+current URL</h2>
+
+      
+      <div>
+         <p>In some cases, it is important to get information about
+the current URL, such as the server name or the protocol that was
+used to return the SWF's wrapper. You do this by using the BrowserManager
+and the URLUtil class.</p>
+
+         <p>You use the BrowserManager to get the URL, using either the <samp class="codeph">url</samp>, <samp class="codeph">fragment</samp>, or <samp class="codeph">base</samp> properties.
+You can then use convenience methods of the URLUtil class to parse
+the URL. You can use these methods to extract the port, protocol,
+and server name from the URL. You can also use the URLUtil class
+to check if the protocol is secure or not.</p>
+
+         <p>The following example uses the URLUtil and BrowserManager classes
+to get information about the URL that was used to return the application.</p>
+
+         <pre class="noswf">&lt;?xml version="1.0" encoding="utf-8"?&gt; 
+&lt;!-- deeplinking/UseURLUtil.mxml --&gt; 
+&lt;s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    creationComplete="initApp()" 
+    height="250" width="500"&gt; 
+ 
+    &lt;s:layout&gt; 
+        &lt;s:VerticalLayout/&gt; 
+    &lt;/s:layout&gt; 
+ 
+    &lt;fx:Script&gt; 
+    &lt;![CDATA[ 
+        import mx.utils.URLUtil; 
+        import mx.managers.IBrowserManager; 
+        import mx.managers.BrowserManager; 
+        import mx.events.BrowserChangeEvent; 
+ 
+        public var browserManager:IBrowserManager; 
+ 
+        private function initApp():void { 
+            browserManager = BrowserManager.getInstance(); 
+            browserManager.addEventListener(BrowserChangeEvent.URL_CHANGE, showURLDetails);            
+            browserManager.init("", "Welcome!");            
+        } 
+ 
+        [Bindable] 
+        private var fullURL:String; 
+        [Bindable] 
+        private var baseURL:String; 
+        [Bindable] 
+        private var fragment:String; 
+        [Bindable] 
+        private var protocol:String; 
+        [Bindable] 
+        private var port:int; 
+        [Bindable] 
+        private var serverName:String; 
+        [Bindable] 
+        private var isSecure:Boolean; 
+        [Bindable] 
+        private var previousURL:String; 
+ 
+        private function showURLDetails(e:BrowserChangeEvent):void { 
+            var url:String = browserManager.url; 
+            baseURL = browserManager.base; 
+            fragment = browserManager.fragment;                
+            previousURL = e.lastURL;                
+            fullURL = mx.utils.URLUtil.getFullURL(url, url); 
+            port = mx.utils.URLUtil.getPort(url); 
+            protocol = mx.utils.URLUtil.getProtocol(url); 
+            serverName = mx.utils.URLUtil.getServerName(url); 
+            isSecure = mx.utils.URLUtil.isHttpsURL(url);        
+        } 
+    ]]&gt; 
+    &lt;/fx:Script&gt; 
+ 
+    &lt;mx:Form&gt; 
+        &lt;mx:FormItem label="Full URL:"&gt; 
+            &lt;mx:Label text="{fullURL}"/&gt; 
+        &lt;/mx:FormItem&gt; 
+        &lt;mx:FormItem label="Base URL:"&gt; 
+            &lt;mx:Label text="{baseURL}"/&gt; 
+        &lt;/mx:FormItem&gt; 
+        &lt;mx:FormItem label="Fragment:"&gt; 
+            &lt;mx:Label text="{fragment}"/&gt; 
+        &lt;/mx:FormItem&gt; 
+        &lt;mx:FormItem label="Protocol:"&gt; 
+            &lt;mx:Label text="{protocol}"/&gt; 
+        &lt;/mx:FormItem&gt; 
+        &lt;mx:FormItem label="Port:"&gt; 
+            &lt;mx:Label text="{port}"/&gt; 
+        &lt;/mx:FormItem&gt; 
+        &lt;mx:FormItem label="Server name:"&gt; 
+            &lt;mx:Label text="{serverName}"/&gt; 
+        &lt;/mx:FormItem&gt; 
+        &lt;mx:FormItem label="Is secure?:"&gt; 
+            &lt;mx:Label text="{isSecure}"/&gt; 
+        &lt;/mx:FormItem&gt; 
+        &lt;mx:FormItem label="Previous URL:"&gt; 
+            &lt;mx:Label text="{previousURL}"/&gt; 
+        &lt;/mx:FormItem&gt;    
+    &lt;/mx:Form&gt; 
+ 
+&lt;/s:Application&gt;</pre>
+
+      </div>
+
+<div>
+  <p><strong>Navigation</strong></p>
+  <p><a href="index.html">Using Flex</a> &raquo; <a href="flx_p6_enhancing_usability.html">Enhancing usability</a></p>
+</div>
+
+         <p>Adobe, Adobe AIR and Adobe Flash Player are either registered trademarks or trademarks of Adobe Systems Incorporated in the United States and/or other countries and are used by permission from Adobe.  No other license to the Adobe trademarks are granted.</p>
+   </div>
+
+
+</body>
+</html>

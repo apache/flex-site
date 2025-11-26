@@ -1,0 +1,1518 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Licensed to the Apache Software Foundation (ASF) under one or more
+  contributor license agreements.  See the NOTICE file distributed with
+  this work for additional information regarding copyright ownership.
+  The ASF licenses this file to You under the Apache License, Version 2.0
+  (the "License"); you may not use this file except in compliance with
+  the License.  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+-->
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en-us" xml:lang="en-us">
+<head>
+<meta name="DC.Type" content="topic"/>
+<meta name="DC.Title" content="Dynamically repeating controls and containers"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="WS2db454920e96a9e51e63e3d11c0bf69084-7b42_verapache"/>
+<title>Dynamically repeating controls and containers</title>
+</head>
+<body id="WS2db454920e96a9e51e63e3d11c0bf69084-7b42_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7b42_verapache"><!-- --></a>
+
+   <div>
+      <p>Repeater components let you dynamically repeat MXML content
+at run time.</p>
+
+      <p>Flex also supports list controls, which
+provide better performance when you display large amounts of data.
+For more information about the HorizontalList, TileList, and List
+controls, see <a href="flx_dpcontrols_dpc.html#WS2db454920e96a9e51e63e3d11c0bf69084-7d7e_verapache">MX
+data-driven controls</a>.</p>
+
+   </div>
+
+   <div class="nested1" id="WS2db454920e96a9e51e63e3d11c0bf6443d-7ffb_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf6443d-7ffb_verapache"><!-- --></a>
+      <h2 class="topictitle2">About Repeater components</h2>
+
+      
+      <div>
+         <p>Repeater
+components are useful for repeating a small set of simple user interface components,
+such as RadioButton controls and other controls typically used in Form
+containers. Repetition is generally controlled by an array of dynamic
+data, such as an Array object returned from a web service, but you
+can use static arrays to emulate simple <samp class="codeph">for</samp> loops.</p>
+
+         <p>Although Repeater components look like containers in your code,
+they are not containers and have none of the automatic layout functionality
+of containers. Their sole purpose is to specify a series of subcomponents
+to include in your application one or more times based on the contents
+of a specified data provider. To align items that a repeater generates
+or perform any other layout task, place the Repeater component and
+its contents inside a container and apply the layout to that container.</p>
+
+      </div>
+
+   </div>
+
+   <div class="nested1" id="WS2db454920e96a9e51e63e3d11c0bf6443d-7ffc_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf6443d-7ffc_verapache"><!-- --></a>
+      <h2 class="topictitle2">Using the Repeater component</h2>
+
+      
+      <div>
+         <p>You use the <samp class="codeph">&lt;mx:Repeater&gt;</samp> tag to
+declare a Repeater component that handles repetition of one or more
+user interface components based on dynamic or static data arrays
+at run time. The repeated components can be controls or containers.
+Using a Repeater component requires data binding to allow for run-time-specific
+values. For more information about data binding, see <a href="flx_datamodels_dm.html#WS2db454920e96a9e51e63e3d11c0bf69084-7ff3_verapache">Storing
+data</a>.</p>
+
+         <p>You can use the <samp class="codeph">&lt;mx:Repeater&gt;</samp> tag anywhere
+a control or container tag is allowed, as long as you wrap the repeater
+tag in a MX container, such as VBox, HBox, Panel, or Canvas. If
+you use a container such as Canvas that uses absolute positioning,
+you must manually position each repeated element so that they do not
+overlap.</p>
+
+         <p>To repeat user interface components, you place their tags within
+the <samp class="codeph">&lt;mx:Repeater&gt;</samp> tag. All components derived
+from the UIComponent class can be repeated with the exception of
+the <samp class="codeph">Application</samp> container tag. Components that
+are not based on UIComponent class cannot be children of the Repeater
+control. </p>
+
+         <p>You can also use more than one <samp class="codeph">&lt;mx:Repeater&gt;</samp> tag
+in an MXML document, and you can nest <samp class="codeph">&lt;mx:Repeater&gt;</samp> tags. </p>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf6443d-7fff_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf6443d-7fff_verapache"><!-- --></a>
+         <h3 class="topictitle3">Declaring the Repeater component
+in MXML</h3>
+
+         
+         <div>
+            <p>You
+declare the Repeater component in the <samp class="codeph">&lt;mx:Repeater&gt;</samp> tag,
+inside a MX container. The following table describes the Repeater
+component's properties:</p>
+
+            
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" frame="border" border="1" rules="all">
+                  
+                  
+                  <thead align="left">
+                     <tr>
+                        <th class="cellrowborder" valign="top" width="NaN%" id="d834329e129">
+                           <p>Property</p>
+
+                        </th>
+
+                        <th class="cellrowborder" valign="top" width="NaN%" id="d834329e135">
+                           <p>Description</p>
+
+                        </th>
+
+                     </tr>
+
+                  </thead>
+
+                  <tbody>
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d834329e129 ">
+                           <div class="p">
+                              <pre class="codeblock">id</pre>
+
+                           </div>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d834329e135 ">
+                           <p>Instance name of the corresponding Repeater
+component.</p>
+
+                        </td>
+
+                     </tr>
+
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d834329e129 ">
+                           <div class="p">
+                              <pre class="codeblock">dataProvider</pre>
+
+                           </div>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d834329e135 ">
+                           <p>An implementation of the ICollectionView
+interface, IList interface, or Array class, such as an ArrayCollection object.</p>
+
+                           <p>You
+must specify a <samp class="codeph">dataProvider</samp> value or the Repeater
+component will not execute.</p>
+
+                           <p>Generally, you specify the value
+of the <samp class="codeph">dataProvider</samp> property as a binding expression
+because the value is not known until run time. </p>
+
+                        </td>
+
+                     </tr>
+
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d834329e129 ">
+                           <div class="p">
+                              <pre class="codeblock">startingIndex</pre>
+
+                           </div>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d834329e135 ">
+                           <p>Number that specifies the element in the
+data provider at which the repetition starts. The data provider
+array is zero-based, so to start at the second element of the array,
+specify a starting index of one. If the <samp class="codeph">startingIndex</samp> is
+not within the range of the <samp class="codeph">dataProvider</samp> property,
+no repetition occurs. </p>
+
+                        </td>
+
+                     </tr>
+
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d834329e129 ">
+                           <div class="p">
+                              <pre class="codeblock">count</pre>
+
+                           </div>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d834329e135 ">
+                           <p>Number that specifies how many repetitions
+occur. If the <samp class="codeph">dataProvider</samp> property has fewer items
+than the number in the <samp class="codeph">count</samp> property, the repetition
+stops with the last item.</p>
+
+                        </td>
+
+                     </tr>
+
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d834329e129 ">
+                           <div class="p">
+                              <pre class="codeblock">currentIndex</pre>
+
+                           </div>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d834329e135 ">
+                           <p>Number that specifies the element of the <samp class="codeph">dataProvider</samp> item
+currently being processed. The data provider array is zero-based,
+so when the third element is being processed, the current index
+is two. This property changes as the Repeater component executes,
+and is -1 after the execution is complete. It is a read-only property
+that you cannot set in the <samp class="codeph">&lt;mx:Repeater&gt;</samp> tag.</p>
+
+                        </td>
+
+                     </tr>
+
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d834329e129 ">
+                           <div class="p">
+                              <pre class="codeblock">currentItem</pre>
+
+                           </div>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d834329e135 ">
+                           <p>Reference to the item that is being processed
+in the <samp class="codeph">dataProvider</samp> property. This property changes
+as the Repeater component executes, and is null after the execution
+is complete. It is a read-only property that you cannot set in the <samp class="codeph">&lt;mx:Repeater&gt;</samp> tag.</p>
+
+                           <p>After
+a Repeater component finishes repeating, you do not use the <samp class="codeph">currentItem</samp> property
+to get the current item. Instead, you call the <samp class="codeph">getRepeaterItem()</samp> method
+of the repeated component itself. For more information, see <a href="flx_repeater_rp.html#WS2db454920e96a9e51e63e3d11c0bf6443d-7ff3_verapache">Referencing
+repeated components</a>.</p>
+
+                        </td>
+
+                     </tr>
+
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d834329e129 ">
+                           <div class="p">
+                              <pre class="codeblock">recycleChildren</pre>
+
+                           </div>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d834329e135 ">
+                           <p>Boolean value that, when set to <samp class="codeph">true</samp>,
+binds new data items into existing Repeater children, incrementally
+creates new children if there are more data items, and destroys
+extra children that are no longer required. For more information,
+see <a href="flx_repeater_rp.html#WS2db454920e96a9e51e63e3d11c0bf6443d-7ffd_verapache">How
+a Repeater component executes</a>.</p>
+
+                        </td>
+
+                     </tr>
+
+                  </tbody>
+
+               </table>
+</div>
+
+            <p>The following table describes the Repeater component's events:</p>
+
+            
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" frame="border" border="1" rules="all">
+                  
+                  
+                  <thead align="left">
+                     <tr>
+                        <th class="cellrowborder" valign="top" width="NaN%" id="d834329e346">
+                           <p>Event</p>
+
+                        </th>
+
+                        <th class="cellrowborder" valign="top" width="NaN%" id="d834329e352">
+                           <p>Description</p>
+
+                        </th>
+
+                     </tr>
+
+                  </thead>
+
+                  <tbody>
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d834329e346 ">
+                           <div class="p">
+                              <pre class="codeblock">repeat</pre>
+
+                           </div>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d834329e352 ">
+                           <p>Dispatched each time an item is processed
+and <samp class="codeph">currentIndex</samp> and <samp class="codeph">currentItem</samp> are
+updated.</p>
+
+                        </td>
+
+                     </tr>
+
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d834329e346 ">
+                           <div class="p">
+                              <pre class="codeblock">repeatEnd</pre>
+
+                           </div>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d834329e352 ">
+                           <p>Dispatched after all the subcomponents of
+a repeater are created.</p>
+
+                        </td>
+
+                     </tr>
+
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d834329e346 ">
+                           <div class="p">
+                              <pre class="codeblock">repeatStart</pre>
+
+                           </div>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d834329e352 ">
+                           <p>Dispatched when Flex begins processing the <samp class="codeph">dataProvider</samp> property
+and begins creating the specified subcomponents.</p>
+
+                        </td>
+
+                     </tr>
+
+                  </tbody>
+
+               </table>
+</div>
+
+            <div class="section" id="WS2db454920e96a9e51e63e3d11c0bf6443d-7fff_verapache__WS2db454920e96a9e51e63e3d11c0bf69084-7d07_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf6443d-7fff_verapache__WS2db454920e96a9e51e63e3d11c0bf69084-7d07_verapache"><!-- --></a><h4 class="sectiontitle">Basic
+principles of the Repeater component</h4>
+               
+               <p>The simplest repeating
+structures you can create with a Repeater component are static loops
+that execute a set number of times. The following Repeater component
+emulates a simple for loop that executes four times, printing a
+simple line of text and incrementing the counter by one each time:</p>
+
+               <p>
+                  
+               </p>
+
+               <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- repeater/StaticLoop.mxml --&gt; 
+&lt;s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009"    
+    xmlns:mx="library://ns.adobe.com/flex/mx"     
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns="*"&gt; 
+ 
+    &lt;s:layout&gt; 
+        &lt;s:VerticalLayout/&gt; 
+    &lt;/s:layout&gt; 
+ 
+    &lt;fx:Script&gt; 
+        &lt;![CDATA[ 
+            [Bindable] 
+            public var myArray:Array=[1,2,3,4]; 
+        ]]&gt; 
+    &lt;/fx:Script&gt; 
+ 
+    &lt;fx:Declarations&gt; 
+        &lt;mx:ArrayCollection id="myAC" source="{myArray}"/&gt; 
+    &lt;/fx:Declarations&gt; 
+ 
+    &lt;!-- Notice that the Repeater is inside a MX container. --&gt; 
+    &lt;mx:VBox&gt; 
+        &lt;mx:Repeater id="myrep" dataProvider="{myAC}"&gt; 
+            &lt;mx:Label id="Label1" text="This is loop #{myrep.currentItem}"/&gt; 
+        &lt;/mx:Repeater&gt; 
+    &lt;/mx:VBox&gt; 
+  
+&lt;/s:Application&gt;</pre>
+
+               <p>In actuality, the counter is
+not the data within the array, but the position within the array.
+As long as the array contains four elements, you can provide any
+data within the array itself, and the Repeater component still executes
+four times. The following example illustrates this principle:</p>
+
+               <p>
+                  
+               </p>
+
+               <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- repeater/StaticLoop2.mxml --&gt; 
+&lt;s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009"    
+    xmlns:mx="library://ns.adobe.com/flex/mx"     
+    xmlns:s="library://ns.adobe.com/flex/spark"&gt; 
+ 
+    &lt;fx:Script&gt; 
+        &lt;![CDATA[ 
+            [Bindable] 
+            public var myArray:Array=[10,20,30,40]; 
+        ]]&gt; 
+    &lt;/fx:Script&gt; 
+ 
+    &lt;fx:Declarations&gt; 
+        &lt;mx:ArrayCollection id="myAC" source="{myArray}"/&gt; 
+    &lt;/fx:Declarations&gt; 
+ 
+    &lt;!-- Notice that the Repeater is inside a MX container. --&gt; 
+    &lt;mx:VBox&gt; 
+        &lt;mx:Repeater id="myrep" dataProvider="{myAC}"&gt; 
+            &lt;mx:Label id="Label1" text="This is loop #{myrep.currentIndex+1}"/&gt; 
+        &lt;/mx:Repeater&gt; 
+    &lt;/mx:VBox&gt; 
+        
+&lt;/s:Application&gt;</pre>
+
+               <p>Notice that this example prints
+the current index plus one, not the index itself. This is because
+the first element of the array is assigned an index value of zero
+(0).</p>
+
+               <p>You can also use the <samp class="codeph">startingIndex</samp> and <samp class="codeph">count</samp> properties
+to adjust the starting point and total number of executions. The <samp class="codeph">count</samp> property
+sets a maximum on the number of times the Repeater component executes.
+The <samp class="codeph">count</samp> property is often—but not always—an exact
+measure of the number of times that the content within the Repeater
+component will execute. This number is because the Repeater component
+stops after the last element of the data provider is reached, regardless
+of the value of the <samp class="codeph">count</samp> property.</p>
+
+               <p>The following
+example shows how the <samp class="codeph">count</samp> and <samp class="codeph">startingIndex</samp> properties affect
+a Repeater component:</p>
+
+               <p>
+                  
+               </p>
+
+               <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- repeater\StartingIndexCount.mxml --&gt; 
+&lt;s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009"    
+    xmlns:mx="library://ns.adobe.com/flex/mx"     
+    xmlns:s="library://ns.adobe.com/flex/spark"&gt; 
+ 
+    &lt;s:layout&gt; 
+        &lt;s:VerticalLayout/&gt; 
+    &lt;/s:layout&gt; 
+ 
+    &lt;fx:Script&gt; 
+        &lt;![CDATA[ 
+            [Bindable] 
+            public var myArray:Array=[100,200,300,400,500,600]; 
+        ]]&gt; 
+    &lt;/fx:Script&gt; 
+ 
+    &lt;fx:Declarations&gt; 
+        &lt;mx:ArrayCollection id="myAC" source="{myArray}"/&gt; 
+    &lt;/fx:Declarations&gt; 
+ 
+    &lt;mx:VBox&gt; 
+        &lt;mx:Repeater id="myrep" dataProvider="{myAC}" count="6"&gt; 
+            &lt;mx:Label id="Label1" 
+                text="Value: {myrep.currentItem}, Loop #{myrep.currentIndex+1} of {myrep.count}"/&gt; 
+        &lt;/mx:Repeater&gt; 
+    &lt;/mx:VBox&gt; 
+ 
+    &lt;mx:HRule/&gt; 
+ 
+    &lt;mx:VBox&gt; 
+        &lt;mx:Repeater id="myrep2" dataProvider="{myAC}" 
+                count="4" startingIndex="1"&gt; 
+            &lt;mx:Label id="Label2" 
+                text="Value: {myrep2.currentItem}, Loop #{myrep2.currentIndex-myrep2.startingIndex+1} of {myrep2.count}"/&gt; 
+        &lt;/mx:Repeater&gt; 
+    &lt;/mx:VBox&gt; 
+ 
+    &lt;mx:HRule/&gt; 
+ 
+    &lt;mx:VBox&gt; 
+        &lt;mx:Repeater id="myrep3" dataProvider="{myAC}" count="6" 
+                startingIndex="3"&gt; 
+            &lt;mx:Label id="Label3" 
+                text="Value: {myrep3.currentItem}, Loop #{myrep3.currentIndex-myrep3.startingIndex+1} of {myrep3.count}"/&gt; 
+        &lt;/mx:Repeater&gt; 
+    &lt;/mx:VBox&gt; 
+&lt;/s:Application&gt;</pre>
+
+               <p>The first Repeater component
+loops through each element of the data provider, starting with the
+first and stopping after the last. The second Repeater component
+starts at the second element of the data provider and iterates four times,
+ending at the fifth element. The third Repeater component starts
+with the fourth element and continues until the end of the data
+provider array, and then stops. Only three iterations occur despite
+the fact that the <samp class="codeph">count</samp> property is set to 6.</p>
+
+            </div>
+
+            <div class="section" id="WS2db454920e96a9e51e63e3d11c0bf6443d-7fff_verapache__WS2db454920e96a9e51e63e3d11c0bf6443d-7ff2_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf6443d-7fff_verapache__WS2db454920e96a9e51e63e3d11c0bf6443d-7ff2_verapache"><!-- --></a><h4 class="sectiontitle">Creating
+dynamic loops with the Repeater component</h4>
+               
+               <p>Instead of a
+static data written directly into your application, your application might
+work with dynamic data providers. Dynamic data is defined in an <samp class="codeph">&lt;fx:Model&gt;</samp> tag
+and drawn from an XML file, a web service, a remote object, or some
+other source. The data is collected and evaluated at run time to
+determine the number and value of elements in the data provider
+and how the Repeater component behaves.</p>
+
+               <p>In the following example,
+an <samp class="codeph">&lt;mx:Repeater&gt;</samp> tag repeats a RadioButton control
+for each product in an XML file:</p>
+
+               <p>
+                  
+               </p>
+
+               <pre class="noswf">&lt;?xml version="1.0"?&gt; 
+&lt;!-- repeater\DynamicLoop.mxml --&gt; 
+&lt;s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009"    
+    xmlns:mx="library://ns.adobe.com/flex/mx"     
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    initialize="catalogService.send();"&gt; 
+ 
+    &lt;s:layout&gt; 
+        &lt;s:VerticalLayout/&gt; 
+    &lt;/s:layout&gt; 
+ 
+    &lt;fx:Declarations&gt; 
+        &lt;mx:HTTPService id="catalogService" url="assets/repeater/catalog.xml" 
+                resultFormat="e4x"/&gt; 
+ 
+        &lt;mx:XMLListCollection id="myXC" 
+                source="{catalogService.lastResult.product}"/&gt; 
+    &lt;/fx:Declarations&gt; 
+ 
+    &lt;mx:VBox&gt; 
+        &lt;mx:Repeater id="r" dataProvider="{myXC}"&gt; 
+            &lt;mx:RadioButton id="Radio" label="{r.currentItem.name}" 
+                    width="150"/&gt; 
+        &lt;/mx:Repeater&gt; 
+    &lt;/mx:VBox&gt; 
+&lt;/s:Application&gt;</pre>
+
+               <p>Assume that catalog.xml contains
+the following:</p>
+
+               <p>
+                  
+               </p>
+
+               <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- assets\catalog.xml --&gt; 
+&lt;products&gt; 
+  &lt;product&gt; 
+    &lt;name&gt;Name&lt;/name&gt; 
+    &lt;price&gt;Price&lt;/price&gt; 
+    &lt;freeship&gt;Free Shipping?&lt;/freeship&gt; 
+  &lt;/product&gt; 
+  &lt;product&gt; 
+    &lt;name&gt;Whirlygig&lt;/name&gt; 
+    &lt;price&gt;5&lt;/price&gt; 
+    &lt;freeship&gt;false&lt;/freeship&gt; 
+  &lt;/product&gt; 
+  &lt;product&gt; 
+    &lt;name&gt;Tilty Thingy&lt;/name&gt; 
+    &lt;price&gt;15&lt;/price&gt; 
+    &lt;freeship&gt;true&lt;/freeship&gt; 
+  &lt;/product&gt; 
+&lt;product&gt; 
+    &lt;name&gt;Really Big Blocks&lt;/name&gt; 
+    &lt;price&gt;25&lt;/price&gt; 
+    &lt;freeship&gt;true&lt;/freeship&gt; 
+  &lt;/product&gt; 
+&lt;/products&gt;</pre>
+
+               <p>You can still use the <samp class="codeph">count</samp> property
+to restrict the number of iterations performed. You can use the <samp class="codeph">startingIndex</samp> property
+to skip entries at the beginning of the data provider.</p>
+
+               <p>In
+the preceding example, the first product entry in the XML file contains metadata
+that other applications use to create column headers. Because it doesn't
+make sense to include that entry in the radio buttons, start the
+Repeater component at the second element of the data provider, as
+in the following code example:</p>
+
+               <p>
+                  
+               </p>
+
+               <pre class="noswf">&lt;?xml version="1.0"?&gt; 
+&lt;!-- repeater\StartSecondElement.mxml --&gt; 
+&lt;s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009"    
+    xmlns:mx="library://ns.adobe.com/flex/mx"     
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    initialize="catalogService.send();"&gt; 
+    &lt;s:layout&gt; 
+        &lt;s:VerticalLayout/&gt; 
+    &lt;/s:layout&gt; 
+ 
+    &lt;fx:Declarations&gt; 
+        &lt;mx:HTTPService id="catalogService" url="assets/repeater/catalog.xml" 
+                resultFormat="e4x"/&gt; 
+ 
+        &lt;mx:XMLListCollection id="myXC" 
+                source="{catalogService.lastResult.product}"/&gt; 
+    &lt;/fx:Declarations&gt; 
+            
+    
+    &lt;mx:VBox&gt; 
+        &lt;mx:Repeater id="r" dataProvider="{myXC}" 
+                startingIndex="1"&gt; 
+            &lt;mx:RadioButton id="Radio" label="{r.currentItem.name}" 
+                width="150"/&gt; 
+        &lt;/mx:Repeater&gt; 
+    &lt;/mx:VBox&gt; 
+&lt;/s:Application&gt;</pre>
+
+            </div>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf6443d-7ff3_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf6443d-7ff3_verapache"><!-- --></a>
+         <h3 class="topictitle3">Referencing repeated components</h3>
+
+         
+         <div>
+            <p>To
+reference individual instances of a repeated component, you use
+indexed <samp class="codeph">id</samp> references, as the following example
+shows:</p>
+
+            <p>
+               
+            </p>
+
+            <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- repeater\RefRepeatedComponents.mxml --&gt; 
+&lt;s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009"    
+    xmlns:mx="library://ns.adobe.com/flex/mx"     
+    xmlns:s="library://ns.adobe.com/flex/spark"&gt; 
+ 
+    &lt;s:layout&gt; 
+        &lt;s:VerticalLayout/&gt; 
+    &lt;/s:layout&gt; 
+ 
+    &lt;fx:Script&gt; 
+        &lt;![CDATA[ 
+ 
+            public function labelTrace():void { 
+                for (var i:int = 0; i &lt; nameLabel.length; i++) 
+                    trace(nameLabel[i].text); 
+            } 
+        ]]&gt; 
+    &lt;/fx:Script&gt; 
+ 
+    &lt;fx:Declarations&gt; 
+        &lt;fx:Model id="catalog" source="../assets/repeater/catalog.xml"/&gt; 
+        &lt;s:ArrayCollection id="myAC" source="{catalog.product}"/&gt; 
+    &lt;/fx:Declarations&gt; 
+    
+    &lt;s:Label id="title" text="Products:"/&gt;   
+    
+    &lt;s:VGroup&gt; 
+        &lt;mx:VBox&gt; 
+            &lt;mx:Repeater id="r" dataProvider="{myAC}" startingIndex="1"&gt; 
+                &lt;mx:Label id="nameLabel" 
+                    text="{r.currentItem.name}: ${r.currentItem.price}" 
+                    width="200"/&gt; 
+            &lt;/mx:Repeater&gt; 
+        &lt;/mx:VBox&gt; 
+ 
+        &lt;s:Button label="Trace" click="labelTrace();"/&gt; 
+    &lt;/s:VGroup&gt; 
+&lt;/s:Application&gt;</pre>
+
+            <p>In this example, the <samp class="codeph">id</samp> of the repeated Label
+control is <samp class="codeph">nameLabel</samp>; each <samp class="codeph">nameLabel</samp> instance
+created has this <samp class="codeph">id</samp>. You reference the individual
+Label instances as <samp class="codeph">nameLabel[0]</samp>, <samp class="codeph">nameLabel[1]</samp>,
+and so on. You reference the total number of <samp class="codeph">nameLabel</samp> instances
+as <samp class="codeph">nameLabel.length</samp>. The <samp class="codeph">for</samp> loop traces
+the <samp class="codeph">text</samp> property of each Label control in the <samp class="codeph">nameLabel</samp> Array
+object. The <samp class="codeph">labelTrace()</samp> method prints the name
+and price of each product in the system log, provided you've defined
+it in the <samp class="codeph">mm.cfg</samp> file.</p>
+
+            <div class="section" id="WS2db454920e96a9e51e63e3d11c0bf6443d-7ff3_verapache__WS2db454920e96a9e51e63e3d11c0bf6443d-7ffa_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf6443d-7ff3_verapache__WS2db454920e96a9e51e63e3d11c0bf6443d-7ffa_verapache"><!-- --></a><h4 class="sectiontitle">Referencing
+repeated child components</h4>
+               
+               <p>When a container is repeated
+and indexed in an array, its children are also indexed. For example,
+for the following MXML code, you reference the child Label controls
+of the VBox container <samp class="codeph">vb[0]</samp> as <samp class="codeph">nameLabel[0]</samp> and <samp class="codeph">shipLabel[0]</samp>.
+The syntax for referencing the children is the same as the syntax
+for referencing the parent.</p>
+
+               <p>
+                  
+               </p>
+
+               <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- repeater\RefRepeatedChildComponents.mxml --&gt; 
+&lt;s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009"    
+    xmlns:mx="library://ns.adobe.com/flex/mx"     
+    xmlns:s="library://ns.adobe.com/flex/spark"&gt; 
+ 
+    &lt;s:layout&gt; 
+        &lt;s:VerticalLayout/&gt; 
+    &lt;/s:layout&gt; 
+ 
+    &lt;fx:Script&gt; 
+        &lt;![CDATA[ 
+        
+            public function labelTrace():void { 
+                for (var i:int = 0; i &lt; nameLabel.length; i++) 
+                    trace(nameLabel[i].text); 
+            } 
+        ]]&gt; 
+    &lt;/fx:Script&gt; 
+ 
+    &lt;fx:Declarations&gt; 
+        &lt;fx:Model id="catalog" source="../assets/repeater/catalog.xml"/&gt; 
+    &lt;/fx:Declarations&gt; 
+    
+    &lt;s:Label id="title" text="Products:"/&gt; 
+ 
+    &lt;mx:VBox&gt; 
+        &lt;mx:Repeater id="r" dataProvider="{catalog.product}" 
+                startingIndex="1"&gt; 
+            &lt;mx:VBox id="vb"&gt; 
+                &lt;mx:Label id="nameLabel" 
+                    text="{r.currentItem.name}: ${r.currentItem.price}" 
+                    width="200"/&gt; 
+                &lt;mx:Label id="shipLabel" 
+                    text="Free shipping: {r.currentItem.freeship}"/&gt; 
+                &lt;mx:Spacer/&gt; 
+            &lt;/mx:VBox&gt; 
+        &lt;/mx:Repeater&gt; 
+    &lt;/mx:VBox&gt; 
+ 
+    &lt;s:Button label="Trace" click="labelTrace();"/&gt; 
+ 
+&lt;/s:Application&gt;</pre>
+
+            </div>
+
+            <div class="section" id="WS2db454920e96a9e51e63e3d11c0bf6443d-7ff3_verapache__WS2db454920e96a9e51e63e3d11c0bf6443d-7ff6_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf6443d-7ff3_verapache__WS2db454920e96a9e51e63e3d11c0bf6443d-7ff6_verapache"><!-- --></a><h4 class="sectiontitle">Referencing
+nested Repeater components</h4>
+               
+               <p>When <samp class="codeph">&lt;mx:Repeater&gt;</samp> tags
+are nested, the inner <samp class="codeph">&lt;mx:Repeater&gt;</samp> tags
+are indexed Repeater components. For example, for the following
+MXML code, you access the nested Repeater components as <samp class="codeph">r2[0]</samp>, <samp class="codeph">r2[1]</samp>,
+and so on. The syntax for referencing the children is same as the
+syntax for referencing the parent.</p>
+
+               <p>
+                  
+               </p>
+
+               <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- repeater\RefNestedComponents.mxml --&gt; 
+&lt;s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009"    
+    xmlns:mx="library://ns.adobe.com/flex/mx"     
+    xmlns:s="library://ns.adobe.com/flex/spark"&gt; 
+ 
+    &lt;s:layout&gt; 
+        &lt;s:VerticalLayout/&gt; 
+    &lt;/s:layout&gt; 
+ 
+  &lt;fx:Script&gt; 
+    &lt;![CDATA[ 
+    
+      public function labelTrace():void { 
+        for (var i:int = 0; i &lt; nameLabel.length; i++) 
+         for (var j:int = 0; j &lt; nameLabel[i].length; j++) 
+          trace(nameLabel[i][j].text); 
+      } 
+    ]]&gt; 
+  &lt;/fx:Script&gt; 
+ 
+  &lt;fx:Declarations&gt;    
+      &lt;fx:Model id="data"&gt; 
+        &lt;color&gt; 
+          &lt;colorName&gt;Red&lt;/colorName&gt; 
+          &lt;colorName&gt;Yellow&lt;/colorName&gt; 
+          &lt;colorName&gt;Blue&lt;/colorName&gt; 
+        &lt;/color&gt; 
+      &lt;/fx:Model&gt; 
+ 
+      &lt;fx:Model id="catalog" source="../assets/repeater/catalog.xml"/&gt; 
+      &lt;s:ArrayCollection id="myAC1" source="{catalog.product}"/&gt; 
+      &lt;s:ArrayCollection id="myAC2" source="{data.colorName}"/&gt; 
+  &lt;/fx:Declarations&gt;    
+  &lt;s:Label id="title" text="Products:"/&gt; 
+ 
+  &lt;mx:VBox&gt; 
+      &lt;mx:Repeater id="r" dataProvider="{myAC1}" startingIndex="1"&gt; 
+        &lt;mx:Repeater id="r2" dataProvider="{myAC2}"&gt; 
+          &lt;mx:Label id="nameLabel" text="{r2.currentItem} {r.currentItem.name}: ${r.currentItem.price}" width="250"/&gt; 
+        &lt;/mx:Repeater&gt; 
+      &lt;/mx:Repeater&gt; 
+  &lt;/mx:VBox&gt; 
+ 
+  &lt;s:Button label="Trace" click="labelTrace();"/&gt; 
+&lt;/s:Application&gt;</pre>
+
+               <p>This application places the
+full list of products with color and price into the system log when
+you click the Button control (provided you have defined the log file
+in the mm.cfg file). </p>
+
+               <p>In the previous example, the instances
+of the Label control are multiply indexed because they are inside
+multiple Repeater components. For example, the index <samp class="codeph">nameLabel[1][2]</samp> contains
+a reference to the Label control produced by the second iteration
+of <samp class="codeph">r</samp> and the third iteration of <samp class="codeph">r2</samp>. </p>
+
+            </div>
+
+            <div class="section" id="WS2db454920e96a9e51e63e3d11c0bf6443d-7ff3_verapache__WS2db454920e96a9e51e63e3d11c0bf69084-7d09_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf6443d-7ff3_verapache__WS2db454920e96a9e51e63e3d11c0bf69084-7d09_verapache"><!-- --></a><h4 class="sectiontitle">Using
+the getRepeaterItem() method in an event handler for the Repeater
+component</h4>
+               
+               <p>When
+a Repeater component is busy repeating, each repeated object that
+it creates can bind at that moment to the Repeater component's <samp class="codeph">currentItem</samp> property,
+which is changing as the Repeater component repeats. You cannot
+give each instance its own event handler by writing something like <samp class="codeph">click="doSomething({r.currentItem})"</samp> because
+binding expressions are not allowed in event handlers, and all instances
+of the repeated component must share the same event handler. </p>
+
+               <p>Repeated
+components and repeated Repeater components have a <samp class="codeph">getRepeaterItem()</samp> method
+that returns the item in the <samp class="codeph">dataProvider</samp> property
+that was used to produce the object. When the Repeater component finishes
+repeating, you can use the <samp class="codeph">getRepeaterItem()</samp> method
+to determine what the event handler should do based on the <samp class="codeph">currentItem</samp> property.
+To do so, you pass the <samp class="codeph">event.currentTarget.getRepeaterItem()</samp> method
+to the event handler. The <samp class="codeph">getRepeaterItem()</samp> method
+takes an optional index that specifies which Repeater components
+you want when nested Repeater components are present; the 0 index
+is the outermost Repeater component. If you do not specify the index
+argument, the innermost Repeater component is implied. </p>
+
+               <div class="note"><span class="notetitle">Note:</span> After a Repeater component finishes repeating,
+you do not use the <samp class="codeph">Repeater.currentItem</samp> property
+to get the current item. Instead, you call the <samp class="codeph">getRepeaterItem()</samp> method
+of the repeated component itself.</div>
+
+               <p>The following example
+illustrates the <samp class="codeph">getRepeaterItem()</samp> method. When the
+user clicks each repeated Button control, the corresponding <samp class="codeph">colorName</samp> value
+from the data model appears in the Button control label.</p>
+
+               <p>
+                  
+               </p>
+
+               <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- repeater\GetItem.mxml --&gt; 
+&lt;s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009"    
+    xmlns:mx="library://ns.adobe.com/flex/mx"     
+    xmlns:s="library://ns.adobe.com/flex/spark"&gt; 
+ 
+    &lt;s:layout&gt; 
+        &lt;s:VerticalLayout/&gt; 
+    &lt;/s:layout&gt; 
+ 
+  &lt;fx:Script&gt; 
+    &lt;![CDATA[ 
+      public function clicker(cName:String):void { 
+         foolabel.text=cName; 
+       }  
+    ]]&gt; 
+  &lt;/fx:Script&gt; 
+  &lt;s:Label id="foolabel" text="foo"/&gt; 
+  &lt;fx:Declarations&gt; 
+      &lt;fx:Model id="data"&gt; 
+        &lt;color&gt; 
+          &lt;colorName&gt;Red&lt;/colorName&gt; 
+          &lt;colorName&gt;Yellow&lt;/colorName&gt; 
+          &lt;colorName&gt;Blue&lt;/colorName&gt; 
+        &lt;/color&gt; 
+      &lt;/fx:Model&gt; 
+      &lt;s:ArrayCollection id="myAC" source="{data.colorName}"/&gt; 
+  &lt;/fx:Declarations&gt; 
+  &lt;mx:VBox&gt; 
+      &lt;mx:Repeater id="myrep" dataProvider="{myAC}"&gt; 
+        &lt;mx:Button click="clicker(event.currentTarget.getRepeaterItem());" 
+          label="{myrep.currentItem}"/&gt; 
+      &lt;/mx:Repeater&gt; 
+  &lt;/mx:VBox&gt; 
+&lt;/s:Application&gt;</pre>
+
+               <p>The code in the following example
+uses the <samp class="codeph">getRepeaterItem()</samp> method to display a
+specific URL for each Button control that the user clicks. The Button controls
+must share a common data-driven click handler, because you cannot use
+binding expressions inside event handlers. However, the <samp class="codeph">getRepeaterItem()</samp> method
+lets you change the functionality for each Button control.</p>
+
+               <p>
+                  
+               </p>
+
+               <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- repeater\DisplayURL.mxml --&gt; 
+&lt;s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009"    
+    xmlns:mx="library://ns.adobe.com/flex/mx"     
+    xmlns:s="library://ns.adobe.com/flex/spark"&gt; 
+ 
+    &lt;s:layout&gt; 
+        &lt;s:VerticalLayout/&gt; 
+    &lt;/s:layout&gt; 
+ 
+  &lt;fx:Script&gt; 
+    &lt;![CDATA[ 
+      [Bindable] 
+      public var dp:Array = [ 
+        { label: "Flex", url: "http://www.adobe.com/flex" }, 
+        { label: "Flash", url: "http://www.adobe.com/flash" } 
+      ]; 
+    ]]&gt; 
+  &lt;/fx:Script&gt; 
+ 
+  &lt;fx:Declarations&gt; 
+      &lt;s:ArrayCollection id="myAC" source="{dp}"/&gt; 
+  &lt;/fx:Declarations&gt; 
+  &lt;mx:VBox&gt; 
+      &lt;mx:Repeater id="r" dataProvider="{myAC}"&gt; 
+        &lt;mx:Button label="{r.currentItem.label}" 
+           click="navigateToURL( 
+            new URLRequest(event.currentTarget.getRepeaterItem().url), '_blank');"/&gt; 
+      &lt;/mx:Repeater&gt; 
+  &lt;/mx:VBox&gt; 
+&lt;/s:Application&gt;</pre>
+
+               <p>When executed, this example
+yields two buttons: one for Flex and one for Adobe<sup>®</sup> Flash<sup>®</sup>. When you click the button of your choice,
+the relevant product page loads in a new browser window.</p>
+
+            </div>
+
+            <div class="section" id="WS2db454920e96a9e51e63e3d11c0bf6443d-7ff3_verapache__WS2db454920e96a9e51e63e3d11c0bf6443d-7ff4_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf6443d-7ff3_verapache__WS2db454920e96a9e51e63e3d11c0bf6443d-7ff4_verapache"><!-- --></a><h4 class="sectiontitle">Accessing
+specific instances of repeated components</h4>
+               
+               <p>Repeated components
+and repeated Repeater components have three properties that you
+can use to dynamically keep track of specific instances of repeated
+objects, to determine which Repeater component produced them, and to
+determine which <samp class="codeph">dataProvider</samp> items were used by
+each Repeater component. The following table describes these properties:</p>
+
+               
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" frame="border" border="1" rules="all">
+                     
+                     
+                     <thead align="left">
+                        <tr>
+                           <th class="cellrowborder" valign="top" width="NaN%" id="d834329e869">
+                              <p>Property</p>
+
+                           </th>
+
+                           <th class="cellrowborder" valign="top" width="NaN%" id="d834329e875">
+                              <p>Description</p>
+
+                           </th>
+
+                        </tr>
+
+                     </thead>
+
+                     <tbody>
+                        <tr>
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d834329e869 ">
+                              <div class="p">
+                                 <pre class="codeblock">instanceIndices</pre>
+
+                              </div>
+
+                           </td>
+
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d834329e875 ">
+                              <p>Array that contains the indices required
+to reference the component from its document. This Array is empty
+unless the component is in one or more Repeater components. The
+first element corresponds to the outermost Repeater component. For
+example, if the <samp class="codeph">id</samp> is <samp class="codeph">b</samp> and <samp class="codeph">instanceIndices</samp> is <samp class="codeph">[2,4]</samp>,
+you would reference it on the document as <samp class="codeph">b[2][4]</samp>.</p>
+
+                           </td>
+
+                        </tr>
+
+                        <tr>
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d834329e869 ">
+                              <div class="p">
+                                 <pre class="codeblock">repeaters</pre>
+
+                              </div>
+
+                           </td>
+
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d834329e875 ">
+                              <p>Array that contains references to the Repeater
+components that produced the component. The Array is empty unless
+the component is in one or more Repeater components. The first element
+corresponds to the outermost Repeater component.</p>
+
+                           </td>
+
+                        </tr>
+
+                        <tr>
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d834329e869 ">
+                              <div class="p">
+                                 <pre class="codeblock">repeaterIndices</pre>
+
+                              </div>
+
+                           </td>
+
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d834329e875 ">
+                              <p>Array that contains the indices of the items
+in the <samp class="codeph">dataProvider</samp> properties of the Repeater
+components that produced the component. The Array is empty unless
+the component is within one or more Repeater components. The first
+element corresponds to the outermost Repeater component. For example,
+if <samp class="codeph">repeaterIndices</samp> is <samp class="codeph">[2,4]</samp>, the
+outer Repeater component used its <samp class="codeph">dataProvider[2]</samp> data
+item and the inner Repeater component used its <samp class="codeph">dataProvider[4]</samp> data
+item.</p>
+
+                              <p>This property differs from <samp class="codeph">instanceIndices</samp> if
+the <samp class="codeph">startingIndex</samp> of any of the Repeater components
+is not 0. For example, even if a Repeater component starts at <samp class="codeph">dataProvider</samp> item
+4, the document reference of the first repeated component is <samp class="codeph">b[0]</samp>,
+not <samp class="codeph">b[4]</samp>.</p>
+
+                           </td>
+
+                        </tr>
+
+                     </tbody>
+
+                  </table>
+</div>
+
+               <p>The following example application uses
+the <samp class="codeph">repeaters</samp> property to display the <samp class="codeph">id</samp> value
+of the Repeater components in an Alert control when the user clicks
+one of the Button controls labelled by the index value of the outer
+Repeater component and inner Repeater component, respectively. It
+uses the <samp class="codeph">repeaters</samp> property to get the <samp class="codeph">id</samp> value
+of the inner Repeater component:</p>
+
+               <p>
+                  
+               </p>
+
+               <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- repeater\RepeatersProp.mxml --&gt; 
+&lt;s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009"    
+    xmlns:mx="library://ns.adobe.com/flex/mx"     
+    xmlns:s="library://ns.adobe.com/flex/spark"&gt; 
+ 
+    &lt;s:layout&gt; 
+        &lt;s:VerticalLayout/&gt; 
+    &lt;/s:layout&gt; 
+ 
+  &lt;fx:Script&gt; 
+    &lt;![CDATA[ 
+      import mx.controls.Alert; 
+      [Bindable] 
+      public var myArray:Array=[1,2]; 
+    ]]&gt; 
+  &lt;/fx:Script&gt; 
+ 
+  &lt;fx:Declarations&gt; 
+    &lt;s:ArrayCollection id="myAC" source="{myArray}"/&gt; 
+  &lt;/fx:Declarations&gt; 
+  
+  &lt;mx:VBox&gt; 
+      &lt;mx:Repeater  id="repeater1" dataProvider="{myAC}"&gt; 
+        &lt;mx:Repeater  id="repeater2" dataProvider="{myAC}"&gt; 
+          &lt;mx:Button 
+            label="[{repeater1.currentIndex},{repeater2.currentIndex}]" 
+            click="Alert.show(event.target.repeaters[1].id);"/&gt; 
+        &lt;/mx:Repeater&gt; 
+      &lt;/mx:Repeater&gt; 
+  &lt;/mx:VBox&gt; 
+&lt;/s:Application&gt;</pre>
+
+               <p>The following example application
+uses the <samp class="codeph">instanceIndices</samp> property to set the <samp class="codeph">text</samp> property
+of a TextInput control when the user clicks the corresponding Button
+control in the set of repeated Button and TextInput controls. You
+need to use the <samp class="codeph">instanceIndices</samp> property because
+you must get the correct object dynamically; you cannot get it by
+its <samp class="codeph">id</samp> value.</p>
+
+               <p>The following example shows
+how to use the <samp class="codeph">instanceIndices</samp> property to set
+the <samp class="codeph">text</samp> property of a TextInput control when the
+user clicks a Button control. The argument <samp class="codeph">event.target.instanceIndices</samp> gets
+the index of the corresponding TextInput control.</p>
+
+               <p>
+                  
+               </p>
+
+               <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- repeater\InstanceIndicesProp.mxml --&gt; 
+&lt;s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009"    
+    xmlns:mx="library://ns.adobe.com/flex/mx"     
+    xmlns:s="library://ns.adobe.com/flex/spark"&gt; 
+ 
+    &lt;s:layout&gt; 
+        &lt;s:VerticalLayout/&gt; 
+    &lt;/s:layout&gt; 
+ 
+  &lt;fx:Script&gt; 
+    &lt;![CDATA[ 
+      [Bindable] 
+      public var myArray:Array=[1,2,3,4,5,6,7,8]; 
+    ]]&gt; 
+  &lt;/fx:Script&gt; 
+ 
+  &lt;fx:Declarations&gt; 
+    &lt;mx:ArrayCollection id="myAC" source="{myArray}"/&gt; 
+  &lt;/fx:Declarations&gt; 
+  
+  &lt;mx:Box&gt; 
+      &lt;mx:Repeater id="list" dataProvider="{myAC}" count="4" startingIndex="2"&gt; 
+        &lt;mx:HBox&gt; 
+          &lt;mx:Button label="Click Me" 
+            click="myText[event.target.instanceIndices].text= 
+            event.target.instanceIndices.toString();"/&gt; 
+          &lt;mx:TextInput id="myText"/&gt; 
+        &lt;/mx:HBox&gt; 
+      &lt;/mx:Repeater&gt; 
+  &lt;/mx:Box&gt; 
+&lt;/s:Application&gt;</pre>
+
+               <p>The following code shows how
+to use the <samp class="codeph">repeaterIndices</samp> property instead of
+the <samp class="codeph">instanceIndices</samp> property to set the <samp class="codeph">text</samp> property
+of a TextInput control when the user clicks a Button control. The
+value of <samp class="codeph">event.target.repeaterIndices</samp> is based
+on the current index of the Repeater component. Because the <samp class="codeph">startingIndex</samp> property
+of the Repeater component is set to 2, it does not match the <samp class="codeph">event.target.instanceIndices</samp> value,
+which always starts at 0.</p>
+
+               <p>
+                  
+               </p>
+
+               <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- repeater\RepeaterIndicesProp.mxml --&gt; 
+&lt;s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009"    
+    xmlns:mx="library://ns.adobe.com/flex/mx"     
+    xmlns:s="library://ns.adobe.com/flex/spark"&gt; 
+ 
+    &lt;s:layout&gt; 
+        &lt;s:VerticalLayout/&gt; 
+    &lt;/s:layout&gt; 
+ 
+  &lt;fx:Script&gt; 
+    &lt;![CDATA[ 
+      [Bindable] 
+      public var myArray:Array = [1,2,3,4,5,6,7,8]; 
+    ]]&gt; 
+  &lt;/fx:Script&gt; 
+ 
+  &lt;mx:Box&gt; 
+      &lt;mx:Repeater id="list" dataProvider="{myArray}" 
+        startingIndex="2" count="4"&gt; 
+            &lt;mx:HBox&gt; 
+                &lt;mx:Button id="b" label="Click Me" 
+                    click="myText[event.target.repeaterIndices-list.startingIndex].text= 
+                    event.target.repeaterIndices.toString();"/&gt; 
+                &lt;mx:TextInput id="myText"/&gt; 
+            &lt;/mx:HBox&gt; 
+      &lt;/mx:Repeater&gt; 
+  &lt;/mx:Box&gt; 
+&lt;/s:Application&gt;</pre>
+
+               <p>In this case, clicking the
+button prints the current element of the data provider, not the
+current iteration of the loop.</p>
+
+               <div class="note"><span class="notetitle">Note:</span> The value
+of the <samp class="codeph">repeaterIndices</samp> property is equal to the <samp class="codeph">startingIndex</samp> property
+on the first iteration of the Repeater component. Subtracting the <samp class="codeph">startingIndex</samp> value
+from the <samp class="codeph">repeaterIndices</samp> value always yields the <samp class="codeph">instanceIndices</samp> value.</div>
+
+            </div>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf6443d-7ff1_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf6443d-7ff1_verapache"><!-- --></a>
+         <h3 class="topictitle3">Using a Repeater component in a
+custom MXML component</h3>
+
+         
+         <div>
+            <p>You can use the <samp class="codeph">&lt;mx:Repeater&gt;</samp> tag
+in an MXML component definition in the same way that you use it
+in an application file. When you use the MXML component as a tag
+in another MXML file, the repeated items appear. You can access
+an individual repeated item by its array index number, just as you
+do for a repeated item defined in the application file.</p>
+
+            <p>In the following example, a Button control in an MXML component
+called <samp class="codeph">childComp</samp> is repeated for every element
+in an Array object called dp:</p>
+
+            <p>
+               
+            </p>
+
+            <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- repeater\myComponents\CustButton.mxml --&gt; 
+&lt;mx:VBox 
+    xmlns:fx="http://ns.adobe.com/mxml/2009"    
+    xmlns:mx="library://ns.adobe.com/flex/mx"     
+    xmlns:s="library://ns.adobe.com/flex/spark"&gt; 
+ 
+  &lt;fx:Script&gt; 
+    &lt;![CDATA[ 
+      [Bindable] 
+      public var dp:Array=[1,2,3,4]; 
+    ]]&gt; 
+  &lt;/fx:Script&gt; 
+ 
+  &lt;fx:Declarations&gt;    
+      &lt;s:ArrayCollection id="myAC" source="{dp}"/&gt; 
+  &lt;/fx:Declarations&gt;    
+    
+  &lt;mx:Box&gt;    
+      &lt;mx:Repeater id="r" dataProvider="{myAC}"&gt; 
+        &lt;mx:Button id="repbutton" label="button {r.currentItem}"/&gt; 
+      &lt;/mx:Repeater&gt; 
+  &lt;/mx:Box&gt;    
+&lt;/mx:VBox&gt;</pre>
+
+            <p>The application file in the following example uses the childComp
+component to display four Button controls, one for each element
+in the array. The <samp class="codeph">getLabelRep()</samp> function displays
+the label text of the second Button in the array.</p>
+
+            <p>
+               
+            </p>
+
+            <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- repeater\RepeatCustButton.mxml --&gt; 
+&lt;s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009"    
+    xmlns:mx="library://ns.adobe.com/flex/mx"     
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:MyComp="myComponents.*"&gt; 
+ 
+    &lt;s:layout&gt; 
+        &lt;s:VerticalLayout/&gt; 
+    &lt;/s:layout&gt; 
+ 
+  &lt;fx:Script&gt; 
+    &lt;![CDATA[ 
+      import mx.controls.Alert; 
+      public function getLabelRep():void { 
+        Alert.show(comp.repbutton[1].label); 
+      } 
+    ]]&gt; 
+  &lt;/fx:Script&gt; 
+    
+  &lt;MyComp:CustButton id="comp"/&gt; 
+ 
+  &lt;s:Button label="Get label of Repeated element" width="200" 
+    click="getLabelRep();"/&gt; 
+&lt;/s:Application&gt;</pre>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf6443d-7ff5_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf6443d-7ff5_verapache"><!-- --></a>
+         <h3 class="topictitle3">Dynamically creating components
+based on data type</h3>
+
+         
+         <div>
+            <p>You can use a Repeater component to dynamically create
+different types of components for specific items in a set of data.
+A Repeater component broadcasts a <samp class="codeph">repeat</samp> event
+as it executes, and this event is broadcast after the <samp class="codeph">currentIndex</samp> and <samp class="codeph">currentItem</samp> properties
+are set. You can call an event handler function on the <samp class="codeph">repeat</samp> event,
+and dynamically create different types of components based on the
+individual data items. </p>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf6443d-7ffd_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf6443d-7ffd_verapache"><!-- --></a>
+         <h3 class="topictitle3">How a Repeater component executes</h3>
+
+         
+         <div>
+            <p>A Repeater component executes initially when it is instantiated.
+If the Repeater component's <samp class="codeph">dataProvider</samp> property
+exists, it proceeds to instantiate its children, and they instantiate
+their children, recursively. </p>
+
+            <p>The Repeater component re-executes whenever its <samp class="codeph">dataProvider</samp>, <samp class="codeph">startingIndex</samp>,
+or <samp class="codeph">count</samp> properties are set or modified either
+explicitly in ActionScript, or implicitly by data binding. If the <samp class="codeph">dataProvider</samp> property
+is bound to a web service result, the Repeater component re-executes
+when the web service operation returns the result. A Repeater component
+also re-executes in response to paging through the <samp class="codeph">dataProvider</samp> property
+by incrementally increasing the <samp class="codeph">startingIndex</samp> value,
+as the following example shows:</p>
+
+            <pre class="codeblock"> r.startingIndex += r.count;</pre>
+
+            <p>When a Repeater component re-executes, it destroys any children
+that it previously created (assuming the <samp class="codeph">recycleChildren</samp> property
+is set to <samp class="codeph">false</samp>), and then reinstantiates its children
+based on the current <samp class="codeph">dataProvider</samp> property. The
+number of children in the container might change, and the container
+layout changes to accommodate any changes to the number of children.</p>
+
+            <div class="section" id="WS2db454920e96a9e51e63e3d11c0bf6443d-7ffd_verapache__WS2db454920e96a9e51e63e3d11c0bf69084-7d08_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf6443d-7ffd_verapache__WS2db454920e96a9e51e63e3d11c0bf69084-7d08_verapache"><!-- --></a><h4 class="sectiontitle">Recreating
+children in a Repeater component</h4>
+               
+               <p>The <samp class="codeph">recycleChildren</samp> property
+controls whether children of a Repeater component are recreated
+when the Repeater component re-executes. When you set the <samp class="codeph">recycleChildren</samp> property
+to <samp class="codeph">false</samp>, the Repeater component recreates all
+the objects when you swap one <samp class="codeph">dataProvider</samp> with
+another, or sort, which causes a performance lag. Only set this
+property to <samp class="codeph">true</samp> if you are confident that modifying
+your <samp class="codeph">dataProvider</samp> will not recreate the Repeater component's
+children. </p>
+
+               <p>The default value of the <samp class="codeph">recycleChildren</samp> property
+is <samp class="codeph">false</samp>, to ensure that you do not leave stale
+state information in a repeated instance. For example, suppose you
+use a Repeater component to display photo images, and each Image
+control has an associated NumericStepper control for how many prints you
+want to order. Some of the state information, the image, comes from
+the <samp class="codeph">dataProvider</samp>, while other state information,
+the print count, is set by user interaction. If you set the <samp class="codeph">recycleChildren</samp> property
+to <samp class="codeph">true</samp> and page through the photos by incrementally
+increasing the Repeater component's <samp class="codeph">startingIndex</samp> value,
+the Image controls bind to the new images, but the NumericStepper
+controls keep the old information.</p>
+
+            </div>
+
+         </div>
+
+      </div>
+
+   </div>
+
+   <div class="nested1" id="WS2db454920e96a9e51e63e3d11c0bf6443d-7ff9_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf6443d-7ff9_verapache"><!-- --></a>
+      <h2 class="topictitle2">Considerations when using a Repeater component</h2>
+
+      
+      <div>
+         <p>Consider the following when you use a Repeater component:</p>
+
+         <ul>
+            <li>
+               <p>You must wrap a Repeater control in a MX container tag
+such as HBox, VBox, Box, Panel, or Canvas. The Repeater control
+cannot be a top-level child of the Application tag, and it cannot
+be a child of Spark containers such as Group, VGroup, or HGroup.
+If you are using nested repeaters, only the outer Repeater must
+be wrapped in a MX container.</p>
+
+            </li>
+
+            <li>
+               <p>You cannot use a Repeater component to iterate through a
+two-dimensional Array object that is programmatically generated.
+This is because the elements of an Array object do not trigger <samp class="codeph">changeEvent</samp> events,
+and therefore cannot function as binding sources at run time. Binding
+copies initial values during instantiation after variables are declared
+in an <samp class="codeph">&lt;mx:Script&gt;</samp> tag, but before <samp class="codeph">initialize</samp> handlers
+are executed.</p>
+
+            </li>
+
+            <li>
+               <p>Run-time changes to an array used as a data provider are
+not reflected in the Repeater component. Use a collection if you
+need to allow run-time modification.</p>
+
+            </li>
+
+            <li>
+               <p>Forgetting curly braces ({ }) in a <samp class="codeph">dataProvider</samp> property
+is a common mistake when using a Repeater component. If the Repeater
+component doesn't execute, make sure that the binding is correct.</p>
+
+            </li>
+
+            <li>
+               <p>If repeated objects are displayed out of order and you are
+using adjacent or nested Repeater components, you might need to
+place a dummy UIComponent immediately after the Repeater that is
+displaying objects incorrectly. </p>
+
+               <p>The code in the following
+example contains adjacent <samp class="codeph">&lt;mx:Repeater&gt;</samp> tags and
+uses an <samp class="codeph">&lt;mx:Spacer&gt;</samp> tag to create a dummy
+UIComponent:</p>
+
+               <p>
+                  
+               </p>
+
+               <pre class="codeblock"> &lt;mx:VBox&gt; 
+ 	&lt;mx:Repeater id="r1"&gt; 
+ 		... 
+ 	&lt;/mx:Repeater&gt; 
+ 	&lt;mx:Repeater id="r2"&gt; 
+ 		... 
+ 	&lt;/mx:Repeater&gt; 
+ 	<strong>&lt;mx:Spacer height="0" id="dummy"/&gt;</strong> 
+ &lt;/mx:VBox&gt;</pre>
+
+               <p>The code in the following example
+contains nested <samp class="codeph">&lt;mx:Repeater&gt;</samp> tags and uses
+an <samp class="codeph">&lt;mx:Spacer&gt;</samp> tag to create a dummy UIComponent:</p>
+
+               <p>
+                  
+               </p>
+
+               <pre class="codeblock"> &lt;mx:VBox&gt; 
+ 	&lt;mx:Repeater id="outer"&gt; 
+ 		&lt;mx:Repeater id="inner"&gt; 
+ 			... 
+ 		&lt;/mx:Repeater&gt; 
+ 		&lt;mx:Spacer id="dummy" height="0"/&gt; 
+ 	&lt;/mx:Repeater&gt; 
+ &lt;/mx:VBox&gt;</pre>
+
+            </li>
+
+         </ul>
+
+         <p/>
+
+      </div>
+
+<div>
+  <p><strong>Navigation</strong></p>
+  <p><a href="index.html">Using Flex</a> &raquo; <a href="flx_p3_building_ui.html">Building the user interface</a></p>
+</div>
+
+         <p>Adobe and Adobe Flash are either registered trademarks or trademarks of Adobe Systems Incorporated in the United States and/or other countries and are used by permission from Adobe.  No other license to the Adobe trademarks are granted.</p>
+   </div>
+
+
+</body>
+</html>

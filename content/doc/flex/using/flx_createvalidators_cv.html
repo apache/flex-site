@@ -1,0 +1,447 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Licensed to the Apache Software Foundation (ASF) under one or more
+  contributor license agreements.  See the NOTICE file distributed with
+  this work for additional information regarding copyright ownership.
+  The ASF licenses this file to You under the Apache License, Version 2.0
+  (the "License"); you may not use this file except in compliance with
+  the License.  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+-->
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en-us" xml:lang="en-us">
+<head>
+<meta name="DC.Type" content="topic"/>
+<meta name="DC.Title" content="Custom validators"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="WS2db454920e96a9e51e63e3d11c0bf69084-7f5a_verapache"/>
+<title>Custom validators</title>
+</head>
+<body id="WS2db454920e96a9e51e63e3d11c0bf69084-7f5a_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7f5a_verapache"><!-- --></a>
+
+   <div>
+      <p>Data validators
+let you validate the data in an object.  Flex supplies
+a number of standard validators that you can use in your application,
+but you can also define custom validators for your specific application
+needs. </p>
+
+      <p>For information on the standard validators, see <a href="flx_validators_va.html#WS2db454920e96a9e51e63e3d11c0bf69084-7ff0_verapache">Validating
+Data</a>.</p>
+
+   </div>
+
+   <div class="nested1" id="WS2db454920e96a9e51e63e3d11c0bf68c0f-7ffb_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf68c0f-7ffb_verapache"><!-- --></a>
+      <h2 class="topictitle2">Validating data by using custom validators</h2>
+
+      
+      <div>
+         <p>The data that a user enters in a user interface might or
+might not be appropriate for the application. In Flex, you use a <em>validator</em> to
+ensure the values in the fields of an object meet certain criteria.
+For example, you can use a validator to ensure that a user enters
+a valid phone number value in a TextInput control. </p>
+
+         <p>Flex includes a set of validators for common types of user input
+data, such as ZIP codes, phone numbers, and credit cards. Although
+Flex supplies a number of commonly used validators, your application
+may require you to create custom validator classes. The <a href="https://flex.apache.org/asdoc/mx/validators/Validator.html" target="_blank">mx.validators.Validator</a> class
+is an ActionScript class that you can extend to add your own validation
+logic. Your classes can extend the functionality of an existing
+validator class, or you can implement new functionality in your
+custom validator class.</p>
+
+         <p>The following image
+shows the class hierarchy for validators:</p>
+
+         <div class="figborder">
+            <img src="images/cv_hierarchy_class_validators.png" alt="The class hierarchy for validators"/>
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf68c0f-8000_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf68c0f-8000_verapache"><!-- --></a>
+         <h3 class="topictitle3">About overriding the doValidation()
+method</h3>
+
+         
+         <div>
+            <p>Your custom validator class must contain an override of
+the protected <a href="https://flex.apache.org/asdoc/mx/validators/Validator.html#doValidation()" target="_blank">Validator.doValidation()</a> method
+that takes a single argument, <samp class="codeph">value,</samp> of type Object,
+and returns an Array of ValidationResult objects. You return one
+ValidationResult object for each field that the validator examines
+and that fails the validation. For fields that pass the validation,
+you omit the ValidationResult object.</p>
+
+            <p>You do not have to create a ValidationResult object for fields
+that validate successfully. Flex creates those ValidationResult
+objects for you. </p>
+
+            <p>The base Validator class implements the logic to handle required
+fields by using the <samp class="codeph">required</samp> property. When set
+to <samp class="codeph">true</samp>, this property specifies that a missing
+or empty value in a user-interface control causes a validation error.
+To disable this verification, set this property to <samp class="codeph">false</samp>.</p>
+
+            <p>In the <samp class="codeph">doValidation()</samp> method of your validator
+class, you typically call the base class's <samp class="codeph">doValidation()</samp> method
+to perform the verification for a required field. If the user did
+not enter a value, the base class issues a validation error stating
+that the field is required. </p>
+
+            <p>The remainder of the <samp class="codeph">doValidation()</samp> method contains
+your custom validation logic. </p>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf68c0f-7ffc_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf68c0f-7ffc_verapache"><!-- --></a>
+         <h3 class="topictitle3">About the ValidationResult class</h3>
+
+         
+         <div>
+            <p>The <samp class="codeph">doValidation()</samp> method returns an Array
+of <a href="https://flex.apache.org/asdoc/mx/validators/ValidationResult.html" target="_blank">ValidationResult</a> objects, one
+for each field that generates a validation error. The ValidationResult
+class defines several properties that let you record information
+about any validation failures, including the following:</p>
+
+            <dl>
+               
+                  <dt class="dlterm">errorCode</dt>
+
+                  <dd>
+                     <p>A String that contains an error code. You can define your
+own error codes for your custom validators. </p>
+
+                  </dd>
+
+               
+               
+                  <dt class="dlterm">errorMessage</dt>
+
+                  <dd>
+                     <p>A String that contains the error message. You can define
+your own error messages for your custom validators.</p>
+
+                  </dd>
+
+               
+               
+                  <dt class="dlterm">isError</dt>
+
+                  <dd>
+                     <p>A Boolean value that indicates whether or not the result
+is an error. Set this property to <samp class="codeph">true</samp>.</p>
+
+                  </dd>
+
+               
+               
+                  <dt class="dlterm">subField</dt>
+
+                  <dd>
+                     <p>A String that specifies the name of the subfield associated
+with the ValidationResult object. </p>
+
+                     <p>In your override of the <samp class="codeph">doValidation()</samp> method,
+you can define an empty Array and populate it with ValidationResult
+objects as your validator encounters errors.</p>
+
+                  </dd>
+
+               
+            </dl>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf68c0f-7ffe_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf68c0f-7ffe_verapache"><!-- --></a>
+         <h3 class="topictitle3">About the validate() method</h3>
+
+         
+         <div>
+            <p>You use the <samp class="codeph">Validator.validate()</samp> method
+to programmatically invoke a validator from within a Flex application.
+However, you should never override this method in your custom validator
+classes. You need to override only the <samp class="codeph">doValidation()</samp> method.</p>
+
+         </div>
+
+      </div>
+
+   </div>
+
+   <div class="nested1" id="WS2db454920e96a9e51e63e3d11c0bf68c0f-7fff_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf68c0f-7fff_verapache"><!-- --></a>
+      <h2 class="topictitle2">Example: Creating a simple validator</h2>
+
+      
+      <div>
+         <p>You can use the <a href="https://flex.apache.org/asdoc/mx/validators/StringValidator.html" target="_blank">StringValidator</a> class
+to validate that a string is longer than a minimum length and shorter
+than a maximum length, but you cannot use it to validate the contents
+of a string. This example creates a simple validator class that determines
+if a person is more than 18 years old based on their year of birth. </p>
+
+         <p>This validator extends the Validator base class, as the following
+example shows: </p>
+
+         <pre class="codeblock">package myValidators 
+{ 
+    import mx.validators.Validator; 
+    import mx.validators.ValidationResult; 
+ 
+ 
+    public class AgeValidator extends Validator { 
+ 
+        // Define Array for the return value of doValidation(). 
+        private var results:Array; 
+ 
+        // Constructor. 
+        public function AgeValidator() { 
+            // Call base class constructor. 
+            super(); 
+        } 
+    
+        // Define the doValidation() method. 
+        override protected function doValidation(value:Object):Array { 
+        
+            // Convert value to a Number. 
+            var inputValue:Number = Number(value); 
+ 
+            // Clear results Array. 
+            results = []; 
+ 
+            // Call base class doValidation(). 
+            results = super.doValidation(value);        
+            // Return if there are errors. 
+            if (results.length &gt; 0) 
+                return results; 
+        
+            // Create a variable and initialize it to the current date. 
+            var currentYear:Date = new Date(); 
+    
+            // If input value is not a number, or contains no value, 
+            // issue a validation error. 
+            if (isNaN(inputValue) || !value ) 
+            { 
+                results.push(new ValidationResult(true, null, "NaN", 
+                    "You must enter a year.")); 
+                return results; 
+            }       
+            // If calculated age is less than 18, issue a validation error. 
+            if ((currentYear.getFullYear() - inputValue) &lt; 18) { 
+                results.push(new ValidationResult(true, null, "tooYoung", 
+                    "You must be 18.")); 
+                return results; 
+            } 
+            
+            return results; 
+        } 
+    } 
+}</pre>
+
+         <p>This example first defines a public constructor that calls <samp class="codeph">super()</samp> to
+invoke the constructor of its base class. The base class can perform
+the check to ensure that data was entered into a required field,
+if you set the <samp class="codeph">required</samp> property of the validator
+to <samp class="codeph">true</samp>.</p>
+
+         <p>Notice that the second argument of the constructor for the <a href="https://flex.apache.org/asdoc/mx/validators/ValidationResult.html" target="_blank">ValidationResult</a> class is <samp class="codeph">null</samp>.
+You use this argument to specify a subfield, if any, of the object
+being validated that caused the error. When you are validating a
+single field, you can omit this argument. For an example that validates
+multiple fields, see <a href="flx_createvalidators_cv.html#WS2db454920e96a9e51e63e3d11c0bf69084-79b6_verapache">Example: Validating
+multiple fields</a>.</p>
+
+         <p>You can use this validator in your Flex application, as the following
+example shows:</p>
+
+         <pre class="codeblock">&lt;?xml version="1.0" ?&gt; 
+&lt;!-- createcomps_validators/MainAgeValidator.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:MyComp="myValidators.*"&gt; 
+ 
+    &lt;fx:Declarations&gt; 
+        &lt;MyComp:AgeValidator id="ageV" 
+            required="true" 
+            source="{birthYear}" 
+            property="text" /&gt; 
+    &lt;/fx:Declarations&gt; 
+    
+    &lt;s:Form &gt; 
+        &lt;s:FormItem label="Enter birth year: "&gt; 
+            &lt;s:TextInput id="birthYear"/&gt; 
+        &lt;/s:FormItem&gt; 
+        &lt;s:FormItem label="Enter birth year: "&gt; 
+            &lt;s:Button label="Submit"/&gt; 
+        &lt;/s:FormItem&gt; 
+    &lt;/s:Form&gt; 
+&lt;/s:Application&gt;</pre>
+
+         <p>The <samp class="codeph">package</samp> statement for your custom validator
+specifies that you should deploy it in a directory called <samp class="codeph">myValidators</samp>.
+In the previous example, you place it in the subdirectory of the
+directory that contains your Flex application. Therefore, the namespace
+definition in your Flex application is <samp class="codeph">xmlns:MyComp="myValidators.*"</samp>.
+For more information on deployment, see <a href="flx_compiledeploy_cd.html#WS2db454920e96a9e51e63e3d11c0bf69084-79bd_verapache">Component
+compilation</a>. </p>
+
+      </div>
+
+   </div>
+
+   <div class="nested1" id="WS2db454920e96a9e51e63e3d11c0bf69084-79b6_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-79b6_verapache"><!-- --></a>
+      <h2 class="topictitle2">Example: Validating multiple fields</h2>
+
+      
+      <div>
+         <p>A
+validator can validate more than one field at a time. For example,
+you could create a custom validator called NameValidator to validate
+three input controls that represent a person's first, middle, and
+last names. </p>
+
+         <p>To create a validator that examines multiple fields, you can
+either define properties on the validator that let you specify the
+multiple input fields, as does the Flex <a href="https://flex.apache.org/asdoc/mx/validators/DateValidator.html" target="_blank">DateValidator</a> class,
+or you can require that the single item passed to the validator
+includes all of the fields to be validated.</p>
+
+         <p>In the following example, you use a NameValidator that validates
+an item that contains three fields named <samp class="codeph">first</samp>, <samp class="codeph">middle</samp>,
+and <samp class="codeph">last</samp>:</p>
+
+         <pre class="codeblock">&lt;?xml version="1.0" ?&gt; 
+&lt;!-- createcomps_validators/MainNameValidator.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:MyComp="myValidators.*"&gt; 
+    &lt;s:layout&gt; 
+        &lt;s:VerticalLayout/&gt; 
+    &lt;/s:layout&gt; 
+ 
+    &lt;fx:Declarations&gt; 
+        &lt;fx:Model id="person"&gt; 
+            &lt;name&gt; 
+              &lt;custName&gt; 
+                 &lt;first&gt;{firstInput.text}&lt;/first&gt; 
+                 &lt;middle&gt;{middleInput.text}&lt;/middle&gt; 
+                 &lt;last&gt;{lastInput.text}&lt;/last&gt; 
+              &lt;/custName&gt; 
+            &lt;/name&gt; 
+        &lt;/fx:Model&gt; 
+ 
+        &lt;MyComp:NameValidator id="nameVal" 
+            source="{person}" property="custName" 
+            listener="{firstInput}"/&gt;   
+    &lt;/fx:Declarations&gt; 
+ 
+    &lt;mx:TextInput id="firstInput"/&gt; 
+    &lt;mx:TextInput id="middleInput"/&gt; 
+    &lt;mx:TextInput id="lastInput"/&gt; 
+ 
+    &lt;mx:Button label="Validate" 
+        click="nameVal.validate();"/&gt; 
+&lt;/s:Application&gt; </pre>
+
+         <p>This validator examines three input fields. You specify <samp class="codeph">firstInput</samp> as
+the validation listener. Therefore, when a validation error occurs,
+Flex shows a validation error message on the first <a href="https://flex.apache.org/asdoc/mx/controls/TextInput.html" target="_blank">TextInput</a> control. </p>
+
+         <p>You can implement the NameValidator class, as the following example
+shows:</p>
+
+         <pre class="codeblock">package myValidators 
+{ 
+    import mx.validators.Validator; 
+    import mx.validators.ValidationResult; 
+ 
+    public class NameValidator extends Validator { 
+ 
+        // Define Array for the return value of doValidation(). 
+        private var results:Array; 
+ 
+        public function NameValidator () { 
+            super(); 
+        } 
+ 
+        override protected function doValidation(value:Object):Array { 
+        
+            var fName:String = value.first; 
+            var mName:String = value.middle; 
+            var lName:String = value.last;  
+            
+            // Clear results Array. 
+            results = []; 
+ 
+            // Call base class doValidation(). 
+            results = super.doValidation(value);        
+            // Return if there are errors. 
+            if (results.length &gt; 0) 
+                return results; 
+ 
+            // Check first name field. 
+            if (fName == "" || fName == null) { 
+                results.push(new ValidationResult(true, 
+                    "first", "noFirstName", "No First Name.")); 
+                return results; 
+            } 
+            
+            // Check middle name field.             
+            if (mName == "" || mName == null) { 
+                results.push(new ValidationResult(true, 
+                    "middle", "noMiddleName", "No Middle Name.")); 
+                return results; 
+            } 
+ 
+            // Check last name field. 
+            if (lName == "" || lName == null) { 
+                results.push(new ValidationResult(true, 
+                    "last", "noLastName", "No Last Name.")); 
+                return results; 
+            } 
+            
+            return results; 
+        } 
+    } 
+}</pre>
+
+         <p>In this example, because you are using a single validator to
+validate three subfields of the Object passed to the validator,
+you include the optional second argument to the constructor for
+the <a href="https://flex.apache.org/asdoc/mx/validators/ValidationResult.html" target="_blank">ValidationResult</a> class
+to specify the subfield that caused the validation error. This inclusion
+permits Flex to identify the input component that caused the error,
+and to highlight that component in the application. </p>
+
+         <p/>
+
+      </div>
+
+<div>
+  <p><strong>Navigation</strong></p>
+  <p><a href="index.html">Using Flex</a> &raquo; <a href="flx_p8a_custom_components.html">Custom components</a></p>
+</div>
+
+         <p>Adobe and Adobe Flash Platform are either registered trademarks or trademarks of Adobe Systems Incorporated in the United States and/or other countries and are used by permission from Adobe.  No other license to the Adobe trademarks are granted.</p>
+
+   </div>
+
+
+</body>
+</html>

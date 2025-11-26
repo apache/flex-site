@@ -1,0 +1,1963 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Licensed to the Apache Software Foundation (ASF) under one or more
+  contributor license agreements.  See the NOTICE file distributed with
+  this work for additional information regarding copyright ownership.
+  The ASF licenses this file to You under the Apache License, Version 2.0
+  (the "License"); you may not use this file except in compliance with
+  the License.  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+-->
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en-us" xml:lang="en-us">
+<head>
+<meta name="DC.Type" content="topic"/>
+<meta name="DC.Title" content="Spark effects"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="WS4809A78C-9738-465d-B875-B0049C9B0ED4_verapache"/>
+<title>Spark effects</title>
+</head>
+<body id="WS4809A78C-9738-465d-B875-B0049C9B0ED4_verapache"><a name="WS4809A78C-9738-465d-B875-B0049C9B0ED4_verapache"><!-- --></a>
+
+   <div>
+      <p>Spark effects define a change to the target over time.
+The Spark effects ship in the spark.effects package. </p>
+
+      <p>While Flex ships with both Spark and MX effects, It's best to
+use the Spark effects when possible. </p>
+
+      <p>For an introduction to effects, see <a href="flx_behaviors_be.html#WS2db454920e96a9e51e63e3d11c0bf69084-7fec_verapache">Introduction
+to effects</a>.</p>
+
+   </div>
+
+   <div class="nested1" id="WS6C13C7DE-F26B-470b-943C-D52B36F20AD2_verapache"><a name="WS6C13C7DE-F26B-470b-943C-D52B36F20AD2_verapache"><!-- --></a>
+      <h2 class="topictitle2">About Spark effects</h2>
+
+      
+      <div>
+         <div class="p">The Spark effects are divided into categories based on
+their implementation and target type, as the following table shows: 
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" frame="border" border="1" rules="all">
+                  
+                  
+                  <thead align="left">
+                     <tr>
+                        <th class="cellrowborder" valign="top" width="NaN%" id="d881743e55">
+                           <p>Type</p>
+
+                        </th>
+
+                        <th class="cellrowborder" valign="top" width="NaN%" id="d881743e61">
+                           <p>Description</p>
+
+                        </th>
+
+                     </tr>
+
+                  </thead>
+
+                  <tbody>
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d881743e55 ">
+                           <p>Property effects</p>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d881743e61 ">
+                           <p>Animates the change of one or more properties
+of the target. </p>
+
+                        </td>
+
+                     </tr>
+
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d881743e55 ">
+                           <p>Transform effects</p>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d881743e61 ">
+                           <p>Animates the change of one or more transform-related
+properties of the target, such as the scale, rotation, and position.
+The target can be modified in parallel with other transform effects
+with no interference among the effects.</p>
+
+                        </td>
+
+                     </tr>
+
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d881743e55 ">
+                           <p>Pixel-shader effects</p>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d881743e61 ">
+                           <p>Animates the change from one bitmap image
+to another, where the bitmap image represents the before and after
+states of the target. </p>
+
+                        </td>
+
+                     </tr>
+
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d881743e55 ">
+                           <p>Filter effects</p>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d881743e61 ">
+                           <p>Applies a filter to the target where the
+effect modifies the properties of the filter, not properties of the
+target. </p>
+
+                        </td>
+
+                     </tr>
+
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d881743e55 ">
+                           <p>3D effects</p>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d881743e61 ">
+                           <p>A subset of the transform effects that modify
+the 3D transform properties of the target.</p>
+
+                        </td>
+
+                     </tr>
+
+                  </tbody>
+
+               </table>
+</div>
+
+         </div>
+
+         <div class="p">Spark effects can be applied to: <ul>
+               <li>
+                  <p>Any Spark or MX component.</p>
+
+               </li>
+
+               <li>
+                  <p>Any graphical component in the spark.primitives package,
+such as Rect, Ellipse, and path.</p>
+
+               </li>
+
+               <li>
+                  <p>Any object that contains the styles or properties modified
+by the effect.</p>
+
+               </li>
+
+            </ul>
+
+         </div>
+
+      </div>
+
+   </div>
+
+   <div class="nested1" id="WS6461B3EC-1AED-486d-A4B8-8EBD1993CE22_verapache"><a name="WS6461B3EC-1AED-486d-A4B8-8EBD1993CE22_verapache"><!-- --></a>
+      <h2 class="topictitle2">Spark property effects</h2>
+
+      
+      <div>
+         <div class="p">The Spark property effects modify one or more properties
+of a component over time to animate the effect. The Spark property
+effects are subclasses of the Animate class, and include the following
+classes:<ul>
+               <li>
+                  <p>
+                     <a href="https://flex.apache.org/asdoc/spark/effects/Animate.html" target="_blank">Animate</a> Animates
+any properties of the target.</p>
+
+               </li>
+
+               <li>
+                  <p>
+                     <a href="https://flex.apache.org/asdoc/spark/effects/Fade.html" target="_blank">Fade</a> Animates
+a change to the <samp class="codeph">alpha</samp> property of the target.</p>
+
+               </li>
+
+               <li>
+                  <p>
+                     <a href="https://flex.apache.org/asdoc/spark/effects/Resize.html" target="_blank">Resize</a> Animates
+a change to the <samp class="codeph">height</samp> and <samp class="codeph">width</samp> properties
+of the target.</p>
+
+               </li>
+
+               <li>
+                  <p>AnimateColor Animates a change to any color property of the
+target, such as <samp class="codeph">color</samp>, or <samp class="codeph">fontColor</samp>.</p>
+
+               </li>
+
+            </ul>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS03d33b8076db57b9-6e62cb35120c4efaed2-8000_verapache"><a name="WS03d33b8076db57b9-6e62cb35120c4efaed2-8000_verapache"><!-- --></a>
+         <h3 class="topictitle3">The Animate effect</h3>
+
+         
+         <div>
+            <p>Use the <a href="https://flex.apache.org/asdoc/spark/effects/Animate.html" target="_blank">Animate</a> effect
+directly to animate any properties of the target. You create an
+instance of the <a href="https://flex.apache.org/asdoc/spark/effects/animation/SimpleMotionPath.html" target="_blank">SimpleMotionPath</a> class
+for each property to animate, as the following example shows:</p>
+
+            <div class="p">
+               <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- behaviors\SparkAnimateProp.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark"&gt; 
+ 
+    &lt;fx:Declarations&gt; 
+        &lt;s:Animate id="scaleUp" 
+            target="{myB1}"&gt; 
+            &lt;s:SimpleMotionPath property="scaleX" 
+                valueFrom="1.0" valueTo="1.5"/&gt; 
+        &lt;/s:Animate&gt; 
+        &lt;s:Animate id="scaleDown" 
+            target="{myB1}"&gt; 
+            &lt;s:SimpleMotionPath property="scaleX" 
+                valueFrom="1.5" valueTo="1.0"/&gt; 
+        &lt;/s:Animate&gt; 
+    &lt;/fx:Declarations&gt; 
+ 
+    &lt;s:Button id="myB1" 
+        label="Scale Button" 
+        mouseDown="scaleUp.end(); scaleUp.play();" 
+        mouseUp="scaleDown.end(); scaleDown.play();"/&gt; 
+&lt;/s:Application&gt;</pre>
+
+            </div>
+
+            <p>The SimpleMotionPath class defines the name of the property,
+the property's starting value, and the property's ending value. </p>
+
+            <p>You can define multiple instance of the SimpleMotionPath class
+to animate multiple properties, as the following example shows:</p>
+
+            <div class="p">
+               <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- behaviors\SparkAnimate2Prop.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark"&gt; 
+ 
+    &lt;fx:Declarations&gt; 
+        &lt;s:Animate id="scaleIncrease" 
+            target="{myB1}"&gt; 
+            &lt;s:SimpleMotionPath property="scaleX" 
+                valueFrom="1.0" valueTo="1.5"/&gt; 
+            &lt;s:SimpleMotionPath property="scaleY" 
+                valueFrom="1.0" valueTo="1.5"/&gt; 
+        &lt;/s:Animate&gt; 
+        &lt;s:Animate id="scaleDecrease" 
+            target="{myB1}"&gt; 
+            &lt;s:SimpleMotionPath property="scaleX" 
+                valueFrom="1.5" valueTo="1.0"/&gt;                
+            &lt;s:SimpleMotionPath property="scaleY" 
+                valueFrom="1.5" valueTo="1.0"/&gt;                
+        &lt;/s:Animate&gt; 
+    &lt;/fx:Declarations&gt; 
+ 
+    &lt;s:Button id="myB1" 
+        label="Scale Button" 
+        mouseDown="scaleDecrease.end(); scaleIncrease.play();" 
+        mouseUp="scaleIncrease.end(); scaleDecrease.play();"/&gt; 
+&lt;/s:Application&gt;</pre>
+
+            </div>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS03d33b8076db57b9-6e62cb35120c4efaed2-7fff_verapache"><a name="WS03d33b8076db57b9-6e62cb35120c4efaed2-7fff_verapache"><!-- --></a>
+         <h3 class="topictitle3">The Fade, Resize, and AnimateColor
+effects</h3>
+
+         
+         <div>
+            <p>The <a href="https://flex.apache.org/asdoc/spark/effects/Fade.html" target="_blank">Fade</a>, <a href="https://flex.apache.org/asdoc/spark/effects/Resize.html" target="_blank">Resize</a>,
+and <a href="https://flex.apache.org/asdoc/spark/effects/AnimateColor.html" target="_blank">AnimateColor</a> effects
+modify specific properties of the target. These effects are predefined
+to modify specific properties. So, you do not need to use the SimpleMotionPath
+class to specify the property, as you do for the Animate effect.</p>
+
+            <div class="p">The following example uses the Resize effect on an Image control: <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- behaviors\SparkResizeEffect.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark"&gt; 
+    &lt;s:layout&gt; 
+        &lt;s:VerticalLayout/&gt; 
+    &lt;/s:layout&gt; 
+ 
+    &lt;fx:Declarations&gt; 
+        &lt;s:Resize id="myResizeEffect" 
+            target="{myImage}" 
+            widthBy="10" heightBy="10"/&gt; 
+    &lt;/fx:Declarations&gt; 
+ 
+    &lt;s:Image id="myImage" 
+        source="@Embed(source='assets/logo.jpg')"/&gt; 
+    &lt;s:Button label="Resize Me" 
+        click="myResizeEffect.end();myResizeEffect.play();"/&gt; 
+&lt;/s:Application&gt;</pre>
+
+            </div>
+
+            <p>This example resizes the Image control by increasing its height
+and width by 10 pixels when the user clicks the Button control. </p>
+
+            <p>The Resize effect defines six properties that you can use to
+configure it: <samp class="codeph">heightBy</samp>, <samp class="codeph">widthBy</samp>, <samp class="codeph">heightFrom</samp>, <samp class="codeph">widthFrom</samp>, <samp class="codeph">heightTo</samp>,
+and <samp class="codeph">widthTo</samp>. If omitted, Flex automatically calculates
+any values for these properties. In the previous example, <samp class="codeph">heightFrom</samp> and <samp class="codeph">widthFrom</samp> are
+set to the current size, and <samp class="codeph">heightTo</samp> and <samp class="codeph">widthTo</samp> are
+set to the final size.</p>
+
+         </div>
+
+      </div>
+
+   </div>
+
+   <div class="nested1" id="WS6C251DAF-9EBC-4a79-820B-E4AA5B2ADCE8_verapache"><a name="WS6C251DAF-9EBC-4a79-820B-E4AA5B2ADCE8_verapache"><!-- --></a>
+      <h2 class="topictitle2">Spark transform effects</h2>
+
+      
+      <div>
+         <p>The Spark property effects work by modifying one or more
+properties of the target over the duration of the effect. Using
+the property effects, you can define two effects that play in parallel
+but modify the same property of the target. In this situation, the
+two effects conflict with each other and the results of the effects
+are undefined.</p>
+
+         <p>The Spark transform effects are designed to work together. You
+can define multiple effects that, while playing in parallel, do
+not interfere with each other. When executing multiple transform
+effects in parallel, the effects are combined into a single transformation,
+rather than playing independently. By combining the transform effects,
+Flex eliminates the chance that one effect could interfere with
+another.</p>
+
+         <p>The Spark transform effects include the <a href="https://flex.apache.org/asdoc/spark/effects/Move.html" target="_blank">Move</a>, <a href="https://flex.apache.org/asdoc/spark/effects/Rotate.html" target="_blank">Rotate</a>,
+and <a href="https://flex.apache.org/asdoc/spark/effects/Scale.html" target="_blank">Scale</a> effects.</p>
+
+      </div>
+
+      <div class="nested2" id="WS4A70608A-1304-4463-8FC6-B4ABC41078A8_verapache"><a name="WS4A70608A-1304-4463-8FC6-B4ABC41078A8_verapache"><!-- --></a>
+         <h3 class="topictitle3">Applying transform effects</h3>
+
+         
+         <div>
+            <p>The following example applies the Rotate and Move effects
+in parallel to an Image control:</p>
+
+            <div class="p">
+               <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- behaviors\SparkXFormRotateMove.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark"&gt; 
+ 
+    &lt;fx:Declarations&gt; 
+        &lt;s:Parallel id="parallelRMForward" 
+            target="{myImage}"&gt; 
+            &lt;s:Rotate 
+                angleBy="180"/&gt; 
+            &lt;s:Move 
+                xBy="100" 
+                yBy="100"/&gt; 
+        &lt;/s:Parallel&gt; 
+        &lt;s:Parallel id="parallelRMBack" 
+            target="{myImage}"&gt; 
+            &lt;s:Rotate 
+                angleBy="180"/&gt; 
+            &lt;s:Move 
+                xBy="-100" 
+                yBy="-100"/&gt; 
+        &lt;/s:Parallel&gt; 
+    &lt;/fx:Declarations&gt; 
+ 
+    &lt;s:Button label="Play Effect Forward" 
+        x="10" y="10" 
+        click="parallelRMForward.end();parallelRMForward.play();"/&gt; 
+    &lt;s:Button label="Play Effect Backward" 
+        x="150" y="10" 
+        click="parallelRMBack.end();parallelRMBack.play();" /&gt; 
+    &lt;s:Image id="myImage" 
+        x="10" y="50" 
+        source="@Embed(source='assets/logo.jpg')"/&gt; 
+&lt;/s:Application&gt;</pre>
+
+            </div>
+
+            <p>Transform effects operate relative to the <em>transform center</em> of
+the target. By default, the transform center of the target is the
+upper-left corner of the target, corresponding to coordinates (0,0)
+in the target coordinate system. </p>
+
+            <p>For the Move effect, the change in position is measured by a
+change of the location of the transform center of the target. The
+Rotate effect rotates the target around the transform center, and
+the Scale effect scales the target while the transform center of
+the target stays stationary. </p>
+
+            <p>You do not have to use the upper-left corner of the target as
+the transform center. For example, instead of rotating the target
+around the upper-left corner, you rotate the target around its center
+point. </p>
+
+            <p>You can set the coordinates of the transform center either on
+the target itself, or on the effect class. If you set the transform
+center on the target, all transform effects use that transform center.
+Use the UIComponent properties <samp class="codeph">transformX</samp>, <samp class="codeph">transformY</samp>,
+and <samp class="codeph">transformZ</samp> to define the transform center of
+the target.</p>
+
+            <p>If you set the transform center on the effect, the effect uses
+that transform center for the duration of the effect. Use the <samp class="codeph">transformX</samp>, <samp class="codeph">transformY</samp>,
+and <samp class="codeph">transformZ</samp> properties on the transform effect
+classes to set the transform center for all effect targets. Setting
+these properties on the effect class overrides the corresponding
+setting on the target.</p>
+
+            <p>You do not have to specify all three properties. For example,
+if you only want to specify the x location of the transform center,
+set only the <samp class="codeph">transformX</samp> property on the target
+or on the effect class. </p>
+
+            <p>You can also set the effect's <samp class="codeph">autoCenterTransform</samp> property
+to <samp class="codeph">true</samp> to configure the effect to play the transform
+around the center point of the target. If you apply the effect to
+multiple targets, Flex calculates the transform center independently
+for each target. </p>
+
+            <p>If you apply multiple transform effects in parallel to the same
+target, set the transform center to the same value for all the effects.
+For example, set the <samp class="codeph">autoCenterTransform</samp> property
+to <samp class="codeph">true</samp> for one transform effect, set it to the
+same value for all effects.</p>
+
+            <p>The next example modifies the previous example set the <samp class="codeph">autoCenterTransform</samp> property
+to <samp class="codeph">true</samp>. The effects now operate on the center
+of the target:</p>
+
+            <div class="p">
+               <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- behaviors\SparkXFormRotateMoveAutoCenter.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark"&gt; 
+ 
+    &lt;fx:Declarations&gt; 
+        &lt;s:Parallel id="parallelRMForward" 
+            target="{myImage}"&gt; 
+            &lt;s:Rotate 
+                angleBy="180" 
+                autoCenterTransform="true"/&gt; 
+            &lt;s:Move 
+                xBy="100" 
+                yBy="100" 
+                autoCenterTransform="true"/&gt; 
+        &lt;/s:Parallel&gt; 
+        &lt;s:Parallel id="parallelRMBack" 
+            target="{myImage}"&gt; 
+            &lt;s:Rotate 
+                angleBy="180" 
+                autoCenterTransform="true"/&gt; 
+            &lt;s:Move 
+                xBy="-100" 
+                yBy="-100" 
+                autoCenterTransform="true"/&gt; 
+        &lt;/s:Parallel&gt; 
+    &lt;/fx:Declarations&gt; 
+ 
+    &lt;s:Button label="Play Effect Forward" 
+        x="10" y="10" 
+        click="parallelRMForward.end();parallelRMForward.play();"/&gt; 
+    &lt;s:Button label="Play Effect Backward" 
+        x="150" y="10" 
+        click="parallelRMBack.end();parallelRMBack.play();" /&gt; 
+    &lt;s:Image id="myImage" 
+        x="10" y="50" 
+        source="@Embed(source='assets/logo.jpg')"/&gt; 
+&lt;/s:Application&gt;</pre>
+
+            </div>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WSFB14256C-84F0-4698-9796-FED8E666AC0D_verapache"><a name="WSFB14256C-84F0-4698-9796-FED8E666AC0D_verapache"><!-- --></a>
+         <h3 class="topictitle3">Limitations with transform effects</h3>
+
+         
+         <div>
+            <p>The only limitation of transform effects is that they cannot
+be played multiple times. Therefore, you cannot use the <samp class="codeph">repeatCount</samp>, <samp class="codeph">repeatDelay</samp>,
+and <samp class="codeph">repeatBehavior</samp> properties with transform effects.</p>
+
+         </div>
+
+      </div>
+
+   </div>
+
+   <div class="nested1" id="WSF0D55C84-17E0-456a-A977-04BFE1E23BA8_verapache"><a name="WSF0D55C84-17E0-456a-A977-04BFE1E23BA8_verapache"><!-- --></a>
+      <h2 class="topictitle2">Spark 3D effects</h2>
+
+      
+      <div>
+         <p>Most effects manipulate the effect target in the x and
+y dimensions to create two-dimensional effects. In the two-dimensional
+coordinate system, the x, y coordinates of 0, 0 corresponds to the
+upper-left corner of the component's coordinate system. For example,
+if the Application container takes up your full computer screen,
+those coordinates correspond to the upper-left corner of the computer screen.
+Increasing values of x moves to the right of the compute screen,
+and increasing values of y move down the screen.</p>
+
+         <p>The 3D effects add support for the z-axis. The z = 0 coordinate
+corresponds to the plane of the computer screen. Increasing values
+of z moves an object into the screen, making the object look farther
+away from the viewer. Decreasing values of z move the object toward
+the viewer. </p>
+
+         <p>The spark 3D effects are transform effects designed to take advantage
+of the support for three-dimensional graphics in Flash Player. Flex
+includes the following 3D effects:</p>
+
+         <div class="p">
+            <ul>
+               <li>
+                  <p>
+                     <a href="https://flex.apache.org/asdoc/spark/effects/Move3D.html" target="_blank">Move3D</a> 
+                  </p>
+
+                  <p>Moves
+the effect target in the x, y, and z coordinate system. Moving the
+target to increasing values in the z direction makes it appear to
+move back away from the viewer, so the target shrinks. Moving the
+target to decreasing values in the z direction makes it appear to
+move toward the viewer, so the target grows. </p>
+
+               </li>
+
+               <li>
+                  <p>
+                     <a href="https://flex.apache.org/asdoc/spark/effects/Rotate3D.html" target="_blank">Rotate3D</a>
+                  </p>
+
+                  <p>Rotates
+the effect target around the x, y, or z-axis. For example, rotating
+the target around the y-axis rotates the object vertically through
+the x and z planes, similar to a door opening and closing on vertical
+hinges. Rotating the target around the z-axis makes the object rotate
+through the x and y planes, which is the same as a two-dimensional
+rotation.</p>
+
+               </li>
+
+               <li>
+                  <p>
+                     <a href="https://flex.apache.org/asdoc/spark/effects/Scale3D.html" target="_blank">Scale3D</a>
+                  </p>
+
+                  <p>Scales
+the effect target in the x, y, and z directions by setting the appropriate scale
+properties on the target. A scale of 2.0 means the object has been magnified
+by a factor of 2. A scale of 0.5 means the object has been reduced by
+a factor of 2. A scale value of 0.0 is not allowed.</p>
+
+               </li>
+
+            </ul>
+
+         </div>
+
+         <p>For an introduction to transform effects, see <a href="flx_spark_effects_sf.html#WS6C251DAF-9EBC-4a79-820B-E4AA5B2ADCE8_verapache">Spark
+transform effects</a>.</p>
+
+      </div>
+
+      <div class="nested2" id="WS541c10ca0b4bb571-29a85aad1210bbcf4a4-8000_verapache"><a name="WS541c10ca0b4bb571-29a85aad1210bbcf4a4-8000_verapache"><!-- --></a>
+         <h3 class="topictitle3">Applying 3D effects</h3>
+
+         
+         <div>
+            <p>The following example applies the Move3D effect to an image:</p>
+
+            <div class="p">
+               <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- behaviors\Spark3DMoveEffect.mxml --&gt; 
+&lt;s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark"&gt; 
+ 
+    &lt;fx:Declarations&gt; 
+        &lt;s:Move3D id="moveEffect" target="{targetImg}" 
+            xBy="100" zBy="100" 
+            repeatCount="2" repeatBehavior="reverse" 
+            effectStart="playButton.enabled=false;" 
+            effectEnd="playButton.enabled=true;"/&gt; 
+    &lt;/fx:Declarations&gt; 
+ 
+    &lt;s:Panel title="Move3D Effect Example" 
+        width="75%" height="75%" &gt; 
+ 
+        &lt;s:Image id="targetImg" 
+            horizontalCenter="0" 
+            verticalCenter="0" 
+            source="@Embed(source='assets/Flex_6630.png')"/&gt; 
+            
+        &lt;s:Button id="playButton" 
+            left="5" bottom="5" 
+            label="Move3D" 
+            click="moveEffect.play();"/&gt; 
+    &lt;/s:Panel&gt; 
+&lt;/s:Application&gt;</pre>
+
+            </div>
+
+            <p>In this example, the Move3D effect moves the target by increasing
+the value of the x and z coordinates by 100. It then reverses, and
+moves the component back to its original x and z coordinates. To
+the user, the image moves to the left and shrinks, then moves back
+to the right and grows to its original size.</p>
+
+            <p>The following example uses the Rotate3D effect to rotate the
+image around the y-axis: </p>
+
+            <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- behaviors\Spark3DRotateEffect.mxml --&gt; 
+&lt;s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark"&gt; 
+ 
+    &lt;fx:Declarations&gt; 
+        &lt;s:Rotate3D id="rotateEffect" target="{targetImg}" 
+            angleYFrom="0" angleYTo="360" 
+            repeatCount="2" repeatBehavior="reverse" 
+            effectStart="playButton.enabled=false;" 
+            effectEnd="playButton.enabled=true;"/&gt; 
+    &lt;/fx:Declarations&gt; 
+ 
+    &lt;s:Panel title="Rotate 3D Effect Example" 
+        width="75%" height="75%" &gt; 
+ 
+        &lt;s:Image id="targetImg" 
+            horizontalCenter="0" 
+            verticalCenter="0" 
+            source="@Embed(source='assets/Flex_6630.png')"/&gt; 
+ 
+        &lt;s:Button id="playButton" 
+            left="5" bottom="5" 
+            label="Rotate3D" 
+            click="rotateEffect.play();"/&gt; 
+    &lt;/s:Panel&gt; 
+&lt;/s:Application&gt;</pre>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS1cec32bfd3b9a3843e3b37f121115c836b-8000_verapache"><a name="WS1cec32bfd3b9a3843e3b37f121115c836b-8000_verapache"><!-- --></a>
+         <h3 class="topictitle3">Setting the transform center of
+a 3D effect</h3>
+
+         
+         <div>
+            <p>By default, the transform center of the target of a 3D
+transform effect is the upper-left corner of the target component.
+This point corresponds to coordinates (0, 0, 0) in the target component's
+coordinate system. You can set the transform center to a different
+location. For an introduction to setting the transform center for
+two-dimensional effects, see <a href="flx_spark_effects_sf.html#WS4A70608A-1304-4463-8FC6-B4ABC41078A8_verapache">Applying
+transform effects</a>.</p>
+
+            <p>If you run the example in the previous section, you notice that
+the target object rotates around its left edge. That is because
+the effects, by default, operates around the default transform center
+of the target object. </p>
+
+            <div class="p">Often, you want to rotate the target component around its center
+point instead of around the default transform center. One option
+is to set the transform center to the center point of the component
+by setting the <samp class="codeph">autoCenterTransform</samp> property to <samp class="codeph">true</samp>.
+The following example modifies the example from the previous section
+to rotate the image around its center point:<pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- behaviors\Spark3DRotateLayoutCenterTransform.mxml --&gt; 
+&lt;s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark"&gt; 
+ 
+    &lt;fx:Declarations&gt; 
+        &lt;s:Rotate3D id="rotateEffect" target="{targetImg}" 
+            angleYFrom="0" angleYTo="360" 
+            duration="3000" 
+            autoCenterTransform="true" 
+            repeatCount="2" repeatBehavior="reverse" 
+            effectStart="playButton.enabled=false;" 
+            effectEnd="playButton.enabled=true;"/&gt; 
+    &lt;/fx:Declarations&gt; 
+ 
+    &lt;s:Panel title="Rotate 3D Effect Example" 
+        width="75%" height="75%" &gt; 
+        
+        &lt;s:HGroup 
+            horizontalCenter="0" 
+            verticalCenter="0"&gt; 
+            &lt;s:Image 
+                source="@Embed(source='assets/Flex_6630.png')"/&gt; 
+            &lt;s:Image id="targetImg" 
+                source="@Embed(source='assets/Flex_6630.png')"/&gt; 
+            &lt;s:Image  
+                source="@Embed(source='assets/Flex_6630.png')"/&gt; 
+        &lt;/s:HGroup&gt; 
+ 
+        &lt;s:Button id="playButton" 
+            left="5" bottom="5" 
+            label="Rotate3D" 
+            click="rotateEffect.play();"/&gt; 
+    &lt;/s:Panel&gt; 
+&lt;/s:Application&gt;</pre>
+
+            </div>
+
+            <div class="p">Alternatively, you can set the <samp class="codeph">transormX</samp>, <samp class="codeph">transformY</samp>,
+and <samp class="codeph">transformZ</samp> properties on the effect target
+to define the transform center. In the following example, you set
+the transform center of the image to the right edge, corresponding
+to the <samp class="codeph">transormX</samp> property having a value of 100: <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- behaviors\Spark3DRotateLayoutRightTransform.mxml --&gt; 
+&lt;s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark"&gt; 
+ 
+    &lt;fx:Declarations&gt; 
+        &lt;s:Rotate3D id="rotateEffect" target="{targetImg}" 
+            angleYFrom="0" angleYTo="360" 
+            duration="3000" 
+            repeatCount="2" repeatBehavior="reverse" 
+            effectStart="playButton.enabled=false;" 
+            effectEnd="playButton.enabled=true;"/&gt; 
+    &lt;/fx:Declarations&gt; 
+ 
+    &lt;s:Panel title="Rotate 3D Effect Example" 
+        width="75%" height="75%" &gt; 
+        
+        &lt;s:HGroup 
+            horizontalCenter="0" 
+            verticalCenter="0"&gt; 
+            &lt;s:Image 
+                source="@Embed(source='assets/Flex_6630.png')"/&gt; 
+            &lt;s:Image id="targetImg" 
+                transformX="100" 
+                source="@Embed(source='assets/Flex_6630.png')"/&gt; 
+            &lt;s:Image  
+                source="@Embed(source='assets/Flex_6630.png')"/&gt; 
+        &lt;/s:HGroup&gt; 
+ 
+        &lt;s:Button id="playButton" 
+            left="5" bottom="5" 
+            label="Rotate3D" 
+            click="rotateEffect.play();"/&gt; 
+    &lt;/s:Panel&gt; 
+&lt;/s:Application&gt;</pre>
+
+            </div>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS541c10ca0b4bb571-29a85aad1210bbcf4a4-7fff_verapache"><a name="WS541c10ca0b4bb571-29a85aad1210bbcf4a4-7fff_verapache"><!-- --></a>
+         <h3 class="topictitle3">Component layout and 3D effects</h3>
+
+         
+         <div>
+            <p>Effects can modify the layout of the parent container of
+the effect target. For example, suppose the effect target is in
+a container that uses vertical layout. You then use the two-dimensional
+Rotate effect to rotate the target through 360°. As the effect plays,
+the parent container modifies the layout of its other children to accommodate
+the rotating child. Therefore, container children can change position
+during the effect. </p>
+
+            <p>Flex has the concept of layering of the children of a container.
+Children are drawn on the screen in the order in which they are
+defined in the container. If children overlap, the child defined
+later in the container appears on top because it is drawn last.</p>
+
+            <p>Flex provides a set of built-in layout classes, such as the VerticalLayout
+class, to control child layout in a container. These layout classes
+assume that all children are in the z = 0 plane. That means a container
+always lays out children in the two-dimensional x, y plane. </p>
+
+            <p>However, a 3D effect can modify the effect target in the x, y,
+and z dimensions. If your 3D effect uses the z dimension, the built-in
+layout classes do not consider it during layout. If you then allow
+the parent container to update its layout by taking only the x and
+y dimensions into consideration, your application might not appear
+correctly. Therefore, you typically disable the parent container
+from performing layout while the 3D effect plays. </p>
+
+            <p>All effects support the <samp class="codeph">disableLayout</samp> property.
+When set to <samp class="codeph">true</samp>, this property disables layout
+in the parent container of the effect target for the duration of
+the effect. The default value is <samp class="codeph">false</samp>. For effects
+though, you typically do not want to disable layout of the parent
+container entirely.</p>
+
+            <p>All transform effects define the <samp class="codeph">applyChangesPostLayout</samp> property
+which, by default, is set to <samp class="codeph">true</samp> for the 3D effects.
+This setting lets the 3D effect modify the target component, but
+the parent container ignores the changes and does not update its
+layout while the effect plays. Changes to other container children still
+cause a layout update. </p>
+
+            <div class="p">
+               <div class="note"><span class="notetitle">Note:</span> For the 2D transform effects Move, Rotate, and Scale, the
+affectLayout property is true by default.</div>
+
+            </div>
+
+            <p>You can think of the 3D effects as not playing until after the
+container for the effect target has completed its layout. Because
+the effect plays post layout, the parent container does not modify
+its layout for changes to the target component caused by the effect. </p>
+
+            <p>In the following example, the application contains three images
+in an HGroup container. The Rotate3D effect then plays on the middle
+image to rotate it around the y-axis. Because the <samp class="codeph">applyChangesPostLayout</samp> property
+is <samp class="codeph">true</samp> by default, no layout occurs as the image
+rotates, and the target image overlaps the image on its left:</p>
+
+            <div class="p">
+               <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- behaviors\Spark3DRotateLayout.mxml --&gt; 
+&lt;s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark"&gt; 
+ 
+    &lt;fx:Declarations&gt; 
+        &lt;s:Rotate3D id="rotateEffect" target="{targetImg}" 
+            angleYFrom="0" angleYTo="360" 
+            duration="3000" 
+            repeatCount="2" repeatBehavior="reverse" 
+            effectStart="playButton.enabled=false;" 
+            effectEnd="playButton.enabled=true;"/&gt; 
+    &lt;/fx:Declarations&gt; 
+ 
+    &lt;s:Panel title="Rotate 3D Effect Example" 
+        width="75%" height="75%" &gt; 
+        
+        &lt;s:HGroup 
+            horizontalCenter="0" 
+            verticalCenter="0"&gt; 
+            &lt;s:Image 
+                source="@Embed(source='assets/Flex_6630.png')"/&gt; 
+            &lt;s:Image id="targetImg" 
+                source="@Embed(source='assets/Flex_6630.png')"/&gt; 
+            &lt;s:Image  
+                source="@Embed(source='assets/Flex_6630.png')"/&gt; 
+        &lt;/s:HGroup&gt; 
+ 
+        &lt;s:Button id="playButton" 
+            left="5" bottom="5" 
+            label="Rotate3D" 
+            click="rotateEffect.play();"/&gt; 
+    &lt;/s:Panel&gt; 
+&lt;/s:Application&gt;</pre>
+
+            </div>
+
+            <p>For example, set the <samp class="codeph">transformX</samp> property to
+100 on the effect target in the previous example to rotate the middle
+image so that it overlaps the image on the right. The image on the
+right appears on top of the middle image because it was drawn last. </p>
+
+            <div class="p">You can override the default of disabling layout on the effect
+target by setting the <samp class="codeph">applyChangesPostLayout</samp> property
+of the effect to <samp class="codeph">false</samp>. In the following example,
+you rotate the image around the z-axis, with the <samp class="codeph">applyChangesPostLayout</samp> property
+set to <samp class="codeph">false</samp>. A 3D rotation around the z-axis is
+essentially a 2D rotation in the x and y plane. Because the <samp class="codeph">applyChangesPostLayout</samp> property
+is <samp class="codeph">false</samp>, the parent container updates the layout
+of the other two images as the effect plays: <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- behaviors\Spark3DRotateWithLayout.mxml --&gt; 
+&lt;s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark"&gt; 
+ 
+    &lt;fx:Declarations&gt; 
+        &lt;s:Rotate3D id="rotateEffect" target="{targetImg}" 
+            angleZFrom="0" angleZTo="360" 
+            applyChangesPostLayout="false" 
+            duration="5000" 
+            repeatCount="2" repeatBehavior="reverse" 
+            effectStart="playButton.enabled=false;" 
+            effectEnd="playButton.enabled=true;"/&gt; 
+    &lt;/fx:Declarations&gt; 
+ 
+    &lt;s:Panel title="Rotate 3D Effect Example" 
+        width="75%" height="75%" &gt; 
+        
+        &lt;s:HGroup 
+            horizontalCenter="0" 
+            verticalCenter="0"&gt; 
+            &lt;s:Image 
+                source="@Embed(source='assets/Flex_6630.png')"/&gt; 
+            &lt;s:Image id="targetImg" 
+                source="@Embed(source='assets/Flex_6630.png')"/&gt; 
+            &lt;s:Image  
+                source="@Embed(source='assets/Flex_6630.png')"/&gt; 
+        &lt;/s:HGroup&gt; 
+ 
+        &lt;s:Button id="playButton" 
+            left="5" bottom="5" 
+            label="Rotate3D" 
+            click="rotateEffect.play();"/&gt; 
+    &lt;/s:Panel&gt; 
+&lt;/s:Application&gt;</pre>
+
+            </div>
+
+         </div>
+
+         <div class="nested3" id="WS541c10ca0b4bb571-29a85aad1210bbcf4a4-7ffd_verapache"><a name="WS541c10ca0b4bb571-29a85aad1210bbcf4a4-7ffd_verapache"><!-- --></a>
+            <h4 class="topictitle4">Setting the postLayoutTransformOffsets
+property on a component</h4>
+
+            
+            <div>
+               <p>You can directly modify the position, rotation, and scale
+of a component post layout without using a 3D effect. Instead, use
+the <samp class="codeph">postLayoutTransformOffsets</samp> property, of type
+mx.geom:TransformOffsets, of the UIComponent class. By setting the <samp class="codeph">postLayoutTransformOffsets</samp> property
+directly, you modify the target without causing the parent container
+to update its layout.</p>
+
+               <p>In the following example, you use the <samp class="codeph">postLayoutTransformOffsets</samp> property
+to modify the position and scale of a component. As you modify it, notice
+that the parent container does not update its layout:</p>
+
+               <div class="p">
+                  <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- behaviors\Spark3DOffset.mxml --&gt; 
+&lt;s:Application 
+    xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark"&gt; 
+    &lt;s:layout&gt; 
+        &lt;s:VerticalLayout/&gt; 
+    &lt;/s:layout&gt; 
+    
+    &lt;fx:Script&gt; 
+        &lt;![CDATA[ 
+            import mx.geom.TransformOffsets; 
+            
+            // Define an instance of TransformOffsets. 
+            private var myXForm:TransformOffsets = new TransformOffsets(); 
+            
+            // Initialize the postLayoutTransformOffsets property of the target. 
+            private function initOffsets():void { 
+                targetImg.postLayoutTransformOffsets = myXForm; 
+            } 
+            
+            // Move the target 20 pixels to the left and 
+            // increase its x and y scale by 0.1. 
+            private function nudgeImageLeft():void { 
+                targetImg.postLayoutTransformOffsets.x = 
+                    targetImg.postLayoutTransformOffsets.x - 20; 
+                targetImg.postLayoutTransformOffsets.scaleX = 
+                    targetImg.postLayoutTransformOffsets.scaleX + 0.1; 
+                targetImg.postLayoutTransformOffsets.scaleY = 
+                    targetImg.postLayoutTransformOffsets.scaleY + 0.1; 
+            } 
+ 
+            // Move the target 20 pixels to the right and 
+            // decrease its x and y scale by 0.1. 
+            private function nudgeImageRight():void { 
+                targetImg.postLayoutTransformOffsets.x = 
+                    targetImg.postLayoutTransformOffsets.x + 20; 
+                targetImg.postLayoutTransformOffsets.scaleX = 
+                    targetImg.postLayoutTransformOffsets.scaleX - 0.1; 
+                targetImg.postLayoutTransformOffsets.scaleY = 
+                    targetImg.postLayoutTransformOffsets.scaleY - 0.1; 
+            } 
+ 
+            // Reset the transform. 
+            private function resetImage():void { 
+                targetImg.postLayoutTransformOffsets.x = 0; 
+                targetImg.postLayoutTransformOffsets.scaleX = 1.0; 
+                targetImg.postLayoutTransformOffsets.scaleY = 1.0; 
+            } 
+        ]]&gt; 
+    &lt;/fx:Script&gt; 
+ 
+    &lt;s:Panel title="Offset Example" 
+        width="75%" height="75%" &gt; 
+        
+        &lt;s:HGroup 
+            horizontalCenter="0" 
+            verticalCenter="0"&gt; 
+            &lt;s:Image 
+                source="@Embed(source='assets/Flex_6630.png')"/&gt; 
+            &lt;s:Image id="targetImg" 
+                source="@Embed(source='assets/Flex_6630.png')" 
+                creationComplete="initOffsets();"/&gt; 
+            &lt;s:Image  
+                source="@Embed(source='assets/Flex_6630.png')"/&gt; 
+        &lt;/s:HGroup&gt; 
+ 
+        &lt;s:HGroup left="5" bottom="5"&gt; 
+            &lt;s:Button id="nudgeLeftButton" 
+                label="Nudge Left" 
+                click="nudgeImageLeft();"/&gt; 
+             &lt;s:Button id="nudgeRightButton" 
+                label="Nudge Right" 
+                click="nudgeImageRight();"/&gt; 
+             &lt;s:Button id="resetButton" 
+                label="Reset" 
+                click="resetImage();"/&gt; 
+        &lt;/s:HGroup&gt; 
+    &lt;/s:Panel&gt;  
+&lt;/s:Application&gt;</pre>
+
+               </div>
+
+               <p>Notice in this example that as you nudge the image to the left,
+it overlaps the image to its left. As you nudge the image to the
+right, it moves behind the image on the right. This overlap is because
+the image on the right is defined later in the container, and is
+therefore drawn last on the screen. </p>
+
+            </div>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS541c10ca0b4bb571-29a85aad1210bbcf4a4-7ffe_verapache"><a name="WS541c10ca0b4bb571-29a85aad1210bbcf4a4-7ffe_verapache"><!-- --></a>
+         <h3 class="topictitle3">Setting the center of the projection</h3>
+
+         
+         <div>
+            <p>The 3D effects work by mapping a three-dimensional image
+onto a two-dimensional representation for display on a computer
+screen. The <em>projection point</em> defines the center of the field
+of view, and controls how the target is projected from three dimensions
+onto the screen.</p>
+
+            <p>By default, when you apply a 3D effect, the effect automatically
+sets the projection point to the center of the target. You can set
+the <samp class="codeph">autoCenterProjection</samp> property of the effect
+to <samp class="codeph">false</samp> to disable this default. You then use
+the <samp class="codeph">projectionX</samp> and <samp class="codeph">projectionY</samp> properties
+to explicitly set the projection point. These properties specify
+the offset of the projection point from the (0, 0) coordinate of
+the target.</p>
+
+         </div>
+
+      </div>
+
+   </div>
+
+   <div class="nested1" id="WSBDFA187B-4A70-4c30-A878-4B0E843231FC_verapache"><a name="WSBDFA187B-4A70-4c30-A878-4B0E843231FC_verapache"><!-- --></a>
+      <h2 class="topictitle2">Spark pixel-shader effects</h2>
+
+      
+      <div>
+         <p>The Spark pixel-shader effects apply an animation to a
+target that has a before and after bitmap representation, rather
+than by animating a change to the value of a property. The effect
+works by capturing a before bitmap image of the component, capturing
+an after bitmap image of the component, and then applying the animation
+between the two images. </p>
+
+         <p>While the use of pixel-shader effects might seem obvious when
+working with Image components, you can use them with any component.</p>
+
+         <p>The bitmaps are represented by an instance of the flash.display.BitmapData
+class. The animation from the initial to the final bitmap is defined
+by a pixel-shader program created by using Adobe® Pixel Bender™
+Toolkit. A pixel-shader program used with the pixel-shader effects
+operates on two bitmap inputs to animate from one to the other.</p>
+
+         <p>The Spark pixel-shader effects, <a href="https://flex.apache.org/asdoc/spark/effects/CrossFade.html" target="_blank">CrossFade</a> and <a href="https://flex.apache.org/asdoc/spark/effects/Wipe.html" target="_blank">Wipe</a>, use
+their own internal pixel-shaders. However, you can use a custom
+pixel-shader defined by using the Pixel Bender Toolkit. For an example
+of a custom pixel-shader, see <a href="flx_spark_effects_sf.html#WS1AE387C6-B3A5-4fff-AD16-B3A6C4800A1E_verapache">Creating
+a custom pixel shader</a>.</p>
+
+         <p>You can use pixel-shader effects on their own, just as you can
+use the Spark effects such as Fade and Resize. However, since they
+are designed to by applied to a component with a before and after
+bitmap, they are often used as part of a transition. </p>
+
+      </div>
+
+      <div class="nested2" id="WSE9A1C1BE-D329-4a71-A2D4-43B8E0B8B819_verapache"><a name="WSE9A1C1BE-D329-4a71-A2D4-43B8E0B8B819_verapache"><!-- --></a>
+         <h3 class="topictitle3">Using a pixel-shader effect in
+a transition</h3>
+
+         
+         <div>
+            <p>View states let you change the appearance of an application,
+typically in response to a user action. Transitions define how a
+change of view state looks as it occurs on the screen. You define
+a transition by using the effect classes, in combination with several
+effects designed explicitly for handling transitions. For more information
+on view states, see <a href="flx_using_states_us.html#WS2db454920e96a9e51e63e3d11c0bf69084-7fb4_verapache">View
+states</a>. For more information on transitions, see <a href="flx_transitions_tr.html#WS2db454920e96a9e51e63e3d11c0bf69084-7f6a_verapache">Transitions</a>.</p>
+
+            <p>When using a pixel-shader effect with a transition, you use one
+view state to represent the before image of the target, and another
+view state to represent the after image. The following example uses
+the Wipe effect as part of a transition that changes the font color
+of a button control from black to red:</p>
+
+            <div class="p">
+               <pre class="noswf">&lt;?xml version="1.0"?&gt; 
+&lt;!-- behaviors\SparkWipeEffect.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark"&gt; 
+    &lt;s:layout&gt; 
+        &lt;s:VerticalLayout/&gt; 
+    &lt;/s:layout&gt; 
+ 
+    &lt;!-- Define two view states.--&gt; 
+    &lt;s:states&gt; 
+        &lt;s:State name="default"/&gt; 
+        &lt;s:State name="red"/&gt; 
+    &lt;/s:states&gt; 
+ 
+    &lt;!-- Define the transition that applies the Wipe effect 
+        whenever the view state changes.--&gt; 
+    &lt;s:transitions&gt; 
+        &lt;s:Transition fromState="*" toState="*"&gt; 
+            &lt;s:Sequence target="{myB}"&gt; 
+                &lt;s:Wipe id="wipeEffect"  
+                    direction="right" 
+                    duration="1000"/&gt; 
+            &lt;/s:Sequence&gt; 
+        &lt;/s:Transition&gt; 
+    &lt;/s:transitions&gt; 
+ 
+    &lt;s:Button id="myB" label="Wipe" 
+        color="black" color.red="red"/&gt; 
+ 
+    &lt;!-- Define two buttons to change the view state. --&gt; 
+    &lt;s:Button label="Set Default State" 
+        click="currentState='default'"/&gt; 
+    &lt;s:Button label="Set Red State" 
+        click="currentState='red'"/&gt; 
+&lt;/s:Application&gt;</pre>
+
+            </div>
+
+            <p>The transition automatically captures the bitmap of the button
+in the initial and final states, then plays the Wipe effect on the
+button to animate the change. </p>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS92ECBCDD-6A2D-49cd-80E9-8723355B636E_verapache"><a name="WS92ECBCDD-6A2D-49cd-80E9-8723355B636E_verapache"><!-- --></a>
+         <h3 class="topictitle3">Applying a pixel-shader effect</h3>
+
+         
+         <div>
+            <p>To use a pixel-shader effect outside a transition, create
+the bitmaps that define the initial state of the target and the
+final state of the target, as the following example shows: </p>
+
+            <div class="p">
+               <pre class="noswf">&lt;?xml version="1.0"?&gt; 
+&lt;!-- behaviors\SparkShaderBitmap.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark"&gt; 
+    &lt;s:layout&gt; 
+        &lt;s:VerticalLayout/&gt; 
+    &lt;/s:layout&gt; 
+ 
+    &lt;fx:Script&gt; 
+        &lt;![CDATA[ 
+        
+        import mx.core.BitmapAsset; 
+        
+        [Embed(source='assets/logo.jpg')] 
+        [Bindable] 
+        public var beforeImage:Class; 
+        [Bindable] 
+        public var beforeImageBitmap:BitmapAsset = new beforeImage(); 
+ 
+        [Embed(source='assets/flexLogo.jpg')] 
+        [Bindable] 
+        public var afterImage:Class; 
+        [Bindable] 
+        public var afterImageBitmap:BitmapAsset = new afterImage(); 
+        
+        ]]&gt; 
+    &lt;/fx:Script&gt; 
+    
+    &lt;fx:Declarations&gt; 
+        &lt;s:CrossFade id="forwardCF" 
+            target="{myImage}" 
+            bitmapFrom="{beforeImageBitmap.bitmapData}" 
+            bitmapTo="{afterImageBitmap.bitmapData}" 
+            effectEnd="myImage.source=afterImage;"/&gt; 
+ 
+        &lt;s:CrossFade id="backwardCF" 
+            target="{myImage}" 
+            bitmapFrom="{afterImageBitmap.bitmapData}" 
+            bitmapTo="{beforeImageBitmap.bitmapData}" 
+            effectEnd="myImage.source=beforeImage;"/&gt; 
+    &lt;/fx:Declarations&gt; 
+ 
+    &lt;s:Image id="myImage" 
+        source="{beforeImage}"/&gt; 
+    &lt;s:Button id="fwd" label="Forward" 
+        click="forwardCF.end();forwardCF.play();"/&gt; 
+    &lt;s:Button id="bwd" label="Backward" 
+        click="backwardCF.end();backwardCF.play();"/&gt; 
+&lt;/s:Application&gt;</pre>
+
+            </div>
+
+            <div class="p">In this example, you embed two JPEG images, logo.jpg and flexLogo.jpg.
+When you embed JPEG files into Flex, they are represented as instances
+of the mx.core.BitmapAsset class. Use the <samp class="codeph">bitmapData</samp> property
+of the BitmapAsset class to access the BitmapData object that contains
+the actual image data. For more information on embedding JPEG files,
+see <a href="flx_embed_em.html#WS2db454920e96a9e51e63e3d11c0bf69084-7fa7_verapache">Embedding
+JPEG, GIF, and PNG images</a>.<div class="note"><span class="notetitle">Note:</span> As written, this example
+causes the compiler to issue warnings for the binding to the <samp class="codeph">bitmapData</samp> property.
+To remove these warnings, compile the application with the <samp class="codeph">show-binding-warnings</samp> compiler
+flag set to <samp class="codeph">false</samp>. Or, create a custom object to
+represent the image. For more information, see <a href="flx_databinding_db.html#WS2db454920e96a9e51e63e3d11c0bf64c3d-7fef_verapache">Using
+data binding with Objects</a>.</div>
+
+            </div>
+
+            <p>The first CrossFade effect, forwardCF, uses logo.jpg file to
+define the before state and the flexLogo.jpg to define the final
+state of the effect. When it plays, the effect animates the transition
+from the logo.jpg file to the linelogo.jpg file. After the effect
+plays, it loads flexLogo.jpg into the Image control. The backwardCF effect
+does the opposite.</p>
+
+            <div class="p">The target of the effect is the Image control. When the effect
+plays, the following occurs: <ol>
+                  <li>
+                     <p>The effect target, the Image
+control, is hidden.</p>
+
+                  </li>
+
+                  <li>
+                     <p>The bitmap for the initial state displays.</p>
+
+                  </li>
+
+                  <li>
+                     <p>The pixel-shader plays to animate the change from the initial
+state to the final state.</p>
+
+                  </li>
+
+                  <li>
+                     <p>When the effect ends, hide the bitmap for the final state
+and make the Image control visible.</p>
+
+                  </li>
+
+               </ol>
+
+            </div>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS1AE387C6-B3A5-4fff-AD16-B3A6C4800A1E_verapache"><a name="WS1AE387C6-B3A5-4fff-AD16-B3A6C4800A1E_verapache"><!-- --></a>
+         <h3 class="topictitle3">Creating a custom pixel shader</h3>
+
+         
+         <div>
+            <p>You can use the Pixel Bender Toolkit to create a custom
+pixel shader, and then pass it to the AnimateTransitionShader effect,
+as the following example shows: </p>
+
+            <div class="p">
+               <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- behaviors\SparkCustomPBTransform.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark"&gt; 
+ 
+     &lt;fx:Script&gt; 
+          &lt;![CDATA[ 
+            // Embed the .pbj file. 
+            [Embed(source="assets/twist.pbj", mimeType="application/octet-stream")] 
+            private static var CustomShaderClass:Class; 
+            [Bindable] 
+            private static var customShaderCode:ByteArray = new CustomShaderClass(); 
+          ]]&gt; 
+     &lt;/fx:Script&gt; 
+     
+     &lt;fx:Declarations&gt; 
+        &lt;!-- Use the custom pixel shader with an effect. --&gt; 
+        &lt;s:AnimateTransitionShader  id="shadeAnim" 
+            shaderByteCode="{customShaderCode}" 
+            target="{btn2}" 
+            repeatCount="2" 
+            repeatBehavior="reverse"/&gt; 
+     &lt;/fx:Declarations&gt; 
+     &lt;s:Button id="btn2" label="Click Me" click="shadeAnim.play();"/&gt; 
+&lt;/s:Application&gt;</pre>
+
+            </div>
+
+            <p>A custom pixel shader is represented by a .pbj file created by
+using the Pixel Bender Toolkit. To use the .pbj file in your application,
+you embed it, and then assign it to a property of type ByteArray.
+You then specify the ByteArray object as the value of the <samp class="codeph">shaderByteCode</samp> property
+of the AnimateTransitionShader effect.</p>
+
+            <p>The AnimateTransitionShader effect also supports the <samp class="codeph">shaderProperties</samp> property
+that lets you pass properties directly to the pixel shader.</p>
+
+            <p>The .pbj file has the following requirements:</p>
+
+            <div class="p">
+               <ul>
+                  <li>
+                     <p>Define three <samp class="codeph">image4</samp> inputs. The first
+input is unused but must be defined and referenced in the code.
+If the input is not referenced, the compiler in the Pixel Bender
+Toolkit removes it as part of optimizing the code. </p>
+
+                     <p>One <samp class="codeph">image4</samp> input
+must be called <samp class="codeph">from</samp>, and one named <samp class="codeph">to</samp>.
+These inputs represent the initial and final states of the target.</p>
+
+                  </li>
+
+                  <li>
+                     <p>Define one parameter named <samp class="codeph">progress</samp> of type
+float. This parameter represents the current fraction of the animation
+completed from 0.0, animating started, to 1.0, animation completed.</p>
+
+                  </li>
+
+               </ul>
+
+            </div>
+
+            <div class="p">The following example shows the source .pbk file for the twist.pbj
+file used in the previous example:<pre class="codeblock">&lt;languageVersion : 1.0;&gt; 
+kernel FxTwist 
+&lt;   namespace : "flex"; 
+    vendor : "Adobe"; 
+    version : 1; 
+    description : "Twisty Effect"; 
+&gt; 
+{ 
+    input image4 src0; 
+    input image4 from; 
+    input image4 to; 
+    output pixel4 dst; 
+    
+    parameter float progress&lt; 
+        minValue: 0.00; 
+        maxValue: 1.00; 
+        defaultValue: 0.0; 
+    &gt;; 
+    
+    parameter float width&lt; 
+        minValue: 0.0; 
+        maxValue: 1024.0; 
+        defaultValue: 180.0; 
+    &gt;; 
+    
+    parameter float height&lt; 
+        minValue: 0.00; 
+        maxValue: 1024.0; 
+        defaultValue: 275.0; 
+    &gt;; 
+    
+    void 
+    evaluatePixel() 
+    { 
+        
+        // Common initialization 
+        float2 outCoord = outCoord(); 
+        pixel4 color1 = sampleNearest(src0, outCoord); 
+ 
+        const float _height = 2.0; 
+        const float scale = 1.0 + _height; 
+        float start = progress * scale - _height; 
+        float end   = start + _height; 
+        
+        
+        float yfrac = outCoord.y / height; 
+        float angle = (yfrac - start) / (end - start); 
+        float _width = cos(angle * 3.141592653589); 
+        
+        if (yfrac &lt; start) { 
+            dst = sampleLinear(to, outCoord()); 
+        } 
+        
+        else if (yfrac &gt; end) { 
+            dst = sampleLinear(from, outCoord()); 
+        } 
+        else { 
+        if (_width &gt; 0.0) { 
+        
+            float xstep  = (65536.0 / _width); 
+            float xval   = 0.0; 
+            float startx = (width - width * _width) / 2.0; 
+            float xcount = startx; 
+            
+            float sampleWidth = (width * 65536.0) / (xstep); 
+            
+            if (outCoord.x &lt; startx) 
+                dst = float4(0.0,0.0,0.0,0.0); 
+            else if (outCoord.x &lt; (startx + sampleWidth)) { 
+                float perc = (outCoord.x - startx) / sampleWidth; 
+                dst = sampleLinear(to, float2(width * perc, outCoord.y)); 
+            } 
+            else 
+                dst = float4(0.0,0.0,0.0,0.0);  
+        } 
+        
+        else if (_width &lt; 0.0) { 
+            float xstep  = (65536.0 / -_width); 
+            float xval   = 0.0; 
+            float startx = (width + width * _width) / 2.0; 
+            float xcount = startx; 
+            float sampleWidth = (width * 65536.0) / (xstep); 
+            
+            if (outCoord.x &lt; startx) 
+                dst = float4(0.0,0.0,0.0,0.0); 
+            else if (outCoord.x &lt; (startx + sampleWidth)) { 
+                float perc = (outCoord.x - startx) / sampleWidth;   
+                dst = sampleLinear(from, float2( width * perc, outCoord.y)); 
+            } 
+            else 
+                dst = float4(0.0,0.0,0.0,0.0); 
+        } 
+        
+        } 
+ 
+    } 
+}   </pre>
+
+            </div>
+
+            <p>You can also look at the source code for the CrossFade.pbk file
+in the frameworks\projects\spark\src\spark\effects directory of
+the Flex source code.</p>
+
+         </div>
+
+      </div>
+
+   </div>
+
+   <div class="nested1" id="WSFA4F2DE3-C45C-4b72-8C80-152849A6B635_verapache"><a name="WSFA4F2DE3-C45C-4b72-8C80-152849A6B635_verapache"><!-- --></a>
+      <h2 class="topictitle2">Spark filter effects</h2>
+
+      
+      <div>
+         <p>Filters let you modify the visual appearance of your components
+not by modifying properties of the component but by applying a visual
+filter to the component. The filters are defined in the spark.filters.
+package. Common filters include the <a href="https://flex.apache.org/asdoc/spark/filters/DropShadowFilter.html" target="_blank">DropShadowFilter</a>, <a href="https://flex.apache.org/asdoc/spark/filters/GlowFilter.html" target="_blank">GlowFilter</a>, <a href="https://flex.apache.org/asdoc/spark/filters/BlurFilter.html" target="_blank">BlurFilter</a>,
+and the other filter classes in the spark.filters. package. </p>
+
+         <p>Filters define a static change to the component where the properties
+of the filter are fixed unless you explicitly modify them at runtime.
+You can use the AnimateFilter effect to animate a filter at runtime.
+Unlike effects that animate properties of the target, the AnimateFilter
+effect animates properties of the filter applied to the target. </p>
+
+         <p>For example, if you apply the DropShadowFilter to a component,
+it has a static value for the filter properties such as <samp class="codeph">color</samp>, <samp class="codeph">distance</samp>,
+and <samp class="codeph">angle</samp>. If you use the AnimateFilter effect
+to apply the filter to the target, you can animate these properties,
+as the following example shows:</p>
+
+         <div class="p">
+            <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- behaviors\SparkAnimateDropShadowFilter.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark"&gt; 
+ 
+    &lt;fx:Declarations&gt;    
+        &lt;s:DropShadowFilter id="myDSF" 
+            color="0x0000FF" 
+            distance="5" 
+            angle="315"/&gt; 
+ 
+        &lt;s:AnimateFilter id="myFilter" 
+            target="{myB2}" 
+            repeatCount="0" 
+            duration="500" 
+            repeatBehavior="reverse" 
+            bitmapFilter="{new spark.filters.DropShadowFilter()}"&gt; 
+            &lt;s:SimpleMotionPath property="color" valueFrom="0" valueTo="0x0000FF"/&gt; 
+            &lt;s:SimpleMotionPath property="distance" valueFrom="0" valueTo="10"/&gt; 
+            &lt;s:SimpleMotionPath property="angle" valueFrom="270" valueTo="360"/&gt; 
+        &lt;/s:AnimateFilter&gt; 
+    &lt;/fx:Declarations&gt; 
+ 
+    &lt;s:Button id="myB1" 
+        x="50" y="50" 
+        label="Show a DropShadowFilter" 
+        filters="{[myDSF]}"/&gt; 
+ 
+    &lt;s:Button id="myB2" 
+        x="50" y="95" 
+        label="Animate a DropShadowFilter" 
+        click="myFilter.end();myFilter.play();"/&gt; 
+&lt;/s:Application&gt;</pre>
+
+         </div>
+
+         <p>In this example, the first button uses a static DropShadowFilter.
+The second button uses the AnimateFilter effect to animate the filter.
+Because the effect sets the <samp class="codeph">repeatCount</samp> to 0, the
+effect plays continuously.</p>
+
+         <p>To use the AnimateFilter effect, you specify the filter to animate,
+and then use the SimpleMotionPath class to specify the properties
+of the filter to animate. In this example, the effect animate the <samp class="codeph">color</samp>, <samp class="codeph">distance</samp>,
+and <samp class="codeph">angle</samp> properties.</p>
+
+      </div>
+
+   </div>
+
+   <div class="nested1" id="WS8951D9BB-9DB6-45cc-B076-06941D80F29F_verapache"><a name="WS8951D9BB-9DB6-45cc-B076-06941D80F29F_verapache"><!-- --></a>
+      <h2 class="topictitle2">Motion paths and keyframes</h2>
+
+      
+      <div>
+         <p>The Spark effect classes are designed to make it easy to
+specify the property to animate, and the starting and ending values
+of the property for the animation. These classes hide much of the
+underlying effects implementation to simplify the use of effects. </p>
+
+         <p>However, you might want to create an effect that animates a property
+over a set of values, rather than over just a starting and ending
+value. To create these effect, use keyframes and motion paths.</p>
+
+         <p>A <em>keyframe</em> defines the value of a property at a specific
+time during the effect. For example, you can create three keyframes
+that define the value of a property at the beginning of the effect,
+at the midpoint of the effect, and at the end of the effect. The
+effect animates the property change on the target from keyframe
+to keyframe over the effect duration. </p>
+
+         <p>If your effect has just two keyframes, use the Animate effect.
+The Animate effect takes a starting an ending value for the property,
+corresponding to two keyframes. For more information, see <a href="flx_spark_effects_sf.html#WS03d33b8076db57b9-6e62cb35120c4efaed2-8000_verapache">The
+Animate effect</a>. </p>
+
+         <p>The collection of keyframes for an effect is called the effect's
+motion path. A <em>motion path</em> can define any number of keyframes.
+The effect then calculates the value of the property by interpolating
+between the values specified by two keyframes. </p>
+
+      </div>
+
+      <div class="nested2" id="WS39A1BFDE-D957-4e51-B79F-AD05C1CB38D8_verapache"><a name="WS39A1BFDE-D957-4e51-B79F-AD05C1CB38D8_verapache"><!-- --></a>
+         <h3 class="topictitle3">Applying an effect using keyframes
+and motion paths</h3>
+
+         
+         <div>
+            <p>Use the <a href="https://flex.apache.org/asdoc/spark/effects/animation/Keyframe.html" target="_blank">Keyframe</a> class
+to define a keyframe. You typically define a keyframe by specifying
+the value of the property, and the time during the duration of the effect
+when the property has that value. </p>
+
+            <div class="p">The MotionPath class contains a Vector of Keyframe objects. The <a href="https://flex.apache.org/asdoc/spark/effects/animation/MotionPath.html" target="_blank">MotionPath</a> class
+also defines the name of the property that is modified by the effect,
+as the following example shows:<pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- behaviors\SparkKeyFrame.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark"&gt; 
+ 
+    &lt;fx:Declarations&gt; 
+        &lt;fx:Vector id="kf" type="spark.effects.animation.MotionPath"&gt; 
+            &lt;s:MotionPath property="scaleX"&gt; 
+                &lt;s:Keyframe time="250" value="0.5"/&gt; 
+                &lt;s:Keyframe time="500" value="1.0"/&gt; 
+                &lt;s:Keyframe time="750" value="0.5"/&gt; 
+                &lt;s:Keyframe time="1000" value="1.0"/&gt; 
+                &lt;s:Keyframe time="1250" value="0.5"/&gt; 
+                &lt;s:Keyframe time="1500" value="1.0"/&gt; 
+            &lt;/s:MotionPath&gt; 
+            &lt;s:MotionPath property="scaleY"&gt; 
+                &lt;s:Keyframe time="250" value="0.5"/&gt; 
+                &lt;s:Keyframe time="500" value="1.0"/&gt; 
+                &lt;s:Keyframe time="750" value="0.5"/&gt; 
+                &lt;s:Keyframe time="1000" value="1.0"/&gt; 
+                &lt;s:Keyframe time="1250" value="0.5"/&gt; 
+                &lt;s:Keyframe time="1500" value="1.0"/&gt; 
+            &lt;/s:MotionPath&gt; 
+        &lt;/fx:Vector&gt; 
+        
+        &lt;s:Animate id="shrinkEffect" 
+            motionPaths="{kf}" 
+            target="{myImage}"/&gt; 
+    &lt;/fx:Declarations&gt; 
+ 
+    &lt;s:Image id="myImage" 
+        source="@Embed(source='assets/logo.jpg')" 
+        click="shrinkEffect.end();shrinkEffect.play();"/&gt; 
+&lt;/s:Application&gt;</pre>
+
+            </div>
+
+            <p>Each MotionPath object defines the property of the target to
+animate, and contains six Keyframe objects. The Keyframe objects
+define the values of the <samp class="codeph">scaleX</samp> and <samp class="codeph">scaleY</samp> properties
+of the target at different times during the effect. The Animate
+class takes as the value of the <samp class="codeph">motionPaths</samp> property
+a Vector of MotionPath objects.</p>
+
+            <p>In most situations, you do not have to work with keyframes and
+motion paths; the Spark effect classes handles the creating and
+use of keyframes internally. For example, the Animate class can
+take as the value of the <samp class="codeph">motionPaths</samp> property a
+Vector of SimpleMotionPath objects. Each SimpleMotionPath object
+defines the property to animate, the starting property value, and
+the ending property value. </p>
+
+            <p>The SimpleMotionPath class is a subclass of the MotionPath class.
+When you create an instance of the SimpleMotionPath class, it creates
+two instances of the Keyframe class to represent the beginning and
+ending values of the property on the target. The effect then animates
+the property change on the target between the values specified by
+the two Keyframe objects.</p>
+
+         </div>
+
+      </div>
+
+   </div>
+
+   <div class="nested1" id="WSebddb957d123ebb0-3f1f1b9d120914b4de1-8000_verapache"><a name="WSebddb957d123ebb0-3f1f1b9d120914b4de1-8000_verapache"><!-- --></a>
+      <h2 class="topictitle2">Handling Spark effect events</h2>
+
+      
+      <div>
+         <p>Spark effects support all the general events, such as <samp class="codeph">effectStart</samp>, <samp class="codeph">effectStop</samp>,
+and <samp class="codeph">effectEnd</samp>. For more information on handling
+these events, see <a href="flx_behaviors_be.html#WS2db454920e96a9e51e63e3d11c0bf69084-7fbb_verapache">Handling
+effect events</a>.</p>
+
+         <p>In addition, the Spark effect classes support the following additional
+events:</p>
+
+         <div class="p">
+            <ul>
+               <li>
+                  <p>
+                     <samp class="codeph">effectRepeat</samp> For any effect that
+is repeated more than once, dispatched when the effect begins a
+new repetition. The <samp class="codeph">type</samp> property of the event object
+for this event is set to <samp class="codeph">EffectEvent.EFFECT_UPDATE</samp>.</p>
+
+               </li>
+
+               <li>
+                  <p>
+                     <samp class="codeph">effectUpdate</samp> Dispatched every time the effect
+updates the target. The <samp class="codeph">type</samp> property of the event
+object for this event is set to <samp class="codeph">EffectEvent.EFFECT_UPDATE</samp>.</p>
+
+               </li>
+
+            </ul>
+
+         </div>
+
+      </div>
+
+   </div>
+
+   <div class="nested1" id="WS91E85D63-A025-4c46-B758-A275D4D3B3FC_verapache"><a name="WS91E85D63-A025-4c46-B758-A275D4D3B3FC_verapache"><!-- --></a>
+      <h2 class="topictitle2">Using Spark easing classes</h2>
+
+      
+      <div>
+         <p>You can change the acceleration of an effect animation
+by using an easing class with an effect. With easing, you can create
+a more realistic rate of acceleration and deceleration. You can
+also use an easing class to create a bounce effect or control other
+types of motion. </p>
+
+         <p>Flex supplies the Spark easing classes in the spark.effects.easing
+package. This package includes classes for the most common types
+of easing, including Bounce, Linear, and Sine easing. For more information
+on using these classes, see the <em>
+               <a href="https://flex.apache.org/asdoc/" target="_blank">ActionScript 3.0 Reference for Apache Flex</a></em>.</p>
+
+         <div class="p">
+            
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" frame="border" border="1" rules="all">
+                  
+                  
+                  <thead align="left">
+                     <tr>
+                        <th class="cellrowborder" valign="top" width="NaN%" id="d881743e1377">
+                           <p>Easing class</p>
+
+                        </th>
+
+                        <th class="cellrowborder" valign="top" width="NaN%" id="d881743e1383">
+                           <p>Description</p>
+
+                        </th>
+
+                     </tr>
+
+                  </thead>
+
+                  <tbody>
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d881743e1377 ">
+                           <p>
+                              <a href="https://flex.apache.org/asdoc/spark/effects/easing/Bounce.html" target="_blank">Bounce</a>
+                           </p>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d881743e1383 ">
+                           <p>The movement of the effect target accelerates
+toward the end value, and then bounces against the end value several
+times. </p>
+
+                        </td>
+
+                     </tr>
+
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d881743e1377 ">
+                           <p>
+                              <a href="https://flex.apache.org/asdoc/spark/effects/easing/Elastic.html" target="_blank">Elastic</a>
+                           </p>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d881743e1383 ">
+                           <p>The effect target decelerates toward the
+end value, and continues past the end value. It then oscillates
+around the end value in smaller and smaller increments, before reaching
+the end value. </p>
+
+                        </td>
+
+                     </tr>
+
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d881743e1377 ">
+                           <p>
+                              <a href="https://flex.apache.org/asdoc/spark/effects/easing/Linear.html" target="_blank">Linear</a>
+                           </p>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d881743e1383 ">
+                           <p>Defines three phases of animation: acceleration,
+uniform motion, and deceleration. Acceleration and deceleration
+occur at a constant rate. Use the <samp class="codeph">easeinFraction</samp> property
+to specify the percentage of the total animation duration for acceleration.
+Use the <samp class="codeph">easeOutFraction</samp> property to specify the
+percentage of the total animation duration for deceleration.</p>
+
+                        </td>
+
+                     </tr>
+
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d881743e1377 ">
+                           <p>
+                              <a href="https://flex.apache.org/asdoc/spark/effects/easing/Power.html" target="_blank">Power</a>
+                           </p>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d881743e1383 ">
+                           <p>Defines easing as consisting of two phases:
+the acceleration, or ease in phase, followed by the deceleration,
+or ease out phase. The rate of acceleration and deceleration is
+based on the <samp class="codeph">exponent</samp> property. The higher the
+value of the <samp class="codeph">exponent</samp> property, the greater the
+acceleration and deceleration. Use the <samp class="codeph">easeInFraction</samp> property
+to specify the percentage of an animation accelerating.</p>
+
+                        </td>
+
+                     </tr>
+
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d881743e1377 ">
+                           <p>
+                              <a href="https://flex.apache.org/asdoc/spark/effects/easing/Sine.html" target="_blank">Sine</a>
+                           </p>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d881743e1383 ">
+                           <p>Defines easing as consisting of two phases:
+the acceleration, or ease in phase, followed by the deceleration,
+or ease out phase. Use the <samp class="codeph">easeInFraction</samp> property
+to specify the percentage of an animation accelerating. </p>
+
+                        </td>
+
+                     </tr>
+
+                  </tbody>
+
+               </table>
+</div>
+
+         </div>
+
+         <div class="p">The following example uses the Sine and Power easing classes
+with the Move effect: <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- behaviorExamples\SparkResizeEasing.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    width="750"&gt; 
+ 
+    &lt;fx:Declarations&gt; 
+        &lt;s:Sine id="sineEasing" 
+            easeInFraction="0.3"/&gt; 
+        &lt;s:Power id="powerEasing" 
+            exponent="4"/&gt; 
+        &lt;s:Move id="moveRight" 
+            target="{myImage}" 
+            xBy="500" 
+            duration="2000" 
+            easer="{powerEasing}"/&gt; 
+        &lt;s:Move id="moveLeft" 
+            target="{myImage}" 
+            xBy="-500" 
+            duration="2000" 
+            easer="{sineEasing}"/&gt; 
+    &lt;/fx:Declarations&gt; 
+ 
+    &lt;s:Image id="myImage" 
+        source="@Embed(source='assets/logo.jpg')"/&gt; 
+    &lt;s:Button label="Move Right" 
+         x="0" y="100" 
+        click="moveRight.end();moveRight.play();"/&gt; 
+    &lt;s:Button label="Move Left" 
+         x="0" y="125" 
+        click="moveLeft.end();moveLeft.play();"/&gt; 
+&lt;/s:Application&gt;</pre>
+
+         </div>
+
+         <p>The Sine effect specifies a short acceleration phase for the
+move effect, followed by a longer deceleration. The Power effect
+specifies a rapid acceleration for the move. </p>
+
+         <div class="p">The following example uses the Bounce and Elastic easing classes: <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- behaviorExamples\SparkBounceEasing.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    width="750"&gt; 
+ 
+    &lt;fx:Declarations&gt; 
+        &lt;s:Bounce id="bounceEasing"/&gt; 
+        &lt;s:Elastic id="elasticEasing"/&gt; 
+        &lt;s:Move id="moveRight" 
+            target="{myImage}" 
+            xBy="500" 
+            duration="2000" 
+            easer="{elasticEasing}"/&gt; 
+        &lt;s:Move id="moveLeft" 
+            target="{myImage}" 
+            xBy="-500" 
+            duration="2000" 
+            easer="{bounceEasing}"/&gt; 
+    &lt;/fx:Declarations&gt; 
+ 
+    &lt;s:Image id="myImage" 
+        source="@Embed(source='assets/logo.jpg')"/&gt; 
+    &lt;s:Button label="Move Right" 
+         x="0" y="100" 
+        click="moveRight.end();moveRight.play();"/&gt; 
+    &lt;s:Button label="Move Left" 
+         x="0" y="125" 
+        click="moveLeft.end();moveLeft.play();"/&gt; 
+&lt;/s:Application&gt;</pre>
+
+         </div>
+
+      </div>
+
+<div>
+  <p><strong>Navigation</strong></p>
+  <p><a href="index.html">Using Flex</a> &raquo; <a href="flx_p5_enhancing_ui.html">Enhancing the user interface</a></p>
+</div>
+
+         <p>Adobe, Adobe Flash Platform and Adobe Flash Player are either registered trademarks or trademarks of Adobe Systems Incorporated in the United States and/or other countries and are used by permission from Adobe.  No other license to the Adobe trademarks are granted.</p>
+   </div>
+
+
+</body>
+</html>

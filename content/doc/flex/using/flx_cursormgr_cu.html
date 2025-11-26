@@ -1,0 +1,599 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Licensed to the Apache Software Foundation (ASF) under one or more
+  contributor license agreements.  See the NOTICE file distributed with
+  this work for additional information regarding copyright ownership.
+  The ASF licenses this file to You under the Apache License, Version 2.0
+  (the "License"); you may not use this file except in compliance with
+  the License.  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+-->
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en-us" xml:lang="en-us">
+<head>
+<meta name="DC.Type" content="topic"/>
+<meta name="DC.Title" content="Cursor Manager"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="WS2db454920e96a9e51e63e3d11c0bf613bf-7fff_verapache"/>
+<title>Cursor Manager</title>
+</head>
+<body id="WS2db454920e96a9e51e63e3d11c0bf613bf-7fff_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf613bf-7fff_verapache"><!-- --></a>
+
+   <div>
+      <p>The Cursor
+Manager in  Flex lets you control the cursor
+image in your Flex application. You can use the Cursor Manager to
+provide visual feedback to users to indicate when to wait for processing
+to complete, to indicate allowable actions, or to provide other
+types of feedback. The cursor image can be a JPEG, GIF, PNG, or
+SVG image, a Sprite object, or a SWF file.</p>
+
+   </div>
+
+   <div class="nested1" id="WS2db454920e96a9e51e63e3d11c0bf613bf-8000_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf613bf-8000_verapache"><!-- --></a>
+      <h2 class="topictitle2">About the Cursor Manager</h2>
+
+      
+      <div>
+         <p>By
+default, Flex uses the system cursor as the application cursor.
+You control the system cursor by using the settings of your operating
+system. </p>
+
+         <p>The Flex Cursor Manager lets you control the cursor image in
+your Flex application. For example, if your application performs
+processing that requires the user to wait until the processing completes,
+you can change the cursor so that it reflects the waiting period.
+In this case, you can change the cursor to an hourglass or other
+image. </p>
+
+         <p>You also can change the cursor to provide feedback to the user
+to indicate the actions that the user can perform. For example,
+you can use one cursor image to indicate that user input is enabled,
+and another to indicate that input is disabled. </p>
+
+         <p>You can use a JPEG, GIF, PNG, or SVG image, a Sprite object,
+or a SWF file as the cursor image. </p>
+
+      </div>
+
+   </div>
+
+   <div class="nested1" id="WS2db454920e96a9e51e63e3d11c0bf69084-7f25_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7f25_verapache"><!-- --></a>
+      <h2 class="topictitle2">Creating and removing a cursor</h2>
+
+      
+      <div>
+         <p>To
+use the Cursor Manager, you import the mx.managers.CursorManager
+class into your application, and then reference its static properties
+and methods. </p>
+
+         <p>The Cursor Manager
+controls a prioritized list of cursors, where the cursor with the
+highest priority is currently visible. If the cursor list contains
+more than one cursor with the same priority, the Cursor Manager
+displays the most recently created cursor. </p>
+
+         <p>You create a new cursor, and set an optional priority for the
+cursor, by using the static <samp class="codeph">setCursor()</samp> method
+of the CursorManager class. This method adds the new cursor to the
+cursor list. If the new cursor has the highest priority, it is displayed
+immediately. If the priority is lower than a cursor already in the
+list, it is not displayed until the cursor with the higher priority
+is removed.</p>
+
+         <p>To remove a cursor from the list, you use the static <samp class="codeph">removeCursor()</samp> method. If
+the cursor is the currently displayed cursor, the Cursor Manager
+displays the next cursor in the list, if one exists. If the list
+ever becomes empty, the Cursor Manager displays the default system
+cursor.</p>
+
+         <p>The <samp class="codeph">setCursor()</samp> method
+has the following signature: </p>
+
+         <pre class="codeblock"> public static setCursor(<em>cursorClass</em>:Class, <em>priority</em>:int = 2, <em>xOffset</em>:Number = 0, <em>yOffset</em>:Number = 0):int</pre>
+
+         <p>The following table describes the arguments for the <samp class="codeph">setCursor()</samp> method:</p>
+
+         
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" frame="border" border="1" rules="all">
+               
+               
+               
+               <thead align="left">
+                  <tr>
+                     <th class="cellrowborder" valign="top" width="NaN%" id="d167169e137">
+                        <p>Argument</p>
+
+                     </th>
+
+                     <th class="cellrowborder" valign="top" width="NaN%" id="d167169e143">
+                        <p>Description</p>
+
+                     </th>
+
+                     <th class="cellrowborder" valign="top" width="NaN%" id="d167169e149">
+                        <p>Req/Opt</p>
+
+                     </th>
+
+                  </tr>
+
+               </thead>
+
+               <tbody>
+                  <tr>
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d167169e137 ">
+                        <div class="p">
+                           <pre class="codeblock"><em>cursorClass</em></pre>
+
+                        </div>
+
+                     </td>
+
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d167169e143 ">
+                        <p>The class name of the cursor to display.</p>
+
+                     </td>
+
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d167169e149 ">
+                        <p>Required</p>
+
+                     </td>
+
+                  </tr>
+
+                  <tr>
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d167169e137 ">
+                        <div class="p">
+                           <pre class="codeblock"><em>priority</em></pre>
+
+                        </div>
+
+                     </td>
+
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d167169e143 ">
+                        <p>The priority level of the cursor. Valid
+values are <samp class="codeph">CursorManagerPriority.HIGH</samp>, <samp class="codeph">CursorManagerPriority.MEDIUM</samp>,
+and <samp class="codeph">CursorManagerPriority.LOW</samp>. The default value
+is 2, corresponding to <samp class="codeph">CursorManagerPriority.MEDIUM</samp>. </p>
+
+                     </td>
+
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d167169e149 ">
+                        <p>Optional</p>
+
+                     </td>
+
+                  </tr>
+
+                  <tr>
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d167169e137 ">
+                        <div class="p">
+                           <pre class="codeblock"><em>xOffset</em></pre>
+
+                        </div>
+
+                     </td>
+
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d167169e143 ">
+                        <p>The x offset of the cursor relative to the
+mouse pointer. The default value is 0.</p>
+
+                     </td>
+
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d167169e149 ">
+                        <p>Optional</p>
+
+                     </td>
+
+                  </tr>
+
+                  <tr>
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d167169e137 ">
+                        <div class="p">
+                           <pre class="codeblock"><em>yOffset</em></pre>
+
+                        </div>
+
+                     </td>
+
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d167169e143 ">
+                        <p>The y offset of the cursor relative to the
+mouse pointer. The default value is 0.</p>
+
+                     </td>
+
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d167169e149 ">
+                        <p>Optional</p>
+
+                     </td>
+
+                  </tr>
+
+               </tbody>
+
+            </table>
+</div>
+
+         <p>This method returns the ID of the new cursor. You pass the ID
+to the <samp class="codeph">removeCursor()</samp> method to delete the cursor.
+This method has the following signature:</p>
+
+         <pre class="codeblock"> static removeCursor(<em>cursorID</em>:int):void</pre>
+
+         <div class="note"><span class="notetitle">Note:</span> In AIR, each instance of the Window class uses
+its own instance of the CursorManager class. In an AIR application,
+instead of directly referencing the static methods and properties
+of the CursorManager class, use the <samp class="codeph">
+               <em>Window.cursorManager</em>
+            </samp> property
+to reference the CursorManager instance for the Window instance. </div>
+
+         <p>The
+following example changes the cursor to a custom <em>wait</em> or <em>busy</em> cursor
+while a large image file loads. After the load completes, the application
+removes the busy cursor and returns the cursor to the system cursor. </p>
+
+         <div class="note"><span class="notetitle">Note:</span> The Flex framework includes a default busy cursor.
+For information on using this cursor, see <a href="flx_cursormgr_cu.html#WS2db454920e96a9e51e63e3d11c0bf69084-7f24_verapache">Using
+a busy cursor</a>.</div>
+
+         <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- cursors\CursorManagerApp.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx"&gt; 
+ 
+    &lt;fx:Script&gt; 
+        &lt;![CDATA[ 
+            import mx.managers.CursorManager; 
+            import flash.events.*; 
+            
+            // Define a variable to hold the cursor ID. 
+            private var cursorID:Number = 0; 
+    
+            // Embed the cursor symbol. 
+            [Embed(source="assets/wait.jpg")] 
+            private var waitCursorSymbol:Class; 
+                    
+            // Define event listener to display the wait cursor 
+            // and to load the image. 
+            private function initImage(event:MouseEvent):void { 
+                // Set busy cursor. 
+                cursorID = CursorManager.setCursor(waitCursorSymbol); 
+                // Load large image. 
+                image1.load("../assets/DSC00034.JPG"); 
+            } 
+ 
+            // Define an event listener to remove the wait cursor. 
+            private function loadComplete(event:Event):void { 
+                CursorManager.removeCursor(cursorID);   
+            }               
+        ]]&gt; 
+    &lt;/fx:Script&gt; 
+ 
+    &lt;s:VGroup&gt; 
+        &lt;!-- Image control to load the image. --&gt; 
+        &lt;mx:Image id="image1" 
+            height="50" 
+            width="100" 
+            scaleContent="true" 
+            complete="loadComplete(event);"/&gt; 
+ 
+        &lt;!-- Button triggers the load. --&gt; 
+        &lt;s:Button id="myButton" label="Show" click="initImage(event);"/&gt; 
+    &lt;/s:VGroup&gt; 
+&lt;/s:Application&gt;</pre>
+
+         <p>This
+example uses a JPEG image as the cursor image. You can also use
+a Sprite, or a PNG, GIF, SVG, or SWF file, as the following example
+shows:</p>
+
+         <pre class="codeblock"> [Embed(source="assets/wait.swf")]  
+ var waitCursorSymbol:Class; </pre>
+
+         <p>Or you can reference a symbol from a SWF file, as the following
+example shows: </p>
+
+         <pre class="codeblock"> [Embed(source="assets/cursorList.swf", symbol="wait")]  
+ var waitCursorSymbol:Class; </pre>
+
+         <p>An advantage of using a SWF file is that you can create an animated
+cursor. </p>
+
+      </div>
+
+   </div>
+
+   <div class="nested1" id="WS2db454920e96a9e51e63e3d11c0bf69084-7f24_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7f24_verapache"><!-- --></a>
+      <h2 class="topictitle2">Using a busy cursor</h2>
+
+      
+      <div>
+         <p>Flex defines
+a default busy cursor that you can use to indicate that your application
+is processing, and that users should wait until that processing
+completes before the application will respond to inputs. The default
+busy cursor is an animated clock. </p>
+
+         <p>You can control a busy cursor in several ways:</p>
+
+         <ul>
+            <li>
+               <p>You can use Cursor Manager methods to set and remove
+the busy cursor.</p>
+
+            </li>
+
+            <li>
+               <p>You can use the <samp class="codeph">showBusyCursor</samp> property
+of the SWFLoader, WebService, HttpService, and RemoteObject classes
+to automatically display the busy cursor.</p>
+
+            </li>
+
+         </ul>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf69084-7f26_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7f26_verapache"><!-- --></a>
+         <h3 class="topictitle3">Setting a busy cursor</h3>
+
+         
+         <div>
+            <p>The following
+static Cursor Manager methods control the busy cursor: </p>
+
+            
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" frame="border" border="1" rules="all">
+                  
+                  
+                  <thead align="left">
+                     <tr>
+                        <th class="cellrowborder" valign="top" width="NaN%" id="d167169e416">
+                           <p>Method</p>
+
+                        </th>
+
+                        <th class="cellrowborder" valign="top" width="NaN%" id="d167169e422">
+                           <p>Description</p>
+
+                        </th>
+
+                     </tr>
+
+                  </thead>
+
+                  <tbody>
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d167169e416 ">
+                           <div class="p">
+                              <pre class="codeblock">setBusyCursor()</pre>
+
+                           </div>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d167169e422 ">
+                           <p>Displays the busy cursor.</p>
+
+                        </td>
+
+                     </tr>
+
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d167169e416 ">
+                           <div class="p">
+                              <pre class="codeblock">removeBusyCursor()</pre>
+
+                           </div>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d167169e422 ">
+                           <p>Removes the busy cursor from the cursor
+list. If other busy cursor requests are still active in the cursor
+list, which means that you called the <samp class="codeph">setBusyCursor()</samp> method
+more than once, a busy cursor does not disappear until you remove
+all busy cursors from the list.</p>
+
+                        </td>
+
+                     </tr>
+
+                  </tbody>
+
+               </table>
+</div>
+
+            <p>You can modify the example in <a href="flx_cursormgr_cu.html#WS2db454920e96a9e51e63e3d11c0bf69084-7f25_verapache">Creating
+and removing a cursor</a> to use the default busy cursor, as
+the following example shows: </p>
+
+            <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- cursors\DefBusyCursorApp.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx"&gt; 
+ 
+    &lt;fx:Script&gt; 
+        &lt;![CDATA[ 
+            import mx.managers.CursorManager; 
+            import flash.events.*; 
+            
+            private function initImage(event:MouseEvent):void { 
+                CursorManager.setBusyCursor(); 
+                image1.load("../assets/DSC00034.JPG"); 
+            } 
+    
+            private function loadComplete(event:Event):void { 
+                CursorManager.removeBusyCursor(); 
+            }    
+        ]]&gt; 
+    &lt;/fx:Script&gt; 
+ 
+    &lt;s:VGroup&gt; 
+        &lt;!-- Image control to load the image. --&gt; 
+        &lt;mx:Image id="image1" 
+            height="50" 
+            width="100" 
+            scaleContent="true" 
+            complete="loadComplete(event);"/&gt; 
+        
+        &lt;!-- Button triggers the load. --&gt; 
+        &lt;s:Button id="myButton" label="Show" click="initImage(event);"/&gt; 
+    &lt;/s:VGroup&gt; 
+&lt;/s:Application&gt;</pre>
+
+            <p>Setting the
+busy cursor does not prevent a user from interacting with your application;
+a user can still enter text or select buttons. However, all containers support
+the <samp class="codeph">enabled</samp> property. By default, this property
+is set to <samp class="codeph">true</samp> to enable user interaction with
+the container and with the container's children. If you set the <samp class="codeph">enabled</samp> property
+to <samp class="codeph">false</samp> when you display a busy cursor, Flex dims
+the color of the container and of all of its children, and blocks
+user input to the container and to all of its children. </p>
+
+            <p>You can also disable user interaction for the entire application
+by setting the <samp class="codeph">FlexGlobals.topLevelApplication.enabled</samp> property
+to <samp class="codeph">false</samp>. If you are in a subclass or an ActionScript-only
+application, you must either explicitly import the mx.core.FlexGlobals
+class, or specify <samp class="codeph">mx.core.FlexGlobals.topLevelApplication.enabled</samp> to
+set the property's value.</p>
+
+            <p>The busy cursor has a priority of <samp class="codeph">CursorManagerPriority.LOW</samp>.
+Therefore, if the cursor list contains a cursor with a higher priority,
+the busy cursor does not appear until you remove the higher-priority
+cursor. To create a default busy cursor at a higher priority level,
+use the <samp class="codeph">setCursor()</samp> method, as the following example
+shows:</p>
+
+            <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- cursors\ShowBusyCursorAppHighP.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx"&gt; 
+ 
+    &lt;fx:Script&gt; 
+        &lt;![CDATA[ 
+            import mx.managers.CursorManager; 
+            import mx.managers.CursorManagerPriority; 
+            import flash.events.*; 
+            
+            // Define a variable to hold the cursor ID. 
+            private var cursorID:Number = 0; 
+                       
+            // Define event listener to display the busy cursor 
+            // and to load the image. 
+            private function initImage(event:MouseEvent):void { 
+                // Set busy cursor. 
+                cursorID = CursorManager.setCursor( 
+styleManager.getStyleDeclaration("mx.managers.CursorManager").getStyle("busyCursor"),CursorManagerPriority.HIGH); 
+                // Load large image. 
+                image1.load("../assets/DSC00034.JPG"); 
+            } 
+ 
+            // Define an event listener to remove the wait cursor. 
+            private function loadComplete(event:Event):void { 
+                CursorManager.removeCursor(cursorID);   
+            }               
+        ]]&gt; 
+    &lt;/fx:Script&gt; 
+ 
+    &lt;s:VGroup&gt; 
+        &lt;!-- Image control to load the image. --&gt; 
+        &lt;mx:Image id="image1" 
+            height="50" 
+            width="100" 
+            scaleContent="true" 
+            complete="loadComplete(event);"/&gt; 
+ 
+        &lt;!-- Button triggers the load. --&gt; 
+        &lt;s:Button id="myButton" label="Show" click="initImage(event);"/&gt; 
+    &lt;/s:VGroup&gt; 
+&lt;/s:Application&gt;</pre>
+
+            <p>This statement uses the <samp class="codeph">getStyleDeclaration()</samp> method
+of the top-level StyleManager (accessed with the Application object's <samp class="codeph">styleManager</samp> property)
+to get the CSStyleDeclaration object for the Cursor Manager, and
+uses this object's <samp class="codeph">getStyle()</samp> method to get the
+busy cursor, which it sets as a high priority cursor.</p>
+
+            <p>When you use this technique, you must also use the cursor ID
+in the <samp class="codeph">removeCursor()</samp> method to remove the busy
+cursor.</p>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf613bf-7ffd_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf613bf-7ffd_verapache"><!-- --></a>
+         <h3 class="topictitle3">Using the showBusyCursor property</h3>
+
+         
+         <div>
+            <p>The SWFLoader and MX Image controls, and the WebService,
+HTTPService, and RemoteObject classes, have a <samp class="codeph">showBusyCursor</samp> property
+that automatically displays the default busy cursor until the class
+completes loading data. The default value is <samp class="codeph">false</samp>.</p>
+
+            <p>The Spark Image control does not have a <samp class="codeph">showBusyCursor</samp> property.</p>
+
+            <p>If you set the <samp class="codeph">showBusyCursor</samp> property to <samp class="codeph">true</samp>,
+Flex displays the busy cursor when the first <samp class="codeph">progress</samp> event
+of the control is triggered, and hides the busy cursor when the <samp class="codeph">complete</samp> event
+is triggered. The following example shows how you can simplify the
+example in the section <a href="flx_cursormgr_cu.html#WS2db454920e96a9e51e63e3d11c0bf69084-7f26_verapache">Setting
+a busy cursor</a> by using the <samp class="codeph">showBusyCursor</samp> property
+of the MX Image control: </p>
+
+            <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- cursors\ShowBusyCursorApp.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx"&gt; 
+ 
+    &lt;s:VGroup&gt; 
+        &lt;!-- Image control to load the image. --&gt; 
+        &lt;mx:Image id="image1" 
+            height="50" 
+            width="100" 
+            scaleContent="true" 
+            showBusyCursor="true"/&gt; 
+    
+        &lt;!-- Button triggers the load. --&gt; 
+        &lt;s:Button id="myButton" label="Show" 
+            click="image1.load('../assets/DSC00034.JPG');"/&gt;    
+    &lt;/s:VGroup&gt; 
+&lt;/s:Application&gt;</pre>
+
+            <p/>
+
+         </div>
+
+      </div>
+
+<div>
+  <p><strong>Navigation</strong></p>
+  <p><a href="index.html">Using Flex</a> &raquo; <a href="flx_p6_enhancing_usability.html">Enhancing usability</a></p>
+</div>
+
+         <p>Adobe and Adobe Flash Platform are either registered trademarks or trademarks of Adobe Systems Incorporated in the United States and/or other countries and are used by permission from Adobe.  No other license to the Adobe trademarks are granted.</p>
+
+   </div>
+
+
+</body>
+</html>

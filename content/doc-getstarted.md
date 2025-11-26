@@ -97,6 +97,7 @@ The complete code listing is (there may be some variations, depending on your ID
 
 <div class="headline"><h4>Additional Resources</h4></div>
 
+*  Read through the [Using Flex][15] documentation for a comprehensive guide that teaches you how to use Flex.
 *  Make sure to check out our video and screencast library on the [videos page][5].
 *  There are a large variety of books available online.  One of our favorites is from Michael Labriola and Jeff Tapper (both Apache Flex Committers).  [Amazon Link to book][6]
 *  There are quite a few people that blog about Flex.  Check out the [official blog of Apache Flex][14], [FlashDaily.net][7] and [Adobe Feeds for Apache Flex][9]
@@ -115,3 +116,4 @@ The complete code listing is (there may be some variations, depending on your ID
  [12]: https://vimeo.com/46898669
  [13]: https://fdt.powerflasher.com/
  [14]: https://blogs.apache.org/flex/
+ [15]: doc/flex/using/index.html

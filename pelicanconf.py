@@ -40,7 +40,31 @@ CURRENTYEAR = date.today().year
 ASF_DATA_YAML = "asfdata.yaml"
 
 # Save pages using full directory preservation
-PAGE_PATHS = ['.']
+PAGE_PATHS = ['']
+
+# Add directories that shouldn't be processed before copying
+# Basically, static .html files that shouldn't use the regular site template
+PAGE_EXCLUDES = [
+    'maven',
+    'tourdeflex',
+    'asdoc',
+    'installer',
+    'installerbadge',
+    'team',
+    'flexunit/asdoc/aircilistener',
+    'flexunit/asdoc/anttasks',
+    'flexunit/asdoc/cilistener',
+    'flexunit/asdoc/flexcoverlistener',
+    'flexunit/asdoc/flexunit',
+    'flexunit/asdoc/flexUnit4FluintExtensions',
+    'flexunit/asdoc/uilistener',
+    # the static directory is for things that should be copied without
+    # processing, but need to be in the root. We can't exclude the root because
+    # it actually contains some things that should be processed. however, we can
+    # move anything from the root into static to exclude it, then use
+    # EXTRA_PATH_METADATA to move it back from static to the root.
+    'static', 
+]
 
 # Template uses {{base}}
 BASE = '/'
@@ -63,10 +87,7 @@ INDEX_SAVE_AS = ''
 TAGS_SAVE_AS = ''
 
 # We want to serve our static files mixed with content.
-STATIC_PATHS = ['.']
-
-# we want any html to be served as is
-READERS = {'html': None}
+STATIC_PATHS = ['']
 
 # We don't use articles, but we don't want pelican to think
 # that content/ contains articles.
@@ -170,3 +191,9 @@ DEFAULT_PAGINATION = False
 
 # Uncomment following line if you want document-relative URLs when developing
 # RELATIVE_URLS = True
+
+EXTRA_PATH_METADATA = {
+    'static/single-mirror-url--xml.html': {
+        'path': 'single-mirror-url--xml.html'
+    },
+}

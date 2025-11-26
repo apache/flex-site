@@ -1,0 +1,1484 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Licensed to the Apache Software Foundation (ASF) under one or more
+  contributor license agreements.  See the NOTICE file distributed with
+  this work for additional information regarding copyright ownership.
+  The ASF licenses this file to You under the Apache License, Version 2.0
+  (the "License"); you may not use this file except in compliance with
+  the License.  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+-->
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en-us" xml:lang="en-us">
+<head>
+<meta name="DC.Type" content="topic"/>
+<meta name="DC.Title" content="Advanced MXML components"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="WS2db454920e96a9e51e63e3d11c0bf69084-7a35_verapache"/>
+<title>Advanced MXML components</title>
+</head>
+<body id="WS2db454920e96a9e51e63e3d11c0bf69084-7a35_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7a35_verapache"><!-- --></a>
+
+   <div>
+      <p>One of the common goals of creating MXML components is
+to create configurable and reusable components. For example, you
+might want to create MXML components that take properties, dispatch
+events, define new style properties, have custom skins, or use other
+customizations. </p>
+
+      <p>For information about how to create and deploy simple MXML components, including
+how to apply styles and skins to your MXML components, see <a href="flx_mxmlcomponents_mxc.html#WS2db454920e96a9e51e63e3d11c0bf69084-7feb_verapache">Simple MXML
+components</a>.</p>
+
+   </div>
+
+   <div class="nested1" id="WS2db454920e96a9e51e63e3d11c0bf688f1-7ff8_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf688f1-7ff8_verapache"><!-- --></a>
+      <h2 class="topictitle2">About reusable MXML components</h2>
+
+      
+      <div>
+         <p>One
+design consideration when you create custom MXML components is reusability.
+That is, do you want to create a component that is tightly coupled
+to your application, or one that is reusable in multiple applications?</p>
+
+         <p>A tightly coupled component is written for a specific application,
+and is often dependent on the application's structure, variable
+names, or other details. If you change the application, you will
+probably need to modify the component to reflect that change, and
+it will also be difficult to use the component in another application
+without rewriting it. </p>
+
+         <p>Another possibility is to design a loosely coupled component
+for reuse. A loosely coupled component has a well-defined interface
+that specifies how to pass information to the component, and how
+the component passes back results to the application. </p>
+
+         <p>With loosely coupled components, you typically define properties
+of the component to let users pass information to it. These properties,
+defined by using variables or setter and getter methods, specify
+the data types of parameter values. For more information about defining
+component properties, see <a href="flx_mxmlcomponents_advanced_mxa.html#WS2db454920e96a9e51e63e3d11c0bf69084-79cd_verapache">Adding custom
+properties and methods to a component</a>.</p>
+
+         <p>The best practice for defining components that return information
+to the main application is to design the component to dispatch an
+event that contains the return data. In that way, the main application
+can define an event listener to handle the event and take the appropriate
+action. For more information on dispatching events, see <a href="flx_mxmlcomponents_advanced_mxa.html#WS2db454920e96a9e51e63e3d11c0bf69084-79ce_verapache">Working
+with events</a>.</p>
+
+      </div>
+
+   </div>
+
+   <div class="nested1" id="WS2db454920e96a9e51e63e3d11c0bf69084-79cd_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-79cd_verapache"><!-- --></a>
+      <h2 class="topictitle2">Adding custom properties and methods to
+a component</h2>
+
+      
+      <div>
+         <p>MXML components provide you with a simple way to create
+ActionScript classes. When defining classes, you use class properties
+to store information and class methods to define class functionality.
+When creating MXML components, you can also add properties and methods
+to the components to make them configurable. By allowing the user
+to pass information to the components, you can create a reusable
+component that you can use in multiple locations throughout your application,
+or in multiple applications. </p>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf688f1-7ff5_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf688f1-7ff5_verapache"><!-- --></a>
+         <h3 class="topictitle3">Defining properties and methods
+in MXML components</h3>
+
+         
+         <div>
+            <p>You can define methods for your MXML components in ActionScript,
+and properties in ActionScript or MXML. The Flex compiler converts
+the MXML component into an ActionScript class, so there is no performance
+difference between defining a property in MXML and defining it in
+ActionScript. </p>
+
+         </div>
+
+         <div class="nested3" id="WS2db454920e96a9e51e63e3d11c0bf69084-79ca_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-79ca_verapache"><!-- --></a>
+            <h4 class="topictitle4">Defining properties and methods
+in ActionScript</h4>
+
+            
+            <div>
+               <p>With ActionScript, you define properties and methods by
+using the same syntax that you use in an ActionScript class. For
+more information on using ActionScript to define properties and
+methods, see <a href="flx_createcomps_basicas_cca.html#WS2db454920e96a9e51e63e3d11c0bf69084-79fc_verapache">Custom
+ActionScript components</a>. </p>
+
+               <p>When using ActionScript, you place a property or method definition
+within an <samp class="codeph">&lt;fx:Script&gt;</samp> block. The <samp class="codeph">&lt;fx:Script&gt;</samp> tag
+must be an immediate child tag of the root tag of the MXML file.
+A public variable declaration or a set function in an <samp class="codeph">&lt;fx:Script&gt;</samp> tag
+becomes a property of the component. A public ActionScript function
+in an <samp class="codeph">&lt;fx:Script&gt;</samp> tag becomes a method of
+the component.</p>
+
+               <p>In the following example, the component defines two data providers
+to populate the <a href="https://flex.apache.org/asdoc/spark/components/ComboBox.html" target="_blank">ComboBox</a> control,
+and a function to use as the event listener for the <samp class="codeph">creationComplete</samp> event.
+This function sets the data provider of the ComboBox based on the
+value of the <samp class="codeph">shortNames</samp> property. By default, the <samp class="codeph">shortNames</samp> property
+is set to <samp class="codeph">true</samp>, to display two-letter names.</p>
+
+               <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- mxmlAdvanced/myComponents/StateComboBoxPropAS.mxml --&gt; 
+&lt;s:ComboBox xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    creationComplete="setNameLength();"&gt; 
+ 
+    &lt;fx:Script&gt; 
+        &lt;![CDATA[ 
+            import mx.collections.ArrayList; 
+ 
+            // Define public variables. 
+            public var shortNames:Boolean = true; 
+                        
+            // Define private variables. 
+            private var stateArrayShort:ArrayList = new ArrayList(["AK", "AL"]); 
+            private var stateArrayLong:ArrayList = new ArrayList(["Arkansas", "Alaska"]); 
+ 
+            // Define listener method.                      
+            public function setNameLength():void { 
+                if (shortNames) { 
+                    dataProvider=stateArrayShort; } 
+                else { 
+                    dataProvider=stateArrayLong; } 
+            } 
+        ]]&gt; 
+    &lt;/fx:Script&gt; 
+&lt;/s:ComboBox&gt;    </pre>
+
+               <p>The following MXML application file uses the <samp class="codeph">&lt;MyComp:StateComboBoxPropAS&gt;</samp> tag
+to configure the control to display long state names:</p>
+
+               <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- mxmlAdvanced/MainPropAS.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:MyComp="myComponents.*"&gt; 
+ 
+    &lt;MyComp:StateComboBoxPropAS shortNames="true"/&gt; 
+    
+&lt;/s:Application&gt;</pre>
+
+               <p>The following example modifies the component to add a method
+that lets you change the display of the state name at run time.
+This public method takes a single argument that specifies the value
+of the <samp class="codeph">shortNames</samp> property.</p>
+
+               <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- mxmlAdvanced/myComponents/StateComboBoxPropMethod.mxml --&gt; 
+&lt;s:ComboBox xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    creationComplete="setNameLength();"&gt; 
+ 
+    &lt;fx:Script&gt; 
+        &lt;![CDATA[ 
+            import mx.collections.ArrayList; 
+ 
+            // Define public variables. 
+            public var shortNames:Boolean = true; 
+                        
+            // Define private variables. 
+            private var stateArrayShort:ArrayList = new ArrayList(["AK", "AL"]); 
+            private var stateArrayLong:ArrayList = new ArrayList(["Arkansas", "Alaska"]); 
+ 
+            public function setNameLength():void { 
+                if (shortNames) { 
+                    this.dataProvider=stateArrayShort; } 
+                else { 
+                    this.dataProvider=stateArrayLong; } 
+            }                                           
+                        
+            public function setShortName(val:Boolean):void { 
+                shortNames=val; 
+                if (val) { 
+                    dataProvider=stateArrayShort; } 
+                else { 
+                    dataProvider=stateArrayLong; } 
+            }                                                                   
+        ]]&gt; 
+    &lt;/fx:Script&gt; 
+&lt;/s:ComboBox&gt;    </pre>
+
+               <p>You might use this new method with the <samp class="codeph">click</samp> event
+of a <a href="https://flex.apache.org/asdoc/spark/components/Button.html" target="_blank">Button</a> control
+to change the display from long names to short names, as the following
+example shows:</p>
+
+               <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- mxmlAdvanced/MainPropWithMethod.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:MyComp="myComponents.*"&gt; 
+    &lt;s:layout&gt; 
+        &lt;s:VerticalLayout/&gt; 
+    &lt;/s:layout&gt; 
+ 
+    &lt;MyComp:StateComboBoxPropMethod id="myCB" 
+        shortNames="false"/&gt; 
+    &lt;s:Button label="Use Short Names" 
+        click="myCB.setShortName(true);"/&gt; 
+&lt;/s:Application&gt;</pre>
+
+            </div>
+
+         </div>
+
+         <div class="nested3" id="WS2db454920e96a9e51e63e3d11c0bf688f1-7fff_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf688f1-7fff_verapache"><!-- --></a>
+            <h4 class="topictitle4">Defining properties in MXML</h4>
+
+            
+            <div>
+               <p>In MXML,
+you can use an MXML tag to define a property of any type, as long
+as the type refers to an ActionScript class name. For example, you
+can use the <samp class="codeph">&lt;fx:String&gt;</samp>, <samp class="codeph">&lt;fx:Number&gt;</samp>,
+and <samp class="codeph">&lt;fx:Boolean&gt;</samp> tags to define properties
+in your MXML components that take String, Number, or Boolean values,
+respectively. When using one of these tags, you must specify an <samp class="codeph">id</samp>,
+which becomes the property name.</p>
+
+               <p>Optionally, you can specify an initial value in the body of the
+tag, or you can use the <samp class="codeph">source</samp> property to specify
+the contents of an external URL or file as the initial property
+value. If you use the <samp class="codeph">source</samp> property, the body
+of the tag must be empty. The initial value can be static data or
+a binding expression.</p>
+
+               <p>The following examples show initial properties set as static
+data and binding expressions. Values are set in the tag bodies and
+in the <samp class="codeph">source</samp> properties.</p>
+
+               <pre class="codeblock"> <strong>&lt;!-- Boolean property examples: --&gt;</strong> 
+ &lt;fx:Boolean id="myBooleanProperty"&gt;true&lt;/fx:Boolean&gt; 
+ &lt;fx:Boolean id="passwordStatus"&gt;{passwordExpired}&lt;/fx:Boolean&gt; 
+  
+ <strong>&lt;!-- Number property examples: --&gt;</strong> 
+ &lt;fx:Number id="myNumberProperty"&gt;15&lt;/fx:Number&gt; 
+ &lt;fx:Number id="minutes"&gt;{numHours * 60}&lt;/fx:Number&gt; 
+  
+ <strong>&lt;!-- String property examples: --&gt;</strong> 
+ &lt;fx:String id="myStringProperty"&gt;Welcome, {CustomerName}.&lt;/fx:String&gt; 
+ &lt;fx:String id="myStringProperty1" source="./file"/&gt;</pre>
+
+               <p>All properties defined by using the <samp class="codeph">&lt;fx:String&gt;</samp>, <samp class="codeph">&lt;fx:Number&gt;</samp>,
+and <samp class="codeph">&lt;fx:Boolean&gt;</samp> tags are public. This means
+that the component user can access these properties.</p>
+
+               <p>The following example modifies the example in <a href="flx_mxmlcomponents_advanced_mxa.html#WS2db454920e96a9e51e63e3d11c0bf69084-79ca_verapache">Defining
+properties and methods in ActionScript</a> to define the <samp class="codeph">shortNames</samp> property
+by using an MXML tag, rather than an ActionScript variable definition: </p>
+
+               <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- mxmlAdvanced/myComponents/StateComboBoxPropMXML.mxml --&gt; 
+&lt;s:ComboBox xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    creationComplete="setNameLength();"&gt; 
+ 
+    &lt;fx:Declarations&gt; 
+        &lt;!-- Control display of state names. --&gt; 
+        &lt;fx:Boolean id="shortNames"&gt;true&lt;/fx:Boolean&gt; 
+    &lt;/fx:Declarations&gt; 
+ 
+    &lt;fx:Script&gt; 
+        &lt;![CDATA[ 
+            import mx.collections.ArrayList; 
+ 
+            // Define private variables. 
+            private var stateArrayShort:ArrayList = new ArrayList(["AK", "AL"]); 
+            private var stateArrayLong:ArrayList = new ArrayList(["Arkansas", "Alaska"]); 
+                        
+            // Define listener method.                      
+            public function setNameLength():void { 
+                if (shortNames) { 
+                    dataProvider=stateArrayShort; } 
+                else { 
+                    dataProvider=stateArrayLong; } 
+            }                                                                 
+        ]]&gt; 
+    &lt;/fx:Script&gt; 
+&lt;/s:ComboBox&gt;    </pre>
+
+               <p>In the preceding example, you implement the StateComboBox.mxml
+file by using the <samp class="codeph">&lt;fx:Boolean&gt;</samp> tag to add
+a new property, <samp class="codeph">shortNames</samp>, with a default value
+of <samp class="codeph">true</samp>. This property controls whether the <a href="https://flex.apache.org/asdoc/mx/controls/ComboBox.html" target="_blank">ComboBox</a> control displays
+state names that use a two-letter format, or the entire state name. </p>
+
+            </div>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf69084-79c9_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-79c9_verapache"><!-- --></a>
+         <h3 class="topictitle3">Defining properties by using setters
+and getters</h3>
+
+         
+         <div>
+            <p>You
+can define properties for your MXML components by using setter and
+getter methods. The advantage of getters and setters is that they
+isolate the variable from direct public access so that you can perform
+the following tasks:</p>
+
+            <ul>
+               <li>
+                  <p>Inspect and validate any data written to the property
+on a write operation</p>
+
+               </li>
+
+               <li>
+                  <p>Trigger events that
+are associated with the property when the property changes</p>
+
+               </li>
+
+               <li>
+                  <p>Calculate a return value on a read operation</p>
+
+               </li>
+
+            </ul>
+
+            <p>For more information, see <a href="flx_createcomps_basicas_cca.html#WS2db454920e96a9e51e63e3d11c0bf69084-79fc_verapache">Custom
+ActionScript components</a>.</p>
+
+            <p>In the following example, the StateComboBoxGetSet.mxml component
+contains several new properties and methods: </p>
+
+            <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- mxmlAdvanced/myComponents/StateComboBoxSetGet.mxml --&gt; 
+&lt;s:ComboBox xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx"&gt; 
+ 
+    &lt;fx:Script&gt; 
+        &lt;![CDATA[ 
+            import mx.collections.ArrayList; 
+            
+            // Define private variables. 
+            private var stateArrayShort:ArrayList = new ArrayList(["AK", "AL"]); 
+            private var stateArrayLong:ArrayList = new ArrayList(["Arkansas", "Alaska"]); 
+ 
+            // Variable holding the display setting. 
+            private var __shortNames:Boolean = true; 
+            
+            // Set method. 
+            public function set shortNames(val:Boolean):void { 
+                // Call method to set the dataProvider 
+                // based on the name length. 
+                __shortNames = val; 
+                if (__shortNames) { 
+                    this.dataProvider=stateArrayShort; } 
+                else { 
+                    this.dataProvider=stateArrayLong; } 
+            } 
+ 
+            // Get method. 
+            public function get shortNames():Boolean{ 
+                return __shortNames; 
+            }                                       
+        ]]&gt; 
+    &lt;/fx:Script&gt; 
+&lt;/s:ComboBox&gt;    </pre>
+
+            <p>In this example, you create a StateComboBoxGetSet.mxml control
+that takes a <samp class="codeph">shortNames</samp> property defined by using
+ActionScript setter and getter methods. One advantage to using setter
+and getter methods to define a property is that the component can
+recognize changes to the property at run time. For example, you
+can give your users the option of displaying short state names or long
+state names from the application. The setter method modifies the component
+at run time in response to the user's selection. </p>
+
+            <p>You can also define events to be dispatched when a property changes.
+This enables you to signal the change so that an event listener
+can recognize the change. For more information on events, see <a href="flx_mxmlcomponents_advanced_mxa.html#WS2db454920e96a9e51e63e3d11c0bf69084-79ce_verapache">Working
+with events</a>. </p>
+
+            <p>You can call a component's custom methods and access its properties
+in ActionScript just as you would any instance method or component
+property, as the following application shows:</p>
+
+            <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- mxmlAdvanced/MainPropSetGet.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:MyComp="myComponents.*"&gt; 
+    &lt;s:layout&gt; 
+        &lt;s:VerticalLayout/&gt; 
+    &lt;/s:layout&gt; 
+    
+    &lt;MyComp:StateComboBoxSetGet id="myStateCB" 
+        shortNames="true"/&gt; 
+    &lt;s:Button label="Toggle Short Names" 
+        click="myStateCB.shortNames=!myStateCB.shortNames;"/&gt; 
+&lt;/s:Application&gt;</pre>
+
+            <p>In this example, selecting the button toggles the display format
+of the state name between the short and long formats.</p>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf688f1-7ffe_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf688f1-7ffe_verapache"><!-- --></a>
+         <h3 class="topictitle3">Defining inspectable properties</h3>
+
+         
+         <div>
+            <p>You
+should precede the variable or set function with the <samp class="codeph">[Inspectable]</samp> metadata
+tag if you plan to use the component in an authoring tool. The <samp class="codeph">[Inspectable]</samp> metadata
+tag must immediately precede the property's variable declaration
+or the setter and getter methods to be bound to that property, as
+the following example shows:</p>
+
+            <pre class="codeblock">&lt;fx:Script&gt; 
+	&lt;![CDATA[ 
+  
+		// Define public variables. 
+		<strong>[Inspectable(defaultValue=true)]</strong> 
+		public var shortNames:Boolean = true; 
+  
+	]]&gt; 
+&lt;/fx:Script&gt;</pre>
+
+            <p>For more information on the <samp class="codeph">[Inspectable]</samp> metadata
+tag, see <a href="flx_metadata_me.html#WS2db454920e96a9e51e63e3d11c0bf69084-7fe9_verapache">Metadata
+tags in custom components</a>.</p>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf69084-79c6_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-79c6_verapache"><!-- --></a>
+         <h3 class="topictitle3">Supporting data binding in custom
+properties</h3>
+
+         
+         <div>
+            <p>The
+Flex data binding mechanism provides a syntax for automatically
+copying the value of a property of one object to a property of another
+object at run time. The following example shows a <a href="https://flex.apache.org/asdoc/mx/controls/Text.html" target="_blank">Text</a> control
+that gets its data from <a href="https://flex.apache.org/asdoc/mx/controls/sliderClasses/Slider.html" target="_blank">Slider</a> control's <samp class="codeph">value</samp> property.
+The property name inside the curly braces ({ }) is a binding expression
+that copies the value of the source property, <samp class="codeph">mySlider.value</samp>,
+to the destination property, the Text control's <samp class="codeph">text</samp> property,
+as the following example shows:</p>
+
+            <pre class="codeblock"> &lt;mx:Slider id="mySlider"/&gt; 
+ &lt;mx:Text text="{mySlider.value}"/&gt;</pre>
+
+            <p>Data binding is usually triggered whenever the value of the source
+property changes.</p>
+
+            <p>Properties that you define in your custom controls can also take
+advantage of data binding. You can automatically use any property
+defined by using an MXML tag, such as <samp class="codeph">&lt;fx:Boolean&gt;</samp>,
+and any ActionScript property defined as a variable or defined by
+using setter and getter methods as the destination of a binding
+expression. </p>
+
+            <p>For example, <a href="flx_mxmlcomponents_advanced_mxa.html#WS2db454920e96a9e51e63e3d11c0bf69084-79c9_verapache">Defining
+properties by using setters and getters</a> defined the <samp class="codeph">shortNames</samp> property
+of StateComboBoxGetSet.mxml by using setter and getter methods.
+With no modification to that component, you can use <samp class="codeph">shortNames</samp> as
+the destination of a binding expression, as the following example
+shows:</p>
+
+            <pre class="codeblock"> &lt;MyComp:StateComboBoxSetGet shortNames="{some_prop}"/&gt;</pre>
+
+            <p>However, you can also write your component to use the <samp class="codeph">shortNames</samp> property as
+the source of a binding expression, as the following example shows
+for the component StateComboBoxGetSetBinding.mxml:</p>
+
+            <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- mxmlAdvanced/MainPropSetGetBinding.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:MyComp="myComponents.*"&gt; 
+    &lt;s:layout&gt; 
+        &lt;s:VerticalLayout/&gt; 
+    &lt;/s:layout&gt; 
+    
+    &lt;MyComp:StateComboBoxSetGetBinding id="myStateCB" 
+        shortNames="false"/&gt; 
+    
+    &lt;s:TextArea 
+        text="The value of shortNames is {myStateCB.shortNames}"/&gt; 
+    &lt;s:Button label="Toggle Short Names" 
+        click="myStateCB.shortNames=!myStateCB.shortNames;"/&gt; 
+&lt;/s:Application&gt;</pre>
+
+            <p>When a property is the source of a data binding expression, any
+changes to the property must signal an update to the destination
+property. The way to signal that change is to dispatch an event,
+as the following example shows: </p>
+
+            <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- mxmlAdvanced/myComponents/StateComboBoxSetGetBinding.mxml --&gt; 
+&lt;s:ComboBox xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx"&gt; 
+ 
+    &lt;fx:Script&gt; 
+        &lt;![CDATA[               
+            import mx.collections.ArrayList; 
+            import flash.events.Event; 
+ 
+            // Define private variables. 
+            private var stateArrayShort:ArrayList = new ArrayList(["AK", "AL"]); 
+            private var stateArrayLong:ArrayList = new ArrayList(["Arkansas", "Alaska"]); 
+ 
+            private var __shortNames:Boolean = true; 
+            
+            public function set shortNames(val:Boolean):void { 
+                __shortNames = val; 
+                if (__shortNames) { 
+                    dataProvider=stateArrayShort; } 
+                else { 
+                    dataProvider=stateArrayLong; } 
+                    // Create and dispatch event. 
+                    dispatchEvent(new Event("changeShortNames")); 
+            } 
+ 
+            // Include the [Bindable] metadata tag. 
+            [Bindable(event="changeShortNames")] 
+            public function get shortNames():Boolean { 
+                return __shortNames; 
+            }                                         
+        ]]&gt; 
+    &lt;/fx:Script&gt; 
+&lt;/s:ComboBox&gt;    </pre>
+
+         </div>
+
+         <div class="nested3" id="WS2db454920e96a9e51e63e3d11c0bf688f1-7ffc_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf688f1-7ffc_verapache"><!-- --></a>
+            <h4 class="topictitle4">Use a property as the source of
+a data binding expression</h4>
+
+            
+            <div>
+               <ol>
+                  <li>
+                     <p>Define the property as a variable, or by using
+setter and getter methods. </p>
+
+                     <p>You must define a setter method
+and a getter method if you use the <samp class="codeph">[Bindable]</samp> tag
+with the property. </p>
+
+                  </li>
+
+                  <li>
+                     <p>Insert the <samp class="codeph">[Bindable]</samp> metadata tag before
+the property definition, or before either the setter or getter method,
+and optionally specify the name of the event dispatched by the property
+when it changes. </p>
+
+                     <p>If you omit the event name specification
+from the <samp class="codeph">[Bindable]</samp> metadata tag, Flex automatically
+generates and dispatches an event named <samp class="codeph">propertyChange</samp>.
+If the property value remains the same on a write, Flex does not
+dispatch the event or update the property.</p>
+
+                     <p>Alternatively,
+you can place the <samp class="codeph">[Bindable]</samp> metadata before a
+public class definition. This makes all public properties that you
+defined as variables, and all public properties that you defined
+by using both a setter and a getter method, usable as the source
+of a binding expression.</p>
+
+                     <div class="note"><span class="notetitle">Note:</span> When you use the <samp class="codeph">[Bindable]</samp> metadata
+tag before a public class definition, it only applies to public
+properties; it does not apply to private or protected properties,
+or to properties defined in any other namespace. You must insert
+the <samp class="codeph">[Bindable]</samp>
+                        <em> metadata tag before a nonpublic property to make it usable as the source for a data binding expression.</em>
+                     </div>
+
+                  </li>
+
+                  <li>
+                     <p>Add a call to the <samp class="codeph">dispatchEvent()</samp> method
+to dispatch the event when you define the event name in the <samp class="codeph">[Bindable]</samp> metadata
+tag.</p>
+
+                  </li>
+
+               </ol>
+
+               <p>For more information on using the <samp class="codeph">[Bindable]</samp> tag,
+see <a href="flx_metadata_me.html#WS2db454920e96a9e51e63e3d11c0bf69084-7a2a_verapache">Bindable
+metadata tag</a>.</p>
+
+            </div>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf688f1-7fed_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf688f1-7fed_verapache"><!-- --></a>
+         <h3 class="topictitle3">Passing references to properties
+of MXML components</h3>
+
+         
+         <div>
+            <p>One of the ways that you can make a component reusable
+is to design it so that users can pass values to the component by
+using public properties of the component. For information on how
+to define properties for MXML components by using MXML and ActionScript,
+and how to pass values to those properties, see <a href="flx_mxmlcomponents_advanced_mxa.html#WS2db454920e96a9e51e63e3d11c0bf69084-79c6_verapache">Supporting
+data binding in custom properties</a>.</p>
+
+            <p>Rather than passing a value to a component, you can pass a reference
+to it. The reference could be to the calling component, to another
+component, or to a property of a component.</p>
+
+         </div>
+
+         <div class="nested3" id="WS2db454920e96a9e51e63e3d11c0bf688f1-7ff9_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf688f1-7ff9_verapache"><!-- --></a>
+            <h4 class="topictitle4">Accessing the Application object</h4>
+
+            
+            <div>
+               <p>The <a href="https://flex.apache.org/asdoc/spark/components/Application.html" target="_blank">Application</a> object
+is the top-level object in a Flex application. Often, you must reference
+properties or objects of the Application object from your custom component.
+Use the <a href="https://flex.apache.org/asdoc/mx/core/FlexGlobals.html" target="_blank">mx.core.FlexGlobals.topLevelApplication</a> static
+property to reference the application object.</p>
+
+               <p>You can also use the <a href="https://flex.apache.org/asdoc/mx/core/UIComponent.html#parentDocument" target="_blank">parentDocument</a> property
+to reference the next object up in the document chain of a Flex
+application. The <samp class="codeph">parentDocument</samp> property is inherited
+by all components from the UIComponent class. For an MXML component,
+the <samp class="codeph">parentDocument</samp> property references the Object
+corresponding to the component that referenced the MXML component.</p>
+
+               <p>For more information on the <samp class="codeph">mx.core.FlexGlobals.topLevelApplication</samp> static
+property and the <samp class="codeph">parentDocument</samp> property, see <a href="flx_app_container_apc.html#WS2db454920e96a9e51e63e3d11c0bf69084-7ee7_verapache">Application
+containers</a>.</p>
+
+               <p>Even if the calling file does not pass a reference to the Application
+object, you can always access it from your MXML component. For example,
+the following application contains a custom component called StateComboBoxDirectRef.
+In this example, StateComboBoxDirectRef is designed to write the
+index of the selected item in the ComboBox to the TextArea control:</p>
+
+               <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- mxmlAdvanced/MainDirectRef.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:MyComp="myComponents.*"&gt; 
+    &lt;s:layout&gt; 
+        &lt;s:VerticalLayout/&gt; 
+    &lt;/s:layout&gt; 
+    
+    &lt;s:TextArea id="myTAMain"/&gt; 
+    &lt;MyComp:StateComboBoxDirectRef/&gt; 
+&lt;/s:Application&gt;</pre>
+
+               <p>The simplest way to write StateComboBoxDirectRef.mxml is to use
+the <samp class="codeph">mx.core.FlexGlobals.topLevelApplication</samp> static
+property to write the index directly to the <a href="https://flex.apache.org/asdoc/spark/components/TextArea.html" target="_blank">TextArea</a> control,
+as the following example shows:</p>
+
+               <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- mxmlAdvanced/myComponents/StateComboBoxDirectRef.mxml --&gt; 
+&lt;s:ComboBox xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    close="handleCloseEvent(event);"&gt; 
+ 
+    &lt;fx:Script&gt; 
+        &lt;![CDATA[   
+        
+            import flash.events.Event; 
+            import mx.core.FlexGlobals; 
+            
+            public function handleCloseEvent(eventObj:Event):void { 
+                mx.core.FlexGlobals.topLevelApplication.myTAMain.text= 
+                    String(this.selectedIndex);               
+            }                    
+        ]]&gt; 
+    &lt;/fx:Script&gt; 
+        
+    &lt;s:dataProvider&gt; 
+        &lt;s:ArrayList&gt; 
+            &lt;fx:String&gt;AK&lt;/fx:String&gt; 
+            &lt;fx:String&gt;AL&lt;/fx:String&gt; 
+        &lt;/s:ArrayList&gt; 
+    &lt;/s:dataProvider&gt; 
+&lt;/s:ComboBox&gt;  </pre>
+
+               <p>In the previous example, you use the <samp class="codeph">close</samp> event
+of the <a href="https://flex.apache.org/asdoc/spark/components/ComboBox.html" target="_blank">ComboBox</a> control
+to write the <samp class="codeph">selectedIndex</samp> directly to the TextArea
+control in the main application. You must cast the value of <samp class="codeph">selectedIndex</samp> to
+a String because the <samp class="codeph">text</samp> property of the TextArea
+control is of type String. </p>
+
+               <p>You could make the custom component slightly more reusable by
+using the <samp class="codeph">parentDocument</samp> property to reference
+the TextArea control, rather than the <samp class="codeph">mx.core.FlexGlobals.topLevelApplication</samp> static
+property. By using the <samp class="codeph">parentDocument</samp> property,
+you can call the custom component from any other MXML component
+that contains a TextArea control named myTAMain, as the following
+example shows:</p>
+
+               <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- mxmlAdvanced/myComponents/StateComboBoxDirectRefParentObj.mxml --&gt; 
+&lt;s:ComboBox xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    close="handleCloseEvent(event);"&gt; 
+ 
+    &lt;fx:Script&gt; 
+        &lt;![CDATA[ 
+            
+            import flash.events.Event; 
+            
+            public function handleCloseEvent(eventObj:Event):void { 
+                parentDocument.myTAMain.text=String(selectedIndex); 
+            }                        
+        ]]&gt; 
+    &lt;/fx:Script&gt; 
+        
+    &lt;s:dataProvider&gt; 
+        &lt;s:ArrayList&gt; 
+            &lt;fx:String&gt;AK&lt;/fx:String&gt; 
+            &lt;fx:String&gt;AL&lt;/fx:String&gt; 
+        &lt;/s:ArrayList&gt; 
+    &lt;/s:dataProvider&gt; 
+&lt;/s:ComboBox&gt;    </pre>
+
+               <p>Although these examples work, they require that the <a href="https://flex.apache.org/asdoc/mx/controls/TextArea.html" target="_blank">TextArea</a> control
+has a predefined <samp class="codeph">id</samp> property, and that MXML component
+knows that <samp class="codeph">id</samp>. In this case, the custom component
+is an example of a tightly coupled component. That is, the component
+is written for a specific application and application structure,
+and it is not easily reused in another application.</p>
+
+            </div>
+
+         </div>
+
+         <div class="nested3" id="WS2db454920e96a9e51e63e3d11c0bf69084-79c4_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-79c4_verapache"><!-- --></a>
+            <h4 class="topictitle4">Passing a reference to the component</h4>
+
+            
+            <div>
+               <p>A loosely coupled component is a highly reusable component
+that you can easily use in different places in one application,
+or in different applications. To make the component from <a href="flx_mxmlcomponents_advanced_mxa.html#WS2db454920e96a9e51e63e3d11c0bf69084-79c6_verapache">Supporting
+data binding in custom properties</a> reusable, you can pass
+a reference to the <a href="https://flex.apache.org/asdoc/spark/components/TextArea.html" target="_blank">TextArea</a> control
+to the custom component, as the following example shows:</p>
+
+               <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- mxmlAdvanced/MainPassRefToTA.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:MyComp="myComponents.*"&gt; 
+    &lt;s:layout&gt; 
+        &lt;s:VerticalLayout/&gt; 
+    &lt;/s:layout&gt; 
+    
+    &lt;s:TextArea id="myTAMain" /&gt; 
+    &lt;MyComp:StateComboBoxPassRefToTA outputTA="{myTAMain}" /&gt; 
+&lt;/s:Application&gt;</pre>
+
+               <p>The custom component does not have to know anything about the
+main application, other than that it writes its results back to
+a <a href="https://flex.apache.org/asdoc/spark/components/TextArea.html" target="_blank">TextArea</a> control,
+as the following example shows:</p>
+
+               <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- mxmlAdvanced/myComponents/StateComboBoxPassRefToTA.mxml --&gt; 
+&lt;s:ComboBox xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    close="handleCloseEvent(event);"&gt; 
+ 
+    &lt;fx:Script&gt; 
+        &lt;![CDATA[               
+            import flash.events.Event; 
+            import spark.components.TextArea; 
+                
+            // Define a variable of type mx.controls.TextArea. 
+            public var outputTA:TextArea; 
+            
+            public function handleCloseEvent(eventObj:Event):void { 
+                outputTA.text=String(this.selectedIndex);               
+            }                       
+        ]]&gt; 
+    &lt;/fx:Script&gt; 
+        
+    &lt;s:dataProvider&gt; 
+        &lt;s:ArrayList&gt; 
+            &lt;fx:String&gt;AK&lt;/fx:String&gt; 
+            &lt;fx:String&gt;AL&lt;/fx:String&gt; 
+        &lt;/s:ArrayList&gt; 
+    &lt;/s:dataProvider&gt;    
+&lt;/s:ComboBox&gt;    </pre>
+
+               <p>In this example, you use the Flex data binding syntax to pass
+the reference to the TextArea control to your custom component.
+Now, you can use StateComboBoxPassRefToTA.mxml anywhere in an application.
+The only requirement is that the calling component must pass a reference
+to a TextArea control to the component. </p>
+
+            </div>
+
+         </div>
+
+         <div class="nested3" id="WS2db454920e96a9e51e63e3d11c0bf688f1-7ff0_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf688f1-7ff0_verapache"><!-- --></a>
+            <h4 class="topictitle4">Passing a reference to the calling
+component</h4>
+
+            
+            <div>
+               <p>In <a href="flx_mxmlcomponents_advanced_mxa.html#WS2db454920e96a9e51e63e3d11c0bf69084-79c4_verapache">Passing
+a reference to the component</a>, you passed a reference to a
+single component to the custom MXML component. This allowed the
+MXML component to access only a single component in the main application.</p>
+
+               <p>One type of reference that you can pass to your component is
+a reference to the calling component. With a reference to the calling
+component, your custom MXML file can access any properties or object
+in the calling component. </p>
+
+               <p>To pass a reference to the calling component to a custom MXML
+component, you create a property in the custom MXML component to
+represent the calling component. Then, from the calling component,
+you pass the reference, as the following example shows: </p>
+
+               <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- mxmlAdvanced/CallingComponent.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:MyComp="myComponents.*"&gt; 
+    &lt;s:layout&gt; 
+        &lt;s:VerticalLayout horizontalAlign="left"/&gt; 
+    &lt;/s:layout&gt; 
+ 
+    &lt;!-- Use the caller property to pass a reference to the 
+        calling component to DestinationComp. --&gt; 
+ 
+    &lt;s:Label text="Enter text"/&gt;        
+    &lt;s:TextInput id="text1" text="Hello"/&gt; 
+ 
+    &lt;s:Label text="Input text automatically copied to MXML component."/&gt;        
+    &lt;MyComp:DestinationComp caller="{this}"/&gt; 
+&lt;/s:Application&gt;</pre>
+
+               <p>In the definition of DestinationComp.mxml, you define the <samp class="codeph">caller</samp> property, and
+specify as its data type the name of the file of the calling MXML
+file, as the following example shows: </p>
+
+               <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- mxmlAdvanced/myComponents/DestinationComp.mxml --&gt; 
+&lt;s:VGroup xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx"&gt; 
+    
+    &lt;fx:Script&gt; 
+        &lt;![CDATA[ 
+            // Define variable to reference calling file. 
+            [Bindable] 
+            public var caller:CallingComponent; 
+        ]]&gt; 
+    &lt;/fx:Script&gt; 
+    
+    &lt;s:TextInput id="mytext" 
+        text="{caller.text1.text}"/&gt; 
+&lt;/s:VGroup&gt;</pre>
+
+               <p>Remember, an MXML component corresponds to an ActionScript class,
+where the ActionScript class name is the filename of the MXML component.
+Therefore, the MXML component defines a new data type. You can then
+create a variable whose data type is that of the calling file. </p>
+
+               <p>With the reference to the calling file, your MXML component can
+access any property of the calling file, and you can bind the value
+of the TextInput control in CallingComp.mxml to the TextInput control
+in StateComboBox.mxml. Creating a property of type CallingComp provides
+strong typing benefits and ensures that binding works correctly.</p>
+
+            </div>
+
+         </div>
+
+      </div>
+
+   </div>
+
+   <div class="nested1" id="WS2db454920e96a9e51e63e3d11c0bf69084-79ce_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-79ce_verapache"><!-- --></a>
+      <h2 class="topictitle2">Working with events</h2>
+
+      
+      <div>
+         <p>Flex applications are event-driven. Events let a programmer
+know when the user interacts with the interface, and also when important
+changes happen in the appearance or life cycle of a component, such
+as the creation or destruction of a component or its resizing. You
+can handle events that your custom components generate and add your
+own event types to your custom components.</p>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf69084-79d1_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-79d1_verapache"><!-- --></a>
+         <h3 class="topictitle3">Handling events from simple MXML
+components</h3>
+
+         
+         <div>
+            <p>Simple MXML components are those that contain a single
+root tag that is not a container. In this topic, the StateComboBox.mxml
+component is a simple component because it contains a definition
+only for the <a href="https://flex.apache.org/asdoc/spark/components/ComboBox.html" target="_blank">ComboBox</a> control.</p>
+
+            <p>You have two
+choices for handling events that a simple component dispatches: handle
+the events within the definition of your MXML component, or allow
+the file that references the component to handle them. </p>
+
+            <p>The following example uses the StateComboBox.mxml component,
+and defines the event listener for the component's <samp class="codeph">close</samp> event
+in the main application:</p>
+
+            <pre class="codeblock"> &lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+	xmlns:s="library://ns.adobe.com/flex/spark" 
+	xmlns:mx="library://ns.adobe.com/flex/mx" 
+	xmlns:MyComp="*"&gt; 
+  
+ 	&lt;fx:Script&gt; 
+ 		&lt;![CDATA[ 
+ 			import flash.events.Event; 
+  
+ 			<strong>public function handleCloseEvent(eventObj:Event):void {</strong> 
+ 				... 
+ 			}	 
+ 		]]&gt; 
+ 	&lt;/fx:Script&gt; 
+  
+ 	&lt;MyComp:StateComboBox rowCount="5" close="handleCloseEvent(event);"/&gt; 
+  
+ &lt;/s:Application&gt;</pre>
+
+            <p>In this example, if the MXML component dispatches a <samp class="codeph">close</samp> event,
+the event listener in the calling MXML file handles it. </p>
+
+            <p>Alternatively, you could define the event listener within the
+StateComboBox.mxml component, as the following example shows:</p>
+
+            <pre class="codeblock"> &lt;?xml version="1.0"?&gt; 
+ &lt;!-- StateComboBox.mxml --&gt; 
+ &lt;s:ComboBox xmlns:fx="http://ns.adobe.com/mxml/2009" 
+	xmlns:s="library://ns.adobe.com/flex/spark" 
+	xmlns:mx="library://ns.adobe.com/flex/mx" 
+ 	close="handleCloseEvent(event);"&gt; 
+  
+ 	&lt;fx:Script&gt; 
+ 		&lt;![CDATA[ 
+  
+ 			import flash.events.Event; 
+  
+ 			<strong>public function handleCloseEvent(eventObj:Event):void {</strong> 
+ 				... 
+ 			} 
+ 		]]&gt; 
+ 	&lt;/fx:Script&gt; 
+  
+ 	&lt;s:dataProvider&gt; 
+		&lt;s:ArrayList&gt; 
+			&lt;fx:String&gt;AK&lt;/fx:String&gt; 
+			&lt;fx:String&gt;AL&lt;/fx:String&gt; 
+		&lt;/s:ArrayList&gt; 
+	&lt;/s:dataProvider&gt; 
+&lt;/s:ComboBox&gt;</pre>
+
+            <p>With simple MXML components, you can define event listeners in
+both places, and both event listeners process the event. However,
+the event listeners defined within the component execute before
+any listeners defined in the application.</p>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf688f1-8000_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf688f1-8000_verapache"><!-- --></a>
+         <h3 class="topictitle3">Creating custom events</h3>
+
+         
+         <div>
+            <p>All MXML components can dispatch events, either those inherited
+by the components from their superclasses, or new events that you
+define within your components. When you are developing MXML components,
+you can add your own event types. </p>
+
+            <p>In this example, you define a new component called TextAreaEnabled.mxml
+that uses a <samp class="codeph">&lt;s:TextArea&gt;</samp> tag as its root
+tag. This component also defines a new property called <samp class="codeph">enableTA</samp> that
+users set to <samp class="codeph">true</samp> to enable text input or to <samp class="codeph">false</samp> to
+disable input. </p>
+
+            <p>The setter method
+dispatches a new event type, called <samp class="codeph">enableChanged</samp>,
+when the value of the <samp class="codeph">enableTA</samp> variable changes.
+The <samp class="codeph">[Event]</samp> metadata tag identifies the event to
+the MXML compiler so that the file referencing the component can
+use the new property. For more information on using the <samp class="codeph">[Event]</samp> metadata
+keyword, see <a href="flx_metadata_me.html#WS2db454920e96a9e51e63e3d11c0bf69084-7fe9_verapache">Metadata
+tags in custom components</a>.</p>
+
+            <p>The syntax for the <samp class="codeph">[Event]</samp> metadata tag is as
+follows:</p>
+
+            <pre class="codeblock"> &lt;fx:Metadata&gt; 
+ 	[Event(name="eventName", type="eventType")] 
+ &lt;/fx:Metadata&gt;</pre>
+
+            <p>You dispatch new event types by using the <samp class="codeph">dispatchEvent()</samp> method,
+as the following example shows: </p>
+
+            <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- mxmlAdvanced/myComponents/TextAreaEnabled.mxml --&gt; 
+&lt;s:TextArea xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" &gt; 
+ 
+    &lt;fx:Metadata&gt; 
+        [Event(name="enableChanged", type="flash.events.Event")] 
+    &lt;/fx:Metadata&gt; 
+ 
+    &lt;fx:Script&gt; 
+        &lt;![CDATA[ 
+            import flash.events.Event; 
+ 
+            // Define private variable to hold the enabled state. 
+            private var __enableTA:Boolean; 
+ 
+            // Define a setter method for the private variable. 
+            public function set enableTA(val:Boolean):void { 
+                __enableTA = val; 
+                enabled = val; 
+                
+                // Define event object, initialize it, then dispatch it. 
+                dispatchEvent(new Event("enableChanged")); 
+            } 
+ 
+            // Define a getter method for the private variable. 
+            public function get enableTA():Boolean { 
+               return __enableTA; 
+            } 
+        ]]&gt; 
+    &lt;/fx:Script&gt; 
+&lt;/s:TextArea&gt;</pre>
+
+            <p>The following main application includes TextAreaEnabled.mxml
+and defines an event listener for the <samp class="codeph">enableChanged</samp> event:</p>
+
+            <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- mxmlAdvanced/MainTextAreaEnable.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:MyComp="myComponents.*"&gt; 
+    &lt;s:layout&gt; 
+        &lt;s:VerticalLayout/&gt; 
+    &lt;/s:layout&gt; 
+ 
+    &lt;fx:Script&gt; 
+        &lt;![CDATA[ 
+            import flash.events.Event; 
+            import myComponents.TextAreaEnabled; 
+                
+            public function handleEnableChangeEvent(eventObj:Event):void { 
+                var tempTA:TextAreaEnabled = 
+                    eventObj.currentTarget as TextAreaEnabled; 
+                if (tempTA.enableTA) { 
+                    myButton.label="Click to disable"; 
+                    } 
+                else { 
+                    myButton.label="Click to enable"; 
+                    } 
+            }   
+        ]]&gt; 
+    &lt;/fx:Script&gt; 
+ 
+    &lt;MyComp:TextAreaEnabled id="myTA" enableTA="false" 
+        enableChanged="handleEnableChangeEvent(event);" /&gt; 
+    
+    &lt;s:Button id="myButton" label="Click to enable" 
+        click="myTA.enableTA=!myTA.enableTA;" /&gt; 
+&lt;/s:Application&gt;</pre>
+
+            <p>If you do not use the <samp class="codeph">[Event]</samp> metadata tag in
+the custom component file to define the <samp class="codeph">enableChanged</samp> event,
+the MXML compiler generates an error message when you reference
+the event name in an MXML file. Any component can register an event
+listener for the event in ActionScript using the <samp class="codeph">addEventListener()</samp> method,
+even if you omit the <samp class="codeph">[Event]</samp> metadata tag.</p>
+
+            <p>You can also create and dispatch events that use an event object
+of a type other than that defined by the <a href="https://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/flash/events/Event.html" target="_blank">Event</a> class.
+For example, you might want to create an event object that contains
+new properties so that you can pass those properties back to the
+referencing file. To do so, you create a subclass of the Event class
+to define your new event object. For information on creating custom
+event classes, see <a href="flx_createevents_cre.html#WS2db454920e96a9e51e63e3d11c0bf69084-7a22_verapache">Custom
+events</a>.</p>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf688f1-7ff7_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf688f1-7ff7_verapache"><!-- --></a>
+         <h3 class="topictitle3">Handling events from composite
+components</h3>
+
+         
+         <div>
+            <p>Composite components are components that use a container
+for the root tag, and define child components in that container.
+You handle events generated by the root container in the same way
+as you handle events generated by simple MXML components. That is,
+you can handle the event within the MXML component, within the referencing
+file, or both. For more information, see <a href="flx_mxmlcomponents_advanced_mxa.html#WS2db454920e96a9e51e63e3d11c0bf69084-79d1_verapache">Handling
+events from simple MXML components</a>.</p>
+
+            <p>To handle an event that a child of the root container dispatches,
+you can handle it in the MXML component in the same way as you handle
+an event from the root container. However, if a child component
+of the root container dispatches an event, and you want that event
+to be dispatched to the referencing file, you must add logic to
+your custom component to propagate the event.</p>
+
+            <p>For
+example, you can define a component that uses an <samp class="codeph">&lt;mx:Form&gt;</samp> tag
+as the root tag, and include within it a <a href="https://flex.apache.org/asdoc/spark/components/ComboBox.html" target="_blank">ComboBox</a> control.
+Any event that the <a href="https://flex.apache.org/asdoc/mx/containers/Form.html" target="_blank">Form</a> container
+dispatches, such a <samp class="codeph">scroll</samp> event, is dispatched
+to the referencing file of the custom component. However, the <samp class="codeph">close</samp> event
+of the ComboBox control is dispatched only within the custom MXML
+component. </p>
+
+            <p>To propagate the <samp class="codeph">close</samp> event outside of the
+custom component, you define an event listener for it in the MXML
+component that redispatches it, as the following example shows: </p>
+
+            <pre class="noswf">&lt;?xml version="1.0"?&gt; 
+&lt;!-- mxmlAdvanced/myComponents/AddressForm.mxml --&gt; 
+&lt;s:Form xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:local="*"&gt; 
+ 
+    &lt;fx:Metadata&gt; 
+        [Event(name="close", type="flash.events.Event")] 
+    &lt;/fx:Metadata&gt; 
+ 
+    &lt;fx:Script&gt; 
+        &lt;![CDATA[ 
+            import flash.events.Event; 
+ 
+            // Redispatch event. 
+            private function handleCloseEventInternal(eventObj:Event):void { 
+                dispatchEvent(eventObj); 
+            }   
+        ]]&gt; 
+    &lt;/fx:Script&gt; 
+ 
+    &lt;s:FormItem label="Name"&gt; 
+        &lt;s:TextInput id="name1" /&gt; 
+    &lt;/s:FormItem&gt; 
+ 
+    &lt;s:FormItem label="Street"&gt; 
+        &lt;s:TextInput id="street" /&gt; 
+    &lt;/s:FormItem&gt; 
+ 
+    &lt;s:FormItem label="City" &gt; 
+        &lt;s:TextInput id="city" /&gt; 
+    &lt;/s:FormItem&gt; 
+ 
+    &lt;s:FormItem label="State" &gt; 
+        &lt;s:ComboBox close="handleCloseEventInternal(event);"&gt; 
+            &lt;s:dataProvider&gt;   
+                &lt;s:ArrayList&gt; 
+                    &lt;fx:String&gt;AK&lt;/fx:String&gt; 
+                    &lt;fx:String&gt;AL&lt;/fx:String&gt; 
+                &lt;/s:ArrayList&gt; 
+            &lt;/s:dataProvider&gt; 
+        &lt;/s:ComboBox&gt; 
+    &lt;/s:FormItem&gt; 
+&lt;/s:Form&gt;</pre>
+
+            <p>In this example, you propagate the event to the calling file.
+You could, alternatively, create an event type and new event object
+as part the propagation. For more information on the <samp class="codeph">[Event]</samp> metadata
+tag, see <a href="flx_metadata_me.html#WS2db454920e96a9e51e63e3d11c0bf69084-7fe9_verapache">Metadata
+tags in custom components</a>.</p>
+
+            <p>You can handle the <samp class="codeph">close</samp> event in your main
+application, as the following example shows:</p>
+
+            <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- mxmlAdvanced/MainAddressFormHandleEvent.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:MyComp="myComponents.*" 
+    height="600"&gt; 
+    &lt;s:layout&gt; 
+        &lt;s:VerticalLayout/&gt; 
+    &lt;/s:layout&gt; 
+ 
+    &lt;fx:Script&gt; 
+        &lt;![CDATA[ 
+        
+            import flash.events.Event; 
+        
+            private function handleCloseEvent(eventObj:Event):void { 
+                myTAClose.text=eventObj.type; 
+            }   
+            private function handleMouseDown(eventObj:Event):void { 
+                myTA.text=eventObj.type; 
+            }   
+        ]]&gt; 
+    &lt;/fx:Script&gt; 
+ 
+    &lt;s:TextArea id="myTA" /&gt; 
+    &lt;s:TextArea id="myTAClose" /&gt; 
+ 
+    &lt;MyComp:AddressForm mouseDown="handleMouseDown(event);" 
+        close="handleCloseEvent(event);"/&gt; 
+&lt;/s:Application&gt;</pre>
+
+         </div>
+
+      </div>
+
+   </div>
+
+   <div class="nested1" id="WS2db454920e96a9e51e63e3d11c0bf688f1-7ff1_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf688f1-7ff1_verapache"><!-- --></a>
+      <h2 class="topictitle2">About interfaces</h2>
+
+      
+      <div>
+         <p>
+            <em>Interfaces</em> are a type of class that you design to
+act as an outline for your components. When you write an interface,
+you provide only the names of public methods rather than any implementation.
+For example, if you define two methods in an interface and then
+implement that interface, the implementing class must provide implementations
+of those two methods.</p>
+
+         <p>Interfaces in
+ActionScript can declare methods and properties only by using setter
+and getter methods; they cannot specify constants. The benefit of
+interfaces is that you can define a contract that all classes that
+implement that interface must follow. Also, if your class implements
+an interface, instances of that class can also be cast to that interface.</p>
+
+         <p>Custom MXML components can implement interfaces just as other
+ActionScript classes can. To do this, you use the <samp class="codeph">implements</samp> attribute.
+All MXML tags support this attribute.</p>
+
+         <p>The following code is an example of a simple interface that declares
+several methods:</p>
+
+         <p>
+            
+         </p>
+
+         <pre class="codeblock"> // The following is in a file named SuperBox.as. 
+ interface SuperBox {  
+ 	function selectSuperItem():String;  
+ 	function removeSuperItem():Boolean;  
+ 	function addSuperItem():Boolean;  
+ }</pre>
+
+         <p>A class that implements the SuperBox interface uses the <samp class="codeph">implements</samp> attribute to
+point to its interface and must provide an implementation of the
+methods. The following example of a custom ComboBox component implements
+the SuperBox interface:</p>
+
+         <pre class="codeblock"> &lt;?xml version="1.0"?&gt; 
+ &lt;!-- StateComboBox.mxml --&gt; 
+ &lt;s:ComboBox xmlns:fx="http://ns.adobe.com/mxml/2009" 
+	xmlns:s="library://ns.adobe.com/flex/spark" 
+	xmlns:mx="library://ns.adobe.com/flex/mx" 
+	implements="SuperBox"&gt; 
+ 	&lt;fx:Script&gt; 
+ 		&lt;![CDATA[ 
+ 			public function selectSuperItem():String { 
+ 				return "Super Item was selected"; 
+ 			} 
+ 			public function removeSuperItem():Boolean { 
+ 				return true; 
+ 			} 
+ 			public function addSuperItem():Boolean { 
+ 				return true; 
+ 			} 
+ 		]]&gt; 
+ 	&lt;/fx:Script&gt; 
+	&lt;s:dataProvider&gt; 
+ 		&lt;s:ArrayList&gt; 
+			&lt;fx:String&gt;AK&lt;/fx:String&gt; 
+			&lt;fx:String&gt;AL&lt;/fx:String&gt; 
+		&lt;/s:ArrayList&gt; 
+	&lt;/s:dataProvider&gt; 
+ &lt;/s:ComboBox&gt;</pre>
+
+         <p>You can implement multiple interfaces by separating them with
+commas, as the following example shows:</p>
+
+         <pre class="codeblock"> &lt;s:ComboBox ... implements="SuperBox, SuperBorder, SuperData"&gt;</pre>
+
+         <p>All methods that you declare in an interface are considered public.
+If you define an interface and then implement that interface, but
+do not implement all of its methods, the MXML compiler throws an
+error.</p>
+
+         <p>Methods that are implemented in the custom component must have
+the same return type as their corresponding methods in the interface.
+If no return type is specified in the interface, the implementing
+methods can declare any return type.</p>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf69084-7a3a_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7a3a_verapache"><!-- --></a>
+         <h3 class="topictitle3">About implementing IMXMLObject</h3>
+
+         
+         <div>
+            <p>You cannot define a constructor for an MXML component.
+If you do, the Flex compiler issues an error message that specifies
+that you defined a duplicate function.</p>
+
+            <p>For many types of Flex components, you can use an event listener
+instead of a constructor. For example, depending on what you want
+to do, you can write an event listener for the <samp class="codeph">preinitialize</samp>, <samp class="codeph">initialize</samp>,
+or <samp class="codeph">creationComplete</samp> event to replace the constructor. </p>
+
+            <p>These
+events are all defined by the UIComponent class, and inherited by
+all of its subclasses. If you create an MXML component that is not
+a subclass of <a href="https://flex.apache.org/asdoc/mx/core/UIComponent.html" target="_blank">UIComponent</a>,
+you cannot take advantage of these events. You can instead implement the <a href="https://flex.apache.org/asdoc/mx/core/IMXMLObject.html" target="_blank">IMXMLObject</a> interface
+in your MXML component, and then implement the <samp class="codeph">IMXMLObject.initialized()</samp> method,
+as the following example shows:</p>
+
+            <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- mxmlAdvanced/myComponents/ObjectComp.mxml --&gt; 
+&lt;fx:Object xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    implements="mx.core.IMXMLObject"&gt; 
+ 
+    &lt;fx:Script&gt; 
+        &lt;![CDATA[ 
+        
+            // Implement the IMXMLObject.initialized() method. 
+            public function initialized(document:Object, id:String):void { 
+                trace("initialized, x = " + x); 
+            } 
+        ]]&gt; 
+    &lt;/fx:Script&gt; 
+ 
+    &lt;fx:Declarations&gt; 
+        &lt;fx:Number id="y"/&gt; 
+        &lt;fx:Number id="z"/&gt; 
+        &lt;fx:Number id="x"/&gt; 
+    &lt;/fx:Declarations&gt; 
+&lt;/fx:Object&gt;</pre>
+
+            <p>Flex calls the <samp class="codeph">IMXMLObject.initialized()</samp> method
+after it initializes the properties of the component. The following
+example uses this component:</p>
+
+            <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- mxmlAdvanced/MainInitObject.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:MyComp="myComponents.*" 
+    creationComplete="initApp();"&gt; 
+    &lt;s:layout&gt; 
+        &lt;s:VerticalLayout/&gt; 
+    &lt;/s:layout&gt; 
+ 
+    &lt;fx:Script&gt; 
+        &lt;![CDATA[ 
+ 
+            public function initApp():void { 
+                myTA.text="myFC.x = " + String(myFC.x); 
+            } 
+        ]]&gt; 
+    &lt;/fx:Script&gt; 
+ 
+    &lt;fx:Declarations&gt; 
+        &lt;MyComp:ObjectComp id="myFC" x="1" y="2" z="3"/&gt;    
+    &lt;/fx:Declarations&gt; 
+ 
+    &lt;s:TextArea id="myTA"/&gt; 
+&lt;/s:Application&gt;</pre>
+
+            <p>Because Flex calls the <samp class="codeph">IMXMLObject.initialized()</samp> method
+after it initializes the properties of the component, the <samp class="codeph">trace()</samp> function
+in the implementation of the <samp class="codeph">IMXMLObject.initialized()</samp> method
+outputs the following:</p>
+
+            <pre class="codeblock"> initialized, x = 1</pre>
+
+         </div>
+
+      </div>
+
+<div>
+  <p><strong>Navigation</strong></p>
+  <p><a href="index.html">Using Flex</a> &raquo; <a href="flx_p8a_custom_components.html">Custom components</a></p>
+</div>
+
+         <p>Adobe and Adobe Flash Platform are either registered trademarks or trademarks of Adobe Systems Incorporated in the United States and/or other countries and are used by permission from Adobe.  No other license to the Adobe trademarks are granted.</p>
+
+   </div>
+
+
+</body>
+</html>

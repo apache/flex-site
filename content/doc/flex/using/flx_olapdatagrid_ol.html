@@ -1,0 +1,3960 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Licensed to the Apache Software Foundation (ASF) under one or more
+  contributor license agreements.  See the NOTICE file distributed with
+  this work for additional information regarding copyright ownership.
+  The ASF licenses this file to You under the Apache License, Version 2.0
+  (the "License"); you may not use this file except in compliance with
+  the License.  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+-->
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en-us" xml:lang="en-us">
+<head>
+<meta name="DC.Type" content="topic"/>
+<meta name="DC.Title" content="OLAPDataGrid control"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="WS2db454920e96a9e51e63e3d11c0bf69084-7b38_verapache"/>
+<title>OLAPDataGrid control</title>
+</head>
+<body id="WS2db454920e96a9e51e63e3d11c0bf69084-7b38_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7b38_verapache"><!-- --></a>
+
+   <div>
+      <p>The <a href="https://flex.apache.org/asdoc/mx/controls/OLAPDataGrid.html" target="_blank">OLAPDataGrid</a> control
+lets you aggregate large amounts of data for easy display and interpretation.
+The control supports a two-dimensional grid layout, where the columns
+and rows of the control can display a single level of information,
+or you can create hierarchical rows and columns to display more complex
+data.</p>
+
+      <p>The OLAPDataGrid controls is a subclass of the AdvancedDataGrid
+control, and therefore supports many of the features of the AdvancedDataGrid
+control. For more information on the AdvancedDataGrid control, see <a href="flx_advdatagrid_ad.html#WS2db454920e96a9e51e63e3d11c0bf69084-7be0_verapache">AdvancedDataGrid control</a>. </p>
+
+   </div>
+
+   <div class="nested1" id="WS2db454920e96a9e51e63e3d11c0bf69084-7bd9_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7bd9_verapache"><!-- --></a>
+      <h2 class="topictitle2">About OLAP data grids</h2>
+
+      
+      <div>
+         <p>When working with large amounts of data, you can quickly
+get overwhelmed with the scope and size of the data. For example,
+you collect sales information for different products, in different
+regions, and for different customers in a typical two-dimensional
+spreadsheet. That spreadsheet could easily contain hundreds of rows
+and tens or even hundreds of columns. Extracting useful information
+for such a large data collection can be difficult, and trying to
+identify trends or other patterns in the data can be even harder.</p>
+
+         <p>Data visualization is a technique for examining large amounts
+of data in a compact format. One type of data visualization technique
+is to use a chart, such as a bar, column, or pie chart. Flex supports
+many types of charts. For more information, see <a href="flx_charts_intro_chi.html#WS2db454920e96a9e51e63e3d11c0bf69084-7bdf_verapache">Introduction
+to charts</a>.</p>
+
+         <p>Another data visualization technique is to aggregate the data
+in a compact format, such as in an OLAP (online analytical processing)
+data grid. An OLAP data grid is similar to a pivot table in Microsoft
+Excel. An OLAP data grid displays data aggregations in a two-dimensional
+grid of rows and columns, like a spreadsheet, but the data is condensed
+based on your aggregation settings. </p>
+
+         <div class="note"><span class="notetitle">Note:</span> While the Flex OLAP data grid is similar to
+a pivot table, it provides a much greater set of features for aggregating
+data. </div>
+
+         <p>For example, you collect sales information on a server in a flat
+data structure of records, where each record contains information
+for a single customer transaction, for a single product, in a single
+quarter. The following code shows the format of this flat data:</p>
+
+         <pre class="codeblock">  data:Object = { 
+ 	customer:"AAA",  
+ 	product:"FlexJS", 
+ 	year:"2007", 
+ 	quarter:"Q1" 
+ 	revenue: "100.00"  
+ }</pre>
+
+         <p>For a large company with hundreds of customers and tens or hundreds
+of products, this table could easily contain several thousand rows.
+Rather than display this information in a standard spreadsheet,
+you download your data to a Flex application to aggregate sales
+data by product and quarter, and then display the aggregated data
+in an OLAP data grid. From this data aggregation, you can determine
+trends in sales of each product over time.</p>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf660d1-7ffe_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf660d1-7ffe_verapache"><!-- --></a>
+         <h3 class="topictitle3">About the OLAPDataGrid control</h3>
+
+         
+         <div>
+            <p>You use the Flex <a href="https://flex.apache.org/asdoc/mx/controls/OLAPDataGrid.html" target="_blank">OLAPDataGrid</a> control
+to display an OLAP data grid. The following image shows the OLAPDataGrid
+control displaying the aggregated sales information for product
+and quarter:</p>
+
+            <div class="figborder">
+               <img src="images/ol_productByYear.png" alt="OLAPDataGrid control displaying the aggregated sales information for product and quarter"/>
+            </div>
+
+            <p>Like all Flex data grid controls, the OLAPDataGrid control is
+designed to display data in a two-dimensional representation of
+rows and columns. </p>
+
+            <p>You can modify this example to compare quarterly sales from two
+different years, as the following example shows:</p>
+
+            <div class="figborder">
+               <img src="images/ol_productByYearQuarter.png" alt="Compare quarterly sales from two different years"/>
+            </div>
+
+            <p>In the previous figure, the columns of the OLAPDataGrid control
+show a hierarchy of information for year and quarter. You can add
+multiple-level hierarchies for both the columns and the rows of
+the control.</p>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf660d1-7ffd_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf660d1-7ffd_verapache"><!-- --></a>
+         <h3 class="topictitle3">About creating an OLAP data grid</h3>
+
+         
+         <div>
+            <p>The following figure shows the data flow that you use to
+aggregate your data for display in the <a href="https://flex.apache.org/asdoc/mx/controls/OLAPDataGrid.html" target="_blank">OLAPDataGrid</a> control:</p>
+
+            <div class="figborder">
+               <img src="images/ol_olapdatagrid.png" alt="Data flow that you use to aggregate your data for display in the OLAPDataGrid control"/>
+            </div>
+
+            <p>The following steps describe this process in more detail: </p>
+
+            <ol>
+               <li>
+                  <p>Start with flat data, which is typically data arranged
+as a set of records where each record contains the same data fields.
+For example, you might start with flat data from a spreadsheet,
+or with data from a table of a relational database. </p>
+
+                  <p>The following
+code shows an example format of flat data:</p>
+
+                  <pre class="codeblock">  data:Object = { 
+ 	customer:"AAA",  
+ 	product:"FlexJS", 
+ 	quarter:"Q1" 
+ 	revenue: "100.00"  
+ }</pre>
+
+               </li>
+
+               <li>
+                  <p>Define an OLAP schema that describes how your data gets transformed
+from a flat representation into an OLAP cube. An OLAP schema defines
+the representation of your flat data in an OLAP cube, and defines
+how to aggregate your data for an OLAP query.</p>
+
+                  <p>An OLAP cube
+is analogous to a table in a relational database. But whereas a table
+typically has two dimensions (row and column), an OLAP cube can
+have any number of dimensions. In this example, the cube has three
+dimensions: customer, product, and quarter. Every possible set of
+values for customer, product, and quarter defines a unique point
+in the cube. The value at each point in the cube is the sales revenue
+for that set of values of customer, product, and quarter.</p>
+
+               </li>
+
+               <li>
+                  <p>Create queries to extract aggregated data from the OLAP cube
+for display in the OLAPDataGrid control.</p>
+
+                  <p>After your data is
+in an OLAP cube, you write queries to extract aggregated data for
+display in the OLAPDataGrid control. You can write multiple queries
+to create different types of data aggregations.</p>
+
+               </li>
+
+               <li>
+                  <p>Use the query results as input to the OLAPDataGrid control
+to display the results. </p>
+
+               </li>
+
+            </ol>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf660d1-7ffc_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf660d1-7ffc_verapache"><!-- --></a>
+         <h3 class="topictitle3">About OLAP cubes</h3>
+
+         
+         <div>
+            <p>An OLAP cube can have any number of dimensions. In its
+simplest form, the <em>dimensions</em> of an OLAP cube correspond
+to a field of the flat data set. For example, you have flat data
+that contains three fields:</p>
+
+            <pre class="codeblock">  data:Object = { 
+ 	product:"FlexJS" 
+ 	quarter :"Q1" 
+ 	revenue: "100.00",  
+ }</pre>
+
+            <p>The data fields of each record can contain the following values:</p>
+
+            <ul>
+               <li>
+                  <p>The product field can have the values: FlexJS, Flex,
+Installer, and TourDeFlex.</p>
+
+               </li>
+
+               <li>
+                  <p>The quarter field can have the values: Q1, Q2, Q3, and Q4.</p>
+
+               </li>
+
+               <li>
+                  <p>The revenue field contains the sales, in dollars, of the
+product for the quarter.</p>
+
+               </li>
+
+            </ul>
+
+            <p>To aggregate your data, you create an OLAP cube with two dimensions:
+quarter and product. The value along each dimension of the cube
+is called a <em>member.</em> For example, the product dimension of
+the cube has the following members: FlexJS, Flex, Installer,
+and TourDeFlex. For the quarter dimension, the members are Q1,
+Q2, Q3, and Q4.</p>
+
+            <p>The value at any point in the cube defined by the two dimensions
+is called a <em>measure</em> of the cube. For example, the measure
+at the point in the cube defined by (Q1, FlexJS) is 100.00.
+A schema can define one or more measures for a single point in the
+OLAP cube. </p>
+
+            <p>Flex supports only numeric values for the measure of a cube.
+The advantage of numeric values is that they can be easily aggregated
+for display in the OLAPDataGrid control. Some typical aggregation
+types include sum, average, minimum, and maximum. For example, you
+specify the aggregation method of the revenue measure as <samp class="codeph">SUM</samp>.
+You then extract sales information from the cube for FlexJS.
+The aggregated sales data contains the sum of all FlexJS sales for
+each quarter. </p>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf660d1-7ffb_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf660d1-7ffb_verapache"><!-- --></a>
+         <h3 class="topictitle3">About OLAP schemas</h3>
+
+         
+         <div>
+            <p>To convert flat data into an OLAP cube, you create an OLAP <em>schema</em> that
+defines the dimensions of the cube, the fields of the flat data
+that supply the members along each dimension, and the fields of
+the flat data that supply the measure for any point in the cube.</p>
+
+            <p>For example, you have the following flat data that contains sales
+records:</p>
+
+            <pre class="codeblock">  data:Object = { 
+ 	customer:"AAA",  
+ 	product:"FlexJS", 
+ 	quarter:"Q1" 
+ 	revenue: "100.00"  
+ }</pre>
+
+            <p>The following example shows the definition for an <a href="https://flex.apache.org/asdoc/mx/olap/OLAPCube.html" target="_blank">OLAPCube</a> that
+includes the definition of the OLAP schema used to represent this
+data in the cube. This schema defines a three-dimensional OLAP cube
+based on the customer, product, and quarter fields of the data. </p>
+
+            <p>
+               
+            </p>
+
+            <pre class="codeblock">&lt;mx:OLAPCube name="FlatSchemaCube" 
+    dataProvider="{flatData}" 
+    id="myMXMLCube" 
+    complete="runQuery(event);"&gt; 
+     
+    &lt;mx:OLAPDimension name="CustomerDim"&gt; 
+        &lt;mx:OLAPAttribute name="Customer" dataField="customer"/&gt; 
+        &lt;mx:OLAPHierarchy name="CustomerHier" hasAll="true"&gt; 
+            &lt;mx:OLAPLevel attributeName="Customer"/&gt; 
+        &lt;/mx:OLAPHierarchy&gt; 
+    &lt;/mx:OLAPDimension&gt; 
+    
+    &lt;mx:OLAPDimension name="ProductDim"&gt; 
+        &lt;mx:OLAPAttribute name="Product" dataField="product"/&gt; 
+        &lt;mx:OLAPHierarchy name="ProductHier" hasAll="true"&gt; 
+            &lt;mx:OLAPLevel attributeName="Product"/&gt; 
+        &lt;/mx:OLAPHierarchy&gt; 
+    &lt;/mx:OLAPDimension&gt; 
+ 
+    &lt;mx:OLAPDimension name="QuarterDim"&gt; 
+        &lt;mx:OLAPAttribute name="Quarter" dataField="quarter"/&gt; 
+        &lt;mx:OLAPHierarchy name="QuarterHier" hasAll="true"&gt; 
+            &lt;mx:OLAPLevel attributeName="Quarter"/&gt; 
+        &lt;/mx:OLAPHierarchy&gt; 
+    &lt;/mx:OLAPDimension&gt; 
+    
+    &lt;mx:OLAPMeasure name="Revenue" 
+        dataField="revenue" 
+        aggregator="SUM"/&gt; 
+&lt;/mx:OLAPCube&gt;</pre>
+
+            <p>Notice that in this schema:</p>
+
+            <ul>
+               <li>
+                  <p>All dimensions are defined first, and then all measures. </p>
+
+               </li>
+
+               <li>
+                  <p>The first line of each dimension associates a data field
+of the flat data with an <a href="https://flex.apache.org/asdoc/mx/olap/OLAPAttribute.html" target="_blank">OLAPAttribute</a> instance.
+You then use the <samp class="codeph">OLAPLevel.attributeName</samp> property
+to associate the attribute with a level of the dimension to populate the
+members of the dimension. For example, in this schema you populate
+the Customer level of the CustomerDim dimension with the data from
+the customer field of the data. </p>
+
+               </li>
+
+               <li>
+                  <p>A dimension of an OLAP schema always contains a hierarchy
+of one or more levels. In this schema, the hierarchy of each dimension
+contains only a single level corresponding to a field of the flat
+data. This is the simplest form of a dimension. Other schemas could
+define multiple levels in a hierarchy to create a complex dimension.
+For more information, see <a href="flx_olapdatagrid_ol.html#WS2db454920e96a9e51e63e3d11c0bf69084-7bde_verapache">Creating
+an OLAP schema</a>. </p>
+
+               </li>
+
+               <li>
+                  <p>A measure definition specifies the data field of the flat
+data that contains the value for each point in the OLAP cube, and
+how the measure is aggregated by an OLAP query. In this example,
+you aggregate revenue by summing it. That means all queries of this
+OLAP cube will return revenue summations. Other types of aggregation
+methods include maximum, minimum, and average.</p>
+
+               </li>
+
+               <li>
+                  <p>This definition of the OLAPCube specifies an event handler
+for the <samp class="codeph">complete</samp> event. You cannot invoke a query
+on the cube until it completes initialization, which is signalled
+by the cube when it dispatches the <samp class="codeph">complete</samp> event.</p>
+
+               </li>
+
+            </ul>
+
+            <p>Based on the requirements of your application, you might create
+multiple OLAP cubes from the same flat data set, where each cube
+uses a different schema to create its own arrangement of dimensions
+and measures. For more information and examples of OLAP schemas,
+see <a href="flx_olapdatagrid_ol.html#WS2db454920e96a9e51e63e3d11c0bf69084-7bde_verapache">Creating
+an OLAP schema</a>. </p>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf660d1-7ffa_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf660d1-7ffa_verapache"><!-- --></a>
+         <h3 class="topictitle3">About OLAP queries</h3>
+
+         
+         <div>
+            <p>OLAP queries extract aggregated data from an OLAP cube
+for display in an <a href="https://flex.apache.org/asdoc/mx/controls/OLAPDataGrid.html" target="_blank">OLAPDataGrid</a> control.
+The query specifies the dimensions that define the characteristics
+of the query, and the measure or measures aggregated to create the
+query results.</p>
+
+            <p>In the previous section, you defined an OLAP schema for sales
+information where the schema defines CustomerDim, ProductDim, and
+QuarterDim dimensions, and a single measure for revenue aggregated
+by the <samp class="codeph">SUM</samp> aggregation method. Therefore, you can
+create a query to sum revenue by the following criteria:</p>
+
+            <ul>
+               <li>
+                  <p>Product for each quarter</p>
+
+               </li>
+
+               <li>
+                  <p>Customer for each product</p>
+
+               </li>
+
+               <li>
+                  <p>Customer for each quarter</p>
+
+               </li>
+
+               <li>
+                  <p>Any other combination of members from each dimension</p>
+
+               </li>
+
+            </ul>
+
+            <p>You construct a query in ActionScript as an instance of the <a href="https://flex.apache.org/asdoc/mx/olap/OLAPQuery.html" target="_blank">OLAPQuery</a> class,
+and then execute the query by calling the <samp class="codeph">OLAPCube.execute()</samp> method,
+which returns an instance of the AsyncToken class. </p>
+
+            <p>A query is required to have two axes, a row axis and a column
+axis, of type <a href="https://flex.apache.org/asdoc/mx/olap/IOLAPQueryAxis.html" target="_blank">IOLAPQueryAxis</a>.
+The row axis defines the data aggregation information for each row
+of the OLAPDataGrid control, and the column axis defines the data
+aggregation information for each column of the control. </p>
+
+            <p>You use the OLAPSet class to specify the data aggregation information
+for each axis, as the following example shows:</p>
+
+            <p>
+               
+            </p>
+
+            <pre class="codeblock">  // Create an instance of OLAPQuery to represent the query.  
+ var query:OLAPQuery = new OLAPQuery; 
+ 	 
+ // Get the row axis from the query instance. 
+ var rowQueryAxis:IOLAPQueryAxis = query.getAxis(OLAPQuery.ROW_AXIS); 
+ // Create an OLAPSet instance to configure the axis. 
+ var productSet:OLAPSet = new OLAPSet; 
+ // Add the Product to the row to aggregate data  
+ // by the Product dimension. 
+ productSet.addElements( 
+ 	cube.findDimension("ProductDim").findAttribute("Product").children); 
+ // Add the OLAPSet instance to the axis. 
+ rowQueryAxis.addSet(productSet); 
+ 	 
+ // Get the column axis from the query instance, and configure it 
+ // to aggregate the columns by the Quarter dimension.  
+ var colQueryAxis:IOLAPQueryAxis = query.getAxis(OLAPQuery.COLUMN_AXIS);          
+ var quarterSet:OLAPSet= new OLAPSet; 
+ quarterSet.addElements( 
+ 	cube.findDimension("QuarterDim").findAttribute("Quarter").children); 
+ colQueryAxis.addSet(quarterSet); 
+  
+ // Execute the query. 
+ var token:AsyncToken = cube.execute(query); 
+ // Set up handlers for the query results. 
+ token.addResponder(new AsyncResponder(showResult, showFault));</pre>
+
+            <p>Notice that in this query:</p>
+
+            <ul>
+               <li>
+                  <p>You initialize each axis by calling the <samp class="codeph">OLAPQuery.getAxis()</samp> method.</p>
+
+               </li>
+
+               <li>
+                  <p>You configure each OLAPSet instance by calling the <samp class="codeph">OLAPSet.addElements()</samp> method
+to specify the information used to populate the axis. </p>
+
+               </li>
+
+               <li>
+                  <p>You set up two functions to handle the query result defined
+by the AsyncToken class. In this example, the function <samp class="codeph">showResult()</samp> handles
+the query results when the query succeeds, and the function <samp class="codeph">showFault()</samp> handles
+any errors detected during query execution. For more information
+on using the AsyncToken class, see <a href="flx_olapdatagrid_ol.html#WS2db454920e96a9e51e63e3d11c0bf69084-7bdc_verapache">Executing
+a query and returning the results to an OLAPDataGrid control</a>. </p>
+
+               </li>
+
+            </ul>
+
+            <p>For more information and examples of OLAP queries, see <a href="flx_olapdatagrid_ol.html#WS2db454920e96a9e51e63e3d11c0bf69084-7bdb_verapache">Creating
+OLAP queries</a>. </p>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf660d1-7ff9_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf660d1-7ff9_verapache"><!-- --></a>
+         <h3 class="topictitle3">The differences between the OLAPDataGrid
+and the AdvancedDataGrid control</h3>
+
+         
+         <div>
+            <p>You use the <a href="https://flex.apache.org/asdoc/mx/controls/OLAPDataGrid.html" target="_blank">OLAPDataGrid</a> control
+to display the results of an OLAP query. The OLAPDataGrid control
+is a subclass of the <a href="https://flex.apache.org/asdoc/mx/controls/AdvancedDataGrid.html" target="_blank">AdvancedDataGrid</a> control
+and inherits much of its functionality. However, because of the
+way you pass data to the OLAPDataGrid control, it has several differences
+from the AdvancedDataGrid control:</p>
+
+            <ul>
+               <li>
+                  <p>Column dragging is not allowed in the OLAPDataGrid control.</p>
+
+               </li>
+
+               <li>
+                  <p>You cannot edit cells in the OLAPDataGrid control because
+cell data is a result of a query and does not correspond to a single
+data value in the OLAP cube. </p>
+
+               </li>
+
+               <li>
+                  <p>You cannot sort columns by clicking on headers in the OLAPDataGrid
+control. Sorting is supported at the dimension level so that you
+can change the order of members of that dimension. Note that you
+can only use sorting while preparing the query, and then use it
+to get the member names displayed along the rows and column headers.</p>
+
+               </li>
+
+            </ul>
+
+            <p>You populate an OLAPDataGrid control with data by setting its
+data provider to an instance of the OLAPResult class, which contains
+the results of an OLAP query. For a complete example that uses this
+control, see <a href="flx_olapdatagrid_ol.html#WS2db454920e96a9e51e63e3d11c0bf69084-7bda_verapache">Example
+using the OLAPDataGrid control</a>.</p>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf69084-7bda_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7bda_verapache"><!-- --></a>
+         <h3 class="topictitle3">Example using the OLAPDataGrid
+control</h3>
+
+         
+         <div>
+            <p>The following example shows the complete code for creating
+the <a href="https://flex.apache.org/asdoc/mx/controls/OLAPDataGrid.html" target="_blank">OLAPDataGrid</a> control
+that appears in the section <a href="flx_olapdatagrid_ol.html#WS2db454920e96a9e51e63e3d11c0bf69084-7bd9_verapache">About
+OLAP data grids</a>. This example aggregates product sales by
+quarter. The example uses flat data from the dataIntro.as file,
+which contains sales records in the following format:</p>
+
+            <pre class="codeblock">  data:Object = { 
+ 	customer:"AAA",  
+ 	product:"FlexJS", 
+ 	quarter:"Q1" 
+ 	revenue: "100.00"  
+ }</pre>
+
+            <p>The following code implements this example: </p>
+
+            <pre class="codeblock">&lt;?xml version="1.0"?&gt; 
+&lt;!-- olapdatagrid/OLAPDG_Intro.mxml --&gt; 
+&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+        creationComplete="creationCompleteHandler();"&gt; 
+ 
+    &lt;fx:Script&gt; 
+      &lt;![CDATA[ 
+        import mx.rpc.AsyncResponder; 
+        import mx.rpc.AsyncToken; 
+        import mx.rpc.events.FaultEvent; 
+        import mx.olap.OLAPQuery; 
+        import mx.olap.OLAPSet; 
+        import mx.olap.IOLAPQuery; 
+        import mx.olap.IOLAPQueryAxis; 
+        import mx.olap.IOLAPCube; 
+        import mx.olap.OLAPResult; 
+        import mx.events.CubeEvent; 
+        import mx.controls.Alert; 
+        import mx.collections.ArrayCollection; 
+        
+        include "dataIntro.as" 
+ 
+        private function creationCompleteHandler():void { 
+            // You must initialize the cube before you 
+            // can execute a query on it. 
+            myMXMLCube.refresh(); 
+        } 
+ 
+        // Create the OLAP query. 
+        private function getQuery(cube:IOLAPCube):IOLAPQuery { 
+            // Create an instance of OLAPQuery to represent the query. 
+            var query:OLAPQuery = new OLAPQuery; 
+            
+            // Get the row axis from the query instance. 
+            var rowQueryAxis:IOLAPQueryAxis = 
+                query.getAxis(OLAPQuery.ROW_AXIS); 
+            // Create an OLAPSet instance to configure the axis. 
+            var productSet:OLAPSet = new OLAPSet; 
+            // Add the Product to the row to aggregate data 
+            // by the Product dimension. 
+            productSet.addElements( 
+                cube.findDimension("ProductDim").findAttribute("Product").children); 
+            // Add the OLAPSet instance to the axis. 
+            rowQueryAxis.addSet(productSet); 
+            
+            // Get the column axis from the query instance, and configure it 
+            // to aggregate the columns by the Quarter dimension. 
+            var colQueryAxis:IOLAPQueryAxis = 
+                query.getAxis(OLAPQuery.COLUMN_AXIS);         
+            var quarterSet:OLAPSet= new OLAPSet; 
+            quarterSet.addElements( 
+                cube.findDimension("QuarterDim").findAttribute("Quarter").children); 
+            colQueryAxis.addSet(quarterSet); 
+            
+            return query;       
+        } 
+ 
+        // Event handler to execute the OLAP query 
+        // after the cube completes initialization. 
+        private function runQuery(event:CubeEvent):void { 
+            // Get cube. 
+            var cube:IOLAPCube = IOLAPCube(event.currentTarget); 
+            // Create a query instance. 
+            var query:IOLAPQuery = getQuery(cube); 
+            // Execute the query. 
+            var token:AsyncToken = cube.execute(query); 
+            // Set up handlers for the query results. 
+            token.addResponder(new AsyncResponder(showResult, showFault)); 
+        } 
+ 
+        // Handle a query fault. 
+        private function showFault(error:FaultEvent, token:Object):void { 
+            Alert.show(error.fault.faultString); 
+        } 
+ 
+        // Handle a successful query by passing the query results to 
+        // the OLAPDataGrid control.. 
+        private function showResult(result:Object, token:Object):void { 
+            if (!result) { 
+                Alert.show("No results from query."); 
+                return; 
+            } 
+            myOLAPDG.dataProvider= result as OLAPResult;            
+        }        
+      ]]&gt; 
+    &lt;/fx:Script&gt; 
+ 
+    &lt;fx:Declarations&gt; 
+        &lt;mx:OLAPCube name="FlatSchemaCube" 
+            dataProvider="{flatData}" 
+            id="myMXMLCube" 
+            complete="runQuery(event);"&gt; 
+         
+            &lt;mx:OLAPDimension name="CustomerDim"&gt; 
+                &lt;mx:OLAPAttribute name="Customer" dataField="customer"/&gt; 
+                &lt;mx:OLAPHierarchy name="CustomerHier" hasAll="true"&gt; 
+                    &lt;mx:OLAPLevel attributeName="Customer"/&gt; 
+                &lt;/mx:OLAPHierarchy&gt; 
+            &lt;/mx:OLAPDimension&gt; 
+    
+            &lt;mx:OLAPDimension name="ProductDim"&gt; 
+                &lt;mx:OLAPAttribute name="Product" dataField="product"/&gt; 
+                &lt;mx:OLAPHierarchy name="ProductHier" hasAll="true"&gt; 
+                    &lt;mx:OLAPLevel attributeName="Product"/&gt; 
+                &lt;/mx:OLAPHierarchy&gt; 
+            &lt;/mx:OLAPDimension&gt; 
+ 
+            &lt;mx:OLAPDimension name="QuarterDim"&gt; 
+                &lt;mx:OLAPAttribute name="Quarter" dataField="quarter"/&gt; 
+                &lt;mx:OLAPHierarchy name="QuarterHier" hasAll="true"&gt; 
+                    &lt;mx:OLAPLevel attributeName="Quarter"/&gt; 
+                &lt;/mx:OLAPHierarchy&gt; 
+            &lt;/mx:OLAPDimension&gt; 
+    
+            &lt;mx:OLAPMeasure name="Revenue" 
+                dataField="revenue" 
+                aggregator="SUM"/&gt; 
+        &lt;/mx:OLAPCube&gt; 
+    &lt;/fx:Declarations&gt; 
+ 
+    &lt;mx:OLAPDataGrid id="myOLAPDG" width="100%" height="100%"/&gt; 
+&lt;/s:Application&gt;</pre>
+
+         </div>
+
+      </div>
+
+   </div>
+
+   <div class="nested1" id="WS2db454920e96a9e51e63e3d11c0bf69084-7bde_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7bde_verapache"><!-- --></a>
+      <h2 class="topictitle2">Creating an OLAP schema</h2>
+
+      
+      <div>
+         <p>An OLAP schema defines the representation of your flat
+data in an OLAP cube, and defines how to aggregate your data for
+an OLAP query. You typically define your schema in MXML. While you
+can construct a schema programmatically in ActionScript, that method
+requires much more coding than MXML.</p>
+
+         <p>The following table describes the classes and interfaces that
+you use to define an OLAP schema: </p>
+
+         
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" frame="border" border="1" rules="all">
+               
+               
+               
+               <thead align="left">
+                  <tr>
+                     <th class="cellrowborder" valign="top" width="NaN%" id="d326693e600">
+                        <p>Class</p>
+
+                     </th>
+
+                     <th class="cellrowborder" valign="top" width="NaN%" id="d326693e606">
+                        <p>Interface</p>
+
+                     </th>
+
+                     <th class="cellrowborder" valign="top" width="NaN%" id="d326693e612">
+                        <p>Description</p>
+
+                     </th>
+
+                  </tr>
+
+               </thead>
+
+               <tbody>
+                  <tr>
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d326693e600 ">
+                        <p>OLAPSchema</p>
+
+                     </td>
+
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d326693e606 ">
+                        <p>IOLAPSchema</p>
+
+                     </td>
+
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d326693e612 ">
+                        <p>The schema instance.</p>
+
+                     </td>
+
+                  </tr>
+
+                  <tr>
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d326693e600 ">
+                        <p>OLAPCube</p>
+
+                     </td>
+
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d326693e606 ">
+                        <p>IOLAPCube</p>
+
+                     </td>
+
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d326693e612 ">
+                        <p>The OLAP cube created by the schema.</p>
+
+                     </td>
+
+                  </tr>
+
+                  <tr>
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d326693e600 ">
+                        <p>OLAPDimension</p>
+
+                     </td>
+
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d326693e606 ">
+                        <p>IOLAPDimension</p>
+
+                     </td>
+
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d326693e612 ">
+                        <p>A dimension of the schema.</p>
+
+                     </td>
+
+                  </tr>
+
+                  <tr>
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d326693e600 ">
+                        <p>OLAPAttribute</p>
+
+                     </td>
+
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d326693e606 ">
+                        <p>IOLAPAttribute</p>
+
+                     </td>
+
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d326693e612 ">
+                        <p>An attribute of a dimension</p>
+
+                     </td>
+
+                  </tr>
+
+                  <tr>
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d326693e600 ">
+                        <p>OLAPHierarchy</p>
+
+                     </td>
+
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d326693e606 ">
+                        <p>IOLAPHierarchy</p>
+
+                     </td>
+
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d326693e612 ">
+                        <p>A hierarchy of a dimension.</p>
+
+                     </td>
+
+                  </tr>
+
+                  <tr>
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d326693e600 ">
+                        <p>OLAPLevel</p>
+
+                     </td>
+
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d326693e606 ">
+                        <p>IOLAPLevel</p>
+
+                     </td>
+
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d326693e612 ">
+                        <p>A level of a hierarchy.</p>
+
+                     </td>
+
+                  </tr>
+
+                  <tr>
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d326693e600 ">
+                        <p>OLAPMeasure</p>
+
+                     </td>
+
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d326693e606 ">
+                        <p>IOLAPMeasure</p>
+
+                     </td>
+
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d326693e612 ">
+                        <p>A measure of a dimension.</p>
+
+                     </td>
+
+                  </tr>
+
+               </tbody>
+
+            </table>
+</div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf660d1-7ff6_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf660d1-7ff6_verapache"><!-- --></a>
+         <h3 class="topictitle3">General form of a schema definition</h3>
+
+         
+         <div>
+            <p>In MXML, you can define an OLAP schema as part of the definition
+of an <a href="https://flex.apache.org/asdoc/mx/olap/OLAPCube.html" target="_blank">OLAPCube</a> instance.
+In MXML, you declare an OLAPCube in an <samp class="codeph">&lt;fx:Declarations&gt;</samp> tag
+because it is not a visual component.</p>
+
+            <p>Typically, you set any properties of the OLAPCube instance as
+tag attributes, and set the <samp class="codeph">OLAPCube.dimensions</samp> and <samp class="codeph">OLAPCube.measures</samp> properties
+as child tags, as the following example shows:</p>
+
+            <pre class="codeblock">&lt;fx:Declarations&gt; 
+	  &lt;mx:OLAPCube name="FlatSchemaCube"  
+ 		dataProvider="{flatData}"  
+ 		id="myMXMLCube" 
+ 		complete="runQuery(event);"&gt; 
+  
+ 		&lt;!-- Define dimensions. --&gt; 
+ 		&lt;mx:OLAPDimension ... /&gt; 
+  
+	 	&lt;mx:OLAPDimension ... /&gt;		 
+	 	... 
+  
+	 	&lt;!-- Define measures. --&gt; 
+	 	&lt;mx:OLAPMeasure ... /&gt; 
+	 	... 
+	 &lt;/mx:OLAPCube&gt; 
+&lt;/fx:Declarations&gt;</pre>
+
+            <p>The order of the <a href="https://flex.apache.org/asdoc/mx/olap/OLAPDimension.html" target="_blank">OLAPDimension</a> and <a href="https://flex.apache.org/asdoc/mx/olap/OLAPMeasure.html" target="_blank">OLAPMeasure</a> definitions
+is not important, but you should not place OLAPMeasure definitions
+between OLAPDimension definitions. </p>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf660d1-7ff5_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf660d1-7ff5_verapache"><!-- --></a>
+         <h3 class="topictitle3">Specifying the aggregation method
+for a measure</h3>
+
+         
+         <div>
+            <p>As part of creating an OLAP schema, you specify the data
+field that provides the value of the measure for each point in the
+cube. The measure corresponds to the data value at that point in
+the OLAP cube. For example, if you define a schema for sales information,
+you might specify as a measure of the cube the revenue for a product,
+and the aggregation type as <samp class="codeph">SUM</samp>.</p>
+
+            <p>A schema can define one or more measures for a single point in
+the OLAP cube. The first measure in the schema is called the <em>default measure</em>,
+and is the measure returned by an OLAP query when you do not explicitly
+specify the measure to return. For more information on selecting
+a specific measure, see <a href="flx_olapdatagrid_ol.html#WS2db454920e96a9e51e63e3d11c0bf69084-7bd8_verapache">Creating
+a query using a nondefault measure</a>. </p>
+
+            <p>The following example shows a section of an MXML schema definition
+that specifies two measures for the schema:</p>
+
+            <pre class="codeblock">  &lt;mx:OLAPMeasure name="Revenue" dataField="revenue" aggregator="SUM"/&gt; 
+ &lt;mx:OLAPMeasure name="Cost" dataField="cost" aggregator="SUM"/&gt;</pre>
+
+            <p>When creating a schema, you specify the name of the measure,
+the data field in the input flat data that contains the data for
+the measure, and an aggregation method of the measure. In this example,
+the aggregation method is <samp class="codeph">SUM</samp>. That means when
+you create an OLAP query for a measure, the query sums all revenue fields
+to generate the values displayed by the OLAPDataGrid control. You
+could use this schema to define a cube so that you can total sales
+and cost information for products, regions, and other characteristics
+of your data.</p>
+
+            <p>To aggregate the revenue data using a different aggregation method,
+such as average or maximum, create another schema to define a second
+OLAP cube. The following example shows a section of another MXML
+schema definition that specifies the aggregation method as <samp class="codeph">MAX</samp> for
+the sales data and <samp class="codeph">MIN</samp> for the cost data: </p>
+
+            <pre class="codeblock">  &lt;mx:OLAPMeasure name="Revenue" dataField="revenue" aggregator="MAX"/&gt; 
+ &lt;mx:OLAPMeasure name="Cost" dataField="cost" aggregator="MIN"/&gt;</pre>
+
+            <p>You should take care in how you define your schema because it
+can limit the types of queries that you can run on it, or the level
+of detail at which you can create aggregations.</p>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf660d1-7ff4_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf660d1-7ff4_verapache"><!-- --></a>
+         <h3 class="topictitle3">Creating a schema dimension</h3>
+
+         
+         <div>
+            <p>An <a href="https://flex.apache.org/asdoc/mx/olap/OLAPSchema.html" target="_blank">OLAPSchema</a> instance
+can define any number of dimensions, limited only by your input
+data. A dimension can be a simple dimension with a single level,
+or it can be a complex dimension with multiple levels. The dimension
+of a schema always has the same basic form:</p>
+
+            <pre class="codeblock">  &lt;mx:OLAPDimension name="QuarterDim"&gt; 
+ 	&lt;mx:OLAPAttribute name="Quarter" dataField="quarter"/&gt; 
+ 	... 
+ 	&lt;mx:OLAPHierarchy name="QuarterHier" hasAll="true"&gt; 
+ 		&lt;mx:OLAPLevel attributeName="Quarter"/&gt; 
+ 		... 
+ 	&lt;/mx:OLAPHierarchy&gt;  
+ &lt;/mx:OLAPDimension&gt;</pre>
+
+            <p>Notice that in this schema:</p>
+
+            <ul>
+               <li>
+                  <p>The dimension first uses <a href="https://flex.apache.org/asdoc/mx/olap/OLAPAttribute.html" target="_blank">OLAPAttribute</a> class
+to specify the data fields of the input data set used to populate
+the members of the dimension. </p>
+
+                  <p>The dimension defines an instance
+of the <a href="https://flex.apache.org/asdoc/mx/olap/OLAPHierarchy.html" target="_blank">OLAPHierarchy</a> class.
+Therefore, a dimension is always assumed to contain a hierarchy
+of levels, even if that hierarchy contains only a single level.</p>
+
+               </li>
+
+               <li>
+                  <p>The dimension specifies one or more instances of the <a href="https://flex.apache.org/asdoc/mx/olap/OLAPLevel.html" target="_blank">OLAPLevel</a> class
+to associate a field of the input with the dimension. </p>
+
+               </li>
+
+            </ul>
+
+            <div class="section" id="WS2db454920e96a9e51e63e3d11c0bf660d1-7ff4_verapache__WS2db454920e96a9e51e63e3d11c0bf660d1-7ff3_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf660d1-7ff4_verapache__WS2db454920e96a9e51e63e3d11c0bf660d1-7ff3_verapache"><!-- --></a><h4 class="sectiontitle">Defining
+a dimension that contains a single level</h4>
+               
+               <p>To create a simple
+dimension (a dimension that contains a single level), you define
+a dimension hierarchy, as the following example shows:</p>
+
+               <pre class="codeblock">  &lt;mx:OLAPDimension name="CustomerDim"&gt; 
+ 	&lt;mx:OLAPAttribute name="Customer" dataField="customer"/&gt; 
+ 	&lt;mx:OLAPHierarchy name="CustomerHier" hasAll="true"&gt; 
+ 		&lt;mx:OLAPLevel attributeName="Customer"/&gt; 
+ 	&lt;/mx:OLAPHierarchy&gt; 
+ &lt;/mx:OLAPDimension&gt;</pre>
+
+               <p>In this example, the customer
+field of the input data defines the entire measure of the dimension.</p>
+
+            </div>
+
+            <div class="section" id="WS2db454920e96a9e51e63e3d11c0bf660d1-7ff4_verapache__WS2db454920e96a9e51e63e3d11c0bf660d1-7ff2_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf660d1-7ff4_verapache__WS2db454920e96a9e51e63e3d11c0bf660d1-7ff2_verapache"><!-- --></a><h4 class="sectiontitle">Defining
+a dimension that contains multiple levels</h4>
+               
+               <p>Instead of creating
+a separate dimension for each field of your data, you can choose
+to group related data fields along a single dimension. For example,
+your data might contain several fields related to the time of a
+transaction, such as month, quarter, and year. Or your data might
+contain multiple fields associated with the geographical area of
+a transaction, such as region, state, province, or country. </p>
+
+               <p>The
+TimeDim dimension in the following example defines hierarchical
+dimensions that contain two levels, one for year and one for quarter: </p>
+
+               <pre class="codeblock">  &lt;mx:OLAPCube name="FlatSchemaCube"  
+ 	dataProvider="{flatData}"  
+ 	id="myMXMLCube"&gt; 
+ 	 
+ 	&lt;mx:OLAPDimension name="TimeDim"&gt; 
+ 		&lt;mx:OLAPAttribute name="Year" dataField="year"/&gt; 
+ 		&lt;mx:OLAPAttribute name="Quarter" dataField="quarter"/&gt; 
+ 		&lt;mx:OLAPHierarchy name="Time-PeriodHier" hasAll="true"&gt; 
+ 			&lt;mx:OLAPLevel attributeName="Year"/&gt; 
+ 			&lt;mx:OLAPLevel attributeName="Quarter"/&gt; 
+ 		&lt;/mx:OLAPHierarchy&gt;  
+ 	&lt;/mx:OLAPDimension&gt; 
+  
+ 	&lt;mx:OLAPMeasure name="Revenue"dataField="revenue" aggregator="SUM"/&gt; 
+ &lt;/mx:OLAPCube&gt;</pre>
+
+               <p>With this schema definition,
+you can aggregate data for all time, for individual years, for individual
+quarters, or for individual quarters of a specific year.</p>
+
+               <p>Notice
+that the TimeDim dimension contains a Year level, the most general
+level, and a Quarter level, the more detailed level. The first level
+in the hierarchy typically defines the most general level, and each
+subsequent level provides a greater level of detail.</p>
+
+               <p>If your
+data contained a month field with the month of the year for a transaction, you
+can add the Month level to the TimeDim dimension. Since month is
+a more detailed measure of time than quarter, add the Month level
+after the Quarter level, as the following example shows:</p>
+
+               <pre class="codeblock">  &lt;mx:OLAPDimension name="TimeDim"&gt; 
+ 	&lt;mx:OLAPAttribute name="Year" dataField="year"/&gt; 
+ 	&lt;mx:OLAPAttribute name="Quarter" dataField="quarter"/&gt; 
+ 	&lt;mx:OLAPAttribute name="Month" dataField="month"/&gt; 
+ 	&lt;mx:OLAPHierarchy name="Time-PeriodHier" hasAll="true"&gt; 
+ 		&lt;mx:OLAPLevel attributeName="Year"/&gt; 
+ 		&lt;mx:OLAPLevel attributeName="Quarter"/&gt; 
+ 		&lt;mx:OLAPLevel attributeName="Month"/&gt; 
+ 	&lt;/mx:OLAPHierarchy&gt;  
+ &lt;/mx:OLAPDimension&gt;</pre>
+
+               <p>The advantage of creating
+a hierarchical schema is that you can write queries to extract top-level
+data aggregations or to drill down into the data to extract more granular
+data. For the previous schema definition, you can write an OLAP
+query to aggregate data by the most general field, such as year,
+or drill down to obtain more granular results by aggregating your
+data by quarter in each year, by month in each quarter, or by month
+in each year. </p>
+
+            </div>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf69084-7bce_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7bce_verapache"><!-- --></a>
+         <h3 class="topictitle3">Creating a default member in a
+schema</h3>
+
+         
+         <div>
+            <p>Most of the OLAP schemas shown so far have been defined
+in the following form:</p>
+
+            <pre class="codeblock">  &lt;mx:OLAPDimension name="TimeDim"&gt; 
+ 	&lt;mx:OLAPAttribute name="Year" dataField="year"/&gt; 
+ 	&lt;mx:OLAPAttribute name="Quarter" dataField="quarter"/&gt; 
+ 	&lt;mx:OLAPHierarchy name="Time-PeriodHier" <strong>hasAll="true"</strong>&gt; 
+ 		&lt;mx:OLAPLevel attributeName="Year"/&gt; 
+ 		&lt;mx:OLAPLevel attributeName="Quarter"/&gt; 
+ 	&lt;/mx:OLAPHierarchy&gt;  
+ &lt;/mx:OLAPDimension&gt;</pre>
+
+            <p>In this schema, the hierarchy sets the <samp class="codeph">OLAPHierarchy.hasAll</samp> property
+to <samp class="codeph">true</samp> to create a default member for the hierarchy.
+The default member is created automatically for the hierarchy and
+contains an aggregation of all levels in the hierarchy. In the previous
+schema, the default member contains an aggregation of the measure
+of the schema for all years and all quarters. </p>
+
+            <p>The default member is used by OLAP queries when you do not specify
+any criteria to aggregate the dimension. For example, your OLAP
+schema contains a ProductDim, TimeDim, and CustomerDim dimension.
+You then write a query to extract data by product and customer,
+but omit any specification in the query for time. The OLAP query
+automatically uses the default member of the dimension to aggregate
+the information for the TimeDim dimension.</p>
+
+            <p>The default value of the <samp class="codeph">OLAPHierarchy.hasAll</samp> property
+is <samp class="codeph">true</samp>. If you set it to <samp class="codeph">false</samp>,
+the OLAP query uses the first level in the hierarchy to aggregate
+the dimension. The following schema sets the <samp class="codeph">hasAll</samp> property
+to <samp class="codeph">false</samp>:</p>
+
+            <pre class="codeblock">  &lt;mx:OLAPDimension name="TimeDim"&gt; 
+ 	&lt;mx:OLAPAttribute name="Year" dataField="year"/&gt; 
+ 	&lt;mx:OLAPAttribute name="Quarter" dataField="quarter"/&gt; 
+ 	&lt;mx:OLAPHierarchy name="Time-PeriodHier" hasAll="false"&gt; 
+ 		&lt;mx:OLAPLevel attributeName="Year"/&gt; 
+ 		&lt;mx:OLAPLevel attributeName="Quarter"/&gt; 
+ 	&lt;/mx:OLAPHierarchy&gt;  
+ &lt;/mx:OLAPDimension&gt;</pre>
+
+            <p>Because the <samp class="codeph">hasAll</samp> property is <samp class="codeph">false</samp>,
+an OLAP query automatically aggregates the data in the dimension
+by the Year level when you omit the TimeDim dimension from the query.</p>
+
+            <p>By default, the OLAP cube adds a member to the dimension named <samp class="codeph">(All)</samp> to represent
+the default member. You can use the <samp class="codeph">OLAPHierarchy.allLevelName</samp> property
+to specify a different name, as the following example shows:</p>
+
+            <pre class="codeblock">  &lt;mx:OLAPDimension name="TimeDim"&gt; 
+ 	&lt;mx:OLAPAttribute name="Year" dataField="year" allLevelname="AllTime"/&gt; 
+ 	&lt;mx:OLAPAttribute name="Quarter" dataField="quarter"/&gt; 
+ 	&lt;mx:OLAPHierarchy name="Time-PeriodHier" hasAll="true"&gt; 
+ 		&lt;mx:OLAPLevel attributeName="Year"/&gt; 
+ 		&lt;mx:OLAPLevel attributeName="Quarter"/&gt; 
+ 	&lt;/mx:OLAPHierarchy&gt;  
+ &lt;/mx:OLAPDimension&gt;</pre>
+
+            <p>When you execute an OLAP query, you choose whether or not to
+include the default member in the query results. For more information,
+see <a href="flx_olapdatagrid_ol.html#WS2db454920e96a9e51e63e3d11c0bf69084-7bd7_verapache">Using
+the default member in a query</a>. </p>
+
+         </div>
+
+      </div>
+
+   </div>
+
+   <div class="nested1" id="WS2db454920e96a9e51e63e3d11c0bf69084-7bdb_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7bdb_verapache"><!-- --></a>
+      <h2 class="topictitle2">Creating OLAP queries</h2>
+
+      
+      <div>
+         <p>You use an OLAP query to extract data from an OLAP cube
+for display by the <a href="https://flex.apache.org/asdoc/mx/controls/OLAPDataGrid.html" target="_blank">OLAPDataGrid</a> control.
+An OLAP query defines a result set in a two-dimensional table of
+rows and columns so that the data can be viewed in the OLAPDataGrid control.</p>
+
+         <p>The following table describes the classes and interfaces that
+you use the define a query: </p>
+
+         
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" frame="border" border="1" rules="all">
+               
+               
+               
+               <thead align="left">
+                  <tr>
+                     <th class="cellrowborder" valign="top" width="NaN%" id="d326693e1106">
+                        <p>Class</p>
+
+                     </th>
+
+                     <th class="cellrowborder" valign="top" width="NaN%" id="d326693e1112">
+                        <p>Interface</p>
+
+                     </th>
+
+                     <th class="cellrowborder" valign="top" width="NaN%" id="d326693e1118">
+                        <p>Description</p>
+
+                     </th>
+
+                  </tr>
+
+               </thead>
+
+               <tbody>
+                  <tr>
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d326693e1106 ">
+                        <p>AsyncToken</p>
+
+                     </td>
+
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d326693e1112 ">
+                        <p> </p>
+
+                     </td>
+
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d326693e1118 ">
+                        <p>The result of the <samp class="codeph">OLAPQuery.execute()</samp> method.</p>
+
+                     </td>
+
+                  </tr>
+
+                  <tr>
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d326693e1106 ">
+                        <p>OLAPCell</p>
+
+                     </td>
+
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d326693e1112 ">
+                        <p>IOLAPCell</p>
+
+                     </td>
+
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d326693e1118 ">
+                        <p>An area of the cube defined by a tuple. </p>
+
+                     </td>
+
+                  </tr>
+
+                  <tr>
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d326693e1106 ">
+                        <p>OLAPMember</p>
+
+                     </td>
+
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d326693e1112 ">
+                        <p>IOLAPMember</p>
+
+                     </td>
+
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d326693e1118 ">
+                        <p>A member of a dimension.</p>
+
+                     </td>
+
+                  </tr>
+
+                  <tr>
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d326693e1106 ">
+                        <p>OLAPQuery</p>
+
+                     </td>
+
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d326693e1112 ">
+                        <p>IOLAPQuery</p>
+
+                     </td>
+
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d326693e1118 ">
+                        <p>The query instances.</p>
+
+                     </td>
+
+                  </tr>
+
+                  <tr>
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d326693e1106 ">
+                        <p>OLAPQueryAxis</p>
+
+                     </td>
+
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d326693e1112 ">
+                        <p>IOLAPQueryAxis</p>
+
+                     </td>
+
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d326693e1118 ">
+                        <p>An axis of the query.</p>
+
+                     </td>
+
+                  </tr>
+
+                  <tr>
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d326693e1106 ">
+                        <p>OLAPResult</p>
+
+                     </td>
+
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d326693e1112 ">
+                        <p>IOLAPResult</p>
+
+                     </td>
+
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d326693e1118 ">
+                        <p>The query result.</p>
+
+                     </td>
+
+                  </tr>
+
+                  <tr>
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d326693e1106 ">
+                        <p>OLAPSet</p>
+
+                     </td>
+
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d326693e1112 ">
+                        <p> </p>
+
+                     </td>
+
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d326693e1118 ">
+                        <p>A set of members for an axis.</p>
+
+                     </td>
+
+                  </tr>
+
+                  <tr>
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d326693e1106 ">
+                        <p>OLAPTuple</p>
+
+                     </td>
+
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d326693e1112 ">
+                        <p>IOLAPTuple</p>
+
+                     </td>
+
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d326693e1118 ">
+                        <p>A tuple containing one or more members.</p>
+
+                     </td>
+
+                  </tr>
+
+               </tbody>
+
+            </table>
+</div>
+
+         <div class="note"><span class="notetitle">Note:</span> Many of the examples in this topic use interfaces
+rather than classes. One of the reasons to use interfaces is that
+if you define customized versions of classes that implement these
+interfaces, you do not have to modify your code. </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf660d1-7fef_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf660d1-7fef_verapache"><!-- --></a>
+         <h3 class="topictitle3">Creating a query</h3>
+
+         
+         <div>
+            <p>The process of creating a query has the following steps: </p>
+
+            <ol>
+               <li>
+                  <p>Prepare the cube for a query. For more information, see <a href="flx_olapdatagrid_ol.html#WS2db454920e96a9e51e63e3d11c0bf69084-7bd6_verapache">Preparing
+a cube for a query</a>. </p>
+
+               </li>
+
+               <li>
+                  <p>Define an instance of the OLAPQuery class to represent the
+query. For more information, see <a href="flx_olapdatagrid_ol.html#WS2db454920e96a9e51e63e3d11c0bf69084-7bd5_verapache">Creating
+a query axis</a>.</p>
+
+               </li>
+
+               <li>
+                  <p>Define an instance of the OLAPQueryAxis class to represent
+the rows of the query. </p>
+
+               </li>
+
+               <li>
+                  <p>Define an instance of the OLAPSet class to define the members
+that provide the row axis information. For more information, see <a href="flx_olapdatagrid_ol.html#WS2db454920e96a9e51e63e3d11c0bf69084-7bd4_verapache">Writing
+a query for a simple OLAP cube</a> and <a href="flx_olapdatagrid_ol.html#WS2db454920e96a9e51e63e3d11c0bf69084-7bd3_verapache">Writing
+a query for a complex OLAP cube</a>.</p>
+
+               </li>
+
+               <li>
+                  <p>Define an instance of the OLAPQueryAxis class to represent
+the columns of the query.</p>
+
+               </li>
+
+               <li>
+                  <p>Define an instance of the OLAPSet class to define the members
+that provide the axis column information. </p>
+
+               </li>
+
+               <li>
+                  <p>Optionally define an instance of the OLAPQueryAxis class
+to specify a slicer axis. For more information, see <a href="flx_olapdatagrid_ol.html#WS2db454920e96a9e51e63e3d11c0bf69084-7be1_verapache">Creating
+a slicer axis</a>
+                  </p>
+
+               </li>
+
+               <li>
+                  <p>Define an instance of the OLAPSet class to define the members
+that provide the slicer axis information. </p>
+
+               </li>
+
+               <li>
+                  <p>Execute the query on the cube by calling <samp class="codeph">OLAPCube.execute()</samp>.
+For more information, see <a href="flx_olapdatagrid_ol.html#WS2db454920e96a9e51e63e3d11c0bf69084-7bdc_verapache">Executing
+a query and returning the results to an OLAPDataGrid control</a>.</p>
+
+               </li>
+
+               <li>
+                  <p>Pass the query results to the OLAPDataGrid control. </p>
+
+               </li>
+
+            </ol>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf69084-7bd6_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7bd6_verapache"><!-- --></a>
+         <h3 class="topictitle3">Preparing a cube for a query</h3>
+
+         
+         <div>
+            <p>Before you can run the first query on an OLAP cube, you
+must call the <samp class="codeph">OLAPCube.refresh()</samp> method to initialize
+the cube from the input data. Upon completion of cube initialization,
+the OLAP cube dispatches the <samp class="codeph">complete</samp> event to
+signal that the cube is ready for you to query.</p>
+
+            <p>You can use event handlers to initialize the cube and to invoke
+the query. The following example uses the application's <samp class="codeph">creationComplete</samp> event
+to initialize the cube, and then uses the cube's <samp class="codeph">complete</samp> event
+to execute the query:</p>
+
+            <pre class="codeblock">  &lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+	xmlns:mx="library://ns.adobe.com/flex/mx" 
+	xmlns:s="library://ns.adobe.com/flex/spark" 
+ 	creationComplete="creationCompleteHandler();"&gt; 
+  
+ &lt;fx:Script&gt; 
+ 	&lt;![CDATA[ 
+  
+ 		private function creationCompleteHandler():void { 
+ 			// You must initialize the cube before you  
+ 			// can execute a query on it. 
+ 			myMXMLCube.refresh(); 
+ 		} 
+  
+ 		// Event handler to execute the OLAP query  
+ 		// after the cube completes initialization. 
+ 		private function runQuery(event:CubeEvent):void { 
+ 			... 
+ 		} 
+ 	]]&gt; 
+ &lt;/fx:Script&gt; 
+&lt;fx:Dclarations&gt; 	 
+	 &lt;mx:OLAPCube name="FlatSchemaCube"  
+	 	dataProvider="{flatData}"  
+	 	id="myMXMLCube" 
+	 	complete="runQuery(event);"&gt; 
+	 	... 
+	 &lt;/mx:OLAPCube&gt; 
+&lt;/fx:Declarations&gt; 
+ 
+... 
+  &lt;/s:Application&gt;</pre>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf69084-7bd5_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7bd5_verapache"><!-- --></a>
+         <h3 class="topictitle3">Creating a query axis</h3>
+
+         
+         <div>
+            <p>The following example shows an <a href="https://flex.apache.org/asdoc/mx/controls/OLAPDataGrid.html" target="_blank">OLAPDataGrid</a> control
+containing the results of a query for the sales of different products
+for different quarters:</p>
+
+            <div class="figborder">
+               <img src="images/ol_productByYear.png" alt="OLAPDataGrid control containing the results of a query for the sales of different products for different quarters"/>
+            </div>
+
+            <p>To create a query, you must define a row axis, a column axis,
+and optionally a slicer axis, where each axis is an instance of
+the <a href="https://flex.apache.org/asdoc/mx/olap/IOLAPQueryAxis.html" target="_blank">IOLAPQueryAxis</a> interface.
+The following table describes the different types of axes:</p>
+
+            
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" frame="border" border="1" rules="all">
+                  
+                  
+                  <thead align="left">
+                     <tr>
+                        <th class="cellrowborder" valign="top" width="NaN%" id="d326693e1494">
+                           <p>Axis</p>
+
+                        </th>
+
+                        <th class="cellrowborder" valign="top" width="NaN%" id="d326693e1500">
+                           <p>Description</p>
+
+                        </th>
+
+                     </tr>
+
+                  </thead>
+
+                  <tbody>
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d326693e1494 ">
+                           <p>Row</p>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d326693e1500 ">
+                           <p>Defines the data that appears in each row
+of the OLAPDataGrid control. In the previous image, you define the
+row to show each product. This axis is required.</p>
+
+                        </td>
+
+                     </tr>
+
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d326693e1494 ">
+                           <p>Column</p>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d326693e1500 ">
+                           <p>Defines the data displayed in the column.
+In the previous image, you define the columns to show each year.
+This axis is required.</p>
+
+                        </td>
+
+                     </tr>
+
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d326693e1494 ">
+                           <p>Slicer</p>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d326693e1500 ">
+                           <p>Optionally defines a filter to reduce the
+size of the query results, often to reduce the dimensionality of
+the results from a dimension greater than two so that you can display
+the results in an OLAPDataGrid control. You also use a slicer access
+to return data aggregations for the nondefault measure. For more
+information on using a slicer axis, see <a href="flx_olapdatagrid_ol.html#WS2db454920e96a9e51e63e3d11c0bf69084-7be1_verapache">Creating
+a slicer axis</a>.</p>
+
+                        </td>
+
+                     </tr>
+
+                  </tbody>
+
+               </table>
+</div>
+
+            <p>When you construct the <a href="https://flex.apache.org/asdoc/mx/olap/OLAPQueryAxis.html" target="_blank">OLAPQueryAxis</a> instance,
+you use the <samp class="codeph">OLAPQuery.getAxis()</samp> method to initialize
+the axis to configure it as either a row, column, or slicer axis,
+as the following example shows:</p>
+
+            <pre class="codeblock">  	// Create an instance of OLAPQuery to represent the query.  
+ 	var query:OLAPQuery = new OLAPQuery; 
+ 	 
+ 	// Get the row axis from the query instance. 
+ 	var rowQueryAxis:IOLAPQueryAxis = 	query.getAxis(OLAPQuery.ROW_AXIS); 
+ 	// Create an OLAPSet instance to configure the axis. 
+ 	...  
+  
+ 	var colQueryAxis:IOLAPQueryAxis = 	query.getAxis(OLAPQuery.COLUMN_AXIS);          
+ 	...</pre>
+
+            <div class="section" id="WS2db454920e96a9e51e63e3d11c0bf69084-7bd5_verapache__WS2db454920e96a9e51e63e3d11c0bf660d1-7fec_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7bd5_verapache__WS2db454920e96a9e51e63e3d11c0bf660d1-7fec_verapache"><!-- --></a><h4 class="sectiontitle">Populating
+a query axis</h4>
+               
+               <p>You use the <a href="https://flex.apache.org/asdoc/mx/olap/OLAPSet.html" target="_blank">OLAPSet</a> class
+to specify the members of the dimensions of the OLAP cube that populate
+a query axis. To add a member to an OLAPSet instance, you call the
+OLAPSet.addElement() or OLAPSet.addElements() method. The following table
+describes these methods:</p>
+
+               
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" frame="border" border="1" rules="all">
+                     
+                     
+                     <thead align="left">
+                        <tr>
+                           <th class="cellrowborder" valign="top" width="NaN%" id="d326693e1600">
+                              <p>OLAPSet method</p>
+
+                           </th>
+
+                           <th class="cellrowborder" valign="top" width="NaN%" id="d326693e1606">
+                              <p>Description</p>
+
+                           </th>
+
+                        </tr>
+
+                     </thead>
+
+                     <tbody>
+                        <tr>
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d326693e1600 ">
+                              <div class="p">
+                                 <pre class="codeblock">addElement(e:IOLAPElement):void</pre>
+
+                              </div>
+
+                           </td>
+
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d326693e1606 ">
+                              <p>Adds a single element to the set. </p>
+
+                              <div class="p">
+                                 <ul>
+                                    <li>
+                                       <p>If you pass an IOLAPHierarchy or IOLAPAttributeHierarchy
+instance to the method, it adds the default member of the hierarchy
+to the set. </p>
+
+                                    </li>
+
+                                    <li>
+                                       <p>If you pass an IOLAPLevel instance to the method, it adds
+all the members of the level to the set.</p>
+
+                                    </li>
+
+                                    <li>
+                                       <p>If you pass an IOLAPMember instance, it adds the member to
+the set.</p>
+
+                                    </li>
+
+                                 </ul>
+
+                              </div>
+
+                           </td>
+
+                        </tr>
+
+                        <tr>
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d326693e1600 ">
+                              <div class="p">
+                                 <pre class="codeblock">addElements(members:IList):void</pre>
+
+                              </div>
+
+                           </td>
+
+                           <td class="cellrowborder" valign="top" width="NaN%" headers="d326693e1606 ">
+                              <p>Adds multiple elements to the set. </p>
+
+                           </td>
+
+                        </tr>
+
+                     </tbody>
+
+                  </table>
+</div>
+
+               <p>For more information, see <a href="flx_olapdatagrid_ol.html#WS2db454920e96a9e51e63e3d11c0bf69084-7bd4_verapache">Writing
+a query for a simple OLAP cube</a> and <a href="flx_olapdatagrid_ol.html#WS2db454920e96a9e51e63e3d11c0bf69084-7bd3_verapache">Writing
+a query for a complex OLAP cube</a>.</p>
+
+            </div>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf69084-7bdc_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7bdc_verapache"><!-- --></a>
+         <h3 class="topictitle3">Executing a query and returning
+the results to an OLAPDataGrid control</h3>
+
+         
+         <div>
+            <p>OLAP cubes can be complex, so you do not want your application
+to pause while Flex calculates the results of an OLAP query. Therefore,
+when you execute a query, you also set up two callback functions
+that handle the results of the query. Flex then calls these functions
+when the query completes. This architecture lets the query run asynchronously
+so that your application can continue to execute during query processing.</p>
+
+            <p>You execute a query by calling the <samp class="codeph">OLAPCube.execute()</samp> method,
+where the <samp class="codeph">OLAPCube.execute()</samp> method returns an
+instance of the <a href="https://flex.apache.org/asdoc/mx/rpc/AsyncToken.html" target="_blank">AsyncToken</a> class. You
+use the AsyncToken class, along with the <a href="https://flex.apache.org/asdoc/mx/rpc/AsyncResponder.html" target="_blank">AsyncResponder</a> class,
+to specify the two callback functions to handle the query results
+when execution completes. </p>
+
+            <p>In this example, the function <samp class="codeph">showResult()</samp> handles
+the query results when the query succeeds, and the function <samp class="codeph">showFault()</samp> handles
+any errors detected during query execution: </p>
+
+            <pre class="codeblock">  &lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+	xmlns:mx="library://ns.adobe.com/flex/mx" 
+	xmlns:s="library://ns.adobe.com/flex/spark" 
+	creationComplete="creationCompleteHandler();"&gt; 
+  
+ &lt;fx:Script&gt; 
+ 	&lt;![CDATA[ 
+ 		 
+ 		private function creationCompleteHandler():void { 
+ 			// You must initialize the cube before you  
+ 			// can execute a query on it. 
+ 			myMXMLCube.refresh(); 
+ 		} 
+  
+ 		// Create the OLAP query. 
+ 		private function getQuery(cube:IOLAPCube):IOLAPQuery { 
+ 			... 
+ 		} 
+  
+ 		// Event handler to execute the OLAP query  
+ 		// after the cube completes initialization. 
+ 		private function runQuery(event:CubeEvent):void { 
+ 			// Get cube. 
+ 			var cube:IOLAPCube = IOLAPCube(event.currentTarget); 
+ 			// Create a query instance. 
+ 			var query:IOLAPQuery = getQuery(cube); 
+ 			// Execute the query. 
+ 			var token:AsyncToken = cube.execute(query); 
+ 			// Set up handlers for the query results. 
+ 			token.addResponder(new AsyncResponder(showResult, showFault)); 
+ 		} 
+  
+ 		// Handle a query fault. 
+ 		private function showFault(error:ErrorMessage, token:Object):void { 
+ 			Alert.show(error.faultString); 
+ 		} 
+  
+ 		// Handle a query success. 
+ 		private function showResult(result:Object, token:Object):void { 
+ 			if (!result) { 
+ 				Alert.show("No results from query."); 
+ 				return; 
+ 			} 
+  
+ 			myOLAPDG.dataProvider= result as OLAPResult; 
+ 		} 
+ 	]]&gt; 
+ &lt;/fx:Script&gt; 
+  
+&lt;fx:Declarations&gt; 
+	 &lt;mx:OLAPCube name="FlatSchemaCube"  
+	 	dataProvider="{flatData}"  
+	 	id="myMXMLCube" 
+	 	complete="runQuery(event);"&gt; 
+	 	... 
+	 &lt;/mx:OLAPCube&gt; 
+&lt;fx:Declarations&gt; 
+ 
+ &lt;mx:OLAPDataGrid id="myOLAPDG" width="100%" height="100%" /&gt; 
+   
+&lt;/s:Application&gt;</pre>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf69084-7bd7_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7bd7_verapache"><!-- --></a>
+         <h3 class="topictitle3">Using the default member in a query</h3>
+
+         
+         <div>
+            <p>Many of the queries shown so far have referenced only two
+dimensions of the OLAP cube, such as ProductDim and TimeDim. But
+what happens to the other dimensions when you omit them from the
+query? </p>
+
+            <p>All dimensions have a default member, either explicit or implicit.
+When you execute a query that does not reference a dimension, the
+query aggregates the data for that dimension using the default member.
+For information on defining the default member of a schema, see <a href="flx_olapdatagrid_ol.html#WS2db454920e96a9e51e63e3d11c0bf69084-7bce_verapache">Creating
+a default member in a schema</a>. </p>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf660d1-7fe9_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf660d1-7fe9_verapache"><!-- --></a>
+         <h3 class="topictitle3">Specifying a default cell string
+for the OLAPDataGrid control</h3>
+
+         
+         <div>
+            <p>When you define your query, you might create a situation
+where a cell of the OLAPDataGrid does not contain a value. For example,
+when aggregating data by customer and product, you might have a
+customer that has never purchased TourDeFlex. For that customer
+and product combination, the corresponding cell of the OLAPDataGrid
+displays the String "NaN".</p>
+
+            <p>You can customize this String by setting the <samp class="codeph">OLAPDataGrid.defaultCellString</samp>.
+For example, if you want to set the String to "No value", you would
+create an OLAPDataGrid control as shown here:</p>
+
+            <pre class="codeblock">  &lt;mx:OLAPDataGrid id="myOLAPDG" 
+ 	<strong>defaultCellString="No value"</strong> 
+ 	width="100%" height="100%"/&gt;</pre>
+
+         </div>
+
+      </div>
+
+   </div>
+
+   <div class="nested1" id="WS2db454920e96a9e51e63e3d11c0bf69084-7bd4_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7bd4_verapache"><!-- --></a>
+      <h2 class="topictitle2">Writing a query for a simple OLAP
+cube</h2>
+
+      
+      <div>
+         <p>In a simple OLAP cube, all of the dimensions of the cube
+define a single level. For example, you have flat data that contains
+three fields:</p>
+
+         <pre class="codeblock">  data:Object = { 
+ 	product:"FlexJS" 
+ 	quarter :"Q1" 
+ 	revenue: "100.00",  
+ }</pre>
+
+         <p>The data fields of each record can contain the following values:</p>
+
+         <ul>
+            <li>
+               <p>The product field can have the values: FlexJS, Flex,
+Installer, and TourDeFlex.</p>
+
+            </li>
+
+            <li>
+               <p>The quarter field can have the values: Q1, Q2, Q3, and Q4.</p>
+
+            </li>
+
+         </ul>
+
+         <p>The OLAP schema for this data defines two dimensions, each with
+a single level, as the following code shows: </p>
+
+         <pre class="codeblock">  &lt;mx:OLAPCube name="FlatSchemaCube"  
+ 	dataProvider="{flatData}"  
+ 	id="myMXMLCube" 
+ 	complete="runQuery(event);"&gt; 
+ 	 
+ 	&lt;mx:OLAPDimension name="ProductDim"&gt; 
+ 		&lt;mx:OLAPAttribute name="Product" dataField="product"/&gt; 
+ 		&lt;mx:OLAPHierarchy name="ProductHier" hasAll="true"&gt; 
+ 			&lt;mx:OLAPLevel attributeName="Product"/&gt; 
+ 		&lt;/mx:OLAPHierarchy&gt; 
+ 	&lt;/mx:OLAPDimension&gt; 
+  
+ 	&lt;mx:OLAPDimension name="QuarterDim"&gt; 
+ 		&lt;mx:OLAPAttribute name="Quarter" dataField="quarter"/&gt; 
+ 		&lt;mx:OLAPHierarchy name="QuarterHier" hasAll="true"&gt; 
+ 			&lt;mx:OLAPLevel attributeName="Quarter"/&gt; 
+ 		&lt;/mx:OLAPHierarchy&gt;  
+ 	&lt;/mx:OLAPDimension&gt; 
+ 	 
+ 	&lt;mx:OLAPMeasure name="Revenue"  
+ 		dataField="revenue"  
+ 		aggregator="SUM"/&gt; 
+ &lt;/mx:OLAPCube&gt;</pre>
+
+         <p>After you call the <samp class="codeph">OLAPCube.refresh()</samp> method
+to initialize the cube, it has the following structure:</p>
+
+         <pre class="codeblock">  ProductDim 							// Dimension 
+ 	Product 							// Hierarchy 
+ 		(All)							// Member 
+ 		FlexJS							// Member 
+ 		Flex							// Member 
+ 		Installer							// Member 
+ 		TourDeFlex							// Member 
+  
+ 	ProductHier 							// Hierarchy  
+ 		(All)							// Level 
+ 			FlexJS							// Member 
+ 			Flex							// Member 
+ 			Installer							// Member 
+ 			TourDeFlex							// Member 
+ 			 
+ 		Product 							// Level 
+ 			FlexJS							// Member 
+ 			Flex							// Member 
+ 			Installer							// Member 
+ 			TourDeFlex							// Member 
+  
+ QuarterDim 							// Dimension  
+ 	Quarter 							// Hierarchy 
+ 		(All)							// Member 
+ 		Q1							// Member 
+ 		Q2							// Member 
+ 		Q3							// Member 
+ 		Q4							// Member 
+  
+ 	QuarterHier 							// Hierarchy 
+ 		(All)							// Level 
+ 			Q1							// Member 
+ 			Q2							// Member 
+ 			Q3							// Member 
+ 			Q4							// Member 
+ 			 
+ 		Quarter							// Level 
+ 			Q1							// Member 
+ 			Q2							// Member 
+ 			Q3							// Member 
+ 			Q4							// Member</pre>
+
+         <p>Notice in this cube:</p>
+
+         <ul>
+            <li>
+               <p>The ProductDim dimension contains two hierarchies: Product
+and ProductHier. The cube creates a hierarchy for each level specified
+by the OLAPLevel class, and for each hierarchy specified by the <a href="https://flex.apache.org/asdoc/mx/olap/OLAPHierarchy.html" target="_blank">OLAPHierarchy</a> class.
+The same is true for the QuarterDim dimension; it also contains
+two hierarchies.</p>
+
+            </li>
+
+            <li>
+               <p>The order of the members, meaning the values along each dimension,
+is based on the order in which the members appear in the flat data.
+In this example, the quarters appear in order of Q1, Q2, Q3, and
+Q4 because the flat data was sorted by quarter. However, if the
+data was not sorted by quarter, the members along the QuarterDim
+could appear in any order. </p>
+
+            </li>
+
+            <li>
+               <p>Each dimension contains a single level; therefore the <samp class="codeph">(All)</samp> level
+contains the same data as the first level in the hierarchy. For
+example, the <samp class="codeph">(All)</samp> level of the ProdcutHier hierarchy
+contains the same data as the Product level. For a complex cube,
+the <samp class="codeph">(All)</samp> level would contain additional information.</p>
+
+            </li>
+
+         </ul>
+
+         <p>For an example of a complex cube, see <a href="flx_olapdatagrid_ol.html#WS2db454920e96a9e51e63e3d11c0bf69084-7bd3_verapache">Writing
+a query for a complex OLAP cube</a>.</p>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf660d1-7fe7_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf660d1-7fe7_verapache"><!-- --></a>
+         <h3 class="topictitle3">Defining a query for a simple cube</h3>
+
+         
+         <div>
+            <p>An OLAP query has the following basic form:</p>
+
+            <pre class="codeblock">  // Create an instance of OLAPQuery to represent the query.  
+ var query:OLAPQuery = new OLAPQuery; 
+ 	 
+ // Get the row axis from the query instance. 
+ var rowQueryAxis:IOLAPQueryAxis = query.getAxis(OLAPQuery.ROW_AXIS); 
+ // Create an OLAPSet instance to configure the axis. 
+ var productSet:OLAPSet = new OLAPSet; 
+ <strong>// Use OLAPSet.addElements() or OLAPSet.addElement() to add members to the row axis.</strong> 
+ <strong>productSet.addElements(...);</strong> 
+ // Add the OLAPSet instance to the axis. 
+ rowQueryAxis.addSet(productSet); 
+  
+ // Get the column axis from the query instance, and configure it 
+ // to aggregate the columns by the Quarter dimension.  
+ var colQueryAxis:IOLAPQueryAxis = query.getAxis(OLAPQuery.COLUMN_AXIS);          
+ var quarterSet:OLAPSet= new OLAPSet; 
+ <strong>// Use OLAPSet.addElements() or OLAPSet.addElement() to add members to the column axis.</strong> 
+ <strong>productSet.addElements(...);</strong> 
+ colQueryAxis.addSet(quarterSet);</pre>
+
+            <p>You use the following methods and properties to extract information
+from an OLAP cube based on the attributes of the dimension, and
+pass it to the <samp class="codeph">OLAPSet.addElements()</samp> or <samp class="codeph">OLAPSet.addElement()</samp> method:</p>
+
+            
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" frame="border" border="1" rules="all">
+                  
+                  
+                  <thead align="left">
+                     <tr>
+                        <th class="cellrowborder" valign="top" width="NaN%" id="d326693e1942">
+                           <p>Method and property</p>
+
+                        </th>
+
+                        <th class="cellrowborder" valign="top" width="NaN%" id="d326693e1948">
+                           <p>Description</p>
+
+                        </th>
+
+                     </tr>
+
+                  </thead>
+
+                  <tbody>
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d326693e1942 ">
+                           <div class="p">
+                              <pre class="codeblock">OLAPCube.findDimension(name:String):IOLAPDimension</pre>
+
+                           </div>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d326693e1948 ">
+                           <p>Returns a dimension of a schema as an instance of
+the OLAPDimension class. </p>
+
+                        </td>
+
+                     </tr>
+
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d326693e1942 ">
+                           <div class="p">
+                              <pre class="codeblock">OLAPDimension.findAttribute(name:String):IOLAPAttributeHierarchy</pre>
+
+                           </div>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d326693e1948 ">
+                           <p>Returns an instance of the IOLAPAttributeHierarchy
+interface, which is an attribute hierarchy that includes an IList
+instance of all members of the attribute. </p>
+
+                        </td>
+
+                     </tr>
+
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d326693e1942 ">
+                           <div class="p">
+                              <pre class="codeblock">OLAPDimension.findMember(name:String):IOLAPMember</pre>
+
+                           </div>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d326693e1948 ">
+                           <p>Returns an IOLAPMember instance that represents
+a member with the specified name within the dimension. </p>
+
+                        </td>
+
+                     </tr>
+
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d326693e1942 ">
+                           <div class="p">
+                              <pre class="codeblock">IOLAPAttributeHierarchy.children</pre>
+
+                           </div>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d326693e1948 ">
+                           <p>Contains all members of the level as an
+IList instance, but does not include the (All) member.</p>
+
+                        </td>
+
+                     </tr>
+
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d326693e1942 ">
+                           <div class="p">
+                              <pre class="codeblock">IOLAPAttributeHierarchy.members</pre>
+
+                           </div>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d326693e1948 ">
+                           <p>Contains all members of the level as an
+IList instance, including the (All) member.</p>
+
+                        </td>
+
+                     </tr>
+
+                  </tbody>
+
+               </table>
+</div>
+
+            <p>The following table shows the information returned for combinations
+of these methods and properties:</p>
+
+            
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" frame="border" border="1" rules="all">
+                  
+                  
+                  <thead align="left">
+                     <tr>
+                        <th class="cellrowborder" valign="top" width="NaN%" id="d326693e2067">
+                           <p>Reference to method and property</p>
+
+                        </th>
+
+                        <th class="cellrowborder" valign="top" width="NaN%" id="d326693e2073">
+                           <p>Returns</p>
+
+                        </th>
+
+                     </tr>
+
+                  </thead>
+
+                  <tbody>
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d326693e2067 ">
+                           <div class="p">
+                              <pre class="codeblock">findDimension("ProductDim").findAttribute("Product").children</pre>
+
+                           </div>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d326693e2073 ">
+                           <p>FlexJS, Flex, Installer, and TourDeFlex</p>
+
+                        </td>
+
+                     </tr>
+
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d326693e2067 ">
+                           <div class="p">
+                              <pre class="codeblock">findDimension("ProductDim").findAttribute("Product").members</pre>
+
+                           </div>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d326693e2073 ">
+                           <p>(All), FlexJS, Flex, Installer, and
+TourDeFlex</p>
+
+                        </td>
+
+                     </tr>
+
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d326693e2067 ">
+                           <div class="p">
+                              <pre class="codeblock">findDimension("ProductDim").findMember("Flex")</pre>
+
+                           </div>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d326693e2073 ">
+                           <p>Flex</p>
+
+                        </td>
+
+                     </tr>
+
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d326693e2067 ">
+                           <div class="p">
+                              <pre class="codeblock">findDimension("QuarterDim").findAttribute("Quarter").children</pre>
+
+                           </div>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d326693e2073 ">
+                           <p>Q1, Q2, Q3, and Q4</p>
+
+                        </td>
+
+                     </tr>
+
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d326693e2067 ">
+                           <div class="p">
+                              <pre class="codeblock">findDimension("QuarterDim").findAttribute("Quarter").members</pre>
+
+                           </div>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d326693e2073 ">
+                           <p>(All), Q1, Q2, Q3, and Q4</p>
+
+                        </td>
+
+                     </tr>
+
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d326693e2067 ">
+                           <div class="p">
+                              <pre class="codeblock">findDimension("QuarterDim").findMember("Q2")</pre>
+
+                           </div>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d326693e2073 ">
+                           <p>Q2</p>
+
+                        </td>
+
+                     </tr>
+
+                  </tbody>
+
+               </table>
+</div>
+
+            <p>Rather than use the <samp class="codeph">findAttribute()</samp> method,
+you can drill down through the hierarchy of the cube by calling
+the following methods: </p>
+
+            
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" frame="border" border="1" rules="all">
+                  
+                  
+                  <thead align="left">
+                     <tr>
+                        <th class="cellrowborder" valign="top" width="NaN%" id="d326693e2213">
+                           <p>Method</p>
+
+                        </th>
+
+                        <th class="cellrowborder" valign="top" width="NaN%" id="d326693e2219">
+                           <p>Description</p>
+
+                        </th>
+
+                     </tr>
+
+                  </thead>
+
+                  <tbody>
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d326693e2213 ">
+                           <div class="p">
+                              <pre class="codeblock">OLAPDimension.findHierarchy(name:String):IOLAPHierarchy</pre>
+
+                           </div>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d326693e2219 ">
+                           <p>Returns a hierarchy of a dimension as an
+instance of OLAPHierarchy. You can specify either an OLAPHierarchy
+or an OLAPLevel instance to this method. </p>
+
+                        </td>
+
+                     </tr>
+
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d326693e2213 ">
+                           <div class="p">
+                              <pre class="codeblock">OLAPHierarchy.findLevel(name:String):IOLAPLevel</pre>
+
+                           </div>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d326693e2219 ">
+                           <p>Returns a level of a hierarchy as an instance
+of OLAPLevel. </p>
+
+                        </td>
+
+                     </tr>
+
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d326693e2213 ">
+                           <div class="p">
+                              <pre class="codeblock">OLAPLevel.findMember(name:String):IList</pre>
+
+                           </div>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d326693e2219 ">
+                           <p>Returns an IList instance that contains
+all IOLAPMember instances that match the String argument. You can
+then use the <samp class="codeph">IList.getItemAt()</samp> method to access
+the any element in the IList. </p>
+
+                        </td>
+
+                     </tr>
+
+                  </tbody>
+
+               </table>
+</div>
+
+            <p>The following table shows the information returned for different
+combinations of these methods:</p>
+
+            
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" frame="border" border="1" rules="all">
+                  
+                  
+                  <thead align="left">
+                     <tr>
+                        <th class="cellrowborder" valign="top" width="NaN%" id="d326693e2304">
+                           <p>Reference to method</p>
+
+                        </th>
+
+                        <th class="cellrowborder" valign="top" width="NaN%" id="d326693e2310">
+                           <p>Returns</p>
+
+                        </th>
+
+                     </tr>
+
+                  </thead>
+
+                  <tbody>
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d326693e2304 ">
+                           <div class="p">
+                              <pre class="codeblock">findDimension("ProductDim").findhHierarchy("ProductHier").	findLevel("Product").children</pre>
+
+                           </div>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d326693e2310 ">
+                           <p>FlexJS, Flex, Installer, and TourDeFlex</p>
+
+                        </td>
+
+                     </tr>
+
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d326693e2304 ">
+                           <div class="p">
+                              <pre class="codeblock">findDimension("ProductDim").findHierarchy("ProductHier").	findLevel("Product").members</pre>
+
+                           </div>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d326693e2310 ">
+                           <p>(All), FlexJS, Flex, Installer, and
+TourDeFlex</p>
+
+                        </td>
+
+                     </tr>
+
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d326693e2304 ">
+                           <div class="p">
+                              <pre class="codeblock">IOLAPElement(cube.findDimension("ProductDim").	findHierarchy("ProductHier").findLevel("Product").	findMember("Flex").getItemAt(0))</pre>
+
+                           </div>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d326693e2310 ">
+                           <p>Flex. Cast the result to an instance of
+IOLAPElement because <samp class="codeph">getItemAt()</samp> returns an Object.</p>
+
+                        </td>
+
+                     </tr>
+
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d326693e2304 ">
+                           <div class="p">
+                              <pre class="codeblock">findDimension("QuarterDim").findHierarchy("QuarterHier").	findLevel("Quarter").children</pre>
+
+                           </div>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d326693e2310 ">
+                           <p>Q1, Q2, Q3, and Q4</p>
+
+                        </td>
+
+                     </tr>
+
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d326693e2304 ">
+                           <div class="p">
+                              <pre class="codeblock">findDimension("QuarterDim").findHierarchy("QuarterHier").	findLevel("Quarter").members</pre>
+
+                           </div>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d326693e2310 ">
+                           <p>(All), Q1, Q2, Q3, and Q4</p>
+
+                        </td>
+
+                     </tr>
+
+                     <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d326693e2304 ">
+                           <div class="p">
+                              <pre class="codeblock">IOLAPElement(cube.findDimension("QuarterDim").	findHierarchy("QuarterHier").findLevel("Quarter").	findMember("Q2").getItemAt(0))</pre>
+
+                           </div>
+
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d326693e2310 ">
+                           <p>Q2. Cast the result to an instance of IOLAPElement because <samp class="codeph">getItemAt()</samp> returns
+an Object.</p>
+
+                        </td>
+
+                     </tr>
+
+                  </tbody>
+
+               </table>
+</div>
+
+            <p>In the case of a simple cube, the <samp class="codeph">OLAPDimension.findHierarchy()</samp>, <samp class="codeph">OLAPHierarchy.findLevel()</samp>,
+and <samp class="codeph">OLAPLevel.findMember()</samp> methods do not provide
+you with additional functionality from the <samp class="codeph">OLAPDimension.findAttribute()</samp> and <samp class="codeph">OLAPDimension.findMember()</samp> methods.
+They are more commonly used with complex cubes that contain dimensions
+with multiple levels. For more information, see <a href="flx_olapdatagrid_ol.html#WS2db454920e96a9e51e63e3d11c0bf69084-7bd3_verapache">Writing
+a query for a complex OLAP cube</a>.</p>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf660d1-7fe6_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf660d1-7fe6_verapache"><!-- --></a>
+         <h3 class="topictitle3">Add all members to an axis</h3>
+
+         
+         <div>
+            <p>The most common type of query returns a data aggregation
+for all members of an attribute of a schema. For example, you define
+an OLAP cube using a schema that contains a ProductDim and a QuarterDim
+dimension, as shown in the section <a href="flx_olapdatagrid_ol.html#WS2db454920e96a9e51e63e3d11c0bf69084-7bd4_verapache">Writing
+a query for a simple OLAP cube</a>. You then want to generate
+a query for all products for all quarters. The following query extracts
+this information: </p>
+
+            <p>
+               
+            </p>
+
+            <pre class="codeblock">  private function getQuery(cube:IOLAPCube):IOLAPQuery { 
+ 	// Create an instance of OLAPQuery to represent the query.  
+ 	var query:OLAPQuery = new OLAPQuery; 
+  
+ 	// Get the row axis from the query instance. 
+ 	var rowQueryAxis:IOLAPQueryAxis = query.getAxis(OLAPQuery.ROW_AXIS); 
+ 	// Create an OLAPSet instance to configure the axis. 
+ 	var productSet:OLAPSet = new OLAPSet; 
+ 	<strong>productSet.addElements(</strong> 
+ 		<strong>cube.findDimension("ProductDim").findAttribute("Product").children);</strong> 
+ 	rowQueryAxis.addSet(productSet); 
+  
+ 	var colQueryAxis:IOLAPQueryAxis = query.getAxis(OLAPQuery.COLUMN_AXIS);  
+ 	var quarterSet:OLAPSet= new OLAPSet; 
+ 	<strong>quarterSet.addElements(</strong> 
+ 		<strong>cube.findDimension("QuarterDim").findAttribute("Quarter").children);</strong> 
+ 	colQueryAxis.addSet(quarterSet); 
+  
+ 	return query;  
+ }</pre>
+
+            <p>In this example, the column axis uses the <samp class="codeph">findDimension()</samp> and <samp class="codeph">findAttribute()</samp> methods
+to drill down into the ProductDim and QuarterDim dimensions to extract
+sales data. For each axis, you use the <samp class="codeph">IOLAPAttributeHierarchy.children</samp> property
+to populate it with the all members of the attribute, but do not
+include the <samp class="codeph">(All)</samp> member. </p>
+
+            <p>This query uses the default measure to populate the query result,
+where the default measure is the first measure defined in the cube's
+schema. Therefore, you do have to specify the measure as part of
+the query. For information on explicitly specifying the measure
+in the query, see <a href="flx_olapdatagrid_ol.html#WS2db454920e96a9e51e63e3d11c0bf69084-7bd8_verapache">Creating
+a query using a nondefault measure</a>.</p>
+
+            <p>Notice that in this example, you did not have to specify the
+hierarchy name, ProductHier and QuarterDim, to extract the member
+from the schema. It is unnecessary to specify the hierarchy name
+when you only want to extract data for a single level of a dimension. </p>
+
+            <p>However, you could rewrite this example to explicitly drill down
+through the cube by calling the methods <samp class="codeph">OLAPDimension.findHierarchy()</samp> and <samp class="codeph">OLAPHierarchy.findLevel()</samp>,
+as the following example shows:</p>
+
+            <p>
+               
+            </p>
+
+            <pre class="codeblock">  private function getQuery(cube:IOLAPCube):IOLAPQuery { 
+ 	// Create an instance of OLAPQuery to represent the query.  
+ 	var query:OLAPQuery = new OLAPQuery; 
+ 	 
+ 	// Get the row axis from the query instance. 
+ 	var rowQueryAxis:IOLAPQueryAxis = query.getAxis(OLAPQuery.ROW_AXIS); 
+ 	// Create an OLAPSet instance to configure the axis. 
+ 	var productSet:OLAPSet = new OLAPSet; 
+ 	<strong>productSet.addElements(cube.findDimension(</strong> 
+ 		<strong>"ProductDim").findHierarchy("ProductHier").findLevel("Product").members);</strong> 
+ 	rowQueryAxis.addSet(productSet); 
+  
+ 	var colQueryAxis:IOLAPQueryAxis = query.getAxis(OLAPQuery.COLUMN_AXIS);          
+ 	var quarterSet:OLAPSet= new OLAPSet; 
+ 	<strong>quarterSet.addElements(</strong> 
+ 		<strong>cube.findDimension("QuarterDim").findHierarchy("QuarterHier").</strong> 
+ 		<strong>findLevel("Quarter").members);</strong> 
+ 	colQueryAxis.addSet(quarterSet); 
+ 	 
+ 	return query;        
+ }</pre>
+
+            <p>In this example, you drill down through the dimension to access
+the Product and Quarter levels. You typically use this technique
+with complex cubes where you are interested in an explicit member
+of a dimension. </p>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf660d1-7fe5_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf660d1-7fe5_verapache"><!-- --></a>
+         <h3 class="topictitle3">Add explicit members to a query</h3>
+
+         
+         <div>
+            <p>In the query shown in the previous section, you obtain
+sales data for all members of the Product and Quarter levels of
+the schema. But, what if you only want sales data for a single product,
+or for a single quarter? When you drill down into a dimension, you
+can specify the individual member of the dimension that you want
+to query. </p>
+
+            <p>For example, you want to create a query to aggregate quarterly
+sales data only for Flex, but not for any other products. You therefore
+use the <samp class="codeph">OLAPDimension.findMember()</samp> method to specify
+the name of the member. This method takes a String containing the
+name of the member, and returns an IOLAPMember instance that defines
+the member, as the following example shows:</p>
+
+            <p>
+               
+            </p>
+
+            <pre class="codeblock">  private function getQuery(cube:IOLAPCube):IOLAPQuery { 
+ 	// Create an instance of OLAPQuery to represent the query.  
+ 	var query:OLAPQuery = new OLAPQuery; 
+ 	 
+ 	// Get the row axis from the query instance. 
+ 	var rowQueryAxis:IOLAPQueryAxis = query.getAxis(OLAPQuery.ROW_AXIS); 
+ 	// Create an OLAPSet instance to configure the axis. 
+ 	var productSet:OLAPSet = new OLAPSet; 
+ 	<strong>productSet.addElement(cube.findDimension("ProductDim").findMember("Flex"));</strong> 
+ 	rowQueryAxis.addSet(productSet); 
+ 	 
+ 	var colQueryAxis:IOLAPQueryAxis =  
+ 	query.getAxis(OLAPQuery.COLUMN_AXIS);          
+ 	var quarterSet:OLAPSet= new OLAPSet; 
+ 	<strong>quarterSet.addElements(</strong> 
+ 		<strong>cube.findDimension("QuarterDim").findAttribute("Quarter").children);</strong> 
+ 	colQueryAxis.addSet(quarterSet); 
+ 	 
+ 	return query;        
+ }</pre>
+
+            <p>Notice that in the previous example, you use the <samp class="codeph">OLAPSet.addElement()</samp> method
+to add the Flex member to the <a href="https://flex.apache.org/asdoc/mx/olap/OLAPSet.html" target="_blank">OLAPSet</a> instance,
+rather than the <samp class="codeph">OLAPSet.addElements()</samp> method. This
+is because you are adding a single member to the axis, rather than
+multiple members. </p>
+
+            <p>The only issue with using the <samp class="codeph">OLAPDimension.findMember()</samp> method
+is that it returns the first IOLAPMember instance in the cube that
+matches the String argument. If you think that you might have multiple
+instances of a member, you can rewrite this example to explicitly
+drill down through the cube by calling the <samp class="codeph">OLAPDimension.findHierarchy()</samp>, <samp class="codeph">OLAPHierarchy.findLevel()</samp>,
+and <samp class="codeph">OLAPLevel.findMember()</samp> methods. This situation
+is more common with cubes that contain complex dimensions. For more
+information and examples, see <a href="flx_olapdatagrid_ol.html#WS2db454920e96a9e51e63e3d11c0bf69084-7bd3_verapache">Writing
+a query for a complex OLAP cube</a>.</p>
+
+            <p>The <samp class="codeph">OLAPLevel.findMember()</samp> method returns an
+IList instance that contains all IOLAPMember instances that match
+the String argument. You can then use the <samp class="codeph">IList.getItemAt()</samp> method
+to access any element in the IList, as the following example shows:</p>
+
+            <p>
+               
+            </p>
+
+            <pre class="codeblock">  private function getQuery(cube:IOLAPCube):IOLAPQuery { 
+ 	// Create an instance of OLAPQuery to represent the query.  
+ 	var query:OLAPQuery = new OLAPQuery; 
+  
+ 	// Get the row axis from the query instance. 
+ 	var rowQueryAxis:IOLAPQueryAxis = query.getAxis(OLAPQuery.ROW_AXIS); 
+ 	// Create an OLAPSet instance to configure the axis. 
+ 	var productSet:OLAPSet = new OLAPSet; 
+ 	// Get the first IOLAPElement instance in the IList instance. 
+ 	productSet.addElement( 
+ 		IOLAPElement(cube.findDimension("ProductDim").findHierarchy("ProductHier"). 
+ 		findLevel("Product").findMember("Flex").getItemAt(0))); 
+ 	rowQueryAxis.addSet(productSet); 
+  
+ 	var colQueryAxis:IOLAPQueryAxis = query.getAxis(OLAPQuery.COLUMN_AXIS);          
+ 	var quarterSet:OLAPSet= new OLAPSet; 
+ 	quarterSet.addElement(IOLAPMember(cube.findDimension("TimeDim"). 
+ 		findHierarchy("Month").findMember("January"))); 
+ 	quarterSet.addElement(IOLAPMember(cube.findDimension("TimeDim"). 
+ 		findHierarchy("Month").findMember("February"))); 
+ 	colQueryAxis.addSet(quarterSet); 
+  
+ 	return query;        
+ }</pre>
+
+         </div>
+
+      </div>
+
+   </div>
+
+   <div class="nested1" id="WS2db454920e96a9e51e63e3d11c0bf69084-7bd3_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7bd3_verapache"><!-- --></a>
+      <h2 class="topictitle2">Writing a query for a complex OLAP
+cube</h2>
+
+      
+      <div>
+         <p>In a complex cube, at least one dimension of the schema
+contains multiple levels. For example, you have flat data that contains
+three fields:</p>
+
+         <pre class="codeblock">  data:Object = { 
+ 	product:"FlexJS" 
+ 	year :"2006" 
+ 	quarter :"Q1" 
+ 	revenue: "100.00",  
+ }</pre>
+
+         <p>The data fields of each record can contain the following values:</p>
+
+         <ul>
+            <li>
+               <p>The product field can have the values: FlexJS, Flex,
+Installer, and TourDeFlex.</p>
+
+            </li>
+
+            <li>
+               <p>The year field can have the values: 2006 and 2007.</p>
+
+            </li>
+
+            <li>
+               <p>The quarter field can have the values: Q1, Q2, Q3, and Q4.</p>
+
+            </li>
+
+         </ul>
+
+         <p>In this example, your schema defines two dimensions, with the
+TimeDim dimension containing levels for year and quarter, as the
+following code shows:</p>
+
+         <pre class="codeblock">  &lt;mx:OLAPCube name="FlatSchemaCube"  
+ 	dataProvider="{flatData}"  
+ 	id="myMXMLCube" 
+ 	complete="runQuery(event);"&gt; 
+ 	 
+ 	&lt;mx:OLAPDimension name="ProductDim"&gt; 
+ 		&lt;mx:OLAPAttribute name="Product" dataField="product"/&gt; 
+ 		&lt;mx:OLAPHierarchy name="ProductHier" hasAll="true"&gt; 
+ 			&lt;mx:OLAPLevel attributeName="Product"/&gt; 
+ 		&lt;/mx:OLAPHierarchy&gt; 
+ 	&lt;/mx:OLAPDimension&gt; 
+  
+ 	&lt;mx:OLAPDimension name="TimeDim"&gt; 
+ 		&lt;mx:OLAPAttribute name="Year" dataField="year"/&gt; 
+ 		&lt;mx:OLAPAttribute name="Quarter" dataField="quarter"/&gt; 
+ 		&lt;mx:OLAPHierarchy name="Time-PeriodHier" hasAll="true"&gt; 
+ 			&lt;mx:OLAPLevel attributeName="Year"/&gt; 
+ 			&lt;mx:OLAPLevel attributeName="Quarter"/&gt; 
+ 		&lt;/mx:OLAPHierarchy&gt;  
+ 	&lt;/mx:OLAPDimension&gt; 
+  
+ 	&lt;mx:OLAPMeasure name="Revenue"  
+ 		dataField="revenue"  
+ 		aggregator="SUM"/&gt; 
+ &lt;/mx:OLAPCube&gt;</pre>
+
+         <p>The cube has the following structure:</p>
+
+         <pre class="codeblock">  ProductDim 							// Dimension  
+ 	Product 							// Hierarchy 
+ 		(All)							// Member 
+ 		FlexJS 							// Member 
+ 		Flex 							// Member 
+ 		Installer 							// Member 
+ 		TourDeFlex 							// Member 
+  
+ 	ProductHier 							// Hierarchy  
+ 		(All) 							// Level 
+ 			FlexJS 							// Member 
+ 			Flex 							// Member 
+ 			Installer 							// Member 
+ 			TourDeFlex 							// Member 
+ 			 
+ 		Product 							// Level 
+ 			FlexJS 							// Member 
+ 			Flex 							// Member 
+ 			Installer 							// Member 
+ 			TourDeFlex 							// Member 
+  
+ TimeDim 							// Dimension 
+ 	Year 							// Hierarchy 
+ 		(All)							// Member 
+ 		2006 							// Member 
+ 		2007 							// Member 
+  
+ 	Quarter 							// Hierarchy 
+ 		(All)							// Member 
+ 		Q1 							// Member 
+ 		Q2 							// Member 
+ 		Q3 							// Member 
+ 		Q4 							// Member 
+  
+ 	Time-PeriodHier 							// Hierarchy  
+ 		(All) 							// Level 
+ 			2006 
+ 				Q1 
+ 				Q2 
+ 				Q3 
+ 				Q4 
+ 			2007 
+ 				Q1 
+ 				Q2 
+ 				Q3 
+ 				Q4 
+  
+ 		Year 							// Level 
+ 			2006 							// Member 
+ 			2007 							// Member 
+  
+ 		Quarter 							// Level 
+ 			Q1 (having 2006 as a parent) 							// Member 
+ 			Q1 (having 2007 as a parent) 							// Member 
+ 			Q2 (having 2006 as a parent) 							// Member 
+ 			Q2 (having 2007 as a parent) 							// Member 
+ 			Q3 (having 2006 as a parent) 							// Member 
+ 			Q3 (having 2007 as a parent) 							// Member 
+ 			Q4 (having 2006 as a parent) 							// Member 
+ 			Q4 (having 2007 as a parent) 							// Member</pre>
+
+         <p>Notice in this cube:</p>
+
+         <ul>
+            <li>
+               <p>The information for the quarter is added as a hierarchy
+under the TimeDim dimension, and as a level under the Time-PeriodHier
+hierarchy.</p>
+
+            </li>
+
+            <li>
+               <p>The Quarter level under the Time-PeriodHier hierarchy contains
+multiple entries for each quarter. In this example, there is an
+entry for each quarter for each year. </p>
+
+            </li>
+
+            <li>
+               <p>The order of the members, meaning the values along each dimension,
+is based on the order in which the member values appear in the flat
+data. </p>
+
+            </li>
+
+         </ul>
+
+         <p>The reason for the multiple entries for a single quarter in the
+Quarter level under the Time-PeriodHier hierarchy is that a cube
+has to be able to return results for each quarter for each year.
+For example, this structure lets you write a query to return data
+aggregations for all quarters for all years, for all quarters for
+2006, or for all quarters for 2007.</p>
+
+         <p>Since the ProductDim contains a single level, you can write queries
+for it in the same way as you did for a simple cube. See <a href="flx_olapdatagrid_ol.html#WS2db454920e96a9e51e63e3d11c0bf69084-7bd4_verapache">Writing
+a query for a simple OLAP cube</a> for more information. </p>
+
+         <p>The following table shows the information returned for different
+ways to access the TimeDim by calling the <samp class="codeph">findAttribute()</samp> method: </p>
+
+         
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" frame="border" border="1" rules="all">
+               
+               
+               <thead align="left">
+                  <tr>
+                     <th class="cellrowborder" valign="top" width="NaN%" id="d326693e2781">
+                        <p>Reference to method and property</p>
+
+                     </th>
+
+                     <th class="cellrowborder" valign="top" width="NaN%" id="d326693e2787">
+                        <p>Returns</p>
+
+                     </th>
+
+                  </tr>
+
+               </thead>
+
+               <tbody>
+                  <tr>
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d326693e2781 ">
+                        <div class="p">
+                           <pre class="codeblock">findDimension("TimeDim").findAttribute("Year").children</pre>
+
+                        </div>
+
+                     </td>
+
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d326693e2787 ">
+                        <p>2006, 2007</p>
+
+                     </td>
+
+                  </tr>
+
+                  <tr>
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d326693e2781 ">
+                        <div class="p">
+                           <pre class="codeblock">findDimension("TimeDim").findAttribute("Year").members</pre>
+
+                        </div>
+
+                     </td>
+
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d326693e2787 ">
+                        <p>(All), 2006, 2007</p>
+
+                     </td>
+
+                  </tr>
+
+                  <tr>
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d326693e2781 ">
+                        <div class="p">
+                           <pre class="codeblock">findDimension("TimeDim").findMember("2006")</pre>
+
+                        </div>
+
+                     </td>
+
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d326693e2787 ">
+                        <p>2006</p>
+
+                     </td>
+
+                  </tr>
+
+                  <tr>
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d326693e2781 ">
+                        <div class="p">
+                           <pre class="codeblock">findDimension("TimeDim").findAttribute("Quarter").children</pre>
+
+                        </div>
+
+                     </td>
+
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d326693e2787 ">
+                        <p>Q1, Q2, Q3, and Q4</p>
+
+                     </td>
+
+                  </tr>
+
+                  <tr>
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d326693e2781 ">
+                        <div class="p">
+                           <pre class="codeblock">findDimension("TimeDim").findAttribute("Quarter").members</pre>
+
+                        </div>
+
+                     </td>
+
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d326693e2787 ">
+                        <p>(All), Q1, Q2, Q3, and Q4</p>
+
+                     </td>
+
+                  </tr>
+
+                  <tr>
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d326693e2781 ">
+                        <div class="p">
+                           <pre class="codeblock">findDimension("TimeDim").findMember("Q2")</pre>
+
+                        </div>
+
+                     </td>
+
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d326693e2787 ">
+                        <p>Q2 having 2006 as a parent. This is the
+first instance of Q2 in the cube.</p>
+
+                     </td>
+
+                  </tr>
+
+               </tbody>
+
+            </table>
+</div>
+
+         <p>The following table shows the information returned for different
+ways to use the <samp class="codeph">OLAPDimension.findHierarchy()</samp>, <samp class="codeph">OLAPHierarchy.findLevel()</samp>, and <samp class="codeph">OLAPLevel.findMember()</samp> methods:</p>
+
+         
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" frame="border" border="1" rules="all">
+               
+               
+               <thead align="left">
+                  <tr>
+                     <th class="cellrowborder" valign="top" width="NaN%" id="d326693e2933">
+                        <p>Reference to method and property</p>
+
+                     </th>
+
+                     <th class="cellrowborder" valign="top" width="NaN%" id="d326693e2939">
+                        <p>Returns</p>
+
+                     </th>
+
+                  </tr>
+
+               </thead>
+
+               <tbody>
+                  <tr>
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d326693e2933 ">
+                        <div class="p">
+                           <pre class="codeblock">findDimension("TimeDim").findHierarchy("Time-PeriodHier").	findLevel("Year").children</pre>
+
+                        </div>
+
+                     </td>
+
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d326693e2939 ">
+                        <p>2006, 2007</p>
+
+                     </td>
+
+                  </tr>
+
+                  <tr>
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d326693e2933 ">
+                        <div class="p">
+                           <pre class="codeblock">findDimension("TimeDim").findHierarchy("Time-PeriodHier").	findLevel("Year").members</pre>
+
+                        </div>
+
+                     </td>
+
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d326693e2939 ">
+                        <p>(All), 2006, 2007</p>
+
+                     </td>
+
+                  </tr>
+
+                  <tr>
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d326693e2933 ">
+                        <div class="p">
+                           <pre class="codeblock">IOLAPElement(cube.findDimension("TimeDim").	findHierarchy("Time-PeriodHier").findLevel("Year").	findMember("2006").getItemAt(0))</pre>
+
+                        </div>
+
+                     </td>
+
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d326693e2939 ">
+                        <p>2006</p>
+
+                     </td>
+
+                  </tr>
+
+                  <tr>
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d326693e2933 ">
+                        <div class="p">
+                           <pre class="codeblock">findDimension("QuarterDim").findHierarchy("QuarterHier").	findLevel("Quarter").children</pre>
+
+                        </div>
+
+                     </td>
+
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d326693e2939 ">
+                        <p>Q1, Q2, Q3, and Q4</p>
+
+                     </td>
+
+                  </tr>
+
+                  <tr>
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d326693e2933 ">
+                        <div class="p">
+                           <pre class="codeblock">findDimension("QuarterDim").findHierarchy("QuarterHier").	findLevel("Quarter").members</pre>
+
+                        </div>
+
+                     </td>
+
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d326693e2939 ">
+                        <p>(All), Q1, Q2, Q3, and Q4</p>
+
+                     </td>
+
+                  </tr>
+
+                  <tr>
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d326693e2933 ">
+                        <div class="p">
+                           <pre class="codeblock">findDimension("TimeDim").findHierarchy("Time-PeriodHier").findLevel("Quarter").findMember("Q1")</pre>
+
+                        </div>
+
+                     </td>
+
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d326693e2939 ">
+                        <p>All Q1 members</p>
+
+                     </td>
+
+                  </tr>
+
+                  <tr>
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d326693e2933 ">
+                        <div class="p">
+                           <pre class="codeblock">IOLAPElement(cube.findDimension("QuarterDim").	findHierarchy("QuarterHier").findLevel("Quarter").	findMember("Q2").getItemAt(0))</pre>
+
+                        </div>
+
+                     </td>
+
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d326693e2939 ">
+                        <p>Q2 having 2006 as a parent. Cast the result
+to an instance of IOLAPElement because <samp class="codeph">getItemAt()</samp> returns
+an Object.</p>
+
+                     </td>
+
+                  </tr>
+
+                  <tr>
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d326693e2933 ">
+                        <div class="p">
+                           <pre class="codeblock">IOLAPElement(cube.findDimension("QuarterDim").	findHierarchy("QuarterHier").findLevel("Quarter").	findMember("Q2").getItemAt(1))</pre>
+
+                        </div>
+
+                     </td>
+
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d326693e2939 ">
+                        <p>Q2 having 2007 as a parent. Cast the result
+to an instance of IOLAPElement because <samp class="codeph">getItemAt()</samp> returns
+an Object.</p>
+
+                     </td>
+
+                  </tr>
+
+               </tbody>
+
+            </table>
+</div>
+
+         <p>You could add a Month level to the TimeDim, as the following
+definition of TimeDim shows:</p>
+
+         <pre class="codeblock">  &lt;mx:OLAPDimension name="TimeDim"&gt; 
+ 	&lt;mx:OLAPAttribute name="Year" dataField="year"/&gt; 
+ 	&lt;mx:OLAPAttribute name="Quarter" dataField="quarter"/&gt; 
+ 	&lt;mx:OLAPAttribute name="Month" dataField="month"/&gt; 
+ 	&lt;mx:OLAPHierarchy name="Time-PeriodHier" hasAll="true"&gt; 
+ 		&lt;mx:OLAPLevel attributeName="Year"/&gt; 
+ 		&lt;mx:OLAPLevel attributeName="Quarter"/&gt; 
+ 		&lt;mx:OLAPLevel attributeName="Month"/&gt; 
+ 	&lt;/mx:OLAPHierarchy&gt;  
+ &lt;/mx:OLAPDimension&gt;</pre>
+
+         <p>For this example, the structure of the TimeDim dimension is:</p>
+
+         <pre class="codeblock">  TimeDim 							// Dimension 
+ 	Year 							// Hierarchy 
+ 		(All)							// Member 
+ 		2006 							// Member 
+ 		2007 							// Member 
+  
+ 	Quarter 							// Hierarchy 
+ 		(All)							// Member 
+ 		Q1 							// Member 
+ 		Q2 							// Member 
+ 		Q3 							// Member 
+ 		Q4 							// Member 
+  
+ 	Month 							// Hierarchy 
+ 		(All)							// Member 
+ 		Jan 							// Member 
+ 		Feb 							// Member 
+ 		... 							// Adiitional members for each month 
+  
+ 	Time-PeriodHier 							// Hierarchy  
+ 		(All) 							// Level 
+ 			2006 
+ 				Q1 
+ 					Jan 
+ 					Feb 
+ 					Mar 
+ 				... 
+ 			2007 
+ 				Q1 
+ 					Jan 
+ 					Feb 
+ 					Mar 
+ 				... 
+  
+ 		Year 							// Level 
+ 			2006 							// Member 
+ 			2007 							// Member 
+  
+ 		Quarter 							// Level 
+ 			Q1 (having 2006 as a parent) 							// Member 
+ 			Q1 (having 2007 as a parent) 							// Member 
+ 			Q2 (having 2006 as a parent) 							// Member 
+ 			Q2 (having 2007 as a parent) 							// Member 
+ 			Q3 (having 2006 as a parent) 							// Member 
+ 			Q3 (having 2007 as a parent) 							// Member 
+ 			Q4 (having 2006 as a parent) 							// Member 
+ 			Q4 (having 2007 as a parent) 							// Member 
+  
+ 		Month 							// Level 
+ 			Jan (having Q1 having 2006 as a parent) 							// Member 
+ 			Feb (having Q1 having 2006 as a parent) 							// Member 
+ 			Jan (having Q1 having 2007 as a parent) 							// Member 
+ 			Feb (having Q1 having 2007 as a parent) 							// Member 
+ 			...										// Additional members for each possible 
+ 													// combination of month, quarter, 
+ 													// and year</pre>
+
+         <p>Notice in this cube:</p>
+
+         <ul>
+            <li>
+               <p>The Month level contains a value for each month, and
+for each quarter for each year. Therefore, there should be two entries
+for January; one for Q1 of 2006 and one for Q1 of 2007.</p>
+
+            </li>
+
+         </ul>
+
+      </div>
+
+   </div>
+
+   <div class="nested1" id="WS2db454920e96a9e51e63e3d11c0bf660d1-7fe3_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf660d1-7fe3_verapache"><!-- --></a>
+      <h2 class="topictitle2">Creating a multidimensional axis
+in an OLAPDataGrid control</h2>
+
+      
+      <div>
+         <p>The <a href="https://flex.apache.org/asdoc/mx/controls/OLAPDataGrid.html" target="_blank">OLAPDataGrid</a> control
+displays information along two axes: row and column. However, limiting
+yourself to writing queries that return only two dimensions can restrict
+your ability to examine your data.</p>
+
+         <p>To allow you greater flexibility in displaying query results,
+the OLAPDataGrid control supports hierarchical display along its
+axis. The following image shows quarterly sales information, grouped
+by year, displayed in the columns of the OLAPDataGrid control.</p>
+
+         <div class="figborder">
+            <img src="images/ol_productByYearQuarter.png" alt="Quarterly sales information, grouped by year, displayed in the columns of the OLAPDataGrid control"/>
+         </div>
+
+         <p>To create a multidimensional axis in the OLAPDataGrid control,
+you create two or more OLAPSet instances for the axis, and then
+combine the <a href="https://flex.apache.org/asdoc/mx/olap/OLAPSet.html" target="_blank">OLAPSet</a> instances
+by doing a crossjoin or a union, as the following table describes:</p>
+
+         
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" frame="border" border="1" rules="all">
+               
+               
+               
+               <thead align="left">
+                  <tr>
+                     <th class="cellrowborder" valign="top" width="NaN%" id="d326693e3178">
+                        <p>Combination type</p>
+
+                     </th>
+
+                     <th class="cellrowborder" valign="top" width="NaN%" id="d326693e3184">
+                        <p>OLAPSet method</p>
+
+                     </th>
+
+                     <th class="cellrowborder" valign="top" width="NaN%" id="d326693e3190">
+                        <p>Description</p>
+
+                     </th>
+
+                  </tr>
+
+               </thead>
+
+               <tbody>
+                  <tr>
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d326693e3178 ">
+                        <p>Crossjoin</p>
+
+                     </td>
+
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d326693e3184 ">
+                        <div class="p">
+                           <pre class="codeblock">crossJoin()</pre>
+
+                        </div>
+
+                     </td>
+
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d326693e3190 ">
+                        <p>Creates a crossjoin of two OLAPSet instances,
+where a crossjoin contains all possible combinations of the two
+sets. A crossjoin is also called a cross product of the members
+of the two different sets. </p>
+
+                     </td>
+
+                  </tr>
+
+                  <tr>
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d326693e3178 ">
+                        <p>Union</p>
+
+                     </td>
+
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d326693e3184 ">
+                        <div class="p">
+                           <pre class="codeblock">union()</pre>
+
+                        </div>
+
+                     </td>
+
+                     <td class="cellrowborder" valign="top" width="NaN%" headers="d326693e3190 ">
+                        <p>Creates a union of two OLAPSet instances. </p>
+
+                     </td>
+
+                  </tr>
+
+               </tbody>
+
+            </table>
+</div>
+
+         <p>In the following example, you create an OLAPSet instance for
+the year, and then crossjoin that set with the OLAPSet instance
+for quarter to create the OLAPDataGrid control shown in the previous
+image: </p>
+
+         <p>
+            
+         </p>
+
+         <pre class="codeblock">  private function getQuery(cube:IOLAPCube):IOLAPQuery { 
+ 	var query:OLAPQuery = new OLAPQuery; 
+  
+ 	var rowQueryAxis:IOLAPQueryAxis = query.getAxis(OLAPQuery.ROW_AXIS); 
+ 	var productSet:OLAPSet = new OLAPSet; 
+ 	productSet.addElements( 
+ 		cube.findDimension("ProductDim").findAttribute("Product").children); 
+ 	rowQueryAxis.addSet(productSet); 
+ 	 
+ 	var colQueryAxis:IOLAPQueryAxis = query.getAxis(OLAPQuery.COLUMN_AXIS);          
+ 	var yearSet:OLAPSet= new OLAPSet; 
+ 	<strong>yearSet.addElements(</strong> 
+ 		<strong>cube.findDimension("TimeDim").findAttribute("Year").children);</strong> 
+ 	<strong>var quarterSet:OLAPSet= new OLAPSet;</strong> 
+ 	<strong>quarterSet.addElements(</strong> 
+ 		<strong>cube.findDimension("TimeDim").findAttribute("Quarter").children);</strong> 
+ 	<strong>colQueryAxis.addSet(yearSet.crossJoin(quarterSet));</strong> 
+  
+ 	return query;        
+ }</pre>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf69084-7be1_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7be1_verapache"><!-- --></a>
+         <h3 class="topictitle3">Creating a slicer axis</h3>
+
+         
+         <div>
+            <p>An OLAP query can have three axes: row, column, and slicer.
+A slicer axis lets you reduce the size of the query results, often
+to reduce the dimensionality of the results from a dimension greater
+than two so that you can display the results. Another common use
+of a slicer axis is to aggregate data on a measure other than the
+default measure. </p>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf69084-7bd8_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf69084-7bd8_verapache"><!-- --></a>
+         <h3 class="topictitle3">Creating a query using a nondefault
+measure</h3>
+
+         
+         <div>
+            <p>The following schema defines two measures for the points
+in the cube: Revenue and Cost. The first measure defined in the
+schema is the default measure, and it is the data that is aggregated
+by a query if you do not explicitly specify the measure. </p>
+
+            <pre class="codeblock">  &lt;mx:OLAPCube name="FlatSchemaCube"  
+ 	dataProvider="{flatData}"  
+ 	id="myMXMLCube" 
+ 	complete="runQuery(event);"&gt; 
+ 	 
+ 	&lt;mx:OLAPDimension name="ProductDim"&gt; 
+ 		&lt;mx:OLAPAttribute name="Product" dataField="product"/&gt; 
+ 		&lt;mx:OLAPHierarchy name="ProductHier" hasAll="true"&gt; 
+ 			&lt;mx:OLAPLevel attributeName="Product"/&gt; 
+ 		&lt;/mx:OLAPHierarchy&gt; 
+ 	&lt;/mx:OLAPDimension&gt; 
+  
+ 	&lt;mx:OLAPDimension name="QuarterDim"&gt; 
+ 		&lt;mx:OLAPAttribute name="Quarter" dataField="quarter"/&gt; 
+ 		&lt;mx:OLAPHierarchy name="QuarterHier" hasAll="true"&gt; 
+ 			&lt;mx:OLAPLevel attributeName="Quarter"/&gt; 
+ 		&lt;/mx:OLAPHierarchy&gt;  
+ 	&lt;/mx:OLAPDimension&gt; 
+ 	 
+ 	&lt;mx:OLAPMeasure name="Revenue"  
+ 		dataField="revenue" aggregator="MAX"/&gt; 
+ 	&lt;mx:OLAPMeasure name="Cost"  
+ 		dataField="cost" aggregator="MIN"/&gt; 
+ &lt;/mx:OLAPCube&gt;</pre>
+
+            <p>To aggregate by the Cost measure, you create a slicer axis to
+explicitly specify the measure for the query, as the following example
+shows:</p>
+
+            <p>
+               
+            </p>
+
+            <pre class="codeblock">  private function getQuery(cube:IOLAPCube):IOLAPQuery { 
+ 	// Create an instance of OLAPQuery to represent the query.  
+ 	var query:OLAPQuery = new OLAPQuery; 
+ 	 
+ 	// Get the row axis from the query instance. 
+ 	var rowQueryAxis:IOLAPQueryAxis = query.getAxis(OLAPQuery.ROW_AXIS); 
+ 	// Create an OLAPSet instance to configure the axis. 
+ 	var productSet:OLAPSet = new OLAPSet; 
+ 	productSet.addElements( 
+ 		cube.findDimension("ProductDim").findAttribute("Product").children); 
+ 	rowQueryAxis.addSet(productSet); 
+  
+ 	var colQueryAxis:IOLAPQueryAxis = query.getAxis(OLAPQuery.COLUMN_AXIS);          
+ 	var quarterSet:OLAPSet= new OLAPSet; 
+ 	quarterSet.addElements( 
+ 		cube.findDimension("TimeDim").findAttribute("Month").children); 
+ 	colQueryAxis.addSet(quarterSet); 
+ 	 
+ 	<strong>// Create the slicer axis. </strong> 
+ 	<strong>var slicerQueryAxis:IOLAPQueryAxis = query.getAxis(OLAPQuery.SLICER_AXIS);         </strong> 
+ 	<strong>// Create an OLAPSet instance to configure the axis.</strong> 
+ 	<strong>var costSet:OLAPSet= new OLAPSet;</strong> 
+ 	<strong>// Use OLAPDimension.findMember() to add the Cost measure.</strong> 
+ 	<strong>costSet.addElement(cube.findDimension("Measures").findMember("Cost"));</strong> 
+ 	<strong>slicerQueryAxis.addSet(costSet);</strong> 
+  
+ 	return query;        
+ }</pre>
+
+            <p>In this example, you use the keyword <samp class="codeph">Measures</samp> to
+identify the measure dimension, and then use the <samp class="codeph">OLAPDimension.findMember()</samp> method
+to access the Cost measure.</p>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf660d1-7fe0_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf660d1-7fe0_verapache"><!-- --></a>
+         <h3 class="topictitle3">Using a slicer axis to reduce the
+dimensionality of the query result</h3>
+
+         
+         <div>
+            <p>The OLAPDataGrid control displays information in two dimensions
+along its row and column axis. However, to display product sales
+by region and by month, you require a three-dimensional display:
+one dimension each for product, region, and month. </p>
+
+            <p>For example, your data has the following format:</p>
+
+            <pre class="codeblock">  data:Object = { 
+ 	customer:"IBM",  
+ 	country:"US", 
+ 	state:"MA", 
+ 	region:"NewEngland", 
+ 	product:"FlexJS", 
+ 	year:2005, 
+ 	quarter:"Q1" 
+ 	month:"January", 
+ 	revenue: 12,575.00, 
+ 	cost: 500 
+ }</pre>
+
+            <p>The examples use the following OLAP schema to represent this
+data in an OLAP cube:</p>
+
+            <p>
+               
+            </p>
+
+            <pre class="codeblock">    &lt;mx:OLAPCube name="FlatSchemaCube" 
+        dataProvider="{flatData}" 
+        id="myMXMLCube" 
+        complete="runQuery(event);"&gt; 
+ 
+        &lt;mx:OLAPDimension name="CustomerDim"&gt; 
+            &lt;mx:OLAPAttribute name="Customer" dataField="customer"/&gt; 
+            &lt;mx:OLAPHierarchy name="CustomerHier" 
+                hasAll="true"&gt; 
+                &lt;mx:OLAPLevel attributeName="Customer"/&gt; 
+            &lt;/mx:OLAPHierarchy&gt; 
+        &lt;/mx:OLAPDimension&gt; 
+    
+        &lt;mx:OLAPDimension name="ProductDim"&gt; 
+            &lt;mx:OLAPAttribute name="Product" dataField="product"/&gt; 
+            &lt;mx:OLAPHierarchy name="ProductHier" 
+                hasAll="true"&gt; 
+                &lt;mx:OLAPLevel attributeName="Product"/&gt; 
+            &lt;/mx:OLAPHierarchy&gt; 
+        &lt;/mx:OLAPDimension&gt; 
+ 
+        &lt;mx:OLAPDimension name="TimeDim"&gt; 
+            &lt;mx:OLAPAttribute name="Year" dataField="year"/&gt; 
+            &lt;mx:OLAPAttribute name="Quarter" dataField="quarter"/&gt; 
+            &lt;mx:OLAPAttribute name="Month" dataField="month"/&gt; 
+            &lt;mx:OLAPHierarchy name="Time-Period" 
+                hasAll="true"&gt; 
+                &lt;mx:OLAPLevel attributeName="Year"/&gt; 
+                &lt;mx:OLAPLevel attributeName="Quarter"/&gt; 
+                &lt;mx:OLAPLevel attributeName="Month"/&gt; 
+            &lt;/mx:OLAPHierarchy&gt; 
+        &lt;/mx:OLAPDimension&gt; 
+ 
+        &lt;mx:OLAPDimension name="GeographyDim"&gt;  
+            &lt;mx:OLAPAttribute name="Country" dataField="country"/&gt; 
+            &lt;mx:OLAPAttribute name="Region" dataField="region"/&gt; 
+            &lt;mx:OLAPAttribute name="State" dataField="state"/&gt; 
+            &lt;mx:OLAPHierarchy name="Country-Region-State" 
+                hasAll="true"&gt; 
+                &lt;mx:OLAPLevel attributeName="Country"/&gt; 
+                &lt;mx:OLAPLevel attributeName="Region"/&gt; 
+                &lt;mx:OLAPLevel attributeName="State"/&gt; 
+            &lt;/mx:OLAPHierarchy&gt; 
+        &lt;/mx:OLAPDimension&gt; 
+ 
+        &lt;mx:OLAPMeasure name="Revenue" 
+            dataField="revenue" 
+            aggregator="SUM"/&gt; 
+        &lt;mx:OLAPMeasure name="Cost" 
+         dataField="cost" 
+         aggregator="SUM"/&gt; 
+    &lt;/mx:OLAPCube&gt;</pre>
+
+            <p>You can use a slicer axis to filter the results of a query for
+display in two dimensions. In this example, you set the row axis
+to the region and the column axis to the month. You then define
+a slicer axis to specify the product as Flex so that you end up
+with a two-dimensional table of sales by region and month for Flex. </p>
+
+            <p>
+               
+            </p>
+
+            <pre class="codeblock">  private function getQuery(cube:IOLAPCube):IOLAPQuery { 
+ 	// Create an instance of OLAPQuery to represent the query.  
+ 	var query:OLAPQuery = new OLAPQuery; 
+  
+ 	// Get the row axis from the query instance. 
+ 	var rowQueryAxis:IOLAPQueryAxis = query.getAxis(OLAPQuery.ROW_AXIS); 
+ 	// Create an OLAPSet instance to configure the axis. 
+ 	var productSet:OLAPSet = new OLAPSet; 
+ 	productSet.addElements( 
+ 		cube.findDimension("GeographyDim").findAttribute("Region").children); 
+ 	rowQueryAxis.addSet(productSet); 
+  
+ 	var colQueryAxis:IOLAPQueryAxis = query.getAxis(OLAPQuery.COLUMN_AXIS);          
+ 	var quarterSet:OLAPSet= new OLAPSet; 
+ 	quarterSet.addElements( 
+ 		cube.findDimension("TimeDim").findAttribute("Month").children); 
+ 	colQueryAxis.addSet(quarterSet); 
+  
+ 	<strong>// Create the slicer axis. </strong> 
+ 	<strong>var slicerQueryAxis:IOLAPQueryAxis = query.getAxis(OLAPQuery.SLICER_AXIS);         </strong> 
+ 	<strong>// Create an OLAPSet instance to configure the axis.</strong> 
+ 	<strong>var flexSet:OLAPSet= new OLAPSet;</strong> 
+ 	<strong>flexSet.addElement(</strong> 
+ 		<strong>IOLAPElement(cube.findDimension("ProductDim").findHierarchy("ProductHier").</strong> 
+ 		<strong>findLevel("Product").findMember("Flex").getItemAt(0)));</strong> 
+ 	<strong>slicerQueryAxis.addSet(flexSet);</strong> 
+  
+ 	return query;        
+ }</pre>
+
+            <p>You can specify more than one member for the slicer access. For
+example, if your cube contains information on different product
+such as Flex and Adobe<sup>®</sup> Flash<sup>®</sup>, you
+could create the two slicer axes as the following example shows:</p>
+
+            <p>
+               
+            </p>
+
+            <pre class="codeblock">  // Create the slicer axis.  
+ var slicerQueryAxis:IOLAPQueryAxis = query.getAxis(OLAPQuery.SLICER_AXIS);  
+  
+ // Create an OLAPSet instance to configure the axis. 
+ var sliceSet:OLAPSet= new OLAPSet; 
+ sliceSet.addElement(IOLAPElement(cube.findDimension("ProductDim"). 
+ 	findHierarchy("ProductHier").findLevel("Product").findMember("Flex").getItemAt(0))); 
+  
+ sliceSet.addElement(IOLAPElement(cube.findDimension("ProductDim"). 
+ 	findHierarchy("ProductHier").findLevel("Product").findMember("Flash").getItemAt(0))); 
+  
+ slicerQueryAxis.addSet(sliceSet);</pre>
+
+            <p>In this example, your query result would show sales of Flex and
+Flash for each region and month.</p>
+
+         </div>
+
+      </div>
+
+   </div>
+
+   <div class="nested1" id="WS2db454920e96a9e51e63e3d11c0bf660d1-7fdf_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf660d1-7fdf_verapache"><!-- --></a>
+      <h2 class="topictitle2">Configuring the display of an OLAPDataGrid</h2>
+
+      
+      <div>
+         <p>To control the display of an OLAPDataGrid control, you
+can apply styles to the cells of the control by using a callback
+function, or use item renderers to control the display. </p>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf660d1-7fde_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf660d1-7fde_verapache"><!-- --></a>
+         <h3 class="topictitle3">Styling cells of the OLAPDataGrid
+control by using a callback function</h3>
+
+         
+         <div>
+            <p>To control the styling of a cell by using a callback function,
+use the <samp class="codeph">OLAPDataGrid.styleFunction</samp> property to
+specify the callback function. The callback function must have the
+following signature: </p>
+
+            <pre class="codeblock">  <em>function_name</em>(<em>row</em>:IOLAPAxisPosition, <em>column</em>:IOLAPAxisPosition, <em>value</em>:Number):Object</pre>
+
+            <p>where <samp class="codeph">row</samp> is the IOLAPAxisPosition associated
+with this cell on the row axis, <samp class="codeph">column</samp> is the IOLAPAxisPosition
+associated with this cell on the column axis, and <samp class="codeph">value</samp> is
+the cell value.</p>
+
+            <p>The function returns an Object that contains one or more <em>styleName:value</em> pairs to
+specify a style setting, or null. The <em>styleName</em> field contains
+the name of a style property, such as <samp class="codeph">color</samp>, and
+the <em>value</em> field contains the value for the style property,
+such as 0x00FF00. For example, you could return two styles using
+the following syntax:</p>
+
+            <pre class="codeblock">  {color:0xFF0000, fontWeight:"bold"}</pre>
+
+            <p>The <a href="https://flex.apache.org/asdoc/mx/controls/OLAPDataGrid.html" target="_blank">OLAPDataGrid</a> control
+invokes the callback function when it updates its display, such
+as when the control is first drawn on application start up, or when you
+call the <samp class="codeph">invalidateList()</samp>method. </p>
+
+            <p>The following example modifies the example shown in the section <a href="flx_olapdatagrid_ol.html#WS2db454920e96a9e51e63e3d11c0bf69084-7bda_verapache">Example using
+the OLAPDataGrid control</a> to add a callback function to display
+all cells with a value greater than 1000 in green:</p>
+
+            <p>
+               
+            </p>
+
+            <pre class="codeblock">  &lt;fx:Script&gt; 
+ 	&lt;![CDATA[ 
+ 		...         
+  
+ 		// Callback function that hightlights in green 
+ 		// all cells with a value greater than or equal to 1000. 
+ 		public function myStyleFunc(row:IOLAPAxisPosition, column:IOLAPAxisPosition,  
+ 			value:Number):Object  
+ 		{ 
+ 			if (value &gt;= 1000)  
+ 			return {color:0x00FF00};  
+ 	 
+ 			// Return null if value is less than 1000. 
+ 			return null;       
+ 		}         
+ 		]]&gt; 
+ &lt;/fx:Script&gt; 
+  
+ ... 
+  
+ &lt;mx:OLAPDataGrid id="myOLAPDG"  
+ 	width="100%" height="100%" 
+ 	styleFunction="myStyleFunc"/&gt;</pre>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf660d1-7fdd_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf660d1-7fdd_verapache"><!-- --></a>
+         <h3 class="topictitle3">Using an item renderer with the
+OLAPDataGrid control</h3>
+
+         
+         <div>
+            <p>You customize the appearance and behavior of cells in an <a href="https://flex.apache.org/asdoc/mx/controls/OLAPDataGrid.html" target="_blank">OLAPDataGrid</a> control by
+creating custom item renderers. </p>
+
+            <p>For an introduction to item renderers and item editors, see <a href="flx_cellrenderer_cr.html#WS2db454920e96a9e51e63e3d11c0bf69084-7fb7_verapache">MX
+item renderers and item editors</a>.</p>
+
+            <p>To use an item renderer with the OLAPDataGrid control, you assign
+the item renderer to the OLAPDataGrid control itself, not to a specific
+column, by using the <samp class="codeph">OLAPDataGrid.itemRendererProviders</samp> property.
+The <samp class="codeph">itemRendererProviders</samp> property contains an
+Array of <a href="https://flex.apache.org/asdoc/mx/controls/olapDataGridClasses/OLAPDataGridItemRendererProvider.html" target="_blank">OLAPDataGridItemRendererProvider</a> instances,
+where each OLAPDataGridItemRendererProvider instance defines the
+characteristics for a single item renderer. </p>
+
+            <p>You can use the <samp class="codeph">OLAPDataGridRendererProvider.renderer</samp> property to
+assign an item renderer to the OLAPDataGrid control, much in the
+way that you can by using the <samp class="codeph">AdvancedDataGrid.rendererProviders</samp> property, or
+can use the <samp class="codeph">OLAPDataGridRendererProvider.formatter</samp> property to
+assign a formatter class. The following example modifies the example
+shown in the section <a href="flx_olapdatagrid_ol.html#WS2db454920e96a9e51e63e3d11c0bf69084-7bda_verapache">Example
+using the OLAPDataGrid control</a> to add an item renderer that
+applies the CurrencyFormatter formatter to each cell in the control: </p>
+
+            <p>
+               
+            </p>
+
+            <pre class="codeblock">  ... 
+ &lt;mx:CurrencyFormatter id="usdFormatter" precision="2"  
+ 	currencySymbol="$" decimalSeparatorFrom="." 
+ 	decimalSeparatorTo="." useNegativeSign="true"  
+ 	useThousandsSeparator="true" alignSymbol="left"/&gt; 
+  
+ ... 
+  
+ &lt;mx:OLAPDataGrid id="myOLAPDG"  
+ 	width="100%" height="100%"&gt; 
+  
+ 	&lt;mx:itemRendererProviders&gt; 
+ 		&lt;mx:OLAPDataGridItemRendererProvider  
+ 			uniqueName="[QuarterDim].[Quarter]" 
+ 			type="{OLAPDataGrid.OLAP_HIERARCHY}" 
+ 			formatter="{usdFormatter}"/&gt; 
+ 	&lt;/mx:itemRendererProviders&gt; 
+ &lt;/mx:OLAPDataGrid&gt;</pre>
+
+            <p>To assign the item renderer, use the <samp class="codeph">uniqueName</samp> and <samp class="codeph">type</samp> properties
+of the OLAPDataGridItemRendererProvider class. The <samp class="codeph">uniqueName</samp> property
+specifies the elements of the query, and therefore the corresponding
+cells of the OLAPDataGrid control, that you modify by using the
+item renderer. The <samp class="codeph">type</samp> properly specifies the
+element type, such as dimension, hierarchy, or level of the element specified
+by the <samp class="codeph">uniqueName</samp> property.</p>
+
+            <p>When assigning a formatter to the OLAPDataGridItemRendererProvider,
+you must specify a subclass of the <a href="https://flex.apache.org/asdoc/mx/formatters/Formatter.html" target="_blank">mx.formatters.Formatter</a> class;
+for example, the MX formatters such as <a href="https://flex.apache.org/asdoc/mx/formatters/CurrencyFormatter.html" target="_blank">CurrencyFormatter</a> or <a href="https://flex.apache.org/asdoc/mx/formatters/NumberFormatter.html" target="_blank">NumberFormatter</a>.
+The formatter cannot be a Spark formatter.</p>
+
+            <p>The function that defines the query for this example is shown
+below:</p>
+
+            <p>
+               
+            </p>
+
+            <pre class="codeblock">  // Create the OLAP query. 
+ private function getQuery(cube:IOLAPCube):IOLAPQuery { 
+ 	// Create an instance of OLAPQuery to represent the query.  
+ 	var query:OLAPQuery = new OLAPQuery; 
+  
+ 	// Get the row axis from the query instance. 
+ 	var rowQueryAxis:IOLAPQueryAxis = query.getAxis(OLAPQuery.ROW_AXIS); 
+ 	// Create an OLAPSet instance to configure the axis. 
+ 	var productSet:OLAPSet = new OLAPSet; 
+ 	// Add the Product to the row to aggregate data  
+ 	// by the Product dimension. 
+ 	productSet.addElements( 
+ 		cube.findDimension("ProductDim").findAttribute("Product").children); 
+ 	// Add the OLAPSet instance to the axis. 
+ 	rowQueryAxis.addSet(productSet); 
+  
+ 	// Get the column axis from the query instance, and configure it 
+ 	// to aggregate the columns by the Quarter dimension.  
+ 	var colQueryAxis:IOLAPQueryAxis = query.getAxis(OLAPQuery.COLUMN_AXIS);          
+ 	var quarterSet:OLAPSet= new OLAPSet; 
+ 	<strong>quarterSet.addElements(</strong> 
+ 		<strong>cube.findDimension("QuarterDim").findAttribute("Quarter").children);</strong> 
+ 	colQueryAxis.addSet(quarterSet); 
+  
+ 	return query;        
+ }</pre>
+
+            <p>Notice that the axis for the QuarterDim creates a query for the
+Quarter hierarchy of the QuarterDim dimension. Therefore, you set
+the <samp class="codeph">uniqueName</samp> property to <samp class="codeph">[QuarterDim].[Quarter]</samp>,
+and set the type property to <samp class="codeph">OLAPDataGrid.OLAP_HIERARCHY</samp>.
+For more information on the structure of the <samp class="codeph">OLAP</samp> code
+for this example, see <a href="flx_olapdatagrid_ol.html#WS2db454920e96a9e51e63e3d11c0bf69084-7bd4_verapache">Writing
+a query for a simple OLAP cube</a>. </p>
+
+            <p>You can modify this example to drill down through the cube by
+specifying the query as shown below for the QuarterDim:</p>
+
+            <p>
+               
+            </p>
+
+            <pre class="codeblock">  quarterSet.addElements( 
+ 	cube.findDimension("QuarterDim").findHierarchy("QuarterHier"). 
+ 	findLevel("Quarter").members);</pre>
+
+            <p>You therefore modify the <samp class="codeph">uniqueName</samp> and <samp class="codeph">type</samp> properties
+as shown below:</p>
+
+            <pre class="codeblock">  &lt;mx:OLAPDataGrid id="myOLAPDG"  
+ 	width="100%" height="100%"&gt; 
+  
+ 	&lt;mx:itemRendererProviders&gt; 
+ 		&lt;mx:OLAPDataGridItemRendererProvider  
+ 			<strong>uniqueName="[QuarterDim].[QuarterHier].[Quarter]"</strong> 
+ 			<strong>type="{OLAPDataGrid.OLAP_LEVEL}"</strong> 
+ 			formatter="{usdFormatter}"/&gt; 
+ 	&lt;/mx:itemRendererProviders&gt; 
+ &lt;/mx:OLAPDataGrid&gt;</pre>
+
+            <p>Notice in this example that the query for the QuarterDim specifies
+the dimension, hierarchy, and level of the OLAP cube. Therefore,
+you modify the <samp class="codeph">uniqueName</samp> property to match this
+structure, and set the <samp class="codeph">type</samp> property to <samp class="codeph">OLAPDataGrid.OLAP_LEVEL</samp>.</p>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf660d1-7fdc_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf660d1-7fdc_verapache"><!-- --></a>
+         <h3 class="topictitle3">Resolving item renderer conflicts</h3>
+
+         
+         <div>
+            <p>Each cell in an OLAPDataGrid control is a result of an
+intersection between the members along a row and the members along
+a column of the control. However, when you assign an item renderer
+to an OLAPDataGrid control, you only specify the <samp class="codeph">uniqueName</samp> and <samp class="codeph">type</samp> properties
+for one of the dimensions, either row or column. Therefore, you
+can create a situation where two different item renderers are assigned
+to the same cell of the control.</p>
+
+            <p>In case of a conflict between two or more item renderers, the
+OLAPDataGrid control applies the item renderer based on the following
+priorities: </p>
+
+            <ol>
+               <li>
+                  <p>
+                     <samp class="codeph">type</samp> = <samp class="codeph">OLAPDataGrid.OLAP_MEMBER</samp> 
+                  </p>
+
+               </li>
+
+               <li>
+                  <p>
+                     <samp class="codeph">type</samp> = <samp class="codeph">OLAPDataGrid.OLAP_LEVEL</samp> 
+                  </p>
+
+               </li>
+
+               <li>
+                  <p>
+                     <samp class="codeph">type</samp> = <samp class="codeph">OLAPDataGrid.OLAP_HIERARCHY</samp> 
+                  </p>
+
+               </li>
+
+               <li>
+                  <p>
+                     <samp class="codeph">type</samp> = <samp class="codeph">OLAPDataGrid.OLAP_DIMENSION</samp> 
+                  </p>
+
+               </li>
+
+            </ol>
+
+            <p>Therefore, if an item renderer with a <samp class="codeph">type</samp> value
+of <samp class="codeph">OLAPDataGrid.OLAP_LEVEL</samp> and an item renderer
+with a <samp class="codeph">type</samp> value of <samp class="codeph">OLAPDataGrid.OLAP_HIERARCHY</samp> are
+applied to the same cell, the OLAPDataGrid control applies the item
+renderer with a <samp class="codeph">type</samp> value of <samp class="codeph">OLAPDataGrid.OLAP_LEVEL</samp>.</p>
+
+            <p>If two item renderers have the same value for the <samp class="codeph">type</samp> property,
+the OLAPDataGrid control determines which renderer more closely
+matches the item, and uses it.</p>
+
+         </div>
+
+      </div>
+
+      <div class="nested2" id="WS2db454920e96a9e51e63e3d11c0bf660d1-7fdb_verapache"><a name="WS2db454920e96a9e51e63e3d11c0bf660d1-7fdb_verapache"><!-- --></a>
+         <h3 class="topictitle3">Using an item renderer to apply
+styles to an OLAPDataGrid control</h3>
+
+         
+         <div>
+            <p>You can use an item renderer to apply styles to specific
+cells in the <a href="https://flex.apache.org/asdoc/mx/controls/OLAPDataGrid.html" target="_blank">OLAPDataGrid</a> control,
+as the following example shows:</p>
+
+            <p>
+               
+            </p>
+
+            <pre class="codeblock">  &lt;fx:Style&gt; 
+ 	.cellStyle 
+ 	{ 
+ 		color:#ff0000; 
+ 		fontWeight:"bold" 
+ 	} 
+ &lt;/fx:Style&gt; 
+  
+ 	... 
+  
+ &lt;mx:OLAPDataGrid id="myOLAPDG"  
+ 	width="100%" height="100%"&gt; 
+  
+ 	&lt;mx:itemRendererProviders&gt; 
+ 		&lt;mx:OLAPDataGridItemRendererProvider  
+ 			uniqueName="[QuarterDim].[Quarter]" 
+ 			type="{OLAPDataGrid.OLAP_HIERARCHY}" 
+ 			formatter="{usdFormatter}" 
+ 			<strong>styleName="cellStyle"/&gt;</strong> 
+ 	&lt;/mx:itemRendererProviders&gt; 
+ &lt;/mx:OLAPDataGrid&gt;</pre>
+
+            <p>In this example, you create a style definition, then apply it
+to the cells of the OLAPDataGrid control so that it applies to the
+same cells as the CurrencyFormatter formatter. </p>
+
+            <p/>
+
+         </div>
+
+      </div>
+
+<div>
+  <p><strong>Navigation</strong></p>
+  <p><a href="index.html">Using Flex</a> &raquo; <a href="flx_p4_using_ddui_components.html">Using data-driven UI components</a></p>
+</div>
+
+         <p>Adobe and Adobe Flash are either registered trademarks or trademarks of Adobe Systems Incorporated in the United States and/or other countries and are used by permission from Adobe.  No other license to the Adobe trademarks are granted.</p>
+   </div>
+
+
+</body>
+</html>
