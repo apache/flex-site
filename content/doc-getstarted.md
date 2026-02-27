@@ -82,7 +82,7 @@ This is a very simple, generic hello world application.  You can learn a lot mor
 The complete code listing is (there may be some variations, depending on your IDE template. Just make sure what we talked about above match) :
 
     <?xml version="1.0" encoding="utf-8"?>
-    <s:Application xmlns:fx="https://ns.adobe.com/mxml/2009"
+    <s:Application xmlns:fx="http://ns.adobe.com/mxml/2009"
                    xmlns:s="library://ns.adobe.com/flex/spark"
                    xmlns:mx="library://ns.adobe.com/flex/mx" width="640" height="480">
 
