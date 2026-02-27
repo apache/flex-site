@@ -203,10 +203,10 @@
 <li>Methods must be public, accept no arguments and return void.</li>
 <li>To use, simply decorate the method with <code>[Before]</code> metadata.</li>
 </ul>
-<pre><code>[Before]
-public function runMeBeforeEveryTest():void {
-}
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="k">[Before]</span>
+<span class="na">public function runMeBeforeEveryTest():void {</span>
+<span class="na">}</span>
+</code></pre></div>
 <h3>After methods</h3>
 <p>The logical opposite of the <code>[Before]</code> metadata is the <code>[After]</code> metadata. Methods marked with <code>[After]</code> run after each test method in the test case class.</p>
 <ul>
@@ -215,22 +215,22 @@ public function runMeBeforeEveryTest():void {
 <li>Methods must be public, accept no arguments and return void.</li>
 <li>To use, simply decorate the method with <code>[After]</code> metadata.</li>
 </ul>
-<pre><code>[After]
-public function runMeAfterEveryTest():void {
-}
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="k">[After]</span>
+<span class="na">public function runMeAfterEveryTest():void {</span>
+<span class="na">}</span>
+</code></pre></div>
 <h3>Order of Execution</h3>
 <p>As indicated above Before and After methods run before and after every test. Therefore, the execution of a method with three tests is indicated below:</p>
-<pre><code>[Before]
-	[Test1]
-[After] 
-[Before]
-	[Test2]
-[After] 
-[Before]
-	[Test3]
-[After]
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="k">[Before]</span>
+    <span class="k">[Test1]</span>
+<span class="na">[After] </span>
+<span class="k">[Before]</span>
+    <span class="k">[Test2]</span>
+<span class="na">[After] </span>
+<span class="k">[Before]</span>
+    <span class="k">[Test3]</span>
+<span class="k">[After]</span>
+</code></pre></div>
 <p>The setup of your test fixture occurs before each test to ensure the test runs in isolation from others in the test case.</p>
 <h2>Refactoring to remove duplication</h2>
 <p>The methods decorated with <code>[Before]</code> and <code>[After]</code> can be used to remove duplicate code from tests. Once extracted to an independent method, this duplicated code no longer needs to be maintained in each test but rather it can be maintained once for all tests in the test case.</p>
@@ -250,113 +250,113 @@ public function runMeAfterEveryTest():void {
 </li>
 <li>
 <p>Add a private variable with the name of <code>circle</code> and a data type of <code>Circle</code> to the class.</p>
-<pre><code>public class BasicCircleTest {		
-       private static const TOLERANCE:Number = .0001;
-       private var circle:Circle;
-       ...
-}
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="err">public class BasicCircleTest {      </span>
+<span class="err">       private static const TOLERANCE:Number = .0001;</span>
+<span class="err">       private var circle:Circle;</span>
+<span class="err">       ...</span>
+<span class="err">}</span>
+</code></pre></div>
 </li>
 <li>
 <p>Add a public function named <code>setMeUp()</code> to the class. Mark the function with a <code>[Before]</code> metadata tag. This function will set the <code>circle</code> property to a new <code>Circle</code> instance with arguments <code>new Point( 0, 0 )</code> and <code>5</code>.</p>
-<pre><code>[Before]
-public function setMeUp():void {
-	circle = new Circle( new Point( 0, 0 ), 5 );
-}
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="k">[Before]</span>
+<span class="na">public function setMeUp():void {</span>
+    <span class="na">circle</span> <span class="o">=</span> <span class="s">new Circle( new Point( 0, 0 ), 5 );</span>
+<span class="na">}</span>
+</code></pre></div>
 <p>Note, the name of the function is unimportant. It is only the Before metadata that makes this a Before method.</p>
 </li>
 <li>
 <p>Similarly, add another public function named <code>tearMeDown()</code>. In this case you are going to mark the function with an <code>[After]</code> metadata tag. This function will set the class <code>circle</code> variable to null.</p>
-<pre><code>[After]
-public function tearMeDown():void {
-	circle = null;
-}
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="k">[After]</span>
+<span class="na">public function tearMeDown():void {</span>
+    <span class="na">circle</span> <span class="o">=</span> <span class="s">null;</span>
+<span class="na">}</span>
+</code></pre></div>
 </li>
 <li>
 <p>Remove the <code>circle</code> variable instantiations from each of the test methods. Using the first test as a model:</p>
-<pre><code>[Test]
-public function shouldReturnProvidedRadius():void {
-	var circle:Circle = new Circle( new Point( 0, 0 ), 5 );
-	assertEquals( 5, circle.radius );
-}
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="k">[Test]</span>
+<span class="na">public function shouldReturnProvidedRadius():void {</span>
+    <span class="na">var circle:Circle</span> <span class="o">=</span> <span class="s">new Circle( new Point( 0, 0 ), 5 );</span>
+<span class="s">    assertEquals( 5, circle.radius );</span>
+<span class="na">}</span>
+</code></pre></div>
 <p>Becomes:</p>
-<pre><code>[Test]
-public function shouldReturnProvidedRadius():void {
-	assertEquals( 5, circle.radius );
-}
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="k">[Test]</span>
+<span class="na">public function shouldReturnProvidedRadius():void {</span>
+    <span class="na">assertEquals( 5, circle.radius );</span>
+<span class="na">}</span>
+</code></pre></div>
 <h3><br/>Running the test case</h3>
 </li>
 <li>
 <p>After the instantiations have been removed, the test class should read as follows:</p>
-<pre><code>public class BasicCircleTest {	
-	private static const TOLERANCE:Number = .0001;
-	private var circle:Circle;
-	[Before]
-	public function setMeUp():void {
-		circle = new Circle( new Point( 0, 0 ), 5 );
-	}
-	[After]
-	public function tearMeDown():void {
-		circle = null;
-	}
-	[Test]
-	public function shouldReturnProvidedRadius():void {
-		assertEquals( 5, circle.radius );
-	}
-	[Test]
-	public function shouldComputeCorrectDiameter():void {
-		assertEquals( 10, circle.diameter );
-	}
-	[Test]
-	public function shouldReturnProvidedOrigin():void {
-		assertEquals( 0, circle.origin.x );
-		assertEquals( 0, circle.origin.y );
-	}
-	[Test]
-	public function shouldReturnTrueForEqualCircle():void {
-		var circle2:Circle = new Circle( new Point( 0, 0 ), 5 );
-		assertTrue( circle.equals( circle2 ) );
-	}
-	[Test]
-	public function shouldReturnFalseForUnequalOrigin():void {
-		var circle2:Circle = new Circle( new Point( 0, 5 ), 5);
-		assertFalse( circle.equals( circle2 ) );
-	}
-	[Test]
-	public function shouldReturnFalseForUnequalRadius():void {
-		var circle2:Circle = new Circle( new Point( 0, 0 ), 7);
-		assertFalse( circle.equals( circle2 ) );
-	}
-	[Test]
-	public function shouldGetTopPointOnCircle():void {
-		var point:Point = circle.getPointOnCircle( 0 );
-		assertThat( point, new CloseToPointMatcher ( new Point( 5, 0 ), TOLERANCE ) );
-	}
-	[Test]
-	public function shouldGetBottomPointOnCircle():void {
-		var point:Point = circle.getPointOnCircle( Math.PI );
-		assertThat( point, new CloseToPointMatcher ( new Point( -5, 0 ), TOLERANCE ) );
-	}
-	[Test]
-	public function shouldGetRightPointOnCircle():void {
-		var point:Point = circle.getPointOnCircle( Math.PI/2 );
-		assertThat( point, new CloseToPointMatcher ( new Point( 0, 5 ), TOLERANCE ) );
-	}
-	[Test]
-	public function shouldGetLeftPointOnCircle():void {
-		var point:Point = circle.getPointOnCircle( (3*Math.PI)/2 );
-		assertThat( point, new CloseToPointMatcher ( new Point( 0, -5 ), TOLERANCE ) );
-	}
-	[Test(expects="RangeError")]
-	public function shouldThrowRangeError():void {
-		var someCircle:Circle = new Circle( new Point( 10, 10 ), -5 );
-	}
-}
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="k">public</span><span class="w"> </span><span class="k">class</span><span class="w"> </span><span class="n">BasicCircleTest</span><span class="w"> </span><span class="err">{</span><span class="w">  </span>
+<span class="w">    </span><span class="n">private</span><span class="w"> </span><span class="k">static</span><span class="w"> </span><span class="n">const</span><span class="w"> </span><span class="nl">TOLERANCE</span><span class="p">:</span><span class="n">Number</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">.0001</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">private</span><span class="w"> </span><span class="nf">var</span><span class="w"> </span><span class="nl">circle</span><span class="p">:</span><span class="n">Circle</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="o">[</span><span class="n">Before</span><span class="o">]</span><span class="w"></span>
+<span class="w">    </span><span class="k">public</span><span class="w"> </span><span class="k">function</span><span class="w"> </span><span class="n">setMeUp</span><span class="p">()</span><span class="err">:</span><span class="n">void</span><span class="w"> </span><span class="err">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">circle</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Circle</span><span class="p">(</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Point</span><span class="p">(</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="p">),</span><span class="w"> </span><span class="mi">5</span><span class="w"> </span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="err">}</span><span class="w"></span>
+<span class="w">    </span><span class="o">[</span><span class="n">After</span><span class="o">]</span><span class="w"></span>
+<span class="w">    </span><span class="k">public</span><span class="w"> </span><span class="k">function</span><span class="w"> </span><span class="n">tearMeDown</span><span class="p">()</span><span class="err">:</span><span class="n">void</span><span class="w"> </span><span class="err">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">circle</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">null</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="err">}</span><span class="w"></span>
+<span class="w">    </span><span class="o">[</span><span class="n">Test</span><span class="o">]</span><span class="w"></span>
+<span class="w">    </span><span class="k">public</span><span class="w"> </span><span class="k">function</span><span class="w"> </span><span class="n">shouldReturnProvidedRadius</span><span class="p">()</span><span class="err">:</span><span class="n">void</span><span class="w"> </span><span class="err">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">assertEquals</span><span class="p">(</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="n">circle</span><span class="p">.</span><span class="n">radius</span><span class="w"> </span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="err">}</span><span class="w"></span>
+<span class="w">    </span><span class="o">[</span><span class="n">Test</span><span class="o">]</span><span class="w"></span>
+<span class="w">    </span><span class="k">public</span><span class="w"> </span><span class="k">function</span><span class="w"> </span><span class="n">shouldComputeCorrectDiameter</span><span class="p">()</span><span class="err">:</span><span class="n">void</span><span class="w"> </span><span class="err">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">assertEquals</span><span class="p">(</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w"> </span><span class="n">circle</span><span class="p">.</span><span class="n">diameter</span><span class="w"> </span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="err">}</span><span class="w"></span>
+<span class="w">    </span><span class="o">[</span><span class="n">Test</span><span class="o">]</span><span class="w"></span>
+<span class="w">    </span><span class="k">public</span><span class="w"> </span><span class="k">function</span><span class="w"> </span><span class="n">shouldReturnProvidedOrigin</span><span class="p">()</span><span class="err">:</span><span class="n">void</span><span class="w"> </span><span class="err">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">assertEquals</span><span class="p">(</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">circle</span><span class="p">.</span><span class="n">origin</span><span class="p">.</span><span class="n">x</span><span class="w"> </span><span class="p">);</span><span class="w"></span>
+<span class="w">        </span><span class="n">assertEquals</span><span class="p">(</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">circle</span><span class="p">.</span><span class="n">origin</span><span class="p">.</span><span class="n">y</span><span class="w"> </span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="err">}</span><span class="w"></span>
+<span class="w">    </span><span class="o">[</span><span class="n">Test</span><span class="o">]</span><span class="w"></span>
+<span class="w">    </span><span class="k">public</span><span class="w"> </span><span class="k">function</span><span class="w"> </span><span class="n">shouldReturnTrueForEqualCircle</span><span class="p">()</span><span class="err">:</span><span class="n">void</span><span class="w"> </span><span class="err">{</span><span class="w"></span>
+<span class="w">        </span><span class="nf">var</span><span class="w"> </span><span class="nl">circle2</span><span class="p">:</span><span class="n">Circle</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Circle</span><span class="p">(</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Point</span><span class="p">(</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="p">),</span><span class="w"> </span><span class="mi">5</span><span class="w"> </span><span class="p">);</span><span class="w"></span>
+<span class="w">        </span><span class="n">assertTrue</span><span class="p">(</span><span class="w"> </span><span class="n">circle</span><span class="p">.</span><span class="k">equals</span><span class="p">(</span><span class="w"> </span><span class="n">circle2</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="err">}</span><span class="w"></span>
+<span class="w">    </span><span class="o">[</span><span class="n">Test</span><span class="o">]</span><span class="w"></span>
+<span class="w">    </span><span class="k">public</span><span class="w"> </span><span class="k">function</span><span class="w"> </span><span class="n">shouldReturnFalseForUnequalOrigin</span><span class="p">()</span><span class="err">:</span><span class="n">void</span><span class="w"> </span><span class="err">{</span><span class="w"></span>
+<span class="w">        </span><span class="nf">var</span><span class="w"> </span><span class="nl">circle2</span><span class="p">:</span><span class="n">Circle</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Circle</span><span class="p">(</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Point</span><span class="p">(</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="w"> </span><span class="p">),</span><span class="w"> </span><span class="mi">5</span><span class="p">);</span><span class="w"></span>
+<span class="w">        </span><span class="n">assertFalse</span><span class="p">(</span><span class="w"> </span><span class="n">circle</span><span class="p">.</span><span class="k">equals</span><span class="p">(</span><span class="w"> </span><span class="n">circle2</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="err">}</span><span class="w"></span>
+<span class="w">    </span><span class="o">[</span><span class="n">Test</span><span class="o">]</span><span class="w"></span>
+<span class="w">    </span><span class="k">public</span><span class="w"> </span><span class="k">function</span><span class="w"> </span><span class="n">shouldReturnFalseForUnequalRadius</span><span class="p">()</span><span class="err">:</span><span class="n">void</span><span class="w"> </span><span class="err">{</span><span class="w"></span>
+<span class="w">        </span><span class="nf">var</span><span class="w"> </span><span class="nl">circle2</span><span class="p">:</span><span class="n">Circle</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Circle</span><span class="p">(</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Point</span><span class="p">(</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="p">),</span><span class="w"> </span><span class="mi">7</span><span class="p">);</span><span class="w"></span>
+<span class="w">        </span><span class="n">assertFalse</span><span class="p">(</span><span class="w"> </span><span class="n">circle</span><span class="p">.</span><span class="k">equals</span><span class="p">(</span><span class="w"> </span><span class="n">circle2</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="err">}</span><span class="w"></span>
+<span class="w">    </span><span class="o">[</span><span class="n">Test</span><span class="o">]</span><span class="w"></span>
+<span class="w">    </span><span class="k">public</span><span class="w"> </span><span class="k">function</span><span class="w"> </span><span class="n">shouldGetTopPointOnCircle</span><span class="p">()</span><span class="err">:</span><span class="n">void</span><span class="w"> </span><span class="err">{</span><span class="w"></span>
+<span class="w">        </span><span class="nf">var</span><span class="w"> </span><span class="nl">point</span><span class="p">:</span><span class="n">Point</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">circle</span><span class="p">.</span><span class="n">getPointOnCircle</span><span class="p">(</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="p">);</span><span class="w"></span>
+<span class="w">        </span><span class="n">assertThat</span><span class="p">(</span><span class="w"> </span><span class="n">point</span><span class="p">,</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">CloseToPointMatcher</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Point</span><span class="p">(</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="p">),</span><span class="w"> </span><span class="n">TOLERANCE</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="err">}</span><span class="w"></span>
+<span class="w">    </span><span class="o">[</span><span class="n">Test</span><span class="o">]</span><span class="w"></span>
+<span class="w">    </span><span class="k">public</span><span class="w"> </span><span class="k">function</span><span class="w"> </span><span class="n">shouldGetBottomPointOnCircle</span><span class="p">()</span><span class="err">:</span><span class="n">void</span><span class="w"> </span><span class="err">{</span><span class="w"></span>
+<span class="w">        </span><span class="nf">var</span><span class="w"> </span><span class="nl">point</span><span class="p">:</span><span class="n">Point</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">circle</span><span class="p">.</span><span class="n">getPointOnCircle</span><span class="p">(</span><span class="w"> </span><span class="n">Math</span><span class="p">.</span><span class="nf">PI</span><span class="w"> </span><span class="p">);</span><span class="w"></span>
+<span class="w">        </span><span class="n">assertThat</span><span class="p">(</span><span class="w"> </span><span class="n">point</span><span class="p">,</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">CloseToPointMatcher</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Point</span><span class="p">(</span><span class="w"> </span><span class="o">-</span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="p">),</span><span class="w"> </span><span class="n">TOLERANCE</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="err">}</span><span class="w"></span>
+<span class="w">    </span><span class="o">[</span><span class="n">Test</span><span class="o">]</span><span class="w"></span>
+<span class="w">    </span><span class="k">public</span><span class="w"> </span><span class="k">function</span><span class="w"> </span><span class="n">shouldGetRightPointOnCircle</span><span class="p">()</span><span class="err">:</span><span class="n">void</span><span class="w"> </span><span class="err">{</span><span class="w"></span>
+<span class="w">        </span><span class="nf">var</span><span class="w"> </span><span class="nl">point</span><span class="p">:</span><span class="n">Point</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">circle</span><span class="p">.</span><span class="n">getPointOnCircle</span><span class="p">(</span><span class="w"> </span><span class="n">Math</span><span class="p">.</span><span class="nf">PI</span><span class="o">/</span><span class="mi">2</span><span class="w"> </span><span class="p">);</span><span class="w"></span>
+<span class="w">        </span><span class="n">assertThat</span><span class="p">(</span><span class="w"> </span><span class="n">point</span><span class="p">,</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">CloseToPointMatcher</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Point</span><span class="p">(</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="w"> </span><span class="p">),</span><span class="w"> </span><span class="n">TOLERANCE</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="err">}</span><span class="w"></span>
+<span class="w">    </span><span class="o">[</span><span class="n">Test</span><span class="o">]</span><span class="w"></span>
+<span class="w">    </span><span class="k">public</span><span class="w"> </span><span class="k">function</span><span class="w"> </span><span class="n">shouldGetLeftPointOnCircle</span><span class="p">()</span><span class="err">:</span><span class="n">void</span><span class="w"> </span><span class="err">{</span><span class="w"></span>
+<span class="w">        </span><span class="nf">var</span><span class="w"> </span><span class="nl">point</span><span class="p">:</span><span class="n">Point</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">circle</span><span class="p">.</span><span class="n">getPointOnCircle</span><span class="p">(</span><span class="w"> </span><span class="p">(</span><span class="mi">3</span><span class="o">*</span><span class="n">Math</span><span class="p">.</span><span class="nf">PI</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="w"> </span><span class="p">);</span><span class="w"></span>
+<span class="w">        </span><span class="n">assertThat</span><span class="p">(</span><span class="w"> </span><span class="n">point</span><span class="p">,</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">CloseToPointMatcher</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Point</span><span class="p">(</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="o">-</span><span class="mi">5</span><span class="w"> </span><span class="p">),</span><span class="w"> </span><span class="n">TOLERANCE</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="err">}</span><span class="w"></span>
+<span class="w">    </span><span class="o">[</span><span class="n">Test(expects="RangeError")</span><span class="o">]</span><span class="w"></span>
+<span class="w">    </span><span class="k">public</span><span class="w"> </span><span class="k">function</span><span class="w"> </span><span class="n">shouldThrowRangeError</span><span class="p">()</span><span class="err">:</span><span class="n">void</span><span class="w"> </span><span class="err">{</span><span class="w"></span>
+<span class="w">        </span><span class="nf">var</span><span class="w"> </span><span class="nl">someCircle</span><span class="p">:</span><span class="n">Circle</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Circle</span><span class="p">(</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Point</span><span class="p">(</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w"> </span><span class="mi">10</span><span class="w"> </span><span class="p">),</span><span class="w"> </span><span class="o">-</span><span class="mi">5</span><span class="w"> </span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="err">}</span><span class="w"></span>
+<span class="err">}</span><span class="w"></span>
+</code></pre></div>
 <p>Other circles, such as <code>circle2</code> are still instantiated in its respective methods, because it is unique in each case.</p>
 </li>
 <li>
@@ -384,18 +384,18 @@ public function shouldReturnProvidedRadius():void {
 <p>Second, if you do find yourself heavily relying upon items created in this way, you may have moved into the territory of integration tests and away from unit tests. Remember, a unit is the smallest piece of testable code. The combination of your code, the network stack, an application server, a database connection, and a database server rarely qualifies.</p>
 <p>As items created in BeforeClass are created before the test case constructor is called, they must be static. Unlike items created in Before which have the possibility of being garbage collected, these static items will not. Therefore, the cleanup performed by the AfterClass methods is extremely important.</p>
 <p>Static functions marked with [BeforeClass] and [AfterClass] can exist on a test case or a test suite and are run once per execution. The method execution of a three-test hierarchy is illustrated below:</p>
-<pre><code>[BeforeClass]
-	[Before]
-		[Test]
-	[After] 
-	[Before]
-		[Test]
-	[After] 
-	[Before]
-		[Test]
-	[After] 
-[AfterClass]
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="k">[BeforeClass]</span>
+    <span class="k">[Before]</span>
+        <span class="k">[Test]</span>
+    <span class="na">[After] </span>
+    <span class="k">[Before]</span>
+        <span class="k">[Test]</span>
+    <span class="na">[After] </span>
+    <span class="k">[Before]</span>
+        <span class="k">[Test]</span>
+    <span class="na">[After] </span>
+<span class="k">[AfterClass]</span>
+</code></pre></div>
 <h2>Walkthrough 2: Using BeforeClass and AfterClass</h2>
 <p>In this walkthrough you will perform the following tasks:</p>
 <ul>
@@ -410,43 +410,43 @@ public function shouldReturnProvidedRadius():void {
 </li>
 <li>
 <p>Declare a public static function named <code>setUpClass()</code>, mark it with <code>[BeforeClass]</code> metadata. In the function body, add a trace statement that merely states "Before Class."</p>
-<pre><code>[BeforeClass]
-public static function setUpClass():void {
-	trace( "Before Class" );
-}
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="k">[BeforeClass]</span>
+<span class="na">public static function setUpClass():void {</span>
+    <span class="na">trace( "Before Class" );</span>
+<span class="na">}</span>
+</code></pre></div>
 </li>
 <li>
 <p>Similarly, declare another public static function named <code>tearDownClass()</code>, mark it with <code>[AfterClass]</code> metadata.</p>
-<pre><code>[AfterClass]
-public static function tearDownClass():void {
-	trace( "After Class" );
-}
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="k">[AfterClass]</span>
+<span class="na">public static function tearDownClass():void {</span>
+    <span class="na">trace( "After Class" );</span>
+<span class="na">}</span>
+</code></pre></div>
 <h3><br/>Visualizing test order</h3>
 </li>
 <li>
 <p>A similar trace statement should be added to the existing <code>setMeUp()</code> and <code>tearMeDown()</code> methods.</p>
-<pre><code>[Before]
-public function setMeUp():void {
-	circle = new Circle( new Point( 0, 0 ), 5 );
-	trace( "Before Test" );
-}
-[After]
-public function tearMeDown():void {
-	circle = null;
-	trace( "After Test" );
-}
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="k">[Before]</span>
+<span class="na">public function setMeUp():void {</span>
+    <span class="na">circle</span> <span class="o">=</span> <span class="s">new Circle( new Point( 0, 0 ), 5 );</span>
+<span class="s">    trace( "Before Test" );</span>
+<span class="na">}</span>
+<span class="k">[After]</span>
+<span class="na">public function tearMeDown():void {</span>
+    <span class="na">circle</span> <span class="o">=</span> <span class="s">null;</span>
+<span class="s">    trace( "After Test" );</span>
+<span class="na">}</span>
+</code></pre></div>
 </li>
 <li>
 <p>Finally, add a trace statement to every test method on the first line.</p>
-<pre><code>[Test]
-public function shouldReturnProvidedRadius():void {
-	trace( "Test" );
-	assertEquals( 5, circle.radius );
-}
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="k">[Test]</span>
+<span class="na">public function shouldReturnProvidedRadius():void {</span>
+    <span class="na">trace( "Test" );</span>
+    <span class="na">assertEquals( 5, circle.radius );</span>
+<span class="na">}</span>
+</code></pre></div>
 </li>
 <li>
 <p>Save BasicCircleTest.as</p>
@@ -463,43 +463,42 @@ public function shouldReturnProvidedRadius():void {
 </li>
 <li>
 <p>Take a look at the console view; if all the functions ran to completion, you should see the following show up in order.</p>
-<pre><code>Before Class
-Before Test
-Test
-After Test
-Before Test
-Test
-After Test
-Before Test
-Test
-After Test
-Before Test
-Test
-After Test
-Before Test
-Test
-After Test
-Before Test
-Test
-After Test
-Before Test
-Test
-After Test
-Before Test
-Test
-After Test
-Before Test
-Test
-After Test
-Before Test
-Test
-After Test
-Before Test
-Test
-After Test
-After Class
-
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="err">Before Class</span>
+<span class="err">Before Test</span>
+<span class="err">Test</span>
+<span class="err">After Test</span>
+<span class="err">Before Test</span>
+<span class="err">Test</span>
+<span class="err">After Test</span>
+<span class="err">Before Test</span>
+<span class="err">Test</span>
+<span class="err">After Test</span>
+<span class="err">Before Test</span>
+<span class="err">Test</span>
+<span class="err">After Test</span>
+<span class="err">Before Test</span>
+<span class="err">Test</span>
+<span class="err">After Test</span>
+<span class="err">Before Test</span>
+<span class="err">Test</span>
+<span class="err">After Test</span>
+<span class="err">Before Test</span>
+<span class="err">Test</span>
+<span class="err">After Test</span>
+<span class="err">Before Test</span>
+<span class="err">Test</span>
+<span class="err">After Test</span>
+<span class="err">Before Test</span>
+<span class="err">Test</span>
+<span class="err">After Test</span>
+<span class="err">Before Test</span>
+<span class="err">Test</span>
+<span class="err">After Test</span>
+<span class="err">Before Test</span>
+<span class="err">Test</span>
+<span class="err">After Test</span>
+<span class="err">After Class</span>
+</code></pre></div>
 </li>
 <li>
 <p>Based on the exhibited call hierarchy, you should be able to tell that the <code>setUpClass()</code> and <code>tearDownClass()</code> functions are being called before the first test method and after the last. Meanwhile, the <code>setMeUp()</code> and <code>tearMeDown()</code> methods are being called respectively before and after every test.</p>
@@ -524,7 +523,6 @@ After Class
 <li><a href="Unit-7.html">Unit 7 - Using Suites</a></li>
 <li><a href="../index.html">Table of Contents / Introduction</a></li>
 </ul>
-
 
 <!-- Home Page Exception -->
 
